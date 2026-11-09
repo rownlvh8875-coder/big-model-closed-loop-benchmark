@@ -65,7 +65,7 @@ jobs:
             --second-model "$RUNNER_TEMP/models/ea2f516f-f758-42be-a245-913bb818a64f/32768/big_driving_supercombo.onnx" \
             --second-spec model_specs/light-speed-2.json \
             --scenario s_curve_left_right --steps 12 --seed 20261109 --speed 8 \
-            --repeat-first --out output/native-paired
+            --repeat-first --full-s-route --out output/native-paired
           python - <<'PYCODE'
           import json
           from pathlib import Path
