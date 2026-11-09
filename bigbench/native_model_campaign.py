@@ -82,7 +82,7 @@ class NativeWorldCamera:
 
 
 def run_target_lane_episode(policy: Any, camera: Any, lane: Any,
-                            spec: CampaignSpec) -> dict:
+                            spec: CampaignSpec, route: Any | None = None) -> dict:
     """Run fixed-speed lateral-only model feedback on a preselected NATIVE lane.
 
     At every step: rendered RGB -> ONNX action -> common kinematics ->
@@ -96,6 +96,8 @@ def run_target_lane_episode(policy: Any, camera: Any, lane: Any,
     xy=lane.position(s,0.)
     state=AgentState(0.,float(xy[0]),float(xy[1]),
                      float(lane.heading_theta_at(s)),spec.speed_mps)
+    if route is not None and (not getattr(route,'lanes',None) or route.lanes[0] is not lane):
+        raise BenchmarkProtocolError('explicit native route must start on the chosen lane')
     policy.reset()
     rows=[]
     truths=[]
@@ -112,14 +114,16 @@ def run_target_lane_episode(policy: Any, camera: Any, lane: Any,
                 raise BenchmarkProtocolError('invalid raw model action')
             after=step_ideal(state,action,spec.dt_s,
                              speed_override=spec.speed_mps if spec.fixed_speed else None)
-            truth=evaluate_target_lane_by_id([lane],index,after.x,after.y,after.heading)
+            truth=(route.evaluate(after.x,after.y,after.heading)
+                   if route is not None
+                   else evaluate_target_lane_by_id([lane],index,after.x,after.y,after.heading))
             truths.append(truth)
             rows.append({
                 'step':i+1,'time_s':after.t,'world_x_m':after.x,'world_y_m':after.y,
                 'heading_rad':after.heading,'speed_mps':after.speed,
                 'desired_curvature_1pm':action.curvature_1pm,
                 'desired_acceleration_mps2':action.acceleration_mps2,
-                'target_lane_id':index,'lateral_right_m':truth.signed_lateral_right_m,
+                'target_lane_id':truth.lane_id,'lateral_right_m':truth.signed_lateral_right_m,
                 'inside_turn_offset_m':truth.inside_turn_offset_m,
                 'lane_intrusion_m':truth.intrusion_depth_m,
                 'road_frame_sha256':pair.road.sha256,'wide_frame_sha256':pair.wide.sha256,
@@ -145,7 +149,8 @@ def run_target_lane_episode(policy: Any, camera: Any, lane: Any,
     }
 
 
-def run_native_episode(policy: Any, spec: CampaignSpec) -> dict:
+def run_native_episode(policy: Any, spec: CampaignSpec, *,
+                       full_s_route: bool = False) -> dict:
     """Create fresh identical native world per model: never share model state."""
     from .metadrive_camera import NativeMetaDriveProvider
     provider=NativeMetaDriveProvider(seed=spec.seed,map_config=SCENARIOS[spec.scenario].map_config())
@@ -153,7 +158,18 @@ def run_native_episode(policy: Any, spec: CampaignSpec) -> dict:
         lanes=select_native_curve_lanes(provider.env.current_map,SCENARIOS[spec.scenario])
         if not lanes:
             raise BenchmarkProtocolError('scene does not contain a native curve')
-        return run_target_lane_episode(policy,NativeWorldCamera(provider),lanes[0],spec)
+        route=None
+        if full_s_route:
+            if not SCENARIOS[spec.scenario].expected_curve_directions or len(lanes)!=2:
+                raise BenchmarkProtocolError('full native route requires two S-curve bends')
+            from .native_route import NativeRouteProgress,forward_contiguous_chain
+            chain=forward_contiguous_chain(provider.env.current_map.road_network,
+                                           lanes[0],str(lanes[1].index))
+            route=NativeRouteProgress(chain)
+        out=run_target_lane_episode(policy,NativeWorldCamera(provider),lanes[0],spec,route=route)
+        out['explicit_route_lane_ids']=[str(z.index) for z in route.lanes] if route else [str(lanes[0].index)]
+        out['full_s_route_requested']=full_s_route
+        return out
     finally:
         provider.close()
 
