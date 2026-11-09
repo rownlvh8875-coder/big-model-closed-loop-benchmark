@@ -36,9 +36,17 @@ class VirtualPandaClock:
         self.clock=clock
 
     def close(self):
-        if self.clock is not None:
-            mode,dt=self.old
+        if self.clock is None:
+            return
+        try:
+            mode, dt = self.old
+            # Panda3D raises AssertionError in setDt(0), which is a valid
+            # uninitialised clock value before the first simulation frame.
+            # Restore nonzero frame time only; changing to the old real-time
+            # mode makes Panda control the next dt without this call.
             self.clock.setMode(mode)
-            self.clock.setDt(dt)
-            self.clock=None
-            self.old=None
+            if math.isfinite(dt) and dt > 0:
+                self.clock.setDt(dt)
+        finally:
+            self.clock = None
+            self.old = None
