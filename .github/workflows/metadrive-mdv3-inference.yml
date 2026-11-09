@@ -1,0 +1,91 @@
+name: Official MD-V3 inference with real MetaDrive virtual cameras (NO real vehicle)
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/metadrive-mdv3-inference.yml'
+permissions:
+  contents: read
+jobs:
+  native-camera-mdv3:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      LIBGL_ALWAYS_SOFTWARE: '1'
+      PYOPENGL_PLATFORM: 'glx'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Virtual display dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y xvfb libgl1 libglu1-mesa libegl1 libx11-6
+      - name: Install MetaDrive and real ONNX inference dependencies
+        run: python -m pip install '.[inference]' 'metadrive-simulator==0.4.3'
+      - name: Prepare official MetaDrive assets, no simulator auto-download
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p "$RUNNER_TEMP/metadrive-asset"
+          gh release download MetaDrive-0.4.3 --repo metadriverse/metadrive --pattern assets.zip --dir "$RUNNER_TEMP/metadrive-asset"
+          python - <<'PYCODE'
+          from pathlib import Path, PurePosixPath
+          from zipfile import ZipFile
+          import metadrive, os
+          archive = Path(os.environ['RUNNER_TEMP']) / 'metadrive-asset' / 'assets.zip'
+          assert archive.stat().st_size == 134074203
+          pkg = Path(metadrive.__file__).resolve().parent
+          with ZipFile(archive) as z:
+              for name in z.namelist():
+                  p = PurePosixPath(name)
+                  if p.is_absolute() or '..' in p.parts:
+                      raise ValueError('unsafe archive path')
+              z.extractall(pkg)
+          assert (pkg/'assets'/'version.txt').is_file()
+          print('OFFICIAL_METADRIVE_ASSETS_READY')
+          PYCODE
+      - name: Download SHA-pinned official MD-V3 ONNX weights to ephemeral runner
+        run: |
+          python -m scripts.hf_models download \
+            --path '1365126a-e71e-4778-be00-8ab92dc82c09/12864/big_driving_supercombo.onnx' \
+            --sha256 '35976b11be3904eb78e32f7dc55a6abf8e9433ac5aa391a1998f1e9ce001b199' \
+            --max-bytes 900000000 \
+            --out "$RUNNER_TEMP/models"
+      - name: Actual MetaDrive RGB to stateful MD-V3 ONNX, three virtual steps
+        run: |
+          xvfb-run -a python -m scripts.metadrive_optical_check \
+            --model "$RUNNER_TEMP/models/1365126a-e71e-4778-be00-8ab92dc82c09/12864/big_driving_supercombo.onnx" \
+            --spec model_specs/md-v3.json \
+            --steps 3 --out output/metadrive-mdv3
+          python - <<'PYCODE'
+          import json
+          from pathlib import Path
+          p = Path('output/metadrive-mdv3/optical_report.json')
+          j = json.loads(p.read_text())
+          assert j['classification'] == 'METADRIVE_REAL_RENDER_VIRTUAL_PINHOLE_UNCALIBRATED'
+          assert j['model_inference_steps'] == 3
+          assert j['scoring_allowed'] is False
+          assert j['real_vehicle_testing'] is False
+          assert j['cd210_fallback'] is False
+          assert len(j['records']) == 3
+          print('OFFICIAL_MDV3_NATIVE_METADRIVE_INFERENCE_PASS', {
+              'steps': j['model_inference_steps'],
+              'road_frames': j['distinct_road_frames'],
+              'wide_frames': j['distinct_wide_frames'],
+              'scoring_allowed': j['scoring_allowed'],
+          })
+          PYCODE
+      - name: Upload ONLY uncalibrated model/camera diagnostics, no weights
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: metadrive-mdv3-uncalibrated-diagnostics
+          path: |
+            output/metadrive-mdv3/optical_report.json
+            output/metadrive-mdv3/model_inference.csv
+            output/metadrive-mdv3/road_model_last.png
+            output/metadrive-mdv3/wide_model_last.png
+          if-no-files-found: ignore
+          retention-days: 7
