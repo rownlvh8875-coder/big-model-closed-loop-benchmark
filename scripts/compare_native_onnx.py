@@ -28,6 +28,7 @@ def main(argv=None):
     p.add_argument('--seed',type=int,default=20261109)
     p.add_argument('--speed',type=float,default=8.0)
     p.add_argument('--out',type=Path,default=Path('output/two-model-native'))
+    p.add_argument('--repeat-first',action='store_true',help='run model A again as an independent repeatability diagnostic')
     args=p.parse_args(argv)
     spec=CampaignSpec(scenario=args.scenario,steps=args.steps,
                       speed_mps=args.speed,seed=args.seed)
@@ -60,6 +61,24 @@ def main(argv=None):
     (args.out/'paired_diagnostic.json').write_text(
         json.dumps(summary,indent=2,ensure_ascii=False,allow_nan=False)+'\n',
         encoding='utf-8')
+    from bigbench.dashboard import save_diagnostic_dashboard
+    save_diagnostic_dashboard(args.out/'comparison_dashboard.html',receipts,summary)
+    print('OFFLINE_COMPARISON_DASHBOARD_READY',flush=True)
+    if args.repeat_first:
+        from bigbench.reproducibility import compare_repeat_receipts
+        policy=OnnxBigModelPolicy(args.first_model,args.first_spec)
+        repeated=run_native_episode(policy,spec)
+        repeated['model_inference_steps']=len(policy.trace)
+        (args.out/'repeat_model_a.json').write_text(
+            json.dumps(repeated,indent=2,ensure_ascii=False,allow_nan=False)+'\n',
+            encoding='utf-8')
+        repeat=compare_repeat_receipts(receipts[0],repeated)
+        (args.out/'repeatability.json').write_text(
+            json.dumps(repeat,indent=2,ensure_ascii=False,allow_nan=False)+'\n',
+            encoding='utf-8')
+        print('OFFLINE_REPEATABILITY',repeat['status'],flush=True)
+        del policy
+        gc.collect()
     print('PAIR_NATIVE_ONNX_DIAGNOSTIC_PASS',spec.scenario,spec.steps,flush=True)
     return 0
 
