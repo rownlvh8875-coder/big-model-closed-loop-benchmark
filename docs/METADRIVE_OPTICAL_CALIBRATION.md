@@ -60,7 +60,7 @@ To run without downloading a large model, GitHub Actions provides the separate w
 - Narrow measured source: fx=1323.9998636, fy=1323.9999425 (target 1324 px). Wide measured source: fx=283.5000334, fy=283.5000503 (target 283.5 px).
 - Narrow warp source coverage **0.99609375 (99.609375%)**; wide source coverage **1.0 (100%)**.
 - These values confirm reference **pinhole intrinsics, digital cropping and actual frame changes**, NOT real comma lens fidelity or independent physical-world landmark pixel residuals.
-- Source commit 2e2ae997 adds explicit actual MetaDrive RGB → I420/YUV6 ONNX camera tensor shape/dtype and pose-change checks; these are not labeled PASS until that CI run completes.
+- **PASS:** [GitHub Actions run 42569804426](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42569804426), commit 2e2ae997, verifies native MetaDrive source RGB → I420/YUV6 **(2,6,128,256), uint8** ONNX camera input. Road/wide packed tensors are different, and the final packed input changes after the virtual camera pose changes. **This does not confirm actual ONNX inferencing using MetaDrive imagery.**
 
 ## Remaining optical validation gates — NOT PASSED
 
