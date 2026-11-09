@@ -16,7 +16,7 @@
 | 대형 ONNX 실행기 및 recurrent state 연결 | **구현; 공식 MD-V3·Light Speed 2 연속 5스텝 추론 성공** | `bigbench/onnx_policy.py`, `tests/test_onnx_runtime_policy.py` | 해시/입출력/메모리 상태 계약 검증; 카메라 광학 미검증 |
 | 실제 대형모델 영상 폐루프 성능 비교 | **미실시** | — | 실측 성능 순위 없음; 도식적 RGB는 비검증 입력 |
 | MetaDrive 광학 정합 계층(기하학) | **구현, 단위시험 검증** | `python -m unittest discover -s tests -p test_optical_calibration.py -v` | 핀홀 내부 파라미터·기준점 투영 검증만 완료; 실제 MetaDrive 광학 검증 아님 |
-| MetaDrive 실제 RGB 장면 캡처 | **어댑터 구현, 실제 렌더 실행 미확인** | 수동 워크플로 `metadrive-optical.yml` | 네이티브 메타드라이브 설치·실행 후 영상 차이/렌즈 측정 필요 |
+| MetaDrive 실제 RGB 장면 캡처 | **MetaDrive 0.4.3 실제 오프스크린 RGB 프레임 생성 PASS** | 수동 워크플로 `metadrive-optical.yml` | GitHub Actions [42569322601](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42569322601)에서 두 렌즈의 핀홀 초점거리·프레임 변경 확인; 실제 광학 등가성은 미검증 |
 | CARLA 렌더러·광학 왜곡/외부 파라미터/시각 도메인 | **미검증** | — | 실제 comma 광학 등가성 및 모델 주행성능은 아직 검증 전 |
 | 차량·실차·CAN·Carrot Params 조작 | **범위에서 영구 제외** | — | 이 프로젝트가 담당하지 않음 |
 
@@ -35,12 +35,12 @@
 
 [ONNX_INFERENCE.md](ONNX_INFERENCE.md) 및 [REAL_MODEL_SMOKE_RESULTS.md](REAL_MODEL_SMOKE_RESULTS.md) 참조. 주입 세션 테스트 더블과 소형 테스트 그래프 시험은 별도이며, **공식 MD-V3·Light Speed 2 모델 각각 실제 5스텝 추론**도 완료했습니다. 단 도식적 카메라의 광학 정합성과 주행 성능은 미검증입니다.
 
-**MetaDrive 광학 단계 문서:** [`METADRIVE_OPTICAL_CALIBRATION.md`](METADRIVE_OPTICAL_CALIBRATION.md). 핀홀 기하학 검사는 실제 광학/주행성능 검증이 아니며, 실제 MetaDrive 렌더링 성공도 아직 미확인.
+**MetaDrive 광학 단계 문서:** [`METADRIVE_OPTICAL_CALIBRATION.md`](METADRIVE_OPTICAL_CALIBRATION.md). 핀홀 기하학 검사는 실제 광학/주행성능 검증이 아니며, 실제 MetaDrive 0.4.3 렌더링·위치 변경에 따른 일반/광각 영상 변화는 [GitHub Actions 42569322601](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42569322601)에서 확인했으나 실제 comma 렌즈·영상 도메인과의 정합성은 미검증.
 
 ## 다음 구현 게이트
 
 1. 나머지 대형모델 체크포인트의 입출력 명세·전처리·재귀 상태 확대 검증 (MD-V3 및 Light Speed 2는 5스텝 성공).
-2. 현재 구현된 이중 I420/YUV 패킹을 실제 카메라 광학·왜곡·워프 기준 영상으로 검증.
+2. 현재 구현된 이중 I420/YUV 패킹을 실제 MetaDrive 렌더링 이미지에 적용하는 입력 구조·프레임 변경 게이트 검증(별도 CI 진행 중). 실제 comma 렌즈 왜곡·외부 보정·카메라 동등성은 향후 검증.
 3. 기존 합성 도식 입력의 연속 추론 성공을 확인했으므로 실제 모델 시각 도메인에 적합한 렌더러로 폐루프를 재검증.
 4. MetaDrive 또는 CARLA 렌더러의 영상 품질과 차량 자세 재투영 검증.
 5. 모델별 동일 시나리오 비교, 반복 실행, 지표 통계 및 한계 보고.
