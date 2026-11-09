@@ -17,6 +17,8 @@
 | 실제 대형모델 영상 폐루프 성능 비교 | **미실시** | — | 실측 성능 순위 없음; 도식적 RGB는 비검증 입력 |
 | MetaDrive 광학 정합 계층(기하학) | **구현, 단위시험 검증** | `python -m unittest discover -s tests -p test_optical_calibration.py -v` | 핀홀 내부 파라미터·기준점 투영 검증만 완료; 실제 MetaDrive 광학 검증 아님 |
 | MetaDrive 실제 RGB 장면 캡처 | **MetaDrive 0.4.3 실제 오프스크린 RGB 프레임 생성 PASS** | 수동 워크플로 `metadrive-optical.yml` | GitHub Actions [42569322601](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42569322601)에서 두 렌즈의 핀홀 초점거리·프레임 변경 확인; 실제 광학 등가성은 미검증 |
+| MetaDrive RGB→I420/YUV6 실제 입력 텐서 | **PASS** | [실제 카메라 입력 CI 42569804426](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42569804426) | (2,6,128,256), uint8, 두 카메라별 독립 프레임 및 가상 위치 이동 후 텐서 변경 |
+| MetaDrive × 공식 MD-V3 실제 ONNX 영상 루프 | **3스텝 PASS (기술적 연결에 한정)** | [실제 MD-V3 CI 42570111317](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42570111317), [검증 결과 문서](METADRIVE_MDV3_SMOKE_RESULTS.md) | 원본 MD-V3 모델 가중치 사용, 상태 갱신·가상 이동·다음 영상 재추론; 실제 광학 및 주행성능 점수는 미검증 |
 | CARLA 렌더러·광학 왜곡/외부 파라미터/시각 도메인 | **미검증** | — | 실제 comma 광학 등가성 및 모델 주행성능은 아직 검증 전 |
 | 차량·실차·CAN·Carrot Params 조작 | **범위에서 영구 제외** | — | 이 프로젝트가 담당하지 않음 |
 
@@ -35,7 +37,7 @@
 
 [ONNX_INFERENCE.md](ONNX_INFERENCE.md) 및 [REAL_MODEL_SMOKE_RESULTS.md](REAL_MODEL_SMOKE_RESULTS.md) 참조. 주입 세션 테스트 더블과 소형 테스트 그래프 시험은 별도이며, **공식 MD-V3·Light Speed 2 모델 각각 실제 5스텝 추론**도 완료했습니다. 단 도식적 카메라의 광학 정합성과 주행 성능은 미검증입니다.
 
-**MetaDrive 광학 단계 문서:** [`METADRIVE_OPTICAL_CALIBRATION.md`](METADRIVE_OPTICAL_CALIBRATION.md). 핀홀 기하학 검사는 실제 광학/주행성능 검증이 아니며, 실제 MetaDrive 0.4.3 렌더링·위치 변경에 따른 일반/광각 영상 변화는 [GitHub Actions 42569322601](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42569322601)에서 확인했으나 실제 comma 렌즈·영상 도메인과의 정합성은 미검증.
+**MetaDrive 광학 단계 문서:** [`METADRIVE_OPTICAL_CALIBRATION.md`](METADRIVE_OPTICAL_CALIBRATION.md). 핀홀 기하학 검사는 실제 광학/주행성능 검증이 아니며, 실제 MetaDrive 0.4.3 렌더링·위치 변경에 따른 일반/광각 영상 변화와 공식 MD-V3 3스텝 기술적 영상 폐루프 연결은 [GitHub Actions 42569322601](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42569322601)에서 확인했으나 실제 comma 렌즈·영상 도메인과의 정합성은 미검증.
 
 ## 다음 구현 게이트
 
