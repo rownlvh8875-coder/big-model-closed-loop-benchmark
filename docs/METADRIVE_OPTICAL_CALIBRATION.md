@@ -1,6 +1,6 @@
 # MetaDrive virtual camera optical integration — Phase 1
 
-**Status: IDEAL PINHOLE GEOMETRY UNIT TESTS PASS; native MetaDrive rendering is OPTIONAL and not yet confirmed locally.**
+**Status (2026-11-09): IDEAL PINHOLE GEOMETRY TESTS PASS; actual MetaDrive 0.4.3 offscreen RGB rendering and pose-dependent model-canvas frames PASS on GitHub Actions. Real comma optics and driving performance NOT validated.**
 
 This work is a **simulator-only** experiment: no real vehicle testing, CAN, CD210, Carrot MPC or vehicle-specific dynamics.
 
@@ -10,7 +10,7 @@ This work is a **simulator-only** experiment: no real vehicle testing, CAN, CD21
 2. `bigbench/metadrive_camera.py`: Optional real MetaDrive RGB sensor classes (CPU RAM-backed) and camera-only virtual pose capture using `BaseCamera.perceive(new_parent_node=..., position=..., hpr=...)` with **no physics-based ego steering**. OnnxBigModelPolicy can consume the resulting paired model canvases.
 3. `scripts/metadrive_optical_check.py`: Bounded, offscreen MetaDrive optical-check workflow with either two pose-shifted views or (when a model file and manifest are supplied) a short ONNX + virtual-pose feedback test. Outputs `optical_report.json` and rendered PNG images. **No model ranking or lane-intrusion metrics.**
 4. `tests/test_optical_calibration.py`: deterministic pinhole landmark reprojection, source crop coverage, focal/centering mismatch rejection and test-double feedback proof.
-5. `.github/workflows/metadrive-optical.yml`: manually triggered headless MetaDrive smoke, separate from mandatory CI. Run status must be checked before claiming native renderer validation.
+5. `.github/workflows/metadrive-optical.yml`: optional native headless MetaDrive smoke, triggered on optical-related code changes or manually; run status must be checked before claiming native renderer validation.
 
 ## Pinhole intrinsics and model transforms
 
@@ -35,7 +35,7 @@ Both raw camera lenses are measured through Panda3D `getFilmSize/getFocalLength/
 
 ## Executing the real MetaDrive probe (on a compatible PC or Github Actions)
 
-The native simulator is not installed in the current sandbox, so these commands have **not been run locally with actual MetaDrive rendering**:
+These commands ran **in GitHub Actions using MetaDrive 0.4.3, Xvfb/software OpenGL, and the official 134,074,203-byte release assets**. The native simulator is not installed in the current sandbox:
 
 ```bash
 python -m pip install '.[inference]' 'metadrive-simulator==0.4.3'
@@ -50,11 +50,21 @@ xvfb-run -a python -m scripts.metadrive_optical_check \
   --steps 3 --out output/metadrive-mdv3-probe
 ```
 
-To run without downloading a large model, GitHub Actions provides the separate **manual** workflow `Real MetaDrive offscreen camera optical probe (NO real vehicle)`.
+To run without downloading a large model, GitHub Actions provides the separate workflow `Real MetaDrive offscreen camera optical probe (NO real vehicle)` (manual or scoped push). Official rendering assets were pre-fetched from the tagged release because MetaDrive's automatic download returned HTTP 504 on an earlier run.
+
+## Native MetaDrive evidence (PASS, with explicit limitations)
+
+- [GitHub Actions run 42569322601](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42569322601): completed successfully with native MetaDrive 0.4.3, Xvfb and software OpenGL.
+- Official asset package: MetaDrive-0.4.3/assets.zip; 134,074,203 bytes; SHA256 **4f0da9f5143a1258131c5b55f77bdf170c0f9bce8a9f18dd41b3678df779eac9**.
+- Native artifact: **metadrive-optical-probe** with four distinct 512×256 PNG images and the optical_report.json audit. Both road and wide images change after the virtual camera moves.
+- Narrow measured source: fx=1323.9998636, fy=1323.9999425 (target 1324 px). Wide measured source: fx=283.5000334, fy=283.5000503 (target 283.5 px).
+- Narrow warp source coverage **0.99609375 (99.609375%)**; wide source coverage **1.0 (100%)**.
+- These values confirm reference **pinhole intrinsics, digital cropping and actual frame changes**, NOT real comma lens fidelity or independent physical-world landmark pixel residuals.
+- Source commit 2e2ae997 adds explicit actual MetaDrive RGB → I420/YUV6 ONNX camera tensor shape/dtype and pose-change checks; these are not labeled PASS until that CI run completes.
 
 ## Remaining optical validation gates — NOT PASSED
 
-- Actual MetaDrive binary installation and offscreen native RGB capture in a real execution environment (separate manual CI).
+- **PASSED (synthetic-only native rendering):** MetaDrive binary initialization, offscreen native RGB source capture and model-canvas warp, including a detectable image change when the virtual camera pose changes. This is not a claim of calibrated real camera optics.
 - Coordinate system frame/orientation verified with real MetaDrive 3D landmarks and projection residuals, not only synthetic pinhole pixels. Positive yaw/left-right correctness and sensor height require validation.
 - Camera **extrinsics** (physical translation, roll, pitch, yaw), **lens distortion** (notably wide/fisheye), rolling shutter, exposure, tonemapping, colorimetry and temporal camera synchronization.
 - Equivalence to openpilot's production NV12 warp interpolation, color conversion, camera transforms and model preprocessing.
