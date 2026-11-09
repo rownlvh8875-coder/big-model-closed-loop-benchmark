@@ -1,0 +1,71 @@
+name: Native MetaDrive S-curves and ramps 3D lane ↔ RGB audit (SIM ONLY)
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/metadrive-curved-lanes.yml'
+      - 'bigbench/curved_lane_scenarios.py'
+      - 'bigbench/metadrive_camera.py'
+      - 'scripts/metadrive_curved_lane_audit.py'
+      - 'tests/test_curved_lane_scenarios.py'
+permissions:
+  contents: read
+jobs:
+  native-curved-optics:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      LIBGL_ALWAYS_SOFTWARE: '1'
+      PYOPENGL_PLATFORM: 'glx'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install Xvfb and software GL
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y xvfb libgl1 libglu1-mesa libegl1 libx11-6
+      - name: Install MetaDrive 0.4.3 and optical dependencies
+        run: python -m pip install 'numpy>=1.26,<3' 'opencv-python-headless>=4.8' 'metadrive-simulator==0.4.3'
+      - name: Check official MetaDrive asset SHA-256 before extraction
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p "$RUNNER_TEMP/metadrive-asset"
+          gh release download MetaDrive-0.4.3 --repo metadriverse/metadrive --pattern assets.zip --dir "$RUNNER_TEMP/metadrive-asset"
+          python - <<'PYCODE'
+          import hashlib, os
+          from pathlib import Path, PurePosixPath
+          from zipfile import ZipFile
+          import metadrive
+          archive=Path(os.environ['RUNNER_TEMP'])/'metadrive-asset'/'assets.zip'
+          assert archive.stat().st_size==134074203, 'official asset size mismatch'
+          expected='4f0da9f5143a1258131c5b55f77bdf170c0f9bce8a9f18dd41b3678df779eac9'
+          assert hashlib.sha256(archive.read_bytes()).hexdigest()==expected, 'asset SHA256 mismatch'
+          package=Path(metadrive.__file__).resolve().parent
+          with ZipFile(archive) as z:
+            for name in z.namelist():
+              p=PurePosixPath(name)
+              if p.is_absolute() or '..' in p.parts:
+                raise ValueError('unsafe asset archive path')
+            z.extractall(package)
+          assert (package/'assets'/'version.txt').is_file()
+          print('METADRIVE_OFFICIAL_043_ASSETS_VERIFIED')
+          PYCODE
+      - name: Offline deterministic S-curve and ramp scenario-admission tests
+        run: python -m unittest discover -s tests -p 'test_curved_lane_scenarios.py' -v
+      - name: Real native curved/ramp world lane to pixel diagnostic
+        # Fails closed; no ONNX score if native geometry or paint is unproven.
+        run: |
+          xvfb-run -a python -m scripts.metadrive_curved_lane_audit --seed 20261109 --strict \
+            --scenarios s_curve_left_right s_curve_right_left in_ramp out_ramp \
+            --out output/metadrive-curved-lanes
+      - name: Preserve synthetic camera evidence even if diagnostic fails
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: metadrive-curved-lanes-optical-evidence
+          path: output/metadrive-curved-lanes/
+          if-no-files-found: warn
+          retention-days: 7

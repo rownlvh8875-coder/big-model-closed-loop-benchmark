@@ -104,12 +104,14 @@ class NativeMetaDriveProvider:
     convention needs an independent pixel-landmark check for full optical fidelity.
     """
     def __init__(self, *, seed: int = 20261109, source_width: int = 964,
-                 source_height: int = 604, height_m: float = 1.22):
+                 source_height: int = 604, height_m: float = 1.22,
+                 map_config: dict | None = None):
         if not math.isfinite(height_m) or not 0.25 <= height_m <= 4:
             raise OpticalContractError('virtual camera height out of bounded probe range')
         self.source_width, self.source_height = source_width, source_height
         self.height_m = height_m
         self.seed = int(seed)
+        self.map_config = map_config if map_config is not None else {'type': 'block_sequence', 'config': 'S', 'lane_width': 3.5, 'lane_num': 2}
         self.env = None
         self.start()
 
@@ -128,7 +130,7 @@ class NativeMetaDriveProvider:
             vehicle_config={'image_source':'bigbench_road'},
             sensors={'bigbench_road': (road_class, self.source_width, self.source_height),
                      'bigbench_wide': (wide_class, self.source_width, self.source_height)},
-            map_config={'type': 'block_sequence', 'config': 'S', 'lane_width': 3.5, 'lane_num': 2},
+            map_config=self.map_config,
             decision_repeat=1,
         )
         self.env = MetaDriveEnv(config)
