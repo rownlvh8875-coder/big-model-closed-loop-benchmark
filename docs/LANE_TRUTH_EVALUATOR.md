@@ -28,6 +28,15 @@
 python -m unittest discover -s tests -p 'test_lane_truth.py' -v
 ```
 
+## 2단계 진행 추가 기록 (2026-11-09)
+
+- `bigbench/lane_truth.py`: `evaluate_target_lane_by_id` 추가. 지정한 `lane.index`가 없거나 중복이면 실패하며 **최근접 차선 자동 대체 금지**.
+- 동일 파일: `summarize_lane_truth` 추가. 공통 가상 시간 간격에서 평균·최대·P90 중심 오차, 침범 깊이 최대값, 침범 횟수·지속시간을 평가 목적으로만 산출.
+- `tests/test_lane_truth.py`: 분기 차선이 더 가까운 상황에서도 지정한 목표 차선이 유지되는지, 경계 초과 깊이와 침범 시간 계산이 일치하는지 검증.
+- `scripts/metadrive_lane_truth_audit.py`: MetaDrive 0.4.3의 실제 S자·진입/진출 램프 `lane.position`과 `local_coordinates`를 이용한 기하학적 자가일관성·침범 지표 검사기. 실제 차량/ONNX 추론을 사용하지 않음.
+- [.github/workflows/metadrive-curved-lanes.yml](../.github/workflows/metadrive-curved-lanes.yml)에 실제 지도 4종 통합시험 추가. [CI 실행 #42582782731](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42582782731) 결과 확인 전에는 **실제 MetaDrive 2단계 PASS로 표시하지 않음**.
+- 1단계 네 종류 곡선/램프 영상 정합성 진단 PASS: [CI #42578810503](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42578810503). 이 기록은 2단계 평가기 성능 검증과 별개임.
+
 ## 아직 수행하지 않은 필수 검증
 
 1. 실제 MetaDrive 0.4.3 S자 및 진출입 램프 지도의 진실값을 이 평가기로 입력해 좌·우 부호와 구간 전환을 검사한다.
