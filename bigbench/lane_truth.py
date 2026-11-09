@@ -103,3 +103,65 @@ def evaluate_closest_native_lane(lanes: list[Any], x_m: float, y_m: float,
     if not accepted:
         raise LaneTruthError('no geometrically valid native lane for evaluation')
     return min(accepted,key=lambda v:(abs(v.signed_lateral_right_m),abs(v.heading_error_rad),v.lane_id))
+
+
+def evaluate_target_lane_by_id(lanes: list[Any], target_lane_id: str,
+                               x_m: float, y_m: float, heading_rad: float, *,
+                               half_width_m: float = .9) -> LaneTruthSample:
+    """Score a preselected native lane; NEVER switch to a closer ramp lane.
+
+    Intended for fixed target-path benchmarks where nearest-lane selection
+    could erase a genuine incursion at a ramp split or merge. Route changes
+    must be explicitly supplied by a scenario-level target-lane timeline.
+    """
+    if not isinstance(target_lane_id, str) or not target_lane_id:
+        raise LaneTruthError('explicit target lane identity is required')
+    matches = [lane for lane in lanes
+               if str(getattr(lane, 'index', 'unknown')) == target_lane_id]
+    if len(matches) != 1:
+        raise LaneTruthError('target lane is missing or ambiguous; nearest fallback forbidden')
+    return evaluate_native_lane_state(matches[0], x_m, y_m, heading_rad,
+                                      half_width_m=half_width_m)
+
+
+def summarize_lane_truth(samples: list[LaneTruthSample], *, dt_s: float) -> dict:
+    """Geometry-only lateral metric aggregation at a fixed virtual time grid.
+
+    Segment/lane switches are allowed only if the caller explicitly supplied
+    each sample's target lane. This routine never chooses a route or computes
+    model scores from an unqualified camera.
+    """
+    _finite(dt_s)
+    if dt_s <= 0 or not samples:
+        raise LaneTruthError('samples and a positive time step are required')
+    errors = [abs(p.signed_lateral_right_m) for p in samples]
+    intrusions = [p.intrusion_depth_m for p in samples]
+    for p in samples:
+        _finite(p.signed_lateral_right_m, p.intrusion_depth_m)
+        if p.intrusion_depth_m < 0:
+            raise LaneTruthError('negative intrusion is invalid')
+    import statistics
+    intrusion_events = 0
+    previously_intruding = False
+    for v in intrusions:
+        intruding = v > 1e-9
+        if intruding and not previously_intruding:
+            intrusion_events += 1
+        previously_intruding = intruding
+    sorted_errors = sorted(errors)
+    percentile_index = (len(sorted_errors) - 1) * 0.90
+    lo, hi = int(math.floor(percentile_index)), int(math.ceil(percentile_index))
+    p90 = sorted_errors[lo] + (sorted_errors[hi] - sorted_errors[lo]) * (percentile_index - lo)
+    return {
+        'classification': 'SYNTHETIC_WORLD_TRUTH_ONLY_NOT_DRIVING_MODEL_SCORE',
+        'frame_count': len(samples),
+        'dt_s': dt_s,
+        'absolute_lateral_error_mean_m': statistics.fmean(errors),
+        'absolute_lateral_error_max_m': max(errors),
+        'absolute_lateral_error_p90_m': p90,
+        'intrusion_count': intrusion_events,
+        'intrusion_duration_s': sum(v > 1e-9 for v in intrusions) * dt_s,
+        'intrusion_depth_max_m': max(intrusions),
+        'target_lane_ids': sorted({p.lane_id for p in samples}),
+        'real_vehicle_testing': False,
+    }
