@@ -1,0 +1,16 @@
+name: Offline synthetic CI
+on:
+  push:
+  pull_request:
+jobs:
+  synthetic-unit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Unit tests (stdlib only)
+        run: python -m unittest discover -s tests -v
+      - name: Closed-loop mock smoke
+        run: python -m bigbench.cli smoke --scenario s_curve --out output/ci-smoke

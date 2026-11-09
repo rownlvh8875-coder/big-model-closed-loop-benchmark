@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "big-model-closed-loop-benchmark"
+version = "0.1.0"
+requires-python = ">=3.11"
+description = "Offline vehicle-independent driving model benchmark scaffolding"
+dependencies = []
+
+[project.optional-dependencies]
+inspect = ["onnxruntime>=1.19"]
+
+[project.scripts]
+bigbench = "bigbench.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["bigbench*"]
