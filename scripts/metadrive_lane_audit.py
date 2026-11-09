@@ -16,7 +16,7 @@ import numpy as np
 
 from bigbench.kinematics import AgentState
 from bigbench.lane_reprojection import (
-    draw_lane_alignment, evaluate_visible_lane_paint, lane_boundary_landmarks,
+    draw_lane_alignment, evaluate_visible_lane_paint, map_boundary_landmarks,
     project_panda_camera_points,
 )
 from bigbench.metadrive_camera import MetaDriveOpticalRig, NativeMetaDriveProvider
@@ -66,7 +66,9 @@ def audit_native_lanes(*, output: Path, seed: int = 20261109,
         vehicle=provider.env.vehicle
         lanes=tuple(vehicle.navigation.current_ref_lanes)
         origin_xy=(float(vehicle.position[0]),float(vehicle.position[1]))
-        landmarks=lane_boundary_landmarks(lanes,origin_xy)
+        map_graph=provider.env.current_map.road_network
+        landmarks=map_boundary_landmarks(map_graph,origin_xy)
+        print('MAP_LANE_WORLD_MARKINGS',len(landmarks),'current_ref_lanes',len(lanes),flush=True)
         poses=(('baseline',AgentState(0.0,0.0,0.0,0.0,0.0)),
                ('shifted',AgentState(0.05,1.0,0.25,0.012,0.0)))
         records={}

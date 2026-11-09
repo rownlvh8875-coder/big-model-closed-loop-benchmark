@@ -13,7 +13,7 @@ import numpy as np
 from bigbench.camera import RGBFrame
 from bigbench.lane_reprojection import (
     BoundaryLandmark, _paint_mask, draw_lane_alignment,
-    evaluate_visible_lane_paint, lane_boundary_landmarks,
+    evaluate_visible_lane_paint, lane_boundary_landmarks, map_boundary_landmarks,
     project_panda_camera_points,
 )
 from bigbench.optical_calibration import OpticalContractError, PinholeIntrinsics, reference_model
@@ -107,6 +107,22 @@ class LaneGeometryTests(unittest.TestCase):
         self.assertTrue(any(p.lane_id==1 and p.side=='right' for p in data))
         self.assertFalse(any(p.lane_id==0 and p.side=='right' for p in data))
         self.assertTrue(all(math.isfinite(p.world_x_m) and math.isfinite(p.world_y_m) for p in data))
+
+    def test_entire_map_finds_painted_road_after_unpainted_spawn_section(self):
+        module=types.ModuleType('metadrive')
+        constants=types.ModuleType('metadrive.constants')
+        constants.PGLineType=FakePGLineType
+        constants.PGLineColor=FakePGLineColor
+        empty=FakeLane(0,3.5,(FakePGLineType.NONE,FakePGLineType.NONE),
+                       (FakePGLineColor.GREY,FakePGLineColor.GREY))
+        painted=FakeLane(1,3.5,(FakePGLineType.CONTINUOUS,FakePGLineType.SIDE),
+                         (FakePGLineColor.YELLOW,FakePGLineColor.GREY))
+        fake_map=types.SimpleNamespace(graph={'A':{'B':[empty]},'B':{'C':[painted]}})
+        with patch.dict(sys.modules,{'metadrive':module,'metadrive.constants':constants}):
+            landmarks=map_boundary_landmarks(fake_map,(0.0,0.0),max_radius_m=75)
+        self.assertGreater(len(landmarks),5)
+        self.assertTrue(all(p.lane_id==0 for p in landmarks))
+        self.assertTrue(any(p.paint_color=='yellow' for p in landmarks))
 
     def test_rejects_no_lanes(self):
         with self.assertRaises(OpticalContractError):

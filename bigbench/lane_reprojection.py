@@ -90,6 +90,55 @@ def lane_boundary_landmarks(
     return marks
 
 
+
+def map_boundary_landmarks(road_network: Any, ego_xy: tuple[float, float], *,
+                           max_radius_m: float = 85.0, sample_step_m: float = 2.0,
+                           max_markings: int = 2000) -> list[BoundaryLandmark]:
+    """Collect painted 3D boundaries from ALL connected MetaDrive road blocks.
+
+    Spawn/current_ref_lanes can refer to a very short entry/exit segment whose
+    markers aren't actually visible. A camera may look ahead into subsequent
+    blocks; we must sample the underlying native road-network graph, not rely on
+    only one navigation reference segment.
+    """
+    if not (math.isfinite(max_radius_m) and 10 <= max_radius_m <= 150 and
+            math.isfinite(sample_step_m) and .5 <= sample_step_m <= 5):
+        raise ValueError('invalid map ground-truth sampling bounds')
+    if not hasattr(road_network, 'graph') or not isinstance(road_network.graph, dict):
+        raise OpticalContractError('expected native MetaDrive NodeRoadNetwork graph')
+    points: list[BoundaryLandmark] = []
+    for to_dict in road_network.graph.values():
+        if not isinstance(to_dict, dict):
+            continue
+        for lanes in to_dict.values():
+            lanes=tuple(l for l in lanes if hasattr(l, 'line_types') and hasattr(l, 'line_colors'))
+            if not lanes:
+                continue
+            ref=lanes[0]
+            length=float(ref.length)
+            if not math.isfinite(length) or not 0 < length <= 10000:
+                continue
+            base=float(ref.local_coordinates(ego_xy)[0])
+            # Include all longitudinal positions; then filter out remote points.
+            absolute=np.arange(1.0,length-0.5,sample_step_m,dtype=float)
+            distances=tuple(float(s-base) for s in absolute)
+            if not distances:
+                continue
+            try:
+                sample=lane_boundary_landmarks(lanes,ego_xy,distances_m=distances)
+            except OpticalContractError as exc:
+                if 'no paintable lane boundaries' in str(exc):
+                    continue
+                raise
+            for mark in sample:
+                if math.hypot(mark.world_x_m-ego_xy[0],mark.world_y_m-ego_xy[1])<=max_radius_m:
+                    points.append(mark)
+                    if len(points)>max_markings:
+                        raise OpticalContractError('native lane data unexpectedly exceeds bounded audit')
+    if not points:
+        raise OpticalContractError('no painted road-network lane coordinates near virtual camera')
+    return points
+
 def project_panda_camera_points(
         camera: Any, origin: Any, points: list[BoundaryLandmark],
         width: int, height: int, source_intrinsics: Any, model_intrinsics: Any,
