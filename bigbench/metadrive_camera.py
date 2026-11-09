@@ -122,9 +122,10 @@ class NativeMetaDriveProvider:
         # Only use MetaDrive's scenery/camera; its vehicle dynamics do not
         # participate in the model policy or benchmark metrics.
         config = dict(
-            use_render=False, image_observation=False, image_on_cuda=False,
+            use_render=False, image_observation=True, image_on_cuda=False,
             start_seed=self.seed, num_scenarios=1,
             random_traffic=False, traffic_density=0.0,
+            vehicle_config={'image_source':'bigbench_road'},
             sensors={'bigbench_road': (road_class, self.source_width, self.source_height),
                      'bigbench_wide': (wide_class, self.source_width, self.source_height)},
             map_config={'type': 'block_sequence', 'config': 'S', 'lane_width': 3.5, 'lane_num': 2},
@@ -133,8 +134,8 @@ class NativeMetaDriveProvider:
         self.env = MetaDriveEnv(config)
         try:
             self.env.reset(seed=self.seed)
-            # Some MetaDrive 0.4.x configurations do not auto-construct
-            # custom cameras when image_observation=False. Use EngineCore's API.
+            # Explicitly use MetaDrive's offscreen RGB sensor mode; should be
+            # registered automatically. Keep a guarded compatibility fallback.
             for key, klass in (('bigbench_road', road_class), ('bigbench_wide', wide_class)):
                 if key not in self.env.engine.sensors:
                     self.env.engine.add_image_sensor(key, klass,
