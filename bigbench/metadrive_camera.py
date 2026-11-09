@@ -133,8 +133,15 @@ class NativeMetaDriveProvider:
         self.env = MetaDriveEnv(config)
         try:
             self.env.reset(seed=self.seed)
+            # Some MetaDrive 0.4.x configurations do not auto-construct
+            # custom cameras when image_observation=False. Use EngineCore's API.
+            for key, klass in (('bigbench_road', road_class), ('bigbench_wide', wide_class)):
+                if key not in self.env.engine.sensors:
+                    self.env.engine.add_image_sensor(key, klass,
+                                                     (self.source_width, self.source_height))
             if not all(name in self.env.engine.sensors for name in ('bigbench_road','bigbench_wide')):
-                raise RuntimeError('MetaDrive failed to construct both model cameras')
+                raise RuntimeError('MetaDrive camera registration failed; available: ' +
+                                   repr(sorted(self.env.engine.sensors)))
         except BaseException:
             self.close()
             raise
