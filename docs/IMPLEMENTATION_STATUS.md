@@ -1,51 +1,58 @@
-# 실행 구현 현황 / Validation levels
+# 기능 구현·실제 검증 현황 (2026-11-09)
 
-기준: 2026-11-09. 이 프로젝트에서는 실차 테스트를 **절대** 수행하지 않는다.
+**최신 근거:** [GitHub 7단계 로드맵](ROADMAP_7_STAGES.md) / [검증 체크리스트 Issue #1](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/issues/1).
 
-| 단계 | 상태 | 재현 방법 | 실제 의미 |
-|---|---|---|---|
-| 합성 곡률 기반 도로/가상 에이전트 | 구현·로컬 단위시험 | `python -m unittest discover -s tests -v` | 특정 차량 동역학 없음 |
-| 모의 RGB 카메라 프레임 | 구현·로컬 시험 | `python -m bigbench.cli smoke --scenario s_curve` | **도식적 영상**이며 실제 모델 입력에 대한 검증 아님 |
-| 위치 변경 → 다음 영상 변경 | 구현·로컬 시험 | `test_schematic_camera_changes_when_ego_position_changes` | 구조적 영상 폐루프 검증 |
-| 서로 다른 모의 카메라 정책 → 다른 궤적 | 구현·로컬 시험 | `test_distinct_mock_commands_change_trajectory` | **모의 정책만 사용**; ONNX 주행 성능이 아님 |
-| 횡방향 오차·차선 침범·선행차 간격 | 구현·로컬 시험 | `frames.csv`, `summary.json` | 공통 폭을 갖는 가상 에이전트의 기하 지표 |
-| 반복가능한 결과·CSV·PNG | 구현·로컬 시험 | `output/mock_smoke` | 모의 출력에 한함 |
-| 공식 HF 공개 ONNX 목록 조회 | 도구 구현, 실 모델 다운로드 환경 확인 | `python scripts/hf_models.py list` | 공식 2개 모델 파일은 Actions 임시 저장소에 SHA 확인 후 다운로드됨 |
-| SHA256 고정 단일 모델 다운로드 | **MD-V3·Light Speed 2 파일 검증 완료** | `python scripts/hf_models.py download ...` | 두 모델의 체크포인트 다운로드 성공, 파일은 Actions 종료 후 미보존 |
-| ONNX I/O 검사기 | 코드 구현, 실제 2개 모델 그래프 계약 검증 | `pip install onnxruntime` 후 `python -m bigbench.cli inspect-onnx ...` | 실제 모델 추론 아님 |
-| 대형 ONNX 실행기 및 recurrent state 연결 | **구현; 공식 MD-V3·Light Speed 2 연속 5스텝 추론 성공** | `bigbench/onnx_policy.py`, `tests/test_onnx_runtime_policy.py` | 해시/입출력/메모리 상태 계약 검증; 카메라 광학 미검증 |
-| 실제 대형모델 영상 폐루프 성능 비교 | **미실시** | — | 실측 성능 순위 없음; 도식적 RGB는 비검증 입력 |
-| MetaDrive 광학 정합 계층(기하학) | **구현, 단위시험 검증** | `python -m unittest discover -s tests -p test_optical_calibration.py -v` | 핀홀 내부 파라미터·기준점 투영 검증만 완료; 실제 MetaDrive 광학 검증 아님 |
-| MetaDrive 실제 RGB 장면 캡처 | **MetaDrive 0.4.3 실제 오프스크린 RGB 프레임 생성 PASS** | 수동 워크플로 `metadrive-optical.yml` | GitHub Actions [42569322601](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42569322601)에서 두 렌즈의 핀홀 초점거리·프레임 변경 확인; 실제 광학 등가성은 미검증 |
-| MetaDrive RGB→I420/YUV6 실제 입력 텐서 | **PASS** | [실제 카메라 입력 CI 42569804426](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42569804426) | (2,6,128,256), uint8, 두 카메라별 독립 프레임 및 가상 위치 이동 후 텐서 변경 |
-| MetaDrive × 공식 MD-V3 실제 ONNX 영상 루프 | **3스텝 PASS (기술적 연결에 한정)** | [실제 MD-V3 CI 42570111317](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42570111317), [검증 결과 문서](METADRIVE_MDV3_SMOKE_RESULTS.md) | 원본 MD-V3 모델 가중치 사용, 상태 갱신·가상 이동·다음 영상 재추론; 실제 광학 및 주행성능 점수는 미검증 |
-| MetaDrive 3D 차선좌표↔영상 픽셀 | **실제 MetaDrive 0.4.3 직선 도로·일반/광각 2자세 재투영 PASS** | [GitHub Actions 42573166387](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42573166387), [측정 보고서](METADRIVE_LANE_REPROJECTION.md) | 3D 차선 경계와 RGB 도색 픽셀 비교 오차 중앙값 0.765~1.467px, 27px 오정렬 음성대조 구분; **커브/실제 렌즈/모델 주행성능은 미검증** |
-| CARLA 렌더러·광학 왜곡/외부 파라미터/시각 도메인 | **미검증** | — | 실제 comma 광학 등가성 및 모델 주행성능은 아직 검증 전 |
-| 차량·실차·CAN·Carrot Params 조작 | **범위에서 영구 제외** | — | 이 프로젝트가 담당하지 않음 |
+실차 테스트·실차 제어·차종별 물리·CD210·Carrot MPC/Params 최적화는 **영구 제외**한다. 모델 실행의 성공과 모델 성능 판정을 혼동하지 않는다.
 
-## 강제 구분
+| 구분 | 구현/시험 상태 | 정확한 의미 |
+|---|---|---|
+| 독립 기하학·운동학 | 구현, 합성 단위시험 PASS | 차종별 차량 동역학 미사용 |
+| ONNX 계약·SHA·재귀 상태 | MD-V3/Light Speed 2/Light Speed 실제 실행 확인 | 기타 후보의 호환성 미확인 |
+| MetaDrive 실제 일반·광각 영상 | MetaDrive 0.4.3/Xvfb CI PASS | 이상적 핀홀 렌더링, 실제 comma 렌즈·색감·카메라 등가 아님 |
+| MetaDrive 3D 경계↔영상 도색 | 직선·좌→우/우→좌 S자·진입/진출 램프 PASS | RGB 색 임계값 기반 가상 기하학 진단 |
+| 실제 네이티브 목표 차선·침범 계산 | 네 곡선/램프 네이티브 지도 및 합성 경계 시험 PASS | 실도로 모델 성능 아님 |
+| 실제 모델 횡방향 폐루프 | MD-V3·Light Speed 2 **각 12스텝** PASS | S자 전체 주행·다중 시드·모델 간 순위 미완료 |
+| 두 굽이 S자 네이티브 차로 연결 | 좌→우 및 우→좌 **3개 연결 구간** 지도 게이트 PASS | 실제 ONNX로 둘째 굽이 완주까지 증명하지 않음 |
+| 종방향 합성 가상 선행차 | lead_brake/stop_go/cut_in 세계·지표 모듈 구현 | 별도의 카메라 입력 검증 필요 |
+| MD-V3 실제 종방향 선행차 영상 | 공식 MD-V3 **26스텝** PASS | 전체 감속·재출발/끼어들기 결과 미검증 |
+| 모델 후보 확대 | 공식 Light Speed 5스텝 PASS, N16 manifest 확인 | N16 내비/지도 입력 공급 미구현 |
+| HTML+SVG 읽기전용 대시보드 | 실제 MD-V3·Light Speed 2 결과에서 생성 PASS | 모델 순위 금지, 상시 웹 UI 미구현 |
+| 다중 시드 매니페스트·반복 검사 | 구현·합성 단위시험 PASS | **실제 같은 MD-V3 모델 반복 영상 해시 MISMATCH** |
+| 가상 카메라 고정 시계 | 실험 기능 구현, 실제 MetaDrive 시험 후 판단 | 기본 clock 드리프트 확인; 고정 시계 우열 아직 판정 전 |
+| CARLA 독립 엔진 비교 | 데이터 계약과 단위시험만 구현 | **실제 CARLA 렌더링·교차 검증 미실시** |
 
-- `SYNTHETIC_MOCK_ONLY`: 현재 로컬 시험과 예제에서만 사용; **대형모델 성능 결과가 아님**.
-- `CONTRACT_INSPECTED_NOT_DRIVING_VALIDATED`: ONNX 입력·출력 확인; 추론·폐루프 불합격.
-- `UNVERIFIED_MODEL`: 자체 추론 검증·카메라 전처리·상태 검증 없는 외부 정책; 공식 성능 점수로 사용 금지.
-- `OPEN_LOOP_ONLY`: 기록/사전 영상만 재생한 경우; 폐루프 결과로 주장 금지.
+## 근거가 확인된 GitHub Actions
 
-## 모델 다운로드를 자동으로 하지 않는 이유
+- [곡선·램프 3D 차선 재투영 4종](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42578810503)
+- [네이티브 목표차선·침범 평가기](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42582782731)
+- [실제 MD-V3/Light Speed 2 12스텝](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42583866722)
+- [두 모델 실행 결과 HTML 대시보드](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42585146636)
+- [Light Speed 공식 ONNX MetaDrive 영상 5스텝](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42585073433)
+- [MD-V3 가상 선행차 영상 종방향 추론 26스텝](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42585288256)
+- [연결된 전체 S자 네이티브 차로 3개 지도 검증](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42585805153)
+- [실제 ONNX 동일 모델 반복 재현성 불일치](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42585174235)
+- [고정 가상 포즈에서 기본 Panda 렌더링 드리프트](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42586162386)
 
-공식 Hugging Face 저장소 `commaai/openpilot_driving_models`의 전체 용량은 여러 GB에 이른다. 이 리포지토리는 **모델 가중치를 GitHub에 직접 저장하지 않는다.** 개별 모델의 입력 계약·라이선스·해시·스토리지 요구량을 검증한 후, 다운로드 명령으로 파일 하나를 명시적으로 선택해야 한다.
+## 검증 분류 원칙
 
-## ONNX 실행기 추가 안내
+- `TEST_DOUBLE_NOT_REAL_ONNX` / `SYNTHETIC_MOCK_ONLY`: 모의 정책·합성 그래프/입력만 평가, 실 ONNX 증거 아님.
+- `CONTRACT_INSPECTED_NOT_DRIVING_VALIDATED`: 파일 구조·형상·해시만 확인, 모델 추론·주행 검증 아님.
+- `NATIVE_METADRIVE_PINHOLE_MODEL_DIAGNOSTIC_NOT_VALIDATED_RANKING`: 실제 가상 RGB와 ONNX 및 이상적 운동학의 짧은 폐루프 연결 확인, 모델 성능 순위 아님.
+- `REPEATED_DIAGNOSTIC_MISMATCH`: 동일 초기 조건에서 영상·위치 데이터 재현 불일치, 원인 해결 전 비교 점수 신뢰성 제약.
+- `OPEN_LOOP_ONLY`: 녹화 영상 반복 또는 기록된 modelV2, 폐루프 모델 성적 불인정.
+- `CARLA_UNVERIFIED`: 독립 CARLA 실행 증거가 없는 상태.
 
-[ONNX_INFERENCE.md](ONNX_INFERENCE.md) 및 [REAL_MODEL_SMOKE_RESULTS.md](REAL_MODEL_SMOKE_RESULTS.md) 참조. 주입 세션 테스트 더블과 소형 테스트 그래프 시험은 별도이며, **공식 MD-V3·Light Speed 2 모델 각각 실제 5스텝 추론**도 완료했습니다. 단 도식적 카메라의 광학 정합성과 주행 성능은 미검증입니다.
+## 다음 필수 완료 게이트
 
-**MetaDrive 광학 단계 문서:** [`METADRIVE_OPTICAL_CALIBRATION.md`](METADRIVE_OPTICAL_CALIBRATION.md). 핀홀 기하학 검사는 실제 광학/주행성능 검증이 아니며, 실제 MetaDrive 0.4.3 렌더링·위치 변경에 따른 일반/광각 영상 변화와 공식 MD-V3 3스텝 기술적 영상 폐루프 연결은 [GitHub Actions 42569322601](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42569322601)에서 확인했으나 실제 comma 렌즈·영상 도메인과의 정합성은 미검증.
+1. 기본/고정 Panda 시계의 영상 재현성을 같은 환경에서 다시 비교하고 결정적/통제 가능한 렌더 조건 확보.
+2. 반복 ONNX 시험에서 동일 시드·체크포인트·경로의 시간축/영상/주행 위치 재현성 확보.
+3. 양방향 S자·램프 전 구간의 **두 개 모델 이상, 충분한 연속 시점** 종/횡 폐루프 시험 완료.
+4. 선행차 제동·정지·재출발·끼어들기 전체 구간의 모델별 가감속 판단 비교.
+5. N16 등 모델별 내비/지도 입력 계약 충족 및 후보 확대.
+6. 다중 시드·렌더 조건·독립 CARLA 교차검증. 모델 판단 결과를 실도로 주행성능으로 해석하지 않음.
 
-## 다음 구현 게이트
+## 공개·데이터 정책
 
-1. 나머지 대형모델 체크포인트의 입출력 명세·전처리·재귀 상태 확대 검증 (MD-V3 및 Light Speed 2는 5스텝 성공).
-2. 현재 구현된 이중 I420/YUV 패킹을 실제 MetaDrive 렌더링 이미지에 적용하는 입력 구조·프레임 변경 게이트 검증(별도 CI 진행 중). 실제 comma 렌즈 왜곡·외부 보정·카메라 동등성은 향후 검증.
-3. 기존 합성 도식 입력의 연속 추론 성공을 확인했으므로 실제 모델 시각 도메인에 적합한 렌더러로 폐루프를 재검증.
-4. MetaDrive 직선 도로 재투영(일반·광각 2자세)은 검증했으며, **S자 곡선·램프 맵, 3D 차선-픽셀 정합성 확대와 카메라 외부/왜곡/영상 도메인 검증**은 별도 후속 게이트로 유지.
-5. 모델별 동일 시나리오 비교, 반복 실행, 지표 통계 및 한계 보고.
-
-기존 CarrotSIM 자산은 설계 참고로만 분석했으며, 비공개 파일·실차 로그·차량 응답 코드는 복사하지 않았다.
+- 모델 원본 가중치는 공식 Hugging Face에서 해시 고정해 GitHub Actions의 임시 경로로 받는다. 공개 GitHub 소스에 포함하지 않는다.
+- 실제 장치/차량 제어 및 원본 개인 실주행로그 업로드는 하지 않는다.
+- 기존 CarrotSIM 코드는 구조 참고로만 검토하고 비공개 자산/개인정보·특정 차종 응답 모델을 복사하지 않는다.
