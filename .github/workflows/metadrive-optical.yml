@@ -1,0 +1,33 @@
+name: Real MetaDrive offscreen camera optical probe (NO real vehicle)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  camera-optics:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      LIBGL_ALWAYS_SOFTWARE: '1'
+      PYOPENGL_PLATFORM: 'glx'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install virtual display dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y xvfb libgl1 libglu1-mesa libegl1 libx11-6
+      - name: Install pinned MetaDrive simulator and optical dependencies
+        run: python -m pip install 'numpy>=1.26,<3' 'opencv-python-headless>=4.8' 'metadrive-simulator==0.4.3'
+      - name: Real MetaDrive camera pinhole alignment smoke (synthetic world only)
+        run: |
+          xvfb-run -a python -m scripts.metadrive_optical_check --steps 2 --out output/metadrive-optics
+      - name: Save synthetic camera frames and audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: metadrive-optical-probe
+          path: output/metadrive-optics/
+          if-no-files-found: warn
