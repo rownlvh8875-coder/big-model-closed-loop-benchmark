@@ -85,6 +85,13 @@ python -m bigbench.cli run-onnx --model models/YOUR_MODEL.onnx \
 - [docs/ONNX_INFERENCE.md](docs/ONNX_INFERENCE.md) — 실제 모델 실행기, 입력 변환, 제한 사항
 - [docs/REAL_MODEL_SMOKE_RESULTS.md](docs/REAL_MODEL_SMOKE_RESULTS.md) — 공식 ONNX 모델 실행 결과 및 근거
 
+## MetaDrive 가상 카메라 광학 연동 (시험 단계)
+
+- [MetaDrive 광학 정합·핀홀 워프 검증 문서](docs/METADRIVE_OPTICAL_CALIBRATION.md)
+- [광학 검증 자동시험](.github/workflows/metadrive-optical.yml) — MetaDrive 실제 RGB 생성 여부는 GitHub Actions 실행 결과로 별도 확인
+
+**현재 의미:** 모델용 일반/광각 영상의 핀홀 투영·전처리 검사를 구현한 단계이며, 실제 comma 렌즈 왜곡·장착 위치·모델 주행성능까지 검증된 것이 아닙니다.
+
 ## 참고 저장소
 
 - [carrotpilot / carrot-wip](https://github.com/ajouatom/openpilot/tree/carrot-wip)
