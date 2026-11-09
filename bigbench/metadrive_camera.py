@@ -105,7 +105,8 @@ class NativeMetaDriveProvider:
     """
     def __init__(self, *, seed: int = 20261109, source_width: int = 964,
                  source_height: int = 604, height_m: float = 1.22,
-                 map_config: dict | None = None):
+                 map_config: dict | None = None,
+                 fixed_virtual_clock: bool = False):
         if not math.isfinite(height_m) or not 0.25 <= height_m <= 4:
             raise OpticalContractError('virtual camera height out of bounded probe range')
         self.source_width, self.source_height = source_width, source_height
@@ -113,6 +114,11 @@ class NativeMetaDriveProvider:
         self.seed = int(seed)
         self.map_config = map_config if map_config is not None else {'type': 'block_sequence', 'config': 'S', 'lane_width': 3.5, 'lane_num': 2}
         self.env = None
+        self._fixed_clock = None
+        if fixed_virtual_clock:
+            from .panda_clock import VirtualPandaClock
+            self._fixed_clock = VirtualPandaClock()
+            self._fixed_clock.start()
         self.start()
 
     def start(self) -> None:
@@ -171,9 +177,14 @@ class NativeMetaDriveProvider:
         return frames[0], frames[1], lenses[0], lenses[1]
 
     def close(self) -> None:
-        if self.env is not None:
-            self.env.close()
-            self.env = None
+        try:
+            if self.env is not None:
+                self.env.close()
+                self.env = None
+        finally:
+            if self._fixed_clock is not None:
+                self._fixed_clock.close()
+                self._fixed_clock = None
 
 
 def probe_model_with_metadrive(policy: Any, rig: MetaDriveOpticalRig, *,
