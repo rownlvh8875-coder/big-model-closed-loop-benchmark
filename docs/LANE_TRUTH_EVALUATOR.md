@@ -1,6 +1,6 @@
 # 차종 비종속 3D 원시 차선 좌표 기반 횡방향 평가기 — 2단계 개발
 
-**상태 (2026-11-09): 순수 수학/합성 단위시험 완료, 실제 MetaDrive S자·램프 사례 통합시험 미실시.** 실차 테스트·실차 CAN·차량별 동역학·CD210/Carrot 튜닝 제외.
+**상태 (2026-11-09): 합성 단위시험 + MetaDrive S자/램프 4종 대상 기하 평가기 통합 진단 PASS. 실제 대형모델 성능 검증은 미실시.** 실차 테스트·실차 CAN·차량별 동역학·CD210/Carrot 튜닝 제외.
 
 ## 무엇을 계산하는가?
 
@@ -36,6 +36,12 @@ python -m unittest discover -s tests -p 'test_lane_truth.py' -v
 - `scripts/metadrive_lane_truth_audit.py`: MetaDrive 0.4.3의 실제 S자·진입/진출 램프 `lane.position`과 `local_coordinates`를 이용한 기하학적 자가일관성·침범 지표 검사기. 실제 차량/ONNX 추론을 사용하지 않음.
 - [.github/workflows/metadrive-curved-lanes.yml](../.github/workflows/metadrive-curved-lanes.yml)에 실제 지도 4종 통합시험 추가. [CI 실행 #42582782731](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42582782731) 결과 확인 전에는 **실제 MetaDrive 2단계 PASS로 표시하지 않음**.
 - 1단계 네 종류 곡선/램프 영상 정합성 진단 PASS: [CI #42578810503](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42578810503). 이 기록은 2단계 평가기 성능 검증과 별개임.
+
+## 네이티브 통합 증거
+
+- [GitHub Actions #42582782731](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42582782731): S자 2종/진입·진출 램프 2종 모두 `PASS_NATIVE_TARGET_LANE_GEOMETRY_GATE` 확인.
+- 목표 차로 ID 고정, 중심선 오차, 공통 가상 반폭을 이용한 의도적 0.2m 경계 침범 계산에 대한 점검임. **모델 주행/동적 정책 검증 아님**.
+- 2단계의 기초 수학 및 네이티브 지도 시험은 완료. 남은 시험은 목표 노선별 전환점/합류 판단과 실제 ONNX 에피소드 연결 시 다시 수행.
 
 ## 아직 수행하지 않은 필수 검증
 
