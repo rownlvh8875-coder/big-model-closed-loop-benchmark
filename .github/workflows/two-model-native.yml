@@ -65,7 +65,7 @@ jobs:
             --second-model "$RUNNER_TEMP/models/ea2f516f-f758-42be-a245-913bb818a64f/32768/big_driving_supercombo.onnx" \
             --second-spec model_specs/light-speed-2.json \
             --scenario s_curve_left_right --steps 12 --seed 20261109 --speed 8 \
-            --out output/native-paired
+            --repeat-first --out output/native-paired
           python - <<'PYCODE'
           import json
           from pathlib import Path
@@ -74,6 +74,11 @@ jobs:
           assert d['first_camera_sha_equal'] and not d['model_scoring_allowed']
           assert d['steps']==12 and len(d['model_hashes'])==2
           assert d['model_hashes'][0]!=d['model_hashes'][1]
+          assert Path('output/native-paired/comparison_dashboard.html').is_file()
+          repeat=json.loads(Path('output/native-paired/repeatability.json').read_text())
+          assert repeat['repeatability_checked'] is True
+          assert repeat['real_vehicle_testing'] is False and repeat['model_scoring_allowed'] is False
+          print('INDEPENDENT_REPEAT_DIAGNOSTIC',repeat['status'])
           print('TWO_NATIVE_LARGE_ONNX_TECHNICAL_DIAGNOSTIC_PASS',d['steps'])
           PYCODE
       - name: Archive only model action/truth JSON, not private model weights
