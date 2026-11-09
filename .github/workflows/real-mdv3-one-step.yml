@@ -1,0 +1,48 @@
+name: Official MD-V3 ONNX one-step diagnostic (uncalibrated input)
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'docs/REAL_MODEL_SMOKE_TRIGGER.md'
+permissions:
+  contents: read
+jobs:
+  md-v3-one-step:
+    runs-on: ubuntu-latest
+    timeout-minutes: 24
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install local ONNX executor requirements
+        run: python -m pip install '.[inference]'
+      - name: Download EXACT official MD-V3 checkpoint with SHA256 and byte verification
+        run: |
+          python -m scripts.hf_models download \
+            --path '1365126a-e71e-4778-be00-8ab92dc82c09/12864/big_driving_supercombo.onnx' \
+            --sha256 '35976b11be3904eb78e32f7dc55a6abf8e9433ac5aa391a1998f1e9ce001b199' \
+            --max-bytes 900000000 \
+            --out "$RUNNER_TEMP/official-models"
+      - name: One-step real ONNX execution with explicitly UNCALIBRATED schematic camera
+        run: |
+          python -m bigbench.cli run-onnx \
+            --model "$RUNNER_TEMP/official-models/1365126a-e71e-4778-be00-8ab92dc82c09/12864/big_driving_supercombo.onnx" \
+            --spec model_specs/md-v3.json \
+            --scenario s_curve \
+            --steps 1 \
+            --out "$RUNNER_TEMP/mdv3-smoke" \
+            --accept-uncalibrated-vision
+      - name: Print only synthetic runtime classification, no large weights
+        if: success()
+        run: python -c 'import json,os,pathlib;p=pathlib.Path(os.environ["RUNNER_TEMP"])/"mdv3-smoke/summary.json";a=json.loads(p.read_text());print({k:a.get(k) for k in ("model_sha256","evidence_class","inference_ms_mean","not_validated_for_driving")})'
+      - name: Preserve small diagnostic metadata only
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: md-v3-one-step-small-results
+          path: |
+            ${{ runner.temp }}/mdv3-smoke/summary.json
+            ${{ runner.temp }}/mdv3-smoke/model_inference.csv
+          if-no-files-found: ignore
+          retention-days: 7
