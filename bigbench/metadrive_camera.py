@@ -127,7 +127,6 @@ class NativeMetaDriveProvider:
             random_traffic=False, traffic_density=0.0,
             sensors={'bigbench_road': (road_class, self.source_width, self.source_height),
                      'bigbench_wide': (wide_class, self.source_width, self.source_height)},
-            vehicle_config={'render_vehicle': False},
             map_config={'type': 'block_sequence', 'config': 'S', 'lane_width': 3.5, 'lane_num': 2},
             decision_repeat=1,
         )
