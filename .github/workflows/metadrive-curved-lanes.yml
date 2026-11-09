@@ -8,6 +8,9 @@ on:
       - 'bigbench/metadrive_camera.py'
       - 'scripts/metadrive_curved_lane_audit.py'
       - 'tests/test_curved_lane_scenarios.py'
+      - 'bigbench/native_route.py'
+      - 'scripts/check_native_route.py'
+      - 'tests/test_native_route.py'
       - 'bigbench/lane_truth.py'
       - 'scripts/metadrive_lane_truth_audit.py'
       - 'tests/test_lane_truth.py'
@@ -84,5 +87,20 @@ jobs:
         with:
           name: metadrive-native-lane-truth-receipts
           path: output/native-lane-truth/
+          if-no-files-found: warn
+          retention-days: 7
+
+      - name: Confirm connected explicit forward S-curve route without models
+        run: |
+          xvfb-run -a python -m scripts.check_native_route \
+            --scenario s_curve_left_right --out output/native-routes/s_left_right.json
+          xvfb-run -a python -m scripts.check_native_route \
+            --scenario s_curve_right_left --out output/native-routes/s_right_left.json
+      - name: Preserve explicit native route receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: native-s-curve-route-topology
+          path: output/native-routes/
           if-no-files-found: warn
           retention-days: 7
