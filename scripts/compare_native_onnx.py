@@ -29,6 +29,7 @@ def main(argv=None):
     p.add_argument('--speed',type=float,default=8.0)
     p.add_argument('--out',type=Path,default=Path('output/two-model-native'))
     p.add_argument('--repeat-first',action='store_true',help='run model A again as an independent repeatability diagnostic')
+    p.add_argument('--full-s-route',action='store_true',help='validate explicit two-bend route via native road graph')
     args=p.parse_args(argv)
     spec=CampaignSpec(scenario=args.scenario,steps=args.steps,
                       speed_mps=args.speed,seed=args.seed)
@@ -39,7 +40,7 @@ def main(argv=None):
         ('model_b',args.second_model,args.second_spec),
     ):
         policy=OnnxBigModelPolicy(path,manifest)
-        report=run_native_episode(policy,spec)
+        report=run_native_episode(policy,spec,full_s_route=args.full_s_route)
         report['model_inference_steps']=len(policy.trace)
         report['inference_elapsed_ms']=[round(t.elapsed_ms,3) for t in policy.trace]
         report['mode']='FIXED_SPEED_LATERAL_ONLY'
@@ -53,6 +54,8 @@ def main(argv=None):
         del policy
         gc.collect()
     summary=compare_episode_receipts(receipts[0],receipts[1])
+    if args.full_s_route and receipts[0].get('explicit_route_lane_ids')!=receipts[1].get('explicit_route_lane_ids'):
+        raise RuntimeError('native explicit route differs between model runs')
     if not summary['first_camera_sha_equal']:
         raise RuntimeError('initial camera condition differs between models')
     summary['model_hashes']=[r['model_sha256'] for r in receipts]
@@ -67,7 +70,7 @@ def main(argv=None):
     if args.repeat_first:
         from bigbench.reproducibility import compare_repeat_receipts
         policy=OnnxBigModelPolicy(args.first_model,args.first_spec)
-        repeated=run_native_episode(policy,spec)
+        repeated=run_native_episode(policy,spec,full_s_route=args.full_s_route)
         repeated['model_inference_steps']=len(policy.trace)
         (args.out/'repeat_model_a.json').write_text(
             json.dumps(repeated,indent=2,ensure_ascii=False,allow_nan=False)+'\n',
