@@ -51,9 +51,18 @@ class NativeLeadVisualRenderer:
         from metadrive.component.vehicle.vehicle_type import DefaultVehicle
         from .native_model_campaign import NativeWorldCamera
         self.provider=provider
+        from copy import deepcopy
+        config=deepcopy(provider.env.engine.global_config['vehicle_config'])
+        # BaseVehicle.reset requires an explicit valid lane identifier;
+        # the default traffic config has spawn_lane_index=None.
+        ego_lane=getattr(provider.env.vehicle,'lane',None)
+        lane_index=getattr(ego_lane,'index',None)
+        if lane_index is None:
+            raise LongitudinalContractError('native MetaDrive map has no valid spawn lane')
+        config['spawn_lane_index']=tuple(lane_index)
         self.actor=provider.env.engine.spawn_object(
             DefaultVehicle,
-            vehicle_config=provider.env.engine.global_config['vehicle_config'],
+            vehicle_config=config,
             random_seed=provider.seed+1,
         )
         self.world_camera=NativeWorldCamera(provider)
