@@ -85,12 +85,15 @@ python -m bigbench.cli run-onnx --model models/YOUR_MODEL.onnx \
 - [docs/ONNX_INFERENCE.md](docs/ONNX_INFERENCE.md) — 실제 모델 실행기, 입력 변환, 제한 사항
 - [docs/REAL_MODEL_SMOKE_RESULTS.md](docs/REAL_MODEL_SMOKE_RESULTS.md) — 공식 ONNX 모델 실행 결과 및 근거
 
-## MetaDrive 가상 카메라 광학 연동 (시험 단계)
+## MetaDrive 가상 카메라 광학 연동 및 공식 대형 ONNX 실행 (기술적 검증 완료)
 
-- [MetaDrive 광학 정합·핀홀 워프 검증 문서](docs/METADRIVE_OPTICAL_CALIBRATION.md)
-- [광학 검증 자동시험](.github/workflows/metadrive-optical.yml) — MetaDrive 실제 RGB 생성 여부는 GitHub Actions 실행 결과로 별도 확인
+- [MetaDrive 광학·핀홀 워프 검증 문서](docs/METADRIVE_OPTICAL_CALIBRATION.md)
+- [실제 MetaDrive 일반·광각 RGB 렌더링 PASS](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42569322601)
+- [MetaDrive RGB → ONNX 입력 (2,6,128,256) PASS](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42569804426)
+- [공식 MD-V3 + 실제 MetaDrive 카메라 3스텝 추론 PASS](docs/METADRIVE_MDV3_SMOKE_RESULTS.md) ([GitHub Actions 증거](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42570111317))
+- [실카메라 광학 게이트 워크플로](.github/workflows/metadrive-optical.yml) 및 [공식 MD-V3 통합시험 워크플로](.github/workflows/metadrive-mdv3-inference.yml)
 
-**현재 의미:** 모델용 일반/광각 영상의 핀홀 투영·전처리 검사를 구현한 단계이며, 실제 comma 렌즈 왜곡·장착 위치·모델 주행성능까지 검증된 것이 아닙니다.
+**증거 범위:** 실제 MetaDrive 렌더링 영상의 핀홀 내부 파라미터·YUV6 입력 규격 및 실제 MD-V3 ONNX 재귀 추론/가상 위치 갱신의 **기술적 연결만 확인**했습니다. 실제 comma의 렌즈 왜곡·외부 캘리브레이션·광학 정합, 도로 정답 기준 성능, 코너 커팅/종방향 모델 순위는 미검증입니다.
 
 ## 참고 저장소
 
