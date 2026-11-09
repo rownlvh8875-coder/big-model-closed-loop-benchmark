@@ -47,7 +47,7 @@ python -m bigbench.cli smoke --scenario s_curve --out output/s_curve
 python -m bigbench.cli smoke-compare --out output/mock_comparison
 
 # 선택적: 공식 Hugging Face 메타데이터 조회 (네트워크 필요, 가중치 다운로드 없음)
-python scripts/hf_models.py list
+python -m scripts.hf_models list
 
 # 선택적: 로컬 ONNX 입출력 계약/해시 조사 (실제 추론 아님)
 python -m pip install onnxruntime
@@ -56,7 +56,7 @@ python -m bigbench.cli inspect-onnx /path/to/model.onnx
 
 `smoke` 실행 시 `frames.csv`, `summary.json`, `first_camera.png`, `last_camera.png`가 생성됩니다. `smoke-compare`는 `comparison.json`을 추가로 생성합니다. 결과는 `output/`에 저장하며 GitHub에 게시하지 않습니다.
 
-모델 파일은 **자동 다운로드하지 않습니다.** 개별 모델의 파일 크기, SHA256 및 입출력 계약을 검증한 뒤 필요할 때 `scripts/hf_models.py download --path ... --sha256 ...`를 사용하도록 설계했습니다. 모델 가중치를 공개 GitHub에 커밋하지 않습니다.
+모델 파일은 **자동 다운로드하지 않습니다.** 개별 모델의 파일 크기, SHA256 및 입출력 계약을 검증한 뒤 필요할 때 `python -m scripts.hf_models download --path ... --sha256 ...`를 사용하도록 설계했습니다. 모델 가중치를 공개 GitHub에 커밋하지 않습니다.
 
 ## 문서
 
