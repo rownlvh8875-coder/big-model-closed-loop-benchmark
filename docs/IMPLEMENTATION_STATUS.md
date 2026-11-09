@@ -10,10 +10,10 @@
 | 서로 다른 모의 카메라 정책 → 다른 궤적 | 구현·로컬 시험 | `test_distinct_mock_commands_change_trajectory` | **모의 정책만 사용**; ONNX 주행 성능이 아님 |
 | 횡방향 오차·차선 침범·선행차 간격 | 구현·로컬 시험 | `frames.csv`, `summary.json` | 공통 폭을 갖는 가상 에이전트의 기하 지표 |
 | 반복가능한 결과·CSV·PNG | 구현·로컬 시험 | `output/mock_smoke` | 모의 출력에 한함 |
-| 공식 HF 공개 ONNX 목록 조회 | 도구 구현, 네트워크 미검증 | `python scripts/hf_models.py list` | 실제 파일 다운로드 없음 |
-| SHA256 고정 단일 모델 다운로드 | 도구 구현, 네트워크/대형파일 미검증 | `python scripts/hf_models.py download ...` | 네트워크·디스크·사용자 명시적 선택 필요 |
-| ONNX I/O 검사기 | 코드 구현, 실제 ONNX 미검증 | `pip install onnxruntime` 후 `python -m bigbench.cli inspect-onnx ...` | 실제 모델 추론 아님 |
-| 대형 ONNX 실행기 및 recurrent state 연결 | **구현, 단위시험 완료; 공식 대형모델 추론 미검증** | `bigbench/onnx_policy.py`, `tests/test_onnx_runtime_policy.py` | 해시/입출력/메모리 상태 계약 검증; 카메라 광학 미검증 |
+| 공식 HF 공개 ONNX 목록 조회 | 도구 구현, 실 모델 다운로드 환경 확인 | `python scripts/hf_models.py list` | 공식 2개 모델 파일은 Actions 임시 저장소에 SHA 확인 후 다운로드됨 |
+| SHA256 고정 단일 모델 다운로드 | **MD-V3·Light Speed 2 파일 검증 완료** | `python scripts/hf_models.py download ...` | 두 모델의 체크포인트 다운로드 성공, 파일은 Actions 종료 후 미보존 |
+| ONNX I/O 검사기 | 코드 구현, 실제 2개 모델 그래프 계약 검증 | `pip install onnxruntime` 후 `python -m bigbench.cli inspect-onnx ...` | 실제 모델 추론 아님 |
+| 대형 ONNX 실행기 및 recurrent state 연결 | **구현; 공식 MD-V3·Light Speed 2 연속 5스텝 추론 성공** | `bigbench/onnx_policy.py`, `tests/test_onnx_runtime_policy.py` | 해시/입출력/메모리 상태 계약 검증; 카메라 광학 미검증 |
 | 실제 대형모델 영상 폐루프 성능 비교 | **미실시** | — | 실측 성능 순위 없음; 도식적 RGB는 비검증 입력 |
 | MetaDrive/CARLA 렌더러 연결 | **미구현** | — | 합성 RGB는 실제 모델 검증에 부적합할 수 있음 |
 | 차량·실차·CAN·Carrot Params 조작 | **범위에서 영구 제외** | — | 이 프로젝트가 담당하지 않음 |
@@ -31,13 +31,13 @@
 
 ## ONNX 실행기 추가 안내
 
-[ONNX_INFERENCE.md](ONNX_INFERENCE.md) 참조. 주입 세션 테스트 더블의 성공은 실제 ONNX 모델 추론 성공이 아닙니다. GitHub Actions의 ONNX 통합 테스트는 **생성한 작은 테스트 그래프**를 사용하며 공식 대형모델이 아닙니다.
+[ONNX_INFERENCE.md](ONNX_INFERENCE.md) 및 [REAL_MODEL_SMOKE_RESULTS.md](REAL_MODEL_SMOKE_RESULTS.md) 참조. 주입 세션 테스트 더블과 소형 테스트 그래프 시험은 별도이며, **공식 MD-V3·Light Speed 2 모델 각각 실제 5스텝 추론**도 완료했습니다. 단 도식적 카메라의 광학 정합성과 주행 성능은 미검증입니다.
 
 ## 다음 구현 게이트
 
-1. ONNX 체크포인트의 입출력 명세를 직접 검사하고 모델별 변환기/재귀 상태 검증.
-2. 가상 카메라 영상 → 모델이 요구하는 이중 영상/YUV/워프 표현으로 변환, 변환 정합성 테스트.
-3. 모델의 원본 곡률·가속도 출력 → 동일 이상적 운동학 → 다음 모델 입력 영상으로 재연결.
+1. 나머지 대형모델 체크포인트의 입출력 명세·전처리·재귀 상태 확대 검증 (MD-V3 및 Light Speed 2는 5스텝 성공).
+2. 현재 구현된 이중 I420/YUV 패킹을 실제 카메라 광학·왜곡·워프 기준 영상으로 검증.
+3. 기존 합성 도식 입력의 연속 추론 성공을 확인했으므로 실제 모델 시각 도메인에 적합한 렌더러로 폐루프를 재검증.
 4. MetaDrive 또는 CARLA 렌더러의 영상 품질과 차량 자세 재투영 검증.
 5. 모델별 동일 시나리오 비교, 반복 실행, 지표 통계 및 한계 보고.
 

@@ -12,6 +12,12 @@
 - 모델 출력 결측·비유한값·상태 불일치·해시 불일치 시 즉시 실패; CD210 폴백 없음
 - 실제 ONNX Runtime을 사용한 **소형 합성 테스트 그래프** 검증을 위한 GitHub Actions 작업
 
+## 공식 대형모델 실행 검증 (2026-11-09)
+
+MD-V3와 Light Speed 2 모델을 공식 Hugging Face에서 SHA256/크기를 검증하고 다운로드하여, GitHub Actions CPU 환경에서 각각 **5스텝** 실행했습니다. 둘 다 ONNX 모델의 `new_img` 입력과 recurrent state 전달을 포함한 전체 구조 시험에 통과했습니다. 결과는 [실행 기록](REAL_MODEL_SMOKE_RESULTS.md) 참조.
+
+이 결과는 **ONNX 실행기 호환성 검증이지 주행모델 성능 검증이 아닙니다**. 영상은 카메라 광학이 검증되지 않은 도식적 영상이므로 다른 모델과 비교한 순위나 차선 유지 성능 점수는 발표하지 않습니다.
+
 ## 가장 중요한 한계
 
 **현재 그림 생성기는 512×256의 도식적 RGB 화면 두 개를 생성할 뿐, 실제 comma 4의 광학계가 아닙니다.**
@@ -19,7 +25,7 @@
 - 실제 comma road/wide 카메라의 서로 다른 내부 파라미터, 렌즈 왜곡, 외부 파라미터, 촬영 높이, 포토메트릭 특성, 정확한 perspective warp는 아직 재현되지 않았습니다.
 - `rgb_frame_to_six`는 픽셀 배열 포맷만 맞춥니다. **텐서 크기가 맞는 것이 모델 의미의 정상 주행 입력을 보장하지 않습니다.**
 - 입력이 도식적 영상이므로 실제 ONNX 실행에 성공하더라도 *도로 인식 정확도 / 안전 / 모델 순위 / 성능 우열*로 발표하면 안 됩니다.
-- 실제 GPU용 ONNX 전체 파일을 내려받아 실행한 결과는 아직 없습니다. 현 환경에 ONNX Runtime과 원본 ONNX 가중치가 없습니다.
+- 공식 MD-V3 및 Light Speed 2 가중치는 GitHub Actions **임시 CPU 실행기**에서 성공적으로 추론했지만, 본 로컬 컨테이너에 원본 가중치나 ONNX Runtime을 영구 저장하지 않았습니다. GPU/Jetson 성능은 검증하지 않았습니다.
 - 모델 입력 영상이 차량 이동에 반응하지만, 현실적인 camera-rendering 폐루프로서 유효한지는 **MetaDrive/CARLA 등 별도 렌더러 및 정합성 검증**이 필요합니다.
 - **과거 큐를 그래프 내부 상태로 갖는 옛 queued 모델** (`img`, `big_img`, `features_buffer`)은 현재 지원하지 않습니다. `new_img`와 `state_*`/`next_state_*`를 갖는 모델만 지원합니다.
 - **N16 지도 모델:** `nav_map`·`navigation`을 실제 계약대로 제공하는 소스가 아직 없어서 기본 CLI에서 실행 실패합니다. 임의의 0을 넣어 시험 결과를 만들지 않습니다.
@@ -65,7 +71,7 @@ python -m bigbench.cli run-onnx \
 | I420 6채널 레이아웃 | 구현 + 단위시험 | `image_adapter.py` |
 | 비정상 모델 거절 및 recurrence | 코드 + 테스트 더블 | `onnx_policy.py`, `test_onnx_runtime_policy.py` |
 | ONNX Runtime로 ONNX 추론 실제 호출 | GitHub Actions 전용 소형 테스트 그래프 | `test_onnx_ort_integration.py` |
-| 공식 commaai 대형 ONNX 추론 | **미검증** | 모델 파일·호환 실행환경 확보 필요 |
+| 공식 commaai 대형 ONNX 추론 | **MD-V3·Light Speed 2 각각 5스텝 통과** | `REAL_MODEL_SMOKE_RESULTS.md` 및 GitHub Actions 실행 기록 |
 | 정확한 카메라 광학·왜곡·워프 | **미검증** | 광학 파라미터·렌더러 필요 |
 | 실제 대형모델의 의미 있는 폐루프 비교 | **미완료** | 위 조건 충족 전 금지 |
 
