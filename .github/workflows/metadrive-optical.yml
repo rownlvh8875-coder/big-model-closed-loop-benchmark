@@ -27,6 +27,29 @@ jobs:
           sudo apt-get install -y xvfb libgl1 libglu1-mesa libegl1 libx11-6
       - name: Install pinned MetaDrive simulator and optical dependencies
         run: python -m pip install 'numpy>=1.26,<3' 'opencv-python-headless>=4.8' 'metadrive-simulator==0.4.3'
+      - name: Prepare official MetaDrive-0.4.3 rendering assets (134 MB)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p /tmp/metadrive-asset
+          gh release download MetaDrive-0.4.3 --repo metadriverse/metadrive --pattern assets.zip --dir /tmp/metadrive-asset
+          python - <<'PYCODE'
+          from pathlib import Path, PurePosixPath
+          from zipfile import ZipFile
+          import hashlib
+          import metadrive
+          archive = Path('/tmp/metadrive-asset/assets.zip')
+          assert archive.stat().st_size == 134074203, 'official MetaDrive asset size mismatch'
+          package = Path(metadrive.__file__).resolve().parent
+          with ZipFile(archive) as z:
+              for f in z.namelist():
+                  p = PurePosixPath(f)
+                  if p.is_absolute() or '..' in p.parts:
+                      raise ValueError('unsafe MetaDrive asset archive entry')
+              z.extractall(package)
+          assert (package/'assets'/'version.txt').is_file(), 'asset extraction missing version'
+          print('OFFICIAL_METADRIVE_ASSETS_READY sha256', hashlib.sha256(archive.read_bytes()).hexdigest())
+          PYCODE
       - name: Real MetaDrive camera pinhole alignment smoke (synthetic world only)
         run: |
           xvfb-run -a python -m scripts.metadrive_optical_check --steps 2 --out output/metadrive-optics
