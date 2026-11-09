@@ -10,11 +10,11 @@
 | 서로 다른 모의 카메라 정책 → 다른 궤적 | 구현·로컬 시험 | `test_distinct_mock_commands_change_trajectory` | **모의 정책만 사용**; ONNX 주행 성능이 아님 |
 | 횡방향 오차·차선 침범·선행차 간격 | 구현·로컬 시험 | `frames.csv`, `summary.json` | 공통 폭을 갖는 가상 에이전트의 기하 지표 |
 | 반복가능한 결과·CSV·PNG | 구현·로컬 시험 | `output/mock_smoke` | 모의 출력에 한함 |
-| 공식 HF 공개 ONNX 목록 조회 | 도구 구현, 네트워크 미검증 | `python -m scripts.hf_models list` | 실제 파일 다운로드 없음 |
-| SHA256 고정 단일 모델 다운로드 | 도구 구현, 네트워크/대형파일 미검증 | `python -m scripts.hf_models download ...` | 네트워크·디스크·사용자 명시적 선택 필요 |
+| 공식 HF 공개 ONNX 목록 조회 | 도구 구현, 네트워크 미검증 | `python scripts/hf_models.py list` | 실제 파일 다운로드 없음 |
+| SHA256 고정 단일 모델 다운로드 | 도구 구현, 네트워크/대형파일 미검증 | `python scripts/hf_models.py download ...` | 네트워크·디스크·사용자 명시적 선택 필요 |
 | ONNX I/O 검사기 | 코드 구현, 실제 ONNX 미검증 | `pip install onnxruntime` 후 `python -m bigbench.cli inspect-onnx ...` | 실제 모델 추론 아님 |
-| 실제 대형모델 추론 및 재귀 상태 유지 | **미구현** | — | 모델별 전처리·보정·입력 계약 추가 필요 |
-| 실제 대형모델 영상 폐루프 성능 비교 | **미실시** | — | 실측 성능 순위 없음 |
+| 대형 ONNX 실행기 및 recurrent state 연결 | **구현, 단위시험 완료; 공식 대형모델 추론 미검증** | `bigbench/onnx_policy.py`, `tests/test_onnx_runtime_policy.py` | 해시/입출력/메모리 상태 계약 검증; 카메라 광학 미검증 |
+| 실제 대형모델 영상 폐루프 성능 비교 | **미실시** | — | 실측 성능 순위 없음; 도식적 RGB는 비검증 입력 |
 | MetaDrive/CARLA 렌더러 연결 | **미구현** | — | 합성 RGB는 실제 모델 검증에 부적합할 수 있음 |
 | 차량·실차·CAN·Carrot Params 조작 | **범위에서 영구 제외** | — | 이 프로젝트가 담당하지 않음 |
 
@@ -28,6 +28,10 @@
 ## 모델 다운로드를 자동으로 하지 않는 이유
 
 공식 Hugging Face 저장소 `commaai/openpilot_driving_models`의 전체 용량은 여러 GB에 이른다. 이 리포지토리는 **모델 가중치를 GitHub에 직접 저장하지 않는다.** 개별 모델의 입력 계약·라이선스·해시·스토리지 요구량을 검증한 후, 다운로드 명령으로 파일 하나를 명시적으로 선택해야 한다.
+
+## ONNX 실행기 추가 안내
+
+[ONNX_INFERENCE.md](ONNX_INFERENCE.md) 참조. 주입 세션 테스트 더블의 성공은 실제 ONNX 모델 추론 성공이 아닙니다. GitHub Actions의 ONNX 통합 테스트는 **생성한 작은 테스트 그래프**를 사용하며 공식 대형모델이 아닙니다.
 
 ## 다음 구현 게이트
 

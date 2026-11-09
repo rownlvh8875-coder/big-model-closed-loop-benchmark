@@ -14,6 +14,8 @@ class ModelObservation:
     frame: RGBFrame
     speed_mps: float
     time_s: float
+    wide_frame: RGBFrame | None = None
+    nav_inputs: dict | None = None
 
 
 class DrivingPolicy(Protocol):

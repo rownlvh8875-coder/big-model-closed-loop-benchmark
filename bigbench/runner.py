@@ -2,6 +2,7 @@
 from __future__ import annotations
 from dataclasses import dataclass
 from .camera import SchematicCamera, RGBFrame
+from .camera_rig import SchematicDualCamera
 from .geometry import RoadPoint
 from .kinematics import AgentState, ModelAction, step_ideal
 from .metrics import FrameMetric, summarize
@@ -25,7 +26,8 @@ class BenchmarkRun:
 
 def run_episode(scenario: Scenario, policy: DrivingPolicy, *,
                 dt_s: float = MODEL_DT_S, fixed_speed: bool = True,
-                camera: SchematicCamera | None = None) -> BenchmarkRun:
+                camera: SchematicCamera | SchematicDualCamera | None = None,
+                max_steps: int | None = None) -> BenchmarkRun:
     if dt_s <= 0 or dt_s > 0.25:
         raise ValueError('invalid benchmark timestep')
     if scenario.duration_s / dt_s > 20000:
@@ -41,12 +43,23 @@ def run_episode(scenario: Scenario, policy: DrivingPolicy, *,
     steps = round(scenario.duration_s / dt_s)
     if abs(steps * dt_s - scenario.duration_s) > 1e-9:
         raise ValueError('scenario duration must be a multiple of dt_s')
+    if max_steps is not None:
+        if type(max_steps) is not int or max_steps < 1 or max_steps > steps:
+            raise ValueError('max_steps must be an integer between 1 and scenario steps')
+        steps = max_steps
+    if getattr(policy, 'needs_dual_camera', False) and not isinstance(renderer, SchematicDualCamera):
+        raise ValueError('model runner requires explicit dual-camera rig')
     for _ in range(steps):
-        # Reprojection closes the actual observation loop. Model only sees RGB + time + speed.
-        rgb = renderer.render(scenario, state, station)
+        # Actual NEXT-frame observation follows the modified ego pose.
+        if isinstance(renderer, SchematicDualCamera):
+            pair = renderer.render_pair(scenario, state, station)
+            rgb, wide_rgb = pair.road, pair.wide
+        else:
+            rgb = renderer.render(scenario, state, station)
+            wide_rgb = None
         if initial_frame is None:
             initial_frame = rgb
-        action: ModelAction = policy.step(ModelObservation(rgb, state.speed, state.t))
+        action: ModelAction = policy.step(ModelObservation(rgb, state.speed, state.t, wide_frame=wide_rgb))
         state = step_ideal(state, action, dt_s,
                            speed_override=scenario.initial_speed_mps if fixed_speed else None)
         station, lateral, curvature = scenario.road.project(state.x, state.y, station)
@@ -58,5 +71,6 @@ def run_episode(scenario: Scenario, policy: DrivingPolicy, *,
                                   lead_gap, intrusion, rgb.sha256))
         last_frame = rgb
     assert initial_frame and last_frame
-    return BenchmarkRun(policy.name, scenario.name, 'SYNTHETIC_MOCK_ONLY' if policy.is_mock else 'UNVERIFIED_MODEL',
+    evidence = getattr(policy, 'evidence_class', 'SYNTHETIC_MOCK_ONLY' if policy.is_mock else 'UNVERIFIED_MODEL')
+    return BenchmarkRun(policy.name, scenario.name, evidence,
                         frames, summarize(frames, dt_s), initial_frame, last_frame)

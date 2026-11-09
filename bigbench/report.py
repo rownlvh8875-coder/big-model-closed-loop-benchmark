@@ -21,6 +21,8 @@ def write_run(outdir: Path, run: BenchmarkRun) -> dict:
     report = {'model_name':run.model_name, 'scenario_name':run.scenario_name,
               'evidence_class':run.classification, 'summary':run.summary,
               'csv_sha256':sha256(csv_path.read_bytes()).hexdigest(),
-              'note':'Schematic-camera + mock-policy integration only; NOT big ONNX benchmark results.'}
+              'not_validated_for_driving':True,
+              'note':('Synthetic MOCK policy, not a big ONNX benchmark' if run.classification=='SYNTHETIC_MOCK_ONLY'
+                      else 'ONNX execution (or test double) with schematic uncalibrated camera; NOT validated model driving performance')}
     (outdir / 'summary.json').write_text(json.dumps(report, ensure_ascii=False, indent=2, sort_keys=True) + '\n', encoding='utf-8')
     return report
