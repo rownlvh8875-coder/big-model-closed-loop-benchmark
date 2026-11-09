@@ -8,6 +8,9 @@ on:
       - 'bigbench/metadrive_camera.py'
       - 'scripts/metadrive_curved_lane_audit.py'
       - 'tests/test_curved_lane_scenarios.py'
+      - 'bigbench/lane_truth.py'
+      - 'scripts/metadrive_lane_truth_audit.py'
+      - 'tests/test_lane_truth.py'
 permissions:
   contents: read
 jobs:
@@ -67,5 +70,19 @@ jobs:
         with:
           name: metadrive-curved-lanes-optical-evidence
           path: output/metadrive-curved-lanes/
+          if-no-files-found: warn
+          retention-days: 7
+
+      - name: Native target-lane 2D geometry and intrusion evaluator (Phase 2 diagnostic)
+        run: |
+          xvfb-run -a python -m scripts.metadrive_lane_truth_audit --seed 20261109 \
+            --scenarios s_curve_left_right s_curve_right_left in_ramp out_ramp \
+            --out output/native-lane-truth
+      - name: Preserve Phase 2 lane-truth receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: metadrive-native-lane-truth-receipts
+          path: output/native-lane-truth/
           if-no-files-found: warn
           retention-days: 7
