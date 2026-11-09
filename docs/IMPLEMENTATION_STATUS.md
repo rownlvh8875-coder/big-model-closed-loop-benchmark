@@ -19,6 +19,7 @@
 | MetaDrive 실제 RGB 장면 캡처 | **MetaDrive 0.4.3 실제 오프스크린 RGB 프레임 생성 PASS** | 수동 워크플로 `metadrive-optical.yml` | GitHub Actions [42569322601](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42569322601)에서 두 렌즈의 핀홀 초점거리·프레임 변경 확인; 실제 광학 등가성은 미검증 |
 | MetaDrive RGB→I420/YUV6 실제 입력 텐서 | **PASS** | [실제 카메라 입력 CI 42569804426](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42569804426) | (2,6,128,256), uint8, 두 카메라별 독립 프레임 및 가상 위치 이동 후 텐서 변경 |
 | MetaDrive × 공식 MD-V3 실제 ONNX 영상 루프 | **3스텝 PASS (기술적 연결에 한정)** | [실제 MD-V3 CI 42570111317](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42570111317), [검증 결과 문서](METADRIVE_MDV3_SMOKE_RESULTS.md) | 원본 MD-V3 모델 가중치 사용, 상태 갱신·가상 이동·다음 영상 재추론; 실제 광학 및 주행성능 점수는 미검증 |
+| MetaDrive 3D 차선좌표↔영상 픽셀 | **실제 MetaDrive 0.4.3 직선 도로·일반/광각 2자세 재투영 PASS** | [GitHub Actions 42573166387](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42573166387), [측정 보고서](METADRIVE_LANE_REPROJECTION.md) | 3D 차선 경계와 RGB 도색 픽셀 비교 오차 중앙값 0.765~1.467px, 27px 오정렬 음성대조 구분; **커브/실제 렌즈/모델 주행성능은 미검증** |
 | CARLA 렌더러·광학 왜곡/외부 파라미터/시각 도메인 | **미검증** | — | 실제 comma 광학 등가성 및 모델 주행성능은 아직 검증 전 |
 | 차량·실차·CAN·Carrot Params 조작 | **범위에서 영구 제외** | — | 이 프로젝트가 담당하지 않음 |
 
@@ -44,7 +45,7 @@
 1. 나머지 대형모델 체크포인트의 입출력 명세·전처리·재귀 상태 확대 검증 (MD-V3 및 Light Speed 2는 5스텝 성공).
 2. 현재 구현된 이중 I420/YUV 패킹을 실제 MetaDrive 렌더링 이미지에 적용하는 입력 구조·프레임 변경 게이트 검증(별도 CI 진행 중). 실제 comma 렌즈 왜곡·외부 보정·카메라 동등성은 향후 검증.
 3. 기존 합성 도식 입력의 연속 추론 성공을 확인했으므로 실제 모델 시각 도메인에 적합한 렌더러로 폐루프를 재검증.
-4. MetaDrive 또는 CARLA 렌더러의 영상 품질과 차량 자세 재투영 검증.
+4. MetaDrive 직선 도로 재투영(일반·광각 2자세)은 검증했으며, **S자 곡선·램프 맵, 3D 차선-픽셀 정합성 확대와 카메라 외부/왜곡/영상 도메인 검증**은 별도 후속 게이트로 유지.
 5. 모델별 동일 시나리오 비교, 반복 실행, 지표 통계 및 한계 보고.
 
 기존 CarrotSIM 자산은 설계 참고로만 분석했으며, 비공개 파일·실차 로그·차량 응답 코드는 복사하지 않았다.
