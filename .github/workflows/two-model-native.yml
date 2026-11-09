@@ -1,0 +1,86 @@
+name: Official MD-V3 vs Light Speed 2 on native MetaDrive curve (diagnostic ONLY)
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/two-model-native.yml'
+      - 'scripts/compare_native_onnx.py'
+      - 'bigbench/native_model_campaign.py'
+      - 'tests/test_native_model_campaign.py'
+permissions:
+  contents: read
+jobs:
+  two-official-models:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      LIBGL_ALWAYS_SOFTWARE: '1'
+      PYOPENGL_PLATFORM: 'glx'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install virtual display and OpenGL
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y xvfb libgl1 libglu1-mesa libegl1 libx11-6
+      - name: Install pinned engine and ONNX inference dependencies
+        run: python -m pip install '.[inference]' 'metadrive-simulator==0.4.3'
+      - name: Verify and extract official MetaDrive assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p "$RUNNER_TEMP/metadrive-assets"
+          gh release download MetaDrive-0.4.3 --repo metadriverse/metadrive --pattern assets.zip --dir "$RUNNER_TEMP/metadrive-assets"
+          python - <<'PYCODE'
+          import hashlib,metadrive,os
+          from pathlib import Path,PurePosixPath
+          from zipfile import ZipFile
+          z=Path(os.environ['RUNNER_TEMP'])/'metadrive-assets'/'assets.zip'
+          assert z.stat().st_size==134074203
+          assert hashlib.sha256(z.read_bytes()).hexdigest()=='4f0da9f5143a1258131c5b55f77bdf170c0f9bce8a9f18dd41b3678df779eac9'
+          with ZipFile(z) as a:
+              for name in a.namelist():
+                  p=PurePosixPath(name)
+                  assert not p.is_absolute() and '..' not in p.parts
+              a.extractall(Path(metadrive.__file__).resolve().parent)
+          print('METADRIVE_ASSETS_HASH_VERIFIED')
+          PYCODE
+      - name: Download SHA-pinned MD-V3 and Light Speed 2 weights (temporary only)
+        run: |
+          python -m scripts.hf_models download \
+            --path '1365126a-e71e-4778-be00-8ab92dc82c09/12864/big_driving_supercombo.onnx' \
+            --sha256 '35976b11be3904eb78e32f7dc55a6abf8e9433ac5aa391a1998f1e9ce001b199' \
+            --max-bytes 900000000 --out "$RUNNER_TEMP/models"
+          python -m scripts.hf_models download \
+            --path 'ea2f516f-f758-42be-a245-913bb818a64f/32768/big_driving_supercombo.onnx' \
+            --sha256 '909a140019050a9d7f00db22dd4f4085928d2af9474a82244672ddab964f95a8' \
+            --max-bytes 900000000 --out "$RUNNER_TEMP/models"
+      - name: Run both real ONNX graphs on same native curve and fixed virtual speed
+        run: |
+          xvfb-run -a python -m scripts.compare_native_onnx \
+            --first-model "$RUNNER_TEMP/models/1365126a-e71e-4778-be00-8ab92dc82c09/12864/big_driving_supercombo.onnx" \
+            --first-spec model_specs/md-v3.json \
+            --second-model "$RUNNER_TEMP/models/ea2f516f-f758-42be-a245-913bb818a64f/32768/big_driving_supercombo.onnx" \
+            --second-spec model_specs/light-speed-2.json \
+            --scenario s_curve_left_right --steps 12 --seed 20261109 --speed 8 \
+            --out output/native-paired
+          python - <<'PYCODE'
+          import json
+          from pathlib import Path
+          p=Path('output/native-paired/paired_diagnostic.json')
+          d=json.loads(p.read_text())
+          assert d['first_camera_sha_equal'] and not d['model_scoring_allowed']
+          assert d['steps']==12 and len(d['model_hashes'])==2
+          assert d['model_hashes'][0]!=d['model_hashes'][1]
+          print('TWO_NATIVE_LARGE_ONNX_TECHNICAL_DIAGNOSTIC_PASS',d['steps'])
+          PYCODE
+      - name: Archive only model action/truth JSON, not private model weights
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: native-curve-two-big-models-diagnostic
+          path: output/native-paired/
+          if-no-files-found: warn
+          retention-days: 7
