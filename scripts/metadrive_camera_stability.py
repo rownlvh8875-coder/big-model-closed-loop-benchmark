@@ -15,8 +15,8 @@ from bigbench.metadrive_camera import NativeMetaDriveProvider
 from bigbench.native_model_campaign import NativeWorldCamera
 
 
-def capture_sequence(*, seed: int, frames: int) -> list[dict]:
-    provider=NativeMetaDriveProvider(seed=seed)
+def capture_sequence(*, seed: int, frames: int, fixed_clock: bool=False) -> list[dict]:
+    provider=NativeMetaDriveProvider(seed=seed,fixed_virtual_clock=fixed_clock)
     try:
         camera=NativeWorldCamera(provider)
         fixed_pose=AgentState(0.0,0.0,0.0,0.0,0.0)
@@ -34,14 +34,16 @@ def main(argv=None):
     p=argparse.ArgumentParser(description='Native virtual camera fixed-pose repeatability, no model')
     p.add_argument('--seed',type=int,default=20261109)
     p.add_argument('--frames',type=int,default=12)
+    p.add_argument('--fixed-clock',action='store_true',help='use a fresh non-real-time Panda frame clock')
     p.add_argument('--out',type=Path,default=Path('output/camera-stability.json'))
     args=p.parse_args(argv)
     if not 2<=args.frames<=30:
         p.error('frames must be 2..30')
-    a=capture_sequence(seed=args.seed,frames=args.frames)
+    a=capture_sequence(seed=args.seed,frames=args.frames,fixed_clock=args.fixed_clock)
     road_unique=len({x['road_sha256'] for x in a})
     wide_unique=len({x['wide_sha256'] for x in a})
-    result={'status':'FIXED_POSE_CAMERA_STABLE' if road_unique==wide_unique==1
+    result={'clock_mode':'PANDA_FIXED_NON_REAL_TIME' if args.fixed_clock else 'PANDA_DEFAULT',
+            'status':'FIXED_POSE_CAMERA_STABLE' if road_unique==wide_unique==1
                  else 'FIXED_POSE_CAMERA_DRIFT',
             'seed':args.seed,'frames':args.frames,
             'unique_road_frames':road_unique,'unique_wide_frames':wide_unique,
