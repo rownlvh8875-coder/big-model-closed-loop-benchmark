@@ -1,45 +1,76 @@
 # Big Model Closed-Loop Benchmark
 
-**대형 주행모델 순수 횡방향·종방향 성능비교를 위한 독립 폐루프 시뮬레이터**
+**대형 주행모델의 순수 횡방향·종방향 판단을 비교하기 위한 독립 폐루프 연구 프로젝트**
 
-comma 계열 대형 ONNX 주행모델을 동일한 합성도로와 가상 카메라 환경에서 실행하고, **모델 자체의 조향 경로 예측과 가감속 판단**을 비교하려는 연구용 프로젝트입니다.
-
-> **프로젝트 상태: 기획 단계** — 구현·모델 다운로드·시뮬레이션·성능시험 미착수
+> **현재 상태: 합성 RGB 기반 폐루프 코어/자동 시험 구현 · 실제 대형 ONNX 주행 추론 및 모델 성능 검증 미완료**
 
 ## 고정 원칙
 
-- **실차 테스트는 절대 수행하지 않습니다.** 실차 주행·실차 제어·CAN 송신·차량 튜닝 기능을 개발 범위에 포함하지 않습니다.
-- **차량 성능은 비교하지 않습니다.** 싼타페·쏘렌토 등 특정 차종의 조향비, 토크, 타이어, EPS 및 구동계 특성을 평가·최적화하지 않습니다.
-- **CD210은 비교에서 제외합니다.** 대형모델 오류 시 소형 모델로 자동 폴백하지 않습니다.
-- **당근 고유 보정을 제외합니다.** 레인모드 MPC, PathOffset, 커브 속도 보정과 모델별 튜닝값을 결과에 섞지 않습니다.
-- **공통 이상적 운동학만 사용합니다.** 다음 가상 카메라 영상을 생성하기 위해 곡률·가속도에 따라 에이전트 위치·속도·방향을 계산하되, 실제 차량 동역학을 모사하지 않습니다.
-- **기존 실차 주행로그는 선택적인 참고자료입니다.** 신규 데이터 수집을 요구하지 않고, 공개 저장소에 식별·위치·원본 영상을 업로드하지 않습니다.
+- **실차 테스트 전면 금지** — 실도로 주행·실차 제어·CAN 송신·실차 Params 변경 기능을 포함하지 않습니다.
+- **특정 차량 성능 평가 제외** — 싼타페·쏘렌토의 EPS, 타이어, 토크, 휠베이스, 구동계 특성을 사용하지 않습니다.
+- **CD210 제외** — 모델 실행 실패 시 CD210 등 소형 모델로 폴백하지 않습니다.
+- **Carrot 제어기 보정 제외** — 레인모드 MPC, 경로 오프셋, 조향 토크·속도 보정 등을 모델 성능 지표에 섞지 않습니다.
+- **모델 출력 비교를 위한 공통 이상적 운동학** — 모든 시험 정책에 동일한 곡률·가속도 적분 규칙을 적용합니다.
+- **기존 실차 주행로그는 선택적 오프라인 참고만** — 신규 실차 데이터 수집 불필요, 원본/민감정보를 공개하지 않습니다.
 
-## 평가 모드
+## 이번에 구현한 기능
 
-| 모드 | 목적 |
-|---|---|
-| 오픈루프 원본 출력 | 동일 입력에 대한 모델별 미래 경로·곡률·가속도 예측 비교 |
-| 횡방향 단독 폐루프 | 공통 속도 프로파일로 S자·램프 코너 커팅과 차선 유지 평가 |
-| 종방향 단독 폐루프 | 공통 횡방향 기준 경로로 가감속·추종·정지 판단 평가 |
-| 종·횡 통합 폐루프 | 모델의 곡률·가속도 판단을 함께 적용한 가상 주행 평가 |
+| 기능 | 상태 | 주의사항 |
+|---|---|---|
+| 곡률 기반 합성도로 | **구현** | 직선, S자, 좌·우 램프 |
+| 차종 독립 2D 이상적 운동학 | **구현** | 실차 물리 모델이 아님 |
+| 가상 카메라 영상 렌더링 | **도식적 RGB 프로토타입** | 실제 ONNX 영상 정합성 미검증 |
+| 모델 출력 → 위치/방향 → 다음 영상 폐루프 | **모의 카메라 정책으로 검증** | 실제 대형 ONNX 모델 실행 아님 |
+| 선행차 감속 합성 시나리오 | **구현** | 선행차 비대응 외생 시나리오 |
+| 차선 침범·중심 편차·반복성 지표 | **구현** | 가상 에이전트의 기하 지표 |
+| 실행 로그 CSV/JSON · 첫/마지막 PNG | **구현** | 모의 정책 보고서는 `SYNTHETIC_MOCK_ONLY` |
+| 두 모의 정책·4개 시나리오 비교 | **실행·로컬 시험** | **모델 성능 순위로 사용 금지** |
+| ONNX 입출력·해시 조회 도구 | **코드 구현** | 실제 ONNX 파일 및 optional onnxruntime 필요 |
+| 공식 Hugging Face ONNX 목록·명시적 해시 다운로드 도구 | **코드 구현** | 네트워크, 개별 파일/해시 선택 필요 |
+| 실제 대형모델 재귀 추론·영상 전처리 | **미구현** | 이후 검증 필수 |
+| MetaDrive/CARLA 고화질 카메라 폐루프 | **미구현** | 합성 RGB 프로토타입과 별도 |
 
-폐루프는 **모델의 명령으로 가상 에이전트의 위치가 변하고, 변한 위치의 다음 영상이 다시 같은 모델에 입력**되는 구조입니다. 기록된 영상을 그대로 반복하는 방식은 오픈루프라고 구분합니다.
+**중요:** 현재 생성하는 수치와 그래프는 **모의 정책에 대한 구조 검증** 결과이지, 대형모델의 종·횡방향 성능 평가가 아닙니다.
 
-## 개발계획
+## 실행 방법
 
-[**PROJECT_PLAN.md — 전체 프로젝트 계획서**](PROJECT_PLAN.md)
+Python **3.11 이상**이면 기초 합성 시험에 별도 패키지 설치가 필요하지 않습니다.
 
-계획서는 시스템 구조, 모델 실행 계약, 공정성 확보, 시나리오, 성능지표, 단계별 완료 기준, 위험 및 한계를 포함합니다.
+```bash
+# 저장소 루트에서 단위시험
+python -m unittest discover -s tests -v
 
-## 참고 프로젝트
+# 하나의 S자 곡선에 대한 도식적 RGB 폐루프 검증
+python -m bigbench.cli smoke --scenario s_curve --out output/s_curve
+
+# 2개 모의 카메라 정책 × 4개 시나리오 = 8개 합성 검증
+python -m bigbench.cli smoke-compare --out output/mock_comparison
+
+# 선택적: 공식 Hugging Face 메타데이터 조회 (네트워크 필요, 가중치 다운로드 없음)
+python scripts/hf_models.py list
+
+# 선택적: 로컬 ONNX 입출력 계약/해시 조사 (실제 추론 아님)
+python -m pip install onnxruntime
+python -m bigbench.cli inspect-onnx /path/to/model.onnx
+```
+
+`smoke` 실행 시 `frames.csv`, `summary.json`, `first_camera.png`, `last_camera.png`가 생성됩니다. `smoke-compare`는 `comparison.json`을 추가로 생성합니다. 결과는 `output/`에 저장하며 GitHub에 게시하지 않습니다.
+
+모델 파일은 **자동 다운로드하지 않습니다.** 개별 모델의 파일 크기, SHA256 및 입출력 계약을 검증한 뒤 필요할 때 `scripts/hf_models.py download --path ... --sha256 ...`를 사용하도록 설계했습니다. 모델 가중치를 공개 GitHub에 커밋하지 않습니다.
+
+## 문서
+
+- [PROJECT_PLAN.md](PROJECT_PLAN.md) — 전체 계획서 및 기존 CarrotSIM 자산 활용 방안
+- [docs/IMPLEMENTATION_STATUS.md](docs/IMPLEMENTATION_STATUS.md) — 검증 수준과 미구현 사항의 명시적 구분
+
+## 참고 저장소
 
 - [carrotpilot / carrot-wip](https://github.com/ajouatom/openpilot/tree/carrot-wip)
 - [commaai/openpilot](https://github.com/commaai/openpilot)
-- [commaai 대형 주행모델](https://huggingface.co/commaai/openpilot_driving_models/tree/main)
+- [commaai 대형모델](https://huggingface.co/commaai/openpilot_driving_models/tree/main)
+- [기존 Carrot-comma-SIM](https://github.com/rownlvh8875-coder/Carrot-comma-SIM)
+- [기존 비공개 CarrotSIM](https://github.com/rownlvh8875-coder/carrotsimPrivately-)
 - [MetaDrive](https://github.com/metadriverse/metadrive)
 - [CARLA](https://github.com/carla-simulator/carla)
 
-**이 저장소는 연구용 시뮬레이션 계획으로, 실제 도로 안전성이나 특정 차량의 성능을 검증하지 않습니다.**
-
-*기획 최초 작성: 2026-11-09*
+**이 프로젝트는 실차 안전성 검증이 아니며, 실제 차량 성능이나 주행 안전성을 보장하지 않습니다.**
