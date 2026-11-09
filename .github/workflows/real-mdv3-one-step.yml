@@ -1,4 +1,4 @@
-name: Official MD-V3 ONNX one-step diagnostic (uncalibrated input)
+name: Official big ONNX multi-step diagnostic (uncalibrated input)
 on:
   workflow_dispatch:
   push:
@@ -7,42 +7,55 @@ on:
 permissions:
   contents: read
 jobs:
-  md-v3-one-step:
+  model-five-steps:
     runs-on: ubuntu-latest
     timeout-minutes: 24
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - model_name: md-v3
+            model_path: 1365126a-e71e-4778-be00-8ab92dc82c09/12864/big_driving_supercombo.onnx
+            model_sha256: 35976b11be3904eb78e32f7dc55a6abf8e9433ac5aa391a1998f1e9ce001b199
+            model_spec: model_specs/md-v3.json
+          - model_name: light-speed-2
+            model_path: ea2f516f-f758-42be-a245-913bb818a64f/32768/big_driving_supercombo.onnx
+            model_sha256: 909a140019050a9d7f00db22dd4f4085928d2af9474a82244672ddab964f95a8
+            model_spec: model_specs/light-speed-2.json
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Install local ONNX executor requirements
+      - name: Install ONNX Runtime harness requirements
         run: python -m pip install '.[inference]'
-      - name: Download EXACT official MD-V3 checkpoint with SHA256 and byte verification
+      - name: SHA-pinned download from commaai Hugging Face (weights stay on ephemeral runner)
         run: |
           python -m scripts.hf_models download \
-            --path '1365126a-e71e-4778-be00-8ab92dc82c09/12864/big_driving_supercombo.onnx' \
-            --sha256 '35976b11be3904eb78e32f7dc55a6abf8e9433ac5aa391a1998f1e9ce001b199' \
+            --path '${{ matrix.model_path }}' \
+            --sha256 '${{ matrix.model_sha256 }}' \
             --max-bytes 900000000 \
             --out "$RUNNER_TEMP/official-models"
-      - name: One-step real ONNX execution with explicitly UNCALIBRATED schematic camera
+      - name: Execute FIVE model steps with changed virtual pose and recurrent state
         run: |
           python -m bigbench.cli run-onnx \
-            --model "$RUNNER_TEMP/official-models/1365126a-e71e-4778-be00-8ab92dc82c09/12864/big_driving_supercombo.onnx" \
-            --spec model_specs/md-v3.json \
+            --model "$RUNNER_TEMP/official-models/${{ matrix.model_path }}" \
+            --spec '${{ matrix.model_spec }}' \
             --scenario s_curve \
-            --steps 1 \
-            --out "$RUNNER_TEMP/mdv3-smoke" \
+            --steps 5 \
+            --out "$RUNNER_TEMP/${{ matrix.model_name }}-synthetic" \
             --accept-uncalibrated-vision
-      - name: Print only synthetic runtime classification, no large weights
+      - name: Print only runtime/contract outcome (NOT driving performance)
         if: success()
-        run: python -c 'import json,os,pathlib;p=pathlib.Path(os.environ["RUNNER_TEMP"])/"mdv3-smoke/summary.json";a=json.loads(p.read_text());print({k:a.get(k) for k in ("model_sha256","evidence_class","inference_ms_mean","not_validated_for_driving")})'
-      - name: Preserve small diagnostic metadata only
+        run: |
+          python -c 'import json,os,pathlib;p=pathlib.Path(os.environ["RUNNER_TEMP"])/"${{ matrix.model_name }}-synthetic/summary.json";a=json.loads(p.read_text());print({k:a.get(k) for k in ("model_sha256","evidence_class","inference_ms_mean","not_validated_for_driving")});print("synthetic_frames=",len((p.parent/"model_inference.csv").read_text().splitlines())-1)'
+      - name: Keep diagnostic metadata only, no ONNX weights
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: md-v3-one-step-small-results
+          name: ${{ matrix.model_name }}-five-step-diagnostics
           path: |
-            ${{ runner.temp }}/mdv3-smoke/summary.json
-            ${{ runner.temp }}/mdv3-smoke/model_inference.csv
+            ${{ runner.temp }}/${{ matrix.model_name }}-synthetic/summary.json
+            ${{ runner.temp }}/${{ matrix.model_name }}-synthetic/model_inference.csv
           if-no-files-found: ignore
           retention-days: 7
