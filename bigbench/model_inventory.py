@@ -64,8 +64,11 @@ def download_checked(*, path: str, sha256: str, output_dir: Path,
         raise ValueError('output path escapes model cache')
     target.parent.mkdir(parents=True,exist_ok=True)
     if target.exists():
-        h=hashlib.sha256(target.read_bytes()).hexdigest()
-        if h==sha256:
+        existing_hash=hashlib.sha256()
+        with target.open('rb') as existing:
+            for chunk in iter(lambda: existing.read(4 * 1024 * 1024), b''):
+                existing_hash.update(chunk)
+        if existing_hash.hexdigest()==sha256:
             return target
         raise ValueError('destination exists with a different hash; will not overwrite')
     url=f'https://huggingface.co/{HF_REPO}/resolve/main/'+quote(safe,safe='/')
