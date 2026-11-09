@@ -95,6 +95,16 @@ python -m bigbench.cli run-onnx --model models/YOUR_MODEL.onnx \
 
 **증거 범위:** 실제 MetaDrive 렌더링 영상의 핀홀 내부 파라미터·YUV6 입력 규격 및 실제 MD-V3 ONNX 재귀 추론/가상 위치 갱신의 **기술적 연결만 확인**했습니다. 실제 comma의 렌즈 왜곡·외부 캘리브레이션·광학 정합, 도로 정답 기준 성능, 코너 커팅/종방향 모델 순위는 미검증입니다.
 
+## MetaDrive 3D 차선 좌표와 영상 픽셀 정합성 (직선 가상도로 진단 PASS)
+
+[GitHub Actions 42573166387](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42573166387)에서 MetaDrive 0.4.3 가상도로의 실제 차선 경계 좌표를 일반·광각 RGB 카메라 영상에 투영하고, **영상에서 독립 검출한 차선 도색 픽셀과 대조**하는 시험이 통과했습니다. 두 가상 카메라 자세의 오차 중앙값은 카메라별 **0.765~1.467px**였습니다. 인위적인 27px 오정렬 대조에서도 판별력이 확인됐습니다.
+
+- [3D 차선 재투영 검사 코드](bigbench/lane_reprojection.py)
+- [실제 MetaDrive 검증 실행기](scripts/metadrive_lane_audit.py)
+- [검증 결과·측정 조건·한계](docs/METADRIVE_LANE_REPROJECTION.md)
+
+**검증 범위:** MetaDrive 직선 블록(`S`)과 두 가상 카메라 자세에 대한 핀홀 모델/영상 픽셀 진단. S자·램프 광학 정합성, 실제 comma 광학/색감, 모델의 종·횡방향 주행성능 평가는 **아직 검증되지 않았습니다**. 이 검사에서는 주행모델을 실행하지 않고 모델별 성능 점수도 산출하지 않습니다.
+
 ## 참고 저장소
 
 - [carrotpilot / carrot-wip](https://github.com/ajouatom/openpilot/tree/carrot-wip)
