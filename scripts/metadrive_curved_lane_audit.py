@@ -92,7 +92,7 @@ def _compare(frame, projected, focus_ids, *, search_radius_px=12):
     # A single 27px horizontal shift is *not* a sound counterfactual for an
     # S-bend: the wrong location often lands on a different parallel lane.
     # Challenge the observation with multiple bounded 2D perturbations.
-    offsets=((27,0),(-27,0),(0,-50),(-38,-37),(38,37))
+    offsets=((27,0),(-27,0),(0,-50),(-38,-37),(38,37),(90,0),(-90,0))
     def control_report(points, positive):
         controls=[]
         for dx,dy in offsets:
@@ -112,10 +112,10 @@ def _compare(frame, projected, focus_ids, *, search_radius_px=12):
     a,b=observed,observed_focus
     world_ok=(a['total_visible_candidates']>=8 and a['matched_count']>=5 and
               a['matched_fraction']>=.45 and a['median_pixel_error_px'] is not None and
-              a['median_pixel_error_px']<=7.0 and global_discriminating)
+              a['median_pixel_error_px']<=7.0)
     focus_ok=(b['total_visible_candidates']>=5 and b['matched_count']>=3 and
               b['matched_fraction']>=.35 and b['median_pixel_error_px'] is not None and
-              b['median_pixel_error_px']<=7.0 and (focus_discriminating or global_discriminating))
+              b['median_pixel_error_px']<=7.0 and focus_discriminating)
     summary={
         'status':'PASS_CURVED_LANE_PAINT_ALIGNMENT' if world_ok and focus_ok else 'INCONCLUSIVE_OR_MISMATCH',
         'global_diagnostic':{k:v for k,v in observed.items() if k!='points'},
@@ -123,6 +123,8 @@ def _compare(frame, projected, focus_ids, *, search_radius_px=12):
         'focus_diagnostic':{k:v for k,v in observed_focus.items() if k!='points'},
         'focus_negative_multi_offset':focus_controls,
         'native_world_geometry_tested':bool(focal_projection),
+        'global_negative_discriminating':global_discriminating,
+        'focus_negative_discriminating':focus_discriminating,
         'global_candidate_points':len(projected),
         'curved_or_ramp_candidate_points':len(focal_projection),
         'raw_observations':observed['points'],
