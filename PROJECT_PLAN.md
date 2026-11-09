@@ -3,7 +3,7 @@
 | 구분 | 내용 |
 |---|---|
 | 문서 | PROJECT_PLAN.md |
-| 버전 | v0.2 (2026-11-09, 범위 수정 반영) |
+| 버전 | v0.3 (2026-11-09, 기존 CarrotSIM 자산 재사용 계획 추가) |
 | 현재 상태 | 기획 단계 — 코드 개발·모델 실행·성능시험 미착수 |
 | 주제 | 대형 주행모델의 순수 횡방향·종방향 판단 성능 비교 |
 | 핵심 방법 | 대형 ONNX 모델의 직접 추론 + 독립적인 가상 폐루프 |
@@ -240,6 +240,66 @@ MetaDrive는 우선 가상도로·카메라·교통 객체·장면 관리에 활
 - GPU 실시간 처리속도와 결정적 가상시간을 분리
 - 실행 실패 시 CD210 폴백 금지
 - 모델 파일을 공개 저장소에 직접 올리지 않고 해시·획득 절차·라이선스 관리
+
+### 9.4 기존 CarrotSIM 자산 재사용 계획
+
+**검토 출처:** [Carrot-comma-SIM 공개 저장소](https://github.com/rownlvh8875-coder/Carrot-comma-SIM) `main` 및 [carrotsimPrivately- 비공개 저장소](https://github.com/rownlvh8875-coder/carrotsimPrivately-) `carrot-sim-v0`. 후자는 권한 보유자만 열람 가능하다. **참고할 코드를 조사한 것이며 실행·통합·검증·복사를 완료했다는 의미는 아니다.**
+
+기존 두 저장소는 **Carrot 제어기·파라미터·실제 차량 반응의 오프라인 검증**에 초점을 두고 있다. 본 프로젝트의 목적은 **대형 ONNX 주행모델의 순수 종·횡방향 출력에 따른 가상 폐루프 비교**이므로, 기존 시스템 전체를 이식하지 않고 범용 기능만 독립적으로 재구성한다.
+
+#### 9.4.1 재사용 후보와 구체적 변경 사항
+
+| 출처 | 참고할 파일·구성 | 새로운 프로젝트에서 활용할 부분 | 반드시 변경하거나 검증할 부분 |
+|---|---|---|---|
+| 공개 Carrot-comma-SIM | [`carrot_sim/simulator_loop.py`](https://github.com/rownlvh8875-coder/Carrot-comma-SIM/blob/main/carrot_sim/simulator_loop.py) | Controller–World–상태 갱신의 폐루프 실행 순서, 시간/유효성 검사, 실패 시 차단 | Carrot 컨트롤러 입력을 **대형모델 원본 행동 출력**으로 대체하고, 차량별 Plant를 **공통 이상적 운동학**으로 변경. 다음 관측에 실제 새 카메라 영상이 포함되는지 검증 |
+| 공개 Carrot-comma-SIM | [`carrot_sim/scenario_test_catalog.py`](https://github.com/rownlvh8875-coder/Carrot-comma-SIM/blob/main/carrot_sim/scenario_test_catalog.py) | 시나리오 ID, 조건/검증 기대값, 커버리지 태그, 시험 우선순위 | S자 방향 반전, 램프, 커브 반경, 조향/가감속 개별 시험 분류 추가 |
+| 공개 Carrot-comma-SIM | [`carrot_sim/campaign_manifest.py`](https://github.com/rownlvh8875-coder/Carrot-comma-SIM/blob/main/carrot_sim/campaign_manifest.py), [`closed_loop_campaign_runner.py`](https://github.com/rownlvh8875-coder/Carrot-comma-SIM/blob/main/carrot_sim/closed_loop_campaign_runner.py) | 결정적 설정 직렬화·SHA 해시, 공통 시간격자 검증, 비교 실행 기록 | 기존 **Carrot Params 비교**를 **모델 SHA256 + 입력 계약 + 시나리오 시드 + 가상 시간 설정** 기반 모델 비교로 재설계 |
+| 공개 Carrot-comma-SIM | [`visual_replay_frames.py`](https://github.com/rownlvh8875-coder/Carrot-comma-SIM/blob/main/carrot_sim/visual_replay_frames.py), [`visual_app_server.py`](https://github.com/rownlvh8875-coder/Carrot-comma-SIM/blob/main/carrot_sim/visual_app_server.py) | 실행 결과 로딩·검증, 타임라인·그래프·결과 조회 API의 설계 | 원본 모델 경로, 실제 가상 에이전트 경로, 차선 경계, 곡률, 가속도와 모델별 비교 화면 확장 |
+| 비공개 carrotsimPrivately- | [`carrot_sim/pose_2d_integrator.py`](https://github.com/rownlvh8875-coder/carrotsimPrivately-/blob/carrot-sim-v0/carrot_sim/pose_2d_integrator.py) | 2D 위치·방향 적분 및 시간 증가 유효성 검사 | **목표곡률 κ → 요 레이트 vκ** 및 모델 목표가속도를 모든 모델에 동일한 이상적 점질량/운동학 규칙으로 적용. 실제 차량 파라미터 금지 |
+| 비공개 carrotsimPrivately- | [`carrot_sim/d4_parametric_world.py`](https://github.com/rownlvh8875-coder/carrotsimPrivately-/blob/carrot-sim-v0/carrot_sim/d4_parametric_world.py), [`d4_world_contract.py`](https://github.com/rownlvh8875-coder/carrotsimPrivately-/blob/carrot-sim-v0/carrot_sim/d4_world_contract.py) | 주변 차량 가감속/차로 이동, 시드 고정, 위치 기반 상대 거리 계산 | 현재 정해진 **단일 곡률·도로폭 가정**을 다중 구간 S자·램프 도로 형상으로 확장하고 모델 입력용 영상 렌더러 별도 연결 |
+| 비공개 carrotsimPrivately- | [`carrot_sim/metadrive_state_provider.py`](https://github.com/rownlvh8875-coder/carrotsimPrivately-/blob/carrot-sim-v0/carrot_sim/metadrive_state_provider.py), [`metadrive_world_backend.py`](https://github.com/rownlvh8875-coder/carrotsimPrivately-/blob/carrot-sim-v0/carrot_sim/metadrive_world_backend.py) | MetaDrive 월드 초기화, 에이전트 위치 전달, 주변 객체 관측 어댑터의 인터페이스 | 기존 구성은 **`image_observation=False`**인 헤드리스 상태 관측 중심. **동일한 가상 위치에서 새 카메라 영상 생성·모델 입력 연결**은 새로 구현·검증해야 함 |
+| 비공개 carrotsimPrivately- | [`carrot_sim/scenario_db/log_miner.py`](https://github.com/rownlvh8875-coder/carrotsimPrivately-/blob/carrot-sim-v0/carrot_sim/scenario_db/log_miner.py) | 기존 기록에서 곡선·감속 장면의 특성 추출 방식 | **선택적 오프라인 참고 기능**으로만 사용. 신규 실차 테스트나 주행로그 수집 의무 없음. 개인정보 및 원본 로그 공개 금지 |
+
+**적용 원칙:** 파일명을 확인한 것과 기능을 새 환경에서 재현한 것은 구별한다. 각 자산은 단위시험·기본 예제·의존성 검증을 통과한 다음에만 `재사용 가능`으로 판정한다. 원래 Carrot/vehicle-specific API를 무리하게 유지하기보다 기능 경계를 추출해 새 인터페이스로 구현한다.
+
+#### 9.4.2 신규 개발이 필수적인 부분
+
+1. **Big Model Runtime:** CD210을 로드하지 않는 독립 ONNX 실행기, 모델별 입력/출력 형상 검사, 메모리 및 추론시간 계측, 실행 실패의 명시적 기록. CD210 자동 폴백 금지.
+2. **Recurrent Input Manager:** 과거 카메라 프레임, 특징·내부 상태, `desire`, `action_t`, `traffic_convention`, 내비게이션 입력의 모델별 계약 관리 및 에피소드별 독립 초기화.
+3. **Closed-loop Camera Renderer:** 가상 에이전트의 **변경된 위치·헤딩·속도**에서 실제로 다음 영상 생성. 기존 녹화 영상 반복 재생을 폐루프라고 분류하지 않음.
+4. **Ideal Kinematic Agent:** 특정 차량의 EPS·타이어·토크·조향비·엔진·제동지연 없이, 모든 모델에 같은 목표곡률/목표가속도 적분 적용. 횡/종/통합 평가 모드를 분리함.
+5. **Model-native Metrics:** 원시 모델 궤적과 차선 예측, 목표곡률·가속도, 가상 주행 결과와 정답 도로 경계의 오차를 **동일 시간축**에서 비교. 실제 차량 성능 점수로 해석하지 않음.
+6. **Model Comparison Dashboard:** 모델명/해시, S자·램프별 안쪽 코너 커팅, 횡방향·종방향·통합 평가 지표, 반복시험 변동폭 및 실행 실패 사유를 각각 표시.
+
+#### 9.4.3 가져오지 않을 코드·책임
+
+- **Santa Fe·Sorento 등 차량 전용 Plant/Calibration:** `h2_santafe_g1_plant`, `vehicle_response_calibration`, 실제 타이어·조향 토크·구동계 반응 및 동결 실차 모델 등은 사용하지 않는다.
+- **Carrot Params 튜닝 및 최적화:** `current_settings_*`, `constrained_parameter_optimizer`, `LateralTorque*`, `LatMpc*` 등 차량/제어기 튜닝 경로는 새로운 벤치마크의 기능이 아니다.
+- **기록된 `modelV2`의 폐루프 대체:** 기존 `h2_recorded_perception_planner_loop.py`는 `recorded_perception_exogenous=True`, `full_synthetic_closed_loop_proven=False`를 선언한다. 대형모델의 카메라 재추론이 수행되지 않는 한 본 프로젝트의 모델 폐루프 성능으로 인정하지 않는다.
+- **실차 접근 기능:** 라이브 CAN 송신, 실제 차량 설정 변경, 실차 장치 원격 제어·데이터 수집 기능은 포함하지 않는다.
+
+#### 9.4.4 재사용 검증 게이트
+
+| 게이트 | 검증 조건 | 실패 시 처리 |
+|---|---|---|
+| G0. 출처·보안·라이선스 | 원본 커밋 SHA/파일 출처·저작권·의존 라이선스 기록, 비공개 ID/경로/로그 제거 | **실제 코드 복사 보류**. 아키텍처만 참고 |
+| G1. 가상 시간 | 모델 추론 **20Hz(0.05초)**와 환경 내부 스텝(기존 D4 **0.01초**)의 동기화·시간 역행 방지 | 실행 불가 또는 명시적 별도 시간모드 |
+| G2. 모델 독립성 | 모델 A/B 실행 시 동일 시드·초기 상태·이상적 운동학, 서로의 recurrent state 혼입 없음 | 해당 비교 무효 |
+| G3. 진정한 영상 폐루프 | 모델의 곡률을 바꿨을 때 에이전트 위치가 달라지고, **다음 카메라 영상도 달라지는 것**을 자동 검증 | `OPEN_LOOP_ONLY`로 표기, 폐루프 성적 미산출 |
+| G4. 원본 출력 비교 | 원본 계획·행동 출력, 적용 명령, 경로/속도 오차가 기록되며 차선 정답은 평가기에서만 사용 | 시험 실패 처리 |
+| G5. 금지 기능 회귀 | CD210 폴백·Carrot MPC/튜닝·실차 CAN/Params 쓰기 없음 | 시험 및 릴리스 차단 |
+| G6. 공개 안전성 | 합성 데이터만 포함; 비공개 로그·경로·장치 식별자·비밀정보 유출 없음 | 공개 저장소 반영 금지 |
+
+공개 [Carrot-comma-SIM NOTICE](https://github.com/rownlvh8875-coder/Carrot-comma-SIM/blob/main/NOTICE.md)에는 **자체 코드의 재배포 라이선스가 아직 선택되지 않았다**고 명시돼 있다. 같은 계정의 저장소라도 코드 복제 전에 저작권 보유·라이선스·외부 의존성·비공개 자료 포함 여부를 검증한다. **이번 계획서 수정에는 다른 저장소의 실행 코드를 복사하지 않는다.**
+
+#### 9.4.5 단계별 적용 순서
+
+- **Phase 0:** 두 기존 저장소의 활용 후보와 해당 커밋을 자산 목록에 고정; 라이선스/비공개 데이터 점검.
+- **Phase 1:** 자체 ONNX 실행기를 별도 구현. 기존 Carrot 모델 메시지/차량 Plant에 종속시키지 않음.
+- **Phase 2:** 공개판의 폐루프 실행 계약과 비공개판의 2D 포즈·가상 세계 설계를 참고하되 **이상적 운동학+새 영상 생성**을 필수 완료 조건으로 삼음.
+- **Phase 3–5:** 공개판의 시나리오 카탈로그·반복시험·해시 비교를 모델 중심으로 변경하고 횡/종/통합 시험을 분리 실행.
+- **Phase 6:** 결과 뷰어의 타임라인/검증 방식 재활용. 두 모델의 원본 예측과 가상 궤적·차선 경계를 나란히 비교.
+- **Phase 7(선택):** 기존 로그는 참고에만 사용. 실차 테스트·차량 반응 재현은 어느 단계에도 추가하지 않음.
 
 ## 10. 단계별 개발계획
 
