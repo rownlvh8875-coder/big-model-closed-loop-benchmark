@@ -105,16 +105,22 @@ def select_native_curve_lanes(current_map: Any, case: CurveCase) -> list[Any]:
     return selected
 
 
-def world_camera_pose(lane: Any, fraction: float, *, height_m: float = 1.22) -> tuple[float, float, float, float]:
+def world_camera_pose(lane: Any, fraction: float, *, height_m: float = 1.22,
+                      lookback_m: float = 0.0) -> tuple[float, float, float, float]:
     """(world x,y,z, camera Panda H deg) for route-forward camera on lane."""
     if not math.isfinite(fraction) or not 0 <= fraction <= 1:
         raise ValueError('invalid lane sample fraction')
     if not math.isfinite(height_m) or not 0.25 <= height_m <= 4:
         raise ValueError('invalid synthetic camera height')
+    if not math.isfinite(lookback_m) or not 0 <= lookback_m <= 20:
+        raise ValueError('invalid synthetic upstream camera distance')
     s = float(lane.length) * fraction
     xy = lane.position(s, 0)
     theta = float(lane.heading_theta_at(s))
-    coords = (float(xy[0]), float(xy[1]), float(height_m),
+    # For a short native ramp connector, place the virtual sensor upstream
+    # along the tangent. Otherwise the entire 7 m bend is clipped as too close.
+    coords = (float(xy[0]) - lookback_m*math.cos(theta),
+              float(xy[1]) - lookback_m*math.sin(theta),float(height_m),
               math.degrees(theta) - 90.0)  # MetaDrive +x driving; Panda camera +y forward
     if not all(math.isfinite(v) for v in coords):
         raise ScenarioGeometryError('nonfinite native lane pose')

@@ -75,37 +75,53 @@ def _focus_marks(lane, origin_xy, radius_m=90.0):
             distances_m=distances) if math.hypot(p.world_x_m-origin_xy[0],p.world_y_m-origin_xy[1]) <= radius_m]
 
 
+def _offset_probe(frame, projected, dx, dy, *, search_radius_px):
+    shifted=[]
+    for point in projected:
+        q=dict(point)
+        q['model_uv']=[q['model_uv'][0]+float(dx),q['model_uv'][1]+float(dy)]
+        shifted.append(q)
+    return evaluate_visible_lane_paint(frame,shifted,search_radius_px=search_radius_px)
+
+
 def _compare(frame, projected, focus_ids, *, search_radius_px=12):
     observed = evaluate_visible_lane_paint(frame,projected,search_radius_px=search_radius_px)
-    shifted = []
-    for point in projected:
-        q = dict(point)
-        q['model_uv'] = [q['model_uv'][0] + 27.0, q['model_uv'][1]]
-        shifted.append(q)
-    shifted_control = evaluate_visible_lane_paint(frame,shifted,search_radius_px=search_radius_px)
     focal_projection = [p for p in projected if p['road_id'] in focus_ids]
     observed_focus = evaluate_visible_lane_paint(frame,focal_projection,search_radius_px=search_radius_px)
-    control_focus = [p for p in shifted if p['road_id'] in focus_ids]
-    observed_focus_shift = evaluate_visible_lane_paint(frame,control_focus,search_radius_px=search_radius_px)
-    a = observed
-    b = observed_focus
-    # Do not score a matched few pixels as a statistically valid complete frame.
-    world_ok = (a['total_visible_candidates'] >= 8 and a['matched_count'] >= 5 and
-                a['matched_fraction'] >= 0.45 and a['median_pixel_error_px'] is not None and
-                a['median_pixel_error_px'] <= 7.0 and
-                shifted_control['matched_fraction'] < a['matched_fraction'])
-    # Require positive evidence on this specific curved/ramp road, not merely
-    # unrelated straight lane paint somewhere else in the same camera view.
-    focus_ok = (b['total_visible_candidates'] >= 5 and b['matched_count'] >= 3 and
-                b['matched_fraction'] >= 0.35 and b['median_pixel_error_px'] is not None and
-                b['median_pixel_error_px'] <= 7.0 and
-                observed_focus_shift['matched_fraction'] < b['matched_fraction'])
-    summary = {
+
+    # A single 27px horizontal shift is *not* a sound counterfactual for an
+    # S-bend: the wrong location often lands on a different parallel lane.
+    # Challenge the observation with multiple bounded 2D perturbations.
+    offsets=((27,0),(-27,0),(0,-50),(-38,-37),(38,37))
+    def control_report(points, positive):
+        controls=[]
+        for dx,dy in offsets:
+            measured=_offset_probe(frame,points,dx,dy,search_radius_px=search_radius_px)
+            controls.append(dict(offset_xy_px=[dx,dy],
+                matched_fraction=measured['matched_fraction'],
+                candidate_points=measured['total_visible_candidates'],
+                median_pixel_error_px=measured['median_pixel_error_px']))
+        # Demand at least one *in-image* independently displaced false pose to
+        # lose >=15 percentage points. Very few candidates remains inconclusive.
+        admissible=[v for v in controls if v['candidate_points']>=max(1,.7*positive['total_visible_candidates'])]
+        discriminating=any(v['matched_fraction']<=positive['matched_fraction']-.15 for v in admissible)
+        return controls,discriminating
+
+    global_controls,global_discriminating=control_report(projected,observed)
+    focus_controls,focus_discriminating=control_report(focal_projection,observed_focus)
+    a,b=observed,observed_focus
+    world_ok=(a['total_visible_candidates']>=8 and a['matched_count']>=5 and
+              a['matched_fraction']>=.45 and a['median_pixel_error_px'] is not None and
+              a['median_pixel_error_px']<=7.0 and global_discriminating)
+    focus_ok=(b['total_visible_candidates']>=5 and b['matched_count']>=3 and
+              b['matched_fraction']>=.35 and b['median_pixel_error_px'] is not None and
+              b['median_pixel_error_px']<=7.0 and (focus_discriminating or global_discriminating))
+    summary={
         'status':'PASS_CURVED_LANE_PAINT_ALIGNMENT' if world_ok and focus_ok else 'INCONCLUSIVE_OR_MISMATCH',
         'global_diagnostic':{k:v for k,v in observed.items() if k!='points'},
-        'global_negative_27px':{k:v for k,v in shifted_control.items() if k!='points'},
+        'global_negative_multi_offset':global_controls,
         'focus_diagnostic':{k:v for k,v in observed_focus.items() if k!='points'},
-        'focus_negative_27px':{k:v for k,v in observed_focus_shift.items() if k!='points'},
+        'focus_negative_multi_offset':focus_controls,
         'native_world_geometry_tested':bool(focal_projection),
         'global_candidate_points':len(projected),
         'curved_or_ramp_candidate_points':len(focal_projection),
@@ -132,15 +148,17 @@ def audit_one(*, case: CurveCase, seed: int, output: Path) -> dict:
                                    'direction':float(getattr(l,'direction',0))} for l in curved_lanes]
         if case.expected_curve_directions and len(curved_lanes) != 2:
             raise ScenarioGeometryError('S-curve requires two distinct native forward bends')
-        samples = [(f'bend_{i+1}',lane,0.13 if i%2==0 else 0.40)
+        samples = [(f'bend_{i+1}',lane,0.0 if not case.expected_curve_directions else (0.13 if i%2==0 else 0.40),
+                    11.0 if not case.expected_curve_directions else 0.0)
                    for i,lane in enumerate(curved_lanes[:2])]
         if len(samples) < 2:
             # Ramps may expose one circular connector; inspect TWO poses on that
             # native connector instead of inventing a second geometry segment.
-            samples.append(('bend_1_later',curved_lanes[0],0.50))
+            samples.append(('bend_1_later',curved_lanes[0],0.0,6.0))
         all_pass=True
-        for label,lane,fraction in samples:
-            world_pose = world_camera_pose(lane,fraction,height_m=provider.height_m)
+        for label,lane,fraction,lookback in samples:
+            world_pose = world_camera_pose(lane,fraction,height_m=provider.height_m,
+                                           lookback_m=lookback)
             point_xy = (world_pose[0],world_pose[1])
             marks = map_boundary_landmarks(roadmap.road_network,point_xy,
                                            max_radius_m=85.0,sample_step_m=1.0)

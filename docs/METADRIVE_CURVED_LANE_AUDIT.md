@@ -22,7 +22,8 @@
 4. 동일한 3D 위치·헤딩에서 road/wide MetaDrive RGB를 렌더하고 원본 기준 핀홀 모델 화면 512×256으로 워프한다.
 5. 실제 영상의 흰색/노란색 도색 픽셀을 별도로 검출해 예측 픽셀 오차·매칭률을 기록한다.
 6. 전체 장면의 차선뿐 아니라 **해당 곡선/램프 도로 자신의 차선 표시**가 실제로 검출됐는지 검사한다.
-7. 예상 픽셀을 27px 인위적으로 이동시켜 정상 위치 대비 검출률이 낮아지는지도 확인한다.
+7. 여러 방향의 2D 위치 오정렬을 시험한다. 평행 차선에 잘못 매칭될 수 있으므로 27px 가로 이동 하나만으로 실패 판정을 내리지 않는다.
+8. 7m 정도의 짧은 램프 커넥터는 가상 카메라를 접선 방향으로 상류 11m 이동해 곡선 표시가 충분히 보이도록 촬영하며, 보이는 지점이 충분하지 않으면 INCONCLUSIVE로 기록한다.
 
 초기 진단 문턱값은 전체 영역과 대상 곡선 영역 모두 매칭률 및 오차 중앙값을 따로 평가하며, **임시 진단값**이지 최종 광학 정합성 보증이나 모델 주행 성능 점수가 아니다. 검출 픽셀이 부족하거나 잘못된 색상 임계값에 의해 누락되면 `INCONCLUSIVE_OR_MISMATCH`로 남는다.
 
@@ -49,3 +50,7 @@ xvfb-run -a python -m scripts.metadrive_curved_lane_audit \
 - [MetaDrive lane position/width](https://github.com/metadriverse/metadrive/blob/main/metadrive/component/lane/abs_lane.py)
 - [기존 직선 재투영 측정](METADRIVE_LANE_REPROJECTION.md)
 - [7단계 개발 로드맵](ROADMAP_7_STAGES.md)
+
+### 최초 실렌더링 진단 실패 및 보완(2026-11-09)
+
+[CI 실행 42577333433](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42577333433)은 4개 사례 모두 INCONCLUSIVE로 끝났다. 그러나 S자 2종은 실제 서로 반대 부호의 양쪽 곡선이 생성됐고 관측 픽셀 오차 중앙값은 수 픽셀 이하였다. 실패 원인은 **인위적인 +27px 수평 이동이 평행 차선에 다시 일치하는 오정렬 대조** 및 **짧은 램프 커넥터 자체의 검출 후보가 0~1개뿐**인 문제였다. 해당 오류를 검증 프로토콜의 결함으로 확인하여 다중 방향 대조와 램프 상류 시점을 추가했다. 변경 뒤 재실행 결과는 별도로 확인해야 한다.

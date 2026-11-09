@@ -56,6 +56,11 @@ class Tests(unittest.TestCase):
         pose=world_camera_pose(lane,0.5)
         self.assertEqual(pose[:3],(25.,0.,1.22))
         self.assertAlmostEqual(pose[3],math.degrees(.06)-90,places=8)
+        upstream=world_camera_pose(lane,0.0,lookback_m=12.0)
+        self.assertAlmostEqual(upstream[0],-12.0)
+        self.assertAlmostEqual(upstream[1],0.0)
+        for lb in (-1.,21.,float('nan')):
+            with self.assertRaises(ValueError):world_camera_pose(lane,0.0,lookback_m=lb)
         for f in (-.1,1.1,float('nan')):
             with self.assertRaises(ValueError):world_camera_pose(lane,f)
 
