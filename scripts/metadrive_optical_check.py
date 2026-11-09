@@ -13,6 +13,9 @@ from dataclasses import asdict
 import json
 from pathlib import Path
 
+import numpy as np
+
+from bigbench.image_adapter import camera_pair_to_model
 from bigbench.kinematics import AgentState
 from bigbench.metadrive_camera import (
     MetaDriveOpticalRig, NativeMetaDriveProvider, probe_model_with_metadrive,
@@ -58,6 +61,18 @@ def main(argv=None) -> int:
             baseline.pair.wide.save_png(args.out/'wide_model_first.png')
             shifted.pair.road.save_png(args.out/'road_model_shifted.png')
             shifted.pair.wide.save_png(args.out/'wide_model_shifted.png')
+            # Real MetaDrive RGB -> pinhole warp -> model I420/YUV6 tensor.
+            # This validates software plumbing, not real comma lens fidelity.
+            packed_first = camera_pair_to_model(baseline.pair.road, baseline.pair.wide)
+            packed_shifted = camera_pair_to_model(shifted.pair.road, shifted.pair.wide)
+            if packed_first.shape != (2, 6, 128, 256) or packed_first.dtype != np.uint8:
+                raise RuntimeError('MetaDrive ONNX camera input shape/dtype mismatch')
+            if packed_shifted.shape != packed_first.shape or packed_shifted.dtype != packed_first.dtype:
+                raise RuntimeError('MetaDrive ONNX camera input changed contract')
+            if np.array_equal(packed_first[0], packed_first[1]):
+                raise RuntimeError('Road and wide ONNX camera inputs are identical')
+            if np.array_equal(packed_first, packed_shifted):
+                raise RuntimeError('MetaDrive pose shift did not change ONNX camera tensor')
             if (baseline.pair.road.sha256==shifted.pair.road.sha256 or
                     baseline.pair.wide.sha256==shifted.pair.wide.sha256):
                 raise RuntimeError('MetaDrive pose change did not change both camera images')
@@ -66,6 +81,10 @@ def main(argv=None) -> int:
                 'scoring_allowed':False, 'cd210_used':False, 'real_vehicle_testing':False,
                 'camera_audit':{k:v.to_dict() for k,v in shifted.audit.items()},
                 'distinct_frames_road':2, 'distinct_frames_wide':2,
+                'model_input_shape':list(packed_first.shape),
+                'model_input_dtype':str(packed_first.dtype),
+                'model_input_changed_with_pose':True,
+                'model_input_road_wide_distinct':True,
                 'warning':'Real MetaDrive render, but lens distortion/extrinsics/photometrics and model driving fidelity are NOT validated',
             }
         (args.out/'optical_report.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
