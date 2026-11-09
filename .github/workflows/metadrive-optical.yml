@@ -1,6 +1,12 @@
 name: Real MetaDrive offscreen camera optical probe (NO real vehicle)
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/metadrive-optical.yml'
+      - 'bigbench/metadrive_camera.py'
+      - 'bigbench/optical_calibration.py'
+      - 'scripts/metadrive_optical_check.py'
 permissions:
   contents: read
 jobs:
