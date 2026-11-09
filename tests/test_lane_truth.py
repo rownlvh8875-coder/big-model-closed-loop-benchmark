@@ -4,7 +4,7 @@ import math
 import unittest
 import numpy as np
 from bigbench.lane_truth import (
-    LaneTruthError, evaluate_native_lane_state, evaluate_closest_native_lane, lane_curvature
+    LaneTruthError, evaluate_native_lane_state, evaluate_closest_native_lane, lane_curvature, evaluate_target_lane_by_id, summarize_lane_truth
 )
 
 class AnalyticLane:
@@ -75,5 +75,53 @@ class NativeLaneTruthTests(unittest.TestCase):
         with self.assertRaises(LaneTruthError):evaluate_native_lane_state(lane,10.,0.,0.)
         with self.assertRaises(LaneTruthError):evaluate_native_lane_state(AnalyticLane(),10.,0.,0.,half_width_m=float('nan'))
         with self.assertRaises(LaneTruthError):lane_curvature(AnalyticLane(),-1.)
+
+
+class TargetLaneAndSeriesTests(unittest.TestCase):
+    def test_fixed_target_lane_never_substitutes_nearest(self):
+        a=AnalyticLane(index=('target','lane',0))
+        b=AnalyticLane(index=('other','lane',0))
+        b.local_coordinates=lambda xy:(xy[0],.05)
+        # nearest lane is other; requested target must stay fixed.
+        p=a.position(14.,1.5)
+        result=evaluate_target_lane_by_id([a,b],str(a.index),float(p[0]),float(p[1]),0.)
+        self.assertEqual(result.lane_id,str(a.index))
+        self.assertAlmostEqual(result.intrusion_depth_m,.65,places=7)
+        with self.assertRaises(LaneTruthError):
+            evaluate_target_lane_by_id([a,b],'missing',14.,0.,0.)
+        with self.assertRaises(LaneTruthError):
+            evaluate_target_lane_by_id([a,a],'duplicate-id',14.,0.,0.)
+
+    def test_target_lane_segment_end_fails_no_implicit_switch(self):
+        a=AnalyticLane(length=15.)
+        b=AnalyticLane(length=50.,index=('other','lane',1))
+        with self.assertRaises(LaneTruthError):
+            evaluate_target_lane_by_id([a,b],str(a.index),20.,0.,0.)
+
+    def test_intrusion_duration_events_and_p90(self):
+        a=AnalyticLane(width=3.5)
+        offsets=[0.,1.5,1.5,0.,-1.4,0.]
+        rows=[]
+        for i,r in enumerate(offsets):
+            x,y=a.position(float(i+5),r)
+            rows.append(evaluate_target_lane_by_id([a],str(a.index),float(x),float(y),0.))
+        report=summarize_lane_truth(rows,dt_s=.05)
+        self.assertEqual(report['intrusion_count'],2)
+        self.assertAlmostEqual(report['intrusion_duration_s'],.15,places=8)
+        self.assertAlmostEqual(report['intrusion_depth_max_m'],.65,places=8)
+        self.assertEqual(report['frame_count'],6)
+        self.assertFalse(report['real_vehicle_testing'])
+        self.assertIn('NOT_DRIVING_MODEL_SCORE',report['classification'])
+
+    def test_invalid_series_fails_closed(self):
+        a=AnalyticLane()
+        row=evaluate_native_lane_state(a,5.,0.,0.)
+        with self.assertRaises(LaneTruthError):
+            summarize_lane_truth([],dt_s=.05)
+        with self.assertRaises(LaneTruthError):
+            summarize_lane_truth([row],dt_s=0.)
+        with self.assertRaises(LaneTruthError):
+            evaluate_target_lane_by_id([a],'',5.,0.,0.)
+
 
 if __name__=='__main__':unittest.main()
