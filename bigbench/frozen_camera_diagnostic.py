@@ -52,9 +52,21 @@ def isolate_model_repeatability(*, make_policy, native_camera: Any,
             break
     status='INCOMPLETE'
     comparison=None
+    action_bit_exact=None
+    max_lateral_action_delta=None
+    max_longitudinal_action_delta=None
     if len(reports)==2 and all(x['status']=='DIAGNOSTIC_EXECUTED' for x in reports):
         comparison=compare_repeat_receipts(reports[0],reports[1],pose_tol_m=1e-7)
-        status=comparison['status']
+        a_frames,b_frames=reports[0]['frames'],reports[1]['frames']
+        actions_a=[(f['desired_curvature_1pm'],f['desired_acceleration_mps2']) for f in a_frames]
+        actions_b=[(f['desired_curvature_1pm'],f['desired_acceleration_mps2']) for f in b_frames]
+        action_bit_exact=actions_a==actions_b
+        max_lateral_action_delta=max(abs(x[0]-y[0]) for x,y in zip(actions_a,actions_b))
+        max_longitudinal_action_delta=max(abs(x[1]-y[1]) for x,y in zip(actions_a,actions_b))
+        status=(comparison['status'] if action_bit_exact else 'ONNX_ACTION_OUTPUT_MISMATCH')
+        comparison['action_values_exactly_equal']=action_bit_exact
+        comparison['max_curvature_delta_1pm']=max_lateral_action_delta
+        comparison['max_accel_delta_mps2']=max_longitudinal_action_delta
     return {
         'classification':'OPEN_LOOP_FIXED_NATIVE_RGB_ONNX_REPRODUCIBILITY_ONLY',
         'status':status,
@@ -68,5 +80,8 @@ def isolate_model_repeatability(*, make_policy, native_camera: Any,
             'road':pair.road.sha256,'wide':pair.wide.sha256,
         },
         'comparison':comparison,
+        'model_action_values_exactly_equal':action_bit_exact,
+        'max_curvature_delta_1pm':max_lateral_action_delta,
+        'max_acceleration_delta_mps2':max_longitudinal_action_delta,
         'runs':reports,
     }
