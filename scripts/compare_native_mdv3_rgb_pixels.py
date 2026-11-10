@@ -141,8 +141,8 @@ def evaluate_native_rgb_pixel_pair(root:Path,save_masks:bool=True) -> dict:
             left=read_verified_pixels(root/"rgb_run_0",manifest_a["images"][index])
             right=read_verified_pixels(root/"rgb_run_1",manifest_b["images"][index])
             metrics=summarize_pixel_difference(left,right)
-            if metrics["bit_exact"] is (
-                a["frames"][i][f"source_{kind}_rgb_sha256"]!=
+            if metrics["bit_exact"] != (
+                a["frames"][i][f"source_{kind}_rgb_sha256"]==
                 b["frames"][i][f"source_{kind}_rgb_sha256"]
             ):
                 raise ValueError("pixel data contradicts original source-frame digests")
