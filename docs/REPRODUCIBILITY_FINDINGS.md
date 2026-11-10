@@ -66,6 +66,15 @@
 
 **남은 하드 게이트:** 실제 폐루프에서 동일 가상 포즈/도로/시드가 같은 RGB 배열과 모델 입력 배열을 내는지, 그림자·톤매핑·렌더 태스크/복사 RAM 버퍼·동적 오브젝트를 분리한 뒤 다시 검증한다. 숫자 허용오차를 임의 확대해 전체 모델 비교를 PASS 처리하지 않는다.
 
+## 2026-11-10: 렌더 틱·RAM 읽기·장면 마스크 6조건 실험
+
+- 공식 MetaDrive 0.4.3로 [실제 CI #42757874100](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42757874100) 실행: **6개 조건 모두 원본·모델 RGB·I420 측정/양성 대조 완료**. 원시 증거 아티팩트 `meta-render-task-readback-scene-factorization` (id 13736736732).
+- GPU 재렌더 없이 `RTMCopyRam` 최종 텍스처를 3회 반복 읽은 **모든 표본에서 비트 단위 완전 일치**. 단순 CPU readback 재호출만으로는 기존 불일치가 재현되지 않음.
+- 동일 pose/초기 2프레임 제외/기본 MetaDrive 차량 **RGB 숨김**: 카메라별 `perceive`와 두 카메라 동시 `taskMgr.step`에서는 원본 narrow 최대 9픽셀 변화, I420 최대 6개 원소 변화. `graphicsEngine.renderFrame()`을 직접 1회 호출한 조건에서는 이후 narrow/wide 및 I420 모두 동일. **2m 포즈 이동 시 두 카메라 모두 실제 변화**했으므로 단순 stale frame은 아님.
+- 기본 가상 차량 시각화 표시/숨김을 바꾸면 드리프트 패턴이 달라진다. '가상 차량 표시'만이 단독 원인이라는 가설은 이번 결과로 지지되지 않는다.
+- **공유 프로세스·전역 시계 교란이 남음.** 이를 통제할 [독립 Python/Xvfb 프로세스 실험](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/workflows/render-causality-process.yml)과 `PSSM.update` / `update main chase camera` 개별 태스크 차단 실험을 별도 실행. 증거 확인 전에는 인과관계를 확정하지 않음.
+- [세부 통계/소스 규약](METADRIVE_RENDER_CAUSALITY.md) 참조. 모델 재현성 전체 게이트는 계속 **미통과**.
+
 ## 하드 게이트
 
 | 구분 | 완료 기준 | 현재 |
