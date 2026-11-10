@@ -110,3 +110,31 @@
 - 모든 프레임 수집 이전 +2m 카메라 이동 양성 대조, 마지막 GPU 추출 이후에는 렌더 틱 없이 CPU RGB를 한 번 더 읽어 해당 완료 프레임의 최종 RAM 바이트가 변경되지 않았는지 확인한다. 이 두 조건이 실패하면 INCONCLUSIVE로 기록한다.
 - 최종 그림자맵/HDR 텍스처는 **각 프로세스의 마지막 프레임 한 장**만 추출한다. 따라서 최종 texture SHA 비교는 시계열 RGB 해시와 분리된 제한적 스냅샷 진단이며, HDR의 프레임별 드리프트나 셰이더 유일 원인을 증명하지 않는다.
 - GitHub Actions run은 실제 실행 상태/아티팩트가 확보된 후 PASS/FAIL 및 SHA를 기재한다. 정식 ONNX 새 영상 폐루프 반복시험은 별도의 후속 게이트이다.
+
+
+## 2026-11-10 새 native CI 확인 결과 (실제 GitHub Actions)
+
+**호출별 GPU extraction CI**: [Actions #42768683086](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42768683086), **2/2 seed matrix SUCCESS**, 원본 아티팩트 각 5개 개별 프로세스 JSON + 집계 JSON 확인. 이 성공은 CPU 모델 추론·주행성능 PASS가 아니라 **GPU 계측 간섭 판별기 성공**이다.
+
+| texture probe | seed 20261109 road/wide 응답 상실 | seed 20261110 road/wide 응답 상실 |
+|---|---|---|
+| none | False / False | False / False |
+| pssm_depth | False / False | False / False |
+| road_hdr | **True / False** | **True / False** |
+| wide_hdr | **False / True** | **False / True** |
+| all | **True / True** | **True / True** |
+
+**최종 프레임에서만 GPU 추출 CI**: [Actions #42769095626](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42769095626), **4/4 seed×framecount SUCCESS**. 원본 JSON에서 사전 +2m 카메라 이동 양성 대조 모두 PASS, 종료 시점 HDR/그림자맵 추출 정상, 추출 이후 추가 렌더 없이 최종 CPU RGB 재읽기 동일. 다만 그 후의 신규 프레임은 촬영하지 않았으므로 GPU 추출의 이후 프레임 부작용이 해결되었다는 의미는 아니다.
+
+| seed | 횟수 | baseline_no_gpu road/wide 원본 RGB 고유 SHA 개수 | baseline_terminal road/wide 고유 SHA 개수 | shadow_off_terminal road/wide 고유 SHA 개수 | I420 고유 SHA 개수 (no GPU / baseline terminal / shadow off) |
+|---|---:|---|---|---|---|
+| 20261109 | 4 | 1 / 1 | 1 / 1 | 1 / 1 | 1 / 1 / 1 |
+| 20261109 | 6 | **2 / 1** | **2 / 2** | **1 / 1** | **2 / 2 / 1** |
+| 20261110 | 4 | 1 / 1 | 1 / 1 | 1 / 1 | 1 / 1 / 1 |
+| 20261110 | 6 | 1 / 1 | 1 / 1 | 1 / 1 | 1 / 1 / 1 |
+
+관측의 핵심은 20261109의 6프레임에서 **GPU 추출을 진행하지 않은 본래 RGB/I420 프레임**에서도 작은 불일치가 관측되고 PSSM.update를 제거한 조건에서는 워밍업 이후 비트 일치했다는 사실이다. 다만 **20261110의 짧은 6프레임에서는 baseline에서도 차이가 관측되지 않았으며**, 결과를 모든 seed/장면으로 일반화하지 않는다. 같은 seed/조건으로 실행된 독립 프로세스 사이 원본 이미지 시퀀스가 정확하게 일치한다고 보장되지 않았다.
+
+기본 PSSM 조건과 PSSM.update 제거 조건의 최종 road_hdr, wide_hdr, pssm_depth 원시 바이트 SHA256은 각 매트릭스에서 달랐다. 그러나 이 차이는 의도적으로 다른 그림자 업데이트 조건을 비교한 결과이고, 그 자체가 특정 셰이더/톤매핑 픽셀 변화의 **유일한 원인**을 입증하지 않는다. GPU raw 바이트 차이는 HDR 이미지 픽셀 차이로 해석하지 않는다.
+
+**최종 판정:** GPU 추출 자체의 개입 경로 분리 완료(대상 카메라별), terminal-only 무계측 시계열 프로토콜 구축 및 기술 CI PASS. MetaDrive 본래 비트 재현성 다중 시드 일반화, 공식 대형 MD-V3 매스텝 새로운 영상 ONNX 폐루프 반복 게이트, 모델 간 성능 순위 **모두 미완료**.
