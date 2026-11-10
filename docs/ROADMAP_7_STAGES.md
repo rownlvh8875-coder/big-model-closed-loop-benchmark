@@ -63,6 +63,21 @@
 - 다음 작업 게이트: `PSSM.update`에 의한 HDR scene texture/톤매핑 과정의 변경점 추적 → 다중 seed·pose 검증 → 공식 대형 ONNX **새 영상 폐루프 재현성** 재시험. **7단계 전체 완료 및 모델 순위 산출은 보류**.
 - 자세한 시험 통계: [렌더링 인과 분리 문서](METADRIVE_RENDER_CAUSALITY.md).
 
+
+
+## 2026-11-10 · 7단계 HDR/PSSM GPU 계측 검증 확대
+
+- [GPU 텍스처 전체 추출 CI #42766327307](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42766327307): 2 seed × 2 pose × 3 ablation = 12 native 조건에서 GPU PSSM depth/HDR 바이트 계측을 수행했으나 PSSM 행렬 자료형 오류 및 카메라 이동 양성 대조 실패로 모든 조건 INCONCLUSIVE. 원본 아티팩트 보존.
+- [행렬 호환 수정 후 CI #42767017309](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42767017309): 12조건 모두 GPU 추출 **이전** road/wide +2m 이동 PASS, 매 프레임 GPU 추출 **이후** road/wide 이동 반응 FALSE. 이 조건의 비트 동일 RGB/I420을 시뮬레이터 재현성 PASS로 사용할 수 없음. GPU readback 개입 가설을 우선 조사.
+- 독립 호출 분리: [.github/workflows/gpu-probe-interference.yml](../.github/workflows/gpu-probe-interference.yml), no-GPU / shadow depth / road HDR / wide HDR / all 다섯 조건을 프로세스별로 따로 실행, [상세 문서](PSSM_HDR_TRACE.md) 참조. **실험을 관측했다고 모델 폐루프를 통과한 것으로 판단하지 않는다.**
+- **7단계 상태: 계속 진행 중**, 메타드라이브 원래 파이프라인의 정확한 신규 프레임 재현성과 공식 MD-V3 모델 실제 영상 폐루프 반복성은 미완료. 실차 테스트 및 모델 성능 순위 금지 유지.
+
+## 2026-11-10 · 최종 GPU 계측 간섭/종료시점 HDR CI 검증
+
+- [GPU 개별 추출 CI #42768683086](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42768683086): 네이티브 seed 20261109/20261110 **2/2 진단 성공**. no GPU, PSSM depth만 읽을 때 road/wide 이동 반응 보존; road HDR 읽으면 road만, wide HDR 읽으면 wide만 후속 이동 반응 상실; 둘 다 읽으면 둘 다 상실. **침습적 계측 중단 현상은 모델 성능 PASS가 아님**.
+- [종료 프레임 전용 HDR CI #42769095626](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42769095626): seed 2개 × 4/6프레임 **4/4 진단 성공**. 모든 RGB/I420을 먼저 캡처하고 종료 시점에서만 PSSM depth/HDR 텍스처 추출. seed 20261109, 6프레임 기본 무추출 및 종료시점 probe 조건 I420 해시 종류 **2**, PSSM.update 제거 조건 **1**. seed 20261110, 6프레임은 세 조건 모두 I420 종류 **1**. 짧은 표본·단일 pose이므로 인과관계의 일반화/실제 주행모델 공식 재현성 PASS 불가.
+- [원시 결과·제약·시드별 표](PSSM_HDR_TRACE.md). 다음 정확한 작업: 프레임별 HDR 차이를 침습하지 않고 확보하는 방법 검증 → 더 긴 시드/장면/pose 반복 → 공식 MD-V3 신규 RGB 폐루프 **반복 동일성 게이트**. 7단계 미완료, 모델 순위 금지 유지.
+
 ## 다음 세션에서 이어가는 법
 
 1. `main`의 이 파일과 최신 CI 결과를 읽는다.
