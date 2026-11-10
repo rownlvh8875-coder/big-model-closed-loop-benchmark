@@ -19,7 +19,7 @@
 - 각 시드·장면에서 4개 독립 Python/Xvfb/MetaDrive 프로세스: (1) 순차 perceive 기본 PSSM, (2) 동시 taskMgr.step 기본 PSSM, (3) 동시 graphicsEngine.renderFrame 기본 PSSM, (4) 동시 taskMgr.step에서 PSSM.update 하나만 제거.
 - 촬영 사이 추가 GPU HDR 추출, GPU 렌더 틱, 모델 추론, 프레임 평균·필터·보간·기록 영상 재생 및 차량 제어 금지. 원본 RGB를 캡처 직후 복사하되 좌표/픽셀 차이 분석과 모델 RGB/I420 변환은 모든 촬영을 끝낸 뒤에 수행.
 - 같은 완료 렌더 틱의 RTMCopyRam 반복 CPU 읽기 3회를 비트 동등성으로 확인. +2m 카메라 이동 양성대조가 RGB를 변화시키지 않으면 INCONCLUSIVE로 분리해 stale buffer가 거짓 안정화로 보이지 않게 한다.
-- 매 프레임 ClockObject.getFrameCount, getFrameTime, getRealTime, getDt 값을 기록해 순차 perceive의 태스크 틱 2개, 동시 taskMgr.step 1개, graphicsFrame-only 0개를 구별.
+- 매 프레임 ClockObject.getFrameCount, getFrameTime, getRealTime, getDt 기록. **실제 네이티브 첫 시험에서 Panda 글로벌 frameCount는 순차 perceive +2, taskMgr.step 쌍 +1, graphicsFrame-only +1이었다.** graphicsFrame-only의 frameCount도 +1이므로 **글로벌 카운터 자체로 taskMgr 실행 여부를 판별할 수 없다.** taskMgr.step 호출 횟수(순차 2, 동시 task 1, graphicsFrame-only 0)는 검토된 캡처 함수의 호출 경로에서 따로 정의하고, 측정된 글로벌 frameCount와 혼동하지 않는다.
 - PSSM 제거와 graphicsFrame-only는 원본 렌더링과 시간 및 의미론이 다르므로 공식 ONNX 평가 기본값으로 적용 금지.
 
 ## 데이터 계약
@@ -35,3 +35,10 @@
 각 네이티브 시드·장면에서 taskMgr.step, graphicsFrame-only, 순차 perceive, PSSM-off의 원본 road/wide 변경 좌표/영역과 I420 변경 원소, 프레임 카운터/시간 차이를 비교한다. 정확한 실측 수치와 CI 실행 URL은 아티팩트 확보 후에만 기재한다.
 
 7단계 미완료, 실차·CD210 폴백·Carrot MPC/Params·모델 간 공식 주행성능 순위 산출 금지 유지.
+
+
+## 2026-11-10 첫 CI에서 확인된 카운터 해석 오류와 수정
+
+[첫 실행 CI #42775954822](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42775954822)의 20261109 좌→우 S자 JSON 원본에서 순차 perceive 조건의 frameCount delta는 2/프레임, 공통 taskMgr.step은 1/프레임, **graphicsEngine.renderFrame() 직접 호출도 1/프레임**임을 확인했다. 당시 코드에서 graphicsFrame-only를 0으로 예상한 것이 잘못되어 이 조건은 INCONCLUSIVE로 남았고, 실행 성공으로 기록하지 않았다.
+
+새 버전은 **Panda 글로벌 frame count(관측치)** 와 **taskMgr.step 호출 횟수(검토된 캡처 함수의 호출 계약)** 를 다른 필드로 저장한다. 예측이 관측값과 다르면 정상 판정하지 않으며, 원래 실험의 실패/취소 기록을 삭제하지 않는다. 그 밖의 네이티브 픽셀 위치 및 I420 변화는 재실행 CI에서 확인 후 기재한다.
