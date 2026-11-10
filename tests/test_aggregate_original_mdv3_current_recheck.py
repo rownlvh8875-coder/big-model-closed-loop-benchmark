@@ -6,7 +6,7 @@ from tempfile import TemporaryDirectory
 import unittest
 
 from scripts.aggregate_original_mdv3_current_recheck import (
-    aggregate_original_mdv3,MODEL_SHA256,SCENARIOS,SEEDS,STEPS,
+    aggregate_original_mdv3,first_divergence_timeline,MODEL_SHA256,SCENARIOS,SEEDS,STEPS,
 )
 from scripts.compare_fresh_native_mdv3 import compare_fresh_trials
 
@@ -79,6 +79,41 @@ class StrictOriginalMDV3AggregateTests(unittest.TestCase):
         self.assertFalse(result["model_scoring_allowed"])
         self.assertEqual(result["per_seed_scene"][3]["first_observed_mismatch_boundary"],
                          "NATIVE_964x604_RGB")
+
+    def test_native_sensor_drift_can_precede_onnx_feed_and_raw_action(self):
+        first=mock_trial(20261109,"s_curve_left_right",100)
+        second=copy.deepcopy(first)
+        second["frames"][1]["source_wide_rgb_sha256"]="changed-raw-wide-step-2"
+        second["frames"][3]["source_wide_rgb_sha256"]="changed-raw-wide-step-4"
+        second["frames"][3]["wide_frame_sha256"]="changed-warped-wide-step-4"
+        second["frames"][3]["new_img_sha256"]="changed-actual-onnx-step-4"
+        second["frames"][3]["raw_model_action"][0]=0.2
+        second["frames"][3]["raw_action_sha256"]="changed-raw-action-step-4"
+        second["frames"][3]["state_after_step_sha256"]="changed-state-step-4"
+        result=first_divergence_timeline(first,second)
+        self.assertEqual(result["first_native_road_or_wide_rgb_mismatch_step"],2)
+        self.assertEqual(result["first_actual_onnx_new_img_mismatch_step"],4)
+        self.assertEqual(result["first_raw_action_mismatch_step"],4)
+        self.assertEqual(result["first_recurrent_state_mismatch_step"],4)
+        self.assertEqual(result["source_vs_onnx_first_divergence_classification"],
+                         "NATIVE_SOURCE_RGB_DIVERGED_BEFORE_ONNX_IMAGE_FEED")
+
+    def test_sensor_only_first_difference_survives_full_aggregate(self):
+        result=aggregate_original_mdv3(self.root)
+        timeline=result["per_seed_scene"][3]["raw_sensor_to_onnx_first_divergence_timeline"]
+        self.assertEqual(timeline["first_native_road_or_wide_rgb_mismatch_step"],3)
+        self.assertIsNone(timeline["first_actual_onnx_new_img_mismatch_step"])
+        self.assertEqual(timeline["source_vs_onnx_first_divergence_classification"],
+                         "SOURCE_RGB_DIFF_WITH_NO_ONNX_FEED_DIFF_IN_12_STEPS")
+
+    def test_same_step_source_and_feed_difference(self):
+        first=mock_trial(20261109,"s_curve_left_right",100)
+        second=copy.deepcopy(first)
+        second["frames"][1]["source_road_rgb_sha256"]="changed"
+        second["frames"][1]["new_img_sha256"]="changed"
+        result=first_divergence_timeline(first,second)
+        self.assertEqual(result["source_vs_onnx_first_divergence_classification"],
+                         "SOURCE_RGB_AND_ONNX_FEED_FIRST_DIFFER_SAME_STEP")
 
     def test_mismatched_model_sha_never_accepted(self):
         path=self.root/"seed-20261109"/"s_curve_left_right"/"run_0.json"
