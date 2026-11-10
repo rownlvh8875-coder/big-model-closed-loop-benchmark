@@ -63,6 +63,15 @@
 - 다음 작업 게이트: `PSSM.update`에 의한 HDR scene texture/톤매핑 과정의 변경점 추적 → 다중 seed·pose 검증 → 공식 대형 ONNX **새 영상 폐루프 재현성** 재시험. **7단계 전체 완료 및 모델 순위 산출은 보류**.
 - 자세한 시험 통계: [렌더링 인과 분리 문서](METADRIVE_RENDER_CAUSALITY.md).
 
+
+
+## 2026-11-10 · 7단계 HDR/PSSM GPU 계측 검증 확대
+
+- [GPU 텍스처 전체 추출 CI #42766327307](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42766327307): 2 seed × 2 pose × 3 ablation = 12 native 조건에서 GPU PSSM depth/HDR 바이트 계측을 수행했으나 PSSM 행렬 자료형 오류 및 카메라 이동 양성 대조 실패로 모든 조건 INCONCLUSIVE. 원본 아티팩트 보존.
+- [행렬 호환 수정 후 CI #42767017309](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42767017309): 12조건 모두 GPU 추출 **이전** road/wide +2m 이동 PASS, 매 프레임 GPU 추출 **이후** road/wide 이동 반응 FALSE. 이 조건의 비트 동일 RGB/I420을 시뮬레이터 재현성 PASS로 사용할 수 없음. GPU readback 개입 가설을 우선 조사.
+- 독립 호출 분리: [.github/workflows/gpu-probe-interference.yml](../.github/workflows/gpu-probe-interference.yml), no-GPU / shadow depth / road HDR / wide HDR / all 다섯 조건을 프로세스별로 따로 실행, [상세 문서](PSSM_HDR_TRACE.md) 참조. **실험을 관측했다고 모델 폐루프를 통과한 것으로 판단하지 않는다.**
+- **7단계 상태: 계속 진행 중**, 메타드라이브 원래 파이프라인의 정확한 신규 프레임 재현성과 공식 MD-V3 모델 실제 영상 폐루프 반복성은 미완료. 실차 테스트 및 모델 성능 순위 금지 유지.
+
 ## 다음 세션에서 이어가는 법
 
 1. `main`의 이 파일과 최신 CI 결과를 읽는다.
