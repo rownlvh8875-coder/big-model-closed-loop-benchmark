@@ -47,12 +47,12 @@ jobs:
                   assert not n.is_absolute() and '..' not in n.parts
               z.extractall(Path(metadrive.__file__).resolve().parent)
           PYCODE
-      - name: Repeat actual MetaDrive camera at EXACT same virtual pose
+      - name: Repeat actual MetaDrive camera WITHOUT default ego visual obstruction
         run: |
           xvfb-run -a python -m scripts.metadrive_camera_stability \
-            --seed 20261109 --frames 12 --pixel-audit --warmup 2 --save-frames --out output/default-clock-camera.json
+            --seed 20261109 --frames 12 --hide-ego-rgb --pixel-audit --warmup 2 --save-frames --out output/default-clock-camera.json
           xvfb-run -a python -m scripts.metadrive_camera_stability \
-            --seed 20261109 --frames 12 --fixed-clock --pixel-audit --warmup 2 --save-frames --out output/fixed-panda-clock-camera.json
+            --seed 20261109 --frames 12 --fixed-clock --hide-ego-rgb --pixel-audit --warmup 2 --save-frames --out output/fixed-panda-clock-camera.json
       - name: Preserve non-scoring camera time dependence report
         if: always()
         uses: actions/upload-artifact@v4
