@@ -50,6 +50,27 @@ class CameraConvergenceTests(unittest.TestCase):
         self.assertNotEqual(a.road.sha256,b.road.sha256)
         self.assertEqual(len(cam.receipts),2)
 
+    def test_explicit_pixel_tolerance_never_rewrites_a_rendered_frame(self):
+        original=pair(50)
+        modified=pair(52)
+        source=SequenceRenderer([original,modified])
+        camera=StrictConsecutiveCamera(source,max_captures=2,
+                                       max_changed_pixels=16,max_rgb_delta=3)
+        got=camera.capture('pose')
+        self.assertEqual(got.road.sha256,modified.road.sha256)
+        self.assertEqual(camera.receipts[0].road_changed_pixels,16)
+        self.assertEqual(camera.receipts[0].max_rgb_delta,2)
+        self.assertNotEqual(original.road.sha256,modified.road.sha256)
+
+    def test_tight_pixel_tolerance_rejects_real_difference(self):
+        source=SequenceRenderer([pair(50),pair(53),pair(50)])
+        cam=StrictConsecutiveCamera(source,max_captures=3,
+                                    max_changed_pixels=4,max_rgb_delta=3)
+        with self.assertRaises(CameraConvergenceError):
+            cam.capture('p')
+        with self.assertRaises(ValueError):
+            StrictConsecutiveCamera(source,max_changed_pixels=4,max_rgb_delta=0)
+
     def test_invalid_repeat_bound_fails(self):
         with self.assertRaises(ValueError):
             StrictConsecutiveCamera(None,max_captures=1)
