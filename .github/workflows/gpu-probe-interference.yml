@@ -71,14 +71,7 @@ jobs:
               # finished JSON. Fail closed if there is no complete receipt.
               echo "XVFB_TEARDOWN_EXIT_5 stage=$stage; validating saved receipt"
               test -s "$root/$stage.json" || exit 5
-              python - "$root/$stage.json" "$stage" <<'PYCODE'
-              import json,sys
-              obj=json.load(open(sys.argv[1],encoding="utf-8"))
-              assert obj.get("probe_stage")==sys.argv[2]
-              assert obj.get("status") in ("OBSERVED_SELECTIVE_PROBE",
-                  "GPU_PROBE_INTERVENTION_OBSERVED","OBSERVED_BUFFER_CHAIN")
-              assert obj.get("required_probe_buffers_available") is True
-              PYCODE
+              python -c 'import json,sys; d=json.load(open(sys.argv[1],encoding="utf-8")); assert d.get("probe_stage")==sys.argv[2] and d.get("required_probe_buffers_available") is True and d.get("status") in ("OBSERVED_SELECTIVE_PROBE", "GPU_PROBE_INTERVENTION_OBSERVED", "OBSERVED_BUFFER_CHAIN")' "$root/$stage.json" "$stage"
             elif [ "$status_code" -ne 0 ] && [ "$status_code" -ne 2 ]; then
               echo "HARD_ERROR unexpected native process exit=$status_code"
               exit "$status_code"
