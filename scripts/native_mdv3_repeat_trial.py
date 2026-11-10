@@ -76,8 +76,10 @@ def run_trial(*, model: Path, spec: Path, scenario: str,
     if len(rows)!=len(policy.audit_rows) or len(policy.trace)!=len(rows):
         raise RuntimeError("native frame/ONNX audit step count differs")
     for row, audit in zip(rows,policy.audit_rows):
-        if "road_frame_sha256" not in row or "wide_frame_sha256" not in row:
-            raise RuntimeError("native real camera frame hashes absent")
+        if ("road_frame_sha256" not in row or "wide_frame_sha256" not in row
+                or not row.get("source_road_rgb_sha256")
+                or not row.get("source_wide_rgb_sha256")):
+            raise RuntimeError("native original RGB or warped camera frame hashes absent")
         row.update(audit)
     report["status"]="DIAGNOSTIC_EXECUTED" if (
         report["status"]=="DIAGNOSTIC_EXECUTED" and len(rows)==steps
@@ -91,6 +93,7 @@ def run_trial(*, model: Path, spec: Path, scenario: str,
         "initial_fraction":initial_fraction,
         "raw_action_and_recurrent_sha_captured_per_step":True,
         "actual_onnx_image_feed_sha_captured_per_step":True,
+        "native_source_964x604_rgb_sha_captured_per_step":True,
         "real_vehicle_testing":False,"model_scoring_allowed":False,
         "cd210_fallback":False,"carrot_tuning_used":False,
         "trial_evidence":"UNMODIFIED_METADRIVE_NEW_FRAME_OFFICIAL_ONNX_DIAGNOSTIC",
