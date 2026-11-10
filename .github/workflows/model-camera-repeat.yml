@@ -1,0 +1,70 @@
+name: Experimental MD-V3 strict same-pose camera convergence repeatability (SIM ONLY)
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/model-camera-repeat.yml'
+      - 'scripts/run_same_model_repeat.py'
+      - 'bigbench/camera_convergence.py'
+      - 'tests/test_camera_convergence.py'
+permissions:
+  contents: read
+jobs:
+  strict-model-repeat:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      LIBGL_ALWAYS_SOFTWARE: '1'
+      PYOPENGL_PLATFORM: 'glx'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install OpenGL and pinned MetaDrive / ONNX dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y xvfb libgl1 libglu1-mesa libegl1 libx11-6
+          python -m pip install '.[inference]' 'metadrive-simulator==0.4.3'
+      - name: Verify official native simulator assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p "$RUNNER_TEMP/metadrive-asset"
+          gh release download MetaDrive-0.4.3 --repo metadriverse/metadrive --pattern assets.zip --dir "$RUNNER_TEMP/metadrive-asset"
+          python - <<'PYCODE'
+          from pathlib import Path,PurePosixPath
+          from zipfile import ZipFile
+          import hashlib,metadrive,os
+          z=Path(os.environ['RUNNER_TEMP'])/'metadrive-asset'/'assets.zip'
+          assert z.stat().st_size==134074203
+          assert hashlib.sha256(z.read_bytes()).hexdigest()=='4f0da9f5143a1258131c5b55f77bdf170c0f9bce8a9f18dd41b3678df779eac9'
+          with ZipFile(z) as src:
+              for name in src.namelist():
+                  p=PurePosixPath(name)
+                  if p.is_absolute() or '..' in p.parts:
+                      raise ValueError('unsafe simulator asset filename')
+              src.extractall(Path(metadrive.__file__).resolve().parent)
+          print('METADRIVE_043_ASSET_HASH_VERIFIED')
+          PYCODE
+      - name: Download sha-pinned official MD-V3 to ephemeral runner
+        run: |
+          python -m scripts.hf_models download \
+            --path '1365126a-e71e-4778-be00-8ab92dc82c09/12864/big_driving_supercombo.onnx' \
+            --sha256 '35976b11be3904eb78e32f7dc55a6abf8e9433ac5aa391a1998f1e9ce001b199' \
+            --max-bytes 900000000 --out "$RUNNER_TEMP/models"
+      - name: Native 12-step ONNX repeated independently with strict paired camera frames
+        run: |
+          xvfb-run -a python -m scripts.run_same_model_repeat \
+            --model "$RUNNER_TEMP/models/1365126a-e71e-4778-be00-8ab92dc82c09/12864/big_driving_supercombo.onnx" \
+            --spec model_specs/md-v3.json --scenario s_curve_left_right \
+            --seed 20261109 --steps 12 --speed 8 --camera-convergence 6 \
+            --out output/strict-native-repeat
+      - name: Preserve both receipts and repeated-run result even on mismatch
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: experimental-strict-native-onnx-repeat
+          path: output/strict-native-repeat/
+          if-no-files-found: warn
+          retention-days: 7
