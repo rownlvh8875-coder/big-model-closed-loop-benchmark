@@ -159,6 +159,14 @@ class TerminalShadowContractTests(unittest.TestCase):
         self.assertEqual(different["status"],"INCONCLUSIVE_GPU_TEXTURE_LAYOUT_CHANGED")
         self.assertIsNone(different["bytes_equal"])
 
+    def test_layout_mismatch_rejected_by_full_aggregate(self):
+        # The low-level byte comparison deliberately returns INCONCLUSIVE;
+        # a CI aggregator must never convert that into a success receipt.
+        self.reports["offset_terminal"]["gpu_stage_receipts"]["pssm_depth"][
+            "metadata"]["format"]="mismatched_GPU_layout"
+        with self.assertRaisesRegex(ValueError,"layout mismatch"):
+            aggregate_gpu_shadow(self.root,self.reports)
+
     def test_missing_trial_or_wrong_sensor_pose_rejected(self):
         del self.reports["natural_no_gpu"]
         with self.assertRaises(ValueError):

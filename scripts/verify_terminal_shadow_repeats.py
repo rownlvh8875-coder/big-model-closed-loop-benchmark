@@ -10,6 +10,7 @@ from __future__ import annotations
 import argparse
 from hashlib import sha256
 import json
+import math
 from pathlib import Path,PurePosixPath
 from zipfile import ZipFile
 import zlib
@@ -64,6 +65,16 @@ def read_verified_run(zip_path:Path) -> dict:
         if (summary.get("status")!="NATIVE_TERMINAL_GPU_SHADOW_CAUSAL_DIAGNOSTIC_OBSERVED"
                 or set(summary.get("per_arm_receipts",{}))!=set(CONDITIONS)):
             raise ValueError("incomplete GitHub native terminal GPU result")
+        # The aggregate's geometry is the fixed, unperturbed WORLD camera pose.
+        # Never compare render archives from different lane fractions/poses
+        # as repeats, even if seed, map and frame count are identical.
+        pose=summary.get("camera_pose")
+        if (not isinstance(pose,list) or len(pose)!=2
+                or any(not isinstance(part,list) or len(part)!=3
+                       or any(type(v) not in (int,float) or not math.isfinite(v)
+                              for v in part) for part in pose)):
+            raise ValueError("native CI summary has no finite WORLD camera pose")
+        fraction=None
         rows={}
         for name,(injected,extra,terminal) in CONDITIONS.items():
             report=json.loads(z.read(_one_name(members,name+".json")))
@@ -82,6 +93,17 @@ def read_verified_run(zip_path:Path) -> dict:
                     or report.get("model_scoring_allowed")
                     or report.get("real_vehicle_testing")):
                 raise ValueError("invasive/invalid native experiment arm")
+            row_fraction=report.get("fraction")
+            if (type(row_fraction) not in (int,float)
+                    or not math.isfinite(row_fraction)
+                    or row_fraction not in (0.12,0.28)):
+                raise ValueError("native terminal artifact has invalid lane fraction")
+            if report.get("camera_pose")!=pose:
+                raise ValueError(f"{name}: native WORLD camera pose differs from aggregate")
+            if fraction is None:
+                fraction=row_fraction
+            elif row_fraction!=fraction:
+                raise ValueError(f"{name}: camera lane fraction differs across arms")
             for kind in ("road","wide"):
                 if report.get("both_camera_plus_2m_positive",{}).get(kind) is not True:
                     raise ValueError("original native camera pose positive control invalid")
@@ -117,6 +139,7 @@ def read_verified_run(zip_path:Path) -> dict:
             rows[name]={"source":source,"i420":i420,"gpu":gpu}
         return {
             "seed":summary["seed"],"scenario":summary["scenario"],
+            "fraction":fraction,"camera_pose":pose,
             "frames":summary["frames"],"arms":rows,
         }
 
@@ -124,9 +147,9 @@ def read_verified_run(zip_path:Path) -> dict:
 def compare_repeated_artifacts(first:Path,second:Path) -> dict:
     a=read_verified_run(first)
     b=read_verified_run(second)
-    if (a["seed"],a["scenario"],a["frames"])!=(
-            b["seed"],b["scenario"],b["frames"]):
-        raise ValueError("cross-CI runs have different seed/scene/frames")
+    if (a["seed"],a["scenario"],a["frames"],a["fraction"],a["camera_pose"])!=(
+            b["seed"],b["scenario"],b["frames"],b["fraction"],b["camera_pose"]):
+        raise ValueError("cross-CI runs have different seed/scene/frames/camera pose/fraction")
     frames=a["frames"]
     gpu_total=0
     gpu_matches=0
