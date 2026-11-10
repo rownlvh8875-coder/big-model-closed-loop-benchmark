@@ -6,6 +6,7 @@ for each model run. Camera-convergence is experimental and opt-in.
 from __future__ import annotations
 
 import argparse
+import gc
 import json
 from pathlib import Path
 
@@ -39,6 +40,8 @@ def main(argv=None) -> int:
             json.dumps(report,ensure_ascii=False,indent=2,allow_nan=False)+'\n',
             encoding='utf-8')
         receipts.append(report)
+        del policy
+        gc.collect()
         print('STRICT_REPEAT_NATIVE_MODEL',i,report['status'],
               report['completed_steps'],'cam',report.get('strict_same_pose_convergence'),flush=True)
     if any(r['status']!='DIAGNOSTIC_EXECUTED' for r in receipts):
