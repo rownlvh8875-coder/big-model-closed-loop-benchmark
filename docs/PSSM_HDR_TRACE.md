@@ -50,3 +50,28 @@
 - 따라서 신규 실험의 RGB/HDR 일치 해시를 안정화 성공이나 렌더링 동등성으로 **절대 해석하지 않는다**. 다음 실험에는 GPU 추출 **이전**과 **이후** 각각 카메라 이동 양성 대조를 남기도록 했다.
 - 이 단계는 모델 출력이나 차량 제어 평가가 아닌 **실험 계측 경로 검증**이며 7단계 미완료 상태를 유지한다.
 
+
+
+## 2026-11-10 2차 검증 결과 — GPU 계측 개입 여부 분리
+
+[네이티브 run #42767017309](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42767017309)의 모든 매트릭스 결과(2시드 × 2포즈 × baseline/PSSM-off/chase-off = 12조건)를 JSON 아티팩트로 검증했다.
+
+- 각 12조건에서 GPU 추출 이전 +2m 이동 양성 대조는 road/wide 모두 true.
+- 각 12조건에서 **매 프레임 GPU 추출을 수행한 이후** +2m 이동 양성 대조는 road/wide 모두 false.
+- PSSM 행렬 자료형 호환 문제는 LMatrix4f 변환으로 해결돼 행렬·그림자맵·HDR 단계가 EXTRACTED로 기록됐다.
+- 관측된 RGB/I420 비트 일치를 재현성 증거로 사용할 수 없다. 매 프레임 GPU 텍스처 추출이 이후 카메라 영상 갱신에 영향을 주는 강한 증거지만, 그림자맵·road HDR·wide HDR 중 구체적 호출과 원인 메커니즘은 미분리다.
+- 위 12조건의 원본 데이터는 CI에서 전부 INCONCLUSIVE로 보존됐고 모델 성능 PASS·순위는 계속 금지한다.
+
+## 다음 검증: GPU 추출 호출별 독립 대조
+
+신규 [.github/workflows/gpu-probe-interference.yml](../.github/workflows/gpu-probe-interference.yml)은 각 시드의 origin 고정 pose에서 별도 프로세스 5조건을 수행한다.
+
+- none: PSSM 숫자 행렬만 계측, **GPU texture extraction 0회**
+- pssm_depth: 그림자 atlas만 매 프레임 추출
+- road_hdr: 일반 카메라 HDR만 매 프레임 추출
+- wide_hdr: 광각 HDR만 매 프레임 추출
+- all: 세 GPU 텍스처를 매 프레임 모두 추출
+
+모두 GPU 추출 전·후 카메라 +2m 이동 검사를 실시한다. no-GPU 대조군의 두 양성 대조가 PASS하지 않거나 요청한 stage texture가 추출되지 않으면 집계 실패. 반대로 특정 추출에서 영상 갱신 중단 현상이 발생하면 **DIAGNOSTIC OBSERVED**로 기록한다. 이는 결함 발생을 계측한 성공일 뿐 정식 시뮬레이터·ONNX 성능 PASS와 무관하다.
+
+기존 모든 텍스처를 한 틱에서 읽는 workflow는 반복적인 거짓 재현성 주장과 CI 리소스 소모를 막기 위해 workflow_dispatch 수동 실행 전용으로 전환했다. 본 단계의 GPU 계측은 반드시 모델 평가 파이프라인과 분리한다.
