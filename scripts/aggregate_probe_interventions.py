@@ -34,8 +34,8 @@ def aggregate_interventions(reports: dict[str, dict]) -> dict:
         after = row["pose_shift_positive_control"]
         if not all(before.get(k, False) for k in ("road", "wide")):
             raise ValueError(f"{mode}: camera movement invalid before probe")
-        if after.get("road") != after.get("wide"):
-            raise ValueError(f"{mode}: inconsistent two-camera response")
+        if any(type(after.get(k)) is not bool for k in ("road", "wide")):
+            raise ValueError(f"{mode}: response controls must be camera-specific booleans")
         observed_response = all(after[k] for k in ("road", "wide"))
         expected = ("OBSERVED_BUFFER_CHAIN" if mode == "all" and observed_response
                     else "OBSERVED_SELECTIVE_PROBE" if observed_response
@@ -45,8 +45,9 @@ def aggregate_interventions(reports: dict[str, dict]) -> dict:
         if mode == "none" and not observed_response:
             raise ValueError("no-GPU control lost camera response")
         observations[mode] = {
-            "post_probe_camera_response": observed_response,
-            "camera_response_lost": not observed_response,
+            "post_probe_camera_response": {k: after[k] for k in ("road", "wide")},
+            "camera_response_lost": {k: not after[k] for k in ("road", "wide")},
+            "any_camera_response_lost": not observed_response,
             "observed_report_status": row["status"],
             "raw_road_unique_sha256_after_warmup":
                 row["stages"]["road_rgb"]["unique_sha256_after_warmup"],
@@ -60,7 +61,10 @@ def aggregate_interventions(reports: dict[str, dict]) -> dict:
         "seed": ref["seed"], "pose_id": ref["pose_id"],
         "readback_probe_effects": observations,
         "observed_probe_modes_causing_response_loss": [
-            k for k, v in observations.items() if v["camera_response_lost"]],
+            k for k, v in observations.items() if v["any_camera_response_lost"]],
+        "loss_by_probe_camera": {
+            k: v["camera_response_lost"] for k, v in observations.items()
+        },
         "cause_and_untouched_render_equivalence_unproven": True,
         "real_vehicle_testing": False, "model_scoring_allowed": False,
         "official_onnx_closed_loop_repeatability_validated": False,
