@@ -138,9 +138,11 @@ def summarize_stream(samples: list[tuple[dict, bytes | None]], warmup: int) -> d
     return result
 
 
-def capture_native(seed: int, pose_id: str, frames: int, warmup: int, ablation: str) -> dict:
-    if pose_id not in POSES or ablation not in ABLATIONS:
-        raise ValueError("unsupported seed/pose/ablation")
+def capture_native(seed: int, pose_id: str, frames: int, warmup: int, ablation: str,
+                   probe_stage: str = "all") -> dict:
+    valid_probes = ("all", "none", "pssm_depth", "road_hdr", "wide_hdr")
+    if pose_id not in POSES or ablation not in ABLATIONS or probe_stage not in valid_probes:
+        raise ValueError("unsupported seed/pose/ablation/probe stage")
     if type(frames) is not int or not 4 <= frames <= 12 or not 0 <= warmup <= frames - 2:
         raise ValueError("frame/warmup outside bounded native diagnostic")
     provider = NativeMetaDriveProvider(seed=seed)
@@ -171,14 +173,18 @@ def capture_native(seed: int, pose_id: str, frames: int, warmup: int, ablation: 
             _, packed = source_model_frames(provider, raw)
             pssm = getattr(engine, "pssm", None)
             samples["pssm_mvp"].append(pssm_matrix_receipt(engine))
-            samples["pssm_depth"].append(gpu_readback(
-                engine, "pssm_depth", getattr(pssm, "depth_tex", None),
-                pssm.buffer.getGsg() if pssm is not None and pssm.buffer else None))
+            samples["pssm_depth"].append(
+                gpu_readback(engine, "pssm_depth", getattr(pssm, "depth_tex", None),
+                             pssm.buffer.getGsg() if pssm is not None and pssm.buffer else None)
+                if probe_stage in ("all", "pssm_depth")
+                else missing("pssm_depth", "NOT_PROBED_BY_DESIGN"))
             for kind in ("road", "wide"):
                 sensor = engine.sensors["bigbench_" + kind]
-                samples[kind + "_hdr"].append(gpu_readback(
-                    engine, kind + "_hdr", getattr(sensor, "scene_tex", None),
-                    sensor.buffer.getGsg()))
+                samples[kind + "_hdr"].append(
+                    gpu_readback(engine, kind + "_hdr", getattr(sensor, "scene_tex", None),
+                                 sensor.buffer.getGsg())
+                    if probe_stage in ("all", kind + "_hdr")
+                    else missing(kind + "_hdr", "NOT_PROBED_BY_DESIGN"))
                 samples[kind + "_rgb"].append(receipt(
                     raw_rgb_frame(raw[kind]).rgb, kind + "_rgb",
                     {"shape": list(raw[kind].shape), "dtype": "uint8"}))
@@ -193,11 +199,20 @@ def capture_native(seed: int, pose_id: str, frames: int, warmup: int, ablation: 
         positive = {k: raw_rgb_frame(shift[k]).sha256 !=
                     samples[k + "_rgb"][-1][0]["sha256"] for k in ("road", "wide")}
         summaries = {k: summarize_stream(v, warmup) for k, v in samples.items()}
-        complete = all(x["status"] == "OBSERVED_BYTES" for x in summaries.values())
+        required = ["pssm_mvp", "road_rgb", "wide_rgb", "onnx_i420"]
+        required.extend(("pssm_depth", "road_hdr", "wide_hdr") if probe_stage == "all"
+                        else (() if probe_stage == "none" else (probe_stage,)))
+        complete = all(summaries[k]["status"] == "OBSERVED_BYTES" for k in required)
+        pre_ok = all(before_probe_positive.values())
+        post_ok = all(positive.values())
+        status = ("INCONCLUSIVE_NATIVE_TRACE" if not complete or not pre_ok
+                  else "OBSERVED_BUFFER_CHAIN" if post_ok and probe_stage == "all"
+                  else "OBSERVED_SELECTIVE_PROBE" if post_ok
+                  else "GPU_PROBE_INTERVENTION_OBSERVED")
         return {
-            "status": ("OBSERVED_BUFFER_CHAIN" if complete and all(positive.values())
-                       and all(before_probe_positive.values())
-                       else "INCONCLUSIVE_NATIVE_TRACE"),
+            "status": status,
+            "probe_stage": probe_stage,
+            "required_probe_buffers_available": complete,
             "seed": seed, "pose_id": pose_id, "pose": pose, "ablation": ablation,
             "removed_task": ABLATIONS[ablation], "ablation_audit": audit,
             "frames": frames, "warmup": warmup,
@@ -269,22 +284,24 @@ def main(argv=None):
     parser.add_argument("--frames", type=int, default=6)
     parser.add_argument("--warmup", type=int, default=2)
     parser.add_argument("--ablation", choices=sorted(ABLATIONS), required=True)
+    parser.add_argument("--probe-stage", choices=["all", "none", "pssm_depth",
+                                                 "road_hdr", "wide_hdr"], default="all")
     args = parser.parse_args(argv)
     args.out.parent.mkdir(parents=True, exist_ok=True)
     try:
         report = capture_native(args.seed, args.pose_id, args.frames,
-                                args.warmup, args.ablation)
+                                args.warmup, args.ablation, args.probe_stage)
     except Exception as exc:
         report = {
             "status": "ERROR", "seed": args.seed, "pose_id": args.pose_id,
-            "ablation": args.ablation,
+            "ablation": args.ablation, "probe_stage": args.probe_stage,
             "error": f"{type(exc).__name__}: {exc}",
             "model_scoring_allowed": False, "real_vehicle_testing": False,
         }
     args.out.write_text(json.dumps(report, ensure_ascii=False, indent=2,
                                    allow_nan=False) + "\n", encoding="utf-8")
     print("PSSM_HDR_TRACE", report["status"], args.out, flush=True)
-    return 0 if report["status"] == "OBSERVED_BUFFER_CHAIN" else 2
+    return 0 if report["status"] in ("OBSERVED_BUFFER_CHAIN", "OBSERVED_SELECTIVE_PROBE") else 2
 
 
 if __name__ == "__main__":
