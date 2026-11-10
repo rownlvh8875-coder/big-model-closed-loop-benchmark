@@ -144,7 +144,7 @@ def main(argv=None) -> int:
                 "i420_unique":x["post_warmup_unique_i420_sha256"],
                 "raw_road_change_max":x["road_wide_source_rgb"]["road"]["max_changed_pixels"],
                 "raw_wide_change_max":x["road_wide_source_rgb"]["wide"]["max_changed_pixels"],
-            } for k,x in outcomes.items()
+            } for k,x in result["observed_arms"].items()
         },
     },ensure_ascii=False),flush=True)
     return 0
