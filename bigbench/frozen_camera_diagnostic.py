@@ -68,7 +68,9 @@ def isolate_model_repeatability(*, make_policy, native_camera: Any,
         comparison['max_curvature_delta_1pm']=max_lateral_action_delta
         comparison['max_accel_delta_mps2']=max_longitudinal_action_delta
     return {
-        'classification':'OPEN_LOOP_FIXED_NATIVE_RGB_ONNX_REPRODUCIBILITY_ONLY',
+        'classification':('OPEN_LOOP_FIXED_NATIVE_RGB_ONNX_REPRODUCIBILITY_ONLY'
+                          if reports and reports[0].get('model_sha256')
+                          else 'OPEN_LOOP_FIXED_RGB_TEST_DOUBLE_NOT_ONNX'),
         'status':status,
         'camera_captured_once':True,
         'camera_pixels_replayed':True,
