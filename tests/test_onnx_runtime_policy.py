@@ -121,7 +121,14 @@ class ModelIntegrationTests(unittest.TestCase):
             self.assertEqual(float(fake.feeds[1]['state_feat_q'].flat[0]),1)
             self.assertEqual(int(fake.feeds[1]['state_img_q'].flat[0]),1)
             self.assertEqual(policy.evidence_class,'TEST_DOUBLE_NOT_REAL_ONNX')
+            # Audit exactly the new_img payload delivered to ORT, not a
+            # reconstructed/different frame from the renderer.
+            self.assertEqual(
+                policy.last_input_image_sha256,
+                hashlib.sha256(fake.feeds[1]['new_img'].tobytes()).hexdigest(),
+            )
             policy.reset()
+            self.assertIsNone(policy.last_input_image_sha256)
             self.assertEqual(len(policy.trace),0)
             self.assertEqual(float(policy.state['state_feat_q'].flat[0]),0)
 
