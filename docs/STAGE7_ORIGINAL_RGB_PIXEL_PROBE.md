@@ -25,6 +25,33 @@ Pixel locations can distinguish local changes from distributed frame differences
 
 The previous **uninstrumented** official [native CI #42921722670](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42921722670) completed with **0/4 exact-match PASS**, even though its CI jobs reported SUCCESS. The first observed mismatch was at source RGB step 2 in all four cases in that run.
 
-New instrumented pixel-difference CI results and exact pixel numbers must be added to this document only after confirming the actual completed GitHub Actions run, its commit and original artifacts. Synthetic unit tests are not evidence of native GPU results.
+## Actual independent native results — 2026-11-11 (KST)
+
+[GitHub Actions #42924910245](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42924910245), HEAD cb792daa7e66e5a9510538c5b0b48cbe4b008945: four real native matrix jobs **4/4 SUCCESS** plus one independently revalidating aggregate job **1/1 SUCCESS**. The original official SHA-pinned MD-V3 ONNX completed 12 steps for each of **8 separate Panda/Xvfb/ORT processes**. The aggregate recalculated all 4 scene receipts from raw compressed 964×604 RGB buffers and verified each against the original model-run SHA.
+
+| Seed | Native S-curve | Earliest raw RGB divergence (1-based) | Sensor | Exactly changed pixels at that step | First different ONNX new_img step | Changed-pixel XYXY inclusive | Max absolute channel delta |
+| --- | --- | ---: | --- | ---: | ---: | --- | ---: |
+| 20261109 | s_curve_left_right | 2 | wide | **1** | 6 | [113,334,113,334] | 22 |
+| 20261109 | s_curve_right_left | 2 | road | **8** | 2 | [14,336,674,372] | 16 |
+| 20261110 | s_curve_left_right | 2 | wide | **3** | 6 | [748,409,936,475] | 10 |
+| 20261110 | s_curve_right_left | 2 | road | **13** | 2 | [0,311,947,509] | 26 |
+
+For the first different step, the **other** camera in every case had zero changed pixels. Each source camera contains **582,256 pixels**. The four original-frame differences sum to 25 individual changed pixels **across four different scenarios**, not within one frame. Max channel delta is a difference in raw 8-bit RGB channel value, not a physical colorimetric quantity. A sparse bounding box may span a wide area when isolated changed pixels are scattered; it does not imply every pixel within the box changed.
+
+In this exact instrumented CI run, source RGB differed before the actual ONNX input in **2/4** scenes; the other **2/4** changed in the same step. Earlier uninstrumented CI runs had different per-scene first-difference patterns. Therefore the counts and locations above are **one measured independent CI sample**, not deterministic recurring pixel locations or an established PSSM-only cause.
+
+### Actual original artifacts
+
+- 20261109 left_right original two-process raw RGB and original ONNX traces: **13813377373**
+- 20261109 right_left: **13813667010**
+- 20261110 left_right: **13813582352**
+- 20261110 right_left: **13814521229**
+- Strict independent four-case reanalysis summary: **13813004995**
+
+The raw artifacts include two full 12-step original ONNX SHA receipts per scene, the first six losslessly compressed original native road and wide RGB frames per process, SHA/size/process manifests, original strict comparison JSON, stage-by-stage pixel metrics, and a first-difference binary PNG mask.
+
+**Review boundary:** Data acquisition + full raw-byte verification completed successfully. All four instrumented model sessions still **failed** the strict independent exact-match comparator. The prior **uninstrumented** official model 0/4 result is unaffected. These CPU raw pixel differences are not GPU shadow-depth texel differences and do not identify a unique rendering fault.
+
+Synthetic unit tests are validation tools, not an independent native observation.
 
 Stage 7 remains **NOT PASSED**. No real vehicle tests, CAN, CD210, Carrot MPC/Params, original-PSSM modification, or performance ranking.
