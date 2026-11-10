@@ -94,6 +94,16 @@
 - **판정:** MetaDrive/Panda3D 센서 영상 생성·획득 경로를 다음 원인 분리의 우선 대상으로 유지한다. `PSSM.update` 유일 원인/수정책이라는 단정 금지. 원본 RGB 복사·SHA 자체도 CPU 수행시간과 실시간 task scheduling을 교란할 수 있어 무계측 결과와 최초 스텝 직접 일치 검증 불가.
 - 다음 정확한 게이트: 같은 카메라 pose/이전 모델 state에서 카메라별 순차 `taskMgr.step` 시점·원본 framebuffer/scene task/clock 변화 분리. 7단계는 **계속 진행 중**, 모델 성능 순위 및 실차·CD210/Carrot 폴백 금지.
 
+## 2026-11-10 · 원본 RGB 픽셀 좌표 및 Panda 프레임/태스크 분리 (재시도 완료)
+
+- [GitHub Actions #42776577784](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42776577784): 공식 MetaDrive 0.4.3 고정 자산, 시드 2개 × S자 2종 × 4개 독립 렌더 방법/태스크 조건 = **총 16개 별도 Python/Panda/Xvfb 프로세스, CI 4/4 정상 계측**. 카메라 +2m 이동 양성대조 및 RTMCopyRam CPU 재읽기 일치 확인, GPU HDR extractTextureData 호출 없음.
+- 기본 순차 perceive의 변경량은 좌→우 S자 두 시드에서 road/wide **9/2픽셀, I420 12개 원소**, 우→좌 S자는 **8/3픽셀, I420 26개 원소**. 첫 변경 road/wide 픽셀은 좌→우 **(22,343)/(210,322)**, 우→좌 **(901,312)/(590,304)** (0-base top-left 좌표).
+- 같은 pose에서 graphicsFrame만 호출한 조건은 4/4 모두 후반 변경 픽셀과 I420 원소 0. PSSM.update만 제거한 동시 taskMgr.step 조건도 이번 네 조건에서는 모두 0. 다만 이전 다중 위치/램프 16조건에서는 PSSM 제거 후에도 5조건에서 I420 변화가 남았으므로 전체 현상 해결책으로 적용 불가.
+- **새로 수정된 계측 오류:** Panda 전역 frameCount 증가는 순차 perceive +2, 공통 taskMgr.step +1, **graphicsEngine.renderFrame 단독도 +1**. 따라서 글로벌 프레임 카운터를 실제 taskMgr.step 호출 횟수로 해석할 수 없음. 호출 횟수는 소스 호출 경로를 통해 별도 기록.
+- [전수 실험방법·시드별 수치·변경 좌표·해석 제한](STAGE7_RAW_PIXEL_CLOCK_CAUSALITY.md). 7단계 원래 공식 MD-V3 실제 신규 영상 독립 폐루프 4조건 엄격 재현성은 여전히 FAIL. 모델간 성능 순위 금지, 실차/차종 동역학/CD210/Carrot MPC·Params 폴백 제외.
+- **다음 게이트:** PSSM camera rig MVP/그림자 상태 업데이트 및 타 Panda task·시계가 원본 센서 RGB 픽셀을 변화시키는 경로의 비침습적 단계별 분리. 여러 pose/seed에서 다시 확인한 뒤 동일 공식 MD-V3 폐루프 반복성 재검증.
+
+
 ## 다음 세션에서 이어가는 법
 
 1. `main`의 이 파일과 최신 CI 결과를 읽는다.

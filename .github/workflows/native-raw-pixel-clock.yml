@@ -1,0 +1,103 @@
+name: MetaDrive raw pixel coordinate and Panda clock task isolation (SIM ONLY)
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/native-raw-pixel-clock.yml'
+      - 'bigbench/native_pixel_clock.py'
+      - 'scripts/native_raw_pixel_clock.py'
+      - 'scripts/aggregate_native_pixel_clock.py'
+      - 'tests/test_native_pixel_clock.py'
+      - 'tests/test_native_pixel_clock_aggregation.py'
+permissions:
+  contents: read
+concurrency:
+  group: native-pixel-clock-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  native-pixel-clock:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        seed: [20261109, 20261110]
+        scenario: [s_curve_left_right, s_curve_right_left]
+    env:
+      LIBGL_ALWAYS_SOFTWARE: '1'
+      PYOPENGL_PLATFORM: 'glx'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pinned native simulator and CPU OpenGL
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y xvfb libgl1 libglu1-mesa libegl1 libx11-6
+          python -m pip install 'numpy>=1.26,<3' 'opencv-python-headless>=4.8' 'metadrive-simulator==0.4.3'
+      - name: Verify upstream official 0.4.3 rendering assets SHA256
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p "$RUNNER_TEMP/native-assets"
+          gh release download MetaDrive-0.4.3 --repo metadriverse/metadrive --pattern assets.zip --dir "$RUNNER_TEMP/native-assets"
+          python - <<'PYCODE'
+          from pathlib import Path, PurePosixPath
+          from zipfile import ZipFile
+          import hashlib, os, metadrive
+          z=Path(os.environ['RUNNER_TEMP'])/'native-assets'/'assets.zip'
+          assert z.stat().st_size==134074203
+          assert hashlib.sha256(z.read_bytes()).hexdigest()=='4f0da9f5143a1258131c5b55f77bdf170c0f9bce8a9f18dd41b3678df779eac9'
+          with ZipFile(z) as src:
+              for name in src.namelist():
+                  p=PurePosixPath(name)
+                  if p.is_absolute() or '..' in p.parts:
+                      raise ValueError('unsafe official MetaDrive archive path')
+              src.extractall(Path(metadrive.__file__).resolve().parent)
+          print('OFFICIAL_METADRIVE_ASSETS_CONFIRMED')
+          PYCODE
+      - name: Run exact image-coordinate and strict aggregation unit tests
+        run: |
+          python -m unittest discover -s tests -p 'test_native_pixel_clock.py' -v
+          python -m unittest discover -s tests -p 'test_native_pixel_clock_aggregation.py' -v
+      - name: Four fresh native render/task/PSSM process conditions
+        run: |
+          set -euo pipefail
+          root="output/native-pixel-clock/seed-${{ matrix.seed }}-${{ matrix.scenario }}"
+          mkdir -p "$root"
+          for condition in perceive_baseline task_baseline graphics_baseline task_shadow_off; do
+            case "$condition" in
+              perceive_baseline) mode="perceive_sequential"; ablation="baseline";;
+              task_baseline) mode="task_step_pair"; ablation="baseline";;
+              graphics_baseline) mode="graphics_frame_pair"; ablation="baseline";;
+              task_shadow_off) mode="task_step_pair"; ablation="shadow_off";;
+              *) echo "invalid matrix condition"; exit 12;;
+            esac
+            echo "NATIVE_PIXEL_CLOCK_BEGIN seed=${{ matrix.seed }} scene=${{ matrix.scenario }} condition=$condition"
+            exit_code=0
+            xvfb-run -a python -m scripts.native_raw_pixel_clock \
+              --scenario ${{ matrix.scenario }} --seed ${{ matrix.seed }} \
+              --fraction 0.12 --frames 10 --warmup 2 \
+              --mode "$mode" --ablation "$ablation" \
+              --out "$root/$condition.json" || exit_code=$?
+            if [ "$exit_code" -eq 5 ]; then
+              # A known xvfb-run teardown error may follow a completed Python
+              # report; accept only an explicit OBSERVED-native JSON receipt.
+              test -s "$root/$condition.json" || exit 5
+              python -c 'import json,sys; d=json.load(open(sys.argv[1],encoding="utf-8")); assert d.get("status")=="OBSERVED_NATIVE_PIXEL_CLOCK" and d.get("mode")==sys.argv[2] and d.get("ablation")==sys.argv[3]' "$root/$condition.json" "$mode" "$ablation"
+            elif [ "$exit_code" -ne 0 ]; then
+              echo "NATIVE_PIXEL_CLOCK_UNAVAILABLE_OR_BAD_CONTROL exit=$exit_code"
+              exit "$exit_code"
+            fi
+          done
+          python -m scripts.aggregate_native_pixel_clock --root "$root"
+      - name: Preserve all 10 frames of source SHA256, changed x/y, clock and I420 receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: native-pixel-clock-seed-${{ matrix.seed }}-${{ matrix.scenario }}
+          path: output/native-pixel-clock/
+          retention-days: 7
+          if-no-files-found: warn
