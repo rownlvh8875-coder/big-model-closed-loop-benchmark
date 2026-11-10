@@ -50,6 +50,12 @@ def report(name):
             {"name":n,"sort":0,"chain":"default"} for n in task_names
         ],
         "raw_source_rgb":{"road":copy.deepcopy(raw),"wide":copy.deepcopy(raw)},
+        "pssm_vs_raw_rgb_associations":{
+            k:{"classification":"BOTH_MVP_AND_RGB_CHANGED",
+               "pssm_causality_proven":False,
+               "model_scoring_allowed":False}
+            for k in ("road","wide")
+        },
         "onnx_i420":{"post_warmup_unique_sha256":2},
         "onnx_inference_executed":False,"model_scoring_allowed":False,
         "real_vehicle_testing":False,
