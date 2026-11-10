@@ -130,6 +130,18 @@
 - [전수 데이터·시드별 수치·한계](STAGE7_PSSM_CHASE_POSE_LAG.md). **Stage 7은 계속 진행 중**. 공식 MD-V3 원래 신규 프레임 독립 ONNX 엄격 재현성 0/4 PASS 상태 유지. 실차·CD210·Carrot MPC·Params·차량별 물리·모델 성능 순위 제외.
 - **다음 게이트:** 동일 MetaDrive 기본 task/PSSM을 유지한 채 원래 메인 카메라/그림자 rig의 한 틱 시차가 GPU shadow-pass/최종 RGB에 미치는 영향을 비침습적 측정과 별도 개입 A/B로 확인, 이후 공식 MD-V3 새 영상 독립 폐루프 반복시험 재평가.
 
+## 2026-11-10 · 종료시점 그림자 GPU depth/HDR와 post-Chase PSSM 정합 인과 진단
+
+- [Native terminal-only shadow/HDR CI #42828142647](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42828142647): MetaDrive 0.4.3 공식 렌더링 자산 SHA256 고정, 2시드×실제 S자 2종×7개 독립 Panda 프로세스 = **28개 독립 native 실행, 4/4 matrix CI SUCCESS**. 원본 4 ZIP에서 lossless compressed GPU depth/HDR 바이트, 판정 JSON·원본 RGB·I420 데이터 전체 검증.
+- 실험 arm은 원래 noGPU/종단GPU, 마지막 프레임 메인 카메라 X +2m 이후 기본 GPU·noGPU, 순수 Sort25 관측, 별도 Sort25에서 **PSSM.update를 Chase 이후 추가 1회 실행**한 noGPU/종단GPU 총 7개. 원래 task 이름·sort0/0/50 보존, Sort25 추가는 명시적 가상 개입으로 원본 renderer와 동등하지 않음.
+- **GPU readback은 모든 원본 RGB/I420 캡처가 종료된 뒤에만 1회 수행.** 두 카메라 +2m 이동 양성대조, GPU 추출 후 마지막 CPU RAM RGB 동일성, raw GPU binary SHA256/레이아웃/무손실 zlib 파일 전체 검증.
+- 오프셋 상태에서 **단순 Sort25 관측만 추가한 조건 vs 아무 태스크 추가 없는 조건:** 네 장면×그림자 depth/Road HDR/Wide HDR **12/12개 raw GPU stage 전부 비트 일치**.
+- 같은 오프셋에서 **Chase 이후 PSSM 재갱신:** raw 그림자 깊이는 시드 20261109 두 S자 각각 **22,634바이트**, 20261110 두 S자 각각 **22,308바이트** 변경. Road HDR 40,200~118,825바이트, Wide HDR 8,454~17,695바이트 변경. GPU raw byte 차이는 texel/픽셀 수가 아님.
+- **재갱신 후 그림자 atlas가 원래 무개입 자연장면의 마지막 그림자 GPU bytes와 4/4조건 전체 완전 일치.** Road HDR 잔여 차이 0/0/49/51바이트, Wide HDR 잔여 차이 12/12/18/18바이트. GPU 그림자 깊이·HDR이 post-Chase MVP 계산 시점에 민감함을 뒷받침하지만, 독립 프로세스/CPU timing으로 인해 후반 RGB 미세 흔들림의 **유일한 원인이라는 증거는 아님**.
+- [7조건 재현방법·전수 GPU raw byte 비교·한계](STAGE7_TERMINAL_SHADOW_SYNC.md). GPU depth/HDR는 마지막 **단일 프레임**의 바이너리만 관측했고 이후 추가 렌더링을 하지 않아 GPU 추출 간섭을 시계열과 분리함. noGPU vs terminal 원본 프레임은 offset no-sync arm에서 4/4 × 5/5 모두 일치했지만 그 밖에는 독립 프로세스 변동이 남음.
+- **Stage 7 계속 미완료:** 원래 동작을 변경한 실험적 Sort25 추가 PSSM 호출은 공식 MD-V3 ONNX 입력/렌더러로 사용 금지. 원래 MetaDrive PSSM task와 매번 신규 RGB를 쓰는 공식 MD-V3 독립 폐루프 엄격 반복 일치는 기존 **0/4 PASS**. 실차/CAN/CD210·Carrot MPC/Params·차종 물리·모델 주행성능 순위 제외.
+- **다음 게이트:** 동일 초기 camera pose/시드와 독립 실행 2회 이상에서 원래 renderer의 GPU depth/HDR/RGB 최종 1프레임 재현성 분포를 계측하고, 다른 camera fraction/램프에도 A/B가 지속되는지 확인. GPU HDR 추출을 프레임 사이에 넣지 않고 원래 PSSM 활성 코드 경로의 공식 MD-V3 strict-repeatability gate로 복귀.
+
 ## 다음 세션에서 이어가는 법
 
 1. `main`의 이 파일과 최신 CI 결과를 읽는다.
