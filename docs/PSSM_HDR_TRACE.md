@@ -38,3 +38,15 @@
 - 현재 개발 로드맵: docs/ROADMAP_7_STAGES.md.
 
 신규 HDR 추출 자체가 실패할 경우 CI 실패를 보존하고 기능 제한으로 공개한다. 실패를 모델 성능 PASS로 승격하지 않는다.
+
+
+## 2026-11-10 첫 네이티브 검증 결과 — INCONCLUSIVE
+
+[첫 GPU 프레임 계측 GitHub Actions #42766327307](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42766327307)은 매트릭스 4조건 모두 진단 실패로 기록했다. 독립 JSON 아티팩트는 각 조건별 보존했다.
+
+- 단위시험 6개는 PASS였지만, 원본 PSSM camera rig가 반환한 UnalignedLMatrix4f 객체에 getCell()을 직접 호출하여 모든 PSSM 행렬 추출이 UNAVAILABLE로 기록됐다. 정상 LMatrix4f로 변환하여 셀을 읽도록 코드를 수정했다.
+- Depth atlas와 각 카메라 HDR scene_tex의 GPU 바이트 추출은 관측 JSON에서 EXTRACTED였다.
+- **중대한 양성 대조 실패:** 매 프레임 GPU 추출을 수행한 실험에서 마지막 카메라 +2m 이동 뒤에도 road/wide RGB가 달라지지 않았다. 같은 시드의 과거 무추출 A/B [#42759149254](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42759149254)는 양쪽 카메라 이동 반응 PASS. 현재 결과는 GPU 추출의 개입 가능성을 시사하지만 두 시험은 프레임 수 등 조건도 달라 유일 원인이라고 단정할 수 없다.
+- 따라서 신규 실험의 RGB/HDR 일치 해시를 안정화 성공이나 렌더링 동등성으로 **절대 해석하지 않는다**. 다음 실험에는 GPU 추출 **이전**과 **이후** 각각 카메라 이동 양성 대조를 남기도록 했다.
+- 이 단계는 모델 출력이나 차량 제어 평가가 아닌 **실험 계측 경로 검증**이며 7단계 미완료 상태를 유지한다.
+
