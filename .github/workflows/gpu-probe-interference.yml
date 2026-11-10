@@ -66,7 +66,20 @@ jobs:
               --seed ${{ matrix.seed }} --pose-id origin \
               --frames 6 --warmup 2 --ablation baseline \
               --probe-stage "$stage" --out "$root/$stage.json" || status_code=$?
-            if [ "$status_code" -ne 0 ] && [ "$status_code" -ne 2 ]; then
+            if [ "$status_code" -eq 5 ]; then
+              # xvfb-run can return 5 on teardown even after Python wrote the
+              # finished JSON. Fail closed if there is no complete receipt.
+              echo "XVFB_TEARDOWN_EXIT_5 stage=$stage; validating saved receipt"
+              test -s "$root/$stage.json" || exit 5
+              python - "$root/$stage.json" "$stage" <<'PYCODE'
+import json,sys
+obj=json.load(open(sys.argv[1],encoding="utf-8"))
+assert obj.get("probe_stage")==sys.argv[2]
+assert obj.get("status") in ("OBSERVED_SELECTIVE_PROBE",
+    "GPU_PROBE_INTERVENTION_OBSERVED","OBSERVED_BUFFER_CHAIN")
+assert obj.get("required_probe_buffers_available") is True
+PYCODE
+            elif [ "$status_code" -ne 0 ] && [ "$status_code" -ne 2 ]; then
               echo "HARD_ERROR unexpected native process exit=$status_code"
               exit "$status_code"
             fi
