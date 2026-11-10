@@ -1,0 +1,67 @@
+name: MetaDrive renderer timing, CPU RAM copy and scene isolation (SIM ONLY)
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/render-causality.yml'
+      - 'bigbench/render_causality.py'
+      - 'scripts/metadrive_render_causality.py'
+      - 'tests/test_render_causality.py'
+permissions:
+  contents: read
+jobs:
+  native-render-causality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      LIBGL_ALWAYS_SOFTWARE: '1'
+      PYOPENGL_PLATFORM: 'glx'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install offscreen renderer and pin MetaDrive version
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y xvfb libgl1 libglu1-mesa libegl1 libx11-6
+          python -m pip install 'numpy>=1.26,<3' 'opencv-python-headless>=4.8' 'metadrive-simulator==0.4.3'
+      - name: Verify official MetaDrive 0.4.3 assets by SHA256
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p "$RUNNER_TEMP/md-assets"
+          gh release download MetaDrive-0.4.3 --repo metadriverse/metadrive --pattern assets.zip --dir "$RUNNER_TEMP/md-assets"
+          python - <<'PYCODE'
+          from pathlib import Path,PurePosixPath
+          from zipfile import ZipFile
+          import hashlib,metadrive,os
+          archive=Path(os.environ['RUNNER_TEMP'])/'md-assets'/'assets.zip'
+          assert archive.stat().st_size==134074203,'MetaDrive archive size mismatch'
+          expected='4f0da9f5143a1258131c5b55f77bdf170c0f9bce8a9f18dd41b3678df779eac9'
+          assert hashlib.sha256(archive.read_bytes()).hexdigest()==expected,'MetaDrive SHA256 mismatch'
+          with ZipFile(archive) as z:
+              for name in z.namelist():
+                  p=PurePosixPath(name)
+                  if p.is_absolute() or '..' in p.parts:
+                      raise ValueError('unsafe official renderer asset path')
+              z.extractall(Path(metadrive.__file__).resolve().parent)
+          print('METADRIVE_043_OFFICIAL_ASSETS_VERIFIED')
+          PYCODE
+      - name: Independent deterministic unit tests of the three isolation branches
+        run: python -m unittest discover -s tests -p 'test_render_causality.py' -v
+      - name: Native MetaDrive six-condition 3-factor isolation with fresh worlds
+        run: |
+          xvfb-run -a python -m scripts.metadrive_render_causality \
+            --frames 5 --warmup 2 --seed 20261109 \
+            --modes perceive_sequential task_step_pair graphics_frame_pair \
+            --scenes ego_visible ego_hidden \
+            --probe-pre-tonemap --out output/render-causality
+      - name: Archive raw diagnostic receipts even if a condition fails
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: meta-render-task-readback-scene-factorization
+          path: output/render-causality/
+          if-no-files-found: warn
+          retention-days: 7
