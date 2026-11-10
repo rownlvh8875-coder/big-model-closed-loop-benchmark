@@ -76,10 +76,15 @@ def gpu_readback(engine: Any, stage: str, texture: Any, gsg: Any) -> tuple[dict,
 
 def pssm_matrix_receipt(engine: Any) -> tuple[dict, bytes | None]:
     try:
-        rows = [
-            [[float(m.getCell(i, j)) for j in range(4)] for i in range(4)]
-            for m in engine.pssm.camera_rig.get_mvp_array()
-        ]
+        # MetaDrive's C++ rig returns UnalignedLMatrix4f on this Panda3D build.
+        # Convert into a normal LMatrix4f before reading its documented cells.
+        from panda3d.core import LMatrix4f
+        rows = []
+        for m in engine.pssm.camera_rig.get_mvp_array():
+            aligned = LMatrix4f()
+            aligned.assign(m)
+            rows.append([[float(aligned.getCell(i, j)) for j in range(4)]
+                         for i in range(4)])
         if not rows:
             return missing("pssm_mvp", "no matrices in camera rig")
         data = json.dumps(rows, separators=(",", ":"), allow_nan=False).encode()
@@ -147,6 +152,15 @@ def capture_native(seed: int, pose_id: str, frames: int, warmup: int, ablation: 
         provider.env.vehicle.origin.hide(CamMask.RgbCam)
         pose = POSES[pose_id]
         before = _scene_snapshot(provider)
+        # Check live camera response BEFORE any intrusive GPU texture extraction.
+        # This adds two documented task ticks to every matched A/B process.
+        control_pose = ((pose[0][0] + 2.0, pose[0][1], pose[0][2]), pose[1])
+        pre_ref, _ = capture_with_readback(provider, mode="task_step_pair", pose=pose)
+        pre_moved, _ = capture_with_readback(provider, mode="task_step_pair", pose=control_pose)
+        before_probe_positive = {
+            k: raw_rgb_frame(pre_ref[k]).sha256 != raw_rgb_frame(pre_moved[k]).sha256
+            for k in ("road", "wide")
+        }
         samples: dict[str, list] = {k: [] for k in STAGES}
         for index in range(frames):
             raw, cpu_groups = capture_with_readback(
@@ -182,6 +196,7 @@ def capture_native(seed: int, pose_id: str, frames: int, warmup: int, ablation: 
         complete = all(x["status"] == "OBSERVED_BYTES" for x in summaries.values())
         return {
             "status": ("OBSERVED_BUFFER_CHAIN" if complete and all(positive.values())
+                       and all(before_probe_positive.values())
                        else "INCONCLUSIVE_NATIVE_TRACE"),
             "seed": seed, "pose_id": pose_id, "pose": pose, "ablation": ablation,
             "removed_task": ABLATIONS[ablation], "ablation_audit": audit,
@@ -190,6 +205,9 @@ def capture_native(seed: int, pose_id: str, frames: int, warmup: int, ablation: 
             "stages": summaries,
             "same_frame_cpu_readback_bit_exact": True,
             "pose_shift_positive_control": positive,
+            "before_gpu_probe_pose_positive_control": before_probe_positive,
+            "gpu_probe_pose_response_lost": (
+                all(before_probe_positive.values()) and not all(positive.values())),
             "registered_tasks_before": before["registered_task_names"],
             "registered_tasks_after": after["registered_task_names"],
             "visual_ego_transform_unchanged": (
