@@ -50,6 +50,8 @@ class FrozenIsolationTests(unittest.TestCase):
         self.assertTrue(result['camera_pixels_replayed'])
         self.assertFalse(result['model_scoring_allowed'])
         self.assertEqual(len(result['runs']),2)
+        self.assertTrue(result['model_action_values_exactly_equal'])
+        self.assertEqual(result['max_curvature_delta_1pm'],0.0)
         self.assertEqual(result['runs'][0]['frozen_camera_calls'],6)
 
     def test_two_independent_sessions_detect_differences(self):
@@ -58,8 +60,9 @@ class FrozenIsolationTests(unittest.TestCase):
         spec=CampaignSpec('s_curve_left_right',steps=6,speed_mps=5.)
         result=isolate_model_repeatability(make_policy=lambda:policies.pop(0),
                  native_camera=camera,lane=Lane(),spec=spec)
-        self.assertEqual(result['status'],'REPEATED_DIAGNOSTIC_MISMATCH')
-        self.assertFalse(result['comparison']['frame_hashes_identical'] is False)
+        self.assertEqual(result['status'],'ONNX_ACTION_OUTPUT_MISMATCH')
+        self.assertFalse(result['model_action_values_exactly_equal'])
+        self.assertTrue(result['comparison']['frame_hashes_identical'])
         self.assertGreater(result['comparison']['max_pose_disagreement_m'],0.)
 
 
