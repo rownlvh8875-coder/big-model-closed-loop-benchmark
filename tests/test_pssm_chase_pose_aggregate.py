@@ -7,7 +7,34 @@ from scripts.aggregate_pssm_chase_pose import compare_pose_arms
 from scripts.native_pssm_chase_pose_trial import (
     INTERVENTION_FRAMES, INTERVENTION_DELTA_M,
 )
-from tests.test_pssm_chase_pose_trace import original_tick, pose
+from bigbench.pssm_mvp_trace import exact_mvp_receipt
+
+
+def pose(x):
+    return {"xyz_m":[float(x),0.,1.22],"hpr_deg":[0.,0.,0.]}
+
+
+def original_tick(t0=10, before=0., after=0., mvp_before=0., mvp_after=1.):
+    def one(n):
+        mat=[[float(i==j) for j in range(4)] for i in range(4)]
+        mat[0][2]=float(n)
+        return exact_mvp_receipt([mat])
+    m0=one(mvp_before)
+    m1=one(mvp_after)
+    def ev(kind,action,time,world,mvp):
+        return {
+            "event":action,"callback":kind,"perf_counter_ns":time,
+            "main_camera_world_pose":pose(world),
+            "pssm_mvp_cpu_sha256":mvp["all_f64_sha256"],
+            "pssm_mvp_numeric":mvp,
+            "chase_run_task_flag":True if kind=="MainCamera._chase_task" else None,
+        }
+    return [
+        ev("PSSM.update","call",t0,before,m0),
+        ev("PSSM.update","return",t0+10,before,m1),
+        ev("MainCamera._chase_task","call",t0+20,before,m1),
+        ev("MainCamera._chase_task","return",t0+30,after,m1),
+    ]
 
 
 def arm_report(arm):
