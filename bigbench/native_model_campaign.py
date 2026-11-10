@@ -7,6 +7,7 @@ established: no driving model *ranking* is authorized by this module.
 from __future__ import annotations
 
 from dataclasses import asdict, dataclass
+from hashlib import sha256
 import math
 from pathlib import Path
 from typing import Any
@@ -52,6 +53,7 @@ class NativeWorldCamera:
     """Real Panda3D MetaDrive camera borrowed into WORLD space, not vehicle space."""
     def __init__(self, provider: Any):
         self.provider=provider
+        self.last_source_rgb_sha256: dict[str, str] = {}
         self.rectifier=PinholeRectifier(source_width=provider.source_width,
                                         source_height=provider.source_height)
 
@@ -62,6 +64,7 @@ class NativeWorldCamera:
         if not all(math.isfinite(v) for v in (pose.x,pose.y,pose.heading)):
             raise BenchmarkProtocolError('invalid virtual camera world pose')
         img={}
+        raw_sha={}
         matrices={}
         # MetaDrive's camera faces local +Y. World-heading zero (+X)
         # therefore corresponds to Panda heading -90 degrees.
@@ -73,11 +76,18 @@ class NativeWorldCamera:
                              position=position,hpr=hpr)
             if not isinstance(raw,np.ndarray):
                 raw=raw.get()
-            img[kind]=np.asarray(raw)
+            # Snapshot EACH native sensor immediately, before another camera
+            # task tick. Hash the actual 964x604 RGB bytes, before any warp.
+            img[kind]=np.array(raw,copy=True,order='C')
+            if img[kind].dtype != np.uint8 or img[kind].shape != (
+                    self.provider.source_height,self.provider.source_width,3):
+                raise BenchmarkProtocolError('unexpected raw MetaDrive sensor RGB shape/dtype')
+            raw_sha[kind]=sha256(img[kind].tobytes(order='C')).hexdigest()
             matrices[kind]=intrinsics_from_panda_lens(cam.get_lens(),
                                 self.provider.source_width,self.provider.source_height)
         pair,_=self.rectifier.rectify_pair(img['road'],img['wide'],
                         road_intrinsics=matrices['road'],wide_intrinsics=matrices['wide'])
+        self.last_source_rgb_sha256=raw_sha
         return pair
 
 
@@ -105,6 +115,7 @@ def run_target_lane_episode(policy: Any, camera: Any, lane: Any,
     try:
         for i in range(spec.steps):
             pair=camera.capture(state)
+            source_sha=getattr(camera,'last_source_rgb_sha256',{})
             if pair.road.sha256==pair.wide.sha256:
                 raise BenchmarkProtocolError('road/wide camera unexpectedly identical')
             action=policy.step(ModelObservation(pair.road,state.speed,state.t,
@@ -127,6 +138,8 @@ def run_target_lane_episode(policy: Any, camera: Any, lane: Any,
                 'inside_turn_offset_m':truth.inside_turn_offset_m,
                 'lane_intrusion_m':truth.intrusion_depth_m,
                 'road_frame_sha256':pair.road.sha256,'wide_frame_sha256':pair.wide.sha256,
+                'source_road_rgb_sha256':source_sha.get('road'),
+                'source_wide_rgb_sha256':source_sha.get('wide'),
             })
             state=after
     except (LaneTruthError,BenchmarkProtocolError,ValueError,RuntimeError) as exc:
