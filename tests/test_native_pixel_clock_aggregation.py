@@ -8,7 +8,7 @@ from scripts.aggregate_native_pixel_clock import (
 
 
 def report_for(key):
-    mode, ablation, ticks = SCHEDULES[key]
+    mode, ablation, ticks, task_calls = SCHEDULES[key]
     images = {
         "all_frame_sha256": ["a", "b", "c", "c", "d", "d"],
         "post_warmup_unique_sha256": 2,
@@ -56,8 +56,10 @@ def report_for(key):
         "onnx_i420": i420,
         "clock_timeline": [{"global_clock_frame_count_delta": ticks,
                             "real_time_delta_s": .01} for _ in range(6)],
-        "expected_taskMgr_frame_count_delta_per_pair": ticks,
-        "all_taskMgr_clock_deltas_as_expected": True,
+        "expected_panda_global_frame_count_delta_per_pair": ticks,
+        "all_panda_frame_count_deltas_as_expected": True,
+        "task_manager_step_invocations_from_capture_call_path": task_calls,
+        "global_frame_counter_cannot_identify_task_manager_execution": True,
         "pssm_task_identity_correct": True,
         "cpu_readbacks_bit_exact_without_new_render": True,
         "camera_plus_2m_positive": {"road": True, "wide": True},
@@ -79,9 +81,11 @@ class NativePixelClockAggregationTests(unittest.TestCase):
         self.assertFalse(result["specific_shader_or_task_cause_proven"])
         self.assertFalse(result["model_closed_loop_reproducibility_proven"])
         self.assertEqual(result["conditions"]["perceive_baseline"]
-                         ["measured_taskMgr_frame_ticks_per_pair"], 2)
+                         ["measured_panda_frame_count_delta_per_pair"], 2)
         self.assertEqual(result["conditions"]["graphics_baseline"]
-                         ["measured_taskMgr_frame_ticks_per_pair"], 0)
+                         ["measured_panda_frame_count_delta_per_pair"], 1)
+        self.assertEqual(result["conditions"]["graphics_baseline"]
+                         ["taskMgr_steps_per_pair_from_call_path"], 0)
         self.assertEqual(result["conditions"]["task_baseline"]
                          ["raw_sensor_rgb"]["road"]["first_changed_bbox_xyxy_inclusive"],
                          [3, 4, 3, 4])
