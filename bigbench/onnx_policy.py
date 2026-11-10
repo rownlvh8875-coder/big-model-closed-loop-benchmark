@@ -6,6 +6,7 @@ It never imports the small internal CD210 model or any Carrot controller.
 from __future__ import annotations
 
 from dataclasses import dataclass
+from hashlib import sha256
 from pathlib import Path
 import time
 from typing import Any
@@ -67,6 +68,7 @@ class OnnxBigModelPolicy:
         self.state: dict[str, np.ndarray] = {}
         self.trace: list[ModelTiming] = []
         self.last_model_outputs: dict[str, np.ndarray] | None = None
+        self.last_input_image_sha256: str | None = None
         self.reset()
 
     def reset(self) -> None:
@@ -74,6 +76,7 @@ class OnnxBigModelPolicy:
                       for name in self.contract.state_keys}
         self.trace = []
         self.last_model_outputs = None
+        self.last_input_image_sha256 = None
 
     def step(self, observation: ModelObservation) -> ModelAction:
         if observation.wide_frame is None:
@@ -135,6 +138,9 @@ class OnnxBigModelPolicy:
         # carrot-wip modeld.py: action[0] is lateral acceleration; convert to curvature.
         curvature = lat_accel / max(2.5, observation.speed_mps)**2
         action = ModelAction(curvature_1pm=curvature, acceleration_mps2=long_accel)
+        # Commit evidence only after exact ONNX output validation; this hashes the
+        # actual new_img tensor included in the ORT feed, not a re-rendered copy.
+        self.last_input_image_sha256 = sha256(feed['new_img'].tobytes(order='C')).hexdigest()
         # Commit recurrent states only after all outputs and action have been validated.
         self.state = {k: np.array(out['next_' + k], copy=True) for k in self.contract.state_keys}
         self.last_model_outputs = {
