@@ -78,6 +78,14 @@
 - [종료 프레임 전용 HDR CI #42769095626](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42769095626): seed 2개 × 4/6프레임 **4/4 진단 성공**. 모든 RGB/I420을 먼저 캡처하고 종료 시점에서만 PSSM depth/HDR 텍스처 추출. seed 20261109, 6프레임 기본 무추출 및 종료시점 probe 조건 I420 해시 종류 **2**, PSSM.update 제거 조건 **1**. seed 20261110, 6프레임은 세 조건 모두 I420 종류 **1**. 짧은 표본·단일 pose이므로 인과관계의 일반화/실제 주행모델 공식 재현성 PASS 불가.
 - [원시 결과·제약·시드별 표](PSSM_HDR_TRACE.md). 다음 정확한 작업: 프레임별 HDR 차이를 침습하지 않고 확보하는 방법 검증 → 더 긴 시드/장면/pose 반복 → 공식 MD-V3 신규 RGB 폐루프 **반복 동일성 게이트**. 7단계 미완료, 모델 순위 금지 유지.
 
+## 2026-11-10 · 다중 시드/장면/카메라 위치 + 공식 MD-V3 신규 영상 반복 게이트
+
+- [네이티브 다중 장면 CI #42770691138](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42770691138): MetaDrive 0.4.3 공식 렌더 에셋 고정, 시드 20261109/20261110 × S자 2종·램프 2종 × 차선 진행률 0.12/0.28 = **16개 비교 세트(32개 독립 native 프로세스)**. 16/16 CI에서 raw RGB/I420 시계열과 +2m 자세 변경 양성대조 기록 성공. 기본 상태 I420 해시 드리프트 10/16, PSSM.update 제거 시에도 5/16 드리프트, 제거로 안정화된 조건 5/16. 특히 좌→우 S자 20261110/0.28에서 PSSM 제거 뒤 I420 SHA 고유 개수 2→3. **PSSM.update가 유일하고 충분한 원인이라는 가설은 지지되지 않음**.
+- [공식 MD-V3 신규 영상 CI #42771081760](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42771081760): SHA `35976b11be3904eb78e32f7dc55a6abf8e9433ac5aa391a1998f1e9ce001b199`, 원래 MetaDrive PSSM/카메라 획득 경로, 8m/s/20Hz/12스텝, 동일 시드·장면을 독립 Python/Xvfb/ORT 세션으로 두 번 실행. **4/4 실제 실행·근거 수집 성공, 정확한 반복 일치 0/4**. 최초 불일치 좌→우/우→좌 S자: seed 20261109 = step 4/4; seed 20261110 = step 7/2. 최대 가상 XY 차이 약 0.048/0.022/0.035/0.125mm.
+- 검사 강화: `bigbench/onnx_policy.py`가 실제 ONNX new_img 입력 SHA256을 모델 실행 성공 후 저장; 독립 실행 보고서가 매 step 입력·raw action·재귀 state digest·가상 pose를 비교. 픽셀 완화·HDR GPU 캡처·보간·고정 영상 재생 없음. **CI success를 엄격 재현성 PASS로 치환 금지**.
+- [조건별 전수 실측표](STAGE7_MULTISCENE_NATIVE_REPEAT.md). 다음 우선 작업은 추가 메타드라이브 렌더 틱/그림자 이외 상태변화의 비침습적 분리, 원본 source 964×604 SHA 대조, 최초 차이가 나는 프레임의 렌더 스케줄 확인, 더 긴 시계열 및 외부 CARLA 교차검증. 공식 MD-V3 엄격 반복 게이트가 실패하므로 모델 주행성능 순위 불가.
+- **7단계는 여전히 진행 중**. 실차 시험·CD210 폴백·Carrot MPC/차량별 동역학·주행성능 순위 산출 금지 유지.
+
 ## 다음 세션에서 이어가는 법
 
 1. `main`의 이 파일과 최신 CI 결과를 읽는다.
