@@ -1,0 +1,85 @@
+name: Fresh-process MetaDrive 3-factor render causality replication (SIM ONLY)
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/render-causality-process.yml'
+      - 'scripts/aggregate_render_causality.py'
+      - 'tests/test_process_render_aggregation.py'
+permissions:
+  contents: read
+jobs:
+  independent-panda-contexts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      LIBGL_ALWAYS_SOFTWARE: '1'
+      PYOPENGL_PLATFORM: 'glx'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pinned native simulator and Xvfb
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y xvfb libgl1 libglu1-mesa libegl1 libx11-6
+          python -m pip install 'numpy>=1.26,<3' 'opencv-python-headless>=4.8' 'metadrive-simulator==0.4.3'
+      - name: Download and verify MetaDrive official rendering assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p "$RUNNER_TEMP/official-meta"
+          gh release download MetaDrive-0.4.3 --repo metadriverse/metadrive --pattern assets.zip --dir "$RUNNER_TEMP/official-meta"
+          python - <<'PYCODE'
+          import hashlib,metadrive,os
+          from pathlib import Path,PurePosixPath
+          from zipfile import ZipFile
+          archive=Path(os.environ['RUNNER_TEMP'])/'official-meta'/'assets.zip'
+          assert archive.stat().st_size==134074203
+          assert hashlib.sha256(archive.read_bytes()).hexdigest()=='4f0da9f5143a1258131c5b55f77bdf170c0f9bce8a9f18dd41b3678df779eac9'
+          with ZipFile(archive) as z:
+              for name in z.namelist():
+                  p=PurePosixPath(name)
+                  if p.is_absolute() or '..' in p.parts:
+                      raise ValueError('unsafe archive entry')
+              z.extractall(Path(metadrive.__file__).resolve().parent)
+          print('OFFICIAL_META_043_ASSETS_VERIFIED')
+          PYCODE
+      - name: Unit tests for PROCESS-level isolation and evidence completeness
+        run: python -m unittest discover -s tests -p 'test_process_render_aggregation.py' -v
+      - name: Run SIX independent Python + Xvfb processes, 8 camera pairs each
+        run: |
+          set -euo pipefail
+          for scene in ego_visible ego_hidden; do
+            for mode in perceive_sequential task_step_pair graphics_frame_pair; do
+              key="${scene}_${mode}"
+              echo "PROCESS_INDEPENDENT_NATIVE_BEGIN ${key}"
+              xvfb-run -a python -m scripts.metadrive_render_causality \
+                --frames 8 --warmup 2 --seed 20261109 \
+                --scenes "${scene}" --modes "${mode}" \
+                --out "output/independent-render/${key}"
+              echo "PROCESS_INDEPENDENT_NATIVE_END ${key}"
+            done
+          done
+      - name: Combine all six independently initialized Panda3D frame-clock experiments
+        run: |
+          python -m scripts.aggregate_render_causality --root output/independent-render
+          python - <<'PYCODE'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('output/independent-render/process_isolation_summary.json').read_text())
+          assert d['all_conditions_valid'] and d['independent_python_processes_expected']==6
+          assert not d['model_scoring_allowed'] and not d['real_vehicle_testing']
+          print('INDEPENDENT_PROCESS_RENDER_FACTORIZATION_PASS',
+                d['interpretation']['task_vs_graphics'],
+                d['interpretation']['readback_status'])
+          PYCODE
+      - name: Preserve 6 native reports even if one condition fails
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: isolated-native-render-time-readback-scene
+          path: output/independent-render/
+          if-no-files-found: warn
+          retention-days: 7
