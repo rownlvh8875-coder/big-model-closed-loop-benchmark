@@ -12,6 +12,7 @@ from pathlib import Path
 
 ROWS=(
     "time_s", "world_x_m", "world_y_m", "heading_rad", "speed_mps",
+    "source_road_rgb_sha256", "source_wide_rgb_sha256",
     "desired_curvature_1pm", "desired_acceleration_mps2",
     "road_frame_sha256", "wide_frame_sha256", "new_img_sha256",
     "raw_model_action", "raw_action_sha256", "state_after_step_sha256",
@@ -36,6 +37,8 @@ def compare_fresh_trials(a: dict, b: dict) -> dict:
             raise ValueError("native scene/render semantics changed")
         if not item.get("actual_onnx_image_feed_sha_captured_per_step"):
             raise ValueError("model new_img SHA evidence missing")
+        if item.get("native_source_964x604_rgb_sha_captured_per_step") is not True:
+            raise ValueError("native source camera RGB evidence missing")
         if not item.get("raw_action_and_recurrent_sha_captured_per_step"):
             raise ValueError("action or recurrent output evidence missing")
         if len(item.get("frames",[]))!=item.get("requested_steps"):
@@ -67,20 +70,38 @@ def compare_fresh_trials(a: dict, b: dict) -> dict:
             discrepancies.append({"step":step,"differing_fields":differences,
                                   "pose_delta_m":delta_m})
     exact=not discrepancies
-    camera_exact=all("road_frame_sha256" not in row["differing_fields"] and
-                     "wide_frame_sha256" not in row["differing_fields"]
+    source_exact=all("source_road_rgb_sha256" not in row["differing_fields"] and
+                     "source_wide_rgb_sha256" not in row["differing_fields"]
                      for row in discrepancies)
+    model_canvas_exact=all("road_frame_sha256" not in row["differing_fields"] and
+                           "wide_frame_sha256" not in row["differing_fields"]
+                           for row in discrepancies)
+    camera_exact=source_exact and model_canvas_exact
     tensor_exact=all("new_img_sha256" not in row["differing_fields"]
                      for row in discrepancies)
+    first_fields=discrepancies[0]["differing_fields"] if discrepancies else []
+    first_boundary=(
+        "NATIVE_964x604_RGB" if any(f in first_fields for f in
+                                      ("source_road_rgb_sha256","source_wide_rgb_sha256"))
+        else "WARPED_512x256_RGB" if any(f in first_fields for f in
+                                            ("road_frame_sha256","wide_frame_sha256"))
+        else "ACTUAL_I420_NEW_IMG" if "new_img_sha256" in first_fields
+        else "ONNX_ACTION_OR_RECURRENT" if any(f in first_fields for f in
+                                ("raw_action_sha256","state_after_step_sha256"))
+        else "POSE_OR_TIME_ONLY" if first_fields else None
+    )
     return {
         "status": "STRICT_NATIVE_ONNX_REPEAT_MATCH" if exact
                   else "STRICT_NATIVE_ONNX_REPEAT_MISMATCH",
         "exact_repeated_execution_gate_passed":exact,
-        "compare_rule":"bit-exact BOTH native camera hashes, actual I420 feed, raw actions, recurrent states, virtual pose & time",
+        "compare_rule":"bit-exact native raw 964x604, warped 512x256, actual I420 new_img feed, raw actions, recurrent states, virtual pose and time",
         "scenario":a["scenario"],"seed":a["seed"],
         "steps":a["requested_steps"],"initial_fraction":a["initial_fraction"],
         "camera_rgb_frames_match":camera_exact,
+        "source_native_rgb_frames_match":source_exact,
+        "warped_model_rgb_frames_match":model_canvas_exact,
         "actual_onnx_new_img_sha256_match":tensor_exact,
+        "first_observed_mismatch_boundary":first_boundary,
         "max_xy_position_delta_m":max(distances),
         "max_heading_delta_rad":max(headings),
         "first_diverging_step":discrepancies[0]["step"] if discrepancies else None,
@@ -113,6 +134,9 @@ def main(argv=None) -> int:
         "seed":verdict["seed"],"first_diverging_step":verdict["first_diverging_step"],
         "max_xy_position_delta_m":verdict["max_xy_position_delta_m"],
         "camera_frames_match":verdict["camera_rgb_frames_match"],
+        "source_rgb_match":verdict["source_native_rgb_frames_match"],
+        "model_canvas_rgb_match":verdict["warped_model_rgb_frames_match"],
+        "first_boundary":verdict["first_observed_mismatch_boundary"],
         "new_img_match":verdict["actual_onnx_new_img_sha256_match"],
     },ensure_ascii=False),flush=True)
     # Reporting a genuine mismatch is a successful *diagnostic*, NOT a gate PASS.

@@ -10,6 +10,9 @@ on:
       - 'bigbench/onnx_policy.py'
 permissions:
   contents: read
+concurrency:
+  group: official-mdv3-fresh-repeat-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   official-mdv3-repeat:
     runs-on: ubuntu-latest

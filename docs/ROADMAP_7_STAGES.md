@@ -86,6 +86,14 @@
 - [조건별 전수 실측표](STAGE7_MULTISCENE_NATIVE_REPEAT.md). 다음 우선 작업은 추가 메타드라이브 렌더 틱/그림자 이외 상태변화의 비침습적 분리, 원본 source 964×604 SHA 대조, 최초 차이가 나는 프레임의 렌더 스케줄 확인, 더 긴 시계열 및 외부 CARLA 교차검증. 공식 MD-V3 엄격 반복 게이트가 실패하므로 모델 주행성능 순위 불가.
 - **7단계는 여전히 진행 중**. 실차 시험·CD210 폴백·Carrot MPC/차량별 동역학·주행성능 순위 산출 금지 유지.
 
+## 2026-11-10 · 공식 MD-V3 원본 964×604 RGB 최초 차이 관측 경계 검증
+
+- [원본 센서 RGB 단계별 CI #42772799803](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42772799803): SHA가 고정된 공식 MD-V3와 기본 MetaDrive 신규 프레임을 2시드×2 S자×독립 2회·12스텝 실행. **4/4 실제 ONNX 실행·진단자료 수집 성공, 엄격한 비트/수치 재현성 0/4 FAIL**.
+- 모델 입력과 원본 센서 분리: `NativeWorldCamera.capture`에서 두 카메라의 964×604 uint8 RGB를 즉시 복사·SHA256. 기존 워프 후 512×256 RGB, 실제 ORT `new_img` I420 해시 및 raw action·recurrent output SHA와 시계열 대조. GPU HDR/그림자맵 추출·영상 보정·다중 캡처 없음.
+- 최초 원본 RGB 해시 불일치: seed 20261109 좌→우 step 2(wide), 우→좌 step 3(wide), seed 20261110 좌→우 step 2(wide), 우→좌 step 2(road). 실제 I420 입력 최초 불일치: 각각 step **6/10/6/2**. 즉 **3/4는 원본 센서 단계에서 더 이른 불일치가 검출**되고 1/4는 동시에 관측됨. 근거: [원본·모델·I420 단계별 전수표](STAGE7_FIRST_IMAGE_BOUNDARY.md).
+- **판정:** MetaDrive/Panda3D 센서 영상 생성·획득 경로를 다음 원인 분리의 우선 대상으로 유지한다. `PSSM.update` 유일 원인/수정책이라는 단정 금지. 원본 RGB 복사·SHA 자체도 CPU 수행시간과 실시간 task scheduling을 교란할 수 있어 무계측 결과와 최초 스텝 직접 일치 검증 불가.
+- 다음 정확한 게이트: 같은 카메라 pose/이전 모델 state에서 카메라별 순차 `taskMgr.step` 시점·원본 framebuffer/scene task/clock 변화 분리. 7단계는 **계속 진행 중**, 모델 성능 순위 및 실차·CD210/Carrot 폴백 금지.
+
 ## 다음 세션에서 이어가는 법
 
 1. `main`의 이 파일과 최신 CI 결과를 읽는다.

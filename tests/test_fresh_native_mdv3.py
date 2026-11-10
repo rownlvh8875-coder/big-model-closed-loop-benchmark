@@ -17,6 +17,8 @@ def native_receipt(process, steps=3):
             "heading_rad":.01,"speed_mps":8.,
             "desired_curvature_1pm":.02,
             "desired_acceleration_mps2":-.2,
+            "source_road_rgb_sha256":f"src-road-{i}",
+            "source_wide_rgb_sha256":f"src-wide-{i}",
             "road_frame_sha256":f"road-{i}",
             "wide_frame_sha256":f"wide-{i}",
             "new_img_sha256":f"i420-{i}",
@@ -35,6 +37,7 @@ def native_receipt(process, steps=3):
         "camera_image_interpolation_or_replay":False,
         "gpu_hdr_extraction":False,"pssm_update_preserved":True,
         "actual_onnx_image_feed_sha_captured_per_step":True,
+        "native_source_964x604_rgb_sha_captured_per_step":True,
         "raw_action_and_recurrent_sha_captured_per_step":True,
         "real_vehicle_testing":False,"model_scoring_allowed":False,
         "frames":rows,
@@ -47,6 +50,8 @@ class OfficialNativeRepeatContracts(unittest.TestCase):
         d=compare_fresh_trials(a,b)
         self.assertTrue(d["exact_repeated_execution_gate_passed"])
         self.assertEqual(d["status"],"STRICT_NATIVE_ONNX_REPEAT_MATCH")
+        self.assertIsNone(d["first_observed_mismatch_boundary"])
+        self.assertTrue(d["source_native_rgb_frames_match"])
         self.assertFalse(d["official_model_driving_performance_ranked"])
 
     def test_first_differing_input_cannot_be_masked_by_small_delta(self):
@@ -59,11 +64,23 @@ class OfficialNativeRepeatContracts(unittest.TestCase):
         self.assertFalse(d["actual_onnx_new_img_sha256_match"])
         self.assertGreater(d["max_xy_position_delta_m"],0)
 
+    def test_original_raw_sensor_difference_located_before_warp(self):
+        a,b=native_receipt(1),native_receipt(2)
+        b["frames"][1]["source_road_rgb_sha256"]="changed-raw-image"
+        out=compare_fresh_trials(a,b)
+        self.assertEqual(out["first_diverging_step"],2)
+        self.assertEqual(out["first_observed_mismatch_boundary"],"NATIVE_964x604_RGB")
+        self.assertFalse(out["source_native_rgb_frames_match"])
+        self.assertTrue(out["warped_model_rgb_frames_match"])
+        self.assertTrue(out["actual_onnx_new_img_sha256_match"])
+        self.assertFalse(out["exact_repeated_execution_gate_passed"])
+
     def test_recurrent_state_mismatch_even_if_rgb_identical(self):
         a,b=native_receipt(1),native_receipt(2)
         b["frames"][1]["state_after_step_sha256"]="changed"
         d=compare_fresh_trials(a,b)
         self.assertTrue(d["camera_rgb_frames_match"])
+        self.assertEqual(d["first_observed_mismatch_boundary"],"ONNX_ACTION_OR_RECURRENT")
         self.assertFalse(d["exact_repeated_execution_gate_passed"])
 
     def test_independent_process_and_untouched_renderer_required(self):
