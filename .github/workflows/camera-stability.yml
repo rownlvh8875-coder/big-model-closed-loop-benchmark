@@ -7,6 +7,8 @@ on:
       - 'scripts/metadrive_camera_stability.py'
       - 'bigbench/panda_clock.py'
       - 'bigbench/metadrive_camera.py'
+      - 'bigbench/frame_stability.py'
+      - 'tests/test_frame_stability.py'
 permissions:
   contents: read
 jobs:
@@ -48,14 +50,16 @@ jobs:
       - name: Repeat actual MetaDrive camera at EXACT same virtual pose
         run: |
           xvfb-run -a python -m scripts.metadrive_camera_stability \
-            --seed 20261109 --frames 12 --out output/default-clock-camera.json
+            --seed 20261109 --frames 12 --pixel-audit --warmup 2 --save-frames --out output/default-clock-camera.json
           xvfb-run -a python -m scripts.metadrive_camera_stability \
-            --seed 20261109 --frames 12 --fixed-clock --out output/fixed-panda-clock-camera.json
+            --seed 20261109 --frames 12 --fixed-clock --pixel-audit --warmup 2 --save-frames --out output/fixed-panda-clock-camera.json
       - name: Preserve non-scoring camera time dependence report
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: fixed-pose-camera-repeatability
-          path: output/*-clock-camera.json
+          path: |
+            output/*-clock-camera.json
+            output/*-clock-camera_frames/*.png
           if-no-files-found: warn
           retention-days: 7
