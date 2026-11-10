@@ -17,9 +17,15 @@ from bigbench.frame_stability import pixel_consistency_summary
 
 
 def capture_sequence(*, seed: int, frames: int, fixed_clock: bool=False,
-                     return_frames: bool=False) -> list[dict] | tuple[list[dict],dict]:
+                     return_frames: bool=False, hide_ego_rgb: bool=False) -> list[dict] | tuple[list[dict],dict]:
     provider=NativeMetaDriveProvider(seed=seed,fixed_virtual_clock=fixed_clock)
     try:
+        if hide_ego_rgb:
+            # The fixed WORLD pose may otherwise stare into MetaDrive's default
+            # visual ego prop. Suppress ONLY its RGB render mask for this audit.
+            # This is not a controller/vehicle-state or dynamics modification.
+            from metadrive.constants import CamMask
+            provider.env.vehicle.origin.hide(CamMask.RgbCam)
         camera=NativeWorldCamera(provider)
         fixed_pose=AgentState(0.0,0.0,0.0,0.0,0.0)
         hashes=[]
@@ -45,17 +51,20 @@ def main(argv=None):
     p.add_argument('--pixel-audit',action='store_true',help='compare actual RGB pixels rather than hashes alone')
     p.add_argument('--warmup',type=int,default=0,help='exclude startup frames only from extra diagnostic; never hide original drift')
     p.add_argument('--save-frames',action='store_true',help='save reference and drifted virtual model RGB images')
+    p.add_argument('--hide-ego-rgb',action='store_true',help='exclude the MetaDrive default ego visual prop from road-only optics audit')
     args=p.parse_args(argv)
     if not 2<=args.frames<=30:
         p.error('frames must be 2..30')
     if not 0<=args.warmup<args.frames:
         p.error('warmup must be less than total frames')
     data=capture_sequence(seed=args.seed,frames=args.frames,fixed_clock=args.fixed_clock,
-                          return_frames=args.pixel_audit or args.save_frames)
+                          return_frames=args.pixel_audit or args.save_frames,
+                          hide_ego_rgb=args.hide_ego_rgb)
     a,images=(data if isinstance(data,tuple) else (data,None))
     road_unique=len({x['road_sha256'] for x in a})
     wide_unique=len({x['wide_sha256'] for x in a})
-    result={'clock_mode':'PANDA_FIXED_NON_REAL_TIME' if args.fixed_clock else 'PANDA_DEFAULT',
+    result={'default_ego_render_masked':args.hide_ego_rgb,
+            'clock_mode':'PANDA_FIXED_NON_REAL_TIME' if args.fixed_clock else 'PANDA_DEFAULT',
             'status':'FIXED_POSE_CAMERA_STABLE' if road_unique==wide_unique==1
                  else 'FIXED_POSE_CAMERA_DRIFT',
             'seed':args.seed,'frames':args.frames,
