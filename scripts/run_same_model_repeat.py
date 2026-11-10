@@ -25,6 +25,8 @@ def main(argv=None) -> int:
     p.add_argument('--seed',type=int,default=20261109)
     p.add_argument('--speed',type=float,default=8.)
     p.add_argument('--camera-convergence',type=int,default=6)
+    p.add_argument('--camera-pixel-tolerance',type=int,default=0)
+    p.add_argument('--camera-channel-delta',type=int,default=0)
     p.add_argument('--out',type=Path,default=Path('output/native-strict-repeat'))
     args=p.parse_args(argv)
     spec=CampaignSpec(scenario=args.scenario,seed=args.seed,
@@ -33,7 +35,9 @@ def main(argv=None) -> int:
     receipts=[]
     for i in range(2):
         policy=OnnxBigModelPolicy(args.model,args.spec)
-        report=run_native_episode(policy,spec,camera_convergence=args.camera_convergence)
+        report=run_native_episode(policy,spec,camera_convergence=args.camera_convergence,
+                                  camera_pixel_tolerance=args.camera_pixel_tolerance,
+                                  camera_rgb_delta=args.camera_channel_delta)
         report['run_index']=i
         report['model_inference_steps']=len(policy.trace)
         (args.out/f'run_{i}.json').write_text(
@@ -49,6 +53,9 @@ def main(argv=None) -> int:
     decision=compare_repeat_receipts(*receipts)
     decision['strict_convergence_experiment']=True
     decision['camera_convergence_bound']=args.camera_convergence
+    decision['pixel_tolerance_count']=args.camera_pixel_tolerance
+    decision['channel_tolerance']=args.camera_channel_delta
+    decision['bit_exact_camera_required']=args.camera_pixel_tolerance==0
     decision['driving_model_quality_rank_allowed']=False
     decision['real_vehicle_testing']=False
     (args.out/'repeat_decision.json').write_text(
