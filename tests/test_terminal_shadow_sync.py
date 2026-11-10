@@ -113,7 +113,11 @@ class TerminalShadowContractTests(unittest.TestCase):
         self.assertEqual(out["status"],
                          "NATIVE_TERMINAL_GPU_SHADOW_CAUSAL_DIAGNOSTIC_OBSERVED")
         self.assertEqual(len(out["per_arm_receipts"]),7)
-        self.assertEqual(len(out["gpu_raw_byte_difference_between_independent_processes"]),4)
+        self.assertEqual(len(out["gpu_raw_byte_difference_between_independent_processes"]),5)
+        restore=out["gpu_raw_byte_difference_between_independent_processes"][
+            "natural_terminal VS offset_sync_terminal"
+        ]
+        self.assertEqual(restore["pssm_depth"]["changed_byte_count"],0)
         self.assertFalse(out["GPU_shadow_causality_proven"])
         self.assertFalse(out["official_new_frame_ONNX_repeatability_proven"])
         self.assertFalse(out["real_vehicle_testing"])
