@@ -1,0 +1,94 @@
+name: Native MetaDrive real PSSM versus chase Python callback order A-B (SIM ONLY)
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/native-task-callback-order.yml'
+      - 'bigbench/native_callback_profiler.py'
+      - 'scripts/native_callback_order_trial.py'
+      - 'scripts/compare_native_callback_order.py'
+      - 'tests/test_native_callback_profiler.py'
+      - 'tests/test_native_callback_order_compare.py'
+permissions:
+  contents: read
+concurrency:
+  group: native-task-callback-order-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  actual-panda-callback-order:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        seed: [20261109, 20261110]
+        scenario: [s_curve_left_right, s_curve_right_left]
+        capture: [sequential, paired]
+    env:
+      LIBGL_ALWAYS_SOFTWARE: '1'
+      PYOPENGL_PLATFORM: 'glx'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install native MetaDrive 0.4.3 and software graphics dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y xvfb libgl1 libglu1-mesa libegl1 libx11-6
+          python -m pip install 'numpy>=1.26,<3' 'opencv-python-headless>=4.8' 'metadrive-simulator==0.4.3'
+      - name: Download and verify exact official MetaDrive-0.4.3 release assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p "$RUNNER_TEMP/native-metadrive-assets"
+          gh release download MetaDrive-0.4.3 --repo metadriverse/metadrive --pattern assets.zip --dir "$RUNNER_TEMP/native-metadrive-assets"
+          python - <<'PYCODE'
+          import hashlib,metadrive,os
+          from pathlib import Path,PurePosixPath
+          from zipfile import ZipFile
+          z=Path(os.environ['RUNNER_TEMP'])/'native-metadrive-assets'/'assets.zip'
+          assert z.stat().st_size==134074203
+          assert hashlib.sha256(z.read_bytes()).hexdigest()=='4f0da9f5143a1258131c5b55f77bdf170c0f9bce8a9f18dd41b3678df779eac9'
+          with ZipFile(z) as src:
+              for name in src.namelist():
+                  p=PurePosixPath(name)
+                  if p.is_absolute() or '..' in p.parts:
+                      raise ValueError('unsafe official MetaDrive release asset entry')
+              src.extractall(Path(metadrive.__file__).resolve().parent)
+          print('METADRIVE_0_4_3_ASSET_SHA256_MATCHES_PINNED_RELEASE')
+          PYCODE
+      - name: Validate Python call/return pairing and strict evidence contract
+        run: |
+          python -m unittest discover -s tests -p 'test_native_callback_profiler.py' -v
+          python -m unittest discover -s tests -p 'test_native_callback_order_compare.py' -v
+      - name: Independent unprofiled and actual Python callback traced native Panda runs
+        run: |
+          set -euo pipefail
+          root="output/callback-order/seed-${{ matrix.seed }}-${{ matrix.scenario }}-${{ matrix.capture }}"
+          mkdir -p "$root"
+          for arm in unprofiled profiled; do
+            echo "NATIVE_CALLBACK_CONTROL_BEGIN seed=${{ matrix.seed }} scenario=${{ matrix.scenario }} capture=${{ matrix.capture }} arm=$arm"
+            rc=0
+            xvfb-run -a python -m scripts.native_callback_order_trial \
+              --scenario ${{ matrix.scenario }} --seed ${{ matrix.seed }} \
+              --fraction 0.12 --capture ${{ matrix.capture }} --arm "$arm" \
+              --frames 8 --warmup 2 --out "$root/$arm.json" || rc=$?
+            if [ "$rc" -eq 5 ]; then
+              test -s "$root/$arm.json" || exit 5
+              python -c 'import json,sys; d=json.load(open(sys.argv[1],encoding="utf-8")); assert d.get("status") in ("OBSERVED_NATIVE_CALLBACK_CONTROL","OBSERVED_NATIVE_CALLBACK_ORDER") and d.get("arm")==sys.argv[2]' "$root/$arm.json" "$arm"
+            elif [ "$rc" -ne 0 ]; then
+              echo "NATIVE_CALLBACK_TRACE_NOT_VALID exit_code=$rc"
+              exit "$rc"
+            fi
+          done
+          python -m scripts.compare_native_callback_order --root "$root"
+      - name: Retain full per-tick call/return events, independent RGB/I420 and timing evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: native-callback-seed-${{ matrix.seed }}-${{ matrix.scenario }}-${{ matrix.capture }}
+          path: output/callback-order/
+          if-no-files-found: warn
+          retention-days: 7
