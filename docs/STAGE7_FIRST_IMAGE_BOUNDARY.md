@@ -42,4 +42,22 @@
 
 **측정 개입 한계:** GPU 추출이나 추가 렌더 틱은 없지만 `np.array(copy=True)`와 원본 964×604 SHA256 계산이 각 카메라 획득 후 CPU 실행 시간을 늘린다. MetaDrive/Panda의 벽시계 기반 업데이트가 이에 영향을 받을 가능성을 배제할 수 없다. 이번 계측에서 관측된 최초 불일치 스텝을 무계측 과거 실행의 최초 스텝과 동등하게 간주하지 않는다.
 
-시드 20261110의 두 장면이 최종 완료되기 전까지 전체 4조건 결과는 확정하지 않는다.
+이 중간 기록은 다음 전체 4조건 결과의 부분 집합이며, CI 정상 실행과 정확한 반복 일치 PASS를 구분한다.
+
+
+## 2026-11-10 공식 ONNX 원본 센서 SHA 재시험 — 4/4 원본 아티팩트 확인
+
+[네이티브 재시험 GitHub Actions #42772799803](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42772799803): 4개 매트릭스 job **모두 수집/실행 성공**. 실제 SHA256이 고정된 공식 MD-V3, 동일 장면/시드에서 별도 Python·Panda·Xvfb·ONNX 세션으로 각각 12스텝 실행. 원본 camera RGB를 새로 캡처하고 GPU HDR extraction, image replay, convergence, 허용오차를 사용하지 않았다. 각 job의 `strict_native_repeat_verdict.json`은 **4/4 STRICT_NATIVE_ONNX_REPEAT_MISMATCH**로 남는다.
+
+| seed | scenario | native source raw 최초 불일치 스텝 | warped 512×256 RGB 최초 불일치 | 실제 ONNX I420 최초 불일치 | raw action 최초 불일치 | 최대 가상 XY 차이 (mm) |
+|---|---|---:|---:|---:|---:|---:|
+| 20261109 | s_curve_left_right | 2 (wide) | 6 | 6 | 6 | 0.051269 |
+| 20261109 | s_curve_right_left | 3 (wide) | 10 | 10 | 10 | 0.035400 |
+| 20261110 | s_curve_left_right | 2 (wide) | 6 | 6 | 6 | 0.065611 |
+| 20261110 | s_curve_right_left | 2 (road) | 2 | 2 | 2 | 0.125117 |
+
+**해석 경계:** 네 시험 모두 MetaDrive 원본 소스 영상 배열이 처음 달라진 단계 또는 그 이전에 모델 입력 차이가 나타난 것이 아니라, 원본 단계가 가장 이른 **관측 경계**였다. 세 시험은 원본 센서 해시 변화가 워프 RGB/ONNX I420 변화보다 앞섰고, 네 번째는 모든 단계의 해시 및 모델 출력이 같은 스텝에서 바뀌었다. 따라서 세 시험의 가장 초기 변화는 모델·I420 변환 이전의 센서 이미지 생성/획득 경로를 우선 조사하도록 지지한다. 네 번째는 단계가 동시이므로 시계열상 순서의 추가 구분이 불가능하다.
+
+이 판정은 PSSM.update가 유일 원인이라는 증명이 아니며, Panda3D task clock, 순차 `perceive`, shadow atlas, 버퍼 갱신 중 정확히 어느 구성 요소인지 추가 실험이 필요하다. GPU 호출은 추가하지 않았지만 CPU에서 매 프레임 원본 RGB 배열 copy/SHA256을 수행해 **벽시계 기반 렌더 태스크의 진행 시각은 바뀔 수 있으므로** 무계측 이전 시험과 처음 변경된 프레임 번호를 직접 동등하게 취급하지 않는다.
+
+**7단계 현 상태:** 공식 SHA-pinned MD-V3의 원본 새 영상 폐루프 exact reproducibility 0/4 FAIL. 실차/차량별 물리 모델, CD210 폴백, Carrot MPC, 모델 성능 순위 금지 유지. 다음 하드 게이트: 같은 초기 pose/이전 recurrent state에서 native raw RGB가 가장 먼저 갈라진 조건을 기준으로 camera별 task tick/clock/scene update를 추가 분리한다.
