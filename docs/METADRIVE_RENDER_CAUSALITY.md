@@ -62,4 +62,33 @@ xvfb-run -a python -m scripts.metadrive_render_causality \
 
 [실제 MetaDrive GitHub Actions 워크플로](../.github/workflows/render-causality.yml)에서 공식 에셋의 SHA256을 확인한다.
 
-**검증 상태:** 본 문서에 적힌 시험코드의 구현·단위시험과 실제 native-render 시험 결과는 분리한다. CI 아티팩트의 6개 조건별 JSON 및 `causality_summary.json`을 확인하기 전에는 특정 원인/해결을 확정하지 않는다.
+## 2026-11-10: 6개 MetaDrive 실렌더 조건 측정 결과
+
+**실제 근거:** [GitHub Actions #42757874100](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42757874100), 아티팩트 `meta-render-task-readback-scene-factorization` (id `13736736732`), 검증 커밋 `1240d57d49bbeecc0dda75d6c016453198a2979e`.
+
+- MetaDrive **0.4.3**, 공식 렌더 자산 SHA256 고정, Ubuntu/Xvfb/software GL.
+- **6/6 조건 `OBSERVED`**, 각 5프레임, 초기 2프레임을 보존하되 후반부 별도 요약. 카메라 +2m 포즈 이동 양성 대조는 모든 조건에서 road/wide 각각 PASS.
+- **중간 CPU RAM 텍스처 재읽기:** 모든 조건·모든 프레임에서 추가 렌더 틱 없이 3회 읽기가 **bit-exact**. 따라서 관측된 RGB 변화는 단순 **반복 읽기**만으로 재현되지 않았다. GPU→CPU 동기화 문제 전체가 부정됐다는 뜻은 아님.
+- 이상적인 카메라 raw→model RGB→I420 입력도 각 조건에서 독립 검증했다.
+
+| 기본 가상 차량 RGB | 렌더 틱 | 2프레임 이후 raw road/wide 최대 변경 픽셀 | 2프레임 이후 model road/wide 최대 변경 픽셀 | 2프레임 이후 최종 ONNX I420 변경 원소 | 판정(관측만) |
+|---|---|---|---|---:|---|
+| 표시 | camera별 `perceive` | 0 / 2 | 0 / 0 | 0 | 텐서 동일 |
+| 표시 | 두 카메라 `taskMgr.step` | 0 / 0 | 0 / 0 | 0 | 텐서 동일 |
+| 표시 | 두 카메라 `graphicsEngine.renderFrame` | 0 / 0 | 0 / 0 | 0 | 텐서 동일 |
+| 숨김 | camera별 `perceive` | **9 / 0** | **8 / 0** | **6** | RGB/I420 변경 |
+| 숨김 | 두 카메라 `taskMgr.step` | **9 / 2** | **8 / 0** | **6** | RGB/I420 변경 |
+| 숨김 | 두 카메라 `graphicsEngine.renderFrame` | **0 / 0** | **0 / 0** | **0** | 후반부 텐서 동일 |
+
+**해석(조건부):** 이번 MetaDrive 장면에서는 `graphicsEngine.renderFrame()`만 호출한 경우, `taskMgr.step()`이 포함된 방식보다 후반부 영상 일관성이 좋았다. MetaDrive 기본 차량 RGB를 **숨기는 것만으로** 불일치가 없어지지 않았으며, 오히려 일부 숨김 조건에서만 변경 픽셀이 관측됐다. 특정 태스크·셰이더·RAM 복사 버그의 원인성을 아직 증명하지 못했다.
+
+**중요 교란변수:** 여섯 조건은 각각 새 MetaDrive 객체를 만들었지만 **하나의 Python/Panda3D 전역 시계와 Xvfb 프로세스에서 순차 실행**됐다. 장면 옵션의 차이를 전역 clock 누적, 장면 초기화/실행 순서와 분리하지 못한 가능성이 있다. 본 결과를 충분조건·일반화·성능 판정으로 사용하면 안 된다.
+
+### 재검증: 6개 독립 Python/Xvfb 프로세스
+
+- `scripts/aggregate_render_causality.py`에서 **각 조건이 다른 프로세스에서 남긴 보고서**를 모으고, 조건 ID/seed/프레임 수/양성대조/실차·모델 점수 금지 플래그를 확인한다.
+- [별도 프로세스 GitHub Actions](../.github/workflows/render-causality-process.yml): 각 조건을 별도 `xvfb-run -a python`으로 실행하고, 동일 seed에서 8프레임(초기 2프레임 별도) 관측. **시험 성공 여부와 수치는 CI 아티팩트가 확보된 뒤 따로 반영해야 한다.**
+- 반복 시계열이 일치해도 실제 MD-V3/Light Speed 폐루프 성능 재현성은 별도 게이트다.
+
+**검증 상태:** 위 첫 6조건 실렌더 감사는 **기술 진단 완료**, 인과관계 식별 및 모델 주행성능은 **미완료**.
+
