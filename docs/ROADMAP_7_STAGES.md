@@ -56,6 +56,13 @@
 - **다음 정확한 작업:** 같은 가상 자세의 이미지 차이를 버퍼/렌더 타이밍·동적 오브젝트·후처리로 나누어 실험하고, 각 실험에서 두 카메라 원본 RGB와 최종 모델 I420 텐서의 프레임별 변화·범위를 저장. 이후 독립 새 ONNX 세션의 **실제 영상 폐루프** 동일 조건 재현성 재검사.
 - 세부 분석: [재현성 결과](REPRODUCIBILITY_FINDINGS.md), [고정 영상 분리 코드](../bigbench/frozen_camera_diagnostic.py).
 
+## 2026-11-10 · 장면/렌더링 원인 분리 진행 업데이트
+
+- [MetaDrive 6조건 실렌더](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42757874100) 및 [각 조건 별도 프로세스 반복](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42758718405): GPU 새 렌더 없이 CPU RAM 텍스처를 재읽는 단계는 완전 일치. `taskMgr.step` 실행 시 원본 픽셀 및 최종 I420의 소량 차이가 있으나, 두 카메라를 동시에 `graphicsEngine.renderFrame`만 호출하면 후반 I420은 완전 일치.
+- [그림자/추적 태스크 A/B](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42759149254): 가상 `PSSM.update` 제거 시 후반 RGB/I420 불일치 **0**, `update main chase camera` 제거 시 변화 **유지**. `igLoop`은 계속 동작, 카메라 포즈 변경 양성 대조 PASS. **장면 태스크의 영향은 분리**, 동일한 렌더링 의미·다중 시드/포즈/모델 폐루프 재현성이 검증됐다는 뜻 아님.
+- 다음 작업 게이트: `PSSM.update`에 의한 HDR scene texture/톤매핑 과정의 변경점 추적 → 다중 seed·pose 검증 → 공식 대형 ONNX **새 영상 폐루프 재현성** 재시험. **7단계 전체 완료 및 모델 순위 산출은 보류**.
+- 자세한 시험 통계: [렌더링 인과 분리 문서](METADRIVE_RENDER_CAUSALITY.md).
+
 ## 다음 세션에서 이어가는 법
 
 1. `main`의 이 파일과 최신 CI 결과를 읽는다.
