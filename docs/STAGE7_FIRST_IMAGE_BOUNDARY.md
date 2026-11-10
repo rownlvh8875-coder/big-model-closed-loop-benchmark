@@ -27,3 +27,19 @@
 [새 source-stage MD-V3 repeat workflow](../.github/workflows/official-mdv3-fresh-repeat.yml)을 통해 기존 2×2 조건을 재실행해 `run_0.json`, `run_1.json`, `strict_native_repeat_verdict.json`을 보존한다. 공식 결과·최초 불일치 지점은 성공 아티팩트 확인 후 기록한다. 단위시험 `tests/test_native_source_pixel_receipt.py`는 mock에 불과하며 실측 근거가 아니다.
 
 **완료 게이트는 그대로 미충족:** 실제 카메라 신규 영상 정확한 반복 재현성, 장시간 S자와 램프 전체, 외부 CARLA, 실제 렌즈 광학 동등성, 모델 간 성능 순위는 아직 미검증.
+
+
+## 2026-11-10 원본 stage SHA 경계 재시험 중간 관측
+
+[GitHub Actions #42772799803](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42772799803)의 시드 20261109 두 S자 실행 아티팩트에서 다음 순서를 확인했다. 해당 실험은 전용 GPU HDR extraction, 고정 영상 재생, 카메라 convergence를 사용하지 않는다.
+
+| 시드 | 장면 | 원본 964×604 최초 불일치 | 워프 후 모델 RGB 최초 불일치 | 실제 I420 최초 불일치 | 원시 action 최초 불일치 |
+|---|---|---:|---:|---:|---:|
+| 20261109 | s_curve_left_right | 2스텝 (wide) | 6스텝 | 6스텝 | 6스텝 |
+| 20261109 | s_curve_right_left | 3스텝 (wide) | 10스텝 | 10스텝 | 10스텝 |
+
+따라서 기존 시험의 '첫 모델 입력 불일치'보다 **원본 센서 RGB 차이는 더 이른 시점부터 있었음**이 확인됐다. 초기 원본 차이는 모델 워프/정규화 입력에서 즉시 관측되지 않을 수 있다. 그러나 원본 RGB 단계에서 SHA만 다르다는 것으로 렌더러 내부 어떤 패스·쉐이더·CPU 읽기가 원인인지 단정할 수 없다.
+
+**측정 개입 한계:** GPU 추출이나 추가 렌더 틱은 없지만 `np.array(copy=True)`와 원본 964×604 SHA256 계산이 각 카메라 획득 후 CPU 실행 시간을 늘린다. MetaDrive/Panda의 벽시계 기반 업데이트가 이에 영향을 받을 가능성을 배제할 수 없다. 이번 계측에서 관측된 최초 불일치 스텝을 무계측 과거 실행의 최초 스텝과 동등하게 간주하지 않는다.
+
+시드 20261110의 두 장면이 최종 완료되기 전까지 전체 4조건 결과는 확정하지 않는다.
