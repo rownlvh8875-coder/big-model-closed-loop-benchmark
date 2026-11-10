@@ -98,3 +98,15 @@
 **판단:** 정상적인 no-probe 이미지와 PSSM depth atlas 추출 이후 이미지는 다음 카메라 위치 변화에 반응한 반면, HDR scene_tex를 extractTextureData()로 읽은 카메라만 다음 RGB 출력이 이동에 반응하지 않았다. 따라서 **GPU 계측 API가 대상 카메라 렌더 경로에 개입한다는 강한 실험적 근거**를 확보했다. 이 관측은 그림자 업데이트 PSSM.update가 원래 작은 RGB 드리프트를 유발한 정확한 메커니즘을 설명하지 않는다.
 
 초기 집계기가 road/wide 반응이 반드시 동시에 True 또는 False라고 가정해 선택적 개입을 집계 오류로 취급한 부분을 수정했다. 이후 집계는 카메라별 불리언을 별도 보존하고, 예외 처리로 진단 FAIL을 PASS로 바꾸지 않는다. GPU 추출이 없는 원본 경로와 공식 ONNX의 매 프레임 폐루프 반복 재현성은 **여전히 미완료**.
+
+
+## 제3차: 마지막 프레임에서만 GPU 추출 (원본 시계열 교란 억제)
+
+[신규 terminal-only native workflow](../.github/workflows/terminal-hdr-trace.yml)는 프레임 사이에 GPU texture extraction을 절대 수행하지 않고, **최종 RGB/I420 시계열을 모두 개인 메모리로 복사한 이후** 마지막 완료된 렌더 틱에서만 GPU 텍스처를 한 번씩 읽도록 설계했다.
+
+- seed 20261109 및 20261110, 동일 WORLD 원점 pose, 프레임 4 및 6을 각각 독립 프로세스로 시험한다.
+- baseline_no_gpu (GPU 추출 0회) / baseline_terminal (원본 PSSM + 종료 시점에서만 추출) / shadow_off_terminal (PSSM.update만 제거 + 종료 시점 추출)을 각각 별도 Python/Xvfb 프로세스에서 실행한다.
+- 프레임마다 road/wide 원본 RGB, 모델 화면 및 ONNX I420 입력 배열 해시를 그대로 저장하고 첫 2프레임 역시 원본 시계열에 보존한다.
+- 모든 프레임 수집 이전 +2m 카메라 이동 양성 대조, 마지막 GPU 추출 이후에는 렌더 틱 없이 CPU RGB를 한 번 더 읽어 해당 완료 프레임의 최종 RAM 바이트가 변경되지 않았는지 확인한다. 이 두 조건이 실패하면 INCONCLUSIVE로 기록한다.
+- 최종 그림자맵/HDR 텍스처는 **각 프로세스의 마지막 프레임 한 장**만 추출한다. 따라서 최종 texture SHA 비교는 시계열 RGB 해시와 분리된 제한적 스냅샷 진단이며, HDR의 프레임별 드리프트나 셰이더 유일 원인을 증명하지 않는다.
+- GitHub Actions run은 실제 실행 상태/아티팩트가 확보된 후 PASS/FAIL 및 SHA를 기재한다. 정식 ONNX 새 영상 폐루프 반복시험은 별도의 후속 게이트이다.
