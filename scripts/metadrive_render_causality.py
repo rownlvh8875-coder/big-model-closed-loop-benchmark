@@ -24,6 +24,7 @@ from bigbench.frame_stability import compare_rgb_frames
 from bigbench.image_adapter import camera_pair_to_model
 from bigbench.metadrive_camera import NativeMetaDriveProvider
 from bigbench.optical_calibration import PinholeRectifier, intrinsics_from_panda_lens
+from bigbench.task_ablation import ALLOWED_VISUAL_TASKS, remove_visual_scene_task
 from bigbench.render_causality import (
     raw_rgb_frame, summarize_frame_sequence, summarize_readback_groups,
     interpret_pipeline,
@@ -193,7 +194,8 @@ def _pre_tonemap_probe(provider:Any) -> dict:
 
 
 def run_condition(*,mode:str,scene:str,frames:int,seed:int,warmup:int,
-                  fixed_clock:bool=False,probe_pre_tonemap:bool=False) -> dict:
+                  fixed_clock:bool=False,probe_pre_tonemap:bool=False,
+                  ablate_task:str | None=None) -> dict:
     """One fresh MetaDrive world per render schedule and scene visibility."""
     if mode not in CAPTURE_MODES or scene not in ('ego_visible','ego_hidden'):
         raise ValueError('unknown independent experimental condition')
@@ -201,6 +203,8 @@ def run_condition(*,mode:str,scene:str,frames:int,seed:int,warmup:int,
         raise ValueError('bounded frames/warmup required')
     provider=NativeMetaDriveProvider(seed=seed,fixed_virtual_clock=fixed_clock)
     try:
+        ablation=(remove_visual_scene_task(provider.env.engine.taskMgr,ablate_task)
+                  if ablate_task is not None else None)
         if scene=='ego_hidden':
             from metadrive.constants import CamMask
             provider.env.vehicle.origin.hide(CamMask.RgbCam)
@@ -228,6 +232,7 @@ def run_condition(*,mode:str,scene:str,frames:int,seed:int,warmup:int,
             'status':'OBSERVED' if all(pose_shift_positive.values())
                      else 'INCONCLUSIVE_NO_POSE_RESPONSE',
             'condition':f'{scene}_{mode}', 'seed':seed,
+            'scene_task_ablation':ablation,
             'mode':mode,'scene':scene,'fixed_virtual_clock':fixed_clock,
             'frames':frames,'warmup':warmup,
             'native_source_dims':[provider.source_width,provider.source_height],
@@ -268,6 +273,8 @@ def main(argv=None) -> int:
                    default=['ego_visible','ego_hidden'])
     p.add_argument('--fixed-clock',action='store_true')
     p.add_argument('--probe-pre-tonemap',action='store_true')
+    p.add_argument('--ablate-visual-task',choices=sorted(ALLOWED_VISUAL_TASKS),default=None,
+                   help='EXPERIMENT only: remove exactly one known visual scene task; never igLoop')
     args=p.parse_args(argv)
     args.out.mkdir(parents=True,exist_ok=True)
     conditions={}
@@ -278,7 +285,8 @@ def main(argv=None) -> int:
             try:
                 conditions[key]=run_condition(mode=mode,scene=scene,seed=args.seed,
                     frames=args.frames,warmup=args.warmup,
-                    fixed_clock=args.fixed_clock,probe_pre_tonemap=args.probe_pre_tonemap)
+                    fixed_clock=args.fixed_clock,probe_pre_tonemap=args.probe_pre_tonemap,
+                    ablate_task=args.ablate_visual_task)
             except Exception as exc:
                 conditions[key]={'status':'ERROR',
                     'error':f'{type(exc).__name__}: {exc}',
@@ -294,6 +302,7 @@ def main(argv=None) -> int:
         'scope':'RENDER_TIMING_CPU_COPY_SCENE_VISIBILITY_ONLY',
         'real_vehicle_testing':False,'model_scoring_allowed':False,
         'clock':'fixed' if args.fixed_clock else 'default',
+        'visual_task_ablation_requested':args.ablate_visual_task,
         'condition_statuses':{k:v['status'] for k,v in conditions.items()},
         'interpretation':interpretation,
         'experiment_count':len(conditions),
