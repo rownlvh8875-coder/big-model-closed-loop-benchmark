@@ -113,6 +113,14 @@
 - [전체 32조건 실측·원본 CI 아티팩트·한계](STAGE7_PSSM_MVP_TASK_CLOCK.md). 성공은 계측 성공이고 공식 MD-V3 ONNX 원래 신규영상 independent repeated strict-match는 이전 **0/4 PASS**로 **7단계 미완료 유지**.
 - 다음 게이트: 실제 등록 sort 0 태스크의 callback 실행 순서와 메인 카메라 변환/PSMM MVP 갱신 시각의 비침습적 분리, 가능한 경우 GPU shadow atlas와 final RGB 경로를 계측 개입 통제 하에서 비교한 뒤 공식 ONNX 독립 반복 재시험. 실차/차종 plant/CD210/Carrot MPC·Params 및 모델 주행성능 순위 금지.
 
+## 2026-11-10 · 실제 PSSM 및 Chase callback 진입 순서 추적 완료
+
+- [MetaDrive 0.4.3 실제 Python callback 네이티브 CI #42819410983](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42819410983): 2개 시드 × 2개 S자 × sequential/paired 카메라 = **8개 진단 job SUCCESS**, 각 job은 원래 Panda task를 수정하지 않는 unprofiled/profiler ON 독립 프로세스 2개씩 수행(16개). 원본 ZIP 8개와 실제 콜백 진입/반환 이벤트를 전수 확인.
+- **실제 Python 함수 호출순서 PSSM.update → MainCamera._chase_task**. Sequential 64/64, paired 32/32, 합계 96/96 native taskMgr.step 틱에서 동일한 선후. Chase run_task flag는 96/96 entry에서 True. PSSM/Chase 등록은 둘 다 sort=0이지만 이번 결론은 등록 sort가 아니라 sys.setprofile로 관측된 Python call/return을 근거로 함.
+- unprofiled/profiler ON 두 독립 native 프로세스의 **동일 step I420 SHA는 8개 비교 중 2개만 8/8 전체 일치**, 6개는 일부 프레임 불일치. sys.setprofile는 task registration을 바꾸지 않지만 CPU scheduling을 교란할 수 있고 원래 MetaDrive에도 독립 실행 영상 변동이 존재하므로, 이 차이를 profiler 하나의 인과 효과로 단정하거나 원래 unprofiled 콜백 순서가 측정됐다고 표현하면 안 됨.
+- [8조건 전수 실측·실험 제한](STAGE7_NATIVE_CALLBACK_ORDER.md). 실제 콜백 실행 순서는 관측됐으나 **메인 카메라 위치가 Chase 안에서 이동했는지, 그림자 MVP가 이전 카메라 pose로 계산됐는지, GPU shadow map이 언제 그려졌는지는 아직 미증명**. 7단계 미완료, 공식 MD-V3 독립 신규 영상 12스텝 strict-repeatability 0/4, 모델 공식 주행성능 순위 불가.
+- **다음 하드 게이트:** 독립 계측군에서 PSSM/Chase 콜백의 entry/exit 시점별 main camera pose 및 numeric MVP를 함께 기록하고, 무계측 대조군과 CPU timing을 비교해 PSSM의 실제 camera-pose 지연 가설을 검증. 이후 GPU 그림자 패스 영향과 원래 ONNX 폐루프 엄격 재현성을 재시험. 실차/CAN/CD210·Carrot MPC/차량 튜닝 전부 제외.
+
 ## 다음 세션에서 이어가는 법
 
 1. `main`의 이 파일과 최신 CI 결과를 읽는다.
