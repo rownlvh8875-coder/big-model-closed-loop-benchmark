@@ -1,0 +1,68 @@
+name: MD-V3 frozen MetaDrive camera ONNX inference repeatability isolation
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/frozen-camera-inference.yml'
+      - 'bigbench/frozen_camera_diagnostic.py'
+      - 'scripts/frozen_camera_model_repeat.py'
+      - 'tests/test_frozen_camera_diagnostic.py'
+permissions:
+  contents: read
+jobs:
+  frozen-native-pair:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      LIBGL_ALWAYS_SOFTWARE: '1'
+      PYOPENGL_PLATFORM: 'glx'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install software rendering and ONNX Runtime
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y xvfb libgl1 libglu1-mesa libegl1 libx11-6
+          python -m pip install '.[inference]' 'metadrive-simulator==0.4.3'
+      - name: Verify fixed MetaDrive 0.4.3 assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p "$RUNNER_TEMP/metadrive-assets"
+          gh release download MetaDrive-0.4.3 --repo metadriverse/metadrive --pattern assets.zip --dir "$RUNNER_TEMP/metadrive-assets"
+          python - <<'PYCODE'
+          from pathlib import Path,PurePosixPath
+          from zipfile import ZipFile
+          import hashlib,metadrive,os
+          a=Path(os.environ['RUNNER_TEMP'])/'metadrive-assets'/'assets.zip'
+          assert a.stat().st_size==134074203
+          assert hashlib.sha256(a.read_bytes()).hexdigest()=='4f0da9f5143a1258131c5b55f77bdf170c0f9bce8a9f18dd41b3678df779eac9'
+          with ZipFile(a) as z:
+            for x in z.namelist():
+              p=PurePosixPath(x)
+              if p.is_absolute() or '..' in p.parts:
+                raise ValueError('unsafe path in assets')
+            z.extractall(Path(metadrive.__file__).resolve().parent)
+          PYCODE
+      - name: Obtain SHA-verified official MD-V3 weight file
+        run: |
+          python -m scripts.hf_models download \
+            --path '1365126a-e71e-4778-be00-8ab92dc82c09/12864/big_driving_supercombo.onnx' \
+            --sha256 '35976b11be3904eb78e32f7dc55a6abf8e9433ac5aa391a1998f1e9ce001b199' \
+            --max-bytes 900000000 --out "$RUNNER_TEMP/models"
+      - name: Run two fresh ONNX sessions using one real MetaDrive camera pair
+        run: |
+          xvfb-run -a python -m scripts.frozen_camera_model_repeat \
+            --model "$RUNNER_TEMP/models/1365126a-e71e-4778-be00-8ab92dc82c09/12864/big_driving_supercombo.onnx" \
+            --spec model_specs/md-v3.json --scenario s_curve_left_right \
+            --steps 12 --seed 20261109 --out output/frozen-camera-inference
+      - name: Save diagnostic regardless of verification outcome
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: frozen-real-meta-rgb-two-onnx-sessions
+          path: output/frozen-camera-inference/
+          if-no-files-found: warn
+          retention-days: 7
