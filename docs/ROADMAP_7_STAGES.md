@@ -104,6 +104,15 @@
 - **다음 게이트:** PSSM camera rig MVP/그림자 상태 업데이트 및 타 Panda task·시계가 원본 센서 RGB 픽셀을 변화시키는 경로의 비침습적 단계별 분리. 여러 pose/seed에서 다시 확인한 뒤 동일 공식 MD-V3 폐루프 반복성 재검증.
 
 
+## 2026-11-10 · PSSM shadow MVP · Panda task sort · 고정 시계 추가 원인 분리
+
+- [GitHub Actions #42782363322](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42782363322): MetaDrive 0.4.3 SHA 고정 공식 자산, 2 seed × 2 S-curves × 일반/고정 Panda clock × 4 native render/task arms = **32개 독립 Python/Panda/Xvfb 프로세스, 8/8 native CI 성공**. 8프레임과 최초 2프레임 원본 보존, PSSM shadow camera rig 4×4 numeric MVP 행렬, CPU original RGB/I420 SHA 및 Panda clock/scene camera/light/task registration 동시 관측. HDR GPU texture extraction 없음.
+- 워밍업 이후 numeric MVP SHA 변화는 **0/32** 조건이었으나 original RGB SHA 변경은 sequential perceive **6/8**, paired taskMgr **6/8**, graphicsFrame-only **1/8**, paired PSSM.update 제거 **2/8**. final I420 변경은 각각 **5/8, 4/8, 1/8, 2/8**. **MVP 행렬 변화는 RGB/I420 드리프트의 필요조건이 아님.**
+- Fixed virtual clock 1/60초 조건도 sequential mode I420 변경 **3/4**, normal clock sequential mode는 **2/4**. clock 고정은 포괄적인 안정화 수단으로 검증되지 않음. PSSM 업데이트 제거는 변경된 renderer 의미를 가져 공식 ONNX 입력으로 채택 금지.
+- 실제 native task registration: PSSM.update 및 update main chase camera가 **같은 default chain / sort 0**, igLoop sort 50, dataLoop sort -50. 이 값은 등록 메타데이터이며 callback의 실제 실행 순서/선후 관계가 증명된 것은 아님. 특히 두 sort-0 태스크의 호출 선후를 다음 과제로 격리해야 함.
+- [전체 32조건 실측·원본 CI 아티팩트·한계](STAGE7_PSSM_MVP_TASK_CLOCK.md). 성공은 계측 성공이고 공식 MD-V3 ONNX 원래 신규영상 independent repeated strict-match는 이전 **0/4 PASS**로 **7단계 미완료 유지**.
+- 다음 게이트: 실제 등록 sort 0 태스크의 callback 실행 순서와 메인 카메라 변환/PSMM MVP 갱신 시각의 비침습적 분리, 가능한 경우 GPU shadow atlas와 final RGB 경로를 계측 개입 통제 하에서 비교한 뒤 공식 ONNX 독립 반복 재시험. 실차/차종 plant/CD210/Carrot MPC·Params 및 모델 주행성능 순위 금지.
+
 ## 다음 세션에서 이어가는 법
 
 1. `main`의 이 파일과 최신 CI 결과를 읽는다.
