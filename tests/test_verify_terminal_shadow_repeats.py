@@ -17,11 +17,14 @@ from scripts.verify_terminal_shadow_repeats import (
 
 
 def build_mock_native_zip(path:Path,*,mutate_frame:bool=False,corrupt_gpu:bool=False,
-                          scenario:str="s_curve_left_right"):
+                          scenario:str="s_curve_left_right",fraction:float=.12,
+                          camera_pose=None,wrong_arm_pose:bool=False):
     root="output/terminal-shadow/seed-20261109-"+scenario
+    pose=camera_pose if camera_pose is not None else [[1.,2.,1.22],[0.,0.,0.]]
     summary={
         "status":"NATIVE_TERMINAL_GPU_SHADOW_CAUSAL_DIAGNOSTIC_OBSERVED",
         "seed":20261109,"scenario":scenario,"frames":5,
+        "camera_pose":pose,
         "per_arm_receipts":{},
     }
     content={}
@@ -58,6 +61,9 @@ def build_mock_native_zip(path:Path,*,mutate_frame:bool=False,corrupt_gpu:bool=F
             "status":"OBSERVED_NATIVE_TERMINAL_SHADOW_GPU_SAMPLE"
                 if terminal else "OBSERVED_NATIVE_NO_GPU_CONTROL",
             "condition":name,"seed":20261109,"scenario":scenario,"frames":5,
+            "fraction":fraction,
+            "camera_pose":([[10.,2.,1.22],[0.,0.,0.]]
+                           if wrong_arm_pose and name=="natural_terminal" else pose),
             "injected_camera_offset_last_frame":injected,
             "post_chase_extra_task_kind":extra,
             "terminal_gpu_probe":terminal,
@@ -122,6 +128,22 @@ class CrossCIArtifactContractTests(unittest.TestCase):
             result["per_arm_evidence"]["natural_no_gpu"]
                   ["i420_different_frame_indices_zero_based"],[3]
         )
+
+    def test_fraction_mismatch_rejected_even_if_all_hashes_agree(self):
+        build_mock_native_zip(self.second,fraction=.28)
+        with self.assertRaisesRegex(ValueError,"camera pose/fraction"):
+            compare_repeated_artifacts(self.first,self.second)
+
+    def test_camera_world_pose_mismatch_rejected_even_if_hashes_agree(self):
+        build_mock_native_zip(self.second,
+                              camera_pose=[[1.1,2.,1.22],[0.,0.,0.]])
+        with self.assertRaisesRegex(ValueError,"camera pose/fraction"):
+            compare_repeated_artifacts(self.first,self.second)
+
+    def test_intra_archive_arm_pose_mismatch_rejected(self):
+        build_mock_native_zip(self.second,wrong_arm_pose=True)
+        with self.assertRaisesRegex(ValueError,"WORLD camera pose differs"):
+            read_verified_run(self.second)
 
     def test_corrupted_compressed_gpu_payload_fails_not_inconclusive_pass(self):
         build_mock_native_zip(self.second,corrupt_gpu=True)
