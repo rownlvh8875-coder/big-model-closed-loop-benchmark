@@ -121,6 +121,15 @@
 - [8조건 전수 실측·실험 제한](STAGE7_NATIVE_CALLBACK_ORDER.md). 실제 콜백 실행 순서는 관측됐으나 **메인 카메라 위치가 Chase 안에서 이동했는지, 그림자 MVP가 이전 카메라 pose로 계산됐는지, GPU shadow map이 언제 그려졌는지는 아직 미증명**. 7단계 미완료, 공식 MD-V3 독립 신규 영상 12스텝 strict-repeatability 0/4, 모델 공식 주행성능 순위 불가.
 - **다음 하드 게이트:** 독립 계측군에서 PSSM/Chase 콜백의 entry/exit 시점별 main camera pose 및 numeric MVP를 함께 기록하고, 무계측 대조군과 CPU timing을 비교해 PSSM의 실제 camera-pose 지연 가설을 검증. 이후 GPU 그림자 패스 영향과 원래 ONNX 폐루프 엄격 재현성을 재시험. 실차/CAN/CD210·Carrot MPC/차량 튜닝 전부 제외.
 
+## 2026-11-10 · PSSM과 Chase 메인 카메라 WORLD 자세 실제 콜백 경계 검증
+
+- [MetaDrive 콜백 자세+MVP 네이티브 CI #42822587924](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42822587924): 시드 20261109/20261110 × S자 2종 × paired/sequential 촬영 = 8개 A/B/C job, 원래 장면 no-profiler / 원래 장면 profiled / 가상 카메라 X+2m 개입 profiled 총 24개 독립 MetaDrive 0.4.3/Panda/Xvfb 프로세스, **8/8 진단 CI SUCCESS**. 공식 자산 SHA 체크, 두 카메라 +2m 이동 양성대조 및 CPU RAM readback 동일성 확인.
+- Python 원본 `PSSM.update` call/return→`MainCamera._chase_task` call/return 순서 **96/96 taskMgr 틱** 확인. 실제 profiled 장면의 첫 Chase 카메라 움직임은 seed 20261109 약 **0.595m**, seed 20261110 약 **7.025242m**. PSSM은 **Chase 이동 직전 메인 카메라 WORLD pose의 MVP**를 계산하고, 다음 taskMgr 틱에서 Chase 이후 pose 기준 MVP로 갱신되는 모습 8/8조건 확인. Sequential은 한 프레임 내 두 틱을 별도로 계측해 다음 틱 위치를 기록.
+- SIM-ONLY 별도 개입군에서 프레임 index 3/5에 엔진 메인 카메라 X좌표를 실제 +2m 변경: **16/16회** PSSM 진입 pose가 개입 좌표와 정확히 일치, PSSM 콜백에서 MVP 변경, 이후 Chase가 메인 카메라를 복귀시키는 동안 MVP 변경 없음. 이는 CPU 기반 **PSSM 선행 참조 시차를 직접 관찰**한 결과지만 원래 렌더링을 변형한 개입군과 GPU 그림자 draw 결과를 동일시해서는 안 됨.
+- 원래 장면과 CPU 계측 장면의 독립 I420 전체 8프레임 완전 일치는 **0/8**. CPU 프로파일러/MVP 조회의 스케줄 오버헤드와 기존 원래 렌더러 변동이 교란 요인. 이 결과를 특정 그림자 셰이더의 유일한 원인/자동 해결책으로 사용 금지.
+- [전수 데이터·시드별 수치·한계](STAGE7_PSSM_CHASE_POSE_LAG.md). **Stage 7은 계속 진행 중**. 공식 MD-V3 원래 신규 프레임 독립 ONNX 엄격 재현성 0/4 PASS 상태 유지. 실차·CD210·Carrot MPC·Params·차량별 물리·모델 성능 순위 제외.
+- **다음 게이트:** 동일 MetaDrive 기본 task/PSSM을 유지한 채 원래 메인 카메라/그림자 rig의 한 틱 시차가 GPU shadow-pass/최종 RGB에 미치는 영향을 비침습적 측정과 별도 개입 A/B로 확인, 이후 공식 MD-V3 새 영상 독립 폐루프 반복시험 재평가.
+
 ## 다음 세션에서 이어가는 법
 
 1. `main`의 이 파일과 최신 CI 결과를 읽는다.
