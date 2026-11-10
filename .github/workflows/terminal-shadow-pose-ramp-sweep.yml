@@ -1,0 +1,123 @@
+name: Stage7 terminal shadow f0.28 real curve and ramp pose sweep (SIM ONLY)
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/terminal-shadow-pose-ramp-sweep.yml'
+      - 'scripts/aggregate_terminal_shadow_pose_sweep.py'
+      - 'tests/test_terminal_shadow_pose_sweep.py'
+permissions:
+  contents: read
+concurrency:
+  group: terminal-shadow-ramp-f028-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  native-shadow-poses:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        seed: [20261109, 20261110]
+        scenario: [s_curve_left_right, s_curve_right_left, in_ramp, out_ramp]
+        fraction: ['0.28']
+    env:
+      LIBGL_ALWAYS_SOFTWARE: '1'
+      PYOPENGL_PLATFORM: 'glx'
+      OMP_NUM_THREADS: '2'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install exact official MetaDrive 0.4.3 and Xvfb
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y xvfb libgl1 libglu1-mesa libegl1 libx11-6
+          python -m pip install 'numpy>=1.26,<3' 'opencv-python-headless>=4.8' 'metadrive-simulator==0.4.3'
+      - name: Verify original official rendering assets byte-for-byte
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p "$RUNNER_TEMP/native-original-assets"
+          gh release download MetaDrive-0.4.3 --repo metadriverse/metadrive --pattern assets.zip --dir "$RUNNER_TEMP/native-original-assets"
+          python - <<'PYCODE'
+          import hashlib,os,metadrive
+          from pathlib import Path,PurePosixPath
+          from zipfile import ZipFile
+          archive=Path(os.environ['RUNNER_TEMP'])/'native-original-assets'/'assets.zip'
+          assert archive.stat().st_size==134074203
+          assert hashlib.sha256(archive.read_bytes()).hexdigest()=='4f0da9f5143a1258131c5b55f77bdf170c0f9bce8a9f18dd41b3678df779eac9'
+          with ZipFile(archive) as z:
+              for n in z.namelist():
+                  name=PurePosixPath(n)
+                  if name.is_absolute() or '..' in name.parts:
+                      raise ValueError('unsafe original MetaDrive asset')
+              z.extractall(Path(metadrive.__file__).resolve().parent)
+          print('METADRIVE_043_OFFICIAL_ASSETS_SHA256_PASSED')
+          PYCODE
+      - name: Contract tests preserve GPU raw bytes versus RGB pixel distinction
+        run: |
+          python -m unittest discover -s tests -p 'test_terminal_shadow_sync.py' -v
+          python -m unittest discover -s tests -p 'test_terminal_shadow_pose_sweep.py' -v
+      - name: Seven fresh MetaDrive/Panda/Xvfb original-camera and post-Chase GPU conditions
+        run: |
+          set -euo pipefail
+          root="output/terminal-shadow-pose/seed-${{ matrix.seed }}-${{ matrix.scenario }}-fraction-${{ matrix.fraction }}"
+          mkdir -p "$root"
+          for condition in natural_no_gpu natural_terminal offset_no_gpu offset_terminal offset_probe_terminal offset_sync_no_gpu offset_sync_terminal; do
+            echo "NATIVE_TERMINAL_POSE_BEGIN seed=${{ matrix.seed }} scenario=${{ matrix.scenario }} fraction=${{ matrix.fraction }} condition=$condition"
+            rc=0
+            xvfb-run -a python -m scripts.native_terminal_shadow_sync \
+              --seed ${{ matrix.seed }} --scenario ${{ matrix.scenario }} \
+              --fraction ${{ matrix.fraction }} --condition "$condition" \
+              --frames 5 --warmup 2 --out "$root/$condition.json" || rc=$?
+            if [ "$rc" -eq 5 ]; then
+              test -s "$root/$condition.json" || exit 5
+              python -c 'import json,sys; d=json.load(open(sys.argv[1],encoding="utf-8")); assert d.get("status") in ("OBSERVED_NATIVE_NO_GPU_CONTROL","OBSERVED_NATIVE_TERMINAL_SHADOW_GPU_SAMPLE") and d.get("condition")==sys.argv[2] and d.get("fraction")==0.28 and all(d.get("both_camera_plus_2m_positive",{}).values())' "$root/$condition.json" "$condition"
+            elif [ "$rc" -ne 0 ]; then
+              echo "NATIVE_TERMINAL_POSE_INCONCLUSIVE exit_code=$rc"
+              exit "$rc"
+            fi
+          done
+          python -m scripts.aggregate_terminal_shadow_sync --root "$root"
+      - name: Keep lossless terminal GPU shadow/HDR, 5 frame I420 and errors
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: terminal-shadow-f028-${{ matrix.seed }}-${{ matrix.scenario }}
+          path: output/terminal-shadow-pose/
+          retention-days: 7
+          if-no-files-found: warn
+  sweep-summary:
+    needs: native-shadow-poses
+    if: success()
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install minimal summary parsers and strict test dependencies
+        run: python -m pip install 'numpy>=1.26,<3' 'opencv-python-headless>=4.8'
+      - name: Download all eight distinct real-GPU native scenario artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: terminal-shadow-f028-*
+          path: output/terminal-shadow-pose/
+          merge-multiple: true
+      - name: Reject absent ramp, stale frame, wrong fractions and missing native GPU bytes
+        run: |
+          python -m unittest discover -s tests -p 'test_terminal_shadow_pose_sweep.py' -v
+          python -m scripts.aggregate_terminal_shadow_pose_sweep \
+            --root output/terminal-shadow-pose \
+            --out output/terminal-shadow-pose/sweep_summary_f028.json
+      - name: Preserve complete curve/ramp pose-sweep diagnostics
+        uses: actions/upload-artifact@v4
+        with:
+          name: terminal-shadow-f028-summary
+          path: output/terminal-shadow-pose/sweep_summary_f028.json
+          if-no-files-found: error
+          retention-days: 7
