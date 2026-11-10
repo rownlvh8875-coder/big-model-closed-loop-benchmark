@@ -8,10 +8,12 @@ from __future__ import annotations
 import argparse
 import json
 import math
+from collections import Counter
 from pathlib import Path
 from statistics import median
 
 from scripts.native_callback_order_trial import CAPTURE_MODES
+from bigbench.native_callback_profiler import summarize_callback_pair
 
 
 def compare_profiled_control(control: dict, profile: dict) -> dict:
@@ -73,7 +75,24 @@ def compare_profiled_control(control: dict, profile: dict) -> dict:
         raise ValueError("callback tracing replaced registered task objects")
     if len(profile.get("per_frame_callback_receipts",[])) != profile["frames"]:
         raise ValueError("incomplete per-tick Python profiler data")
+    # Reconstruct actual frequencies from each raw Python entry/exit event:
+    # a copied prefilled summary alone cannot establish execution order.
+    reconstructed=Counter()
+    for receipt in profile["per_frame_callback_receipts"]:
+        raw=receipt.get("raw_call_return_events")
+        if not isinstance(raw,list):
+            raise ValueError("actual callback profiling events missing")
+        verified=summarize_callback_pair(
+            raw,profile["taskmgr_step_calls_from_source"]
+        )
+        if verified["per_taskmgr_step_callback_call_order"] != receipt.get(
+                "per_taskmgr_step_callback_call_order"):
+            raise ValueError("recorded order differs from the raw call/return events")
+        for order in verified["per_taskmgr_step_callback_call_order"]:
+            reconstructed[" BEFORE ".join(order)]+=1
     orders=summary.get("order_frequencies",{})
+    if dict(reconstructed)!=orders:
+        raise ValueError("profiler summary does not match actual Python callback events")
     if not orders or sum(orders.values()) != expected:
         raise ValueError("missing or inconsistent actual callback order frequency")
     valid_orders={
