@@ -151,10 +151,14 @@ def run_target_lane_episode(policy: Any, camera: Any, lane: Any,
 
 def run_native_episode(policy: Any, spec: CampaignSpec, *,
                        full_s_route: bool = False,
-                       camera_convergence: int = 0) -> dict:
+                       camera_convergence: int = 0,
+                       camera_pixel_tolerance: int = 0,
+                       camera_rgb_delta: int = 0) -> dict:
     """Create fresh identical native world per model: never share model state."""
     if type(camera_convergence) is not int or (camera_convergence!=0 and not 2<=camera_convergence<=12):
         raise BenchmarkProtocolError('camera convergence bound must be 0 or 2..12')
+    if (not camera_convergence and (camera_pixel_tolerance or camera_rgb_delta)):
+        raise BenchmarkProtocolError('pixel tolerance requires explicit multi-capture experiment')
     from .metadrive_camera import NativeMetaDriveProvider
     provider=NativeMetaDriveProvider(seed=spec.seed,map_config=SCENARIOS[spec.scenario].map_config())
     try:
@@ -172,7 +176,9 @@ def run_native_episode(policy: Any, spec: CampaignSpec, *,
         renderer=NativeWorldCamera(provider)
         if camera_convergence:
             from .camera_convergence import StrictConsecutiveCamera
-            renderer=StrictConsecutiveCamera(renderer,max_captures=camera_convergence)
+            renderer=StrictConsecutiveCamera(renderer,max_captures=camera_convergence,
+                                             max_changed_pixels=camera_pixel_tolerance,
+                                             max_rgb_delta=camera_rgb_delta)
         out=run_target_lane_episode(policy,renderer,lanes[0],spec,route=route)
         out['strict_same_pose_convergence']={
             'enabled':bool(camera_convergence),
@@ -180,7 +186,14 @@ def run_native_episode(policy: Any, spec: CampaignSpec, *,
             'sample_count':len(renderer.receipts) if camera_convergence else 0,
             'max_attempts_observed':renderer.max_attempts_observed if camera_convergence else 0,
             'failed_samples':sum(not x.stable for x in renderer.receipts) if camera_convergence else 0,
-            'classification':'EXPERIMENTAL_MULTI_CAPTURE_NOT_NATIVE_CAMERA_EQUIVALENT',
+            'pixel_tolerance_count':camera_pixel_tolerance,
+            'pixel_channel_delta_tolerance':camera_rgb_delta,
+            'maximum_changed_pixels_accepted':(
+                max((max(q.road_changed_pixels,q.wide_changed_pixels)
+                     for q in renderer.receipts if q.stable),default=0)
+                if camera_convergence else 0),
+            'classification':('EXPERIMENTAL_TOLERANT_CAMERA_NOT_BIT_EXACT'
+                 if camera_pixel_tolerance else 'EXPERIMENTAL_MULTI_CAPTURE_NOT_NATIVE_CAMERA_EQUIVALENT'),
         }
         out['explicit_route_lane_ids']=[str(z.index) for z in route.lanes] if route else [str(lanes[0].index)]
         out['full_s_route_requested']=full_s_route
