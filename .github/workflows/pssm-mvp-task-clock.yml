@@ -1,0 +1,93 @@
+name: MetaDrive PSSM numeric MVP task registration and virtual-clock causality (SIM ONLY)
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/pssm-mvp-task-clock.yml'
+      - 'bigbench/pssm_mvp_trace.py'
+      - 'scripts/native_pssm_mvp_task_trace.py'
+      - 'scripts/aggregate_pssm_mvp_task.py'
+      - 'tests/test_pssm_mvp_trace.py'
+      - 'tests/test_pssm_mvp_aggregation.py'
+permissions:
+  contents: read
+jobs:
+  independent-native-pssm:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        seed: [20261109, 20261110]
+        scenario: [s_curve_left_right, s_curve_right_left]
+        clock: [normal, fixed]
+    env:
+      LIBGL_ALWAYS_SOFTWARE: '1'
+      PYOPENGL_PLATFORM: 'glx'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install original MetaDrive 0.4.3 and virtual OpenGL
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y xvfb libgl1 libglu1-mesa libegl1 libx11-6
+          python -m pip install 'numpy>=1.26,<3' 'opencv-python-headless>=4.8' 'metadrive-simulator==0.4.3'
+      - name: Download and verify official MetaDrive 0.4.3 asset SHA256
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p "$RUNNER_TEMP/native-meta-assets"
+          gh release download MetaDrive-0.4.3 --repo metadriverse/metadrive --pattern assets.zip --dir "$RUNNER_TEMP/native-meta-assets"
+          python - <<'PYCODE'
+          from pathlib import Path,PurePosixPath
+          from zipfile import ZipFile
+          import hashlib,metadrive,os
+          z=Path(os.environ['RUNNER_TEMP'])/'native-meta-assets'/'assets.zip'
+          assert z.stat().st_size==134074203
+          assert hashlib.sha256(z.read_bytes()).hexdigest()=='4f0da9f5143a1258131c5b55f77bdf170c0f9bce8a9f18dd41b3678df779eac9'
+          with ZipFile(z) as archive:
+              for n in archive.namelist():
+                  p=PurePosixPath(n)
+                  if p.is_absolute() or '..' in p.parts:
+                      raise ValueError('unsafe official simulator asset path')
+              archive.extractall(Path(metadrive.__file__).resolve().parent)
+          print('METADRIVE_OFFICIAL_RENDER_ASSETS_SHA256_CONFIRMED')
+          PYCODE
+      - name: Unit tests prevent fabricated matrix or stale-RGB success
+        run: |
+          python -m unittest discover -s tests -p 'test_pssm_mvp_trace.py' -v
+          python -m unittest discover -s tests -p 'test_pssm_mvp_aggregation.py' -v
+      - name: FOUR isolated MetaDrive/Panda processes with CPU MVP and task sort receipts
+        run: |
+          set -euo pipefail
+          root="output/pssm-mvp/seed-${{ matrix.seed }}-${{ matrix.scenario }}-clock-${{ matrix.clock }}"
+          mkdir -p "$root"
+          for condition in sequential_baseline paired_baseline graphics_only paired_pssm_off; do
+            echo "NATIVE_PSSM_MVP_BEGIN seed=${{ matrix.seed }} scenario=${{ matrix.scenario }} clock=${{ matrix.clock }} condition=$condition"
+            rc=0
+            xvfb-run -a python -m scripts.native_pssm_mvp_task_trace \
+              --scenario ${{ matrix.scenario }} --seed ${{ matrix.seed }} --fraction 0.12 \
+              --clock ${{ matrix.clock }} --condition "$condition" \
+              --frames 8 --warmup 2 --out "$root/$condition.json" || rc=$?
+            if [ "$rc" -eq 5 ]; then
+              # Xvfb-run teardown may fail after Python wrote complete JSON.
+              # Retain no 'PASS' unless the native positive-control status is valid.
+              test -s "$root/$condition.json" || exit 5
+              python -c 'import json,sys; d=json.load(open(sys.argv[1],encoding="utf-8")); assert d.get("status")=="OBSERVED_NATIVE_PSSM_MVP_TASK_TIMING" and d.get("condition")==sys.argv[2]' "$root/$condition.json" "$condition"
+            elif [ "$rc" -ne 0 ]; then
+              echo "NATIVE_PSSM_MVP_INCONCLUSIVE_EXIT=$rc"
+              exit "$rc"
+            fi
+          done
+          python -m scripts.aggregate_pssm_mvp_task --root "$root"
+      - name: Preserve exact MVP values, 8-frame RGB hashes, clocks and failures
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mvp-seed-${{ matrix.seed }}-${{ matrix.scenario }}-${{ matrix.clock }}
+          path: output/pssm-mvp/
+          retention-days: 7
+          if-no-files-found: warn
