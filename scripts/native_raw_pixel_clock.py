@@ -10,6 +10,8 @@ from __future__ import annotations
 import argparse
 import json
 import math
+import os
+import uuid
 from pathlib import Path
 
 import numpy as np
@@ -154,6 +156,9 @@ def native_pixel_clock(*, seed: int, scenario: str, fraction: float,
         return {
             "status": "OBSERVED_NATIVE_PIXEL_CLOCK" if valid
                       else "INCONCLUSIVE_NATIVE_PIXEL_CLOCK",
+            # Identity created only AFTER all captures and post-frame analysis,
+            # to verify that repeated camera observations are separate processes.
+            "process_id": os.getpid(), "process_uuid": uuid.uuid4().hex,
             "scenario": scenario, "seed": seed, "fraction": fraction,
             "camera_pose": pose, "mode": mode, "ablation": ablation,
             "ablation_receipt": task_report,
