@@ -195,6 +195,9 @@ def aggregate_gpu_shadow(root:Path,reports:dict[str,dict]) -> dict:
     # counterfactual. Never label a mismatch as proof of a shader defect.
     pairs=(
         ("natural_terminal","offset_terminal"),
+        # Essential restoration check: did the SORT-25 post-Chase sync
+        # return the raw shadow depth texture toward the untouched world?
+        ("natural_terminal","offset_sync_terminal"),
         ("offset_terminal","offset_probe_terminal"),
         ("offset_probe_terminal","offset_sync_terminal"),
         ("offset_terminal","offset_sync_terminal"),
