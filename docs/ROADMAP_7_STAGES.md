@@ -142,6 +142,15 @@
 - **Stage 7 계속 미완료:** 원래 동작을 변경한 실험적 Sort25 추가 PSSM 호출은 공식 MD-V3 ONNX 입력/렌더러로 사용 금지. 원래 MetaDrive PSSM task와 매번 신규 RGB를 쓰는 공식 MD-V3 독립 폐루프 엄격 반복 일치는 기존 **0/4 PASS**. 실차/CAN/CD210·Carrot MPC/Params·차종 물리·모델 주행성능 순위 제외.
 - **다음 게이트:** 동일 초기 camera pose/시드와 독립 실행 2회 이상에서 원래 renderer의 GPU depth/HDR/RGB 최종 1프레임 재현성 분포를 계측하고, 다른 camera fraction/램프에도 A/B가 지속되는지 확인. GPU HDR 추출을 프레임 사이에 넣지 않고 원래 PSSM 활성 코드 경로의 공식 MD-V3 strict-repeatability gate로 복귀.
 
+## 2026-11-11 · MetaDrive S자·실제 진입/진출 램프 f0.28 GPU shadow 깊이/HDR 확대
+
+- [네이티브 curve+ramp GPU terminal-only CI #42897373586](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42897373586): 공식 MetaDrive 0.4.3 release asset SHA256 검증, 2 seed × 네 장면(S curve 2+in/out ramp) × real lane fraction **0.28** × 7 GPU/noGPU·Sort25/미변경 프레임 대조군 = **56개 별도 native Panda/Xvfb process, matrix 8/8 + strict summary 1/1 SUCCESS**.
+- **GPU 최종 1프레임 비교:** 단순 Sort25 observation-only와 원본 offset 무추가 태스크 조건 8장면×3종 GPU texture = **24/24 비트 일치**, 별도 post-Chase 추가 PSSM.update 후 raw depth atlas가 원래 무개입 자연 장면 depth atlas와 **8/8 비트 일치**. 그림자 raw depth changed bytes는 seed 20261109에서 22,634, seed 20261110에서 22,308 (장면 4종 모두 같은 시드에서 동일).
+- 도로별 최종 HDR changed raw bytes는 좌→우 S자 road 234,865~298,811, 우→좌 S자 road 58,093~91,811, **진입 램프 road 224,344~296,598**, **진출 램프 road 6~11**. GPU 바이트 변화는 raw texel/화면 픽셀 수가 아니며 모델 성능 개선이나 그림자 버그 유일 원인의 인과 증명도 아니다.
+- [최종 native GPU 8조건 실제 수치와 장면별 카메라 좌표](STAGE7_TERMINAL_SHADOW_RAMP_F028.md). 해당 CI는 별도 프로세스에서 원래 MetaDrive 렌더링에 영향을 주는 extra PSSM sync/가상 카메라 +2m 조작도 수행했으므로 **원래 모델 입력 영상으로 대체 금지**.
+- **Stage 7 하드 게이트 계속 열림:** 공식 원래 PSSM.update와 Chase 활성 상태의 MD-V3 실제 ONNX 새 프레임 폐루프 **독립 실행 strict-repeatability 지난 검증 0/4 PASS**. 다음 단계는 원래 모델 SHA 핀ning/원본 렌더 경로를 유지한 두 실행 12-step×2시드×2 S자 정확 반복 재검증 및 불일치 원본 RGB/ONNX 입력/출력·recurrent state 위치 측정.
+- 실차/CAN/CD210 폴백·Carrot MPC/Params·차량별 물리·모델 주행성능 순위 금지. 이번 성공은 네이티브 GPU **진단 수집 성공**에 국한.
+
 ## 다음 세션에서 이어가는 법
 
 1. `main`의 이 파일과 최신 CI 결과를 읽는다.
