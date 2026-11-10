@@ -1,0 +1,92 @@
+name: Native MetaDrive post-Chase PSSM sync vs terminal shadow GPU depth and HDR (SIM ONLY)
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/terminal-shadow-postchase-sync.yml'
+      - 'scripts/native_terminal_shadow_sync.py'
+      - 'scripts/aggregate_terminal_shadow_sync.py'
+      - 'tests/test_terminal_shadow_sync.py'
+permissions:
+  contents: read
+concurrency:
+  group: terminal-pssm-after-chase-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  native-terminal-shadow:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        seed: [20261109, 20261110]
+        scenario: [s_curve_left_right, s_curve_right_left]
+    env:
+      LIBGL_ALWAYS_SOFTWARE: '1'
+      PYOPENGL_PLATFORM: 'glx'
+      OMP_NUM_THREADS: '2'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install MetaDrive 0.4.3 and CPU software OpenGL
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y xvfb libgl1 libglu1-mesa libegl1 libx11-6
+          python -m pip install 'numpy>=1.26,<3' 'opencv-python-headless>=4.8' 'metadrive-simulator==0.4.3'
+      - name: Download and validate original official MetaDrive 0.4.3 rendering assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p "$RUNNER_TEMP/metadrive-assets"
+          gh release download MetaDrive-0.4.3 --repo metadriverse/metadrive --pattern assets.zip --dir "$RUNNER_TEMP/metadrive-assets"
+          python - <<'PYCODE'
+          import hashlib,metadrive,os
+          from pathlib import Path,PurePosixPath
+          from zipfile import ZipFile
+          z=Path(os.environ['RUNNER_TEMP'])/'metadrive-assets'/'assets.zip'
+          assert z.stat().st_size==134074203
+          assert hashlib.sha256(z.read_bytes()).hexdigest()=='4f0da9f5143a1258131c5b55f77bdf170c0f9bce8a9f18dd41b3678df779eac9'
+          with ZipFile(z) as src:
+              for name in src.namelist():
+                  p=PurePosixPath(name)
+                  if p.is_absolute() or '..' in p.parts:
+                      raise ValueError('unsafe official MetaDrive asset entry')
+              src.extractall(Path(metadrive.__file__).resolve().parent)
+          print('METADRIVE_043_OFFICIAL_ASSET_SHA256_VALIDATED')
+          PYCODE
+      - name: Exact stage contract tests only (not native renderer pass)
+        run: python -m unittest discover -s tests -p 'test_terminal_shadow_sync.py' -v
+      - name: SEVEN independent MetaDrive processes with terminal-only GPU shadow/HDR capture
+        run: |
+          set -euo pipefail
+          root="output/terminal-shadow/seed-${{ matrix.seed }}-${{ matrix.scenario }}"
+          mkdir -p "$root"
+          for condition in natural_no_gpu natural_terminal offset_no_gpu offset_terminal offset_probe_terminal offset_sync_no_gpu offset_sync_terminal; do
+            echo "NATIVE_SHADOW_STAGE_START seed=${{ matrix.seed }} scenario=${{ matrix.scenario }} condition=$condition"
+            rc=0
+            xvfb-run -a python -m scripts.native_terminal_shadow_sync \
+              --seed ${{ matrix.seed }} --scenario ${{ matrix.scenario }} \
+              --fraction 0.12 --condition "$condition" --frames 5 \
+              --warmup 2 --out "$root/$condition.json" || rc=$?
+            if [ "$rc" -eq 5 ]; then
+              # Xvfb teardown must be ignored only if the captured JSON
+              # is explicit OBSERVED and contains a valid spatial control.
+              test -s "$root/$condition.json" || exit 5
+              python -c 'import json,sys; d=json.load(open(sys.argv[1],encoding="utf-8")); assert d.get("status") in ("OBSERVED_NATIVE_NO_GPU_CONTROL","OBSERVED_NATIVE_TERMINAL_SHADOW_GPU_SAMPLE") and d.get("condition")==sys.argv[2] and all(d.get("both_camera_plus_2m_positive",{}).values())' "$root/$condition.json" "$condition"
+            elif [ "$rc" -ne 0 ]; then
+              echo "NATIVE_SHADOW_STAGE_NOT_VALID rc=$rc"
+              exit "$rc"
+            fi
+          done
+          python -m scripts.aggregate_terminal_shadow_sync --root "$root"
+      - name: Preserve original GPU depth/HDR lossless bytes and no-GPU native RGB/I420 controls
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: terminal-shadow-seed-${{ matrix.seed }}-${{ matrix.scenario }}
+          path: output/terminal-shadow/
+          retention-days: 7
+          if-no-files-found: warn
