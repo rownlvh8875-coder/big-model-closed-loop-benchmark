@@ -1,0 +1,96 @@
+name: Native MetaDrive PSSM versus Chase camera WORLD-pose/MVP callback-boundary A-B (SIM ONLY)
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/native-pssm-chase-pose-lag.yml'
+      - 'bigbench/pssm_chase_pose_trace.py'
+      - 'scripts/native_pssm_chase_pose_trial.py'
+      - 'scripts/aggregate_pssm_chase_pose.py'
+      - 'tests/test_pssm_chase_pose_trace.py'
+      - 'tests/test_pssm_chase_pose_aggregate.py'
+permissions:
+  contents: read
+concurrency:
+  group: native-pssm-chase-pose-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  native-pose-boundary:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        seed: [20261109, 20261110]
+        scenario: [s_curve_left_right, s_curve_right_left]
+        capture: [paired, sequential]
+    env:
+      LIBGL_ALWAYS_SOFTWARE: '1'
+      PYOPENGL_PLATFORM: 'glx'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pinned MetaDrive and CPU software OpenGL
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y xvfb libgl1 libglu1-mesa libegl1 libx11-6
+          python -m pip install 'numpy>=1.26,<3' 'opencv-python-headless>=4.8' 'metadrive-simulator==0.4.3'
+      - name: Verify original MetaDrive 0.4.3 official rendering assets SHA256
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p "$RUNNER_TEMP/native-assets"
+          gh release download MetaDrive-0.4.3 --repo metadriverse/metadrive --pattern assets.zip --dir "$RUNNER_TEMP/native-assets"
+          python - <<'PYCODE'
+          import hashlib,metadrive,os
+          from pathlib import Path,PurePosixPath
+          from zipfile import ZipFile
+          z=Path(os.environ['RUNNER_TEMP'])/'native-assets'/'assets.zip'
+          assert z.stat().st_size==134074203
+          assert hashlib.sha256(z.read_bytes()).hexdigest()=='4f0da9f5143a1258131c5b55f77bdf170c0f9bce8a9f18dd41b3678df779eac9'
+          with ZipFile(z) as src:
+              for name in src.namelist():
+                  p=PurePosixPath(name)
+                  if p.is_absolute() or '..' in p.parts:
+                      raise ValueError('unsafe simulator asset entry')
+              src.extractall(Path(metadrive.__file__).resolve().parent)
+          print('ORIGINAL_METADRIVE_043_ASSET_SHA256_VERIFIED')
+          PYCODE
+      - name: Unit-test strict PSSM callback camera WORLD-pose and 3-arm comparator
+        run: |
+          python -m unittest discover -s tests -p 'test_pssm_chase_pose_trace.py' -v
+          python -m unittest discover -s tests -p 'test_pssm_chase_pose_aggregate.py' -v
+      - name: Run THREE separate MetaDrive/Panda/Xvfb CPU observation processes
+        run: |
+          set -euo pipefail
+          root="output/pssm-chase-pose/seed-${{ matrix.seed }}-${{ matrix.scenario }}-${{ matrix.capture }}"
+          mkdir -p "$root"
+          for arm in boundary_control boundary_observed virtual_x_intervention; do
+            echo "NATIVE_PSSM_CHASE_POSE_START seed=${{ matrix.seed }} scenario=${{ matrix.scenario }} capture=${{ matrix.capture }} arm=$arm"
+            rc=0
+            xvfb-run -a python -m scripts.native_pssm_chase_pose_trial \
+              --scenario ${{ matrix.scenario }} --seed ${{ matrix.seed }} \
+              --fraction 0.12 --capture ${{ matrix.capture }} --arm "$arm" \
+              --frames 8 --warmup 2 --out "$root/$arm.json" || rc=$?
+            if [ "$rc" -eq 5 ]; then
+              # Only accept a known Xvfb-run cleanup error after native result
+              # was fully serialized and camera +2m pose-controls passed.
+              test -s "$root/$arm.json" || exit 5
+              python -c 'import json,sys; d=json.load(open(sys.argv[1],encoding="utf-8")); assert d.get("status")=="OBSERVED_NATIVE_PSSM_CHASE_CAMERA_BOUNDARIES" and d.get("arm")==sys.argv[2] and all(d.get("plus_2m_pose_response",{}).values())' "$root/$arm.json" "$arm"
+            elif [ "$rc" -ne 0 ]; then
+              echo "NATIVE_PSSM_CHASE_POSE_NOT_VALID exit_code=$rc"
+              exit "$rc"
+            fi
+          done
+          python -m scripts.aggregate_pssm_chase_pose --root "$root"
+      - name: Preserve raw PSSM/MVP callback events and untouched-vs-intervention camera RGB
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: native-pose-lag-seed-${{ matrix.seed }}-${{ matrix.scenario }}-${{ matrix.capture }}
+          path: output/pssm-chase-pose/
+          if-no-files-found: warn
+          retention-days: 7
