@@ -18,6 +18,7 @@ import numpy as np
 
 from bigbench.native_model_campaign import CampaignSpec, run_native_episode
 from bigbench.onnx_policy import OnnxBigModelPolicy
+from scripts.native_mdv3_rgb_pixel_capture import BoundedNativeRGBCapture
 
 
 def recurrent_receipt(states: dict[str, np.ndarray]) -> str:
@@ -60,7 +61,8 @@ class AuditedOfficialOnnx(OnnxBigModelPolicy):
 
 
 def run_trial(*, model: Path, spec: Path, scenario: str,
-              seed: int, steps: int, speed: float, initial_fraction: float) -> dict:
+              seed: int, steps: int, speed: float, initial_fraction: float,
+              raw_rgb_dir: Path | None = None) -> dict:
     if type(seed) is not int or type(steps) is not int or not 2 <= steps <= 30:
         raise ValueError("bounded seed/ONNX step count invalid")
     if initial_fraction not in (0.12, 0.28):
@@ -70,8 +72,10 @@ def run_trial(*, model: Path, spec: Path, scenario: str,
         speed_mps=speed,initial_fraction=initial_fraction,
     )
     policy=AuditedOfficialOnnx(model,spec)
+    raw_observer=BoundedNativeRGBCapture() if raw_rgb_dir is not None else None
     report=run_native_episode(policy,config,
-                              full_s_route=False, camera_convergence=0)
+                              full_s_route=False, camera_convergence=0,
+                              raw_rgb_observer=raw_observer)
     rows=report.get("frames",[])
     if len(rows)!=len(policy.audit_rows) or len(policy.trace)!=len(rows):
         raise RuntimeError("native frame/ONNX audit step count differs")
@@ -96,8 +100,17 @@ def run_trial(*, model: Path, spec: Path, scenario: str,
         "native_source_964x604_rgb_sha_captured_per_step":True,
         "real_vehicle_testing":False,"model_scoring_allowed":False,
         "cd210_fallback":False,"carrot_tuning_used":False,
-        "trial_evidence":"UNMODIFIED_METADRIVE_NEW_FRAME_OFFICIAL_ONNX_DIAGNOSTIC",
+        "trial_evidence":(
+            "ORIGINAL_PSSM_WITH_OPT_IN_CPU_RGB_RETENTION_PROBE"
+            if raw_observer is not None
+            else "UNMODIFIED_METADRIVE_NEW_FRAME_OFFICIAL_ONNX_DIAGNOSTIC"
+        ),
     })
+    if raw_observer is not None:
+        # CPU serialization occurs ONLY after the full model episode.
+        report["raw_rgb_pixel_audit"]=raw_observer.save_after_episode(
+            raw_rgb_dir,report
+        )
     return report
 
 
@@ -112,12 +125,16 @@ def main(argv=None) -> int:
     p.add_argument("--speed",type=float,default=8.)
     p.add_argument("--initial-fraction",type=float,default=.12)
     p.add_argument("--out",type=Path,required=True)
+    p.add_argument("--raw-rgb-dir",type=Path,default=None,
+                   help="opt-in CPU retention of first six 964x604 RGB pairs; "
+                        "instrumented diagnosis, NOT uninstrumented strict gate")
     a=p.parse_args(argv)
     a.out.parent.mkdir(parents=True,exist_ok=True)
     try:
         report=run_trial(model=a.model,spec=a.spec,scenario=a.scenario,seed=a.seed,
                          steps=a.steps,speed=a.speed,
-                         initial_fraction=a.initial_fraction)
+                         initial_fraction=a.initial_fraction,
+                         raw_rgb_dir=a.raw_rgb_dir)
     except Exception as exc:
         report={
             "status":"ERROR",
