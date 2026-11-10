@@ -26,7 +26,14 @@ from scripts.native_scene_ablation_sweep import ALLOWED_FRACTIONS, scenario_pose
 
 
 MODES = ("perceive_sequential", "task_step_pair", "graphics_frame_pair")
-TASK_DELTA = {
+PANDA_FRAME_COUNT_DELTA = {
+    "perceive_sequential": 2,
+    "task_step_pair": 1,
+    "graphics_frame_pair": 1,
+}
+# Documented call paths: unlike globalClock frame count, only these
+# differentiate running Panda taskMgr.step() versus rendering graphics alone.
+TASK_MANAGER_STEP_CALLS = {
     "perceive_sequential": 2,
     "task_step_pair": 1,
     "graphics_frame_pair": 0,
@@ -128,7 +135,7 @@ def native_pixel_clock(*, seed: int, scenario: str, fraction: float,
                 (record["global_clock_time_delta_s"], record["real_time_delta_s"]))
             for record in clocks
         )
-        mode_tick_observed = all(x == TASK_DELTA[mode] for x in tick_values)
+        mode_tick_observed = all(x == PANDA_FRAME_COUNT_DELTA[mode] for x in tick_values)
         state_unchanged = (
             state_before["visual_ego_position_xyz"] ==
             state_after["visual_ego_position_xyz"]
@@ -160,8 +167,11 @@ def native_pixel_clock(*, seed: int, scenario: str, fraction: float,
                           for k,v in model.items()},
             "onnx_i420": packed_i420_sequence(packed, warmup=warmup),
             "clock_timeline": clocks,
-            "expected_taskMgr_frame_count_delta_per_pair": TASK_DELTA[mode],
-            "all_taskMgr_clock_deltas_as_expected": mode_tick_observed,
+            "expected_panda_global_frame_count_delta_per_pair": PANDA_FRAME_COUNT_DELTA[mode],
+            "all_panda_frame_count_deltas_as_expected": mode_tick_observed,
+            "task_manager_step_invocations_from_capture_call_path":
+                TASK_MANAGER_STEP_CALLS[mode],
+            "global_frame_counter_cannot_identify_task_manager_execution": True,
             "clock_observations_finite": clock_data_complete,
             "cpu_readbacks_bit_exact_without_new_render": all(readback_exact),
             "camera_plus_2m_positive": positive,
@@ -176,7 +186,11 @@ def native_pixel_clock(*, seed: int, scenario: str, fraction: float,
             "real_vehicle_testing": False,
             "cd210_fallback": False,
             "carrot_tuning_used": False,
-            "warning": "Pixel/clock correlation is not a unique shader or renderer cause",
+            "warning": (
+                "Both taskMgr.step and graphicsEngine.renderFrame increment "
+                "Panda global frame count. Known call-path task count and global "
+                "clock count must never be conflated; no specific shader cause proven."
+            ),
         }
     finally:
         provider.close()
