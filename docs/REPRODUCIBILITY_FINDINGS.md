@@ -26,6 +26,31 @@
 - `scripts/metadrive_camera_stability.py --fixed-clock` 및 [재시험 CI](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/workflows/camera-stability.yml): 기본 렌더러와 고정 가상 시계에서 동일 포즈 RGB 해시를 각각 기록.
 - **재시험 결과 확인 전에는 고정 시계 모드를 모델 비교의 디폴트로 적용하지 않는다.** 고정 시계가 안정적으로 동작해도 ONNX 반복시험과 여러 시드·장면의 별도 증거가 필요하다.
 
+## 2026-11-10: 개별 RGB 픽셀·모델 입력 차이 원인 분리
+
+**근거:** [MetaDrive 영상 픽셀 감사 #42738118074](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42738118074) 및 [기본 차량 RGB 가림 제거 진단 #42739088166](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42739088166).
+
+### 원본 RGB와 I420 입력의 관측치
+
+- 가상 세계 X/Y/헤딩을 고정하고 **12프레임** 촬영한 뒤 첫 2프레임을 초기 렌더링 구간으로 구분했다. 원본 전체 12프레임의 상태는 양쪽 설정에서 여전히 `FIXED_POSE_CAMERA_DRIFT`.
+- **초기 2프레임 제외, 기본 MetaDrive 그래픽 포함:** 일반 카메라 512×256 = 131,072픽셀 중 최대 **2픽셀** 차이; 최대 RGB 채널 차이 **7**; 광각 카메라는 남은 10프레임에서 **완전 일치**.
+- 같은 조건에서 기존 `RGB→I420` 변환을 독립 재계산한 결과, **모델 입력 배열**은 일반 카메라에서 최대 **원소 1개(최대 값 차이 4)**가 다르고 광각 입력은 동일. 이는 이전 SHA 전체 불일치가 실제로 얼마나 작은 픽셀 변화인지 설명할 뿐, 모델 recurrent 출력 영향이 없음을 증명하지는 않는다.
+- **시야 검증에서 발견된 별도 결함:** world (0,0) 고정 포즈에 MetaDrive의 기본 가상 차량 차체가 크게 보이며 앞쪽 도로 시야를 가렸다. 이 고정 포즈 시험은 원래부터 차선 영상 품질을 대표할 수 없었다.
+- **기본 차량 차체만 RGB 카메라에서 숨긴 분리 시험:** 일반 카메라 최대 **8픽셀**, 최대 RGB 차이 **8**, 광각은 초기 2프레임 제외 완전 일치. 차체 가림은 제거됐으나 RGB 렌더링의 비트 수준 불일치는 지속됐다. 가상 모델/물리 동역학은 변경하지 않았다.
+- **Panda 시계를 고정해도** 위 픽셀 불일치는 완전히 사라지지 않았다. 현재 근거로 특정 그림자·셰이더·버퍼 비동기화가 유일한 원인이라고 단정할 수 없다.
+- 실제 시험에서 오차가 작다는 이유로 기존 `REPEATED_DIAGNOSTIC_MISMATCH`를 PASS로 승격하지 않는다.
+
+### 새로운 무보간·무보정 입력 수렴 실험
+
+- `bigbench/frame_stability.py`: 실제 RGB 배열의 변경 픽셀 개수/좌표 범위/평균 및 최대 채널 차이를 독립 계측.
+- `scripts/metadrive_camera_stability.py --pixel-audit --warmup 2 --save-frames`: 전체 원본 해시와 워밍업 이후 픽셀 진단을 **별도** 기록. 워밍업으로 원본 불일치를 가리지 않는다.
+- `bigbench/camera_convergence.py`: 동일 시뮬레이터 포즈에서 **연속된 road·wide RGB 프레임 두 쌍이 완전히 같을 때만** 입력을 확정하는 선택적 실험. 원본 픽셀을 수정·평균·블러하거나 기록 영상을 대체하지 않는다. 최대 반복 횟수 이내 실패 시 즉시 차단한다. 원래 카메라의 실시간 촬영 정책과 달라진다는 사실도 명시.
+- `scripts/run_same_model_repeat.py` 및 [실제 MD-V3 반복 CI](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/workflows/model-camera-repeat.yml): 독립 새 MetaDrive 환경에서 MD-V3를 2번 실행하고 영상 SHA/시간축/가상 자세를 비교. **실제 실험 결과 확인 전까지 개선 효과 미확인**.
+
+### 현재 결론
+
+**픽셀 수준의 매우 작은 변화가 확인됐지만, 정확한 비트 재현성은 아직 실패다.** 같은 모델 반복 결과의 시계열 재현성, 긴 S자 전구간, 다중 시드와 외부 CARLA 교차검증을 완료하기 전에는 확정적 모델 순위 산출 금지. 카메라 수렴을 적용해 성공하더라도 **다중 캡처 선택에 따른 조건 변화**를 별도 표시해야 한다.
+
 ## 하드 게이트
 
 | 구분 | 완료 기준 | 현재 |
