@@ -1,0 +1,86 @@
+name: Native MetaDrive terminal-only PSSM HDR evidence (SIM ONLY)
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/terminal-hdr-trace.yml'
+      - 'scripts/metadrive_terminal_hdr.py'
+      - 'scripts/aggregate_terminal_hdr.py'
+      - 'tests/test_terminal_hdr.py'
+permissions:
+  contents: read
+jobs:
+  terminal-hdr:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    strategy:
+      fail-fast: false
+      matrix:
+        seed: [20261109, 20261110]
+        frames: [4, 6]
+    env:
+      LIBGL_ALWAYS_SOFTWARE: '1'
+      PYOPENGL_PLATFORM: 'glx'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install MetaDrive pinned simulator, image dependencies, Xvfb
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y xvfb libgl1 libglu1-mesa libegl1 libx11-6
+          python -m pip install 'numpy>=1.26,<3' 'opencv-python-headless>=4.8' 'metadrive-simulator==0.4.3'
+      - name: Verify official MetaDrive-0.4.3 assets archive integrity
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p "$RUNNER_TEMP/md-assets"
+          gh release download MetaDrive-0.4.3 --repo metadriverse/metadrive --pattern assets.zip --dir "$RUNNER_TEMP/md-assets"
+          python - <<'PYCODE'
+          from pathlib import Path, PurePosixPath
+          from zipfile import ZipFile
+          import hashlib, metadrive, os
+          p=Path(os.environ['RUNNER_TEMP'])/'md-assets'/'assets.zip'
+          assert p.stat().st_size==134074203
+          assert hashlib.sha256(p.read_bytes()).hexdigest()=='4f0da9f5143a1258131c5b55f77bdf170c0f9bce8a9f18dd41b3678df779eac9'
+          with ZipFile(p) as z:
+              for n in z.namelist():
+                  q=PurePosixPath(n)
+                  if q.is_absolute() or '..' in q.parts:
+                      raise ValueError('unsafe assets archive')
+              z.extractall(Path(metadrive.__file__).resolve().parent)
+          print('OFFICIAL_META_ASSETS_VERIFIED')
+          PYCODE
+      - name: Fail-closed terminal-only evidence unit tests
+        run: python -m unittest discover -s tests -p 'test_terminal_hdr.py' -v
+      - name: Separate no-GPU and post-frame-only-GPU processes
+        run: |
+          set -euo pipefail
+          root="output/terminal-hdr/seed-${{ matrix.seed }}-frames-${{ matrix.frames }}"
+          mkdir -p "$root"
+          for condition in baseline_no_gpu baseline_terminal shadow_off_terminal; do
+            echo "NATIVE_TERMINAL_BEGIN condition=$condition seed=${{ matrix.seed }} frames=${{ matrix.frames }}"
+            exit_code=0
+            xvfb-run -a python -m scripts.metadrive_terminal_hdr \
+              --seed ${{ matrix.seed }} --pose-id origin --frames ${{ matrix.frames }} \
+              --warmup 2 --condition "$condition" \
+              --out "$root/$condition.json" || exit_code=$?
+            if [ "$exit_code" -eq 5 ]; then
+              # Guard against Xvfb teardown cleanup errors; require completed JSON.
+              test -s "$root/$condition.json" || exit 5
+              python -c 'import json,sys; d=json.load(open(sys.argv[1],encoding="utf-8")); assert d.get("condition")==sys.argv[2] and d.get("status") in ("OBSERVED_NO_GPU_CONTROL", "OBSERVED_TERMINAL_GPU_SAMPLE")' "$root/$condition.json" "$condition"
+            elif [ "$exit_code" -ne 0 ] && [ "$exit_code" -ne 2 ]; then
+              echo "NATIVE_TERMINAL_FATAL_EXIT=$exit_code"
+              exit "$exit_code"
+            fi
+          done
+          python -m scripts.aggregate_terminal_hdr --root "$root"
+      - name: Save terminal HDR and non-intervened RGB/I420 receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: terminal-hdr-seed-${{ matrix.seed }}-frames-${{ matrix.frames }}
+          path: output/terminal-hdr/
+          retention-days: 7
+          if-no-files-found: warn
