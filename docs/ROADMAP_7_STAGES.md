@@ -48,6 +48,14 @@
 - **7단계:** `bigbench/reproducibility.py` 및 테스트로 실험 매니페스트 SHA, 동일 시드·모델·시간축·영상 해시/위치의 반복 비교 기능 구현. 실제 MD-V3 재실행 [#42585174235](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42585174235)은 **REPEATED_DIAGNOSTIC_MISMATCH**(마지막 위치 차이 0.193mm; 5스텝부터 카메라 해시 불일치). 고정 포즈 카메라 단독 [#42586162386](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42586162386)도 기본 시계에서 road 3종/wide 2종 프레임. [재현성 조사](REPRODUCIBILITY_FINDINGS.md)와 opt-in Panda 고정 시계 실험 추가. 전체 구간·다중 시드·CARLA 교차검증 **미완료**, 모델 순위 금지.
 - **고정 원칙 불변:** 실제 차량 테스트 없음, 차량별 동역학 없음, CD210 폴백 없음, Carrot MPC/Params 튜닝 없음. 모델/가상 환경의 진단값을 실도로 안전성과 동일시하지 않음.
 
+## 2026-11-10 재현성 원인 분리 추가 검증
+
+- **PASS (단일 고정 영상 원인 분리):** [CI #42755109268](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42755109268). 고정 MetaDrive RGB 단일 촬영 후 두 독립 ONNX 세션에서 공식 MD-V3 12스텝 반복 추론 결과 **동일**, 가상 위치 차이 0m.
+- **FAIL (실제 매 스텝 렌더):** [CI #42741355594](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42741355594). 픽셀 오차 허용 모드에서도 12스텝 모델 재현성 불일치. 카메라 이미지 바이트가 달라지므로 모델 성능 순위 산출 금지.
+- **해석:** 현재 가설의 우선순위는 MetaDrive/Panda3D 렌더링·카메라 프레임 획득 및 장면 업데이트 경로. 원인은 아직 특정하지 못했고, 고정 영상 테스트는 **오픈루프 원인 분리**이므로 7단계 전체 완료로 판정하지 않음.
+- **다음 정확한 작업:** 같은 가상 자세의 이미지 차이를 버퍼/렌더 타이밍·동적 오브젝트·후처리로 나누어 실험하고, 각 실험에서 두 카메라 원본 RGB와 최종 모델 I420 텐서의 프레임별 변화·범위를 저장. 이후 독립 새 ONNX 세션의 **실제 영상 폐루프** 동일 조건 재현성 재검사.
+- 세부 분석: [재현성 결과](REPRODUCIBILITY_FINDINGS.md), [고정 영상 분리 코드](../bigbench/frozen_camera_diagnostic.py).
+
 ## 다음 세션에서 이어가는 법
 
 1. `main`의 이 파일과 최신 CI 결과를 읽는다.
