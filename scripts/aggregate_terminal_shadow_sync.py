@@ -212,6 +212,16 @@ def aggregate_gpu_shadow(root:Path,reports:dict[str,dict]) -> dict:
             )
             for stage in STAGES
         }
+    # A comparison with mismatched GPU layout is not scientific evidence:
+    # never emit the success-status diagnostic (nor exit 0) when any stage
+    # could not be compared byte-for-byte. This must fail closed before
+    # downstream workflows or cross-ZIP validators consume a false summary.
+    for pair,stages in gpu_comparisons.items():
+        for stage,outcome in stages.items():
+            if outcome.get("status")!="RAW_GPU_BYTES_COMPARED_DIFFERENT_PROCESSES":
+                raise ValueError(
+                    f"{pair}/{stage}: GPU layout mismatch or inconclusive raw-byte comparison"
+                )
     no_gpu_and_terminal={
         title:{
             "road_matched_frame_count":sum(
