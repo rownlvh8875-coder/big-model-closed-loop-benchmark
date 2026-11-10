@@ -150,8 +150,11 @@ def run_target_lane_episode(policy: Any, camera: Any, lane: Any,
 
 
 def run_native_episode(policy: Any, spec: CampaignSpec, *,
-                       full_s_route: bool = False) -> dict:
+                       full_s_route: bool = False,
+                       camera_convergence: int = 0) -> dict:
     """Create fresh identical native world per model: never share model state."""
+    if type(camera_convergence) is not int or (camera_convergence!=0 and not 2<=camera_convergence<=12):
+        raise BenchmarkProtocolError('camera convergence bound must be 0 or 2..12')
     from .metadrive_camera import NativeMetaDriveProvider
     provider=NativeMetaDriveProvider(seed=spec.seed,map_config=SCENARIOS[spec.scenario].map_config())
     try:
@@ -166,7 +169,19 @@ def run_native_episode(policy: Any, spec: CampaignSpec, *,
             chain=forward_contiguous_chain(provider.env.current_map.road_network,
                                            lanes[0],str(lanes[1].index))
             route=NativeRouteProgress(chain)
-        out=run_target_lane_episode(policy,NativeWorldCamera(provider),lanes[0],spec,route=route)
+        renderer=NativeWorldCamera(provider)
+        if camera_convergence:
+            from .camera_convergence import StrictConsecutiveCamera
+            renderer=StrictConsecutiveCamera(renderer,max_captures=camera_convergence)
+        out=run_target_lane_episode(policy,renderer,lanes[0],spec,route=route)
+        out['strict_same_pose_convergence']={
+            'enabled':bool(camera_convergence),
+            'max_captures':camera_convergence,
+            'sample_count':len(renderer.receipts) if camera_convergence else 0,
+            'max_attempts_observed':renderer.max_attempts_observed if camera_convergence else 0,
+            'failed_samples':sum(not x.stable for x in renderer.receipts) if camera_convergence else 0,
+            'classification':'EXPERIMENTAL_MULTI_CAPTURE_NOT_NATIVE_CAMERA_EQUIVALENT',
+        }
         out['explicit_route_lane_ids']=[str(z.index) for z in route.lanes] if route else [str(lanes[0].index)]
         out['full_s_route_requested']=full_s_route
         return out
