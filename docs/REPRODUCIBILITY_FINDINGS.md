@@ -75,6 +75,13 @@
 - **공유 프로세스·전역 시계 교란이 남음.** 이를 통제할 [독립 Python/Xvfb 프로세스 실험](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/workflows/render-causality-process.yml)과 `PSSM.update` / `update main chase camera` 개별 태스크 차단 실험을 별도 실행. 증거 확인 전에는 인과관계를 확정하지 않음.
 - [세부 통계/소스 규약](METADRIVE_RENDER_CAUSALITY.md) 참조. 모델 재현성 전체 게이트는 계속 **미통과**.
 
+## 2026-11-10: 별도 프로세스·그림자 태스크 원인 분리 결과
+
+- [분리된 Python/Xvfb 6조건 #42758718405](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42758718405): 조건별 8프레임, 모두 양성 대조 PASS. 각 조건을 독립 프로세스로 실행하고 Panda global frame count 시작값 10을 확인해 초기 shared-clock 교란을 통제. `taskMgr.step` 때 road raw 픽셀 4~9개, I420 입력 원소 1~6개가 변함. `graphicsEngine.renderFrame`만 호출할 때 후반 I420 변경 원소 **0**.
+- [씬 태스크 A/B #42759149254](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42759149254): 원래 `taskMgr.step`에서 `PSSM.update`를 하나만 제거하고 `igLoop` 유지 시 **road/wide raw·model 영상 모두 후반 변경 픽셀 0, I420 변경 원소 0**. `update main chase camera`만 제거한 조건은 원래대로 road raw 9픽셀, I420 6개 원소 변화. 이 A/B는 `PSSM.update` 그림자맵 태스크 관여 가설을 강하게 뒷받침하지만 특정 셰이더 연산·다른 seed에서의 인과성을 확정하지 않는다.
+- 모든 조건에서 렌더 없는 `RTMCopyRam` CPU 반복 읽기 **비트 일치**, +2m 포즈 대조는 양쪽 카메라 변화가 확인됐다. `PSSM.update` 제거를 모델 성능시험 디폴트로 설정하지 않는다. 영상 도메인 자체가 달라지기 때문이다.
+- [상세 A/B 수치·검증 프로토콜](METADRIVE_RENDER_CAUSALITY.md)에서 원시 아티팩트/실험 해석을 확인할 수 있다. `7단계` **실제 ONNX 폐루프 반복시험은 여전히 FAIL/미완료**, 모델 주행성능 순위 금지.
+
 ## 하드 게이트
 
 | 구분 | 완료 기준 | 현재 |
