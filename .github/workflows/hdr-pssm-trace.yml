@@ -1,12 +1,6 @@
 name: MetaDrive 0.4.3 PSSM HDR RGB trace (SIM ONLY)
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - '.github/workflows/hdr-pssm-trace.yml'
-      - 'scripts/metadrive_hdr_trace.py'
-      - 'scripts/aggregate_hdr_trace.py'
-      - 'tests/test_hdr_trace.py'
 permissions:
   contents: read
 jobs:
