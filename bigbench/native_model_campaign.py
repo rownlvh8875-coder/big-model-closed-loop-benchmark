@@ -51,8 +51,9 @@ class CampaignSpec:
 
 class NativeWorldCamera:
     """Real Panda3D MetaDrive camera borrowed into WORLD space, not vehicle space."""
-    def __init__(self, provider: Any):
+    def __init__(self, provider: Any, raw_rgb_observer: Any | None = None):
         self.provider=provider
+        self.raw_rgb_observer=raw_rgb_observer
         self.last_source_rgb_sha256: dict[str, str] = {}
         self.rectifier=PinholeRectifier(source_width=provider.source_width,
                                         source_height=provider.source_height)
@@ -88,6 +89,12 @@ class NativeWorldCamera:
         pair,_=self.rectifier.rectify_pair(img['road'],img['wide'],
                         road_intrinsics=matrices['road'],wide_intrinsics=matrices['wide'])
         self.last_source_rgb_sha256=raw_sha
+        # Optional source-RGB retention only. Image arrays are the already
+        # copied CPU buffers used above for native hashing/rectification.
+        # No additional perceive(), taskMgr.step(), GPU readback or model
+        # input changes; default None is the untouched official path.
+        if self.raw_rgb_observer is not None:
+            self.raw_rgb_observer.record_native_rgb(img,raw_sha)
         return pair
 
 
@@ -166,7 +173,8 @@ def run_native_episode(policy: Any, spec: CampaignSpec, *,
                        full_s_route: bool = False,
                        camera_convergence: int = 0,
                        camera_pixel_tolerance: int = 0,
-                       camera_rgb_delta: int = 0) -> dict:
+                       camera_rgb_delta: int = 0,
+                       raw_rgb_observer: Any | None = None) -> dict:
     """Create fresh identical native world per model: never share model state."""
     if type(camera_convergence) is not int or (camera_convergence!=0 and not 2<=camera_convergence<=12):
         raise BenchmarkProtocolError('camera convergence bound must be 0 or 2..12')
@@ -186,7 +194,7 @@ def run_native_episode(policy: Any, spec: CampaignSpec, *,
             chain=forward_contiguous_chain(provider.env.current_map.road_network,
                                            lanes[0],str(lanes[1].index))
             route=NativeRouteProgress(chain)
-        renderer=NativeWorldCamera(provider)
+        renderer=NativeWorldCamera(provider,raw_rgb_observer=raw_rgb_observer)
         if camera_convergence:
             from .camera_convergence import StrictConsecutiveCamera
             renderer=StrictConsecutiveCamera(renderer,max_captures=camera_convergence,
