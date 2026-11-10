@@ -114,3 +114,28 @@ xvfb-run -a python -m scripts.metadrive_render_causality \
 **해석:** 서로 독립된 Panda 프로세스로 다시 실행해도 `taskMgr.step()`이 실행되는 경로에서 픽셀 및 I420 텐서가 변화하고 `graphicsEngine.renderFrame()`만 사용하는 경로는 워밍업 이후 모델 입력이 일정한 경향이 확인됐다. 이는 **태스크/시간 기반 장면 업데이트의 영향 가설**을 강화한다. 하지만 단 한 시드·한 pose·한 GL 드라이버에서의 관측이며 **어느 특정 태스크가 바이트 차이를 발생시켰는지** 아직 분리하지 못했다.
 
 **다음 분리:** MetaDrive에 등록된 `PSSM.update`(그림자 관련 태스크)와 `update main chase camera`를 각각 독립 시험에서 제외하되 `igLoop`은 반드시 유지한다. [전용 시험](../.github/workflows/scene-task-ablation.yml). 동적 장면·그림자를 제거한 영상은 원래 평가용 모델 입력과 동일하지 않으므로 모델 성능 점수로 사용하지 않는다.
+
+
+## 장면 태스크 분리 — PSSM.update와 chase camera (2026-11-10)
+
+[실제 GitHub Actions #42759149254](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42759149254)에서 조건별 별도 Python·Xvfb 프로세스를 생성하고, **`ego_hidden`, `task_step_pair`, 동일 seed 20261109·8프레임**을 비교했다. 아티팩트 `native-pssm-shadow-scene-ablation` (id `13737346002`).
+
+`bigbench/task_ablation.py`는 사전에 허용한 시각 태스크 한 개만 제거한다. 반드시 `taskMgr.getAllTasks()`에 그 태스크가 정확히 1개 있어야 하며 **`igLoop`가 계속 실행되는지** 검증한다. 이 과정은 가상 렌더링에만 적용하고, 모델이나 실제 차량을 건드리지 않는다.
+
+| 가상 장면 조건 | 후반 원본 road/wide 변경 픽셀 | 후반 모델 road/wide 변경 픽셀 | 후반 I420 변경 원소 | 비트 동일 I420 | +2m 포즈 변동 대조 |
+|---|---|---|---:|---|---|
+| 기본 `taskMgr.step` | 9 / 2 | 8 / 0 | 6 | 아니오 | road/wide 모두 PASS |
+| **`PSSM.update`만 제거** | **0 / 0** | **0 / 0** | **0** | **예** | road/wide 모두 PASS |
+| `update main chase camera`만 제거 | 9 / 2 | 8 / 0 | 6 | 아니오 | road/wide 모두 PASS |
+
+모든 조건에서 GPU 재렌더 없이 같은 CPU `RTMCopyRam` 텍스처를 세 번 재읽은 데이터는 비트 단위 동일했다. `PSSM.update` 제거 시에도 `igLoop`은 살아 있고, 카메라를 +2m 옮기면 road/wide 화면이 바뀌므로 **빈/멈춘 화면을 재활용하는 거짓 안정화는 관측되지 않았다.**
+
+**해석(중요):** 이 특정 MetaDrive 0.4.3·Ubuntu/Xvfb/software GL·단일 seed·고정 pose 조건에서 그림자 업데이트 태스크 `PSSM.update`의 수행 여부가 RGB/I420 불일치와 강하게 연관되며, chase camera 태스크의 제거로는 현상이 해소되지 않았다. 하지만 **그림자맵의 어느 패스·셰이더·렌더 상태가 최종 출력 9픽셀을 바꾸는지**, 다른 장면·시드에서도 같은지, 실제 comma 카메라 입력과 동일한지까지는 아직 증명하지 않았다.
+
+**적용 금지:** `PSSM.update`를 제거한 렌더링은 그림자 갱신이 달라지는 **새 시뮬레이션 영상 조건**이다. 이를 원래 렌더러와 동일하다고 가정하거나 일반 모델 평가 기본 설정에 자동 적용하지 않는다. 모델 비교에서의 영상 도메인·장면 난이도 및 다중 시드 통제 검증이 선행되어야 한다. 실제 대형 ONNX의 **새 영상 폐루프 반복 재현성은 여전히 독립적인 미완료 게이트**다.
+
+### 향후 후속 조사
+
+1. `PSSM.update`의 그림자맵 갱신을 한 단계씩 제어하여 HDR `scene_tex`와 최종 `RTMCopyRam` 변화가 어디서 처음 발생하는지 검사.
+2. 두 개 이상의 독립 시드·서로 다른 카메라 좌표·S자/램프 지도에서 동일 A/B 현상 반복 확인.
+3. 조건을 문서화한 뒤 **공식 MD-V3 동일 모델 실제 새 카메라 폐루프**를 별도 반복시험하여 영상 해시/원본 action/가상 궤적의 일치 검증. 이 시험 전 모델 성능 순위 금지.
