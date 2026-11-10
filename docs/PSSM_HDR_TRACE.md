@@ -75,3 +75,26 @@
 모두 GPU 추출 전·후 카메라 +2m 이동 검사를 실시한다. no-GPU 대조군의 두 양성 대조가 PASS하지 않거나 요청한 stage texture가 추출되지 않으면 집계 실패. 반대로 특정 추출에서 영상 갱신 중단 현상이 발생하면 **DIAGNOSTIC OBSERVED**로 기록한다. 이는 결함 발생을 계측한 성공일 뿐 정식 시뮬레이터·ONNX 성능 PASS와 무관하다.
 
 기존 모든 텍스처를 한 틱에서 읽는 workflow는 반복적인 거짓 재현성 주장과 CI 리소스 소모를 막기 위해 workflow_dispatch 수동 실행 전용으로 전환했다. 본 단계의 GPU 계측은 반드시 모델 평가 파이프라인과 분리한다.
+
+
+## 2026-11-10 독립 GPU 호출별 추출 결과 (원본 아티팩트 근거, CI 집계 수정 중)
+
+[첫 분리 실험 Actions #42767653990](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42767653990)의 프로세스별 JSON에서 원본 카메라가 +2m 이동에 반응하는지를 확인했다. 모든 조건의 사전 양성 대조는 road/wide 모두 True. 다음은 **GPU 추출 이후** 반응 관측값이다.
+
+| 시드 | GPU 추출 | road 카메라 반응 | wide 카메라 반응 | 해석 |
+|---|---|---|---|---|
+| 20261109 | none | True | True | 정상 무추출 대조 |
+| 20261109 | pssm_depth | True | True | 그림자맵만 추출해도 반응 유지 |
+| 20261109 | road_hdr | **False** | True | road HDR 추출 후 road만 응답 손실 |
+| 20261109 | wide_hdr | True | **False** | wide HDR 추출 후 wide만 응답 손실 |
+| 20261110 | none | True | True | 정상 무추출 대조 |
+| 20261110 | pssm_depth | True | True | 그림자맵만 추출해도 반응 유지 |
+| 20261110 | road_hdr | **False** | True | road HDR 추출 후 road만 응답 손실 |
+| 20261110 | wide_hdr | True | **False** | wide HDR 추출 후 wide만 응답 손실 |
+| 20261110 | all | **False** | **False** | 양쪽 HDR 추출 후 양쪽 응답 손실 |
+
+20261109 시드의 all 원시 JSON은 초기 CI가 xvfb-run 종료 정리 시 exit 5를 반환해 실행되지 않았다. 이 행을 추정해 채우지 않으며 재실행 시 다시 확인해야 한다.
+
+**판단:** 정상적인 no-probe 이미지와 PSSM depth atlas 추출 이후 이미지는 다음 카메라 위치 변화에 반응한 반면, HDR scene_tex를 extractTextureData()로 읽은 카메라만 다음 RGB 출력이 이동에 반응하지 않았다. 따라서 **GPU 계측 API가 대상 카메라 렌더 경로에 개입한다는 강한 실험적 근거**를 확보했다. 이 관측은 그림자 업데이트 PSSM.update가 원래 작은 RGB 드리프트를 유발한 정확한 메커니즘을 설명하지 않는다.
+
+초기 집계기가 road/wide 반응이 반드시 동시에 True 또는 False라고 가정해 선택적 개입을 집계 오류로 취급한 부분을 수정했다. 이후 집계는 카메라별 불리언을 별도 보존하고, 예외 처리로 진단 FAIL을 PASS로 바꾸지 않는다. GPU 추출이 없는 원본 경로와 공식 ONNX의 매 프레임 폐루프 반복 재현성은 **여전히 미완료**.
