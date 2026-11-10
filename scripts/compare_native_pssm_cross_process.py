@@ -153,17 +153,23 @@ def compare_one_native_scene(root:Path,seed:int,scene:str)->dict:
         raise ValueError("unknown native MetaDrive map")
     folder=scene_directory(root,seed,scene)
     rows={}
+    ids=set()
     for arm in ARMS:
         first=json.loads((folder/f"{arm}-run_0.json").read_text(encoding="utf-8"))
         second=json.loads((folder/f"{arm}-run_1.json").read_text(encoding="utf-8"))
         rows[arm]=compare_native_camera_repeats(first,second,seed,scene,arm)
+        for trial in (first,second):
+            uid=trial["process_uuid"]
+            if uid in ids:
+                raise ValueError("all fixed-scene arms must be independent processes")
+            ids.add(uid)
     return {
         "status":"FOUR_FIXED_POSE_TREATMENTS_EACH_INDEPENDENTLY_COMPARED",
         "seed":seed,"scenario":scene,"fraction":FRACTION,
         "native_process_count":len(ARMS)*2,
         "arm_receipts":rows,
         "original_PSSM_vs_ablation_is_not_same_renderer_semantics":True,
-        "original_onxx_native_closed_loop_gate_proven":False,
+        "original_onnx_native_closed_loop_gate_proven":False,
         "pssm_is_unique_renderer_cause_proven":False,
         "real_vehicle_testing":False,"model_scoring_allowed":False,
     }
