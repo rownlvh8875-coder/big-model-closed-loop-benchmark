@@ -7,10 +7,11 @@ from pathlib import Path
 
 
 SCHEDULES = {
-    "perceive_baseline": ("perceive_sequential", "baseline", 2),
-    "task_baseline": ("task_step_pair", "baseline", 1),
-    "graphics_baseline": ("graphics_frame_pair", "baseline", 0),
-    "task_shadow_off": ("task_step_pair", "shadow_off", 1),
+    # mode, PSSM task state, observed Panda frame-count delta, taskMgr calls
+    "perceive_baseline": ("perceive_sequential", "baseline", 2, 2),
+    "task_baseline": ("task_step_pair", "baseline", 1, 1),
+    "graphics_baseline": ("graphics_frame_pair", "baseline", 1, 0),
+    "task_shadow_off": ("task_step_pair", "shadow_off", 1, 1),
 }
 
 
@@ -20,7 +21,7 @@ def compare_pixel_clock_conditions(reports: dict[str, dict]) -> dict:
     first = reports["task_baseline"]
     match_fields = ("seed", "scenario", "fraction", "camera_pose", "frames", "warmup")
     summary = {}
-    for label, (mode, ablation, ticks) in SCHEDULES.items():
+    for label, (mode, ablation, frame_ticks, task_calls) in SCHEDULES.items():
         report = reports[label]
         if report.get("status") != "OBSERVED_NATIVE_PIXEL_CLOCK":
             raise ValueError(f"{label}: missing native positive control or clock measurement")
@@ -34,14 +35,19 @@ def compare_pixel_clock_conditions(reports: dict[str, dict]) -> dict:
             raise ValueError("real vehicle or model scoring must remain disabled")
         if not all(report["camera_plus_2m_positive"][camera] for camera in ("road", "wide")):
             raise ValueError(f"{label}: stale image may be mistaken for deterministic frame")
-        if (report.get("expected_taskMgr_frame_count_delta_per_pair") != ticks
-                or report.get("all_taskMgr_clock_deltas_as_expected") is not True):
-            raise ValueError(f"{label}: task scheduler ticks were not observed as expected")
+        if (report.get("expected_panda_global_frame_count_delta_per_pair") != frame_ticks
+                or report.get("all_panda_frame_count_deltas_as_expected") is not True):
+            raise ValueError(f"{label}: Panda graphics frame count not as observed")
+        if (report.get("task_manager_step_invocations_from_capture_call_path")
+                != task_calls):
+            raise ValueError(f"{label}: mode's taskMgr invocation contract changed")
+        if report.get("global_frame_counter_cannot_identify_task_manager_execution") is not True:
+            raise ValueError(f"{label}: Panda global clock misconstrued as task call count")
         observed = report.get("clock_timeline", [])
         if len(observed) != report["frames"]:
             raise ValueError(f"{label}: missing per-frame clock receipts")
-        if any(t.get("global_clock_frame_count_delta") != ticks for t in observed):
-            raise ValueError(f"{label}: inconsistent frame-clock delta")
+        if any(t.get("global_clock_frame_count_delta") != frame_ticks for t in observed):
+            raise ValueError(f"{label}: inconsistent Panda global frame delta")
         if report.get("pssm_task_identity_correct") is not True:
             raise ValueError(f"{label}: incorrect PSSM task identity")
         if ablation == "shadow_off":
@@ -86,7 +92,8 @@ def compare_pixel_clock_conditions(reports: dict[str, dict]) -> dict:
             raise ValueError(f"{label}: I420 frame count missing")
         summary[label] = {
             "mode": mode, "ablation": ablation,
-            "measured_taskMgr_frame_ticks_per_pair": ticks,
+            "measured_panda_frame_count_delta_per_pair": frame_ticks,
+            "taskMgr_steps_per_pair_from_call_path": task_calls,
             "raw_sensor_rgb": source,
             "warped_model_rgb": model,
             "i420_unique_sha_after_warmup": i420["post_warmup_unique_sha256"],
@@ -111,8 +118,9 @@ def compare_pixel_clock_conditions(reports: dict[str, dict]) -> dict:
         "model_closed_loop_reproducibility_proven": False,
         "real_vehicle_testing": False, "model_scoring_allowed": False,
         "warning": (
-            "Comparing taskMgr.step, sequential perceive, graphicsFrame-only and "
-            "shadow-task removal changes camera timing/render semantics. "
+            "Panda global frame counter increments on both taskMgr.step and graphicsFrame. "
+            "Actual taskMgr calls are documented by inspected capture mode. "
+            "Comparing modes and shadow ablation changes timing/render semantics. "
             "Pixel/clock associations do not identify a unique root cause."
         ),
     }
