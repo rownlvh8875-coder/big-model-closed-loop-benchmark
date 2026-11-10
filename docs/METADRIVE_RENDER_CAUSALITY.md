@@ -92,3 +92,25 @@ xvfb-run -a python -m scripts.metadrive_render_causality \
 
 **검증 상태:** 위 첫 6조건 실렌더 감사는 **기술 진단 완료**, 인과관계 식별 및 모델 주행성능은 **미완료**.
 
+
+
+## 독립 Python/Xvfb 프로세스 재검증 — 2026-11-10 PASS(관측)
+
+**실행 증거:** [GitHub Actions #42758718405](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42758718405), 독립 프로세스 6개 모두 정상 관측. 아티팩트 `isolated-native-render-time-readback-scene` (id `13736842431`). 각 조건별 **8프레임**, 앞 2프레임을 원본에서 제거하지 않고 후반 별도 요약만 계산했다. Panda3D 시작 frame count는 여섯 조건 모두 10으로 확인돼 첫 실험의 공유 전역시계 누적 교란을 통제했다.
+
+| 기본 가상 차량 RGB | 방식 | 소스 RGB 변경 픽셀 road / wide | 모델 512×256 변경 road / wide | I420 변경 원소 수 | I420 완전 일치(후반) |
+|---|---|---|---|---:|---|
+| 표시 | 순차 `perceive` | 4 / 0 | 2 / 0 | 1 | 아니오 |
+| 표시 | 동시 `taskMgr.step` | 4 / 2 | 2 / 0 | 1 | 아니오 |
+| 표시 | 동시 `graphicsEngine.renderFrame` | 0 / 2 | 0 / 0 | **0** | **예** |
+| 숨김 | 순차 `perceive` | 9 / 2 | 8 / 0 | 6 | 아니오 |
+| 숨김 | 동시 `taskMgr.step` | 9 / 2 | 8 / 0 | 6 | 아니오 |
+| 숨김 | 동시 `graphicsEngine.renderFrame` | 0 / 0 | 0 / 0 | **0** | **예** |
+
+위 RGB 변경 픽셀 수는 초기 2프레임을 제외한 나머지 표본에서 첫 후반 프레임과의 **최대 차이**다. 각 조건의 전체 8프레임 해시도 JSON에 보존했다.
+
+**모든 조건에서** 렌더링 없이 같은 `RTMCopyRam` RGB 텍스처를 반복 읽은 해시는 완전히 동일했다. +2m 포즈 이동 양성 대조에서 두 카메라가 모두 변했다. 따라서 이 관측은 **고정 stale framebuffer만 읽어서 동일하게 보인 가짜 안정화**와 구분된다.
+
+**해석:** 서로 독립된 Panda 프로세스로 다시 실행해도 `taskMgr.step()`이 실행되는 경로에서 픽셀 및 I420 텐서가 변화하고 `graphicsEngine.renderFrame()`만 사용하는 경로는 워밍업 이후 모델 입력이 일정한 경향이 확인됐다. 이는 **태스크/시간 기반 장면 업데이트의 영향 가설**을 강화한다. 하지만 단 한 시드·한 pose·한 GL 드라이버에서의 관측이며 **어느 특정 태스크가 바이트 차이를 발생시켰는지** 아직 분리하지 못했다.
+
+**다음 분리:** MetaDrive에 등록된 `PSSM.update`(그림자 관련 태스크)와 `update main chase camera`를 각각 독립 시험에서 제외하되 `igLoop`은 반드시 유지한다. [전용 시험](../.github/workflows/scene-task-ablation.yml). 동적 장면·그림자를 제거한 영상은 원래 평가용 모델 입력과 동일하지 않으므로 모델 성능 점수로 사용하지 않는다.
