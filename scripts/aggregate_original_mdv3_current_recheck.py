@@ -22,6 +22,56 @@ MODEL_ID="1365126a-e71e-4778-be00-8ab92dc82c09/12864/big_driving_supercombo.onnx
 STEPS=12
 INITIAL_FRACTION=.12
 
+# Audit-only field-level timeline. No new image capture, model inference,
+# tolerance, filtering, GPU readback, or change to original Panda scheduling.
+FIRST_DIVERGENCE_FIELDS=(
+    "source_road_rgb_sha256", "source_wide_rgb_sha256",
+    "road_frame_sha256", "wide_frame_sha256",
+    "new_img_sha256", "raw_action_sha256", "state_after_step_sha256",
+)
+
+
+def first_divergence_timeline(a:dict,b:dict) -> dict:
+    """Observe when native sensor hashes first differ from the ONNX feed.
+
+    Uses the same recorded 12-step native trial bytes whose strict comparison
+    is already revalidated. Digest differences are not GPU pixel coordinates,
+    proof of sole renderer cause, or model-performance scores.
+    """
+    left,right=a["frames"],b["frames"]
+    if len(left)!=STEPS or len(right)!=STEPS:
+        raise ValueError("complete original-PSSM 12-step raw traces required")
+    stages={
+        field:next((step for step,(x,y) in enumerate(zip(left,right),1)
+                    if x[field]!=y[field]),None)
+        for field in FIRST_DIVERGENCE_FIELDS
+    }
+    source_steps=[
+        stages[f] for f in ("source_road_rgb_sha256",
+                            "source_wide_rgb_sha256") if stages[f] is not None
+    ]
+    source_first=min(source_steps) if source_steps else None
+    feed_first=stages["new_img_sha256"]
+    if source_first is None:
+        classification="NO_NATIVE_SOURCE_RGB_DIFFERENCE_OBSERVED"
+    elif feed_first is None:
+        classification="SOURCE_RGB_DIFF_WITH_NO_ONNX_FEED_DIFF_IN_12_STEPS"
+    elif source_first<feed_first:
+        classification="NATIVE_SOURCE_RGB_DIVERGED_BEFORE_ONNX_IMAGE_FEED"
+    elif source_first==feed_first:
+        classification="SOURCE_RGB_AND_ONNX_FEED_FIRST_DIFFER_SAME_STEP"
+    else:
+        classification="ONNX_FEED_DIFF_PRECEDES_NATIVE_SOURCE_RGB_DIFF"
+    return {
+        "first_different_step_by_field":stages,
+        "first_native_road_or_wide_rgb_mismatch_step":source_first,
+        "first_actual_onnx_new_img_mismatch_step":feed_first,
+        "first_raw_action_mismatch_step":stages["raw_action_sha256"],
+        "first_recurrent_state_mismatch_step":stages["state_after_step_sha256"],
+        "source_vs_onnx_first_divergence_classification":classification,
+        "source_sha_difference_not_pixel_location_or_unique_cause":True,
+    }
+
 
 def aggregate_original_mdv3(root:Path) -> dict:
     rows=[]
@@ -58,6 +108,7 @@ def aggregate_original_mdv3(root:Path) -> dict:
                 raise ValueError("PSSM disabled/changed by untrusted native trial")
             if recomputed.get("real_vehicle_testing") or recomputed.get("model_scoring_allowed"):
                 raise ValueError("unsafe real vehicle/ONNX ranking claim")
+            timeline=first_divergence_timeline(a,b)
             rows.append({
                 "seed":seed,"scenario":scenario,"steps_per_process":STEPS,
                 "independent_process_count":2,
@@ -75,6 +126,7 @@ def aggregate_original_mdv3(root:Path) -> dict:
                     recomputed["actual_onnx_new_img_sha256_match"],
                 "max_xy_position_delta_m":recomputed["max_xy_position_delta_m"],
                 "full_discrepancy_receipt":recomputed["mismatches"],
+                "raw_sensor_to_onnx_first_divergence_timeline":timeline,
             })
     if len(rows)!=len(SEEDS)*len(SCENARIOS):
         raise ValueError("four original MD-V3 independent native evaluations required")
@@ -118,6 +170,14 @@ def main(argv=None) -> int:
             "first_diff_step":x["first_diverging_step"],
             "first_diff_boundary":x["first_observed_mismatch_boundary"],
             "max_xy_delta_m":x["max_xy_position_delta_m"],
+            "native_rgb_first":x["raw_sensor_to_onnx_first_divergence_timeline"][
+                "first_native_road_or_wide_rgb_mismatch_step"],
+            "onnx_feed_first":x["raw_sensor_to_onnx_first_divergence_timeline"][
+                "first_actual_onnx_new_img_mismatch_step"],
+            "raw_action_first":x["raw_sensor_to_onnx_first_divergence_timeline"][
+                "first_raw_action_mismatch_step"],
+            "sensor_feed_order":x["raw_sensor_to_onnx_first_divergence_timeline"][
+                "source_vs_onnx_first_divergence_classification"],
         } for x in result["per_seed_scene"]],
         "warning":"DIAGNOSTIC CI SUCCESS != MODEL REPEAT GATE PASS",
     },ensure_ascii=False),flush=True)
