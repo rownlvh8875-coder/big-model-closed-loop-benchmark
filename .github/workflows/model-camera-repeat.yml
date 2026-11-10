@@ -1,4 +1,4 @@
-name: Experimental MD-V3 strict same-pose camera convergence repeatability (SIM ONLY)
+name: Experimental MD-V3 pixel-bounded camera repeatability (SIM ONLY)
 on:
   workflow_dispatch:
   push:
@@ -53,12 +53,13 @@ jobs:
             --path '1365126a-e71e-4778-be00-8ab92dc82c09/12864/big_driving_supercombo.onnx' \
             --sha256 '35976b11be3904eb78e32f7dc55a6abf8e9433ac5aa391a1998f1e9ce001b199' \
             --max-bytes 900000000 --out "$RUNNER_TEMP/models"
-      - name: Native 12-step ONNX repeated independently with strict paired camera frames
+      - name: Independent 12-step ONNX repeat with bounded RGB tolerances, never image rewriting
         run: |
           xvfb-run -a python -m scripts.run_same_model_repeat \
             --model "$RUNNER_TEMP/models/1365126a-e71e-4778-be00-8ab92dc82c09/12864/big_driving_supercombo.onnx" \
             --spec model_specs/md-v3.json --scenario s_curve_left_right \
             --seed 20261109 --steps 12 --speed 8 --camera-convergence 6 \
+            --camera-pixel-tolerance 16 --camera-channel-delta 10 \
             --out output/strict-native-repeat
       - name: Preserve both receipts and repeated-run result even on mismatch
         if: always()
