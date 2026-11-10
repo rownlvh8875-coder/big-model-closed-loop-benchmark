@@ -1,0 +1,87 @@
+name: Official MD-V3 independent new-frame strict native ONNX repeat (SIM ONLY)
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/official-mdv3-fresh-repeat.yml'
+      - 'scripts/native_mdv3_repeat_trial.py'
+      - 'scripts/compare_fresh_native_mdv3.py'
+      - 'tests/test_fresh_native_mdv3.py'
+      - 'bigbench/onnx_policy.py'
+permissions:
+  contents: read
+jobs:
+  official-mdv3-repeat:
+    runs-on: ubuntu-latest
+    timeout-minutes: 70
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        seed: [20261109, 20261110]
+        scenario: [s_curve_left_right, s_curve_right_left]
+    env:
+      LIBGL_ALWAYS_SOFTWARE: '1'
+      PYOPENGL_PLATFORM: 'glx'
+      OMP_NUM_THREADS: '2'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pinned MetaDrive and official ONNX Runtime inference dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y xvfb libgl1 libglu1-mesa libegl1 libx11-6
+          python -m pip install '.[inference]' 'metadrive-simulator==0.4.3'
+      - name: Confirm official MetaDrive 0.4.3 assets SHA256
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p "$RUNNER_TEMP/metadrive-assets"
+          gh release download MetaDrive-0.4.3 --repo metadriverse/metadrive --pattern assets.zip --dir "$RUNNER_TEMP/metadrive-assets"
+          python - <<'PYCODE'
+          from pathlib import Path,PurePosixPath
+          from zipfile import ZipFile
+          import hashlib,metadrive,os
+          z=Path(os.environ['RUNNER_TEMP'])/'metadrive-assets'/'assets.zip'
+          assert z.stat().st_size==134074203
+          assert hashlib.sha256(z.read_bytes()).hexdigest()=='4f0da9f5143a1258131c5b55f77bdf170c0f9bce8a9f18dd41b3678df779eac9'
+          with ZipFile(z) as src:
+              for p in src.namelist():
+                  x=PurePosixPath(p)
+                  if x.is_absolute() or '..' in x.parts:
+                      raise ValueError('unsafe native asset path')
+              src.extractall(Path(metadrive.__file__).resolve().parent)
+          print('PINNED_METADRIVE_SIM_ASSETS_SHA256_VERIFIED')
+          PYCODE
+      - name: Verify real MD-V3 repeatability contract with synthetic unit tests
+        run: python -m unittest discover -s tests -p 'test_fresh_native_mdv3.py' -v
+      - name: Download original official MD-V3 ONNX into ephemeral runner with SHA256
+        run: |
+          python -m scripts.hf_models download \
+            --path '1365126a-e71e-4778-be00-8ab92dc82c09/12864/big_driving_supercombo.onnx' \
+            --sha256 '35976b11be3904eb78e32f7dc55a6abf8e9433ac5aa391a1998f1e9ce001b199' \
+            --max-bytes 900000000 --out "$RUNNER_TEMP/models"
+      - name: Run TWO independent Python/Panda/Xvfb/ORT sessions, no GPU probes or camera convergence
+        run: |
+          set -euo pipefail
+          root="output/native-official-repeat/${{ matrix.seed }}/${{ matrix.scenario }}"
+          mkdir -p "$root"
+          for idx in 0 1; do
+            echo "NATIVE_MDV3_INDEPENDENT_START run=$idx seed=${{ matrix.seed }} scenario=${{ matrix.scenario }}"
+            xvfb-run -a python -m scripts.native_mdv3_repeat_trial \
+              --model "$RUNNER_TEMP/models/1365126a-e71e-4778-be00-8ab92dc82c09/12864/big_driving_supercombo.onnx" \
+              --spec model_specs/md-v3.json --scenario ${{ matrix.scenario }} \
+              --seed ${{ matrix.seed }} --steps 12 --speed 8 \
+              --initial-fraction 0.12 --out "$root/run_${idx}.json"
+          done
+          python -m scripts.compare_fresh_native_mdv3 --root "$root"
+      - name: Preserve BOTH real ONNX trials and honest mismatch verdict
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: official-mdv3-seed-${{ matrix.seed }}-${{ matrix.scenario }}
+          path: output/native-official-repeat/
+          retention-days: 7
+          if-no-files-found: warn

@@ -1,0 +1,88 @@
+name: MetaDrive PSSM native curve and ramp multi-seed pose sweep (SIM ONLY)
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/native-multiscene-ablation.yml'
+      - 'scripts/native_scene_ablation_sweep.py'
+      - 'scripts/aggregate_multiscene_ablation.py'
+      - 'tests/test_multiscene_ablation.py'
+permissions:
+  contents: read
+jobs:
+  native-multiscene:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        seed: [20261109, 20261110]
+        scenario: [s_curve_left_right, s_curve_right_left, in_ramp, out_ramp]
+        fraction: ['0.12', '0.28']
+    env:
+      LIBGL_ALWAYS_SOFTWARE: '1'
+      PYOPENGL_PLATFORM: 'glx'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pinned simulator and CPU OpenGL
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y xvfb libgl1 libglu1-mesa libegl1 libx11-6
+          python -m pip install 'numpy>=1.26,<3' 'opencv-python-headless>=4.8' 'metadrive-simulator==0.4.3'
+      - name: Verify official MetaDrive 0.4.3 assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p "$RUNNER_TEMP/native-meta-assets"
+          gh release download MetaDrive-0.4.3 --repo metadriverse/metadrive --pattern assets.zip --dir "$RUNNER_TEMP/native-meta-assets"
+          python - <<'PYCODE'
+          import hashlib,metadrive,os
+          from pathlib import Path,PurePosixPath
+          from zipfile import ZipFile
+          a=Path(os.environ['RUNNER_TEMP'])/'native-meta-assets'/'assets.zip'
+          assert a.stat().st_size==134074203
+          assert hashlib.sha256(a.read_bytes()).hexdigest()=='4f0da9f5143a1258131c5b55f77bdf170c0f9bce8a9f18dd41b3678df779eac9'
+          with ZipFile(a) as z:
+              for name in z.namelist():
+                  path=PurePosixPath(name)
+                  if path.is_absolute() or '..' in path.parts:
+                      raise ValueError('unsafe official MetaDrive asset entry')
+              z.extractall(Path(metadrive.__file__).resolve().parent)
+          print('METADRIVE_043_OFFICIAL_ASSET_SHA256_CONFIRMED')
+          PYCODE
+      - name: Static report strict unit test (test double only)
+        run: python -m unittest discover -s tests -p 'test_multiscene_ablation.py' -v
+      - name: Baseline and PSSM-disabled independent Python Xvfb processes
+        run: |
+          set -euo pipefail
+          root="output/multiscene/seed-${{ matrix.seed }}/${{ matrix.scenario }}/fraction-${{ matrix.fraction }}"
+          mkdir -p "$root"
+          for condition in baseline shadow_off; do
+            echo "NATIVE_MULTISCENE_START condition=$condition seed=${{ matrix.seed }} scene=${{ matrix.scenario }} fraction=${{ matrix.fraction }}"
+            rc=0
+            xvfb-run -a python -m scripts.native_scene_ablation_sweep \
+              --scenario ${{ matrix.scenario }} --seed ${{ matrix.seed }} --fraction ${{ matrix.fraction }} \
+              --condition "$condition" --frames 9 --warmup 2 --height 1.22 \
+              --out "$root/$condition.json" || rc=$?
+            if [ "$rc" -eq 5 ]; then
+              # Xvfb teardown sometimes fails after valid JSON is saved.
+              test -s "$root/$condition.json" || exit 5
+              python -c 'import json,sys; d=json.load(open(sys.argv[1],encoding="utf-8")); assert d.get("status")=="OBSERVED_NATIVE_SCENE" and d.get("condition")==sys.argv[2]' "$root/$condition.json" "$condition"
+            elif [ "$rc" -ne 0 ]; then
+              echo "NATIVE_MULTISCENE_INCONCLUSIVE_EXIT=$rc"
+              exit "$rc"
+            fi
+          done
+          python -m scripts.aggregate_multiscene_ablation --root "$root"
+      - name: Keep all unmodified source RGB hashes, I420 hashes and errors
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: native-pose-seed-${{ matrix.seed }}-${{ matrix.scenario }}-f-${{ matrix.fraction }}
+          path: output/multiscene/
+          retention-days: 7
+          if-no-files-found: warn
