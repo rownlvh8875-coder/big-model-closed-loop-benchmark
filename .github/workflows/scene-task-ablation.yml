@@ -1,0 +1,104 @@
+name: MetaDrive isolated PSSM shadow vs chase-camera scene-task ablation (SIM ONLY)
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/scene-task-ablation.yml'
+      - 'bigbench/task_ablation.py'
+      - 'tests/test_task_ablation.py'
+permissions:
+  contents: read
+jobs:
+  scene-task-isolation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      LIBGL_ALWAYS_SOFTWARE: '1'
+      PYOPENGL_PLATFORM: 'glx'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install native MetaDrive and virtual OpenGL
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y xvfb libgl1 libglu1-mesa libegl1 libx11-6
+          python -m pip install 'numpy>=1.26,<3' 'opencv-python-headless>=4.8' 'metadrive-simulator==0.4.3'
+      - name: Verify official MetaDrive 0.4.3 assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p "$RUNNER_TEMP/md-assets"
+          gh release download MetaDrive-0.4.3 --repo metadriverse/metadrive --pattern assets.zip --dir "$RUNNER_TEMP/md-assets"
+          python - <<'PYCODE'
+          from pathlib import Path,PurePosixPath
+          from zipfile import ZipFile
+          import metadrive,hashlib,os
+          a=Path(os.environ['RUNNER_TEMP'])/'md-assets'/'assets.zip'
+          assert a.stat().st_size==134074203
+          assert hashlib.sha256(a.read_bytes()).hexdigest()=='4f0da9f5143a1258131c5b55f77bdf170c0f9bce8a9f18dd41b3678df779eac9'
+          with ZipFile(a) as z:
+              for n in z.namelist():
+                  p=PurePosixPath(n)
+                  if p.is_absolute() or '..' in p.parts:
+                      raise ValueError('unsafe asset path')
+              z.extractall(Path(metadrive.__file__).resolve().parent)
+          PYCODE
+      - name: Unit tests prohibit disabling graphics engine tasks
+        run: python -m unittest discover -s tests -p 'test_task_ablation.py' -v
+      - name: Three independent Panda processes without ego RGB, shadow/chase ablation
+        run: |
+          set -euo pipefail
+          xvfb-run -a python -m scripts.metadrive_render_causality \
+            --seed 20261109 --frames 8 --warmup 2 \
+            --scenes ego_hidden --modes task_step_pair \
+            --out output/task-ablation/baseline
+          xvfb-run -a python -m scripts.metadrive_render_causality \
+            --seed 20261109 --frames 8 --warmup 2 \
+            --scenes ego_hidden --modes task_step_pair \
+            --ablate-visual-task 'PSSM.update' \
+            --out output/task-ablation/shadow_disabled
+          xvfb-run -a python -m scripts.metadrive_render_causality \
+            --seed 20261109 --frames 8 --warmup 2 \
+            --scenes ego_hidden --modes task_step_pair \
+            --ablate-visual-task 'update main chase camera' \
+            --out output/task-ablation/chase_disabled
+      - name: Validate and summarize native scene-task comparisons without ranking
+        run: |
+          python - <<'PYCODE'
+          import json
+          from pathlib import Path
+          base=Path('output/task-ablation')
+          records={}
+          for name in ('baseline','shadow_disabled','chase_disabled'):
+              p=base/name/'ego_hidden_task_step_pair.json'
+              v=json.loads(p.read_text())
+              assert v['status']=='OBSERVED' and not v['model_scoring_allowed']
+              assert v['pose_shift_positive_control']['road'] and v['pose_shift_positive_control']['wide']
+              required={'baseline':None,'shadow_disabled':'PSSM.update',
+                        'chase_disabled':'update main chase camera'}[name]
+              ablation=v['scene_task_ablation']
+              assert (ablation is None if required is None else ablation['ablation']==required)
+              records[name]={
+                  'name':name,'removed_visual_task':required,
+                  'model_changed_road_px':v['model_frame_stability']['road']['max_changed_pixels_after_warmup'],
+                  'model_changed_wide_px':v['model_frame_stability']['wide']['max_changed_pixels_after_warmup'],
+                  'onnx_input_bit_exact':v['onnx_packed_tensor_stability']['after_warmup_bit_exact'],
+                  'cpu_readback_exact':all(v['cpu_readback'][k]['readback_bit_exact'] for k in ('road','wide')),
+              }
+              print('NATIVE_SCENE_TASK_RESULT',records[name])
+          summary={'status':'THREE_SCENE_ABLATION_OBSERVATIONS_RECORDED',
+                   'model_scoring_allowed':False,'real_vehicle_testing':False,
+                   'no_unique_cause_proven':True,'conditions':records}
+          (base/'ablation_comparison.json').write_text(
+              json.dumps(summary,indent=2,ensure_ascii=False)+'\n')
+          PYCODE
+      - name: Preserve raw optical observations and task identity receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: native-pssm-shadow-scene-ablation
+          path: output/task-ablation/
+          if-no-files-found: warn
+          retention-days: 7
