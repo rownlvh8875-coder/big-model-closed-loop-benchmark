@@ -53,7 +53,7 @@ validation add timing overhead in every arm; no claim of overhead-free capture.
   stale, mismatched-mode/tick/task/hash/process/control evidence.
 - [x] Add an explicit native workflow, four cases, eight separate processes
   each, with an independent raw-receipt reaggregation job.
-- [ ] Run targeted and full tests, local representative native modes, review,
+- [x] Run targeted and full tests, local representative native modes, review,
   GitHub unit/native CI and archive SHA revalidation before merging.
 
 Report source Road/Wide RGB, warped Road/Wide RGB, I420 match counts, every
@@ -77,7 +77,7 @@ independent processes. A failing regression was added and a same-runner
 per-scene PID uniqueness guard fixed it; no bare-PID uniqueness is required
 across different CI machines. No additional review findings were identified.
 
-New native CI and actual artifact results have not yet been recorded here.
+Completed native CI and artifact results are recorded below.
 
 ## Xvfb cleanup-status review correction
 
@@ -86,5 +86,16 @@ The new `scripts/run_native_capture_trial.py` rejects preexisting output,
 launches one fresh native process, preserves other failure statuses, and
 accepts status 0 or cleanup-only status 5 only after the full newly generated
 native task/clock/pose/hash receipt validates. Missing or invalid receipts
-still fail. Five runner tests plus the full 232-test suite passed. New exact-
-HEAD native CI and automated review must be confirmed after this correction.
+still fail. Five runner tests plus the full 232-test suite passed. The corrected exact-HEAD native CI and automated review were subsequently confirmed; see the actual CI result below.
+
+## Actual CI result — 2026-11-11
+
+Run 42934781823 on 696008be2c9fa9a91ca5c928fb8f2462fc36f496 completed
+five successful jobs. All five ZIPs and 32 process receipts were independently
+validated and exactly reaggregated before PR #16 merged. Original Road-first
+I420 matched 27/40; reverse order, paired-one-tick and paired-two-tick matched
+40/40 each in this CI cohort. All image fields matched in 4/4 cases in each
+experimental arm, while original Road-first matched 0/4 complete cases.
+These are static/no-ONNX results, not a repaired official model gate. See
+`STAGE7_RGB_SCHEDULER_FINDINGS.md` for per-field counts, first differences,
+artifact IDs/digests, local counterexamples and interpretation limits.
