@@ -59,7 +59,7 @@
   completed Codex review without findings/no open threads and a clear fresh
   independent four-document review. Both model cohorts and the cross-cohort
   comparison are fully recorded in `STAGE7_MDV3_RENDERER_CANDIDATE.md`.
-- PR #27 remains open on `feat/stage7-mdv3-candidate-expansion`. Its frozen
+- PR #27 merged as `bdcf91e4d3a98399503a0ba215b66920b0436c08`. Its frozen
   executable source is `e84369c9f7f461a59c8d506b8b9efb2312297c03`;
   source run **42987993022** completed all13 jobs. Root and fresh independent
   review verified all13 API archive sizes/SHAs/safe paths and exact raw case/
@@ -68,7 +68,9 @@
   **legacy-action repeatability only**, with no first mismatch/incomplete row.
   Source passed17 checks and Codex review without findings/no open threads.
   **329 local tests passed without skips**,16 also in the pure NumPy environment.
-  A documentation-only result update still needs its own checks and review.
+  Final documentation-only HEAD `46a77106e1bdceaa11e9001c32100250d1a82306`
+  separately passed4 applicable checks, current-HEAD Codex without findings/
+  no open threads and fresh three-doc review; main unit43003435159 passed.
 - **Confirmed model-to-world boundary defect:** legacy model FRD positive
   curvature is rightward; unchanged virtual FLU yaw integration treats it as
   leftward. The missing fixed right-handed body rotation is diag(1,-1,-1),
@@ -83,7 +85,9 @@
 - Next work is a separately versioned opt-in model-FRD→world-FLU action adapter
   around the unchanged audited policy, preserving raw outputs, I420 and states.
   A new complete-only original2seeds×2S×12×2 corrected gate must run before
-  any corrected expansion. The adapter/fresh native gate is not yet executed.
+  any corrected expansion. Adapter TDD is in progress, not complete; no
+  corrected native gate has executed. The independently reviewed plan is
+  `superpowers/plans/2026-11-11-mdv3-world-frame.md`.
   Detailed legacy results,13 archive hashes, coordinate proof and CPU costs:
   `STAGE7_MDV3_CANDIDATE_EXPANSION.md`. Original-renderer0/4 remains FAIL.
   Query actual HEAD/PR/Actions before merge or further pushes; do not rerun the
@@ -613,7 +617,7 @@ cd /workspace/big-model-closed-loop-benchmark
 source /workspace/.cloud-tools/onboarding/activate.sh
 git status --short
 git log -5 --oneline
-gh pr list --state all --head feat/stage7-mdv3-candidate-expansion
+gh pr list --state all --limit 8
 gh run list --branch main --limit 12
 ```
 
@@ -636,9 +640,9 @@ independent review; unit main **42981493834** passed. The
 has clear independent review of its revised protocol. Results-documentation
 PR #26 is merged. Legacy expansion run42987993022 is also complete and
 independently revalidated (24 processes,1472 inferences,736 exact pairs; each
-group4/4 legacy-action repeatability only). Finish PR #27 result-documentation
-checks/current-HEAD review and gated merge; do not launch that cohort again.
-Then continue the separately versioned corrected-world adapter and its original
+group4/4 legacy-action repeatability only). PR #27 has merged after its
+result-documentation checks/current-HEAD review; do not launch that cohort
+again. Continue the separately versioned corrected-world adapter and its original
 four complete12-step cases before any corrected expansion. Preserve every
 failure/partial result and exact legacy labels; no historical gate/default changes.
 
@@ -687,11 +691,31 @@ python -m scripts.aggregate_native_mdv3_rgb_pixel_matrix \
 
 The source and main candidate strict gates each pass4/4 for their registered
 twelve-step cases, and the completed legacy expansion passes4/4 per group.
-These use the confirmed incorrect unconverted action-frame binding. Finish
-PR #27 documentation checks/review/merge, then implement/review the separate
-corrected-world adapter and original four-case complete gate. Inspect actual
+These use the confirmed incorrect unconverted action-frame binding. PR #27
+is merged. Finish the separate historical integration documentation review,
+then implement/review the corrected-world adapter and original four-case
+complete gate. Inspect actual
 HEAD/PR/Actions before any corrected trigger; no legacy cohort rerun is needed.
 Keep all source/warp/I420, raw action, aggregate/named recurrence and virtual
 pose/time comparisons exact. Historical original 0/4 remains unchanged;
 default promotion, global geometry/optical fidelity, driving ranking and
 Stage 7 completion require separate evidence.
+
+
+## Integrated geometry audit checkpoint
+
+`STAGE7_INTEGRATION_VERIFICATION.md` reconciles historical virtual intrinsics,
+straight/curved paint alignment, native lane-truth arithmetic, the two legacy
+short-model cohorts, completed legacy expansion and the confirmed action-basis
+boundary defect. Seven historical ZIPs (22,532,317 bytes),52 paint PNGs plus8
+optical PNGs and8 native truth summaries were independently revalidated against
+frozen sources; the reviewed202-file manifest/findings remain unchanged.
+Pixel diagnostics regenerate exact discrete counts/control verdicts. The maximum
+difference when recomputing floating-point reprojection residuals is
+1.7763568394002505e-15px; this is numerical recomputation roundoff, not the
+actual world-to-paint residual, whole-JSON byte identity or a model-gate tolerance. The final curved focused gate was
+changed after0/4 and3/4 failed trials, so it is a post hoc diagnostic, not an
+unchanged preregistered holdout. Sparse lane-truth.15s is3×assigned.05s arithmetic,
+not actual model time. Candidate-specific paint alignment, real optics, default
+renderer equivalence, correct sustained tracking/full-S and Stage7 completion
+remain open. This doc-only reconciliation introduces no native/model rerun.
