@@ -24,6 +24,20 @@ def validate_sampler_trial(d: dict, seed: int, scene: str, arm: str) -> None:
     if arm not in ARMS:
         raise ValueError('unknown sampler arm')
     validate_schedule_trial(d, seed, scene, 'sequential_road_first')
+    previous = None
+    for row in d['clock_timeline']:
+        before, after = row['before'], row['after']
+        if (any(not duration(boundary.get(key)) for boundary in (before, after)
+                for key in ('frame_time_s', 'real_time_s', 'dt_s'))
+                or not duration(row.get('global_clock_time_delta_s'))
+                or not duration(row.get('real_time_delta_s'))
+                or after['frame_time_s'] - before['frame_time_s'] != row['global_clock_time_delta_s']
+                or after['real_time_s'] - before['real_time_s'] != row['real_time_delta_s']
+                or (previous is not None and
+                    (before['frame_time_s'] != previous['frame_time_s']
+                     or before['real_time_s'] < previous['real_time_s']))):
+            raise ValueError('raw clock timestamps and derived deltas are incomplete or inconsistent')
+        previous = after
     mode, enabled = ARMS[arm]
     diagnostic = d.get('shadow_sampler_diagnostic', {})
     c = diagnostic.get('configuration', {})
@@ -58,7 +72,13 @@ def validate_sampler_trial(d: dict, seed: int, scene: str, arm: str) -> None:
                 else 'NONSHADOW_DEPTH_COMPARE_ENABLED')
     for row in rows:
         driver = row.get('driver', {})
-        if (classify_binding(row) != expected or row.get('classification') != expected
+        if ('error' in row
+                or any(type(row.get(key)) is not int or row[key] < minimum
+                       for key, minimum in (('program', 1), ('unit', 0), ('sampler', 0),
+                                            ('bound_texture', 1), ('expected_atlas_texture', 1)))
+                or row.get('texture_compare_mode') not in (0, 0x884e)
+                or (row['sampler'] == 0 and row['effective_compare_mode'] != row['texture_compare_mode'])
+                or classify_binding(row) != expected or row.get('classification') != expected
                 or row.get('min_filter') != 0x2601 or row.get('mag_filter') != 0x2601
                 or not duration(row.get('query_duration_s'))
                 or row['query_duration_s'] <= 0
@@ -70,6 +90,8 @@ def validate_sampler_trial(d: dict, seed: int, scene: str, arm: str) -> None:
     if not math.isclose(sum(r['query_duration_s'] for r in rows), p['query_duration_s'],
                         rel_tol=1e-12, abs_tol=1e-9):
         raise ValueError('probe overhead summary differs from raw observations')
+    if diagnostic['terminal_diagnostic_wall_time_s'] < p['query_duration_s']:
+        raise ValueError('query durations exceed the containing terminal diagnostic interval')
 
 
 def image_comparison(a, b):

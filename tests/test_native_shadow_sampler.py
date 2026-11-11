@@ -20,11 +20,18 @@ def fixture(seed, scene, arm, index):
     mode, probe = ARMS[arm]
     d.update(process_uuid=f'{seed}-{scene}-{arm}-{index}',
              process_id=30000+list(ARMS).index(arm)*10+index)
+    for i,row in enumerate(d['clock_timeline']):
+        before=dict(frame_time_s=i*.1,real_time_s=i*.2,dt_s=.05)
+        after=dict(frame_time_s=(i+1)*.1,real_time_s=i*.2+.15,dt_s=.05)
+        row['before'].update(before);row['after'].update(after)
+        row['global_clock_time_delta_s']=after['frame_time_s']-before['frame_time_s']
+        row['real_time_delta_s']=after['real_time_s']-before['real_time_s']
     rows=[]
     if probe:
         for camera in ('road','wide'):
             for _ in range(2):
                 rows.append(dict(binding(effective_compare_mode=0 if mode=='raw_linear' else 0x884e),
+                    program=10, unit=3, texture_compare_mode=0 if mode=='raw_linear' else 0x884e,
                     camera=camera, sampler=1, comparison_state_source='sampler_object',
                     classification='RAW_DEPTH_SAMPLER_CONSISTENT' if mode=='raw_linear'
                                    else 'NONSHADOW_DEPTH_COMPARE_ENABLED',
@@ -58,6 +65,36 @@ def build(root):
 
 
 class ShadowSamplerReceiptTests(unittest.TestCase):
+    def test_incomplete_or_error_bearing_gpu_binding_chain_cannot_pass(self):
+        for mutation in ('program','unit','texture_compare_mode','negative_sampler','error','fallback_conflict'):
+            with self.subTest(mutation=mutation):
+                d=fixture(20261109,'s_curve_left_right','original_probe',0)
+                row=d['shadow_sampler_diagnostic']['terminal_probe']['records'][0]
+                if mutation in ('program','unit','texture_compare_mode'):del row[mutation]
+                elif mutation=='negative_sampler':row['sampler']=-1
+                elif mutation=='error':row['error']='RuntimeError: query failed'
+                else:
+                    row.update(sampler=0,comparison_state_source='texture',texture_compare_mode=0)
+                with self.assertRaises(ValueError):
+                    validate_sampler_trial(d,20261109,'s_curve_left_right','original_probe')
+
+    def test_raw_clock_values_and_derived_deltas_are_verified_instead_of_trusting_flag(self):
+        for mutation in ('missing','nan','negative_dt','negative_delta','wrong_delta',
+                         'frame_time_gap','wall_time_reversal','bool'):
+            with self.subTest(mutation=mutation):
+                d=fixture(20261109,'s_curve_left_right','original_off',0)
+                rows=d['clock_timeline'];row=rows[1]
+                if mutation=='missing':del row['before']['real_time_s']
+                elif mutation=='nan':row['after']['frame_time_s']=float('nan')
+                elif mutation=='negative_dt':row['before']['dt_s']=-.01
+                elif mutation=='negative_delta':row['real_time_delta_s']=-5
+                elif mutation=='wrong_delta':row['global_clock_time_delta_s']+=.1
+                elif mutation=='frame_time_gap':row['before']['frame_time_s']+=.01
+                elif mutation=='wall_time_reversal':row['before']['real_time_s']-=.1
+                else:row['after']['dt_s']=True
+                with self.assertRaises(ValueError):
+                    validate_sampler_trial(d,20261109,'s_curve_left_right','original_off')
+
     def test_four_arms_require_distinct_processes_and_exact_sha_comparisons(self):
         with TemporaryDirectory() as tmp:
             root=Path(tmp); build(root)
