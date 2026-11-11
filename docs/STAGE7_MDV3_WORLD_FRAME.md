@@ -242,3 +242,19 @@ These archives belong to run **43006858419** at merge **`a5ef72ed3f492857eadd4b1
 The two corrected cohorts together contain **16 unique UUIDs/nonces and 192 actual inferences/completed rows**, disjoint from the 40 prior legacy model-process identities. Their initial within-cohort gates compare **96 paired rows** total (48 source +48 main). Root additionally compared all four processes in each case: six pair combinations/case, **24 pair comparisons and 288 exact paired-row checks**. All required controls, raw fields, named states, applied-action bridges and pose/count receipts match; metadata is not relabeled. This reads the same **192 existing model steps**, adding **zero inference calls**, not 288 new model executions.
 
 Evidence is `output/stage7-remote-evidence/world-frame-two-cohort-cross-comparison.json`. Its bounded existing-data equality does not establish cross-hardware equivalence, renderer-wide semantics, physical optics or model quality. Both corrected cohorts and their all-pairs comparison are independently clear. Results documentation has not merged at this checkpoint; corrected expansion TDD is in progress with **no native run** or accepted expansion result. Historical original 0/4, legacy-only verdicts and default non-adoption remain unchanged.
+
+
+## Prerequisites recorded before corrected expansion
+
+Results-documentation PR #30 merged as
+`5e42eff117218725e5e211ac63a98eb761789be6`, from reviewed docs source
+`f1327940faac9f3c1e6c5b09b33eca8c71416a8e` after four successful checks,
+completed current-HEAD Codex without findings/no open threads and fresh
+nine-document review. Main unit43010693730 passed. Both separately accepted
+corrected4/4 cohorts/allTEN archives and results-doc merge now satisfy the
+prospective expansion prerequisites. The [separate expansion guide](STAGE7_MDV3_WORLD_FRAME_EXPANSION.md)
+registers camera.28, actual native r/R ramps and160-step prefixes. Source-only
+implementation has361 passing local tests without skips and clear independent
+source/workflow reviews; whole-change review and official expansion execution
+are still pending. Its1472 count is a budget, not observed work. All original/
+legacy/corrected short gates and scientific limitations above stay separate.
