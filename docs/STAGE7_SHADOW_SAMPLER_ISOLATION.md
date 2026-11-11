@@ -352,6 +352,93 @@ same `run-<id>/` layout, including full archive ledgers. No ONNX ran.
 | 42944861577 | 13822083999 | `f70ea6851b52f37d7e3ad38076576166f735b61c6aeda17a7a4c0cffaa935b35` | 17602 |
 | 42944861577 | 13822063059 | `a040a205bd78c994afb283dca02bf26bc12a766d6e0bcf57d96bd00a7528834c` | 16249 |
 
+## PR #21 shared-helper compatibility regression
+
+PR #21 merged as `96069779c85a691a81d119f27cafe39160c70cfa` from final source
+`ce1015973fc35332cc5a217ea07adfa21e7bfdcc` after all 14 checks, current-SHA
+Codex review without findings, no open threads, clear independent source/docs
+reviews and **281 local tests without skips**. The old sampler API/receipt
+schema remained compatible. Separate sampler
+[run 42957706445](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42957706445)
+completed 5/5 jobs; all five archive API SHA/size/safe-path checks passed,
+all four case summaries and the aggregate reproduced exactly, with 32 native
+UUIDs, eight distinct same-runner PIDs per case and 64 validated GPU rows.
+
+| Condition | Source Road /40 | Source Wide /40 | Warped Road /40 | Warped Wide /40 | I420 /40 | I420 post-warmup /32 | Complete static cases /4 |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `original_off` | 30 | 31 | 30 | 35 | 27 | 20 | 0 |
+| `original_probe` | 40 | 40 | 40 | 40 | 40 | 32 | 4 |
+| `raw_linear_off` | 40 | 40 | 40 | 40 | 40 | 32 | 4 |
+| `raw_linear_probe` | 40 | 40 | 40 | 40 | 40 | 32 | 4 |
+
+| Seed | Scene | Original OFF I420 /10 | First source Road/Wide | First I420 | I420 different steps |
+| --- | --- | --- | --- | --- | --- |
+| 20261109 | left_right | 6 | 5/8 | 5 | 5, 7, 8, 10 |
+| 20261109 | right_left | 9 | none/5 | 5 | 5 |
+| 20261110 | left_right | 8 | 5/6 | 5 | 5, 7 |
+| 20261110 | right_left | 4 | 2/4 | 2 | 2, 4, 5, 7, 9, 10 |
+
+All three other arms matched every source/warp/I420 field 10/10 in every case.
+The 64 terminal controlled-state observations again divide into 32 original
+comparison-enabled and 32 raw-linear comparison-disabled rows. Original versus
+linear still matched **0/80** for every source/warp/I420 field with observer
+OFF and ON. Original OFF/ON matched source Road/Wide **70/71 of 80**, warped
+**70/75**, I420 **67/80**; linear OFF/ON matched **60/54**, **60/60**, **46/80**.
+Fixed arm order and terminal observation after all primary captures remain
+confounds; these comparisons neither estimate unbiased overhead nor prove
+retroactive repair. Retained raw/recomputed/totals/metrics evidence is under
+`output/stage7-remote-evidence/run-42957706445/`.
+
+The same source's new 48-process factorial feedback cohort, run 42957706605,
+failed complete 4/4 matching in every condition. Its OFF I420 totals were
+baseline 36/40, linear 36/40, shadow_guard 37/40 and both 33/40. Thus the old
+sampler cohort's repeated linear 4/4 result is runtime/cohort evidence, not a
+universal repair. A fresh-cache local combined OFF pair also failed I420 7/10.
+See [the completed feedback guide](STAGE7_SHADOW_FEEDBACK.md) for all rates,
+first differences, cross-condition changes, actual framebuffer samples,
+query limits and the complete ten-archive ledger for both source cohorts.
+
+## PR #21 automatic merged-main sampler repetition
+
+The separate automatic main-source `9606977` sampler run **42961355395**
+completed 5/5 jobs. All five API archive SHA/size/safe-path checks and exact
+four-case/final regeneration passed, with **32 native UUIDs, eight distinct
+same-runner PIDs per case and 64 validated GPU rows**. It is a separate cohort
+from source run 42957706445, with different original OFF rates.
+
+| Arm | Source Road /40 | Source Wide /40 | Warped Road /40 | Warped Wide /40 | I420 /40 | I420 post-warmup /32 | Complete static cases /4 |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `original_off` | 27 | 30 | 27 | 35 | 23 | 17 | 0 |
+| `original_probe` | 40 | 40 | 40 | 40 | 40 | 32 | 4 |
+| `raw_linear_off` | 40 | 40 | 40 | 40 | 40 | 32 | 4 |
+| `raw_linear_probe` | 40 | 40 | 40 | 40 | 40 | 32 | 4 |
+
+| Seed | Scene | Original OFF I420 /10 | First source Road/Wide | First I420 | I420 different steps |
+| --- | --- | --- | --- | --- | --- |
+| 20261109 | left_right | 6 | 5/8 | 5 | 5, 7, 8, 10 |
+| 20261109 | right_left | 4 | 2/3 | 2 | 2, 3, 5, 7, 8, 10 |
+| 20261110 | left_right | 6 | 2/1 | 2 | 2, 7, 9, 10 |
+| 20261110 | right_left | 7 | 10/5 | 5 | 5, 7, 10 |
+
+
+All three other arms match every field 10/10 in each case. Original OFF/ON
+primary comparisons match source Road/Wide **67/70 of 80**, warped **67/75**,
+I420 **63/80**; linear OFF/ON matches **74/72**, **74/80** and **74/80**.
+Original-versus-linear still matches **0/80** in all source/warp/I420 fields,
+with observer OFF and ON. The 64 controlled-state observations divide into
+32 comparison-enabled original and 32 comparison-disabled linear rows.
+Fixed order, process/cache history and terminal observer position remain
+confounds; these repetitions do not establish a repair or unbiased overhead.
+Retained raw/recomputed/totals/metrics evidence is under
+`output/stage7-remote-evidence/run-42961355395/`. The complete five-archive
+SHA256/byte ledger is in [the feedback guide](STAGE7_SHADOW_FEEDBACK.md).
+Automatic feedback run 42961355528 also completed 5/5 jobs with all five
+archives and the 48-process/128-GPU-row aggregate exactly revalidated. Its OFF
+I420 baseline/linear/guard/both totals are 36/40, 36/40, 35/40 and 32/40;
+complete cases 3/4, 2/4, 3/4 and 2/4. The feedback guide preserves full
+source/warp rates, per-case firsts, comparisons, fixed-order limits and its
+separate five-archive ledger. No condition is a 4/4 repeatability repair.
+
 ## Decision and next causal boundary
 
 This is a verified sampler compatibility defect and an incomplete renderer
@@ -373,14 +460,31 @@ with only 0/4, 3/4 and 2/4 complete static cases. See the
 case/order, archive and causal limit. Cache availability remains an
 experimental control; neither isolation nor disabling repaired all cases.
 
-The next boundary is the potential atlas read/write binding observed after
-terminal original shadow regions. The four local post-region observations
-record depth `GL_TEXTURE` object 1, mip level 0, active atlas texture 1 and
-`use_pssm=1`, with empty shadow camera initial states. This is not a
-per-primitive fetch trace or proof of unique causality. The
-[shadow-feedback isolation plan](superpowers/plans/2026-11-11-shadow-feedback-isolation.md)
-compares original, linear sampler, shadow-input guard and both, using two OFF
-repeats plus one terminal-only ON process per condition/case (48 native
-processes). No next-experiment result is claimed here. Keep OFF controls and
-all failures. A separately validated repair is required before the original
-moving MD-V3 2 seeds × 2 scenes × 12 steps × 2 processes strict 4/4 gate.
+The [shadow-feedback isolation plan](superpowers/plans/2026-11-11-shadow-feedback-isolation.md)
+is now implemented and its 48-process source cohort is complete. Controlled
+terminal bindings validate the intended shadow guard/RGB atlas separation,
+but every condition still fails strict 4/4 static matching. These observations
+are not per-primitive fetch traces or unique-cause proof. The
+[feedback guide](STAGE7_SHADOW_FEEDBACK.md) also preserves the failed local
+fresh-cache combined pair and separate edited-terrain-gradient prototype.
+Per-camera terrain view-data lifetime/LOD is a next source-review hypothesis,
+with no validated repair outcome. The separate four-process local llvmpipe
+worker ABBA pilot is complete: requested-zero and default both match I420 only
+8/10, differing at 2 and 7; requested-zero is not a complete fix. See the
+feedback guide for full rates, fixed order/cache limits and lack of an actual
+worker trace. The workspace-only apitrace v2 ABBA capture is complete with
+four valid native receipts; OFF/ON I420 match only 8/10 and 7/10. The feedback
+guide records the retained raw JSON/log/execution/cache evidence paths and
+both complete trace hashes. Bounded trace analysis is complete: primary/control
+unordered geometry/explicit-uniform/constant-vertex inputs match, but geometry
+order differs in 53 passes. Used startup transform matrices also differ;
+GPU-produced texture/full-state equality and a unique cause remain unproven.
+The common SIGINT bootstrap applies to every arm; ON hides program-binary
+formats, changing driver capability/timing. A local extra opaque-bin intervention
+on Both is pending as `output/opaque-bin-pilot-v3/`, not an ordinary Both cell
+or default render-sort change. Earlier v1 lost raw JSON before serialization;
+v2 saved valid JSON but retained wrapper status 1 from in-memory tuple
+validation. Neither is a completed matrix. V3 validates JSON after reloading,
+without relaxing criteria. See the feedback guide for retained failure evidence,
+exact findings and limits. Keep OFF controls and failures. A separately validated repair is required before the original moving MD-V3 2 seeds ×
+2 scenes × 12 steps × 2 processes strict 4/4 gate.
