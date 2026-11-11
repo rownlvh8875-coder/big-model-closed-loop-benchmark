@@ -1,5 +1,16 @@
 # Stage 7 — verified cross-process scheduling and first-source pixel forensics
 
+## Newer sampler compatibility and process-history evidence
+
+PR #18's verified 32-process run 42942700897 and 64 terminal controlled-state
+GPU observations are recorded in [STAGE7_SHADOW_SAMPLER_ISOLATION.md](STAGE7_SHADOW_SAMPLER_ISOLATION.md),
+including archive digests and 80 additional regression processes. Linear
+sampling still fails strict static source/warp/I420 equality (38/40 I420,
+3/4 complete cases); original OFF matched 22/40. The observer runs after the
+primary sequence, so the later ON arms' 40/40 primary matches cannot prove
+a probe-induced repair. Execution order/cache history remains unresolved.
+The original official moving MD-V3 gate remains the prior 0/4 PASS (FAIL).
+
 ## Provenance
 
 All listed artifact ZIP sizes and SHA256 digests were checked against the GitHub API before extraction. The current strengthened comparator recomputed the complete original 32-process aggregation, with 32 distinct process UUIDs, exactly matching the uploaded summary. PR #14 reanalysis decompressed all 96 retained original RGB images and checked their original ONNX-source SHA receipts. Its regenerated four-scene summary exactly matched the uploaded original summary.
