@@ -281,8 +281,76 @@ one seed and one pair per condition, with fixed ABBA order. File inventories
 prove cache population, not individual cache hits or a unique causal chain.
 Ignored local evidence: `output/cache-order-pilot/execution_receipts.json`,
 `comparisons.json`, four native receipts/logs and all three cache directories.
-A balanced multi-scene cache-availability/disabled-cache CI control is the next
-experiment; do not switch defaults or claim a repaired official model gate.
+This pilot motivated the now-complete balanced cache CI experiment in
+[STAGE7_SHADER_CACHE_HISTORY.md](STAGE7_SHADER_CACHE_HISTORY.md); no default
+switch or repaired official model gate followed.
+
+## Automatic merged-main cohorts independently revalidated
+
+The PR #18 merge push on `177103b1b5bc47586d3366d542299f7cf4f28675`
+started separate cohorts; they are now complete. PR #19 documentation later
+merged as `ee3ded6e71b8b2cb8c5603c1c934c1eac20d1841`. The automatic cohorts
+are independent repetitions, not replacements for run 42942700897 above.
+Every one of their **19** archive SHA256/size/safe-path checks passed. Native
+receipts and all uploaded case/final summaries were independently reproduced.
+
+| Run | Experiment | Jobs | Native processes | Independent result |
+| --- | --- | --- | --- | --- |
+| [42944861575](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42944861575) | Sampler | 5/5 | 32 | Four case summaries and aggregate exact; 32 UUIDs, eight same-runner PIDs per case |
+| [42944861604](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42944861604) | Capture order/ticks | 5/5 | 32 | Four case summaries and aggregate exact; original I420 21/40, each other arm 40/40 |
+| [42944861717](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42944861717) | PSSM scheduling | 5/5 | 32 | Four case summaries and aggregate exact; original sequential I420 25/40, each other arm 40/40 |
+| [42944861577](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42944861577) | Raw pixel clock | 4/4 | 16 | All four summaries exact; no sampler diagnostic on default path |
+
+The automatic sampler cohort's rates are:
+
+| Arm | Source Road /40 | Source Wide /40 | Warped Road /40 | Warped Wide /40 | I420 /40 | I420 post-warmup /32 | Complete static cases /4 |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `original_off` | 31 | 32 | 31 | 35 | 26 | 20 | 0 |
+| `original_probe` | 40 | 40 | 40 | 40 | 40 | 32 | 4 |
+| `raw_linear_off` | 40 | 40 | 40 | 40 | 40 | 32 | 4 |
+| `raw_linear_probe` | 40 | 40 | 40 | 40 | 40 | 32 | 4 |
+
+Original OFF I420 per case (20261109 left-right/right-left, then 20261110
+left-right/right-left) is **6/10, 5/10, 8/10, 7/10**; first differences are
+steps **2, 2, 5, 5**. Other sampler arms match every field 10/10 in each case.
+All 64 controlled inherited-state observations validate the same binding
+classes as the source cohort: 32 original depth-comparison enabled and 32
+linear comparison disabled. The repeated linear OFF 4/4 result does not erase
+the source cohort's 3/4 result or establish an original moving-model repair.
+Fixed arm order and the terminal observer's position remain confounds.
+
+Within this automatic sampler cohort, original OFF/ON comparisons matched
+source Road/Wide **71/72 of 80**, warped Road/Wide **71/75 of 80**, I420
+**66/80**. Linear OFF/ON matched **74/72**, **74/80** and **74/80** respectively.
+Original-versus-linear still matched **0/80 in every source/warp/I420 field**
+with observer OFF and ON, so the sampler changes image semantics. Retained
+metrics, totals, receipts and recomputations are under
+`output/stage7-remote-evidence/run-42944861575/`; the other three runs use the
+same `run-<id>/` layout, including full archive ledgers. No ONNX ran.
+
+### Automatic merged-main archive ledger
+
+| Run | Artifact ID | SHA256 | Bytes |
+| --- | --- | --- | --- |
+| 42944861575 | 13823515145 | `c86654b4d0f3992cc3db2a023f05529ab1dd67a014591b4d0c20cb0d310d86a9` | 8084 |
+| 42944861575 | 13823395414 | `d421b20d14ee1fccbcb6198359ebc642d8737021884169396f1842a9249e8b5d` | 42258 |
+| 42944861575 | 13823112180 | `a62dbd8808790a433e37ce36fc44c075086a5f7bfee193b6e75414cbd9b613e6` | 42625 |
+| 42944861575 | 13822293244 | `3ab51709133b7525bfcbcaab535ab2f9bcba249ad08181e0e727b5b9164d0696` | 41568 |
+| 42944861575 | 13821799431 | `f8a240098a55a8e71a08ae43a1f6e270bb216ad6be59543d64bd372dca8ad94e` | 39444 |
+| 42944861604 | 13823181345 | `d0975088b78b9cdbc3117d2f753a5daf03eb9d4225bda20b072052a1a71b790e` | 37473 |
+| 42944861604 | 13822647758 | `2199281ab133696c7f32ba1588b406c88ddb344d34776d2012a9cb13257ab778` | 37248 |
+| 42944861604 | 13822298402 | `1985a7b04e25617c7416e970e99dd9c6f737fd85ac67c4cd52028171a956fed2` | 2441 |
+| 42944861604 | 13822199861 | `90a40ee076fdf4fb2bf99b004f4236f395cccbcf32ea5d89249814bf0202fe63` | 33492 |
+| 42944861604 | 13821958999 | `b763319fa8cd72922d6e814b14f9516324ed103ce64c219393e6296ea4030c42` | 36263 |
+| 42944861717 | 13822324281 | `a663dd2f684e2247d8a51338083325471a711644a1fbec1af8a103c745127d71` | 32978 |
+| 42944861717 | 13822229389 | `d57347a0e2f7e1744ad05529826fcc567ead719a3a5565e57e70e381b821d86f` | 33543 |
+| 42944861717 | 13822103449 | `d7377c19608ba3cce2ab156894dcb5c839ac19eb8d20abc3f9f5147eec507318` | 1930 |
+| 42944861717 | 13822034431 | `ef05e635b8008a510ce1a59458ecff69a29f360396e7ebf672034344cf891da2` | 33507 |
+| 42944861717 | 13821804013 | `ed623702e439992452b9c6977dd8021f17214cb034ec31bc5284c5a6b828ffef` | 29277 |
+| 42944861577 | 13823095920 | `c7c479cd684d51a3be8c7faa411d78c4a421cbdcda3d12f397e1001cb3ba33d3` | 17480 |
+| 42944861577 | 13822516993 | `199579b39da9b796f104f271d5c98db49c4d0d98cd98add9c8df4cbab1062da4` | 20664 |
+| 42944861577 | 13822083999 | `f70ea6851b52f37d7e3ad38076576166f735b61c6aeda17a7a4c0cffaa935b35` | 17602 |
+| 42944861577 | 13822063059 | `a040a205bd78c994afb283dca02bf26bc12a766d6e0bcf57d96bd00a7528834c` | 16249 |
 
 ## Decision and next causal boundary
 
@@ -297,13 +365,22 @@ gate occurred. Geometry defaults and original model camera are unchanged;
 real-camera optical equivalence and driving performance remain unestablished.
 Stage 7 is incomplete.
 
-The local shared-versus-isolated comparison above is already complete and
-discriminating in its one case. Next add balanced independent multi-scene CI
-for shared initially-empty, separately empty and explicitly disabled Mesa
-disk caches, retaining original Road-first/PSSM/Chase and no sampler changes
-or in-sequence GPU observers. Vary execution order across seed/scenes and
-inventory cache files only outside native processes. Cache availability is
-an experimental runtime control, not a default repair or proof of cache hits.
-Keep failures and negative results. Then trace the earliest projection/depth/HDR/RGB boundary with OFF
-controls. A separately validated repair is required before official moving
-MD-V3 2 seeds × 2 scenes × 12 steps × 2 processes and its strict 4/4 gate.
+The balanced cache experiment is now complete: PR #20 merged as
+`465bf0c49a585fecb8ad313cac3b29e96736b8b6`; run 42948547486 has 24 validated
+native processes. Shared/isolated/disabled I420 matched 19/40, 34/40 and 32/40,
+with only 0/4, 3/4 and 2/4 complete static cases. See the
+[cache findings](STAGE7_SHADER_CACHE_HISTORY.md) for every source/warp rate,
+case/order, archive and causal limit. Cache availability remains an
+experimental control; neither isolation nor disabling repaired all cases.
+
+The next boundary is the potential atlas read/write binding observed after
+terminal original shadow regions. The four local post-region observations
+record depth `GL_TEXTURE` object 1, mip level 0, active atlas texture 1 and
+`use_pssm=1`, with empty shadow camera initial states. This is not a
+per-primitive fetch trace or proof of unique causality. The
+[shadow-feedback isolation plan](superpowers/plans/2026-11-11-shadow-feedback-isolation.md)
+compares original, linear sampler, shadow-input guard and both, using two OFF
+repeats plus one terminal-only ON process per condition/case (48 native
+processes). No next-experiment result is claimed here. Keep OFF controls and
+all failures. A separately validated repair is required before the original
+moving MD-V3 2 seeds × 2 scenes × 12 steps × 2 processes strict 4/4 gate.

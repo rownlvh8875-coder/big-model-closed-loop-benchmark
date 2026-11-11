@@ -13,12 +13,17 @@
   after exact source HEAD `3adc288f244e001a22ce69ce73f0fa7d514ce98a` passed
   nine checks, current-SHA Codex review, independent review and full 32-process
   artifact revalidation. No default renderer change or repair promotion.
-- Local full suite on the final source: **248 passed, no skips**. Four final
-  native processes validated the new sampler/probe arms; earlier capture
-  scheduling validation and its five native processes remain separate evidence.
-- Current documentation branch: `docs/stage7-shadow-sampler-evidence`, based
-  on the PR #18 merged main. Query GitHub for its assigned PR and latest SHA;
-  do not assume a future PR number or reapply already merged changes.
+- PR #19 documentation merged as `ee3ded6e71b8b2cb8c5603c1c934c1eac20d1841`.
+- PR #20 cache history merged as `465bf0c49a585fecb8ad313cac3b29e96736b8b6`
+  from final source `e3df7d1a74c2d7d7e6e2ac1cc3c3421da7b65eb8` after all
+  nine checks, current-SHA Codex review without findings, fresh independent
+  review, **259 local tests** and complete 24-process artifact revalidation.
+- The PR #18 source had **248 passed, no skips** and four final native sampler
+  smoke processes. PR #20 adds a separate final-validator local six-process
+  cache case; earlier capture validation and its five processes remain separate.
+- Current branch: `feat/stage7-shadow-feedback-isolation`, building the next
+  opt-in factorial experiment. No assigned PR is recorded at this checkpoint;
+  query GitHub for the latest branch HEAD/PR rather than inventing a number.
 
 The user authorized continued development and gated PR merges. Do not publish
 or reconfigure the cloud environment. API access now works with supplied
@@ -53,10 +58,20 @@ New sampler defect, 32-process results, all archive digests and runtime limits:
   tested source 850172b and final source 3adc288. Default path has no sampler
   diagnostic receipt. Superseded 42942288117 is cancelled, with four ZIPs and
   seven validated partial original-OFF receipts; it is not a passed matrix.
-- Merge push automatically started new cohorts on source main 177103b:
-  sampler **42944861575**, capture order **42944861604**, PSSM **42944861717**,
-  raw clock **42944861577**. They were still running at this checkpoint;
-  source unit CI **42944861578** passed. Query these before any manual repeat.
+- PR #18 merged-main cohorts are complete and independently revalidated:
+  sampler **42944861575** (32 processes), capture order **42944861604** (32),
+  PSSM **42944861717** (32), raw clock **42944861577** (16). All 19 archive
+  SHA/size/safe-path checks passed; every case/final summary reproduced exactly.
+  Sampler original OFF source Road/Wide 31/40 and 32/40, warped 31/40 and
+  35/40, I420 26/40; other three arms every field 40/40. Capture original
+  I420 21/40; other arms 40/40. PSSM original sequential I420 25/40; other
+  arms 40/40. Four raw-clock summaries exactly reproduced. Full ledgers and
+  limits are in `STAGE7_SHADOW_SAMPLER_ISOLATION.md`; source unit run
+  **42944861578** passed. These repetitions do not erase earlier failures.
+- PR #20 merge push main cache cohort **42951160118** completed 5/5 jobs and
+  was independently revalidated from all five archives/snapshots and 24 native
+  receipts. Shared/isolated/disabled I420 matched 19/40, 34/40 and 29/40;
+  source unit run **42951159987** passed. Do not repeat this completed cohort.
 
 - Original source-pixel run 42924910245: four native jobs + aggregate,
   eight instrumented MD-V3 processes, 12 ONNX steps each, 96 retained source
@@ -92,24 +107,59 @@ processes, despite median pair wall time increasing from about 4.3–4.5s to
 stopped; preserve this limited negative result, not a universal timing claim.
 There is still no validated renderer repeatability repair or new official ONNX gate.
 
-## New local cache-history pilot
+## Completed cache-history experiment and next hypothesis
 
-Four additional original Road-first processes, seed 20261109 left-right, ran
-shared_0 → isolated_0 → isolated_1 → shared_1 with only per-process
-`MESA_SHADER_CACHE_DIR` controls. Shared initially-empty then populated cache:
-source Road/Wide 8/10 and 6/10, I420 8/10 (first 2; differences 2 and 7).
-Separate initially-empty caches: every source/warp/I420 field 10/10.
-Cache inventories proved population (0 → 101 files / 1,670,747 bytes); later
-shared process started populated, ending 1,692,275 bytes. This is a
-**discriminating local candidate**, not proof of hits or unique causality.
-Raw local receipts, UUID/PIDs, logs and cache files are under ignored
-`output/cache-order-pilot/`; see the sampler findings document for limits.
+The earlier four-process ABBA pilot (seed 20261109 left-right) matched shared
+I420 8/10, isolated 10/10. Its shared source Road/Wide matched 8/10 and 6/10;
+cache population was recorded outside native lifetimes under
+`output/cache-order-pilot/`. It motivated the completed balanced experiment;
+a directory inventory is not proof of a cache hit or unique cause.
 
-Next implement a balanced independent CI comparison of shared initially-empty
-cache, separately empty caches and explicitly disabled disk cache, retaining
-original sampler/PSSM/Chase/Road-first and uninstrumented primary captures.
-Vary arm execution order across seed/scenes; record inventories only outside
-native processes. Do not replay the already complete sampler matrix manually.
+PR #20's independent CI run **42948547486** completed **5/5 jobs**. All five
+archive API hashes/sizes and safe paths, all retained cache snapshot rehashes,
+four case summaries and the aggregate were verified: **24 unique native UUIDs
+and six distinct same-runner PIDs per case**. Original sampler, Road-first,
+PSSM/Chase, two task ticks and uninstrumented primary capture were preserved.
+
+| Cache arm | Source Road/Wide /40 | Warped Road/Wide /40 | I420 /40 | Complete static cases /4 |
+| --- | --- | --- | --- | --- |
+| shared | 23/23 | 23/29 | 19 | 0 |
+| isolated | 34/38 | 34/40 | 34 | 3 |
+| disabled | 37/35 | 37/35 | 32 | 2 |
+
+Isolated still fails 20261110 left-right: I420 4/10, first step 2, differences
+2, 5, 6, 7, 9, 10. Disabled-first coincides with right-left and disabled-last
+with left-right, so scene/order confounding prevents a causal order claim.
+No cache arm is a strict 4/4 repair. Full per-case/order and cross-condition
+rates, archive SHA/byte ledgers, logs and causal limits are in
+[STAGE7_SHADER_CACHE_HISTORY.md](STAGE7_SHADER_CACHE_HISTORY.md). Evidence:
+`output/stage7-remote-evidence/run-42948547486/{recomputed,totals,verified_archives}.json`
+and `revalidation.log`. Cancelled **42947832747** and **42948096573** retain
+all eight verified partial ZIPs, not full 24-process cohorts.
+
+The final-format local six-process case also passed the final validator with
+all existing summary fields exact. Shared/isolated/disabled I420: **8/10,
+10/10, 8/10**; shared differs at 2 and 7, disabled at 4 and 8. Retained result:
+`output/cache-matrix-local/seed-20261109/s_curve_left_right/final_validator_recomputed.json`.
+It is distinct from the earlier four-process pilot and the CI cohort.
+
+A new terminal-only local probe records four original shadow post-region
+bindings: depth attachment `GL_TEXTURE` object 1 at level 0 and active atlas
+texture 1 with `use_pssm=1`; both shadow camera initial states were empty.
+Retained evidence: `output/stage7-remote-evidence/shadow-feedback-terminal-probe.json`.
+This supports a potential read/write feedback binding hypothesis, not a
+per-primitive trace, actual atlas-fetch proof or unique renderer cause.
+The [next implementation plan](superpowers/plans/2026-11-11-shadow-feedback-isolation.md)
+is a four-condition factorial comparison: original, linear sampler,
+shadow-input guard, both; two OFF repeats and one terminal-only ON process
+per condition/case, **48 native processes**. The implementation is present on
+this branch; no four-scene CI results are established at this checkpoint.
+A local combined-condition OFF pair matched every source/warp/I420 field
+10/10. One production-launcher terminal ON process passed full native/nonce and eight
+binding-row validation (shadow placeholder/use_pssm=0, RGB real atlas/raw-linear/
+use_pssm=1). Actual shadow/RGB samples/buffers were 0/0 and 4/1. The complete
+local suite passed 281 tests without skips.
+These are local smoke observations, not a repaired official model gate.
 
 ## What remains unresolved
 
@@ -120,7 +170,8 @@ No original camera default, PSSM/Chase callback, shader, model input bytes,
 recurrent states or actions were changed. Geometry, rendering determinism,
 real-sensor optical equivalence and driving performance remain separate.
 The sampler treatment is opt-in and experimentally changes rendered bytes;
-its OFF observer arm still fails strict native matching.
+its source-cohort OFF arm failed strict native matching even though a later
+merged-main static repetition matched 4/4. Cache controls also fail 4/4.
 
 First Wide source changes at step 2 in both left-right pixel cases are outside
 all admitted model-warp support; actual warped RGB and I420 first differ at
@@ -135,23 +186,25 @@ cd /workspace/big-model-closed-loop-benchmark
 source /workspace/.cloud-tools/onboarding/activate.sh
 git status --short
 git log -5 --oneline
-gh pr list --state all --head docs/stage7-shadow-sampler-evidence
+gh pr list --state all --head feat/stage7-shadow-feedback-isolation
 gh run list --branch main --limit 12
 ```
 
-First finish/check the documentation PR and its current-HEAD checks/review.
-Native jobs automatically triggered by merges are separate cohorts; query
-status before starting any manual repeat. Preserve cancelled/failed results.
+Main cache run 42951160118 is already complete and independently revalidated
+(24 native processes, exact summaries/snapshots). Shared/isolated/disabled
+I420 matched 19/40, 34/40 and 29/40 respectively; no complete repair. Query
+current branch HEAD/PR and any newer automatic cohorts before starting work.
+Native jobs automatically triggered by merges are separate cohorts. Do not repeat
+the complete sampler or cache matrices manually merely to rediscover their
+recorded results. Preserve cancelled/failed evidence.
 
-Then continue cause isolation, retaining original PSSM/Chase and Road-first
-controls. Prioritize execution order, persistent shader/cache state and
-initialization history: the later original-sampler primary pair matched in CI
-even though its observer was installed only after its primary sequence.
-Compare a fresh shared Mesa shader cache (cold then warm process) with two
-isolated empty caches, alternate execution order and inventory caches only
-outside native capture intervals. A directory inventory is not proof of cache
-hits. Retain negative results; don't promote cache disabling or extra warmup
-without discriminating causal evidence. Record a reproducible CI vs local/runtime explanation:
+Continue the linked shadow-feedback factorial plan while retaining original
+PSSM/Chase and Road-first controls. Keep sampler type and shadow-pass input
+guard separate, balance condition order and retain two independent OFF
+processes per condition. Terminal ON binding observations follow every primary
+frame; they do not establish retroactive repairs or executed primitive fetches.
+Do not promote cache disabling, linear sampling or a shadow-input guard without
+causal and rendering-semantics validation. Record a reproducible CI vs local/runtime explanation:
 actual graphics-engine/output configuration, driver, package versions,
 framebuffer properties and timing at noninterfering boundaries. Declared
 multi_thread_render=true/Cull alone is insufficient: one local runtime probe
@@ -174,6 +227,8 @@ python -m scripts.compare_native_pssm_cross_process --mode aggregate \
   --root output/verified-pssm-root --out output/pssm-recomputed.json
 python -m scripts.compare_native_shadow_sampler --mode aggregate \
   --root output/verified-sampler-root --out output/sampler-recomputed.json
+python -m scripts.native_shader_cache_matrix --mode aggregate \
+  --root output/verified-cache-root --out output/cache-recomputed.json
 python -m scripts.aggregate_native_mdv3_rgb_pixel_matrix \
   --root output/verified-original-pixels --out output/pixels-recomputed.json
 ```

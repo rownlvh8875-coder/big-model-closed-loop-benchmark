@@ -33,9 +33,31 @@
 
 **Interfaces:** `execution_order(seed, scene) -> tuple[str, ...]`, `inventory(path) -> dict`, `run_case(root, seed, scene) -> dict`, `compare_case(root, seed, scene) -> dict`, `aggregate_scenes(root) -> dict`. Trial labels are `shared-0/1`, `isolated-0/1`, `disabled-0/1`. Existing `scripts.run_native_capture_trial` handles fresh receipt and Xvfb status 5, with original arm `sequential_road_first`.
 
-- [ ] Write failing tests for balanced ABBA/BAAB orders, inventory content changes, freshness, malformed native/clock/cache receipts, snapshot tampering, reused identity and stale summaries; exercise launcher success/failure with synthetic native receipts.
-- [ ] Run targeted tests and observe failure before implementing.
-- [ ] Implement three arms and 24-process strict comparison. Shared/isolated leave `MESA_SHADER_CACHE_DISABLE` unset; disabled sets `true`; all get explicit per-arm `MESA_SHADER_CACHE_DIR`. Retain native JSON/logs, outside-process inventories and after-process cache snapshots. Never change existing capture code.
-- [ ] Run targeted/full tests, a real local six-process case, YAML/syntax checks and an independent read-only code review. Fix findings with red regressions.
-- [ ] Commit/push PR; verify exact-HEAD CI/review and all five artifact hashes/sizes, then reproduce four case summaries and aggregate exactly. Preserve failed/cancelled evidence and actual mismatch counts.
-- [ ] Merge only after gates; update findings/continuation with facts, causal limits, current main cohorts and next commands. Original official gate remains prior 0/4 until separately retested after a validated repair.
+- [x] Write failing tests for balanced ABBA/BAAB orders, inventory content changes, freshness, malformed native/clock/cache receipts, snapshot tampering, reused identity and stale summaries; exercise launcher success/failure with synthetic native receipts.
+- [x] Run targeted tests and observe failure before implementing.
+- [x] Implement three arms and 24-process strict comparison. Shared/isolated leave `MESA_SHADER_CACHE_DISABLE` unset; disabled sets `true`; all get explicit per-arm `MESA_SHADER_CACHE_DIR`. Retain native JSON/logs, outside-process inventories and after-process cache snapshots. Never change existing capture code.
+- [x] Run targeted/full tests, a real local six-process case, YAML/syntax checks and an independent read-only code review. Fix findings with red regressions.
+- [x] Commit/push PR; verify exact-HEAD CI/review and all five artifact hashes/sizes, then reproduce four case summaries and aggregate exactly. Preserve failed/cancelled evidence and actual mismatch counts.
+- [x] Merge only after gates; update findings/continuation with facts, causal limits, current main cohorts and next commands. Original official gate remains prior 0/4 until separately retested after a validated repair.
+
+
+## Completion evidence (2026-11-11)
+
+PR #20 merged as `465bf0c49a585fecb8ad313cac3b29e96736b8b6` from final source
+`e3df7d1a74c2d7d7e6e2ac1cc3c3421da7b65eb8` after nine checks, current-SHA
+Codex review without findings, fresh independent review and 259 local tests.
+Run 42948547486 completed 5/5 jobs; all five archive SHA/size/safe-path checks,
+all cache snapshot rehashes, four case summaries and final aggregate passed
+independent revalidation: 24 native UUIDs and six PIDs per case. The final
+local six-process case also passed final validation with exact existing
+summary fields. Cancelled runs 42947832747 and 42948096573 retain eight
+verified partial ZIPs and are not full cohorts.
+
+The experiment completed; no repair was established. Shared/isolated/disabled
+I420 matched 19/40, 34/40 and 32/40, with 0/4, 3/4 and 2/4 complete static
+cases. Full source/warp rates, per-case orders, cross-condition comparisons,
+archive ledgers and causal limits are in
+[the cache findings](../../STAGE7_SHADER_CACHE_HISTORY.md). Original official
+MD-V3 remains prior 0/4 PASS (FAIL); no official ONNX retest or default switch.
+The separate [shadow-feedback plan](2026-11-11-shadow-feedback-isolation.md)
+is the next opt-in experiment, with no results claimed here.
