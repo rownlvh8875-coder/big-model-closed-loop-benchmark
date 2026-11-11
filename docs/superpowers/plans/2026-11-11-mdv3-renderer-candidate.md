@@ -90,29 +90,29 @@ reads about10MB per step; report it as audit overhead, not free instrumentation.
 
 ## Validation and failures
 
-- [ ] TDD meaningful RED contracts before implementation: wrong model/spec,
+- [x] TDD meaningful RED contracts before implementation: wrong model/spec,
   state name/shape/dtype, raw-action schema/hash, changed capture/pose/time,
   one-field/one-step mismatches, stale/missing/nonce-invalid outputs, reused
   identities, incorrect renderer/task/bin/guard receipts and malformed clocks.
-- [ ] Test parent inference/camera capture delegation once, no per-step reset,
+- [x] Test parent inference/camera capture delegation once, no per-step reset,
   uint8 history preserved, and original ego visibility retained. Fake policies
   and tiny graphs are unit evidence only, never official model execution.
-- [ ] Native child retains complete raw JSON/logs, partial audited rows and
+- [x] Native child retains complete raw JSON/logs, partial audited rows and
   errors before validation. Reload JSON wire data before strict checks; no
   tuple-pose bug. Fresh nonce/output/log protocol, original native statuses
   retained. Accept Xvfb cleanup5 only with a complete fresh validated receipt.
-- [ ] Reuse `compare_fresh_trials` for exact common fields, layer strict named
+- [x] Reuse `compare_fresh_trials` for exact common fields, layer strict named
   state/action/capture/config validation and comparison. Require 12 complete
   captures/inferences, zero extra GPU extraction, original tasks, finite raw
   clocks, expected two ticks and exact virtual before/after pose/time.
-- [ ] Case/final summaries independently regenerated from raw data; enforce
+- [x] Case/final summaries independently regenerated from raw data; enforce
   eight UUIDs/nonces and two distinct same-runner PIDs per case. Reject stale
   summaries, missing fields and any rank/real-vehicle claim.
-- [ ] Metadata is `CANDIDATE_BOTH_UNSORTED_OFFICIAL_MDV3`, never the existing
+- [x] Metadata is `CANDIDATE_BOTH_UNSORTED_OFFICIAL_MDV3`, never the existing
   UNMODIFIED_METADRIVE label. Original-gate/default-promotion/full-renderer-
   equivalence/unique-microcause flags remain false. Candidate exact4/4 has its
   own explicit result. A successful data-collection CI is not a passed gate.
-- [ ] CI pins MetaDrive0.4.3, Panda1.10.13, official assets bytes134074203/SHA
+- [x] CI pins MetaDrive0.4.3, Panda1.10.13, official assets bytes134074203/SHA
   `4f0da9f5143a1258131c5b55f77bdf170c0f9bce8a9f18dd41b3678df779eac9`,
   and official model bytes/SHA. Four native jobs, two repeats sequentially per
   job, maxparallel2, independent aggregate. Preserve raw receipts/logs and
@@ -120,6 +120,14 @@ reads about10MB per step; report it as audit overhead, not free instrumentation.
 - [ ] Full local tests, fresh code/scientific review and current-HEAD CI/Codex
   review/no open threads. Check five artifact API SHA/size/safe paths and exact
   raw reaggregation before any model-success assertion or gated merge.
+
+Checked items above mean implemented contracts and unit/workflow verification,
+not completed native/official-model evidence. The four new files are isolated
+from all existing source/workflows. Fresh review found and corrected a partial
+metadata issue: a constructed real session with zero recorded parent steps
+must not claim official model execution. Its regression was observed failing
+before the narrow fix; exact comparison rules were unchanged. Final source SHA:
+`5a9058102004e2f5eaa4c9dcab4c24d97a9d42702b7a9e7c248c4f576a30d22e`.
 
 ## Ownership and next gate
 

@@ -36,9 +36,23 @@
   current-SHA Codex review without findings/no open threads and clear independent
   eight-file review. Run 42968294569 completed 5/5 jobs with all five artifact
   API SHA/size/safe-path checks and exact four-case/final regeneration.
-- Current branch: `docs/stage7-opaque-results`, open documentation PR #24.
-  This completed-v2 evidence append requires a new commit and refreshed
-  exact-HEAD CI/Codex review before merge; query the latest HEAD/status.
+- PR #24 completed opaque/depth documentation merged as
+  `19db37e4e0e85af4377ce5b796e64a2c8934f34f` from exact source
+  `55c17181dcc8b535ac3b07e0583dca1c4ce9a64c` after four successful checks,
+  completed Codex review without findings/no open threads and a clear fresh
+  independent four-document review. Main unit run **42978229606** passed.
+- Current branch: `feat/stage7-mdv3-renderer-candidate`, based on that merge.
+  A standalone experimental model protocol is being implemented and reviewed;
+  query the latest HEAD/PR/Actions before executing anything. No official model
+  execution or weight download has occurred at this checkpoint.
+- Candidate source SHA is
+  `5a9058102004e2f5eaa4c9dcab4c24d97a9d42702b7a9e7c248c4f576a30d22e`.
+  **313 local tests passed without skips**, including 15 new candidate tests;
+  a fresh numpy-only environment also passed the earlier 14-test candidate
+  snapshot, supporting the pure-reaggregation dependency boundary. A fresh
+  review's zero-step execution-label issue is fixed and regression-tested.
+  Source/workflow review and actual candidate CI/artifact evidence are still
+  pending. Protocol and bounded interpretation: `STAGE7_MDV3_RENDERER_CANDIDATE.md`.
 - The new source passed **298 local tests without skips**. Two real production
   `both_unsorted` OFF processes passed native/bin/nonce controls and matched
   every source/warp/I420 field **10/10**, with fresh shared cache cold→populated.
@@ -467,8 +481,8 @@ setup/IO/whole terminal cost. The local probe observes Mesa 25.0.7-2+deb13u1,
 llvmpipe LLVM 19.1.7 / GL 4.5 compatibility, actual threading model `/` with empty
 cull/draw names; those are not OFF CI matrix GPU observations.
 
-The [prospective candidate plan](superpowers/plans/2026-11-11-mdv3-renderer-candidate.md)
-is next after independent review of this bounded acceptance. It must retain
+The [candidate plan](superpowers/plans/2026-11-11-mdv3-renderer-candidate.md)
+is under implementation after clear independent review of this bounded acceptance. It must retain
 original `NativeWorldCamera` plus public `run_target_lane_episode`; the static
 trial hides visual ego and is not a substitute. No official weights/inference
 or candidate run has occurred. Candidate results must be labeled separately;
@@ -503,7 +517,7 @@ cd /workspace/big-model-closed-loop-benchmark
 source /workspace/.cloud-tools/onboarding/activate.sh
 git status --short
 git log -5 --oneline
-gh pr list --state all --head docs/stage7-opaque-results
+gh pr list --state all --head feat/stage7-mdv3-renderer-candidate
 gh run list --branch main --limit 12
 ```
 
@@ -522,10 +536,11 @@ strict matching. The local requested-zero worker pilot also failed. The
 standalone opaque matrix is complete: both unsorted static arms match 4/4,
 with state-sorted controls 3/4; no official moving-model PASS follows.
 Automatic main run 42969968780 is already complete and revalidated; do not
-start another CI/native repeat. Continue causal/rendering-semantic validation
-through the prospective renderer-candidate plan after independent review of
-the completed bounded depth acceptance and refreshed current-HEAD PR #24
-checks/review. V2 is complete; do not restart it. Preserve stopped v1's four
+start another CI/native repeat. PR #24 is merged after exact-HEAD checks/review;
+the completed bounded depth acceptance has a clear independent review.
+Continue through the standalone renderer-candidate plan, source tests and
+fresh code review before triggering its model workflow. V2 is complete; do not
+restart it. Preserve stopped v1's four
 valid captures/fifth ERROR and all eight v2 raw JSON/log/depth files. The next
 model diagnostic must use the original NativeWorldCamera/public episode path,
 keep candidate labels separate and relax no comparison. No official model has

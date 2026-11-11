@@ -1,0 +1,128 @@
+name: Stage7 experimental renderer candidate official MD-V3 strict repeat (SIM ONLY)
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/stage7-mdv3-renderer-candidate.yml'
+      - 'scripts/native_mdv3_renderer_candidate.py'
+      - 'tests/test_native_mdv3_renderer_candidate.py'
+permissions:
+  contents: read
+concurrency:
+  group: stage7-mdv3-renderer-candidate-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  native-candidate-mdv3:
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        seed: [20261109, 20261110]
+        scenario: [s_curve_left_right, s_curve_right_left]
+    env:
+      LIBGL_ALWAYS_SOFTWARE: '1'
+      PYOPENGL_PLATFORM: 'glx'
+      OMP_NUM_THREADS: '2'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pinned native renderer and parent CPU ONNX dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y xvfb libgl1 libglu1-mesa libegl1 libx11-6
+          python -m pip install '.[inference]' 'metadrive-simulator==0.4.3' 'panda3d==1.10.13'
+      - name: Run synthetic candidate and existing exact comparator contracts
+        run: |
+          python -m unittest discover -s tests -p 'test_native_mdv3_renderer_candidate.py' -v
+          python -m unittest discover -s tests -p 'test_fresh_native_mdv3.py' -v
+      - name: Verify official 0.4.3 rendering assets size and SHA256
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p "$RUNNER_TEMP/candidate-assets"
+          gh release download MetaDrive-0.4.3 --repo metadriverse/metadrive --pattern assets.zip --dir "$RUNNER_TEMP/candidate-assets"
+          python - <<'PYCODE'
+          import hashlib, os, metadrive
+          from pathlib import Path, PurePosixPath
+          from zipfile import ZipFile
+          archive=Path(os.environ['RUNNER_TEMP'])/'candidate-assets'/'assets.zip'
+          assert archive.stat().st_size==134074203
+          assert hashlib.sha256(archive.read_bytes()).hexdigest()=='4f0da9f5143a1258131c5b55f77bdf170c0f9bce8a9f18dd41b3678df779eac9'
+          with ZipFile(archive) as source:
+              for name in source.namelist():
+                  p=PurePosixPath(name)
+                  if p.is_absolute() or '..' in p.parts:
+                      raise ValueError('unsafe official asset archive path')
+              source.extractall(Path(metadrive.__file__).resolve().parent)
+          print('CANDIDATE_OFFICIAL_NATIVE_ASSETS_CONFIRMED')
+          PYCODE
+      - name: Download official MD-V3 only into the ephemeral runner
+        run: |
+          python -m scripts.hf_models download \
+            --path '1365126a-e71e-4778-be00-8ab92dc82c09/12864/big_driving_supercombo.onnx' \
+            --sha256 '35976b11be3904eb78e32f7dc55a6abf8e9433ac5aa391a1998f1e9ce001b199' \
+            --max-bytes 900000000 --out "$RUNNER_TEMP/models"
+          python - <<'PYCODE'
+          import os
+          from pathlib import Path
+          from scripts.native_mdv3_renderer_candidate import MODEL_BYTES, MODEL_SHA, SPEC_SHA
+          from bigbench.onnx_contract import ModelContract
+          from hashlib import sha256
+          spec=Path('model_specs/md-v3.json')
+          assert sha256(spec.read_bytes()).hexdigest()==SPEC_SHA
+          model=Path(os.environ['RUNNER_TEMP'])/'models/1365126a-e71e-4778-be00-8ab92dc82c09/12864/big_driving_supercombo.onnx'
+          assert model.stat().st_size==MODEL_BYTES==768750198
+          assert ModelContract.load(spec).check_file(model)==MODEL_SHA
+          print('CANDIDATE_OFFICIAL_MODEL_FILE_CONFIRMED_BEFORE_ORT')
+          PYCODE
+      - name: Two independent candidate Panda and CPU ORT processes, twelve original captures each
+        run: |
+          python -m scripts.native_mdv3_renderer_candidate --mode run-case \
+            --model "$RUNNER_TEMP/models/1365126a-e71e-4778-be00-8ab92dc82c09/12864/big_driving_supercombo.onnx" \
+            --spec model_specs/md-v3.json --seed ${{ matrix.seed }} \
+            --scene ${{ matrix.scenario }} --root output/stage7-mdv3-renderer-candidate
+      - name: Preserve raw receipts, partial failures and process logs; no model files
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: stage7-mdv3-candidate-${{ matrix.seed }}-${{ matrix.scenario }}
+          path: output/stage7-mdv3-renderer-candidate/
+          include-hidden-files: true
+          retention-days: 7
+          if-no-files-found: warn
+  independent-candidate-aggregate:
+    needs: native-candidate-mdv3
+    if: success()
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pure receipt dependencies; no weights or inference session
+        run: python -m pip install 'numpy>=1.26'
+      - name: Download the four candidate process-pair evidence archives
+        uses: actions/download-artifact@v4
+        with:
+          pattern: stage7-mdv3-candidate-*
+          path: output/stage7-mdv3-renderer-candidate/
+          merge-multiple: true
+      - name: Revalidate all eight raw processes and regenerate candidate four-case verdict
+        run: |
+          python -m unittest discover -s tests -p 'test_native_mdv3_renderer_candidate.py' -v
+          python -m scripts.native_mdv3_renderer_candidate --mode aggregate \
+            --root output/stage7-mdv3-renderer-candidate \
+            --out output/stage7-mdv3-renderer-candidate/aggregate_summary.json
+      - name: Preserve separately labeled candidate verdict; CI success is not gate PASS
+        uses: actions/upload-artifact@v4
+        with:
+          name: stage7-mdv3-candidate-fourscene-summary
+          path: output/stage7-mdv3-renderer-candidate/aggregate_summary.json
+          include-hidden-files: true
+          retention-days: 7
+          if-no-files-found: error
