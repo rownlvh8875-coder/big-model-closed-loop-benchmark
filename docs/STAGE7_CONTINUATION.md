@@ -84,11 +84,12 @@
   deviation. Eight seconds/nominal64m does not prove full S traversal.
 - Next work is a separately versioned opt-in model-FRD→world-FLU action adapter
   around the unchanged audited policy, preserving raw outputs, I420 and states.
-  A new complete-only original2seeds×2S×12×2 corrected gate must run before
-  any corrected expansion. The five-file adapter implementation is locally
-  verified (13 new tests;342 full tests without skips) and independent code
-  review is clear. Workflow/guide review and official corrected native evidence
-  remain pending. The independently reviewed plan is
+  A new complete-only original2seeds×2S×12×2 corrected source gate has now
+  passed4/4 in run43005087003 after five-archive/raw independent acceptance.
+  It has8 fresh processes/96 actual inferences/completed rows and48 exact
+  pairs, no mismatch/incomplete. First-observation32 offline comparisons
+  preserve initial controls/input/raw/parent/state without new inference.
+  All8 native statuses0; actual ORT1.31.1CPU/basic/noninjected. The reviewed plan is
   `superpowers/plans/2026-11-11-mdv3-world-frame.md`.
   Detailed legacy results,13 archive hashes, coordinate proof and CPU costs:
   `STAGE7_MDV3_CANDIDATE_EXPANSION.md`. Original-renderer0/4 remains FAIL.
@@ -106,21 +107,42 @@
   not retained; no hardware-equivalence claim follows. Main-evidence
   review and revised prospective expansion-plan review are clear. Do not
   launch another manual repeat. Results-documentation PR #26 has now merged;
-  expansion push still needs its own frozen source/workflow review and checks.
+  that legacy expansion later completed in PR #27/run42987993022; do not
+  rerun it. Corrected expansion has its own separate prerequisites below.
 - PR #28 historical integration documentation merged as
   `e0e220688e8d3c0254d04f8fc28dca02e1824796`, from exact source
   `09b799fda7d894a9ab6340435bd6b80f3b31d44d`, after four successful checks,
   completed current-HEAD Codex without findings/no unresolved threads and
   fresh seven-document scientific/source-link review. The202-file historical
   audit/findings remain immutable. No native/model cohort was repeated.
-- Current branch `feat/stage7-mdv3-world-frame` is based on that merge. It adds
-  only the opt-in adapter, corrected runner/test/workflow/guide; existing core,
-  legacy producers/readers/specs/workflows remain byte-identical. Local full
-  suite342/342 passed in18.169s;13 new tests also pass independently and with
-  NumPy-only receipt dependencies. Corrected model execution has not run.
-  First gate is strictly2seeds×2S×12×2, before any corrected expansion. One
-  automatic merged-main repeat is predeclared as a separate cohort. Query
-  actual HEAD/PR/Actions before triggering; no manual blind duplicate runs.
+- PR #29 opt-in model-to-world bridge merged as
+  `a5ef72ed3f492857eadd4b1198dbba381312aa80`, from exact source
+  `df0f8803f6611e384d3752350fbffe007d16e7bd` after nine successful checks,
+  completed current-HEAD Codex without findings/no unresolved threads, clear
+  independent code/evidence reviews and fresh eight-file scientific/workflow/
+  doc review. Source full342/342 tests passed without skips in18.169s;
+  13 new contracts also pass independently and in NumPy-only aggregation.
+  Adapter SHA275f5359a975d9e152f61df74cd57803e1322e1f9618784f0993e780516ec092;
+  runner SHAcd57c4d407e96459921ca61c78eb81ef55851cd4fafa92ca917bbc7f494a3e38.
+  Existing legacy producers/readers/core/specs/workflows remain byte-identical.
+- Automatic merged-main corrected run **43006858419** completed5/5 jobs. Root
+  and fresh independent review verified all5 API archive SHA/size/safe paths
+  and exact raw case/final4/4: another8 processes/96 actual inferences/rows,
+  48 exact paired rows. Main unit **43006858385** passed. Both corrected
+  cohorts/allTEN archives are independently accepted; do not substitute one
+  cohort for the other or manually repeat completed work. Source cases span only0.6s/nominal4.8m,
+  maximum virtual lateral errors.086774934–.090706450m and zero intrusion.
+  Those unscored observations do not establish full-S/quality/real optics.
+  Read-only two-cohort all-pairs comparison covers16 distinct UUIDs/nonces,
+  24 pair combinations/288 exact row checks reusing192 actual steps; original
+  repeat metadata is unchanged. Fresh independent cross-cohort review is clear.
+  All16 identities are disjoint from40 prior legacy model-process identities;
+  no hardware identity/equivalence was measured.
+  Current branch `docs/stage7-world-frame-results` records both cohorts only
+  after their actual completion and independent verification. No corrected
+  expansion has run; source-only TDD follows the freshly reviewed prospective
+  `superpowers/plans/2026-11-11-mdv3-world-frame-expansion.md`. It requires accepted
+  source+main4/4 and merged results docs before any triggering push.
 - The new source passed **298 local tests without skips**. Two real production
   `both_unsorted` OFF processes passed native/bin/nonce controls and matched
   every source/warp/I420 field **10/10**, with fresh shared cache cold→populated.
@@ -658,8 +680,10 @@ PR #26 is merged. Legacy expansion run42987993022 is also complete and
 independently revalidated (24 processes,1472 inferences,736 exact pairs; each
 group4/4 legacy-action repeatability only). PR #27 has merged after its
 result-documentation checks/current-HEAD review; do not launch that cohort
-again. Continue the separately versioned corrected-world adapter and its original
-four complete12-step cases before any corrected expansion. Preserve every
+again. The corrected source gate is also independently accepted4/4 and PR #29
+is merged. The separate main run43006858419 and cross-cohort raw comparison
+are independently accepted. Merge completed results documentation and finish
+expansion source/workflow checks/review before any corrected expansion. Preserve every
 failure/partial result and exact legacy labels; no historical gate/default changes.
 
 The trace/depth comparisons remain bounded input/one-scene evidence. Preserve
@@ -708,9 +732,10 @@ python -m scripts.aggregate_native_mdv3_rgb_pixel_matrix \
 The source and main candidate strict gates each pass4/4 for their registered
 twelve-step cases, and the completed legacy expansion passes4/4 per group.
 These use the confirmed incorrect unconverted action-frame binding. PR #27
-is merged. Historical integration PR #28 has also merged. Finish corrected
-workflow/guide review, frozen-source checks and the original four-case
-complete official gate. Inspect actual
+is merged. Historical integration PR #28 and corrected source PR #29 are also
+merged. Source43005087003 and main43006858419 independently pass4/4; finish
+completed-results docs and expansion source/workflow review before a corrected
+expansion trigger. Inspect actual
 HEAD/PR/Actions before any corrected trigger; no legacy cohort rerun is needed.
 Keep all source/warp/I420, raw action, aggregate/named recurrence and virtual
 pose/time comparisons exact. Historical original 0/4 remains unchanged;

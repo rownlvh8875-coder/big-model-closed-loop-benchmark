@@ -1,6 +1,6 @@
 # Stage 7 integration evidence and remaining validation
 
-At this draft checkpoint, historical virtual intrinsics, RGB/I420 plumbing, sampled world-to-paint alignment and native target-lane arithmetic have verified passes. The experimental `feedback_both` plus opaque unsorted type 1 official MD-V3 candidate also has two separate twelve-step **4/4 legacy repeatability** cohorts. A newly confirmed missing FRD→FLU applied-action rotation means these legacy gates do not establish motion validity; the corrected adapter is TDD in progress, not complete, and its corrected native gate has not executed. The historical **unmodified original gate remains 0/4 FAIL**. None of these results establishes physical comma optics, global renderer equivalence, driving rank, default adoption or Stage 7 completion.
+At this draft checkpoint, historical virtual intrinsics, RGB/I420 plumbing, sampled world-to-paint alignment and native target-lane arithmetic have verified passes. The experimental `feedback_both` plus opaque unsorted type 1 official MD-V3 candidate also has two separate twelve-step **4/4 legacy repeatability** cohorts. The confirmed missing FRD→FLU applied-action rotation means these legacy gates do not establish motion validity. A separate opt-in corrected source cohort now passes 4/4. Automatic main 43006858419 also has independently accepted 4/4 corrected repeatability. The historical **unmodified original gate remains 0/4 FAIL**. None of these results establishes physical comma optics, global renderer equivalence, driving rank, default adoption or Stage 7 completion.
 
 This document reconciles older guide status with retained evidence. A fresh independent read-only review is clear for all seven selected ZIPs, the 202-file manifest, frozen source identities and raw image/math recomputation. The reviewed findings and evidence bytes remain immutable. No future documentation PR number is presumed.
 
@@ -13,8 +13,9 @@ This document reconciles older guide status with retained evidence. A fresh inde
 | S-curve/ramp paint diagnostic | 42578810503 | Four native `C,C`/`r`/`R` scenes, two static poses × two cameras, revised focus-control gate | Gate changed after failed runs; not a preregistered holdout or candidate-specific paint validation |
 | Native lane-truth arithmetic | 42582782731 | Eight chosen lanes, 24 center +24 deliberate right-intrusion samples, eight exact pure summaries | Coordinate self-consistency and chosen-footprint arithmetic; not an ONNX trajectory |
 | Legacy official MD-V3 candidate repeatability | 42979680883 and 42981493726 | Each 4/4 at twelve steps; 16 unique UUIDs/nonces and 192 actual parent model steps combined | Legacy repeatability only; missing applied-action basis bridge prevents motion-validity claims; original 0/4 remains |
-| Source I/O conventions | Pinned official source commit `e318f767ff7dc96d25a3bcc2b46f9f3daf6e9e42` | Numeric model-curvature formula and six I420 plane order match source conventions | Model-body FRD curvature still needs the missing FLU/world-yaw applied-action bridge; not production NV12 equivalence or model quality |
+| Source I/O conventions | Pinned official source commit `e318f767ff7dc96d25a3bcc2b46f9f3daf6e9e42` | Numeric model-curvature formula and six I420 plane order match source conventions | Legacy consumers lack the FLU/world-yaw applied-action bridge; the separate opt-in corrected bridge is verified below, without production NV12 equivalence or model-quality proof |
 | Legacy official expansion | PR #27 source `e84369c9f7f461a59c8d506b8b9efb2312297c03`, run 42987993022 | **12/12 independently accepted legacy repeatability**; 24 processes, 1472 actual inferences/rows, 736 exact pairs; all 13 archives clear | Known action-basis gap remains; no motion-validity claim, correct tracking or PR merge follows |
+| Corrected applied-action source repeatability | PR #29 source `df0f8803f6611e384d3752350fbffe007d16e7bd`, run 43005087003 | **4/4**, eight fresh processes, 96 actual inferences/rows, 48 exact pairs; all five archives clear | Bounded Both+unsorted corrected source result; separate main 4/4 independently accepted; corrected expansion has no native run |
 
 The expansion protocol is [separately registered](superpowers/plans/2026-11-11-mdv3-candidate-expansion.md) and described in its [guide](STAGE7_MDV3_CANDIDATE_EXPANSION.md). Its collected source cohort has exact independent raw-data acceptance, and PR #27 merged as `bdcf91e4d3a98399503a0ba215b66920b0436c08`. Collection CI success alone cannot supply scientific acceptance or validate an action-frame contract. These separate geometry-guide drafts are intended for a documentation follow-up after that merge. Check retained execution state before starting another run; this document does not request a rerun.
 
@@ -106,7 +107,7 @@ Nine retained synthetic signed/zero cases at initial headings 0, 0.6 and −1 ra
 
 All historical repeatability records retain their original raw four outputs, recurrent states, I420 inputs, parent actions, poses and labels. They are **legacy repeatability evidence only, not model-to-world motion-validity gates**, regardless of exact bit equality. The existing static paint-alignment and native lane-coordinate arithmetic remain separately valid within their sampled scope; neither exercised this action bridge.
 
-The retained prospective plan [model-to-world action plan](superpowers/plans/2026-11-11-mdv3-world-frame.md) proposes distinct protocol `stage7-mdv3-world-frame-v1`. **The corrected adapter is TDD in progress, not complete; no corrected native gate has executed.** It will preserve inner raw outputs, states and actual I420, record the unchanged parent numeric model action, and separately map only the applied world curvature while retaining acceleration. No corrected native verdict, corrected expansion, new default or retrospective repair of legacy results is claimed. Its first separate corrected gate must be validated before any later corrected expansion. The seven original geometry ZIPs and their reviewed 202-file manifest/findings remain unchanged; new coordinate-contract evidence is a separate audit.
+The retained prospective plan [model-to-world action plan](superpowers/plans/2026-11-11-mdv3-world-frame.md) proposes distinct protocol `stage7-mdv3-world-frame-v1`. **At that historical audit checkpoint the corrected adapter was TDD in progress, not complete; no corrected native gate had executed.** The prospective design would preserve inner raw outputs, states and actual I420, record the unchanged parent numeric model action, and separately map only the applied world curvature while retaining acceleration. That historical checkpoint claimed no corrected native verdict, corrected expansion, new default or retrospective repair. The separate corrected source result is now recorded below; corrected expansion still requires its own review. The seven original geometry ZIPs and their reviewed 202-file manifest/findings remain unchanged; new coordinate-contract evidence is a separate audit.
 
 
 ## Independently accepted legacy expansion: repeatability and tracking scope
@@ -153,19 +154,50 @@ Each artifact below belongs to run **42987993022** at source **`e84369c9f7f461a5
 | 13840382793 | 38200 | `4d35394157299564b1f7339b6751306be928186d134d35355ec101bb09e5a944` |
 | 13840362369 | 38071 | `c79edc8c404672c1c3cd5082e2a4b706b426995bcdd718b244f91024c1fa9e52` |
 
-The corrected adapter remains **TDD in progress, not complete**, and no corrected native/model gate has run. Future corrected evidence requires its distinct applied-world action receipts and protocol; these 12/12 legacy cases cannot be relabeled as corrected-world PASS. Historical geometry-guide remediation remains a separate documentation follow-up after the PR #27 merge, with no future PR number presumed.
+At that historical checkpoint the corrected adapter remained **TDD in progress, not complete**, and no corrected native/model gate had run. Future corrected evidence requires its distinct applied-world action receipts and protocol; these 12/12 legacy cases cannot be relabeled as corrected-world PASS. Historical geometry-guide remediation remains a separate documentation follow-up after the PR #27 merge, with no future PR number presumed.
 
 
-## Later source checkpoint: corrected implementation, native evidence pending
+## Historical pre-run source checkpoint: corrected implementation, native evidence pending
 
 The historical integration documentation merged in PR #28 as
 `e0e220688e8d3c0254d04f8fc28dca02e1824796` after four checks, completed
 current-HEAD Codex without findings/no unresolved threads and fresh seven-doc
 review at exact source `09b799fda7d894a9ab6340435bd6b80f3b31d44d`.
 The earlier draft-checkpoint TDD statements above describe that audit snapshot.
-The five-new-file opt-in world-action implementation is now locally verified:
+At that pre-run checkpoint the five-new-file opt-in world-action implementation was locally verified:
 13 new pure contracts and342 full tests passed without skips, with clear
 independent adapter/runner code review. Its [guide](STAGE7_MDV3_WORLD_FRAME.md)
-and workflow still require final review before first official native execution.
-No corrected native verdict has run; all legacy labels, action/pose records,
+and workflow still required final review before first official native execution.
+No corrected native verdict had run then; all legacy labels, action/pose records,
 original0/4 and the historical geometry/optical limitations remain unchanged.
+
+
+## Completed corrected source and remaining replication/expansion gates
+
+PR #29 merged as `a5ef72ed3f492857eadd4b1198dbba381312aa80` from exact source `df0f8803f6611e384d3752350fbffe007d16e7bd` after nine current checks, Codex without findings/no open threads, fresh eight-file review and 342 local tests without skips. Official source [run 43005087003](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43005087003) independently passes **4/4 corrected-world repeatability**. Root and a fresh independent reviewer checked all five API ZIP SHA256s/sizes/safe paths, 25 members, every raw case and the aggregate exactly. The cohort has **eight fresh UUIDs/nonces, 96 actual parent ONNX inferences/completed rows and 48 exact pairs**. All native statuses are 0; ORT is 1.31.1 CPUExecutionProvider/basic/noninjected.
+
+The applied action uses the required body-basis rotation: parent numeric model curvature remains unchanged in its FRD receipt, applied world curvature is its negative and acceleration is identical. Raw four outputs, recurrent states, I420, original camera/public loop and pinned model/core/camera source bytes remain unchanged. All within-corrected-repeat required fields and bridge/pose/count receipts are exact. No original/default or legacy result is reclassified.
+
+Offline first-observation preservation is **32/32** against the two completed legacy base cohorts. Initial controls, source/warped RGB, actual I420, raw four outputs, parent action and aggregate/named state are preserved. These checks reuse existing records and add **zero inference calls**; applied action and subsequent world pose intentionally differ. They do not establish later legacy/corrected trajectory equality.
+
+| Seed | Native S scene | Actual inferences / completed rows | Exact paired rows | First mismatch | Max virtual lateral deviation (m) | Intrusions |
+|---|---|---:|---:|---|---:|---:|
+| 20261109 | `s_curve_left_right` | 24 / 24 | 12 / 12 | none | 0.09070645030432445 | 0 |
+| 20261109 | `s_curve_right_left` | 24 / 24 | 12 / 12 | none | 0.08693032726170458 | 0 |
+| 20261110 | `s_curve_left_right` | 24 / 24 | 12 / 12 | none | 0.0906948823748337 | 0 |
+| 20261110 | `s_curve_right_left` | 24 / 24 | 12 / 12 | none | 0.08677493402991843 | 0 |
+
+All eight unscored lane-truth summaries exactly regenerate from actual rows, with maximum lateral deviations **0.08677493402991843–0.09070645030432445 m**, zero intrusion over **0.6 s / nominal 4.8 m** per process. These are short virtual observations, not tracking quality, general model performance, a sole-cause claim or full-S traversal. Timings, source hashes and the complete five-archive ledger are in [the world-frame guide](STAGE7_MDV3_WORLD_FRAME.md); accepted raw evidence and timing totals are under `output/stage7-remote-evidence/run-43005087003/`.
+
+The predeclared automatic merged-main replication **43006858419** at merge `a5ef72ed3f492857eadd4b1198dbba381312aa80` completed 5/5 jobs and root-verified raw 4/4 data. Fresh independent main review is **clear**, and its 4/4 result is independently accepted. The next corrected camera .28 / ramp / 160-step expansion has **TDD in progress, no native execution**, requiring its own reviewed plan and evidence. No native/model run is requested by this documentation. Historical original **0/4 FAIL**, all legacy labels and geometry measurements, lack of candidate-specific paint validation, physical-optics/production-NV12 limits, default non-adoption and Stage 7's incomplete status remain unchanged.
+
+
+## Independently accepted corrected-main replication and all-pairs evidence
+
+Automatic main **43006858419** completed 5/5 at PR #29 merge `a5ef72ed3f492857eadd4b1198dbba381312aa80`; unit run **43006858385** passed. Root verified all five API archives/25 members and exact raw four-case/final regeneration, yielding observed corrected 4/4, eight new UUIDs/nonces, 96 actual inferences/completed rows and 48 exact within-main pairs. **Fresh independent main review is clear for all five archives, raw cases/final aggregate, first-observation controls, truth/timing and all-pairs evidence.** All native statuses are 0; runtime remains CPU ORT 1.31.1/basic/noninjected. The separate [world-frame result guide](STAGE7_MDV3_WORLD_FRAME.md) supplies its complete five-archive ledger, four-case table and separately measured main timing ranges.
+
+Main's eight unscored 0.6 s / nominal 4.8 m truth summaries equal source, with zero intrusion and maximum lateral deviations 0.08677493402991843–0.09070645030432445 m. Main's additional first-observation preservation comparisons are 32/32 using existing legacy records, with no inference or replay. This is bounded repeatability evidence with the same optical, renderer-semantic and model-quality limits.
+
+Across the corrected source and main cohorts there are **16 unique UUIDs/nonces, 192 actual steps and 96 within-cohort paired rows**. They are disjoint from the 40 earlier legacy model-process identities. Root's read-only all-four-process comparison covers six pairs/case, **24 pair comparisons / 288 exact paired-row checks**, with no metadata relabeling and **zero new inference calls**. The 288 checks reuse the existing 192 actual steps; they are not an expanded execution count. Evidence is `output/stage7-remote-evidence/world-frame-two-cohort-cross-comparison.json`.
+
+All ten corrected source/main archives and their exact comparisons are independently accepted; results-documentation merge remains open at this checkpoint. Corrected expansion is TDD in progress but **has no native execution or accepted result**. No future PR number, model ranking, global renderer/physical-optical equivalence, full-S completion or default promotion follows from these completed raw comparisons.
