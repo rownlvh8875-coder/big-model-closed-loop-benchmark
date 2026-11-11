@@ -29,7 +29,8 @@ def classify_binding(row: dict) -> str:
 
 
 def configure_sampler(engine, mode: str) -> dict:
-    if mode not in ('original', 'raw_linear'):
+    feedback_modes = ('feedback_baseline', 'feedback_linear', 'feedback_shadow_guard', 'feedback_both')
+    if mode not in ('original', 'raw_linear', *feedback_modes):
         raise ValueError('unknown experimental shadow sampler mode')
     from metadrive.version import VERSION
     from metadrive.third_party.simplepbr import _load_shader_str
@@ -44,15 +45,22 @@ def configure_sampler(engine, mode: str) -> dict:
     before = [int(tex.getMinfilter()), int(tex.getMagfilter())]
     if before != [SamplerState.FTShadow] * 2:
         raise RuntimeError('original PSSM shadow filter contract changed')
-    if mode == 'raw_linear':
+    guard = None
+    if mode in feedback_modes:
+        from scripts.native_shadow_feedback_probe import configure_feedback
+        guard = configure_feedback(engine, mode)
+    elif mode == 'raw_linear':
         tex.setMinfilter(SamplerState.FTLinear)
         tex.setMagfilter(SamplerState.FTLinear)
     after = [int(tex.getMinfilter()), int(tex.getMagfilter())]
-    return {'mode': mode, 'filters_before': before, 'filters_after': after,
+    result = {'mode': mode, 'filters_before': before, 'filters_after': after,
             'metadrive_version': VERSION,
             'loaded_fragment_shader_sha256': sha256(source.encode()).hexdigest(),
             'shader_edited': False, 'manual_pcf_sampler2d_confirmed': True,
-            'renderer_semantics_experimental': mode != 'original'}
+            'renderer_semantics_experimental': mode not in ('original', 'feedback_baseline')}
+    if guard is not None:
+        result['shadow_guard'] = guard
+    return result
 
 
 class OpenGLQuery:
@@ -180,6 +188,11 @@ def state_observer(engine, callback):
 
 @contextmanager
 def terminal_sampler_probe(engine, *, enabled: bool):
+    if getattr(engine, '_stage7_shadow_feedback', None) is not None:
+        from scripts.native_shadow_feedback_probe import terminal_feedback_probe
+        with terminal_feedback_probe(engine, enabled=enabled) as receipt:
+            yield receipt
+        return
     receipt = {'status': 'OFF', 'records': [], 'query_duration_s': 0.,
                'scope': 'moved_pose_positive_control_after_all_primary_frames',
                'primary_frames_instrumented': False, 'callbacks_removed': True,
