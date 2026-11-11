@@ -294,27 +294,67 @@ model calls remain unknown when they cannot be established. See the
 
 The initial CPU-only integration assumption was corrected before pushing:
 existing caller paths trigger native workflows. The [accepted CI amendment](superpowers/plans/2026-11-11-public-onnx-action-frame.md#ci-integration-amendment-accepted-before-first-push)
-repairs explicit Light Speed/Light Speed 2 declarations and asset verification,
-preserves all triggers/tolerances/failure gates, and budgets four existing
-automatic jobs at65 model calls (48 MD-V3,12 Light Speed 2,5 Light Speed).
-They use ephemeral CI weights only. A separate conditional main budget65
-applies after accepted merge; no dormant or completed matrix is manually
-replayed. Current whole-change/workflow review, CI/Codex and integration are
-pending, and no official-model/native result is claimed for this public change.
-First public source `5e39ef8201a0eaa1e04668fd7d3ba7467fb7f49a` subsequently
-passed four basic checks and Codex review, but all four native workflows failed
-apt installation with exit100 before assets/downloads/benchmark steps. Actual
-benchmark Python invocations/model calls/artifacts are all0. The retained
-failure ledger is `output/stage7-public-action-frame/failed-bootstrap-5e39.json`,
-SHA256 `87faad6d97b7f5c77d446a4f8784031dea2034aef3fe6df2ad3d4d66e698d0d3`.
-Mirror name-resolution failures are confirmed; missing/stripped proxies are
-not established as their cause. A prior job succeeded on the same image and
-package versions, so no image, repository, DNS or TLS-verification change is
-justified by these logs. The amended setup canary is a separate bounded
-infrastructure test, not a model repeatability result.
+preserves triggers/tolerances/failure gates and declares65 model calls
+(48 MD-V3,12 Light Speed2,5 Light Speed), with a separate conditional main
+budget65 only after accepted merge. **Neither budget is observed execution.**
+Two fresh whole15-file reviews cleared first source5e39ef8; root's full CPU
+run passed383 tests without skips in42.540s, with22 targeted tests and all13
+source/spec pins unchanged. Native integration remains unverified and blocked.
 
-Any strict repeat failure blocks merge. The earlier corrected scientific gates
-and the local paint outcomes below remain independent, immutable results.
+## Public action-frame bootstrap remains blocked
+
+[PR #33](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/pull/33) is **OPEN/unmerged** on
+`fix/public-onnx-action-frame`, based on accepted PR #32 main
+`48e79a7ed5aedf6daa5a62ff68d2225af7955ef1`. Latest verified source is
+`585bc12a67d98fa71550fe5c8a2d7a60dc2f15e3`. Its basic runs43043854636/43043845622 passed
+four checks; current-source Codex completed without findings/no open threads
+([comment6798423567](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/pull/33#issuecomment-6798423567)). The later documentation
+commit is not yet identified here; query the actual HEAD, never relabel the
+failed source canary as an exact-HEAD documentation run.
+
+| Frozen source | Actual CI run(s) | Observed failure | Actual new public native/model calls; artifacts |
+|---|---|---|---|
+| `5e39ef8201a0eaa1e04668fd7d3ba7467fb7f49a` | 43038230330,43038230299,43038230881,43038230538 | Four APT dependency-install failures/exit100, Ubuntu mirror name resolution; later assets/weights/benchmarks skipped | 0/0;0 across all four jobs |
+| `585bc12a67d98fa71550fe5c8a2d7a60dc2f15e3` | [43043845849](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43043845849) | Separate no-model canary fails APT update/exit100 before install; Pip/assets/native skipped | 0/0;0 |
+
+The four-file two-phase bootstrap review cleared diff SHA256
+`0d00ca2981770a08085191e476cd8ff7bd19e2b498e4fb83cbf16da7dcaf93df`;
+that review and green basic CI do not make the failed canary a native success.
+Across all five jobs, **new public model/native execution is zero**;65 stays
+only a planned ceiling. There are no canary PNG/I420 artifacts to validate or
+claim as an optical, action-frame or model result.
+
+The585bc12 remote runner recorded `defined=false, nonempty=false` for all ten
+names: `HTTP_PROXY`, `HTTPS_PROXY`, `http_proxy`, `https_proxy`, `NO_PROXY`,
+`no_proxy`, `SSL_CERT_FILE`, `SSL_CERT_DIR`, `REQUESTS_CA_BUNDLE`,
+`CURL_CA_BUNDLE`; `scoped_helper_available=false`. Logs establish failures to
+resolve azure/archive/security Ubuntu mirrors. The underlying network cause
+is **UNRESOLVED**; absent proxy/CA variables are not proven causal. The first
+5e39 jobs did not retain equivalent route-presence evidence. Selected Cloud
+executor connectivity/proxy/status is not a remote-runner observation.
+
+| Retained receipt under `output/stage7-public-action-frame/` | SHA256 |
+|---|---|
+| `failed-bootstrap-5e39.json` | `87faad6d97b7f5c77d446a4f8784031dea2034aef3fe6df2ad3d4d66e698d0d3` |
+| `run-43043845849-failed.log` | `bd80567a12de5833ab9ddf257bfd94047457671cdcff232a7630c723a0c491ea` |
+| `failed-canary-585bc12.json` | `353bafe40e366796bbc2cc842c66814de8b734d31d0b3ee19ab9eaa6882e6f79` |
+
+The predeclared stop rule now applies: **no model-job retry, no phase2
+application and no canary retry until verified external runner Ubuntu APT
+connectivity restoration**. Then only one fresh no-model canary on the actual
+current ref may precede raw artifact/API SHA/byte/PNG/I420 acceptance and a
+fresh concrete phase2 review. The [public plan](superpowers/plans/2026-11-11-public-onnx-action-frame.md#failed-canary-and-current-external-blocker)
+records exact resume/query steps. PR #33 cannot merge while native checks
+fail. Cloud publication/reconfiguration, DNS/mirror/hosts/CA/trust changes and
+gate/default relaxation remain outside scope; none was used by the amendment.
+
+This **new public zero-work checkpoint** is separate from immutable PR #31
+run43012480495 (24 processes/1472 actual inferences/12/12 repeatability) and
+PR #32's accepted V3 static study (16 native processes,128 raw plus128 warped
+PNGs; original2/4/candidate1/4 scene gates). V3 had no model calls and did not
+confirm all-scene geometry. Longer corrected trajectories did not finish the
+full S or demonstrate sustained tracking. Historical original0/4 FAIL and
+Stage7's incomplete status remain unchanged.
 
 ## Candidate-specific paint: V2 startup failure and completed V3 observations
 

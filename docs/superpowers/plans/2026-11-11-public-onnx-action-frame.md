@@ -1,6 +1,6 @@
 # Public ONNX applied-action binding implementation plan
 
-> **For agentic workers:** Parent authorization and prerequisite source/results merges are confirmed below. Use `superpowers:executing-plans` for the authorized implementation. Unchecked items remain unverified. Only the bounded existing-workflow CI regression in the accepted amendment below is planned; no local official-model or renderer-default authority is added. Root owns Git, CI and integration.
+> **For agentic workers:** Application implementation/CPU work is complete, but PR #33 is OPEN and native integration is blocked. The failed585bc12 canary activates the predeclared STOP below: no model jobs, phase2 application or canary retry before verified external CI runner Ubuntu APT connectivity restoration. Unchecked acceptance items stay unverified. No local official-model, Cloud reconfiguration or renderer-default authority is added. Root owns all Git, CI and integration.
 
 **Goal:** Correct the confirmed MD-V3 model-FRD → world-FLU applied-action boundary at five live public constructor sites, without altering the nine frozen diagnostic dependencies or legacy evidence producers.
 **Architecture:** A new public composition factory identifies the verified model/spec or requires an explicit parent-action frame declaration, constructs the unchanged bare policy once, and uses existing `WorldFramePolicyAdapter` once for FRD. Migrated callers pass its policy to their unchanged loop and save a separate frame-binding receipt. Renderer selection remains untouched.
@@ -18,12 +18,15 @@ ten-document review (diff SHA256
 Main unit43032709728 passed. Root authorized the specified implementation on
 `fix/public-onnx-action-frame` based on that merge. The original HOLD checkpoints
 are historical; their source/results prerequisites are now fulfilled.
-Implementation and22 targeted/383 full CPU tests are complete without skips;
-seven-file code/API review is CLEAR. Whole-change review, CI/Codex and the new
-change's integration remain pending. The API/source boundary and nine diagnostic
-dependency pins remain unchanged; five workflow edits are scoped below.
+Implementation and22 targeted/383 full CPU tests are complete without skips
+(root42.540s), with all nine diagnostic pins and four ModelSpecs unchanged.
+Two fresh whole15-file reviews cleared first source5e39ef8. Latest verified
+source `585bc12a67d98fa71550fe5c8a2d7a60dc2f15e3` has four passing basic checks and completed
+Codex without findings/no open threads, but its no-model canary failed before
+native startup. PR #33 remains OPEN/unmerged; native/phase2 acceptance is
+blocked, not waived. The API/source requirements below remain unchanged.
 
-- This plan completed parent review before implementation. Its original results-draft HOLD checkpoint is historical: V3 evidence review and final results-documentation review/checks/Codex/no threads/actual PR #32 merge are complete. Original2/4/candidate1/4 paint geometry does not become a factory or renderer-default acceptance claim. Public binding implementation/CPU tests are complete; whole-change review and CI/integration remain pending.
+- This plan completed parent review before implementation. Its original results-draft HOLD checkpoint is historical: V3 evidence review and final results-documentation review/checks/Codex/no threads/actual PR #32 merge are complete. Original2/4/candidate1/4 paint geometry does not become a factory or renderer-default acceptance claim. Public binding implementation/CPU tests and source reviews are complete; native integration is blocked by the failed585bc12 no-model canary, phase2 is HOLD and PR #33 remains open.
 - **Prerequisite fulfilled before tracked implementation:** corrected-expansion evidence was independently accepted, PR #31 merged its reviewed source and PR #32 passed applicable CI/Codex/no unresolved threads/fresh review and actually merged its results. Root confirmed both merges before authorizing this branch. No diagnostic binding change or future PR number is presumed; root owns integration. The accepted CI amendment below permits only the bounded new public-entrypoint regression through existing triggers, with no manual replay of completed scientific cohorts.
 - Preserve bytes of `OnnxBigModelPolicy`, `ModelAction`/`step_ideal`, native camera/public loop, legacy audited producers/readers, adapter, pinned factory and **all ModelSpecs**. Do not globally negate a common policy/kinematics value.
 - Only the four unpinned live entrypoint files below migrate. Frozen-RGB isolation, legacy AuditedOfficialOnnx/candidate/expansion and protected diagnostic pipelines stay explicitly legacy; acceleration-only and synthetic policies stay unchanged.
@@ -118,7 +121,7 @@ CPU regression must check the local source import graph and clean-process import
 - [x] After the current expansion's evidence/source acceptance and current results-documentation merge prerequisite, run targeted CPU regressions then the full existing suite with required dependencies/no unexplained skips, using existing tiny/fake graphs only. No official local weights or manual repeat of completed heavy cohorts is permitted; the separately specified existing-workflow CI regression is the only planned native/model work.
 - [ ] Require fresh whole-change API/scientific/code review, exact-HEAD applicable CI/Codex/no unresolved threads and unchanged pinned-source proof before merging this separate public API change. Only the separately reviewed existing-workflow regression below is included; no extra native/model protocol or future PR number is presumed.
 
-Future targeted check after authorization: `PYTHONDONTWRITEBYTECODE=1 python -m unittest discover -s tests -p 'test_public_action_frame.py' -v`, followed by the repository's existing full-suite command. Tests must first fail for the missing binding behavior, then pass; no result is claimed by this plan.
+The recorded CPU TDD command is `PYTHONDONTWRITEBYTECODE=1 python -m unittest discover -s tests -p 'test_public_action_frame.py' -v`, followed by the existing full suite. Meaningful RED→GREEN and22 targeted/383 full no-skip passes are complete; these CPU results do not verify remote APT connectivity or native/model integration, and no rerun is requested by this checkpoint.
 
 ## Nine frozen diagnostic dependency pins
 
@@ -138,12 +141,12 @@ Future targeted check after authorization: `PYTHONDONTWRITEBYTECODE=1 python -m 
 
 The file list, five constructors, frame controls/identity conflicts, transparent composition, receipt compatibility, transitive-import safeguards and sequential integration gates are specified. Existing tests directly exercise the bare ONNX executor/adapter and generic loops; they remain valid low-level contracts rather than being silently migrated. Only new tests cover the new public binding.
 
-This tracked document preserves the reviewed design. Corrected expansion evidence, PR #31 source acceptance and PR #32 results-documentation review/checks/actual merge are complete. Root authorized implementation in the seven specified files and accepted the five-workflow integration amendment below. After the lifetime fix,22 targeted and383 full CPU tests pass without skips, and seven-file code/API review is CLEAR. Whole-change/workflow review and CI/integration remain pending. Preserve all nine pins and unchanged source/spec contracts. Only the existing-workflow CI regression below is planned; no local official-model execution, manual completed-cohort repeat, real-vehicle/controller scope, renderer default or performance-rank authority is added.
+This tracked document preserves the reviewed design. Corrected expansion evidence, PR #31 source acceptance and PR #32 results-documentation review/checks/actual merge are complete. Root authorized implementation in the seven specified files and accepted the five-workflow integration amendment below. After the lifetime fix,22 targeted and383 full CPU tests pass without skips, and seven-file code/API review is CLEAR. Two whole15-file source reviews and four-file bootstrap review are CLEAR; source585bc12 basic CI/Codex are clear, but canary APT failure blocks native integration and PR #33 merge. Preserve all nine pins and unchanged source/spec contracts. Only the gated resume order below remains authorized; no local official-model execution, manual completed-cohort repeat, real-vehicle/controller scope, renderer default or performance-rank authority is added.
 
 
 ## CI integration amendment accepted before first push
 
-Root reviewed and accepted source amendment SHA256 `7d7688712e85f8208146c92495bc8001f6782cc3ffab3be7ffa06149ebde8a12` before editing workflows or pushing `fix/public-onnx-action-frame`. This source review executed no official weights/models/native/CI. Actual source/workflow/checkpoint diffs require fresh whole-change review before push; CI results remain pending.
+Root reviewed and accepted source amendment SHA256 `7d7688712e85f8208146c92495bc8001f6782cc3ffab3be7ffa06149ebde8a12` before editing workflows or pushing `fix/public-onnx-action-frame`. This source review executed no official weights/models/native/CI. At that historical amendment checkpoint, actual source/workflow/checkpoint diffs still required fresh review before push. The later completed reviews and failed native-bootstrap results are recorded below.
 
 The previously reviewed seven-file implementation remains CPU TDD work. Its former CPU-only integration assumption is incomplete: changing existing public entrypoints matches existing `push.paths` filters. Keep those triggers and check criteria. Predeclare their new public-boundary regression instead of removing triggers, substituting fixtures for native jobs, using skip-CI, canceling required checks or replaying completed Stage 7 scientific cohorts.
 
@@ -218,8 +221,8 @@ MD-V3 alone retains the factory's exact verified triplet: weight SHA256 `35976b1
 Source `5e39ef8201a0eaa1e04668fd7d3ba7467fb7f49a` was pushed only after both
 whole15-file reviews cleared diff
 `fe851d8af61714a96f852d3a9b3c16e579d74f113c977a19514f33b2a7f39ffc`.
-Basic runs43038230562/43038243397 passed four jobs, and Codex comment6798423567
-records current-source review without findings/no unresolved threads.
+Basic runs43038230562/43038243397 passed four jobs at that first source.
+The later585bc12 current-source Codex/check facts are recorded separately below.
 
 All four native jobs failed apt installation with exit100. Every subsequent
 asset, weight-download and benchmark step was skipped; each artifact API
@@ -279,3 +282,82 @@ uppercase normalization, explicit-empty preservation, provided scoped installer,
 update/install failures, no fallback after scoped failure and route-value
 redaction. They do not prove remote network recovery. No second native/model
 result is claimed by this checkpoint.
+
+
+## Failed canary and current external blocker
+
+[PR #33](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/pull/33)
+is **OPEN/unmerged**. Verified source checkpoint is
+`585bc12a67d98fa71550fe5c8a2d7a60dc2f15e3` on `fix/public-onnx-action-frame`,
+based on main/PR #32 merge `48e79a7ed5aedf6daa5a62ff68d2225af7955ef1`.
+The reviewed four-file bootstrap amendment diff SHA256 is
+`0d00ca2981770a08085191e476cd8ff7bd19e2b498e4fb83cbf16da7dcaf93df`.
+Source585bc12 basic runs43043854636/43043845622 succeeded (four checks);
+completed [Codex comment6798423567](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/pull/33#issuecomment-6798423567)
+has no findings/no open threads. These checks do not satisfy native acceptance.
+
+Actual [no-model canary43043845849](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43043845849)
+at source585bc12 **FAILED APT update with exit100 before package installation**.
+Subsequent Pip/assets/native work was skipped; artifact API count is0. Its ten
+proxy/CA-variable defined/nonempty pairs are all false and scoped helper is
+unavailable; these are observed presence booleans, not proof that missing
+proxies caused the Ubuntu azure/archive/security mirror DNS failures. The
+underlying route/network cause remains unknown. Do not infer remote-runner
+state from a selected Cloud executor or invent a replacement proxy/route.
+
+Full failed log is `output/stage7-public-action-frame/run-43043845849-failed.log`,
+SHA256 `bd80567a12de5833ab9ddf257bfd94047457671cdcff232a7630c723a0c491ea`.
+Final canary receipt is `output/stage7-public-action-frame/failed-canary-585bc12.json`,
+SHA256 `353bafe40e366796bbc2cc842c66814de8b734d31d0b3ee19ab9eaa6882e6f79`.
+Together with first5e39ef8's four failed bootstrap jobs/retained ledger above,
+all **five** failed CI jobs executed **zero new public native benchmark
+invocations and zero model calls**, with zero artifacts. The source65-call
+budget and conditional main65 remain **never-executed budgets**. Prior PR #31
+24-process/1472-call evidence and PR #32/V3 static16-process/128 raw+128 warp
+evidence are separate completed records, not new public integration results.
+
+### Mandatory stop and exact resume order
+
+1. Query the actual current PR/HEAD/checks. Source585bc12 identifies the failed
+   canary; a root-owned later three-doc-only commit has a different SHA that
+   cannot be embedded self-referentially before creation. That commit requests
+   basic CI/Codex only, not a native/model replay. Do not relabel the failed
+   canary as an exact-HEAD result for the later docs commit.
+2. **STOP all model jobs, phase2 application and canary retries** until external
+   restoration of the **actual CI runner's Ubuntu APT connectivity** is verified.
+   No publication/reconfiguration of selected Cloud, DNS/mirror/hosts/CA/trust
+   change, skipped gate or default change is authorized or was used.
+3. Only after verified restoration, use the existing reviewed no-model optical
+   workflow on the then-current ref for **one fresh canary**. Preserve parameters
+   and phase1 bootstrap. Verify actual run HEAD, successful native exit and raw
+   artifact API SHA256/bytes/safe paths, PNGs and I420 plumbing report before
+   acceptance. A failure/missing report stays a blocker; no automatic retry.
+4. Only after that canary's actual raw-evidence acceptance, obtain **fresh review
+   of the concrete phase2 diff**, then apply the same bootstrap to the three
+   model workflows. Their ceiling remains65 planned calls/6 sessions/6 worlds/
+   3 benchmark invocations, not an actual result or a new optical/dormant run.
+   Preserve every native/strict failure and all existing tolerances/defaults.
+5. Current-HEAD applicable CI/Codex/no open threads, fresh review, unchanged13
+   bindings and actual native evidence remain necessary before merge. **Native
+   failure keeps PR #33 open.** Phase2 has not been applied; no model retry or
+   canary retry is authorized while external connectivity remains blocked.
+
+Read-only status commands (they do not trigger CI):
+
+```bash
+gh pr view 33 --repo rownlvh8875-coder/big-model-closed-loop-benchmark \
+  --json url,state,headRefName,headRefOid,baseRefName,mergeCommit
+gh pr checks 33 --repo rownlvh8875-coder/big-model-closed-loop-benchmark
+gh run list --repo rownlvh8875-coder/big-model-closed-loop-benchmark \
+  --branch fix/public-onnx-action-frame --limit 12 \
+  --json databaseId,headSha,status,conclusion,workflowName,event
+gh run view 43043845849 --repo rownlvh8875-coder/big-model-closed-loop-benchmark \
+  --json headSha,status,conclusion,jobs
+gh api repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43043845849/artifacts \
+  --jq '{total_count, artifacts: [.artifacts[] | {id, name, digest, size_in_bytes}]}'
+```
+
+The previously declared conditional main budget65 can apply only after an
+accepted actual merge; it has not run. No original0/4 FAIL, geometry/tracking
+limit, renderer default, physical-optics/model-ranking gate or Stage7 incomplete
+status changes. This documentation checkpoint triggers no experiment.

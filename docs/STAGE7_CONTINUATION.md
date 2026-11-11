@@ -8,24 +8,43 @@ Latest results documentation: PR #32 merged as
 current-HEAD Codex without findings/no unresolved threads and fresh independent
 ten-document review. Final documentation diff SHA256 is
 `08f2f4093aa78d2862b3efaf8ec3b8eaf50fd7df54a7a1e7c4f29ba3f47e2f09`;
-post-merge unit run43032709728 passed. The current branch
-`fix/public-onnx-action-frame` starts from that merge. Public binding
-implementation is complete with22 targeted and383 full CPU tests passing
-without skips. Seven-file code/API review is CLEAR; final whole-change review,
-CI/Codex and integration remain pending. No future PR number or new native/model
-result is presumed.
+post-merge unit run43032709728 passed. Current branch is
+`fix/public-onnx-action-frame`, based on that merge. Latest verified public
+source is `585bc12a67d98fa71550fe5c8a2d7a60dc2f15e3`; [PR #33](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/pull/33) is **OPEN/unmerged**.
 
-Public implementation PR #33 is open at source
-`5e39ef8201a0eaa1e04668fd7d3ba7467fb7f49a`. Its four basic checks passed and
-current-source Codex review completed without findings/no unresolved threads.
-All four native jobs failed dependency installation with apt exit100 and Ubuntu
-mirror resolution errors before assets, model downloads or benchmark commands;
-actual native/model work is0, with0 artifacts. Preserve runs43038230330,
-43038230299,43038230881 and43038230538; they are not failed model measurements.
-The bounded two-phase bootstrap procedure in the public plan starts with only
-a no-model optical canary plus unit CI. If it fails, keep the PR open; do not
-retry model jobs or change network configuration. Phase2 requires independently
-verified canary success and a fresh review of the remaining setup changes.
+Public code/CPU verification is complete:22 targeted tests,383 full tests
+without skips (root42.540s), all nine diagnostic pins plus four ModelSpecs
+unchanged. Two fresh whole15-file reviews cleared first source
+`5e39ef8201a0eaa1e04668fd7d3ba7467fb7f49a`; the four-file two-phase canary
+amendment also cleared review (diff SHA256
+`0d00ca2981770a08085191e476cd8ff7bd19e2b498e4fb83cbf16da7dcaf93df`).
+This is code/CPU acceptance, **not native integration acceptance**.
+
+The first source5e39ef8 had four APT/DNS setup failures in runs43038230330,
+43038230299,43038230881 and43038230538. Later source585bc12's separate
+no-model canary [43043845849](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43043845849)
+also failed **APT update/exit100 before installation**, with Pip/assets/native
+steps skipped and zero artifacts. Across these **five failed CI jobs**, new
+public native benchmark invocations/model calls are **0/0**. The65-call model
+budget was never executed. Retained failure ledger/log hashes are in the
+[integration checkpoint](STAGE7_INTEGRATION_VERIFICATION.md#public-action-frame-bootstrap-remains-blocked).
+
+Source585bc12's four basic checks passed in runs43043854636/43043845622;
+its completed current-source Codex review has no findings/no open threads
+([comment6798423567](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/pull/33#issuecomment-6798423567)). Its actual canary recorded
+all ten proxy/CA-variable presence/nonempty booleans false and scoped-helper
+availability false. Ubuntu azure/archive/security mirror name resolution
+failed; the underlying cause remains unresolved. Proxy absence is an
+observation, not proof of causation, and selected Cloud status is not evidence
+about the remote CI runner.
+
+**STOP:** no more model jobs, phase2 application or canary retry until the
+actual external CI runner's Ubuntu APT connectivity is restored and verified.
+PR #33 must remain open; no failed native gate is waived. No Cloud publication/
+reconfiguration, DNS/mirror/hosts/CA/trust change or gate relaxation occurred
+or is authorized. The next root-owned commit changes only these three docs,
+with basic CI/Codex only; its actual HEAD must be queried after creation.
+Do not relabel the failed585bc12 canary as that later documentation HEAD.
 
 Corrected-expansion source: PR #31 merged as `cb1e7bfe698fe3bc3df9540eeb7dc2557e671300` from
 source `48bf4309cabe9d2e6e8b2fef952b9fb6f945b28a` after17 checks, Codex without
@@ -51,27 +70,29 @@ focused candidates. No whole-cohort geometry PASS is established. Original
 0/4 FAIL, default non-adoption, physical-optics limits and Stage7 incompleteness
 remain unchanged. No accepted heavy cohort needs a manual repeat.
 
-Resume order preserves completed cohorts; only the declared automatic
-public-boundary regression below is planned:
+Resume order is fixed; no parameters need to be re-decided:
 
-1. V3's single schedule/root strict reaggregation and fresh full independent
-   evidence review are complete/CLEAR. Preserve V2 and every V3 failed/
-   inconclusive control; no retry or mask/pose/threshold change is implied.
-2. Actual V3 outcomes and final documentation review are complete; PR #32
-   passed its applicable checks/Codex/no open threads and actually merged.
-3. The authorized [public ONNX action-frame implementation](superpowers/plans/2026-11-11-public-onnx-action-frame.md)
-   and meaningful CPU tests are complete: five constructor seams/four unpinned
-   files plus one new module/test/guide;22 targeted and383 full tests pass.
-   Finish whole-change review, actual CI/Codex and integration. Keep all nine
-   diagnostic pins unchanged. The reviewed CI amendment
-   preserves existing triggers/gates and declares four automatic public-boundary
-   jobs:65 planned calls (48 MD-V3,12 Light Speed 2,5 Light Speed), with a
-   separate conditional main budget65 after accepted merge. These are new
-   public-entrypoint regressions; do not manually replay completed scientific
-   cohorts or dormant matrices. A strict repeat failure blocks merge. No local
-   official weights or renderer-default promotion is authorized.
-4. Physical optics, renderer-wide semantics and sustained tracking remain
-   separate unresolved work; the binding fix is not their validation.
+1. Query the latest PR #33/HEAD/status using the [read-only commands in the public plan](superpowers/plans/2026-11-11-public-onnx-action-frame.md#failed-canary-and-current-external-blocker).
+   Keep it OPEN/unmerged while native integration is blocked;585bc12 is the
+   verified failed-canary source, not a future documentation commit SHA.
+2. Obtain verified restoration of the **actual external CI runner's Ubuntu APT
+   route**. Do not infer it from selected Cloud connectivity or invent a proxy,
+   endpoint, resolver, mirror or trust configuration. No native/model retry or
+   phase2 edit precedes this external prerequisite.
+3. Only after that restoration, run **one fresh no-model optical canary** on
+   the then-current ref with the reviewed unchanged parameters. Verify actual
+   run HEAD, successful native exit and raw artifacts against API SHA/bytes/
+   safe paths, PNGs and I420 plumbing report. Missing/failed evidence keeps
+   the blocker; it does not authorize an automatic retry.
+4. Only after accepted canary evidence, freshly review the concrete phase2
+   diff applying the same bootstrap to the three model workflows, then the
+   bounded source regression of **at most65 planned model calls**. Preserve
+   strict failures, default renderer and every existing gate. Conditional main
+   work remains a separate unexecuted budget after accepted actual merge.
+   Any native/strict failure keeps PR #33 open; no dormant/heavy matrix replay.
+5. Preserve completed PR #31/PR #32/V3 data and V2 failures. Physical optics,
+   renderer-wide semantics, full-S/sustained tracking, model ranking and
+   Stage7 completion remain separate open work. No local official weights.
 
 - PR #15 merged as `0c678facbf72c269c2453f472e64d8192b70d675` after verifying
   exact HEAD `f1dc88d476942de05f913cbc828a5fa5912e78a3`, nine checks,
