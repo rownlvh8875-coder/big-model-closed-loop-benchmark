@@ -27,11 +27,14 @@ from scripts.metadrive_render_causality import (
 from scripts.native_scene_ablation_sweep import ALLOWED_FRACTIONS, scenario_pose
 
 
-MODES = ("perceive_sequential", "task_step_pair", "graphics_frame_pair")
+MODES = ("perceive_sequential", "task_step_pair", "graphics_frame_pair",
+         "perceive_reverse", "task_step_pair_twice")
 PANDA_FRAME_COUNT_DELTA = {
     "perceive_sequential": 2,
     "task_step_pair": 1,
     "graphics_frame_pair": 1,
+    "perceive_reverse": 2,
+    "task_step_pair_twice": 2,
 }
 # Documented call paths: unlike globalClock frame count, only these
 # differentiate running Panda taskMgr.step() versus rendering graphics alone.
@@ -39,6 +42,8 @@ TASK_MANAGER_STEP_CALLS = {
     "perceive_sequential": 2,
     "task_step_pair": 1,
     "graphics_frame_pair": 0,
+    "perceive_reverse": 2,
+    "task_step_pair_twice": 2,
 }
 ABLATIONS = {"baseline": None, "shadow_off": "PSSM.update"}
 
