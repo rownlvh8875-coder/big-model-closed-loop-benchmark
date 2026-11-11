@@ -361,3 +361,56 @@ The previously declared conditional main budget65 can apply only after an
 accepted actual merge; it has not run. No original0/4 FAIL, geometry/tracking
 limit, renderer default, physical-optics/model-ranking gate or Stage7 incomplete
 status changes. This documentation checkpoint triggers no experiment.
+
+## Bounded runner-connectivity diagnostic (2026-11-11 resume)
+
+**Ruling:** the resume prerequisite needs evidence from an actual GitHub runner.
+An HTTP200 from the selected Cloud Ubuntu URL is only local-route evidence.
+One separate APT-metadata-only diagnostic may obtain the missing remote evidence;
+it is neither an optical canary retry nor a model run. Root implements this
+small observability change inline under the original autonomous-development
+instruction, with a fresh independent review before push. No new user choice
+or change to the accepted application design is needed.
+
+**Files:** create `.github/workflows/stage7-ci-connectivity.yml`; update this
+plan and the continuation checkpoint. Existing workflows and all application,
+diagnostic and ModelSpec bytes stay unchanged. The new workflow triggers only
+on pushes changing its own path (plus explicit dispatch), on `ubuntu-latest`.
+No dependencies, assets, packages or weights are installed/downloaded.
+
+**Interface:** artifact `stage7-ci-connectivity` contains `receipt.json` and
+sanitized `apt-update.log`. The receipt binds source SHA/run ID/attempt/image,
+route-variable presence booleans, selected provided installer route, strict
+APT-update exit code, timeout status and elapsed wall time. It records zero
+native benchmark invocations and zero model calls. Success means metadata
+update succeeded on that runner, not that rendering or native acceptance passed.
+
+**Review focus:** fail closed on APT warning/error; preserve failure evidence;
+bound runtime; preserve explicit-empty lowercase proxy settings; never disclose
+route-variable values or bypass an inherited denied route.
+
+- [x] Create the standalone workflow. Preserve phase1 environment normalization
+      and scoped-helper selection; direct APT uses `APT::Update::Error-Mode=any`,
+      zero retries and20s acquisition timeouts. Bound the command at180s plus10s
+      termination grace; the job has a five-minute ceiling.
+- [x] Execute the actual inline Python with CPU fake commands for direct success,
+      strict failure, timeout, scoped route/no fallback, explicit-empty settings
+      and secret redaction. Parse YAML and prove no existing trigger/source/pin
+      changes; examine every fixture result. These fixtures are not network proof.
+- [ ] Obtain fresh independent review of the exact diff, commit/push once, then
+      check actual run SHA, job conclusion and API-verified artifact bytes.
+- [ ] If metadata update fails, retain the blocker and stop experiments. If it
+      succeeds, it satisfies only the remote-connectivity prerequisite: run one
+      reviewed no-model optical canary on the current ref, then follow the
+      unchanged raw-evidence/phase2/strict/native/merge gates above.
+
+Fresh independent review of the original three-file delta found one important
+false positive: a provided helper could return0 with failed-index warnings.
+Root reproduced the actual workflow accepting that case, then added warning/
+error/acquisition-failure rejection independent of the retained command exit
+code. The regression now passes, including a direct zero-exit/error case;
+all11 CPU fixtures pass. Other controls cleared independent review. This is
+one verified fix pass, not an independent claim about network restoration.
+External fixture script and RED/GREEN output are retained under
+`output/stage7-public-action-frame/ci-connectivity-resume/`; no native/model
+execution or source/gate/default change occurred in these CPU tests.

@@ -2,6 +2,19 @@
 
 ## Current checkpoint (2026-11-11)
 
+Resume observability amendment: selected Cloud now receives HTTP200 from the
+Ubuntu metadata URL; this does **not** establish remote-runner restoration.
+The [bounded connectivity diagnostic](superpowers/plans/2026-11-11-public-onnx-action-frame.md#bounded-runner-connectivity-diagnostic-2026-11-11-resume)
+adds one separate strict APT-metadata-only CI job with a retained receipt/log,
+zero installs/assets/native/model work, and no existing workflow edits. Its
+fresh independent review found a zero-exit/helper-warning false positive; root
+reproduced it and fixed it, with all11 CPU fixtures now passing. Actual-run
+evidence is pending. The STOP below
+continues to prohibit optical/model retries until actual remote connectivity
+is verified; this diagnostic obtains that prerequisite, not native acceptance.
+PR #33 remains DRAFT/open and Stage7 incomplete. Historical source/checkpoint
+SHAs below continue to identify their original runs.
+
 Latest results documentation: PR #32 merged as
 `48e79a7ed5aedf6daa5a62ff68d2225af7955ef1`, from source
 `8e847da753d2c50af8ec5b6cbdba40bce774ed3d`, after four successful checks,
