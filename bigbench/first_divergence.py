@@ -115,6 +115,11 @@ EXISTING_BIGBENCH_PINS = {
 PRODUCER_SOURCE_PATHS = ('bigbench/first_divergence.py',
                          'scripts/first_divergence_audit.py',
                          'tests/test_first_divergence.py',
+                         'bigbench/first_divergence_model.py',
+                         'tests/test_first_divergence_model.py',
+                         '.github/workflows/stage7-first-divergence.yml',
+                         'bigbench/model_inventory.py', 'bigbench/metrics.py',
+                         'bigbench/longitudinal_world.py', 'scripts/__init__.py',
                          'scripts/hf_models.py', 'pyproject.toml')
 
 
