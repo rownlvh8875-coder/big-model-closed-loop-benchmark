@@ -1,5 +1,12 @@
 # Public ONNX applied-action binding implementation plan
 
+**Latest resume:** the existing optical canary's final success and raw artifact
+were recovered/root-accepted at21:19Z. The concrete three-workflow phase2 diff
+is CPU-verified with fresh independent canary/source review CLEAR before one
+bounded push. See [recovered phase2 checkpoint](#recovered-canary-and-concrete-phase2-resume).
+Earlier STOP/checkpoint paragraphs below retain their historical observations;
+no strict/native/current-HEAD review gate is waived.
+
 > **For agentic workers:** Application implementation/CPU work is complete, but PR #33 is OPEN and native integration is blocked. The failed585bc12 canary activates the predeclared STOP below: no model jobs, phase2 application or canary retry before verified external CI runner Ubuntu APT connectivity restoration. Unchecked acceptance items stay unverified. No local official-model, Cloud reconfiguration or renderer-default authority is added. Root owns all Git, CI and integration.
 
 **Goal:** Correct the confirmed MD-V3 model-FRD → world-FLU applied-action boundary at five live public constructor sites, without altering the nine frozen diagnostic dependencies or legacy evidence producers.
@@ -480,3 +487,67 @@ The APT prerequisite is already fulfilled; it is not the remaining blocker.
 
 The final handoff commit updates only this plan and continuation. Query its
 actual SHA/checks after creation; code/workflows remain b56226c-identical.
+
+## Recovered canary and concrete phase2 resume
+
+The existing43095045331/job130781567056 finished SUCCESS at actual source
+`b56226c1e824099f5335adf5559e2dc1ee238a06`; no canary rerun was dispatched.
+Root verified artifact13890257448's720494 ZIP bytes/full API SHA256
+`bc01d9ea6e1ddc382f5b1866c3e82e13157082965e39b7021a7ea4dd0040306c`,
+safe5-member extraction,4 decoded512×256 PNGs and existing two-pose I420 hashes/
+shape/dtype. The external artifact audit passes without errors, SHA256
+`0d41d1f70e511211af9407b481dfabeeed7502a42dca5e60711cc99b03d45037`.
+Its declared source199f3a89622aac8a1a3150b8582b37a2f855e60a has only doc
+differences from remote b56226c; root's separate API/runtime-equivalence binding
+is `output/stage7-public-action-frame/phase2-resume/canary-acceptance-context.json`.
+The reader manifest SHA256 is
+`296a7543cbc5d78ed3bc8bd8d914d86c69d44d8f1eff077421eba8121cd1cc46`.
+This is no-model plumbing acceptance, not physical optics/original determinism,
+raw964×604 reconstruction or exact-HEAD native acceptance for a later commit.
+
+Current199f3a8 basic CI43098894145/43098887439 passed4/4 jobs. Old43094912450
+also completed SUCCESS. Old c79dcdf doc runs remain separate queued observations.
+Failed502 bodies/log requests and failed Codex source request remain preserved;
+only current source's completed review may satisfy its future review gate.
+
+### Concrete source scope and checks
+
+Modify only the dependency prefixes of `.github/workflows/model-camera-repeat.yml`,
+`two-model-native.yml`, `light-speed-native.yml`; copy the existing optical
+bootstrap byte-for-byte (run-block SHA256
+`432772a69fe7b888b80fe5842708653b85253ba4d036d939889f20fa8cbb2175`).
+Keep every suffix/Pip command, later step, parameter, failure gate, permission,
+timeout, job metadata and trigger unchanged. Two docs record this transition.
+
+CPU evidence:6 inherited-route fixtures; five YAMLs/22 Bash blocks/11 embedded
+Python blocks parse;3 real receipt-audit fixtures pass and5 sign/trace/accel/
+missing-bridge/provenance mutations are rejected. All13 diagnostic/ModelSpec
+pins match. Proof/fixtures are under `output/stage7-public-action-frame/phase2-resume/`.
+
+- [x] Recover final canary success and root raw evidence without native retry.
+- [x] Prepare the exact3-workflow/two-doc diff and run CPU scope/route checks.
+- [x] Fresh independent raw-canary/source review of this exact diff before push.
+- [ ] Root commit/push once: automatic3 native jobs plus basic CI only;3 native
+      Python commands,6 policy/world/ORT instances, at most65 planned calls
+      (MD-V348, LS2 12, LS1 5). Actual new model calls are0 before that push.
+- [ ] Query actual source HEAD/job results; retrieve API-bound artifacts and
+      independently recompute bindings/counts/repeat decisions. Any strict/
+      native failure remains blocking. No extra optical/dormant cohort dispatch.
+- [ ] Completed current-HEAD Codex/no unresolved findings, applicable CI/raw
+      acceptance and fresh review are required before actual merge.
+
+**Conditional main scope:** the full PR merge diff differs from the small
+phase2 source diff. It automatically selects basic CI,3 model-native jobs,
+the no-model optical job and standalone metadata diagnostic. Thus main's
+separate unexecuted budget is65 model calls/6 ORT sessions/7 worlds/4 native
+benchmark commands, plus metadata only. No trigger is changed to suppress this;
+main work is authorized only after an actually accepted merge. The original
+main65 model-call ceiling is unchanged. Source/main/native counts are not
+inferred from each other or from planned budgets.
+
+Fresh independent review is CLEAR for raw canary evidence and the five-file
+candidate delta, bound to manifest SHA256
+`4864d4f7a12577aaae1efd01873a59be6064bbee8c7180cc37ce678520b28ad3`.
+Root's final edits only replace pending-review status with the actual verdict;
+the three reviewed workflow bytes remain identical. This is pre-push source
+clearance, not a model result, merge approval or waived gate.

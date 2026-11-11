@@ -2,6 +2,54 @@
 
 ## Current checkpoint (2026-11-11)
 
+**Recovery at21:19Z:** existing canary43095045331 and source basic43094912450
+now have actual successful final conclusions. Artifact13890257448 downloaded
+successfully at720494 bytes and API SHA256
+`bc01d9ea6e1ddc382f5b1866c3e82e13157082965e39b7021a7ea4dd0040306c`;
+one fresh safe extraction has5 files. The reviewed external revalidator passes
+all4 PNG CRC/decoded hashes, distinct two-pose Road/Wide canvases and unchanged
+I420 plumbing `[2,6,128,256] uint8`; model calls0, errors0. Audit SHA256 is
+`0d41d1f70e511211af9407b481dfabeeed7502a42dca5e60711cc99b03d45037`.
+This is root raw-evidence acceptance, with fresh independent raw/phase2 review
+CLEAR before push. It is pinhole/I420 plumbing,
+not physical optics, original repeatability or model integration acceptance.
+No raw964×604 PNGs, PID/UUID or runtime-session receipt is present.
+
+Remote canary HEAD remains **b56226c1e824099f5335adf5559e2dc1ee238a06**;
+the reader's declared/current source is199f3a89622aac8a1a3150b8582b37a2f855e60a.
+Root proved their complete Git difference is docs-only, preserving actual
+canary/runtime identities. Reader manifest SHA256 is
+`296a7543cbc5d78ed3bc8bd8d914d86c69d44d8f1eff077421eba8121cd1cc46`.
+Keep these different bindings; do not label the canary an exact199f3a8 run.
+Current199f3a8 basic runs43098894145/43098887439 both passed (four jobs);
+older c79dcdf queued runs are separate superseded doc checks, not native results.
+
+**Phase2 prepared:** only the dependency prefixes in model-camera-repeat,
+two-model-native and light-speed-native workflows copy the accepted optical
+bootstrap exactly (SHA256432772a69fe7b888b80fe5842708653b85253ba4d036d939889f20fa8cbb2175).
+Remaining steps, triggers, permissions, timeouts, parameters and strict/native
+gates are byte/structure unchanged. Six CPU route fixtures,5 YAML/22 Bash/
+11 Python-block checks,3 receipt fixtures and5 rejected mutations pass;
+all13 diagnostic/ModelSpec pins are unchanged. Fresh independent canary/diff
+review is CLEAR (reviewed five-file manifest SHA256
+4864d4f7a12577aaae1efd01873a59be6064bbee8c7180cc37ce678520b28ad3).
+One root push triggers only basic CI plus
+3 native model jobs:3 benchmark commands,6 worlds/sessions, at most65 planned
+model calls. Actual new model calls remain0 at this pre-push checkpoint.
+No second optical, connectivity diagnostic, dormant or completed cohort replay.
+
+If a later actual merge is accepted, the **full PR diff**, separately from the
+phase2 source diff, automatically triggers4 native jobs (including the no-model
+optical job), one metadata-only diagnostic and basic CI. Conditional main budget
+is65 model calls/6 sessions/7 worlds/4 benchmark commands; it is unexecuted.
+Do not change any trigger to hide those automatic checks. Any strict/native
+failure keeps PR33 open. Current-HEAD Codex/applicable CI/raw acceptance/fresh
+review are still required; service recovery does not waive them. No local
+weights, Cloud publication/reconfiguration, renderer or converter change.
+See the [phase2 checkpoint](superpowers/plans/2026-11-11-public-onnx-action-frame.md#recovered-canary-and-concrete-phase2-resume).
+
+### Earlier blocked checkpoints (preserved; recovery above supersedes the wait)
+
 Independent CPU work while GitHub integration is blocked: the
 [same-canvas RGB conversion measurement](STAGE7_OFFLINE_I420_CONVERSION_AUDIT.md)
 is root-accepted after fresh independent source review and byte-exact full replay.
