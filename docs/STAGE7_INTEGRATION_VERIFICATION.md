@@ -500,6 +500,18 @@ separate limits; this static study adds no official inference or model score.
 
 ## RGB and I420 source-contract audit
 
+Later, separate CPU evidence is documented in the
+[same-canvas conversion measurement](STAGE7_OFFLINE_I420_CONVERSION_AUDIT.md).
+It executes only three isolated source functions on128 existing512×256 V3
+canvases (42 unique RGB hashes), then compares logical planes with the unchanged
+local adapter. The saved-read difference is23,227,322/25,165,824 values,
+MAE1.9289422035217285/max75; nine CPU tests pass at root and independently, and
+fresh full replay matches analysis bytes exactly/root-accepted with CLEAR review.
+There are0 new native/model/camera/GPU calls and no converter changes.
+This extends the source-only observation numerically, without reproducing the
+official full publisher/pre-warp NV12/production ISP or explaining tracking.
+The original source-only checkpoint below remains historical and unchanged.
+
 **Source-only result:** the six-plane logical packing and CPU RGB orientation match, but the pinned official **simulator surrogate** RGB→NV12 converter and OpenCV's I420 reference use different coefficients/normalization and chroma filters. This does **not** make valid I420 dtype/shape/packing wrong, establish production ISP fidelity, or explain tracking error. No converter, remote module, model, vehicle/controller/plant or GL code was imported/executed; no pixels/spec/core changed.
 
 Pinned official source: `ajouatom/openpilot@e318f767ff7dc96d25a3bcc2b46f9f3daf6e9e42`. OpenCV reference: tag4.11.0, commit `31b0eeea0b44b370fd0712312df4214d4ae1b158`. Local package metadata says opencv-python and opencv-python-headless4.11.0.86; the actual prior/current CI wheel build/HAL path is **not** established by that local metadata. The audit read frozen source48bf4309 before its PR #31 merge; it changed no source or historical evidence.

@@ -2,6 +2,44 @@
 
 ## Current checkpoint (2026-11-11)
 
+Independent CPU work while GitHub integration is blocked: the
+[same-canvas RGB conversion measurement](STAGE7_OFFLINE_I420_CONVERSION_AUDIT.md)
+is root-accepted after fresh independent source review and byte-exact full replay.
+All128 preserved V3 warped PNGs match their frozen encoded/decoded identities;
+they contain42 unique RGB hashes. Existing OpenCV I420 versus isolated pinned
+simulator NV12 arithmetic differs in23,227,322/25,165,824 logical plane values
+(92.29708512624105%), MAE1.9289422035217285, max75. Unique-hash weighting gives
+7,557,462/8,257,536 differences, MAE1.93740723625062. Nine CPU tests pass at
+root and independently; replay analysis SHA256 is
+`937a1986a88f92ffbd7c9af810cf38d476603aef63333be8a3ccf60df7e32026`.
+Independent review SHA256 is
+`d74065f0221d72a3990ebfef6738087e4662cf93033169750e075931690200b1`.
+This adds **zero native/model/camera/GPU calls** and changes no converter,
+pixels, ModelSpec or diagnostic source. It does not reproduce official full
+SIM/production ISP/warp order or establish a preferred converter/tracking cause.
+The report retains exact source/data/analysis hashes, all128 records and the
+descriptive U44→119 maximum example. Completed historical cohorts are preserved.
+
+Latest service-boundary investigation: at20:35Z metadata returned HTTP200,
+while ZIP/job-log responses returned502 with GitHub request IDs and request
+quota remaining. At20:37Z a separate inherited-proxy stdlib HTTP client with
+redirect following disabled received502 **before any download URL was issued**;
+no redirect was followed or alternate endpoint invented. ZIP request ID is
+`3ECC:590FF:C02F55:25DB36A:6AF4D1EC`; job-log ID
+`59C5:29BEC6:C83D09:275F971:6AF4D1EC`. Both return the same32-byte Server Error
+body/hash already below. These are two further read-only ZIP attempts after the
+two historical attempts, not new native experiments. Evidence is retained in
+`ci-connectivity-resume/service-probe-20261111T203521Z/` and
+`redirect-boundary-20261111T203700Z/`. The underlying service/path cause remains
+unknown; no source/network/Cloud setting fix is inferred. At20:49Z existing
+canary43095045331/basic43094912450 remain final-state pending, and c79dcdf doc
+runs43096508693/43096503264 remain queued. No native/model/review retry occurred.
+
+This independent result's root-owned commit updates only four docs
+(new plan/report, this continuation and integration cross-reference), after
+fresh review. Query that commit's actual HEAD/basic CI separately. No failed,
+queued or unverified gate below is waived; PR #33 remains DRAFT/open/unmerged.
+
 Latest executable source is `b56226c1e824099f5335adf5559e2dc1ee238a06`.
 PR #33 remains **DRAFT/open/unmerged**. This resume added only one standalone
 APT-metadata diagnostic and two docs; all38 existing workflows, application
