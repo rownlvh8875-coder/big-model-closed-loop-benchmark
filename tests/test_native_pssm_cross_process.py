@@ -18,6 +18,18 @@ def h(value):
 
 def mock_native(seed,scene,arm,index,*,diff_step=None):
     mode,ablation,ticks=ARMS[arm]
+    tasks=["igLoop","update main chase camera"]
+    removal_receipt=None
+    if ablation=="baseline":
+        tasks.append("PSSM.update")
+    else:
+        removal_receipt={
+            "ablation":"PSSM.update",
+            "before_registered_tasks":sorted(tasks+["PSSM.update"]),
+            "after_registered_tasks":sorted(tasks),
+            "graphics_igLoop_preserved":True,
+            "real_vehicle_testing":False,"model_scoring_allowed":False,
+        }
     def series(label):
         items=[h(f"{seed}-{scene}-{mode}-{ablation}-{label}-{i}")
                for i in range(10)]
@@ -42,9 +54,8 @@ def mock_native(seed,scene,arm,index,*,diff_step=None):
         "gpu_texture_extract_calls":0,"onnx_inference_used":False,
         "model_scoring_allowed":False,"real_vehicle_testing":False,
         "camera_plus_2m_positive":{"road":True,"wide":True},
-        "registered_tasks_before":["igLoop","update main chase camera"]+
-            (["PSSM.update"] if ablation=="baseline" else []),
-        "ablation_receipt":None if ablation=="baseline" else {"removed":"PSSM.update"},
+        "registered_tasks_before":tasks,
+        "ablation_receipt":removal_receipt,
         "source_rgb":{
             "road":{"all_frame_sha256":series("source-road")},
             "wide":{"all_frame_sha256":series("source-wide")},
@@ -74,6 +85,54 @@ def build_full_mock(root):
 
 
 class NativeCrossProcessPSSMContractTests(unittest.TestCase):
+    def test_missing_or_duplicate_original_chase_and_graphics_tasks_rejected(self):
+        for arm in ARMS:
+            for task in ("igLoop","update main chase camera"):
+                for change in ("remove","duplicate"):
+                    with self.subTest(arm=arm,task=task,change=change):
+                        a=mock_native(20261109,SCENES[0],arm,0)
+                        b=mock_native(20261109,SCENES[0],arm,1)
+                        if change=="remove":
+                            b["registered_tasks_before"].remove(task)
+                        else:
+                            b["registered_tasks_before"].append(task)
+                        with self.assertRaises(ValueError):
+                            compare_native_camera_repeats(a,b,20261109,SCENES[0],arm)
+
+    def test_duplicate_original_pssm_update_is_not_an_untouched_control(self):
+        a=mock_native(20261109,SCENES[0],"sequential_original",0)
+        b=mock_native(20261109,SCENES[0],"sequential_original",1)
+        b["registered_tasks_before"].append("PSSM.update")
+        with self.assertRaises(ValueError):
+            compare_native_camera_repeats(a,b,20261109,SCENES[0],"sequential_original")
+
+    def test_pssm_removal_must_prove_only_that_task_was_removed(self):
+        arm="sequential_pssm_task_removed"
+        for change in ("unstructured","wrong_task","missing_before","missing_after",
+                       "extra_removed","extra_added","changed_after","graphics_lost"):
+            with self.subTest(change=change):
+                a=mock_native(20261109,SCENES[0],arm,0)
+                b=mock_native(20261109,SCENES[0],arm,1)
+                receipt=b["ablation_receipt"]
+                if change=="unstructured":
+                    b["ablation_receipt"]={"removed":"PSSM.update"}
+                elif change=="wrong_task":
+                    receipt["ablation"]="update main chase camera"
+                elif change=="missing_before":
+                    del receipt["before_registered_tasks"]
+                elif change=="missing_after":
+                    del receipt["after_registered_tasks"]
+                elif change=="extra_removed":
+                    receipt["before_registered_tasks"].append("another original task")
+                elif change=="extra_added":
+                    receipt["after_registered_tasks"].append("new render task")
+                elif change=="changed_after":
+                    receipt["after_registered_tasks"].remove("update main chase camera")
+                else:
+                    receipt["graphics_igLoop_preserved"]=False
+                with self.assertRaises(ValueError):
+                    compare_native_camera_repeats(a,b,20261109,SCENES[0],arm)
+
     def test_crossprocess_original_source_mismatch_is_not_silently_passed(self):
         a=mock_native(20261109,SCENES[0],"sequential_original",0)
         b=mock_native(20261109,SCENES[0],"sequential_original",1,diff_step=2)

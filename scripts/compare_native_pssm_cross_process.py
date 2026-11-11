@@ -71,14 +71,27 @@ def validate_trial(record:dict,seed:int,scene:str,arm:str)->None:
                for k in ("road","wide"))):
         raise ValueError("native world pose or spatial positive control missing")
     tasks=record.get("registered_tasks_before",[])
-    if (not isinstance(tasks,list) or "igLoop" not in tasks
-        or ("PSSM.update" in tasks)!=(ablation=="baseline")):
-        raise ValueError("original PSSM task membership does not match treatment")
+    if (not isinstance(tasks,list) or not all(isinstance(t,str) for t in tasks)
+        or tasks.count("igLoop")!=1
+        or tasks.count("update main chase camera")!=1
+        or tasks.count("PSSM.update")!=int(ablation=="baseline")):
+        raise ValueError("original PSSM/Chase/graphics task membership does not match treatment")
     if ablation=="baseline":
         if record.get("ablation_receipt") is not None:
             raise ValueError("original control unexpectedly ablated")
-    elif not record.get("ablation_receipt"):
-        raise ValueError("PSSM removal not evidenced")
+    else:
+        receipt=record.get("ablation_receipt")
+        if not isinstance(receipt,dict):
+            raise ValueError("PSSM removal not evidenced")
+        before=receipt.get("before_registered_tasks")
+        after=receipt.get("after_registered_tasks")
+        if (receipt.get("ablation")!="PSSM.update"
+            or receipt.get("graphics_igLoop_preserved") is not True
+            or not isinstance(before,list) or not isinstance(after,list)
+            or not all(isinstance(t,str) for t in before+after)
+            or sorted(after)!=sorted(tasks)
+            or sorted(before)!=sorted(after+["PSSM.update"])):
+            raise ValueError("PSSM removal ledger must preserve every other original task")
     for cam in ("road","wide"):
         verified_hash_series(record,"source_rgb",cam)
         verified_hash_series(record,"model_rgb",cam)
