@@ -1,6 +1,7 @@
 """CPU behavior tests: no native provider, GPU, ORT, weights or network."""
 from __future__ import annotations
 
+from contextlib import contextmanager
 from dataclasses import asdict
 from hashlib import sha256
 import importlib
@@ -112,6 +113,26 @@ class FirstDivergenceTests(unittest.TestCase):
         c.mark_closed()
         c.write_dataset(root, metadata={'convergence_receipts': first.test_receipts + second.test_receipts})
         return c
+
+    @contextmanager
+    def canary_fixture(self, temp):
+        from bigbench import metadrive_camera, curved_lane_scenarios
+        from types import SimpleNamespace
+        out = Path(temp)/'canary'
+        lifecycle = []
+        class CanaryProvider(Provider):
+            def __init__(self, **kwargs):
+                super().__init__(); self.env.current_map = object(); lifecycle.append('created')
+            def close(self):
+                if out.exists():
+                    raise AssertionError('serialized before provider close')
+                lifecycle.append('closed')
+        lane = SimpleNamespace(length=10., position=lambda s,l:(s,l), heading_theta_at=lambda s:0.)
+        with patch.dict('os.environ',{'GITHUB_ACTIONS':'true','RUNNER_TEMP':temp}), \
+             patch.object(metadrive_camera,'NativeMetaDriveProvider',CanaryProvider), \
+             patch.object(curved_lane_scenarios,'select_native_curve_lanes',return_value=[lane]), \
+             patch.object(campaign,'NativeWorldCamera',CopiedBufferCamera):
+            yield out, lifecycle
 
     def rewrite_manifest(self, root, change):
         path = root / 'manifest.json'
@@ -463,6 +484,161 @@ class FirstDivergenceTests(unittest.TestCase):
                     self.assertEqual(len(list(out.rglob('*.png'))),4)
                 with self.assertRaises(ValueError):
                     fd.validate_capture_dataset(out)
+
+    def test_post_close_png_error_preserves_partial_members_without_reserializing(self):
+        original = RGBFrame.save_png
+        writes = []
+        def save(frame,path):
+            writes.append(path)
+            if len(writes) == 3:
+                raise OSError('third PNG write failed')
+            return original(frame,path)
+        with tempfile.TemporaryDirectory() as temp, self.canary_fixture(temp) as (out,lifecycle):
+            with patch.object(RGBFrame,'save_png',save):
+                with self.assertRaisesRegex(OSError,'third PNG write failed'):
+                    fd.capture_canary(out)
+            self.assertEqual(lifecycle,['created','closed'])
+            self.assertEqual(len(writes),3, 'failure handling retried bulk serialization')
+            self.assertEqual(len(list(out.rglob('*.png'))),2)
+            self.assertTrue((out/'manifest.json').exists(), 'post-close error lost failure ledger')
+            failed = json.loads((out/'manifest.json').read_text())
+            self.assertEqual(failed['status'],'FAILED_OR_INCOMPLETE')
+            self.assertIn('third PNG write failed',failed['error'])
+            self.assertEqual(failed['accepted_pairs'],2)
+            self.assertEqual(failed['capture_count'],5)
+            self.assertTrue(failed['provider_closed'])
+            with self.assertRaises(ValueError):
+                fd.validate_capture_dataset(out)
+
+    def test_post_close_real_validation_error_never_publishes_success(self):
+        mark_closed = fd.CaptureCollector.mark_closed
+        def invalidate(collector):
+            mark_closed(collector)
+            collector.capture_rows[0]['status'] = 'FAILED_OR_INCOMPLETE'
+        with tempfile.TemporaryDirectory() as temp, self.canary_fixture(temp) as (out,lifecycle):
+            with patch.object(fd.CaptureCollector,'mark_closed',invalidate):
+                with self.assertRaises(ValueError):
+                    fd.capture_canary(out)
+            self.assertEqual(lifecycle,['created','closed'])
+            self.assertEqual(len(list(out.rglob('*.png'))),8)
+            self.assertTrue((out/'manifest.json').exists())
+            failed = json.loads((out/'manifest.json').read_text())
+            self.assertEqual(failed['status'],'FAILED_OR_INCOMPLETE')
+            self.assertEqual(failed['accepted_pairs'],2)
+            self.assertEqual(failed['capture_count'],5)
+            self.assertIn('error',failed)
+            with self.assertRaises(ValueError):
+                fd.validate_capture_dataset(out)
+
+    def test_failure_ledger_preserves_existing_manifest_and_original_io_error(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp); collector = self.dataset(root)
+            original = (root/'manifest.json').read_bytes()
+            try:
+                result = collector.write_failure_dataset(root,OSError('publish failed'),provider_closed=True)
+            except Exception as exc:
+                self.fail('existing manifest prevented failure ledger: '+str(exc))
+            self.assertEqual(result['status'],'FAILED_OR_INCOMPLETE')
+            self.assertEqual((root/'manifest.json').read_bytes(),original)
+            self.assertEqual(json.loads((root/'failure.json').read_text())['error'],'OSError: publish failed')
+            with self.assertRaises(ValueError):
+                fd.validate_capture_dataset(root)
+        original_save = RGBFrame.save_png
+        calls = []
+        def bad_save(frame,path):
+            calls.append(path)
+            if len(calls)==3:
+                raise OSError('primary serialization failed')
+            return original_save(frame,path)
+        with tempfile.TemporaryDirectory() as temp, self.canary_fixture(temp) as (out,lifecycle):
+            with patch.object(RGBFrame,'save_png',bad_save), \
+                 patch.object(fd.CaptureCollector,'write_failure_dataset',side_effect=OSError('ledger unavailable')):
+                with self.assertRaisesRegex(OSError,'primary serialization failed') as raised:
+                    fd.capture_canary(out)
+            self.assertTrue(any('ledger unavailable' in note for note in getattr(raised.exception,'__notes__',[])),
+                            'secondary ledger I/O was lost or replaced the primary error')
+            self.assertEqual(lifecycle,['created','closed'])
+
+    def test_nested_record_claims_and_wrong_types_are_rejected(self):
+        cases = [
+            (('accepted',0), 'original_strict_pass', True),
+            (('accepted',0), 'model_calls', 1),
+            (('capture_rows',0), 'model_calls', 1),
+            (('accepted',0,'raw','road'), 'original_strict_pass', True),
+            (('accepted',0,'packed'), 'model_calls', 1),
+            (('accepted',0,'raw'), 'model_calls', 1),
+            (('accepted',0,'intrinsics'), 'original_strict_pass', True),
+            (('accepted',0,'observation'), 'model_calls', 1),
+            (('capture_rows',0,'pose'), 'original_strict_pass', True),
+            (('capture_rows',0,'raw_sha256'), 'model_calls', 1),
+            (('capture_rows',0), 'capture_index', True),
+            (('accepted',0), 'accepted_index', True),
+            (('accepted',0,'intrinsics','road'), 'fx', True),
+            (('accepted',0,'observation'), 'time_s', False),
+            (('accepted',0,'observation'), 'time_s', 10**1000),
+            ((), 'accepted_pairs', 2.0),
+            ((), 'sensor_calls', 12.0),
+            (('metadata',), 'process_id', True),
+            (('metadata',), 'process_uuid', []),
+            (('metadata',), 'source_binding', {}),
+            (('metadata',), 'runtime_versions', {'original_strict_pass':True}),
+        ]
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp); self.dataset(root)
+            saved = (root/'manifest.json').read_text()
+            for route,key,value in cases:
+                with self.subTest(route=route,key=key,value=value):
+                    data = json.loads(saved); container=data
+                    for part in route:
+                        container=container[part]
+                    container[key]=value
+                    (root/'manifest.json').write_text(json.dumps(data))
+                    with self.assertRaises(ValueError):
+                        fd.validate_capture_dataset(root)
+
+    def test_missing_negative_or_contradictory_wrapper_acceptance_timings_are_rejected(self):
+        cases = [
+            (0,'capture_wrapper_wall_s',None),
+            (0,'capture_wrapper_wall_s',-1),
+            (0,'capture_wrapper_wall_s',0),
+            (0,'wrapper_observer_arithmetic_wall_s',None),
+            (0,'wrapper_observer_arithmetic_wall_s',-1),
+            (0,'wrapper_observer_arithmetic_wall_s',100),
+            (0,'capture_wrapper_wall_s',True),
+            (0,'wrapper_observer_arithmetic_wall_s',float('inf')),
+            (2,'accept_observation_wall_s',None),
+            (2,'accept_observation_wall_s',-1),
+            (2,'accept_observation_wall_s',True),
+            (2,'accept_observation_wall_s',float('nan')),
+            (0,'accept_observation_wall_s',0),
+        ]
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp); self.dataset(root)
+            saved = (root/'manifest.json').read_text()
+            for index,key,value in cases:
+                with self.subTest(index=index,key=key,value=value):
+                    data=json.loads(saved)
+                    if value is None:
+                        del data['capture_rows'][index][key]
+                    else:
+                        data['capture_rows'][index][key]=value
+                    (root/'manifest.json').write_text(json.dumps(data))
+                    with self.assertRaises(ValueError):
+                        fd.validate_capture_dataset(root)
+
+    def test_post_close_manifest_size_failure_is_preserved_before_publication(self):
+        versions = fd.runtime_versions()
+        versions['python'] = 'x'*(8*1024*1024)
+        with tempfile.TemporaryDirectory() as temp, self.canary_fixture(temp) as (out,lifecycle):
+            with patch.object(fd,'runtime_versions',return_value=versions):
+                with self.assertRaises(ValueError):
+                    fd.capture_canary(out)
+            self.assertEqual(lifecycle,['created','closed'])
+            failed=json.loads((out/'manifest.json').read_text())
+            self.assertEqual(failed['status'],'FAILED_OR_INCOMPLETE')
+            self.assertIn('manifest',failed['error'])
+            self.assertEqual(failed['accepted_pairs'],2)
+            self.assertEqual(len(list(out.rglob('*.png'))),8)
 
     def test_source_snapshot_rejects_changed_dependency_and_canary_requires_ephemeral_ci(self):
         snapshot = fd.source_snapshot()

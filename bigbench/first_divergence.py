@@ -30,6 +30,7 @@ from .optical_calibration import PinholeIntrinsics, PinholeRectifier, intrinsics
 
 PAYLOAD_CAP_BYTES = 256 * 1024 * 1024
 DATASET_CAP_BYTES = 1024 * 1024 * 1024
+MANIFEST_CAP_BYTES = 8 * 1024 * 1024
 RAW_SHAPE = (604, 964, 3)
 CANVAS_SHAPE = (256, 512, 3)
 PACKED_SHAPE = (2, 6, 128, 256)
@@ -223,6 +224,7 @@ class CaptureCollector:
         self._pending = None
         self._latest = None
         self._raw_callback_wall_s = 0.
+        self._serialization_started = False
 
     @property
     def payload_bytes(self) -> int:
@@ -328,6 +330,9 @@ class CaptureCollector:
         """Post-close retained evidence rows; Task2 can embed these in its sidecar."""
         if not self._closed or self.arm != 'retention':
             raise ValueError('serialization requires retained captures and provider closure')
+        if self._serialization_started:
+            raise ValueError('bulk serialization is once-only; preserve existing partial evidence')
+        self._serialization_started = True
         root = Path(root)
         _safe_path(root, 'manifest.json')  # Check ancestors before mkdir/write.
         root.mkdir(parents=True, exist_ok=True)
@@ -383,7 +388,9 @@ class CaptureCollector:
         root = Path(root)
         target = _safe_path(root, 'manifest.json')
         if target.exists():
-            raise ValueError('refuse to overwrite failure ledger')
+            target = _safe_path(root, 'failure.json')
+        if target.exists():
+            raise ValueError('refuse to overwrite an existing failure ledger')
         root.mkdir(parents=True, exist_ok=True)
         returned = sum(row['status'] == 'RETURNED' for row in self.capture_rows)
         data = dict(schema=SCHEMA, kind='camera-only-canary', status='FAILED_OR_INCOMPLETE',
@@ -394,15 +401,31 @@ class CaptureCollector:
                     sensor_calls=None, sensor_calls_lower_bound=2*returned,
                     sensor_calls_upper_bound=2*self.capture_count,
                     capture_rows=self.capture_rows, retained_payload_bytes=self.payload_bytes,
-                    protocol=CANARY_PROTOCOL, source_snapshot=source_snapshot(),
+                    protocol=CANARY_PROTOCOL,
                     accepted_prefix_descriptions=[dict(capture_index=r.capture_index,
                         raw_sha256=r.raw_sha256, observation=r.observation) for r in self.records])
-        if provider_closed:
+        try:
+            data['source_snapshot'] = source_snapshot()
+        except Exception as exc:
+            data['source_snapshot_error'] = f'{type(exc).__name__}: {exc}'
+        if provider_closed and not self._serialization_started:
             try:
                 data['accepted'] = self.serialize_captures(root)
             except Exception as exc:
                 data['serialization_error'] = f'{type(exc).__name__}: {exc}'
-        target.write_text(json.dumps(data,indent=2,allow_nan=False)+'\n',encoding='utf-8')
+        data['bulk_serialization_attempted'] = self._serialization_started
+        data['partial_members'] = []
+        for path in sorted(root.rglob('*')):
+            if path.is_file() and not path.is_symlink():
+                name = path.relative_to(root).as_posix()
+                checked = _safe_path(root,name)
+                digest = sha256()
+                with checked.open('rb') as stream:
+                    for chunk in iter(lambda: stream.read(1024*1024),b''):
+                        digest.update(chunk)
+                data['partial_members'].append(dict(path=name,nbytes=checked.stat().st_size,sha256=digest.hexdigest()))
+        with target.open('x',encoding='utf-8') as stream:
+            stream.write(json.dumps(data,indent=2,allow_nan=False)+'\n')
         return data
 
     def write_dataset(self, root: Path, metadata: dict | None = None) -> dict:
@@ -418,12 +441,23 @@ class CaptureCollector:
                         source_snapshot=source_snapshot(), capture_rows=self.capture_rows,
                         protocol=CANARY_PROTOCOL,
                         metadata=metadata or {})
-        manifest['accepted'] = self.serialize_captures(root)
         path = _safe_path(Path(root), 'manifest.json')
         if path.exists():
             raise ValueError('refuse to overwrite manifest')
-        path.write_text(json.dumps(manifest, indent=2, allow_nan=False) + '\n', encoding='utf-8')
-        validate_capture_dataset(root)
+        manifest['accepted'] = self.serialize_captures(root)
+        payload = json.dumps(manifest, indent=2, allow_nan=False) + '\n'
+        if len(payload.encode('utf-8')) > MANIFEST_CAP_BYTES:
+            raise ValueError('over-budget manifest candidate')
+        # Check the complete candidate and on-disk payload BEFORE publishing any
+        # successful manifest. This is the same validation as the public reader.
+        _validate_capture_manifest(Path(root),manifest,manifest_present=False)
+        pending = _safe_path(Path(root),'manifest.publish.json')
+        with pending.open('x',encoding='utf-8') as stream:
+            stream.write(payload)
+        # Hard-link publication is atomic and refuses an existing destination;
+        # unlike replace/rename it cannot overwrite earlier evidence.
+        os.link(pending,path)
+        pending.unlink()
         return manifest
 
 
@@ -550,7 +584,7 @@ def _read_png(path: Path, width: int, height: int) -> RGBFrame:
 
 
 def _read_json(path: Path) -> dict:
-    if not path.is_file() or path.stat().st_size > 8*1024*1024:
+    if not path.is_file() or path.stat().st_size > MANIFEST_CAP_BYTES:
         raise ValueError('missing or over-budget manifest')
     def unique(pairs):
         result = {}
@@ -574,6 +608,59 @@ def validate_capture_dataset(root: Path) -> dict:
     """
     root = Path(root)
     manifest = _read_json(_safe_path(root, 'manifest.json'))
+    return _validate_capture_manifest(root,manifest,manifest_present=True)
+
+
+def _fields(value: Any, required: set[str], optional: set[str] = frozenset()) -> None:
+    """Versioned records have registered fields, never a free-form claim bag."""
+    if type(value) is not dict or set(value) - required - optional or required - set(value):
+        raise ValueError('missing or unregistered versioned record fields')
+
+
+def _number(value: Any) -> bool:
+    if type(value) not in (int,float):
+        return False
+    try:
+        return math.isfinite(value)
+    except OverflowError:
+        return False
+
+
+def _hash_pair(value: Any) -> None:
+    _fields(value,{'road','wide'})
+    if not all(_is_hash(v) for v in value.values()):
+        raise ValueError('Road/Wide hash map requires lowercase SHA256 values')
+
+
+def _validate_metadata(metadata: dict) -> list[dict]:
+    # These named metadata fields are the only v1 extension points. Task2 must
+    # register its own model schema rather than append claims to capture rows.
+    _fields(metadata,{'convergence_receipts'},
+            {'process_id','process_uuid','runtime_versions','source_binding'})
+    if 'process_id' in metadata and (type(metadata['process_id']) is not int or metadata['process_id'] <= 0):
+        raise ValueError('invalid process ID metadata')
+    if 'process_uuid' in metadata:
+        value = metadata['process_uuid']
+        if not isinstance(value,str) or len(value) != 32 or any(c not in '0123456789abcdef' for c in value):
+            raise ValueError('invalid process UUID metadata')
+    if 'source_binding' in metadata and (type(metadata['source_binding']) is not str or not metadata['source_binding']):
+        raise ValueError('invalid source binding metadata')
+    if 'runtime_versions' in metadata:
+        versions = metadata['runtime_versions']
+        packages = {'numpy','opencv-python-headless','panda3d','metadrive-simulator','onnxruntime'}
+        _fields(versions,packages | {'python','executable'})
+        if any(type(versions[k]) is not str or not versions[k] for k in ('python','executable')):
+            raise ValueError('invalid Python runtime identity metadata')
+        if any(versions[k] is not None and (type(versions[k]) is not str or not versions[k]) for k in packages):
+            raise ValueError('invalid distribution version metadata')
+    receipts = metadata['convergence_receipts']
+    if type(receipts) is not list or len(receipts) != 2:
+        raise ValueError('missing native convergence receipts')
+    return receipts
+
+
+def _validate_capture_manifest(root: Path, manifest: dict, *, manifest_present: bool) -> dict:
+    """Shared disk-payload validation for a published or in-memory candidate."""
     expected_keys = {'schema','kind','status','claims','limitation','model_calls','ort_sessions',
                      'accepted_pairs','capture_count','sensor_calls','retained_payload_bytes','provider_closed',
                      'payload_cap_bytes','source_snapshot','capture_rows','protocol','metadata','accepted'}
@@ -590,27 +677,40 @@ def validate_capture_dataset(root: Path) -> dict:
     if type(cap) is not int or not 0 < cap <= PAYLOAD_CAP_BYTES or type(retained) is not int or not 2*(RAW_PAIR_BYTES+CANVAS_PAIR_BYTES+PACKED_BYTES) <= retained <= cap:
         raise ValueError('invalid retained payload budget')
     count = manifest.get('capture_count')
-    if type(count) is not int or not 4 <= count <= 12 or manifest.get('sensor_calls') != 2*count:
+    if type(count) is not int or not 4 <= count <= 12 or type(manifest.get('sensor_calls')) is not int or manifest['sensor_calls'] != 2*count:
         raise ValueError('invalid bounded camera capture count')
-    metadata = manifest.get('metadata')
-    if not isinstance(metadata,dict) or set(metadata) - {'process_id','process_uuid','runtime_versions','convergence_receipts','source_binding'}:
-        raise ValueError('unregistered canary metadata/claim')
-    receipts = metadata.get('convergence_receipts')
-    if not isinstance(receipts,list) or len(receipts) != 2:
-        raise ValueError('missing native convergence receipts')
+    receipts = _validate_metadata(manifest.get('metadata'))
     attempts = manifest.get('capture_rows')
     if not isinstance(attempts, list) or len(attempts) != count or any(not isinstance(r,dict) for r in attempts) or [r.get('capture_index') for r in attempts] != list(range(1,count+1)):
         raise ValueError('missing or unordered attempt receipts')
     for row in attempts:
+        _fields(row,{'capture_index','status','pose','raw_sha256','canvas_sha256',
+                     'capture_wrapper_wall_s','capture_inclusive_wall_s',
+                     'wrapper_observer_arithmetic_wall_s','raw_callback_nested_wall_s'},
+                    {'accept_observation_wall_s'})
+        if type(row['capture_index']) is not int:
+            raise ValueError('attempt index must be an integer')
+        _fields(row['pose'],{'t','x','y','heading','speed'})
+        if not all(_number(v) for v in row['pose'].values()):
+            raise ValueError('pose fields must be finite numbers')
+        _hash_pair(row['raw_sha256'])
+        _hash_pair(row['canvas_sha256'])
         if row.get('status') != 'RETURNED':
             raise ValueError('incomplete capture attempt')
-        inclusive, nested = row.get('capture_inclusive_wall_s'), row.get('raw_callback_nested_wall_s')
-        if any(type(v) not in (int,float) or not math.isfinite(v) or v < 0 for v in (inclusive,nested)) or nested > inclusive:
-            raise ValueError('invalid inclusive/nested observer wall timing')
+        inclusive, nested = row['capture_inclusive_wall_s'], row['raw_callback_nested_wall_s']
+        wrapper, arithmetic = row['capture_wrapper_wall_s'], row['wrapper_observer_arithmetic_wall_s']
+        if any(not _number(v) or v < 0 for v in (inclusive,nested,wrapper,arithmetic)) or nested > inclusive or wrapper < inclusive:
+            raise ValueError('invalid inclusive/nested/wrapper observer wall timing')
+        if not math.isclose(arithmetic,wrapper-inclusive,rel_tol=1e-9,abs_tol=1e-12):
+            raise ValueError('wrapper observer arithmetic is inconsistent with inclusive durations')
+        if 'accept_observation_wall_s' in row:
+            value = row['accept_observation_wall_s']
+            if not _number(value) or value < 0:
+                raise ValueError('invalid accepted-observation wall timing')
     rows = manifest.get('accepted')
-    if manifest.get('accepted_pairs') != 2 or not isinstance(rows,list) or len(rows) != 2:
+    if type(manifest.get('accepted_pairs')) is not int or manifest['accepted_pairs'] != 2 or not isinstance(rows,list) or len(rows) != 2:
         raise ValueError('two accepted canary pairs required')
-    registered, total = {'manifest.json'}, 0
+    registered, total = ({'manifest.json'} if manifest_present else set()), 0
     for p in root.rglob('*'):
         if p.is_symlink() or not (p.is_dir() or p.is_file()):
             raise ValueError('unsafe dataset member')
@@ -618,7 +718,11 @@ def validate_capture_dataset(root: Path) -> dict:
             total += p.stat().st_size
     if total > DATASET_CAP_BYTES:
         raise ValueError('dataset byte cap exceeded')
-    def member(desc):
+    def member(desc, *, image: bool):
+        _fields(desc,{'path','nbytes','sha256','rgb_sha256'} if image else
+                     {'path','nbytes','sha256','actual_input_sha256','association'})
+        if image and not _is_hash(desc['rgb_sha256']):
+            raise ValueError('image descriptor requires decoded RGB SHA')
         if not isinstance(desc,dict) or not _is_hash(desc.get('sha256')) or type(desc.get('nbytes')) is not int:
             raise ValueError('invalid file descriptor')
         name = desc.get('path')
@@ -630,13 +734,23 @@ def validate_capture_dataset(root: Path) -> dict:
             raise ValueError('evidence member hash mismatch')
         return path
     previous = 0
+    accepted_attempts = set()
     first_pose = None
     for accepted_index, row in enumerate(rows,1):
-        if not isinstance(row,dict):
-            raise ValueError('malformed accepted record')
+        _fields(row,{'accepted_index','capture_index','observation','intrinsics','raw','canvas','packed'})
+        _fields(row['observation'],{'speed_mps','time_s'})
+        if not all(_number(v) for v in row['observation'].values()):
+            raise ValueError('observation fields must be finite numbers')
+        for container in ('raw','canvas','intrinsics'):
+            _fields(row[container],{'road','wide'})
+        for intrinsics in row['intrinsics'].values():
+            _fields(intrinsics,{'width','height','fx','fy','cx','cy'})
+            if any(type(intrinsics[k]) is not int for k in ('width','height')) or any(not _number(intrinsics[k]) for k in ('fx','fy','cx','cy')):
+                raise ValueError('invalid typed pinhole intrinsics')
         index = row.get('capture_index')
-        if type(index) is not int or not previous+2 <= index <= min(previous+6,count) or row.get('accepted_index') != accepted_index:
+        if type(index) is not int or not previous+2 <= index <= min(previous+6,count) or type(row.get('accepted_index')) is not int or row['accepted_index'] != accepted_index:
             raise ValueError('accepted pair not associated with bounded latest attempt')
+        accepted_attempts.add(index)
         receipt = receipts[accepted_index-1]
         receipt_keys = {'attempts','stable','road_sha256','wide_sha256','road_changed_pixels','wide_changed_pixels','max_rgb_delta'}
         if not isinstance(receipt,dict) or set(receipt) != receipt_keys or receipt.get('stable') is not True or type(receipt.get('attempts')) is not int or receipt['attempts'] != index-previous:
@@ -672,7 +786,7 @@ def validate_capture_dataset(root: Path) -> dict:
                 intrinsics[kind] = PinholeIntrinsics(**row['intrinsics'][kind])
                 for boundary, width, height, target in (('raw',964,604,raw), ('canvas',512,256,canvas)):
                     desc = row[boundary][kind]
-                    frame = _read_png(member(desc),width,height)
+                    frame = _read_png(member(desc,image=True),width,height)
                     if frame.sha256 != desc.get('rgb_sha256'):
                         raise ValueError('decoded RGB SHA mismatch')
                     target[kind] = frame
@@ -691,12 +805,15 @@ def validate_capture_dataset(root: Path) -> dict:
             raise ValueError('accepted raw/canvas hashes differ from selected returned attempt')
         packed = row.get('packed')
         actual = camera_pair_to_model(canvas['road'],canvas['wide']).tobytes()
-        if member(packed).read_bytes() != actual or packed.get('nbytes') != PACKED_BYTES:
+        if member(packed,image=False).read_bytes() != actual or packed.get('nbytes') != PACKED_BYTES:
             raise ValueError('packed I420 derivation mismatch')
         if packed.get('actual_input_sha256') is not None or packed.get('association') != 'DERIVED_ONLY_NO_MODEL_CALL':
             raise ValueError('canary must not claim intercepted model feed')
     if previous != count:
         raise ValueError('unselected trailing attempts in complete canary')
+    for attempt in attempts:
+        if ('accept_observation_wall_s' in attempt) != (attempt['capture_index'] in accepted_attempts):
+            raise ValueError('acceptance timing must be present only on selected attempts')
     actual_members = {p.relative_to(root).as_posix() for p in root.rglob('*') if p.is_file()}
     if actual_members != registered:
         raise ValueError('unregistered or missing dataset member')
@@ -771,6 +888,14 @@ def capture_canary(out: Path) -> dict:
                     failure = exc
                 else:
                     cleanup_error = exc
+    if failure is None:
+        try:
+            return collector.write_dataset(Path(out),metadata=dict(process_id=os.getpid(),
+                process_uuid=uuid.uuid4().hex,runtime_versions=runtime_versions(),
+                convergence_receipts=[asdict(r) for r in renderer.receipts],
+                source_binding='CHECKOUT_BYTES_ONLY_GITHUB_API_BINDING_REQUIRED_BY_TASK2'))
+        except BaseException as exc:
+            failure = exc
     if failure is not None:
         try:
             collector.write_failure_dataset(Path(out),failure,provider_closed=provider_closed,
@@ -780,7 +905,3 @@ def capture_canary(out: Path) -> dict:
         if cleanup_error is not None:
             failure.add_note(f'Provider cleanup error: {type(cleanup_error).__name__}: {cleanup_error}')
         raise failure
-    return collector.write_dataset(Path(out),metadata=dict(process_id=os.getpid(),
-        process_uuid=uuid.uuid4().hex,runtime_versions=runtime_versions(),
-        convergence_receipts=[asdict(r) for r in renderer.receipts],
-        source_binding='CHECKOUT_BYTES_ONLY_GITHUB_API_BINDING_REQUIRED_BY_TASK2'))
