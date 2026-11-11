@@ -31,3 +31,24 @@ The original strict **fresh-frame MD-V3 ONNX** repeatability gate is separate an
 ## Evidence pending new run
 
 This file is the registered method and test plan. A software unit CI PASS is not a native measurement; actual observed cross-process frame matches and published artifact IDs will be recorded after successful GitHub Actions execution.
+
+## 2026-11-11 evidence-gate hardening
+
+The comparator now requires exactly one original Chase and igLoop task, the
+correct number of PSSM.update tasks, and a before/after ledger proving that
+experimental task removal removed **only** PSSM.update. Previously, missing
+Chase registration or an arbitrary nonempty ablation receipt could be accepted.
+The native renderer and all camera/model behavior remain unchanged.
+
+Local verification: 216 tests passed, and three real independent MetaDrive
+processes produced valid receipts (two sequential-original repeats and one
+paired task-removal process at seed 20261109, left-right S-curve). The original
+pair matched 10/10 source Road, Wide, warped RGB and I420 frames. The single
+experimental process is **not** a repeatability comparison. This small local
+static-scene check does not validate the original 32 CI processes or the
+official MD-V3 moving-camera strict gate.
+
+The original run's public page currently shows Success and five artifacts,
+but API access is blocked by the environment's network allowlist. Full raw
+artifact verification and final exact-HEAD CI/review remain required before
+merging PR #15. See [continuation instructions](STAGE7_CONTINUATION.md).
