@@ -199,3 +199,22 @@ into the benchmark.
 | [openpilot/selfdrive/controls/lib/latcontrol_angle.py](https://github.com/ajouatom/openpilot/blob/e318f767ff7dc96d25a3bcc2b46f9f3daf6e9e42/openpilot/selfdrive/controls/lib/latcontrol_angle.py) | `d01c571d063538f18d47c74b0e8ba6c444fe7c8dff2bb7d8a01d492f48c57dad` |
 | [openpilot/selfdrive/controls/lib/latcontrol_torque.py](https://github.com/ajouatom/openpilot/blob/e318f767ff7dc96d25a3bcc2b46f9f3daf6e9e42/openpilot/selfdrive/controls/lib/latcontrol_torque.py) | `67fb6ecafc4d0ce999e2bbf1b729b5f6cf58a5f787c054e770162e7f2f3629cc` |
 | [opendbc_repo/opendbc/car/vehicle_model.py](https://github.com/ajouatom/openpilot/blob/e318f767ff7dc96d25a3bcc2b46f9f3daf6e9e42/opendbc_repo/opendbc/car/vehicle_model.py) | `00fbe6da9b17723932988e5b3be5e29a2302296e0bcdaf914154906c6162489b` |
+
+
+## Local implementation checkpoint before first corrected execution
+
+Five new files implement this opt-in protocol. The adapter/runner/test received
+clear independent code review after13 new pure tests and342 full local tests
+passed without skips (18.169s, `/tmp/stage7-world-frame-full-1.log`). Initial
+RED9 missing-feature failures and a later nonzero wrong-map RED→GREEN record
+are retained; unit data is explicitly synthetic, never official execution.
+A guarded NumPy-only aggregate succeeds with Panda/MetaDrive/ORT imports
+forbidden. Every seven-file legacy source binding still matches; no legacy
+core, reader, producer, spec, test or workflow byte changed.
+The workflow and guide require their own final review before a triggering
+push. No corrected native/model gate has executed. Legacy PR #27 and the
+historical-integration documentation PR #28 are merged; the latter is
+`e0e220688e8d3c0254d04f8fc28dca02e1824796`, exact reviewed docs source
+`09b799fda7d894a9ab6340435bd6b80f3b31d44d` with4 successful checks,
+current-HEAD Codex without findings/no unresolved threads and fresh7doc review.
+These local results do not substitute for the complete fresh corrected4/4 gate.
