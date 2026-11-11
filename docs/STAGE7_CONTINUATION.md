@@ -39,6 +39,10 @@ SHA256 digests, limitations and source references are in
   source HEAD. Four raw pixel-clock summaries and the 32-process PSSM summary
   were regenerated exactly; render-causality ZIP verified. Its six worlds
   share one Python process, unlike the independent-process matrices.
+- Automatic merged-main order/tick run 42936911857 also completed and was
+  revalidated from all 32 receipts and five archive digests: original I420
+  22/40, each experimental mode 40/40. This is an independent CI repetition,
+  not proof of an original moving-model repair.
 - Historical callback runs 42819410983 and 42822587924: all sixteen archive
   SHA/size checks and comparison regenerations succeeded; 96 profiled ticks
   in each experiment put PSSM before Chase. CPU order is not GPU draw proof.

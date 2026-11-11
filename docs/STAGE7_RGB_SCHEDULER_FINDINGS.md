@@ -227,3 +227,31 @@ The main forensic evidence remains the original, independently SHA-verified
 CI artifacts listed above. Official uninstrumented MD-V3 strict repeatability
 remains the prior **0/4 PASS (FAIL)**. No new official ONNX trial or broader
 model scenario expansion was executed without a validated repair.
+
+## Automatically triggered merged-main repetition
+
+[Main run 42936911857](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42936911857) on `1d4a236cb85f4af3b94d6289b81aac89665f4c4e` completed five successful jobs. All five ZIP sizes/digests, 32 UUIDs, eight PIDs per scene and exact reaggregation were independently verified. This was an automatic main-push cohort, not a manually repeated completed stage.
+
+| Treatment | Source Road/Wide /40 | Warped Road/Wide /40 | I420 /40 | Post-warmup I420 /32 |
+| --- | --- | --- | --- | --- |
+| sequential_road_first | 26, 29 | 26, 34 | 22 | 16 |
+| sequential_wide_first | 40, 40 | 40, 40 | 40 | 32 |
+| paired_one_tick | 40, 40 | 40, 40 | 40 | 32 |
+| paired_two_ticks | 40, 40 | 40, 40 | 40 | 32 |
+
+All three experimental modes again matched all image fields in 4/4 static cases; original Road-first matched 0/4. This repeats the CI association and the changing original mismatch rate, but the documented local counterexamples still prevent a universal fix or official model-gate claim.
+
+| Artifact ID | ZIP SHA256 |
+| --- | --- |
+| 13819771709 | `sha256:8683ee61440a0ab367912f5ee083306ef388d360ade6049108ed60676d73a2b0` |
+| 13819576086 | `sha256:4a983e3fcc80c9957fba39d82f5261e306b7990d73de75fec6e098d4b5876f7a` |
+| 13818764240 | `sha256:d1542bafc431fd694ef750182bd1699b10404739af9a6b903467594b9d964080` |
+| 13818528744 | `sha256:46782acfee65f1b5d7cc689143ee5bac398cc601f4bf3ceba958559ca82e0f6f` |
+| 13818154717 | `sha256:1e9ca7c13ef4eccd14dc9ab442b67edc4d5f45f7bc08635df68bff22ec7931f7` |
+
+A separate local scene-graph probe checked the PSSMCameraRig C++ fallback
+selection of `engine.camera.get_child(0)`. Before, during and after mounting
+both RGB sensors in WORLD space, the group contained the same original main
+`cam` Camera, with FOV [65.0,65.0]. This rules out an empty main-camera group
+or a switched first-child lens in that observed local probe; it is not a
+measurement for every CI/GPU state or a proof of the remaining renderer cause.
