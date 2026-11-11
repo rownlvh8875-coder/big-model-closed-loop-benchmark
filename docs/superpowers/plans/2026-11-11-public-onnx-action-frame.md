@@ -211,3 +211,71 @@ MD-V3 alone retains the factory's exact verified triplet: weight SHA256 `35976b1
 7. Require current-HEAD applicable checks/Codex/no unresolved threads, fresh whole-change review and source-binding proof before merge. Main's automatically triggered integration jobs are a separate current-main result. Any failure stays a failure; no corrected scientific cohort, original0/4, renderer-default, Stage7-complete, optical-equivalence or performance-ranking claim changes.
 
 **Review disposition:** the amendment is concrete and suitable for root review. Seven-file-only/CPU-only integration is insufficient: incorporate the caller declarations and asset assertion, confirm the frozen model-lifetime fix, and review the actual plan/workflow/whole-source diffs before push. No new test or CI result is claimed by this document.
+
+
+## First bootstrap failure and bounded no-model canary
+
+Source `5e39ef8201a0eaa1e04668fd7d3ba7467fb7f49a` was pushed only after both
+whole15-file reviews cleared diff
+`fe851d8af61714a96f852d3a9b3c16e579d74f113c977a19514f33b2a7f39ffc`.
+Basic runs43038230562/43038243397 passed four jobs, and Codex comment6798423567
+records current-source review without findings/no unresolved threads.
+
+All four native jobs failed apt installation with exit100. Every subsequent
+asset, weight-download and benchmark step was skipped; each artifact API
+listing is empty. Actual native benchmark invocations/model calls are0, not65.
+The retained failure ledger SHA256 is
+`87faad6d97b7f5c77d446a4f8784031dea2034aef3fe6df2ad3d4d66e698d0d3`.
+
+| Run | Failed setup | Failed-step log SHA256 |
+|---|---|---|
+| 43038230330 | MD-V3 repeat dependencies | `34756a548e397f4ebf8330fc53b013d66367e793b66523a435af39adbde7cdbc` |
+| 43038230299 | Paired dependencies | `43fed8b877b2126de276ccd22cbad6dafa9efb2da63684129af75ae02f039ec5` |
+| 43038230881 | Light Speed dependencies | `bb20bc687a83705c4f577c837bd60f59600d0632aeaf1697bae516273a2a1545` |
+| 43038230538 | No-model optical dependencies | `3088aa8b937a68f5c0a6dce94008780b85e645a68d268abcacff757d7324e43c` |
+
+The logs establish resolution failures for azure/archive/security.ubuntu.com,
+while packages.microsoft.com metadata was fetched. One earlier job130495284830
+in accepted run43012480495 succeeded on the same Ubuntu26.04 image and package
+versions. The underlying temporal/runner connectivity cause remains unresolved;
+no OS/package incompatibility or proxy-configuration cause is proven. A selected
+Cloud executor's own proxy/status is not a measurement of these remote runners.
+
+The reviewed two-phase procedure preserves all application sources, thirteen
+source/spec pins, package names, repositories, image, benchmark gates, triggers,
+TLS verification and inherited trust. It changes no Cloud configuration:
+
+1. Change only `metadrive-optical.yml` setup and this failure documentation.
+   Record proxy/CA-variable defined/nonempty and scoped-helper availability as
+   booleans only. Normalize an inherited uppercase proxy into its lowercase
+   name only when that lowercase name is absent; preserve explicit empty values.
+   Preserve inherited proxy/CA names across sudo. Use the supplied scoped
+   package helper if executable, without falling back after its failure;
+   otherwise make ordinary apt update fail on any acquisition error before
+   installing the unchanged package list. No new endpoint, resolver, mirror,
+   CA, trust override, sudo policy, credential value or network-policy change.
+2. Freshly review the concrete setup/docs diff and CPU tool-path fixtures before
+   pushing. Its actual push paths trigger only basic CI plus the existing
+   no-model optical job: zero planned model calls; if setup succeeds, one native
+   world/two poses/four RGB sensor reads. This is a canary, not a model gate.
+   Keep the original failed runs/logs and never relabel their zero work as new
+   measurements. A failed canary leaves an external blocker and PR #33 open;
+   do not retry model jobs or work around a denied inherited route.
+3. Only after actual canary success and fresh raw-evidence acceptance, apply
+   the same reviewed setup to the remaining three failed model workflows and
+   review that phase's concrete diff before push. Its changed paths trigger
+   three model jobs, at most65 planned calls/6 sessions/6 worlds/3 benchmark
+   Python invocations. No extra optical job or dormant matrix is dispatched.
+   Total source model work remains a budget65; the earlier batch ran0.
+4. Bind canary evidence to its actual commit and preserve it as a separate
+   result. For phase2 prove its workflow/runtime dependencies unchanged; do not
+   relabel it an exact-HEAD run or waive any mandatory current-HEAD check.
+   Current-head applicable CI/Codex, all raw artifacts, strict repeat success,
+   unchanged-source proof and fresh review remain required before merge.
+   Only accepted actual merge can trigger the separately declared main budget65.
+
+CPU bootstrap fixtures execute mock sudo/package programs only. They cover
+uppercase normalization, explicit-empty preservation, provided scoped installer,
+update/install failures, no fallback after scoped failure and route-value
+redaction. They do not prove remote network recovery. No second native/model
+result is claimed by this checkpoint.

@@ -301,6 +301,18 @@ They use ephemeral CI weights only. A separate conditional main budget65
 applies after accepted merge; no dormant or completed matrix is manually
 replayed. Current whole-change/workflow review, CI/Codex and integration are
 pending, and no official-model/native result is claimed for this public change.
+First public source `5e39ef8201a0eaa1e04668fd7d3ba7467fb7f49a` subsequently
+passed four basic checks and Codex review, but all four native workflows failed
+apt installation with exit100 before assets/downloads/benchmark steps. Actual
+benchmark Python invocations/model calls/artifacts are all0. The retained
+failure ledger is `output/stage7-public-action-frame/failed-bootstrap-5e39.json`,
+SHA256 `87faad6d97b7f5c77d446a4f8784031dea2034aef3fe6df2ad3d4d66e698d0d3`.
+Mirror name-resolution failures are confirmed; missing/stripped proxies are
+not established as their cause. A prior job succeeded on the same image and
+package versions, so no image, repository, DNS or TLS-verification change is
+justified by these logs. The amended setup canary is a separate bounded
+infrastructure test, not a model repeatability result.
+
 Any strict repeat failure blocks merge. The earlier corrected scientific gates
 and the local paint outcomes below remain independent, immutable results.
 

@@ -15,6 +15,18 @@ without skips. Seven-file code/API review is CLEAR; final whole-change review,
 CI/Codex and integration remain pending. No future PR number or new native/model
 result is presumed.
 
+Public implementation PR #33 is open at source
+`5e39ef8201a0eaa1e04668fd7d3ba7467fb7f49a`. Its four basic checks passed and
+current-source Codex review completed without findings/no unresolved threads.
+All four native jobs failed dependency installation with apt exit100 and Ubuntu
+mirror resolution errors before assets, model downloads or benchmark commands;
+actual native/model work is0, with0 artifacts. Preserve runs43038230330,
+43038230299,43038230881 and43038230538; they are not failed model measurements.
+The bounded two-phase bootstrap procedure in the public plan starts with only
+a no-model optical canary plus unit CI. If it fails, keep the PR open; do not
+retry model jobs or change network configuration. Phase2 requires independently
+verified canary success and a fresh review of the remaining setup changes.
+
 Corrected-expansion source: PR #31 merged as `cb1e7bfe698fe3bc3df9540eeb7dc2557e671300` from
 source `48bf4309cabe9d2e6e8b2fef952b9fb6f945b28a` after17 checks, Codex without
 findings/no open threads and clear fresh final evidence review. Official
