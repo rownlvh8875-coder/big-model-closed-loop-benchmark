@@ -59,12 +59,35 @@
   completed Codex review without findings/no open threads and a clear fresh
   independent four-document review. Both model cohorts and the cross-cohort
   comparison are fully recorded in `STAGE7_MDV3_RENDERER_CANDIDATE.md`.
-- Current branch: `feat/stage7-mdv3-candidate-expansion`, based on that merge.
-  The new closed matrix covers camera .28, actual r/R ramps and a160-step
-  longer prefix. **329 local tests passed without skips**, including16 new
-  contracts; those16 also passed in the separate pure NumPy environment.
-  No official expanded-model trial has run. Query current HEAD/PR/Actions
-  before any push; protocol: `STAGE7_MDV3_CANDIDATE_EXPANSION.md`.
+- PR #27 remains open on `feat/stage7-mdv3-candidate-expansion`. Its frozen
+  executable source is `e84369c9f7f461a59c8d506b8b9efb2312297c03`;
+  source run **42987993022** completed all13 jobs. Root and fresh independent
+  review verified all13 API archive sizes/SHAs/safe paths and exact raw case/
+  final regeneration:24 fresh UUIDs/nonces,1472 actual inferences/completed
+  rows,736 paired exact rows. camera028/native_ramps/longer160 each pass4/4
+  **legacy-action repeatability only**, with no first mismatch/incomplete row.
+  Source passed17 checks and Codex review without findings/no open threads.
+  **329 local tests passed without skips**,16 also in the pure NumPy environment.
+  A documentation-only result update still needs its own checks and review.
+- **Confirmed model-to-world boundary defect:** legacy model FRD positive
+  curvature is rightward; unchanged virtual FLU yaw integration treats it as
+  leftward. The missing fixed right-handed body rotation is diag(1,-1,-1),
+  determinant+1; world curvature must negate model curvature, acceleration
+  stays unchanged. Pinned parser/publisher/controller source and nine pure
+  signed/zero/nonzero-heading cases confirm this; no controller/plant ran.
+  Source/model outputs, all historical states/actions/poses and gates remain
+  unchanged. Every legacy candidate pass is repeatability-only, not motion
+  validity, tracking or model quality. All four160-step cases visit only the
+  first route lane (active index0), with39.0089–41.1555m maximum virtual lateral
+  deviation. Eight seconds/nominal64m does not prove full S traversal.
+- Next work is a separately versioned opt-in model-FRD→world-FLU action adapter
+  around the unchanged audited policy, preserving raw outputs, I420 and states.
+  A new complete-only original2seeds×2S×12×2 corrected gate must run before
+  any corrected expansion. The adapter/fresh native gate is not yet executed.
+  Detailed legacy results,13 archive hashes, coordinate proof and CPU costs:
+  `STAGE7_MDV3_CANDIDATE_EXPANSION.md`. Original-renderer0/4 remains FAIL.
+  Query actual HEAD/PR/Actions before merge or further pushes; do not rerun the
+  completed heavy legacy expansion simply for documentation.
 - Automatic merged-main model replication **42981493726** completed 5/5 jobs
   and also passes candidate 4/4. All five API archive SHA/size/safe-path checks
   and exact raw case/final regeneration passed; fresh independent read-only
@@ -611,10 +634,13 @@ merely to rediscover their recorded results. Automatic candidate replication
 independent review; unit main **42981493834** passed. The
 [prospective expansion plan](superpowers/plans/2026-11-11-mdv3-candidate-expansion.md)
 has clear independent review of its revised protocol. Results-documentation
-PR #26 is merged; finish the separate expansion source/workflow review before
-its first model workflow push. Preserve every failure/
-partial result and retain exact fields and candidate labels; do not silently
-replace the historical original gate or adopt defaults.
+PR #26 is merged. Legacy expansion run42987993022 is also complete and
+independently revalidated (24 processes,1472 inferences,736 exact pairs; each
+group4/4 legacy-action repeatability only). Finish PR #27 result-documentation
+checks/current-HEAD review and gated merge; do not launch that cohort again.
+Then continue the separately versioned corrected-world adapter and its original
+four complete12-step cases before any corrected expansion. Preserve every
+failure/partial result and exact legacy labels; no historical gate/default changes.
 
 The trace/depth comparisons remain bounded input/one-scene evidence. Preserve
 raw files and distinguish traced correlations or terminal depth preservation
@@ -659,11 +685,12 @@ python -m scripts.aggregate_native_mdv3_rgb_pixel_matrix \
   --root output/verified-original-pixels --out output/pixels-recomputed.json
 ```
 
-The source and main candidate strict gates each pass 4/4 for their registered
-twelve-step cases. Main-evidence and revised expansion-plan reviews are clear,
-and results-documentation PR #26 is merged. Continue the authorized separate
-candidate expansion protocol after frozen source/workflow review; inspect
-its current PR/Actions before triggering any new model execution.
+The source and main candidate strict gates each pass4/4 for their registered
+twelve-step cases, and the completed legacy expansion passes4/4 per group.
+These use the confirmed incorrect unconverted action-frame binding. Finish
+PR #27 documentation checks/review/merge, then implement/review the separate
+corrected-world adapter and original four-case complete gate. Inspect actual
+HEAD/PR/Actions before any corrected trigger; no legacy cohort rerun is needed.
 Keep all source/warp/I420, raw action, aggregate/named recurrence and virtual
 pose/time comparisons exact. Historical original 0/4 remains unchanged;
 default promotion, global geometry/optical fidelity, driving ranking and

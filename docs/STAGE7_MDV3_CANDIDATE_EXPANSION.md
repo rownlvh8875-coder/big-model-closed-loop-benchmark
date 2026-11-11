@@ -1,4 +1,4 @@
-# Experimental official MD-V3 candidate: bounded expansion
+# Legacy-action official MD-V3 candidate: bounded expansion
 
 This protocol expands the separately labeled `feedback_both` plus opaque
 unsorted type 1 candidate. The original-renderer official MD-V3 gate remains
@@ -7,6 +7,14 @@ cohorts (source run42979680883 and automatic main run42981493726) are separate
 starting evidence: 16 processes, 192 parent inferences and 96 paired rows.
 They are not expansion results or evidence of default adoption, universal
 renderer equivalence, optical fidelity, driving quality or real-car readiness.
+
+**Known action-coordinate defect:** every cohort in this guide uses the legacy
+unconverted model-action binding. Model FRD positive curvature is rightward;
+the unchanged virtual FLU yaw integrator treats positive curvature as leftward.
+The missing fixed body-basis conversion invalidates motion-frame correctness
+and tracking claims. Exact legacy repeatability remains a separate finding.
+The corrected world-action protocol has not run; no historical action, pose,
+raw output, state or gate has been relabeled.
 
 The reviewed plan fixes twelve cases, each with two fresh native/Panda and
 CPU ORT processes, using seeds 20261109 and 20261110:
@@ -168,9 +176,101 @@ aggregation explicitly enables `set -euo pipefail` and retains failures.
 The main-base replication review and results-documentation prerequisite are
 complete. PR #26 merged as `1077144170346e23279a91c832ce414534f377fe`
 after exact-HEAD checks, completed Codex review/no findings/no open threads
-and fresh four-document review. The expansion still requires its own frozen
-source/workflow review, CI and artifact validation. This guide specifies the protocol;
-it reports no completed expansion cohort. Keep negative results, first
+and fresh four-document review. The frozen source/workflow review and the completed expansion artifact audit
+are now clear. The protocol above was fixed before execution; the following
+section records the completed legacy-action cohort. Keep negative results, first
 mismatch/incomplete boundaries, actual route coverage and CPU audit overhead.
 Original/default promotion, full renderer equivalence, optics, model ranking
 and vehicle/controller claims remain false regardless of determinism.
+
+
+## Completed legacy-action cohort and coordinate limitation
+
+Official run [42987993022](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42987993022)
+executed source `e84369c9f7f461a59c8d506b8b9efb2312297c03`; expansion module
+SHA256 is `d86b3be67c8ac3dee31f0bf9928014d3880c8c55a6cd829bb3c46c464d16b42c`.
+All twelve native jobs plus independent aggregation completed successfully.
+Root and a fresh independent reviewer verified all thirteen API archive sizes,
+SHA256s and safe members, and independently reconstructed every raw case and
+final summary exactly. There are 74 unique safe ZIP members; no weights are
+included. Evidence remains under `output/stage7-remote-evidence/run-42987993022/`.
+
+| Legacy-action group | Complete exact cases | Fresh processes | Actual inferences / completed rows | Paired exact rows |
+| --- | --- | --- | --- | --- |
+| camera028 | 4/4 | 8 | 96 / 96 | 48 |
+| native_ramps | 4/4 | 8 | 96 / 96 | 48 |
+| longer160 | 4/4 | 8 | 1280 / 1280 | 640 |
+| Total | 12/12 | 24 | 1472 / 1472 | 736 |
+
+All24 UUIDs/nonces are unique and disjoint from the16 earlier base-cohort
+identities; each case has two distinct same-runner PIDs. All source/warp/I420,
+four raw float32 outputs, parent converted actions, aggregate and named states,
+capture-entry/post-action poses and virtual times match exactly. There is no
+first mismatch or incomplete step. Each capture records two ticks. Actual ORT
+is1.31.1 with CPUExecutionProvider, basic optimization and no injected session.
+All1472 raw action hashes and4416 typed named-state receipts were independently
+checked. These counts describe observed work, not the planned budget alone.
+
+Every long trial ends at virtual time7.99999999999998, with160 distinct I420,
+image-state and feature-state hashes. The zero-desire state stays constant as
+expected; history length alone does not prove all recurrence semantics valid.
+Despite the constructed three-lane chain, all four long cases visit only the
+first lane and end with active index0. Maximum absolute lateral deviations
+are39.00889893289053/41.15546916242339m for seed20261109 LR/RL and
+39.013354504690554/41.143709047701606m for seed20261110. All24 lane-truth
+summary metrics were regenerated exactly from actual frame rows. These are
+unscored virtual geometry observations. Eight seconds and nominal64m of
+integrated path distance do not establish full S traversal or correct tracking.
+
+The pinned official source catalog commit
+`e318f767ff7dc96d25a3bcc2b46f9f3daf6e9e42` makes the missing action bridge
+explicit: camera.py73–88 declares forward/right/down and forward/left/up body
+bases; modeld114–115 computes raw lateral action divided by speed squared.
+Parser112–120 and fill_model_msg100 pass action through; controlsd217/225,
+227 and262–265 preserve the model sign, while latcontrol_angle23 and the
+torque boundary171/174/306 explicitly negate it for left-positive steering.
+Only source text was inspected; no controller or vehicle plant was executed.
+Both bases are right-handed. The fixed rotation is `diag(1,-1,-1)`, determinant
++1: world CCW curvature must be the negative of model right-positive curvature,
+with unchanged longitudinal acceleration. Global world Y and image axes do not
+flip. The numeric parent conversion is correct in its model convention; the
+missing conversion is at its application to the virtual world.
+
+Pure signed/zero/nonzero-heading proofs and pinned source hashes are retained
+under `output/stage7-coordinate-contract-audit/`. They establish this boundary
+defect, not its sole responsibility for all observed tracking errors or model
+quality. A separately versioned opt-in adapter is planned to preserve the raw
+four outputs and every image/state/audit byte while applying only the explicit
+body-basis conversion before unchanged kinematics. No corrected native gate
+has executed. Legacy repeatability results cannot become corrected-world PASS.
+
+Measured CPU named-state audit time over1472 inferences is5.106884–23.107618ms,
+sum10.242388566s. Extra warped-image hashing is0.358269–0.870031ms per capture,
+sum0.653893655s. Whole capture wall time is3.714707410–9.774991554s,
+sum7599.978521674s across independent processes; this includes rendering and
+capture and is not pure instrumentation overhead or a real-time benchmark.
+No CPU/GPU hardware-equivalence, real optics or performance claim follows.
+
+The source commit passed17 checks and current-source Codex review without
+findings or unresolved threads. A later documentation-only commit records
+these results and limitations; it must pass its own applicable checks/review.
+Its runnable code, workflow, specs and model binding must remain byte-identical
+to this independently audited source. The path-filtered heavy workflow does
+not rerun solely for result documentation. Neither the historical original
+0/4 gate nor renderer-default non-adoption changes.
+
+| Artifact ID | Bytes | ZIP SHA256 |
+| --- | --- | --- |
+| 13846305290 | 4058 | `2a886edbdd69cae67cfa24dbd2a6bac15027f40e220b2ab828c258a29472fd3d` |
+| 13845617914 | 379456 | `b34facfed1ad8d800c657a1485ffbaf2c31c65c9d9636eda54d9ef4de4156aee` |
+| 13844647784 | 381798 | `12803d69259b048b8ac2982a9519078f42fce36877c492fd1a8401550f50eb3e` |
+| 13843468186 | 382109 | `93404c4fde9f83c600f8753b80a70aa0603244659c272722a4217bc80c5cfe3b` |
+| 13842713664 | 379990 | `dd5927d899cc048894fc397fc87d8d1de61c280c07752490aecada9bfb56748d` |
+| 13841735302 | 38027 | `ad857804f2a4ea80996d2a7d8092c2f09e6c3db547d642092c7dd5d8261e007c` |
+| 13841661971 | 38085 | `4b79a2d60dd28f7c04bbd998bff2dd74ebd5679521ba8d1b38b17b6f842e9f5d` |
+| 13840726305 | 38208 | `29c02cfae9e89b2b36904df618cd7be28efe82c57b2b7ac2a0b3f9c8b7178564` |
+| 13840668097 | 37881 | `5bb26baea8ea7cdd7f709d1b6857dd8592c47a2c95272bce2be16769d9707936` |
+| 13840653861 | 38069 | `ca51bc6cffbe61f3d097960b0b32ec21a11b6f84a1236f66d1183cd6ca98454e` |
+| 13840617979 | 38195 | `d4a5e2c27feb2d3e300b7cd4fa1c0ac3c4c67cdd9e1764a5a3070e4e5c602801` |
+| 13840382793 | 38200 | `4d35394157299564b1f7339b6751306be928186d134d35355ec101bb09e5a944` |
+| 13840362369 | 38071 | `c79edc8c404672c1c3cd5082e2a4b706b426995bcdd718b244f91024c1fa9e52` |

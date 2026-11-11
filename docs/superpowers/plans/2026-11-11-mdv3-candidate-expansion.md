@@ -171,4 +171,35 @@ are `d86b3be67c8ac3dee31f0bf9928014d3880c8c55a6cd829bb3c46c464d16b42c`
 and `0f82a1ffa93bfd1cbde43c30d667a4a97a18d1755d59c08ac4b57b3a9e410737`.
 The source reuses unchanged base helpers. Native geometry setup-only v2 passed
 all four scenes after preserving and correcting the ops-only vector serializer
-failure; see the dedicated guide. No official expansion inference has run.
+failure; see the dedicated guide. At that pre-execution implementation
+checkpoint, no official expansion inference had run; completed evidence follows.
+
+
+## Completed execution and new coordinate boundary finding
+
+The frozen implementation source `e84369c9f7f461a59c8d506b8b9efb2312297c03`
+completed official run42987993022:12 native cases plus aggregation,24 fresh
+processes,1472 actual inferences/completed rows and736 exact paired rows.
+All three groups separately pass4/4 **legacy-action repeatability only**.
+Root and fresh independent review verified13 API ZIP byte counts/SHAs/safe
+paths and exact raw-to-case/final regeneration; no mismatch/incomplete row.
+Source17 checks/Codex review are clear. A result-documentation-only commit
+must receive its own applicable checks and fresh current-HEAD review; runnable
+bytes and model/spec binding remain identical and heavy trials are not repeated.
+
+Execution also exposed a confirmed missing modelFRD→worldFLU applied-action
+basis conversion. Numeric model raw_lat/max(2.5,v)^2 remains correct; applying
+its right-positive curvature directly to the virtual left-positive integrator
+is incorrect. Pinned source and pure math establish the fixed determinant+1
+body rotation diag(1,-1,-1), not a globalY/image flip, controller tuning or proof
+of sole tracking-error causality. All four long cases visit only their first
+route lane and show39.0089–41.1555m virtual lateral deviation. No motion-frame,
+full-S, optics, model-quality or Stage7 completion claim follows. Preserve this
+cohort and its legacy actions/poses/labels as historical unscored evidence.
+
+The next separately versioned opt-in corrected-world protocol must preserve
+raw outputs, I420, recurrence and parent audit while negating only the applied
+curvature at the documented body-basis boundary. Run the original four complete
+12-step cases first; no corrected ramp/camera/160 expansion before independent
+corrected4/4 acceptance. This update records results and a new confirmed defect;
+it does not retroactively change this expansion's pre-execution gates.
