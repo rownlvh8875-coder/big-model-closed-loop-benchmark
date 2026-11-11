@@ -62,7 +62,8 @@ def clock_receipt() -> dict:
 
 def native_pixel_clock(*, seed: int, scenario: str, fraction: float,
                        mode: str, ablation: str, frames: int = 10,
-                       warmup: int = 2) -> dict:
+                       warmup: int = 2, shadow_sampler_mode: str | None = None,
+                       terminal_shadow_probe: bool = False) -> dict:
     if (scenario not in SCENARIOS or fraction not in ALLOWED_FRACTIONS
             or mode not in MODES or ablation not in ABLATIONS):
         raise ValueError("unknown native trial configuration")
@@ -70,9 +71,17 @@ def native_pixel_clock(*, seed: int, scenario: str, fraction: float,
             or not 6 <= frames <= 16 or type(warmup) is not int
             or not 0 <= warmup <= frames - 2):
         raise ValueError("invalid bounded pixel capture")
+    if (terminal_shadow_probe and shadow_sampler_mode is None
+            or shadow_sampler_mode is not None and
+            (mode != 'perceive_sequential' or ablation != 'baseline')):
+        raise ValueError('sampler diagnostics require original Road-first PSSM/Chase path')
     provider = NativeMetaDriveProvider(seed=seed, map_config=SCENARIOS[scenario].map_config())
     try:
         engine = provider.env.engine
+        sampler_diagnostic = None
+        if shadow_sampler_mode is not None:
+            from scripts.native_shadow_sampler_probe import configure_sampler
+            sampler_diagnostic = {'configuration': configure_sampler(engine, shadow_sampler_mode)}
         task_report = (
             remove_visual_scene_task(engine.taskMgr, ABLATIONS[ablation])
             if ABLATIONS[ablation] else None
@@ -115,9 +124,21 @@ def native_pixel_clock(*, seed: int, scenario: str, fraction: float,
         # Pose movement positive control: required for EVERY mode, including
         # graphicsFrame-only (which can otherwise appear stable due stale RAM).
         moved = ((pose[0][0] + 2., pose[0][1], pose[0][2]), pose[1])
-        next_pose, _ = capture_with_readback(
-            provider, mode=mode, pose=moved, repeat_reads=3,
-        )
+        if sampler_diagnostic is None:
+            next_pose, _ = capture_with_readback(
+                provider, mode=mode, pose=moved, repeat_reads=3,
+            )
+        else:
+            from scripts.native_shadow_sampler_probe import terminal_sampler_probe
+            from time import perf_counter
+            diagnostic_started = perf_counter()
+            with terminal_sampler_probe(engine, enabled=terminal_shadow_probe) as probe:
+                next_pose, _ = capture_with_readback(
+                    provider, mode=mode, pose=moved, repeat_reads=3,
+                )
+            sampler_diagnostic['terminal_probe'] = probe
+            sampler_diagnostic['terminal_diagnostic_wall_time_s'] = perf_counter() - diagnostic_started
+            sampler_diagnostic['no_render_after_terminal_probe'] = True
         positive = {kind:
                     raw_rgb_frame(next_pose[kind]).sha256 !=
                     raw_rgb_frame(all_raw[kind][-1]).sha256
@@ -158,7 +179,7 @@ def native_pixel_clock(*, seed: int, scenario: str, fraction: float,
         valid = (all(positive.values()) and all(readback_exact)
                  and mode_tick_observed and clock_data_complete
                  and state_unchanged and task_identity_valid)
-        return {
+        result = {
             "status": "OBSERVED_NATIVE_PIXEL_CLOCK" if valid
                       else "INCONCLUSIVE_NATIVE_PIXEL_CLOCK",
             # Identity created only AFTER all captures and post-frame analysis,
@@ -202,6 +223,9 @@ def native_pixel_clock(*, seed: int, scenario: str, fraction: float,
                 "clock count must never be conflated; no specific shader cause proven."
             ),
         }
+        if sampler_diagnostic is not None:
+            result['shadow_sampler_diagnostic'] = sampler_diagnostic
+        return result
     finally:
         provider.close()
 
@@ -215,6 +239,8 @@ def main(argv=None) -> int:
     parser.add_argument("--ablation", choices=sorted(ABLATIONS), default="baseline")
     parser.add_argument("--frames", type=int, default=10)
     parser.add_argument("--warmup", type=int, default=2)
+    parser.add_argument('--shadow-sampler-mode', choices=('original', 'raw_linear'))
+    parser.add_argument('--terminal-shadow-probe', action='store_true')
     parser.add_argument("--out", type=Path, required=True)
     args = parser.parse_args(argv)
     args.out.parent.mkdir(parents=True, exist_ok=True)
@@ -223,6 +249,8 @@ def main(argv=None) -> int:
             seed=args.seed, scenario=args.scenario, fraction=args.fraction,
             mode=args.mode, ablation=args.ablation,
             frames=args.frames, warmup=args.warmup,
+            shadow_sampler_mode=args.shadow_sampler_mode,
+            terminal_shadow_probe=args.terminal_shadow_probe,
         )
     except Exception as exc:
         result = {
