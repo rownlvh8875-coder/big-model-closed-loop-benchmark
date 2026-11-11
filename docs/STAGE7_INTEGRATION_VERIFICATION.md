@@ -1,5 +1,15 @@
 # Stage 7 integration evidence and remaining validation
 
+Latest public-entrypoint evidence is the [source native regression](STAGE7_PUBLIC_ACTION_FRAME_REGRESSION.md):
+source `a4f13887b70208470d7fb6edaf507281d8a4551f` completes65 actual calls/six
+reports with valid frame bindings, but strict MD-V3 repeatability FAILS. Native
+jobs2SUCCESS/1FAIL, basic4SUCCESS; source Codex/fresh whole-branch review pass
+and raw replay is independent/exact. These do not waive the failed gate.
+First Wide/packed-input divergence is strictstep2/pairedA/Astep4 at equal prior
+recorded integrator poses. PR33 stays DRAFT/open/unmerged, main calls0. No new
+renderer/converter/default or model-quality/physical-optics/full-S acceptance.
+Earlier source-specific checkpoints below remain preserved historical evidence.
+
 Historical virtual intrinsics, RGB/I420 plumbing, sampled world-to-paint alignment and native target-lane arithmetic have verified passes. The experimental `feedback_both` plus opaque unsorted type 1 official MD-V3 candidate also has two separate twelve-step **4/4 legacy repeatability** cohorts. The confirmed missing FRD→FLU applied-action rotation means these legacy gates do not establish motion validity. Separate opt-in corrected source/main cohorts each pass4/4; corrected expansion43012480495 independently passes12/12 and PR #31 is merged. Its longer trajectories still depart from the lane and do not complete the full S. The historical **unmodified original gate remains 0/4 FAIL**. None of these results establishes physical comma optics, global renderer equivalence, driving rank, default adoption or Stage 7 completion.
 
 This document reconciles older guide status with retained evidence. A fresh independent read-only review is clear for all seven selected ZIPs, the 202-file manifest, frozen source identities and raw image/math recomputation. The reviewed findings and evidence bytes remain immutable. No future documentation PR number is presumed.

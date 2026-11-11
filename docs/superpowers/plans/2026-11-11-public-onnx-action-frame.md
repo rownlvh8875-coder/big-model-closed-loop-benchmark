@@ -1,11 +1,12 @@
 # Public ONNX applied-action binding implementation plan
 
-**Latest resume:** the existing optical canary's final success and raw artifact
-were recovered/root-accepted at21:19Z. The concrete three-workflow phase2 diff
-is CPU-verified with fresh independent canary/source review CLEAR before one
-bounded push. See [recovered phase2 checkpoint](#recovered-canary-and-concrete-phase2-resume).
-Earlier STOP/checkpoint paragraphs below retain their historical observations;
-no strict/native/current-HEAD review gate is waived.
+**Latest:** phase2 source-a4 completed65 real calls/all six reports, but the
+mandatory MD-V3 repeated diagnostic FAILED. PR33 stays DRAFT/open/unmerged,
+main calls0, no automatic model/native retry. See the
+[completed checkpoint](#completed-source-regression-strict-failure-blocks-integration)
+and [full source report](../../STAGE7_PUBLIC_ACTION_FRAME_REGRESSION.md).
+Earlier recovery/pre-push paragraphs preserve historical observations;
+code/basic/Codex/artifact acceptance never waives the strict/native gate.
 
 > **For agentic workers:** Application implementation/CPU work is complete, but PR #33 is OPEN and native integration is blocked. The failed585bc12 canary activates the predeclared STOP below: no model jobs, phase2 application or canary retry before verified external CI runner Ubuntu APT connectivity restoration. Unchecked acceptance items stay unverified. No local official-model, Cloud reconfiguration or renderer-default authority is added. Root owns all Git, CI and integration.
 
@@ -527,10 +528,10 @@ pins match. Proof/fixtures are under `output/stage7-public-action-frame/phase2-r
 - [x] Recover final canary success and root raw evidence without native retry.
 - [x] Prepare the exact3-workflow/two-doc diff and run CPU scope/route checks.
 - [x] Fresh independent raw-canary/source review of this exact diff before push.
-- [ ] Root commit/push once: automatic3 native jobs plus basic CI only;3 native
+- [x] Root commit/push once: automatic3 native jobs plus basic CI only;3 native
       Python commands,6 policy/world/ORT instances, at most65 planned calls
       (MD-V348, LS2 12, LS1 5). Actual new model calls are0 before that push.
-- [ ] Query actual source HEAD/job results; retrieve API-bound artifacts and
+- [x] Query actual source HEAD/job results; retrieve API-bound artifacts and
       independently recompute bindings/counts/repeat decisions. Any strict/
       native failure remains blocking. No extra optical/dormant cohort dispatch.
 - [ ] Completed current-HEAD Codex/no unresolved findings, applicable CI/raw
@@ -551,3 +552,44 @@ candidate delta, bound to manifest SHA256
 Root's final edits only replace pending-review status with the actual verdict;
 the three reviewed workflow bytes remain identical. This is pre-push source
 clearance, not a model result, merge approval or waived gate.
+
+
+## Completed source regression; strict failure blocks integration
+
+Actual source `a4f13887b70208470d7fb6edaf507281d8a4551f` executes65 model calls
+(MD-V348,LS2 12,LS1 5),65 completed rows/trace/bridge records across six complete
+policy/world reports/3 configured native commands. Three ZIPs/19 safe members
+(407251 ZIP bytes) are API-bound/root/independently revalidated. All bindings
+preserve identity/provenance/one curvature rotation/unchanged accel. No per-repeat
+fresh OS/PID/UUID/session receipts or full raw-four/named-state equality proof.
+Full data/limits: [source report](../../STAGE7_PUBLIC_ACTION_FRAME_REGRESSION.md).
+
+Strict43103222937 FAILS after24 complete calls; first Wide/packed-input/action/
+postpose divergence isstep2. Paired43103223193 succeeds technically after36
+calls but A/A mismatches, first Wide/input/action/postpose divergence atstep4.
+LS143103223022 succeeds after5 calls. Recorded integrator state is exactly equal
+before each first differing input; native camera/PSSM/GPU/recurrent states are
+not attested equal. No unique renderer/ORT microcause is established.
+
+Both strict same-pose episodes finish12 samples/0 failures, maximum attempts3/6
+and accepted changed pixels15/8 within6/16/10. Decisions regenerate exactly.
+Independent review SHA256
+`bdb395f95ca3675ce5ff795af6542350c1700b0effdbc1aa0f9036b63f87a85e`.
+Source basic passes4 jobs, native2pass/1fail (total6/1). Source Codex completes
+without findings/open threads; fresh whole18-file review is CLEAR,22 targeted
+tests/no skips,13 pins, review SHA256
+`df35f2dbdb195c4f721694f748bcb66d0b86035e9cd6e462610eef8496fce978`.
+
+**Completed verification checkboxes record work, not a strict PASS.** The merge
+checkbox stays unchecked. PR33 remains DRAFT/open/unmerged; main actual calls0.
+Source65 ceiling is fully consumed. Preserve its failed gate across doc-only
+HEAD/basic/Codex success: no trigger suppression, relaxed comparison, same-source
+native/model rerun, default switch or main merge to force acceptance.
+
+Next, prospectively specify/review a bounded observer/control diagnostic retaining
+actual accepted source/canvas/input identity at first divergence without extra
+render/GPU reads; record observer CPU overhead and declare new process/model/
+storage budgets before execution. This adds no authority to modify original
+renderer/converter/action/spec defaults. Original0/4, physical optics, full-S/
+Stage7 limits remain open. Root's four-doc result commit changes no runtime;
+query its actual HEAD/checks without relabeling source-a4 results.

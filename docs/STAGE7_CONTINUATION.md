@@ -2,6 +2,52 @@
 
 ## Current checkpoint (2026-11-11)
 
+**Latest: phase2 executed; strict native failure blocks integration.**
+Actual source `a4f13887b70208470d7fb6edaf507281d8a4551f` completes **65 calls/
+65 rows**: MD-V348,LS2 12,LS1 5, with six complete policy/world reports across
+3 native benchmark commands. All65 trace/bridge records and3 API-bound ZIPs/
+19 members revalidate. Fresh independent raw review agrees, SHA256
+`bdb395f95ca3675ce5ff795af6542350c1700b0effdbc1aa0f9036b63f87a85e`.
+Valid artifacts/bindings do **not** mean repeatability PASS.
+
+Strict43103222937 FAILS/exit1 after both12-step episodes complete, preserving
+all5 artifact files; its subsequent receipt-verification CI step is skipped.
+Paired43103223193 and LS143103223022 succeed technically, but paired MD-V3 A/A
+also records mismatch. Source basic43103223109/43103463642 pass4 jobs; total
+source jobs6SUCCESS/1FAIL/0pending. Current-a4 Codex completes without findings/
+open threads. Fresh whole18-file source review is CLEAR (22 targeted tests/no
+skips,13 pins), SHA256
+`df35f2dbdb195c4f721694f748bcb66d0b86035e9cd6e462610eef8496fce978`.
+
+First differing Wide canvas/input sum/action/postpose is strictstep2 and
+pairedA/Astep4, at equal preceding recorded integrator poses. Road first differs
+atsteps3/5. Strict packed-input sums48403935/48403952 and paired48623340/48623323
+prove different image bytes; ±17 is not a changed-pixel count. Both strict
+same-pose experiments finish12 samples/0 failures, maximum attempts3/6 and
+accepted changed pixels15/8 within unchanged6/16/10 limits. Cross-world equality
+still fails. Raw964/tensor bytes, pixel coordinates, named states and GPU/task/
+camera matrices are unavailable; a unique renderer/model microcause is unknown.
+
+Full runs, identities, ZIP IDs/digests and chronology are in the
+[source regression report](STAGE7_PUBLIC_ACTION_FRAME_REGRESSION.md).
+Proof root: `output/stage7-public-action-frame/phase2-resume/`; source manifest
+SHA2563d234923ab8ebc7a6f3aa12dc9e60f863c0b5162197ef37772c0e5459175d6d5.
+There are no per-repeat OS/PID/UUID/session receipts. Only LS1 exports5 CSV rows;
+repeat/pair use JSON traces. All weights remain ephemeral-CI-only.
+
+**STOP:** PR33 stays DRAFT/open/unmerged; conditional main actual calls **0**.
+No automatic model/native retry, threshold relaxation, candidate default,
+converter/pixel/action change or Cloud publication/reconfiguration. A later
+results-doc HEAD and green basic/Codex checks cannot wash away source-a4 FAIL.
+Next work is a separately bounded/reviewed first-divergence capture design with
+actual accepted buffers/feed identity, unobserved control and observer CPU-cost
+accounting before any new run. Preserve completed cohorts/failures. Original
+0/4FAIL, corrected expansion12/12, V3 geometry/physical-optics/full-S and Stage7
+incomplete remain unchanged. Query later doc HEAD/checks separately; these
+observed native results belong only to actual source-a4.
+
+### Earlier recovery and pre-push checkpoints (historical; source65 now executed)
+
 **Recovery at21:19Z:** existing canary43095045331 and source basic43094912450
 now have actual successful final conclusions. Artifact13890257448 downloaded
 successfully at720494 bytes and API SHA256
