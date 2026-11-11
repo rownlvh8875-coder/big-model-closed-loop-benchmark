@@ -64,7 +64,7 @@ following a causally justified, semantics-validated repair.
 
 ## Local implementation validation
 
-Full suite: 227 passed, no skips. Four real independent native processes
+Full suite: 232 passed, no skips. Four real independent native processes
 exercised both new modes (two repeats each) and their clock/task/pose/SHA
 receipts passed validation. At seed 20261109, left-right scene, wide-first
 source Road/Wide matched 8/10 and 5/10, I420 8/10; paired-two-tick source
@@ -78,3 +78,13 @@ per-scene PID uniqueness guard fixed it; no bare-PID uniqueness is required
 across different CI machines. No additional review findings were identified.
 
 New native CI and actual artifact results have not yet been recorded here.
+
+## Xvfb cleanup-status review correction
+
+The GitHub review identified the repository's known Xvfb cleanup exit status 5.
+The new `scripts/run_native_capture_trial.py` rejects preexisting output,
+launches one fresh native process, preserves other failure statuses, and
+accepts status 0 or cleanup-only status 5 only after the full newly generated
+native task/clock/pose/hash receipt validates. Missing or invalid receipts
+still fail. Five runner tests plus the full 232-test suite passed. New exact-
+HEAD native CI and automated review must be confirmed after this correction.

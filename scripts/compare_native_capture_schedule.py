@@ -19,34 +19,39 @@ SCHEDULES={
 }
 
 
-def compare_schedule_repeats(a:dict,b:dict,seed:int,scene:str,arm:str)->dict:
+def validate_schedule_trial(d:dict,seed:int,scene:str,arm:str)->None:
     if arm not in SCHEDULES or seed not in SEEDS or scene not in SCENES:
         raise ValueError('unknown native schedule condition')
     mode,ticks=SCHEDULES[arm]
+    validate_capture_trial(d,seed,scene,mode=mode,ablation='baseline',ticks=ticks)
+    pose=d['camera_pose']
+    if (any(not isinstance(v,list) or len(v)!=3 for v in pose)
+        or any(type(x) not in (int,float) or not math.isfinite(x)
+               for v in pose for x in v)):
+        raise ValueError('finite WORLD position and orientation triples required')
+    after_tasks=d.get('registered_tasks_after')
+    if (not isinstance(after_tasks,list)
+        or not all(isinstance(t,str) for t in after_tasks)
+        or sorted(after_tasks)!=sorted(d['registered_tasks_before'])):
+        raise ValueError('original PSSM/Chase task registry changed during capture')
+    if d.get('expected_panda_global_frame_count_delta_per_pair')!=ticks:
+        raise ValueError('mislabeled expected clock count')
+    previous_after=None
+    for i,row in enumerate(d['clock_timeline']):
+        before=row.get('before',{}).get('frame_count')
+        after=row.get('after',{}).get('frame_count')
+        if (row.get('render_frame_index_zero_based')!=i
+            or type(before) is not int or type(after) is not int
+            or after-before!=ticks
+            or (previous_after is not None and before!=previous_after)):
+            raise ValueError('raw Panda clock timeline does not prove the schedule')
+        previous_after=after
+
+
+def compare_schedule_repeats(a:dict,b:dict,seed:int,scene:str,arm:str)->dict:
     for d in (a,b):
-        validate_capture_trial(d,seed,scene,mode=mode,ablation='baseline',ticks=ticks)
-        pose=d['camera_pose']
-        if (any(not isinstance(v,list) or len(v)!=3 for v in pose)
-            or any(type(x) not in (int,float) or not math.isfinite(x)
-                   for v in pose for x in v)):
-            raise ValueError('finite WORLD position and orientation triples required')
-        after_tasks=d.get('registered_tasks_after')
-        if (not isinstance(after_tasks,list)
-            or not all(isinstance(t,str) for t in after_tasks)
-            or sorted(after_tasks)!=sorted(d['registered_tasks_before'])):
-            raise ValueError('original PSSM/Chase task registry changed during capture')
-        if d.get('expected_panda_global_frame_count_delta_per_pair')!=ticks:
-            raise ValueError('mislabeled expected clock count')
-        previous_after=None
-        for i,row in enumerate(d['clock_timeline']):
-            before=row.get('before',{}).get('frame_count')
-            after=row.get('after',{}).get('frame_count')
-            if (row.get('render_frame_index_zero_based')!=i
-                or type(before) is not int or type(after) is not int
-                or after-before!=ticks
-                or (previous_after is not None and before!=previous_after)):
-                raise ValueError('raw Panda clock timeline does not prove the schedule')
-            previous_after=after
+        validate_schedule_trial(d,seed,scene,arm)
+    mode,ticks=SCHEDULES[arm]
     if a['process_uuid']==b['process_uuid'] or a['process_id']==b['process_id']:
         raise ValueError('two separate native processes required')
     if a['camera_pose']!=b['camera_pose']:

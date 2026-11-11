@@ -32,7 +32,7 @@ or changed task registries, nonfinite/mismatched WORLD poses, missing positive
 controls, invalid SHA series, reused process IDs and stale summaries. Matching
 static images never become an original-model repeatability verdict.
 
-New code local full suite: **227 passed**, no skips. Regression tests were run
+New code local full suite: **232 passed**, no skips. Regression tests were run
 failing before implementation. Four separate local native processes validated both new modes at seed
 20261109 / s_curve_left_right. Wide-first repeats matched source Road/Wide
 8/10 and 5/10, I420 8/10; paired-two-tick repeats matched source Road/Wide
@@ -41,7 +41,7 @@ not the controlled four-scene CI matrix and not a renderer repair.
 
 Read-only code review identified possible same-runner PID reuse across arms.
 The regression reproduced acceptance before a case-level uniqueness guard;
-it now passes, as does the full 227-test suite. Bare PID reuse across separate
+it now passes, as does the full 232-test suite. Bare PID reuse across separate
 CI machines is allowed. No other review findings were identified. New GitHub
 CI, automated review and artifact reaggregation remain pending.
 
@@ -83,3 +83,13 @@ model state/actions as the default without causal and rendering-semantics
 validation. Only after an evidenced repair run the separate original
 2 seeds × 2 S-curves × 12 steps × 2 processes official MD-V3 exact gate. Expand
 scenarios and duration only after all original 4/4 conditions pass exactly.
+
+## Xvfb cleanup-status review correction
+
+The GitHub review identified the repository's known Xvfb cleanup exit status 5.
+The new `scripts/run_native_capture_trial.py` rejects preexisting output,
+launches one fresh native process, preserves other failure statuses, and
+accepts status 0 or cleanup-only status 5 only after the full newly generated
+native task/clock/pose/hash receipt validates. Missing or invalid receipts
+still fail. Five runner tests plus the full 232-test suite passed. New exact-
+HEAD native CI and automated review must be confirmed after this correction.

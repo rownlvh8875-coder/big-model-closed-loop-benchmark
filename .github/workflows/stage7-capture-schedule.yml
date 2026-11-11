@@ -8,8 +8,10 @@ on:
       - 'scripts/native_raw_pixel_clock.py'
       - 'scripts/compare_native_pssm_cross_process.py'
       - 'scripts/compare_native_capture_schedule.py'
+      - 'scripts/run_native_capture_trial.py'
       - 'tests/test_capture_schedule_isolation.py'
       - 'tests/test_native_capture_schedule.py'
+      - 'tests/test_run_native_capture_trial.py'
 permissions:
   contents: read
 concurrency:
@@ -63,26 +65,19 @@ jobs:
         run: |
           python -m unittest discover -s tests -p 'test_capture_schedule_isolation.py' -v
           python -m unittest discover -s tests -p 'test_native_capture_schedule.py' -v
+          python -m unittest discover -s tests -p 'test_run_native_capture_trial.py' -v
       - name: Eight independent native Panda image sequences per seed and scene
         run: |
           set -euo pipefail
           root="output/stage7-capture-schedule/seed-${{ matrix.seed }}/${{ matrix.scenario }}"
           mkdir -p "$root"
           for arm in sequential_road_first sequential_wide_first paired_one_tick paired_two_ticks; do
-            case "$arm" in
-              sequential_road_first) mode="perceive_sequential";;
-              sequential_wide_first) mode="perceive_reverse";;
-              paired_one_tick) mode="task_step_pair";;
-              paired_two_ticks) mode="task_step_pair_twice";;
-              *) echo "INVALID_NATIVE_SCHEDULE"; exit 12;;
-            esac
             for idx in 0 1; do
               file="$root/${arm}-run_${idx}.json"
               echo "NATIVE_CAPTURE_ORDER_TICK_START seed=${{ matrix.seed }} scene=${{ matrix.scenario }} arm=$arm repeat=$idx"
-              xvfb-run -a python -m scripts.native_raw_pixel_clock \
-                --seed ${{ matrix.seed }} --scenario ${{ matrix.scenario }} \
-                --fraction 0.12 --mode "$mode" --ablation baseline \
-                --frames 10 --warmup 2 --out "$file"
+              python -m scripts.run_native_capture_trial \
+                --seed ${{ matrix.seed }} --scene ${{ matrix.scenario }} \
+                --arm "$arm" --out "$file"
             done
           done
           python -m scripts.compare_native_capture_schedule \

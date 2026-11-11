@@ -119,3 +119,34 @@ Sequential-original first source difference steps (Road/Wide):
 | 13815004950 | stage7-pssm-crossprocess-20261110-s_curve_right_left | `sha256:f231ff7aee6c39823845e2f66f95042b0fa16ae0310b61c80c271c7242df49e2` |
 
 These are two different CI cohorts, not pooled proof of causality. The native sequential mismatch counts and first-difference steps vary across cohorts. Paired and PSSM-task-removal matches remain static-scene observations. No official renderer default was changed.
+
+## Revalidated CPU callback timing and upstream source
+
+The original eight callback-order artifacts from [run 42819410983](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42819410983) and eight pose/MVP artifacts from [run 42822587924](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42822587924) were downloaded with ZIP SHA/size verification. Recomputing all sixteen published comparison JSONs from their raw callback entry/exit events reproduced them exactly.
+
+All **96 recorded profiled CPU task ticks** in the order experiment entered and returned from PSSM.update before MainCamera._chase_task. The separate pose/MVP experiment also reconstructed 96 observed-arm ticks in that order; Chase changed main-camera position on one initial tick in each of its eight observed conditions. These measurements distinguish actual profiled Python invocation order from registered sort numbers. They do not establish GPU draw/depth order, an overhead-free unprofiled sequence, or causality for the original moving-model pixel changes.
+
+The installed MetaDrive 0.4.3 source registers PSSM.update, updates its shadow rig from the main camera and resets film-size cache each tick; upstream BaseCamera.perceive mounts a single sensor, runs taskMgr.step and restores it. RGBCamera requests a floating-point HDR target and multisampling before fixed-exposure tonemapping. Requested multisample count is not proof of the negotiated driver framebuffer format.
+
+The official [Panda3D 1.10.13 PSSMCameraRig source](https://github.com/panda3d/panda3d/blob/v1.10.13/contrib/src/rplight/pssmCameraRig.cxx#L141) computes stable-CSM texel snapping via fmod and inverse MVP, and its film-size cache and projection depend on the main camera. This provides candidate numerical/render-state boundaries to inspect; it is not proof of a defect or a reason to change the renderer. The downloaded source SHA256 was `0c81e0e00bfafb22387fa8812681e37829e99d0b0bf3c7c1ffbaa70694b60e66`.
+
+The loaded installed tonemap.frag SHA256 was `835b7ccb2d88f79d3d92b2009e142ad88453939a37a6e156808809e069c9af12`; simplepbr.frag was `8eef67eb4384d6a74136b8e99b4c9bf0711e51ee88db7a248cd164c7a69f9ceb`. The inspected PBR shader samples the PSSM shadow atlas and compares reference depth. No change to these sources, uniforms, shader passes or the Panda binary was made.
+
+| Run | Artifact ID | Verified ZIP SHA256 |
+| --- | --- | --- |
+| 42819410983 | 13767585064 | `sha256:9f98aeb165ef46fdbad018405ea7bbc54aa10088a360e06ed80ea69603352e7b` |
+| 42819410983 | 13767345021 | `sha256:7ca3dfc6622e7e5872072128001477e8fb1945f306dee37ba7d3569b569e6c2e` |
+| 42819410983 | 13766455265 | `sha256:6e552726fb0fc13ec5c0bd886e8f5a4f7f772e2a8c8a71b35ee1630b16d88bac` |
+| 42819410983 | 13766370283 | `sha256:8824c4f672acc9ccbe06183546042e3f0ac6f68c468fad61439ba3a07265901f` |
+| 42819410983 | 13766281197 | `sha256:f4104fb2b36627845d7eb9ff831f4460a85e8a2c7580260a376ef141c1772767` |
+| 42819410983 | 13765884179 | `sha256:7427353a0056895e3967deb48208f0f572b9f379c3a56fb0b0cab916fb0a3022` |
+| 42819410983 | 13765484755 | `sha256:31b463e4f52e495e136280c6cd4d6ea52a39c62b168162127f1c511e717adb25` |
+| 42819410983 | 13765364850 | `sha256:fa1e54b8e052237b7cfb20823394432eee2ba9a4baca8a9df9279071f9df5a0f` |
+| 42822587924 | 13768360043 | `sha256:695ddcdf2c6295e35739e8ac4683917b1013b1e0bfcccc1356ab25f7d7180796` |
+| 42822587924 | 13768245570 | `sha256:5df50aa5184f869b628d84c5bf35897d9d97d49075a4ed01ddaa448ef5bf2677` |
+| 42822587924 | 13768146012 | `sha256:4e2738625e815635e1bd507754e9eaa0bcc8ed8bc6a04395f5525a8536f3327d` |
+| 42822587924 | 13767987753 | `sha256:27176dbf1d64e914cd8d5e6346f39b4ab47f5bcce45ad3f9d6c5fc46d16c99a2` |
+| 42822587924 | 13767907895 | `sha256:04ac1947fdbd76a13423daae9447c885f6494399d2cd33e532388f6262cbc0ac` |
+| 42822587924 | 13767174347 | `sha256:8c714433b6a9e91a17c339ecec26b53ffac05c4babad53df1b2e35fcb186e03e` |
+| 42822587924 | 13766944546 | `sha256:603ab98ee979f6e538cb551b57551f7ee485fdfca2d628c136e29450e7f6c0b7` |
+| 42822587924 | 13766364971 | `sha256:a6d243dbdb2592b72da278603afd7dcf76c49dd724108338bdaa6eed6c5b77ff` |
