@@ -32,6 +32,8 @@ from bigbench.render_causality import (
 
 
 CAPTURE_MODES=('perceive_sequential','task_step_pair','graphics_frame_pair')
+# Follow-up diagnostics only; keep the original CLI/default matrix unchanged.
+DIAGNOSTIC_CAPTURE_MODES=CAPTURE_MODES+('perceive_reverse','task_step_pair_twice')
 WORLD_POSE=((0.,0.,1.22),(-90.,0.,0.))
 
 
@@ -77,15 +79,16 @@ def capture_with_readback(provider: Any, *, mode: str, pose=WORLD_POSE,
     Simultaneous modes allow strict task scheduling comparison. They never
     use a borrowed camera that is auto-restored between road/wide captures.
     """
-    if mode not in CAPTURE_MODES or not 2<=repeat_reads<=6:
+    if mode not in DIAGNOSTIC_CAPTURE_MODES or not 2<=repeat_reads<=6:
         raise ValueError('unsupported capture mode or read count')
     engine=provider.env.engine
     source_w=provider.source_width
     source_h=provider.source_height
     samples={}
     groups={}
-    if mode=='perceive_sequential':
-        for kind in ('road','wide'):
+    if mode in ('perceive_sequential','perceive_reverse'):
+        order=('road','wide') if mode=='perceive_sequential' else ('wide','road')
+        for kind in order:
             sensor=engine.sensors['bigbench_'+kind]
             raw=sensor.perceive(to_float=False,new_parent_node=engine.origin,
                                 position=pose[0],hpr=pose[1])
@@ -100,8 +103,9 @@ def capture_with_readback(provider: Any, *, mode: str, pose=WORLD_POSE,
             groups[kind]=values
     else:
         with mount_world_pair(provider,pose) as sensors:
-            if mode=='task_step_pair':
-                engine.taskMgr.step()
+            if mode in ('task_step_pair','task_step_pair_twice'):
+                for _ in range(2 if mode=='task_step_pair_twice' else 1):
+                    engine.taskMgr.step()
             else:
                 engine.graphicsEngine.renderFrame()
             for kind,sensor in sensors.items():

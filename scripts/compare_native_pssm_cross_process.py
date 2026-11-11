@@ -42,6 +42,12 @@ def verified_hash_series(report:dict,section:str,camera:str|None=None)->list[str
 
 def validate_trial(record:dict,seed:int,scene:str,arm:str)->None:
     mode,ablation,ticks=ARMS[arm]
+    validate_capture_trial(record,seed,scene,mode=mode,ablation=ablation,ticks=ticks)
+
+
+def validate_capture_trial(record:dict,seed:int,scene:str,*,
+                           mode:str,ablation:str,ticks:int)->None:
+    """Shared native receipt checks; each experiment supplies its fixed schedule."""
     if (record.get("status")!="OBSERVED_NATIVE_PIXEL_CLOCK"
         or record.get("seed")!=seed or record.get("scenario")!=scene
         or record.get("fraction")!=FRACTION
@@ -60,7 +66,7 @@ def validate_trial(record:dict,seed:int,scene:str,arm:str)->None:
         or record.get("onnx_inference_used") is not False
         or record.get("model_scoring_allowed") is not False
         or record.get("real_vehicle_testing") is not False):
-        raise ValueError(f"{arm}: incomplete original native camera / PSSM controls")
+        raise ValueError(f"{mode}/{ablation}: incomplete original native camera / PSSM controls")
     if (type(record.get("process_id")) is not int
         or not record.get("process_uuid")
         or not isinstance(record["process_uuid"],str)):
