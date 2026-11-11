@@ -38,6 +38,8 @@ def inventory(path: Path) -> dict:
     total = 0
     if path.is_symlink():
         raise ValueError('cache root must not be a symlink')
+    if path.exists() and not path.is_dir():
+        raise ValueError('cache root must be a directory')
     if path.exists():
         for p in sorted(path.rglob('*'), key=lambda p: p.relative_to(path).as_posix()):
             if p.is_symlink():

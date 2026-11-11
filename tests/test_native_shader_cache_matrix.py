@@ -71,6 +71,7 @@ class ShaderCacheMatrixTests(unittest.TestCase):
             try:
                 with self.assertRaises(ValueError):inventory(root_link)
             finally:root_link.unlink()
+            with self.assertRaisesRegex(ValueError,'directory'):inventory(p/'shader')
 
     def test_disabled_flag_must_prevent_cache_writes_and_enabled_cache_must_populate(self):
         for mode in ('ignored_disable','no_enabled_cache'):
