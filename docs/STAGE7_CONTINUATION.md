@@ -2,18 +2,58 @@
 
 ## Current checkpoint (2026-11-11)
 
-Resume observability amendment: selected Cloud now receives HTTP200 from the
-Ubuntu metadata URL; this does **not** establish remote-runner restoration.
-The [bounded connectivity diagnostic](superpowers/plans/2026-11-11-public-onnx-action-frame.md#bounded-runner-connectivity-diagnostic-2026-11-11-resume)
-adds one separate strict APT-metadata-only CI job with a retained receipt/log,
-zero installs/assets/native/model work, and no existing workflow edits. Its
-fresh independent review found a zero-exit/helper-warning false positive; root
-reproduced it and fixed it, with all11 CPU fixtures now passing. Actual-run
-evidence is pending. The STOP below
-continues to prohibit optical/model retries until actual remote connectivity
-is verified; this diagnostic obtains that prerequisite, not native acceptance.
-PR #33 remains DRAFT/open and Stage7 incomplete. Historical source/checkpoint
-SHAs below continue to identify their original runs.
+Latest executable source is `b56226c1e824099f5335adf5559e2dc1ee238a06`.
+PR #33 remains **DRAFT/open/unmerged**. This resume added only one standalone
+APT-metadata diagnostic and two docs; all38 existing workflows, application
+code, nine diagnostic pins and four ModelSpecs stayed byte-identical to9a1c64c.
+Independent review found a zero-exit/helper-warning false positive; actual
+workflow RED then fix/GREEN and all11 fixtures passed, also independently.
+
+**APT prerequisite restored and accepted:** [run43094912715](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43094912715),
+job130781135579, passed strict direct APT with exit0/no warnings and fetched4881kB.
+Root and independent reviewer verified artifact13890461693,1238 ZIP bytes/two
+safe members, SHA256
+`67e38e39730c738ea40e5b7c80c2daeef27da3abde0d6bb0fee1b6dac3a8f5f2`.
+Receipt/log match source/run; elapsed3.259253483s, model/native0/0. Image is
+ubuntu26/20261101.186.1; all ten proxy/CA-presence pairs remain false and helper
+absent. Thus proxy absence was not sufficient to cause the earlier failures;
+their underlying cause is still unresolved. No Cloud/network setting changed.
+
+**One subsequent no-model canary already dispatched:**
+[run43095045331](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43095045331)
+at the same b56226c source, job130781567056. APT/install/assets/native command
+and upload/post steps report success; API top-level run/job remain
+`in_progress`/null at the2026-11-11T20:26Z observation. This is **not accepted
+native integration**. Its listed artifact13890257448 is720494 bytes, expected
+SHA256 `bc01d9ea6e1ddc382f5b1866c3e82e13157082965e39b7021a7ea4dd0040306c`.
+Two read-only download attempts returned HTTP502 and32-byte error bodies,
+SHA256 `66f94f66a4663eb2a43d552b17609a828166862b7c5dba75b425301de772f858`;
+these are **not ZIPs or validated artifacts**. No extraction/image/I420 audit
+occurred. Both job-log requests also returned502. Do not rerun the canary to
+replace missing evidence. Model work remains0; phase2 has not been applied.
+
+Basic PR run43094923732 passed both jobs. Push run43094912450 has one successful
+job and synthetic-unit still top-level `in_progress`, despite every listed step
+including Complete job reporting success. Final basic acceptance stays pending.
+Current-source Codex request comment6806401717 failed with "We couldn't complete
+this review" (summary6798423567 at20:25:30Z). Its state flags report findings/
+unresolved=true, but GraphQL has0 actual unresolved threads and no substantive
+code finding was returned. A failed review is a blocked gate, never a clean
+review. The old9a1c64c clean review cannot be relabeled for b56226c or later docs.
+
+**Resume from existing evidence, without another native/model dispatch:** query
+these existing run/job states and retry only artifact transport after service
+recovery. Verify API ZIP digest/size/safe members, all PNGs/I420 report and actual
+canary success, then fresh review of the concrete phase2 diff before its bounded
+65-call budget. Preserve failed HTTP bodies outside the canonical ZIP path.
+Current-HEAD basic CI/Codex and fresh review remain required before merge.
+The two-doc handoff after b56226c has its own queried HEAD/checks; it changes no
+runtime/workflow bytes and does not relabel b56226c's canary or review. Exact
+commands/evidence are in the [resume plan](superpowers/plans/2026-11-11-public-onnx-action-frame.md#actual-connectivity-restored-canary-evidence-still-blocked).
+Stage7 is incomplete; original0/4, expansion12/12, geometry/optics/full-S limits
+below are unchanged. No Cloud publication/reconfiguration or local weights.
+
+## Earlier checkpoint (through9a1c64c; preserved historical evidence)
 
 Latest results documentation: PR #32 merged as
 `48e79a7ed5aedf6daa5a62ff68d2225af7955ef1`, from source

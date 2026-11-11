@@ -397,7 +397,7 @@ route-variable values or bypass an inherited denied route.
       strict failure, timeout, scoped route/no fallback, explicit-empty settings
       and secret redaction. Parse YAML and prove no existing trigger/source/pin
       changes; examine every fixture result. These fixtures are not network proof.
-- [ ] Obtain fresh independent review of the exact diff, commit/push once, then
+- [x] Obtain fresh independent review of the exact diff, commit/push once, then
       check actual run SHA, job conclusion and API-verified artifact bytes.
 - [ ] If metadata update fails, retain the blocker and stop experiments. If it
       succeeds, it satisfies only the remote-connectivity prerequisite: run one
@@ -414,3 +414,69 @@ one verified fix pass, not an independent claim about network restoration.
 External fixture script and RED/GREEN output are retained under
 `output/stage7-public-action-frame/ci-connectivity-resume/`; no native/model
 execution or source/gate/default change occurred in these CPU tests.
+
+## Actual connectivity restored; canary evidence still blocked
+
+Executable source `b56226c1e824099f5335adf5559e2dc1ee238a06` was pushed once.
+Diagnostic43094912715/job130781135579 passed on that source. Root and fresh
+independent reviewer verified artifact13890461693,1238 bytes/two members,
+SHA256 `67e38e39730c738ea40e5b7c80c2daeef27da3abde0d6bb0fee1b6dac3a8f5f2`.
+Strict APT code0/no warnings,4881kB fetched,3.259253483s; native/model0/0.
+This completes the preceding independent-review/push/artifact task. It satisfies
+the earlier APT STOP prerequisite only, not any native/scientific acceptance.
+Same ubuntu26/20261101.186.1 image and absent proxy/helper succeeded; the old
+APT failure's underlying cause remains unknown. Do not repeat this diagnostic.
+
+Root then dispatched **one** existing unchanged no-model optical canary,
+run43095045331/job130781567056, same b56226c source. All listed steps, including
+native command/upload/post/Complete job, report success, but top-level run/job
+remain `in_progress`/null at20:26Z. Artifact13890257448 is listed with720494 bytes
+and SHA256 `bc01d9ea6e1ddc382f5b1866c3e82e13157082965e39b7021a7ea4dd0040306c`.
+Both read-only ZIP download attempts returned502,32-byte error bodies, hash
+`66f94f66a4663eb2a43d552b17609a828166862b7c5dba75b425301de772f858`.
+Both requested job logs also returned502. No ZIP extraction, decoded PNG/I420
+audit, fresh PID/UUID verification, full-S or optical-equivalence claim exists.
+Native command execution is step-API-backed only; actual model calls remain0.
+
+Basic PR43094923732 passed2/2; push43094912450 remains pending (one job passed,
+the other's listed steps complete but job status remains in progress). Current
+b56226c Codex request6806401717 failed at20:25:30Z with a service-completion
+message. Summary flags findings/unresolved=true; GraphQL actual unresolved
+threads0 and no substantive feedback. Do not call this a clean review or infer
+a code defect solely from the failed service status. GitHub's public unresolved-
+incidents API reported no incident at its18:54Z snapshot; that does not establish
+that artifact/finalization/review services are healthy. Their cause is unknown.
+
+Root evidence: `output/stage7-public-action-frame/ci-connectivity-resume/`;
+API/ZIP/transport attempts:
+`output/stage7-remote-evidence/run-43094912715/` and `run-43095045331/`.
+The invalid first body is `13890257448.attempt1-http502-body.txt`; second is
+`13890257448.attempt2.download`, with `artifact-transport-attempt2.json`.
+Neither occupies the canonical `13890257448.zip` path. Retain all failures.
+
+**Ruling:** keep phase2/models/merge HOLD. Continue only read-only service/evidence
+retrieval until actual canary success and raw acceptance. No native/canary rerun,
+new model download, guessed endpoint/network fix, gate bypass or Cloud change.
+The APT prerequisite is already fulfilled; it is not the remaining blocker.
+
+1. Query PR/current HEAD and the **existing** runs43094912450/43095045331. Require
+   actual successful conclusions, not just completed step lists. Preserve raw
+   snapshots and bind canary to b56226c, never the later doc-only HEAD.
+2. After artifact transport recovery, download artifact13890257448 to a fresh
+   temporary path. Check exact API SHA/bytes before placing the canonical ZIP;
+   only then use `download_run.py 43095045331` for its one fresh safe extraction.
+   Do not rerun the downloader on an existing extraction target.
+3. Use the reviewed external revalidator for `--kind optical-no-model`, with
+   an explicitly bound15-file manifest and unchanged critical-source/pin proof.
+   Its b56226c manifest is retained as
+   `ci-connectivity-resume/public-fifteen-source-manifest.json`, SHA256
+   `c7ba2539e6b5cc4e8288fd813eef90e09859b6a7b09cd8384808844653279792`.
+   A later doc HEAD needs a new declared manifest and separate proof of runtime
+   equivalence to b56226c; do not falsely label the remote artifact exact-HEAD.
+4. Only accepted raw canary evidence permits fresh concrete phase2 review and
+   the unchanged65-call ceiling. Current-HEAD basic CI/Codex/no unresolved
+   findings and native/strict/raw gates remain mandatory for actual merge.
+   No model calls or conditional main budget have run in this resume.
+
+The final handoff commit updates only this plan and continuation. Query its
+actual SHA/checks after creation; code/workflows remain b56226c-identical.
