@@ -126,25 +126,25 @@ the corrected repeat gate to force agreement with the legacy cohort.
 
 ## Predeclared tests and execution gates
 
-- [ ] Meaningful RED before implementation: positive-model turns world-right,
+- [x] Meaningful RED before implementation: positive-model turns world-right,
   negative turns left, signed zero/nonzero headings and unchanged acceleration.
-- [ ] Constructor/reset/step counts and original observation identity; true
+- [x] Constructor/reset/step counts and original observation identity; true
   forwarded runtime flags; all inner raw/audit/state objects/bytes preserved;
   separate bridge fields; wrong declaration/double wrap/source pins fail.
-- [ ] Camera remains heading=degrees(world_heading)-90 and uses unchanged
+- [x] Camera remains heading=degrees(world_heading)-90 and uses unchanged
   rectifier; CPU-only Panda NodePath or independent analytic projection tests
   may prove image-right/body-right without native GL, controllers or weights.
-- [ ] Fresh raw-first failures/nonces/statuses/12fullrows/2ticks/initialstates/
+- [x] Fresh raw-first failures/nonces/statuses/12fullrows/2ticks/initialstates/
   all named receipts/bridge/action/pose/case/final mismatches fail strictly.
-- [ ] Dedicated four-native-job/independent-aggregate workflow, maxparallel2;
+- [x] Dedicated four-native-job/independent-aggregate workflow, maxparallel2;
   pinned MetaDrive0.4.3/Panda1.10.13/assets/model; weights ONLY ephemeralCI;
   five scoped JSON/log artifacts, strict pipeline failure propagation.
-- [ ] Full local suite, pure NumPy aggregation dependency check, legacy
+- [x] Full local suite, pure NumPy aggregation dependency check, legacy
   fingerprints, fresh whole-change scientific/code/workflow/doc review.
-- [ ] Legacy PR27 full artifact/evidence acceptance and gated merge BEFORE
+- [x] Legacy PR27 full artifact/evidence acceptance and gated merge BEFORE
   triggering corrected workflow. Source/model outputs from current study stay
   frozen and historical. No source push while its prerequisite is unresolved.
-- [ ] Corrected source gate: all4cases/full96steps exact; current-HEADCI/Codex/
+- [x] Corrected source gate: all4cases/full96steps exact; current-HEADCI/Codex/
   no open threads, all5APIarchiveSHA/size/safepaths and independent raw exact
   regeneration before acceptance/merge. Tracking is reported separately.
 
@@ -218,3 +218,42 @@ historical-integration documentation PR #28 are merged; the latter is
 `09b799fda7d894a9ab6340435bd6b80f3b31d44d` with4 successful checks,
 current-HEAD Codex without findings/no unresolved threads and fresh7doc review.
 These local results do not substitute for the complete fresh corrected4/4 gate.
+
+
+## Completed corrected source gate; main replication separate
+
+Source `df0f8803f6611e384d3752350fbffe007d16e7bd`, official run43005087003,
+passes corrected4/4 after root and fresh independent review of all5 API ZIP
+SHA/byte/safe-path checks,25 members and exact raw case/final reconstruction.
+Eight fresh UUIDs/nonces and two distinct same-runner PIDs/case execute96
+actual inferences/completed rows,48 exact paired rows, no mismatch/incomplete.
+All32 offline first-observation comparisons preserve initial controls/source/
+warp/I420/raw4/parent/state against the two legacy cohorts, adding no inference.
+All8 native statuses0 and actual ORT1.31.1CPU/basic/noninjected. The source's
+nine checks, completed current-HEAD Codex without findings/no open threads,
+independent code/evidence review and fresh8file review preceded PR #29 merge
+`a5ef72ed3f492857eadd4b1198dbba381312aa80`. Checklist completion above means
+this bounded implementation/source gate, not broad model/renderer validation.
+
+The predeclared automatic main replication run43006858419 is still pending;
+main unit43006858385 passed. Its own five archives/4/4 acceptance and completed
+results-docs merge must precede any corrected expansion. Source0.6s/nominal4.8m
+unscored virtual truth has maximum lateral errors.08677–.09071m, zero intrusion;
+no full-S, global optics/equivalence, model quality or Stage7 completion follows.
+
+
+## Independently accepted automatic main replication
+
+Merged-main run43006858419 completed5/5 jobs. Root and fresh independent
+review verified all5 API ZIP SHAs/bytes/safe paths,25 members and raw four-case/
+final exact regeneration: another4/4,8 fresh processes,96 actual inferences/
+completed rows and48 exact pairs, no mismatch. Source+main now have16 distinct
+UUIDs/nonces and192 actual steps, disjoint from40 selected prior legacy model
+identities. Read-only all-pairs comparison reuses these192 steps:6pairs/case,
+24 pair combinations/288 exact row checks, original repeat metadata unchanged.
+No extra model call occurs. Main's32 offline first-observation checks also
+preserve legacy controls/input/raw/parent/state. Acceptance of both cohorts and all ten archives
+is clear; completed-results documentation merge and expansion source/workflow
+review still precede any corrected expansion. Runtime staysORT1.31.1CPU/basic/
+noninjected; hardware identities were not measured. Both short cohorts remain
+0.6s/nominal4.8m technical evidence, not optics/model quality/full-S/Stage7 proof.
