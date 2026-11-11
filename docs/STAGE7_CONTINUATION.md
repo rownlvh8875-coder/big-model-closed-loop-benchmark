@@ -27,9 +27,19 @@
   current-SHA Codex review without findings/no open threads, clear independent
   source/docs reviews, **281 local tests without skips**, and exact independent
   revalidation of the new 48-process feedback and old 32-process sampler cohorts.
-- Current branch: `docs/stage7-feedback-results`, documenting completed failures.
-  No assigned documentation PR is recorded at this checkpoint; query latest
-  branch HEAD/PR rather than inventing a number.
+- PR #22 completed-result documentation merged as
+  `329b400f12999526157c5db24b27f70001ed57b4` from exact source
+  `1a17b344be10bbfb62bb4077581a6ba40d7a1464` after four checks, Codex review
+  without findings/no open threads and a fresh independent documentation review.
+- Current branch: `feat/stage7-opaque-order-isolation`, based on PR #22's
+  merged main, implementing the new standalone 32-native-process ordering
+  matrix. No assigned source PR or completed CI/native cohort is recorded;
+  query latest branch HEAD/PR rather than inventing a number.
+- The new source passed **298 local tests without skips**. Two real production
+  `both_unsorted` OFF processes passed native/bin/nonce controls and matched
+  every source/warp/I420 field **10/10**, with fresh shared cache cold→populated.
+  Evidence: `output/opaque-order-source-smoke/`. This validates the separate
+  before-provider implementation path; no four-case or official gate is implied.
 
 The user authorized continued development and gated PR merges. Do not publish
 or reconfigure the cloud environment. API access now works with supplied
@@ -307,20 +317,42 @@ or GL-repair claims. Pinned Panda render-state/bin comparators use attribute,
 vertex-format, munged-data and transform pointer ordering; this is source
 behavior, not a demonstrated image-drift cause.
 
-A local **additional opaque-bin intervention on `both`** is pending at
-`output/opaque-bin-pilot-v3/plan.json`: `state_sorted_0 → unsorted_0 → unsorted_1 →
-state_sorted_1`, enum 2 versus 1 before primary frames, one fresh shared cache per arm,
-20261109 / left-right, observer OFF/no GL query/profiler. PSSM/Chase/ticks/
-shaders remain unchanged. These are not ordinary Both cells, and the generic
-feedback validator cannot establish extra bin semantics/actual draw order.
-No pilot outcome or default render-sort adoption is recorded.
-Active v3 writes and reloads JSON before unchanged strict wire validation.
+The local **Both plus opaque-bin modifier** v3 pilot is complete at
+`output/opaque-bin-pilot-v3/`: `state_sorted_0 → unsorted_0 → unsorted_1 →
+state_sorted_1`, four unique native UUIDs/PIDs, all raw statuses zero, raw JSON
+SHA/request-nonce receipts and unchanged strict wire validation. It used one
+fresh shared Mesa cache per arm (cold → populated), seed 20261109 / left-right,
+observer OFF/no GL query/profiler, no shader changes or extra ticks.
+
+| Local bin treatment on Both | Source Road/Wide /10 | Warped Road/Wide /10 | I420 /10 | First I420; different steps |
+| --- | --- | --- | --- | --- |
+| state-sorted, type 2 | 9/5 | 9/10 | 9 | 9; 9 |
+| unsorted, type 1 | 10/10 | 10/10 | 10 | none |
+
+Typed bin reads are 2 → 2 versus 2 → 1 before primary captures. Whole-process
+ABBA wall times are 82.702, 78.100, 71.165, 68.015 s, not pure sorting cost.
+Within each state-sorted process post-warmup Road/Wide/I420 has 2/2/2 unique
+hashes, versus 1/1/1 for each unsorted process; those within-process counts
+are separate from two-process repeatability. Same-index treated-frame
+membership in either state-sorted repeat is 16/20 for Road/warped Road/I420,
+20/20 for Wide/warped Wide. Membership is not equivalence proof, tolerance
+or an alternate gate. Fixed ABBA/cache history and one case still confound
+causality; local unsorted 10/10 is not a repaired official 4/4 gate.
+
 V1's in-memory pose-tuple validation failed before writing, losing native JSON;
 log/cache/failure metadata remain under `output/opaque-bin-pilot/`. V2 saved
-valid observed JSON, but its in-memory tuple check still returned wrapper
-status 1; data and failure metadata remain under `output/opaque-bin-pilot-v2/`.
-Neither earlier attempt is a valid completed matrix. The pure-fixture
-roundtrip reproduction confirms the type issue; no native criterion relaxed.
+valid observed JSON, but retained wrapper status 1 from the in-memory tuple
+check; data/failure metadata remain under `output/opaque-bin-pilot-v2/`.
+Neither is included in v3's four successful processes. V3 writes and reloads
+JSON before unchanged strict validation; no native criterion was relaxed.
+
+Next execute the [opaque-order isolation plan](superpowers/plans/2026-11-11-opaque-order-isolation.md):
+original feedback_baseline / feedback_both × opaque type 2 / 1, two independent
+OFF repeats per condition across four seed/scene cases, cyclic Latin order,
+32 native processes. This is new standalone source work, not a default repair.
+The new module configures the bin before provider creation; the pilot used
+the feedback configuration hook after provider creation. No source-equivalence
+claim or new CI/native matrix outcome follows from the pilot.
 Per-camera terrain view-data lifetime/LOD remains a separate unproven
 source-review hypothesis. The [feedback guide](STAGE7_SHADOW_FEEDBACK.md)
 records the worker pilot's full rates, evidence paths and causal limits.
@@ -351,7 +383,7 @@ cd /workspace/big-model-closed-loop-benchmark
 source /workspace/.cloud-tools/onboarding/activate.sh
 git status --short
 git log -5 --oneline
-gh pr list --state all --head docs/stage7-feedback-results
+gh pr list --state all --head feat/stage7-opaque-order-isolation
 gh run list --branch main --limit 12
 ```
 
@@ -366,13 +398,18 @@ Do not manually repeat complete sampler/cache/feedback matrices merely to
 rediscover recorded results. Preserve cancelled/failed evidence.
 
 The feedback factorial plan is complete and every condition still fails
-strict matching. The local requested-zero worker pilot also failed. Next
-finish and independently validate the pending local opaque-bin ABBA pilot.
-The trace comparison is complete for its bounded input scope; preserve its
-raw files and separate traced correlations from untraced causal behavior.
-Changed driver capability, incomplete GPU/full-state reconstruction and fixed
-process/cache order remain explicit limits. Do not adopt a default sort change
-from source pointer ordering or one matching experimental pair. Continue source review of per-camera terrain view-data lifetime/LOD while
+strict matching. The local requested-zero worker pilot also failed; the
+completed Both-plus-bin pilot matched unsorted 10/10 in one case while its
+state-sorted control failed. Continue the linked standalone 32-process opaque
+order matrix and retain original/Both × type2/type1 cells, fresh nonces/raw
+receipts and exact source/warp/I420 gates. Its bin-before-provider setup
+boundary differs from the local pilot's after-provider configuration hook;
+measure that supported implementation independently rather than transferring
+the local result. The trace comparison is complete for its bounded input scope;
+preserve raw files and separate traced correlations from untraced causal
+behavior. Changed driver capability, incomplete GPU/full-state reconstruction
+and fixed process/cache order remain explicit limits. Do not adopt a default
+sort change from source pointer ordering or one matching experimental pair. Continue source review of per-camera terrain view-data lifetime/LOD while
 preserving original PSSM/Chase and Road-first controls
 and two independent OFF processes per condition. Terminal ON bindings do not
 establish retroactive repairs or executed primitive fetches. Keep edited-shader
