@@ -21,9 +21,15 @@
 - The PR #18 source had **248 passed, no skips** and four final native sampler
   smoke processes. PR #20 adds a separate final-validator local six-process
   cache case; earlier capture validation and its five processes remain separate.
-- Current branch: `feat/stage7-shadow-feedback-isolation`, building the next
-  opt-in factorial experiment. No assigned PR is recorded at this checkpoint;
-  query GitHub for the latest branch HEAD/PR rather than inventing a number.
+- PR #21 shadow-feedback isolation merged as
+  `96069779c85a691a81d119f27cafe39160c70cfa` from final source
+  `ce1015973fc35332cc5a217ea07adfa21e7bfdcc` after all **14 checks**,
+  current-SHA Codex review without findings/no open threads, clear independent
+  source/docs reviews, **281 local tests without skips**, and exact independent
+  revalidation of the new 48-process feedback and old 32-process sampler cohorts.
+- Current branch: `docs/stage7-feedback-results`, documenting completed failures.
+  No assigned documentation PR is recorded at this checkpoint; query latest
+  branch HEAD/PR rather than inventing a number.
 
 The user authorized continued development and gated PR merges. Do not publish
 or reconfigure the cloud environment. API access now works with supplied
@@ -72,6 +78,24 @@ New sampler defect, 32-process results, all archive digests and runtime limits:
   was independently revalidated from all five archives/snapshots and 24 native
   receipts. Shared/isolated/disabled I420 matched 19/40, 34/40 and 29/40;
   source unit run **42951159987** passed. Do not repeat this completed cohort.
+- PR #21 source cohorts are complete: feedback **42957706605** (48 native
+  processes, 128 GPU rows) and sampler **42957706445** (32, 64). All ten API
+  archive SHA/size/safe-path checks and every case/final summary reproduced
+  exactly. Full results and ledger: `STAGE7_SHADOW_FEEDBACK.md`.
+- The merge automatically started separate main-source `9606977` cohorts:
+  feedback **42961355528** completed 5/5 jobs; all five API archive SHA/size/
+  safe-path checks and exact case/final recomputations passed, with 48 UUIDs,
+  12 same-runner PIDs per case and 128 GPU rows. OFF I420 baseline/linear/
+  guard/both matched 36/40, 36/40, 35/40, 32/40; complete cases 3/4, 2/4,
+  3/4, 2/4. Sampler
+  **42961355395** completed 5/5 jobs and all five API archive SHA/size/safe-path
+  checks and four-case/final recomputations exactly passed: 32 UUIDs, eight
+  same-runner PIDs per case, 64 GPU rows. Original OFF source Road/Wide 27/40
+  and 30/40, warped 27/40 and 35/40, I420 23/40 (17/32 post-warmup), zero
+  complete cases; other three arms every field 40/40, 32/32 post-warmup and
+  4/4 static cases. Full five-archive ledger: `STAGE7_SHADOW_FEEDBACK.md`.
+  Unit run **42961355303** passed. Both automatic cohorts are complete;
+  preserve their negative results rather than manually repeating them.
 
 - Original source-pixel run 42924910245: four native jobs + aggregate,
   eight instrumented MD-V3 processes, 12 ONNX steps each, 96 retained source
@@ -149,17 +173,157 @@ texture 1 with `use_pssm=1`; both shadow camera initial states were empty.
 Retained evidence: `output/stage7-remote-evidence/shadow-feedback-terminal-probe.json`.
 This supports a potential read/write feedback binding hypothesis, not a
 per-primitive trace, actual atlas-fetch proof or unique renderer cause.
-The [next implementation plan](superpowers/plans/2026-11-11-shadow-feedback-isolation.md)
-is a four-condition factorial comparison: original, linear sampler,
-shadow-input guard, both; two OFF repeats and one terminal-only ON process
-per condition/case, **48 native processes**. The implementation is present on
-this branch; no four-scene CI results are established at this checkpoint.
-A local combined-condition OFF pair matched every source/warp/I420 field
-10/10. One production-launcher terminal ON process passed full native/nonce and eight
-binding-row validation (shadow placeholder/use_pssm=0, RGB real atlas/raw-linear/
-use_pssm=1). Actual shadow/RGB samples/buffers were 0/0 and 4/1. The complete
-local suite passed 281 tests without skips.
-These are local smoke observations, not a repaired official model gate.
+The [feedback plan](superpowers/plans/2026-11-11-shadow-feedback-isolation.md)
+is implemented and its 48-native-process source cohort is complete. Each of
+four conditions used two OFF repeats plus one terminal-only ON process per
+case. All four case/final summaries exactly revalidated; 48 UUIDs, 12
+same-runner PIDs per case, and 128 terminal GPU rows were verified.
+
+| Feedback condition | Source Road/Wide /40 | Warped Road/Wide /40 | I420 /40 | Complete static cases /4 |
+| --- | --- | --- | --- | --- |
+| baseline | 36/39 | 36/40 | 36 | 3 |
+| linear | 37/37 | 37/38 | 36 | 2 |
+| shadow_guard | 37/36 | 37/40 | 37 | 3 |
+| both | 35/34 | 35/37 | 33 | 2 |
+
+No condition repaired strict 4/4 equality. Every first-running condition fails
+its case; two second-position conditions also fail. Latin-square assignment
+balances which condition starts first but fixed seed/scene orders, process/cache
+history and OFF0 → OFF1 → ON0 sequencing still confound causal interpretation.
+Terminal controlled-state bindings validate 32 rows in each of four intended
+classes, with all 128 pre/post GL errors zero. Actual RGB samples/buffers are
+8/1 and shadow 0/0; query-only sums span 1.657115–1.993208 ms per ON process.
+These are not per-primitive fetch traces or total-overhead measurements.
+Full rates, firsts, cross-condition image changes and all ten source-cohort
+archive digests/byte sizes: [STAGE7_SHADOW_FEEDBACK.md](STAGE7_SHADOW_FEEDBACK.md).
+The separate old-sampler regression matches original OFF I420 27/40 and
+source Road/Wide 30/40 and 31/40, warped 30/40 and 35/40; other arms all 40/40.
+Its 32 processes and 64 binding rows preserve compatibility, not a repair claim.
+
+The automatic main feedback repetition **42961355528** independently reproduces
+failure of every condition to match strict 4/4:
+
+| Main feedback condition | Source Road/Wide /40 | Warped Road/Wide /40 | I420 /40 | I420 post-warmup /32 | Complete static cases /4 |
+| --- | --- | --- | --- | --- | --- |
+| baseline | 36/38 | 36/40 | 36 | 28 | 3 |
+| linear | 37/37 | 37/38 | 36 | 29 | 2 |
+| shadow_guard | 35/36 | 35/40 | 35 | 28 | 3 |
+| both | 32/37 | 32/40 | 32 | 25 | 2 |
+
+The six failed same-condition OFF comparisons are below; every other case/
+condition has no source/warp/I420 difference across all ten frames.
+
+| Seed | Scene | Main feedback condition | I420 /10 | First I420 | I420 different steps |
+| --- | --- | --- | --- | --- | --- |
+| 20261109 | left_right | baseline | 6 | 5 | 5, 7, 8, 10 |
+| 20261109 | left_right | linear | 8 | 2 | 2, 7 |
+| 20261109 | right_left | linear | 8 | 5 | 5, 6 |
+| 20261110 | left_right | shadow_guard | 5 | 2 | 2, 3, 6, 7, 8 |
+| 20261110 | left_right | both | 7 | 2 | 2, 6, 8 |
+| 20261110 | right_left | both | 5 | 3 | 3, 5, 7, 9, 10 |
+
+The cyclic orders and first-/second-position failure pattern recur, without
+isolating a unique order/cache cause. Main OFF0/ON0 totals equal same-condition
+OFF totals but remain temporal/process observations; baseline-to-linear/both
+cross-condition matches are 0/40 for every field, and baseline-to-guard matches
+source 32/29, warp 32/35, I420 28/40. Full per-case source/warp firsts,
+comparisons and all five archive SHA/byte sizes are in the feedback guide.
+Main feedback's 128 GPU rows again validate 32 rows per class, zero pre/post
+GL errors, actual RGB samples/buffers 8/1 and shadow 0/0. Its summed query
+duration range is 1.684994–4.932800 ms per ON process, separate from the
+source cohort's 1.657115–1.993208 ms; neither is full instrumentation overhead.
+
+Earlier combined OFF local smoke with a populated cache matched all fields
+10/10; the supported local ON state setup showed RGB 4/1 and shadow 0/0.
+A later **fresh-shared-cache `both` OFF** pair failed: source Road/Wide 7/10
+and 8/10, warped 7/10 and 10/10, I420 7/10, first I420 step 4, differences
+4, 6, 8. Retained: `output/shadow-feedback-local/fresh-mesa-both/comparison.json`.
+Its generic schedule comparator's original-control flag must not label the
+experimental `feedback_both` treatment as original renderer output.
+
+A separate local two-process `both` plus edited-terrain explicit-gradient
+prototype also failed: source Road/Wide 6/10 and 8/10, warped 6/10 and 10/10,
+I420 6/10, first step 2, differences 2, 4, 5, 8. Retained:
+`output/terrain-gradient-pilot-v2/{run-0,run-1,comparison}.json`.
+It preserves the vertex shader and explicitly edits the fragment shader;
+it is outside the current feedback schema, has no observer/official weights,
+and uses shared fresh cache cold → populated without a randomized unmodified
+control. The earlier v1 anchor assertion failed before native capture/JSON;
+log: `output/terrain-gradient-pilot/run-0.log`. These negative prototypes do
+not establish a unique gradient cause. The next source-review hypothesis is
+per-camera `ShaderTerrainMesh` view-data lifetime/LOD; no validated effect or
+repair is recorded yet.
+
+The preregistered local llvmpipe worker ABBA pilot is complete:
+`default_0 → zero_0 → zero_1 → default_1`, `LP_NUM_THREADS` unset versus `0`,
+one fresh shared cache per arm (cold → populated), four unchanged original
+Road-first processes for 20261109 / left-right, no observer/shader/model.
+All four launcher statuses were zero, with four distinct native UUIDs/PIDs.
+Default source Road/Wide matched **8/10 and 6/10**, requested-zero **8/10 and
+8/10**; both warped Road/Wide matched **8/10 and 10/10**, I420 **8/10**, first
+difference **2**, differences **2, 7**. Whole-process wall times in ABBA order:
+**65.803, 112.260, 111.605, 61.028 s**, not pure worker overhead. Retained:
+`output/llvmpipe-worker-pilot/{plan,execution_receipts,comparisons}.json`, native
+receipts/logs and before/after cache SHA manifests. Mesa documents zero as
+disabling threading and pinned source reads the setting, but there is no actual
+worker trace. Requested zero is not a complete fix; this single-case fixed
+order/cache comparison does not establish necessary parallelism or unique
+causality. A new CI matrix is not needed to falsify this complete-fix candidate.
+
+Workspace-only apitrace v2 ABBA capture is complete: `off_0 → on_0 → on_1 →
+off_1`, four valid native JSON, zero raw statuses and four unique UUIDs/PIDs.
+OFF source Road/Wide matches 8/10 and 8/10, warped 8/10 and 10/10, I420 8/10
+(post-warmup 7/8), first 2, differences 2 and 7. ON source matches 7/10 and
+2/10, warped 7/10 and 10/10, I420 7/10 (post-warmup 5/8), first 7,
+differences 7, 9, 10. Whole-process ABBA wall times are 81.540, 72.697,
+81.861, 77.912 s, not pure overhead. All four JSON/logs, cache/native SHA
+receipts, comparisons and both complete traces remain in
+`output/apitrace-draw-pilot-v2/`; full trace sizes/SHA256 are in the feedback
+guide. The earlier attempt retains valid OFF0 but failed ON0 `ERROR`/partial
+trace under `output/apitrace-draw-pilot/`, not a full valid matrix.
+V2 initializes Python's default SIGINT handler before runpy of the original
+module in **all** arms. Capture/rendering source remains unchanged; the tracing
+tool hides program-binary formats, changing driver capability as well as timing.
+Bounded read-only trace forensics is complete, with reports under
+`output/apitrace-draw-pilot-v2/analysis-agent/`. Full call counts are
+106555/106580; each trace has 2901 geometry draws and 192 buffer passes.
+Eight shader-source submissions and 322 ordered CPU texture uploads match
+full arguments/blob SHA. The first non-timestamp difference, call 9027,
+program 1's 100-matrix `p3d_TransformTable`, changes 828 floats in actually
+used slots 0–68, affecting startup draws 9029/9375/9738. Slots 69–99 are equal
+and Panda identity-fills unused slots; it is not differing padding.
+Only startup passes 19–21 differ in unordered geometry/uniform inputs; every
+primary/control pass matches analyzed geometry/explicit-uniform/constant-vertex
+input multisets. Geometry order differs in 53 passes; 2898 matched draws
+have identical active sampler/CPU texture inputs. First primary order change:
+pass 67 / FBO 3, ON0 skybox call 35777 → terrain call 35823, ON1 terrain
+call 35802 → skybox call 35828;
+following Wide reads 37381/37387 align with its first source-frame mismatch.
+Order also changes on equal frames, so necessity/sufficiency is unproven.
+Six tracked skybox GL_MULTISAMPLE differences occur only on main FBO 7, none
+on HDR FBOs 3/5; full GL state/GPU atlas contents were not reconstructed. Existing
+original-path hazards and trace capability/timing changes prevent unique-cause
+or GL-repair claims. Pinned Panda render-state/bin comparators use attribute,
+vertex-format, munged-data and transform pointer ordering; this is source
+behavior, not a demonstrated image-drift cause.
+
+A local **additional opaque-bin intervention on `both`** is pending at
+`output/opaque-bin-pilot-v3/plan.json`: `state_sorted_0 → unsorted_0 → unsorted_1 →
+state_sorted_1`, enum 2 versus 1 before primary frames, one fresh shared cache per arm,
+20261109 / left-right, observer OFF/no GL query/profiler. PSSM/Chase/ticks/
+shaders remain unchanged. These are not ordinary Both cells, and the generic
+feedback validator cannot establish extra bin semantics/actual draw order.
+No pilot outcome or default render-sort adoption is recorded.
+Active v3 writes and reloads JSON before unchanged strict wire validation.
+V1's in-memory pose-tuple validation failed before writing, losing native JSON;
+log/cache/failure metadata remain under `output/opaque-bin-pilot/`. V2 saved
+valid observed JSON, but its in-memory tuple check still returned wrapper
+status 1; data and failure metadata remain under `output/opaque-bin-pilot-v2/`.
+Neither earlier attempt is a valid completed matrix. The pure-fixture
+roundtrip reproduction confirms the type issue; no native criterion relaxed.
+Per-camera terrain view-data lifetime/LOD remains a separate unproven
+source-review hypothesis. The [feedback guide](STAGE7_SHADOW_FEEDBACK.md)
+records the worker pilot's full rates, evidence paths and causal limits.
 
 ## What remains unresolved
 
@@ -171,7 +335,8 @@ recurrent states or actions were changed. Geometry, rendering determinism,
 real-sensor optical equivalence and driving performance remain separate.
 The sampler treatment is opt-in and experimentally changes rendered bytes;
 its source-cohort OFF arm failed strict native matching even though a later
-merged-main static repetition matched 4/4. Cache controls also fail 4/4.
+merged-main static repetition matched 4/4. Cache and shadow-feedback controls
+also fail 4/4, including the combined treatment.
 
 First Wide source changes at step 2 in both left-right pixel cases are outside
 all admitted model-warp support; actual warped RGB and I420 first differ at
@@ -186,25 +351,35 @@ cd /workspace/big-model-closed-loop-benchmark
 source /workspace/.cloud-tools/onboarding/activate.sh
 git status --short
 git log -5 --oneline
-gh pr list --state all --head feat/stage7-shadow-feedback-isolation
+gh pr list --state all --head docs/stage7-feedback-results
 gh run list --branch main --limit 12
 ```
 
 Main cache run 42951160118 is already complete and independently revalidated
 (24 native processes, exact summaries/snapshots). Shared/isolated/disabled
 I420 matched 19/40, 34/40 and 29/40 respectively; no complete repair. Query
-current branch HEAD/PR and any newer automatic cohorts before starting work.
-Native jobs automatically triggered by merges are separate cohorts. Do not repeat
-the complete sampler or cache matrices manually merely to rediscover their
-recorded results. Preserve cancelled/failed evidence.
+current branch HEAD/PR before starting work. Automatic feedback 42961355528
+and sampler 42961355395 are already complete and independently revalidated;
+feedback OFF I420 is 36/36/35/32 of 40, sampler original OFF 23/40 and other
+arms 40/40. Unit run 42961355303 passed.
+Do not manually repeat complete sampler/cache/feedback matrices merely to
+rediscover recorded results. Preserve cancelled/failed evidence.
 
-Continue the linked shadow-feedback factorial plan while retaining original
-PSSM/Chase and Road-first controls. Keep sampler type and shadow-pass input
-guard separate, balance condition order and retain two independent OFF
-processes per condition. Terminal ON binding observations follow every primary
-frame; they do not establish retroactive repairs or executed primitive fetches.
-Do not promote cache disabling, linear sampling or a shadow-input guard without
-causal and rendering-semantics validation. Record a reproducible CI vs local/runtime explanation:
+The feedback factorial plan is complete and every condition still fails
+strict matching. The local requested-zero worker pilot also failed. Next
+finish and independently validate the pending local opaque-bin ABBA pilot.
+The trace comparison is complete for its bounded input scope; preserve its
+raw files and separate traced correlations from untraced causal behavior.
+Changed driver capability, incomplete GPU/full-state reconstruction and fixed
+process/cache order remain explicit limits. Do not adopt a default sort change
+from source pointer ordering or one matching experimental pair. Continue source review of per-camera terrain view-data lifetime/LOD while
+preserving original PSSM/Chase and Road-first controls
+and two independent OFF processes per condition. Terminal ON bindings do not
+establish retroactive repairs or executed primitive fetches. Keep edited-shader
+prototypes separate from original-control and supported feedback receipts.
+Do not promote cache disabling, linear sampling, a shadow-input guard or a
+terrain edit without causal and rendering-semantics validation. Record a
+reproducible CI vs local/runtime explanation:
 actual graphics-engine/output configuration, driver, package versions,
 framebuffer properties and timing at noninterfering boundaries. Declared
 multi_thread_render=true/Cull alone is insufficient: one local runtime probe
@@ -229,6 +404,8 @@ python -m scripts.compare_native_shadow_sampler --mode aggregate \
   --root output/verified-sampler-root --out output/sampler-recomputed.json
 python -m scripts.native_shader_cache_matrix --mode aggregate \
   --root output/verified-cache-root --out output/cache-recomputed.json
+python -m scripts.native_shadow_feedback_matrix --mode aggregate \
+  --root output/verified-feedback-root --out output/feedback-recomputed.json
 python -m scripts.aggregate_native_mdv3_rgb_pixel_matrix \
   --root output/verified-original-pixels --out output/pixels-recomputed.json
 ```
