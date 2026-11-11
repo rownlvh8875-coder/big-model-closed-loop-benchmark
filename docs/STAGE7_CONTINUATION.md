@@ -41,18 +41,35 @@
   `55c17181dcc8b535ac3b07e0583dca1c4ce9a64c` after four successful checks,
   completed Codex review without findings/no open threads and a clear fresh
   independent four-document review. Main unit run **42978229606** passed.
-- Current branch: `feat/stage7-mdv3-renderer-candidate`, based on that merge.
-  A standalone experimental model protocol is being implemented and reviewed;
-  query the latest HEAD/PR/Actions before executing anything. No official model
-  execution or weight download has occurred at this checkpoint.
-- Candidate source SHA is
+- PR #25 experimental official-model renderer candidate merged as
+  `e840022a73879164b4923f77dbb4aabaf1112131` from exact HEAD
+  `0fbebed2358610a773d317ef8e857acf6ddf5c98` after nine checks, completed
+  current-SHA Codex review without findings/no open threads and a clear
+  independent raw-evidence review. **313 local tests passed without skips**.
+- Candidate native module SHA256 is
   `5a9058102004e2f5eaa4c9dcab4c24d97a9d42702b7a9e7c248c4f576a30d22e`.
-  **313 local tests passed without skips**, including 15 new candidate tests;
-  a fresh numpy-only environment also passed the earlier 14-test candidate
-  snapshot, supporting the pure-reaggregation dependency boundary. A fresh
-  review's zero-step execution-label issue is fixed and regression-tested.
-  Source/workflow review and actual candidate CI/artifact evidence are still
-  pending. Protocol and bounded interpretation: `STAGE7_MDV3_RENDERER_CANDIDATE.md`.
+  Source candidate run **42979680883** completed 5/5 jobs, with all five API
+  archive SHA/size/safe-path checks and exact four-case/final raw regeneration.
+  Eight unique UUIDs/nonces and two distinct same-runner PIDs per case executed
+  96 official model steps. Every required field matched in all 48 paired steps:
+  **candidate 4/4 PASS**, historical unmodified original **0/4 PASS (FAIL)**.
+- Current branch: `docs/stage7-mdv3-candidate-results`, based on that merge.
+  No assigned documentation PR is recorded; query latest HEAD/PR/status rather
+  than inventing a number. Full results: `STAGE7_MDV3_RENDERER_CANDIDATE.md`.
+- Automatic merged-main model replication **42981493726** completed 5/5 jobs
+  and also passes candidate 4/4. All five API archive SHA/size/safe-path checks
+  and exact raw case/final regeneration passed; fresh independent read-only
+  main-evidence review is clear. Unit main **42981493834** passed.
+  Both cohorts have 16 unique UUIDs/nonces and 192 actual model steps without
+  identity reuse, with two distinct same-runner PIDs per case. A read-only
+  cross-cohort comparison also matches all four processes per case across all
+  required fields and initial/configuration receipts (six pair combinations
+  per case,288 row checks reusing192 model steps). Hardware identities were
+  not retained; no hardware-equivalence claim follows. Main-evidence
+  review and revised prospective expansion-plan review are clear. Do not
+  launch another manual repeat; fresh results-documentation review/CI/merge
+  is still required
+  before expansion workflow push. No documentation PR number is presumed.
 - The new source passed **298 local tests without skips**. Two real production
   `both_unsorted` OFF processes passed native/bin/nonce controls and matched
   every source/warp/I420 field **10/10**, with fresh shared cache cold→populated.
@@ -175,7 +192,8 @@ provided no discriminating repair evidence. The external CPU-load pilot also mat
 processes, despite median pair wall time increasing from about 4.3–4.5s to
 9.2–9.7s. It did not reproduce disagreement in this one case. Workers were
 stopped; preserve this limited negative result, not a universal timing claim.
-There is still no validated renderer repeatability repair or new official ONNX gate.
+Those earlier timing pilots established no repair. The later official-model
+candidate 4/4 is recorded separately below; historical original 0/4 remains.
 
 ## Completed cache-history experiment and next hypothesis
 
@@ -481,28 +499,75 @@ setup/IO/whole terminal cost. The local probe observes Mesa 25.0.7-2+deb13u1,
 llvmpipe LLVM 19.1.7 / GL 4.5 compatibility, actual threading model `/` with empty
 cull/draw names; those are not OFF CI matrix GPU observations.
 
+## First official-model candidate source gate: 4/4 PASS
+
 The [candidate plan](superpowers/plans/2026-11-11-mdv3-renderer-candidate.md)
-is under implementation after clear independent review of this bounded acceptance. It must retain
-original `NativeWorldCamera` plus public `run_target_lane_episode`; the static
-trial hides visual ego and is not a substitute. No official weights/inference
-or candidate run has occurred. Candidate results must be labeled separately;
-original official MD-V3 remains prior 0/4 PASS (FAIL), defaults unchanged.
+is implemented and its first source cohort is complete. It uses the original
+`NativeWorldCamera` and public `run_target_lane_episode`, preserving original
+ego RGB visibility, original task/capture/kinematic behavior and official model
+identity. It applies the opt-in Both-plus-unsorted treatment; the static trial
+that hides visual ego is not used for the model episode. Runtime is actual
+CPU ONNX Runtime 1.31.1 with CPUExecutionProvider/ORT_ENABLE_BASIC (level 1).
+No extra inference, GPU query, texture extraction or RGB observer was added.
+
+| Seed | Scene | Source Road/Wide /12 | Warped Road/Wide /12 | I420 /12 | Action/state/pose-time matches /12 | First difference | Candidate gate |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| 20261109 | left_right | 12/12 | 12/12 | 12 | 12 each | none | PASS |
+| 20261109 | right_left | 12/12 | 12/12 | 12 | 12 each | none | PASS |
+| 20261110 | left_right | 12/12 | 12/12 | 12 | 12 each | none | PASS |
+| 20261110 | right_left | 12/12 | 12/12 | 12 | 12 each | none | PASS |
+
+Across 48 paired steps, every source/warped RGB and actual I420 feed hash,
+all four raw action values/bytes, parent action conversion, aggregate and all
+three typed named-state receipts, capture-entry pose and post-action virtual
+pose/time match exactly. No first mismatch or tolerance occurs. Every trial
+has twelve distinct source/warp/I420, action and aggregate-state hashes;
+named image/feature states have twelve, while desire remains the expected
+constant zero state. Initial/reset/schema and two-tick clock controls validate.
+
+Additional named-state audit wall time is **5.533088–13.862155 ms** per step,
+total **0.662456844 s** across 96 model steps. This stored extra audit block
+includes state/action receipt work after the parent step; it is not full
+inference/instrumentation overhead. Whole delegated capture spans
+**4.091141–9.297873 s**, not pure overhead. All four case summaries and final
+aggregate exactly reproduce from the eight raw JSONs, ledgers and five verified
+ZIPs. The [candidate guide](STAGE7_MDV3_RENDERER_CANDIDATE.md) records full
+48/48 fields, state schema, archive SHA/byte ledger and limits. Evidence:
+`output/stage7-remote-evidence/run-42979680883/` and
+`output/stage7-remote-evidence/artifacts-42979680883.json`.
+
+This official-model **candidate** 4/4 is separate from historical original
+0/4 FAIL and does not adopt defaults, prove renderer/optical equivalence,
+identify a unique microcause, rank driving or complete Stage 7. Earlier
+unmodified, sampler/cache/feedback failures and partial protocols remain
+preserved. Automatic main replication 42981493726 is now complete and also
+passes candidate 4/4; its fresh independent evidence review is clear.
+
+The main repetition executes another eight native processes / 96 actual model
+steps, with all 48 required within-cohort paired comparisons and all three
+named states exact. Every main source/warp/I420 sequence and named image/
+feature state has twelve distinct hashes; desire remains the expected zero
+state. ORT remains CPU 1.31.1/BASIC level 1 and no GPU query/extraction/observer is added.
+Main extra named-state audit wall time is 6.495361–16.398507 ms, sum 0.733913688 s;
+whole capture 5.182054–9.343551 s is not pure overhead. The guide records its
+own five-archive SHA/byte ledger and raw evidence at
+`output/stage7-remote-evidence/run-42981493726/`. Together the source and main
+cohorts have 16 unique UUIDs/nonces, 192 model steps and no identity reuse;
+these exact comparisons are within each cohort's repeat pairs.
 Per-camera terrain view-data lifetime/LOD remains a separate unproven
 source-review hypothesis. The [feedback guide](STAGE7_SHADOW_FEEDBACK.md)
 records the worker pilot's full rates, evidence paths and causal limits.
 
 ## What remains unresolved
 
-**Original official MD-V3 strict gate remains the prior 0/4 PASS (FAIL).**
-There is no new causal renderer repair or new official ONNX run. Static
-experimental 4/4 equality must not replace the original moving-camera gate.
-No original camera default, PSSM/Chase callback, shader, model input bytes,
-recurrent states or actions were changed. Geometry, rendering determinism,
-real-sensor optical equivalence and driving performance remain separate.
-The sampler treatment is opt-in and experimentally changes rendered bytes;
-its source-cohort OFF arm failed strict native matching even though a later
-merged-main static repetition matched 4/4. Cache and shadow-feedback controls
-also fail 4/4, including the combined treatment.
+**Historical unmodified original MD-V3 remains 0/4 PASS (FAIL); the explicitly
+labeled experimental candidate source cohort now passes 4/4.** These are
+separate records. Candidate success does not prove full renderer equivalence,
+photometric/sensor optics, a unique GPU microcause or driving performance,
+and it does not promote a renderer default or complete Stage 7. The candidate
+preserves original model-camera/public-loop behavior and audited recurrence;
+its rendering interventions and CPU audits remain explicitly labeled.
+The earlier raw-linear/cache/feedback failures remain part of the evidence.
 
 First Wide source changes at step 2 in both left-right pixel cases are outside
 all admitted model-warp support; actual warped RGB and I420 first differ at
@@ -517,7 +582,7 @@ cd /workspace/big-model-closed-loop-benchmark
 source /workspace/.cloud-tools/onboarding/activate.sh
 git status --short
 git log -5 --oneline
-gh pr list --state all --head feat/stage7-mdv3-renderer-candidate
+gh pr list --state all --head docs/stage7-mdv3-candidate-results
 gh run list --branch main --limit 12
 ```
 
@@ -531,24 +596,23 @@ arms 40/40. Unit run 42961355303 passed.
 Do not manually repeat complete sampler/cache/feedback matrices merely to
 rediscover recorded results. Preserve cancelled/failed evidence.
 
-The feedback factorial plan is complete and every condition still fails
-strict matching. The local requested-zero worker pilot also failed. The
-standalone opaque matrix is complete: both unsorted static arms match 4/4,
-with state-sorted controls 3/4; no official moving-model PASS follows.
-Automatic main run 42969968780 is already complete and revalidated; do not
-start another CI/native repeat. PR #24 is merged after exact-HEAD checks/review;
-the completed bounded depth acceptance has a clear independent review.
-Continue through the standalone renderer-candidate plan, source tests and
-fresh code review before triggering its model workflow. V2 is complete; do not
-restart it. Preserve stopped v1's four
-valid captures/fifth ERROR and all eight v2 raw JSON/log/depth files. The next
-model diagnostic must use the original NativeWorldCamera/public episode path,
-keep candidate labels separate and relax no comparison. No official model has
-run yet; the historical original gate remains 0/4 FAIL. The trace comparison is
-complete only for its bounded input scope; preserve raw files and distinguish
-traced correlations from untraced causal behavior. Changed driver capability,
-incomplete GPU/full-state reconstruction and fixed process/cache order remain
-limits. Do not adopt a default sort policy solely from these static results.
+The feedback and ordering source cohorts, the bounded terminal-depth protocol
+and the first official candidate source gate are complete. Do not replay them
+merely to rediscover their recorded results. Automatic candidate replication
+**42981493726** is complete and exactly revalidated, with clear fresh
+independent review; unit main **42981493834** passed. The
+[prospective expansion plan](superpowers/plans/2026-11-11-mdv3-candidate-expansion.md)
+has clear independent review of its revised protocol. Finish fresh results-
+documentation review, current-HEAD CI and merge before expanded native/model
+execution or pushing that candidate expansion workflow. Preserve every failure/
+partial result and retain exact fields and candidate labels; do not silently
+replace the historical original gate or adopt defaults.
+
+The trace/depth comparisons remain bounded input/one-scene evidence. Preserve
+raw files and distinguish traced correlations or terminal depth preservation
+from universal untraced causal/photometric behavior. Keep the original
+NativeWorldCamera/public episode path for model diagnostics; do not substitute
+the visual-ego-hiding static trial or relax state/action/image/pose/time gates.
 Continue source review of per-camera terrain view-data lifetime/LOD while
 preserving original PSSM/Chase and Road-first controls
 and two independent OFF processes per condition. Terminal ON bindings do not
@@ -587,9 +651,12 @@ python -m scripts.aggregate_native_mdv3_rgb_pixel_matrix \
   --root output/verified-original-pixels --out output/pixels-recomputed.json
 ```
 
-Only a causally supported, rendering-semantics-validated repair can advance
-Task 4. Then execute the separate original 2 seeds × 2 S-curves × 12 steps ×
-2 independent processes strict MD-V3 gate (all source/warped RGB, actual I420,
-action, all recurrent-state digests, pose and virtual time must match). Only
-an exact 4/4 permits longer runs, more repeats, positions and ramp expansion.
-Do not claim Stage 7 completion while this gate is open.
+The source and main candidate strict gates each pass 4/4 for their registered
+twelve-step cases. Main-evidence and revised expansion-plan reviews are clear;
+fresh results-documentation review/current-HEAD CI/merge is still required
+before expanded native/model execution or expansion workflow push. Then follow the separately documented
+candidate protocol if authorized.
+Keep all source/warp/I420, raw action, aggregate/named recurrence and virtual
+pose/time comparisons exact. Historical original 0/4 remains unchanged;
+default promotion, global geometry/optical fidelity, driving ranking and
+Stage 7 completion require separate evidence.

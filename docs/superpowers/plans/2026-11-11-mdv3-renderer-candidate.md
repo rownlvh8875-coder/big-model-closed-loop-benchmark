@@ -117,17 +117,43 @@ reads about10MB per step; report it as audit overhead, not free instrumentation.
   and official model bytes/SHA. Four native jobs, two repeats sequentially per
   job, maxparallel2, independent aggregate. Preserve raw receipts/logs and
   failures, including hidden evidence only within output scope; no weights.
-- [ ] Full local tests, fresh code/scientific review and current-HEAD CI/Codex
+- [x] Full local tests, fresh code/scientific review and current-HEAD CI/Codex
   review/no open threads. Check five artifact API SHA/size/safe paths and exact
   raw reaggregation before any model-success assertion or gated merge.
 
-Checked items above mean implemented contracts and unit/workflow verification,
-not completed native/official-model evidence. The four new files are isolated
+Implementation contracts above were established with unit/workflow checks;
+actual native/official-model acceptance is recorded separately below.
+The four new files are isolated
 from all existing source/workflows. Fresh review found and corrected a partial
 metadata issue: a constructed real session with zero recorded parent steps
 must not claim official model execution. Its regression was observed failing
 before the narrow fix; exact comparison rules were unchanged. Final source SHA:
 `5a9058102004e2f5eaa4c9dcab4c24d97a9d42702b7a9e7c248c4f576a30d22e`.
+
+The native/official-model acceptance is now complete for source
+`0fbebed2358610a773d317ef8e857acf6ddf5c98`, run
+[42979680883](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42979680883):
+five successful jobs, five independently verified archive API SHA/size/safe-path
+checks, eight unique process UUIDs/nonces, two distinct PIDs per case and 96
+actual parent inference steps. All 48 paired rows match every required field
+and every named recurrent state; candidate **4/4 PASS**, no first mismatch.
+An independent second review rehashed all archives, matched archive raw files
+to the combined inputs and reproduced every case/final summary exactly.
+
+Full local suite: **313 passed without skips**. Fresh six-file review was clear
+at binary diff SHA `2624469dc197fcfe8c97c5e495a1ee8906452c82517f332895d027ab31645cbd`.
+All nine exact-HEAD checks, completed Codex review without findings and no open
+threads preceded [PR #25](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/pull/25)
+merge `e840022a73879164b4923f77dbb4aabaf1112131`. Artifact ledger and bounded
+timing/runtime results belong in `STAGE7_MDV3_RENDERER_CANDIDATE.md`.
+Automatic merged-main replication run42981493726 completed all five jobs.
+Root verified all five archive API hashes/sizes/safe paths and regenerated all
+raw case/final verdicts exactly: another candidate4/4, eight UUIDs/nonces,
+96 parent steps and all48 paired rows exact. Both cohorts together have16
+distinct UUIDs/nonces and192 actual steps, without process reuse. A fresh
+independent second review of every main archive/raw receipt and exact aggregate
+is clear; its archive/timing ledger belongs in the guide. Historical original **0/4 FAIL**, default adoption,
+full renderer equivalence and Stage7 completion remain unchanged/open.
 
 ## Ownership and next gate
 
