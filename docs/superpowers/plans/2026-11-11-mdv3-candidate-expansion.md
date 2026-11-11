@@ -19,8 +19,11 @@ verified all five archives and exact raw regeneration: another4/4, eight
 UUIDs/nonces and96 steps (16/192 across cohorts). This corrected plan also
 received a clear independent review. Before pushing or dispatching any
 expansion workflow, the completed candidate results documentation PR must
-merge; main's reviewed4/4 prerequisite is now satisfied. Query the actual PR number
-and current HEAD; never presume a future PR number or passed prerequisite.
+merge; main's reviewed4/4 prerequisite is now satisfied. Results-documentation
+PR #26 subsequently merged as `1077144170346e23279a91c832ce414534f377fe`,
+from exact HEAD `0c8b86a501457b754ef3a90fd2535a566d75d54b` after four checks,
+completed Codex review/no findings/no open threads and clear fresh review.
+Both execution prerequisites are satisfied; source/workflow review remains.
 
 Historical original-renderer official MD-V3 remains **0/4 FAIL**. All new
 results are explicitly experimental Both+unsorted candidate results. No
@@ -131,16 +134,16 @@ failures with raw/log/ledger artifacts retained; no automatic retry.
 
 ## Implementation and verification gates
 
-- [ ] Meaningful RED unit contracts precede implementation: all12 admitted
+- [x] Meaningful RED unit contracts precede implementation: all12 admitted
   configs, no altered original labels, one parent/capture, no RGB retention,
   actual ramps/route provenance and partial m+1 failure preservation.
-- [ ] Unit validate full/prespecified partial metadata and all exact fields;
+- [x] Unit validate full/prespecified partial metadata and all exact fields;
   reject forged outer error provenance, missing dangling source/state hashes,
   wrong statuses/clocks/actions/typed states, stale/fake cases and reused IDs.
-- [ ] Fresh nonce/raw-first JSON and actual-status ledger; two sequential
+- [x] Fresh nonce/raw-first JSON and actual-status ledger; two sequential
   children per case; exact independent case/final regeneration with24 UUIDs
   and two distinct same-runner PIDs per case. Actual inference count is summed.
-- [ ] Dedicated12-native-job/one-aggregate workflow, maxparallel2, bounded
+- [x] Dedicated12-native-job/one-aggregate workflow, maxparallel2, bounded
   timeouts and13 scoped artifacts; pin MetaDrive0.4.3/Panda1.10.13/official
   assets/model. Trigger on the new source/test/workflow changes in feature
   branches and explicit workflow_dispatch. Exclude automatic main merge pushes
@@ -151,11 +154,52 @@ failures with raw/log/ledger artifacts retained; no automatic retry.
   No weights in artifacts, no unrelated workflow changes or skipped PR gates.
 - [ ] Full local tests, pure numpy-only aggregation dependency check, fresh
   code/scientific review and unchanged base-source fingerprints before push.
-- [ ] Main replication4/4 fresh independent raw-evidence review and completed
+- [x] Main replication4/4 fresh independent raw-evidence review and completed
   candidate results documentation PR merge before pushing/dispatching any
   expansion workflow (a push itself triggers CI).
-  Exact source SHA, current-HEAD checks/Codex/no open threads, all13 artifact
+- [ ] Exact source SHA, current-HEAD checks/Codex/no open threads, all13 artifact
   API size/SHA/safe paths and exact raw regeneration before result claims/merge.
 - [ ] Record actual group results, first mismatch/incomplete boundaries, CPU
   audit overhead, route coverage and limits. Preserve every negative outcome;
   Stage7 completion/default/optics/performance do not follow from determinism.
+
+Checked implementation items mean unit/workflow verification, not completed
+expanded-model evidence. The initial RED log contains11 missing-implementation
+failures. Full local suite:329 passed without skips;16 dedicated expansion
+contracts also passed in a separate NumPy-only environment. Source/test SHAs
+are `d86b3be67c8ac3dee31f0bf9928014d3880c8c55a6cd829bb3c46c464d16b42c`
+and `0f82a1ffa93bfd1cbde43c30d667a4a97a18d1755d59c08ac4b57b3a9e410737`.
+The source reuses unchanged base helpers. Native geometry setup-only v2 passed
+all four scenes after preserving and correcting the ops-only vector serializer
+failure; see the dedicated guide. At that pre-execution implementation
+checkpoint, no official expansion inference had run; completed evidence follows.
+
+
+## Completed execution and new coordinate boundary finding
+
+The frozen implementation source `e84369c9f7f461a59c8d506b8b9efb2312297c03`
+completed official run42987993022:12 native cases plus aggregation,24 fresh
+processes,1472 actual inferences/completed rows and736 exact paired rows.
+All three groups separately pass4/4 **legacy-action repeatability only**.
+Root and fresh independent review verified13 API ZIP byte counts/SHAs/safe
+paths and exact raw-to-case/final regeneration; no mismatch/incomplete row.
+Source17 checks/Codex review are clear. A result-documentation-only commit
+must receive its own applicable checks and fresh current-HEAD review; runnable
+bytes and model/spec binding remain identical and heavy trials are not repeated.
+
+Execution also exposed a confirmed missing modelFRD→worldFLU applied-action
+basis conversion. Numeric model raw_lat/max(2.5,v)^2 remains correct; applying
+its right-positive curvature directly to the virtual left-positive integrator
+is incorrect. Pinned source and pure math establish the fixed determinant+1
+body rotation diag(1,-1,-1), not a globalY/image flip, controller tuning or proof
+of sole tracking-error causality. All four long cases visit only their first
+route lane and show39.0089–41.1555m virtual lateral deviation. No motion-frame,
+full-S, optics, model-quality or Stage7 completion claim follows. Preserve this
+cohort and its legacy actions/poses/labels as historical unscored evidence.
+
+The next separately versioned opt-in corrected-world protocol must preserve
+raw outputs, I420, recurrence and parent audit while negating only the applied
+curvature at the documented body-basis boundary. Run the original four complete
+12-step cases first; no corrected ramp/camera/160 expansion before independent
+corrected4/4 acceptance. This update records results and a new confirmed defect;
+it does not retroactively change this expansion's pre-execution gates.

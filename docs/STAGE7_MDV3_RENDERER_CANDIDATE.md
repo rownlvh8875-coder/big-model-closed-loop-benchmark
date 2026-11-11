@@ -259,9 +259,11 @@ CPU/GPU hardware identities were not retained, so this is a bounded raw-data
 comparison, not a hardware-equivalence claim. Fresh main-evidence review is
 clear. The revised [prospective expansion plan](superpowers/plans/2026-11-11-mdv3-candidate-expansion.md)
 also has clear independent review. No expanded-campaign result is recorded
-here. The results
-documentation PR also needs fresh review, current-HEAD CI and merge before
-any expansion workflow is pushed; its future PR number is not presumed.
+here. Results-documentation PR #26 subsequently merged as
+`1077144170346e23279a91c832ce414534f377fe`, from exact source
+`0c8b86a501457b754ef3a90fd2535a566d75d54b` after four checks, completed
+Codex review without findings/no open threads and clear independent review.
+Its merge satisfies the documentation prerequisite for the separate expansion.
 
 ## Interpretation and next checkpoint
 
@@ -277,7 +279,8 @@ expansion needs its own documented protocol and exact comparisons.
 
 Source run **42979680883** and automatic main **42981493726** are complete
 and independently reaggregated. Do not manually repeat either merely to
-rediscover its recorded result. The revised expansion plan is reviewed;
-complete fresh results-documentation review/current-HEAD CI/merge before
-expanded native/model execution or workflow push under that candidate protocol. Every later result keeps its candidate label; original gate/default
+rediscover its recorded result. The revised expansion plan is reviewed and
+results-documentation PR #26 is merged. The separate expansion still requires
+its own frozen source/workflow review before its first model workflow push.
+Every later result keeps its candidate label; original gate/default
 adoption, optics, driving performance and Stage 7 completion remain distinct.
