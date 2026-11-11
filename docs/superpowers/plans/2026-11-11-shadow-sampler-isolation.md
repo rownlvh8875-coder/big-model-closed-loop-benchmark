@@ -1,6 +1,6 @@
 # PSSM shadow sampler isolation implementation plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [x]`) syntax for tracking.
 
 **Goal:** Test whether MetaDrive's depth comparison sampler conflicts with its manual-PCF GLSL sampler, without changing the original benchmark defaults.
 
@@ -8,7 +8,7 @@
 
 **Tech Stack:** Python 3.11, MetaDrive 0.4.3, Panda3D, ctypes/libGL, Xvfb, GitHub Actions.
 
-**Spec:** `docs/STAGE7_CONTINUATION.md`; original user Stage 7 instructions. OpenGL 4.6 core specification section 11.1.3.11 (pp. 401–402) requires consistent sampler type and texture comparison mode.
+**Spec:** `docs/STAGE7_CONTINUATION.md`; original user Stage 7 instructions. OpenGL 4.6 core specification section 11.1.3.5 (pp. 401–402) requires consistent sampler type and texture comparison mode.
 
 ## Global constraints
 
@@ -33,11 +33,11 @@
 
 **Interfaces:** `configure_sampler(engine, mode) -> dict`; `terminal_sampler_probe(engine, enabled) -> context manager yielding dict`. Optional `shadow_sampler_mode=None` and `terminal_shadow_probe=False` parameters on `native_pixel_clock` preserve its original path when absent.
 
-- [ ] Write failing tests for default no-op, original/linear receipts, restoration on errors and GL binding classification (real atlas/depth format/sampler2D/effective compare mode/use_pssm).
-- [ ] Run targeted tests and observe failure before implementation.
-- [ ] Implement treatment; bind callbacks only to road/wide HDR scene outputs during the final positive capture. Record callback duration, driver, shader SHA, program/uniform/binding/filter/compare state and errors. Reject preexisting draw callbacks rather than overwrite them.
-- [ ] Run tests, then local real native trials for all four arms. Preserve failures and actual observed results.
-- [ ] Commit implementation and validation tests.
+- [x] Write failing tests for default no-op, original/linear receipts, restoration on errors and GL binding classification (real atlas/depth format/sampler2D/effective compare mode/use_pssm).
+- [x] Run targeted tests and observe failure before implementation.
+- [x] Implement treatment; bind callbacks only to road/wide HDR scene outputs during the final positive capture. Record callback duration, driver, shader SHA, program/uniform/binding/filter/compare state and errors. Reject preexisting draw callbacks rather than overwrite them.
+- [x] Run tests, then local real native trials for all four arms. Preserve failures and actual observed results.
+- [x] Commit implementation and validation tests.
 
 ### Task 2: Independent comparison and native CI
 
@@ -45,9 +45,11 @@
 
 **Interfaces:** `validate_sampler_trial(d, seed, scene, arm)`, `compare_scene(root, seed, scene) -> dict`, `aggregate_scenes(root) -> dict`, launcher `run_trial(seed, scene, arm, out) -> int`. Reuse original Road-first schedule validation and exact SHA comparisons.
 
-- [ ] Write failing tests for field mismatches, missing GPU evidence, duplicate identities, altered summaries and launcher failure/status-5 contracts.
-- [ ] Run tests and observe failure before implementation.
-- [ ] Implement strict validation, two repeats per arm, four scenes and 32-process independent aggregation. Report primary image equality and terminal observations separately; unique cause and original ONNX gate flags always false.
-- [ ] Run targeted/full tests, syntax/YAML checks, fresh code review and native CI on the exact PR HEAD.
-- [ ] Download all artifacts, verify ZIP SHA/size, regenerate summaries exactly and record native counts/rates/first differences before gated merge.
-- [ ] Update continuation/findings with exact evidence and remaining gates; no causal or Stage 7 completion claim from static matching alone.
+- [x] Write failing tests for field mismatches, missing GPU evidence, duplicate identities, altered summaries and launcher failure/status-5 contracts.
+- [x] Run tests and observe failure before implementation.
+- [x] Implement strict validation, two repeats per arm, four scenes and 32-process independent aggregation. Report primary image equality and terminal observations separately; unique cause and original ONNX gate flags always false.
+- [x] Run targeted/full tests, syntax/YAML checks, fresh code review and native CI on the exact PR HEAD.
+- [x] Download all artifacts, verify ZIP SHA/size, regenerate summaries exactly and record native counts/rates/first differences before gated merge.
+- [x] Update continuation/findings with exact evidence and remaining gates; no causal or Stage 7 completion claim from static matching alone.
+
+Execution completed in PR #18, source HEAD `3adc288f244e001a22ce69ce73f0fa7d514ce98a`; see `docs/STAGE7_SHADOW_SAMPLER_ISOLATION.md` for the verified 32-process evidence and incomplete strict gate.
