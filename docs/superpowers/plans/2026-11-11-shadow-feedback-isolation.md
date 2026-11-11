@@ -126,16 +126,32 @@ orders differ, without a necessary/sufficient/unique causal relation. Full GPU
 textures/state are not reconstructed. Pinned Panda pointer-based state/bin
 sorting motivates a bounded local intervention, not a default policy change.
 
-The separate extra opaque-bin ABBA pilot on experimental Both is pending at
-`output/opaque-bin-pilot-v3/plan.json`: `state_sorted_0 → unsorted_0 → unsorted_1 →
-state_sorted_1`; opaque enum 2 versus 1 before primary frames, one fresh shared
-cache per arm, original PSSM/Chase/ticks/shaders preserved and observer OFF.
-These are not ordinary Both cells; generic feedback validation does not
-certify the extra bin semantics or actual order. V1's in-memory tuple check
-failed before writing/lost raw JSON; v2 saved schema-valid observed JSON but
-retained wrapper status 1 from the tuple check. Logs/cache/failure records are
-preserved in v1/v2 directories; neither is a completed matrix. V3 writes and
-reloads JSON before unchanged strict wire validation; the existing-fixture
-roundtrip repro passed, with no native criterion relaxed or source change.
-No outcome or render-sort adoption is established. Full trace findings and limitations are in the
-feedback guide. Per-camera terrain view-data lifetime/LOD remains unproven.
+The separate extra opaque-bin ABBA pilot on experimental Both is now complete
+at `output/opaque-bin-pilot-v3/`: four unique UUIDs/PIDs, all statuses zero,
+fresh nonce/native JSON SHA receipts and strict wire validation. State-sorted
+opaque type 2 matched source Road/Wide 9/5, warp 9/10, I420 9/10 (first/different
+step 9); unsorted type 1 matched every source/warp/I420 field 10/10. Typed
+bin reads were 2 → 2 and 2 → 1. Whole-process ABBA wall times were 82.702,
+78.100, 71.165, 68.015 s, not pure overhead. Within each process post-warmup
+Road/Wide/I420 unique hashes were 2/2/2 for state-sorted and 1/1/1 for unsorted,
+separate from cross-process equality. Same-index treated-frame membership in
+either control repeat was Road/warped Road/I420 16/20 and Wide/warped Wide
+20/20: an observation only, never equivalence proof, tolerance or another gate.
+
+V1 lost raw JSON before writing, with log/cache/failure metadata retained;
+v2 saved valid observed JSON but retained wrapper status 1 from the tuple
+check. Neither counts among the four v3 successes. V3 writes/reloads JSON
+before unchanged strict validation; no native criterion relaxed. No local
+4/4 repair or default sorting adoption follows from this one fixed-order/
+cache-confounded case. Full retained evidence and limits are in the feedback
+guide; the official MD-V3 gate remains prior 0/4 PASS (FAIL).
+
+The [next opaque-order plan](2026-11-11-opaque-order-isolation.md) registers a
+new standalone 32-native-process matrix: feedback_baseline / feedback_both ×
+opaque type 2 / 1, two independent observer-OFF repeats per condition across
+four seed/scene cases, with cyclic Latin order. The new module configures the
+bin before provider creation, while the local pilot used an after-provider
+feedback configuration hook; source-equivalence is not claimed. Existing
+provider/capture/feedback/sampler modules remain unchanged in that design.
+No new source CI/native matrix outcome or default renderer change is recorded.
+Per-camera terrain view-data lifetime/LOD remains unproven.

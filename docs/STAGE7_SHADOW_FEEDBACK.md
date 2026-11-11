@@ -580,6 +580,19 @@ first primary-window order difference is opaque pass **67**, FBO **3**:
 | ON0 | skybox program 4, call 35777 → terrain program 10, call 35823 |
 | ON1 | terrain program 10, call 35802 → skybox program 4, call 35828 |
 
+An additional root decode of **actual traced geometry-draw state**, rather
+than the zero-geometry observer, retains **1,278 shadow draws per trace** in
+`output/apitrace-draw-pilot-v2/actual-shadow-bindings-root.json` (SHA256
+`1be037dc386d8fc6c2e5b2969e6e059fa920ef7aa542a1d685295f3d78a03e3f`).
+Each records FBO/program 1, atlas unit 0 bound to texture 1, depth attachment
+`GL_TEXTURE` 1 at level 0, `use_pssm=1` and sampler object 1 with comparison
+mode 34894. The first call is 6952 in both traces; last calls are 104819 and
+104863. The captured program-1 fragment declares `sampler2D`; this is source
+evidence, not new driver reflection. Color renderbuffer 1 uses a distinct
+object namespace and is not a texture alias. These draw-state records do not
+prove an executed texture fetch, unique causality or untraced-state equivalence;
+the tracer's program-binary capability and timing changes remain limits.
+
 The following Wide read calls **37381 / 37387** align with the first Wide
 source-hash mismatch under the fixed host-schedule mapping. The trace has no
 explicit Panda clock markers. Order also changes on matching image frames,
@@ -598,21 +611,56 @@ breaks ties with vertex-format, munged-data and transform **pointers**. That
 source behavior is established; its causal role in these image mismatches is
 not. It does not justify adopting a different default sort policy.
 
-### Pending local opaque-bin intervention
+### Completed local opaque-bin pilot
 
-A separate ABBA pilot is underway, preregistered at
-`output/opaque-bin-pilot-v3/plan.json`: `state_sorted_0 → unsorted_0 → unsorted_1 →
-state_sorted_1`, for 20261109 / left-right, with one initially empty shared
-Mesa cache per arm (cold → populated). On top of experimental **`both`**, it
-requests opaque `CullBinManager` type **2 (state-sorted)** versus **1 (unsorted)**
-before primary frames. Original Road-first/PSSM/Chase, two ticks, shader source
-and image processing remain unchanged; terminal observer is OFF with no GL
-query or profiler. The extra bin intervention means these are **not ordinary
-`both` cells**. A generic feedback receipt validates the shared Both fields,
-not the additional bin semantics or actual draw order. This one fixed-order/
-cache case has **no outcome recorded yet** and promotes no default render sort.
+The v3 ABBA pilot is complete for 20261109 / left-right:
+`state_sorted_0 → unsorted_0 → unsorted_1 → state_sorted_1`. All four native
+processes have distinct UUIDs/PIDs, zero raw statuses, fresh request nonces and
+raw JSON SHA receipts, and pass the unchanged strict validator after JSON
+writing/reloading. Plan, four native JSON/logs, execution/cache manifests,
+comparisons and indexed membership observations are retained under
+`output/opaque-bin-pilot-v3/`, including `plan.json`, `execution_receipts.json`,
+`comparisons.json` and `indexed_control_membership.json`.
 
-The active attempt is **v3**. Earlier v1 validated the in-memory `camera_pose`
+On top of experimental **`both`**, the pilot requests opaque `CullBinManager`
+type **2 (state-sorted)** versus **1 (unsorted)** after provider creation via
+the feedback configuration hook, before primary captures. Typed bin reads
+record 2 → 2 for state-sorted and 2 → 1 for unsorted. Original Road-first,
+PSSM/Chase, two ticks, shaders and image processing are preserved; observer
+is OFF with no GL query/profiler or extra tick. These are **Both plus a bin
+modifier**, not ordinary Both cells or original-renderer controls. The generic
+feedback validator covers the shared Both fields, not full bin semantics or
+an actual per-draw ordering trace.
+
+| Bin treatment on Both | Source Road/Wide /10 | Warped Road/Wide /10 | I420 /10 | I420 post-warmup /8 | First I420 | I420 different steps |
+| --- | --- | --- | --- | --- | --- | --- |
+| state-sorted, type 2 | 9/5 | 9/10 | 9 | 7 | 9 | 9 |
+| unsorted, type 1 | 10/10 | 10/10 | 10 | 8 | none | none |
+
+State-sorted Road/I420 differs only at step 9; Wide source first differs at 4
+and differs at 4, 5, 7, 8, 9, while Wide warp matches 10/10. Whole-process
+wall times in ABBA order are **82.702, 78.100, 71.165, 68.015 s**, including
+startup/rendering/analysis/shutdown, not pure sorting overhead.
+
+Within each state-sorted process, post-warmup source Road/Wide and I420 have
+**2/2/2 unique hashes**; within each unsorted process they have **1/1/1**.
+These within-process diversity observations are distinct from the two-process
+repeat comparison in the table above.
+
+For each of the 20 unsorted frames (two repeats × ten indices), a separate
+membership check asks whether its SHA equals either state-sorted repeat at
+the **same frame index**. Source Road, warped Road and I420 each match **16/20**;
+source Wide and warped Wide each match **20/20**. This byte-membership
+observation is **not semantic-equivalence proof, an alternate gate, a tolerance,
+image substitution or a repaired official result**.
+
+The one seed/scene, fixed ABBA assignment, cold → populated shared cache per
+arm and setup timing still confound causality. Unsorted's local 10/10 result
+is a discriminating candidate, not multi-scene 4/4 evidence, a validated
+rendering-semantic repair or permission to change default sorting. Cache
+manifests establish availability/history, not individual cache hits.
+
+The completed four-process attempt is **v3**. Earlier v1 validated the in-memory `camera_pose`
 tuple before writing and failed with a pose/positive-control schema error;
 its native JSON was lost, with log/cache/`failed_attempt_record.json` retained
 under `output/opaque-bin-pilot/`. That missing raw evidence is unrecoverable
@@ -623,7 +671,21 @@ log/cache and failure metadata remain in `output/opaque-bin-pilot-v2/`.
 Schema-valid saved data does not turn that failed wrapper into a completed
 matrix. V3 writes JSON, reloads it and applies the same strict wire validator.
 The existing-fixture tuple/JSON-roundtrip reproduction confirms the wrapper
-type issue; no native comparison criterion was relaxed and no source changed.
+type issue; no native comparison criterion was relaxed and existing native
+capture/rendering source remained unchanged.
+
+The next [opaque-order isolation plan](superpowers/plans/2026-11-11-opaque-order-isolation.md)
+registers a new standalone **32-native-process** matrix: original
+`feedback_baseline` versus `feedback_both`, each with opaque type 2 versus 1,
+two independent OFF repeats in each of four seed/scene cases, with a cyclic
+Latin condition order. Existing provider/capture/feedback/sampler modules stay
+unchanged in that design. The new module configures the bin **before provider
+creation**, whereas this pilot configured it after provider creation; their
+setup boundaries are different and source-equivalence is not claimed.
+Implementation is underway on `feat/stage7-opaque-order-isolation`; no new
+source CI or native matrix outcome is established here. The official MD-V3
+gate remains prior **0/4 PASS (FAIL)**, with no weights/inference or default
+render-sort adoption.
 
 Per-camera `ShaderTerrainMesh` view-data lifetime and LOD state remain another
 source-review hypothesis, with no validated repair or new matrix outcome

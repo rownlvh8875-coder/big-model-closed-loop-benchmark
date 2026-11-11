@@ -1,0 +1,117 @@
+name: Stage7 opaque-bin ordering factorial (SIM ONLY)
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/stage7-opaque-order.yml'
+      - 'scripts/native_opaque_order_matrix.py'
+      - 'tests/test_native_opaque_order_matrix.py'
+      - 'scripts/native_shadow_feedback_probe.py'
+      - 'scripts/native_shadow_feedback_matrix.py'
+      - 'scripts/native_shadow_sampler_probe.py'
+      - 'scripts/native_raw_pixel_clock.py'
+      - 'scripts/metadrive_render_causality.py'
+      - 'scripts/compare_native_shadow_sampler.py'
+      - 'scripts/compare_native_capture_schedule.py'
+      - 'scripts/compare_native_pssm_cross_process.py'
+      - 'tests/test_shadow_feedback_probe.py'
+      - 'tests/test_native_shadow_feedback_matrix.py'
+permissions:
+  contents: read
+concurrency:
+  group: stage7-opaque-order-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  native-opaque-order:
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        seed: [20261109, 20261110]
+        scenario: [s_curve_left_right, s_curve_right_left]
+    env:
+      LIBGL_ALWAYS_SOFTWARE: '1'
+      PYOPENGL_PLATFORM: 'glx'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pinned native simulator and CPU OpenGL
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y xvfb libgl1 libglu1-mesa libegl1 libx11-6
+          python -m pip install 'numpy>=1.26,<3' 'opencv-python-headless>=4.8' 'metadrive-simulator==0.4.3' 'panda3d==1.10.13'
+      - name: Run opaque-bin CPU and wire-receipt contracts with real Panda installed
+        run: |
+          python -m unittest discover -s tests -p 'test_native_opaque_order_matrix.py' -v
+          python -m unittest discover -s tests -p 'test_native_shadow_feedback_matrix.py' -v
+      - name: Verify official 0.4.3 rendering assets size and SHA256
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p "$RUNNER_TEMP/native-assets"
+          gh release download MetaDrive-0.4.3 --repo metadriverse/metadrive --pattern assets.zip --dir "$RUNNER_TEMP/native-assets"
+          python - <<'PYCODE'
+          from pathlib import Path, PurePosixPath
+          from zipfile import ZipFile
+          import hashlib, os, metadrive
+          archive=Path(os.environ['RUNNER_TEMP'])/'native-assets'/'assets.zip'
+          assert archive.stat().st_size==134074203
+          assert hashlib.sha256(archive.read_bytes()).hexdigest()=='4f0da9f5143a1258131c5b55f77bdf170c0f9bce8a9f18dd41b3678df779eac9'
+          with ZipFile(archive) as source:
+              for name in source.namelist():
+                  p=PurePosixPath(name)
+                  if p.is_absolute() or '..' in p.parts:
+                      raise ValueError('unsafe official MetaDrive archive path')
+              source.extractall(Path(metadrive.__file__).resolve().parent)
+          print('OFFICIAL_METADRIVE_ASSETS_CONFIRMED')
+          PYCODE
+      - name: Run eight independent observer-OFF processes in the case Latin-square order
+        run: |
+          python -m scripts.native_opaque_order_matrix --mode run-case \
+            --root output/stage7-opaque-order --seed ${{ matrix.seed }} \
+            --scene ${{ matrix.scenario }}
+      - name: Preserve raw JSON, logs and execution ledger, including failures
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: stage7-opaque-order-${{ matrix.seed }}-${{ matrix.scenario }}
+          path: output/stage7-opaque-order/
+          include-hidden-files: true
+          retention-days: 7
+          if-no-files-found: warn
+  independent-opaque-aggregate:
+    needs: native-opaque-order
+    if: success()
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pure receipt dependencies
+        run: python -m pip install 'numpy>=1.26,<3'
+      - name: Download the four native raw evidence archives
+        uses: actions/download-artifact@v4
+        with:
+          pattern: stage7-opaque-order-*
+          path: output/stage7-opaque-order/
+          merge-multiple: true
+      - name: Independently regenerate all 32 process comparisons
+        run: |
+          python -m unittest discover -s tests -p 'test_native_opaque_order_matrix.py' -v
+          python -m scripts.native_opaque_order_matrix --mode aggregate \
+            --root output/stage7-opaque-order \
+            --out output/stage7-opaque-order/aggregate_summary.json
+      - name: Archive independently regenerated aggregate
+        uses: actions/upload-artifact@v4
+        with:
+          name: stage7-opaque-order-fourscene-summary
+          path: output/stage7-opaque-order/aggregate_summary.json
+          include-hidden-files: true
+          retention-days: 7
+          if-no-files-found: error
