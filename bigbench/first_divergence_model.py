@@ -28,6 +28,8 @@ SCHEDULE = (('original',0),('proxy',0),('retention',0),('retention',1),('proxy',
 STEPS = 4
 CHILD_LIMIT_S = 480
 STUDY_LIMIT_S = 2400
+PROCESS_LOG_CAP_BYTES = 1024 * 1024
+MIN_LEDGER_BYTES = 4096
 WORKFLOW_PATH = '.github/workflows/stage7-first-divergence.yml'
 REQUEST_PATH = '.github/stage7-first-divergence-request.json'
 ARTIFACT_NAME = 'stage7-first-divergence-canary'
@@ -49,12 +51,121 @@ def _fail(message):
     raise ValueError(message)
 
 
-def _json_write(path, value):
+def _json_write(path, value, *, byte_limit=None):
     path=Path(path); capture._safe_path(path.parent,path.name)
     path.parent.mkdir(parents=True,exist_ok=True)
     payload=json.dumps(value,indent=2,allow_nan=False)+'\n'
-    if len(payload.encode())>capture.MANIFEST_CAP_BYTES: _fail('JSON byte cap')
+    if len(payload.encode())>min(capture.MANIFEST_CAP_BYTES,byte_limit if byte_limit is not None else capture.MANIFEST_CAP_BYTES): _fail('JSON byte cap')
     with path.open('x',encoding='utf-8') as stream: stream.write(payload)
+
+
+
+class _StorageBudget:
+    """Conservative disk reservation; rejected writes never touch a member."""
+    def __init__(self,limit):
+        if type(limit) is not int or limit<0:_fail('invalid storage budget')
+        self.limit=limit;self.charged=0
+    def reserve(self,nbytes):
+        if type(nbytes) is not int or nbytes<0 or self.charged+nbytes>self.limit:
+            _fail('payload storage budget exhausted before write')
+        self.charged+=nbytes
+
+
+def _ledger_reserve(cap):
+    if cap<2*MIN_LEDGER_BYTES:_fail('dataset cap cannot reserve bounded failure ledgers')
+    return min(capture.MANIFEST_CAP_BYTES,cap//2)
+
+
+def _child_storage_limits(available):
+    if available<MIN_LEDGER_BYTES:_fail('dataset budget cannot reserve next child ledger')
+    ledger=min(capture.MANIFEST_CAP_BYTES,max(MIN_LEDGER_BYTES,available//2))
+    log=min(PROCESS_LOG_CAP_BYTES,(available-ledger)//4)
+    return dict(payload_limit_bytes=available-ledger-log,trial_ledger_limit_bytes=ledger,log_limit_bytes=log)
+
+
+def _storage_limits(value):
+    capture._fields(value,{'payload_limit_bytes','trial_ledger_limit_bytes','log_limit_bytes'})
+    if (any(type(v) is not int or v<0 for v in value.values()) or value['trial_ledger_limit_bytes']<MIN_LEDGER_BYTES or
+        value['trial_ledger_limit_bytes']>capture.MANIFEST_CAP_BYTES or value['log_limit_bytes']>PROCESS_LOG_CAP_BYTES or
+        sum(value.values())>capture.DATASET_CAP_BYTES):_fail('invalid child disk allocation')
+    return value
+
+
+class _LogSink:
+    """Keep an explicit byte prefix, then stop the child rather than grow disk."""
+    def __init__(self,path,limit):
+        self.limit=limit;self.nbytes=0
+        path=Path(path);capture._safe_path(path.parent,path.name)
+        self.stream=path.open('xb')
+    def write(self,data):
+        keep=min(len(data),max(0,self.limit-self.nbytes))
+        if keep:self.stream.write(data[:keep]);self.stream.flush();self.nbytes+=keep
+        if keep!=len(data):_fail('process log storage budget exhausted; bounded prefix retained')
+    def close(self):self.stream.close()
+
+
+class _BoundedChild:
+    """Drain the actual stdout/stderr pipe through the bounded sink while waiting."""
+    def __init__(self,process,sink,storage):
+        self.process=process;self.sink=sink;self.storage=storage;self.output_closed=False;self.output_cleanup_errors=[]
+    @property
+    def pid(self):return self.process.pid
+    @property
+    def returncode(self):return self.process.returncode
+    def close_output(self):
+        if not self.output_closed:
+            self.output_closed=True
+            for close in (self.process.stdout.close,self.sink.close):
+                try:close()
+                except OSError as exc:self.output_cleanup_errors.append(f'output close: {type(exc).__name__}: {exc}')
+        self.storage['log_bytes']=self.sink.nbytes
+    def wait(self,timeout):
+        deadline=perf_counter()+timeout
+        if not self.output_closed:
+            import select
+            try:
+                while True:
+                    remaining=deadline-perf_counter()
+                    if remaining<=0:raise subprocess.TimeoutExpired('bounded child output',timeout)
+                    ready,_,_=select.select([self.process.stdout],[],[],remaining)
+                    if not ready:raise subprocess.TimeoutExpired('bounded child output',timeout)
+                    block=os.read(self.process.stdout.fileno(),65536)
+                    if not block:break
+                    self.sink.write(block)
+            except ValueError as exc:
+                self.storage['limit_error']=str(exc);self.close_output();raise
+            else:
+                self.close_output()
+                if self.output_cleanup_errors:_fail('process output close unconfirmed')
+        return self.process.wait(timeout=max(0.,deadline-perf_counter()))
+
+
+def _publish_ledger(path,data,limit):
+    """Metadata overflow is explicit failed evidence, never deletion of raw files."""
+    payload=json.dumps(data,indent=2,allow_nan=False)+'\n'
+    if len(payload.encode())>limit:
+        keep={'schema','error','error_chain','cleanup_errors','model_calls_lower_bound','model_calls_upper_bound',
+              'parent_pid','parent_uuid','process_id','process_uuid','arm','repeat','nonce','provider_closed','launch_ledger','storage'}
+        compact={k:v for k,v in data.items() if k in keep}
+        compact.update(status='FAILED_OR_INCOMPLETE',model_calls=None,metadata_omitted={})
+        if not compact.get('error'):compact['error']='ledger storage budget exhausted; metadata explicitly omitted'
+        for k,v in data.items():
+            if k not in keep and k not in ('status','model_calls'):
+                encoded=json.dumps(v,allow_nan=False).encode()
+                compact['metadata_omitted'][k]=dict(nbytes=len(encoded),sha256=sha256(encoded).hexdigest())
+        for k in ('error','error_chain','cleanup_errors'):
+            if k in compact:
+                value=compact[k]
+                if isinstance(value,str):compact[k]=value[:512]+(' [TRUNCATED]' if len(value)>512 else '')
+                elif isinstance(value,list):compact[k]=[str(x)[:256] for x in value[:4]]
+        if len((json.dumps(compact,indent=2,allow_nan=False)+'\n').encode())>limit:
+            value=compact.pop('launch_ledger',None)
+            if value is not None:
+                encoded=json.dumps(value,allow_nan=False).encode()
+                compact['metadata_omitted']['launch_ledger']=dict(nbytes=len(encoded),sha256=sha256(encoded).hexdigest())
+        data=compact
+    _json_write(path,data,byte_limit=limit)
+    return data
 
 
 def _hash_file(path):
@@ -439,8 +550,9 @@ def _consume_trial_authorization(arm,repeat,nonce):
         with os.fdopen(fd,'rb') as stream: data=stream.read(capture.MANIFEST_CAP_BYTES+1)
     except OSError: raise ValueError('missing one-use trial capability') from None
     permit=_json_bytes(data)
-    capture._fields(permit,{'parent_pid','parent_uuid','process_group','nonce','arm','repeat','source_snapshot','runtime','schedule_index'})
+    capture._fields(permit,{'parent_pid','parent_uuid','process_group','nonce','arm','repeat','source_snapshot','runtime','schedule_index','storage_limits'})
     if (permit['arm'],permit['repeat'],permit['nonce'])!=(arm,repeat,nonce): _fail('trial capability association mismatch')
+    _storage_limits(permit['storage_limits'])
     index=permit['schedule_index']
     if type(index) is not int or not 0<=index<len(SCHEDULE) or SCHEDULE[index]!=(arm,repeat): _fail('unauthorized trial schedule')
     if type(permit['parent_pid']) is not int or permit['parent_pid']<=0 or permit['parent_pid']==os.getpid(): _fail('trial parent identity')
@@ -483,21 +595,22 @@ def _receipt_current_binding(receipt):
     if _git('rev-parse','HEAD').decode().strip()!=expected['head_sha']: _fail('child actual source head mismatch')
 
 
-def _save_array(root,name,value):
+def _save_array(root,name,value,*,write_budget=None):
     path=capture._safe_path(root,name)
+    if write_budget is not None:write_budget.reserve(value.nbytes+4096)
     path.parent.mkdir(parents=True,exist_ok=True)
     with path.open('xb') as stream: np.save(stream,value,allow_pickle=False)
     return dict(path=name,nbytes=path.stat().st_size,sha256=_hash_file(path),array=_descriptor(value))
 
 
-def _serialize_arrays(root,rows):
+def _serialize_arrays(root,rows,write_budget=None):
     result=[]
     for index,row in enumerate(rows,1):
         saved={}
         for group in ('pre_state','post_state','fixed_inputs'):
-            saved[group]={name:_save_array(root,f'step_{index:02d}/{group}_{name}.npy',value) for name,value in row.get(group,{}).items()}
+            saved[group]={name:_save_array(root,f'step_{index:02d}/{group}_{name}.npy',value,write_budget=write_budget) for name,value in row.get(group,{}).items()}
         for name in ('raw4','plan'):
-            if name in row: saved[name]=_save_array(root,f'step_{index:02d}/{name}.npy',row[name])
+            if name in row: saved[name]=_save_array(root,f'step_{index:02d}/{name}.npy',row[name],write_budget=write_budget)
         result.append(saved)
     return result
 
@@ -520,6 +633,8 @@ def run_trial(model,spec,arm,repeat,nonce,out):
     """One authorized fresh-process four-step prefix. Native owner closes provider."""
     permit=_consume_trial_authorization(arm,repeat,nonce)
     out=Path(out);capture._require_ephemeral_ci(out)
+    limits=_storage_limits(permit.get('storage_limits') or _child_storage_limits(capture.DATASET_CAP_BYTES-_ledger_reserve(capture.DATASET_CAP_BYTES)))
+    disk=_StorageBudget(limits['payload_limit_bytes'])
     budget=retention_preflight(spec)  # before native provider or ORT session
     _require_official_model(model,spec)
     from .public_action_frame import create_public_onnx_policy
@@ -549,7 +664,7 @@ def run_trial(model,spec,arm,repeat,nonce,out):
         nonce=nonce,process_id=os.getpid(),process_uuid=uuid.uuid4().hex,
         parent_pid=permit['parent_pid'],parent_uuid=permit['parent_uuid'],process_group=os.getpgid(0),
         source_snapshot=sources,runtime=runtime,provider_closed=closed,error=error,error_chain=error_chain,cleanup_errors=cleanup_errors,
-        preflight=budget,binding=binding.receipt() if binding else None,report=report,observed=None,
+        storage=dict(limits=limits,payload_charged_bytes=0,limit_error=None),preflight=budget,binding=binding.receipt() if binding else None,report=report,observed=None,
         model_calls=None,model_calls_lower_bound=len(binding.policy.trace) if binding else 0,
         model_calls_upper_bound=4,claims=dict(capture.CLAIMS),limitation=LIMITATION)
     if observer is not None:
@@ -558,13 +673,15 @@ def run_trial(model,spec,arm,repeat,nonce,out):
             actual_image_scope='ACTUAL_PARENT_NEW_IMG_SHA_ONLY',other_feed_scope='SOURCE_RECONSTRUCTED_NOT_INTERCEPTED')
         if closed and arm=='retention':
             try:
-                data['observed']['captures']=collector.serialize_captures(out)
-                data['observed']['arrays']=_serialize_arrays(out,observer.arrays)
+                data['observed']['captures']=collector.serialize_captures(out,write_budget=disk)
+                data['observed']['arrays']=_serialize_arrays(out,observer.arrays,write_budget=disk)
             except BaseException as exc:
                 detail=f'{type(exc).__name__}: {exc}'
+                if 'budget' in str(exc):data['storage']['limit_error']=detail
                 if data['error'] is None:
                     data['error']=detail;data['error_chain']=[detail]
                 else:cleanup_errors.append(detail)
+    data['storage']['payload_charged_bytes']=disk.charged
     if data['error'] is None and report is not None and report.get('status')=='DIAGNOSTIC_EXECUTED' and not cleanup_errors:
         data['status']='TRIAL_ASSOCIATION_VALIDATED';data['model_calls']=4
         try: _validate_trial(out,manifest=data)
@@ -573,8 +690,8 @@ def run_trial(model,spec,arm,repeat,nonce,out):
             data['error']=f'{type(exc).__name__}: {exc}';data['error_chain']=[data['error']]
     elif data['error'] is None:
         data['error']=report.get('error','incomplete native report') if isinstance(report,dict) else 'no complete native report'
-    _json_write(out/'trial.json',data)
-    return data
+    if _dataset_bytes(out)+limits['trial_ledger_limit_bytes']>sum(limits.values()):_fail('trial exceeded its reserved storage allocation')
+    return _publish_ledger(out/'trial.json',data,limits['trial_ledger_limit_bytes'])
 
 
 def _enable_subreaper():
@@ -588,26 +705,29 @@ def _enable_subreaper():
 def _launch_trial(model,spec,out,arm,repeat,nonce,parent_uuid,index,launch_row):
     out=Path(out);out.mkdir(parents=True,exist_ok=True)
     readfd,writefd=os.pipe();process=None
+    limits={k:v for k,v in launch_row.get('storage',_child_storage_limits(capture.DATASET_CAP_BYTES-_ledger_reserve(capture.DATASET_CAP_BYTES))).items() if k in ('payload_limit_bytes','trial_ledger_limit_bytes','log_limit_bytes')}
+    _storage_limits(limits)
+    storage=launch_row.setdefault('storage',dict(limits,log_bytes=0,limit_error=None))
     try:
         env=dict(os.environ,FIRST_DIVERGENCE_TRIAL_FD=str(readfd))
         command=['xvfb-run','-a',sys.executable,'-m','scripts.first_divergence_audit','native-trial',
             '--model',str(Path(model).resolve()),'--spec',str(Path(spec).resolve()),'--out',str(out),
             '--arm',arm,'--repeat',str(repeat),'--nonce',nonce]
-        with (out/'process.log').open('xb') as log:
-            process=subprocess.Popen(command,cwd=capture.REPO_ROOT,env=env,stdout=log,stderr=subprocess.STDOUT,
-                start_new_session=True,pass_fds=(readfd,))
+        process=subprocess.Popen(command,cwd=capture.REPO_ROOT,env=env,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,
+            start_new_session=True,pass_fds=(readfd,))
         launch_row.update(launched=True,launcher_pid=process.pid,process_group=process.pid)
         os.close(readfd);readfd=None
         permit=dict(parent_pid=os.getpid(),parent_uuid=parent_uuid,process_group=process.pid,
             nonce=nonce,arm=arm,repeat=repeat,schedule_index=index,
-            source_snapshot=capture.source_snapshot(),runtime=_runtime_identity())
+            source_snapshot=capture.source_snapshot(),runtime=_runtime_identity(),storage_limits=limits)
         with os.fdopen(writefd,'wb') as stream: stream.write(json.dumps(permit,allow_nan=False).encode())
         writefd=None
-        return process
+        return _BoundedChild(process,_LogSink(out/'process.log',limits['log_limit_bytes']),storage)
     except BaseException:
         if process is not None:
             launch_row['cleanup_errors']=_terminate_group(process)
             launch_row['exit_code']=process.returncode
+            if getattr(process,'stdout',None) is not None:process.stdout.close()
         raise
     finally:
         for fd in (readfd,writefd):
@@ -657,16 +777,19 @@ def run_study(model,spec,out):
     retention_preflight(spec);_require_official_model(model,spec)
     out=Path(out);capture._require_ephemeral_ci(out);capture._safe_path(out,'study.json')
     if out.exists(): _fail('study output must be fresh; no retry/extension')
+    ledger_limit=_ledger_reserve(capture.DATASET_CAP_BYTES)
     out.mkdir(parents=True);_enable_subreaper()
     parent_uuid=uuid.uuid4().hex;ledger=[];trials=[];error=None;cleanup=[]
     for index,(arm,repeat) in enumerate(SCHEDULE):
         remaining=STUDY_LIMIT_S-(perf_counter()-start)
         if remaining<=0:error='whole-study deadline exhausted';break
+        try:limits=_child_storage_limits(capture.DATASET_CAP_BYTES-ledger_limit-_dataset_bytes(out))
+        except ValueError as exc:error=str(exc);break
         nonce=secrets.token_hex(32);childout=out/f'trial_{index:02d}'
         row=dict(schedule_index=index,arm=arm,repeat=repeat,nonce=nonce,launched=False,
             launcher_pid=None,process_group=None,launch_elapsed_s=perf_counter()-start,
             exit_elapsed_s=None,exit_code=None,timed_out=False,child_pid=None,child_uuid=None,
-            validation_error=None,cleanup_errors=[])
+            validation_error=None,cleanup_errors=[],storage=dict(limits,log_bytes=0,limit_error=None))
         ledger.append(row);process=None
         try:
             process=_launch_trial(model,spec,childout,arm,repeat,nonce,parent_uuid,index,row)
@@ -689,19 +812,27 @@ def run_study(model,spec,out):
             error=f'{type(exc).__name__}: {exc}';row['validation_error']=error
         finally:
             if process is not None:
-                row['cleanup_errors']=_terminate_group(process)
+                output_errors=[]
+                if isinstance(process,_BoundedChild):
+                    process.close_output();output_errors=process.output_cleanup_errors
+                row['cleanup_errors']=output_errors+_terminate_group(process)
                 row['exit_code']=process.returncode
                 cleanup.extend(row['cleanup_errors'])
                 if row['cleanup_errors'] and error is None:error='child group cleanup unconfirmed'
             if process is None and row['cleanup_errors']:
                 cleanup.extend(row['cleanup_errors'])
+            try:
+                if _dataset_bytes(out)>capture.DATASET_CAP_BYTES-ledger_limit:_fail('dataset budget consumed reserved study ledger')
+            except ValueError as exc:
+                row['storage']['limit_error']=str(exc)
+                if error is None:error=str(exc)
             row['exit_elapsed_s']=perf_counter()-start
         if error is not None:break
     complete=len(trials)==6 and error is None and perf_counter()-start<=STUDY_LIMIT_S
     result=dict(schema=STUDY_SCHEMA,status='STUDY_ASSOCIATION_VALIDATED' if complete else 'FAILED_OR_INCOMPLETE',
         protocol=PROTOCOL,source_snapshot=capture.source_snapshot(),runtime=_runtime_identity(),
         parent_pid=os.getpid(),parent_uuid=parent_uuid,acceptance=receipt,
-        launch_ledger=ledger,error=error,cleanup_errors=cleanup,elapsed_wall_s=perf_counter()-start,
+        launch_ledger=ledger,error=error,cleanup_errors=cleanup,storage=dict(dataset_cap_bytes=capture.DATASET_CAP_BYTES,ledger_limit_bytes=ledger_limit),elapsed_wall_s=perf_counter()-start,
         model_calls=24 if complete else None,model_calls_lower_bound=4*len(trials),
         model_calls_upper_bound=4*sum(r['launched'] for r in ledger),
         claims=dict(capture.CLAIMS),limitation=LIMITATION,
@@ -710,8 +841,8 @@ def run_study(model,spec,out):
         try:_validate_study(out,manifest=result)
         except BaseException as exc:
             result.update(status='FAILED_OR_INCOMPLETE',model_calls=None,error=f'{type(exc).__name__}: {exc}')
-    _json_write(out/'study.json',result)
-    return result
+    if _dataset_bytes(out)+ledger_limit>capture.DATASET_CAP_BYTES:_fail('unmanaged output exceeded reserved dataset storage; evidence preserved')
+    return _publish_ledger(out/'study.json',result,ledger_limit)
 
 
 def _file_member(root,desc,registered,*,limit=32*1024*1024):
@@ -894,7 +1025,7 @@ def _validate_trial(root,expected=None,manifest=None):
     root=Path(root)
     data=capture._read_json(capture._safe_path(root,'trial.json')) if manifest is None else manifest
     capture._fields(data,{'schema','status','protocol','arm','repeat','nonce','process_id','process_uuid','parent_pid','parent_uuid',
-        'process_group','source_snapshot','runtime','provider_closed','error','error_chain','cleanup_errors','preflight','binding','report','observed',
+        'process_group','source_snapshot','runtime','provider_closed','error','error_chain','cleanup_errors','storage','preflight','binding','report','observed',
         'model_calls','model_calls_lower_bound','model_calls_upper_bound','claims','limitation'})
     if data['schema']!=TRIAL_SCHEMA or data['status']!='TRIAL_ASSOCIATION_VALIDATED' or data['provider_closed'] is not True or data['error'] is not None or data['error_chain']!=[] or data['cleanup_errors']!=[]:_fail('failed/incomplete child')
     if not capture._exact(data['protocol'],PROTOCOL) or not capture._exact(data['claims'],capture.CLAIMS) or data['limitation']!=LIMITATION:_fail('trial protocol/claims changed')
@@ -909,6 +1040,9 @@ def _validate_trial(root,expected=None,manifest=None):
         value=data[key]
         if type(value) is not str or len(value)!=32 or any(c not in '0123456789abcdef' for c in value):_fail('process UUID invalid')
     if expected is not None and any(data.get(k)!=v for k,v in expected.items()):_fail('child differs from actual parent launch ledger')
+    capture._fields(data['storage'],{'limits','payload_charged_bytes','limit_error'})
+    limits=_storage_limits(data['storage']['limits'])
+    if type(data['storage']['payload_charged_bytes']) is not int or not 0<=data['storage']['payload_charged_bytes']<=limits['payload_limit_bytes'] or data['storage']['limit_error'] is not None:_fail('trial disk budget invalid')
     _validate_binding_report(data)
     registered={'trial.json'} if manifest is None else set()
     if (root/'process.log').is_file():registered.add('process.log')
@@ -935,6 +1069,8 @@ def _validate_trial(root,expected=None,manifest=None):
             if observed['retained_payload_bytes']!=0 or observed['captures']!=[] or observed['arrays']!=[]:_fail('proxy fabricated or retained payload')
         else:_validate_retention(root,observed,data['report']['frames'],steps,selected,registered,data['binding'])
     total=_dataset_bytes(root)
+    payload=sum(p.stat().st_size for p in root.rglob('*') if p.is_file() and p.name not in ('trial.json','process.log'))
+    if payload>data['storage']['payload_charged_bytes']:_fail('payload bytes exceed pre-write storage reservation')
     if manifest is not None and total+len((json.dumps(manifest,indent=2,allow_nan=False)+'\n').encode())>capture.DATASET_CAP_BYTES:_fail('candidate dataset byte cap')
     actual={p.relative_to(root).as_posix() for p in root.rglob('*') if p.is_file()}
     if actual!=registered:_fail('missing or unregistered trial member')
@@ -982,26 +1118,35 @@ def _validate_study(root,manifest=None):
     root=Path(root)
     data=capture._read_json(capture._safe_path(root,'study.json')) if manifest is None else manifest
     capture._fields(data,{'schema','status','protocol','source_snapshot','runtime','parent_pid','parent_uuid','acceptance','launch_ledger',
-        'error','cleanup_errors','elapsed_wall_s','model_calls','model_calls_lower_bound','model_calls_upper_bound','claims','limitation','comparisons'})
+        'error','cleanup_errors','storage','elapsed_wall_s','model_calls','model_calls_lower_bound','model_calls_upper_bound','claims','limitation','comparisons'})
     if data['schema']!=STUDY_SCHEMA or data['status']!='STUDY_ASSOCIATION_VALIDATED' or data['error'] is not None or data['cleanup_errors']!=[]:_fail('failed/incomplete study')
     if not capture._exact(data['protocol'],PROTOCOL) or not capture._exact(data['claims'],capture.CLAIMS) or data['limitation']!=LIMITATION:_fail('study claims/protocol changed')
     if data['source_snapshot']!=capture.source_snapshot() or data['runtime']!=_runtime_identity():_fail('study source/runtime mismatch')
     if any(type(data[k]) is not int or data[k]!=24 for k in ('model_calls','model_calls_lower_bound','model_calls_upper_bound')):_fail('study call bounds')
     if not capture._number(data['elapsed_wall_s']) or not 0<=data['elapsed_wall_s']<=STUDY_LIMIT_S:_fail('study wall cap')
+    capture._fields(data['storage'],{'dataset_cap_bytes','ledger_limit_bytes'})
+    if data['storage']!={'dataset_cap_bytes':capture.DATASET_CAP_BYTES,'ledger_limit_bytes':_ledger_reserve(capture.DATASET_CAP_BYTES)}:_fail('study storage allocation changed')
     receipt=data['acceptance'];_receipt_current_binding(receipt)
     if receipt.get('current_context',{}).get('repository')!=REPOSITORY:_fail('study acceptance repository')
     ledger=data['launch_ledger']
     if type(ledger) is not list or len(ledger)!=6:_fail('six real child launch records required')
-    trials=[];pids=set();uuids=set();nonces=set();last_exit=0.
+    trials=[];pids=set();uuids=set();nonces=set();last_exit=0.;prefix_bytes=0
     for i,(row,(arm,repeat)) in enumerate(zip(ledger,SCHEDULE)):
         capture._fields(row,{'schedule_index','arm','repeat','nonce','launched','launcher_pid','process_group','launch_elapsed_s',
-            'exit_elapsed_s','exit_code','timed_out','child_pid','child_uuid','validation_error','cleanup_errors'})
+            'exit_elapsed_s','exit_code','timed_out','child_pid','child_uuid','validation_error','cleanup_errors','storage'})
         if type(row['schedule_index']) is not int or row['schedule_index']!=i or (row['arm'],row['repeat'])!=(arm,repeat) or row['launched'] is not True or row['exit_code']!=0 or row['timed_out'] is not False or row['validation_error'] is not None or row['cleanup_errors']!=[]:_fail('child launch/exit schedule invalid')
+        storage=row['storage'];capture._fields(storage,{'payload_limit_bytes','trial_ledger_limit_bytes','log_limit_bytes','log_bytes','limit_error'})
+        limits=_storage_limits({k:storage[k] for k in ('payload_limit_bytes','trial_ledger_limit_bytes','log_limit_bytes')})
+        if limits!=_child_storage_limits(capture.DATASET_CAP_BYTES-data['storage']['ledger_limit_bytes']-prefix_bytes):_fail('child allocation differs from remaining dataset budget')
+        logfile=root/f'trial_{i:02d}'/'process.log'
+        if storage['limit_error'] is not None or type(storage['log_bytes']) is not int or not 0<=storage['log_bytes']<=limits['log_limit_bytes'] or storage['log_bytes']!=(logfile.stat().st_size if logfile.is_file() else 0):_fail('child log budget invalid')
         if type(row['launcher_pid']) is not int or row['launcher_pid']<=0 or row['process_group']!=row['launcher_pid']:_fail('launcher/group identity invalid')
         launch,exit=row['launch_elapsed_s'],row['exit_elapsed_s']
         if not capture._number(launch) or not capture._number(exit) or not last_exit<=launch<=exit<=data['elapsed_wall_s'] or exit-launch>CHILD_LIMIT_S+10.:_fail('child sequential wall bounds invalid')
         trial=_validate_trial(root/f'trial_{i:02d}',expected=dict(arm=arm,repeat=repeat,nonce=row['nonce'],
             parent_pid=data['parent_pid'],parent_uuid=data['parent_uuid'],process_group=row['process_group']))
+        if trial['storage']['limits']!=limits:_fail('child disk allocation differs from parent authorization')
+        prefix_bytes+=_dataset_bytes(root/f'trial_{i:02d}')
         if trial['process_id']!=row['child_pid'] or trial['process_uuid']!=row['child_uuid'] or trial['process_id'] in pids or trial['process_uuid'] in uuids or row['nonce'] in nonces:_fail('fresh child/process/nonce ledger association invalid')
         pids.add(trial['process_id']);uuids.add(trial['process_uuid']);nonces.add(row['nonce']);trials.append(trial);last_exit=exit
     if data['comparisons']!=_comparisons(trials):_fail('descriptive differences were not derived from actual trials')

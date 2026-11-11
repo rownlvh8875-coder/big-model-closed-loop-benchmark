@@ -331,7 +331,7 @@ class CaptureCollector:
         self._latest = self._pending = None
         self._transient_bytes = 0
 
-    def serialize_captures(self, root: Path) -> list[dict]:
+    def serialize_captures(self, root: Path, *, write_budget=None) -> list[dict]:
         """Post-close retained evidence rows; Task2 can embed these in its sidecar."""
         if not self._closed or self.arm != 'retention':
             raise ValueError('serialization requires retained captures and provider closure')
@@ -361,6 +361,7 @@ class CaptureCollector:
                     path = _safe_path(root, name)
                     if path.exists():
                         raise ValueError('refuse to overwrite evidence member')
+                    if write_budget is not None:write_budget.reserve(frame.width*frame.height*4+65536)
                     frame.save_png(path)
                     row[boundary][kind] = dict(path=name, nbytes=path.stat().st_size,
                         sha256=_digest(path.read_bytes()), rgb_sha256=frame.sha256)
@@ -372,6 +373,7 @@ class CaptureCollector:
             path = _safe_path(root, name)
             if path.exists():
                 raise ValueError('refuse to overwrite evidence member')
+            if write_budget is not None:write_budget.reserve(len(packed))
             path.write_bytes(packed)
             row['packed'] = dict(path=name, nbytes=len(packed), sha256=packed_sha,
                                  actual_input_sha256=record.actual_input_sha256,

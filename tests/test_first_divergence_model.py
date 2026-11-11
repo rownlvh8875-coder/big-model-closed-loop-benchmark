@@ -338,7 +338,7 @@ class ValidationTests(unittest.TestCase):
     def setUp(self):
         self.assertTrue(callable(getattr(model,'_validate_trial',None)),'full model association validator required')
         self.enterContext(patch.dict(os.environ,dict(ImageOS='ubuntu24',ImageVersion='20261101.1',GITHUB_ACTIONS='true',RUNNER_TEMP='/tmp')))
-    def complete_trial(self,temp,arm='original',out_override=None,expect_status='TRIAL_ASSOCIATION_VALIDATED'):
+    def complete_trial(self,temp,arm='original',out_override=None,expect_status='TRIAL_ASSOCIATION_VALIDATED',storage_limits=None):
         from bigbench.public_action_frame import PublicActionFrameBinding,ModelIdentity,_resolve_action_frame,_bind_policy
         from bigbench.onnx_contract import ModelContract
         from bigbench.onnx_policy import ModelTiming
@@ -384,6 +384,7 @@ class ValidationTests(unittest.TestCase):
                 strict_same_pose_convergence=dict(enabled=True,max_captures=6,sample_count=4,failed_samples=0,
                     pixel_tolerance_count=16,pixel_channel_delta_tolerance=10))
         permit=dict(parent_pid=os.getppid(),parent_uuid='c'*32,process_group=os.getpgid(0),nonce='a'*64,arm=arm,repeat=0)
+        if storage_limits is not None:permit['storage_limits']=storage_limits
         with patch.object(model,'_consume_trial_authorization',return_value=permit),patch.object(model,'_require_official_model'), \
              patch('bigbench.public_action_frame.create_public_onnx_policy',return_value=binding), \
              patch.object(campaign,'run_native_episode',side_effect=episode):
@@ -569,7 +570,7 @@ class FinalizationTests(unittest.TestCase):
                 def __init__(self,pid):self.pid=pid;self.returncode=0
                 def wait(self,timeout):return 0
             def launch(m,s,out,arm,repeat,nonce,parent_uuid,index,row):
-                path,data=helper.complete_trial(temp,arm,out_override=out)
+                path,data=helper.complete_trial(temp,arm,out_override=out,storage_limits={k:row['storage'][k] for k in ('payload_limit_bytes','trial_ledger_limit_bytes','log_limit_bytes')})
                 data.update(repeat=repeat,nonce=nonce,parent_pid=os.getpid(),parent_uuid=parent_uuid,
                     process_group=7000+index,process_id=8000+index,process_uuid=f'{index+10:032x}')
                 (path/'trial.json').write_text(json.dumps(data))
@@ -587,6 +588,9 @@ class FinalizationTests(unittest.TestCase):
                 self.assertEqual(model.validate_study(Path(temp)/'study')['status'],'STUDY_ASSOCIATION_VALIDATED')
                 comparison=result['comparisons'][0]
                 self.assertEqual(comparison['availability']['pre_state'],'unknown-unobserved-control')
+                result['launch_ledger'][0]['storage']['payload_limit_bytes']-=1
+                (Path(temp)/'study/study.json').write_text(json.dumps(result))
+                with self.assertRaises(ValueError):model.validate_study(Path(temp)/'study')
     def test_array_content_tamper_with_recomputed_file_hash_still_breaks_chain(self):
         helper=ValidationTests();helper.setUp();self.addCleanup(helper.doCleanups)
         with tempfile.TemporaryDirectory() as temp:
@@ -599,3 +603,102 @@ class FinalizationTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError,'recurrent chain'):model._validate_trial(root)
 
 
+class StorageBudgetTests(unittest.TestCase):
+    def setUp(self):
+        self.assertTrue(callable(getattr(model,'_LogSink',None)),'child output needs a bounded real sink')
+        self.enterContext(patch.dict(os.environ,dict(ImageOS='review',ImageVersion='review',GITHUB_ACTIONS='true',RUNNER_TEMP='/tmp')))
+    def pipe_process(self,data,mode='invalid'):
+        import subprocess
+        readfd,writefd=os.pipe();os.write(writefd,data);os.close(writefd)
+        class Process:
+            pid=12345
+            returncode=1 if mode=='nonzero' else 0
+            stdout=os.fdopen(readfd,'rb',buffering=0)
+            def wait(self,timeout):
+                if mode=='timeout':raise subprocess.TimeoutExpired('boundary-child',timeout)
+                return self.returncode
+        return Process()
+    def test_output_close_error_cannot_skip_group_reaping_or_failure_ledger(self):
+        root_cleanup=[];writefds=[]
+        with tempfile.TemporaryDirectory() as temp:
+            root=Path(temp)/'study'
+            def launch(m,s,out,arm,repeat,nonce,parent_uuid,index,row):
+                out.mkdir();readfd,writefd=os.pipe();writefds.append(writefd)
+                class Process:
+                    pid=12345;returncode=-9;stdout=os.fdopen(readfd,'rb',buffering=0)
+                    def wait(self,timeout):return -9
+                sink=model._LogSink(out/'process.log',row['storage']['log_limit_bytes']);close=sink.close
+                def broken_close():close();raise OSError('log close failed')
+                sink.close=broken_close
+                row.update(launched=True,launcher_pid=12345,process_group=12345)
+                return model._BoundedChild(Process(),sink,row['storage'])
+            with patch.object(capture,'DATASET_CAP_BYTES',32768),patch.object(model,'_require_model_acceptance',return_value={}), \
+                 patch.object(model,'_require_official_model'),patch.object(model,'_enable_subreaper'), \
+                 patch.object(model,'_launch_trial',side_effect=launch),patch('select.select',return_value=([],[],[])), \
+                 patch.object(model,'_terminate_group',side_effect=lambda p:root_cleanup.append(p.pid) or []):
+                result=None
+                try:result=model.run_study('unused','model_specs/md-v3.json',root)
+                except OSError:pass
+                finally:
+                    for fd in writefds:os.close(fd)
+                self.assertEqual(root_cleanup,[12345])
+                self.assertIsNotNone(result)
+                self.assertTrue(any('log close failed' in e for e in result['cleanup_errors']))
+                self.assertLessEqual(sum(p.stat().st_size for p in root.rglob('*') if p.is_file()),32768)
+    def test_real_log_sink_keeps_exact_prefix_and_rejects_further_bytes(self):
+        with tempfile.TemporaryDirectory() as temp:
+            path=Path(temp)/'process.log';sink=model._LogSink(path,7)
+            sink.write(b'abc')
+            with self.assertRaises(ValueError):sink.write(b'defghijk')
+            sink.close()
+            self.assertEqual(path.read_bytes(),b'abcdefg')
+            self.assertEqual(sink.nbytes,7)
+    def test_all_child_exit_paths_publish_cap_inclusive_failed_evidence(self):
+        for mode in ('nonzero','timeout','invalid','overflow'):
+            with self.subTest(mode=mode),tempfile.TemporaryDirectory() as temp:
+                root=Path(temp)/'study';launched=[];cleaned=[]
+                def launch(m,s,out,arm,repeat,nonce,parent_uuid,index,row):
+                    out.mkdir();row.update(launched=True,launcher_pid=12345,process_group=12345)
+                    limits=row['storage'];n=min(limits['log_limit_bytes'],4096)
+                    data=b'p'*n if mode!='overflow' else b'p'*(min(n,100)+1)
+                    if mode=='overflow':limits['log_limit_bytes']=min(n,100)
+                    raw=self.pipe_process(data,mode)
+                    child=model._BoundedChild(raw,model._LogSink(out/'process.log',limits['log_limit_bytes']),limits)
+                    launched.append(child);return child
+                with patch.object(capture,'DATASET_CAP_BYTES',32768), \
+                     patch.object(model,'_require_model_acceptance',return_value={}),patch.object(model,'_require_official_model'), \
+                     patch.object(model,'_enable_subreaper'),patch.object(model,'_launch_trial',side_effect=launch), \
+                     patch.object(model,'_terminate_group',side_effect=lambda p:cleaned.append(p.pid) or []):
+                    result=model.run_study('unused','model_specs/md-v3.json',root)
+                self.assertEqual(len(launched),1);self.assertEqual(cleaned,[12345])
+                self.assertEqual(result['status'],'FAILED_OR_INCOMPLETE');self.assertIsNone(result['model_calls'])
+                self.assertEqual(result['model_calls_upper_bound'],4)
+                self.assertLessEqual(sum(p.stat().st_size for p in root.rglob('*') if p.is_file()),32768)
+                self.assertEqual(json.loads((root/'study.json').read_text())['status'],'FAILED_OR_INCOMPLETE')
+                if mode=='overflow':
+                    self.assertEqual((root/'trial_00/process.log').read_bytes(),b'p'*100)
+                    self.assertIn('log',str(result['launch_ledger'][0]['storage']['limit_error']))
+    def test_failed_ledger_reservation_keeps_errors_counts_and_explicit_omission(self):
+        with tempfile.TemporaryDirectory() as temp:
+            path=Path(temp)/'study.json'
+            data=dict(schema=model.STUDY_SCHEMA,status='FAILED_OR_INCOMPLETE',error='raw failure',cleanup_errors=['cleanup failure'],
+                model_calls=None,model_calls_lower_bound=1,model_calls_upper_bound=4,report={'large':'x'*20000})
+            result=model._publish_ledger(path,data,4096)
+            self.assertLessEqual(path.stat().st_size,4096)
+            self.assertEqual(result['error'],'raw failure');self.assertEqual(result['cleanup_errors'],['cleanup failure'])
+            self.assertIsNone(result['model_calls']);self.assertEqual(result['model_calls_upper_bound'],4)
+            self.assertIn('report',result['metadata_omitted'])
+    def test_payload_reservation_prevents_partial_npy_and_preserves_image_prefix(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root=Path(temp);budget=model._StorageBudget(16)
+            with self.assertRaises(ValueError):model._save_array(root,'array.npy',np.arange(4,dtype=np.float32),write_budget=budget)
+            self.assertFalse((root/'array.npy').exists())
+        helper=ValidationTests();helper.setUp();self.addCleanup(helper.doCleanups)
+        with tempfile.TemporaryDirectory() as temp,patch.object(capture,'DATASET_CAP_BYTES',4*1024*1024):
+            root,data=helper.complete_trial(temp,'retention',expect_status='FAILED_OR_INCOMPLETE',
+                storage_limits=dict(payload_limit_bytes=3000000,trial_ledger_limit_bytes=65536,log_limit_bytes=1024))
+            images=list(root.rglob('*.png'))
+            self.assertGreater(len(images),0);self.assertLess(len(images),16)
+            self.assertTrue(data['provider_closed']);self.assertIn('budget',data['error'])
+            self.assertLessEqual(sum(p.stat().st_size for p in root.rglob('*') if p.is_file()),4*1024*1024)
+            self.assertIsNone(data['model_calls']);self.assertEqual(data['model_calls_upper_bound'],4)
