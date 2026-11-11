@@ -297,13 +297,13 @@ gate occurred. Geometry defaults and original model camera are unchanged;
 real-camera optical equivalence and driving performance remain unestablished.
 Stage 7 is incomplete.
 
-Next isolate execution/cache history with original Road-first/PSSM/Chase,
-without sampler changes or in-sequence GPU observers. Compare a fresh shared
-Mesa cache's first versus second process against two separate empty caches,
-retain cache file/size inventories outside render intervals, alternate order,
-and keep failed/non-discriminating pilots. A cache-directory change is an
-experimental runtime control, not a default repair or proof of cache hits.
-Only after a discriminating result should a balanced independent CI matrix
-be added. Then trace the earliest projection/depth/HDR/RGB boundary with OFF
+The local shared-versus-isolated comparison above is already complete and
+discriminating in its one case. Next add balanced independent multi-scene CI
+for shared initially-empty, separately empty and explicitly disabled Mesa
+disk caches, retaining original Road-first/PSSM/Chase and no sampler changes
+or in-sequence GPU observers. Vary execution order across seed/scenes and
+inventory cache files only outside native processes. Cache availability is
+an experimental runtime control, not a default repair or proof of cache hits.
+Keep failures and negative results. Then trace the earliest projection/depth/HDR/RGB boundary with OFF
 controls. A separately validated repair is required before official moving
 MD-V3 2 seeds × 2 scenes × 12 steps × 2 processes and its strict 4/4 gate.
