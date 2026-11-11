@@ -10,7 +10,7 @@
 
 **Spec:** User Task 5 and the parent dispatch for this plan; `docs/superpowers/plans/2026-11-11-mdv3-world-frame.md`, `docs/STAGE7_MDV3_WORLD_FRAME.md` and `docs/superpowers/plans/2026-11-11-mdv3-candidate-expansion.md` supply the existing frame, source, capture and scenario contracts. This plan does not authorize reproducing legacy motion semantics.
 
-## Preconditions and present evidence
+## Historical preconditions and source-only evidence
 
 - Historical source-only plan-review checkpoint: PR29 run43005087003 is independently accepted4/4 (8 processes/96 actual inferences, all5 API archives/raw exact) and PR29 merged as a5ef72ed3f492857eadd4b1198dbba381312aa80 from df0f8803f6611e384d3752350fbffe007d16e7bd. Automatic main43006858419 is still running and unaccepted; completed-results documentation has not merged. Only the source prerequisite is fulfilled.
 - Before ANY triggering push, dispatch, native/model execution or publication of this new workflow, require independently accepted corrected source4/4 AND automatic main4/4, each with eight processes/96 steps and all five archive API SHA/size/safe-path checks plus exact raw case/final regeneration. This is TEN prerequisite archives across two separate cohorts. Thirteen archives belong to the legacy expansion or a future completed new expansion, not either four-case prerequisite.
@@ -117,14 +117,14 @@ Aggregation always distinguishes1472 planned budget/24 planned processes from ob
 - [ ] Preserve12 scoped case artifacts and one independent aggregate artifact, including failure logs/ledgers/diagnostic summaries; missing artifacts/cohort is failure, not an invented complete13. Aggregate uses `if: always()`, strict `set -euo pipefail` before any pipeline and NumPy-only dependencies. Unexpected status/invalid/incomplete cases remain red.
 - [ ] Guide records exact matrix/1472budget/736possible pairs, new protocol, proper body-basis/applied-world vs parent evidence, complete-only failures/accounting, actual route/truth coverage, measured CPU audit overhead and all unproven claims. State prerequisite status truthfully; no result fabrication or corrected expansion run yet.
 - [ ] Parse YAML, verify exact matrix/triggers/pins/artifact scopes and embedded Python syntax; expected PASS. Verify frozen old fingerprints and all targeted/pure checks; root then runs fullsuite and whole-change scientific/code/workflow/doc review on exact source.
-- [ ] HOLD: root verifies BOTH prerequisite4/4 cohorts/allTEN archives and result-doc merge before creating a triggering push/dispatch. Native acceptance then requires all12 source checks, current-HEAD CI/Codex/no open threads, all13 new artifact API SHA/size/safe paths and independent exact raw regeneration. Preserve every negative result; no automatic retry or default promotion.
+- [x] Execution/evidence gate fulfilled: root verified BOTH prerequisite4/4 cohorts/allTEN archives and PR #30 merge before triggering. PR #31 source48bf4309 passed17 current checks/Codex without findings/no open threads; run43012480495 and all13 new API archives/raw case/final regeneration are independently accepted. PR #31 merged as cb1e7bfe698fe3bc3df9540eeb7dc2557e671300. Preserve every negative result; no automatic retry or default promotion.
 
 ## Self-review and handoff
 
 The plan covers only the three requested actual corrected groups. Helper/factory interfaces match current source; no core/API change is required. The main architecture risks are double wrapping and mistakenly reaching fixed validators, not missing lower-level episode APIs. All five review-focus boundaries have explicit Task1/2/3 tests. This prospective plan is saved under /tmp for fresh parent/scientific review. Implementation and all experiment triggers remain on hold until the relevant review/prerequisite gates clear.
 
 
-## Source-only review checkpoint
+## Historical source-only review checkpoint
 
 The prospective plan received fresh independent scientific/code review CLEAR
 at SHA256 `2131f4a099b94dae3d0d6397b1631f0ff77973673874446551ac26ff1112cce0`.
@@ -135,7 +135,7 @@ cohorts/allTEN archives and completed-results documentation merge are verified.
 No expanded native episode has executed and no completed budget is presumed.
 
 
-## Later prerequisite acceptance, publication still held
+## Historical prerequisite acceptance, publication still held
 
 Source43005087003 and automatic-main43006858419 now each independently pass
 corrected4/4. Root and fresh evidence review accepted allTEN prerequisite API
@@ -171,3 +171,32 @@ independent code and workflow/guide reviews are clear. Whole-change exact-source
 review remains before the first triggering push, followed by current-HEAD CI/
 Codex/no threads and all13 actual archive/raw acceptance checks. No corrected
 expansion native/model episode has run;1472 remains only the planned budget.
+
+
+## Completed execution and evidence acceptance
+
+The preceding source-only/pending paragraphs are dated protocol-development
+checkpoints. The implementation and all execution prerequisites are now
+fulfilled. PR #31 merged as `cb1e7bfe698fe3bc3df9540eeb7dc2557e671300` from
+exact source `48bf4309cabe9d2e6e8b2fef952b9fb6f945b28a` after17 checks,
+completed Codex without findings/no open threads and fresh final evidence
+review. Run43012480495 passes12/12 corrected-world repeatability, each group4/4:
+24 fresh UUIDs/nonces,1472 actual ORT calls/committed traces/completed rows,
+736 exact paired rows and zero unknown cases. All13 API ZIP SHA256s/bytes/safe
+paths,74 members and every raw case/final aggregate are independently clear.
+The [result guide](../../STAGE7_MDV3_WORLD_FRAME_EXPANSION.md) records the full
+ledger, timing scopes and actual truth coverage. Main unit43027151371 passed;
+there is no automatic heavy main replication.
+
+The longer prefix is not full-S or sustained tracking: all eight processes
+visit2/3 route lanes and max lateral deviations are5.95397990659991–
+7.634517723985033m. The correct bridge and exact repetition do not validate
+model quality, paint/physical optics or renderer equivalence/default adoption.
+Generic live action consumers, source-only RGB/I420 differences and the
+preserved failed paint V2 launches remain separate integration limits. The
+separate local V3 paint schedule is complete (16 native processes/128 RGB
+reads), root replay exact and fresh full independent evidence review CLEAR/
+root-accepted. Original
+scene gates pass2/4/candidate1/4; focused-control failure and sparse ramps
+prevent whole-cohort geometry confirmation. No model-scoring, default-promotion
+or new-run gate is marked complete here.

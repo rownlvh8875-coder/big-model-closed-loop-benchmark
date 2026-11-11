@@ -198,7 +198,7 @@ Every archive below belongs to run **43005087003** at exact source **`df0f8803f6
 
 The predeclared automatic merged-main repeat **43006858419** at merge `a5ef72ed3f492857eadd4b1198dbba381312aa80` has completed 5/5 jobs. Root and a fresh independent reviewer verified its raw 4/4 comparison, artifacts and cross-cohort data. It is independently accepted as a separate main cohort. Do not rerun either completed cohort merely to rediscover its recorded result. Source and main identities, counts and acceptance states remain separate.
 
-Corrected camera-fraction .28, native-ramp and 160-step expansion is **prospective / not executed** under this first corrected protocol; its separate TDD work is in progress and has no native execution or result. The separate main repeat now has its own independent acceptance. Any later corrected expansion requires its own reviewed plan and evidence. Legacy 12/12 expansion remains legacy; historical original-renderer **0/4 FAIL** remains unchanged. Source 4/4 does not adopt a renderer default, establish global render/photometric or physical-optical equivalence, rank models, prove full-S traversal or complete Stage 7.
+The first corrected source/main protocol remains a separate short gate. The distinct camera-fraction .28/native-ramp/160-step expansion now independently passes12/12 in run43012480495 and PR #31 is merged; its [separate guide](STAGE7_MDV3_WORLD_FRAME_EXPANSION.md) records actual execution and tracking limits. Legacy 12/12 expansion remains legacy; historical original-renderer **0/4 FAIL** remains unchanged. Source 4/4 does not adopt a renderer default, establish global render/photometric or physical-optical equivalence, rank models, prove full-S traversal or complete Stage 7.
 
 
 ## Independently accepted automatic-main replication: 4/4
@@ -241,7 +241,7 @@ These archives belong to run **43006858419** at merge **`a5ef72ed3f492857eadd4b1
 
 The two corrected cohorts together contain **16 unique UUIDs/nonces and 192 actual inferences/completed rows**, disjoint from the 40 prior legacy model-process identities. Their initial within-cohort gates compare **96 paired rows** total (48 source +48 main). Root additionally compared all four processes in each case: six pair combinations/case, **24 pair comparisons and 288 exact paired-row checks**. All required controls, raw fields, named states, applied-action bridges and pose/count receipts match; metadata is not relabeled. This reads the same **192 existing model steps**, adding **zero inference calls**, not 288 new model executions.
 
-Evidence is `output/stage7-remote-evidence/world-frame-two-cohort-cross-comparison.json`. Its bounded existing-data equality does not establish cross-hardware equivalence, renderer-wide semantics, physical optics or model quality. Both corrected cohorts and their all-pairs comparison are independently clear. Results documentation has not merged at this checkpoint; corrected expansion TDD is in progress with **no native run** or accepted expansion result. Historical original 0/4, legacy-only verdicts and default non-adoption remain unchanged.
+Evidence is `output/stage7-remote-evidence/world-frame-two-cohort-cross-comparison.json`. Its bounded existing-data equality does not establish cross-hardware equivalence, renderer-wide semantics, physical optics or model quality. Both corrected cohorts and their all-pairs comparison are independently clear. Results documentation subsequently merged as PR #30. The separate corrected expansion is now independently accepted12/12 and PR #31 merged. Historical original 0/4, legacy-only verdicts and default non-adoption remain unchanged.
 
 
 ## Prerequisites recorded before corrected expansion
@@ -255,6 +255,11 @@ corrected4/4 cohorts/allTEN archives and results-doc merge now satisfy the
 prospective expansion prerequisites. The [separate expansion guide](STAGE7_MDV3_WORLD_FRAME_EXPANSION.md)
 registers camera.28, actual native r/R ramps and160-step prefixes. Source-only
 implementation has361 passing local tests without skips and clear independent
-source/workflow reviews; whole-change review and official expansion execution
-are still pending. Its1472 count is a budget, not observed work. All original/
+source/workflow reviews. PR #31 subsequently merged as
+`cb1e7bfe698fe3bc3df9540eeb7dc2557e671300`; run43012480495 independently
+passes12/12 with24 fresh processes/1472 actual calls and rows/736 pairs, all13
+archives and exact raw aggregate clear. All eight longer processes visit2/3
+route lanes with5.95397990659991–7.634517723985033m maximum lateral deviation,
+not full-S or sustained tracking. Generic bare-policy consumers and input-color
+source differences remain [separate integration limits](STAGE7_INTEGRATION_VERIFICATION.md#generic-live-action-consumers-remain-legacy). All original/
 legacy/corrected short gates and scientific limitations above stay separate.

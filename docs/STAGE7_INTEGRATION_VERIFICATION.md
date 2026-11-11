@@ -1,6 +1,6 @@
 # Stage 7 integration evidence and remaining validation
 
-At this draft checkpoint, historical virtual intrinsics, RGB/I420 plumbing, sampled world-to-paint alignment and native target-lane arithmetic have verified passes. The experimental `feedback_both` plus opaque unsorted type 1 official MD-V3 candidate also has two separate twelve-step **4/4 legacy repeatability** cohorts. The confirmed missing FRD→FLU applied-action rotation means these legacy gates do not establish motion validity. A separate opt-in corrected source cohort now passes 4/4. Automatic main 43006858419 also has independently accepted 4/4 corrected repeatability. The historical **unmodified original gate remains 0/4 FAIL**. None of these results establishes physical comma optics, global renderer equivalence, driving rank, default adoption or Stage 7 completion.
+Historical virtual intrinsics, RGB/I420 plumbing, sampled world-to-paint alignment and native target-lane arithmetic have verified passes. The experimental `feedback_both` plus opaque unsorted type 1 official MD-V3 candidate also has two separate twelve-step **4/4 legacy repeatability** cohorts. The confirmed missing FRD→FLU applied-action rotation means these legacy gates do not establish motion validity. Separate opt-in corrected source/main cohorts each pass4/4; corrected expansion43012480495 independently passes12/12 and PR #31 is merged. Its longer trajectories still depart from the lane and do not complete the full S. The historical **unmodified original gate remains 0/4 FAIL**. None of these results establishes physical comma optics, global renderer equivalence, driving rank, default adoption or Stage 7 completion.
 
 This document reconciles older guide status with retained evidence. A fresh independent read-only review is clear for all seven selected ZIPs, the 202-file manifest, frozen source identities and raw image/math recomputation. The reviewed findings and evidence bytes remain immutable. No future documentation PR number is presumed.
 
@@ -15,9 +15,10 @@ This document reconciles older guide status with retained evidence. A fresh inde
 | Legacy official MD-V3 candidate repeatability | 42979680883 and 42981493726 | Each 4/4 at twelve steps; 16 unique UUIDs/nonces and 192 actual parent model steps combined | Legacy repeatability only; missing applied-action basis bridge prevents motion-validity claims; original 0/4 remains |
 | Source I/O conventions | Pinned official source commit `e318f767ff7dc96d25a3bcc2b46f9f3daf6e9e42` | Numeric model-curvature formula and six I420 plane order match source conventions | Legacy consumers lack the FLU/world-yaw applied-action bridge; the separate opt-in corrected bridge is verified below, without production NV12 equivalence or model-quality proof |
 | Legacy official expansion | PR #27 source `e84369c9f7f461a59c8d506b8b9efb2312297c03`, run 42987993022 | **12/12 independently accepted legacy repeatability**; 24 processes, 1472 actual inferences/rows, 736 exact pairs; all 13 archives clear | Known action-basis gap remains; no motion-validity claim, correct tracking or PR merge follows |
-| Corrected applied-action source repeatability | PR #29 source `df0f8803f6611e384d3752350fbffe007d16e7bd`, run 43005087003 | **4/4**, eight fresh processes, 96 actual inferences/rows, 48 exact pairs; all five archives clear | Bounded Both+unsorted corrected source result; separate main 4/4 independently accepted; corrected expansion has no native run |
+| Corrected applied-action source repeatability | PR #29 source `df0f8803f6611e384d3752350fbffe007d16e7bd`, run 43005087003 | **4/4**, eight fresh processes, 96 actual inferences/rows, 48 exact pairs; all five archives clear | Bounded Both+unsorted corrected source result; separate main 4/4 independently accepted; corrected expansion separately passes12/12 below |
+| Corrected-world expansion repeatability | PR #31 source `48bf4309cabe9d2e6e8b2fef952b9fb6f945b28a`, run43012480495 | **12/12**,24 fresh processes,1472 actual calls/rows,736 exact pairs; all13 archives clear | Longer prefix visits2/3 route lanes with5.954–7.635m max lateral deviation; no full-S/tracking pass or candidate paint validation |
 
-The expansion protocol is [separately registered](superpowers/plans/2026-11-11-mdv3-candidate-expansion.md) and described in its [guide](STAGE7_MDV3_CANDIDATE_EXPANSION.md). Its collected source cohort has exact independent raw-data acceptance, and PR #27 merged as `bdcf91e4d3a98399503a0ba215b66920b0436c08`. Collection CI success alone cannot supply scientific acceptance or validate an action-frame contract. These separate geometry-guide drafts are intended for a documentation follow-up after that merge. Check retained execution state before starting another run; this document does not request a rerun.
+The legacy expansion protocol is [separately registered](superpowers/plans/2026-11-11-mdv3-candidate-expansion.md) and described in its [guide](STAGE7_MDV3_CANDIDATE_EXPANSION.md). Its collected source cohort has exact independent raw-data acceptance, and PR #27 merged as `bdcf91e4d3a98399503a0ba215b66920b0436c08`. Collection CI success alone cannot supply scientific acceptance or validate an action-frame contract. The corrected expansion below has its own accepted source and receipts. Check retained execution state before starting another run; this document does not request a rerun.
 
 ## Historical geometry and optical archive ledger
 
@@ -107,7 +108,7 @@ Nine retained synthetic signed/zero cases at initial headings 0, 0.6 and −1 ra
 
 All historical repeatability records retain their original raw four outputs, recurrent states, I420 inputs, parent actions, poses and labels. They are **legacy repeatability evidence only, not model-to-world motion-validity gates**, regardless of exact bit equality. The existing static paint-alignment and native lane-coordinate arithmetic remain separately valid within their sampled scope; neither exercised this action bridge.
 
-The retained prospective plan [model-to-world action plan](superpowers/plans/2026-11-11-mdv3-world-frame.md) proposes distinct protocol `stage7-mdv3-world-frame-v1`. **At that historical audit checkpoint the corrected adapter was TDD in progress, not complete; no corrected native gate had executed.** The prospective design would preserve inner raw outputs, states and actual I420, record the unchanged parent numeric model action, and separately map only the applied world curvature while retaining acceleration. That historical checkpoint claimed no corrected native verdict, corrected expansion, new default or retrospective repair. The separate corrected source result is now recorded below; corrected expansion still requires its own review. The seven original geometry ZIPs and their reviewed 202-file manifest/findings remain unchanged; new coordinate-contract evidence is a separate audit.
+The retained prospective plan [model-to-world action plan](superpowers/plans/2026-11-11-mdv3-world-frame.md) proposes distinct protocol `stage7-mdv3-world-frame-v1`. **At that historical audit checkpoint the corrected adapter was TDD in progress, not complete; no corrected native gate had executed.** The prospective design would preserve inner raw outputs, states and actual I420, record the unchanged parent numeric model action, and separately map only the applied world curvature while retaining acceleration. That historical checkpoint claimed no corrected native verdict, corrected expansion, new default or retrospective repair. The accepted corrected source/main and separate expansion are recorded below. The seven original geometry ZIPs and their reviewed 202-file manifest/findings remain unchanged; new coordinate-contract evidence is a separate audit.
 
 
 ## Independently accepted legacy expansion: repeatability and tracking scope
@@ -189,7 +190,7 @@ Offline first-observation preservation is **32/32** against the two completed le
 
 All eight unscored lane-truth summaries exactly regenerate from actual rows, with maximum lateral deviations **0.08677493402991843–0.09070645030432445 m**, zero intrusion over **0.6 s / nominal 4.8 m** per process. These are short virtual observations, not tracking quality, general model performance, a sole-cause claim or full-S traversal. Timings, source hashes and the complete five-archive ledger are in [the world-frame guide](STAGE7_MDV3_WORLD_FRAME.md); accepted raw evidence and timing totals are under `output/stage7-remote-evidence/run-43005087003/`.
 
-The predeclared automatic merged-main replication **43006858419** at merge `a5ef72ed3f492857eadd4b1198dbba381312aa80` completed 5/5 jobs and root-verified raw 4/4 data. Fresh independent main review is **clear**, and its 4/4 result is independently accepted. The next corrected camera .28 / ramp / 160-step expansion has **TDD in progress, no native execution**, requiring its own reviewed plan and evidence. No native/model run is requested by this documentation. Historical original **0/4 FAIL**, all legacy labels and geometry measurements, lack of candidate-specific paint validation, physical-optics/production-NV12 limits, default non-adoption and Stage 7's incomplete status remain unchanged.
+The predeclared automatic merged-main replication **43006858419** at merge `a5ef72ed3f492857eadd4b1198dbba381312aa80` completed 5/5 jobs and root-verified raw 4/4 data. Fresh independent main review is **clear**, and its 4/4 result is independently accepted. The separate corrected camera .28 / ramp /160-step expansion now has independently accepted12/12 evidence and PR #31 is merged, as recorded below. No native/model run is requested by this documentation. Historical original **0/4 FAIL**, all legacy labels and geometry measurements, lack of candidate-specific paint validation, physical-optics/production-NV12 limits, default non-adoption and Stage 7's incomplete status remain unchanged.
 
 
 ## Independently accepted corrected-main replication and all-pairs evidence
@@ -200,4 +201,292 @@ Main's eight unscored 0.6 s / nominal 4.8 m truth summaries equal source, with z
 
 Across the corrected source and main cohorts there are **16 unique UUIDs/nonces, 192 actual steps and 96 within-cohort paired rows**. They are disjoint from the 40 earlier legacy model-process identities. Root's read-only all-four-process comparison covers six pairs/case, **24 pair comparisons / 288 exact paired-row checks**, with no metadata relabeling and **zero new inference calls**. The 288 checks reuse the existing 192 actual steps; they are not an expanded execution count. Evidence is `output/stage7-remote-evidence/world-frame-two-cohort-cross-comparison.json`.
 
-All ten corrected source/main archives and their exact comparisons are independently accepted; results-documentation merge remains open at this checkpoint. Corrected expansion is TDD in progress but **has no native execution or accepted result**. No future PR number, model ranking, global renderer/physical-optical equivalence, full-S completion or default promotion follows from these completed raw comparisons.
+All ten corrected source/main archives and their exact comparisons are independently accepted; completed-results PR #30 subsequently merged. The separate corrected expansion is also accepted below and merged as PR #31. No future PR number, model ranking, global renderer/physical-optical equivalence, full-S completion or default promotion follows from these completed raw comparisons.
+
+
+## Accepted corrected-world expansion and observed tracking limits
+
+PR #31 merged as `cb1e7bfe698fe3bc3df9540eeb7dc2557e671300` from
+`48bf4309cabe9d2e6e8b2fef952b9fb6f945b28a` after17 checks, completed Codex
+without findings/no open threads and clear fresh final evidence review.
+Official [run43012480495](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43012480495)
+independently passes **12/12 corrected-world exact-repeatability cases**:
+camera028/native_ramps/longer160 each4/4,24 fresh UUIDs/nonces,1472 actual ORT
+calls/committed traces/completed rows and736 exact paired rows, zero unknown
+cases and no first mismatch/incomplete row. Runtime is CPU ORT1.31.1/basic/
+noninjected; all native statuses are0. Main unit43027151371 passed.
+
+All13 API archive SHA256s/sizes/safe paths and74 members are independently
+verified (2048184 ZIP bytes), with every raw case and final aggregate exact.
+The [full result guide](STAGE7_MDV3_WORLD_FRAME_EXPANSION.md#full-accepted-artifact-ledger)
+retains all13 full SHA/byte entries,12 case results, eight longer-process truth
+rows and actual timing scopes. Accepted aggregate SHA256 is
+`6eb2702db58e02a0a208e02f7fd53b60c03b97e4e881b7665e46924c679df026`;
+fresh independent full-review receipt SHA256 is
+`07d8814d65a1174dea8f9091f771b9b590710d282796f5cb8102c73ea1c32853`.
+Offline first-observation preservation against the legacy expansion is48/48
+using existing raw files and **zero new inference calls**; no later corrected/
+legacy trajectory equivalence is claimed.
+
+The eight longer processes each complete160 rows/about8 virtual seconds and
+nominal64m. All visit only **2/3 route lanes** (final active index1), with one
+intrusion event lasting5.6 or5.8s and maximum lateral deviations
+**5.95397990659991–7.634517723985033m**. They do not complete the full S or
+demonstrate sustained correct tracking. Short camera028/ramp truth is bounded
+to0.6s; repeatability and the correct action-basis bridge are not model quality,
+optical equivalence, default adoption, a driving score or Stage7 completion.
+
+Configured20Hz/dt.05s is virtual time. Actual whole-capture wall time is
+3.777490365999938–10.065721980000006s per step (sum7894.802747927999s
+across1472), so this is not achieved real-time20Hz. Named-state copying/typed
+hashing, warped hashing and bridge auditing have separate measured timers;
+none is an observer-OFF causal overhead experiment.
+
+## Generic live action consumers remain legacy
+
+The corrected diagnostic factory uses `WorldFramePolicyAdapter` once; this
+does not migrate the canonical generic constructor paths. Source inspection
+found **five live constructor seams across four files** still applying the
+confirmed MD-V3 parent FRD curvature directly as world curvature:
+
+| Consumer at source48bf4309 | Constructor seams | Downstream application |
+|---|---:|---|
+| `bigbench/cli.py:46`, run-onnx | 1 | `run_episode` → `step_ideal` |
+| `scripts/compare_native_onnx.py:42,72` | 2 | `run_native_episode` → public loop → `step_ideal` |
+| `scripts/run_same_model_repeat.py:37` | 1 | Same public native loop |
+| `scripts/metadrive_optical_check.py:47`, optional model branch | 1 | `probe_model_with_metadrive` → `step_ideal` |
+
+`ModelAction` and generic loops do not enforce a frame declaration. The numeric
+model formula remains correct, but a bare confirmed MD-V3 consumer lacks the
+body-basis bridge. Synthetic `CameraLaneMock` already uses world convention;
+acceleration-only consumers discard curvature. Neither should receive a blanket
+sign flip. Frozen-RGB/audited historical diagnostics remain legacy by design.
+This documents a public API limit, not implementation of the prospective public
+composition factory or authorization to change the nine pinned dependencies.
+Renderer selection/defaults remain unchanged.
+
+## Candidate-specific paint: V2 startup failure and completed V3 observations
+
+This local static holdout is separate from moving model diagnostics: seed
+20261110, actual S-left/right and r/R scenes, original opaque2/sampler-original
+versus candidate opaque1/feedback_both, ABBA repeats and unchanged fixed poses.
+Each process selects two native lanes at fractions.12/.28, height1.22m,
+lookback0, Road then Wide. Opaque-bin context precedes provider construction;
+sampler configuration follows initialization. It reuses the frozen original
+projection/focus/comparison helpers and controls, without mask/threshold/pose
+tuning, recovery captures or a rerun after results. These thresholds were
+developed post hoc in historical seed109 diagnostics; the new closed seed110
+holdout does not erase that provenance.
+
+### V2 failed before native startup; original record retained
+
+The V2 configuration attempt preserved at `output/stage7-candidate-paint-holdout/`
+has **16 launch attempts, all `FileNotFoundError: xvfb-run`, zero native child
+starts, zero RGB acquisitions and no PNG result**. Native exit fields are null.
+Its false aggregate geometry flags reflect incomplete execution, not measured
+misalignment. The retained protocol string is
+`stage7-candidate-static-paint-holdout-v1`; V2 labels the attempted configuration
+revision. Failure ledger SHA256 is
+`283bfb595bcf4e48e78b78457add015cfe638c1227e695872e79bda7b85a4773`;
+aggregate SHA256 is `aaab03bff516d69d143b4848dc5eaab2430947906a35009cbdaf7e88e9188f14`.
+All16 empty logs and original metadata remain retained; V3 does not overwrite
+or retroactively complete this failed launch attempt.
+
+### V3 execution complete, whole-cohort geometry not confirmed
+
+The separately reviewed launcher/environment correction passed17 CPU tests
+and nonrendering preflight, then root executed its single planned schedule in
+`output/stage7-candidate-paint-holdout-v3/`. **All16 native processes exit0**,
+with16 unique UUIDs/PIDs/nonces and128 successful frozen-helper returns:
+128 raw964×604 PNGs,128 warped512×256 PNGs and128 projection receipts. Eight
+post-initialization sensor task ticks/process total128: one/read, two per
+Road+Wide pair. Provider startup/reset may render and is excluded from these
+post-initialization counts. There are zero model calls, no I420 conversion
+test, no explicit physics steps after setup, extra captures/ticks or GPU
+queries/depth/HDR extraction. Normal RGB RAM sensor reads are the measured
+observer in **both** static arms, not a moving observer-OFF causal experiment.
+
+Root strictly reaggregated the retained records with exact JSON and summary
+bytes. The frozen study dataset is451 files/324180167 bytes. This is a **local
+OPS study**, with no GitHub Actions run/artifact ID assigned to it. Fresh
+full independent evidence review is **CLEAR and root-accepted**, covering all451
+file identities,256 decoded PNGs,128 warp/projection/metric/control replays,
+source/runtime/tool bindings, assets/shaders, ABBA/ticks and exact CPU-only
+reaggregation (exit0, JSON and summary bytes exact). This is **evidence integrity
+acceptance**, not a four-scene geometry PASS. Current results-documentation
+review/checks/Codex/no open threads/actual merge remain pending.
+
+| Scene | Original PASS / inconclusive reads | Candidate PASS / inconclusive reads | Original scene gate | Candidate scene gate |
+|---|---:|---:|---|---|
+| `s_curve_left_right` | 16 / 0 | 16 / 0 | PASS | PASS |
+| `s_curve_right_left` | 16 / 0 | 14 / 2 | PASS | INCONCLUSIVE_OR_MISMATCH |
+| `in_ramp` | 0 / 16 | 0 / 16 | INCONCLUSIVE_OR_MISMATCH | INCONCLUSIVE_OR_MISMATCH |
+| `out_ramp` | 0 / 16 | 0 / 16 | INCONCLUSIVE_OR_MISMATCH | INCONCLUSIVE_OR_MISMATCH |
+
+Each arm/scene has two processes and16 reads. Original passes2/4 scene gates;
+candidate passes1/4. Across128 image gates, **62 PASS and66 inconclusive**:
+64 sparse ramp images plus two candidate S-right→left Road images. Neither
+arm confirms all four scenes; `both_arm_sampled_geometry_confirmed=false`.
+These are frozen paint-diagnostic gate decisions, **not RGB repeatability
+rates or driving/geometry scores**. The two ramp scenes have only0–1 focused
+candidates/read (minimum5 required) at the fixed poses, so remain inconclusive:
+32 ramp reads have0 candidates and32 have1, across Road **and** Wide. All128
+images pass global-positive thresholds; that does not waive required focus
+coverage/discrimination. No11m lookback/pose extension or threshold relaxation
+was introduced.
+
+### Candidate S-right→left: positive residual fails to establish alignment
+
+Both candidate repeats fail read[2], native lane0/fraction.28/Road, with
+`INCONCLUSIVE_OR_MISMATCH`: positive focus55/55, median residual
+`0.39221646626441786`px, but required **focused negative-control discrimination
+is false**. In the read-only three-record audit (original0/candidate0/candidate1),
+stored world projection bytes/native lane metadata match; candidate repeat raw/
+warp bytes and metrics match. This does not make the candidate/original RGB
+bytes or renderer semantics equivalent.
+
+All eligible candidate shifted controls retain more than.85 matching fraction
+(minimum49/55=.8909090909090909), so none supplies the required.15 drop from
+positive1.0. The eligible−90px control matches55/55. The+90px control matches
+22/22 but has only22 candidates, below the38.5 eligibility floor: it is
+**descriptive/ineligible**, not the formal required-control failure. Original0
+has55/55 positive matches, median`0.4534915203717953`px; its−90 control is
+13/55 and its descriptive/ineligible+90 control is5/22.
+
+A post hoc description of those existing warped PNGs illustrates the detector
+limit: at(x256,y200), RGB changes from original[91,89,91] to
+candidate[146,143,151]; whole-warp white-mask occupancy changes29079→104906
+pixels under the unchanged mask. This is a selected pixel/full-image mask
+observation, not proof that every displaced hit is asphalt, geometric
+misprojection, a unique sampler/bin/shadow cause or a physical-optics error.
+No new capture, mask tuning or model inference was needed for that description.
+
+### Local provenance and exact replay identities
+
+| Retained receipt | Full SHA256 |
+|---|---|
+| V3 protocol file bytes | `dfae8e79795a7890be78793603592afdc6074f2d4447a7a7004cb9e3de33c3ad` |
+| Canonical V3 protocol identity | `921993ee86fd34b1a12dba327ca94c81ab72160f957d1194c0ed1907f012f438` |
+| V3 execution ledger | `f1f2a9ffe80d85c98078ffc0e83460b92c7608cca12f65b4cc938ee61cf75e3f` |
+| Stored/root-reaggregated summary bytes | `15bebcb5d413fbabfa90689a0337fa58e739824dbc10eeb5881d92779cb4172c` |
+| Root accounting | `766afc07c2857ef486e1a171ec535112678a68744706d2bd1beff27aa05e8eb6` |
+| Independent final evidence audit | `40870ea54cddde2d2a1fe342a3cd07928707826d2786a8aad4902e4dc4bf2397` |
+| Three-record preliminary negative-control audit | `49899308c6eeebd71ff988e6bd2a7a349e557d0fcee90915d79da214440c5453` |
+| OPS helper source | `b02541e875ce6793536ca2a15f4b794ff62198c618b8837ec81ae4d0e5e03024` |
+| OPS17-test source | `d7cd1f55a891064a65f055558f79cdcc54f4bb8b2fc25d069bf41ed3ecf7ec3a` |
+
+Parent-recorded wall intervals are47.901342409–66.409753343s per process,
+sum953.914982432s across16. They start before child launch/STARTED-ledger write
+and finish after native handling/cleanup and parent `accept_child` CPU
+validation; they are not pure child/native or capture time. The finish stamp
+precedes final member/log hashing and ledger serialization. The fixed schedule
+spans961.491296656s from first start to last finish, including intervening parent
+bookkeeping. These intervals include preservation/validation work and do not
+measure pure instrumentation/observer overhead, model runtime or real-time
+throughput. No observer-OFF causal overhead comparison was performed.
+
+Protocol/ledger/summary and per-read bytes are retained under the V3 output
+root. Accounting is separately retained at
+`output/stage7-candidate-paint-holdout-v3-analysis/root-accounting.json`;
+the OPS helper/test live outside product source under
+`/workspace/.cloud-tools/stage7/`. The table distinguishes actual file-byte
+SHA from the canonical protocol identity. Original core/projection/sampler/
+opaque/native-capture source bindings are recorded in the protocol, unchanged.
+No source/ModelSpec/default, old geometry archive or strict gate was changed.
+The source-only RGB/I420 boundaries below, global renderer semantics, physical
+optics, sustained tracking, official-model quality and Stage7 completion remain
+separate limits; this static study adds no official inference or model score.
+
+## RGB and I420 source-contract audit
+
+**Source-only result:** the six-plane logical packing and CPU RGB orientation match, but the pinned official **simulator surrogate** RGB→NV12 converter and OpenCV's I420 reference use different coefficients/normalization and chroma filters. This does **not** make valid I420 dtype/shape/packing wrong, establish production ISP fidelity, or explain tracking error. No converter, remote module, model, vehicle/controller/plant or GL code was imported/executed; no pixels/spec/core changed.
+
+Pinned official source: `ajouatom/openpilot@e318f767ff7dc96d25a3bcc2b46f9f3daf6e9e42`. OpenCV reference: tag4.11.0, commit `31b0eeea0b44b370fd0712312df4214d4ae1b158`. Local package metadata says opencv-python and opencv-python-headless4.11.0.86; the actual prior/current CI wheel build/HAL path is **not** established by that local metadata. The audit read frozen source48bf4309 before its PR #31 merge; it changed no source or historical evidence.
+
+### Actual pinned MetaDrive publisher chain
+
+1. `openpilot/tools/sim/bridge/metadrive/metadrive_common.py:14–18`: CPU RAM texture `getRamImageAs("RGB")`, reshape H×W×3, then `img[::-1]` vertical reversal.
+2. `metadrive_process.py:86–94,149–152`: `get_cam_as_rgb` calls the actual sensor and copies into shared Road/Wide arrays (Wide first when enabled, then Road). `metadrive_world.py:20–25` defines the shared uint8 arrays; `tools/sim/lib/common.py:8` sets **1928×1208**.
+3. `tools/sim/bridge/common.py:113–115` schedules `SimulatedSensors.send_camera_images`; `tools/sim/lib/simulated_sensors.py:103–110` locks the images, converts Road then Wide via `Camerad.rgb_to_yuv` and publishes them.
+4. `tools/sim/lib/camerad.py:70–74` delegates directly to **`rgb_to_nv12` at12–42**; `:76–80` sends its bytes through VisionIPC. This path uses NumPy integer conversion, **not a called OpenCL converter**. Its comment “matches original OpenCL kernel” is not an independently verified kernel-equivalence proof.
+5. `system/camerad/cameras/nv12_info.py:7–23` provides padded stride/plane heights; `modeld.py:168–200,211` receives/repackages NV12 buffers and passes them to the selected warp. This is a source call graph, not a running official simulator or production camera observation.
+
+The repo instead reads top-left RGB at **964×604** (`bigbench/metadrive_camera.py:83–88` for RGB read/row reversal and `:106–107` for the 964×604 defaults), warps RGB into **512×256** (`optical_calibration.py:182–198`), calls `cv2.cvtColor(..., COLOR_RGB2YUV_I420)` (`image_adapter.py:43–47`), then packs two views into `[2,6,128,256]` uint8. Same API pixel labels do not imply identical rendered/physical imagery, timing or optics.
+
+### Full numeric normalization, not constants alone
+
+Pinned `tools/sim/lib/camerad.py:15–30` explicitly casts RGB channels to **int32**, forms rounded2×2 means, then applies these operations (clip8 means clip0..255 then uint8):
+
+```text
+R,G,B = rgb[:,:,0], rgb[:,:,1], rgb[:,:,2] cast to int32
+Y = clip8((((33*R + 65*G + 13*B) + 64) >> 7) + 16)
+Cbar = (C00 + C01 + C10 + C11 + 2) >> 2   # separately R,G,B
+U = clip8((-19*Rbar - 37*Gbar + 56*Bbar + 0x8080) >> 8)
+V = clip8(( 56*Rbar - 47*Gbar -  9*Bbar + 0x8080) >> 8)
+```
+
+`Cbar` remains **0..255**, not an unnormalized four-pixel sum; +2/shift2 is the box-mean rounding. `0x8080 = (128<<8)+128`, giving center128 plus final half-unit rounding. Effective UV coefficients are `[-19,-37,56]/256` and `[56,-47,-9]/256` **per averaged RGB value**. Ignoring only the two integer-rounding stages, each original2×2 channel sample contributes one quarter of those coefficients (`/1024` against the four-pixel sum). No hidden factor4 restores their amplitude. The Y coefficients are `[33,65,13]/128` with offset16.
+
+OpenCV `COLOR_RGB2YUV_I420` aliases IYUV (`imgproc.hpp:734–736`), dispatches to three-plane conversion (`color.cpp:342–343`) with RGB channel selection/U-first order (`color.hpp:54–79,162–175`). The 4.11 reference CPU implementation (`color_yuv.simd.hpp:1023–1033,1473–1522`) is:
+
+```text
+Y = sat8((269484*R + 528482*G + 102760*B + (1<<19) + (16<<20)) >> 20)
+U = sat8((-155188*R - 305135*G + 460324*B + (1<<19) + (128<<20)) >> 20)
+V = sat8(( 460324*R - 385875*G -  74448*B + (1<<19) + (128<<20)) >> 20)
+```
+
+The RGB values here are full-scale **0..255 at the even-row/even-column pixel**, not a box sum/mean: scalar `:1666–1695` calls UV conversion on `r0,g0,b0` only when `evenRow`; SIMD `:1526–1540` masks the low/even bytes and likewise does not average neighbors. Thus comparing the sim coefficients after their actual normalization is valid. Rough UV gains per normalized RGB are sim `[-.0742,-.1445,.2188]` versus OpenCV `[-.148,-.291,.439]` (and corresponding V rows), **in addition to** different spatial filtering/rounding.
+
+Source-derived endpoint ranges over ordinary0..255 input are sim Y16..237 and U/V72..184, versus the OpenCV reference's documented Y16..235/U,V16..240 (`color_yuv.dispatch.cpp:476–480`). These are analytic consequences of the quoted integer formulas, **not measured converter outputs**. Both use limited-range-style offsets16/128; neither should be mislabeled a full-range0..255 RGB/YUV matrix simply because its storage is uint8 or its final clip is0..255. The simulator comment BT.601 does not make its exact formula identical to OpenCV's.
+
+### Layout, orientation and warp-order boundaries
+
+- **NV12 storage:** simulator `camerad.py:32–41` interleaves U at even UV columns/V at odd columns, uses `stride=align(width,128)`, `y_height=align(height,32)`, `uv_height=align(height/2,16)`, writes active pixels into zero-filled padding. Repository I420 intermediate is tight Y then U then V; it correctly splits those planes. Raw NV12 and I420 bytes are not expected to be identical storage.
+- **Logical six-plane MATCH:** pinned `compile_modeld.py:120–133` deinterleaves NV12 U/V before `frames_to_tensor(:100–109)`; repository `image_adapter.py:16–24` uses the same **Y00,Y10,Y01,Y11,U,V** order. Layout conversion can preserve logical planes; the differing RGB conversion does not invalidate this packing fact.
+- **CPU RGB orientation MATCH:** official CPU `CopyRamRGBCamera` and repository RAM camera both request RGB and reverse rows. Both converter sources treat channel0=R/1=G/2=B and do not add a spatial flip. Actual source-pixel, CUDA-path, exposure/scene or physical-camera equivalence remains unresolved.
+- **Source operation-order MISMATCH:** simulator converts source RGB→subsampled NV12 **before** model preparation; repository performs bilinear RGB warp **before** RGB→I420. These quantized/subsampled operations are not established to commute.
+- The retained inline `compile_modeld.py:70–97,112–134` helper round-samples/clamps **Y and UV planes separately**, with a coordinate-scaled UV homography; its factor2 terms are coordinates, **not chroma-value gain**. Repo uses `INTER_LINEAR` RGB warp and constant black RGB border. This is a source-algorithm distinction, not an executed tensor comparison.
+- **Actual production/runtime equivalence UNRESOLVED:** `modeld.py:150–152,211` can consume precompiled warp objects; `generic_model_runtime.py:102–137` imports another `compile_warp` and can load cached artifacts. No selected artifact/backend was loaded/executed here. OpenCV dispatcher permits HAL/CPU implementations (`color_yuv.dispatch.cpp:210–225`); local metadata is not an attestation of old CI dispatch. Exact border/interpolation/chroma/grid/quantization equivalence of deployed paths is not established.
+- **Physical ISP UNRESOLVED:** `tools/sim/lib/camerad.py` is a simulator surrogate; its NumPy RGB input is not a physical production ISP's native NV12 source. Matching it would not establish real-sensor photometry, lens/scene semantics, model training preprocessing or camera calibration.
+
+### Boundary verdicts
+
+| Boundary | Status | Bounded interpretation |
+|---|---|---|
+| Declared CPU RGB channel/top-left convention | **CONFIRMED_MATCH** | Matching source operations; not same actual rendered/physical pixels or CUDA runtime. |
+| Six-plane order/U-before-V/dtype-shape construction | **CONFIRMED_MATCH** | Existing valid I420/packing fact remains valid. |
+| RGB→Y/UV integer matrix/range/rounding | **CONFIRMED_MISMATCH** | Pinned simulator function versus OpenCV4.11 reference, after full int32/2×2 normalization; no conversion executed. |
+| Chroma subsampling | **CONFIRMED_MISMATCH** | Rounded2×2 RGB mean versus top-left point in OpenCV reference. Both are4:2:0, not the same filter. |
+| Physical storage/stride | **CONFIRMED_MISMATCH** | Expected padded interleaved NV12 versus tight planar I420; not itself a channel/pack bug. |
+| Source graph warp/conversion ordering | **CONFIRMED_MISMATCH** | NV12-first plane warp versus RGB-first bilinear warp/conversion. |
+| Deployed runtime/production ISP photometry | **UNRESOLVED** | No selected binary/backend/artifact or actual frame/tensor equivalence measurement. |
+| Cause of observed tracking deviation or model quality | **UNRESOLVED** | Source differences alone cannot attribute error, establish a preferred converter or rank models. |
+
+### Retained proof and full source hashes
+
+New ignored proof root: `output/stage7-rgb-i420-source-contract-audit/`; `source_manifest.json` records every full path/commit/Git-blob SHA1/SHA256/size, `boundary_findings.json` records these bounded classifications. Official Git-blob identities were checked against the cached pinned tree; OpenCV files were fetched at the exact resolved4.11.0 commit and blob-checked. All20 source-text snapshots total523830 bytes; no weights/runtime artifact was downloaded. The following pinned links and full SHA256s make the source proof readable without local scratch files:
+
+| Source prefix / path | SHA256 |
+|---|---|
+| official / [openpilot/tools/sim/lib/camerad.py](https://github.com/ajouatom/openpilot/blob/e318f767ff7dc96d25a3bcc2b46f9f3daf6e9e42/openpilot/tools/sim/lib/camerad.py) | `fa1855507de6b6543fa7159690bb3c0126c5da20a4429f934dd1c243c8d7010b` |
+| official / [openpilot/tools/sim/bridge/metadrive/metadrive_process.py](https://github.com/ajouatom/openpilot/blob/e318f767ff7dc96d25a3bcc2b46f9f3daf6e9e42/openpilot/tools/sim/bridge/metadrive/metadrive_process.py) | `dd4670ae20068c5f97b0c2dbbd5ca06a2465d623bf9f949e77ba36ddb7e8ade9` |
+| official / [openpilot/tools/sim/bridge/metadrive/metadrive_world.py](https://github.com/ajouatom/openpilot/blob/e318f767ff7dc96d25a3bcc2b46f9f3daf6e9e42/openpilot/tools/sim/bridge/metadrive/metadrive_world.py) | `d1c86ba12bf3a9ccd2d52c2dcd0945c69d72f838d73335e199fcb63bca317e28` |
+| official / [openpilot/tools/sim/bridge/metadrive/metadrive_bridge.py](https://github.com/ajouatom/openpilot/blob/e318f767ff7dc96d25a3bcc2b46f9f3daf6e9e42/openpilot/tools/sim/bridge/metadrive/metadrive_bridge.py) | `dc00b2b7b4c6ebac4afc7252a1c9ce98b01ee989194f0acd2e0533125cffab80` |
+| official / [openpilot/tools/sim/bridge/metadrive/metadrive_common.py](https://github.com/ajouatom/openpilot/blob/e318f767ff7dc96d25a3bcc2b46f9f3daf6e9e42/openpilot/tools/sim/bridge/metadrive/metadrive_common.py) | `91b3aaa56b678b27d82085f9c8fd112d22faa7c3f821070ba94e8bb94e50827c` |
+| official / `openpilot/tools/sim/bridge/common.py` | `588c1c3cda3ce91bd8e3ce9b4c8a428bbf5a421f5cd30e75042b2bce737bc1c8` |
+| official / `openpilot/tools/sim/lib/common.py` | `50d481872f3c09254787810795aa08e625e4b00932a9d1a6a19c80c94b18d052` |
+| official / `openpilot/tools/sim/lib/simulated_sensors.py` | `6f3df07ecfc02b6fc9b65895e35c0608e4fef75c90571c916848127025af9529` |
+| official / `openpilot/system/camerad/cameras/nv12_info.py` | `3a16d167e489b6862d67641bdbe681a1e751a90edf7e60e2eb6d9743000863be` |
+| official / `openpilot/selfdrive/modeld/compile_modeld.py` | `7bbcb18cd4499867a680268199a2f165584c34615f8f3e1359a74c94efc776c0` |
+| opencv4.11 / `modules/imgproc/src/color_yuv.simd.hpp` | `1feaa856dbbc9954713aa94dd73e11fb071a62552ca3cd20fbe0579a886d6a21` |
+| opencv4.11 / `modules/imgproc/src/color_yuv.dispatch.cpp` | `02fe343e35cb3ca5fa21347c54bfe26e2ac9b72c7943df977c291c399bfa5611` |
+| opencv4.11 / `modules/imgproc/src/color.hpp` | `55d88511e32a51384ef490588687fa97f5e5247770c99a4b683e3ee96984930f` |
+| opencv4.11 / `modules/imgproc/src/color.cpp` | `184528bbfa641fc3a432465687a18e8b82e2eaff81ef45212fc6d67e344f51a4` |
+| opencv4.11 / `modules/imgproc/include/opencv2/imgproc.hpp` | `9020d31168e318655b72dce3a171057fd8e5a05568c25adfe3b38c6da49158c1` |
+| official / `openpilot/selfdrive/modeld/modeld.py` | `19633776d15cbe2b2b25cbc115b088c5f4ed3bde42583eb5c196bad00f0246d0` |
+| official / `openpilot/selfdrive/modeld/generic_model_runtime.py` | `0535451b4784990781941602e973fbcff24196a34b42f6ced484d4b1a2b3c40a` |
+| repository / `bigbench/image_adapter.py` | `7f6d53989ff072ba5b8461ba207ab68c52ac2b519d18d56d0decc68c467e6f03` |
+| repository / `bigbench/optical_calibration.py` | `1a3852d67ea2f15ef31a4224916fb71275f25010a5038179a7e0dd8e984c09ce` |
+| repository / `bigbench/metadrive_camera.py` | `1c5661e6c9eea6445ebe55cb246e6b48d3384dd5a731353ba3f1a45599e338f9` |
+
+No source/imported converter execution, synthetic conversion test, new RGB/GPU/model capture, controller/plant execution, pixel replacement or proposed default change was performed. All nine current diagnostic dependency source hashes still match. The current image adapter's shape/packing and every historical/corrected repeatability label remain their own facts; this audit adds a source-contract distinction, not a performance diagnosis or implementation authorization.

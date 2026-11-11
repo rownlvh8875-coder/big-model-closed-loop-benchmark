@@ -2,6 +2,46 @@
 
 ## Current checkpoint (2026-11-11)
 
+Latest integrated result: PR #31 merged as `cb1e7bfe698fe3bc3df9540eeb7dc2557e671300` from
+source `48bf4309cabe9d2e6e8b2fef952b9fb6f945b28a` after17 checks, Codex without
+findings/no open threads and clear fresh final evidence review. Official
+[run43012480495](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43012480495) independently passes12/12 corrected-world
+repeatability cases:24 fresh processes,1472 actual inferences/completed rows,
+736 exact pairs and zero unknown cases; all13 archives/74 members/2048184 ZIP
+bytes are verified. camera028/native_ramps/longer160 each pass4/4. Main unit
+run43027151371 passed. Current documentation branch is
+`docs/stage7-world-frame-expansion-results`; no results-doc PR number is presumed.
+
+Longer160 remains a bounded prefix: all eight processes visit2/3 route lanes
+and have5.95397990659991–7.634517723985033m maximum lateral deviation. This is
+not correct sustained tracking/full-S or a driving score. The [expansion guide](STAGE7_MDV3_WORLD_FRAME_EXPANSION.md)
+contains all12 cases, exact timings, truth summaries and13 full archive hashes.
+The [integration record](STAGE7_INTEGRATION_VERIFICATION.md#rgb-and-i420-source-contract-audit)
+retains the source-only RGB/I420 distinctions, five generic live constructor
+seams still using legacy MD-V3 actions, and candidate-paint V2's16 startup
+failures (native0/RGB0). V3 is execution-complete:16 normal native processes,
+128 reads; root's strict replay is exact and fresh full independent evidence
+review is CLEAR/root-accepted. Original scene gates pass2/4/candidate1/4, with62 PASS/66 inconclusive
+image gates; candidate S_RL focused negative control fails and ramps lack
+focused candidates. No whole-cohort geometry PASS is established. Original
+0/4 FAIL, default non-adoption, physical-optics limits and Stage7 incompleteness
+remain unchanged. No accepted heavy cohort needs a manual repeat.
+
+Next-session order is fixed; no new heavy/model run is implied:
+
+1. V3's single schedule/root strict reaggregation and fresh full independent
+   evidence review are complete/CLEAR. Preserve V2 and every V3 failed/
+   inconclusive control; no retry or mask/pose/threshold change is implied.
+2. Actual V3 outcomes are recorded here; complete fresh final documentation
+   review and the current documentation PR's applicable CI/Codex/no open threads
+   and actual merge. No future PR number or geometry PASS is presumed.
+3. Only after that merge, implement the reviewed [public ONNX action-frame plan](superpowers/plans/2026-11-11-public-onnx-action-frame.md)
+   with CPU tests: five constructor seams/four unpinned files plus one new
+   module/test/guide. Keep all nine diagnostic pins unchanged; no model/native
+   execution, completed heavy-cohort repeat or renderer-default promotion.
+4. Physical optics, renderer-wide semantics and sustained tracking remain
+   separate unresolved work; the binding fix is not their validation.
+
 - PR #15 merged as `0c678facbf72c269c2453f472e64d8192b70d675` after verifying
   exact HEAD `f1dc88d476942de05f913cbc828a5fa5912e78a3`, nine checks,
   completed Codex review, no unresolved threads and both 32-process cohorts.
@@ -82,8 +122,9 @@
   validity, tracking or model quality. All four160-step cases visit only the
   first route lane (active index0), with39.0089–41.1555m maximum virtual lateral
   deviation. Eight seconds/nominal64m does not prove full S traversal.
-- Next work is a separately versioned opt-in model-FRD→world-FLU action adapter
-  around the unchanged audited policy, preserving raw outputs, I420 and states.
+- The separately versioned opt-in model-FRD→world-FLU action adapter is
+  implemented around the unchanged audited policy, preserving raw outputs,
+  I420 and states. Generic consumers are a separate remaining boundary.
   A new complete-only original2seeds×2S×12×2 corrected source gate has now
   passed4/4 in run43005087003 after five-archive/raw independent acceptance.
   It has8 fresh processes/96 actual inferences/completed rows and48 exact
@@ -144,17 +185,12 @@
   completed current-HEAD Codex without findings/no open threads and fresh
   nine-doc review. Main unit43010693730 passed. Both baseline cohorts and
   results-doc merge prerequisites are fulfilled; no manual repeat is needed.
-- Current branch `feat/stage7-mdv3-world-frame-expansion` is based on PR #30.
-  Four new files implement the separate camera028/native_ramps/longer160
-  matrix, new complete-only protocol and honest failed-call accounting.
-  Final local361 tests passed without skips in43.098s,19 new contracts also
-  pass independently, and pure NumPy full/failed reaggregation is clear.
-  Fresh source and workflow/guide reviews are clear; whole-change review,
-  current-source CI/Codex and official expansion evidence are still required.
-  The planned24 processes/1472 inferences have not executed. Nine frozen
-  dependencies and all legacy sources remain byte-identical. Protocol/holds:
-  `superpowers/plans/2026-11-11-mdv3-world-frame-expansion.md` and
-  `STAGE7_MDV3_WORLD_FRAME_EXPANSION.md`. No automatic heavy main repeat.
+- The corrected expansion source checkpoint had361 passing local tests without
+  skips,19 dedicated contracts and clear pure NumPy/full/failed reaggregation.
+  PR #31 and run43012480495 are now integrated and independently accepted as
+  recorded above. Nine dependency pins and legacy sources stay byte-identical.
+  Protocol: `superpowers/plans/2026-11-11-mdv3-world-frame-expansion.md`;
+  result: `STAGE7_MDV3_WORLD_FRAME_EXPANSION.md`. No automatic heavy main repeat.
 - The new source passed **298 local tests without skips**. Two real production
   `both_unsorted` OFF processes passed native/bin/nonce controls and matched
   every source/warp/I420 field **10/10**, with fresh shared cache cold→populated.
@@ -695,8 +731,8 @@ result-documentation checks/current-HEAD review; do not launch that cohort
 again. The corrected source gate is also independently accepted4/4 and PR #29
 is merged. The separate main run43006858419 and cross-cohort raw comparison
 are independently accepted. Results documentation PR #30 is also merged.
-Finish frozen expansion whole-change review and current-source checks before
-acceptance of its own separately labeled official evidence. Preserve every
+Corrected expansion PR #31/run43012480495 is independently accepted and merged;
+its separate completed result is linked above. Preserve every
 failure/partial result and exact legacy labels; no historical gate/default changes.
 
 The trace/depth comparisons remain bounded input/one-scene evidence. Preserve
@@ -747,9 +783,9 @@ twelve-step cases, and the completed legacy expansion passes4/4 per group.
 These use the confirmed incorrect unconverted action-frame binding. PR #27
 is merged. Historical integration PR #28 and corrected source PR #29 are also
 merged. Source43005087003 and main43006858419 independently pass4/4 and
-completed-results PR #30 has merged. Finish frozen expansion whole-change
-review before its first triggering push. Inspect actual
-HEAD/PR/Actions before any corrected trigger; no legacy cohort rerun is needed.
+completed-results PR #30 has merged. Corrected expansion PR #31 is also merged
+with accepted12/12 evidence. Inspect actual HEAD/PR/Actions and retained
+execution ledgers before new work; no legacy or corrected cohort rerun is needed.
 Keep all source/warp/I420, raw action, aggregate/named recurrence and virtual
 pose/time comparisons exact. Historical original 0/4 remains unchanged;
 default promotion, global geometry/optical fidelity, driving ranking and
