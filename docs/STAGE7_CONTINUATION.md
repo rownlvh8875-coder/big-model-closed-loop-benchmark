@@ -138,11 +138,23 @@
   repeat metadata is unchanged. Fresh independent cross-cohort review is clear.
   All16 identities are disjoint from40 prior legacy model-process identities;
   no hardware identity/equivalence was measured.
-  Current branch `docs/stage7-world-frame-results` records both cohorts only
-  after their actual completion and independent verification. No corrected
-  expansion has run; source-only TDD follows the freshly reviewed prospective
-  `superpowers/plans/2026-11-11-mdv3-world-frame-expansion.md`. It requires accepted
-  source+main4/4 and merged results docs before any triggering push.
+  Completed results documentation PR #30 merged as
+  `5e42eff117218725e5e211ac63a98eb761789be6`, from exact docs source
+  `f1327940faac9f3c1e6c5b09b33eca8c71416a8e`, after four successful checks,
+  completed current-HEAD Codex without findings/no open threads and fresh
+  nine-doc review. Main unit43010693730 passed. Both baseline cohorts and
+  results-doc merge prerequisites are fulfilled; no manual repeat is needed.
+- Current branch `feat/stage7-mdv3-world-frame-expansion` is based on PR #30.
+  Four new files implement the separate camera028/native_ramps/longer160
+  matrix, new complete-only protocol and honest failed-call accounting.
+  Final local361 tests passed without skips in43.098s,19 new contracts also
+  pass independently, and pure NumPy full/failed reaggregation is clear.
+  Fresh source and workflow/guide reviews are clear; whole-change review,
+  current-source CI/Codex and official expansion evidence are still required.
+  The planned24 processes/1472 inferences have not executed. Nine frozen
+  dependencies and all legacy sources remain byte-identical. Protocol/holds:
+  `superpowers/plans/2026-11-11-mdv3-world-frame-expansion.md` and
+  `STAGE7_MDV3_WORLD_FRAME_EXPANSION.md`. No automatic heavy main repeat.
 - The new source passed **298 local tests without skips**. Two real production
   `both_unsorted` OFF processes passed native/bin/nonce controls and matched
   every source/warp/I420 field **10/10**, with fresh shared cache cold→populated.
@@ -682,8 +694,9 @@ group4/4 legacy-action repeatability only). PR #27 has merged after its
 result-documentation checks/current-HEAD review; do not launch that cohort
 again. The corrected source gate is also independently accepted4/4 and PR #29
 is merged. The separate main run43006858419 and cross-cohort raw comparison
-are independently accepted. Merge completed results documentation and finish
-expansion source/workflow checks/review before any corrected expansion. Preserve every
+are independently accepted. Results documentation PR #30 is also merged.
+Finish frozen expansion whole-change review and current-source checks before
+acceptance of its own separately labeled official evidence. Preserve every
 failure/partial result and exact legacy labels; no historical gate/default changes.
 
 The trace/depth comparisons remain bounded input/one-scene evidence. Preserve
@@ -733,9 +746,9 @@ The source and main candidate strict gates each pass4/4 for their registered
 twelve-step cases, and the completed legacy expansion passes4/4 per group.
 These use the confirmed incorrect unconverted action-frame binding. PR #27
 is merged. Historical integration PR #28 and corrected source PR #29 are also
-merged. Source43005087003 and main43006858419 independently pass4/4; finish
-completed-results docs and expansion source/workflow review before a corrected
-expansion trigger. Inspect actual
+merged. Source43005087003 and main43006858419 independently pass4/4 and
+completed-results PR #30 has merged. Finish frozen expansion whole-change
+review before its first triggering push. Inspect actual
 HEAD/PR/Actions before any corrected trigger; no legacy cohort rerun is needed.
 Keep all source/warp/I420, raw action, aggregate/named recurrence and virtual
 pose/time comparisons exact. Historical original 0/4 remains unchanged;

@@ -147,3 +147,27 @@ TDD is underway. Completed-results documentation has not merged yet, and the
 expansion's full tests/fresh source/workflow review remain required before
 ANY triggering push/dispatch/native/model work. The planned1472 budget has
 not been executed; no corrected expansion result is claimed.
+
+
+## Final local implementation and fulfilled execution prerequisites
+
+PR #30 merged as `5e42eff117218725e5e211ac63a98eb761789be6` after exact
+source `f1327940faac9f3c1e6c5b09b33eca8c71416a8e` passed4 checks,
+current-HEAD Codex without findings/no open threads and fresh9doc review;
+main unit43010693730 passed. Both prerequisite cohorts/allTEN archives and
+completed-results docs merge are now fulfilled.
+
+Four new files are implemented; every existing source/spec/test/workflow and
+all9 dependency hashes remain unchanged. Meaningful RED evidence preceded
+implementation and review fixes: impossible surplus audit/bridge/capture/row
+counts now yield UNKNOWN plus errors while retaining valid committed lower
+bounds, and independent aggregation runs despite download/test failure once
+its environment is ready. Missing-case pure shell evidence writes summary/log
+and exits2. No failed status is masked and no raw record is truncated.
+Final19 dedicated tests and361 full local tests pass without skips (43.098s,
+`/tmp/stage7-world-frame-expansion-full-2.log`). Pure NumPy synthetic full and
+failed aggregates work with Panda/MetaDrive/ORT imports prohibited. Fresh
+independent code and workflow/guide reviews are clear. Whole-change exact-source
+review remains before the first triggering push, followed by current-HEAD CI/
+Codex/no threads and all13 actual archive/raw acceptance checks. No corrected
+expansion native/model episode has run;1472 remains only the planned budget.
