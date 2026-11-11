@@ -1,0 +1,109 @@
+name: Stage7 independent Mesa shader-cache history isolation (SIM ONLY)
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/stage7-shader-cache.yml'
+      - 'scripts/native_shader_cache_matrix.py'
+      - 'scripts/native_raw_pixel_clock.py'
+      - 'scripts/metadrive_render_causality.py'
+      - 'scripts/run_native_capture_trial.py'
+      - 'scripts/compare_native_capture_schedule.py'
+      - 'scripts/compare_native_pssm_cross_process.py'
+      - 'tests/test_native_shader_cache_matrix.py'
+permissions:
+  contents: read
+concurrency:
+  group: stage7-shader-cache-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  native-shader-cache:
+    runs-on: ubuntu-latest
+    timeout-minutes: 65
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        seed: [20261109, 20261110]
+        scenario: [s_curve_left_right, s_curve_right_left]
+    env:
+      LIBGL_ALWAYS_SOFTWARE: '1'
+      PYOPENGL_PLATFORM: 'glx'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pinned native simulator and CPU OpenGL
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y xvfb libgl1 libglu1-mesa libegl1 libx11-6
+          python -m pip install 'numpy>=1.26,<3' 'opencv-python-headless>=4.8' 'metadrive-simulator==0.4.3'
+      - name: Verify upstream official 0.4.3 rendering assets SHA256
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p "$RUNNER_TEMP/native-assets"
+          gh release download MetaDrive-0.4.3 --repo metadriverse/metadrive --pattern assets.zip --dir "$RUNNER_TEMP/native-assets"
+          python - <<'PYCODE'
+          from pathlib import Path, PurePosixPath
+          from zipfile import ZipFile
+          import hashlib, os, metadrive
+          z=Path(os.environ['RUNNER_TEMP'])/'native-assets'/'assets.zip'
+          assert z.stat().st_size==134074203
+          assert hashlib.sha256(z.read_bytes()).hexdigest()=='4f0da9f5143a1258131c5b55f77bdf170c0f9bce8a9f18dd41b3678df779eac9'
+          with ZipFile(z) as src:
+              for name in src.namelist():
+                  p=PurePosixPath(name)
+                  if p.is_absolute() or '..' in p.parts:
+                      raise ValueError('unsafe official MetaDrive archive path')
+              src.extractall(Path(metadrive.__file__).resolve().parent)
+          print('OFFICIAL_METADRIVE_ASSETS_CONFIRMED')
+          PYCODE
+      - name: Test cache provenance and exact native receipt contracts
+        run: python -m unittest discover -s tests -p 'test_native_shader_cache_matrix.py' -v
+      - name: Six independent original native processes with balanced cache histories
+        run: |
+          python -m scripts.native_shader_cache_matrix --mode native-case \
+            --root output/stage7-shader-cache --seed ${{ matrix.seed }} \
+            --scene ${{ matrix.scenario }}
+      - name: Preserve native receipts, child logs, cache manifests and binary snapshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: stage7-shader-cache-${{ matrix.seed }}-${{ matrix.scenario }}
+          path: output/stage7-shader-cache/
+          include-hidden-files: true
+          retention-days: 7
+          if-no-files-found: warn
+  independent-cache-aggregate:
+    needs: native-shader-cache
+    if: success()
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install SHA receipt dependencies
+        run: python -m pip install 'numpy>=1.26,<3'
+      - name: Download full raw receipts for four real native scenes
+        uses: actions/download-artifact@v4
+        with:
+          pattern: stage7-shader-cache-*
+          path: output/stage7-shader-cache/
+          merge-multiple: true
+      - name: Recompute independent 24-process SHA summaries
+        run: |
+          python -m unittest discover -s tests -p 'test_native_shader_cache_matrix.py' -v
+          python -m scripts.native_shader_cache_matrix \
+            --mode aggregate --root output/stage7-shader-cache \
+            --out output/stage7-shader-cache/aggregate_summary.json
+      - name: Archive independently recomputed cache history and image summary
+        uses: actions/upload-artifact@v4
+        with:
+          name: stage7-shader-cache-fourscene-summary
+          path: output/stage7-shader-cache/aggregate_summary.json
+          retention-days: 7
+          if-no-files-found: error
