@@ -53,9 +53,18 @@
   Eight unique UUIDs/nonces and two distinct same-runner PIDs per case executed
   96 official model steps. Every required field matched in all 48 paired steps:
   **candidate 4/4 PASS**, historical unmodified original **0/4 PASS (FAIL)**.
-- Current branch: `docs/stage7-mdv3-candidate-results`, based on that merge.
-  No assigned documentation PR is recorded; query latest HEAD/PR/status rather
-  than inventing a number. Full results: `STAGE7_MDV3_RENDERER_CANDIDATE.md`.
+- PR #26 completed results documentation merged as
+  `1077144170346e23279a91c832ce414534f377fe` from exact source
+  `0c8b86a501457b754ef3a90fd2535a566d75d54b`, after four successful checks,
+  completed Codex review without findings/no open threads and a clear fresh
+  independent four-document review. Both model cohorts and the cross-cohort
+  comparison are fully recorded in `STAGE7_MDV3_RENDERER_CANDIDATE.md`.
+- Current branch: `feat/stage7-mdv3-candidate-expansion`, based on that merge.
+  The new closed matrix covers camera .28, actual r/R ramps and a160-step
+  longer prefix. **329 local tests passed without skips**, including16 new
+  contracts; those16 also passed in the separate pure NumPy environment.
+  No official expanded-model trial has run. Query current HEAD/PR/Actions
+  before any push; protocol: `STAGE7_MDV3_CANDIDATE_EXPANSION.md`.
 - Automatic merged-main model replication **42981493726** completed 5/5 jobs
   and also passes candidate 4/4. All five API archive SHA/size/safe-path checks
   and exact raw case/final regeneration passed; fresh independent read-only
@@ -67,9 +76,8 @@
   per case,288 row checks reusing192 model steps). Hardware identities were
   not retained; no hardware-equivalence claim follows. Main-evidence
   review and revised prospective expansion-plan review are clear. Do not
-  launch another manual repeat; fresh results-documentation review/CI/merge
-  is still required
-  before expansion workflow push. No documentation PR number is presumed.
+  launch another manual repeat. Results-documentation PR #26 has now merged;
+  expansion push still needs its own frozen source/workflow review and checks.
 - The new source passed **298 local tests without skips**. Two real production
   `both_unsorted` OFF processes passed native/bin/nonce controls and matched
   every source/warp/I420 field **10/10**, with fresh shared cache cold→populated.
@@ -582,7 +590,7 @@ cd /workspace/big-model-closed-loop-benchmark
 source /workspace/.cloud-tools/onboarding/activate.sh
 git status --short
 git log -5 --oneline
-gh pr list --state all --head docs/stage7-mdv3-candidate-results
+gh pr list --state all --head feat/stage7-mdv3-candidate-expansion
 gh run list --branch main --limit 12
 ```
 
@@ -602,9 +610,9 @@ merely to rediscover their recorded results. Automatic candidate replication
 **42981493726** is complete and exactly revalidated, with clear fresh
 independent review; unit main **42981493834** passed. The
 [prospective expansion plan](superpowers/plans/2026-11-11-mdv3-candidate-expansion.md)
-has clear independent review of its revised protocol. Finish fresh results-
-documentation review, current-HEAD CI and merge before expanded native/model
-execution or pushing that candidate expansion workflow. Preserve every failure/
+has clear independent review of its revised protocol. Results-documentation
+PR #26 is merged; finish the separate expansion source/workflow review before
+its first model workflow push. Preserve every failure/
 partial result and retain exact fields and candidate labels; do not silently
 replace the historical original gate or adopt defaults.
 
@@ -652,10 +660,10 @@ python -m scripts.aggregate_native_mdv3_rgb_pixel_matrix \
 ```
 
 The source and main candidate strict gates each pass 4/4 for their registered
-twelve-step cases. Main-evidence and revised expansion-plan reviews are clear;
-fresh results-documentation review/current-HEAD CI/merge is still required
-before expanded native/model execution or expansion workflow push. Then follow the separately documented
-candidate protocol if authorized.
+twelve-step cases. Main-evidence and revised expansion-plan reviews are clear,
+and results-documentation PR #26 is merged. Continue the authorized separate
+candidate expansion protocol after frozen source/workflow review; inspect
+its current PR/Actions before triggering any new model execution.
 Keep all source/warp/I420, raw action, aggregate/named recurrence and virtual
 pose/time comparisons exact. Historical original 0/4 remains unchanged;
 default promotion, global geometry/optical fidelity, driving ranking and
