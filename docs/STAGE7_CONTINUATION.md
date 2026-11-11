@@ -31,15 +31,37 @@
   `329b400f12999526157c5db24b27f70001ed57b4` from exact source
   `1a17b344be10bbfb62bb4077581a6ba40d7a1464` after four checks, Codex review
   without findings/no open threads and a fresh independent documentation review.
-- Current branch: `feat/stage7-opaque-order-isolation`, based on PR #22's
-  merged main, implementing the new standalone 32-native-process ordering
-  matrix. No assigned source PR or completed CI/native cohort is recorded;
-  query latest branch HEAD/PR rather than inventing a number.
+- PR #23 opaque ordering merged as `d1e209d61af5cfa7c482fe09712f85f7496958e6`
+  from exact source `983732f8e4713686a669a16058e6a93da871a620` after nine checks,
+  current-SHA Codex review without findings/no open threads and clear independent
+  eight-file review. Run 42968294569 completed 5/5 jobs with all five artifact
+  API SHA/size/safe-path checks and exact four-case/final regeneration.
+- Current branch: `docs/stage7-opaque-results`, open documentation PR #24.
+  This completed-v2 evidence append requires a new commit and refreshed
+  exact-HEAD CI/Codex review before merge; query the latest HEAD/status.
 - The new source passed **298 local tests without skips**. Two real production
   `both_unsorted` OFF processes passed native/bin/nonce controls and matched
   every source/warp/I420 field **10/10**, with fresh shared cache cold→populated.
   Evidence: `output/opaque-order-source-smoke/`. This validates the separate
   before-provider implementation path; no four-case or official gate is implied.
+- The new 32-process source cohort is now fully revalidated: 32 unique UUIDs/
+  nonces, eight same-runner PIDs per case and preserved CPU bin setup/capture/
+  restore metadata. Both unsorted conditions match all image fields 40/40
+  across four cases; original/Both state-sorted I420 matches 38/40 and 36/40.
+  This is a policy effect in the balanced static matrix, not unique causality,
+  renderer equivalence or the official model gate. Details: `STAGE7_OPAQUE_ORDER.md`.
+- Automatic merged-main opaque run **42969968780** completed 5/5 jobs with
+  all five API archive SHA/size/safe-path checks and exact raw case/final
+  regeneration: 32 UUIDs/nonces, eight same-runner PIDs per case. Original
+  state-sorted I420 is 37/40, Both state-sorted 36/40; both unsorted arms again
+  match every field 40/40, complete 4/4. Unit run **42969968794** passed.
+  The native module SHA remains unchanged from tested source 983732f.
+- Local terminal-depth V2 is now complete: eight valid native processes,
+  unique PIDs/UUIDs/nonces, statuses zero and one truthful extraction per
+  custom receipt. All eight 8,388,608-byte atlas files are exact matches with
+  5,347 nonclear texels; raw/binary/clock/state/cache revalidation and exact
+  comparison passed. This bounded one-scene result is separate from the OFF
+  matrices and does not promote renderer equivalence or an official gate.
 
 The user authorized continued development and gated PR merges. Do not publish
 or reconfigure the cloud environment. API access now works with supplied
@@ -346,13 +368,111 @@ check; data/failure metadata remain under `output/opaque-bin-pilot-v2/`.
 Neither is included in v3's four successful processes. V3 writes and reloads
 JSON before unchanged strict validation; no native criterion was relaxed.
 
-Next execute the [opaque-order isolation plan](superpowers/plans/2026-11-11-opaque-order-isolation.md):
-original feedback_baseline / feedback_both × opaque type 2 / 1, two independent
-OFF repeats per condition across four seed/scene cases, cyclic Latin order,
-32 native processes. This is new standalone source work, not a default repair.
-The new module configures the bin before provider creation; the pilot used
-the feedback configuration hook after provider creation. No source-equivalence
-claim or new CI/native matrix outcome follows from the pilot.
+The [opaque-order isolation plan](superpowers/plans/2026-11-11-opaque-order-isolation.md)
+is now implemented and its source cohort **42968294569** is complete. Four
+conditions cross original feedback_baseline / feedback_both with opaque type
+2 / 1, using two independent OFF repeats per case and cyclic Latin order:
+**32 native processes, 32 unique UUIDs/nonces and eight PIDs per case**. All
+five archives and every case/final summary exactly revalidated.
+
+| Opaque condition | Source Road/Wide /40 | Warped Road/Wide /40 | I420 /40 | Post-warmup I420 /32 | Complete static cases /4 |
+| --- | --- | --- | --- | --- | --- |
+| original_state_sorted | 38/38 | 38/40 | 38 | 30 | 3 |
+| original_unsorted | 40/40 | 40/40 | 40 | 32 | 4 |
+| both_state_sorted | 36/36 | 36/40 | 36 | 29 | 3 |
+| both_unsorted | 40/40 | 40/40 | 40 | 32 | 4 |
+
+Only the two state-sorted cases below fail; all other condition/case image
+fields match 10/10. Full tables, execution orders, raw evidence paths and the
+complete five-archive SHA/byte ledger are in
+[STAGE7_OPAQUE_ORDER.md](STAGE7_OPAQUE_ORDER.md).
+
+| Seed | Scene | Opaque condition | I420 /10 | First source Road/Wide | First I420 | I420 different steps |
+| --- | --- | --- | --- | --- | --- | --- |
+| 20261109 | left_right | original_state_sorted | 8 | 5/4 | 5 | 5, 7 |
+| 20261110 | left_right | both_state_sorted | 6 | 2/4 | 2 | 2, 7, 8, 9 |
+
+Cross-sorting image equality is original source 62/66 of 80, warp 62/76,
+I420 58/80; Both source 62/58, warp 62/66, I420 48/80. Thus policy changes
+observed repeatability in this balanced matrix without proving byte/rendering
+equivalence or a unique microcause. The CPU bin receipts preserve original
+index 2/name opaque/sort 20/active true, requested type 2 or 1 through capture
+and restoration to 2. This OFF matrix has no GPU queries or actual per-draw trace;
+previous GL renderer/sample/sampler observations are not new cohort evidence.
+Actual setup logs record Python 3.11.18, MetaDrive 0.4.3, Panda3D 1.10.13,
+NumPy 2.4.6 and OpenCV 5.0.0.93; `runtime-log-evidence.json` retains those package observations,
+not a queried GL renderer.
+
+The separate automatic main repetition **42969968780** is now complete and
+exactly revalidated from all 32 raw receipts and five verified archives.
+
+| Automatic main opaque condition | Source Road/Wide /40 | Warped Road/Wide /40 | I420 /40 | Post-warmup I420 /32 | Complete static cases /4 |
+| --- | --- | --- | --- | --- | --- |
+| original_state_sorted | 37/37 | 37/40 | 37 | 30 | 3 |
+| original_unsorted | 40/40 | 40/40 | 40 | 32 | 4 |
+| both_state_sorted | 36/36 | 36/40 | 36 | 29 | 3 |
+| both_unsorted | 40/40 | 40/40 | 40 | 32 | 4 |
+
+| Seed | Scene | Automatic main condition | I420 /10 | First source Road/Wide | First I420 | I420 different steps |
+| --- | --- | --- | --- | --- | --- | --- |
+| 20261109 | left_right | original_state_sorted | 7 | 2/4 | 2 | 2, 9, 10 |
+| 20261110 | left_right | both_state_sorted | 6 | 2/4 | 2 | 2, 7, 8, 9 |
+
+All other main condition/case image fields match 10/10. Main cross-sorting
+matches original source 59/63 of 80, warp 59/76, I420 55/80; Both source
+62/58, warp 62/66, I420 48/80. The five-archive SHA/byte ledger and full
+case tables are in the ordering guide. This reproduces static unsorted 4/4,
+not renderer equivalence or the original moving-model gate. Requested CPU bin
+and restoration controls pass; the new cohort adds no GL renderer/sample/
+sampler observations or draw trace. No manual repetition is needed.
+
+The supported module sets the bin before provider creation, independently
+from the earlier pilot's after-provider hook. Rendering-semantic validation
+and the official moving model gate remain open. A separate external operations
+helper's first eight-process protocol stopped as **failed/partial** at entry 5,
+`both_unsorted` repeat 1, status 2 before capture: the reused feedback native
+trial rejects `probe=True`/repeat 1. Four valid native depth-read captures are
+retained, not a complete eight-process cohort or semantic-equivalence result.
+The fifth raw ERROR has zero extractions; its log/ledger are retained at
+`output/terminal-atlas-semantics/`. The old helper remains immutable at SHA
+`131857958a2ab1a551dbec7da9481c9d274d1da822bfb7c416d9a2a38d805801`.
+Do not restart it or hide the valid partial observations and failed entry.
+
+V2 at `output/terminal-atlas-semantics-v2/` is complete and independently
+revalidated: **8/8 valid native processes, all statuses zero, eight unique
+PIDs/UUIDs/nonces**, exact raw comparison and final cache rehashes. Frozen
+helper SHA is
+`08f9a1da50b4dec790720bfcda0789dd074b2f09bed38f4dd58b845e304a7033`;
+exact-helper review and nine CPU tests preceded native execution. The custom
+public-raw-API protocol truthfully records one extraction per process, outside
+the supported OFF schema. Terminal ON is after primary frames; saved GL state
+is restored, recorded GL errors are zero and frame counts before/after read
+and after provider return all remain 32.
+
+All eight 2048×1024 float32 atlases are **8,388,608 bytes**, **2,097,152 finite
+[0,1] texels**, **5,347 nonclear**, min **0.3487148582935333**, max **1.0**, with
+common SHA
+`e2fad785dc9037146323996699cb8c2a23e517bb99acce5557ee5957fe234881`.
+Within-condition, guard and sorting comparisons all have zero changed depth
+texels/max Delta 0, byte-exact. Primary within-condition I420 is linear sorted
+8/10, linear unsorted 10/10, Both sorted 7/10, Both unsorted 10/10. Linear→Both
+I420 is 7/10 and 8/10 for sorted repeats, 10/10 and 10/10 for unsorted; every
+source/warp field also matches 10/10 in both unsorted guard comparisons.
+Full five-field tables are in the ordering guide. This supports terminal depth
+preservation and no observed guard byte change in the unsorted pairs in one
+static 20261109 / left-right scene, not global shadow accuracy/photometric
+or renderer equivalence. ON/readback/order/cache/process effects remain limits.
+Direct glGetTexImage-only time is 0.920867–1.796358 ms, excluding other queries,
+setup/IO/whole terminal cost. The local probe observes Mesa 25.0.7-2+deb13u1,
+llvmpipe LLVM 19.1.7 / GL 4.5 compatibility, actual threading model `/` with empty
+cull/draw names; those are not OFF CI matrix GPU observations.
+
+The [prospective candidate plan](superpowers/plans/2026-11-11-mdv3-renderer-candidate.md)
+is next after independent review of this bounded acceptance. It must retain
+original `NativeWorldCamera` plus public `run_target_lane_episode`; the static
+trial hides visual ego and is not a substitute. No official weights/inference
+or candidate run has occurred. Candidate results must be labeled separately;
+original official MD-V3 remains prior 0/4 PASS (FAIL), defaults unchanged.
 Per-camera terrain view-data lifetime/LOD remains a separate unproven
 source-review hypothesis. The [feedback guide](STAGE7_SHADOW_FEEDBACK.md)
 records the worker pilot's full rates, evidence paths and causal limits.
@@ -383,7 +503,7 @@ cd /workspace/big-model-closed-loop-benchmark
 source /workspace/.cloud-tools/onboarding/activate.sh
 git status --short
 git log -5 --oneline
-gh pr list --state all --head feat/stage7-opaque-order-isolation
+gh pr list --state all --head docs/stage7-opaque-results
 gh run list --branch main --limit 12
 ```
 
@@ -398,18 +518,23 @@ Do not manually repeat complete sampler/cache/feedback matrices merely to
 rediscover recorded results. Preserve cancelled/failed evidence.
 
 The feedback factorial plan is complete and every condition still fails
-strict matching. The local requested-zero worker pilot also failed; the
-completed Both-plus-bin pilot matched unsorted 10/10 in one case while its
-state-sorted control failed. Continue the linked standalone 32-process opaque
-order matrix and retain original/Both × type2/type1 cells, fresh nonces/raw
-receipts and exact source/warp/I420 gates. Its bin-before-provider setup
-boundary differs from the local pilot's after-provider configuration hook;
-measure that supported implementation independently rather than transferring
-the local result. The trace comparison is complete for its bounded input scope;
-preserve raw files and separate traced correlations from untraced causal
-behavior. Changed driver capability, incomplete GPU/full-state reconstruction
-and fixed process/cache order remain explicit limits. Do not adopt a default
-sort change from source pointer ordering or one matching experimental pair. Continue source review of per-camera terrain view-data lifetime/LOD while
+strict matching. The local requested-zero worker pilot also failed. The
+standalone opaque matrix is complete: both unsorted static arms match 4/4,
+with state-sorted controls 3/4; no official moving-model PASS follows.
+Automatic main run 42969968780 is already complete and revalidated; do not
+start another CI/native repeat. Continue causal/rendering-semantic validation
+through the prospective renderer-candidate plan after independent review of
+the completed bounded depth acceptance and refreshed current-HEAD PR #24
+checks/review. V2 is complete; do not restart it. Preserve stopped v1's four
+valid captures/fifth ERROR and all eight v2 raw JSON/log/depth files. The next
+model diagnostic must use the original NativeWorldCamera/public episode path,
+keep candidate labels separate and relax no comparison. No official model has
+run yet; the historical original gate remains 0/4 FAIL. The trace comparison is
+complete only for its bounded input scope; preserve raw files and distinguish
+traced correlations from untraced causal behavior. Changed driver capability,
+incomplete GPU/full-state reconstruction and fixed process/cache order remain
+limits. Do not adopt a default sort policy solely from these static results.
+Continue source review of per-camera terrain view-data lifetime/LOD while
 preserving original PSSM/Chase and Road-first controls
 and two independent OFF processes per condition. Terminal ON bindings do not
 establish retroactive repairs or executed primitive fetches. Keep edited-shader

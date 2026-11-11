@@ -78,7 +78,7 @@ real vehicles, scoring, clock/lens/pose/task changes or environment publication.
   Panda1.10.13 and official assets bytes134074203 / SHA256
   `4f0da9f5143a1258131c5b55f77bdf170c0f9bce8a9f18dd41b3678df779eac9`.
   Retain hidden files only in the evidence scope, including failures/ledgers/logs.
-- [ ] Full local tests, real native smoke, fresh source/scientific reviews,
+- [x] Full local tests, real native smoke, fresh source/scientific reviews,
   exact-HEAD CI/Codex review/no unresolved threads, five archive API SHA/size/
   safe-path checks and exact raw reaggregation before gated diagnostic merge.
 
@@ -94,3 +94,85 @@ Do not adopt a new default ordering or call a repair solely from static equality
 If the result discriminates, assess causal/rendering semantics before the
 separate official 2-seed x2-S-curve x12-step x2-process original MD-V3 strict
 source/warp/I420/action/recurrent-state/pose/time 4/4 gate. Expansion waits.
+
+
+## Completed source evidence (2026-11-11)
+
+PR #23 merged as `d1e209d61af5cfa7c482fe09712f85f7496958e6` from exact source
+`983732f8e4713686a669a16058e6a93da871a620` after nine passing checks,
+current-SHA Codex review without findings/no open threads, clear independent
+eight-file review and 298 local tests without skips. Two production
+Both-unsorted smoke processes matched source/warp/I420 10/10. CI run
+42968294569 completed 5/5 jobs; all five API artifact SHA/size/safe paths and
+exact four-case/final regeneration passed, with 32 distinct native UUIDs/
+nonces and eight same-runner PIDs per case. CPU bin type 2/1 and preserved
+metadata/restoration validated in all 32 receipts. No actual GL query or
+per-draw tracing is part of this OFF matrix.
+
+Original state-sorted source Road/Wide matched 38/38 of 40, warp 38/40,
+I420 38/40 (30/32 post-warmup), with 3/4 complete static cases. Both
+state-sorted source matched 36/36, warp 36/40, I420 36/40 (29/32 post-warmup),
+with 3/4 complete cases. Each unsorted condition matched every image field
+40/40 (32/32 post-warmup), with 4/4 complete static cases. Original
+state-sorted fails 20261109 left-right at I420 steps 5 and 7; Both
+state-sorted fails 20261110 left-right at 2, 7, 8 and 9. Cross-sorting I420
+equality is 58/80 original and 48/80 Both, so no bit/rendering equivalence
+is proved. Full per-case rates/firsts, cross metrics, package-log
+scope and complete five-archive ledger are in
+[the ordering guide](../../STAGE7_OPAQUE_ORDER.md).
+
+This is bounded evidence that policy changes observed repeatability in the
+balanced four-case static matrix; unique mechanism, intended shadows and
+renderer equivalence remain unproven. No default ordering or official MD-V3
+gate is promoted; prior 0/4 PASS (FAIL) remains. Automatic main run 42969968780
+is now complete and independently revalidated below; unit 42969968794 passed.
+Do not manually repeat completed cohorts merely to rediscover their results.
+
+## Completed automatic main repetition
+
+Main-source `d1e209d` run 42969968780 completed 5/5 jobs; all five artifact API
+SHA/size/safe-path checks and exact case/final raw regeneration passed, with
+32 UUIDs/nonces and eight PIDs per case. The native module SHA is unchanged
+from tested source 983732f. Original state-sorted source Road/Wide is 37/37
+of 40, warp 37/40, I420 37/40 (30/32 post-warmup), complete 3/4. Both
+state-sorted is source 36/36, warp 36/40, I420 36/40 (29/32), complete 3/4.
+Each unsorted condition again matches all image fields 40/40 (32/32),
+complete 4/4. Original state-sorted fails 20261109 left-right at I420 steps
+2, 9, 10; Both state-sorted fails 20261110 left-right at 2, 7, 8, 9.
+Cross-sorting I420 is 55/80 original and 48/80 Both. Full rates, firsts and
+all five archive SHA/byte rows are in the ordering guide. No new GPU-state
+observation, renderer equivalence, unique cause or model PASS is established.
+
+## Completed bounded terminal-depth check and open model gates
+
+- [x] Complete the separate local terminal-depth V2 protocol. Eight native
+  processes are valid with zero statuses, unique PIDs/UUIDs/nonces and one
+  truthful extraction per custom receipt outside the supported OFF schema.
+  Root independently validated every raw/binary, positive controls, GL errors/
+  state restoration, frame count 32 through return, cache rehashes and exact
+  comparison. Frozen helper SHA
+  `08f9a1da50b4dec790720bfcda0789dd074b2f09bed38f4dd58b845e304a7033`
+  and nine CPU tests preceded the run. All eight 8,388,608-byte depth files
+  share SHA
+  `e2fad785dc9037146323996699cb8c2a23e517bb99acce5557ee5957fe234881`,
+  with 2,097,152 finite [0,1] texels, 5,347 nonclear, min 0.3487148582935333
+  and max 1.0. Every within/guard/sorting depth comparison is byte-exact, zero
+  changed texels/max Delta 0. Unsorted linear→Both primary comparisons also
+  match all five image fields 10/10 in both repeats. V1 remains failed/partial
+  with four valid captures and its fifth API-configuration ERROR preserved.
+- [ ] Establish broader semantic/causal claims as needed. One static 20261109 /
+  left-right terminal-ON/readback cohort supports bounded depth preservation,
+  not global physical shadow accuracy, photometric equivalence or unique cause.
+  Primary within-condition I420 was linear sorted 8/10, unsorted 10/10, Both
+  sorted 7/10, unsorted 10/10. Direct glGetTexImage-only 0.920867–1.796358 ms excludes
+  other queries/setup/IO/terminal cost; order/cache/readback remain confounds.
+  Full tables, driver/threading observations and evidence paths are in
+  [the ordering guide](../../STAGE7_OPAQUE_ORDER.md).
+- [ ] Follow the [prospective renderer-candidate plan](2026-11-11-mdv3-renderer-candidate.md)
+  only after independent bounded-depth acceptance and refreshed current-HEAD
+  PR #24 checks/review. Use original NativeWorldCamera and public
+  run_target_lane_episode, not the visual-ego-hiding static trial. No official
+  weights/inference/candidate run has occurred. Candidate exact 4/4 has a
+  separate explicit label; the historical original official gate remains
+  0/4 FAIL. Compare all source/warp/I420/action/named recurrent-state/pose/time
+  fields without tolerance; no default adoption or expansion from static data.
