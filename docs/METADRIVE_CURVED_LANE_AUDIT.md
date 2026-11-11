@@ -127,3 +127,25 @@ xvfb-run -a python -m scripts.metadrive_curved_lane_audit \
 
 
 현재 후속 기록: PR #29가 `a5ef72ed3f492857eadd4b1198dbba381312aa80`로 병합됐고, [교정 world-frame 가이드](STAGE7_MDV3_WORLD_FRAME.md)에 공식 source 실행 **43005087003의 4/4 교정 반복 동일성 PASS**를 기록한다. 독립 검증된 8개 새 프로세스·96개 실제 추론/완료 행·48개 일치 쌍이며, 별도 자동 main 실행 **43006858419**도 5/5 완료 후 원시 4/4·아카이브·전수 쌍 비교의 새 독립 검토가 명확하여 **별도 코호트로 수락**됐다. 소스+main의 16개 UUID/nonce·192개 실제 추론/완료 행에 대해 원래 코호트 내 비교는 96쌍이며, 추가 288개 전수 쌍 비교는 같은 자료를 재사용해 새 추론을 만들지 않는다. 이 소스 결과는 과거 도색 영상·기하 수치나 레거시 라벨을 수정하지 않으며, 주행 품질·전체 S자 완주·광학/렌더링 동등성·원본 게이트 PASS를 뜻하지 않는다.
+
+
+## 후속 교정 확대 실행과 아직 열린 영상 검증
+
+PR #31은 `cb1e7bfe698fe3bc3df9540eeb7dc2557e671300`으로 병합됐다.
+별도 [교정 확대 기록](STAGE7_MDV3_WORLD_FRAME_EXPANSION.md)의 실행43012480495는
+세 그룹 각4/4, 총12/12 **교정 반복 동일성**으로 독립 수락됐다(24개 새
+프로세스,1472회 실제 추론/완료 행,736쌍). 긴 실행8개는 노선3개 중2개만
+방문하고 최대 횡오차5.95397990659991–7.634517723985033m를 기록했다.
+전체 S 완주·정확한 지속 추종·모델 품질이나 과거 도색 게이트의 재검증은 아니다.
+
+후보 전용 paint V2는16회 모두 `xvfb-run` 파일 부재로 시작에 실패했다.
+native 실행0/RGB 획득0이며, 기하 불일치를 측정한 결과가 아니다. 원래
+실패 기록은 그대로 보존됐다. 별도 V3는16개 정상 native 프로세스/128회 RGB
+획득을 완료했고 root strict 재집계와 새 전수 독립 증거 검토는 CLEAR/root 수락이다.
+이는 증거 무결성 수락이며 전체 장면 기하 PASS가 아니다.
+original은 장면2/4, candidate는1/4 게이트를 통과했다. candidate S_RL의
+필수 focused 음성대조가 실패했고 양쪽 ramp는 집중 후보0–1개로 부족했다.
+영상62 PASS/66 inconclusive는 반복 동일성 비율이나 전체 기하 PASS가 아니다.
+[통합 검증 기록](STAGE7_INTEGRATION_VERIFICATION.md#candidate-specific-paint-v2-startup-failure-and-completed-v3-observations)은
+그 실패와 남은 generic MD-V3 동작 연결, SIM/OpenCV 소스 차이를 구분한다.
+과거 도색/기하 수치·실패·post hoc 기준과 scoring 금지는 그대로다.

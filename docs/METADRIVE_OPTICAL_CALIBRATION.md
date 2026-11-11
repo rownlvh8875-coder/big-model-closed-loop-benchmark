@@ -102,3 +102,30 @@ Legacy expansion run **42987993022** is now fully independently revalidated: `ca
 
 
 Current follow-up: PR #29 merged as `a5ef72ed3f492857eadd4b1198dbba381312aa80`. The [world-frame guide](STAGE7_MDV3_WORLD_FRAME.md) records independently accepted official source run **43005087003, 4/4 corrected repeatability**, eight fresh processes, 96 actual inferences/completed rows and 48 exact pairs. Separate automatic main **43006858419** completed 5/5 and is independently accepted at 4/4 after clear archive/raw/all-pairs evidence review. Combined corrected source/main data contain 16 UUIDs/nonces and 192 actual steps, 96 within-cohort paired rows and 288 all-pairs checks reusing those same steps with zero new inference. This source result does not rewrite historical paint/geometry values or legacy labels, prove tracking quality/full-S traversal or optical/renderer equivalence, or change the original 0/4 gate.
+
+
+## Later corrected expansion and remaining input boundaries
+
+PR #31 merged as `cb1e7bfe698fe3bc3df9540eeb7dc2557e671300`; separate
+run43012480495 independently passes12/12 corrected-world repeatability with24
+fresh processes/1472 actual inferences and rows/736 pairs. Its longer processes
+visit2/3 route lanes with5.95397990659991–7.634517723985033m maximum lateral
+deviation; this is not sustained correct tracking/full-S or optical validation.
+The [expansion guide](STAGE7_MDV3_WORLD_FRAME_EXPANSION.md) supplies its full
+13-archive ledger. Old source/main short results and all historical optical
+metrics remain separate and unchanged.
+
+Candidate-paint V2's16 launch attempts all failed before native startup because
+`xvfb-run` was missing (native0/RGB0), so they measured no geometry. Its failed
+metadata/logs remain preserved. V3 completed16 normal native processes/128 RGB
+reads with exact root replay and CLEAR/root-accepted fresh full independent
+evidence review. That integrity acceptance is separate from geometry success.
+Original passes2/4 scene gates and candidate1/4: candidate S_RL's required
+focused negative control fails and both ramp arms have too few focus points.
+The62 PASS/66 inconclusive image gates are not RGB repeatability rates or a
+whole-cohort paint/physical-optics confirmation. The [integration source audit](STAGE7_INTEGRATION_VERIFICATION.md#rgb-and-i420-source-contract-audit)
+also distinguishes matching CPU RGB orientation/six-plane order from differing
+SIM/OpenCV color coefficients, chroma filtering and warp order. This is pinned
+source-text evidence only; the official SIM surrogate is not production ISP,
+and actual deployed NV12 photometry/tracking-error causality remain unresolved.
+No pixel replacement, default adoption or model-scoring permission follows.
