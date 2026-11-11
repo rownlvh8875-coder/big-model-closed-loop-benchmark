@@ -154,3 +154,18 @@ Each artifact below belongs to run **42987993022** at source **`e84369c9f7f461a5
 | 13840362369 | 38071 | `c79edc8c404672c1c3cd5082e2a4b706b426995bcdd718b244f91024c1fa9e52` |
 
 The corrected adapter remains **TDD in progress, not complete**, and no corrected native/model gate has run. Future corrected evidence requires its distinct applied-world action receipts and protocol; these 12/12 legacy cases cannot be relabeled as corrected-world PASS. Historical geometry-guide remediation remains a separate documentation follow-up after the PR #27 merge, with no future PR number presumed.
+
+
+## Later source checkpoint: corrected implementation, native evidence pending
+
+The historical integration documentation merged in PR #28 as
+`e0e220688e8d3c0254d04f8fc28dca02e1824796` after four checks, completed
+current-HEAD Codex without findings/no unresolved threads and fresh seven-doc
+review at exact source `09b799fda7d894a9ab6340435bd6b80f3b31d44d`.
+The earlier draft-checkpoint TDD statements above describe that audit snapshot.
+The five-new-file opt-in world-action implementation is now locally verified:
+13 new pure contracts and342 full tests passed without skips, with clear
+independent adapter/runner code review. Its [guide](STAGE7_MDV3_WORLD_FRAME.md)
+and workflow still require final review before first official native execution.
+No corrected native verdict has run; all legacy labels, action/pose records,
+original0/4 and the historical geometry/optical limitations remain unchanged.
