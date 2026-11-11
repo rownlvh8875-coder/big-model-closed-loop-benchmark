@@ -40,6 +40,7 @@ jobs:
           import metadrive
           archive = Path('/tmp/metadrive-asset/assets.zip')
           assert archive.stat().st_size == 134074203, 'official MetaDrive asset size mismatch'
+          assert hashlib.sha256(archive.read_bytes()).hexdigest() == '4f0da9f5143a1258131c5b55f77bdf170c0f9bce8a9f18dd41b3678df779eac9', 'official MetaDrive asset SHA256 mismatch'
           package = Path(metadrive.__file__).resolve().parent
           with ZipFile(archive) as z:
               for f in z.namelist():

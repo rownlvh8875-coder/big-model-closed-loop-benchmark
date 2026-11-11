@@ -244,6 +244,11 @@ none is an observer-OFF causal overhead experiment.
 
 ## Generic live action consumers remain legacy
 
+**Historical inventory:** this section describes the accepted PR #32 results
+checkpoint at `48e79a7ed5aedf6daa5a62ff68d2225af7955ef1`. The subsequent public
+binding implementation checkpoint below is separate; no old diagnostic is
+retrofitted or relabeled by that change.
+
 The corrected diagnostic factory uses `WorldFramePolicyAdapter` once; this
 does not migrate the canonical generic constructor paths. Source inspection
 found **five live constructor seams across four files** still applying the
@@ -264,6 +269,40 @@ sign flip. Frozen-RGB/audited historical diagnostics remain legacy by design.
 This documents a public API limit, not implementation of the prospective public
 composition factory or authorization to change the nine pinned dependencies.
 Renderer selection/defaults remain unchanged.
+
+## Public action-frame implementation checkpoint
+
+The subsequent `fix/public-onnx-action-frame` branch starts from accepted
+results merge `48e79a7ed5aedf6daa5a62ff68d2225af7955ef1`. Its new
+`bigbench/public_action_frame.py` composes the existing adapter at the five
+unpinned constructor sites above. Actual model/spec files are verified before
+construction. Exact MD-V3 resolves automatically to model FRD; unknown models
+require a declaration and retain `USER_DECLARATION` provenance. Both comparison
+inputs preflight before any constructor/provider/episode, and construction
+rechecks current files. Parent CSV/raw/state/image values remain unchanged;
+separate receipts describe applied world actions. All nine frozen diagnostic
+sources and all four ModelSpecs remain byte-identical.
+
+Meaningful RED tests preceded implementation and the size-only identity and
+model-lifetime fixes. After both fixes,22 targeted CPU tests and383 full tests
+pass without skips; fresh seven-file code/API review is CLEAR. The lifetime
+regression uses weak references to prove the previous policy is released
+before the next constructor, not an RSS measurement. Failed episodes retain
+full committed parent/bridge evidence and error sidecars; total attempted
+model calls remain unknown when they cannot be established. See the
+[public guide](PUBLIC_ONNX_ACTION_FRAME.md) for compatibility and trace semantics.
+
+The initial CPU-only integration assumption was corrected before pushing:
+existing caller paths trigger native workflows. The [accepted CI amendment](superpowers/plans/2026-11-11-public-onnx-action-frame.md#ci-integration-amendment-accepted-before-first-push)
+repairs explicit Light Speed/Light Speed 2 declarations and asset verification,
+preserves all triggers/tolerances/failure gates, and budgets four existing
+automatic jobs at65 model calls (48 MD-V3,12 Light Speed 2,5 Light Speed).
+They use ephemeral CI weights only. A separate conditional main budget65
+applies after accepted merge; no dormant or completed matrix is manually
+replayed. Current whole-change/workflow review, CI/Codex and integration are
+pending, and no official-model/native result is claimed for this public change.
+Any strict repeat failure blocks merge. The earlier corrected scientific gates
+and the local paint outcomes below remain independent, immutable results.
 
 ## Candidate-specific paint: V2 startup failure and completed V3 observations
 
@@ -392,6 +431,16 @@ the OPS helper/test live outside product source under
 `/workspace/.cloud-tools/stage7/`. The table distinguishes actual file-byte
 SHA from the canonical protocol identity. Original core/projection/sampler/
 opaque/native-capture source bindings are recorded in the protocol, unchanged.
+The V2/V3 OPS sources, V3 test source and completed review/replay/preflight
+receipts also have byte-preserving copies in
+`output/stage7-candidate-paint-holdout-v3-analysis/provenance/`. Its ten-file
+copy manifest SHA256 is
+`7d6b837df44cfa11eae33a9ceb9b70a60373ea6bfe019d7d6fe484003eb65f45`.
+These later copies sit outside the frozen451-file study dataset; they add no
+captures, processes or inference. The expansion's independent review likewise
+has a copy at
+`output/stage7-remote-evidence/run-43012480495/independent-full-review.json`,
+with its original SHA256 unchanged.
 No source/ModelSpec/default, old geometry archive or strict gate was changed.
 The source-only RGB/I420 boundaries below, global renderer semantics, physical
 optics, sustained tracking, official-model quality and Stage7 completion remain

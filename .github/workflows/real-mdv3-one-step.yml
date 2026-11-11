@@ -18,10 +18,12 @@ jobs:
             model_path: 1365126a-e71e-4778-be00-8ab92dc82c09/12864/big_driving_supercombo.onnx
             model_sha256: 35976b11be3904eb78e32f7dc55a6abf8e9433ac5aa391a1998f1e9ce001b199
             model_spec: model_specs/md-v3.json
+            model_action_frame: auto
           - model_name: light-speed-2
             model_path: ea2f516f-f758-42be-a245-913bb818a64f/32768/big_driving_supercombo.onnx
             model_sha256: 909a140019050a9d7f00db22dd4f4085928d2af9474a82244672ddab964f95a8
             model_spec: model_specs/light-speed-2.json
+            model_action_frame: model-frd
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -41,6 +43,7 @@ jobs:
           python -m bigbench.cli run-onnx \
             --model "$RUNNER_TEMP/official-models/${{ matrix.model_path }}" \
             --spec '${{ matrix.model_spec }}' \
+            --model-action-frame '${{ matrix.model_action_frame }}' \
             --scenario s_curve \
             --steps 5 \
             --out "$RUNNER_TEMP/${{ matrix.model_name }}-synthetic" \

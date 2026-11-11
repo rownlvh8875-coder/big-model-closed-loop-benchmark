@@ -2,23 +2,35 @@
 
 ## Current checkpoint (2026-11-11)
 
-Latest integrated result: PR #31 merged as `cb1e7bfe698fe3bc3df9540eeb7dc2557e671300` from
+Latest results documentation: PR #32 merged as
+`48e79a7ed5aedf6daa5a62ff68d2225af7955ef1`, from source
+`8e847da753d2c50af8ec5b6cbdba40bce774ed3d`, after four successful checks,
+current-HEAD Codex without findings/no unresolved threads and fresh independent
+ten-document review. Final documentation diff SHA256 is
+`08f2f4093aa78d2862b3efaf8ec3b8eaf50fd7df54a7a1e7c4f29ba3f47e2f09`;
+post-merge unit run43032709728 passed. The current branch
+`fix/public-onnx-action-frame` starts from that merge. Public binding
+implementation is complete with22 targeted and383 full CPU tests passing
+without skips. Seven-file code/API review is CLEAR; final whole-change review,
+CI/Codex and integration remain pending. No future PR number or new native/model
+result is presumed.
+
+Corrected-expansion source: PR #31 merged as `cb1e7bfe698fe3bc3df9540eeb7dc2557e671300` from
 source `48bf4309cabe9d2e6e8b2fef952b9fb6f945b28a` after17 checks, Codex without
 findings/no open threads and clear fresh final evidence review. Official
 [run43012480495](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43012480495) independently passes12/12 corrected-world
 repeatability cases:24 fresh processes,1472 actual inferences/completed rows,
 736 exact pairs and zero unknown cases; all13 archives/74 members/2048184 ZIP
 bytes are verified. camera028/native_ramps/longer160 each pass4/4. Main unit
-run43027151371 passed. Current documentation branch is
-`docs/stage7-world-frame-expansion-results`; no results-doc PR number is presumed.
+run43027151371 passed. The completed results are preserved by PR #32 above.
 
 Longer160 remains a bounded prefix: all eight processes visit2/3 route lanes
 and have5.95397990659991–7.634517723985033m maximum lateral deviation. This is
 not correct sustained tracking/full-S or a driving score. The [expansion guide](STAGE7_MDV3_WORLD_FRAME_EXPANSION.md)
 contains all12 cases, exact timings, truth summaries and13 full archive hashes.
 The [integration record](STAGE7_INTEGRATION_VERIFICATION.md#rgb-and-i420-source-contract-audit)
-retains the source-only RGB/I420 distinctions, five generic live constructor
-seams still using legacy MD-V3 actions, and candidate-paint V2's16 startup
+retains the source-only RGB/I420 distinctions, the historical five-site legacy
+inventory now migrated by this CPU-verified branch, and candidate-paint V2's16 startup
 failures (native0/RGB0). V3 is execution-complete:16 normal native processes,
 128 reads; root's strict replay is exact and fresh full independent evidence
 review is CLEAR/root-accepted. Original scene gates pass2/4/candidate1/4, with62 PASS/66 inconclusive
@@ -27,18 +39,25 @@ focused candidates. No whole-cohort geometry PASS is established. Original
 0/4 FAIL, default non-adoption, physical-optics limits and Stage7 incompleteness
 remain unchanged. No accepted heavy cohort needs a manual repeat.
 
-Next-session order is fixed; no new heavy/model run is implied:
+Resume order preserves completed cohorts; only the declared automatic
+public-boundary regression below is planned:
 
 1. V3's single schedule/root strict reaggregation and fresh full independent
    evidence review are complete/CLEAR. Preserve V2 and every V3 failed/
    inconclusive control; no retry or mask/pose/threshold change is implied.
-2. Actual V3 outcomes are recorded here; complete fresh final documentation
-   review and the current documentation PR's applicable CI/Codex/no open threads
-   and actual merge. No future PR number or geometry PASS is presumed.
-3. Only after that merge, implement the reviewed [public ONNX action-frame plan](superpowers/plans/2026-11-11-public-onnx-action-frame.md)
-   with CPU tests: five constructor seams/four unpinned files plus one new
-   module/test/guide. Keep all nine diagnostic pins unchanged; no model/native
-   execution, completed heavy-cohort repeat or renderer-default promotion.
+2. Actual V3 outcomes and final documentation review are complete; PR #32
+   passed its applicable checks/Codex/no open threads and actually merged.
+3. The authorized [public ONNX action-frame implementation](superpowers/plans/2026-11-11-public-onnx-action-frame.md)
+   and meaningful CPU tests are complete: five constructor seams/four unpinned
+   files plus one new module/test/guide;22 targeted and383 full tests pass.
+   Finish whole-change review, actual CI/Codex and integration. Keep all nine
+   diagnostic pins unchanged. The reviewed CI amendment
+   preserves existing triggers/gates and declares four automatic public-boundary
+   jobs:65 planned calls (48 MD-V3,12 Light Speed 2,5 Light Speed), with a
+   separate conditional main budget65 after accepted merge. These are new
+   public-entrypoint regressions; do not manually replay completed scientific
+   cohorts or dormant matrices. A strict repeat failure blocks merge. No local
+   official weights or renderer-default promotion is authorized.
 4. Physical optics, renderer-wide semantics and sustained tracking remain
    separate unresolved work; the binding fix is not their validation.
 

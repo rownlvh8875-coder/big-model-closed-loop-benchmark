@@ -25,6 +25,8 @@ def main(argv=None):
     model_run = sub.add_parser('run-onnx', help='Run one pinned ONNX model in UNCALIBRATED schematic camera loop; NOT a driving benchmark')
     model_run.add_argument('--model', type=Path, required=True)
     model_run.add_argument('--spec', type=Path, required=True, help='Pinned stateful ONNX graph contract JSON')
+    model_run.add_argument('--model-action-frame', choices=('auto','model-frd','world-flu'), default='auto',
+                           help='Basis of the parent returned ModelAction; unknown models require an explicit declaration')
     model_run.add_argument('--scenario', choices=SCENARIOS, default='s_curve')
     model_run.add_argument('--out', type=Path, default=Path('output/unvalidated-onnx'))
     model_run.add_argument('--steps', type=int, default=10, help='Initial short smoke, 20 Hz')
@@ -41,13 +43,18 @@ def main(argv=None):
     if args.command == 'run-onnx':
         if not args.accept_uncalibrated_vision:
             ap.error('run-onnx requires --accept-uncalibrated-vision; output CANNOT be used as validated driving performance')
-        from .onnx_policy import OnnxBigModelPolicy
+        from .public_action_frame import create_public_onnx_policy, _write_binding_receipt
         from .camera_rig import SchematicDualCamera
-        policy = OnnxBigModelPolicy(args.model, args.spec, traffic_is_rhd=args.rhd,
+        binding = create_public_onnx_policy(args.model, args.spec, model_action_frame=args.model_action_frame, traffic_is_rhd=args.rhd,
                                     lat_action_t_s=args.lat_action_t, long_action_t_s=args.long_action_t)
-        result = run_episode(get_scenario(args.scenario), policy, camera=SchematicDualCamera(),
-                             fixed_speed=not args.integrated, max_steps=args.steps)
+        policy=binding.policy
+        try:
+            result = run_episode(get_scenario(args.scenario), policy, camera=SchematicDualCamera(),
+                                 fixed_speed=not args.integrated, max_steps=args.steps)
+        finally:
+            _write_binding_receipt(binding,args.out/'action_frame_binding.json')
         report = write_run(args.out, result)
+        report['public_action_frame']=binding.receipt()
         import csv
         with (args.out / 'model_inference.csv').open('w', newline='', encoding='utf-8') as stream:
             from dataclasses import asdict
@@ -61,6 +68,7 @@ def main(argv=None):
         (args.out / 'summary.json').write_text(json.dumps(report, ensure_ascii=False, indent=2)+'\n', encoding='utf-8')
         print(json.dumps({'evidence_class':result.classification, 'sha256':policy.contract.sha256,
                           'frames':len(policy.trace), 'output':str(args.out),
+                          'public_action_frame':report['public_action_frame'],
                           'warning':report['warning']}, ensure_ascii=False, indent=2))
         return 0
     if args.command == 'smoke-compare':

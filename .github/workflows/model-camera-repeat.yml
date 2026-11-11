@@ -61,6 +61,39 @@ jobs:
             --seed 20261109 --steps 12 --speed 8 --camera-convergence 6 \
             --camera-pixel-tolerance 16 --camera-channel-delta 10 \
             --out output/strict-native-repeat
+      - name: Verify complete public MD-V3 action bindings without another inference
+        run: |
+          python - <<'PYCODE'
+          import json
+          from pathlib import Path
+          root=Path('output/strict-native-repeat')
+          for repeat in (0,1):
+              report=json.loads((root/f'run_{repeat}.json').read_text())
+              binding=report['public_action_frame']
+              sidecar=json.loads((root/f'run_{repeat}_action_frame_binding.json').read_text())
+              assert sidecar['episode_error'] is None and sidecar['episode_error_chain']==[]
+              assert {k:v for k,v in sidecar.items() if k not in ('episode_error','episode_error_chain')}==binding
+              assert report['status']=='DIAGNOSTIC_EXECUTED' and report['requested_steps']==report['completed_steps']==12
+              assert binding['protocol']=='public-onnx-action-frame-v1'
+              assert binding['identity']['model_sha256']=='35976b11be3904eb78e32f7dc55a6abf8e9433ac5aa391a1998f1e9ce001b199'
+              assert binding['identity']['model_nbytes']==768750198
+              assert binding['identity']['spec_sha256']=='689f4d80082070b08ff35920e37d7070e811dfb42a279909751f79e900c735e2'
+              assert binding['provenance']=='VERIFIED_OFFICIAL_IDENTITY' and binding['source_basis_verified'] is True
+              assert binding['parent_action_frame']=='MODEL_BODY_FRD'
+              assert binding['applied_action_frame']=='INTEGRATOR_BODY_FLU_WORLD_CCW' and binding['rotation_applied'] is True
+              assert binding['total_executed_model_calls'] is None and binding['episode_completion_inferred'] is False
+              assert binding['parent_trace_count']==binding['bridge_receipt_count']==12
+              assert len(binding['parent_trace'])==len(binding['bridge_receipts'])==len(report['frames'])==12
+              for index,(parent,bridge,frame) in enumerate(zip(binding['parent_trace'],binding['bridge_receipts'],report['frames'])):
+                  source,world=bridge['parent_model_action'],bridge['applied_world_action']
+                  assert parent['step_index']==index and bridge['step']==index+1
+                  assert source['curvature_1pm']==parent['curvature_1pm']
+                  assert world['curvature_1pm']==-source['curvature_1pm']
+                  assert world['acceleration_mps2']==source['acceleration_mps2']==parent['raw_longitudinal_accel_mps2']
+                  assert frame['desired_curvature_1pm']==world['curvature_1pm']
+                  assert frame['desired_acceleration_mps2']==world['acceleration_mps2']
+          print('PUBLIC_MDV3_BINDING_RECEIPTS_VERIFIED_NO_EXTRA_MODEL_CALLS')
+          PYCODE
       - name: Preserve both receipts and repeated-run result even on mismatch
         if: always()
         uses: actions/upload-artifact@v4

@@ -53,7 +53,7 @@ jobs:
         run: |
           xvfb-run -a python -m scripts.metadrive_optical_check \
             --model "$RUNNER_TEMP/models/f22b8b34-0983-4185-a453-a87b73798d61/16384/big_driving_supercombo.onnx" \
-            --spec model_specs/light-speed.json --steps 5 \
+            --spec model_specs/light-speed.json --model-action-frame model-frd --steps 5 \
             --out output/light-speed-native
           python - <<'PYCODE'
           import json
@@ -61,6 +61,12 @@ jobs:
           a=json.loads(Path('output/light-speed-native/optical_report.json').read_text())
           assert a['model_inference_steps']==5 and a['scoring_allowed'] is False
           assert a['real_vehicle_testing'] is False and a['cd210_fallback'] is False
+          binding=a['public_action_frame']
+          assert binding['provenance']=='USER_DECLARATION' and binding['source_basis_verified'] is False
+          assert binding['requested_frame']=='model-frd'
+          assert binding['parent_action_frame']=='MODEL_BODY_FRD'
+          assert binding['applied_action_frame']=='INTEGRATOR_BODY_FLU_WORLD_CCW' and binding['rotation_applied'] is True
+          assert binding['parent_trace_count']==binding['bridge_receipt_count']==len(a['records'])==5
           print('OFFICIAL_LIGHT_SPEED_NATIVE_INPUT_PASS',a['model_inference_steps'])
           PYCODE
       - name: Archive only non-scoring diagnostic receipts
