@@ -73,6 +73,7 @@ jobs:
         with:
           name: stage7-shader-cache-${{ matrix.seed }}-${{ matrix.scenario }}
           path: output/stage7-shader-cache/
+          include-hidden-files: true
           retention-days: 7
           if-no-files-found: warn
   independent-cache-aggregate:
