@@ -36,9 +36,9 @@
   current-SHA Codex review without findings/no open threads and clear independent
   eight-file review. Run 42968294569 completed 5/5 jobs with all five artifact
   API SHA/size/safe-path checks and exact four-case/final regeneration.
-- Current branch: `docs/stage7-opaque-results`, documenting that completed
-  source cohort. No assigned documentation PR is recorded; query latest
-  branch HEAD/PR rather than inventing a number.
+- Current branch: `docs/stage7-opaque-results`, open documentation PR #24.
+  This completed-v2 evidence append requires a new commit and refreshed
+  exact-HEAD CI/Codex review before merge; query the latest HEAD/status.
 - The new source passed **298 local tests without skips**. Two real production
   `both_unsorted` OFF processes passed native/bin/nonce controls and matched
   every source/warp/I420 field **10/10**, with fresh shared cache cold→populated.
@@ -56,6 +56,12 @@
   state-sorted I420 is 37/40, Both state-sorted 36/40; both unsorted arms again
   match every field 40/40, complete 4/4. Unit run **42969968794** passed.
   The native module SHA remains unchanged from tested source 983732f.
+- Local terminal-depth V2 is now complete: eight valid native processes,
+  unique PIDs/UUIDs/nonces, statuses zero and one truthful extraction per
+  custom receipt. All eight 8,388,608-byte atlas files are exact matches with
+  5,347 nonclear texels; raw/binary/clock/state/cache revalidation and exact
+  comparison passed. This bounded one-scene result is separate from the OFF
+  matrices and does not promote renderer equivalence or an official gate.
 
 The user authorized continued development and gated PR merges. Do not publish
 or reconfigure the cloud environment. API access now works with supplied
@@ -432,16 +438,41 @@ The fifth raw ERROR has zero extractions; its log/ledger are retained at
 `131857958a2ab1a551dbec7da9481c9d274d1da822bfb7c416d9a2a38d805801`.
 Do not restart it or hide the valid partial observations and failed entry.
 
-V2 is now running at `output/terminal-atlas-semantics-v2/`; no completed
-semantic outcome is recorded here. It uses public `native_pixel_clock` directly
-with the same capture arguments and custom repeat metadata. Root reviewed SHA
-`08f9a1da50b4dec790720bfcda0789dd074b2f09bed38f4dd58b845e304a7033`
-and independently passed nine CPU tests, including all eight configurations
-through real API validation stopped before provider/GL. Inspect the existing
-plan and execution ledger; do not launch another copy or automatic retry. The custom one-extraction depth protocol stays outside the OFF
-matrix schema; no comparison criterion is relaxed. Product source and both
-completed 32-process matrices are unaffected. No semantic outcome, model PASS
-or default sorting adoption is promoted.
+V2 at `output/terminal-atlas-semantics-v2/` is complete and independently
+revalidated: **8/8 valid native processes, all statuses zero, eight unique
+PIDs/UUIDs/nonces**, exact raw comparison and final cache rehashes. Frozen
+helper SHA is
+`08f9a1da50b4dec790720bfcda0789dd074b2f09bed38f4dd58b845e304a7033`;
+exact-helper review and nine CPU tests preceded native execution. The custom
+public-raw-API protocol truthfully records one extraction per process, outside
+the supported OFF schema. Terminal ON is after primary frames; saved GL state
+is restored, recorded GL errors are zero and frame counts before/after read
+and after provider return all remain 32.
+
+All eight 2048×1024 float32 atlases are **8,388,608 bytes**, **2,097,152 finite
+[0,1] texels**, **5,347 nonclear**, min **0.3487148582935333**, max **1.0**, with
+common SHA
+`e2fad785dc9037146323996699cb8c2a23e517bb99acce5557ee5957fe234881`.
+Within-condition, guard and sorting comparisons all have zero changed depth
+texels/max Delta 0, byte-exact. Primary within-condition I420 is linear sorted
+8/10, linear unsorted 10/10, Both sorted 7/10, Both unsorted 10/10. Linear→Both
+I420 is 7/10 and 8/10 for sorted repeats, 10/10 and 10/10 for unsorted; every
+source/warp field also matches 10/10 in both unsorted guard comparisons.
+Full five-field tables are in the ordering guide. This supports terminal depth
+preservation and no observed guard byte change in the unsorted pairs in one
+static 20261109 / left-right scene, not global shadow accuracy/photometric
+or renderer equivalence. ON/readback/order/cache/process effects remain limits.
+Direct glGetTexImage-only time is 0.920867–1.796358 ms, excluding other queries,
+setup/IO/whole terminal cost. The local probe observes Mesa 25.0.7-2+deb13u1,
+llvmpipe LLVM 19.1.7 / GL 4.5 compatibility, actual threading model `/` with empty
+cull/draw names; those are not OFF CI matrix GPU observations.
+
+The [prospective candidate plan](superpowers/plans/2026-11-11-mdv3-renderer-candidate.md)
+is next after independent review of this bounded acceptance. It must retain
+original `NativeWorldCamera` plus public `run_target_lane_episode`; the static
+trial hides visual ego and is not a substitute. No official weights/inference
+or candidate run has occurred. Candidate results must be labeled separately;
+original official MD-V3 remains prior 0/4 PASS (FAIL), defaults unchanged.
 Per-camera terrain view-data lifetime/LOD remains a separate unproven
 source-review hypothesis. The [feedback guide](STAGE7_SHADOW_FEEDBACK.md)
 records the worker pilot's full rates, evidence paths and causal limits.
@@ -492,14 +523,13 @@ standalone opaque matrix is complete: both unsorted static arms match 4/4,
 with state-sorted controls 3/4; no official moving-model PASS follows.
 Automatic main run 42969968780 is already complete and revalidated; do not
 start another CI/native repeat. Continue causal/rendering-semantic validation
-through the already running v2 external terminal-depth protocol. Its nine CPU
-checks and exact-helper SHA review passed; inspect its existing plan/ledger
-instead of restarting it. Preserve
-the stopped v1 ledger/four valid captures/fifth ERROR under
-`output/terminal-atlas-semantics/`; inspect protocol state before future
-continuation and avoid duplicate launches or automatic retries. This custom
-protocol remains outside the supported OFF schema, with no completed semantic
-outcome and no gate relaxation. The trace comparison is
+through the prospective renderer-candidate plan after independent review of
+the completed bounded depth acceptance and refreshed current-HEAD PR #24
+checks/review. V2 is complete; do not restart it. Preserve stopped v1's four
+valid captures/fifth ERROR and all eight v2 raw JSON/log/depth files. The next
+model diagnostic must use the original NativeWorldCamera/public episode path,
+keep candidate labels separate and relax no comparison. No official model has
+run yet; the historical original gate remains 0/4 FAIL. The trace comparison is
 complete only for its bounded input scope; preserve raw files and distinguish
 traced correlations from untraced causal behavior. Changed driver capability,
 incomplete GPU/full-state reconstruction and fixed process/cache order remain

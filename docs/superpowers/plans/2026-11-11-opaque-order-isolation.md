@@ -143,25 +143,36 @@ Cross-sorting I420 is 55/80 original and 48/80 Both. Full rates, firsts and
 all five archive SHA/byte rows are in the ordering guide. No new GPU-state
 observation, renderer equivalence, unique cause or model PASS is established.
 
-## Open semantic and model gates
+## Completed bounded terminal-depth check and open model gates
 
-- [ ] Complete causal/rendering-semantic validation. The first external
-  eight-process depth protocol stopped as failed/partial at entry 5,
-  Both-unsorted repeat 1, status 2 before capture because the reused feedback
-  trial rejects probe=True/repeat 1. Four valid native depth-read captures and
-  the fifth ERROR/zero-extraction receipt/log/ledger remain under
-  `output/terminal-atlas-semantics/`; these are not a completed cohort or
-  semantic-equivalence result. Old helper SHA
-  `131857958a2ab1a551dbec7da9481c9d274d1da822bfb7c416d9a2a38d805801`
-  remains immutable. V2 is running at `output/terminal-atlas-semantics-v2/`,
-  using public native_pixel_clock with the same capture arguments and custom
-  repeat metadata. Root exact-helper SHA review and nine CPU tests, including
-  all eight configurations stopped before provider/GL, passed. Reviewed SHA:
-  `08f9a1da50b4dec790720bfcda0789dd074b2f09bed38f4dd58b845e304a7033`. Retain
-  partial/failure evidence, avoid duplicate launches/automatic retries and
-  relax no comparison gate. This operations-only one-extraction protocol is
-  outside the supported OFF schema; product source/32-process matrices remain
-  unaffected.
-- [ ] Only after a validated repair, run the separate original moving MD-V3
-  strict 2-seed × 2-scene × 12-step × 2-process gate over source/warp/I420,
-  actions, recurrent states, pose and time. Require exact 4/4 before expansion.
+- [x] Complete the separate local terminal-depth V2 protocol. Eight native
+  processes are valid with zero statuses, unique PIDs/UUIDs/nonces and one
+  truthful extraction per custom receipt outside the supported OFF schema.
+  Root independently validated every raw/binary, positive controls, GL errors/
+  state restoration, frame count 32 through return, cache rehashes and exact
+  comparison. Frozen helper SHA
+  `08f9a1da50b4dec790720bfcda0789dd074b2f09bed38f4dd58b845e304a7033`
+  and nine CPU tests preceded the run. All eight 8,388,608-byte depth files
+  share SHA
+  `e2fad785dc9037146323996699cb8c2a23e517bb99acce5557ee5957fe234881`,
+  with 2,097,152 finite [0,1] texels, 5,347 nonclear, min 0.3487148582935333
+  and max 1.0. Every within/guard/sorting depth comparison is byte-exact, zero
+  changed texels/max Delta 0. Unsorted linear→Both primary comparisons also
+  match all five image fields 10/10 in both repeats. V1 remains failed/partial
+  with four valid captures and its fifth API-configuration ERROR preserved.
+- [ ] Establish broader semantic/causal claims as needed. One static 20261109 /
+  left-right terminal-ON/readback cohort supports bounded depth preservation,
+  not global physical shadow accuracy, photometric equivalence or unique cause.
+  Primary within-condition I420 was linear sorted 8/10, unsorted 10/10, Both
+  sorted 7/10, unsorted 10/10. Direct glGetTexImage-only 0.920867–1.796358 ms excludes
+  other queries/setup/IO/terminal cost; order/cache/readback remain confounds.
+  Full tables, driver/threading observations and evidence paths are in
+  [the ordering guide](../../STAGE7_OPAQUE_ORDER.md).
+- [ ] Follow the [prospective renderer-candidate plan](2026-11-11-mdv3-renderer-candidate.md)
+  only after independent bounded-depth acceptance and refreshed current-HEAD
+  PR #24 checks/review. Use original NativeWorldCamera and public
+  run_target_lane_episode, not the visual-ego-hiding static trial. No official
+  weights/inference/candidate run has occurred. Candidate exact 4/4 has a
+  separate explicit label; the historical original official gate remains
+  0/4 FAIL. Compare all source/warp/I420/action/named recurrent-state/pose/time
+  fields without tolerance; no default adoption or expansion from static data.

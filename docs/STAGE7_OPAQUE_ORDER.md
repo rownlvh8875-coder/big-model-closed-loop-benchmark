@@ -310,7 +310,7 @@ Raw JSON/logs/ledgers and independent `recomputed.json`, `totals.json`,
 | 42969968780 | 13833198284 | `237a22219d1bc6cb085f2306eb599f3569048623b66f32b4a19c20f771090f97` | 46009 |
 | 42969968780 | 13832873427 | `1c0a57f8b547c71cbd4559cd8e69e3d72ea837b7a15fbcb26b770bc87dd9f995` | 46473 |
 
-## Remaining semantic and official-model gates
+## Local terminal-depth validation and remaining model gates
 
 The balanced ordering experiment and its artifact gate are complete. Causal
 and rendering-semantic validation remain open; no default sort policy is
@@ -328,29 +328,100 @@ The old helper stays immutable at SHA256
 Preserve the four valid partial observations and the failure; do not restart
 that helper or promote a depth-hash/equivalence outcome from this partial set.
 
-**V2 is running**, with no completed semantic outcome recorded here, under
-`output/terminal-atlas-semantics-v2/`. It uses public `native_pixel_clock`
-directly with the same capture arguments and its own custom repeat metadata.
-Root reviewed helper SHA256
-`08f9a1da50b4dec790720bfcda0789dd074b2f09bed38f4dd58b845e304a7033`
-and independently passed all nine CPU tests, including all eight configurations
-through actual raw API checks, stopped before provider/GL. Inspect its existing
-plan/ledger before any continuation; do not start a duplicate or automatic retry.
-No comparison gate is relaxed.
-This is external operations work; product source and both completed 32-process
-OFF cohorts are unaffected. Inspect existing plan/ledger state before any
-future continuation, avoid duplicate launches/automatic retries and retain
-failures and partial receipts.
+### Completed V2 custom terminal-depth protocol
 
-Only a causally supported, rendering-semantics-validated repair can justify the
-separate original moving MD-V3 2 seeds × 2 S-curves × 12 steps × 2 processes
-gate over source/warped RGB, actual I420, actions, recurrent states, pose and
-time. No official weights or ONNX inference ran here; that gate remains the
-prior **0/4 PASS (FAIL)** and Stage 7 remains incomplete.
+V2 is complete: **8/8 valid native processes, all statuses zero**, with eight
+unique PIDs, UUIDs and request nonces. Root's independent revalidation checked
+every raw JSON/binary, depth range/statistic, original +2 m/task/clock controls,
+GL errors/restoration, source/helper identity and final cache file hashes;
+the complete comparison reproduced exactly. Retained evidence is under
+`output/terminal-atlas-semantics-v2/`: all eight JSON/log/float32 files,
+`plan.json`, `execution_ledger.json`, `comparison.json` and
+`independent_revalidation.json`.
+
+The frozen external helper SHA256 is
+`08f9a1da50b4dec790720bfcda0789dd074b2f09bed38f4dd58b845e304a7033`.
+Its exact-SHA review and nine CPU tests preceded this native run. It uses
+public `native_pixel_clock` directly with custom condition/repeat metadata;
+this is **not a standard feedback or 32-process OFF matrix cell**. Each process
+truthfully records **one GPU texture extraction**. The terminal ON observer
+runs only in the final +2 m control, after ten primary image pairs; callbacks
+are removed before one level-0 `glGetTexImage` depth read. Read-before,
+read-after and post-provider-return frame counts all remain **32**, with no
+later capture render, zero recorded GL errors and all saved readback GL state
+restored. Cache roots are private per condition, cold then populated; final
+manifests were rehashed after completion.
+
+Each terminal atlas has **2048×1024 float32 texels**, **8,388,608 bytes** and
+**2,097,152 finite values in [0,1]**, including **5,347 nonclear texels**;
+minimum is **0.3487148582935333**, maximum **1.0**. All eight raw binaries have
+SHA256
+`e2fad785dc9037146323996699cb8c2a23e517bb99acce5557ee5957fe234881`.
+Every within-condition, linear-to-Both guard and cross-sorting terminal-depth
+comparison is byte-exact, with **zero changed texels and maximum absolute
+Delta 0**. This is one terminal snapshot per process, not a depth trace of
+every primary frame.
+
+The following primary image SHA comparisons are separate from that terminal
+atlas result. Each row compares two independent terminal-ON processes in the
+same condition; cross-condition rows pair the same repeat index:
+
+| Terminal-ON condition | Primary source Road/Wide /10 | Primary warped Road/Wide /10 | Primary I420 /10 | I420 post-warmup /8 | First I420 | I420 different steps |
+| --- | --- | --- | --- | --- | --- | --- |
+| `linear_state_sorted` | 8/8 | 8/10 | 8 | 7 | 2 | 2, 7 |
+| `linear_unsorted` | 10/10 | 10/10 | 10 | 8 | none | none |
+| `both_state_sorted` | 7/8 | 7/10 | 7 | 5 | 4 | 4, 6, 8 |
+| `both_unsorted` | 10/10 | 10/10 | 10 | 8 | none | none |
+
+| Primary image comparison | Repeat index | Source Road/Wide /10 | Warped Road/Wide /10 | I420 /10 |
+| --- | --- | --- | --- | --- |
+| linear → Both, state_sorted | 0 | 7/7 | 7/10 | 7 |
+| linear → Both, state_sorted | 1 | 8/9 | 8/10 | 8 |
+| linear → Both, unsorted | 0 | 10/10 | 10/10 | 10 |
+| linear → Both, unsorted | 1 | 10/10 | 10/10 | 10 |
+| state-sorted → unsorted, linear | 0 | 7/10 | 7/10 | 7 |
+| state-sorted → unsorted, linear | 1 | 9/8 | 9/10 | 9 |
+| state-sorted → unsorted, both | 0 | 8/7 | 8/10 | 8 |
+| state-sorted → unsorted, both | 1 | 9/9 | 9/10 | 9 |
+
+Guard on/off comparisons with unsorted rendering match every primary source,
+warp and I420 field in both repeat-indexed pairs. Sorted primary images still
+vary despite identical terminal atlas bytes. This supports **terminal shadow-
+depth preservation and no observed guard-related primary byte change in these
+unsorted pairs**, confined to seed 20261109 / left-right. It establishes neither
+global physical shadow accuracy, photometric equivalence nor unique causality.
+Terminal observer/readback effects, fixed order, cache history, independent
+processes and one static scene limit generalization.
+
+Only direct `glGetTexImage` wall time spans **0.920867–1.796358 ms**; this
+excludes other queries, setup/restoration, file IO and the whole terminal
+intervention, and is not an unbiased total-overhead estimate. This local
+probe actually records Mesa **25.0.7-2+deb13u1**, llvmpipe **LLVM 19.1.7
+(256 bits)** and **GL 4.5 compatibility profile**. The observed threading model
+is **`/`**, with empty cull/draw names; it does not prove a native worker count.
+These are probe observations, not new GL observations from the OFF CI matrices.
+
+### Bounded acceptance and prospective candidate
+
+The completed depth protocol supports this bounded semantic acceptance; it
+does not establish a universal renderer-equivalence repair or change defaults.
+The [prospective MD-V3 renderer-candidate plan](superpowers/plans/2026-11-11-mdv3-renderer-candidate.md)
+is the next explicit experimental diagnostic after independent review of these
+findings. It must use the original **`NativeWorldCamera`** and public
+**`run_target_lane_episode`** path. The static feedback/raw-clock trial hides
+visual ego and cannot substitute for the original model campaign's visibility.
+Any candidate result must retain its candidate label and be reported separately
+from the historical original gate.
+
+No official weights, ONNX inference or candidate model run has executed in
+this evidence. The original official MD-V3 gate remains the prior **0/4 PASS
+(FAIL)**, and Stage 7 remains incomplete. PR #24's completed-depth append still
+requires a new documentation commit and refreshed exact-HEAD CI/Codex review
+before merge; no updated-HEAD completion is assumed here.
 
 Both opaque-order CI cohorts, source **42968294569** and automatic main
 **42969968780**, are complete and independently revalidated. Do not manually
-repeat either merely to rediscover its recorded result. The first semantic
-protocol is stopped/partial; v2 is running after its configuration regression
-and exact-helper review. Semantic completion/validation, the original model gate and
-default-policy adoption remain open.
+repeat either merely to rediscover its recorded result. V1 remains failed/
+partial and preserved; V2 is complete and independently revalidated. Broader
+semantic claims, the prospective candidate model test, the original model gate
+and default-policy adoption remain open.
