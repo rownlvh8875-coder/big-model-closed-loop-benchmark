@@ -150,3 +150,108 @@ The loaded installed tonemap.frag SHA256 was `835b7ccb2d88f79d3d92b2009e142ad884
 | 42822587924 | 13767174347 | `sha256:8c714433b6a9e91a17c339ecec26b53ffac05c4babad53df1b2e35fcb186e03e` |
 | 42822587924 | 13766944546 | `sha256:603ab98ee979f6e538cb551b57551f7ee485fdfca2d628c136e29450e7f6c0b7` |
 | 42822587924 | 13766364971 | `sha256:a6d243dbdb2592b72da278603afd7dcf76c49dd724108338bdaa6eed6c5b77ff` |
+
+## Verified camera-order / shared-tick isolation — PR #16
+
+[Run 42934781823](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42934781823), exact HEAD `696008be2c9fa9a91ca5c928fb8f2462fc36f496`: all four native jobs and independent aggregation succeeded. All five ZIPs were SHA256/size verified. The current comparator reconstructed all 32 raw receipts and matched the uploaded final summary exactly, with 32 unique UUIDs and eight unique PIDs in each same-runner scene. All nine current-HEAD checks and Codex review passed. [PR #16](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/pull/16) merged as `1d4a236cb85f4af3b94d6289b81aac89665f4c4e` after the Xvfb review finding was fixed and resolved.
+
+| Treatment | Source Road/Wide /40 | Warped Road/Wide /40 | I420 /40 | Post-warmup I420 /32 | Cases exact in every image field /4 |
+| --- | --- | --- | --- | --- | --- |
+| sequential_road_first | 33, 30 | 33, 34 | 27 | 20 | 0 |
+| sequential_wide_first | 40, 40 | 40, 40 | 40 | 32 | 4 |
+| paired_one_tick | 40, 40 | 40, 40 | 40 | 32 | 4 |
+| paired_two_ticks | 40, 40 | 40, 40 | 40 | 32 | 4 |
+
+| Seed | Scene | Original Road first difference | Original Wide first difference | Original I420 matches /10 |
+| --- | --- | --- | --- | --- |
+| 20261109 | s_curve_left_right | 5 | 8 | 6 |
+| 20261109 | s_curve_right_left | None | 5 | 9 |
+| 20261110 | s_curve_left_right | 5 | 6 | 8 |
+| 20261110 | s_curve_right_left | 2 | 3 | 4 |
+
+All other treatment/case combinations had no observed source-image difference in their ten-frame repeats. This is a static scene with no ONNX inference; it is **not** the official MD-V3 4/4 gate.
+
+**Supported inference:** Reducing the task tick count from two to one is not necessary for static equality in this cohort: wide-first sequential and paired-two-tick treatments both kept two ticks and matched all image fields. Order/mounting/timing remain possible factors.
+
+**Rejected overclaim:** Neither wide-first nor paired-two-tick is a universal deterministic fix. The earlier local two-repeat pilots had source/I420 mismatches under concurrent treatments on a different environment. CI vs local differences do not isolate CPU load, driver, dependencies or scheduling as a unique cause. No default capture path was changed.
+
+| Artifact ID | Name | ZIP SHA256 |
+| --- | --- | --- |
+| 13818805315 | stage7-capture-schedule-20261109-s_curve_right_left | `sha256:bc9fc63137448804e881f0ca192ec969d1335a4e1ddc752c34c1ea692afced08` |
+| 13818421156 | stage7-capture-schedule-20261110-s_curve_right_left | `sha256:0d59ddbd3b499f7600366907f894ff311456f4657395d1f07850f62e22cd7839` |
+| 13818292223 | stage7-capture-schedule-20261110-s_curve_left_right | `sha256:34c32c29124f4560e822f0e0ca3f44690392217f536d675031f8836db93d2b7b` |
+| 13818287640 | stage7-capture-schedule-fourscene-summary | `sha256:82f55992f442d39d25b893b3061ff6b89302bf41b6b75fc99256fc7812d29038` |
+| 13817484091 | stage7-capture-schedule-20261109-s_curve_left_right | `sha256:60e5bedf19fa9aea7404bf6a07aae82a8131478b7481cdcf09a783d2dab4dada` |
+
+The superseded initial matrix run 42933831409 was cancelled after the Xvfb status-handling review correction, and is not counted as a successful experiment. The validated launcher accepts cleanup-only status 5 only with a fresh complete native receipt; other failures remain failures. Regression tests include stale, absent and invalid output. Full local suite: 232 passed, no skips.
+
+Existing shared-capture regressions also succeeded on d6e7db0: raw pixel-clock 42933830938 (four cases /16 independent processes, all summaries regenerated), original PSSM cross-process 42933831083 (five jobs /32 raw receipts reaggregated with exact summary equality), and render causality 42933831001 (one Python process, six fresh-world conditions; verified ZIP). Their workflow and transitive capture/common-validator inputs are byte-identical at the corrected HEAD. These scope-matched regressions are distinct from the new exact-HEAD 32-process matrix.
+
+## Why first source differences can precede model-input differences
+
+For both left-right original MD-V3 pixel cases, the first differing pixels at step 2 were in Wide only. The actual first differing warped-Wide RGB and ONNX I420 feeds were both step 6; Road was byte-identical through all six retained steps.
+
+The implemented centered zero-rotation pinhole warp gives a conservative source footprint for Wide of approximately **x=[319.90,643.47], y=[205.47,367.94]**, including the full admitted ±1% focal interval and an extra source pixel on each side for bilinear support. All first step-2 changed pixels — (113,334) for seed 20261109, and (851,409), (936,436), (748,475) for seed 20261110 — lie outside that union. Thus those initial pixel differences cannot influence that step's model canvas under the validated projection contract. This agrees with the recorded identical warped-RGB and new_img SHA values.
+
+This does not prove that every later pre-step-6 source change is outside the crop. Seed 20261109 has an edge change at (642,357) at step 5, inside the conservative union, while the actual warped RGB remains equal. The actual measured lens matrix was not retained, so an exact boundary/rounding explanation for that edge pixel is not claimed. At step 6, interior source changes include (478,329) and (406,313), respectively, when the recorded warped RGB and I420 first differ. Crop/interpolation/input packing are separate boundaries; a source pixel difference is not automatically an ONNX input difference or a renderer-cause proof.
+
+## Additional local hypotheses
+
+Four sequential ABBA pilot processes compared PYTHONHASHSEED unset versus 0 at seed 20261109 / left-right, leaving original camera/PSSM/Chase paths untouched. Both two-process groups matched source Road, Wide and I420 **10/10**. The pilot did not discriminate the treatments and provides no evidence that fixing Python hashing repairs the renderer. No environment default was adopted.
+
+A fresh runtime probe reported MetaDrive config multi_thread_render=true and mode=Cull, but GraphicsEngine.getThreadingModel() returned `/` with empty cull/draw names. The local renderer identified as llvmpipe (LLVM 19.1.7, 256 bits), Mesa 25.0.7-2+deb13u1. This is one local engine-property observation, not a report for every graphics output or CI machine. Declared configuration alone does not establish actual render-thread execution; no threading-based root cause or repair is inferred.
+
+## External CPU-load pilot — negative/discriminating limit
+
+After the hash-seed pilot, two more separate original Road-first native
+processes used the same seed 20261109, left-right static scene, ten pairs,
+original PSSM/Chase and no ONNX, with three bounded external SHA-compute CPU
+workers. The workers were stopped and reaped after both captures. The local
+host had five available CPUs and sufficient memory; load was limited to three
+small workers and left the rendering process running normally.
+
+Both loaded runs still matched Road source RGB, Wide source RGB, warped RGB
+and I420 **10/10**. The quiet baseline pair from the earlier local pilot also
+matched 10/10. Median measured pair wall-time was 4.2663 / 4.5079 seconds in
+the quiet processes and 9.1843 / 9.6783 seconds under load. Thus the load
+intervention materially slowed capture but did not reproduce disagreement in
+this one case. Timing slowdown alone is not sufficient evidence of pixel
+mismatch here. This sequential, single-case pilot is not a randomized
+multi-scene or per-callback profiling-overhead experiment, so it cannot rule
+out CPU timing effects in other conditions. No runtime setting or rendering
+repair was adopted from it.
+
+Local receipts, process identities and manifest are in ignored
+`output/cpu-load-pilot/`; hash-seed receipts are in `output/hashseed-pilot/`.
+The main forensic evidence remains the original, independently SHA-verified
+CI artifacts listed above. Official uninstrumented MD-V3 strict repeatability
+remains the prior **0/4 PASS (FAIL)**. No new official ONNX trial or broader
+model scenario expansion was executed without a validated repair.
+
+## Automatically triggered merged-main repetition
+
+[Main run 42936911857](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/42936911857) on `1d4a236cb85f4af3b94d6289b81aac89665f4c4e` completed five successful jobs. All five ZIP sizes/digests, 32 UUIDs, eight PIDs per scene and exact reaggregation were independently verified. This was an automatic main-push cohort, not a manually repeated completed stage.
+
+| Treatment | Source Road/Wide /40 | Warped Road/Wide /40 | I420 /40 | Post-warmup I420 /32 |
+| --- | --- | --- | --- | --- |
+| sequential_road_first | 26, 29 | 26, 34 | 22 | 16 |
+| sequential_wide_first | 40, 40 | 40, 40 | 40 | 32 |
+| paired_one_tick | 40, 40 | 40, 40 | 40 | 32 |
+| paired_two_ticks | 40, 40 | 40, 40 | 40 | 32 |
+
+All three experimental modes again matched all image fields in 4/4 static cases; original Road-first matched 0/4. This repeats the CI association and the changing original mismatch rate, but the documented local counterexamples still prevent a universal fix or official model-gate claim.
+
+| Artifact ID | ZIP SHA256 |
+| --- | --- |
+| 13819771709 | `sha256:8683ee61440a0ab367912f5ee083306ef388d360ade6049108ed60676d73a2b0` |
+| 13819576086 | `sha256:4a983e3fcc80c9957fba39d82f5261e306b7990d73de75fec6e098d4b5876f7a` |
+| 13818764240 | `sha256:d1542bafc431fd694ef750182bd1699b10404739af9a6b903467594b9d964080` |
+| 13818528744 | `sha256:46782acfee65f1b5d7cc689143ee5bac398cc601f4bf3ceba958559ca82e0f6f` |
+| 13818154717 | `sha256:1e9ca7c13ef4eccd14dc9ab442b67edc4d5f45f7bc08635df68bff22ec7931f7` |
+
+A separate local scene-graph probe checked the PSSMCameraRig C++ fallback
+selection of `engine.camera.get_child(0)`. Before, during and after mounting
+both RGB sensors in WORLD space, the group contained the same original main
+`cam` Camera, with FOV [65.0,65.0]. This rules out an empty main-camera group
+or a switched first-child lens in that observed local probe; it is not a
+measurement for every CI/GPU state or a proof of the remaining renderer cause.

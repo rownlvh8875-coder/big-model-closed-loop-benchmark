@@ -1,95 +1,123 @@
-# Stage 7 continuation — camera-order versus task-count isolation
+# Stage 7 continuation — verified results, renderer cause still open
 
-## Completed PR #15 gate
+## Current checkpoint (2026-11-11)
 
-PR #15 was squash-merged after exact-HEAD CI, review and raw artifact verification.
-Tested PR HEAD: `f1dc88d476942de05f913cbc828a5fa5912e78a3`.
-Merged main commit: `0c678facbf72c269c2453f472e64d8192b70d675`.
-All nine check runs succeeded, Codex review had no findings and no unresolved
-review threads existed. Fresh local full suite: 216 passed, no skips.
+- PR #15 merged as `0c678facbf72c269c2453f472e64d8192b70d675` after verifying
+  exact HEAD `f1dc88d476942de05f913cbc828a5fa5912e78a3`, nine checks,
+  completed Codex review, no unresolved threads and both 32-process cohorts.
+- PR #16 merged as `1d4a236cb85f4af3b94d6289b81aac89665f4c4e` after verifying
+  exact HEAD `696008be2c9fa9a91ca5c928fb8f2462fc36f496`, nine checks,
+  completed Codex review, resolved Xvfb finding and all new 32 raw receipts.
+- Local full suite on the final source: **232 passed, no skips**. Five actual
+  native processes validated both new modes and the status-aware launcher.
+- Current documentation branch: `docs/stage7-verified-capture-findings`, based
+  on the PR #16 merged main. Query GitHub for the assigned PR and latest SHA;
+  do not assume a future PR number or reapply already merged changes.
 
-Both native runs 42927840424 and 42930483265 were downloaded and independently
-reaggregated: five SHA256-verified ZIPs and 32 distinct native processes each,
-exact equality with both uploaded summaries. The original MD-V3 pixel run
-42924910245 was also revalidated from all 96 retained raw images and its
-uploaded summary. Artifact IDs, digests, match counts and all 25 initial
-changed pixel RGB values are in `STAGE7_RGB_SCHEDULER_FINDINGS.md`.
+The user authorized continued development and gated PR merges. Do not publish
+or reconfigure the cloud environment. API access now works with supplied
+GitHub authentication; never inspect/print credentials. Use the existing
+isolated checkout, not a new worktree.
 
-Network API access now works after the user's configuration update. Do not
-reapply earlier configuration proposals or publish the cloud environment.
-GitHub operations use the supplied authentication; never print token values.
+## Evidence already acquired and independently revalidated
 
-## Current implementation
+Full details, first-difference RGB values, per-arm rates, artifact IDs, ZIP
+SHA256 digests, limitations and source references are in
+`STAGE7_RGB_SCHEDULER_FINDINGS.md`. Method: `STAGE7_CAPTURE_SCHEDULE_ISOLATION.md`.
 
-Branch: `investigation/stage7-camera-order-ticks`, created from the merged main
-commit above. `STAGE7_CAPTURE_SCHEDULE_ISOLATION.md` registers the design.
-Two new opt-in diagnostic capture modes reverse sensor order or use two shared
-mount task ticks. The original model camera, all original CLI/default modes,
-PSSM/Chase/igLoop callbacks, ONNX input/state/action and geometry are unchanged.
+- Original source-pixel run 42924910245: four native jobs + aggregate,
+  eight instrumented MD-V3 processes, 12 ONNX steps each, 96 retained source
+  RGB images re-decompressed/SHA-checked; uploaded summary exactly reproduced.
+- PSSM scheduling runs 42927840424 and 42930483265: 32 processes each,
+  all ten ZIPs verified and both full aggregates exactly reproduced.
+- Camera-order/tick isolation run 42934781823: 32 distinct UUIDs, eight
+  distinct same-runner PIDs per case; all five ZIPs and aggregate verified.
+  Original Road-first I420 27/40; Wide-first, paired-one and paired-two 40/40
+  each. Two ticks can match, so fewer ticks are not a necessary explanation.
+- Shared-capture regressions 42933830938, 42933831001, 42933831083 succeeded;
+  the relevant workflow/capture/validator inputs are identical at the final
+  source HEAD. Four raw pixel-clock summaries and the 32-process PSSM summary
+  were regenerated exactly; render-causality ZIP verified. Its six worlds
+  share one Python process, unlike the independent-process matrices.
+- Automatic merged-main order/tick run 42936911857 also completed and was
+  revalidated from all 32 receipts and five archive digests: original I420
+  22/40, each experimental mode 40/40. This is an independent CI repetition,
+  not proof of an original moving-model repair.
+- Historical callback runs 42819410983 and 42822587924: all sixteen archive
+  SHA/size checks and comparison regenerations succeeded; 96 profiled ticks
+  in each experiment put PSSM before Chase. CPU order is not GPU draw proof.
+- Superseded matrix 42933831409 was cancelled after the Xvfb workflow fix;
+  never count it as a passed experiment. Status 5 requires a fresh valid
+  native receipt; stale/missing/invalid output and native failures still fail.
 
-The new comparator rejects wrong modes, raw frame counts/order/gaps, missing
-or changed task registries, nonfinite/mismatched WORLD poses, missing positive
-controls, invalid SHA series, reused process IDs and stale summaries. Matching
-static images never become an original-model repeatability verdict.
+Local capture modes sometimes disagreed despite their CI counterparts
+matching. A local hash-seed pilot (unset vs 0, ABBA, two independent repeats
+per treatment, seed 20261109 left-right) matched 10/10 in both groups; it
+provided no discriminating repair evidence. The external CPU-load pilot also matched 10/10 in two independent loaded
+processes, despite median pair wall time increasing from about 4.3–4.5s to
+9.2–9.7s. It did not reproduce disagreement in this one case. Workers were
+stopped; preserve this limited negative result, not a universal timing claim.
+There is still no validated renderer repair or new official ONNX gate.
 
-New code local full suite: **232 passed**, no skips. Regression tests were run
-failing before implementation. Four separate local native processes validated both new modes at seed
-20261109 / s_curve_left_right. Wide-first repeats matched source Road/Wide
-8/10 and 5/10, I420 8/10; paired-two-tick repeats matched source Road/Wide
-8/10 and 8/10, I420 8/10. These local concurrent compatibility checks are
-not the controlled four-scene CI matrix and not a renderer repair.
+## What remains unresolved
 
-Read-only code review identified possible same-runner PID reuse across arms.
-The regression reproduced acceptance before a case-level uniqueness guard;
-it now passes, as does the full 232-test suite. Bare PID reuse across separate
-CI machines is allowed. No other review findings were identified. New GitHub
-CI, automated review and artifact reaggregation remain pending.
+**Original official MD-V3 strict gate remains the prior 0/4 PASS (FAIL).**
+There is no new causal renderer repair or new official ONNX run. Static
+experimental 4/4 equality must not replace the original moving-camera gate.
+No original camera default, PSSM/Chase callback, shader, model input bytes,
+recurrent states or actions were changed. Geometry, rendering determinism,
+real-sensor optical equivalence and driving performance remain separate.
 
-## Resume and finish this branch
+First Wide source changes at step 2 in both left-right pixel cases are outside
+all admitted model-warp support; actual warped RGB and I420 first differ at
+step 6. Later edge pixels require more care: the conservative footprint is
+not an exact sampling mask, and the measured historical lens matrix was not
+retained. Do not overclaim that every earlier source difference is cropped.
+
+## Resume without repeating completed experiments
 
 ```bash
 cd /workspace/big-model-closed-loop-benchmark
 source /workspace/.cloud-tools/onboarding/activate.sh
 git status --short
-git log -4 --oneline
-gh pr list --head investigation/stage7-camera-order-ticks
-gh run list --branch investigation/stage7-camera-order-ticks --limit 12
+git log -5 --oneline
+gh pr list --state all --head docs/stage7-verified-capture-findings
+gh run list --branch main --limit 12
 ```
 
-Use the existing isolated checkout; do not create a worktree or publish the
-environment. Native weights remain on ephemeral CI runners only. Keep image
-bytes, archives and generated outputs in ignored `output/`, never Git.
+First finish/check the documentation PR and its current-HEAD checks/review.
+Native jobs automatically triggered by merges are separate cohorts; query
+status before starting any manual repeat. Preserve cancelled/failed results.
 
-Required next checks: complete local native validation, read-only code review,
-full unit CI, the 32-process order/tick native workflow and its independently
-recomputed aggregate. Shared diagnostic code also triggers existing native
-regression workflows; investigate failures rather than bypassing them. Download
-ZIPs through GitHub API, verify their published sizes/SHA256 and safe member
-paths before extraction. Recompute all scene summaries from raw process JSON
-and compare to the published aggregate. Record the exact tested HEAD, Actions
-URLs, artifact IDs/digests and observed numbers. Merge only after required CI
-and automated review complete with no unresolved findings.
+Then continue cause isolation, retaining original PSSM/Chase and Road-first
+controls. Prioritize a reproducible CI vs local/runtime explanation: record
+actual graphics-engine/output configuration, driver, package versions,
+framebuffer properties and timing at noninterfering boundaries. Declared
+multi_thread_render=true/Cull alone is insufficient: one local runtime probe
+reported an engine threading model `/` with empty cull/draw names. Do not
+adopt thread, clock, order, warmup or GPU barrier changes from declarations
+or one matching sample. Any new readback/profiler/GPU probe needs an OFF
+control, independent processes and explicit overhead/interference reporting.
 
-## Scientific gates still open
+Use SHA-pinned official assets and only ephemeral-CI official MD-V3 weights.
+Keep raw data in CI artifacts/ignored `output/`, not Git. To revalidate a
+cohort: list its artifact API metadata, download ZIPs, compare SHA256 and
+sizes, inspect member paths, combine the four `seed-*/scene` subtrees, then
+run the experiment's aggregate script and require exact equality with the
+uploaded final summary. Current tools:
 
-Original uninstrumented official MD-V3 strict repeatability remains the prior
-**0/4 PASS (FAIL)**. No renderer repair or new official ONNX run has been made
-in this investigation. Camera geometry, rendering determinism, real-sensor
-optical equivalence and model performance are separate questions.
+```bash
+python -m scripts.compare_native_capture_schedule --mode aggregate \
+  --root output/verified-capture-root --out output/capture-recomputed.json
+python -m scripts.compare_native_pssm_cross_process --mode aggregate \
+  --root output/verified-pssm-root --out output/pssm-recomputed.json
+python -m scripts.aggregate_native_mdv3_rgb_pixel_matrix \
+  --root output/verified-original-pixels --out output/pixels-recomputed.json
+```
 
-Use the controlled order/tick result to choose the next hypothesis. Do not
-adopt paired capture, disable PSSM/Chase, reorder GPU passes, modify pixels or
-model state/actions as the default without causal and rendering-semantics
-validation. Only after an evidenced repair run the separate original
-2 seeds × 2 S-curves × 12 steps × 2 processes official MD-V3 exact gate. Expand
-scenarios and duration only after all original 4/4 conditions pass exactly.
-
-## Xvfb cleanup-status review correction
-
-The GitHub review identified the repository's known Xvfb cleanup exit status 5.
-The new `scripts/run_native_capture_trial.py` rejects preexisting output,
-launches one fresh native process, preserves other failure statuses, and
-accepts status 0 or cleanup-only status 5 only after the full newly generated
-native task/clock/pose/hash receipt validates. Missing or invalid receipts
-still fail. Five runner tests plus the full 232-test suite passed. New exact-
-HEAD native CI and automated review must be confirmed after this correction.
+Only a causally supported, rendering-semantics-validated repair can advance
+Task 4. Then execute the separate original 2 seeds × 2 S-curves × 12 steps ×
+2 independent processes strict MD-V3 gate (all source/warped RGB, actual I420,
+action, all recurrent-state digests, pose and virtual time must match). Only
+an exact 4/4 permits longer runs, more repeats, positions and ramp expansion.
+Do not claim Stage 7 completion while this gate is open.
