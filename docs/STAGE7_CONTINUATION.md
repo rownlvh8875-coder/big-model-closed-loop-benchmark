@@ -1,6 +1,18 @@
 # Stage 7 continuation — verified results, renderer cause still open
 
-## Current checkpoint (2026-11-12 — engine-clock boundary design and CPU contract)
+## Current checkpoint (2026-11-12 — engine-clock canary accepted, ABBA runtime rejection terminal)
+
+Branch diagnostic/engine-clock-boundaries /DraftPR40 stacked onPR39. New source70 runner/tests/workflow registered; old67/protected13/base43/all43oldworkflows/6oldrequest-acceptance files and histories fixed. Canary C30dcc5b4075dd2cfaf25b3e8d90e324386a278af/run43249493437/job131291074475/artifact13957438550 ZIP14608013B SHAe36df3c500c6a0f82a2a91f426d505ceb922f2cb47bd4a95e0d575a8455908c1 is root+fresh ACCEPTED_CANARY. One closed provider,6pairs12RAM12step24Texture readings48clock snapshots96clockgetter invocations; actual observer accessors144,not planned528. Raw12→actual lens canvases12 and6derivedI420 exact; no actual new graphfeed/model/ORT/extraGPUcalls. Startup/internal clock reads separate. All12 measured countvectors[0,1,1,1],Texture12..23 before=after; no GPUidentity/freshness/cause proof.
+
+Exactlysingleparent activation Aab0ef77ab318a0683bdddb896e1e9db6b79e79e6/run43251145868/job131296956425/artifact13958034562 ZIP5421B SHA0492e32c50f6549c635a150e76637b5e498ad84be3f2e364257b6ba4396dc656 terminalFAILED_OR_INCOMPLETE at acceptance,5.471793702s. Acceptedcontext/source70 match; only ImageVersion differs C20261111.370.1 vsA20261101.360.1. Gate rejects before case-loop; launches[],all7aggregatesnull,comparisons[]. No provider witness/raw/case/clockOFF-ON data; absence alone is not zero allocation. Fourcases and6comparisons notrun. Fresh ACCEPTED_AUTHENTIC_FAILURE SHA1d11979bc4a9fdd8c58e378918cab85f4f80e12752395587b0a0b5f228bf39a9 authenticates failure,not scientificABBA success. No retry/unusedallowance reuse/gateweakening.
+
+Each originalZIP downloaded/extractedonce; source70compactSHA6f8dcc2fc4aa7b1896a74d43ea4e030f89729b4b7851825cd0bbd444c6acab04. See docs/STAGE7_ENGINE_CLOCK_NATIVE.md and docs/evidence/STAGE7_ENGINE_CLOCK_{CANARY,CANARY_REVIEW,ABBA,ABBA_REVIEW,RUNTIME_REJECTION,AUDIT}.json. Local644tests7skip historical9bb9; fixture-only fix30dcc dual82modeCPU and actual sourceC644tests7skip passed. Source/activation basicCI8jobsPASS; initialbase-only2PASS, actualdiagnosticABBAFAILretained; finaldocs-onlyCI/reviewHEAD recordedinPR40. No localnative/Pandaengine/Xvfb/officialweights/Cloudpublication/mainmerge. Raw/controller/skillworkspace retained.
+
+FinalbroadreviewPASS77dc86aa53cbb94ec0d840f222a395811aa4b139/no findings;reviewJSONSHA4d8ea2b8269146e2a3710d1539becd0f02bf2072e4fe356749b70997bb84a09d. Laterreviewreceipt/audit/status-onlyHEAD andactualfinalbaselineCI recordedinPR40;no native replay.
+
+Next: provider-free design/engine-clock-runtime-contract branch to design immutable runtime/binary identity admission before a separately registered future experiment. Do NOT rerun consumed source/request/workflow, restoreoldcanary, reuse4unexecutedcases, loosenruntimegate or change defaults/ticks/barriers/shaders/converter. Existinghelperdesign is complete; do not reapply it. StrictFAIL/expandednotrun/geometry-optics-fullS/Stage7incomplete/mainofficial0/Cloudunpublished/Draftunmerged remain. Current evidence/review-only HEAD must never replace actual scientific sources C/A.
+
+## Previous checkpoint (2026-11-12 — engine-clock boundary design and CPU contract)
 
 Branch design/engine-clock-boundaries adds purestdlib observer/tests and inactive protocol design, stackedDraftonPR38. Currentnew native/provider/GPU/ORT/officialcalls0; no active scientificworkflow/request/admission, actualclocktrace/run/artifactnull. Producer65/protected13/baseline43/all43workflows/consumedrequests+acceptance unchanged. No oldstudy rerun/extraction/historycleanup/mainmerge/Cloudpublication.
 
