@@ -31,7 +31,7 @@ Task step 호출/반환도 wrapper event로 기록한다. 두 clock getter는 `e
 
 Road/Wide의 perceive/RAM과 taskMgr.step, 총5개 instance attribute의 원래 소유상태·객체를 복구한다. 인자와 반환객체를 그대로 전달하고 nested/orphan/wrong-thread/중복/순서/예산 위반은 원래 메서드의 추가 side effect 전에 막는다. 호출자가 예외를 잡아도 실패를 latch해 완료 trace로 승격하지 않는다. 내부 wrapper 변수명을 원래kwargs로 오인하던 문제는 회귀 테스트로 재현한 뒤 closure factory로 수정했다.
 
-실패 시 각메서드·getter의 attempted/returned, 이미읽은 count/time, bounded error와 복구오류를 남긴다. 원래 body예외는 primary로 유지하며 복구오류는 note와 trace에 기록한다. 예를 들어 RAM직전 getter가 실패하면 이미돌아온 step과 RAM미호출을 구분하고, RAM직후 getter가 실패하면 실제 RAM반환을 보존한다. 오류·불완전·위조·OFF값주입·복구미확정 trace는 성공 validator를 통과하지 못한다. JSON한도64KiB다.
+실패 시 각메서드·getter의 attempted/returned, 이미읽은 count/time, bounded error와 복구오류를 남긴다. 원래 body예외는 primary로 유지하며 복구오류는 note와 trace에 기록한다. 예를 들어 RAM직전 getter가 실패하면 이미돌아온 step과 RAM미호출을 구분하고, RAM직후 getter가 실패하면 실제 RAM반환을 보존한다. 오류·불완전·counter/event불일치변조·OFF값주입·복구미확정 trace는 성공 validator를 통과하지 못한다. JSON한도64KiB다.
 
 이 trace는 메모리에만 있다. 저장·hardkill복구를 입증하지 않으며, 미래 runner는 close후 또는 복구가능실패후의 bounded자료를 따로 보존해야 한다. 성공 validator의 이름도 `CPU_BOUNDARY_TRACE_VALIDATED`이며 synthetic fixture가 통과할 수 있다. Native admission이나 실제 provider 증명은 아니다.
 
@@ -57,7 +57,7 @@ Clock은 전체5case중3개ON,Texture는5case모두ON이다. 현재실제clock�
 
 ## D. 검증·소스 참조·기존 게이트
 
-새23개 CPU테스트는 ON/OFF·정확한호출수·4경계·객체/인자전달·own/inherited복구·부분설치·body/getter/RAM/복구오류·잡힌예외·중첩/orphan/중복/다른thread/순서/예산·owner변경·signed/nonmonotonic/finite값·위조trace·기존Texturewrapper composition을 검사한다. 초기22RED는 모듈부재 assertion이며 모든경계를 독립적으로 RED관찰했다고 주장하지 않는다. 별도kwargs회귀1개는 실제잘못된Road/Wide분기로 RED였고 수정후통과했다. Targeted23/0.159s,전체585/70.999s/선택7skip이 통과했다. Baseline generated SMALL graph는 별도다. 최종독립검토·기본CI는 Draft통합 게이트로 별도기록한다.
+새23개 CPU테스트는 ON/OFF·정확한호출수·4경계·객체/인자전달·own/inherited복구·부분설치·body/getter/RAM/복구오류·잡힌예외·중첩/orphan/중복/다른thread/순서/예산·owner변경·signed/nonmonotonic/finite값·위조trace·기존Texturewrapper composition을 검사한다. 초기22RED는 모듈부재 assertion이며 모든경계를 독립적으로 RED관찰했다고 주장하지 않는다. 별도kwargs회귀1개는 실제잘못된Road/Wide분기로 RED였고 수정후통과했다. Targeted23/0.159s,전체585/70.999s/선택7skip이 통과했다. Baseline generated SMALL graph는 별도다. Fresh 독립검토는 `a759ca236f17cddfd7593f7a045f972845881ee7`에서 지적0/PASS였고 targeted23개를0.193s에 별도로 통과시켰다. [독립검토](evidence/STAGE7_ENGINE_CLOCK_OBSERVER_REVIEW.json)의 SHA는 `4c89507395c20236cbff330e78433f96eeed165d466d8224ec4c4ca9826bbd6b`다. 그 뒤 문서metadata만 바꿨으며 code/test/비활성protocol은 동일하다. 최종기본CI는 별도 실제run/job으로 PR설명에 기록한다.
 
 [Source/검증 audit](evidence/STAGE7_ENGINE_CLOCK_OBSERVER_AUDIT.json)은 실제trace/native run/artifact를null로 두고6개 참조파일의SHA와검증로그해시를 보존한다. 로컬 Panda TaskManager 참조의 초기화는 manager소유clock을저장하고 step은 그clock을쓴다. 하지만 배포metadata/로컬파일은 실제CI설치파일·nativewrapper허용·GPUshader/engine clock동작의증명이 아니다. 파일만읽었으며 Panda엔진/clock객체를구성하지 않았다.
 
@@ -67,4 +67,4 @@ Clock은 전체5case중3개ON,Texture는5case모두ON이다. 현재실제clock�
 
 다음은 새runner·테스트·push전용workflow와 실행전admission을 구현하고 CPU/source review를 통과시키는 것이다. 그 뒤 실제새canary를1번 실행해 method assignment/API/clockowner/trace/raw/cleanup을 확인할 수 있다. 수락될 때만 직접자식ABBA를 등록한다. 실제결과 없이 frame진행·같은시간/GPUframe·observer neutrality·유일원인을 선언하지 않는다.
 
-Root 판단은 현재설계+CPU계약으로범위고정(실제clock증거는미래),TaskManager소유clock+5wrapper/4snapshot(CPU오버헤드·단일thread한계),미래Texture공통ON(이전OFF/원본비계측과다름),유한signed/비단조값을그대로기록(phase/freshness미확정),inline+최종독립검토(중간독립리뷰없음),기존source/기록/Cloud/main보존(디스크/Draft체인유지)이다. 이유와비용은audit/ledger에순서대로남겼다.
+Root 판단은 현재설계+CPU계약으로범위고정(실제clock증거는미래),TaskManager소유clock+5wrapper/4snapshot(CPU오버헤드·단일thread한계),미래Texture공통ON(이전OFF/원본비계측과다름),유한signed/비단조값을그대로기록(phase/freshness미확정),inline+최종독립검토(중간독립리뷰없음),기존source/기록/Cloud/main보존(디스크/Draft체인유지)이다. 이유와비용은audit/ledger에순서대로남겼다. 최종검토가 유보한 native호환성·GPU/인과·미래admission/persistence·CI바이너리·실제canary/게시 판단도 이 제한을 유지하며, baselineCI만 root가 실제수행해 확인한다. 이 다섯 범위결정과 비용도 audit/ledger에 보존했다.

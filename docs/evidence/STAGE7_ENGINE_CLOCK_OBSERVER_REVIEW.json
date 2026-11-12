@@ -1,0 +1,71 @@
+{
+  "schema": "engine-clock-boundaries-independent-review-v1",
+  "verdict": "PASS",
+  "reviewed_base": "4a0e7eac391f7c101d77293d10e76659a1390860",
+  "reviewed_head": "a759ca236f17cddfd7593f7a045f972845881ee7",
+  "scope": "Whole-branch observer design and synthetic CPU contract; readiness for stacked Draft on PR38 only",
+  "findings": [],
+  "graded_finding_counts": {
+    "critical": 0,
+    "important": 0,
+    "minor": 0
+  },
+  "independent_contract": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 /workspace/.cloud-tools/stage7/first-divergence-cpu-replay/bin/python -m unittest tests.test_engine_clock_boundaries -v",
+    "runs": 1,
+    "tests": 23,
+    "duration_s": 0.193,
+    "result": "OK",
+    "log": "independent-contract.log",
+    "log_sha256": "accbe1fcb223026ac8e41d5708abaae3b503279b17b66ac91f0bb1fefbcaa4c9"
+  },
+  "retained_evidence": {
+    "fullsuite": "585 tests / 70.999s / OK (skipped=7), inspected and hash-verified; not rerun",
+    "fullsuite_source": "8eef1e8c69708da4b72c4b26e4e88305fe696771",
+    "source_unchanged_since_fullsuite": true,
+    "targeted": "23 tests / 0.159s / OK, inspected and hash-verified",
+    "red_evidence": "Initial 22 missing-module assertions and separate forwarding regression error inspected and hash-verified",
+    "reference_files_hash_verified": 6,
+    "preserved_source_manifest_count": 65,
+    "preserved_workflow_manifest_count": 43
+  },
+  "assessment": [
+    "Factory closures forward all args/kwargs and preserve original return identities; wrappers add no original step or RAM calls.",
+    "Own attribute identity and inherited ownership are restored in reverse order, including partial installation; restoration failures remain explicit and ordinary primary exceptions survive with notes.",
+    "OFF bypasses TaskManager clock-owner/getter access; ON binds the TaskManager-owned clock and checks identity at each snapshot.",
+    "Guarded nested/orphan/duplicate/thread/budget paths latch failures before additional wrapped original invocations; failed or incomplete traces cannot validate as complete.",
+    "Exact schema, counts, event/snapshot association, boolean-versus-integer typing, signed64 count, finite float time, OFF nulls and finite JSON size cap are checked. Nonmonotonic and negative observations are intentionally accepted.",
+    "The unchanged marker wrapper composition encloses Texture/RAM/hash work. Future 70-source admission, one-plus-four providers and 528 total observer getters are explicit inactive proposals; actual trace/run/artifact remain null."
+  ],
+  "declined_to_judge": [
+    {
+      "item": "Native Panda/MetaDrive wrapper assignment and actual engine clock behavior",
+      "reason": "Synthetic CPU fixtures and local source references cannot establish live compatibility; no native execution authorized."
+    },
+    {
+      "item": "GPU frame identity/completion/freshness, callback phase, observer neutrality or unique renderer cause",
+      "reason": "Non-atomic Python clock snapshots and method boundaries do not prove these scientific claims."
+    },
+    {
+      "item": "Future runner admission, one-use control, runtime/source70 closure, cleanup and artifact persistence",
+      "reason": "Design only; runner/workflow/request and admission are not implemented."
+    },
+    {
+      "item": "Installed CI binary equality and final baseline CI",
+      "reason": "Local source hashes are not installed-CI attestation; root owns the subsequent baseline CI gate."
+    },
+    {
+      "item": "Native canary/ABBA acceptance, main merge and publication",
+      "reason": "No actual run or artifact exists in this step; review grants only technical readiness for a stacked Draft."
+    }
+  ],
+  "unchanged_gates": {
+    "scientific_strict": "FAIL",
+    "expanded_scenarios": "NOT_RUN",
+    "geometry_optics_fullS": "UNRESOLVED",
+    "stage7": "INCOMPLETE",
+    "main_official_calls": 0,
+    "cloud_published": false
+  },
+  "reviewer_mutations": "Only independent-contract.log, final-review.json and final-review.md in this review workspace; no source/Git/CI mutations, native runs, downloads, worktrees or subagents."
+}

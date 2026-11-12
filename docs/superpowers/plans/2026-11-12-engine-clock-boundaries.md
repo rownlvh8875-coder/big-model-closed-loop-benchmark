@@ -36,6 +36,6 @@ Consumes tested observer schema/counters. Creates docs/evidence/STAGE7_ENGINE_CL
 
 ### Task 3: Independent review and Draft integration
 
-- [ ] Commit code+design/results, package BASE..HEAD. One fresh strongest-model reviewer reads complete diff/spec/test evidence and executes targeted CPU contract tests independently; no duplicate fullsuite/native work.
-- [ ] Resolve material findings in one inline fix pass with targeted RED→GREEN and necessary fullsuite if code changes; record all findings/dispositions.
-- [ ] Add exact review receipt as metadata, push own branch once, create stacked DraftPR onPR38, verify actual baseline push/PR CI4jobs and no scientific/nativeworkflow. Final clean/source65/all43workflow/main/Draft/history checks. Keep reviewed code and post-review metadata heads separate.
+- [x] Commit code+design/results, package BASE..HEAD. One fresh strongest-model reviewer reads complete diff/spec/test evidence and executes targeted CPU contract tests independently; no duplicate fullsuite/native work.
+- [x] Resolve material findings in one inline fix pass with targeted RED→GREEN and necessary fullsuite if code changes; record all findings/dispositions.
+- [x] Add exact review receipt as metadata, push own branch once, create stacked DraftPR onPR38, verify actual baseline push/PR CI4jobs and no scientific/nativeworkflow. Final clean/source65/all43workflow/main/Draft/history checks. Keep reviewed code and post-review metadata heads separate.
