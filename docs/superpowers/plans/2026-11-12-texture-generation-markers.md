@@ -1,6 +1,6 @@
 # Texture generation markers Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:executing-plans sequentially; fresh whole-branch review before native source push.
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development for Task1 implementation/review, then root-owned sequential CI/evidence orchestration for Tasks2-3; fresh whole-branch review before native source push.
 
 **Goal:** Observe CPU Texture generation markers across a validated camera canary and a bounded OFF/ON ABBA study with zero official inference.
 
