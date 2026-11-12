@@ -11,7 +11,7 @@ import json
 from pathlib import Path
 
 from bigbench.native_model_campaign import CampaignSpec,run_native_episode
-from bigbench.onnx_policy import OnnxBigModelPolicy
+from bigbench.public_action_frame import create_public_onnx_policy, MODEL_ACTION_FRAMES, _write_binding_receipt
 from bigbench.reproducibility import compare_repeat_receipts
 
 
@@ -19,6 +19,7 @@ def main(argv=None) -> int:
     p=argparse.ArgumentParser(description='Native large ONNX same-model repeat experiment (SIM ONLY)')
     p.add_argument('--model',type=Path,required=True)
     p.add_argument('--spec',type=Path,required=True)
+    p.add_argument('--model-action-frame',choices=MODEL_ACTION_FRAMES,default='auto')
     p.add_argument('--scenario',default='s_curve_left_right',
                    choices=['s_curve_left_right','s_curve_right_left'])
     p.add_argument('--steps',type=int,default=12)
@@ -34,17 +35,22 @@ def main(argv=None) -> int:
     args.out.mkdir(parents=True,exist_ok=True)
     receipts=[]
     for i in range(2):
-        policy=OnnxBigModelPolicy(args.model,args.spec)
-        report=run_native_episode(policy,spec,camera_convergence=args.camera_convergence,
-                                  camera_pixel_tolerance=args.camera_pixel_tolerance,
-                                  camera_rgb_delta=args.camera_channel_delta)
+        binding=create_public_onnx_policy(args.model,args.spec,model_action_frame=args.model_action_frame)
+        policy=binding.policy
+        try:
+            report=run_native_episode(policy,spec,camera_convergence=args.camera_convergence,
+                                      camera_pixel_tolerance=args.camera_pixel_tolerance,
+                                      camera_rgb_delta=args.camera_channel_delta)
+        finally:
+            _write_binding_receipt(binding,args.out/f'run_{i}_action_frame_binding.json')
+        report['public_action_frame']=binding.receipt()
         report['run_index']=i
         report['model_inference_steps']=len(policy.trace)
         (args.out/f'run_{i}.json').write_text(
             json.dumps(report,ensure_ascii=False,indent=2,allow_nan=False)+'\n',
             encoding='utf-8')
         receipts.append(report)
-        del policy
+        del policy,binding
         gc.collect()
         print('STRICT_REPEAT_NATIVE_MODEL',i,report['status'],
               report['completed_steps'],'cam',report.get('strict_same_pose_convergence'),flush=True)

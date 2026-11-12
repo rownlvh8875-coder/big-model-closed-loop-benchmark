@@ -31,21 +31,29 @@ def main(argv=None) -> int:
     ap.add_argument('--source-height',type=int,default=604)
     ap.add_argument('--model',type=Path,default=None)
     ap.add_argument('--spec',type=Path,default=None)
+    ap.add_argument('--model-action-frame',choices=('auto','model-frd','world-flu'),default='auto')
     args=ap.parse_args(argv)
     if (args.model is None) != (args.spec is None):
         ap.error('--model and --spec must be supplied together')
     if not 1 <= args.steps <= 20:
         ap.error('--steps must be in 1..20 (bounded optical probe)')
-    provider=NativeMetaDriveProvider(seed=args.seed,source_width=args.source_width,
-                                     source_height=args.source_height)
-    rig=MetaDriveOpticalRig(provider,source_width=args.source_width,
-                             source_height=args.source_height)
+    if args.model is None and args.model_action_frame!='auto':
+        ap.error('--model-action-frame requires --model and --spec')
+    binding=None
+    if args.model is not None:
+        from bigbench.public_action_frame import create_public_onnx_policy, _write_binding_receipt
+        binding=create_public_onnx_policy(args.model,args.spec,model_action_frame=args.model_action_frame)
+    rig=None
     try:
+        provider=NativeMetaDriveProvider(seed=args.seed,source_width=args.source_width,
+                                         source_height=args.source_height)
+        rig=MetaDriveOpticalRig(provider,source_width=args.source_width,
+                                 source_height=args.source_height)
         args.out.mkdir(parents=True,exist_ok=True)
         if args.model is not None:
-            from bigbench.onnx_policy import OnnxBigModelPolicy
-            policy=OnnxBigModelPolicy(args.model,args.spec)
+            policy=binding.policy
             result,last=probe_model_with_metadrive(policy,rig,steps=args.steps)
+            result['public_action_frame']=binding.receipt()
             result['model_sha256']=policy.contract.sha256
             result['model_inference_steps']=len(policy.trace)
             with (args.out/'model_inference.csv').open('w',newline='',encoding='utf-8') as f:
@@ -91,7 +99,11 @@ def main(argv=None) -> int:
         print(json.dumps({k:v for k,v in result.items() if k not in ('camera_audit','records')},ensure_ascii=False,indent=2))
         return 0
     finally:
-        rig.close()
+        try:
+            if rig is not None:rig.close()
+        finally:
+            if binding is not None:
+                _write_binding_receipt(binding,args.out/'action_frame_binding.json')
 
 
 if __name__=='__main__':

@@ -23,8 +23,25 @@ jobs:
           python-version: '3.11'
       - name: Install virtual display dependencies
         run: |
-          sudo apt-get update
-          sudo apt-get install -y xvfb libgl1 libglu1-mesa libegl1 libx11-6
+          python - <<'PYCODE'
+          import json, os
+          names=('HTTP_PROXY','HTTPS_PROXY','http_proxy','https_proxy','NO_PROXY','no_proxy',
+                 'SSL_CERT_FILE','SSL_CERT_DIR','REQUESTS_CA_BUNDLE','CURL_CA_BUNDLE')
+          print('NATIVE_CI_INSTALL_ROUTE_PRESENCE',json.dumps({name:{'defined':name in os.environ,'nonempty':bool(os.environ.get(name))} for name in names}))
+          print('NATIVE_CI_SCOPED_HELPER_PRESENT',os.access('/usr/local/bin/cloud-agent-packages',os.X_OK))
+          PYCODE
+          # Retain explicit lowercase settings, including intentionally empty ones.
+          if [[ ! -v http_proxy && -v HTTP_PROXY ]]; then export http_proxy="$HTTP_PROXY"; fi
+          if [[ ! -v https_proxy && -v HTTPS_PROXY ]]; then export https_proxy="$HTTPS_PROXY"; fi
+          if [[ ! -v no_proxy && -v NO_PROXY ]]; then export no_proxy="$NO_PROXY"; fi
+          native_ci_sudo=(sudo -n --preserve-env=HTTP_PROXY,HTTPS_PROXY,http_proxy,https_proxy,NO_PROXY,no_proxy,SSL_CERT_FILE,SSL_CERT_DIR,REQUESTS_CA_BUNDLE,CURL_CA_BUNDLE)
+          if [[ -x /usr/local/bin/cloud-agent-packages ]]; then
+            "${native_ci_sudo[@]}" /usr/local/bin/cloud-agent-packages update
+            "${native_ci_sudo[@]}" /usr/local/bin/cloud-agent-packages install xvfb libgl1 libglu1-mesa libegl1 libx11-6
+          else
+            "${native_ci_sudo[@]}" apt-get -o APT::Update::Error-Mode=any update
+            "${native_ci_sudo[@]}" apt-get install -y xvfb libgl1 libglu1-mesa libegl1 libx11-6
+          fi
       - name: Install pinned MetaDrive simulator and optical dependencies
         run: python -m pip install 'numpy>=1.26,<3' 'opencv-python-headless>=4.8' 'metadrive-simulator==0.4.3'
       - name: Prepare official MetaDrive-0.4.3 rendering assets (134 MB)
@@ -40,6 +57,7 @@ jobs:
           import metadrive
           archive = Path('/tmp/metadrive-asset/assets.zip')
           assert archive.stat().st_size == 134074203, 'official MetaDrive asset size mismatch'
+          assert hashlib.sha256(archive.read_bytes()).hexdigest() == '4f0da9f5143a1258131c5b55f77bdf170c0f9bce8a9f18dd41b3678df779eac9', 'official MetaDrive asset SHA256 mismatch'
           package = Path(metadrive.__file__).resolve().parent
           with ZipFile(archive) as z:
               for f in z.namelist():

@@ -1,24 +1,296 @@
 # Stage 7 continuation — verified results, renderer cause still open
 
-## Current checkpoint (2026-11-11)
+## Current checkpoint (2026-11-12 — bounded study failed; transport repair next)
 
-Latest integrated result: PR #31 merged as `cb1e7bfe698fe3bc3df9540eeb7dc2557e671300` from
+The registered study source `081a4c61a68e5cb00a89f1c9998e66c657a16657` ran once:
+[43128201225](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43128201225),
+job130885546863. Actual API/raw/source/runtime gate and SHA-pinned official
+download succeeded; first A0 permit write failed with BrokenPipeError.
+Basic CI4jobs succeeded; diagnostic1job failed. **Do not rerun/extend it.**
+
+Artifact13904515781 is5057ZIPbytes/SHA256
+`49b1b6994fc5fdd125245df71ea23cf337d63f1f231cd1501ce11535b43906c0`,
+only study.json. ParentPID2877/launcherPID-PGID3004/cleanup exit−15;
+child PID/UUID unknown. Model calls null with0..4bounds, native providers
+unattested0..1; no trial/log/image/state/feed/output data. Root plus independent
+163-check raw/API/source review accepts authentic failed evidence and rejects
+successful-study validation. No24-call/6-native completion or first difference
+can be asserted. Failure review JSON SHA256
+`c20090d596c7022b55c84e5e56d6c1901c23b8b63e4bb6ac9d356a468ce821c5`.
+
+The early logging gap is confirmed in producer source: sink is constructed only
+after permit write. Matching released Ubuntu xvfb2:21.1.22-1ubuntu1.3 wrapper
+clobbers/closesFD3. A CPU-only shell/Python reproduction failsFD3 and succeedsFD10;
+actual CI pipeFD/original stderr are absent, so unique cause/exact zero calls
+remain unproven. See [diagnostic report](STAGE7_FIRST_DIVERGENCE_DIAGNOSTIC.md)
+and [machine evidence](evidence/STAGE7_FIRST_DIVERGENCE_FAILED_STUDY.json).
+
+Next: isolated `fix/first-divergence-launch-transport` repair plus a CI-only
+transport probe with **zero MetaDrive/policy/official-weight/model execution**.
+Preserve private one-use capability, use a wrapper-safe descriptor, and capture
+bounded diagnostics before permit writes. Production tests/reviews and actual
+Xvfb IPC probe precede any future separately registered model protocol.
+The existing model workflow's exact feature-branch filter excludes that branch.
+Never silently reactivate the consumed request or alter scientific thresholds.
+
+Accepted camera source70cf8adeeaf088097da18da50810230d04092bbb/run43125348683/
+artifact13902402855 remains valid:12members/8PNGs/4warps/2I420/58sourcepaths,
+2acceptedpairs/5captures/10sensorreads exclstartup/1nativePython/0models0ORT,
+all5sourceCIjobsPASS. Pure replay requires recorded NumPy2.4.6/OpenCV5.0.0.93;
+oldOpenCV4.11 warps differ, while savedcanvas I420 is exact across CPU controls.
+That replay effect does not explain original same-runtime native failure.
+
+PR33 remains DRAFT/unmerged, source-a4 strictFAIL still blocks merge,
+main official calls remain0, and Stage7 is incomplete. No Cloud publication.
+
+## Historical checkpoint (2026-11-11)
+
+
+**Historical phase2 executed; strict native failure blocks integration.**
+Actual source `a4f13887b70208470d7fb6edaf507281d8a4551f` completes **65 calls/
+65 rows**: MD-V348,LS2 12,LS1 5, with six complete policy/world reports across
+3 native benchmark commands. All65 trace/bridge records and3 API-bound ZIPs/
+19 members revalidate. Fresh independent raw review agrees, SHA256
+`bdb395f95ca3675ce5ff795af6542350c1700b0effdbc1aa0f9036b63f87a85e`.
+Valid artifacts/bindings do **not** mean repeatability PASS.
+
+Strict43103222937 FAILS/exit1 after both12-step episodes complete, preserving
+all5 artifact files; its subsequent receipt-verification CI step is skipped.
+Paired43103223193 and LS143103223022 succeed technically, but paired MD-V3 A/A
+also records mismatch. Source basic43103223109/43103463642 pass4 jobs; total
+source jobs6SUCCESS/1FAIL/0pending. Current-a4 Codex completes without findings/
+open threads. Fresh whole18-file source review is CLEAR (22 targeted tests/no
+skips,13 pins), SHA256
+`df35f2dbdb195c4f721694f748bcb66d0b86035e9cd6e462610eef8496fce978`.
+
+First differing Wide canvas/input sum/action/postpose is strictstep2 and
+pairedA/Astep4, at equal preceding recorded integrator poses. Road first differs
+atsteps3/5. Strict packed-input sums48403935/48403952 and paired48623340/48623323
+prove different image bytes; ±17 is not a changed-pixel count. Both strict
+same-pose experiments finish12 samples/0 failures, maximum attempts3/6 and
+accepted changed pixels15/8 within unchanged6/16/10 limits. Cross-world equality
+still fails. Raw964/tensor bytes, pixel coordinates, named states and GPU/task/
+camera matrices are unavailable; a unique renderer/model microcause is unknown.
+
+Full runs, identities, ZIP IDs/digests and chronology are in the
+[source regression report](STAGE7_PUBLIC_ACTION_FRAME_REGRESSION.md).
+Proof root: `output/stage7-public-action-frame/phase2-resume/`; source manifest
+SHA2563d234923ab8ebc7a6f3aa12dc9e60f863c0b5162197ef37772c0e5459175d6d5.
+There are no per-repeat OS/PID/UUID/session receipts. Only LS1 exports5 CSV rows;
+repeat/pair use JSON traces. All weights remain ephemeral-CI-only.
+
+**STOP:** PR33 stays DRAFT/open/unmerged; conditional main actual calls **0**.
+No automatic model/native retry, threshold relaxation, candidate default,
+converter/pixel/action change or Cloud publication/reconfiguration. A later
+results-doc HEAD and green basic/Codex checks cannot wash away source-a4 FAIL.
+Next work is a separately bounded/reviewed first-divergence capture design with
+actual accepted buffers/feed identity, unobserved control and observer CPU-cost
+accounting before any new run. Preserve completed cohorts/failures. Original
+0/4FAIL, corrected expansion12/12, V3 geometry/physical-optics/full-S and Stage7
+incomplete remain unchanged. Query later doc HEAD/checks separately; these
+observed native results belong only to actual source-a4.
+
+### Earlier recovery and pre-push checkpoints (historical; source65 now executed)
+
+**Recovery at21:19Z:** existing canary43095045331 and source basic43094912450
+now have actual successful final conclusions. Artifact13890257448 downloaded
+successfully at720494 bytes and API SHA256
+`bc01d9ea6e1ddc382f5b1866c3e82e13157082965e39b7021a7ea4dd0040306c`;
+one fresh safe extraction has5 files. The reviewed external revalidator passes
+all4 PNG CRC/decoded hashes, distinct two-pose Road/Wide canvases and unchanged
+I420 plumbing `[2,6,128,256] uint8`; model calls0, errors0. Audit SHA256 is
+`0d41d1f70e511211af9407b481dfabeeed7502a42dca5e60711cc99b03d45037`.
+This is root raw-evidence acceptance, with fresh independent raw/phase2 review
+CLEAR before push. It is pinhole/I420 plumbing,
+not physical optics, original repeatability or model integration acceptance.
+No raw964×604 PNGs, PID/UUID or runtime-session receipt is present.
+
+Remote canary HEAD remains **b56226c1e824099f5335adf5559e2dc1ee238a06**;
+the reader's declared/current source is199f3a89622aac8a1a3150b8582b37a2f855e60a.
+Root proved their complete Git difference is docs-only, preserving actual
+canary/runtime identities. Reader manifest SHA256 is
+`296a7543cbc5d78ed3bc8bd8d914d86c69d44d8f1eff077421eba8121cd1cc46`.
+Keep these different bindings; do not label the canary an exact199f3a8 run.
+Current199f3a8 basic runs43098894145/43098887439 both passed (four jobs);
+older c79dcdf queued runs are separate superseded doc checks, not native results.
+
+**Phase2 prepared:** only the dependency prefixes in model-camera-repeat,
+two-model-native and light-speed-native workflows copy the accepted optical
+bootstrap exactly (SHA256432772a69fe7b888b80fe5842708653b85253ba4d036d939889f20fa8cbb2175).
+Remaining steps, triggers, permissions, timeouts, parameters and strict/native
+gates are byte/structure unchanged. Six CPU route fixtures,5 YAML/22 Bash/
+11 Python-block checks,3 receipt fixtures and5 rejected mutations pass;
+all13 diagnostic/ModelSpec pins are unchanged. Fresh independent canary/diff
+review is CLEAR (reviewed five-file manifest SHA256
+4864d4f7a12577aaae1efd01873a59be6064bbee8c7180cc37ce678520b28ad3).
+One root push triggers only basic CI plus
+3 native model jobs:3 benchmark commands,6 worlds/sessions, at most65 planned
+model calls. Actual new model calls remain0 at this pre-push checkpoint.
+No second optical, connectivity diagnostic, dormant or completed cohort replay.
+
+If a later actual merge is accepted, the **full PR diff**, separately from the
+phase2 source diff, automatically triggers4 native jobs (including the no-model
+optical job), one metadata-only diagnostic and basic CI. Conditional main budget
+is65 model calls/6 sessions/7 worlds/4 benchmark commands; it is unexecuted.
+Do not change any trigger to hide those automatic checks. Any strict/native
+failure keeps PR33 open. Current-HEAD Codex/applicable CI/raw acceptance/fresh
+review are still required; service recovery does not waive them. No local
+weights, Cloud publication/reconfiguration, renderer or converter change.
+See the [phase2 checkpoint](superpowers/plans/2026-11-11-public-onnx-action-frame.md#recovered-canary-and-concrete-phase2-resume).
+
+### Earlier blocked checkpoints (preserved; recovery above supersedes the wait)
+
+Independent CPU work while GitHub integration is blocked: the
+[same-canvas RGB conversion measurement](STAGE7_OFFLINE_I420_CONVERSION_AUDIT.md)
+is root-accepted after fresh independent source review and byte-exact full replay.
+All128 preserved V3 warped PNGs match their frozen encoded/decoded identities;
+they contain42 unique RGB hashes. Existing OpenCV I420 versus isolated pinned
+simulator NV12 arithmetic differs in23,227,322/25,165,824 logical plane values
+(92.29708512624105%), MAE1.9289422035217285, max75. Unique-hash weighting gives
+7,557,462/8,257,536 differences, MAE1.93740723625062. Nine CPU tests pass at
+root and independently; replay analysis SHA256 is
+`937a1986a88f92ffbd7c9af810cf38d476603aef63333be8a3ccf60df7e32026`.
+Independent review SHA256 is
+`d74065f0221d72a3990ebfef6738087e4662cf93033169750e075931690200b1`.
+This adds **zero native/model/camera/GPU calls** and changes no converter,
+pixels, ModelSpec or diagnostic source. It does not reproduce official full
+SIM/production ISP/warp order or establish a preferred converter/tracking cause.
+The report retains exact source/data/analysis hashes, all128 records and the
+descriptive U44→119 maximum example. Completed historical cohorts are preserved.
+
+Latest service-boundary investigation: at20:35Z metadata returned HTTP200,
+while ZIP/job-log responses returned502 with GitHub request IDs and request
+quota remaining. At20:37Z a separate inherited-proxy stdlib HTTP client with
+redirect following disabled received502 **before any download URL was issued**;
+no redirect was followed or alternate endpoint invented. ZIP request ID is
+`3ECC:590FF:C02F55:25DB36A:6AF4D1EC`; job-log ID
+`59C5:29BEC6:C83D09:275F971:6AF4D1EC`. Both return the same32-byte Server Error
+body/hash already below. These are two further read-only ZIP attempts after the
+two historical attempts, not new native experiments. Evidence is retained in
+`ci-connectivity-resume/service-probe-20261111T203521Z/` and
+`redirect-boundary-20261111T203700Z/`. The underlying service/path cause remains
+unknown; no source/network/Cloud setting fix is inferred. At20:49Z existing
+canary43095045331/basic43094912450 remain final-state pending, and c79dcdf doc
+runs43096508693/43096503264 remain queued. No native/model/review retry occurred.
+
+This independent result's root-owned commit updates only four docs
+(new plan/report, this continuation and integration cross-reference), after
+fresh review. Query that commit's actual HEAD/basic CI separately. No failed,
+queued or unverified gate below is waived; PR #33 remains DRAFT/open/unmerged.
+
+Latest executable source is `b56226c1e824099f5335adf5559e2dc1ee238a06`.
+PR #33 remains **DRAFT/open/unmerged**. This resume added only one standalone
+APT-metadata diagnostic and two docs; all38 existing workflows, application
+code, nine diagnostic pins and four ModelSpecs stayed byte-identical to9a1c64c.
+Independent review found a zero-exit/helper-warning false positive; actual
+workflow RED then fix/GREEN and all11 fixtures passed, also independently.
+
+**APT prerequisite restored and accepted:** [run43094912715](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43094912715),
+job130781135579, passed strict direct APT with exit0/no warnings and fetched4881kB.
+Root and independent reviewer verified artifact13890461693,1238 ZIP bytes/two
+safe members, SHA256
+`67e38e39730c738ea40e5b7c80c2daeef27da3abde0d6bb0fee1b6dac3a8f5f2`.
+Receipt/log match source/run; elapsed3.259253483s, model/native0/0. Image is
+ubuntu26/20261101.186.1; all ten proxy/CA-presence pairs remain false and helper
+absent. Thus proxy absence was not sufficient to cause the earlier failures;
+their underlying cause is still unresolved. No Cloud/network setting changed.
+
+**One subsequent no-model canary already dispatched:**
+[run43095045331](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43095045331)
+at the same b56226c source, job130781567056. APT/install/assets/native command
+and upload/post steps report success; API top-level run/job remain
+`in_progress`/null at the2026-11-11T20:26Z observation. This is **not accepted
+native integration**. Its listed artifact13890257448 is720494 bytes, expected
+SHA256 `bc01d9ea6e1ddc382f5b1866c3e82e13157082965e39b7021a7ea4dd0040306c`.
+Two read-only download attempts returned HTTP502 and32-byte error bodies,
+SHA256 `66f94f66a4663eb2a43d552b17609a828166862b7c5dba75b425301de772f858`;
+these are **not ZIPs or validated artifacts**. No extraction/image/I420 audit
+occurred. Both job-log requests also returned502. Do not rerun the canary to
+replace missing evidence. Model work remains0; phase2 has not been applied.
+
+Basic PR run43094923732 passed both jobs. Push run43094912450 has one successful
+job and synthetic-unit still top-level `in_progress`, despite every listed step
+including Complete job reporting success. Final basic acceptance stays pending.
+Current-source Codex request comment6806401717 failed with "We couldn't complete
+this review" (summary6798423567 at20:25:30Z). Its state flags report findings/
+unresolved=true, but GraphQL has0 actual unresolved threads and no substantive
+code finding was returned. A failed review is a blocked gate, never a clean
+review. The old9a1c64c clean review cannot be relabeled for b56226c or later docs.
+
+**Resume from existing evidence, without another native/model dispatch:** query
+these existing run/job states and retry only artifact transport after service
+recovery. Verify API ZIP digest/size/safe members, all PNGs/I420 report and actual
+canary success, then fresh review of the concrete phase2 diff before its bounded
+65-call budget. Preserve failed HTTP bodies outside the canonical ZIP path.
+Current-HEAD basic CI/Codex and fresh review remain required before merge.
+The two-doc handoff after b56226c has its own queried HEAD/checks; it changes no
+runtime/workflow bytes and does not relabel b56226c's canary or review. Exact
+commands/evidence are in the [resume plan](superpowers/plans/2026-11-11-public-onnx-action-frame.md#actual-connectivity-restored-canary-evidence-still-blocked).
+Stage7 is incomplete; original0/4, expansion12/12, geometry/optics/full-S limits
+below are unchanged. No Cloud publication/reconfiguration or local weights.
+
+## Earlier checkpoint (through9a1c64c; preserved historical evidence)
+
+Latest results documentation: PR #32 merged as
+`48e79a7ed5aedf6daa5a62ff68d2225af7955ef1`, from source
+`8e847da753d2c50af8ec5b6cbdba40bce774ed3d`, after four successful checks,
+current-HEAD Codex without findings/no unresolved threads and fresh independent
+ten-document review. Final documentation diff SHA256 is
+`08f2f4093aa78d2862b3efaf8ec3b8eaf50fd7df54a7a1e7c4f29ba3f47e2f09`;
+post-merge unit run43032709728 passed. Current branch is
+`fix/public-onnx-action-frame`, based on that merge. Latest verified public
+source is `585bc12a67d98fa71550fe5c8a2d7a60dc2f15e3`; [PR #33](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/pull/33) is **OPEN/unmerged**.
+
+Public code/CPU verification is complete:22 targeted tests,383 full tests
+without skips (root42.540s), all nine diagnostic pins plus four ModelSpecs
+unchanged. Two fresh whole15-file reviews cleared first source
+`5e39ef8201a0eaa1e04668fd7d3ba7467fb7f49a`; the four-file two-phase canary
+amendment also cleared review (diff SHA256
+`0d00ca2981770a08085191e476cd8ff7bd19e2b498e4fb83cbf16da7dcaf93df`).
+This is code/CPU acceptance, **not native integration acceptance**.
+
+The first source5e39ef8 had four APT/DNS setup failures in runs43038230330,
+43038230299,43038230881 and43038230538. Later source585bc12's separate
+no-model canary [43043845849](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43043845849)
+also failed **APT update/exit100 before installation**, with Pip/assets/native
+steps skipped and zero artifacts. Across these **five failed CI jobs**, new
+public native benchmark invocations/model calls are **0/0**. The65-call model
+budget was never executed. Retained failure ledger/log hashes are in the
+[integration checkpoint](STAGE7_INTEGRATION_VERIFICATION.md#public-action-frame-bootstrap-remains-blocked).
+
+Source585bc12's four basic checks passed in runs43043854636/43043845622;
+its completed current-source Codex review has no findings/no open threads
+([comment6798423567](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/pull/33#issuecomment-6798423567)). Its actual canary recorded
+all ten proxy/CA-variable presence/nonempty booleans false and scoped-helper
+availability false. Ubuntu azure/archive/security mirror name resolution
+failed; the underlying cause remains unresolved. Proxy absence is an
+observation, not proof of causation, and selected Cloud status is not evidence
+about the remote CI runner.
+
+**STOP:** no more model jobs, phase2 application or canary retry until the
+actual external CI runner's Ubuntu APT connectivity is restored and verified.
+PR #33 must remain open; no failed native gate is waived. No Cloud publication/
+reconfiguration, DNS/mirror/hosts/CA/trust change or gate relaxation occurred
+or is authorized. The next root-owned commit changes only these three docs,
+with basic CI/Codex only; its actual HEAD must be queried after creation.
+Do not relabel the failed585bc12 canary as that later documentation HEAD.
+
+Corrected-expansion source: PR #31 merged as `cb1e7bfe698fe3bc3df9540eeb7dc2557e671300` from
 source `48bf4309cabe9d2e6e8b2fef952b9fb6f945b28a` after17 checks, Codex without
 findings/no open threads and clear fresh final evidence review. Official
 [run43012480495](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43012480495) independently passes12/12 corrected-world
 repeatability cases:24 fresh processes,1472 actual inferences/completed rows,
 736 exact pairs and zero unknown cases; all13 archives/74 members/2048184 ZIP
 bytes are verified. camera028/native_ramps/longer160 each pass4/4. Main unit
-run43027151371 passed. Current documentation branch is
-`docs/stage7-world-frame-expansion-results`; no results-doc PR number is presumed.
+run43027151371 passed. The completed results are preserved by PR #32 above.
 
 Longer160 remains a bounded prefix: all eight processes visit2/3 route lanes
 and have5.95397990659991–7.634517723985033m maximum lateral deviation. This is
 not correct sustained tracking/full-S or a driving score. The [expansion guide](STAGE7_MDV3_WORLD_FRAME_EXPANSION.md)
 contains all12 cases, exact timings, truth summaries and13 full archive hashes.
 The [integration record](STAGE7_INTEGRATION_VERIFICATION.md#rgb-and-i420-source-contract-audit)
-retains the source-only RGB/I420 distinctions, five generic live constructor
-seams still using legacy MD-V3 actions, and candidate-paint V2's16 startup
+retains the source-only RGB/I420 distinctions, the historical five-site legacy
+inventory now migrated by this CPU-verified branch, and candidate-paint V2's16 startup
 failures (native0/RGB0). V3 is execution-complete:16 normal native processes,
 128 reads; root's strict replay is exact and fresh full independent evidence
 review is CLEAR/root-accepted. Original scene gates pass2/4/candidate1/4, with62 PASS/66 inconclusive
@@ -27,20 +299,29 @@ focused candidates. No whole-cohort geometry PASS is established. Original
 0/4 FAIL, default non-adoption, physical-optics limits and Stage7 incompleteness
 remain unchanged. No accepted heavy cohort needs a manual repeat.
 
-Next-session order is fixed; no new heavy/model run is implied:
+Resume order is fixed; no parameters need to be re-decided:
 
-1. V3's single schedule/root strict reaggregation and fresh full independent
-   evidence review are complete/CLEAR. Preserve V2 and every V3 failed/
-   inconclusive control; no retry or mask/pose/threshold change is implied.
-2. Actual V3 outcomes are recorded here; complete fresh final documentation
-   review and the current documentation PR's applicable CI/Codex/no open threads
-   and actual merge. No future PR number or geometry PASS is presumed.
-3. Only after that merge, implement the reviewed [public ONNX action-frame plan](superpowers/plans/2026-11-11-public-onnx-action-frame.md)
-   with CPU tests: five constructor seams/four unpinned files plus one new
-   module/test/guide. Keep all nine diagnostic pins unchanged; no model/native
-   execution, completed heavy-cohort repeat or renderer-default promotion.
-4. Physical optics, renderer-wide semantics and sustained tracking remain
-   separate unresolved work; the binding fix is not their validation.
+1. Query the latest PR #33/HEAD/status using the [read-only commands in the public plan](superpowers/plans/2026-11-11-public-onnx-action-frame.md#failed-canary-and-current-external-blocker).
+   Keep it OPEN/unmerged while native integration is blocked;585bc12 is the
+   verified failed-canary source, not a future documentation commit SHA.
+2. Obtain verified restoration of the **actual external CI runner's Ubuntu APT
+   route**. Do not infer it from selected Cloud connectivity or invent a proxy,
+   endpoint, resolver, mirror or trust configuration. No native/model retry or
+   phase2 edit precedes this external prerequisite.
+3. Only after that restoration, run **one fresh no-model optical canary** on
+   the then-current ref with the reviewed unchanged parameters. Verify actual
+   run HEAD, successful native exit and raw artifacts against API SHA/bytes/
+   safe paths, PNGs and I420 plumbing report. Missing/failed evidence keeps
+   the blocker; it does not authorize an automatic retry.
+4. Only after accepted canary evidence, freshly review the concrete phase2
+   diff applying the same bootstrap to the three model workflows, then the
+   bounded source regression of **at most65 planned model calls**. Preserve
+   strict failures, default renderer and every existing gate. Conditional main
+   work remains a separate unexecuted budget after accepted actual merge.
+   Any native/strict failure keeps PR #33 open; no dormant/heavy matrix replay.
+5. Preserve completed PR #31/PR #32/V3 data and V2 failures. Physical optics,
+   renderer-wide semantics, full-S/sustained tracking, model ranking and
+   Stage7 completion remain separate open work. No local official weights.
 
 - PR #15 merged as `0c678facbf72c269c2453f472e64d8192b70d675` after verifying
   exact HEAD `f1dc88d476942de05f913cbc828a5fa5912e78a3`, nine checks,

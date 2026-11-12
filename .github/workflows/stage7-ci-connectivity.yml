@@ -1,0 +1,86 @@
+name: Stage7 runner APT connectivity (NO models or rendering)
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/stage7-ci-connectivity.yml'
+permissions:
+  contents: read
+jobs:
+  apt-connectivity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check provided route and strictly refresh public package metadata
+        shell: bash
+        run: |
+          python3 - <<'PYCODE'
+          import datetime, hashlib, json, os, pathlib, re, subprocess, time
+
+          names = ('HTTP_PROXY', 'HTTPS_PROXY', 'http_proxy', 'https_proxy',
+                   'NO_PROXY', 'no_proxy', 'SSL_CERT_FILE', 'SSL_CERT_DIR',
+                   'REQUESTS_CA_BUNDLE', 'CURL_CA_BUNDLE')
+          output = pathlib.Path('output/stage7-ci-connectivity')
+          output.mkdir(parents=True, exist_ok=True)
+          env = dict(os.environ)
+          presence = {n: {'defined': n in env, 'nonempty': bool(env.get(n))} for n in names}
+          for lower, upper in (('http_proxy', 'HTTP_PROXY'), ('https_proxy', 'HTTPS_PROXY'),
+                               ('no_proxy', 'NO_PROXY')):
+              if lower not in env and upper in env:
+                  env[lower] = env[upper]
+          helper = '/usr/local/bin/cloud-agent-packages'
+          scoped = os.access(helper, os.X_OK)
+          command = ['timeout', '--signal=TERM', '--kill-after=10s', '180s',
+                     'sudo', '-n', '--preserve-env=' + ','.join(names)]
+          command += ([helper, 'update'] if scoped else
+                      ['apt-get', '-o', 'APT::Update::Error-Mode=any',
+                       '-o', 'Acquire::Retries=0', '-o', 'Acquire::http::Timeout=20',
+                       '-o', 'Acquire::https::Timeout=20', 'update'])
+          receipt = {
+              'protocol': 'stage7-ci-connectivity-v1',
+              'source_commit': env['GITHUB_SHA'], 'run_id': env['GITHUB_RUN_ID'],
+              'run_attempt': env['GITHUB_RUN_ATTEMPT'],
+              'image_os': env.get('ImageOS'), 'image_version': env.get('ImageVersion'),
+              'route_presence': presence, 'scoped_helper_present': scoped,
+              'route': 'provided-scoped-helper' if scoped else 'strict-apt-get',
+              'started_utc': datetime.datetime.now(datetime.timezone.utc).isoformat(),
+              'status': 'running', 'apt_update_exit_code': None,
+              'native_benchmark_invocations': 0, 'model_calls': 0,
+          }
+          receipt_path = output / 'receipt.json'
+          receipt_path.write_text(json.dumps(receipt, indent=2) + '\n')
+          started = time.monotonic()
+          try:
+              result = subprocess.run(command, env=env, stdout=subprocess.PIPE,
+                                      stderr=subprocess.STDOUT, text=True)
+              code, log = result.returncode, result.stdout
+          except OSError as error:
+              code, log = 127, type(error).__name__
+          # No environment values or URL credentials belong in diagnostic evidence.
+          for secret in sorted({env[n] for n in names if env.get(n)}, key=len, reverse=True):
+              log = log.replace(secret, '[REDACTED_ROUTE_VALUE]')
+          log = re.sub(r'(?i)(https?://)[^/\s@]+@', r'\1[REDACTED_USERINFO]@', log)
+          # Some provided helpers return zero after APT used stale indexes.
+          clean = re.search(r'(?im)^\s*(?:W:|E:|Err:)|Failed to fetch|'
+                            r'Some index files failed|Temporary failure resolving', log) is None
+          verified = code == 0 and clean
+          log_bytes = log.encode('utf-8')
+          (output / 'apt-update.log').write_bytes(log_bytes)
+          receipt.update(
+              status='success' if verified else 'failure', apt_update_exit_code=code,
+              apt_output_clean=clean, connectivity_verified=verified,
+              timed_out=code in (124, 137), elapsed_seconds=time.monotonic() - started,
+              finished_utc=datetime.datetime.now(datetime.timezone.utc).isoformat(),
+              sanitized_log_sha256=hashlib.sha256(log_bytes).hexdigest(),
+          )
+          receipt_path.write_text(json.dumps(receipt, indent=2) + '\n')
+          print(json.dumps(receipt, sort_keys=True))
+          raise SystemExit(0 if verified else 1)
+          PYCODE
+      - name: Preserve connectivity evidence even after failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: stage7-ci-connectivity
+          path: output/stage7-ci-connectivity/
+          if-no-files-found: error

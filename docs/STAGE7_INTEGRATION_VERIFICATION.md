@@ -1,5 +1,15 @@
 # Stage 7 integration evidence and remaining validation
 
+Latest public-entrypoint evidence is the [source native regression](STAGE7_PUBLIC_ACTION_FRAME_REGRESSION.md):
+source `a4f13887b70208470d7fb6edaf507281d8a4551f` completes65 actual calls/six
+reports with valid frame bindings, but strict MD-V3 repeatability FAILS. Native
+jobs2SUCCESS/1FAIL, basic4SUCCESS; source Codex/fresh whole-branch review pass
+and raw replay is independent/exact. These do not waive the failed gate.
+First Wide/packed-input divergence is strictstep2/pairedA/Astep4 at equal prior
+recorded integrator poses. PR33 stays DRAFT/open/unmerged, main calls0. No new
+renderer/converter/default or model-quality/physical-optics/full-S acceptance.
+Earlier source-specific checkpoints below remain preserved historical evidence.
+
 Historical virtual intrinsics, RGB/I420 plumbing, sampled world-to-paint alignment and native target-lane arithmetic have verified passes. The experimental `feedback_both` plus opaque unsorted type 1 official MD-V3 candidate also has two separate twelve-step **4/4 legacy repeatability** cohorts. The confirmed missing FRD→FLU applied-action rotation means these legacy gates do not establish motion validity. Separate opt-in corrected source/main cohorts each pass4/4; corrected expansion43012480495 independently passes12/12 and PR #31 is merged. Its longer trajectories still depart from the lane and do not complete the full S. The historical **unmodified original gate remains 0/4 FAIL**. None of these results establishes physical comma optics, global renderer equivalence, driving rank, default adoption or Stage 7 completion.
 
 This document reconciles older guide status with retained evidence. A fresh independent read-only review is clear for all seven selected ZIPs, the 202-file manifest, frozen source identities and raw image/math recomputation. The reviewed findings and evidence bytes remain immutable. No future documentation PR number is presumed.
@@ -244,6 +254,11 @@ none is an observer-OFF causal overhead experiment.
 
 ## Generic live action consumers remain legacy
 
+**Historical inventory:** this section describes the accepted PR #32 results
+checkpoint at `48e79a7ed5aedf6daa5a62ff68d2225af7955ef1`. The subsequent public
+binding implementation checkpoint below is separate; no old diagnostic is
+retrofitted or relabeled by that change.
+
 The corrected diagnostic factory uses `WorldFramePolicyAdapter` once; this
 does not migrate the canonical generic constructor paths. Source inspection
 found **five live constructor seams across four files** still applying the
@@ -264,6 +279,92 @@ sign flip. Frozen-RGB/audited historical diagnostics remain legacy by design.
 This documents a public API limit, not implementation of the prospective public
 composition factory or authorization to change the nine pinned dependencies.
 Renderer selection/defaults remain unchanged.
+
+## Public action-frame implementation checkpoint
+
+The subsequent `fix/public-onnx-action-frame` branch starts from accepted
+results merge `48e79a7ed5aedf6daa5a62ff68d2225af7955ef1`. Its new
+`bigbench/public_action_frame.py` composes the existing adapter at the five
+unpinned constructor sites above. Actual model/spec files are verified before
+construction. Exact MD-V3 resolves automatically to model FRD; unknown models
+require a declaration and retain `USER_DECLARATION` provenance. Both comparison
+inputs preflight before any constructor/provider/episode, and construction
+rechecks current files. Parent CSV/raw/state/image values remain unchanged;
+separate receipts describe applied world actions. All nine frozen diagnostic
+sources and all four ModelSpecs remain byte-identical.
+
+Meaningful RED tests preceded implementation and the size-only identity and
+model-lifetime fixes. After both fixes,22 targeted CPU tests and383 full tests
+pass without skips; fresh seven-file code/API review is CLEAR. The lifetime
+regression uses weak references to prove the previous policy is released
+before the next constructor, not an RSS measurement. Failed episodes retain
+full committed parent/bridge evidence and error sidecars; total attempted
+model calls remain unknown when they cannot be established. See the
+[public guide](PUBLIC_ONNX_ACTION_FRAME.md) for compatibility and trace semantics.
+
+The initial CPU-only integration assumption was corrected before pushing:
+existing caller paths trigger native workflows. The [accepted CI amendment](superpowers/plans/2026-11-11-public-onnx-action-frame.md#ci-integration-amendment-accepted-before-first-push)
+preserves triggers/tolerances/failure gates and declares65 model calls
+(48 MD-V3,12 Light Speed2,5 Light Speed), with a separate conditional main
+budget65 only after accepted merge. **Neither budget is observed execution.**
+Two fresh whole15-file reviews cleared first source5e39ef8; root's full CPU
+run passed383 tests without skips in42.540s, with22 targeted tests and all13
+source/spec pins unchanged. Native integration remains unverified and blocked.
+
+## Public action-frame bootstrap remains blocked
+
+[PR #33](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/pull/33) is **OPEN/unmerged** on
+`fix/public-onnx-action-frame`, based on accepted PR #32 main
+`48e79a7ed5aedf6daa5a62ff68d2225af7955ef1`. Latest verified source is
+`585bc12a67d98fa71550fe5c8a2d7a60dc2f15e3`. Its basic runs43043854636/43043845622 passed
+four checks; current-source Codex completed without findings/no open threads
+([comment6798423567](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/pull/33#issuecomment-6798423567)). The later documentation
+commit is not yet identified here; query the actual HEAD, never relabel the
+failed source canary as an exact-HEAD documentation run.
+
+| Frozen source | Actual CI run(s) | Observed failure | Actual new public native/model calls; artifacts |
+|---|---|---|---|
+| `5e39ef8201a0eaa1e04668fd7d3ba7467fb7f49a` | 43038230330,43038230299,43038230881,43038230538 | Four APT dependency-install failures/exit100, Ubuntu mirror name resolution; later assets/weights/benchmarks skipped | 0/0;0 across all four jobs |
+| `585bc12a67d98fa71550fe5c8a2d7a60dc2f15e3` | [43043845849](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43043845849) | Separate no-model canary fails APT update/exit100 before install; Pip/assets/native skipped | 0/0;0 |
+
+The four-file two-phase bootstrap review cleared diff SHA256
+`0d00ca2981770a08085191e476cd8ff7bd19e2b498e4fb83cbf16da7dcaf93df`;
+that review and green basic CI do not make the failed canary a native success.
+Across all five jobs, **new public model/native execution is zero**;65 stays
+only a planned ceiling. There are no canary PNG/I420 artifacts to validate or
+claim as an optical, action-frame or model result.
+
+The585bc12 remote runner recorded `defined=false, nonempty=false` for all ten
+names: `HTTP_PROXY`, `HTTPS_PROXY`, `http_proxy`, `https_proxy`, `NO_PROXY`,
+`no_proxy`, `SSL_CERT_FILE`, `SSL_CERT_DIR`, `REQUESTS_CA_BUNDLE`,
+`CURL_CA_BUNDLE`; `scoped_helper_available=false`. Logs establish failures to
+resolve azure/archive/security Ubuntu mirrors. The underlying network cause
+is **UNRESOLVED**; absent proxy/CA variables are not proven causal. The first
+5e39 jobs did not retain equivalent route-presence evidence. Selected Cloud
+executor connectivity/proxy/status is not a remote-runner observation.
+
+| Retained receipt under `output/stage7-public-action-frame/` | SHA256 |
+|---|---|
+| `failed-bootstrap-5e39.json` | `87faad6d97b7f5c77d446a4f8784031dea2034aef3fe6df2ad3d4d66e698d0d3` |
+| `run-43043845849-failed.log` | `bd80567a12de5833ab9ddf257bfd94047457671cdcff232a7630c723a0c491ea` |
+| `failed-canary-585bc12.json` | `353bafe40e366796bbc2cc842c66814de8b734d31d0b3ee19ab9eaa6882e6f79` |
+
+The predeclared stop rule now applies: **no model-job retry, no phase2
+application and no canary retry until verified external runner Ubuntu APT
+connectivity restoration**. Then only one fresh no-model canary on the actual
+current ref may precede raw artifact/API SHA/byte/PNG/I420 acceptance and a
+fresh concrete phase2 review. The [public plan](superpowers/plans/2026-11-11-public-onnx-action-frame.md#failed-canary-and-current-external-blocker)
+records exact resume/query steps. PR #33 cannot merge while native checks
+fail. Cloud publication/reconfiguration, DNS/mirror/hosts/CA/trust changes and
+gate/default relaxation remain outside scope; none was used by the amendment.
+
+This **new public zero-work checkpoint** is separate from immutable PR #31
+run43012480495 (24 processes/1472 actual inferences/12/12 repeatability) and
+PR #32's accepted V3 static study (16 native processes,128 raw plus128 warped
+PNGs; original2/4/candidate1/4 scene gates). V3 had no model calls and did not
+confirm all-scene geometry. Longer corrected trajectories did not finish the
+full S or demonstrate sustained tracking. Historical original0/4 FAIL and
+Stage7's incomplete status remain unchanged.
 
 ## Candidate-specific paint: V2 startup failure and completed V3 observations
 
@@ -392,12 +493,34 @@ the OPS helper/test live outside product source under
 `/workspace/.cloud-tools/stage7/`. The table distinguishes actual file-byte
 SHA from the canonical protocol identity. Original core/projection/sampler/
 opaque/native-capture source bindings are recorded in the protocol, unchanged.
+The V2/V3 OPS sources, V3 test source and completed review/replay/preflight
+receipts also have byte-preserving copies in
+`output/stage7-candidate-paint-holdout-v3-analysis/provenance/`. Its ten-file
+copy manifest SHA256 is
+`7d6b837df44cfa11eae33a9ceb9b70a60373ea6bfe019d7d6fe484003eb65f45`.
+These later copies sit outside the frozen451-file study dataset; they add no
+captures, processes or inference. The expansion's independent review likewise
+has a copy at
+`output/stage7-remote-evidence/run-43012480495/independent-full-review.json`,
+with its original SHA256 unchanged.
 No source/ModelSpec/default, old geometry archive or strict gate was changed.
 The source-only RGB/I420 boundaries below, global renderer semantics, physical
 optics, sustained tracking, official-model quality and Stage7 completion remain
 separate limits; this static study adds no official inference or model score.
 
 ## RGB and I420 source-contract audit
+
+Later, separate CPU evidence is documented in the
+[same-canvas conversion measurement](STAGE7_OFFLINE_I420_CONVERSION_AUDIT.md).
+It executes only three isolated source functions on128 existing512×256 V3
+canvases (42 unique RGB hashes), then compares logical planes with the unchanged
+local adapter. The saved-read difference is23,227,322/25,165,824 values,
+MAE1.9289422035217285/max75; nine CPU tests pass at root and independently, and
+fresh full replay matches analysis bytes exactly/root-accepted with CLEAR review.
+There are0 new native/model/camera/GPU calls and no converter changes.
+This extends the source-only observation numerically, without reproducing the
+official full publisher/pre-warp NV12/production ISP or explaining tracking.
+The original source-only checkpoint below remains historical and unchanged.
 
 **Source-only result:** the six-plane logical packing and CPU RGB orientation match, but the pinned official **simulator surrogate** RGB→NV12 converter and OpenCV's I420 reference use different coefficients/normalization and chroma filters. This does **not** make valid I420 dtype/shape/packing wrong, establish production ISP fidelity, or explain tracking error. No converter, remote module, model, vehicle/controller/plant or GL code was imported/executed; no pixels/spec/core changed.
 
