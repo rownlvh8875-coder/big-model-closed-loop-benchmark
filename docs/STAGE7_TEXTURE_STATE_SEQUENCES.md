@@ -56,7 +56,7 @@ ON 내부의 같은pose 연속 캡처에서는 raw가 같은데 표식 값이 �
 
 ## D. 검증과 기존 게이트
 
-새18테스트는 SHA분류/첫상태보존/stride·입력불변/signed delta/union cap/OFF null/같은표식의다른RGB/다른표식의같은RGB/signed special값/ZIP변조·unsafe·중복·symlink·추가멤버/출력보존/runtime거부를 검사한다. 초기18개RED는 구현 모듈 부재의 assertion이며 각경계가 독립적으로 RED였다는 주장은 아니다. Targeted18/0.014s와 전체562/72.382s/선택7skip이 통과했다. 새 분석의 native/official/ORT/GPU calls는0이며 baseline generated SMALL graph는 별도다. 최종 source/evidence 독립검토와 기본CI는 Draft 통합 게이트로 별도 기록한다.
+새18테스트는 SHA분류/첫상태보존/stride·입력불변/signed delta/union cap/OFF null/같은표식의다른RGB/다른표식의같은RGB/signed special값/ZIP변조·unsafe·중복·symlink·추가멤버/출력보존/runtime거부를 검사한다. 초기18개RED는 구현 모듈 부재의 assertion이며 각경계가 독립적으로 RED였다는 주장은 아니다. Targeted18/0.014s와 전체562/72.382s/선택7skip이 통과했다. 새 분석의 native/official/ORT/GPU calls는0이며 baseline generated SMALL graph는 별도다. Fresh source/evidence 독립검토가 `a8b42d852266007351ead7de6135b7e5581d228c`에서 지적0/PASS였고 실제 독립CPU재실행 보고서도42,204B/SHA `ae4b1a570d18d47128384bee21947a25cb51db1fd6c109d3430d61d778e77a7a`로 정확히 같았다. [독립검토](evidence/STAGE7_TEXTURE_STATE_SEQUENCES_REVIEW.json)의 SHA는 `8dba9255b03c4b4b45763f7b083b82cae6a99fcaf645fdce5b11969e8a415e10`다. 이후 integration metadata 문서만 추가했으며 code/test/report/figure 바이트는 동일하다. 최종 기본CI는 Draft 통합 게이트로 별도 확인하고 PR 설명에 실제run/job을 기록한다.
 
 공식 strict **FAIL**,확대시나리오 미실행,원래renderer0/4·역사적candidate12/12·geometry original2/4/candidate1/4·물리optics/productionISP/fullS미검증·Stage7미완료는 그대로다. Main공식호출0/Cloud미게시/기존Draft 미병합이다. 원래실패요청이나 수락된 native/model 실험을 재실행하지 않았다.
 
@@ -64,7 +64,7 @@ ON 내부의 같은pose 연속 캡처에서는 raw가 같은데 표식 값이 �
 
 다음 단계에서 먼저 필요한 것은 CPU engine-clock/task-order 관측을 위한 별도 설계다. 실제 frame/time을 읽는 새native가 필요하면 새source/canary/대조·예산을 등록해야 하며 이번 consumed 요청이나 남은 allowance를 재사용하지 않는다. 임의tick/barrier/filter/shader/default 변경도 없다.
 
-Root는 전체RGB catalog+동일ordinal sparse비교(광범위 첫상태 보존,물리frame분류아님),inline+최종독립검토(중간 독립리뷰 없음),원본·workspace보존/CPU전용(디스크/Draft체인 유지),raw128MiB별도한도(RSS·live observer 예산 증명 아님),JSON전용Agg그림/기존환경(figure와image replay 버전이 다름)을 선택했다. 모든 판단·비용을 audit와 ledger에 보존한다.
+Root는 전체RGB catalog+동일ordinal sparse비교(광범위 첫상태 보존,물리frame분류아님),inline+최종독립검토(중간 독립리뷰 없음),원본·workspace보존/CPU전용(디스크/Draft체인 유지),raw128MiB별도한도(RSS·live observer 예산 증명 아님),JSON전용Agg그림/기존환경(figure와image replay 버전이 다름)을 선택했다. 모든 판단·비용을 audit와 ledger에 보존한다. 최종 검토에서 제외한 CI바이너리·physicalframe/원인·observer/effectiveGPU/RSS·과학적성공의 판단은 기존 제한을 유지한다. Root가 새로 확인한 API를 reviewer가 별도로 다시 질의한 것은 아니며, 독립 원본 ZIP/Git/CPU검증과 root의 실제 API 연결을 구분한다. 남은 기본CI는 root가 실제 수행하며, 실패하면 완료로 기록하지 않는다. 이 여섯 범위 결정과 비용도 audit의 원문 ruling에 포함했다.
 
 재현은 기존 ZIP/추출본을 읽고 새출력만 지정한다:
 

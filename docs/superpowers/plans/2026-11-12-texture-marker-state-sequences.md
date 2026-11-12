@@ -30,6 +30,6 @@ Consumes verified Task1 tool; creates deterministic report, bounded source refer
 
 Consumes complete source/tests/actual evidence; no new native workflow.
 
-- [ ] Commit source/results and generate complete BASE..HEAD review package. Fresh most-capable reviewer checks code/evidence/claims and exact independent deterministic CPU replay under fresh output; no full-suite or native repetition.
-- [ ] Address material findings in one inline fix pass with targeted RED→GREEN; full suite only if code changes justify it. Preserve all rulings/deferred items.
-- [ ] Push reviewed source once, create stacked DraftPR, verify actual baseline push+PR CI and no new scientific/native workflow. Final clean HEAD/source65/all43workflow/main/Draft checks; retain all histories.
+- [x] Commit source/results and generate complete BASE..HEAD review package. Fresh most-capable reviewer checks code/evidence/claims and exact independent deterministic CPU replay under fresh output; no full-suite or native repetition.
+- [x] Address material findings in one inline fix pass with targeted RED→GREEN; full suite only if code changes justify it. Preserve all rulings/deferred items.
+- [x] Push reviewed source once, create stacked DraftPR, verify actual baseline push+PR CI and no new scientific/native workflow. Final clean HEAD/source65/all43workflow/main/Draft checks; retain all histories.
