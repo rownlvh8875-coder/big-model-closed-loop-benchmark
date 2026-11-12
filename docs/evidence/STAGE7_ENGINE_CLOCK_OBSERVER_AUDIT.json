@@ -1,0 +1,130 @@
+{
+  "schema": "engine-clock-observer-cpu-audit-v1",
+  "status": "CPU_CONTRACTS_VERIFIED_NATIVE_NOT_RUN",
+  "implementation_source_sha": "8eef1e8c69708da4b72c4b26e4e88305fe696771",
+  "observer_sha256": "19ee701f552b82d34182aeef4f38336dfb343e7089e6cf624eb4adbc05589578",
+  "tests_sha256": "c5139232ed7f6e15c38684dbdc2957d34233ab44ee2ab1e5c36cd1c7c5428406",
+  "verification": {
+    "targeted_tests": 23,
+    "targeted_s": 0.159,
+    "full_tests": 585,
+    "full_s": 70.999,
+    "optional_skips": 7,
+    "baseline_small_graph_separate": true,
+    "fixture_scope": "SYNTHETIC_CPU_FAKE_CLOCK_MANAGER_CAMERAS_ONLY",
+    "logs": {
+      "target-red.log": "3dc1f32c1e476fb5dc9d32ae7e49b05e1ac1ea2a063b73571c8a6ead8cc52a5d",
+      "target-green-1.log": "08408d730186121cb67afd38c6c7580efff5649b51f0eb4cb6f681c3073188ef",
+      "forwarding-red.log": "f7e91a72020e148de4618c498e58eb9b599ab6f57dc544c53ef544162fd90b89",
+      "target-green-2.log": "c60599ffa52d8724981cabcdb741210870b567f68867dc0c098eaae75d8539e4",
+      "fullsuite.log": "c88d3c2d5048215bd79ab9b283f184bf6cc1aeb9078ca97116b7c77f32ffb391"
+    }
+  },
+  "source_references": {
+    "schema": "engine-clock-boundaries-source-reference-v1",
+    "files": {
+      "panda_task_manager": {
+        "path": ".venv/lib/python3.11/site-packages/direct/task/Task.py",
+        "nbytes": 51866,
+        "sha256": "567d181c855814da8d1426057a7db166aa96963c8138da484ca0298516c54054",
+        "scope": "LOCAL_PACKAGE_SOURCE_NOT_CI_BINARY"
+      },
+      "metadrive_base_camera": {
+        "path": ".venv/lib/python3.11/site-packages/metadrive/component/sensors/base_camera.py",
+        "nbytes": 12471,
+        "sha256": "23d90c3d12894f855ae64d4607c03f3bf34e31e28dd7f5ce82bd0ddc7b37faf5",
+        "scope": "LOCAL_PACKAGE_SOURCE_NOT_CI_BINARY"
+      },
+      "frozen_world_camera": {
+        "path": "bigbench/native_model_campaign.py",
+        "nbytes": 13648,
+        "sha256": "0bcb4ca73e1404a7164be1c879a200eeff5ca41e47e3035301d40fd173000bad",
+        "scope": "FROZEN_CHECKOUT_SOURCE_NOT_NEW_EXECUTION"
+      },
+      "frozen_ram_camera": {
+        "path": "bigbench/metadrive_camera.py",
+        "nbytes": 11156,
+        "sha256": "1c5661e6c9eea6445ebe55cb246e6b48d3384dd5a731353ba3f1a45599e338f9",
+        "scope": "FROZEN_CHECKOUT_SOURCE_NOT_NEW_EXECUTION"
+      },
+      "frozen_texture_wrapper": {
+        "path": "scripts/texture_generation_markers.py",
+        "nbytes": 58210,
+        "sha256": "a37e7232441667d535fbad7dafbe5137c523f6931fde25400aaf17a066f43e02",
+        "scope": "FROZEN_CHECKOUT_SOURCE_NOT_NEW_EXECUTION"
+      },
+      "prior_whole_pair_clock": {
+        "path": "scripts/native_raw_pixel_clock.py",
+        "nbytes": 13128,
+        "sha256": "084cdac80eea1c9874e9be21b8928251c1045fb4b1b6f6e29084590af497a094",
+        "scope": "FROZEN_CHECKOUT_SOURCE_NOT_NEW_EXECUTION"
+      }
+    },
+    "local_TaskManager_method_ranges": {
+      "__init__": [
+        123,
+        147
+      ],
+      "setClock": [
+        166,
+        168
+      ],
+      "step": [
+        486,
+        517
+      ]
+    },
+    "nominal_binding": "TaskManager.globalClock is initialized from self.mgr.getClock; step reads its owned globalClock",
+    "old_globalClock_equals_TaskManager_clock_proven": false,
+    "selected_observer_owner": "provider.env.engine.taskMgr.globalClock",
+    "packages_imported": false,
+    "native_or_clock_objects_constructed": false,
+    "limits": [
+      "References do not attest actual installed CI files/binaries or a working live wrapper assignment.",
+      "Clock counters do not identify task callback or GPU draw execution order.",
+      "Current synthetic tests prove wrapper Python contracts, not actual Panda method compatibility or frame/time observations."
+    ]
+  },
+  "current_native_runs": 0,
+  "current_native_providers": 0,
+  "current_official_calls": 0,
+  "current_analysis_ort_sessions": 0,
+  "current_extra_gpu_reads": 0,
+  "actual_clock_trace": null,
+  "actual_native_run_id": null,
+  "actual_artifact_id": null,
+  "new_active_workflow": false,
+  "new_active_request": false,
+  "producer65_preserved": true,
+  "old_workflows43_preserved": true,
+  "rulings": [
+    "Ruling: current next step is observer design + concrete CPU contract, not yet a native runner \u2014 prior checkpoint calls for separate clock design and no admitted new workflow exists \u2014 cost: actual per-camera clock evidence remains future, not claimed from synthetic tests.",
+    "Ruling: five thin method wrappers and four snapshots from actual taskMgr.globalClock \u2014 distinguishes observed Python step calls from ambiguous global frame count without profiler \u2014 cost: CPU overhead/one-thread scope, no GPU/callback-phase proof.",
+    "Ruling: proposed Texture markers commonON in both clock arms \u2014 isolates marginal clock getter addition \u2014 cost: differs prior markerOFF and original uninstrumented control; RAM clock windows include common Texture/hash wrapper.",
+    "Ruling: finite signed/nonmonotonic clock values recorded without expected increments \u2014 avoid assumption becoming synthetic PASS \u2014 cost: valid metadata may be inconclusive about phase/freshness.",
+    "Ruling: inline + one fresh final whole-branch/contract reviewer \u2014 small isolated helper keeps context cost bounded \u2014 cost: no per-task independent implementer review.",
+    "Ruling: preserve existing producer65/all43workflows/requests/history, no worktrees/Cloud/main/native \u2014 standing user instructions \u2014 cost: disk/Draft chain and unresolved scientific gates remain.",
+    "Final: Ruling: Native method assignment/engine clock compatibility \u2014 leave unmeasured until a separately registered real canary; synthetic contract only \u2014 cost:no actual per-camera clock evidence yet.",
+    "Final: Ruling: GPU frame/freshness/callback phase/neutrality/cause \u2014 retain explicit scientific limitations and no native PASS \u2014 cost:physical cause remains unresolved.",
+    "Final: Ruling: Future runner/admission/source70/cleanup/persistence \u2014 keep inactive proposal and separate implementation gate \u2014 cost:this helper does not supply native authorization or durable trace proof.",
+    "Final: Ruling: Installed CI binary equality and baseline CI \u2014 leave binary equality unproven; execute actual baseline jobs in this integration \u2014 cost:source/CPU success is narrower than native compatibility.",
+    "Final: Ruling: Native canary/ABBA/main/publication \u2014 current trace/run/artifact null; Draft only and Cloud/main unchanged \u2014 cost:no real canary acceptance or Stage7 promotion."
+  ],
+  "independent_review": {
+    "verdict": "PASS",
+    "reviewed_head": "a759ca236f17cddfd7593f7a045f972845881ee7",
+    "sha256": "4c89507395c20236cbff330e78433f96eeed165d466d8224ec4c4ca9826bbd6b",
+    "path": "docs/evidence/STAGE7_ENGINE_CLOCK_OBSERVER_REVIEW.json",
+    "targeted_tests": 23,
+    "targeted_s": 0.193,
+    "scope": "SOURCE_AND_SYNTHETIC_CPU_CONTRACT_ONLY",
+    "post_review_changes": "METADATA_DOCS_ONLY_CODE_TEST_PROTOCOL_UNCHANGED"
+  },
+  "scientific_strict": "FAIL",
+  "expanded_scenarios": "NOT_RUN",
+  "geometry_optics_fullS": "UNRESOLVED",
+  "stage7": "INCOMPLETE",
+  "main_official_calls": 0,
+  "cloud_published": false,
+  "integration_status_at_receipt": "REVIEWED_DESIGN_READY_FOR_BASELINE_CI_NATIVE_NOT_RUN"
+}

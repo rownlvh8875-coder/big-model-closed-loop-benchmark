@@ -1,0 +1,128 @@
+{
+  "schema": "engine-clock-observer-protocol-design-v1",
+  "status": "INACTIVE_DESIGN_CPU_CONTRACT_ONLY",
+  "active_actions_request": false,
+  "current_new_native_providers": 0,
+  "current_new_official_calls": 0,
+  "current_new_ort_sessions": 0,
+  "current_new_gpu_reads": 0,
+  "observer_module": "scripts/engine_clock_boundaries.py",
+  "observer_test": "tests/test_engine_clock_boundaries.py",
+  "clock_owner": "engine.taskMgr.globalClock",
+  "snapshot_fields": [
+    "frame_count",
+    "frame_time_s"
+  ],
+  "snapshot_pair_atomic": false,
+  "boundaries": [
+    "before_perceive",
+    "before_ram_method",
+    "after_ram_method",
+    "after_perceive"
+  ],
+  "future_registration_required": true,
+  "future": {
+    "producer_paths": 70,
+    "producer_composition": {
+      "preserved_marker_sources": 65,
+      "observer_and_test": 2,
+      "new_runner_test_workflow": 3
+    },
+    "source_closure_includes_current_analysis_tools": false,
+    "mutable_request_separately_git_bound": true,
+    "phases": [
+      {
+        "mode": "canary",
+        "clock_arms": [
+          true
+        ],
+        "max_providers": 1
+      },
+      {
+        "mode": "abba",
+        "clock_arms": [
+          false,
+          true,
+          true,
+          false
+        ],
+        "max_providers": 4
+      }
+    ],
+    "common_texture_markers_enabled": true,
+    "common_raw_retention": true,
+    "pose_schedule": [
+      {
+        "t": 0.0,
+        "x": 65.4052721645879,
+        "y": 0.26625325426066837,
+        "heading": 0.09843656981248028,
+        "speed": 8.0,
+        "pairs": 4
+      },
+      {
+        "t": 0.05,
+        "x": 65.80328679516661,
+        "y": 0.30605719684545585,
+        "heading": 0.10091307127732403,
+        "speed": 8.0,
+        "pairs": 2
+      }
+    ],
+    "per_case": {
+      "pairs": 6,
+      "perceive_calls": 12,
+      "original_task_step_calls": 12,
+      "original_ram_calls": 12,
+      "max_events": 72,
+      "on_clock_snapshots": 48,
+      "on_clock_getters": 96,
+      "off_observer_clock_snapshots": 0,
+      "off_observer_clock_getters": 0,
+      "common_texture_sequence_readings": 24,
+      "common_texture_getters": 48
+    },
+    "campaign_caps": {
+      "providers": 5,
+      "pairs": 30,
+      "original_ram_calls": 60,
+      "original_task_step_calls": 60,
+      "clock_snapshots": 144,
+      "clock_getters": 288,
+      "texture_sequence_readings": 120,
+      "texture_getters": 240,
+      "total_observer_getters": 528,
+      "official_calls": 0,
+      "ort_sessions": 0,
+      "extra_gpu_reads": 0
+    },
+    "startup_and_original_engine_internal_getters_excluded": true,
+    "retries": 0,
+    "bounds": {
+      "child_s": 270,
+      "case_s": 300,
+      "phase_s": 1320,
+      "logical_retention_bytes": 33554432,
+      "disk_payload_bytes": 41943040,
+      "case_log_bytes": 1048576,
+      "case_json_bytes": 2097152,
+      "trace_json_bytes": 65536,
+      "dataset_bytes": 201326592
+    },
+    "gates": [
+      "new registered workflow/request and source70 Git blobs/runtime/API context before constructors",
+      "one-use FD>=10/live parent/nonce/process group/fixed schedule/unique attempt1",
+      "one actual canary originalZIP/API/raw root+fresh acceptance",
+      "direct-child metadata/docs-only ABBA activation preserves all70 producer bytes/runtime",
+      "fresh isolated bounded cache/failure prefixes/group cleanup/log bounds and no retries"
+    ],
+    "admission_implemented": false,
+    "actual_native_run_id": null,
+    "actual_artifact_id": null
+  },
+  "scientific_strict": "FAIL",
+  "expanded_scenarios": "NOT_RUN",
+  "stage7": "INCOMPLETE",
+  "main_official_calls": 0,
+  "cloud_published": false
+}
