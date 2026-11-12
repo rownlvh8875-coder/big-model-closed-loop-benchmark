@@ -33,10 +33,10 @@
 
 **Interfaces:** Produces unchanged run_canary/verify_accepted_canary/run_study APIs with new literal context; source closure62 paths; capture-only request.
 
-- [ ] Write tests accepting exact successor context and rejecting consumed context, validating capture-only registration and workflow triggers; run RED.
-- [ ] Update literal context and fixtures, register new workflow, copy old workflow with successor identities, pinned runtime/ubuntu-24.04; leave old files unchanged.
-- [ ] Run targeted first-divergence tests, one full unittest discovery, actionlint and bash-n; compare frozen pins/workflows.
-- [ ] Commit source, obtain fresh whole-branch review before any source push; fix material findings with covering tests.
+- [x] Write tests accepting exact successor context and rejecting consumed context, validating capture-only registration and workflow triggers; run RED.
+- [x] Update literal context and fixtures, register new workflow, copy old workflow with successor identities, pinned runtime/ubuntu-24.04; leave old files unchanged.
+- [x] Run targeted first-divergence tests, one full unittest discovery, actionlint and bash-n; compare frozen pins/workflows.
+- [x] Commit source, obtain fresh whole-branch review before any source push; fix material findings with covering tests.
 
 ### Task 2: Execute and accept the camera canary
 
@@ -44,9 +44,9 @@
 
 **Interfaces:** Consumes reviewed source; produces actual source/run/artifact/runtime and root+fresh acceptance, or terminal failed evidence.
 
-- [ ] Initialize remote successor branch at existing published parent, inspect triggers, push reviewed source once; create stacked draft PR against repair branch.
-- [ ] Read actual Actions run/jobs/artifacts, download/extract original ZIP once, verify API/source/runtime/limits/metadata and exact pixels with matching CPU versions.
-- [ ] Fresh independent raw review; stop on failure without retry.
+- [x] Initialize remote successor branch at existing published parent, inspect triggers, push reviewed source once; create stacked draft PR against repair branch.
+- [x] Read actual Actions run/jobs/artifacts, download/extract original ZIP once, verify API/source/runtime/limits/metadata and exact pixels with matching CPU versions.
+- [x] Fresh independent raw review; stop on failure without retry.
 
 ### Task 3: Register and execute a fresh bounded model diagnostic
 
@@ -54,9 +54,9 @@
 
 **Interfaces:** Consumes accepted source as direct parent; produces one gated study run or authentic failure.
 
-- [ ] Populate concrete acceptance from original API/archive and fresh review; validate direct-parent activation/source/runtime/mode selection before push.
-- [ ] Commit and push activation once; inspect gate-before-weights and actual call/provider ledgers. No rerun or fallback.
-- [ ] Download original artifact once and validate source/run/process/frame/state/feed/output associations; preserve unknown bounds on incomplete results.
+- [x] Populate concrete acceptance from original API/archive and fresh review; validate direct-parent activation/source/runtime/mode selection before push.
+- [x] Commit and push activation once; inspect gate-before-weights and actual call/provider ledgers. No rerun or fallback.
+- [x] Download original artifact once and validate source/run/process/frame/state/feed/output associations; preserve unknown bounds on incomplete results.
 
 ### Task 4: Publish evidence in the draft PR
 
@@ -64,5 +64,5 @@
 
 **Interfaces:** Consumes authenticated outcomes; produces reviewable final evidence and exact next steps.
 
-- [ ] Write actual counts, hashes, first difference/control results and limitations; maintain original FAIL/incomplete gates.
-- [ ] Review factual report, commit docs-only, push, verify baseline CI without diagnostic replay; leave PR draft/unmerged and Cloud unpublished.
+- [x] Write actual counts, hashes, first difference/control results and limitations; maintain original FAIL/incomplete gates.
+- [x] Review factual report, commit docs-only, push, verify baseline CI without diagnostic replay; leave PR draft/unmerged and Cloud unpublished.

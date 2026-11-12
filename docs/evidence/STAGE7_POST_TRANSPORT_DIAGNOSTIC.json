@@ -1,0 +1,1536 @@
+{
+  "status": "ROOT_AND_FRESH_ACCEPTED_COMPLETE_DESCRIPTIVE",
+  "canary": {
+    "status": "ROOT_RAW_CANARY_ACCEPTED",
+    "context": {
+      "repository": "rownlvh8875-coder/big-model-closed-loop-benchmark",
+      "workflow_path": ".github/workflows/stage7-first-divergence-post-transport.yml",
+      "workflow_id": 415459577,
+      "head_sha": "65d2958ec80afa190af972d798929042f6bb8f27",
+      "run_id": 43148115766,
+      "attempt": 1,
+      "event": "push",
+      "branch": "fix/first-divergence-post-transport"
+    },
+    "artifact_id": 13912517168,
+    "artifact_nbytes": 4875287,
+    "artifact_sha256": "48b72d5857b4409f09d427d95b66b30bd1c9c1eedfefaf066a895893d20d2aef",
+    "members": 12,
+    "uncompressed_bytes": 5273958,
+    "source_paths": 62,
+    "runtime": {
+      "python": "3.11.18 (main, Oct 26 2026, 02:48:34) [GCC 13.3.0]",
+      "executable": "/opt/hostedtoolcache/Python/3.11.18/x64/bin/python",
+      "numpy": "2.4.6",
+      "opencv-python-headless": "5.0.0.93",
+      "panda3d": "1.10.13",
+      "metadrive-simulator": "0.4.3",
+      "onnxruntime": "1.31.1",
+      "ImageOS": "ubuntu24",
+      "ImageVersion": "20261101.360.1"
+    },
+    "process_id": 2849,
+    "process_uuid": "1d418b7908dc4d21b1c902ebde75fc64",
+    "accepted_pairs": 2,
+    "capture_count": 5,
+    "sensor_calls": 10,
+    "official_model_calls": 0,
+    "ort_sessions": 0,
+    "provider_closed": true,
+    "raw_to_canvas_exact": "4/4",
+    "derived_i420_exact": "2/2",
+    "actual_graph_feed_match": null,
+    "original_strict_pass": false,
+    "convergence_receipts": [
+      {
+        "attempts": 3,
+        "stable": true,
+        "road_sha256": "5c7fff71587eb62acd678325d31d1a29e74d5d65ac93803238571b57249a6316",
+        "wide_sha256": "a18874020b73d973dd7e36a8e5d5e2fe1057581df16ef4111eba2c18c6900263",
+        "road_changed_pixels": 0,
+        "wide_changed_pixels": 0,
+        "max_rgb_delta": 0
+      },
+      {
+        "attempts": 2,
+        "stable": true,
+        "road_sha256": "b29ae028f6a983ad34ef44564fb5088cf6e1342f6c38a1d7ad5e75e5a8283666",
+        "wide_sha256": "195e6b5d5aae37fedfb869420fb98c68a9387c9ce6de272a722deaff5c7e7bac",
+        "road_changed_pixels": 0,
+        "wide_changed_pixels": 0,
+        "max_rgb_delta": 0
+      }
+    ],
+    "root_cpu_versions": {
+      "numpy": "2.4.6",
+      "opencv-python-headless": "5.0.0.93"
+    }
+  },
+  "study": {
+    "status": "ROOT_RAW_STUDY_ASSOCIATION_ACCEPTED",
+    "context": {
+      "repository": "rownlvh8875-coder/big-model-closed-loop-benchmark",
+      "workflow_path": ".github/workflows/stage7-first-divergence-post-transport.yml",
+      "workflow_id": 415459577,
+      "head_sha": "582cc594d127e9cde5ff3525e50c143f60285f75",
+      "run_id": 43149053427,
+      "attempt": 1,
+      "event": "push",
+      "branch": "fix/first-divergence-post-transport"
+    },
+    "run_conclusion": "success",
+    "steps": {
+      "Set up job": "success",
+      "Run actions/checkout@v4": "success",
+      "Run actions/setup-python@v5": "success",
+      "Install provided native system route": "success",
+      "Install pinned native and inference dependencies": "success",
+      "Read registered camera-only or one-shot model request": "success",
+      "Prepare exact official MetaDrive assets": "success",
+      "CPU diagnostic tests": "success",
+      "One no-model canary; retain failure prefix": "skipped",
+      "Authenticate accepted raw/source canary before weights": "success",
+      "Download exact official MD-V3 only after authenticated gate": "success",
+      "Six fresh Python/Xvfb children; no retry or extension": "success",
+      "Save full canary including failure evidence": "skipped",
+      "Save full bounded model evidence including failure ledger": "success",
+      "Post Run actions/setup-python@v5": "success",
+      "Post Run actions/checkout@v4": "success",
+      "Complete job": "success"
+    },
+    "artifact_count": 1,
+    "actual_model_calls": 24,
+    "model_call_bounds": [
+      24,
+      24
+    ],
+    "source_paths": 62,
+    "original_strict_pass": false,
+    "local_replay_scope": "CPU file validation using accepted recorded runtime identity; no local native/ORT/official inference; no installed binary equality claim",
+    "comparisons": [
+      {
+        "pair": [
+          [
+            "original",
+            0
+          ],
+          [
+            "original",
+            1
+          ]
+        ],
+        "availability": {
+          "road_frame_sha256": "generic-report-observed",
+          "wide_frame_sha256": "generic-report-observed",
+          "desired_curvature_1pm": "generic-report-observed",
+          "desired_acceleration_mps2": "generic-report-observed",
+          "world_x_m": "generic-report-observed",
+          "world_y_m": "generic-report-observed",
+          "heading_rad": "generic-report-observed",
+          "actual_input_sha256": "unknown-unobserved-control",
+          "pre_state": "unknown-unobserved-control",
+          "post_state": "unknown-unobserved-control",
+          "raw4": "unknown-unobserved-control",
+          "plan": "unknown-unobserved-control",
+          "raw_rgb": "unknown-unobserved-control"
+        },
+        "first_differences": {
+          "road_frame_sha256": 2,
+          "wide_frame_sha256": 3,
+          "desired_curvature_1pm": 2,
+          "desired_acceleration_mps2": 2,
+          "world_x_m": 2,
+          "world_y_m": 2,
+          "heading_rad": 2,
+          "actual_input_sha256": null,
+          "pre_state": null,
+          "post_state": null,
+          "raw4": null,
+          "plan": null,
+          "raw_rgb": null
+        },
+        "interpretation": "DESCRIPTIVE_ONLY_NO_DIFFERENCE_WITHIN_FOUR_STEPS_IS_INCONCLUSIVE",
+        "graph_elapsed_ms": [
+          [
+            1072.0365809999919,
+            1088.249702000013,
+            917.0669250000003,
+            905.2610579999509
+          ],
+          [
+            1080.8032769999727,
+            1079.8011809999934,
+            790.8048100000542,
+            790.589309999973
+          ]
+        ],
+        "observer_wall_s": [
+          null,
+          null
+        ],
+        "capture_wall_s": [
+          null,
+          null
+        ],
+        "capture_timing_scope": "raw callback nested within inclusive capture; never add the two; wall durations, not CPU execution time"
+      },
+      {
+        "pair": [
+          [
+            "proxy",
+            0
+          ],
+          [
+            "proxy",
+            1
+          ]
+        ],
+        "availability": {
+          "road_frame_sha256": "generic-report-observed",
+          "wide_frame_sha256": "generic-report-observed",
+          "desired_curvature_1pm": "generic-report-observed",
+          "desired_acceleration_mps2": "generic-report-observed",
+          "world_x_m": "generic-report-observed",
+          "world_y_m": "generic-report-observed",
+          "heading_rad": "generic-report-observed",
+          "actual_input_sha256": "observed",
+          "pre_state": "unknown-unobserved-control",
+          "post_state": "unknown-unobserved-control",
+          "raw4": "unknown-unobserved-control",
+          "plan": "unknown-unobserved-control",
+          "raw_rgb": "unknown-unobserved-control"
+        },
+        "first_differences": {
+          "road_frame_sha256": 4,
+          "wide_frame_sha256": 2,
+          "desired_curvature_1pm": null,
+          "desired_acceleration_mps2": 2,
+          "world_x_m": null,
+          "world_y_m": null,
+          "heading_rad": null,
+          "actual_input_sha256": 2,
+          "pre_state": null,
+          "post_state": null,
+          "raw4": null,
+          "plan": null,
+          "raw_rgb": null
+        },
+        "interpretation": "DESCRIPTIVE_ONLY_NO_DIFFERENCE_WITHIN_FOUR_STEPS_IS_INCONCLUSIVE",
+        "graph_elapsed_ms": [
+          [
+            1081.1463570000228,
+            1096.9060359999503,
+            906.6923930000144,
+            789.7357329999863
+          ],
+          [
+            1077.790006999976,
+            1076.1768579999398,
+            897.4028060000592,
+            890.8129589999589
+          ]
+        ],
+        "observer_wall_s": [
+          [
+            5.431100004216205e-05,
+            4.594500001076085e-05,
+            4.17380000499179e-05,
+            4.262000004473521e-05
+          ],
+          [
+            4.6577000034631055e-05,
+            4.4504000015876954e-05,
+            4.486399996039836e-05,
+            4.258000001300388e-05
+          ]
+        ],
+        "capture_wall_s": [
+          {
+            "capture_inclusive_wall_s": 49.831216210000036,
+            "raw_callback_nested_wall_s": 0.027246519999891916,
+            "wrapper_observer_arithmetic_wall_s": 0.006563857000003281
+          },
+          {
+            "capture_inclusive_wall_s": 65.9229912870004,
+            "raw_callback_nested_wall_s": 0.03644089999971811,
+            "wrapper_observer_arithmetic_wall_s": 0.00868847799983996
+          }
+        ],
+        "capture_timing_scope": "raw callback nested within inclusive capture; never add the two; wall durations, not CPU execution time"
+      },
+      {
+        "pair": [
+          [
+            "retention",
+            0
+          ],
+          [
+            "retention",
+            1
+          ]
+        ],
+        "availability": {
+          "road_frame_sha256": "generic-report-observed",
+          "wide_frame_sha256": "generic-report-observed",
+          "desired_curvature_1pm": "generic-report-observed",
+          "desired_acceleration_mps2": "generic-report-observed",
+          "world_x_m": "generic-report-observed",
+          "world_y_m": "generic-report-observed",
+          "heading_rad": "generic-report-observed",
+          "actual_input_sha256": "observed",
+          "pre_state": "observed",
+          "post_state": "observed",
+          "raw4": "observed",
+          "plan": "observed",
+          "raw_rgb": "observed"
+        },
+        "first_differences": {
+          "road_frame_sha256": 2,
+          "wide_frame_sha256": 2,
+          "desired_curvature_1pm": 2,
+          "desired_acceleration_mps2": 2,
+          "world_x_m": 2,
+          "world_y_m": 2,
+          "heading_rad": 2,
+          "actual_input_sha256": 2,
+          "pre_state": 3,
+          "post_state": 2,
+          "raw4": 2,
+          "plan": 2,
+          "raw_rgb": 2
+        },
+        "interpretation": "DESCRIPTIVE_ONLY_NO_DIFFERENCE_WITHIN_FOUR_STEPS_IS_INCONCLUSIVE",
+        "graph_elapsed_ms": [
+          [
+            1075.5095299999766,
+            1079.3166789999873,
+            790.0322520000032,
+            902.2812639999529
+          ],
+          [
+            1080.2827750000006,
+            1062.9397689999678,
+            788.5264489999599,
+            894.4824019999942
+          ]
+        ],
+        "observer_wall_s": [
+          [
+            0.006345116999966649,
+            0.015566040999999586,
+            0.023570052999957625,
+            0.0160201710000365
+          ],
+          [
+            0.006378961999985222,
+            0.027750681000043187,
+            0.007440776999999343,
+            0.007290576999992027
+          ]
+        ],
+        "capture_wall_s": [
+          {
+            "capture_inclusive_wall_s": 49.77690803300004,
+            "raw_callback_nested_wall_s": 0.027246520999824497,
+            "wrapper_observer_arithmetic_wall_s": 0.03367095999993808
+          },
+          {
+            "capture_inclusive_wall_s": 49.5248564310001,
+            "raw_callback_nested_wall_s": 0.02725451999992856,
+            "wrapper_observer_arithmetic_wall_s": 0.03363956499987353
+          }
+        ],
+        "capture_timing_scope": "raw callback nested within inclusive capture; never add the two; wall durations, not CPU execution time"
+      },
+      {
+        "pair": [
+          [
+            "original",
+            0
+          ],
+          [
+            "proxy",
+            0
+          ]
+        ],
+        "availability": {
+          "road_frame_sha256": "generic-report-observed",
+          "wide_frame_sha256": "generic-report-observed",
+          "desired_curvature_1pm": "generic-report-observed",
+          "desired_acceleration_mps2": "generic-report-observed",
+          "world_x_m": "generic-report-observed",
+          "world_y_m": "generic-report-observed",
+          "heading_rad": "generic-report-observed",
+          "actual_input_sha256": "unknown-unobserved-control",
+          "pre_state": "unknown-unobserved-control",
+          "post_state": "unknown-unobserved-control",
+          "raw4": "unknown-unobserved-control",
+          "plan": "unknown-unobserved-control",
+          "raw_rgb": "unknown-unobserved-control"
+        },
+        "first_differences": {
+          "road_frame_sha256": null,
+          "wide_frame_sha256": 2,
+          "desired_curvature_1pm": null,
+          "desired_acceleration_mps2": 2,
+          "world_x_m": null,
+          "world_y_m": null,
+          "heading_rad": null,
+          "actual_input_sha256": null,
+          "pre_state": null,
+          "post_state": null,
+          "raw4": null,
+          "plan": null,
+          "raw_rgb": null
+        },
+        "interpretation": "DESCRIPTIVE_ONLY_NO_DIFFERENCE_WITHIN_FOUR_STEPS_IS_INCONCLUSIVE",
+        "graph_elapsed_ms": [
+          [
+            1072.0365809999919,
+            1088.249702000013,
+            917.0669250000003,
+            905.2610579999509
+          ],
+          [
+            1081.1463570000228,
+            1096.9060359999503,
+            906.6923930000144,
+            789.7357329999863
+          ]
+        ],
+        "observer_wall_s": [
+          null,
+          [
+            5.431100004216205e-05,
+            4.594500001076085e-05,
+            4.17380000499179e-05,
+            4.262000004473521e-05
+          ]
+        ],
+        "capture_wall_s": [
+          null,
+          {
+            "capture_inclusive_wall_s": 49.831216210000036,
+            "raw_callback_nested_wall_s": 0.027246519999891916,
+            "wrapper_observer_arithmetic_wall_s": 0.006563857000003281
+          }
+        ],
+        "capture_timing_scope": "raw callback nested within inclusive capture; never add the two; wall durations, not CPU execution time"
+      },
+      {
+        "pair": [
+          [
+            "proxy",
+            0
+          ],
+          [
+            "retention",
+            0
+          ]
+        ],
+        "availability": {
+          "road_frame_sha256": "generic-report-observed",
+          "wide_frame_sha256": "generic-report-observed",
+          "desired_curvature_1pm": "generic-report-observed",
+          "desired_acceleration_mps2": "generic-report-observed",
+          "world_x_m": "generic-report-observed",
+          "world_y_m": "generic-report-observed",
+          "heading_rad": "generic-report-observed",
+          "actual_input_sha256": "observed",
+          "pre_state": "unknown-unobserved-control",
+          "post_state": "unknown-unobserved-control",
+          "raw4": "unknown-unobserved-control",
+          "plan": "unknown-unobserved-control",
+          "raw_rgb": "unknown-unobserved-control"
+        },
+        "first_differences": {
+          "road_frame_sha256": 2,
+          "wide_frame_sha256": 2,
+          "desired_curvature_1pm": 2,
+          "desired_acceleration_mps2": 2,
+          "world_x_m": 2,
+          "world_y_m": 2,
+          "heading_rad": 2,
+          "actual_input_sha256": 2,
+          "pre_state": null,
+          "post_state": null,
+          "raw4": null,
+          "plan": null,
+          "raw_rgb": null
+        },
+        "interpretation": "DESCRIPTIVE_ONLY_NO_DIFFERENCE_WITHIN_FOUR_STEPS_IS_INCONCLUSIVE",
+        "graph_elapsed_ms": [
+          [
+            1081.1463570000228,
+            1096.9060359999503,
+            906.6923930000144,
+            789.7357329999863
+          ],
+          [
+            1075.5095299999766,
+            1079.3166789999873,
+            790.0322520000032,
+            902.2812639999529
+          ]
+        ],
+        "observer_wall_s": [
+          [
+            5.431100004216205e-05,
+            4.594500001076085e-05,
+            4.17380000499179e-05,
+            4.262000004473521e-05
+          ],
+          [
+            0.006345116999966649,
+            0.015566040999999586,
+            0.023570052999957625,
+            0.0160201710000365
+          ]
+        ],
+        "capture_wall_s": [
+          {
+            "capture_inclusive_wall_s": 49.831216210000036,
+            "raw_callback_nested_wall_s": 0.027246519999891916,
+            "wrapper_observer_arithmetic_wall_s": 0.006563857000003281
+          },
+          {
+            "capture_inclusive_wall_s": 49.77690803300004,
+            "raw_callback_nested_wall_s": 0.027246520999824497,
+            "wrapper_observer_arithmetic_wall_s": 0.03367095999993808
+          }
+        ],
+        "capture_timing_scope": "raw callback nested within inclusive capture; never add the two; wall durations, not CPU execution time"
+      },
+      {
+        "pair": [
+          [
+            "original",
+            0
+          ],
+          [
+            "retention",
+            0
+          ]
+        ],
+        "availability": {
+          "road_frame_sha256": "generic-report-observed",
+          "wide_frame_sha256": "generic-report-observed",
+          "desired_curvature_1pm": "generic-report-observed",
+          "desired_acceleration_mps2": "generic-report-observed",
+          "world_x_m": "generic-report-observed",
+          "world_y_m": "generic-report-observed",
+          "heading_rad": "generic-report-observed",
+          "actual_input_sha256": "unknown-unobserved-control",
+          "pre_state": "unknown-unobserved-control",
+          "post_state": "unknown-unobserved-control",
+          "raw4": "unknown-unobserved-control",
+          "plan": "unknown-unobserved-control",
+          "raw_rgb": "unknown-unobserved-control"
+        },
+        "first_differences": {
+          "road_frame_sha256": 2,
+          "wide_frame_sha256": 3,
+          "desired_curvature_1pm": 2,
+          "desired_acceleration_mps2": 2,
+          "world_x_m": 2,
+          "world_y_m": 2,
+          "heading_rad": 2,
+          "actual_input_sha256": null,
+          "pre_state": null,
+          "post_state": null,
+          "raw4": null,
+          "plan": null,
+          "raw_rgb": null
+        },
+        "interpretation": "DESCRIPTIVE_ONLY_NO_DIFFERENCE_WITHIN_FOUR_STEPS_IS_INCONCLUSIVE",
+        "graph_elapsed_ms": [
+          [
+            1072.0365809999919,
+            1088.249702000013,
+            917.0669250000003,
+            905.2610579999509
+          ],
+          [
+            1075.5095299999766,
+            1079.3166789999873,
+            790.0322520000032,
+            902.2812639999529
+          ]
+        ],
+        "observer_wall_s": [
+          null,
+          [
+            0.006345116999966649,
+            0.015566040999999586,
+            0.023570052999957625,
+            0.0160201710000365
+          ]
+        ],
+        "capture_wall_s": [
+          null,
+          {
+            "capture_inclusive_wall_s": 49.77690803300004,
+            "raw_callback_nested_wall_s": 0.027246520999824497,
+            "wrapper_observer_arithmetic_wall_s": 0.03367095999993808
+          }
+        ],
+        "capture_timing_scope": "raw callback nested within inclusive capture; never add the two; wall durations, not CPU execution time"
+      },
+      {
+        "pair": [
+          [
+            "original",
+            1
+          ],
+          [
+            "proxy",
+            1
+          ]
+        ],
+        "availability": {
+          "road_frame_sha256": "generic-report-observed",
+          "wide_frame_sha256": "generic-report-observed",
+          "desired_curvature_1pm": "generic-report-observed",
+          "desired_acceleration_mps2": "generic-report-observed",
+          "world_x_m": "generic-report-observed",
+          "world_y_m": "generic-report-observed",
+          "heading_rad": "generic-report-observed",
+          "actual_input_sha256": "unknown-unobserved-control",
+          "pre_state": "unknown-unobserved-control",
+          "post_state": "unknown-unobserved-control",
+          "raw4": "unknown-unobserved-control",
+          "plan": "unknown-unobserved-control",
+          "raw_rgb": "unknown-unobserved-control"
+        },
+        "first_differences": {
+          "road_frame_sha256": 2,
+          "wide_frame_sha256": 3,
+          "desired_curvature_1pm": 2,
+          "desired_acceleration_mps2": 2,
+          "world_x_m": 2,
+          "world_y_m": 2,
+          "heading_rad": 2,
+          "actual_input_sha256": null,
+          "pre_state": null,
+          "post_state": null,
+          "raw4": null,
+          "plan": null,
+          "raw_rgb": null
+        },
+        "interpretation": "DESCRIPTIVE_ONLY_NO_DIFFERENCE_WITHIN_FOUR_STEPS_IS_INCONCLUSIVE",
+        "graph_elapsed_ms": [
+          [
+            1080.8032769999727,
+            1079.8011809999934,
+            790.8048100000542,
+            790.589309999973
+          ],
+          [
+            1077.790006999976,
+            1076.1768579999398,
+            897.4028060000592,
+            890.8129589999589
+          ]
+        ],
+        "observer_wall_s": [
+          null,
+          [
+            4.6577000034631055e-05,
+            4.4504000015876954e-05,
+            4.486399996039836e-05,
+            4.258000001300388e-05
+          ]
+        ],
+        "capture_wall_s": [
+          null,
+          {
+            "capture_inclusive_wall_s": 65.9229912870004,
+            "raw_callback_nested_wall_s": 0.03644089999971811,
+            "wrapper_observer_arithmetic_wall_s": 0.00868847799983996
+          }
+        ],
+        "capture_timing_scope": "raw callback nested within inclusive capture; never add the two; wall durations, not CPU execution time"
+      },
+      {
+        "pair": [
+          [
+            "proxy",
+            1
+          ],
+          [
+            "retention",
+            1
+          ]
+        ],
+        "availability": {
+          "road_frame_sha256": "generic-report-observed",
+          "wide_frame_sha256": "generic-report-observed",
+          "desired_curvature_1pm": "generic-report-observed",
+          "desired_acceleration_mps2": "generic-report-observed",
+          "world_x_m": "generic-report-observed",
+          "world_y_m": "generic-report-observed",
+          "heading_rad": "generic-report-observed",
+          "actual_input_sha256": "observed",
+          "pre_state": "unknown-unobserved-control",
+          "post_state": "unknown-unobserved-control",
+          "raw4": "unknown-unobserved-control",
+          "plan": "unknown-unobserved-control",
+          "raw_rgb": "unknown-unobserved-control"
+        },
+        "first_differences": {
+          "road_frame_sha256": 4,
+          "wide_frame_sha256": 2,
+          "desired_curvature_1pm": null,
+          "desired_acceleration_mps2": 2,
+          "world_x_m": null,
+          "world_y_m": null,
+          "heading_rad": null,
+          "actual_input_sha256": 2,
+          "pre_state": null,
+          "post_state": null,
+          "raw4": null,
+          "plan": null,
+          "raw_rgb": null
+        },
+        "interpretation": "DESCRIPTIVE_ONLY_NO_DIFFERENCE_WITHIN_FOUR_STEPS_IS_INCONCLUSIVE",
+        "graph_elapsed_ms": [
+          [
+            1077.790006999976,
+            1076.1768579999398,
+            897.4028060000592,
+            890.8129589999589
+          ],
+          [
+            1080.2827750000006,
+            1062.9397689999678,
+            788.5264489999599,
+            894.4824019999942
+          ]
+        ],
+        "observer_wall_s": [
+          [
+            4.6577000034631055e-05,
+            4.4504000015876954e-05,
+            4.486399996039836e-05,
+            4.258000001300388e-05
+          ],
+          [
+            0.006378961999985222,
+            0.027750681000043187,
+            0.007440776999999343,
+            0.007290576999992027
+          ]
+        ],
+        "capture_wall_s": [
+          {
+            "capture_inclusive_wall_s": 65.9229912870004,
+            "raw_callback_nested_wall_s": 0.03644089999971811,
+            "wrapper_observer_arithmetic_wall_s": 0.00868847799983996
+          },
+          {
+            "capture_inclusive_wall_s": 49.5248564310001,
+            "raw_callback_nested_wall_s": 0.02725451999992856,
+            "wrapper_observer_arithmetic_wall_s": 0.03363956499987353
+          }
+        ],
+        "capture_timing_scope": "raw callback nested within inclusive capture; never add the two; wall durations, not CPU execution time"
+      },
+      {
+        "pair": [
+          [
+            "original",
+            1
+          ],
+          [
+            "retention",
+            1
+          ]
+        ],
+        "availability": {
+          "road_frame_sha256": "generic-report-observed",
+          "wide_frame_sha256": "generic-report-observed",
+          "desired_curvature_1pm": "generic-report-observed",
+          "desired_acceleration_mps2": "generic-report-observed",
+          "world_x_m": "generic-report-observed",
+          "world_y_m": "generic-report-observed",
+          "heading_rad": "generic-report-observed",
+          "actual_input_sha256": "unknown-unobserved-control",
+          "pre_state": "unknown-unobserved-control",
+          "post_state": "unknown-unobserved-control",
+          "raw4": "unknown-unobserved-control",
+          "plan": "unknown-unobserved-control",
+          "raw_rgb": "unknown-unobserved-control"
+        },
+        "first_differences": {
+          "road_frame_sha256": 2,
+          "wide_frame_sha256": 2,
+          "desired_curvature_1pm": 2,
+          "desired_acceleration_mps2": 2,
+          "world_x_m": 2,
+          "world_y_m": 2,
+          "heading_rad": 2,
+          "actual_input_sha256": null,
+          "pre_state": null,
+          "post_state": null,
+          "raw4": null,
+          "plan": null,
+          "raw_rgb": null
+        },
+        "interpretation": "DESCRIPTIVE_ONLY_NO_DIFFERENCE_WITHIN_FOUR_STEPS_IS_INCONCLUSIVE",
+        "graph_elapsed_ms": [
+          [
+            1080.8032769999727,
+            1079.8011809999934,
+            790.8048100000542,
+            790.589309999973
+          ],
+          [
+            1080.2827750000006,
+            1062.9397689999678,
+            788.5264489999599,
+            894.4824019999942
+          ]
+        ],
+        "observer_wall_s": [
+          null,
+          [
+            0.006378961999985222,
+            0.027750681000043187,
+            0.007440776999999343,
+            0.007290576999992027
+          ]
+        ],
+        "capture_wall_s": [
+          null,
+          {
+            "capture_inclusive_wall_s": 49.5248564310001,
+            "raw_callback_nested_wall_s": 0.02725451999992856,
+            "wrapper_observer_arithmetic_wall_s": 0.03363956499987353
+          }
+        ],
+        "capture_timing_scope": "raw callback nested within inclusive capture; never add the two; wall durations, not CPU execution time"
+      }
+    ],
+    "artifact_id": 13912454399,
+    "artifact_nbytes": 27428724,
+    "artifact_sha256": "370ef36862e3da5bf39064acc732ff1728b0a0a549b6fba77045ce7380a8c748",
+    "members": 141,
+    "uncompressed_bytes": 187115633,
+    "runtime": {
+      "python": "3.11.18 (main, Oct 26 2026, 02:48:34) [GCC 13.3.0]",
+      "executable": "/opt/hostedtoolcache/Python/3.11.18/x64/bin/python",
+      "numpy": "2.4.6",
+      "opencv-python-headless": "5.0.0.93",
+      "panda3d": "1.10.13",
+      "metadrive-simulator": "0.4.3",
+      "onnxruntime": "1.31.1",
+      "ImageOS": "ubuntu24",
+      "ImageVersion": "20261101.360.1"
+    },
+    "parent_pid": 3341,
+    "launch_ledger": [
+      {
+        "schedule_index": 0,
+        "arm": "original",
+        "repeat": 0,
+        "nonce": "672586c287dcfe43dc4f8a130be8529fb4ef989acc963dbe6eb9eace3c32fa19",
+        "launched": true,
+        "launcher_pid": 3476,
+        "process_group": 3476,
+        "launch_elapsed_s": 4.173317258999987,
+        "exit_elapsed_s": 89.471681055,
+        "exit_code": 0,
+        "timed_out": false,
+        "child_pid": 3489,
+        "child_uuid": "04f003a60ffc4500b2283c1fad3b6fbf",
+        "validation_error": null,
+        "cleanup_errors": [],
+        "storage": {
+          "payload_limit_bytes": 1055916032,
+          "trial_ledger_limit_bytes": 8388608,
+          "log_limit_bytes": 1048576,
+          "log_bytes": 3031,
+          "limit_error": null
+        }
+      },
+      {
+        "schedule_index": 1,
+        "arm": "proxy",
+        "repeat": 0,
+        "nonce": "5dc2e09881a60ab98de8cee9443c096cd49c1cb68e420242111b7f99c7aa8955",
+        "launched": true,
+        "launcher_pid": 3526,
+        "process_group": 3526,
+        "launch_elapsed_s": 89.47182317000002,
+        "exit_elapsed_s": 162.344204906,
+        "exit_code": 0,
+        "timed_out": false,
+        "child_pid": 3539,
+        "child_uuid": "6c2664e4de404f0da7d8034712244335",
+        "validation_error": null,
+        "cleanup_errors": [],
+        "storage": {
+          "payload_limit_bytes": 1055893693,
+          "trial_ledger_limit_bytes": 8388608,
+          "log_limit_bytes": 1048576,
+          "log_bytes": 3031,
+          "limit_error": null
+        }
+      },
+      {
+        "schedule_index": 2,
+        "arm": "retention",
+        "repeat": 0,
+        "nonce": "5b9b98f463157717906ec344ff7e5fbbb4f39f63fc83361beae58e7cb228f0e4",
+        "launched": true,
+        "launcher_pid": 3601,
+        "process_group": 3601,
+        "launch_elapsed_s": 162.34442632,
+        "exit_elapsed_s": 236.65877652499998,
+        "exit_code": 0,
+        "timed_out": false,
+        "child_pid": 3614,
+        "child_uuid": "bf5d2dd0ad2a4274a529bb5726a0fec3",
+        "validation_error": null,
+        "cleanup_errors": [],
+        "storage": {
+          "payload_limit_bytes": 1055856939,
+          "trial_ledger_limit_bytes": 8388608,
+          "log_limit_bytes": 1048576,
+          "log_bytes": 3031,
+          "limit_error": null
+        }
+      },
+      {
+        "schedule_index": 3,
+        "arm": "retention",
+        "repeat": 1,
+        "nonce": "2d6e47e67026b11522c49cf04e78b06a297cb668a2d35d9c42fc3d551f5a5293",
+        "launched": true,
+        "launcher_pid": 3715,
+        "process_group": 3715,
+        "launch_elapsed_s": 236.66068228700001,
+        "exit_elapsed_s": 310.730553032,
+        "exit_code": 0,
+        "timed_out": false,
+        "child_pid": 3728,
+        "child_uuid": "4387535e367b4c6da4227fb5b5a60615",
+        "validation_error": null,
+        "cleanup_errors": [],
+        "storage": {
+          "payload_limit_bytes": 962381656,
+          "trial_ledger_limit_bytes": 8388608,
+          "log_limit_bytes": 1048576,
+          "log_bytes": 3031,
+          "limit_error": null
+        }
+      },
+      {
+        "schedule_index": 4,
+        "arm": "proxy",
+        "repeat": 1,
+        "nonce": "f5f59672eb78f4199fce404be4428e206879c3d232266ed4adb6ea9adb8b1543",
+        "launched": true,
+        "launcher_pid": 3785,
+        "process_group": 3785,
+        "launch_elapsed_s": 310.734167858,
+        "exit_elapsed_s": 399.68435023899997,
+        "exit_code": 0,
+        "timed_out": false,
+        "child_pid": 3798,
+        "child_uuid": "0273afff2187429791ac8e2e47e5bf6b",
+        "validation_error": null,
+        "cleanup_errors": [],
+        "storage": {
+          "payload_limit_bytes": 868906686,
+          "trial_ledger_limit_bytes": 8388608,
+          "log_limit_bytes": 1048576,
+          "log_bytes": 3031,
+          "limit_error": null
+        }
+      },
+      {
+        "schedule_index": 5,
+        "arm": "original",
+        "repeat": 1,
+        "nonce": "d3281589b432ca98643e9f948a861bd408b0e09b8f87097ee0ca22e951db2414",
+        "launched": true,
+        "launcher_pid": 3835,
+        "process_group": 3835,
+        "launch_elapsed_s": 399.68813997300003,
+        "exit_elapsed_s": 468.13441074900004,
+        "exit_code": 0,
+        "timed_out": false,
+        "child_pid": 3848,
+        "child_uuid": "53da5c3bebb54165969269754e238ea5",
+        "validation_error": null,
+        "cleanup_errors": [],
+        "storage": {
+          "payload_limit_bytes": 868866270,
+          "trial_ledger_limit_bytes": 8388608,
+          "log_limit_bytes": 1048576,
+          "log_bytes": 3031,
+          "limit_error": null
+        }
+      }
+    ],
+    "elapsed_wall_s": 468.141821069
+  },
+  "retained_pair_summary": {
+    "status": "POSTHOC_RETAINED_PAIR_SUMMARY",
+    "raw_rgb_cross_process_exact": {
+      "matches": 2,
+      "total": 8
+    },
+    "canvas_rgb_cross_process_exact": {
+      "matches": 2,
+      "total": 8
+    },
+    "packed_i420_cross_process_exact": {
+      "matches": 1,
+      "total": 4
+    },
+    "raw4_cross_process_exact": {
+      "matches": 1,
+      "total": 4
+    },
+    "plan_cross_process_exact": {
+      "matches": 1,
+      "total": 4
+    },
+    "reconstruction": {
+      "raw_to_canvas_exact": 16,
+      "raw_to_canvas_total": 16,
+      "derived_i420_exact": 8,
+      "derived_i420_total": 8,
+      "derived_i420_to_actual_new_img_sha_exact": 8,
+      "derived_i420_to_actual_new_img_sha_total": 8
+    },
+    "retention_pair_max_position_delta_m": 2.1362285073773703e-06,
+    "all_child_provider_closed": true,
+    "all_child_calls": [
+      4,
+      4,
+      4,
+      4,
+      4,
+      4
+    ],
+    "pair_capture_counts": [
+      null,
+      12,
+      12,
+      12,
+      16,
+      null
+    ],
+    "limitation": "Cross-process rates only describe four-step retained A/A pair, not expanded/strict PASS. Reconstruction exactness is a separate within-stream check. Other actual graph feeds remain source-reconstructed snapshots."
+  },
+  "pixel_first_difference": {
+    "status": "CPU_RAW_PIXEL_FIRST_DIFFERENCE_MEASURED",
+    "run_id": 43149053427,
+    "source": "582cc594d127e9cde5ff3525e50c143f60285f75",
+    "artifact_id": 13912454399,
+    "pair": [
+      "retention0",
+      "retention1"
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "intrinsics_equal": true,
+        "observation_equal": true,
+        "accepted_capture_pose_equal": true,
+        "accepted_capture_poses": [
+          {
+            "t": 0.0,
+            "x": 65.4052721645879,
+            "y": 0.26625325426066837,
+            "heading": 0.09843656981248028,
+            "speed": 8.0
+          },
+          {
+            "t": 0.0,
+            "x": 65.4052721645879,
+            "y": 0.26625325426066837,
+            "heading": 0.09843656981248028,
+            "speed": 8.0
+          }
+        ],
+        "raw": {
+          "road": {
+            "equal": true,
+            "changed_values": 0,
+            "max_abs_delta": 0.0,
+            "changed_pixels": 0,
+            "bbox_xyxy": null
+          },
+          "wide": {
+            "equal": true,
+            "changed_values": 0,
+            "max_abs_delta": 0.0,
+            "changed_pixels": 0,
+            "bbox_xyxy": null
+          }
+        },
+        "canvas": {
+          "road": {
+            "equal": true,
+            "changed_values": 0,
+            "max_abs_delta": 0.0,
+            "changed_pixels": 0,
+            "bbox_xyxy": null
+          },
+          "wide": {
+            "equal": true,
+            "changed_values": 0,
+            "max_abs_delta": 0.0,
+            "changed_pixels": 0,
+            "bbox_xyxy": null
+          }
+        },
+        "packed_i420": {
+          "equal": true,
+          "changed_values": 0,
+          "max_abs_delta": 0.0
+        },
+        "pre_state": {
+          "state_img_q": {
+            "equal": true,
+            "changed_values": 0,
+            "max_abs_delta": 0.0
+          },
+          "state_desire_q": {
+            "equal": true,
+            "changed_values": 0,
+            "max_abs_delta": 0.0
+          },
+          "state_feat_q": {
+            "equal": true,
+            "changed_values": 0,
+            "max_abs_delta": 0.0
+          }
+        },
+        "post_state": {
+          "state_img_q": {
+            "equal": true,
+            "changed_values": 0,
+            "max_abs_delta": 0.0
+          },
+          "state_desire_q": {
+            "equal": true,
+            "changed_values": 0,
+            "max_abs_delta": 0.0
+          },
+          "state_feat_q": {
+            "equal": true,
+            "changed_values": 0,
+            "max_abs_delta": 0.0
+          }
+        },
+        "fixed_inputs": {
+          "traffic_convention": {
+            "equal": true,
+            "changed_values": 0,
+            "max_abs_delta": 0.0
+          },
+          "action_t": {
+            "equal": true,
+            "changed_values": 0,
+            "max_abs_delta": 0.0
+          },
+          "desire": {
+            "equal": true,
+            "changed_values": 0,
+            "max_abs_delta": 0.0
+          }
+        },
+        "raw4": {
+          "equal": true,
+          "changed_values": 0,
+          "max_abs_delta": 0.0,
+          "values": [
+            [
+              -0.396240234375,
+              -0.039398193359375,
+              -1.310546875,
+              -1.1572265625
+            ],
+            [
+              -0.396240234375,
+              -0.039398193359375,
+              -1.310546875,
+              -1.1572265625
+            ]
+          ]
+        },
+        "plan": {
+          "equal": true,
+          "changed_values": 0,
+          "max_abs_delta": 0.0
+        },
+        "parent_trace": [
+          {
+            "step_index": 0,
+            "elapsed_ms": 1075.5095299999766,
+            "raw_lateral_accel_mps2": -0.396240234375,
+            "raw_longitudinal_accel_mps2": -0.039398193359375,
+            "curvature_1pm": -0.006191253662109375,
+            "image_checksum": 48398753
+          },
+          {
+            "step_index": 0,
+            "elapsed_ms": 1080.2827750000006,
+            "raw_lateral_accel_mps2": -0.396240234375,
+            "raw_longitudinal_accel_mps2": -0.039398193359375,
+            "curvature_1pm": -0.006191253662109375,
+            "image_checksum": 48398753
+          }
+        ],
+        "applied_world_action": [
+          {
+            "curvature_1pm": 0.006191253662109375,
+            "acceleration_mps2": -0.039398193359375
+          },
+          {
+            "curvature_1pm": 0.006191253662109375,
+            "acceleration_mps2": -0.039398193359375
+          }
+        ]
+      },
+      {
+        "step": 2,
+        "intrinsics_equal": true,
+        "observation_equal": true,
+        "accepted_capture_pose_equal": true,
+        "accepted_capture_poses": [
+          {
+            "t": 0.05,
+            "x": 65.80328679516661,
+            "y": 0.30605719684545585,
+            "heading": 0.10091307127732403,
+            "speed": 8.0
+          },
+          {
+            "t": 0.05,
+            "x": 65.80328679516661,
+            "y": 0.30605719684545585,
+            "heading": 0.10091307127732403,
+            "speed": 8.0
+          }
+        ],
+        "raw": {
+          "road": {
+            "equal": false,
+            "changed_values": 9,
+            "max_abs_delta": 93.0,
+            "changed_pixels": 3,
+            "bbox_xyxy": [
+              130,
+              351,
+              718,
+              512
+            ]
+          },
+          "wide": {
+            "equal": false,
+            "changed_values": 3,
+            "max_abs_delta": 6.0,
+            "changed_pixels": 1,
+            "bbox_xyxy": [
+              431,
+              315,
+              431,
+              315
+            ]
+          }
+        },
+        "canvas": {
+          "road": {
+            "equal": false,
+            "changed_values": 9,
+            "max_abs_delta": 50.0,
+            "changed_pixels": 3,
+            "bbox_xyxy": [
+              14,
+              81,
+              418,
+              192
+            ]
+          },
+          "wide": {
+            "equal": false,
+            "changed_values": 23,
+            "max_abs_delta": 4.0,
+            "changed_pixels": 9,
+            "bbox_xyxy": [
+              173,
+              172,
+              175,
+              174
+            ]
+          }
+        },
+        "packed_i420": {
+          "equal": false,
+          "changed_values": 13,
+          "max_abs_delta": 7.0
+        },
+        "pre_state": {
+          "state_img_q": {
+            "equal": true,
+            "changed_values": 0,
+            "max_abs_delta": 0.0
+          },
+          "state_desire_q": {
+            "equal": true,
+            "changed_values": 0,
+            "max_abs_delta": 0.0
+          },
+          "state_feat_q": {
+            "equal": true,
+            "changed_values": 0,
+            "max_abs_delta": 0.0
+          }
+        },
+        "post_state": {
+          "state_img_q": {
+            "equal": false,
+            "changed_values": 13,
+            "max_abs_delta": 7.0
+          },
+          "state_desire_q": {
+            "equal": true,
+            "changed_values": 0,
+            "max_abs_delta": 0.0
+          },
+          "state_feat_q": {
+            "equal": false,
+            "changed_values": 11286,
+            "max_abs_delta": 0.03125
+          }
+        },
+        "fixed_inputs": {
+          "traffic_convention": {
+            "equal": true,
+            "changed_values": 0,
+            "max_abs_delta": 0.0
+          },
+          "action_t": {
+            "equal": true,
+            "changed_values": 0,
+            "max_abs_delta": 0.0
+          },
+          "desire": {
+            "equal": true,
+            "changed_values": 0,
+            "max_abs_delta": 0.0
+          }
+        },
+        "raw4": {
+          "equal": false,
+          "changed_values": 3,
+          "max_abs_delta": 0.0009765625,
+          "values": [
+            [
+              -0.409912109375,
+              -0.0418701171875,
+              -1.279296875,
+              -1.1591796875
+            ],
+            [
+              -0.41064453125,
+              -0.041748046875,
+              -1.2802734375,
+              -1.1591796875
+            ]
+          ]
+        },
+        "plan": {
+          "equal": false,
+          "changed_values": 562,
+          "max_abs_delta": 0.0625
+        },
+        "parent_trace": [
+          {
+            "step_index": 1,
+            "elapsed_ms": 1079.3166789999873,
+            "raw_lateral_accel_mps2": -0.409912109375,
+            "raw_longitudinal_accel_mps2": -0.0418701171875,
+            "curvature_1pm": -0.006404876708984375,
+            "image_checksum": 48497357
+          },
+          {
+            "step_index": 1,
+            "elapsed_ms": 1062.9397689999678,
+            "raw_lateral_accel_mps2": -0.41064453125,
+            "raw_longitudinal_accel_mps2": -0.041748046875,
+            "curvature_1pm": -0.00641632080078125,
+            "image_checksum": 48497389
+          }
+        ],
+        "applied_world_action": [
+          {
+            "curvature_1pm": 0.006404876708984375,
+            "acceleration_mps2": -0.0418701171875
+          },
+          {
+            "curvature_1pm": 0.00641632080078125,
+            "acceleration_mps2": -0.041748046875
+          }
+        ]
+      }
+    ],
+    "limitation": "Posthoc CPU replay of saved bytes; states/fixed feeds are source-reconstructed snapshots, not intercepted tensors. GPU buffers/task state/timing and unique cause remain unobserved. No new model/native execution."
+  },
+  "repeat_pairs": [
+    {
+      "pair": [
+        "original0",
+        "original1"
+      ],
+      "road_frame_sha256_exact_steps": 1,
+      "wide_frame_sha256_exact_steps": 2,
+      "desired_curvature_1pm_exact_steps": 1,
+      "desired_acceleration_mps2_exact_steps": 1,
+      "world_x_m_exact_steps": 1,
+      "world_y_m_exact_steps": 1,
+      "heading_rad_exact_steps": 1
+    },
+    {
+      "pair": [
+        "proxy0",
+        "proxy1"
+      ],
+      "road_frame_sha256_exact_steps": 3,
+      "wide_frame_sha256_exact_steps": 3,
+      "desired_curvature_1pm_exact_steps": 4,
+      "desired_acceleration_mps2_exact_steps": 2,
+      "world_x_m_exact_steps": 4,
+      "world_y_m_exact_steps": 4,
+      "heading_rad_exact_steps": 4
+    },
+    {
+      "pair": [
+        "retention0",
+        "retention1"
+      ],
+      "road_frame_sha256_exact_steps": 1,
+      "wide_frame_sha256_exact_steps": 1,
+      "desired_curvature_1pm_exact_steps": 1,
+      "desired_acceleration_mps2_exact_steps": 1,
+      "world_x_m_exact_steps": 1,
+      "world_y_m_exact_steps": 1,
+      "heading_rad_exact_steps": 1
+    }
+  ],
+  "root_rulings": [
+    "Ruling: successor workflow/request/context and new source62 registration — preserve consumed study and all41 existing workflows — cost: old source evidence cannot validate successor and new CI identity must be authenticated.",
+    "Ruling: pin ubuntu-24.04 and exact recorded distributions — bound runtime drift, use repaired transport OS family — cost: no historic Ubuntu26 or system/binary equality claim; runtime drift still fails closed.",
+    "Ruling: execute a NEW registered24-call-ceiling study only after root+fresh accepted new camera canary — user authorized autonomous next steps, IPC producer changed and reviewed — cost: up to24 new official calls and6 native children, no retry on failure.",
+    "Ruling: preserve all raw/controller history and use existing checkout without worktrees — explicit user constraints override skill cleanup/worktree defaults — cost: retained disk usage.",
+    "Ruling: initialize remote successor ref at existing published f1a6ee4 before reviewed source push — obtain explicit old-to-new push diff and avoid native replay on branch creation — cost: remote feature ref and possibly two baseline CI jobs; no new native workflow present at this ref. Source push still waits for reviewer."
+  ],
+  "protected_pins": 13,
+  "baseline_pins": 43,
+  "old_workflows_unchanged": 41,
+  "producer_source_paths": 62,
+  "consumed_old_study": {
+    "run": 43128201225,
+    "model_calls": null,
+    "bounds": [
+      0,
+      4
+    ],
+    "native_provider_bounds": [
+      0,
+      1
+    ]
+  },
+  "scientific_gates": {
+    "original_strict": "FAIL",
+    "original_renderer_cases": "0/4",
+    "historical_corrected_candidate": "12/12",
+    "expanded_after_this_change": "NOT_RUN",
+    "geometry_original_cases": "2/4",
+    "geometry_candidate_cases": "1/4",
+    "geometry_image_gates": {
+      "pass_count": 62,
+      "inconclusive_count": 66
+    },
+    "full_s_validated": false,
+    "physical_optics_validated": false,
+    "stage7_complete": false
+  },
+  "main_head": "48e79a7ed5aedf6daa5a62ff68d2225af7955ef1",
+  "main_official_model_calls": 0,
+  "cloud_published": false,
+  "reviews": {
+    "source-review": {
+      "path": ".superpowers/sdd/2026-11-12-first-divergence-post-transport/source-review.json",
+      "sha256": "80b7c27bb92a91bc540cf211898978b7d3450438b4217c501e08fceb95697a7d"
+    },
+    "canary-raw-review": {
+      "path": ".superpowers/sdd/2026-11-12-first-divergence-post-transport/canary-raw-review.json",
+      "sha256": "101e51c2c68a2a09c89e478f01fd3be2a57d546cf269a1b716e23b91cf423a71"
+    },
+    "study-raw-review": {
+      "path": ".superpowers/sdd/2026-11-12-first-divergence-post-transport/study-raw-review.json",
+      "sha256": "669c7cfe27a644e8301815e4a9c35797b4ed32d12968c905cf147ed951c197e9"
+    }
+  },
+  "pr": {
+    "number": 35,
+    "url": "https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/pull/35",
+    "draft": true,
+    "merged": false,
+    "base": "fix/first-divergence-launch-transport"
+  },
+  "ci": {
+    "canary_source": {
+      "head": "65d2958ec80afa190af972d798929042f6bb8f27",
+      "runs": [
+        43148115765,
+        43148122607,
+        43148115766
+      ],
+      "success_jobs": 5,
+      "failed_jobs": 0
+    },
+    "study_source": {
+      "head": "582cc594d127e9cde5ff3525e50c143f60285f75",
+      "runs": [
+        43149053409,
+        43149060583,
+        43149053427
+      ],
+      "success_jobs": 5,
+      "failed_jobs": 0
+    },
+    "local": {
+      "targeted_tests": 103,
+      "full_tests": 486,
+      "full_optional_skips": 0,
+      "full_elapsed_s": 65.885
+    },
+    "source_ci_unit": {
+      "tests": 486,
+      "optional_skips": 7,
+      "optional_onnx_ort_skips": 1,
+      "optional_panda_cpu_skips": 6,
+      "separate_generated_small_onnx_tests": 1
+    }
+  },
+  "schema": "stage7-post-transport-diagnostic-evidence-v1",
+  "new_phase_native_providers": {
+    "camera_canary": 1,
+    "model_study": 6,
+    "total": 7
+  },
+  "new_phase_official_calls": 24,
+  "next_steps": [
+    "Replay and inspect retained step2 pixel neighborhoods/coordinates and immutable camera/source history without new native calls.",
+    "Prepare a separate bounded instrumentation protocol for the raw sensor/render/readback boundary with observer controls and recorded GPU/task/shader/buffer state; preserve scientific parameters and register fresh source/budgets before execution.",
+    "Revisit original strict and expanded scenarios only after a supported cause/fix; keep both failed registered studies consumed and draft chain unmerged."
+  ]
+}
