@@ -1,0 +1,233 @@
+{
+  "acceptance": {
+    "GPU_pixel_cause_proven": false,
+    "accepted_API_context_matches_saved_C": true,
+    "accepted_runtime": {
+      "ImageOS": "ubuntu24",
+      "ImageVersion": "20261111.370.1",
+      "cv2": "5.0.0",
+      "executable": "/opt/hostedtoolcache/Python/3.11.18/x64/bin/python",
+      "metadrive-simulator": "0.4.3",
+      "numpy": "2.4.6",
+      "onnxruntime": null,
+      "opencv-python-headless": "5.0.0.93",
+      "panda3d": "1.10.13",
+      "python": "3.11.18 (main, Oct 26 2026, 02:48:34) [GCC 13.3.0]"
+    },
+    "accepted_source70_matches": true,
+    "all_other_runtime_fields_equal": true,
+    "binary_difference_proven": false,
+    "canary_full_raw_replay_repeated": false,
+    "canary_original_phase_sha256": "c178256e8e623a8fa1f6d4a919cf3f68eeee09d757dcf4dcc60d31ba84619d18",
+    "canary_raw_review_sha256": "3becdc31974dfdb237d1bfe0997d84d69fa26b1ce14f19dd3b9793284dbc1857",
+    "persisted_root_and_fresh_acceptance_verified": true,
+    "runtime": {
+      "ImageOS": "ubuntu24",
+      "ImageVersion": "20261101.360.1",
+      "cv2": "5.0.0",
+      "executable": "/opt/hostedtoolcache/Python/3.11.18/x64/bin/python",
+      "metadrive-simulator": "0.4.3",
+      "numpy": "2.4.6",
+      "onnxruntime": null,
+      "opencv-python-headless": "5.0.0.93",
+      "panda3d": "1.10.13",
+      "python": "3.11.18 (main, Oct 26 2026, 02:48:34) [GCC 13.3.0]"
+    },
+    "runtime_differences": {
+      "ImageVersion": {
+        "abba": "20261101.360.1",
+        "canary": "20261111.370.1"
+      }
+    },
+    "source_level_rejection_reason": "Whole runtime dict inequality from ImageVersion only; context and source70 match."
+  },
+  "accepted_canary_source": "30dcc5b4075dd2cfaf25b3e8d90e324386a278af",
+  "api": {
+    "bounded_phase_step": "failure",
+    "branch": "diagnostic/engine-clock-boundaries",
+    "branch_still_reviewed_head": true,
+    "conclusion": "failure",
+    "endpoints": {
+      "accepted_artifact": "/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/artifacts/13957438550",
+      "accepted_run": "/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43249493437",
+      "artifact": "/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/artifacts/13958034562",
+      "artifacts": "/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43251145868/artifacts?per_page=100",
+      "branch": "/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/branches/diagnostic/engine-clock-boundaries",
+      "commit": "/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/commits/ab0ef77ab318a0683bdddb896e1e9db6b79e79e6",
+      "jobs": "/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43251145868/jobs?filter=all&per_page=100",
+      "run": "/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43251145868",
+      "unique": "/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/workflows/416199727/runs?event=push&head_sha=ab0ef77ab318a0683bdddb896e1e9db6b79e79e6&per_page=100",
+      "workflow": "/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/workflows/416199727"
+    },
+    "event": "push",
+    "failure_artifact_upload_step": "success",
+    "fresh_accepted_artifact_binding_confirmed": true,
+    "fresh_accepted_run_success_confirmed": true,
+    "job_count": 1,
+    "job_id": 131296956425,
+    "own_head_workflow_run_count": 1,
+    "response_sha256": {
+      "accepted_artifact": "82a9390fdb4dc5c01c7f6b40fbfdd4585bb663fbef65ef8635457d07982286b6",
+      "accepted_run": "617bf3ca7a8d818ba8efe72b5c88dc679c0841292e540376cc61c1d84f94f3bf",
+      "artifact": "a580e48ced982f8c94053c778e8500e70e75f42a43c8976c5396330d053a1e58",
+      "artifacts": "72fc8c63ecc838e9d22908b1a06cdf8c8ef555455c0f09ae0fd3bed28110e2b2",
+      "branch": "8bfe1147222b6ef87f4386172232810c63fbaa5f529aaf982178a84c585d3035",
+      "commit": "b0032cce9ec4df4084cc7e53ff70f07943859f6cc38f71a841f8d8008f7ace5d",
+      "jobs": "b248d900ddcd7e6b56a647c958747af741a64b79294c2b0878c145ee896e9740",
+      "run": "cbda738c2fd501555f9c1e4a0ef8a5f3d9262f0e8e86ba0a7dc05bd9b20304eb",
+      "unique": "34692370de673e449cad5425d81efce2aaa0b8b5e08eabf119a023230c95b605",
+      "workflow": "0efd82dfd154deec74176a2cd3929503dfa2cd6ae775c602a37c6edb9052a711"
+    },
+    "run_attempt": 1,
+    "run_id": 43251145868,
+    "run_url": "https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43251145868",
+    "status": "completed",
+    "workflow_id": 416199727
+  },
+  "artifact": {
+    "downloaded_by_reviewer": false,
+    "existing_extraction": "output/stage7-remote-evidence/run-43251145868/extracted/13958034562",
+    "extracted_by_reviewer": false,
+    "id": 13958034562,
+    "name": "stage7-engine-clock-abba",
+    "original_zip": "output/stage7-remote-evidence/run-43251145868/13958034562.zip",
+    "original_zip_and_extracted_phase_equal": true,
+    "phase_sha256": "03d39aaed55f35bf894551bb8ea2dc6c3d5999892278b89bf7a6fa0945224289",
+    "safe_exact_members": [
+      "phase.json"
+    ],
+    "sha256": "0492e32c50f6549c635a150e76637b5e498ad84be3f2e364257b6ba4396dc656",
+    "size_in_bytes": 5421,
+    "uncompressed_bytes": 12123,
+    "zip_crc_valid": true
+  },
+  "campaign": {
+    "actual_successful_observer_getter_invocations": 144,
+    "baseline_generated_SMALL_graph_ORT_evidence_separate": true,
+    "canary_RAM_reads": 12,
+    "canary_Texture_accessor_invocations": 48,
+    "canary_Texture_readings": 24,
+    "canary_clock_getter_invocations": 96,
+    "canary_clock_snapshots": 48,
+    "canary_original_task_steps": 12,
+    "canary_pairs": 6,
+    "canary_providers": 1,
+    "extra_gpu_reads": 0,
+    "official_model_calls": 0,
+    "ort_sessions": 0,
+    "planned_campaign_completed": false,
+    "planned_campaign_observer_getter_invocations": 528,
+    "successful_recorded_native_evidence": "Accepted canary C only"
+  },
+  "failure": {
+    "ABBA_clock_OFF_ON_raw_data_present": false,
+    "acceptance_receipt": null,
+    "allowance_reused": false,
+    "case_ledgers_present": false,
+    "cleanup_errors": [],
+    "comparisons": [],
+    "elapsed_s": 5.471793701999999,
+    "error": "ValueError: accepted raw dataset context/source/runtime mismatch",
+    "gates_weakened": false,
+    "launches": [],
+    "marker_clock_capture_attempt_return_ledgers": "Absent because no case ledger was produced; no attempt/return values fabricated.",
+    "missing_child_ledger_generic_provider_bounds": [
+      0,
+      1
+    ],
+    "phase_aggregates": {
+      "accepted_pairs": null,
+      "clock_getter_invocations": null,
+      "clock_snapshots": null,
+      "marker_reads": null,
+      "observed_reads": null,
+      "providers": null,
+      "task_step_calls": null
+    },
+    "provider_attempted": null,
+    "provider_closed": null,
+    "provider_constructed": null,
+    "provider_proof_scope": "Exact source execution ordering and recorded acceptance error support no scheduled case/constructor reached. Empty artifacts alone do not establish zero provider allocations; generic missing-child-ledger bounds remain conservative, not a measured count. No OS process/binary attestation.",
+    "registered_cases_not_run": 4,
+    "remaining_cases_run": false,
+    "retry": false,
+    "source_level_gate_precedes_case_loop_Popen_constructor": true,
+    "stage": "acceptance",
+    "status": "FAILED_OR_INCOMPLETE",
+    "strict_validator_accepted": false,
+    "strict_validator_expected_rejection": "ValueError: missing or unregistered versioned record fields",
+    "strict_validator_rejection_is_dataset_pass": false
+  },
+  "findings": {
+    "critical": [],
+    "important": [],
+    "minor": [],
+    "terminal_failure": "Authentic complete failure artifact at pre-case acceptance gate. Full runtime identity differs only in ImageVersion; gate correctly refuses ABBA."
+  },
+  "preserved_status": {
+    "Cloud": "UNPUBLISHED",
+    "Draft": "UNMERGED",
+    "expanded": "NOT_RUN",
+    "geometry_optics_full_S": "INCOMPLETE",
+    "main_official_model_calls": 0,
+    "scientific_strict": "FAIL",
+    "stage7": "INCOMPLETE"
+  },
+  "reviewed_at_utc": "2026-11-12T15:54:42.761468+00:00",
+  "reviewed_head": "ab0ef77ab318a0683bdddb896e1e9db6b79e79e6",
+  "root_receipt": {
+    "claims_independently_checked": true,
+    "path": ".superpowers/sdd/2026-11-12-engine-clock-native/abba-root.json",
+    "sha256": "34701fcae85bb4c2d8ca1cbd97e3045cf9d02707304221ea0f744f7a39cc79b2"
+  },
+  "schema": "stage7-engine-clock-fresh-raw-review-v1",
+  "scope": "Fresh independent actual ABBA terminal-failure acceptance; not successful ABBA or dataset PASS. Pure CPU/disk replay and read-only API only.",
+  "source": {
+    "activation_changed_paths": 9,
+    "activation_request_acceptance_docs_only": true,
+    "all_current_bytes_and_actual_A_C_git_blobs_verified": true,
+    "clean_tracked_checkout": true,
+    "compact_sorted_sha256": "6f8dcc2fc4aa7b1896a74d43ea4e030f89729b4b7851825cd0bbd444c6acab04",
+    "count": 70,
+    "direct_parent_is_accepted_C": true,
+    "no_default_action_converter_tick_shader_clocksetter_change": true,
+    "preservation": {
+      "all_old_workflows43": true,
+      "baseline43_literal_pins": true,
+      "old_requests_acceptances_bytes_and_histories": 6,
+      "old_source67": true,
+      "preimplementation_base": "edbaa90d291f32d77e15ec77f091e5bcf3eef483",
+      "protected13_literal_pins": true
+    },
+    "single_parent": true,
+    "source_lines": {
+      "_case": 363,
+      "_gate": 590,
+      "run_child": 297,
+      "run_phase": 707,
+      "validate_dataset": 701
+    }
+  },
+  "unknowns": [
+    "No successful ABBA four-case data or six comparisons; no clock OFF/ON interpretation available.",
+    "Missing case ledger is not a live provider/constructor/close counter. Source-bound gate ordering supports pre-case rejection; artifact absence alone does not prove zero allocation.",
+    "ImageVersion metadata inequality does not attest installed binary differences or identify a GPU pixel cause.",
+    "CPU marker/count/time observations are non-atomic local metadata, not shared GPU frame IDs, completion/freshness/callback identity, observer neutrality, or causal attribution."
+  ],
+  "verdict": "ACCEPTED_AUTHENTIC_FAILURE",
+  "verification": {
+    "Git_CI_mutation": false,
+    "dependency_install": false,
+    "expected_strict_negative_replay_performed": true,
+    "fullsuite_run": false,
+    "log_sha256": "a2f47d3192242adafa3c5af42a410b6af89c26c398c342d0a1d7f75a51faa4fb",
+    "native_run": false,
+    "pure_failure_replay_log": ".superpowers/sdd/2026-11-12-engine-clock-native/abba-raw-review-failure-pure-replay.log",
+    "reviewer_harness_corrections": [
+      "Initial source-map assertion used fix-1-source70.json envelope rather than source70 member; corrected and all70 disk/A/C hashes passed.",
+      "Initial source-order compound assertion used wrong constructor spelling; corrected to actual NativeMetaDriveProvider and ordering passed."
+    ],
+    "reviewer_harness_corrections_are_production_findings": false,
+    "subagents": false
+  }
+}

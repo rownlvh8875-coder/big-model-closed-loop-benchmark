@@ -1,0 +1,30 @@
+{
+  "accepted_context_matches": true,
+  "comparisons": [],
+  "error": "ValueError: accepted raw dataset context/source/runtime mismatch",
+  "failure_stage": "acceptance",
+  "launch_records": 0,
+  "phase_aggregates": {
+    "accepted_pairs": null,
+    "clock_getter_invocations": null,
+    "clock_snapshots": null,
+    "marker_reads": null,
+    "observed_reads": null,
+    "providers": null,
+    "task_step_calls": null
+  },
+  "remaining_cases_not_run": 4,
+  "retry": false,
+  "runtime_differences": {
+    "ImageVersion": {
+      "abba": "20261101.360.1",
+      "canary": "20261111.370.1"
+    }
+  },
+  "schema": "stage7-engine-clock-runtime-rejection-v1",
+  "scope": "Source-bound acceptance rejection before case-loop; failed aggregate counts remain null, not successful zero-count ABBA. No GPU/model/causal evidence.",
+  "source70_matches": true,
+  "source_activation": "ab0ef77ab318a0683bdddb896e1e9db6b79e79e6",
+  "source_canary": "30dcc5b4075dd2cfaf25b3e8d90e324386a278af",
+  "unused_allowance_reused": false
+}

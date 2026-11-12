@@ -38,6 +38,6 @@ Consumes reviewed source70/requestcanary. RootownsGit/CI/API/archive/evidence; n
 
 Consumes actual accepted canaryC; rootdoesnotcommitdocsbetweenC andA.
 
-- [ ] Create exactlyone activation child changing only newrequest/acceptance/docs with realcanary IDs/digest/root+freshflags, freeze70/runtime, verify concrete gate thenpushonce.
-- [ ] Authenticate actual ABBA4providers or terminalfailure, original artifact extractiononce, pure reconstruction/all6comparisons/clock counts+times+rawlinks, fresh independent raw acceptance. No retries/unusedallowance.
+- [x] Create exactlyone activation child changing only newrequest/acceptance/docs with realcanary IDs/digest/root+freshflags, freeze70/runtime, verify concrete gate thenpushonce.
+- [x] Authenticate actual ABBA4providers or terminalfailure, original artifact extractiononce, pure reconstruction/all6comparisons/clock counts+times+rawlinks, fresh independent raw acceptance. No retries/unusedallowance.
 - [ ] Record actual evidence/unknowns/rulings, final fresh whole-branch review, docs-only Draft update and actual baselineCI/no-native-replay/source/protected/main checks; retain all histories.

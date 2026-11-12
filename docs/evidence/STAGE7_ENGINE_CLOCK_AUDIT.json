@@ -1,0 +1,248 @@
+{
+  "abba_failure": {
+    "accepted_context_matches": true,
+    "comparisons": [],
+    "error": "ValueError: accepted raw dataset context/source/runtime mismatch",
+    "failure_stage": "acceptance",
+    "launch_records": 0,
+    "phase_aggregates": {
+      "accepted_pairs": null,
+      "clock_getter_invocations": null,
+      "clock_snapshots": null,
+      "marker_reads": null,
+      "observed_reads": null,
+      "providers": null,
+      "task_step_calls": null
+    },
+    "remaining_cases_not_run": 4,
+    "retry": false,
+    "runtime_differences": {
+      "ImageVersion": {
+        "abba": "20261101.360.1",
+        "canary": "20261111.370.1"
+      }
+    },
+    "schema": "stage7-engine-clock-runtime-rejection-v1",
+    "scope": "Source-bound acceptance rejection before case-loop; failed aggregate counts remain null, not successful zero-count ABBA. No GPU/model/causal evidence.",
+    "source70_matches": true,
+    "source_activation": "ab0ef77ab318a0683bdddb896e1e9db6b79e79e6",
+    "source_canary": "30dcc5b4075dd2cfaf25b3e8d90e324386a278af",
+    "unused_allowance_reused": false
+  },
+  "abba_runner_canary_archive_authentication_separate": true,
+  "actual_successful_canary": {
+    "accepted_pairs": 6,
+    "clock_accessor_invocations": 96,
+    "clock_snapshots": 48,
+    "observer_getter_invocations": 144,
+    "providers": 1,
+    "ram_reads": 12,
+    "task_steps": 12,
+    "texture_accessor_invocations": 48,
+    "texture_readings": 24
+  },
+  "base_sha": "dc71e3617c70e544bd09c53378adaabed660b245",
+  "baseline_generated_small_graph_separate": true,
+  "basic_ci": [
+    {
+      "conclusion": "success",
+      "event": "push",
+      "head_sha": "dc71e3617c70e544bd09c53378adaabed660b245",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "id": 131269761760,
+          "name": "synthetic-unit"
+        },
+        {
+          "conclusion": "success",
+          "id": 131269762415,
+          "name": "onnx-interface-test"
+        }
+      ],
+      "run_id": 43243457833,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "event": "push",
+      "head_sha": "30dcc5b4075dd2cfaf25b3e8d90e324386a278af",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "id": 131291074511,
+          "name": "synthetic-unit"
+        },
+        {
+          "conclusion": "success",
+          "id": 131291075042,
+          "name": "onnx-interface-test"
+        }
+      ],
+      "run_id": 43249493559,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "event": "pull_request",
+      "head_sha": "30dcc5b4075dd2cfaf25b3e8d90e324386a278af",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "id": 131291125043,
+          "name": "synthetic-unit"
+        },
+        {
+          "conclusion": "success",
+          "id": 131291125715,
+          "name": "onnx-interface-test"
+        }
+      ],
+      "run_id": 43249507794,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "event": "push",
+      "head_sha": "ab0ef77ab318a0683bdddb896e1e9db6b79e79e6",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "id": 131296953117,
+          "name": "onnx-interface-test"
+        },
+        {
+          "conclusion": "success",
+          "id": 131296953570,
+          "name": "synthetic-unit"
+        }
+      ],
+      "run_id": 43251145850,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "event": "pull_request",
+      "head_sha": "ab0ef77ab318a0683bdddb896e1e9db6b79e79e6",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "id": 131297003489,
+          "name": "onnx-interface-test"
+        },
+        {
+          "conclusion": "success",
+          "id": 131297003948,
+          "name": "synthetic-unit"
+        }
+      ],
+      "run_id": 43251160849,
+      "status": "completed"
+    }
+  ],
+  "branch": "diagnostic/engine-clock-boundaries",
+  "cloud_configuration_changed": false,
+  "cloud_published": false,
+  "draft_pr": 40,
+  "expanded": "NOT_RUN",
+  "extra_gpu_reads": 0,
+  "final_basic_ci": {
+    "actual_final_head_run_jobs_reported_in": "Draft PR40 and final root response; no self-attestation in this earlier receipt",
+    "status": "PENDING_FINAL_DOCS_ONLY_PUSH"
+  },
+  "final_branch_review": null,
+  "geometry_optics_full_s": "NOT_VALIDATED",
+  "main_head_at_receipt": "48e79a7ed5aedf6daa5a62ff68d2225af7955ef1",
+  "main_merged": false,
+  "main_official_calls": 0,
+  "next_work": "Separate provider-free design/engine-clock-runtime-contract branch; immutable environment and binary identity proposal before any new separately registered study. No old rerun/gate weakening/allowance reuse.",
+  "official_model_calls": 0,
+  "ort_sessions": 0,
+  "planned_campaign_observer_getters": 528,
+  "pr_base": "design/engine-clock-boundaries",
+  "raw_and_controller_histories_retained": true,
+  "raw_original_download_extractions_per_artifact": 1,
+  "raw_reviews": {
+    "abba": {
+      "fresh_sha256": "1d11979bc4a9fdd8c58e378918cab85f4f80e12752395587b0a0b5f228bf39a9",
+      "reviewed_head": "ab0ef77ab318a0683bdddb896e1e9db6b79e79e6",
+      "root_sha256": "34701fcae85bb4c2d8ca1cbd97e3045cf9d02707304221ea0f744f7a39cc79b2",
+      "verdict": "ACCEPTED_AUTHENTIC_FAILURE"
+    },
+    "canary": {
+      "fresh_sha256": "3becdc31974dfdb237d1bfe0997d84d69fa26b1ce14f19dd3b9793284dbc1857",
+      "reviewed_head": "30dcc5b4075dd2cfaf25b3e8d90e324386a278af",
+      "root_sha256": "9ddd964ff049117e3e50cd998a83340d40bffd8b8e6ce8fddffdc6c16c9f911b",
+      "verdict": "ACCEPTED_CANARY"
+    }
+  },
+  "remaining_allowance_reused": false,
+  "retries": 0,
+  "rulings": [
+    "Ruling: new standalone derivative protocol with frozen helper/transport reuse, local context/schema validators rather than dynamic source/global reinterpretation \u2014 consumed paths immutable and newcommonTexture semantics differ \u2014 cost: some duplicated protocol code and larger source review.",
+    "Ruling: Task1single standardimplementer with taskspec+quality/fullsource gate, rootGitCI/evidence thenfreshactualrawreviews \u2014 larger integration than priorhelper \u2014 cost: reviewcontext, no parallelimplementation.",
+    "Ruling: preserve old67, ownsource70, NEWrequest/runtime/API/FD gates and canary1then acceptedABBA4 \u2014 makes fresh actual clock evidence without old allowance reuse \u2014 cost:max5providers30pairs,0officialORT, no unique GPUcause/scientificPASS.",
+    "Ruling: commonTextureONbothclockarms,clockwindowsaroundcommonboundRAM/hashwrapper \u2014 marginalclockobservercontrol \u2014 cost: differentfrom oldmarkerOFF/uninstrumentedpath, CPU timing effects remain.",
+    "Ruling: charge clocktrace64KiB in frozen logicalmemoryestimate =>32384608B<32MiB; keepdisk40MiB/frozen38171904B reservation and phase192MiB \u2014 honest metadata budget without oldwriterchanges \u2014 cost: logicalpayload notRSS, hardkillRAM notdurable.",
+    "Ruling: initialize remotenewbranch atpublishedbaseDc before reviewedsourcepush \u2014 explicitold/newpushdiff whileownworkflowabsent \u2014 cost:2extra baselineCIjobs,0newnative atbase.",
+    "Ruling: no worktrees/raw/controllercleanup/Cloud/mainchanges/localnative; retainDraftchain \u2014 standing userconstraints \u2014 cost:disk/history remains and strictFAIL/Stage7incomplete.",
+    "Ruling: retain metadata for all accepted CPU records separately from bounded actually persisted payload inventory on bulk serialization failure \u2014 frozen serializer returns full descriptors only on success \u2014 cost: failure metadata does not make unpersisted RAM durable or a failed dataset valid; same32/40/192MiB limits/no retries.",
+    "Ruling: after safe registered-phase/output selection initialize failure ledger before provider-free admission gates \u2014 preserves authentic runtime/API/Git rejection evidence \u2014 cost: nullable unconfirmed context/source/runtime on failed records, success checks unchanged and no new native allowance."
+  ],
+  "schema": "stage7-engine-clock-native-audit-v1",
+  "scientific_strict": "FAIL",
+  "source70_sha256": "6f8dcc2fc4aa7b1896a74d43ea4e030f89729b4b7851825cd0bbd444c6acab04",
+  "source_activation": "ab0ef77ab318a0683bdddb896e1e9db6b79e79e6",
+  "source_canary": "30dcc5b4075dd2cfaf25b3e8d90e324386a278af",
+  "source_preservation": {
+    "baseline": 43,
+    "consumed_registry_bytes_unchanged": true,
+    "new_workflow_files": 1,
+    "old_producer_helper_files": 67,
+    "old_request_acceptance_files": 6,
+    "old_workflows": 43,
+    "protected": 13,
+    "unchanged": true
+  },
+  "stage7": "INCOMPLETE",
+  "verification": {
+    "actionlint": "PASS",
+    "actual_source_ci": {
+      "duration_s": 38.672,
+      "skipped": 7,
+      "small_duration_s": 0.084,
+      "small_job": 131291075042,
+      "small_tests": 1,
+      "tests": 644,
+      "unit_job": 131291074511
+    },
+    "fixture_only_fix": {
+      "abba_duration_s": 9.349,
+      "abba_tests": 82,
+      "canary_duration_s": 9.667,
+      "canary_tests": 82,
+      "full_suite_repeated": false,
+      "on_disk_request_unchanged": true,
+      "real_api_calls": 0,
+      "real_provider_calls": 0,
+      "skipped": 0,
+      "source": "30dcc5b4075dd2cfaf25b3e8d90e324386a278af"
+    },
+    "initial_full_cpu": {
+      "duration_s": 78.215,
+      "historical": true,
+      "skipped": 7,
+      "source": "9bb9ebbbf2ca67da0e12705b9ec20ac843ab8c8c",
+      "tests": 644
+    },
+    "source_review": {
+      "fix_reviewed_head": "30dcc5b4075dd2cfaf25b3e8d90e324386a278af",
+      "fix_verdict": "PASS",
+      "important_finding": "I1 mutable canary request test dependency",
+      "initial_reviewed_head": "9bb9ebbbf2ca67da0e12705b9ec20ac843ab8c8c",
+      "open_findings": 0
+    },
+    "workflow_bash": "PASS"
+  },
+  "workspace_retained": true
+}
