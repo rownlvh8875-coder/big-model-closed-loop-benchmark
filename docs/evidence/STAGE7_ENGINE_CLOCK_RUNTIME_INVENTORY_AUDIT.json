@@ -1,0 +1,264 @@
+{
+  "actual_image_or_native_runs": 0,
+  "base": "2cc22c0e82dde25429a3f0216a3eb7405b127d5b",
+  "branch": "analysis/engine-clock-runtime-inventory",
+  "code_test_sha256": {
+    "scripts/engine_clock_runtime_inventory.py": "dfe1f820480267d74afdf7343b14bb04a3f19c3221a96885285c07da2b6a657c",
+    "tests/test_engine_clock_runtime_inventory.py": "5d48b2b25587c216a646e3d2f15eef5d082aeaaaca3262073c8b904704bf464b"
+  },
+  "expanded": "NOT_RUN",
+  "final_head_and_ci": "Recorded after fresh review in Draft PR; not fabricated here.",
+  "fixture_sha256": "8bf028e8c83780799da03dfc393b0189b201980506792876fcf22d1a63b806b8",
+  "focused": {
+    "result": "OK",
+    "seconds": 0.339,
+    "tests": 30
+  },
+  "full_final": {
+    "result": "OK",
+    "seconds": 79.388,
+    "skip_lines": [
+      "test_actual_panda_global_bin_is_restored_without_any_graphics_engine (test_native_opaque_order_matrix.OpaqueBinPolicyTests.test_actual_panda_global_bin_is_restored_without_any_graphics_engine) ... skipped 'Panda CPU contract runs in native CI'",
+      "test_real_ort_uses_camera_and_updates_recurrent_state (test_onnx_ort_integration.NativeOrtTest.test_real_ort_uses_camera_and_updates_recurrent_state) ... skipped 'onnx+onnxruntime optional; GitHub inference CI installs both'",
+      "test_all_four_modes_are_opt_in_and_dispatch_only_for_marker (test_shadow_feedback_probe.PandaGuardTests.test_all_four_modes_are_opt_in_and_dispatch_only_for_marker) ... skipped 'Panda CPU state-contract runs in native CI'",
+      "test_configure_rejects_unknown_state_before_even_sampler_setters (test_shadow_feedback_probe.PandaGuardTests.test_configure_rejects_unknown_state_before_even_sampler_setters) ... skipped 'Panda CPU state-contract runs in native CI'",
+      "test_guard_has_only_two_high_priority_inputs_and_inherits_shader (test_shadow_feedback_probe.PandaGuardTests.test_guard_has_only_two_high_priority_inputs_and_inherits_shader) ... skipped 'Panda CPU state-contract runs in native CI'",
+      "test_preexisting_second_state_fails_before_mutating_first (test_shadow_feedback_probe.PandaGuardTests.test_preexisting_second_state_fails_before_mutating_first) ... skipped 'Panda CPU state-contract runs in native CI'",
+      "test_setup_failure_rolls_back_camera_and_sampler_and_marker (test_shadow_feedback_probe.PandaGuardTests.test_setup_failure_rolls_back_camera_and_sampler_and_marker) ... skipped 'Panda CPU state-contract runs in native CI'"
+    ],
+    "skipped": 7,
+    "tests": 691
+  },
+  "full_historical_before_error_boundary_fix": {
+    "is_final": false,
+    "result": "OK",
+    "seconds": 72.8,
+    "skipped": 7,
+    "tests": 690
+  },
+  "logs": {
+    "task-2-absolute-deadline-red.log": {
+      "nbytes": 943,
+      "sha256": "1f8ada7c66dec2cd0a82cf9566a2b67d47fdbf351f91baea0717514e60c13bac"
+    },
+    "task-2-alarm-context-red.log": {
+      "nbytes": 2375,
+      "sha256": "8fa24c12cf2e4ad047603c7980f32dc9bec1ffb101d266670a923ec6d7c1c7e5"
+    },
+    "task-2-constructor-fix.log": {
+      "nbytes": 287,
+      "sha256": "487cefe9d43c6cfbee043ebd1f9b32c227adeca54b25a98dfbf1c50ce9096c7a"
+    },
+    "task-2-error-boundary-red-corrected-fixture.log": {
+      "nbytes": 2808,
+      "sha256": "3b03f68df771e6dd93b262d1dadc4e778f58ee1fcb97c28637759a880e00ef94"
+    },
+    "task-2-error-boundary-red.log": {
+      "nbytes": 3577,
+      "sha256": "0037752ec41b0333ccf0301274f3dd07719e227a2f80312dfc59c507fcb840b0"
+    },
+    "task-2-first-green.log": {
+      "nbytes": 14398,
+      "sha256": "a5b592ce3c66dd43d7e791c5409b28f49b8cfb295f534bb6a5c0fcd592f02e60"
+    },
+    "task-2-focused-final-30.log": {
+      "nbytes": 5645,
+      "sha256": "36621ff5f951b471a55081c104995755fecddb4522cf4804d88e5df9ae3fcd45"
+    },
+    "task-2-focused-final.log": {
+      "nbytes": 5473,
+      "sha256": "d18709fc3d833a03bc3b6b9d6199a6fde2718e961ed208848071bcf7d0610eac"
+    },
+    "task-2-focused.log": {
+      "nbytes": 4721,
+      "sha256": "1133527a78d59e214ef2443e0abadbff5c3ab5cf4b984fd0f02dfc01cc295ca0"
+    },
+    "task-2-full-cpu-final.log": {
+      "nbytes": 130466,
+      "sha256": "36f1ba1528a4c1de9119a69627837e28cdabf91b6cb5d41b11ea9e76318fcc37"
+    },
+    "task-2-full-cpu.log": {
+      "nbytes": 130300,
+      "sha256": "8c72f79ac6044d62d5677ff38aa6b6c99804ae0509a106e0ecaf716468cdf960"
+    },
+    "task-2-path-fix.log": {
+      "nbytes": 305,
+      "sha256": "5b080670b643e8f0579428614a9cde18f46b1b1d41bf7336dc7215ac59b14aba"
+    },
+    "task-2-red.log": {
+      "nbytes": 21061,
+      "sha256": "657e5ca649a39a4513ed228d70f39e0b4bfc96414bc71f4f0c76fb112f7bfde7"
+    }
+  },
+  "native_admission": false,
+  "native_allowance": 0,
+  "new_raw_canvas_i420_or_clock": 0,
+  "official_calls": 0,
+  "preparation_refs_null": 16,
+  "preservation": {
+    "producer70": {
+      "count": 70,
+      "sha256_by_path": {
+        ".github/workflows/stage7-engine-clock-boundaries.yml": "7f4f1296a2560ceea42c43b05cfeeea3d2bb025194df0e63882ce0f64f9c5c38",
+        ".github/workflows/stage7-first-divergence-post-transport.yml": "b0292dffb6a15fe595ebf0a5d8d8508e89c86bd67d70ef0726b94256a37308cb",
+        ".github/workflows/stage7-first-divergence-transport.yml": "016688a331bf257394b6f00297162758c4fcab6659b893aeee4d75396b2d0e0e",
+        ".github/workflows/stage7-first-divergence.yml": "0c1ebdeb022078c442712205f130423cf0c2b271c41ec3a501b535ce80fefa60",
+        ".github/workflows/stage7-texture-generation-markers.yml": "0fb338fce4cb33403c3d835f11f98e735f115c9ec6e24fe65269610017f051f8",
+        "bigbench/__init__.py": "4f8820be6e19183413fe12a5cd5d40eba31161c6fdb7dc045291e56c525cb038",
+        "bigbench/camera.py": "4dc9230176b06fcfc55d776824d915f7ee7b3266cba28c1029d4863ddb4151ae",
+        "bigbench/camera_convergence.py": "f71a4fbc9008aaa3467eb2bc70fa3f030428b826b39583fbfbcb33bc68118a43",
+        "bigbench/camera_rig.py": "f3de46ee7a0b57485713dad3cf95dbc777fae941a701118bebbdf5f9ba837d0c",
+        "bigbench/cli.py": "844233763416536d9f7ef18f3825699bb7ad5cd744ce7f004dafdc76eee45364",
+        "bigbench/cross_engine.py": "e24ff682112f87e36af0780eed3672058d40338e14b9ad616becd0d6477a4cc6",
+        "bigbench/curved_lane_scenarios.py": "49013b0bf16b2969382bbcd890db559df9b78e2eb2a0aefec94d88b02d1af7d0",
+        "bigbench/dashboard.py": "5f6c760cab5ae85e08ba3799ca0e5526b168645d8ba14e9cab0205ab5113d5bf",
+        "bigbench/first_divergence.py": "4e0cd0abad43f757149a3953bcba21e5c570a916c3b02a9f366ab6a2b0ebdb1f",
+        "bigbench/first_divergence_model.py": "efd6e9f9d6119bfb6c128ef37b4c1d07f0fb2972369ccd0501b99e672702e43f",
+        "bigbench/frame_stability.py": "8573965c8092db93b740b0acf37b9fd8edce31fe7b36edcd64bcecff48858b8d",
+        "bigbench/frozen_camera_diagnostic.py": "61f88429e71497ab1afccf57135d3aae10ab420c563aeab9924dd7ef77ef6562",
+        "bigbench/geometry.py": "9615bce13a5dbb5c3abee3210b1ea5b3f648545d3576b80c35fcd035adb038e9",
+        "bigbench/image_adapter.py": "7f6d53989ff072ba5b8461ba207ab68c52ac2b519d18d56d0decc68c467e6f03",
+        "bigbench/kinematics.py": "58c92e9a5b584932cfe73ebbf7de888f2595e88ceacdabe9a457a78fa77bb70a",
+        "bigbench/lane_reprojection.py": "92e77ea0458a2b153960fc494452f558f6ccdc1b7736da4222d17fdf77c4ce12",
+        "bigbench/lane_truth.py": "20850755f7e3ea78666e83ff276a918adb64b72aaa5fac68fb3b0d393dddc449",
+        "bigbench/longitudinal_world.py": "24ba109669ce410dea6d317c33c6a836b088ddbc4bc2d3dc39be0583a1eacab3",
+        "bigbench/metadrive_camera.py": "1c5661e6c9eea6445ebe55cb246e6b48d3384dd5a731353ba3f1a45599e338f9",
+        "bigbench/metrics.py": "7e72813179f8ab3e8cbaf829dd48f31e7885406e665571e51d0b8dbc52082ce5",
+        "bigbench/model_eligibility.py": "22e7966e47e81d7c1a083c72be31fe83babd7f0f978d3fe0a543083436ac7855",
+        "bigbench/model_inventory.py": "ea920f44c18719b8ed9ce4c9240beda7463b917f577ae9089707c9b1aa71786e",
+        "bigbench/model_world_frame.py": "275f5359a975d9e152f61df74cd57803e1322e1f9618784f0993e780516ec092",
+        "bigbench/native_callback_profiler.py": "c3b175a3b2d1de25db220ddd5a79c0820f1c2f7cc9d472120e73c0fe0dff6c3f",
+        "bigbench/native_longitudinal.py": "61e5439ffac8028f548f1db0a4f8e2fff3dae00aa9e235dcea22d1bcd1fc49d4",
+        "bigbench/native_model_campaign.py": "0bcb4ca73e1404a7164be1c879a200eeff5ca41e47e3035301d40fd173000bad",
+        "bigbench/native_pixel_clock.py": "ed0c72cd4e84048bb7f39a246efbb30ed932170b3efe7efd1bb1fbff309572fa",
+        "bigbench/native_route.py": "42be717e92b14dba482904a4c651a56c4af6c70e1a5bfd7a386ab40c626d632c",
+        "bigbench/onnx_contract.py": "9e78baa8b9f7ccedb1be086277d83f356038825d54f31b309678126ddcfda73f",
+        "bigbench/onnx_inspect.py": "d4b980f649c36b1047e3262fb77a0d5084492c65015febcc9d3b65226573afd6",
+        "bigbench/onnx_policy.py": "d983d5950296620a6ae89c88993829b4d2cebd35a6fd0e9046a980f75c9142da",
+        "bigbench/optical_calibration.py": "1a3852d67ea2f15ef31a4224916fb71275f25010a5038179a7e0dd8e984c09ce",
+        "bigbench/panda_clock.py": "c2d3efd98b1f3c2d8598f294abb9741f364cc9577f0dbd16bfcbc8fd64b372d1",
+        "bigbench/policies.py": "d9ac20c3ac2530d9e8fa35f9d78aae3f433afe811ce9e058dd233ead48d687ab",
+        "bigbench/pssm_chase_pose_trace.py": "e2e3ead8be6743457a4e8162481cd1a70fcdb99b605bd7bc66e8702d5ce00e3d",
+        "bigbench/pssm_mvp_trace.py": "8373629bc0eca7d8c1256300bee125512fb91f79ffd80e7417dee6f4afd74487",
+        "bigbench/public_action_frame.py": "7d2beb3b8dc1a0fd020209d416626fbfd416b31e1aa4f4cd920fecd3bf544454",
+        "bigbench/render_causality.py": "ab3deee0370e6479973547f1ea46bf6842725dfdab3e9f070488d77b9751ac5a",
+        "bigbench/report.py": "fec998e2ca57b28ddf230947df5be2c2bad7c759166d6d2630e520b426dbe294",
+        "bigbench/reproducibility.py": "b7aca90982237e7cbda5a03badca7514ee43458beb46ee7498bcefdbcb817c19",
+        "bigbench/runner.py": "b80e983edde8f8523c47567f5d1a35422b5782e947ca550bc4e710f7276a6127",
+        "bigbench/scenario.py": "7f9ff731487b9c5e5745c365901ad15c386be4299b10cf2c4af37233f4db3281",
+        "bigbench/task_ablation.py": "1e8c2c7ac1c96c04a7feb21e8b046a5c0743f9afab00c51c4012dad91adc41c1",
+        "model_specs/light-speed-2.json": "2ce9b7caaa50649612d8323c66d9bc193b4c89d39fb399ec00553055d3f87afa",
+        "model_specs/light-speed.json": "f25bd9ef91503831b64de47be68c65a6a336e2f9fd348894e1c67902998ebe5a",
+        "model_specs/md-v3.json": "689f4d80082070b08ff35920e37d7070e811dfb42a279909751f79e900c735e2",
+        "model_specs/n16.json": "7ac354499ec4cc2277b99eed5497ae4d11c98e9975f438743cb7ac3192e0762c",
+        "pyproject.toml": "367aa37f01d25a873a3336967ba182df85be725351fb6a48f26ab84834c20a0b",
+        "scripts/__init__.py": "c56e3eb2518092a8e1fc6298aa88b1abe36ceaef366060c9d1f74fd89973a109",
+        "scripts/engine_clock_boundaries.py": "19ee701f552b82d34182aeef4f38336dfb343e7089e6cf624eb4adbc05589578",
+        "scripts/engine_clock_native.py": "d16bc9232cbdb7ca8159fd33ee9abf28fdd0976e2170204f4351f0582a2aa9c6",
+        "scripts/first_divergence_audit.py": "8aa591113aeef2d4f5fc4af3aa9aeca1059a9d367757481da479062509451525",
+        "scripts/first_divergence_transport_probe.py": "6cbbdaf24a25eb0cb56da053e7899a1143da9d088f573d0aac314abf2dfa221d",
+        "scripts/hf_models.py": "bf8661ebfdc1d90cd5326571d19bc8ccdc34fce0f272ed9f96a0456c5764f7e5",
+        "scripts/native_mdv3_candidate_expansion.py": "d86b3be67c8ac3dee31f0bf9928014d3880c8c55a6cd829bb3c46c464d16b42c",
+        "scripts/native_mdv3_renderer_candidate.py": "5a9058102004e2f5eaa4c9dcab4c24d97a9d42702b7a9e7c248c4f576a30d22e",
+        "scripts/native_mdv3_repeat_trial.py": "ddaf0510a775c3a44c908bb4dedf4879ae88bfcb80e1f2d022a8b513a4f42427",
+        "scripts/native_mdv3_world_frame.py": "cd57c4d407e96459921ca61c78eb81ef55851cd4fafa92ca917bbc7f494a3e38",
+        "scripts/texture_generation_markers.py": "a37e7232441667d535fbad7dafbe5137c523f6931fde25400aaf17a066f43e02",
+        "tests/test_engine_clock_boundaries.py": "c5139232ed7f6e15c38684dbdc2957d34233ab44ee2ab1e5c36cd1c7c5428406",
+        "tests/test_engine_clock_native.py": "7d96876e9cc20baa5b1dd6b8a0af33277847a028a53cc20262bd9f71d49818c5",
+        "tests/test_first_divergence.py": "b05a0c13153b201bfb97c45433542ec82255bcaae54a57191e490f81105e738b",
+        "tests/test_first_divergence_model.py": "1f76c1b70a30a2d1a934af70792e3adf5b580d3ad890b23032e3cb6108c38c67",
+        "tests/test_first_divergence_transport.py": "b9debeac8a0a3eec6e10dd4ec208d26b9cff3baa2e3c86809997c9c62c1e015c",
+        "tests/test_texture_generation_markers.py": "7d7d8c6bc1e30817e7dc09914683475bc84ead0a1c622cee225cfa00c598bf30"
+      },
+      "unchanged": true
+    },
+    "registries8": {
+      "count": 8,
+      "sha256_by_path": {
+        ".github/stage7-engine-clock-acceptance.json": "7d19d0c805086cb7e516733764a5386e5b7244307e3904aa004f7805c2c3237e",
+        ".github/stage7-engine-clock-request.json": "9cc475bac2967a7cdc696551cb62f0a07d78a48f4d7f994c8030e7bad73c2bc3",
+        ".github/stage7-first-divergence-acceptance.json": "c0bd75bc27dbf2259d3e9c013ee0840ac989b37ff290fcfc7ec0933b27dd75d4",
+        ".github/stage7-first-divergence-post-transport-acceptance.json": "753fafca0d3689efc4ab307918975471baa7620cab4d0873f508792ea0a4b3c6",
+        ".github/stage7-first-divergence-post-transport-request.json": "22a6bfd4f7ba942a3a89f9e551852fd5807d00ee3f26811b9fa963489cae9fd4",
+        ".github/stage7-first-divergence-request.json": "1458332b24c94a43dbca1c9530f2f9d17e54e0588f1f585515edfe802324148f",
+        ".github/stage7-texture-marker-acceptance.json": "76e9face006f30df28f1467d401678322c69e0ccd68583c88845020b59d4a65f",
+        ".github/stage7-texture-marker-request.json": "bae72736d2a80d06caa77224e740eb9d5d1a2e6bb003914db82be9b7240ac2f9"
+      },
+      "unchanged": true
+    },
+    "task1_tool_test_proposal": {
+      "count": 3,
+      "sha256_by_path": {
+        "docs/evidence/STAGE7_ENGINE_CLOCK_RUNTIME_CONTRACT_PROPOSAL.json": "ab1631a7fc9c07ad6c5cd8c0ef0e61afdf6c4857ea6c93502d7d29fa01010ad0",
+        "scripts/engine_clock_runtime_contract.py": "2cd6151871bf055270addb200930cc50839e9dd63e700bd29cff6a88ea90ec27",
+        "tests/test_engine_clock_runtime_contract.py": "a57a7d9d2fad9ea9cbab5ed5d424dcc6d2280603243e8feeb4d4ad90203df6c8"
+      },
+      "unchanged": true
+    },
+    "workflows44": {
+      "count": 44,
+      "sha256_by_path": {
+        ".github/workflows/camera-stability.yml": "0cf38051f4cdbd629a7106041719f0bc6090eff0dcc0be38a02cff2d0a98206f",
+        ".github/workflows/ci.yml": "42448e6f2af43d9d746ca711c3c79f25e2100241956a1478004e153cdd5e930b",
+        ".github/workflows/frozen-camera-inference.yml": "918b2240e3e9d8e84189271bd3072a8cd15e7e826aa9c7945e35c0d882df0428",
+        ".github/workflows/gpu-probe-interference.yml": "748bbaf713e219129bbebf47c50d588d6b39b4c9a0f02ca1820a3f50eb809e11",
+        ".github/workflows/hdr-pssm-trace.yml": "88719e06ee2c6fe0e5f614c1e8829135326917da04c359b1c88cdcbcf1e856a7",
+        ".github/workflows/light-speed-native.yml": "3435816253df07663b00256bf6f5e7cf9676d9a67856e7003610e9d82d11f390",
+        ".github/workflows/metadrive-curved-lanes.yml": "9f0929a9e3028fdf2de280760418a42d24a29f282ad9c56444c178e9967322b7",
+        ".github/workflows/metadrive-lane-reprojection.yml": "df4251ff3559d1b934ed50c67f963465ed8013cc7723b1a230c588f8760314ca",
+        ".github/workflows/metadrive-mdv3-inference.yml": "322c176b9d8491f0e735ef810b155cb063351809c997ee7d98e35c2f19c87162",
+        ".github/workflows/metadrive-optical.yml": "0dd4cd214eb33dc47508857ddbeadf58aca5161df42d2942c5a44d2c8ec9132a",
+        ".github/workflows/model-camera-repeat.yml": "14b0a56b970c2eee289d929c853335e9470184dce8c77a9cec168c5fd5748ff4",
+        ".github/workflows/native-longitudinal.yml": "2c470b585dfce04cf02e1e5ecba168524a88f81b02d4e0788b745ad6bd5a7099",
+        ".github/workflows/native-multiscene-ablation.yml": "a187885262b81199e79fd1bfc25a81d90548afefa40173b23ccb0ae23deb7149",
+        ".github/workflows/native-pssm-chase-pose-lag.yml": "5d04fbd2fc6d35c552d971269fbc62929132aea3a9f3966fe0166cb7714e35f8",
+        ".github/workflows/native-raw-pixel-clock.yml": "138a5ccac2ce261433b9362464c14ec80190ec9cfed4e9cc0eff57d36d548a7c",
+        ".github/workflows/native-task-callback-order.yml": "e2752045a7f7e2392d8b1b03a5fecdfbdbe9f2c04f72b25bda88b43ae1bae79f",
+        ".github/workflows/official-mdv3-fresh-repeat.yml": "42f0e796bb0ba6fbeb7e6e3947048dee8079a07fafd98cdfbab85e536fe44861",
+        ".github/workflows/pssm-mvp-task-clock.yml": "59e16a053f80deb0c85c37256cae8b11c4cd374b72b146f49b2cddac10e9a43d",
+        ".github/workflows/real-mdv3-one-step.yml": "008c7fb2e6251152a194021cef2bc2349a8970e84e548506e0cbe227878895eb",
+        ".github/workflows/render-causality-process.yml": "8d6fc0db24534d7443667a1cdc49062ed591cdcca54e32b7843cda93eec1f388",
+        ".github/workflows/render-causality.yml": "3376604871a59a657a4ce35ba323486f67edf38d6a87bdbe3d8836136b1d5339",
+        ".github/workflows/scene-task-ablation.yml": "4a9f4e0259a4c3ad895d1456fe1df7ce3f3fcea09ebc9516d906dbfbeeeda1d4",
+        ".github/workflows/stage7-capture-schedule.yml": "61b8abd9fc8b6792ce1f75452efc8b7a53f3d5e99c71daea6dc0de409199b1f0",
+        ".github/workflows/stage7-ci-connectivity.yml": "ee46b8c0abd35fc14b41da1bab104b381baafcbd913afcac9d13eceeb882f97a",
+        ".github/workflows/stage7-engine-clock-boundaries.yml": "7f4f1296a2560ceea42c43b05cfeeea3d2bb025194df0e63882ce0f64f9c5c38",
+        ".github/workflows/stage7-first-divergence-post-transport.yml": "b0292dffb6a15fe595ebf0a5d8d8508e89c86bd67d70ef0726b94256a37308cb",
+        ".github/workflows/stage7-first-divergence-transport.yml": "016688a331bf257394b6f00297162758c4fcab6659b893aeee4d75396b2d0e0e",
+        ".github/workflows/stage7-first-divergence.yml": "0c1ebdeb022078c442712205f130423cf0c2b271c41ec3a501b535ce80fefa60",
+        ".github/workflows/stage7-mdv3-candidate-expansion.yml": "87cc68f8639daa5f96a64b47cd40a7dedd357c12571d2e6f60ba3cfb61d3ff0d",
+        ".github/workflows/stage7-mdv3-first-rgb-pixel.yml": "697d55b0ab80ca3c208fad8e5be8523e673fe01c2a6b1d87758af9b794578f44",
+        ".github/workflows/stage7-mdv3-renderer-candidate.yml": "ea76641b982690ed111a536e410df9fc14d5d7bbae2b91a11d47bcc54691a7a8",
+        ".github/workflows/stage7-mdv3-world-frame-expansion.yml": "f282d083a675dd37d94895a0c9fe57e345ec60113dce52f1d02a06c2ffb690c7",
+        ".github/workflows/stage7-mdv3-world-frame.yml": "f8a4749bc061bb0da4371b900dd6912ab6528b547b2a864abafdbfd036506b31",
+        ".github/workflows/stage7-opaque-order.yml": "e8f56da7a9ed49fe44c7f7eff9e24528bdf3cf57a7cd263960f1a38d91261ad8",
+        ".github/workflows/stage7-original-mdv3-current-recheck.yml": "aea2a0d9472ff069734821ba64af9ed33595026e3784ea36bdfab335a1cabf14",
+        ".github/workflows/stage7-pssm-crossprocess-scheduler.yml": "6e7e0458aba90936511fd66e7795bc7ab36d213dca683e4bda6a95416a2c659a",
+        ".github/workflows/stage7-shader-cache.yml": "03406e965ad193b29f73aace6d122b7604d008e6abeae52ca77abc23a3f3bab8",
+        ".github/workflows/stage7-shadow-feedback.yml": "731174b9dec4273043078f313c80b96fa6e1f99e58c7e04df6be7135c136fcbc",
+        ".github/workflows/stage7-shadow-sampler.yml": "480decb1f9f7408415b11165f04aaa0bfd3f2d7ec8f20e5547ff2e644809566e",
+        ".github/workflows/stage7-texture-generation-markers.yml": "0fb338fce4cb33403c3d835f11f98e735f115c9ec6e24fe65269610017f051f8",
+        ".github/workflows/terminal-hdr-trace.yml": "ee311a4e4143c6249176c96f98a49e4a516d3a6bb5ac1b30f35e5acf915e4fc3",
+        ".github/workflows/terminal-shadow-pose-ramp-sweep.yml": "14a687500f6b568233473c30d3fb47961605c7d980dc50e45a14c71ead8e3650",
+        ".github/workflows/terminal-shadow-postchase-sync.yml": "7765e1af8133bc4e8b3a676341d7e6ffd0a2ddf1cc4b0f6fb4622cda9fc4475d",
+        ".github/workflows/two-model-native.yml": "44565b57c683f17269429332123da3af7ae02ed3a93464a7fbe1dc458296a0e6"
+      },
+      "unchanged": true
+    }
+  },
+  "report_path": ".superpowers/sdd/2026-11-12-engine-clock-runtime-contract/task-2-report.json",
+  "review_head": null,
+  "rulings": [
+    "Task2: Ruling: implement only bounded caller-root fileverification onsmallfixtures,not realinstalled imagecollection \u2014 expectedimageprovenance/configstillunknown \u2014 cost:resultsproveonlydeclaredfixturetrees,Task3authenticationremains.",
+    "Task2: Ruling: requireall6approvedrootsandonlynestedaliases,inspect4runtimeexclusionswithoutpayloadreads,allowinscopedanglingnonrootlinks \u2014 finiteclosedcoverageandnohostsymlinkresolution \u2014 cost:unsupportedrealimagealias/layout failscloseduntilseparaterevision.",
+    "Task2: Ruling: descriptor-relative nofollow/same-device readswithbefore-afteridentitychecks,100000allnodes/depth256/40linkexpansions \u2014 boundstreeworkandcommonraceescapes \u2014 cost:notatomic/hostattestation,strictlimitsmayrejectfuturelegitimateimage.",
+    "Task2: Ruling: returncompleteinventoryonlyonmatchandboundedmatchedprefix/counters onfailure;canonicalhashnotartifactSHA \u2014 truthful partialevidence \u2014 cost:failedprefixisnotcompleteglobalaliasproof;futureartifactauthneeded.",
+    "Task2: Ruling: add one metadata-only secondpass (no repeatedpayloadhash),bounded100000nodesperpass andcumulativevisited_nodes<=200000 \u2014 catcheslate changesinearlier siblingtrees \u2014 cost:extra metadataIO,notatomic snapshot;RO/mountauthremainsTask3.",
+    "Task2: Ruling: require main-threadPOSIX ownedSIGALRM watchdog andrefusepre-existingtimer;restorehandler/timer andfail latecompletion \u2014 blockingreadmustnotdefeatcooperativedeadline \u2014 cost:process-globaltimerduringcall/unsupportedcontextsreject;kerneluninterruptibleIOandOSschedulingarenothard-realtimeguarantees."
+  ],
+  "schema": "stage7-engine-clock-runtime-inventory-audit-v1",
+  "scope": "caller-root temporary filesystem fixtures only; expected manifest unauthenticated",
+  "stage7": "INCOMPLETE",
+  "strict": "FAIL",
+  "whole_branch_review": "PENDING"
+}

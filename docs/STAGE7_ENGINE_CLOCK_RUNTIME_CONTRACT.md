@@ -1,6 +1,6 @@
 # Stage7 실행 환경·설치 바이너리 계약 설계
 
-이번 결과는 **설계·비활성 제안과 순수 메타데이터 검증기(Task1)**다. 실제 image/archive/config digest와 설치 파일 manifest는 아직 없다. Collector·Dockerfile·워크플로·요청을 만들거나 image를 build/pull/load/run/publish하지 않았다. Native/provider/공식 모델/ORT/추가 GPU·clock 호출은 모두0이다. 기존 기본 CI의 생성 SMALL ONNX는 별도다.
+이 문서는 **설계·비활성 제안과 순수 메타데이터 검증기(Task1)의 과거 체크포인트**다. 후속 Task2는 [설치 파일 검증기](STAGE7_ENGINE_CLOCK_RUNTIME_INVENTORY.md)에 별도 기록한다. 아래 Task1 시점의 범위·시험 수치를 현재 Task2로 바꾸지 않는다. 실제 image/archive/config digest와 설치 파일 manifest는 아직 없다. Collector·Dockerfile·워크플로·요청을 만들거나 image를 build/pull/load/run/publish하지 않았다. Native/provider/공식 모델/ORT/추가 GPU·clock 호출은 모두0이다. 기존 기본 CI의 생성 SMALL ONNX는 별도다.
 
 Base `d7774ce40d62a19176ea2f5239edfc6644cf51ef`/PR40에서 `design/engine-clock-runtime-contract` 브랜치를 만들었다. 이전 producer70/all44workflows/소비된 request·acceptance8개와 raw/controller 이력을 보존한다. 기존 canary와 ABBA는 재실행하지 않는다.
 
