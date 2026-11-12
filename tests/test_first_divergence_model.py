@@ -433,6 +433,52 @@ class WorkflowTests(unittest.TestCase):
         path=capture.REPO_ROOT/'.github/workflows/stage7-first-divergence.yml'
         self.assertTrue(path.is_file(),'new diagnostic workflow required')
         return json.loads(path.read_text())
+    def test_job_environment_uses_only_supported_contexts(self):
+        import re
+        allowed={'github','inputs','matrix','needs','secrets','strategy','vars'}
+        for name,value in self.config()['jobs']['diagnostic']['env'].items():
+            for expression in re.findall(r'\$\{\{(.*?)\}\}',value):
+                contexts=set(re.findall(r'\b([A-Za-z_]\w*)\s*\.',expression))
+                with self.subTest(variable=name):self.assertLessEqual(contexts,allowed)
+    def test_runtime_acceptance_path_reaches_gate_download_and_study(self):
+        import subprocess
+        import sys
+        job=self.config()['jobs']['diagnostic'];steps=job['steps']
+        mode=next(s for s in steps if s.get('id')=='mode')
+        gate=next(s for s in steps if s.get('id')=='gate')
+        weights=next(s for s in steps if s.get('id')=='weights')
+        study=next(s for s in steps if ' model-study ' in s.get('run',''))
+        self.assertLess(steps.index(mode),steps.index(gate))
+        recorder="""python() {
+          "$FIXTURE_PYTHON" -c 'import json,os,sys; print(json.dumps({"acceptance":os.environ.get("FIRST_DIVERGENCE_ACCEPTANCE"),"argv":sys.argv[1:]}))' "$@"
+        }
+"""
+        with tempfile.TemporaryDirectory(prefix='acceptance path ') as temp:
+            root=Path(temp);envfile=root/'github-env';output=root/'github-output'
+            env=dict(os.environ,RUNNER_TEMP=temp,GITHUB_ENV=str(envfile),GITHUB_OUTPUT=str(output),
+                FIXTURE_PYTHON=sys.executable,PATH=str(Path(sys.executable).parent)+os.pathsep+os.environ['PATH'])
+            env.pop('FIRST_DIVERGENCE_ACCEPTANCE',None)
+            env.update({k:v for k,v in job['env'].items() if '${{' not in v})
+            result=subprocess.run(['bash','-e','-c',mode['run']],cwd=capture.REPO_ROOT,env=env,
+                text=True,capture_output=True)
+            self.assertEqual(result.returncode,0,result.stderr)
+            self.assertTrue(envfile.is_file(),'request step must export acceptance path through GITHUB_ENV')
+            exported=dict(line.split('=',1) for line in envfile.read_text().splitlines())
+            expected=temp+'/first-divergence-acceptance/acceptance.json'
+            self.assertEqual(exported.get('FIRST_DIVERGENCE_ACCEPTANCE'),expected)
+            request=json.loads((capture.REPO_ROOT/'.github/stage7-first-divergence-request.json').read_text())
+            self.assertEqual(output.read_text(),'mode='+request['mode']+'\n')
+            env.update(exported)
+            for step,count in ((gate,1),(weights,2),(study,1)):
+                with self.subTest(step=step['name']):
+                    result=subprocess.run(['bash','-e','-c',recorder+step['run']],cwd=capture.REPO_ROOT,
+                        env={**env,**step.get('env',{})},text=True,capture_output=True)
+                    self.assertEqual(result.returncode,0,result.stderr)
+                    calls=[json.loads(line) for line in result.stdout.splitlines()]
+                    self.assertEqual(len(calls),count)
+                    self.assertEqual([call['acceptance'] for call in calls],[expected]*count)
+                    if step is gate:
+                        args=calls[0]['argv'];self.assertEqual(args[args.index('--out')+1]+'/acceptance.json',expected)
     def test_parsed_workflow_push_scope_avoids_main_dispatch_and_docs(self):
         workflow=self.config();events=workflow['on']
         self.assertEqual(set(events),{'push'})

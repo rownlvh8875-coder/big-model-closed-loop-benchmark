@@ -32,8 +32,7 @@
         "LIBGL_ALWAYS_SOFTWARE": "1",
         "PYOPENGL_PLATFORM": "glx",
         "OMP_NUM_THREADS": "2",
-        "GH_TOKEN": "${{ github.token }}",
-        "FIRST_DIVERGENCE_ACCEPTANCE": "${{ runner.temp }}/first-divergence-acceptance/acceptance.json"
+        "GH_TOKEN": "${{ github.token }}"
       },
       "steps": [
         {
@@ -60,7 +59,7 @@
         {
           "name": "Read registered camera-only or one-shot model request",
           "id": "mode",
-          "run": "python - <<'PYCODE'\nimport os\nfrom bigbench.first_divergence_model import _request, REQUEST_PATH\nfrom pathlib import Path\nrequest, _ = _request(Path(REQUEST_PATH))\nwith Path(os.environ['GITHUB_OUTPUT']).open('a') as stream:\n    stream.write('mode='+request['mode']+'\\n')\nPYCODE\n"
+          "run": "python - <<'PYCODE'\nimport os\nfrom bigbench.first_divergence_model import _request, REQUEST_PATH\nfrom pathlib import Path\nrequest, _ = _request(Path(REQUEST_PATH))\nwith Path(os.environ['GITHUB_OUTPUT']).open('a') as stream:\n    stream.write('mode='+request['mode']+'\\n')\nwith Path(os.environ['GITHUB_ENV']).open('a') as stream:\n    stream.write('FIRST_DIVERGENCE_ACCEPTANCE='+str(Path(os.environ['RUNNER_TEMP'])/'first-divergence-acceptance'/'acceptance.json')+'\\n')\nPYCODE\n"
         },
         {
           "name": "Prepare exact official MetaDrive assets",
