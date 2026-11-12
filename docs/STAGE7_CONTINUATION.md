@@ -1,8 +1,47 @@
 # Stage 7 continuation — verified results, renderer cause still open
 
-## Current checkpoint (2026-11-11)
+## Current checkpoint (2026-11-12 — accepted camera canary; bounded model diagnostic)
 
-**Latest: phase2 executed; strict native failure blocks integration.**
+Accepted native camera source `70cf8adeeaf088097da18da50810230d04092bbb`:
+[run43125348683](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43125348683),
+artifact13902402855/ZIP4883414bytes/SHA256
+`eae449d6c439eafad6eaab91364a600465ca0f25cb8659efdcf346998539053f`.
+Root and fresh independent raw/API/source review agree: 58 source paths,
+12 members,8 PNGs,4 exact raw/lens warps,2 exact derived I420 buffers;
+1 Python/native provider,2 accepted pairs,5 captures/10 sensor reads excluding
+startup,0 official-model calls/ORT sessions. All5 current-source CI jobs pass.
+The earlier6bf84c3 workflow-validation failure had0jobs/no native data and is preserved.
+
+This commit changes request/acceptance/docs only to register the one-shot
+model study; producer/test/workflow/runtime bytes remain identical to the
+accepted source. Actual model results are **PENDING**, never presumed24 calls.
+CI must authenticate the exact direct-parent transition and actual
+API/artifact/source/runtime before weights. No rerun/extension is allowed.
+A0,B0,C0,C1,B1,A1 each uses a fresh Python/Xvfb child and4steps, maximum24calls,
+480s/child2400s/study,256MiB observer payload/child and1GiB dataset.
+
+See [the diagnostic record](STAGE7_FIRST_DIVERGENCE_DIAGNOSTIC.md) and
+`.github/stage7-first-divergence-acceptance.json` for immutable evidence and limits.
+Pure replay needs recorded NumPy2.4.6/OpenCV5.0.0.93. The onboarding OpenCV4.11
+warp differs on the saved data; changing NumPy alone with OpenCV4 fixed did not
+change outputs. I420 from saved canvases matches in all three CPU environments.
+No source/data/converter/threshold change was made; this does not explain the
+original same-runtime native repeatability FAIL or prove system/binary equality.
+
+Continue without new native retries: identify the actual current-HEAD push
+run of `.github/workflows/stage7-first-divergence.yml`, save API/job/artifact
+records, verify actual six-child ledger/counts and typed raw/state/feed data,
+then run `python -m scripts.first_divergence_audit validate-study --root PATH`
+under recorded CPU versions and obtain fresh independent raw acceptance.
+Failed/incomplete/untraced calls stay unknown/bounded. Preserve errors and
+partial evidence; update result/continuation docs with actual run/head/calls.
+Main official calls remain0, PR33 remains DRAFT/unmerged, source-a4 strictFAIL
+continues to block merge, and Stage7 is incomplete.
+
+## Historical checkpoint (2026-11-11)
+
+
+**Historical phase2 executed; strict native failure blocks integration.**
 Actual source `a4f13887b70208470d7fb6edaf507281d8a4551f` completes **65 calls/
 65 rows**: MD-V348,LS2 12,LS1 5, with six complete policy/world reports across
 3 native benchmark commands. All65 trace/bridge records and3 API-bound ZIPs/

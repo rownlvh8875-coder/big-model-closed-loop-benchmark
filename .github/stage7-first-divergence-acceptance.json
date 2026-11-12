@@ -1,0 +1,152 @@
+{
+  "schema": "first-divergence-root-acceptance-v1",
+  "accepted_canary": {
+    "repository": "rownlvh8875-coder/big-model-closed-loop-benchmark",
+    "workflow_id": 415293665,
+    "source_sha": "70cf8adeeaf088097da18da50810230d04092bbb",
+    "run_id": 43125348683,
+    "run_attempt": 1,
+    "artifact_id": 13902402855,
+    "artifact_name": "stage7-first-divergence-canary",
+    "artifact_nbytes": 4883414,
+    "artifact_sha256": "eae449d6c439eafad6eaab91364a600465ca0f25cb8659efdcf346998539053f",
+    "root_raw_accepted": true,
+    "fresh_raw_review_accepted": true
+  },
+  "fresh_independent_review": {
+    "verdict": "CLEAR",
+    "scope": "Camera-only source/raw/artifact acceptance; permits root to prepare a concrete single activation diff only.",
+    "reviewed_at_utc": "2026-11-12T00:23:38.721380+00:00",
+    "source": "70cf8adeeaf088097da18da50810230d04092bbb",
+    "repository": "rownlvh8875-coder/big-model-closed-loop-benchmark",
+    "workflow_id": 415293665,
+    "run_id": 43125348683,
+    "run_attempt": 1,
+    "job_id": 130875887880,
+    "artifact_id": 13902402855,
+    "artifact_name": "stage7-first-divergence-canary",
+    "zip_nbytes": 4883414,
+    "zip_sha256": "eae449d6c439eafad6eaab91364a600465ca0f25cb8659efdcf346998539053f",
+    "archive_members": 12,
+    "uncompressed_nbytes": 5280540,
+    "receipt_sha256": "186c7236caa2f055f03ecf8b0fe81b887cacf73ed07e49056b3f4c0366072d2a",
+    "manifest_sha256": "1b3308371b137ec7e3cbad4d458b2e7f1abe5f91632ae4236d77cefd95eaa329",
+    "source_path_count": 58,
+    "protected_pin_entries": 13,
+    "baseline_pin_entries": 43,
+    "accepted_pairs": 2,
+    "capture_count": 5,
+    "sensor_calls_excluding_startup": 10,
+    "accepted_capture_indices": [
+      3,
+      5
+    ],
+    "process_id": 3230,
+    "process_uuid": "5bb94b2e1de640efae518cbd72a368ee",
+    "native_provider_count_supported_by_source": 1,
+    "model_calls": 0,
+    "ort_sessions": 0,
+    "provider_closed": true,
+    "runtime": {
+      "python": "3.11.18 (main, Oct 26 2026, 02:48:29) [GCC 15.2.0]",
+      "executable": "/opt/hostedtoolcache/Python/3.11.18/x64/bin/python",
+      "numpy": "2.4.6",
+      "opencv-python-headless": "5.0.0.93",
+      "panda3d": "1.10.13",
+      "metadrive-simulator": "0.4.3",
+      "onnxruntime": "1.31.1",
+      "ImageOS": "ubuntu26",
+      "ImageVersion": "20261101.186.1"
+    },
+    "limits": [
+      "No original strict PASS, fidelity, installed binary/system equality, original failure cause, model ranking, renderer promotion, or Stage7 completion claim.",
+      "Python CI 3.11.18 GCC differs from replay 3.11.17 Clang. Only NumPy/OpenCV distribution versions match; build, system, GPU and asset runtime equality is not attested.",
+      "Convergence attempt hashes/counts are retained for all attempts; only selected full images exist. First adjacent equality is hash-checkable; second receipt 9 Wide pixels/max8 cannot be independently recomputed without the unretained previous canvas.",
+      "5 pair captures/10 sensor reads exclude native/provider startup; total initialization renders and GPU activity unknown.",
+      "Actual intrinsics are recorded CPU lens getters bound through reviewed frozen source, not independent lens telemetry or physical calibration.",
+      "Observer wall timing can reflect allocation/hash/getter effects; nested callback time is included in inclusive capture time and must not be added again.",
+      "Prior root CPU experiments are preserved and hash-bound here; only the recorded-version environment was executed independently by this reviewer.",
+      "Read-only API metadata was reauthenticated; historical main0/source-a4 failure are preserved scope statements, not a fresh audit of all historical workflows.",
+      "No model execution, request transition, download, commit, merge or publication is authorized by this review."
+    ]
+  },
+  "evidence_sha256": {
+    "fresh_review_json": "0d2216d8194e6a17d96f44dc71efc2ae45c33bdc8be794dac44cf857164fcd56",
+    "fresh_review_markdown": "a4e8a80d23a40ac20c1dc2a16d0b7ce22d197587b190762a947bcdf917954aa0",
+    "root_api_source_archive_validation": "a00ace6463c7045705504bdf068fbd06484a96b75e9ae5d42517423c20322e20",
+    "root_recorded_version_cpu_validation": "f5b41ff2f12ce1aed40e8673a152902cade839019b658ed780c77aa0f9130cde",
+    "cpu_controlled_replay": "396ea44de6ab32d1c5ee820517f38b58cb01f65e6e7e04af5f617146c3c357ad"
+  },
+  "source_snapshot_sha256": "0750e058e9376aacb804f6c9b9184c413cdba33cfc8c54e3a2ecfdb2e7bd373e",
+  "registered_model_protocol": {
+    "schedule": [
+      "A0:original",
+      "B0:proxy",
+      "C0:retention",
+      "C1:retention",
+      "B1:proxy",
+      "A1:original"
+    ],
+    "steps_per_child": 4,
+    "official_mdv3_call_ceiling": 24,
+    "child_timeout_s": 480,
+    "study_timeout_s": 2400,
+    "observer_payload_cap_bytes_per_child": 268435456,
+    "dataset_cap_bytes": 1073741824,
+    "retry_allowed": false
+  },
+  "cpu_replay_control": {
+    "status": "CONTROLLED_CPU_VERSION_REPLAY",
+    "rows": [
+      {
+        "accepted_index": 1,
+        "camera": "road",
+        "numpy_change_cv4_output_identical": true,
+        "opencv_change_np2_output_identical": false,
+        "audit_equal_all": true,
+        "changed_pixels_cv4_to_saved_cv5": 17324,
+        "max_delta": 3
+      },
+      {
+        "accepted_index": 1,
+        "camera": "wide",
+        "numpy_change_cv4_output_identical": true,
+        "opencv_change_np2_output_identical": false,
+        "audit_equal_all": true,
+        "changed_pixels_cv4_to_saved_cv5": 12343,
+        "max_delta": 3
+      },
+      {
+        "accepted_index": 2,
+        "camera": "road",
+        "numpy_change_cv4_output_identical": true,
+        "opencv_change_np2_output_identical": false,
+        "audit_equal_all": true,
+        "changed_pixels_cv4_to_saved_cv5": 17726,
+        "max_delta": 4
+      },
+      {
+        "accepted_index": 2,
+        "camera": "wide",
+        "numpy_change_cv4_output_identical": true,
+        "opencv_change_np2_output_identical": false,
+        "audit_equal_all": true,
+        "changed_pixels_cv4_to_saved_cv5": 12436,
+        "max_delta": 3
+      }
+    ],
+    "saved_canvas_to_i420_exact_all_environments": true,
+    "interpretation": "With NumPy2.4.6 held fixed on this host, changing installed OpenCV4.11.0.86 to5.0.0.93 changes all four replayed warps. Changing NumPy1.26.4 to2.4.6 while OpenCV4.11.0.86 is held fixed leaves the four outputs identical. This is a local CPU replay version/build effect on saved data, not a demonstrated cause of original same-runtime native repeatability failure.",
+    "native_renders": 0,
+    "official_model_calls": 0,
+    "source_or_data_modified": false
+  },
+  "claims": {
+    "original_strict_pass": false,
+    "stage7_complete": false,
+    "installed_binary_system_equality_proven": false,
+    "main_official_model_calls": 0,
+    "source_a4_strict_failure_blocks_merge": true
+  },
+  "purpose": "Root and fresh independent raw/source acceptance only. The separately reviewed one-shot request is still authenticated against actual GitHub/API/archive/source/runtime before any official download/execution."
+}
