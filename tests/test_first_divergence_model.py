@@ -296,7 +296,7 @@ class StudyTests(unittest.TestCase):
         class Process:
             def __init__(self):self.pid=1200+len(launched);self.returncode=0
             def wait(self,timeout):return 0
-        def launch(*args):launched.append(args);return Process()
+        def launch(*args,timeout=model.CHILD_LIMIT_S):launched.append(args);return Process()
         with tempfile.TemporaryDirectory() as temp,patch.object(model,'_require_model_acceptance',return_value={}), \
              patch.object(model,'_require_official_model'),patch.object(model,'_enable_subreaper'), \
              patch.object(model,'_launch_trial',side_effect=launch),patch.object(model,'_terminate_group',return_value=[]), \
@@ -316,7 +316,7 @@ class StudyTests(unittest.TestCase):
              patch.object(model,'_require_official_model'),patch.object(model,'_enable_subreaper'), \
              patch.object(model,'_launch_trial',return_value=Process()), \
              patch.object(model,'_terminate_group',side_effect=lambda p:cleaned.append(p.pid) or []), \
-             patch.object(model,'perf_counter',side_effect=[0.,2395.,2395.,2395.,2400.,2400.,2400.,2400.]):
+             patch.object(model,'perf_counter',side_effect=[0.,2395.,2395.,2395.,2395.,2400.,2400.,2400.,2400.]):
             result=model.run_study('unused','model_specs/md-v3.json',Path(temp)/'study')
             self.assertEqual(waits,[5.]);self.assertEqual(cleaned,[321])
             self.assertIsNone(result['model_calls']);self.assertTrue(result['launch_ledger'][0]['timed_out'])
@@ -568,7 +568,10 @@ class FinalizationTests(unittest.TestCase):
         import inspect
         self.assertIn('launch_row',inspect.signature(model._launch_trial).parameters,'launch must register its actual PID before authorization can fail')
         row={};cleaned=[]
-        class Process:pid=6789;returncode=-9
+        readfd,writefd=os.pipe();os.close(writefd)
+        class Process:
+            pid=6789;returncode=-9;stdout=os.fdopen(readfd,'rb',buffering=0)
+        self.addCleanup(Process.stdout.close)
         with tempfile.TemporaryDirectory() as temp, \
              patch.object(model.subprocess,'Popen',return_value=Process()), \
              patch.object(capture,'source_snapshot',side_effect=ValueError('source raced')), \
@@ -615,7 +618,7 @@ class FinalizationTests(unittest.TestCase):
             class Process:
                 def __init__(self,pid):self.pid=pid;self.returncode=0
                 def wait(self,timeout):return 0
-            def launch(m,s,out,arm,repeat,nonce,parent_uuid,index,row):
+            def launch(m,s,out,arm,repeat,nonce,parent_uuid,index,row, *, timeout=model.CHILD_LIMIT_S):
                 path,data=helper.complete_trial(temp,arm,out_override=out,storage_limits={k:row['storage'][k] for k in ('payload_limit_bytes','trial_ledger_limit_bytes','log_limit_bytes')})
                 data.update(repeat=repeat,nonce=nonce,parent_pid=os.getpid(),parent_uuid=parent_uuid,
                     process_group=7000+index,process_id=8000+index,process_uuid=f'{index+10:032x}')
@@ -668,7 +671,7 @@ class StorageBudgetTests(unittest.TestCase):
         root_cleanup=[];writefds=[]
         with tempfile.TemporaryDirectory() as temp:
             root=Path(temp)/'study'
-            def launch(m,s,out,arm,repeat,nonce,parent_uuid,index,row):
+            def launch(m,s,out,arm,repeat,nonce,parent_uuid,index,row, *, timeout=model.CHILD_LIMIT_S):
                 out.mkdir();readfd,writefd=os.pipe();writefds.append(writefd)
                 class Process:
                     pid=12345;returncode=-9;stdout=os.fdopen(readfd,'rb',buffering=0)
@@ -703,7 +706,7 @@ class StorageBudgetTests(unittest.TestCase):
         for mode in ('nonzero','timeout','invalid','overflow'):
             with self.subTest(mode=mode),tempfile.TemporaryDirectory() as temp:
                 root=Path(temp)/'study';launched=[];cleaned=[]
-                def launch(m,s,out,arm,repeat,nonce,parent_uuid,index,row):
+                def launch(m,s,out,arm,repeat,nonce,parent_uuid,index,row, *, timeout=model.CHILD_LIMIT_S):
                     out.mkdir();row.update(launched=True,launcher_pid=12345,process_group=12345)
                     limits=row['storage'];n=min(limits['log_limit_bytes'],4096)
                     data=b'p'*n if mode!='overflow' else b'p'*(min(n,100)+1)

@@ -1,6 +1,49 @@
 # Stage 7 continuation — verified results, renderer cause still open
 
-## Current checkpoint (2026-11-12 — bounded study failed; transport repair next)
+## Current checkpoint (2026-11-12 — IPC repair and actual zero-model transport accepted)
+
+Stacked draft [PR34](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/pull/34)
+base is PR33's feature branch; neither is merged. Actual probe source
+`910992742c8807ddc280f59b40261f7545b3e9c9`,
+[run43137405830](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43137405830),
+workflow415375833/job130915941509/attempt1 succeeded, alongside4 basicCI jobs.
+Artifact13907957454 is5889ZIPbytes/SHA256
+`8eaacb58de5dd0b402441192d8aa6543813ca21f9b08a714c66406310838afa4`,
+3members/13761uncompressedbytes:probe.json+normal/early_exit process.log.
+Root and fresh independent API/raw/source acceptance are CLEAR; review JSONSHA
+`7c14d244563ca3f3d23522287a10365516809fb6ee4b3e21a82bef5cc5d24bfb`.
+
+Actual parent2959; normalwrapper3027/receiver3039/FD10/6769bytes+EOF+close/exit0;
+earlywrapper3042/receiver3054/FD10/realexit73+realBrokenPipeError+retainedstderr,
+no permit_sent. Both original groups gone/reaped/errors[], total3.053193506s.
+Two wrapper/receiver pairs, server-start ceiling2, zero MetaDrive/ORT/official
+model calls. The production launcher is used with fixed stdlib receiver and
+probe-only -a omission; this is not a full native/model or image comparison.
+Current-source CI485unit tests pass with7 optional skips (1 ONNX/ORT and 6 Panda CPU contracts); separate generated
+SMALL ONNX test passes. Earlier local483full and later36fix tests retain their
+own source SHA; do not relabel old tests or rerun the accepted probe.
+
+Actual runnerUbuntu24/ImageVersion20261101.360.1/Xvfb2:21.1.12-1ubuntu1.9 differs
+from failed-studyUbuntu26. Current IPC validity does not prove the unique old
+cause, same-environment/model repair, physical fidelity or binary equality.
+Old study remains consumed, callsnull0..4/providersunknown0..1. Source-a4 strict
+FAIL, original0/4/corrected12/12 and geometry/optics/full-S limits are unchanged.
+Main official calls0, Stage7 incomplete, PR33+34DRAFT, Cloudunpublished.
+
+See [transport report](STAGE7_FIRST_DIVERGENCE_TRANSPORT.md) and
+[machine evidence](evidence/STAGE7_FIRST_DIVERGENCE_TRANSPORT.json).
+Next scientific work requires a NEW changed-source/canary/protocol registration,
+with actual runner/Python/NumPy/OpenCV/Panda/ORT/image/source gates before weights.
+Current producer closure61 differs from accepted camera70cf's58 paths, so old
+camera acceptance cannot be relabeled for this source. Do not reuse/retry081a,
+mark the original scientific gate PASS, merge to main, or add unregistered calls.
+Prepare the concrete follow-up source/registration first; maintain one-use
+admission and recorded budgets. No new scientific/model execution was authorized
+by this zero-model probe. Pure evidence replay command:
+`python -m scripts.first_divergence_transport_probe validate --root PATH`.
+
+## Historical model-study checkpoint (2026-11-12 — incomplete launch)
+
 
 The registered study source `081a4c61a68e5cb00a89f1c9998e66c657a16657` ran once:
 [43128201225](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43128201225),

@@ -7,11 +7,14 @@ from __future__ import annotations
 from dataclasses import asdict
 from hashlib import sha256
 import io
+import fcntl
 import json
 import math
+import numbers
 import os
 from pathlib import Path
 import secrets
+import select
 import signal
 import stat
 import subprocess
@@ -107,7 +110,7 @@ class _LogSink:
 class _BoundedChild:
     """Drain the actual stdout/stderr pipe through the bounded sink while waiting."""
     def __init__(self,process,sink,storage):
-        self.process=process;self.sink=sink;self.storage=storage;self.output_closed=False;self.output_cleanup_errors=[]
+        self.process=process;self.sink=sink;self.storage=storage;self.output_closed=False;self.output_eof=False;self.output_cleanup_errors=[]
     @property
     def pid(self):return self.process.pid
     @property
@@ -117,8 +120,20 @@ class _BoundedChild:
             self.output_closed=True
             for close in (self.process.stdout.close,self.sink.close):
                 try:close()
-                except OSError as exc:self.output_cleanup_errors.append(f'output close: {type(exc).__name__}: {exc}')
+                except Exception as exc:self.output_cleanup_errors.append(f'output close: {type(exc).__name__}: {exc}')
         self.storage['log_bytes']=self.sink.nbytes
+    def read_output(self):
+        block=os.read(self.process.stdout.fileno(),65536)
+        if not block:self.output_eof=True;return
+        try:self.sink.write(block)
+        except ValueError as exc:
+            self.storage['limit_error']=str(exc);raise
+    def drain_available(self):
+        while not self.output_closed and not self.output_eof:
+            ready,_,_=select.select([self.process.stdout],[],[],0)
+            if not ready:break
+            try:self.read_output()
+            except InterruptedError:continue
     def wait(self,timeout):
         deadline=perf_counter()+timeout
         if not self.output_closed:
@@ -702,38 +717,83 @@ def _enable_subreaper():
         _fail('Linux child-subreaper required for complete group cleanup')
 
 
-def _launch_trial(model,spec,out,arm,repeat,nonce,parent_uuid,index,launch_row):
-    out=Path(out);out.mkdir(parents=True,exist_ok=True)
-    readfd,writefd=os.pipe();process=None
+def _launch_trial(model,spec,out,arm,repeat,nonce,parent_uuid,index,launch_row, *, timeout=CHILD_LIMIT_S):
+    if isinstance(timeout,bool) or not isinstance(timeout,numbers.Real) or not 0<timeout<=CHILD_LIMIT_S or not math.isfinite(timeout):
+        _fail('invalid child launch timeout')
     limits={k:v for k,v in launch_row.get('storage',_child_storage_limits(capture.DATASET_CAP_BYTES-_ledger_reserve(capture.DATASET_CAP_BYTES))).items() if k in ('payload_limit_bytes','trial_ledger_limit_bytes','log_limit_bytes')}
     _storage_limits(limits)
     storage=launch_row.setdefault('storage',dict(limits,log_bytes=0,limit_error=None))
+    deadline=perf_counter()+timeout
+    readfd=writefd=lowfd=None;process=child=sink=None
+    cleanup_errors=launch_row.setdefault('cleanup_errors',[])
+    def cleanup_error(phase,exc):
+        cleanup_errors.append(f'{phase}: {type(exc).__name__}: {exc}')
     try:
+        out=Path(out);out.mkdir(parents=True,exist_ok=True)
+        sink=_LogSink(out/'process.log',limits['log_limit_bytes'])
+        lowfd,writefd=os.pipe()
+        readfd=fcntl.fcntl(lowfd,fcntl.F_DUPFD_CLOEXEC,10)
+        closing,lowfd=lowfd,None;os.close(closing)
+        sink.write(f'authorization_fd={readfd} phase=prepared\n'.encode())
         env=dict(os.environ,FIRST_DIVERGENCE_TRIAL_FD=str(readfd))
         command=['xvfb-run','-a',sys.executable,'-m','scripts.first_divergence_audit','native-trial',
             '--model',str(Path(model).resolve()),'--spec',str(Path(spec).resolve()),'--out',str(out),
             '--arm',arm,'--repeat',str(repeat),'--nonce',nonce]
+        if perf_counter()>=deadline:raise subprocess.TimeoutExpired('trial authorization',timeout)
         process=subprocess.Popen(command,cwd=capture.REPO_ROOT,env=env,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,
             start_new_session=True,pass_fds=(readfd,))
+        child=_BoundedChild(process,sink,storage)
         launch_row.update(launched=True,launcher_pid=process.pid,process_group=process.pid)
-        os.close(readfd);readfd=None
+        closing,readfd=readfd,None;os.close(closing)
+        sink.write(f'phase=permit launcher_pid={process.pid}\n'.encode())
         permit=dict(parent_pid=os.getpid(),parent_uuid=parent_uuid,process_group=process.pid,
             nonce=nonce,arm=arm,repeat=repeat,schedule_index=index,
             source_snapshot=capture.source_snapshot(),runtime=_runtime_identity(),storage_limits=limits)
-        with os.fdopen(writefd,'wb') as stream: stream.write(json.dumps(permit,allow_nan=False).encode())
-        writefd=None
-        return _BoundedChild(process,_LogSink(out/'process.log',limits['log_limit_bytes']),storage)
-    except BaseException:
+        payload=memoryview(json.dumps(permit,allow_nan=False).encode())
+        os.set_blocking(writefd,False)
+        sent=0
+        while sent<len(payload):
+            remaining=deadline-perf_counter()
+            if remaining<=0:raise subprocess.TimeoutExpired('trial authorization',timeout)
+            try:
+                ready,writable,_=select.select([] if child.output_eof else [process.stdout],[writefd],[],remaining)
+                if ready:child.read_output()
+                if writable:
+                    count=os.write(writefd,payload[sent:])
+                    if not count:raise BrokenPipeError('trial authorization pipe closed')
+                    sent+=count
+            except (InterruptedError,BlockingIOError):continue
+        closing,writefd=writefd,None;os.close(closing)
+        sink.write(b'phase=permit_sent\n')
+        storage['log_bytes']=sink.nbytes
+        return child
+    except BaseException as primary:
+        if isinstance(primary,ValueError) and 'log storage budget' in str(primary):storage['limit_error']=str(primary)
+        if child is not None:
+            try:child.drain_available()
+            except Exception as exc:cleanup_error('early output drain',exc)
         if process is not None:
-            launch_row['cleanup_errors']=_terminate_group(process)
+            # Reap the raw handle: a bounded wrapper's wait can raise a pending
+            # log limit before it reaches the real leader wait.
+            try:cleanup_errors.extend(_terminate_group(process))
+            except Exception as exc:cleanup_error('group cleanup',exc)
             launch_row['exit_code']=process.returncode
-            if getattr(process,'stdout',None) is not None:process.stdout.close()
+        if child is not None:
+            try:child.drain_available()
+            except Exception as exc:cleanup_error('residual output drain',exc)
+            try:child.close_output()
+            except Exception as exc:cleanup_error('output cleanup',exc)
+            cleanup_errors.extend(child.output_cleanup_errors)
+        elif sink is not None:
+            try:sink.close()
+            except Exception as exc:cleanup_error('log close',exc)
         raise
     finally:
-        for fd in (readfd,writefd):
+        if sink is not None:storage['log_bytes']=sink.nbytes
+        for fd in (lowfd,readfd,writefd):
             if fd is not None:
                 try:os.close(fd)
-                except OSError:pass
+                except OSError as exc:cleanup_error('authorization close',exc)
 
 
 def _terminate_group(process):
@@ -792,12 +852,15 @@ def run_study(model,spec,out):
             validation_error=None,cleanup_errors=[],storage=dict(limits,log_bytes=0,limit_error=None))
         ledger.append(row);process=None
         try:
-            process=_launch_trial(model,spec,childout,arm,repeat,nonce,parent_uuid,index,row)
-            row.update(launched=True,launcher_pid=process.pid,process_group=process.pid)
+            launch_start=perf_counter()
+            timeout=min(float(CHILD_LIMIT_S),max(0.,STUDY_LIMIT_S-(launch_start-start)))
             try:
-                timeout=min(float(CHILD_LIMIT_S),max(0.,STUDY_LIMIT_S-(perf_counter()-start)))
                 if timeout<=0:raise subprocess.TimeoutExpired('whole-study',0)
-                row['exit_code']=process.wait(timeout=timeout)
+                process=_launch_trial(model,spec,childout,arm,repeat,nonce,parent_uuid,index,row,timeout=timeout)
+                row.update(launched=True,launcher_pid=process.pid,process_group=process.pid)
+                wait_timeout=max(0.,timeout-(perf_counter()-launch_start))
+                if wait_timeout<=0:raise subprocess.TimeoutExpired('child/study',timeout)
+                row['exit_code']=process.wait(timeout=wait_timeout)
             except subprocess.TimeoutExpired:
                 row['timed_out']=True
                 raise ValueError('child/study deadline exceeded') from None
@@ -815,7 +878,7 @@ def run_study(model,spec,out):
                 output_errors=[]
                 if isinstance(process,_BoundedChild):
                     process.close_output();output_errors=process.output_cleanup_errors
-                row['cleanup_errors']=output_errors+_terminate_group(process)
+                row['cleanup_errors']=output_errors+_terminate_group(process.process if isinstance(process,_BoundedChild) else process)
                 row['exit_code']=process.returncode
                 cleanup.extend(row['cleanup_errors'])
                 if row['cleanup_errors'] and error is None:error='child group cleanup unconfirmed'

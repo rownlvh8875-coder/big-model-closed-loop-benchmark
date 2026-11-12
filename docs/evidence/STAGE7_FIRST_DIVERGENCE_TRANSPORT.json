@@ -1,0 +1,421 @@
+{
+  "schema": "stage7-first-divergence-transport-evidence-v1",
+  "status": "ACCEPTED_ACTUAL_ZERO_MODEL_TRANSPORT",
+  "actual": {
+    "status": "ROOT_ACTUAL_API_SOURCE_ARCHIVE_AND_PROBE_VALIDATED",
+    "source": "910992742c8807ddc280f59b40261f7545b3e9c9",
+    "run_id": 43137405830,
+    "workflow_id": 415375833,
+    "job_id": 130915941509,
+    "artifact_id": 13907957454,
+    "artifact_nbytes": 5889,
+    "artifact_sha256": "sha256:8eaacb58de5dd0b402441192d8aa6543813ca21f9b08a714c66406310838afa4",
+    "members": [
+      "early_exit/process.log",
+      "normal/process.log",
+      "probe.json"
+    ],
+    "uncompressed_bytes": 13761,
+    "source_paths": 61,
+    "parent_pid": 2959,
+    "cases": [
+      {
+        "case": "normal",
+        "launcher_pid": 3027,
+        "process_group": 3027,
+        "exit_code": 0,
+        "delivery_error": null,
+        "elapsed_s": 2.46036117700001,
+        "cleanup_errors": [],
+        "group_gone": true,
+        "reaped": true,
+        "log": {
+          "path": "normal/process.log",
+          "bytes": 1045,
+          "sha256": "20920e236f25cf673b446c9b530818b7403706ee94bea24e9760127d51fec5c3"
+        },
+        "receiver_pid": 3039,
+        "read_fd": 10,
+        "received_bytes": 6769
+      },
+      {
+        "case": "early_exit",
+        "launcher_pid": 3042,
+        "process_group": 3042,
+        "exit_code": 73,
+        "delivery_error": "BrokenPipeError",
+        "elapsed_s": 0.2227563380000106,
+        "cleanup_errors": [],
+        "group_gone": true,
+        "reaped": true,
+        "log": {
+          "path": "early_exit/process.log",
+          "bytes": 550,
+          "sha256": "55956e5f67ee155abfbdfb36b541f733c80e82b9373af92435c2a3242947e8df"
+        },
+        "receiver_pid": 3054,
+        "read_fd": 10,
+        "received_bytes": null
+      }
+    ],
+    "wrapper_launches": 2,
+    "elapsed_s": 3.0531935059999853,
+    "tools": {
+      "wrapper_path": "/usr/bin/xvfb-run",
+      "wrapper_sha256": "48ee444c30fdaaede4cc311644b30e554162e956f949b206858e37eb8ba1ae05",
+      "wrapper_version": "2:21.1.12-1ubuntu1.9",
+      "xauth_path": "/usr/bin/xauth",
+      "xauth_version": "1.1.2"
+    },
+    "runtime": {
+      "python": "3.11.18 (main, Oct 26 2026, 02:48:34) [GCC 13.3.0]",
+      "executable": "/opt/hostedtoolcache/Python/3.11.18/x64/bin/python",
+      "numpy": "2.4.6",
+      "opencv-python-headless": "5.0.0.93",
+      "panda3d": null,
+      "metadrive-simulator": null,
+      "onnxruntime": null,
+      "ImageOS": "ubuntu24",
+      "ImageVersion": "20261101.360.1"
+    },
+    "claims": {
+      "official_model_calls": 0,
+      "ort_sessions": 0,
+      "metadrive_providers": 0,
+      "original_strict_pass": false,
+      "historical_cause_proven": false,
+      "physical_fidelity_proven": false,
+      "installed_binary_equality_proven": false,
+      "full_native_model_test": false
+    },
+    "substitutions": [
+      "fixed-stdlib-receiver-for-native-policy-cli",
+      "probe-only-omit-xvfb-auto-servernum"
+    ],
+    "fresh_independent_acceptance": "CLEAR",
+    "limit": "Actual runner Ubuntu24 differs from old failed-study Ubuntu26; this proves recorded IPC cases, not same-environment original failure cause or a scientific/model PASS."
+  },
+  "root_validation_sha256": "39fe98bb9a2cfac01cd5cc0797ee5a13129ccc605fc40015d9d6f898dd44b192",
+  "root_api_source_archive_validation_sha256": "8b070c31539771f783a9f9c0e3cc8652712c77ec2f257cf04b69c76436a71b8a",
+  "independent_review": {
+    "verdict": "CLEAR",
+    "scope": "Actual two-case zero-model transport artifact acceptance only",
+    "reviewed_at_utc": "2026-11-12T02:01:38.092602+00:00",
+    "source": "910992742c8807ddc280f59b40261f7545b3e9c9",
+    "branch": "fix/first-divergence-launch-transport",
+    "base": "2b2c6420e9ce1bbda5683f3afb94600e705a1371",
+    "repository": "rownlvh8875-coder/big-model-closed-loop-benchmark",
+    "run_id": 43137405830,
+    "attempt": 1,
+    "workflow_id": 415375833,
+    "job_id": 130915941509,
+    "artifact_id": 13907957454,
+    "api": {
+      "method": "HTTPS GET",
+      "host": "api.github.com",
+      "credential_authentication": "Unauthenticated public API, no credentials sent",
+      "tls_verification": true,
+      "live_remote_metadata_rechecked": true,
+      "run_workflow_attempt_jobs_artifacts_match_saved_raw_metadata": true,
+      "basic_ci_runs": [
+        43137405558,
+        43137465537
+      ],
+      "successful_jobs_total": 5,
+      "successful_job_ids": [
+        130915941509,
+        130915940796,
+        130915941158,
+        130916134337,
+        130916134355
+      ],
+      "prs": {
+        "33": "open draft, unmerged",
+        "34": "open draft, unmerged"
+      }
+    },
+    "archive": {
+      "path": "output/stage7-remote-evidence/run-43137405830/13907957454.zip",
+      "bytes": 5889,
+      "sha256": "8eaacb58de5dd0b402441192d8aa6543813ca21f9b08a714c66406310838afa4",
+      "member_count": 3,
+      "uncompressed_bytes": 13761,
+      "safe_exact_members_crc_and_existing_extraction_bytes_verified": true,
+      "members": [
+        {
+          "path": "early_exit/process.log",
+          "bytes": 550,
+          "sha256": "55956e5f67ee155abfbdfb36b541f733c80e82b9373af92435c2a3242947e8df"
+        },
+        {
+          "path": "normal/process.log",
+          "bytes": 1045,
+          "sha256": "20920e236f25cf673b446c9b530818b7403706ee94bea24e9760127d51fec5c3"
+        },
+        {
+          "path": "probe.json",
+          "bytes": 12166,
+          "sha256": "39fe98bb9a2cfac01cd5cc0797ee5a13129ccc605fc40015d9d6f898dd44b192"
+        }
+      ]
+    },
+    "source_checks": {
+      "source_closure": 61,
+      "current_files_and_commit_blobs_match": true,
+      "protected_pins": 13,
+      "baseline_pins": 43,
+      "old_workflows": 40,
+      "protected_baseline_workflows_match_base": true,
+      "source_sha256": "425c892db5e3f6458826504fb9fe25f37cc7c9bb2d62555d1dd241def316cec3",
+      "runtime_sha256": "045254e18fcadd42cdbfcc479484da248f52d672838d45fada763f1744d237d9"
+    },
+    "offline_validation": {
+      "command": "source /workspace/.cloud-tools/onboarding/activate.sh; python scripts/first_divergence_transport_probe.py validate --root output/stage7-remote-evidence/run-43137405830/extracted/13907957454",
+      "exit_code": 0,
+      "status": "TRANSPORT_ASSOCIATION_VALIDATED"
+    },
+    "parent_pid": 2959,
+    "parent_uuid": "31260058a4aa4f7091c91efbd9401885",
+    "cases": [
+      {
+        "case": "normal",
+        "nonce": "ff8f64298392d1ecf4e34fda9e9d2015e61d12e073c0fa61a14ce6bc53b1e07d",
+        "launcher_pid": 3027,
+        "process_group": 3027,
+        "exit_code": 0,
+        "delivery_error": null,
+        "launch_timeout_s": 113.999849058,
+        "wait_timeout_s": 113.99003237599999,
+        "elapsed_s": 2.46036117700001,
+        "cleanup_errors": [],
+        "group_gone": true,
+        "reaped": true,
+        "wrapper_waited_before_delivery": false,
+        "storage": {
+          "payload_limit_bytes": 0,
+          "trial_ledger_limit_bytes": 4096,
+          "log_limit_bytes": 65536,
+          "log_bytes": 1045,
+          "limit_error": null
+        },
+        "log": {
+          "path": "normal/process.log",
+          "bytes": 1045,
+          "sha256": "20920e236f25cf673b446c9b530818b7403706ee94bea24e9760127d51fec5c3"
+        },
+        "receiver_pid": 3039,
+        "read_fd": 10,
+        "received_bytes": 6769,
+        "fifo_confirmed": true,
+        "eof_confirmed": true
+      },
+      {
+        "case": "early_exit",
+        "nonce": "f0fd0a6e332ff96e69b2482b3d4bca067f1d433c301475a8fa32642732228799",
+        "launcher_pid": 3042,
+        "process_group": 3042,
+        "exit_code": 73,
+        "delivery_error": "BrokenPipeError",
+        "launch_timeout_s": 113.99986694199998,
+        "wait_timeout_s": null,
+        "elapsed_s": 0.2227563380000106,
+        "cleanup_errors": [],
+        "group_gone": true,
+        "reaped": true,
+        "wrapper_waited_before_delivery": true,
+        "storage": {
+          "payload_limit_bytes": 0,
+          "trial_ledger_limit_bytes": 4096,
+          "log_limit_bytes": 65536,
+          "log_bytes": 550,
+          "limit_error": null
+        },
+        "log": {
+          "path": "early_exit/process.log",
+          "bytes": 550,
+          "sha256": "55956e5f67ee155abfbdfb36b541f733c80e82b9373af92435c2a3242947e8df"
+        },
+        "receiver_pid": 3054,
+        "read_fd": 10,
+        "received_bytes": null,
+        "fifo_confirmed": true,
+        "eof_confirmed": false
+      }
+    ],
+    "elapsed_s": 3.0531935059999853,
+    "wrapper_launches": 2,
+    "limits": {
+      "case_s": 120,
+      "cleanup_reserve_s": 6,
+      "total_s": 300,
+      "log_bytes": 65536,
+      "artifact_bytes": 2097152,
+      "manifest_bytes": 1966080,
+      "max_wrappers": 2,
+      "max_servers": 2
+    },
+    "tools": {
+      "wrapper_path": "/usr/bin/xvfb-run",
+      "wrapper_sha256": "48ee444c30fdaaede4cc311644b30e554162e956f949b206858e37eb8ba1ae05",
+      "wrapper_version": "2:21.1.12-1ubuntu1.9",
+      "xauth_path": "/usr/bin/xauth",
+      "xauth_version": "1.1.2"
+    },
+    "runtime": {
+      "python": "3.11.18 (main, Oct 26 2026, 02:48:34) [GCC 13.3.0]",
+      "executable": "/opt/hostedtoolcache/Python/3.11.18/x64/bin/python",
+      "numpy": "2.4.6",
+      "opencv-python-headless": "5.0.0.93",
+      "panda3d": null,
+      "metadrive-simulator": null,
+      "onnxruntime": null,
+      "ImageOS": "ubuntu24",
+      "ImageVersion": "20261101.360.1"
+    },
+    "claims": {
+      "official_model_calls": 0,
+      "ort_sessions": 0,
+      "metadrive_providers": 0,
+      "original_strict_pass": false,
+      "historical_cause_proven": false,
+      "physical_fidelity_proven": false,
+      "installed_binary_equality_proven": false,
+      "full_native_model_test": false
+    },
+    "substitutions": [
+      "fixed-stdlib-receiver-for-native-policy-cli",
+      "probe-only-omit-xvfb-auto-servernum"
+    ],
+    "job_log": {
+      "path": "output/stage7-first-divergence-transport/source-910992742c8807ddc280f59b40261f7545b3e9c9/probe-job-130915941509.log",
+      "bytes": 39563,
+      "sha256": "1fd58219904acb05dd64cd70e44bbcc3a56961fb333922639c5f7192e37abe3d",
+      "actual_ci_transport_tests": 36,
+      "actual_ci_test_duration_s": 4.437
+    },
+    "test_receipt_scope": {
+      "full_suite_483_commit": "a00b142e833b9fc413548c3501c5092ed71da725",
+      "transport_36_commit": "910992742c8807ddc280f59b40261f7545b3e9c9",
+      "receipt_log_and_git_source_hashes_verified": true,
+      "local_test_suites_rerun": false
+    },
+    "findings": [],
+    "limitations": [
+      "Recorded Ubuntu24 image 20261101.360.1 / GCC13.3 / xvfb2:21.1.12 differs from old failed-study Ubuntu26 / xvfb21.1.22; no same-environment or unique original-cause inference.",
+      "Fixed stdlib receiver substitutes for native-policy CLI and probe omits -a; no full native/model pipeline claim.",
+      "At most two wrapper/server launches; official calls, ORT sessions and MetaDrive providers are zero in this probe only. Existing basic-CI tiny ONNX graph is separate.",
+      "Cleanup is authenticated recorded CI evidence plus reviewed cleanup checks, not a fresh observation of the terminated runner.",
+      "Preflight-before-output no-artifact boundary and earlier exploratory local zombie history remain disclosed; neither is a current CI leak finding.",
+      "Study081a/run43128201225 remains consumed, official calls unknown0..4/native providers unknown0..1; no retry or old-bound narrowing.",
+      "PR33/PR34 remain draft/unmerged, source-a4 strict FAIL, main official0, Stage7 incomplete, Cloud unpublished; no fresh model or merge authorization."
+    ],
+    "review_actions": {
+      "new_process_fixtures": 0,
+      "real_xvfb_launches": 0,
+      "native_or_model_runs": 0,
+      "artifact_redownloads": 0,
+      "extractions": 0,
+      "source_edits": 0,
+      "git_mutations": 0,
+      "external_mutations": 0,
+      "subagents": 0
+    }
+  },
+  "independent_review_sha256": "7c14d244563ca3f3d23522287a10365516809fb6ee4b3e21a82bef5cc5d24bfb",
+  "input_files": [
+    {
+      "path": "early_exit/process.log",
+      "nbytes": 550,
+      "sha256": "55956e5f67ee155abfbdfb36b541f733c80e82b9373af92435c2a3242947e8df"
+    },
+    {
+      "path": "normal/process.log",
+      "nbytes": 1045,
+      "sha256": "20920e236f25cf673b446c9b530818b7403706ee94bea24e9760127d51fec5c3"
+    },
+    {
+      "path": "probe.json",
+      "nbytes": 12166,
+      "sha256": "39fe98bb9a2cfac01cd5cc0797ee5a13129ccc605fc40015d9d6f898dd44b192"
+    }
+  ],
+  "tests": {
+    "local_full": {
+      "head": "a00b142e833b9fc413548c3501c5092ed71da725",
+      "tests": 483,
+      "seconds": 79.465,
+      "skipped": 0,
+      "result": "PASS"
+    },
+    "latest_scoped_fix": {
+      "head": "910992742c8807ddc280f59b40261f7545b3e9c9",
+      "transport_tests": 36,
+      "seconds": 4.982,
+      "result": "PASS"
+    },
+    "actual_push_unit": {
+      "run_id": 43137405558,
+      "job_id": 130915940796,
+      "tests": 485,
+      "seconds": 56.071,
+      "skipped": 7,
+      "result": "PASS",
+      "skip_breakdown": {
+        "optional_onnx_ort": 1,
+        "optional_panda_cpu_contracts": 6
+      },
+      "skipped_test_records": [
+        "test_actual_panda_global_bin_is_restored_without_any_graphics_engine (test_native_opaque_order_matrix.OpaqueBinPolicyTests.test_actual_panda_global_bin_is_restored_without_any_graphics_engine) ... skipped 'Panda CPU contract runs in native CI'",
+        "test_real_ort_uses_camera_and_updates_recurrent_state (test_onnx_ort_integration.NativeOrtTest.test_real_ort_uses_camera_and_updates_recurrent_state) ... skipped 'onnx+onnxruntime optional; GitHub inference CI installs both'",
+        "test_all_four_modes_are_opt_in_and_dispatch_only_for_marker (test_shadow_feedback_probe.PandaGuardTests.test_all_four_modes_are_opt_in_and_dispatch_only_for_marker) ... skipped 'Panda CPU state-contract runs in native CI'",
+        "test_configure_rejects_unknown_state_before_even_sampler_setters (test_shadow_feedback_probe.PandaGuardTests.test_configure_rejects_unknown_state_before_even_sampler_setters) ... skipped 'Panda CPU state-contract runs in native CI'",
+        "test_guard_has_only_two_high_priority_inputs_and_inherits_shader (test_shadow_feedback_probe.PandaGuardTests.test_guard_has_only_two_high_priority_inputs_and_inherits_shader) ... skipped 'Panda CPU state-contract runs in native CI'",
+        "test_preexisting_second_state_fails_before_mutating_first (test_shadow_feedback_probe.PandaGuardTests.test_preexisting_second_state_fails_before_mutating_first) ... skipped 'Panda CPU state-contract runs in native CI'",
+        "test_setup_failure_rolls_back_camera_and_sampler_and_marker (test_shadow_feedback_probe.PandaGuardTests.test_setup_failure_rolls_back_camera_and_sampler_and_marker) ... skipped 'Panda CPU state-contract runs in native CI'"
+      ]
+    },
+    "generated_small_ort_interface": {
+      "job_id": 130915941158,
+      "tests": 1,
+      "seconds": 0.086,
+      "result": "PASS",
+      "official_weights": false
+    },
+    "actual_source_ci_jobs": {
+      "success": 5,
+      "failure": 0,
+      "pending": 0
+    }
+  },
+  "controller_rulings": [
+    "Ruling: no registeredstudyretry; onlyCPUrepair+zero-modelCItransportprobe, branch excludedbyoldnativeworkflow. Cost: no newstate/RGB/modelcomparison; futuremodelprotocol mustbe registered separately.",
+    "Ruling: preserveone-usepipe withFD>=10 andearlyboundedlogs; avoidfiletokenreplay andadmissionweakening. Costs: depends on releasedwrapperFDcontract, actualzero-modelCIprobe required.",
+    "Ruling: initialize remote repair ref viaGitHubAPI atalreadyremote docs-only2b2c642 beforeproducerpush, so later actualpush hasexplicit2b2c642..reviewedsource diff and cannot replaypriorpublic-code paths. No localHEAD/source mutation. Cost: remote branch ref +possiblybaselineCI; model/transportworkflow absent/excluded atbase. Rootwillobserveactualtriggers.",
+    "Task2agent /root/transport_probe_impl RED10behavioraltests (absentmodule assertions), existing16transporttests unchanged. Ruling: offlinevalidationmayinvoke read-onlylocalGitplumbing forrequiredsourceGitblobverification; no receiver/Xvfb/native/model launches, importssideeffectfree. Cost: Gitrequiredforofflinevalidation. FullsuitehostORTimports isolatedviafreshCPUtestprocess whilekeepingstrictnewprobezero-importscope; eachcaseonce."
+  ],
+  "verification_history": {
+    "preflight_artifact_boundary": "Context/source/tool/unsafe-path preflight failures occur before safe output allocation, so no probe directory; postallocation execution failures retain bounded ledger/log prefix.",
+    "exploratory_local_fixture": "A direct private-case exploratory fixture omitted subreaper and left one exited sleep zombie under container PID1; corrected final fixtures and production/probe enable subreaping. This is not an active native process or evidence of a current CI group leak."
+  },
+  "preserved_scientific_status": {
+    "original_mdv3_repeatability": "FAIL",
+    "source_a4_strict_regression": "FAIL",
+    "old_failed_study_source": "081a4c61a68e5cb00a89f1c9998e66c657a16657",
+    "old_model_calls": null,
+    "old_model_calls_bounds": [
+      0,
+      4
+    ],
+    "old_native_provider_bounds": [
+      0,
+      1
+    ],
+    "old_study_retries": 0,
+    "new_probe_official_model_calls": 0,
+    "main_official_model_calls": 0,
+    "stage7_complete": false,
+    "physical_camera_fidelity_proven": false,
+    "original_failure_unique_cause_proven": false,
+    "full_s_route_validation_changed": false
+  }
+}

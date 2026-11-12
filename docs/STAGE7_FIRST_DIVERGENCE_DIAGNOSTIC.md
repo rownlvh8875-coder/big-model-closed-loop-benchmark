@@ -8,6 +8,8 @@
 
 이 study는 재실행·연장하지 않는다. 다음은 분리된 브랜치에서 권한 pipeFD 보호와 조기 bounded log 보존을 CPU로 수정하고, 모델·MetaDrive·가중치 없는 CI transport probe를 검증하는 작업이다. 이후 새 모델 진단에는 변경된 producer의 새 source/canary/protocol 등록이 필요하며 이번 승인이나 실패 자료를 성공으로 재사용하지 않는다.
 
+후속 IPC 수정의 actual zero-model 검증은 [별도 기록](STAGE7_FIRST_DIVERGENCE_TRANSPORT.md)에 보존했다. Ubuntu24의 정상/초기종료 두 경로만 승인했으며, 아래 Ubuntu26 실패의 model_calls null0..4/providers0..1 및 유일 원인 미확인 상태를 바꾸지 않는다.
+
 카메라 관측 진단의 실제 CI 기록이다. 기존 source-a4의 12단계 MD-V3 반복성 FAIL은 계속 병합 차단 조건이다. PR33은 DRAFT이며 main 공식 모델 호출은0이다. 이 기록은 원본 렌더러의 반복성·물리 카메라 정합성·7단계 완료를 선언하지 않는다.
 
 카메라 소스는 `70cf8adeeaf088097da18da50810230d04092bbb`이며, 첫 effective native canary 실행은 [43125348683](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43125348683), job130875887880이다. 같은 소스의 기본 CI push43125348715/PR43125358699도 성공했다. 세 실행 합계5jobs SUCCESS. 카메라 job의 CPU 진단66tests PASS; 공식 모델 gate/download/study steps는 SKIPPED였다.
