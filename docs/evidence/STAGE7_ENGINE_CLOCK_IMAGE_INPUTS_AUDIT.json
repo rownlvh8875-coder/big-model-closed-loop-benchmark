@@ -14,6 +14,7 @@
     "upstream_guidance_verbatim": "    There are four different packages (see options 1, 2, 3 and 4 below) and you should **SELECT ONLY ONE OF THEM**. Do not install multiple different packages in the same environment. There is no plugin architecture: all the packages use the same namespace (`cv2`). If you installed multiple different packages in the same environment, uninstall them all with ``pip uninstall`` and reinstall only one package."
   },
   "branch": "design/engine-clock-image-inputs",
+  "deferred_minors": [],
   "execution_authorized": false,
   "http_body_bytes": 236879,
   "http_request_count": 8,
@@ -255,7 +256,102 @@
     "source_sha": null,
     "workflow_id": null
   },
-  "review": "PENDING fresh builder/whole-branch evidence review",
+  "review": {
+    "critical": 0,
+    "final_receipt_head_and_ci": "Recorded after push in Draft PR; final receipt-only HEAD differs from reviewed HEAD.",
+    "important": 0,
+    "independent_rereview": false,
+    "minor": 0,
+    "raw_review_sha256": "f2eaca167855b6f5489ae2136684b2ac4c29e6591091142710cacb6acde01fee",
+    "reviewed_base": "d54d43757eabc60d4f3f5b3d7e51f665bcc9f23e",
+    "reviewed_head": "2e89ffe95b1382823248dd7595f254e1d271afaf"
+  },
+  "root_review_dispositions": [
+    {
+      "behavior": "Live transport/time/count attestation",
+      "cost": "No independent live TLS/infrastructure-retry or hard wall-deadline attestation.",
+      "decision": "Root records its eight application-level metadata fetches, saved bodies and response hashes; urlopen socket timeout25s/bodycap2MiB, no application retry.",
+      "reviewer_declined": "Independent live HTTP/TLS provenance, request execution counts, retries and time bounds: reviewed saved receipts and bodies only; no network replay or transport-code audit was authorized."
+    },
+    {
+      "behavior": "Wheel payload and embedded metadata authenticity",
+      "cost": "Embedded bytes/signatures and wheel payload authenticity remain unverified.",
+      "decision": "Accept only the measured PEP658 sidecar and advertised wheel hash; payload remains undownloaded.",
+      "reviewer_declined": "Wheel payload authenticity, embedded METADATA equality and signatures: only the advertised wheel hash and fetched PEP658 sidecar were checked; wheel payload was not downloaded."
+    },
+    {
+      "behavior": "Full dependency/platform solvability",
+      "cost": "Complete Python/OS/base/asset graph remains unresolved.",
+      "decision": "Stop this first compatibility gate; do not infer full graph from version existence.",
+      "reviewer_declined": "Complete transitive dependency solvability and target-platform availability: release existence and this one packaging blocker do not resolve the full Python/OS/base/asset graph."
+    },
+    {
+      "behavior": "Overlapping installation and import selection",
+      "cost": "Actual overwrite/import behavior is not measured; no historical causal inference.",
+      "decision": "Use publisher-supported packaging policy as blocker without installing either combination.",
+      "reviewer_declined": "Actual overlapping installation, import selection and shared-file overwrites: no installation or imports were performed; support-policy reasoning is sufficient for this stop gate."
+    },
+    {
+      "behavior": "Derivative transform/archive/identity/RECORD/license policy",
+      "cost": "No derivative implementation or real derived hash yet.",
+      "decision": "Keep all transform obligations as a future design and source/fixture review gate.",
+      "reviewer_declined": "Derivative transform implementation, exact allowed member changes, distribution identity, RECORD/signature correctness, license compliance and hostile-archive defenses: proposed future design obligations, not implemented behavior."
+    },
+    {
+      "behavior": "Derivative compatibility/upstream endorsement",
+      "cost": "A derivative remains non-official and needs further compatibility evidence.",
+      "decision": "Do not infer runtime compatibility or official endorsement from proposed payload preservation.",
+      "reviewer_declined": "Derivative runtime compatibility and upstream endorsement: payload preservation alone cannot establish either, and the proposal explicitly does not claim them."
+    },
+    {
+      "behavior": "Task1 identity semantics",
+      "cost": "No fresh Task1 semantic assurance from this reviewer.",
+      "decision": "Preserve Task1 tool/test/proposal bytes and prior evidence; no new independent review of its behavior.",
+      "reviewer_declined": "Task1 identity comparison, synthetic-hash admission boundaries, legacy/partial rejection and kernel/CPU/engine mismatch behavior: frozen prior implementation; checked preservation rather than replaying its review or tests."
+    },
+    {
+      "behavior": "Task2 inventory semantics",
+      "cost": "No fresh filesystem/runtime compatibility assurance from this reviewer.",
+      "decision": "Preserve Task2 tool/test bytes and prior fix/test evidence.",
+      "reviewer_declined": "Task2 closed inventory detection, modes, symlink escape/cycle handling, deadlines, Docker-managed /etc exclusions and legitimate aliases: frozen prior implementation; checked preservation, not runtime behavior."
+    },
+    {
+      "behavior": "Future API/env/redaction/streaming adapter",
+      "cost": "Actual provenance, forgery rejection, redaction and transport remain unimplemented.",
+      "decision": "Keep adapter absent until supported inputs and separately reviewed source/tests.",
+      "reviewer_declined": "Future adapter API provenance, forged environment claims, token/proxy/Config.Env redaction and large archive streaming: adapter is absent and outside this stopped input gate."
+    },
+    {
+      "behavior": "Actual image/lock/config/launch/mount/GL selection",
+      "cost": "No prepared image or runtime authentication exists.",
+      "decision": "Leave all preparation refs null and readiness/native admission false.",
+      "reviewer_declined": "Actual lock/recipe, installed filesystem, Docker configuration/diffIDs, launch authentication, mounts, driver/GL selection and image compatibility: no preparation evidence exists in this increment."
+    },
+    {
+      "behavior": "Image-scale feasibility and neutrality",
+      "cost": "Actual disk/download/hash/load costs and observer neutrality remain unknown.",
+      "decision": "Treat future caps as limits, not measurements; metadata fetch cost alone is observed.",
+      "reviewer_declined": "Download/disk/hash/load feasibility and timing neutrality: no actual image or package preparation occurred; future caps are not measurements."
+    },
+    {
+      "behavior": "Native/scientific conclusions",
+      "cost": "Native causality/determinism/geometry-optics-fullS remain unproved.",
+      "decision": "Retain strictFAIL/expandedNOT_RUN/Stage7INCOMPLETE and no new native/model measurement.",
+      "reviewer_declined": "Native/model/weights/ORT/provider/engine/Xvfb/GPU/clock work and scientific pixel causality, determinism, geometry/optics/full-S validity: excluded from this documentation-only review and remain unvalidated."
+    },
+    {
+      "behavior": "Historical raw replay/zero-execution forensic proof",
+      "cost": "Old allocation/causal unknowns remain; consumed allowance unavailable.",
+      "decision": "Preserve archives/controller histories without replay; report own observed actions, not forensic global absence.",
+      "reviewer_declined": "Complete raw archive/extraction/controller history replay or exhaustive filesystem forensic proof of zero execution: no raw artifact replay authorized; frozen mapped files and tracked diff checked only."
+    },
+    {
+      "behavior": "Final CI/PR/Cloud and later HEAD",
+      "cost": "Later receipt HEAD not independently re-reviewed; no merge/preparation authority.",
+      "decision": "Root checks final local/remoteHEAD/basicCI/Draft/main/readonlyCloud after receipt-only commit.",
+      "reviewer_declined": "Final branch CI, post-review corrections, Draft PR publication, merge and Cloud publication: root owns Git/CI; this review binds only the stated HEAD and grants no preparation or merge authority."
+    }
+  ],
   "rulings": [
     "Task3: Ruling: resolve mandatory exact upstream release metadata before recipe/adapter work \u2014 parentTask3 explicitly stops unsupported inputs and requires genuine complete locks \u2014 cost:unavailable pins block the increment; no version fallback or guessed lock.",
     "Task3: Ruling: classify dual cv2 distributions as a publisher-supported packaging compatibility blocker, not pip unsatisfiability \u2014 MetaDrive real metadata plus fixed headless pin contradict OpenCV one-provider guidance \u2014 cost:Task3 input closure/adapter/preparation remain blocked; no causal claim about historical pixels.",
@@ -276,11 +372,18 @@
   "status": "BLOCKED_INPUT_COMPATIBILITY",
   "task3_complete": false,
   "tests": {
-    "baseline_ci": "PENDING final branch HEAD",
+    "baseline_ci": "Final receipt-only HEAD baseline CI recorded in Draft PR after push; no local CPU repeat.",
     "local_cpu_suite_repeated": false,
     "new_product_code": false,
     "new_tests": 0,
     "reason": "documentation/input-metadata gate only; required resolution stopped on unsupported packaging before implementation"
+  },
+  "transport_limits": {
+    "automatic_retry_scope": "application code only; infrastructure not attested",
+    "hard_wall_deadline_attested": false,
+    "request_count_scope": "eight application-level source metadata fetches",
+    "response_body_cap_bytes": 2097152,
+    "urlopen_socket_timeout_seconds": 25
   },
   "unresolved": [
     "supported package-policy revision for cv2 ownership",

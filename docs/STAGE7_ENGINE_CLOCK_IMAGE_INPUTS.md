@@ -22,3 +22,5 @@
 Producer70/workflows44/registry8 및 Task1·2 코드·시험·비활성 proposal을 보존한다. 원래 raw/extraction/controller 기록도 유지한다. 새 model/weights/ORT/provider/engine/Xvfb/GPU/clock/image build·pull·load·run은0이다. 기본 생성 SMALL ONNX CI는 별도다. Cloud 게시와 main 병합은 없다.
 
 새 raw/canvas/I420/first-divergence 측정은 없다. 과거 ABBA terminal FAIL/7null/4case·6비교 NOT_RUN과 strict FAIL/expanded NOT_RUN/geometry·optics·full-S 한계/Stage7 INCOMPLETE를 유지한다. 입력 package 지원 문제를 과거 픽셀 차이의 원인으로 해석하지 않는다.
+
+독립 검토: `2e89ffe95b1382823248dd7595f254e1d271afaf`에서 Critical0/Important0/Minor0. [검토 원본](evidence/STAGE7_ENGINE_CLOCK_IMAGE_INPUTS_REVIEW.md)과 JSON을 그대로 보존했다. 검토 범위 밖14항목의 판단·비용은 audit에 기록한다. 이후 commit은 검토·상태 영수증뿐이며 최종 HEAD/기본 CI는 Draft PR에 구분해 기록한다. HTTP timeout25초는 client socket 설정이며 독립적인 wall deadline/네트워크 인프라 재시도 증명은 아니다.
