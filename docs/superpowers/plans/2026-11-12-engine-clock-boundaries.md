@@ -23,16 +23,16 @@ Current native/provider/GPU/ORT/official calls0; no active scientific workflow/r
 
 Files:create scripts/engine_clock_boundaries.py,tests/test_engine_clock_boundaries.py. Interfaces camera_clock_scope(provider,enabled,trace,*,max_pairs=6),validate_clock_trace(trace) exactly as spec.
 
-- [ ] Write tests for ON/OFF exact method/getter counts, no clock owner access OFF, four-boundary call order, forwarding/object identity, own/inherited restoration, setup/body/getter/restore failures, primary/partial prefixes, caught errors, nesting/orphans/duplicates/wrong camera/thread/budget, clock-owner change, special signed/finite nonmonotonic values, malformed/forged/incomplete trace rejection and compatibility with the unchanged Texture marker_scope.
-- [ ] Run targeted tests first; expected missing-module assertions RED. Implement minimal observer then run covering tests until GREEN. Do not claim each adversarial fixture independently observed RED unless it did.
-- [ ] Run full CPU suite once after all integration tests pass: exact replay python -m unittest discover -s tests -v; expected all pass with optional dependency skips, real count logged. Commit code/tests, append completion evidence.
+- [x] Write tests for ON/OFF exact method/getter counts, no clock owner access OFF, four-boundary call order, forwarding/object identity, own/inherited restoration, setup/body/getter/restore failures, primary/partial prefixes, caught errors, nesting/orphans/duplicates/wrong camera/thread/budget, clock-owner change, special signed/finite nonmonotonic values, malformed/forged/incomplete trace rejection and compatibility with the unchanged Texture marker_scope.
+- [x] Run targeted tests first; expected missing-module assertions RED. Implement minimal observer then run covering tests until GREEN. Do not claim each adversarial fixture independently observed RED unless it did.
+- [x] Run full CPU suite once after all integration tests pass: exact replay python -m unittest discover -s tests -v; expected all pass with optional dependency skips, real count logged. Commit code/tests, append completion evidence.
 
 ### Task 2: Concrete inactive protocol and source/verification report
 
 Consumes tested observer schema/counters. Creates docs/evidence/STAGE7_ENGINE_CLOCK_PROTOCOL_DESIGN.json, docs/evidence/STAGE7_ENGINE_CLOCK_OBSERVER_AUDIT.json, docs/STAGE7_ENGINE_CLOCK_OBSERVER.md and updates continuation.
 
-- [ ] Populate inactive status, current0nativecalls, future48/96clock-per-ONcase and proposed total144/288clock plus120/240Texture readings/getters,70source closure, fresh1+4provider protocol with authentic gates, exact fixed poses and bounds. No .github workflow/request or actual runtime result.
-- [ ] Hash/read local TaskManager/source/API references without imports or binary-equality claim; distinguish prior whole-pair clock/profiler experiments from new boundaries. Record complete test evidence/rulings and honest unknowns. Verify source65/all43workflow preservation and current-only docs changes.
+- [x] Populate inactive status, current0nativecalls, future48/96clock-per-ONcase and proposed total144/288clock plus120/240Texture readings/getters,70source closure, fresh1+4provider protocol with authentic gates, exact fixed poses and bounds. No .github workflow/request or actual runtime result.
+- [x] Hash/read local TaskManager/source/API references without imports or binary-equality claim; distinguish prior whole-pair clock/profiler experiments from new boundaries. Record complete test evidence/rulings and honest unknowns. Verify source65/all43workflow preservation and current-only docs changes.
 
 ### Task 3: Independent review and Draft integration
 
