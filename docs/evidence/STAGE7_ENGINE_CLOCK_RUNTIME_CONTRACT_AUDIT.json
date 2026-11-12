@@ -1,0 +1,239 @@
+{
+  "actual_new_work": {
+    "docker_build_pull_load_run": 0,
+    "image_artifact_id": null,
+    "native_artifact_id": null,
+    "native_engine_runs": 0,
+    "native_run_id": null,
+    "new_clock_getters": 0,
+    "new_gpu_reads": 0,
+    "official_model_calls": 0,
+    "official_weight_downloads": 0,
+    "ort_sessions": 0,
+    "provider_constructors": 0,
+    "registry_publications": 0
+  },
+  "base_sha": "d7774ce40d62a19176ea2f5239edfc6644cf51ef",
+  "basic_ci": {
+    "final_head_and_actual_jobs": "Recorded after push in Draft PR and controller receipt, not self-attested by this earlier commit",
+    "status": "PENDING_DOCS_ONLY_PUSH"
+  },
+  "branch": "design/engine-clock-runtime-contract",
+  "cloud_configuration_changed": false,
+  "cloud_observation": {
+    "connectivity": "connected",
+    "current": true,
+    "environment_id": "ccarenv_b64_Y2NhcmVudl80ODAyMDA4Mzg2Zjg4MTkxOTM1YTI3MjIyNGNlOGFkZA",
+    "network_mode": "unrestricted",
+    "network_state": "enforced",
+    "phase": "running",
+    "read_only": true,
+    "spec_revision": "1"
+  },
+  "cloud_published": false,
+  "document_sha256": {
+    "docs/STAGE7_ENGINE_CLOCK_RUNTIME_CONTRACT.md": "0fa966cd6767bd72fe8e55642f1f43879c147364d3dba1a6c3dc8c0dfc9ec553",
+    "docs/evidence/STAGE7_ENGINE_CLOCK_RUNTIME_CONTRACT_PROPOSAL.json": "ab1631a7fc9c07ad6c5cd8c0ef0e61afdf6c4857ea6c93502d7d29fa01010ad0",
+    "docs/superpowers/plans/2026-11-12-engine-clock-runtime-contract.md": "9958d53e2ad6f9aba80d12c260514769bd727f71b8352a826389743ff9d2ad2f",
+    "docs/superpowers/specs/2026-11-12-engine-clock-runtime-contract-design.md": "df93ac7e2aebaa3e46785e3fedabdd51d082c485f8b4d75cbd6c8f79ff95be02"
+  },
+  "expanded": "NOT_RUN",
+  "geometry_optics_full_s": "NOT_VALIDATED",
+  "main_head_at_observation": "48e79a7ed5aedf6daa5a62ff68d2225af7955ef1",
+  "main_merged": false,
+  "observed_at_utc": "2026-11-12T20:23:22.685074+00:00",
+  "official_reference_snapshots": [
+    {
+      "name": "github-docs",
+      "path": "content/actions/writing-workflows/choosing-where-your-workflow-runs/running-jobs-in-a-container.md",
+      "reason": "gh: Not Found (HTTP 404)",
+      "repository": "github/docs",
+      "status": "UNAVAILABLE"
+    },
+    {
+      "git_blob_sha": "73e3a1ab1bb70928731106beab0e7074cd0b4eba",
+      "immutable_blob_api": "https://api.github.com/repos/docker/docs/git/blobs/73e3a1ab1bb70928731106beab0e7074cd0b4eba",
+      "name": "docker-docs",
+      "nbytes": 32993,
+      "path": "content/manuals/build/building/best-practices.md",
+      "repository": "docker/docs",
+      "sha256": "349577b488b7867670ac6264908303ba748bcc81682bdf33ef802d4e2e35ad6e",
+      "status": "FETCHED",
+      "url": "https://github.com/docker/docs/blob/main/content/manuals/build/building/best-practices.md"
+    },
+    {
+      "git_blob_sha": "cbb0ec6433933cd83d6c749bffbb24a2513388be",
+      "immutable_blob_api": "https://api.github.com/repos/actions/runner-images/git/blobs/cbb0ec6433933cd83d6c749bffbb24a2513388be",
+      "name": "runner-images",
+      "nbytes": 20705,
+      "path": "README.md",
+      "repository": "actions/runner-images",
+      "sha256": "49a421dc7368312cdc183d5a7626335fa89d2110ef4bf3b29e3c637c72d10801",
+      "status": "FETCHED",
+      "url": "https://github.com/actions/runner-images/blob/main/README.md"
+    },
+    {
+      "git_blob_sha": "56c76d6e4cd9f266f99c670ff29ccc6a4c313494",
+      "immutable_blob_api": "https://api.github.com/repos/opencontainers/image-spec/git/blobs/56c76d6e4cd9f266f99c670ff29ccc6a4c313494",
+      "name": "oci-descriptor",
+      "nbytes": 12950,
+      "path": "descriptor.md",
+      "repository": "opencontainers/image-spec",
+      "sha256": "90d5fa13d43a8f4ebbf50341d6c131f97e894f36190779f2a05ef2c76b31a041",
+      "status": "FETCHED",
+      "url": "https://github.com/opencontainers/image-spec/blob/main/descriptor.md"
+    },
+    {
+      "name": "docker-save",
+      "path": "data/engine-cli/docker_image_save.yaml",
+      "reason": "gh: Not Found (HTTP 404)",
+      "repository": "docker/docs",
+      "status": "UNAVAILABLE"
+    },
+    {
+      "name": "docker-load",
+      "path": "data/engine-cli/docker_image_load.yaml",
+      "reason": "gh: Not Found (HTTP 404)",
+      "repository": "docker/docs",
+      "status": "UNAVAILABLE"
+    },
+    {
+      "final_url": "https://docs.docker.com/reference/cli/docker/image/save/",
+      "http_status": 200,
+      "name": "docker-save-official-html",
+      "nbytes": 460589,
+      "sha256": "bfc00b84e5968f5b5a6961e7ef70c8595f7c1edbaf47bd7f6793d57bde04be6a",
+      "status": "FETCHED",
+      "url": "https://docs.docker.com/reference/cli/docker/image/save/"
+    },
+    {
+      "final_url": "https://docs.docker.com/reference/cli/docker/image/load/",
+      "http_status": 200,
+      "name": "docker-load-official-html",
+      "nbytes": 457619,
+      "sha256": "06733dfa04f713d0ccfde72ca3e16a21dd72a75bf2027fd7a0e4eefd49ee8949",
+      "status": "FETCHED",
+      "url": "https://docs.docker.com/reference/cli/docker/image/load/"
+    }
+  ],
+  "pr_base": "diagnostic/engine-clock-boundaries",
+  "preservation": {
+    "before-registries.json": {
+      "count": 8,
+      "snapshot_sha256": "5bdf6aaa2194b0f882987d8675a26475f39b6d886723bd31862e1c2235e5e771",
+      "unchanged": true
+    },
+    "before-source70.json": {
+      "count": 70,
+      "snapshot_sha256": "e5efce0f270dcde6d0830a1f947d56e2909a4c6cfce79bc6e07fbfb05cc8f449",
+      "unchanged": true
+    },
+    "before-workflows44.json": {
+      "count": 44,
+      "snapshot_sha256": "b1d9c75e6d7b0b40dae3fd1acb84059b5d2abb6fd9b21bc4a103953074be03ee",
+      "unchanged": true
+    }
+  },
+  "proposal_schema": "engine-clock-runtime-contract-proposal-v1",
+  "proposal_sha256": "ab1631a7fc9c07ad6c5cd8c0ef0e61afdf6c4857ea6c93502d7d29fa01010ad0",
+  "reference_scope": "3 GitHub content blobs and2 official Docker HTML responses read;3 unavailable GitHub documentation paths preserved as404, not relied on as evidence. No image/package/native artifact fetched.",
+  "review": null,
+  "rulings": [
+    "Ruling: preserve current source70/all44workflows/consumedregistries and use a new design branch \u2014 prevents replay or reinterpretation of terminal ABBA \u2014 cost: new namespace and later implementation/verification are required.",
+    "Ruling: recommend sealed OCI userspace identity with separately observed host execution profile; keep outer ImageVersion visible as provenance in the future schema \u2014 a hosted label is not a binary digest and old equality remains frozen \u2014 cost: containers do not pin kernel/CPU/actual loaded GL selection and future strict profile admission can still fail.",
+    "Ruling: design-only deliverables with real image/lock/launch references null and native allowance0 \u2014 no image has been built or authenticated \u2014 cost: current design cannot authorize an image-preparation or native run.",
+    "Ruling: use a future authenticated Docker-save/load Actions artifact plus image config digest/diffIDs instead of requiring registry publication \u2014 keeps image transport in the existing Actions evidence route \u2014 cost: additional archive transfer/load and the archive SHA/config digest must never be mislabeled as an OCI registry manifest digest."
+  ],
+  "schema": "stage7-engine-clock-runtime-contract-audit-v1",
+  "scientific_strict": "FAIL",
+  "scope": "PROVIDER_FREE_DESIGN_ONLY",
+  "source70_sha256": "6f8dcc2fc4aa7b1896a74d43ea4e030f89729b4b7851825cd0bbd444c6acab04",
+  "source_findings": [
+    {
+      "fact": "Runtime records package/Python versions, cv2, ImageOS/ImageVersion; installed/imported ORT rejected. No installed binary hashing.",
+      "line": 99,
+      "path": "scripts/engine_clock_native.py"
+    },
+    {
+      "fact": "runtime_versions explicitly describes distribution metadata, not binary/system equality.",
+      "line": 845,
+      "path": "bigbench/first_divergence.py"
+    },
+    {
+      "fact": "Existing full context/source/runtime comparison remains fail-closed and unchanged.",
+      "line": 622,
+      "path": "scripts/engine_clock_native.py"
+    },
+    {
+      "fact": "ubuntu-24.04 label plus pinned camera package versions; no content-locked container/complete wheel+deb input lock.",
+      "line": 29,
+      "path": ".github/workflows/stage7-engine-clock-boundaries.yml"
+    },
+    {
+      "fact": "Project has no base dependencies and minimum setuptools/Python floors, not a complete native environment binary lock.",
+      "line": 1,
+      "path": "pyproject.toml"
+    },
+    {
+      "fact": "Existing push/PR baseline executes unit+generated SMALL ONNX; its success is separate from native/scientific PASS.",
+      "line": 1,
+      "path": ".github/workflows/ci.yml"
+    }
+  ],
+  "source_references": [
+    {
+      "path": "scripts/engine_clock_native.py",
+      "sha256": "d16bc9232cbdb7ca8159fd33ee9abf28fdd0976e2170204f4351f0582a2aa9c6"
+    },
+    {
+      "path": "bigbench/first_divergence.py",
+      "sha256": "4e0cd0abad43f757149a3953bcba21e5c570a916c3b02a9f366ab6a2b0ebdb1f"
+    },
+    {
+      "path": ".github/workflows/stage7-engine-clock-boundaries.yml",
+      "sha256": "7f4f1296a2560ceea42c43b05cfeeea3d2bb025194df0e63882ce0f64f9c5c38"
+    },
+    {
+      "path": "pyproject.toml",
+      "sha256": "367aa37f01d25a873a3336967ba182df85be725351fb6a48f26ab84834c20a0b"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "sha256": "42448e6f2af43d9d746ca711c3c79f25e2100241956a1478004e153cdd5e930b"
+    },
+    {
+      "path": "docs/evidence/STAGE7_ENGINE_CLOCK_RUNTIME_REJECTION.json",
+      "sha256": "fc46d49922f5294818be20493ba9f5f61278230392e3760c87de696d4d6971b6"
+    }
+  ],
+  "stage7": "INCOMPLETE",
+  "status": "INACTIVE_DESIGN_ONLY",
+  "unresolved_preparation_fields": [
+    "artifact_id",
+    "artifact_zip_sha256",
+    "base_image_platform_manifest_digest",
+    "build_recipe_sha256",
+    "config_digest",
+    "docker_compatibility_profile",
+    "environment_profile_sha256",
+    "image_tar_sha256",
+    "installed_files_sha256",
+    "launch_receipt_sha256",
+    "lock_sha256",
+    "observed_feasibility",
+    "rootfs_diff_ids",
+    "run_id",
+    "source_sha",
+    "workflow_id"
+  ],
+  "verification": {
+    "native_replay": false,
+    "new_unit_tests": 0,
+    "old_artifact_download_or_extraction": false,
+    "old_native_raw_replay": false,
+    "preserved_source_workflow_registry_bytes": "PASS",
+    "proposal_flags_nulls_zero_allowance": "PASS",
+    "reason_no_new_tests": "Documentation-only increment; future tools/tests not implemented. Semantic assertions and existing baseline CI are recorded separately."
+  },
+  "workspace_retained": true
+}
