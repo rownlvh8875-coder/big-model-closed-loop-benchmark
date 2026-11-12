@@ -1,0 +1,98 @@
+{
+  "schema": "texture-state-final-independent-review-v1",
+  "verdict": "PASS",
+  "reviewed_base": "212401961fa3865eddda90207b51fb0e8ec1b4d2",
+  "reviewed_head": "a8b42d852266007351ead7de6135b7e5581d228c",
+  "findings": [],
+  "graded_findings": {
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 0
+  },
+  "replay": {
+    "exit_code": 0,
+    "report_path": ".superpowers/sdd/2026-11-12-texture-marker-state-sequences/independent-report.json",
+    "bytes": 42204,
+    "sha256": "ae4b1a570d18d47128384bee21947a25cb51db1fd6c109d3430d61d778e77a7a",
+    "matches_public_report": true,
+    "log_sha256": "e2673a501a57e258d9aec68ae04354a248ff2032effce096d09088bc307d9e0f",
+    "states": [
+      3,
+      3,
+      2,
+      2
+    ],
+    "ordinal_cohorts": 12,
+    "support_pixels": 6,
+    "cross_on_counterexamples": [
+      5,
+      5,
+      0
+    ],
+    "within_on_same_rgb_different_markers": 11
+  },
+  "verified": [
+    "Whole BASE..HEAD change list: only two new Python files and documentation/evidence; existing production source, requests, acceptance, workflows unchanged.",
+    "65 current producer file hashes and 43 workflow hashes match retained preflight snapshots. Independent replay binds accepted manifests to current source and both historical Git trees.",
+    "Original ZIP hashes/sizes/member counts and existing extraction bytes validated without download/extraction; 60 raw images and 30 pairs reconstructed by frozen validator.",
+    "Full RGB SHA catalogs include common broad capture1 transients; sparse export uses common ordinal cohorts and signed int16 subtraction, capped union before coordinate enumeration.",
+    "OFF comparisons preserve nulls; observed patterns and absolute cross-process counters never become GPU identities.",
+    "All 10 source-reference hashes match; RAM override, sequential perceive/copy, task step/restore, local shader fallback, embedded tonemap equality and requested HDR/MSAA/exposure inspected as references only.",
+    "Saved API response hashes match audit; run/head/workflow/branch/job/artifact/digest/size/attempt1 and unique-run receipts inspected.",
+    "Public PNG visually matches report sequences and both image hashes match audit.",
+    "No scripts/tests changes after tested source1726d99; git diff --check passes."
+  ],
+  "test_receipts_inspected": {
+    "task-1-red.log": "6cef1518b0207fdbff833a07dafe7ce3a93a011778de5be26575927cab04495b",
+    "task-1-green.log": "4146bc074aafa463d1c38e40f7be9d0373a47f8c3d0ca0f3cbf59c599c844a76",
+    "fullsuite.log": "289bd97249597578027d9d30e5c748cdb672bef50651d7778527cf69a43ce6f7",
+    "actual-replay.log": "e2673a501a57e258d9aec68ae04354a248ff2032effce096d09088bc307d9e0f",
+    "figure.log": "0d7dcfd1c235fbca6c5b7ab0a793a71c34b147e92eaa3b1df5c8b221f9f1e20c"
+  },
+  "test_receipt_results": {
+    "targeted": "18 pass / 0.014s",
+    "full": "562 / 72.382s / 7 optional skips",
+    "initial_red": "18 missing-module assertions, not independently observed RED for each boundary"
+  },
+  "reviewer_actions": [
+    "Read source, tests, specification, plan, ledger, range package and public human/machine reports.",
+    "Ran one specified exact-runtime deterministic CPU replay to a fresh report and log.",
+    "Read retained test/API receipts and source-reference files; compared SHA256 and Git range.",
+    "Viewed PNG; no source/Git/CI mutation, full-suite repetition, native/GPU/ORT/model run, download or extraction."
+  ],
+  "declined_to_judge": [
+    {
+      "item": "Actual CI installed package/binary or executed GPU shader equality",
+      "reason": "Only local package/source references and distribution metadata are available; no binary snapshot comparison."
+    },
+    {
+      "item": "Engine frame/time, temporal phase, stale readback or unique physical cause",
+      "reason": "Capture ordinal and virtual pose are not engine clock observations; byte/counter examples do not establish cause."
+    },
+    {
+      "item": "Observer neutrality, effective MSAA/HDR state or RSS/live observer budget",
+      "reason": "No measurements; source requests and logical retained-byte cap have narrower scope."
+    },
+    {
+      "item": "Future baseline push/PR CI and final Draft integration",
+      "reason": "Not yet executed at reviewed HEAD; root owns this subsequent gate."
+    },
+    {
+      "item": "Independent authentication of fresh GitHub API responses",
+      "reason": "Reviewer verified retained root API receipts, not a new network API query."
+    },
+    {
+      "item": "Strict scientific success, expanded scenarios, geometry/optics/fullS or prior CPU compositions as live model feeds",
+      "reason": "Outside this CPU byte-analysis scope and explicitly unresolved."
+    }
+  ],
+  "disposition": "Review PASS for bounded saved-byte CPU analysis only. Draft integration may proceed subject to root baseline CI; do not merge main.",
+  "preserved_gates": {
+    "scientific_strict": "FAIL",
+    "expanded_scenarios": "NOT_RUN",
+    "stage7": "INCOMPLETE",
+    "main_official_calls": 0,
+    "cloud_published": false
+  }
+}

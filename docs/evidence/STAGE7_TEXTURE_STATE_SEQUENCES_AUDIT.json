@@ -1,0 +1,246 @@
+{
+  "schema": "texture-state-analysis-audit-v1",
+  "analysis_source_sha": "1726d997edf87f13a3688f1e855fa4c9de64ae2e",
+  "analysis_script_sha256": "e1e0aed67b5d38c68b30575a6b8e87a9edaef75df03a37eeba96c3d479d39f42",
+  "tests_sha256": "095e8ad4b586b8bd214306881cfe948db14522a3f1bba9a84e5448c82c3ee8b6",
+  "report": {
+    "path": "docs/evidence/STAGE7_TEXTURE_STATE_SEQUENCES.json",
+    "nbytes": 42204,
+    "sha256": "ae4b1a570d18d47128384bee21947a25cb51db1fd6c109d3430d61d778e77a7a"
+  },
+  "api": {
+    "schema": "texture-state-current-api-audit-v1",
+    "repository": "rownlvh8875-coder/big-model-closed-loop-benchmark",
+    "workflow_id": 415702769,
+    "receipts": [
+      {
+        "phase": "canary",
+        "source_sha": "0a98918e746fe7df9d5502e21db91c3e5cd15396",
+        "run_id": 43177564313,
+        "job_id": 131045412519,
+        "artifact_id": 13925041858,
+        "conclusion": "success",
+        "api_size_and_digest_match_original": true,
+        "unique_attempt1": true,
+        "response_sha256": {
+          "run": "ae17cf4c59682194d3fa01108ab5e9241db7eca3842bbe19bdad093e4029a770",
+          "artifact": "865557a40ec1292f350d54896640b38108e42c9e24324008d31d0edf9d2de975",
+          "jobs": "74b363e537bbd4a0014bf665e49597b237355828bf2f7b7f78b81897817e0280",
+          "unique": "1c8f2f68f00a810c87ff112591b1d57a3d77a88307b5c870bb9e81b4725007ae"
+        }
+      },
+      {
+        "phase": "abba",
+        "source_sha": "4814794243ca61a96264ebe04f4fb1b82f0eeecf",
+        "run_id": 43178394897,
+        "job_id": 131048107858,
+        "artifact_id": 13925716196,
+        "conclusion": "success",
+        "api_size_and_digest_match_original": true,
+        "unique_attempt1": true,
+        "response_sha256": {
+          "run": "ab389f509a859a4f48097d7596a567bfbcfdb6f3b071d944cc8e5324b91373f5",
+          "artifact": "04d5af013923abb4a2d6633c03325d0c65782dc1ab53ffcb8649871cb657269f",
+          "jobs": "d8bc082e91227432cc1a1930c31ea30fa68244b6e2f7142243269102c3a7aa14",
+          "unique": "65a3a2084c1914cf5c9ba1c692af0fe95355bec078e7903fbb3ba15753989ecb"
+        }
+      }
+    ],
+    "new_archive_downloads": 0,
+    "new_extractions": 0
+  },
+  "source_references": {
+    "schema": "texture-state-local-source-audit-v1",
+    "files": {
+      "rgb_camera": {
+        "scope": "LOCAL_INSTALLED_REFERENCE_NOT_CI_INSTALL_PROOF",
+        "path": ".venv/lib/python3.11/site-packages/metadrive/component/sensors/rgb_camera.py",
+        "nbytes": 2918,
+        "sha256": "a13b38cf0af05966dfa37d09af65ea3779deabdcbf33258b378025e882da4af0",
+        "lines": 79
+      },
+      "base_camera": {
+        "scope": "LOCAL_INSTALLED_REFERENCE_NOT_CI_INSTALL_PROOF",
+        "path": ".venv/lib/python3.11/site-packages/metadrive/component/sensors/base_camera.py",
+        "nbytes": 12471,
+        "sha256": "23d90c3d12894f855ae64d4607c03f3bf34e31e28dd7f5ce82bd0ddc7b37faf5",
+        "lines": 317
+      },
+      "image_buffer": {
+        "scope": "LOCAL_INSTALLED_REFERENCE_NOT_CI_INSTALL_PROOF",
+        "path": ".venv/lib/python3.11/site-packages/metadrive/engine/core/image_buffer.py",
+        "nbytes": 7067,
+        "sha256": "198526674ab0cb0cbea19660149522e100c6e286ddc82d3d28a7fefe33f0ed84",
+        "lines": 183
+      },
+      "shader_loader": {
+        "scope": "LOCAL_INSTALLED_REFERENCE_NOT_CI_INSTALL_PROOF",
+        "path": ".venv/lib/python3.11/site-packages/metadrive/third_party/simplepbr/__init__.py",
+        "nbytes": 11320,
+        "sha256": "0e0e1dc534fb64e6deaccc00052a1d99bfd54f0d946071837bbbad89251d454a",
+        "lines": 350
+      },
+      "tonemap_file": {
+        "scope": "LOCAL_INSTALLED_REFERENCE_NOT_CI_INSTALL_PROOF",
+        "path": ".venv/lib/python3.11/site-packages/metadrive/third_party/simplepbr/shaders/tonemap.frag.glsl",
+        "nbytes": 477,
+        "sha256": "e5496290ccab4c3ebd71155539a293b6cd93ac0d82c6b97ce68e32da9cbd310b",
+        "lines": 24
+      },
+      "embedded_shaders": {
+        "scope": "LOCAL_INSTALLED_REFERENCE_NOT_CI_INSTALL_PROOF",
+        "path": ".venv/lib/python3.11/site-packages/metadrive/third_party/simplepbr/shaders.py",
+        "nbytes": 12291,
+        "sha256": "365d0ad2733ae00a8870527612119de286251e75f24cab48770c9aa493a3396a",
+        "lines": 35
+      },
+      "frozen_RAM_override": {
+        "scope": "FROZEN_CHECKOUT_SOURCE",
+        "path": "bigbench/metadrive_camera.py",
+        "nbytes": 11156,
+        "sha256": "1c5661e6c9eea6445ebe55cb246e6b48d3384dd5a731353ba3f1a45599e338f9",
+        "lines": 230
+      },
+      "frozen_world_capture": {
+        "scope": "FROZEN_CHECKOUT_SOURCE",
+        "path": "bigbench/native_model_campaign.py",
+        "nbytes": 13648,
+        "sha256": "0bcb4ca73e1404a7164be1c879a200eeff5ca41e47e3035301d40fd173000bad",
+        "lines": 251
+      },
+      "official_UpdateSeq_h": {
+        "scope": "OFFICIAL_SOURCE_REFERENCE_NOT_CI_BINARY",
+        "path": "/tmp/stage7-texture-marker-source/updateSeq.h",
+        "nbytes": 2965,
+        "sha256": "bb396ad8138bfa1183967b1598fab0c83764192df88dc13dd520cc0aef4dedf0",
+        "lines": 92
+      },
+      "official_UpdateSeq_I": {
+        "scope": "OFFICIAL_SOURCE_REFERENCE_NOT_CI_BINARY",
+        "path": "/tmp/stage7-texture-marker-source/updateSeq.I",
+        "nbytes": 6383,
+        "sha256": "1f6f35791d5dfed035d834dc57a4beb51ad39f5e6c35becc4c5a15972b199ff0",
+        "lines": 277
+      }
+    },
+    "reference_loader_shaders_assignment": [
+      null
+    ],
+    "reference_loader_branch": "FILE_FALLBACK_FOR_THIS_LOCAL_REFERENCE",
+    "embedded_tonemap_equals_reference_file": true,
+    "tonemap_sha256": "e5496290ccab4c3ebd71155539a293b6cd93ac0d82c6b97ce68e32da9cbd310b",
+    "tonemap_search_scope": "one complete referenced tonemap.frag.glsl file, no other shaders or driver stages",
+    "tonemap_clock_or_noise_token_hits": [],
+    "tonemap_declared_uniforms": [
+      "sampler2D tex",
+      "float exposure"
+    ],
+    "reference_camera_exposure": 1.0,
+    "requested_hdr_msaa": 16,
+    "effective_gpu_msaa_measured": false,
+    "actual_CI_installed_files_or_binary_compared": false,
+    "native_packages_imported_for_audit": false,
+    "camera_method_resolution": "Frozen RAMCamera overrides get_rgb_array_cpu; upstream ImageBuffer.getScreenshot implementation is not this frozen RAM getter",
+    "logical_order": "Road borrowed-pose taskMgr.step -> wrapped RAM copy -> Road restore -> immediate CPU snapshot -> Wide borrowed-pose taskMgr.step -> wrapped RAM copy -> Wide restore -> CPU snapshot -> rectify_pair",
+    "engine_frame_count_or_time_snapshots_available": false,
+    "source_ranges": {
+      "frozen_RAM_override": [
+        62,
+        91
+      ],
+      "frozen_world_capture": [
+        61,
+        98
+      ],
+      "base_camera": [
+        132,
+        200
+      ],
+      "rgb_camera": [
+        38,
+        61
+      ],
+      "shader_loader": [
+        8,
+        12,
+        42,
+        74
+      ],
+      "tonemap_file": [
+        1,
+        24
+      ]
+    },
+    "limitations": [
+      "Local reference source is not proof of files/binaries/GPU uniforms actually used in either CI run.",
+      "No explicit time/noise token in this one tonemap file does not rule out upstream scene, shader, MSAA, shadow, driver or copy effects.",
+      "Requested 16 samples and HDR format are source requests, not measured effective GPU state.",
+      "Logical per-camera task order and virtual pose time do not reconstruct engine frame/time, hardware timestamps or a unique cause."
+    ],
+    "local_distribution_metadata": {
+      "metadrive-simulator": "0.4.3",
+      "panda3d": "1.10.13"
+    },
+    "official_reference_urls": {
+      "official_UpdateSeq_h": "https://github.com/panda3d/panda3d/blob/v1.10.13/panda/src/putil/updateSeq.h",
+      "official_UpdateSeq_I": "https://github.com/panda3d/panda3d/blob/v1.10.13/panda/src/putil/updateSeq.I"
+    },
+    "tonemap_varying_inputs": [
+      "vec2 v_texcoord"
+    ]
+  },
+  "figure": {
+    "png_sha256": "c8a6be19b6551b8362c2398adb22974b8b2e75813ce457cffd19359eb6cfe4fa",
+    "svg_sha256": "67dede091eb57f2f9c9126a1f06be43a54071b0cea10e8738b4b206d6f5bab90",
+    "matplotlib": "3.11.2",
+    "numpy": "1.26.4",
+    "scope": "FIGURE_FROM_REPORT_ONLY_NOT_IMAGE_REPLAY",
+    "png_nbytes": 176560,
+    "svg_nbytes": 95995,
+    "public_svg_sha256": "ca043fad652683665ea0b3dd2f33396612b856769d4e1fc59aa77e52d8ec4f0a",
+    "public_svg_nbytes": 95096,
+    "public_svg_normalization": "Trailing line whitespace stripped only; original rendered SVG remains in ignored output, reported svg_sha256 is original render"
+  },
+  "verification": {
+    "targeted_tests": 18,
+    "targeted_s": 0.014,
+    "full_tests": 562,
+    "full_s": 72.382,
+    "optional_skips": 7,
+    "baseline_generated_small_ort_separate": true,
+    "logs": {
+      "task-1-red.log": "6cef1518b0207fdbff833a07dafe7ce3a93a011778de5be26575927cab04495b",
+      "task-1-green.log": "4146bc074aafa463d1c38e40f7be9d0373a47f8c3d0ca0f3cbf59c599c844a76",
+      "fullsuite.log": "289bd97249597578027d9d30e5c748cdb672bef50651d7778527cf69a43ce6f7",
+      "actual-replay.log": "e2673a501a57e258d9aec68ae04354a248ff2032effce096d09088bc307d9e0f",
+      "figure.log": "0d7dcfd1c235fbca6c5b7ab0a793a71c34b147e92eaa3b1df5c8b221f9f1e20c"
+    }
+  },
+  "rulings": [
+    "Ruling: full-frame catalogs plus sparse same-ordinal cohorts \u2014 preserves broad common first-capture transient without unbounded pixel dumps \u2014 cost: classifications are byte states/ordinals, not measured physical frames.",
+    "Ruling: inline implementation with one final fresh source/evidence reviewer \u2014 small two-file analysis reuses accepted producer validators \u2014 cost: no independent per-task implementation review; final reviewer will replay deterministic saved-data report.",
+    "Ruling: retain both original archives/extractions, local sources and controller workspace; no worktrees/native/model/Cloud/main actions \u2014 user constraints and next CPU-only boundary \u2014 cost: disk/Draft stack and unresolved physical cause remain.",
+    "Ruling: retained raw arrays bounded separately to128MiB for this CPU analysis \u2014 all60frames use104808960B and avoid scene re-execution \u2014 cost: CPU memory profile differs from live32MiB observer limit; no RSS proof.",
+    "Ruling: Agg figure rendered from JSON only in existing optional environment \u2014 avoids changing exact replay environment dependencies \u2014 cost: figure NumPy/Matplotlib versions differ, separately recorded; no original image processing in figure command.",
+    "Final: Ruling: Actual CI binary/GPU shader equality \u2014 retain local-reference-only scope; no installed-CI equality claim \u2014 cost:binary/GPU equivalence remains unknown.",
+    "Final: Ruling: Engine frame/time/physical cause \u2014 retain captured-byte/ordinal conclusions only; no stale/phase/unique-cause promotion \u2014 cost:requires separately designed observations.",
+    "Final: Ruling: Observer neutrality/effective MSAA/HDR/RSS \u2014 retain logical CPU128MiB bound and source requests only \u2014 cost:no live observer/RSS/effective-GPU-state proof.",
+    "Final: Ruling: Future baseline CI/Draft integration \u2014 root will execute only baseline CI and leave Draft; final success requires actual four jobs \u2014 cost:integration remains incomplete if a real gate fails.",
+    "Final: Ruling: Reviewer fresh API query \u2014 root fresh authenticated API plus independently byte-verified original ZIP/Git/source binding; reviewer inspected retained root receipts \u2014 cost:live network authentication was not independently queried a second time.",
+    "Final: Ruling: Strict/expanded/geometry/optics/fullS/live feeds \u2014 preserve all unresolved scientific gates and derived-only scope \u2014 cost:Stage7 remains incomplete, no model counterfactual."
+  ],
+  "scientific_strict": "FAIL",
+  "expanded_scenarios": "NOT_RUN",
+  "stage7": "INCOMPLETE",
+  "main_official_calls": 0,
+  "cloud_published": false,
+  "independent_review": {
+    "verdict": "PASS",
+    "reviewed_head": "a8b42d852266007351ead7de6135b7e5581d228c",
+    "sha256": "8dba9255b03c4b4b45763f7b083b82cae6a99fcaf645fdce5b11969e8a415e10",
+    "path": "docs/evidence/STAGE7_TEXTURE_STATE_SEQUENCES_REVIEW.json",
+    "independent_report_sha256": "ae4b1a570d18d47128384bee21947a25cb51db1fd6c109d3430d61d778e77a7a",
+    "final_metadata_commit_keeps_code_and_measurement_bytes": true
+  },
+  "integration_status_at_receipt": "REVIEWED_CODE_METADATA_READY_FOR_BASELINE_CI"
+}
