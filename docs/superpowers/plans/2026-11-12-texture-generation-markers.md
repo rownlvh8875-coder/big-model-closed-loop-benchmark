@@ -32,9 +32,9 @@
 
 **Interfaces:** marker_scope(provider,enabled,rows);source_snapshot();run_phase(out);run_child(out,phase,index,nonce);validate_dataset(root),CLIrun/child/validate as spec.
 
-- [ ] Write RED wrapper ownership/order/wrap/exception tests and admission/source/runtime/path/failure/budget/comparison cases.
-- [ ] Implement fixed protocol, payload/validator/launch/gates and new workflow using supplied bootstrap; no oldsource edits.
-- [ ] Run targeted then fullCPU once, actionlint/bash-n, oldsource/workflow pins; commit and fresh whole-branch review before push.
+- [x] Write RED wrapper ownership/order/wrap/exception tests and admission/source/runtime/path/failure/budget/comparison cases.
+- [x] Implement fixed protocol, payload/validator/launch/gates and new workflow using supplied bootstrap; no oldsource edits.
+- [x] Run targeted then fullCPU once, actionlint/bash-n, oldsource/workflow pins; commit and fresh whole-branch review before push.
 
 ### Task 2: Actual ON canary and independent raw acceptance
 
@@ -42,8 +42,8 @@
 
 **Interfaces:** Reviewed source65 and canary-only request produce one actual canary run/artifact or terminal failure.
 
-- [ ] Push reviewed source once, create stacked DraftPR; authenticate actual Actions/run/job/artifact source and counts.
-- [ ] Download/extract once, pure raw/source/runtime/payload/marker validator; fresh independent raw acceptance. Failure stops without retry.
+- [x] Push reviewed source once, create stacked DraftPR; authenticate actual Actions/run/job/artifact source and counts.
+- [x] Download/extract once, pure raw/source/runtime/payload/marker validator; fresh independent raw acceptance. Failure stops without retry.
 
 ### Task 3: One new registered ABBA study and result
 
@@ -51,6 +51,6 @@
 
 **Interfaces:** Direct-parent accepted canary source/runtime gate produces one ABBA run or authentic terminal failure;0official calls.
 
-- [ ] Register concrete accepted IDs/digest/source with root+fresh flags; verify frozen65/directparent/metadata-only before push.
-- [ ] Push activation once; gate before4fresh providers; authenticate actual raw/code/cache/marker/image comparisons and failures, fresh raw review.
-- [ ] Document evidence/unknowns/rulings, commit/push docs-only, verify baseline CI/no native replay and leave Draft/unmerged/Cloudunpublished.
+- [x] Register concrete accepted IDs/digest/source with root+fresh flags; verify frozen65/directparent/metadata-only before push.
+- [x] Push activation once; gate before4fresh providers; authenticate actual raw/code/cache/marker/image comparisons and failures, fresh raw review.
+- [x] Document evidence/unknowns/rulings, commit/push docs-only, verify baseline CI/no native replay and leave Draft/unmerged/Cloudunpublished.

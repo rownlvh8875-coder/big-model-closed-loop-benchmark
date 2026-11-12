@@ -1,0 +1,975 @@
+{
+  "schema": "texture-marker-source-review-audit-v1",
+  "source_canary": "0a98918e746fe7df9d5502e21db91c3e5cd15396",
+  "source_activation": "4814794243ca61a96264ebe04f4fb1b82f0eeecf",
+  "reviews": {
+    "task-1-review.json": {
+      "schema": "texture-marker-task1-review-v1",
+      "base": "a180f10455e26457a4395747ba1400598a6ebcaf",
+      "head": "ccb34a6a26cd8b90f0eab1f78b9f9de0eecd4418",
+      "scope": "Task1 source readiness only; no scientific/native acceptance",
+      "spec_verdict": "CHANGES_REQUESTED",
+      "quality_verdict": "CHANGES_REQUESTED",
+      "findings": [
+        {
+          "id": "T1-R1",
+          "priority": "P2",
+          "title": "Retain accepted payloads when provider closure raises",
+          "location": "scripts/texture_generation_markers.py: run_child finally block (provider.close / conditional serialize_captures)",
+          "trigger": "One or more pairs have been accepted, then provider.close() raises.",
+          "evidence": "provider_closed is set only after close returns; serialize_captures is called only if provider_closed is true. Retained arrays remain solely in the collector and are lost on child exit. case.json preserves capture hashes and errors but accepted stays empty and no payloads are written. The existing close-failure test throws before any capture succeeds.",
+          "impact": "A recoverable cleanup exception discards already observed raw/canvas evidence in this no-retry experiment, contrary to the binding partial-payload preservation requirement.",
+          "requested_change": "Provide a bounded failure-evidence persistence path for already accepted captures after a close exception, preserving provider_closed=false and cleanup errors; do not falsely mark native closure successful or weaken the frozen serializer contract. Add a CPU fixture that accepts at least one pair before close raises and verifies retained payload preservation."
+        }
+      ],
+      "unknowns": [
+        "Actual native canary, real Actions/API/ZIP authentication and Mesa cache population are unexecuted and reserved for Task2.",
+        "Actual accepted-canary direct-child ABBA and its raw comparisons remain Task3 evidence.",
+        "Installed binary equality, observer neutrality, freshness/fences and scientific repair remain unproven."
+      ],
+      "verification": {
+        "reviewer_test_runs": 0,
+        "actor_fullsuite": "542 tests, 62.558s, 7 optional skips; log inspected",
+        "actor_targeted": "41 tests, 3.253s; log inspected",
+        "root_additional": "48 tests, 5.947s, no skips, reported by root",
+        "actionlint_and_shell_syntax": "passed, reported by actor/root",
+        "source_preservation": "65 source hashes and old62/protected13/baseline43/42 workflows/consumed requests preserved, verified by root"
+      },
+      "review_method": "Exact supplied diff read once, with cutoff recovery for truncated test output. Named inherited interface inspection limited to launcher cleanup, runtime metadata and collector closure/serialization. No Git/CI/source/index mutation, delegation, native/GPU/ORT/model execution or test rerun."
+    },
+    "task-1-fix-review.json": {
+      "schema": "texture-marker-task1-fix-review-v1",
+      "round": 1,
+      "base": "ccb34a6a26cd8b90f0eab1f78b9f9de0eecd4418",
+      "head": "0a98918e746fe7df9d5502e21db91c3e5cd15396",
+      "scope": "T1-R1 and new breakage introduced by its fix only",
+      "spec_verdict": "APPROVED",
+      "quality_verdict": "APPROVED",
+      "findings": [
+        {
+          "id": "T1-R1",
+          "original_priority": "P2",
+          "status": "ADDRESSED",
+          "reason": "Failure-only exporter preserves already accepted CPU raw and actual canvas payloads, with incremental descriptors and bounded writes, while leaving native closure false and case status FAILED_OR_INCOMPLETE. It neither marks collector closure nor invokes the frozen post-close serializer or derives packed model inputs."
+        }
+      ],
+      "new_findings": [],
+      "verification": {
+        "reviewer_test_runs": 0,
+        "inspected_red": "2 expected missing-snapshot assertion failures",
+        "inspected_green": "2 tests passed in 0.621s",
+        "inspected_covering": "46 tests passed in 4.784s, no skips",
+        "root_reported_current": "50 tests passed in 6.014s, no skips",
+        "historical_fullsuite": "542 tests with 7 skips remains bound to old ccb34a6; not rerun or attributed to current head"
+      },
+      "regression_coverage": [
+        "All six accepted pairs followed by close exception preserve decoded raw/canvas bytes and descriptors; no added sensor reads; collector remains unclosed and frozen serializer rejects serialization.",
+        "One accepted pair followed by capture error, close error and storage budget error preserves written prefix and primary/secondary error ordering.",
+        "Existing successful canary/ABBA layout, gate fixtures and frozen serializer/cap contracts covered by logged tests."
+      ],
+      "limits": [
+        "Actual native canary, Actions/API/original ZIP integration and Mesa population remain unexecuted Task2 evidence.",
+        "Actual ABBA remains Task3 evidence; source approval does not establish scientific acceptance.",
+        "Hard kill preserves only persisted prefix and logs, not unpersisted RAM."
+      ],
+      "actions": "Read supplied fix diff once, brief, appended report JSON/Markdown and RED/GREEN/covering logs; no source, Git, CI, native or model operations."
+    },
+    "whole-source-review.json": {
+      "schema": "texture-marker-whole-source-review-v1",
+      "base": "c8cdcbeebd3e7ff6c3d4f836391a3fb1959f47d4",
+      "head": "0a98918e746fe7df9d5502e21db91c3e5cd15396",
+      "verdict": "PASS",
+      "readiness": "READY_FOR_SINGLE_ACTUAL_ON_CANARY_SOURCE_PUSH",
+      "scope": "Independent whole-source pre-native gate; source readiness only, not actual native or scientific acceptance.",
+      "findings": [],
+      "graded_findings": {
+        "P0": 0,
+        "P1": 0,
+        "P2": 0,
+        "P3": 0
+      },
+      "resolved_prior_findings": [
+        {
+          "id": "T1-R1",
+          "priority": "P2",
+          "status": "ADDRESSED",
+          "reason": "Failure-only CPU raw/canvas exporter preserves bounded accepted snapshots after recoverable close failure, keeps closure false and FAILED_OR_INCOMPLETE, preserves partial descriptors and error ordering, and does not change frozen collector closure rules."
+        }
+      ],
+      "reviewed": [
+        "Exact supplied whole-source diff verified byte-for-byte against BASE..HEAD; every new script/test/workflow/request and spec/plan inspected, including progress rulings and prior task/fix reports.",
+        "Common retention and same thin wrapper in both arms; one original copy call and same returned array; OFF has no marker getters; signed32 equal/wrap observations are data, not GPU fences.",
+        "Actual Actions push/branch/attempt1/API workflow/head/source65/request checks precede constructors. One-use FD62 transport is separately bound to own65 context/runtime, phase/index/nonce/live ancestry/process group; fixed child substitution does not invoke official model admission.",
+        "Initial request is one ON canary. ABBA requires fresh accepted actual canary API/ZIP/raw data, same runtime/65 producer bytes, direct single parent and metadata/docs-only activation. No retry loop; failures stop cases.",
+        "Fixed four plus two poses; one then four providers; successful total ceilings five providers/thirty pairs/sixty observed copies/seventy-two sequence readings/144 accessor invocations, excluding startup. No official calls, ORT sessions or extra GPU reads in new harness.",
+        "Child270/case300/phase1320 bounds, bounded launch logs and group cleanup; retained/transient estimate32319072 below32MiB, conservative frozen PNG reserve38171904 below40MiB, four cases plus ledgers/logs174MiB below192MiB. Fresh cache route and bounded post-process inventory do not claim individual hits.",
+        "Pure validator binds exact schema/members, source/runtime/context/request, child/launcher/parent identities, marker/raw observer hashes, saved raw/canvas and rederived-only I420, logs/cache records and all six ABBA comparisons. OFF comparisons remain null; ON/ON absolute values and within-read equality patterns remain distinct.",
+        "New push-only ubuntu24/Python3.11 workflow pins camera dependencies, reuses exact provided bootstrap/assets size+SHA, contains no official weights/model/ORT step and uploads failure evidence."
+      ],
+      "preservation": {
+        "source65_current_and_head_match_fix_report": true,
+        "old62_match_base": true,
+        "all_preexisting_tracked_paths_unchanged": true,
+        "basis": "Exact diff contains only six additions, so protected13/baseline43/all42 old workflows and consumed requests remain byte-identical as pre-existing paths."
+      },
+      "verification": {
+        "reviewer_test_runs": 0,
+        "reviewer_native_runs": 0,
+        "historical_fullsuite": "542 tests /62.558s /7 optional skips bound to ccb34a6; inspected log, not relabeled to current head.",
+        "current_covering": "46 tests /4.784s /no skips; inspected log.",
+        "root_current": "50 tests /6.014s /no skips; inspected root-fix-optional-integration.log.",
+        "workflow_checks": "Inspected actionlint empty-success log/report and workflow bash-n fixture; no rerun.",
+        "diff_package_sha256": "a3e489778a71c21dcd9b5104e3a0992cffe8bcc2fc498c76b655ada3676b7d11"
+      },
+      "declined_to_judge": [
+        "Actual Panda/native marker API compatibility and real provider/copy/closure counts: no new native execution performed.",
+        "Actual Actions run/workflow/API/artifact original ZIP authentication, Mesa route population and installed runtime/image identity: future Task2 raw gate.",
+        "Actual accepted-canary direct-child ABBA execution and raw comparisons: future Task3 gate, not authorized by source PASS alone.",
+        "Installed binary equality, cache hits, observer neutrality, sequence freshness/GPU completion, causal attribution and scientific repair.",
+        "Original strict FAIL, geometry/optics/full-S and Stage7 incomplete gates remain unchanged; main official count remains0 and Cloud remains unpublished.",
+        "Hard process death cannot preserve unexported RAM; only already persisted prefix/logs and honest unknown allocation/closure bounds are available."
+      ],
+      "actions": "Read-only source/Git diff/blob/log inspection. No source/index/Git/CI mutation, worktree, delegation, native/GPU/ORT/model/weights access, downloads/extraction or test rerun. Only whole-source-review.md/json written."
+    }
+  },
+  "verification": {
+    "initial_fullsuite_head": "ccb34a6a26cd8b90f0eab1f78b9f9de0eecd4418",
+    "initial_fullsuite_tests": 542,
+    "initial_fullsuite_optional_skips": 7,
+    "current_covering_tests": 46,
+    "current_optional_integration_tests": 50,
+    "actual_source_ci_tests": 544,
+    "actual_source_ci_optional_skips": 7,
+    "generated_small_ort_test_separate": true
+  },
+  "basic_ci": {
+    "43177564041": {
+      "total_count": 2,
+      "jobs": [
+        {
+          "id": 131045411527,
+          "run_id": 43177564041,
+          "workflow_name": "Offline synthetic and ONNX interface CI",
+          "head_branch": "diagnostic/texture-generation-markers",
+          "run_url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43177564041",
+          "run_attempt": 1,
+          "node_id": "CR_kwDOVklq188AAAAegupKxw",
+          "head_sha": "0a98918e746fe7df9d5502e21db91c3e5cd15396",
+          "url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/jobs/131045411527",
+          "html_url": "https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43177564041/job/131045411527",
+          "status": "completed",
+          "conclusion": "success",
+          "created_at": "2026-11-12T07:45:08Z",
+          "started_at": "2026-11-12T07:45:09Z",
+          "completed_at": "2026-11-12T07:45:55Z",
+          "name": "synthetic-unit",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-11-12T07:45:10Z",
+              "completed_at": "2026-11-12T07:45:11Z"
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-11-12T07:45:11Z",
+              "completed_at": "2026-11-12T07:45:12Z"
+            },
+            {
+              "name": "Run actions/setup-python@v5",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-11-12T07:45:12Z",
+              "completed_at": "2026-11-12T07:45:12Z"
+            },
+            {
+              "name": "Install image-boundary test dependencies",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-11-12T07:45:12Z",
+              "completed_at": "2026-11-12T07:45:15Z"
+            },
+            {
+              "name": "Unit tests (ONNX Runtime native test skips if unavailable)",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-11-12T07:45:15Z",
+              "completed_at": "2026-11-12T07:45:52Z"
+            },
+            {
+              "name": "Existing mock closed-loop smoke",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6,
+              "started_at": "2026-11-12T07:45:52Z",
+              "completed_at": "2026-11-12T07:45:52Z"
+            },
+            {
+              "name": "Post Run actions/setup-python@v5",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11,
+              "started_at": "2026-11-12T07:45:52Z",
+              "completed_at": "2026-11-12T07:45:52Z"
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 12,
+              "started_at": "2026-11-12T07:45:52Z",
+              "completed_at": "2026-11-12T07:45:52Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 13,
+              "started_at": "2026-11-12T07:45:52Z",
+              "completed_at": "2026-11-12T07:45:52Z"
+            }
+          ],
+          "check_run_url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/check-runs/131045411527",
+          "labels": [
+            "ubuntu-latest"
+          ],
+          "runner_id": 1000006076,
+          "runner_name": "GitHub Actions 1000006076",
+          "runner_group_id": 0,
+          "runner_group_name": "GitHub Actions"
+        },
+        {
+          "id": 131045411843,
+          "run_id": 43177564041,
+          "workflow_name": "Offline synthetic and ONNX interface CI",
+          "head_branch": "diagnostic/texture-generation-markers",
+          "run_url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43177564041",
+          "run_attempt": 1,
+          "node_id": "CR_kwDOVklq188AAAAegupMAw",
+          "head_sha": "0a98918e746fe7df9d5502e21db91c3e5cd15396",
+          "url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/jobs/131045411843",
+          "html_url": "https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43177564041/job/131045411843",
+          "status": "completed",
+          "conclusion": "success",
+          "created_at": "2026-11-12T07:45:08Z",
+          "started_at": "2026-11-12T07:45:09Z",
+          "completed_at": "2026-11-12T07:45:24Z",
+          "name": "onnx-interface-test",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-11-12T07:45:10Z",
+              "completed_at": "2026-11-12T07:45:11Z"
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-11-12T07:45:11Z",
+              "completed_at": "2026-11-12T07:45:11Z"
+            },
+            {
+              "name": "Run actions/setup-python@v5",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-11-12T07:45:11Z",
+              "completed_at": "2026-11-12T07:45:12Z"
+            },
+            {
+              "name": "Install ONNX Runtime, ONNX model builder and image dependencies",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-11-12T07:45:12Z",
+              "completed_at": "2026-11-12T07:45:21Z"
+            },
+            {
+              "name": "Real ONNX Runtime inference using generated SMALL TEST GRAPH ONLY",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-11-12T07:45:21Z",
+              "completed_at": "2026-11-12T07:45:22Z"
+            },
+            {
+              "name": "Post Run actions/setup-python@v5",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9,
+              "started_at": "2026-11-12T07:45:22Z",
+              "completed_at": "2026-11-12T07:45:22Z"
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 10,
+              "started_at": "2026-11-12T07:45:22Z",
+              "completed_at": "2026-11-12T07:45:22Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11,
+              "started_at": "2026-11-12T07:45:22Z",
+              "completed_at": "2026-11-12T07:45:22Z"
+            }
+          ],
+          "check_run_url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/check-runs/131045411843",
+          "labels": [
+            "ubuntu-latest"
+          ],
+          "runner_id": 1000006075,
+          "runner_name": "GitHub Actions 1000006075",
+          "runner_group_id": 0,
+          "runner_group_name": "GitHub Actions"
+        }
+      ]
+    },
+    "43177608658": {
+      "total_count": 2,
+      "jobs": [
+        {
+          "id": 131045550590,
+          "run_id": 43177608658,
+          "workflow_name": "Offline synthetic and ONNX interface CI",
+          "head_branch": "diagnostic/texture-generation-markers",
+          "run_url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43177608658",
+          "run_attempt": 1,
+          "node_id": "CR_kwDOVklq188AAAAeguxp_g",
+          "head_sha": "0a98918e746fe7df9d5502e21db91c3e5cd15396",
+          "url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/jobs/131045550590",
+          "html_url": "https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43177608658/job/131045550590",
+          "status": "completed",
+          "conclusion": "success",
+          "created_at": "2026-11-12T07:45:27Z",
+          "started_at": "2026-11-12T07:45:29Z",
+          "completed_at": "2026-11-12T07:46:04Z",
+          "name": "onnx-interface-test",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-11-12T07:45:29Z",
+              "completed_at": "2026-11-12T07:45:30Z"
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-11-12T07:45:30Z",
+              "completed_at": "2026-11-12T07:45:31Z"
+            },
+            {
+              "name": "Run actions/setup-python@v5",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-11-12T07:45:31Z",
+              "completed_at": "2026-11-12T07:45:31Z"
+            },
+            {
+              "name": "Install ONNX Runtime, ONNX model builder and image dependencies",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-11-12T07:45:31Z",
+              "completed_at": "2026-11-12T07:45:38Z"
+            },
+            {
+              "name": "Real ONNX Runtime inference using generated SMALL TEST GRAPH ONLY",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-11-12T07:45:38Z",
+              "completed_at": "2026-11-12T07:45:39Z"
+            },
+            {
+              "name": "Post Run actions/setup-python@v5",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9,
+              "started_at": "2026-11-12T07:45:39Z",
+              "completed_at": "2026-11-12T07:45:39Z"
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 10,
+              "started_at": "2026-11-12T07:45:39Z",
+              "completed_at": "2026-11-12T07:45:39Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11,
+              "started_at": "2026-11-12T07:45:39Z",
+              "completed_at": "2026-11-12T07:45:39Z"
+            }
+          ],
+          "check_run_url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/check-runs/131045550590",
+          "labels": [
+            "ubuntu-latest"
+          ],
+          "runner_id": 1000006078,
+          "runner_name": "GitHub Actions 1000006078",
+          "runner_group_id": 0,
+          "runner_group_name": "GitHub Actions"
+        },
+        {
+          "id": 131045551215,
+          "run_id": 43177608658,
+          "workflow_name": "Offline synthetic and ONNX interface CI",
+          "head_branch": "diagnostic/texture-generation-markers",
+          "run_url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43177608658",
+          "run_attempt": 1,
+          "node_id": "CR_kwDOVklq188AAAAeguxsbw",
+          "head_sha": "0a98918e746fe7df9d5502e21db91c3e5cd15396",
+          "url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/jobs/131045551215",
+          "html_url": "https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43177608658/job/131045551215",
+          "status": "completed",
+          "conclusion": "success",
+          "created_at": "2026-11-12T07:45:27Z",
+          "started_at": "2026-11-12T07:45:29Z",
+          "completed_at": "2026-11-12T07:46:14Z",
+          "name": "synthetic-unit",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-11-12T07:45:29Z",
+              "completed_at": "2026-11-12T07:45:30Z"
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-11-12T07:45:30Z",
+              "completed_at": "2026-11-12T07:45:31Z"
+            },
+            {
+              "name": "Run actions/setup-python@v5",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-11-12T07:45:31Z",
+              "completed_at": "2026-11-12T07:45:31Z"
+            },
+            {
+              "name": "Install image-boundary test dependencies",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-11-12T07:45:31Z",
+              "completed_at": "2026-11-12T07:45:34Z"
+            },
+            {
+              "name": "Unit tests (ONNX Runtime native test skips if unavailable)",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-11-12T07:45:34Z",
+              "completed_at": "2026-11-12T07:46:11Z"
+            },
+            {
+              "name": "Existing mock closed-loop smoke",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6,
+              "started_at": "2026-11-12T07:46:11Z",
+              "completed_at": "2026-11-12T07:46:12Z"
+            },
+            {
+              "name": "Post Run actions/setup-python@v5",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11,
+              "started_at": "2026-11-12T07:46:12Z",
+              "completed_at": "2026-11-12T07:46:12Z"
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 12,
+              "started_at": "2026-11-12T07:46:12Z",
+              "completed_at": "2026-11-12T07:46:12Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 13,
+              "started_at": "2026-11-12T07:46:12Z",
+              "completed_at": "2026-11-12T07:46:12Z"
+            }
+          ],
+          "check_run_url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/check-runs/131045551215",
+          "labels": [
+            "ubuntu-latest"
+          ],
+          "runner_id": 1000006079,
+          "runner_name": "GitHub Actions 1000006079",
+          "runner_group_id": 0,
+          "runner_group_name": "GitHub Actions"
+        }
+      ]
+    },
+    "43178395141": {
+      "total_count": 2,
+      "jobs": [
+        {
+          "id": 131048109118,
+          "run_id": 43178395141,
+          "workflow_name": "Offline synthetic and ONNX interface CI",
+          "head_branch": "diagnostic/texture-generation-markers",
+          "run_url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43178395141",
+          "run_attempt": 1,
+          "node_id": "CR_kwDOVklq188AAAAegxN0Pg",
+          "head_sha": "4814794243ca61a96264ebe04f4fb1b82f0eeecf",
+          "url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/jobs/131048109118",
+          "html_url": "https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43178395141/job/131048109118",
+          "status": "completed",
+          "conclusion": "success",
+          "created_at": "2026-11-12T07:51:48Z",
+          "started_at": "2026-11-12T07:51:50Z",
+          "completed_at": "2026-11-12T07:52:48Z",
+          "name": "synthetic-unit",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-11-12T07:51:50Z",
+              "completed_at": "2026-11-12T07:51:51Z"
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-11-12T07:51:51Z",
+              "completed_at": "2026-11-12T07:51:52Z"
+            },
+            {
+              "name": "Run actions/setup-python@v5",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-11-12T07:51:52Z",
+              "completed_at": "2026-11-12T07:51:52Z"
+            },
+            {
+              "name": "Install image-boundary test dependencies",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-11-12T07:51:52Z",
+              "completed_at": "2026-11-12T07:51:58Z"
+            },
+            {
+              "name": "Unit tests (ONNX Runtime native test skips if unavailable)",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-11-12T07:51:58Z",
+              "completed_at": "2026-11-12T07:52:44Z"
+            },
+            {
+              "name": "Existing mock closed-loop smoke",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6,
+              "started_at": "2026-11-12T07:52:44Z",
+              "completed_at": "2026-11-12T07:52:44Z"
+            },
+            {
+              "name": "Post Run actions/setup-python@v5",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11,
+              "started_at": "2026-11-12T07:52:44Z",
+              "completed_at": "2026-11-12T07:52:44Z"
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 12,
+              "started_at": "2026-11-12T07:52:44Z",
+              "completed_at": "2026-11-12T07:52:45Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 13,
+              "started_at": "2026-11-12T07:52:45Z",
+              "completed_at": "2026-11-12T07:52:45Z"
+            }
+          ],
+          "check_run_url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/check-runs/131048109118",
+          "labels": [
+            "ubuntu-latest"
+          ],
+          "runner_id": 1000006081,
+          "runner_name": "GitHub Actions 1000006081",
+          "runner_group_id": 0,
+          "runner_group_name": "GitHub Actions"
+        },
+        {
+          "id": 131048109620,
+          "run_id": 43178395141,
+          "workflow_name": "Offline synthetic and ONNX interface CI",
+          "head_branch": "diagnostic/texture-generation-markers",
+          "run_url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43178395141",
+          "run_attempt": 1,
+          "node_id": "CR_kwDOVklq188AAAAegxN2NA",
+          "head_sha": "4814794243ca61a96264ebe04f4fb1b82f0eeecf",
+          "url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/jobs/131048109620",
+          "html_url": "https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43178395141/job/131048109620",
+          "status": "completed",
+          "conclusion": "success",
+          "created_at": "2026-11-12T07:51:48Z",
+          "started_at": "2026-11-12T07:51:50Z",
+          "completed_at": "2026-11-12T07:52:07Z",
+          "name": "onnx-interface-test",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-11-12T07:51:50Z",
+              "completed_at": "2026-11-12T07:51:51Z"
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-11-12T07:51:51Z",
+              "completed_at": "2026-11-12T07:51:52Z"
+            },
+            {
+              "name": "Run actions/setup-python@v5",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-11-12T07:51:52Z",
+              "completed_at": "2026-11-12T07:51:52Z"
+            },
+            {
+              "name": "Install ONNX Runtime, ONNX model builder and image dependencies",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-11-12T07:51:52Z",
+              "completed_at": "2026-11-12T07:52:05Z"
+            },
+            {
+              "name": "Real ONNX Runtime inference using generated SMALL TEST GRAPH ONLY",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-11-12T07:52:05Z",
+              "completed_at": "2026-11-12T07:52:05Z"
+            },
+            {
+              "name": "Post Run actions/setup-python@v5",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9,
+              "started_at": "2026-11-12T07:52:05Z",
+              "completed_at": "2026-11-12T07:52:05Z"
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 10,
+              "started_at": "2026-11-12T07:52:05Z",
+              "completed_at": "2026-11-12T07:52:06Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11,
+              "started_at": "2026-11-12T07:52:06Z",
+              "completed_at": "2026-11-12T07:52:06Z"
+            }
+          ],
+          "check_run_url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/check-runs/131048109620",
+          "labels": [
+            "ubuntu-latest"
+          ],
+          "runner_id": 1000006082,
+          "runner_name": "GitHub Actions 1000006082",
+          "runner_group_id": 0,
+          "runner_group_name": "GitHub Actions"
+        }
+      ]
+    },
+    "43178401591": {
+      "total_count": 2,
+      "jobs": [
+        {
+          "id": 131048129252,
+          "run_id": 43178401591,
+          "workflow_name": "Offline synthetic and ONNX interface CI",
+          "head_branch": "diagnostic/texture-generation-markers",
+          "run_url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43178401591",
+          "run_attempt": 1,
+          "node_id": "CR_kwDOVklq188AAAAegxPC5A",
+          "head_sha": "4814794243ca61a96264ebe04f4fb1b82f0eeecf",
+          "url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/jobs/131048129252",
+          "html_url": "https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43178401591/job/131048129252",
+          "status": "completed",
+          "conclusion": "success",
+          "created_at": "2026-11-12T07:51:51Z",
+          "started_at": "2026-11-12T07:51:53Z",
+          "completed_at": "2026-11-12T07:53:02Z",
+          "name": "synthetic-unit",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-11-12T07:51:53Z",
+              "completed_at": "2026-11-12T07:51:54Z"
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-11-12T07:51:54Z",
+              "completed_at": "2026-11-12T07:51:55Z"
+            },
+            {
+              "name": "Run actions/setup-python@v5",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-11-12T07:51:55Z",
+              "completed_at": "2026-11-12T07:51:55Z"
+            },
+            {
+              "name": "Install image-boundary test dependencies",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-11-12T07:51:55Z",
+              "completed_at": "2026-11-12T07:51:59Z"
+            },
+            {
+              "name": "Unit tests (ONNX Runtime native test skips if unavailable)",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-11-12T07:51:59Z",
+              "completed_at": "2026-11-12T07:53:00Z"
+            },
+            {
+              "name": "Existing mock closed-loop smoke",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6,
+              "started_at": "2026-11-12T07:53:00Z",
+              "completed_at": "2026-11-12T07:53:00Z"
+            },
+            {
+              "name": "Post Run actions/setup-python@v5",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11,
+              "started_at": "2026-11-12T07:53:00Z",
+              "completed_at": "2026-11-12T07:53:00Z"
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 12,
+              "started_at": "2026-11-12T07:53:00Z",
+              "completed_at": "2026-11-12T07:53:01Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 13,
+              "started_at": "2026-11-12T07:53:01Z",
+              "completed_at": "2026-11-12T07:53:01Z"
+            }
+          ],
+          "check_run_url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/check-runs/131048129252",
+          "labels": [
+            "ubuntu-latest"
+          ],
+          "runner_id": 1000006083,
+          "runner_name": "GitHub Actions 1000006083",
+          "runner_group_id": 0,
+          "runner_group_name": "GitHub Actions"
+        },
+        {
+          "id": 131048130044,
+          "run_id": 43178401591,
+          "workflow_name": "Offline synthetic and ONNX interface CI",
+          "head_branch": "diagnostic/texture-generation-markers",
+          "run_url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43178401591",
+          "run_attempt": 1,
+          "node_id": "CR_kwDOVklq188AAAAegxPF_A",
+          "head_sha": "4814794243ca61a96264ebe04f4fb1b82f0eeecf",
+          "url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/jobs/131048130044",
+          "html_url": "https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43178401591/job/131048130044",
+          "status": "completed",
+          "conclusion": "success",
+          "created_at": "2026-11-12T07:51:51Z",
+          "started_at": "2026-11-12T07:51:53Z",
+          "completed_at": "2026-11-12T07:52:05Z",
+          "name": "onnx-interface-test",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-11-12T07:51:53Z",
+              "completed_at": "2026-11-12T07:51:54Z"
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-11-12T07:51:54Z",
+              "completed_at": "2026-11-12T07:51:55Z"
+            },
+            {
+              "name": "Run actions/setup-python@v5",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-11-12T07:51:55Z",
+              "completed_at": "2026-11-12T07:51:55Z"
+            },
+            {
+              "name": "Install ONNX Runtime, ONNX model builder and image dependencies",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-11-12T07:51:55Z",
+              "completed_at": "2026-11-12T07:52:03Z"
+            },
+            {
+              "name": "Real ONNX Runtime inference using generated SMALL TEST GRAPH ONLY",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-11-12T07:52:03Z",
+              "completed_at": "2026-11-12T07:52:03Z"
+            },
+            {
+              "name": "Post Run actions/setup-python@v5",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9,
+              "started_at": "2026-11-12T07:52:03Z",
+              "completed_at": "2026-11-12T07:52:03Z"
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 10,
+              "started_at": "2026-11-12T07:52:03Z",
+              "completed_at": "2026-11-12T07:52:04Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11,
+              "started_at": "2026-11-12T07:52:04Z",
+              "completed_at": "2026-11-12T07:52:04Z"
+            }
+          ],
+          "check_run_url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/check-runs/131048130044",
+          "labels": [
+            "ubuntu-latest"
+          ],
+          "runner_id": 1000006084,
+          "runner_name": "GitHub Actions 1000006084",
+          "runner_group_id": 0,
+          "runner_group_name": "GitHub Actions"
+        }
+      ]
+    }
+  },
+  "rulings": [
+    "Ruling: new camera-only ONcanary1provider then separately activated ABBA4providers \u2014 source/marker API validated before study \u2014 cost:max5newproviders/30paircaptures/60sensorreads excluding startup,0official/ORTcalls; neither mode retried.",
+    "Ruling: fixed recorded retention0 pose/capture schedule4+2 with no graph delay \u2014 isolates same camera sequence across arms without live model \u2014 cost:not full MD-V3 pipeline/timing or production convergence rerun.",
+    "Ruling: reuse frozen production launcher via fixed marker-child command substitution and omit-a only in this harness \u2014 keeps verified FD>=10/earlylogs/deadline/group cleanup without exposing model admission \u2014 cost:camera-protocol substitution/permit62 plus own65-source binding,not officialmodelpipeline proof.",
+    "Ruling: eachcase starts with its own empty Mesa shader cache \u2014 holds cache history constant across OFF/ON \u2014 cost: differs prior shared-cache study and cold compilation/timing effects remain.",
+    "Ruling: no worktrees/raw/controller cleanup/Cloudpublication/mainmerge; nativeCIonly \u2014 user constraints \u2014 cost:disk usage/draft chain retained.",
+    "Ruling: Task1 uses a fresh standard implementer with task spec+quality review and rootsoleGit, followed by a source-wide review before nativepush; root retains sequentialTasks2-3Git/CI/evidence \u2014 larger new protocol benefits isolated implementation context \u2014 cost: extra review context; onlyone implementer active. No task has been implemented/dispatched previously.",
+    "Ruling: separate memory32MiB from explicit diskwrite40MiB/case while keeping phase192MiB \u2014 frozen serializer conservatively reserves38180352B>32MiB; preserving proven accounting avoids hidden adapter math \u2014 cost:+8MiBcase diskceiling;4cases worst174MiB<192, no native/count/runtime change. Implementer raised conflict before native execution; spec/plan/brief updated.",
+    "Ruling: initialize remote nativeprotocol branch at already published C8base before reviewed source push \u2014 later canarypush gets explicit old-to-new source diff while newworkflow absent atinitialref \u2014 cost:remote feature ref and possibly2baselineCIjobs, no nativeexecution atbase. No producer/code uploaded yet.",
+    "Ruling: failure-only CPU snapshot persistence may run after recoverablecloseexception while provider_closed remainsfalse \u2014 preserves readonlyalreadycopied evidence without falsifying frozen serializer lifecycle \u2014 cost: failed snapshot export occurs with graphicsclosureunconfirmed, not a successful/neutral observer run; hardkill can preserve only alreadywritten prefix andunknowns.",
+    "Task3actualABBA run43178394897/workflow415702769/job131048107858/attempt1 active at4814794243ca61a96264ebe04f4fb1b82f0eeecf. Ruling: posthoc pureCPU compare newcanarycapture5/6 with alreadyacceptedoldretentionstep2 endpoints \u2014 exactsamepixelneighborhoods meritboundedbytecomparison; no furthernative/model \u2014 cost:cross-study contextconfounds, imagecompositionsare not actualnewgraphfeeds or causalphaseproof. OriginaloldZIP27MB SHAchecked and selectedZIP/extractedPNG/trial/packed bytes verifiedwithoutdownload/extraction. Rootcross-historyJSONSHA2a455f507c9b5e0e63685c8987c949ac3f3ee734c5e5d810d6845c99e3b65ba8:oldA=Road5+Wide6/48497357,oldB=Road6+Wide5/48497389;actualnew5pair48497368/new6pair48497378 matchneitherjointoldinput. Distinctmodel/cache/ORTcontextpreventsuniqueGPUcause."
+  ],
+  "workspace_retained": true,
+  "cloud_configuration_changed": false,
+  "cloud_published": false,
+  "scientific_strict": "FAIL",
+  "stage7": "INCOMPLETE",
+  "review_sha256": {
+    "task-1-review.json": "00677637174521f2b38676a8e1b199e91f868d5aecb4134e09ca752068738d04",
+    "task-1-fix-review.json": "3f628c5381dcb6bf56a7c589a4d61045a3b766bdace942293f1204700aa07d1d",
+    "whole-source-review.json": "b183f72c93de97d588797b8695f070f764406f753cdec3a5a5afc66842103fff"
+  },
+  "actual_raw_review": {
+    "canary": {
+      "verdict": "ACCEPTED_CANARY",
+      "sha256": "e57d9eb33411474013bda59566815e8d77f807e3c74d59e597a721a7b0f85390"
+    },
+    "abba_posthoc": {
+      "verdict": "ACCEPTED_ABBA_DESCRIPTIVE",
+      "sha256": "d19f8df7d49ef7d17dd73d08dcf9fe671f56dbccf7eb08abe3e723481cd272f8"
+    }
+  },
+  "pre_execution_arithmetic_correction": {
+    "initial_ledger_disk_estimate": 38180352,
+    "actual_frozen_disk_reservation": 38171904,
+    "actual_transient_memory_estimate": 32319072,
+    "disk_limit_unchanged": 41943040,
+    "native_execution_before_correction": false
+  },
+  "integration_status_at_receipt": "RESULTS_RECORDED_FINAL_BRANCH_REVIEW_AND_DOCS_CI_PENDING"
+}
