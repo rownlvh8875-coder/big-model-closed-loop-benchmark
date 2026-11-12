@@ -34,12 +34,19 @@ therefore does not run on this branch. Do not change its trigger/request,
 old workflows, policy/adapter/factory/episode/converter/convergence/spec bytes,
 all13 protected and43 baseline runtime pins. Root alone owns Git/CI/PR actions.
 PR33 remains DRAFT/unmerged; source-a4 strictFAIL/mainofficial0/Stage7incomplete.
-No Cloud publication, official weights, MetaDrive/Panda/ORT execution, renderer
+No Cloud publication, official weights, MetaDrive/Panda/native-policy execution, renderer
 captures, default promotion or scientific gate changes in this repair/probe.
+New transport tests/probe/workflow import/execute no ORT/native modules. Existing
+unchanged baseline/onnx-interface tests may run their generated SMALL graph only,
+accounted separately from this zero-model probe.
 
 ## Production repair
 
-`_launch_trial(...)` signature and returned process behavior stay unchanged.
+`_launch_trial(..., launch_row, *, timeout=CHILD_LIMIT_S)` preserves positional
+callers and return type. Validate finite positive timeout<=480 before allocation.
+Use a monotonic deadline, nonblocking partial writes and simultaneous bounded
+output pumping before return. run_study passes min(child/study remaining) and
+deducts launch elapsed before wait; launch TimeoutExpired sets timed_out too.
 Reserve an inherited authorization read descriptor >=10 before spawn; close
 the low original and every remaining FD exactly once on all exits. Establish
 the existing bounded process.log sink before permit writes. Record the actual
@@ -52,8 +59,12 @@ No extra reset, capture, task, GPU read or parent graph call is introduced.
 ## Zero-model CI transport probe
 
 New script `scripts/first_divergence_transport_probe.py` uses the real production
-launcher, replacing only the fixed policy receiver command with a stdlib-only
-transport receiver at the Popen boundary. Preserve real xvfb-run, pass_fds,
+launcher, replacing the fixed policy receiver command with a stdlib-only
+transport receiver at the Popen boundary and omitting `-a` only for the probe.
+The released wrapper can retry server startup ten times with -a. Omission keeps
+a fixed default display and<=1 server attempt/wrapper; collision fails closed.
+Production argv stays unchanged. Record/validate both explicit substitutions.
+Preserve real xvfb-run, pass_fds,
 environment, session/group, permit creation, bounded sink and cleanup. This is
 explicit receiver substitution, not a full native/model pipeline validation.
 No new arbitrary-command or native-admission bypass is added to production API.
@@ -67,7 +78,8 @@ so it reliably tests write failure and retained diagnostics. Normal failure
 stops before the second case. Real child/launcher/group IDs and source/run
 context are recorded; distinct wrappers are verified reaped. At most2 Xvfb
 wrapper/server launches,0 MetaDrive providers/official calls/ORT sessions.
-120s/case,300s total,64KiB per log,2MiB output dataset incl manifest; fail closed,
+120s/case including6s reserved cleanup,300s total,64KiB per log,2MiB output
+dataset incl manifest/failure ledger; fail closed,
 retain bounded partial evidence, separate expected case failure from probe error.
 Probe output strictly below RUNNER_TEMP; reject overwrite/symlink/unsafe members.
 
@@ -96,3 +108,28 @@ suite, task reviews and whole-branch review precede the single actual zero-model
 probe push; root plus fresh independent artifact acceptance follows.
 Publish a draft stacked PR against PR33, no merge. Record actual CI/probe IDs,
 unknown old counts and future need for a fresh source/canary/model registration.
+
+## Preflight rulings incorporated
+
+Root accepted the builder check before implementation. Task1 also owns existing
+`tests/test_first_divergence_model.py` fake-launch keyword/time/stdout fixture
+updates. Validate limits before allocation; enter ownership cleanup before the
+first pipe/log, close low and high FDs once, avoid buffered-double-close. On
+failure drain bounded output and reap the raw Popen group, keeping initiating
+errors and separate cleanup errors; do not reap through a wrapper whose drain
+can raise a pending log-limit error.
+
+The exit73 adapter waits for actual wrapper completion, not just receiver death
+(the Xvfb server can retain the read FD), within the case deadline, without
+consuming stdout. If it fails before returning its Popen handle it owns cleanup.
+Receiver dispatch precedes production/NumPy imports and validates exact permit
+fields/EOF/size, parent/UUID/nonce/group/index/source/runtime associations itself;
+it never invokes the intentionally model-acceptance-bound consumer.
+
+Strict successful artifact members are `probe.json`, `normal/process.log`,
+`early_exit/process.log`; failed output preserves only its bounded known prefix
+and FAILED_OR_INCOMPLETE manifest. Reject duplicates/nonfinite/extra/unsafe
+members/claims. Record actual wrapper path/version/SHA and actual CI source/run/
+attempt/image metadata. Enable subreaper before launch and prove distinct IDs,
+group disappearance/reaping and absence of native/model runtime imports. xauth
+unavailability fails closed. No private model token/env/permit dump is logged.
