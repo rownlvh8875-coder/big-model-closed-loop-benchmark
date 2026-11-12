@@ -1,6 +1,12 @@
 # Stage 7 continuation — verified results, renderer cause still open
 
-## Current checkpoint (2026-11-12 — IPC repair and actual zero-model transport accepted)
+## Current checkpoint (2026-11-12 — successor camera accepted, new protocol activation)
+
+Draft PR35 is stacked on34. New camera source65d2958ec80afa190af972d798929042f6bb8f27/run43148115766/workflow415459577/job130950639709/attempt1 SUCCESS; artifact13912517168 ZIP4875287B SHA48b72d5857b4409f09d427d95b66b30bd1c9c1eedfefaf066a895893d20d2aef,12members5273958B. Root and fresh raw acceptance passed (reviewJSONSHA101e51c2c68a2a09c89e478f01fd3be2a57d546cf269a1b716e23b91cf423a71). One provider/PID2849,2pairs/5captures10reads/0official0ORT;4rawwarps/2derivedI420 exact,actualgraphfeednull. RuntimeUbuntu24/ImageVersion20261101.360.1, exact pinned distributions in the new acceptance metadata. Source62/protected13/base43/old41workflows/consumedrequest fixed.
+
+This activation must be the direct child of acceptedsource65d2958; metadata/docs only. New request/workflow are post-transport identities on fix/first-divergence-post-transport. The new registered budget is6freshchildren/24calls/4steps/480s-child/2400s-study/no retry, only after actual API/source/runtime gate BEFOREweights. Follow docs/STAGE7_POST_TRANSPORT_DIAGNOSTIC.md and new request/acceptance metadata. Old081a study remains consumed/null0..4. OriginalstrictFAIL/original0of4/candidatehistorical12of12/geometry/optics/fullS limits and mainofficial0/Stage7incomplete/Cloudunpublished unchanged. Do not rerun accepted camera/transport or consumed studies. Actual new model run/result still pending at activation.
+
+## Previous checkpoint (2026-11-12 — IPC repair and actual zero-model transport accepted)
 
 Stacked draft [PR34](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/pull/34)
 base is PR33's feature branch; neither is merged. Actual probe source
