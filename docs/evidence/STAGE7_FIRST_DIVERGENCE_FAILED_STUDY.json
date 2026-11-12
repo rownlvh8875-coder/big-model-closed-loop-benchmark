@@ -1,0 +1,221 @@
+{
+  "verdict": "ACCEPT_AUTHENTIC_FAILED_EVIDENCE_REJECT_SUCCESSFUL_STUDY",
+  "scope": "Read-only failed study review; no native/model execution, downloads, re-extraction, source changes, Git mutations, retry, messages, or authorization.",
+  "api_and_archive_valid": true,
+  "experiment_complete": false,
+  "scientific_pass": false,
+  "strict_study_validator": {
+    "result": "REJECTED_AS_EXPECTED",
+    "exception": "ValueError",
+    "message": "failed/incomplete study"
+  },
+  "checks_passed": 163,
+  "identity": {
+    "id": 43128201225,
+    "event": "push",
+    "head_branch": "fix/public-onnx-action-frame",
+    "head_sha": "081a4c61a68e5cb00a89f1c9998e66c657a16657",
+    "run_attempt": 1,
+    "workflow_id": 415293665,
+    "path": ".github/workflows/stage7-first-divergence.yml",
+    "status": "completed",
+    "conclusion": "failure",
+    "repository": "rownlvh8875-coder/big-model-closed-loop-benchmark",
+    "job_id": 130885546863,
+    "artifact_id": 13904515781,
+    "artifact_name": "stage7-first-divergence-study"
+  },
+  "artifact": {
+    "path": "output/stage7-remote-evidence/run-43128201225/13904515781.zip",
+    "nbytes": 5057,
+    "sha256": "49b1b6994fc5fdd125245df71ea23cf337d63f1f231cd1501ce11535b43906c0"
+  },
+  "manifest": {
+    "path": "output/stage7-remote-evidence/run-43128201225/extracted/13904515781/study.json",
+    "nbytes": 17622,
+    "sha256": "53b49d29912196a87c65c78bb1e5a5a0d438d5b3c1724c7a13d208584ecac719"
+  },
+  "protocol": {
+    "seed": 20261109,
+    "scenario": "s_curve_left_right",
+    "speed_mps": 8.0,
+    "dt_s": 0.05,
+    "initial_fraction": 0.12,
+    "full_s_route": false,
+    "convergence": {
+      "max_captures": 6,
+      "max_changed_pixels": 16,
+      "max_rgb_delta": 10
+    },
+    "steps": 4,
+    "schedule": [
+      [
+        "original",
+        0
+      ],
+      [
+        "proxy",
+        0
+      ],
+      [
+        "retention",
+        0
+      ],
+      [
+        "retention",
+        1
+      ],
+      [
+        "proxy",
+        1
+      ],
+      [
+        "original",
+        1
+      ]
+    ]
+  },
+  "actual_counts_and_bounds": {
+    "attempted_schedule_entries": 1,
+    "launched_xvfb_process_groups": 1,
+    "validated_child_trials": 0,
+    "retained_trial_reports": 0,
+    "retained_process_logs": 0,
+    "retained_state_arrays": 0,
+    "retained_images": 0,
+    "retained_comparisons": 0,
+    "model_calls": null,
+    "model_calls_lower_bound": 0,
+    "model_calls_upper_bound": 4,
+    "native_provider_count": null,
+    "native_provider_count_lower_bound": 0,
+    "native_provider_count_upper_bound": 1,
+    "ort_session_count": null,
+    "ort_session_count_lower_bound": 0,
+    "ort_session_count_upper_bound": 1
+  },
+  "launch_ledger": [
+    {
+      "schedule_index": 0,
+      "arm": "original",
+      "repeat": 0,
+      "nonce": "b5afa8dc078410a3f4b3ce08546ac3394d526d204fa3a0674572ca8b9709094d",
+      "launched": true,
+      "launcher_pid": 3004,
+      "process_group": 3004,
+      "launch_elapsed_s": 4.302775534999995,
+      "exit_elapsed_s": 4.310952958999991,
+      "exit_code": -15,
+      "timed_out": false,
+      "child_pid": null,
+      "child_uuid": null,
+      "validation_error": "BrokenPipeError: [Errno 32] Broken pipe",
+      "cleanup_errors": [],
+      "storage": {
+        "payload_limit_bytes": 1055916032,
+        "trial_ledger_limit_bytes": 8388608,
+        "log_limit_bytes": 1048576,
+        "log_bytes": 0,
+        "limit_error": null
+      }
+    }
+  ],
+  "parent_pid": 2877,
+  "parent_uuid": "7ba51d0c3ede45c8b5db2e76d50dbf9c",
+  "elapsed_wall_s": 4.316106179999991,
+  "runtime_recorded": {
+    "python": "3.11.18 (main, Oct 26 2026, 02:48:29) [GCC 15.2.0]",
+    "executable": "/opt/hostedtoolcache/Python/3.11.18/x64/bin/python",
+    "numpy": "2.4.6",
+    "opencv-python-headless": "5.0.0.93",
+    "panda3d": "1.10.13",
+    "metadrive-simulator": "0.4.3",
+    "onnxruntime": "1.31.1",
+    "ImageOS": "ubuntu26",
+    "ImageVersion": "20261101.186.1"
+  },
+  "claims": {
+    "original_strict_pass": false,
+    "model_scoring_allowed": false,
+    "real_vehicle_testing": false,
+    "default_renderer_promoted": false,
+    "camera_fidelity_proven": false,
+    "observer_effects_absent": false
+  },
+  "findings": [
+    {
+      "severity": "blocking",
+      "code": "EXPERIMENT_INCOMPLETE",
+      "description": "Only first launcher was attempted; no validated child trial, model feed/state/output evidence, or comparison was retained."
+    },
+    {
+      "severity": "important",
+      "code": "PRE_AUTHORIZATION_LOGGING_GAP",
+      "description": "_launch_trial creates _BoundedChild and process.log only after permit write. On an exception it terminates the process group and closes stdout. Therefore log_bytes=0 and absent process.log do not prove the child emitted no diagnostics."
+    }
+  ],
+  "limits": [
+    "Parent BrokenPipeError during the authorization-write site is consistent with the frozen launcher code; no child traceback was retained and no definitive child exit cause is established.",
+    "_launch_trial creates _BoundedChild and process.log only after permit write. On an exception it terminates the process group and closes stdout. Therefore log_bytes=0 and absent process.log do not prove the child emitted no diagnostics.",
+    "Launcher PID/PGID 3004 identifies xvfb-run process-group creation. It does not attest a Python child PID/UUID, successful capability consumption, ORT session, native provider, camera capture, or inference.",
+    "Frozen run_trial consumes one-use authorization before policy/session and native execution. This ordering narrows the source failure location but absent child evidence does not establish exactly zero model calls or zero native providers.",
+    "Exit -15 is recorded after group cleanup; it is compatible with SIGTERM cleanup and does not independently identify the initial child failure.",
+    "No image/state/tensor/graph output/process log/trial report exists in this artifact; no first-divergence or arm/repeat comparison can be derived.",
+    "Runtime versions are recorded receipts; installed binaries, Python build, OS/GPU/system and complete runtime equality remain unproven. Prior canary API/raw validity is not successful model-study validity.",
+    "Fresh API metadata and retained bytes were checked; historical source-a4 strict FAIL/main official model0 remain preserved scope constraints, not a fresh audit of all historical workflows."
+  ],
+  "preserved_constraints": {
+    "pr33": "DRAFT_OPEN_UNMERGED",
+    "source_a4": "STRICT_FAIL",
+    "main_official_model_calls": 0,
+    "stage7": "INCOMPLETE",
+    "retry_authorized": false,
+    "model_authorization": false
+  },
+  "review_json_sha256": "c20090d596c7022b55c84e5e56d6c1901c23b8b63e4bb6ac9d356a468ce821c5",
+  "cpu_transport_reproduction": {
+    "status": "CPU_FD_CONTRACT_REPRODUCED",
+    "ubuntu_wrapper_version": "2:21.1.22-1ubuntu1.3",
+    "ubuntu_wrapper_sha256": "97e86a102eee7212bfa3bf87d452b27dd4f16ef6e68658eeae20bca63db2ceee",
+    "wrapper_source_lines": [
+      142,
+      154,
+      200
+    ],
+    "fixture_shell": "exec 3>/dev/null\nprintf ready >&2\nexec \"$@\" 3>&-\n",
+    "rows": [
+      {
+        "fd": 3,
+        "write_error": {
+          "type": "BrokenPipeError",
+          "errno": 32
+        },
+        "exit_code": 78,
+        "stdout": "{\"error\": \"OSError\", \"errno\": 9}\n",
+        "stderr": "",
+        "native_renders": 0,
+        "model_calls": 0
+      },
+      {
+        "fd": 10,
+        "write_error": null,
+        "exit_code": 0,
+        "stdout": "{\"read\": \"{\\\"one_use\\\":\\\"cpu_probe_only\\\"}\"}\n",
+        "stderr": "",
+        "native_renders": 0,
+        "model_calls": 0
+      }
+    ],
+    "limitation": "Reproduces the matching released wrapper FD3 contract. Actual CI pipe fd and original child stderr were not retained, so the historic child cause/call count is not uniquely attested.",
+    "source_or_data_modified": false
+  },
+  "cpu_transport_reproduction_sha256": "6b4f6c61279f13b75465d2769fbca917374be197787611a1e34876432513068f",
+  "ubuntu_wrapper_package_provenance": {
+    "package_version": "2:21.1.22-1ubuntu1.3",
+    "package_nbytes": 898880,
+    "package_sha256": "e46d389ef552dfd557df22a49a1071fef2ab499951633e9857ebb763d7ae7d24",
+    "index_url": "https://archive.ubuntu.com/ubuntu/dists/resolute-updates/universe/binary-amd64/Packages.xz",
+    "script_sha256": "97e86a102eee7212bfa3bf87d452b27dd4f16ef6e68658eeae20bca63db2ceee",
+    "executed": false
+  }
+}

@@ -1,42 +1,47 @@
 # Stage 7 continuation — verified results, renderer cause still open
 
-## Current checkpoint (2026-11-12 — accepted camera canary; bounded model diagnostic)
+## Current checkpoint (2026-11-12 — bounded study failed; transport repair next)
 
-Accepted native camera source `70cf8adeeaf088097da18da50810230d04092bbb`:
-[run43125348683](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43125348683),
-artifact13902402855/ZIP4883414bytes/SHA256
-`eae449d6c439eafad6eaab91364a600465ca0f25cb8659efdcf346998539053f`.
-Root and fresh independent raw/API/source review agree: 58 source paths,
-12 members,8 PNGs,4 exact raw/lens warps,2 exact derived I420 buffers;
-1 Python/native provider,2 accepted pairs,5 captures/10 sensor reads excluding
-startup,0 official-model calls/ORT sessions. All5 current-source CI jobs pass.
-The earlier6bf84c3 workflow-validation failure had0jobs/no native data and is preserved.
+The registered study source `081a4c61a68e5cb00a89f1c9998e66c657a16657` ran once:
+[43128201225](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43128201225),
+job130885546863. Actual API/raw/source/runtime gate and SHA-pinned official
+download succeeded; first A0 permit write failed with BrokenPipeError.
+Basic CI4jobs succeeded; diagnostic1job failed. **Do not rerun/extend it.**
 
-This commit changes request/acceptance/docs only to register the one-shot
-model study; producer/test/workflow/runtime bytes remain identical to the
-accepted source. Actual model results are **PENDING**, never presumed24 calls.
-CI must authenticate the exact direct-parent transition and actual
-API/artifact/source/runtime before weights. No rerun/extension is allowed.
-A0,B0,C0,C1,B1,A1 each uses a fresh Python/Xvfb child and4steps, maximum24calls,
-480s/child2400s/study,256MiB observer payload/child and1GiB dataset.
+Artifact13904515781 is5057ZIPbytes/SHA256
+`49b1b6994fc5fdd125245df71ea23cf337d63f1f231cd1501ce11535b43906c0`,
+only study.json. ParentPID2877/launcherPID-PGID3004/cleanup exit−15;
+child PID/UUID unknown. Model calls null with0..4bounds, native providers
+unattested0..1; no trial/log/image/state/feed/output data. Root plus independent
+163-check raw/API/source review accepts authentic failed evidence and rejects
+successful-study validation. No24-call/6-native completion or first difference
+can be asserted. Failure review JSON SHA256
+`c20090d596c7022b55c84e5e56d6c1901c23b8b63e4bb6ac9d356a468ce821c5`.
 
-See [the diagnostic record](STAGE7_FIRST_DIVERGENCE_DIAGNOSTIC.md) and
-`.github/stage7-first-divergence-acceptance.json` for immutable evidence and limits.
-Pure replay needs recorded NumPy2.4.6/OpenCV5.0.0.93. The onboarding OpenCV4.11
-warp differs on the saved data; changing NumPy alone with OpenCV4 fixed did not
-change outputs. I420 from saved canvases matches in all three CPU environments.
-No source/data/converter/threshold change was made; this does not explain the
-original same-runtime native repeatability FAIL or prove system/binary equality.
+The early logging gap is confirmed in producer source: sink is constructed only
+after permit write. Matching released Ubuntu xvfb2:21.1.22-1ubuntu1.3 wrapper
+clobbers/closesFD3. A CPU-only shell/Python reproduction failsFD3 and succeedsFD10;
+actual CI pipeFD/original stderr are absent, so unique cause/exact zero calls
+remain unproven. See [diagnostic report](STAGE7_FIRST_DIVERGENCE_DIAGNOSTIC.md)
+and [machine evidence](evidence/STAGE7_FIRST_DIVERGENCE_FAILED_STUDY.json).
 
-Continue without new native retries: identify the actual current-HEAD push
-run of `.github/workflows/stage7-first-divergence.yml`, save API/job/artifact
-records, verify actual six-child ledger/counts and typed raw/state/feed data,
-then run `python -m scripts.first_divergence_audit validate-study --root PATH`
-under recorded CPU versions and obtain fresh independent raw acceptance.
-Failed/incomplete/untraced calls stay unknown/bounded. Preserve errors and
-partial evidence; update result/continuation docs with actual run/head/calls.
-Main official calls remain0, PR33 remains DRAFT/unmerged, source-a4 strictFAIL
-continues to block merge, and Stage7 is incomplete.
+Next: isolated `fix/first-divergence-launch-transport` repair plus a CI-only
+transport probe with **zero MetaDrive/policy/official-weight/model execution**.
+Preserve private one-use capability, use a wrapper-safe descriptor, and capture
+bounded diagnostics before permit writes. Production tests/reviews and actual
+Xvfb IPC probe precede any future separately registered model protocol.
+The existing model workflow's exact feature-branch filter excludes that branch.
+Never silently reactivate the consumed request or alter scientific thresholds.
+
+Accepted camera source70cf8adeeaf088097da18da50810230d04092bbb/run43125348683/
+artifact13902402855 remains valid:12members/8PNGs/4warps/2I420/58sourcepaths,
+2acceptedpairs/5captures/10sensorreads exclstartup/1nativePython/0models0ORT,
+all5sourceCIjobsPASS. Pure replay requires recorded NumPy2.4.6/OpenCV5.0.0.93;
+oldOpenCV4.11 warps differ, while savedcanvas I420 is exact across CPU controls.
+That replay effect does not explain original same-runtime native failure.
+
+PR33 remains DRAFT/unmerged, source-a4 strictFAIL still blocks merge,
+main official calls remain0, and Stage7 is incomplete. No Cloud publication.
 
 ## Historical checkpoint (2026-11-11)
 
