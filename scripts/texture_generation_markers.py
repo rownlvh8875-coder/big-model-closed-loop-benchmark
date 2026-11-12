@@ -5,6 +5,7 @@ This module never invokes its official-model authorization or model factory.
 """
 from __future__ import annotations
 from contextlib import contextmanager
+from dataclasses import asdict
 from hashlib import sha256
 import argparse
 import importlib.metadata
@@ -346,6 +347,39 @@ def _consume(phase,index,nonce,out):
     return permit,binding
 
 
+def _persist_unclosed_snapshots(collector,out,disk,evidence):
+    """Save already owned CPU buffers without attesting provider closure.
+
+    This failure-only path never invokes the frozen post-close serializer or
+    derives packed model inputs. Keep descriptors as each bounded write succeeds
+    so a later storage error cannot discard the persisted prefix's association.
+    """
+    if collector.arm!='retention' or len(collector.records)>6 or collector.payload_bytes>RETENTION_CAP:
+        _fail('unconfirmed snapshot retention bounds')
+    for index,record in enumerate(collector.records,1):
+        if record.raw_rgb is None or record.pair is None or record.intrinsics is None:
+            _fail('accepted CPU snapshot missing owned raw/canvas/intrinsics')
+        collector._verify_raw(record.raw_rgb,record.raw_sha256)
+        row=dict(accepted_index=index,capture_index=record.capture_index,
+                 observation=dict(record.observation),intrinsics={k:asdict(v) for k,v in record.intrinsics.items()},
+                 raw_sha256=dict(record.raw_sha256),raw={},canvas={})
+        evidence['rows'].append(row)
+        for kind in CAMERAS:
+            for boundary,width,height in (('raw',964,604),('canvas',512,256)):
+                name=f'closure_unconfirmed/capture_{index:02d}/{boundary}_{kind}.png'
+                path=capture._safe_path(out,name)
+                if path.exists():_fail('refuse to overwrite unconfirmed evidence member')
+                # Same conservative PNG reservation as the frozen serializer,
+                # charged before creating any temporary RGB/PNG byte payload.
+                disk.reserve(width*height*4+65536)
+                frame=(capture.RGBFrame(width,height,record.raw_rgb[kind].tobytes())
+                       if boundary=='raw' else getattr(record.pair,kind))
+                frame.save_png(path)
+                payload=path.read_bytes()
+                row[boundary][kind]=dict(path=name,nbytes=len(payload),sha256=_sha(payload),rgb_sha256=frame.sha256)
+    evidence['complete']=True
+
+
 def run_child(out,phase,index,nonce):
     out=Path(out);permit,binding=_consume(phase,index,nonce,out)
     from bigbench import native_model_campaign as campaign
@@ -391,6 +425,15 @@ def run_child(out,phase,index,nonce):
             except BaseException as exc:
                 if data['error'] is None:data['error']=_detail(exc)
                 else:data['cleanup_errors'].append(_detail(exc))
+        elif collector.records:
+            evidence=dict(schema='texture-marker-closure-unconfirmed-v1',
+                          status='CLOSURE_UNCONFIRMED_CPU_SNAPSHOTS',provider_closed=False,
+                          association='ALREADY_ACCEPTED_CPU_RAW_AND_ACTUAL_CANVAS_CLOSURE_UNCONFIRMED',
+                          complete=False,rows=[],error=None)
+            data['closure_unconfirmed_snapshots']=evidence
+            try:_persist_unclosed_snapshots(collector,out,disk,evidence)
+            except BaseException as exc:
+                evidence['error']=_detail(exc);data['cleanup_errors'].append(evidence['error'])
         data['payload_charged_bytes']=disk.charged
     if data['error'] is None and not data['cleanup_errors']:data['status']='CAMERA_REPLAY_RECORDED'
     else:

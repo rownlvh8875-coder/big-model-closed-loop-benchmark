@@ -60,6 +60,11 @@ Frozen PNG writer conservatively reserves38,171,904bytes for6pairs, which fits
 plus logs/JSON/phase ledger total174MiB, below192MiB. Bound writes
 before allocation, preserve partial payload/logs and FAILED_OR_INCOMPLETE on
 failure; never delete raw evidence or infer zero providers from a missing child.
+After a recoverable close exception, a failure-only CPU exporter may persist
+already copied raw/canvas snapshots while provider_closed staysfalse; never
+mark the frozen collector closed or claim a successful/neutral observation.
+A hard process kill before CPU export can preserve only the already-written
+prefix/logs and honest unknown bounds, not unpersisted RAM.
 One fixed-display xvfb-run attempt per case (probe-only -a omission).
 
 Reuse frozen model._launch_trial FD>=10/early bounded log/shared deadline/group

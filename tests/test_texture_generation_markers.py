@@ -606,3 +606,89 @@ class FailureCountTests(unittest.TestCase):
         self.assertTrue(data['provider_closed']);self.assertEqual(len(data['markers']),1)
         self.assertIsNone(data['observed_reads']);self.assertIsNone(data['marker_reads'])
         self.assertTrue(data['markers'][0]['copy_attempted']);self.assertTrue(data['markers'][0]['copy_returned'])
+
+
+class ClosureUnconfirmedTests(unittest.TestCase):
+    """Real frozen camera/collector CPU copies survive a fake provider close error."""
+    def run_accepted_then_close_error(self,out,accepted_pairs=6,disk=None):
+        from bigbench import metadrive_camera as native
+        from bigbench.optical_calibration import reference_source
+        events=[];cams=[]
+        for index,kind in enumerate(m.CAMERAS):
+            cam=Camera(events,[-1]*12);cam.array.fill(23+index*61)
+            intrinsic=reference_source(kind,964,604)
+            lens=types.SimpleNamespace(getFilmSize=lambda k=intrinsic:(964/k.fx,604/k.fy),
+                                       getFilmOffset=lambda:(0.,0.),getFocalLength=lambda:1.)
+            cam.get_lens=lambda lens=lens:lens
+            cam.perceive_calls=0
+            def perceive(*args,_cam=cam,**kwargs):
+                _cam.perceive_calls+=1
+                if _cam.perceive_calls>accepted_pairs:raise RuntimeError('capture-after-prefix')
+                return _cam.get_rgb_array_cpu()
+            cam.perceive=perceive;cams.append(cam)
+        fake=provider(cams);fake.env.engine.origin=object()
+        fake.source_width=964;fake.source_height=604;fake.height_m=1.2
+        close_calls=[]
+        def close():close_calls.append(1);raise RuntimeError('close-unconfirmed')
+        fake.close=close
+        collector=m.capture.CaptureCollector('retention',payload_cap_bytes=m.RETENTION_CAP,max_captures=6)
+        permit=dict(parent_pid=100,parent_uuid='1'*32)
+        binding=dict(context={},source_snapshot={},runtime={},request_sha256='a'*64)
+        with contextlib.ExitStack() as stack:
+            stack.enter_context(patch.object(m,'_consume',return_value=(permit,binding)))
+            stack.enter_context(patch.object(native,'NativeMetaDriveProvider',return_value=fake))
+            stack.enter_context(patch.object(m.capture,'CaptureCollector',return_value=collector))
+            if disk is not None:stack.enter_context(patch.object(m.oldmodel,'_StorageBudget',return_value=disk))
+            data=m.run_child(out,'canary',0,'a'*64)
+        self.assertEqual(close_calls,[1]);self.assertFalse(collector._closed)
+        # The frozen serializer must still require actual confirmed closure.
+        with self.assertRaisesRegex(ValueError,'provider closure'):collector.serialize_captures(out/'forbidden')
+        return data,collector,events
+
+    def test_all_six_accepted_pairs_survive_close_failure_as_unconfirmed_raw_canvas(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root=Path(temp);data,collector,events=self.run_accepted_then_close_error(root)
+            self.assertEqual(data['status'],'FAILED_OR_INCOMPLETE');self.assertFalse(data['provider_closed'])
+            self.assertIn('close-unconfirmed',data['error']);self.assertEqual(len(collector.records),6)
+            self.assertEqual(data['accepted'],[])
+            evidence=data.get('closure_unconfirmed_snapshots')
+            self.assertIsNotNone(evidence,'accepted CPU payloads must be persisted despite unconfirmed closure')
+            self.assertEqual(evidence['schema'],'texture-marker-closure-unconfirmed-v1')
+            self.assertEqual(evidence['status'],'CLOSURE_UNCONFIRMED_CPU_SNAPSHOTS')
+            self.assertFalse(evidence['provider_closed']);self.assertTrue(evidence['complete'])
+            self.assertEqual(len(evidence['rows']),6);self.assertIsNone(evidence['error'])
+            self.assertEqual(events.count('copy'),12);self.assertEqual(events.count('marker'),24)
+            self.assertLessEqual(data['payload_charged_bytes'],m.PAYLOAD_CAP)
+            self.assertLessEqual(sum(p.stat().st_size for p in root.rglob('*') if p.is_file()),m.PAYLOAD_CAP+m.JSON_CAP)
+            for index,(row,record) in enumerate(zip(evidence['rows'],collector.records),1):
+                self.assertEqual(row['accepted_index'],index);self.assertEqual(row['capture_index'],record.capture_index)
+                self.assertEqual(row['raw_sha256'],record.raw_sha256)
+                self.assertNotIn('packed',row)
+                for kind in m.CAMERAS:
+                    for boundary,width,height,expected in (
+                        ('raw',964,604,record.raw_rgb[kind].tobytes()),
+                        ('canvas',512,256,getattr(record.pair,kind).rgb)):
+                        desc=row[boundary][kind];path=root/desc['path']
+                        self.assertIn('closure_unconfirmed/',desc['path'])
+                        self.assertEqual(m.capture._read_png(path,width,height).rgb,expected)
+                        self.assertEqual(m._sha(path.read_bytes()),desc['sha256'])
+            self.assertFalse(list(root.rglob('packed_i420.bin')))
+            self.assertEqual(m._read(root/'case.json')['closure_unconfirmed_snapshots'],evidence)
+
+    def test_partial_snapshot_budget_error_retains_prefix_and_primary_close_errors(self):
+        budget=m.oldmodel._StorageBudget(964*604*4+65536)
+        with tempfile.TemporaryDirectory() as temp:
+            root=Path(temp);data,collector,events=self.run_accepted_then_close_error(root,accepted_pairs=1,disk=budget)
+            self.assertEqual(data['status'],'FAILED_OR_INCOMPLETE');self.assertFalse(data['provider_closed'])
+            self.assertIn('capture-after-prefix',data['error'])
+            self.assertIn('close-unconfirmed',data['cleanup_errors'][0])
+            evidence=data.get('closure_unconfirmed_snapshots')
+            self.assertIsNotNone(evidence,'bounded failed persistence must retain its prefix ledger')
+            self.assertFalse(evidence['complete']);self.assertIn('budget',evidence['error'])
+            self.assertIn('budget',data['cleanup_errors'][1]);self.assertEqual(len(evidence['rows']),1)
+            desc=evidence['rows'][0]['raw']['road'];self.assertTrue((root/desc['path']).is_file())
+            self.assertEqual(evidence['rows'][0]['canvas'],{})
+            self.assertEqual(len(list(root.rglob('*.png'))),1)
+            self.assertEqual(data['payload_charged_bytes'],budget.charged)
+            self.assertLessEqual(budget.charged,budget.limit)
+            self.assertLessEqual(collector.payload_bytes,m.RETENTION_CAP)
