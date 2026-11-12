@@ -4,7 +4,7 @@
 
 ## A. 변경과 원본 연결
 
-저장소 `rownlvh8875-coder/big-model-closed-loop-benchmark`, 브랜치 `analysis/first-divergence-pixel-neighborhoods`다. 분석 도구 source는 `1c9d08fbbe7c221129fe31d50c75389af8c2b65a`, script SHA256는 `5e12227932d67a632aa65808d7be71e09826deec090ff09360c4cc6249a4af2e`다. 새 CPU 도구·테스트·문서만 추가했으며 native producer62개/보호13개/baseline43개/기존workflow42개/소비된요청은 보존했다. 이 도구를 소비된 producer 목록에 추가하지 않는다.
+저장소 `rownlvh8875-coder/big-model-closed-loop-benchmark`, 브랜치 `analysis/first-divergence-pixel-neighborhoods`다. 분석 도구 source는 `1c9d08fbbe7c221129fe31d50c75389af8c2b65a`, script SHA256는 `5e12227932d67a632aa65808d7be71e09826deec090ff09360c4cc6249a4af2e`다. 새 CPU 도구·테스트·문서만 추가했으며 native producer62개/보호13개/baseline43개/기존workflow42개/소비된요청은 보존했다. 이 도구를 소비된 producer 목록에 추가하지 않는다. [PR36](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/pull/36)은 PR35 위의 DRAFT/미병합이다. 분석 도구의 실행 source와 최종 문서 HEAD를 구분한다.
 
 원본은 [run43149053427](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43149053427), source `582cc594d127e9cde5ff3525e50c143f60285f75`, workflow415459577/job130953643905/attempt1, artifact13912454399다. ZIP27,428,724bytes/SHA256 `370ef36862e3da5bf39064acc732ff1728b0a0a549b6fba77045ce7380a8c748`,141members/187,115,633uncompressedbytes를 기존 추출본과 모두 대조했다. 현재 GitHub API의 성공 상태·source·artifact digest/크기·job을 별도로 새로 확인했다. 다운로드나 재추출은 없었다. 기존 네이티브6개/공식24회는 과거 실행의 수치이며 이번 CPU 분석의 실행 수로 집계하지 않는다.
 
@@ -41,7 +41,7 @@ Panda3D v1.10.13 공식 Texture 소스 참조에서 get_image_modified는 CPU cy
 
 ## D. 검증과 기존 게이트
 
-새 CPU 테스트15개와 전체501개(72.427s,선택 skip0)가 통과했다. 부호 있는 차이/경계 clipping/네 픽셀 한도/독립 카메라/비가산성/잘못된 runtime·archive·symlink·출력 덮어쓰기를 검사했다. 기록된 CPU 환경에서도15개 테스트가0.560s에 통과했다. 독립 whole-branch review는 지적 없이 PASS였고 실제 CPU 재실행의 보고서 SHA도 원본과 동일했다. 검토 JSON SHA256는 `0e874472f0640bff4c146528535d11803f384913d2229e6b88e11c7566e594d1`이다. 기존 baseline의 generated SMALL ONNX 테스트는 forensic/공식 추론과 별도 집계다. 이번 forensic native/GPU/ORT/공식 모델 호출은 모두0이며 이미 수락된 원본을 다시 실행하지 않았다.
+새 CPU 테스트15개와 전체501개(72.427s,선택 skip0)가 통과했다. 부호 있는 차이/경계 clipping/네 픽셀 한도/독립 카메라/비가산성/잘못된 runtime·archive·symlink·출력 덮어쓰기를 검사했다. 기록된 CPU 환경에서도15개 테스트가0.560s에 통과했다. 독립 whole-branch review는 지적 없이 PASS였고 실제 CPU 재실행의 보고서 SHA도 원본과 동일했다. 검토 JSON SHA256는 `0e874472f0640bff4c146528535d11803f384913d2229e6b88e11c7566e594d1`이다. 기존 baseline의 generated SMALL ONNX 테스트는 forensic/공식 추론과 별도 집계다. 이번 forensic native/GPU/ORT/공식 모델 호출은 모두0이며 이미 수락된 원본을 다시 실행하지 않았다. Source checkpoint `c48c57aa9c8742a5141fa428f7446d6ce1c62a8a`의 [push43156644897](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43156644897)/[PR43156651197](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43156651197) 기본CI4jobs가 성공했다. CI unit501개 중 선택7개(ONNX/ORT1,Panda CPU6)를 건너뛰고 별도SMALL ONNX1test는 통과했다.
 
 기존 retention A/A RGB2/8·I4201/4·raw4/plan각1/4 기록은 그대로다. 공식 strict **FAIL**,새 확대 시나리오 미실행,원래 renderer0/4·역사적 candidate12/12·기하 original2/4/candidate1/4·광학/fullS 한계·Stage7 미완료를 유지한다. Main공식호출0/Cloud미게시/기존PR33·34·35DRAFT·미병합이다.
 

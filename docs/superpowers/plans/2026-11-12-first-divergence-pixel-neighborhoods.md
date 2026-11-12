@@ -46,4 +46,4 @@
 - [x] Refresh read-only run/job/artifact API metadata; authenticate existing ZIP; run tool with recorded CPU versions and preserve report/input digests.
 - [x] Inspect4raw pixel neighborhoods, exact subset/camera influences and retained source/history; distinguish measured transforms from GPU hypotheses.
 - [x] Write report/evidence/continuation and commit. Obtain fresh whole-branch code+evidence review; material fixes get RED/GREEN and required suite.
-- [ ] Push reviewed branch/create stacked Draft PR; verify actual basic CI only, no native replay; record finalHEAD/CI/PR and keep original strictFAIL.
+- [x] Push reviewed branch/create stacked Draft PR; verify actual basic CI only, no native replay; record finalHEAD/CI/PR and keep original strictFAIL.

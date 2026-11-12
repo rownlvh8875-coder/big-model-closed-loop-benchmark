@@ -35,7 +35,14 @@
     "full_elapsed_s": 72.427,
     "full_skips": 0,
     "recorded_runtime_targeted": 15,
-    "recorded_runtime_targeted_elapsed_s": 0.56
+    "recorded_runtime_targeted_elapsed_s": 0.56,
+    "source_ci_unit": {
+      "tests": 501,
+      "optional_skips": 7,
+      "optional_panda_cpu_skips": 6,
+      "optional_onnx_ort_skips": 1,
+      "separate_generated_small_onnx_tests": 1
+    }
   },
   "rulings": [
     "Ruling: keep analysis CPU-only and outside consumed producer registry — next checkpoint is saved-byte forensics, not another native experiment — cost: GPU/ORT/model causal questions remain unanswered; new native protocol still required later.",
@@ -335,5 +342,54 @@
     "json_sha256": "0e874472f0640bff4c146528535d11803f384913d2229e6b88e11c7566e594d1",
     "replay_report_sha256": "c48507e5ec2f56c81960b3a1f38b805bb83fe4579aea0daf015f030f194f01ee",
     "findings": []
+  },
+  "publication": {
+    "pr": 36,
+    "url": "https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/pull/36",
+    "draft": true,
+    "merged": false,
+    "base": "fix/first-divergence-post-transport",
+    "source_checkpoint": "c48c57aa9c8742a5141fa428f7446d6ce1c62a8a",
+    "source_ci": [
+      {
+        "run": 43156644897,
+        "job": 130978020593,
+        "name": "synthetic-unit",
+        "conclusion": "success",
+        "test_summaries": [
+          "Ran 501 tests in 57.750s",
+          "OK (skipped=7)"
+        ]
+      },
+      {
+        "run": 43156644897,
+        "job": 130978020935,
+        "name": "onnx-interface-test",
+        "conclusion": "success",
+        "test_summaries": [
+          "Ran 1 test in 0.049s"
+        ]
+      },
+      {
+        "run": 43156651197,
+        "job": 130978039997,
+        "name": "onnx-interface-test",
+        "conclusion": "success",
+        "test_summaries": [
+          "Ran 1 test in 0.086s"
+        ]
+      },
+      {
+        "run": 43156651197,
+        "job": 130978040159,
+        "name": "synthetic-unit",
+        "conclusion": "success",
+        "test_summaries": [
+          "Ran 501 tests in 52.979s",
+          "OK (skipped=7)"
+        ]
+      }
+    ],
+    "scientific_workflows_selected": false
   }
 }
