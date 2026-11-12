@@ -406,7 +406,7 @@ class ProbeTests(unittest.TestCase):
         self.assertEqual(result['claims']['official_model_calls'],0)
         self.assertEqual(result['claims']['ort_sessions'],0)
         self.assertEqual(result['claims']['metadrive_providers'],0)
-        self.assertEqual(len(result['source_snapshot']),61)
+        self.assertEqual(len(result['source_snapshot']),62)
         self.assertEqual(os.environ['FIRST_DIVERGENCE_ACCEPTANCE'],'must-be-cleared')
         self.assertEqual(sorted(str(p.relative_to(self.root/'out')) for p in (self.root/'out').rglob('*') if p.is_file()),
                          ['early_exit/process.log','normal/process.log','probe.json'])

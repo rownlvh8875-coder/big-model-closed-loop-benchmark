@@ -1,0 +1,120 @@
+{
+  "name": "Stage7 post-transport accepted-buffer diagnostic (SIM ONLY)",
+  "on": {
+    "push": {
+      "branches": [
+        "fix/first-divergence-post-transport"
+      ],
+      "paths": [
+        ".github/workflows/stage7-first-divergence-post-transport.yml",
+        ".github/stage7-first-divergence-post-transport-request.json",
+        "bigbench/first_divergence.py",
+        "bigbench/first_divergence_model.py",
+        "scripts/first_divergence_audit.py",
+        "tests/test_first_divergence.py",
+        "tests/test_first_divergence_model.py",
+        "tests/test_first_divergence_transport.py"
+      ]
+    }
+  },
+  "permissions": {
+    "contents": "read",
+    "actions": "read"
+  },
+  "concurrency": {
+    "group": "stage7-first-divergence-post-transport-${{ github.ref }}",
+    "cancel-in-progress": false
+  },
+  "jobs": {
+    "diagnostic": {
+      "runs-on": "ubuntu-24.04",
+      "timeout-minutes": 70,
+      "env": {
+        "LIBGL_ALWAYS_SOFTWARE": "1",
+        "PYOPENGL_PLATFORM": "glx",
+        "OMP_NUM_THREADS": "2",
+        "GH_TOKEN": "${{ github.token }}"
+      },
+      "steps": [
+        {
+          "uses": "actions/checkout@v4",
+          "with": {
+            "fetch-depth": 2
+          }
+        },
+        {
+          "uses": "actions/setup-python@v5",
+          "with": {
+            "python-version": "3.11"
+          }
+        },
+        {
+          "name": "Install provided native system route",
+          "shell": "bash",
+          "run": "python - <<'PYCODE'\nimport json, os\nnames=('HTTP_PROXY','HTTPS_PROXY','http_proxy','https_proxy','NO_PROXY','no_proxy',\n       'SSL_CERT_FILE','SSL_CERT_DIR','REQUESTS_CA_BUNDLE','CURL_CA_BUNDLE')\nprint('NATIVE_CI_INSTALL_ROUTE_PRESENCE',json.dumps({name:{'defined':name in os.environ,'nonempty':bool(os.environ.get(name))} for name in names}))\nprint('NATIVE_CI_SCOPED_HELPER_PRESENT',os.access('/usr/local/bin/cloud-agent-packages',os.X_OK))\nPYCODE\n# Retain explicit lowercase settings, including intentionally empty ones.\nif [[ ! -v http_proxy && -v HTTP_PROXY ]]; then export http_proxy=\"$HTTP_PROXY\"; fi\nif [[ ! -v https_proxy && -v HTTPS_PROXY ]]; then export https_proxy=\"$HTTPS_PROXY\"; fi\nif [[ ! -v no_proxy && -v NO_PROXY ]]; then export no_proxy=\"$NO_PROXY\"; fi\nnative_ci_sudo=(sudo -n --preserve-env=HTTP_PROXY,HTTPS_PROXY,http_proxy,https_proxy,NO_PROXY,no_proxy,SSL_CERT_FILE,SSL_CERT_DIR,REQUESTS_CA_BUNDLE,CURL_CA_BUNDLE)\nif [[ -x /usr/local/bin/cloud-agent-packages ]]; then\n  \"${native_ci_sudo[@]}\" /usr/local/bin/cloud-agent-packages update\n  \"${native_ci_sudo[@]}\" /usr/local/bin/cloud-agent-packages install xvfb libgl1 libglu1-mesa libegl1 libx11-6\nelse\n  \"${native_ci_sudo[@]}\" apt-get -o APT::Update::Error-Mode=any update\n  \"${native_ci_sudo[@]}\" apt-get install -y xvfb libgl1 libglu1-mesa libegl1 libx11-6\nfi\n"
+        },
+        {
+          "name": "Install pinned native and inference dependencies",
+          "run": "python -m pip install '.[inference]' 'numpy==2.4.6' 'opencv-python-headless==5.0.0.93' 'panda3d==1.10.13' 'metadrive-simulator==0.4.3' 'onnxruntime==1.31.1'\ncommand -v xvfb-run\ncommand -v xauth\n"
+        },
+        {
+          "name": "Read registered camera-only or one-shot model request",
+          "id": "mode",
+          "run": "python - <<'PYCODE'\nimport os\nfrom bigbench.first_divergence_model import _request, REQUEST_PATH\nfrom pathlib import Path\nrequest, _ = _request(Path(REQUEST_PATH))\nwith Path(os.environ['GITHUB_OUTPUT']).open('a') as stream:\n    stream.write('mode='+request['mode']+'\\n')\nwith Path(os.environ['GITHUB_ENV']).open('a') as stream:\n    stream.write('FIRST_DIVERGENCE_ACCEPTANCE='+str(Path(os.environ['RUNNER_TEMP'])/'first-divergence-acceptance'/'acceptance.json')+'\\n')\nPYCODE\n"
+        },
+        {
+          "name": "Prepare exact official MetaDrive assets",
+          "run": "mkdir -p \"$RUNNER_TEMP/metadrive-assets\"\ngh release download MetaDrive-0.4.3 --repo metadriverse/metadrive --pattern assets.zip --dir \"$RUNNER_TEMP/metadrive-assets\"\npython - <<'PYCODE'\nimport hashlib, metadrive, os\nfrom pathlib import Path, PurePosixPath\nfrom zipfile import ZipFile\narchive = Path(os.environ['RUNNER_TEMP'])/'metadrive-assets'/'assets.zip'\nassert archive.stat().st_size == 134074203, 'official MetaDrive asset size mismatch'\nassert hashlib.sha256(archive.read_bytes()).hexdigest() == '4f0da9f5143a1258131c5b55f77bdf170c0f9bce8a9f18dd41b3678df779eac9', 'official MetaDrive asset SHA256 mismatch'\npackage = Path(metadrive.__file__).resolve().parent\nwith ZipFile(archive) as z:\n    for f in z.namelist():\n        p = PurePosixPath(f)\n        if p.is_absolute() or '..' in p.parts:\n            raise ValueError('unsafe MetaDrive asset archive entry')\n    z.extractall(package)\nassert (package/'assets'/'version.txt').is_file(), 'asset extraction missing version'\nprint('OFFICIAL_METADRIVE_ASSETS_READY')\nPYCODE\n"
+        },
+        {
+          "name": "CPU diagnostic tests",
+          "run": "python -m unittest discover -s tests -p 'test_first_divergence*.py' -v\n"
+        },
+        {
+          "name": "One no-model canary; retain failure prefix",
+          "if": "steps.mode.outputs.mode == 'capture-canary'",
+          "run": "timeout --kill-after=10s 480s xvfb-run -a python -m scripts.first_divergence_audit capture-canary --out \"$RUNNER_TEMP/first-divergence-canary\"\n"
+        },
+        {
+          "name": "Authenticate accepted raw/source canary before weights",
+          "id": "gate",
+          "if": "steps.mode.outputs.mode == 'model-study'",
+          "run": "python -m scripts.first_divergence_audit verify-accepted-canary --request .github/stage7-first-divergence-post-transport-request.json --out \"$RUNNER_TEMP/first-divergence-acceptance\"\n"
+        },
+        {
+          "name": "Download exact official MD-V3 only after authenticated gate",
+          "id": "weights",
+          "if": "steps.mode.outputs.mode == 'model-study'",
+          "run": "python - <<'PYCODE'\nfrom bigbench.first_divergence_model import _require_model_acceptance\n_require_model_acceptance()\nPYCODE\npython -m scripts.hf_models download --path '1365126a-e71e-4778-be00-8ab92dc82c09/12864/big_driving_supercombo.onnx' --sha256 '35976b11be3904eb78e32f7dc55a6abf8e9433ac5aa391a1998f1e9ce001b199' --max-bytes 768750198 --out \"$RUNNER_TEMP/models\"\n"
+        },
+        {
+          "name": "Six fresh Python/Xvfb children; no retry or extension",
+          "if": "steps.mode.outputs.mode == 'model-study'",
+          "run": "python -m scripts.first_divergence_audit model-study --model \"$RUNNER_TEMP/models/1365126a-e71e-4778-be00-8ab92dc82c09/12864/big_driving_supercombo.onnx\" --spec model_specs/md-v3.json --out \"$RUNNER_TEMP/first-divergence-study\"\n"
+        },
+        {
+          "name": "Save full canary including failure evidence",
+          "if": "always() && steps.mode.outputs.mode == 'capture-canary'",
+          "uses": "actions/upload-artifact@v4",
+          "with": {
+            "name": "stage7-first-divergence-post-transport-canary",
+            "path": "${{ runner.temp }}/first-divergence-canary/",
+            "retention-days": 7,
+            "if-no-files-found": "warn"
+          }
+        },
+        {
+          "name": "Save full bounded model evidence including failure ledger",
+          "if": "always() && steps.mode.outputs.mode == 'model-study'",
+          "uses": "actions/upload-artifact@v4",
+          "with": {
+            "name": "stage7-first-divergence-post-transport-study",
+            "path": "${{ runner.temp }}/first-divergence-study/",
+            "retention-days": 7,
+            "if-no-files-found": "warn"
+          }
+        }
+      ]
+    }
+  }
+}
