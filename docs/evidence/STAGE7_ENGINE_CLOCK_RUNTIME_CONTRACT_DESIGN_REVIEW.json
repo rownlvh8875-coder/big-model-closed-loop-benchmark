@@ -1,0 +1,295 @@
+{
+  "audit_document_hashes_match": true,
+  "audit_source_references": [
+    {
+      "current_sha256": "d16bc9232cbdb7ca8159fd33ee9abf28fdd0976e2170204f4351f0582a2aa9c6",
+      "matches": true,
+      "path": "scripts/engine_clock_native.py",
+      "sha256": "d16bc9232cbdb7ca8159fd33ee9abf28fdd0976e2170204f4351f0582a2aa9c6"
+    },
+    {
+      "current_sha256": "4e0cd0abad43f757149a3953bcba21e5c570a916c3b02a9f366ab6a2b0ebdb1f",
+      "matches": true,
+      "path": "bigbench/first_divergence.py",
+      "sha256": "4e0cd0abad43f757149a3953bcba21e5c570a916c3b02a9f366ab6a2b0ebdb1f"
+    },
+    {
+      "current_sha256": "7f4f1296a2560ceea42c43b05cfeeea3d2bb025194df0e63882ce0f64f9c5c38",
+      "matches": true,
+      "path": ".github/workflows/stage7-engine-clock-boundaries.yml",
+      "sha256": "7f4f1296a2560ceea42c43b05cfeeea3d2bb025194df0e63882ce0f64f9c5c38"
+    },
+    {
+      "current_sha256": "367aa37f01d25a873a3336967ba182df85be725351fb6a48f26ab84834c20a0b",
+      "matches": true,
+      "path": "pyproject.toml",
+      "sha256": "367aa37f01d25a873a3336967ba182df85be725351fb6a48f26ab84834c20a0b"
+    },
+    {
+      "current_sha256": "42448e6f2af43d9d746ca711c3c79f25e2100241956a1478004e153cdd5e930b",
+      "matches": true,
+      "path": ".github/workflows/ci.yml",
+      "sha256": "42448e6f2af43d9d746ca711c3c79f25e2100241956a1478004e153cdd5e930b"
+    },
+    {
+      "current_sha256": "fc46d49922f5294818be20493ba9f5f61278230392e3760c87de696d4d6971b6",
+      "matches": true,
+      "path": "docs/evidence/STAGE7_ENGINE_CLOCK_RUNTIME_REJECTION.json",
+      "sha256": "fc46d49922f5294818be20493ba9f5f61278230392e3760c87de696d4d6971b6"
+    }
+  ],
+  "builder_questions": [
+    {
+      "finding_id": "I1",
+      "owner": "Author/root can resolve under delegated design authority; no new user choice required.",
+      "question": "How should Task 1 handle a well-formed manifest/index digest inserted into config_digest when no object evidence is an input?",
+      "rank": 1,
+      "why_answer_changes_plan": "The current rejection requirement cannot be implemented from the specified metadata-only inputs. The plan must either explicitly defer semantic class authentication to Task 3 or change the schema/scope to supply verifiable object evidence. The existing pure-tool scope supports the former."
+    }
+  ],
+  "checks_performed": [
+    "Read design first, then future implementation plan; reviewed all six changed documents through the exact supplied package and current contents.",
+    "Compared all 70 source, 44 workflow and 8 consumed registry file hashes with saved maps; no project modules imported.",
+    "Verified all audit document/source SHA256 values; source anchors support the stated runtime/version and baseline CI behavior.",
+    "Verified five saved successful official responses (including three Git blob IDs) and retention of all three failed GitHub paths; no network access.",
+    "Checked proposal inactive/false flags, all 16 preparation nulls, zero native allowances and absence of proposed Task 1/2/3 implementation files.",
+    "Verified local linked current documents exist; future code paths are explicitly described as unimplemented."
+  ],
+  "current_state": {
+    "activation_image_version": "20261101.360.1",
+    "activation_run_id": 43251145868,
+    "activation_source": "ab0ef77ab318a0683bdddb896e1e9db6b79e79e6",
+    "activation_verdict": "ACCEPTED_AUTHENTIC_FAILURE",
+    "all_native_allowances": 0,
+    "allocation_witness": "NOT_ESTABLISHED",
+    "allowance_reusable": false,
+    "canary_image_version": "20261111.370.1",
+    "canary_run_id": 43249493437,
+    "canary_source": "30dcc5b4075dd2cfaf25b3e8d90e324386a278af",
+    "canary_verdict": "ACCEPTED_CANARY",
+    "execution_authorized": false,
+    "expanded": "NOT_RUN",
+    "failed_aggregates_null": 7,
+    "geometry_optics_full_s": "NOT_VALIDATED",
+    "null_preparation_references": 16,
+    "proposal_status": "INACTIVE_DESIGN_ONLY",
+    "scientific_strict": "FAIL",
+    "stage7": "INCOMPLETE",
+    "unexecuted_cases": 4,
+    "unexecuted_comparisons": 6
+  },
+  "declined_to_judge": [
+    {
+      "behavior": "Actual image preparation, complete dependency-lock compatibility and measured storage/download/hash/load feasibility",
+      "reason": "Explicitly unavailable future Task 3 evidence with 16 null preparation references; current design grants no preparation execution."
+    },
+    {
+      "behavior": "Actual archive/config/diffID object authentication and authentic API/container association",
+      "reason": "No prepared artifact or adapter exists. Future Task 3 is the correct evidence boundary; I1 addresses the conflicting Task 1 promise rather than accepting it."
+    },
+    {
+      "behavior": "Concrete installed-tree collection, alias layouts, symlink traversal and filesystem race resistance",
+      "reason": "No Task 2 collector is implemented. The closed inventory and read-only-root rules provide design constraints; detailed collector behavior requires its separate implementation/review."
+    },
+    {
+      "behavior": "Actual GL/driver/plugin selection, GPU identity/freshness, deterministic pixels, cache hits, identical physical hosts and observer neutrality",
+      "reason": "The design explicitly excludes these assurances. No authorized native probe or evidence exists."
+    },
+    {
+      "behavior": "Future native FD/PID/group/ancestry/reaping integration and revised scientific budgets",
+      "reason": "Reserved for a separate new native protocol after provider-free acceptance; this increment cannot activate it or reuse consumed allowance."
+    },
+    {
+      "behavior": "Independent historical raw/archive replay and proof of zero allocation in the failed ABBA",
+      "reason": "Replay/download/extraction are excluded. Saved source-bound rejection/registry records preserve seven null aggregates and do not claim zero allocation."
+    },
+    {
+      "behavior": "Live GitHub CI/PR/main and Cloud service state",
+      "reason": "Root owns Git/CI and remote observations; this review uses the supplied exact-HEAD package and saved audit. Baseline CI is explicitly pending after the final docs push."
+    },
+    {
+      "behavior": "New tool runtime behavior, code-quality tests and a complete CPU suite",
+      "reason": "Future Task 1 code/tests do not exist and the increment is documentation-only. No test/native execution was authorized or needed for the byte/semantic review."
+    },
+    {
+      "behavior": "Routine module structure, exception names, diff record encoding and other builder-owned implementation choices",
+      "reason": "A competent implementer can choose these without changing the metadata-only contract or authorization scope."
+    }
+  ],
+  "document_sha256": {
+    "docs/STAGE7_CONTINUATION.md": "7abd8e616018f1a72d460fc24526b89b0489482f394007920a3cf730f0935775",
+    "docs/STAGE7_ENGINE_CLOCK_RUNTIME_CONTRACT.md": "0fa966cd6767bd72fe8e55642f1f43879c147364d3dba1a6c3dc8c0dfc9ec553",
+    "docs/evidence/STAGE7_ENGINE_CLOCK_RUNTIME_CONTRACT_AUDIT.json": "4d64f2a8a67051874d583112eeafd3a1797b47ee97705a5c47e4595bc753e2a8",
+    "docs/evidence/STAGE7_ENGINE_CLOCK_RUNTIME_CONTRACT_PROPOSAL.json": "ab1631a7fc9c07ad6c5cd8c0ef0e61afdf6c4857ea6c93502d7d29fa01010ad0",
+    "docs/superpowers/plans/2026-11-12-engine-clock-runtime-contract.md": "9958d53e2ad6f9aba80d12c260514769bd727f71b8352a826389743ff9d2ad2f",
+    "docs/superpowers/specs/2026-11-12-engine-clock-runtime-contract-design.md": "df93ac7e2aebaa3e46785e3fedabdd51d082c485f8b4d75cbd6c8f79ff95be02"
+  },
+  "finding_counts": {
+    "Critical": 0,
+    "Important": 1,
+    "Minor": 0
+  },
+  "findings": [
+    {
+      "id": "I1",
+      "impact": "The next implementer must either invent an unsupported authenticity check, expand Task 1 beyond its pure metadata boundary, or silently weaken an explicit required test. The current pure_metadata_implementation_ready claim therefore needs this contract correction.",
+      "line": 53,
+      "path": "docs/superpowers/plans/2026-11-12-engine-clock-runtime-contract.md",
+      "problem": "Task 1 requires tag/index/config/archive substitutions to not parse, but accepts only an identity dictionary whose hash fields are opaque lowercase SHA256 strings. A registry manifest/index digest, Docker config digest and rootfs diffID all have the same sha256:<64hex> representation. A substituted well-formed value plus a recomputed core_sha256 satisfies the specified parser schema. No artifact, descriptor contents, API or Docker evidence is available to establish the claimed object class.",
+      "recommendation": "Limit Task 1 to exact fields, literal distribution/platform, digest syntax, self-hash consistency and field-value comparison against an expected identity. Wrong encodings or unknown typed fields reject; changed well-formed values mismatch during comparison. Explicitly defer semantic config/manifest/index/archive object authentication to Task 3 with actual authenticated artifact/config/rootfs evidence. Update the continuation summary and clarify the spec test allocation; retain all future actual-artifact authentication requirements.",
+      "related_locations": [
+        {
+          "line": 41,
+          "path": "docs/superpowers/plans/2026-11-12-engine-clock-runtime-contract.md"
+        },
+        {
+          "line": 55,
+          "path": "docs/superpowers/specs/2026-11-12-engine-clock-runtime-contract-design.md"
+        },
+        {
+          "line": 59,
+          "path": "docs/superpowers/specs/2026-11-12-engine-clock-runtime-contract-design.md"
+        },
+        {
+          "line": 86,
+          "path": "docs/superpowers/specs/2026-11-12-engine-clock-runtime-contract-design.md"
+        },
+        {
+          "line": 11,
+          "path": "docs/STAGE7_CONTINUATION.md"
+        }
+      ],
+      "severity": "Important",
+      "title": "Task 1 promises object-class rejection that a hash-only parser cannot establish",
+      "validation": "After correction, a same-shaped substituted digest may pass shape validation but must mismatch a different expected identity. Task 3 fixtures must reject a manifest/index digest asserted as the config of the authenticated archive."
+    }
+  ],
+  "head_source": "Provided diff package trailer and task assignment; no Git commands were run. The six current document contents match the package.",
+  "historical_or_live_status_claims": "Prior source/registry bindings and saved statuses were checked; no fresh remote observation, raw replay or native binary attestation was performed.",
+  "image_preparation_ready": false,
+  "native_admission": false,
+  "official_reference_snapshots": [
+    {
+      "failure_retained": true,
+      "name": "github-docs",
+      "path": ".superpowers/sdd/2026-11-12-engine-clock-runtime-contract/refs/github-docs-failure.txt",
+      "sha256": "d2c8985c89b29a842ac4946d13bdbc297709f44f20bb968faf9682664b211db6",
+      "status": "UNAVAILABLE_404_RETAINED"
+    },
+    {
+      "git_blob_matches": true,
+      "git_blob_sha": "73e3a1ab1bb70928731106beab0e7074cd0b4eba",
+      "matches_audit": true,
+      "name": "docker-docs",
+      "nbytes": 32993,
+      "path": ".superpowers/sdd/2026-11-12-engine-clock-runtime-contract/refs/docker-docs.md",
+      "sha256": "349577b488b7867670ac6264908303ba748bcc81682bdf33ef802d4e2e35ad6e",
+      "status": "VERIFIED_SAVED_CONTENT"
+    },
+    {
+      "git_blob_matches": true,
+      "git_blob_sha": "cbb0ec6433933cd83d6c749bffbb24a2513388be",
+      "matches_audit": true,
+      "name": "runner-images",
+      "nbytes": 20705,
+      "path": ".superpowers/sdd/2026-11-12-engine-clock-runtime-contract/refs/runner-images.md",
+      "sha256": "49a421dc7368312cdc183d5a7626335fa89d2110ef4bf3b29e3c637c72d10801",
+      "status": "VERIFIED_SAVED_CONTENT"
+    },
+    {
+      "git_blob_matches": true,
+      "git_blob_sha": "56c76d6e4cd9f266f99c670ff29ccc6a4c313494",
+      "matches_audit": true,
+      "name": "oci-descriptor",
+      "nbytes": 12950,
+      "path": ".superpowers/sdd/2026-11-12-engine-clock-runtime-contract/refs/oci-descriptor.md",
+      "sha256": "90d5fa13d43a8f4ebbf50341d6c131f97e894f36190779f2a05ef2c76b31a041",
+      "status": "VERIFIED_SAVED_CONTENT"
+    },
+    {
+      "failure_retained": true,
+      "name": "docker-save",
+      "path": ".superpowers/sdd/2026-11-12-engine-clock-runtime-contract/refs/docker-save-failure.txt",
+      "sha256": "d2c8985c89b29a842ac4946d13bdbc297709f44f20bb968faf9682664b211db6",
+      "status": "UNAVAILABLE_404_RETAINED"
+    },
+    {
+      "failure_retained": true,
+      "name": "docker-load",
+      "path": ".superpowers/sdd/2026-11-12-engine-clock-runtime-contract/refs/docker-load-failure.txt",
+      "sha256": "d2c8985c89b29a842ac4946d13bdbc297709f44f20bb968faf9682664b211db6",
+      "status": "UNAVAILABLE_404_RETAINED"
+    },
+    {
+      "matches_audit": true,
+      "name": "docker-save-official-html",
+      "nbytes": 460589,
+      "path": ".superpowers/sdd/2026-11-12-engine-clock-runtime-contract/refs/docker-save.html",
+      "sha256": "bfc00b84e5968f5b5a6961e7ef70c8595f7c1edbaf47bd7f6793d57bde04be6a",
+      "status": "VERIFIED_SAVED_CONTENT"
+    },
+    {
+      "matches_audit": true,
+      "name": "docker-load-official-html",
+      "nbytes": 457619,
+      "path": ".superpowers/sdd/2026-11-12-engine-clock-runtime-contract/refs/docker-load.html",
+      "sha256": "06733dfa04f713d0ccfde72ca3e16a21dd72a75bf2027fd7a0e4eefd49ee8949",
+      "status": "VERIFIED_SAVED_CONTENT"
+    }
+  ],
+  "other_important_builder_questions": "nothing important left",
+  "package_sha256": "fcae96ac77550f4b92f1df4920ee9f1c96797106600255210ddf2fdeb253d7c3",
+  "pending_evidence": [
+    "I1 document correction and fresh review of the corrected exact HEAD.",
+    "Existing baseline CI on the final reviewed docs push; no repeated local full suite.",
+    "Task 1 future implementation and meaningful provider-free fixture tests.",
+    "Task 2 separate collector implementation/review.",
+    "Task 3 real locks/recipe/archive/config/diffIDs/manifest/authenticated preparation/launch and measured feasibility, after its separate gate.",
+    "Separate new native protocol/source/canary/acceptance/budgets after accepted provider-free evidence."
+  ],
+  "preservation": [
+    {
+      "count": 70,
+      "current_file_mismatches": [],
+      "snapshot": ".superpowers/sdd/2026-11-12-engine-clock-runtime-contract/before-source70.json",
+      "snapshot_matches_audit": true,
+      "snapshot_sha256": "e5efce0f270dcde6d0830a1f947d56e2909a4c6cfce79bc6e07fbfb05cc8f449"
+    },
+    {
+      "count": 44,
+      "current_file_mismatches": [],
+      "snapshot": ".superpowers/sdd/2026-11-12-engine-clock-runtime-contract/before-workflows44.json",
+      "snapshot_matches_audit": true,
+      "snapshot_sha256": "b1d9c75e6d7b0b40dae3fd1acb84059b5d2abb6fd9b21bc4a103953074be03ee"
+    },
+    {
+      "count": 8,
+      "current_file_mismatches": [],
+      "snapshot": ".superpowers/sdd/2026-11-12-engine-clock-runtime-contract/before-registries.json",
+      "snapshot_matches_audit": true,
+      "snapshot_sha256": "5bdf6aaa2194b0f882987d8675a26475f39b6d886723bd31862e1c2235e5e771"
+    }
+  ],
+  "producer70_compact_sha256": "6f8dcc2fc4aa7b1896a74d43ea4e030f89729b4b7851825cd0bbd444c6acab04",
+  "prohibited_actions_performed": false,
+  "quality_readiness": "Preservation, references, source bindings and null/zero semantics pass read-only checks; one Important plan inconsistency prevents a clean readiness verdict.",
+  "ready_for_docs_only_draft": "WITH_FIXES",
+  "reference_index_sha256": "3ab663b59873e21d3f42c6e97327a1e861c62a4ca2f0cfe96ee0f814619aa3ee",
+  "review_mutations": [
+    ".superpowers/sdd/2026-11-12-engine-clock-runtime-contract/design-review.md",
+    ".superpowers/sdd/2026-11-12-engine-clock-runtime-contract/design-review.json"
+  ],
+  "review_scope": "Fresh brainstorming builder check plus whole-document requesting-code-review; documentation-only exact-HEAD review.",
+  "reviewed_base": "d7774ce40d62a19176ea2f5239edfc6644cf51ef",
+  "reviewed_head": "04c91d108cae25b1426529446f1bf4197bd9c710",
+  "schema": "engine-clock-runtime-contract-design-review-v1",
+  "spec_readiness": "Architecture, inactive state and assurance boundaries are sound for a docs-only Draft. Correct I1 before calling the Task 1 implementation contract ready.",
+  "strengths": [
+    "Current increment and all future execution gates are explicitly separated; no active request/workflow/image/provider capability is added.",
+    "Docker-save archive SHA, Docker config digest, ordered diffIDs and installed manifest remain separate bindings; no registry publication is required.",
+    "Installed identity, observed strict host profile and actual native selection are distinguished without deterministic-pixel or hardware-attestation claims.",
+    "The consumed canary/ABBA identities, terminal null failure aggregates and unchanged full old ImageVersion gate are preserved."
+  ],
+  "tests_run": [],
+  "verdict": "WITH_FIXES"
+}

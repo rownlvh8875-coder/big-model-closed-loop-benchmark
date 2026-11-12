@@ -1,0 +1,114 @@
+{
+  "checks": {
+    "audit_document_hashes_match": true,
+    "code_test_hashes_match": true,
+    "head_verified": true,
+    "official_saved_responses_match": 5,
+    "registry8_mismatches": [],
+    "retained_focused_tests": 17,
+    "retained_full_skips": 7,
+    "retained_full_tests": 661,
+    "retained_test_logs_match": true,
+    "source70_mismatches": [],
+    "source_reference_hashes_match": true,
+    "tests_run_by_reviewer": [],
+    "unavailable_paths_retained": 3,
+    "workflow44_mismatches": []
+  },
+  "declined_to_judge": [
+    {
+      "behavior": "Actual image/archive/config/diffID object authentication and API/container association",
+      "reason": "Task3 is unimplemented and all16 preparation references remain null; Task1 parses and compares opaque metadata only."
+    },
+    {
+      "behavior": "Closed installed-tree collection, missing/extra files, modes, symlink escapes/cycles, alias traversal and filesystem race resistance",
+      "reason": "Task2 is unimplemented. Spec constrains closed roots, bounded traversal and exact four Docker metadata exclusions; no collector behavior or coverage is claimed."
+    },
+    {
+      "behavior": "Concrete Docker-managed /etc compatibility and legitimate alias layouts",
+      "reason": "Only design rules exist, including exact /etc/mtab exception; actual image layouts require Task2/3 evidence."
+    },
+    {
+      "behavior": "Sanitized actual host/container evidence, env-only forgery rejection, Config.Env/token/proxy redaction and image streaming transport",
+      "reason": "Future Task3 tests and adapter are explicit; no API/Docker/image artifact exists. Current CLI path-only errors/comparisons were reviewed separately."
+    },
+    {
+      "behavior": "Real dependency lock compatibility, prepared image feasibility, disk/hash/load/download costs and Docker compatibility",
+      "reason": "Unavailable future evidence; limits are proposed caps, not measurements or activation."
+    },
+    {
+      "behavior": "Actual GL/driver/plugin selection, GPU identity/freshness, pixels, cache hits, physical-host equality and observer neutrality",
+      "reason": "Outside stated assurance and no native probing authorized."
+    },
+    {
+      "behavior": "Future native FD/PID/ancestry/group/reaping integration and revised budgets",
+      "reason": "Requires a separately registered native protocol after accepted provider-free evidence; old allowance cannot be reused."
+    },
+    {
+      "behavior": "Fresh historical raw/archive replay or proof of zero allocation in terminal ABBA",
+      "reason": "Replay prohibited and unnecessary; retained source bindings and null aggregates are preserved, not freshly attested."
+    },
+    {
+      "behavior": "Live CI, PR, main and Cloud service state or later status-only HEAD",
+      "reason": "Review is exact local HEAD; root owns subsequent remote/CI observations and must report them separately."
+    },
+    {
+      "behavior": "Independent repetition of full/focused test suites",
+      "reason": "Explicitly disallowed absent an uncovered behavioral doubt. Exact source/test/log hashes and retained 17 focused/661 full result were checked; no unresolved runtime doubt warranted a rerun."
+    }
+  ],
+  "execution_authorized": false,
+  "expanded": "NOT_RUN",
+  "finding_counts": {
+    "Critical": 0,
+    "Important": 0,
+    "Minor": 1
+  },
+  "findings": [
+    {
+      "id": "M1",
+      "impact": "Documentation/evidence precision only; no admission weakening or demonstrated runtime defect.",
+      "locations": [
+        "docs/superpowers/plans/2026-11-12-engine-clock-runtime-contract.md:54",
+        "docs/superpowers/specs/2026-11-12-engine-clock-runtime-contract-design.md:90",
+        "docs/superpowers/specs/2026-11-12-engine-clock-runtime-contract-design.md:92"
+      ],
+      "problem": "The checked plan item claims adjacent PID/nonce/ImageVersion provenance fixtures, but the test at tests/test_engine_clock_runtime_contract.py:179 only checks forbidden provenance and legacy/extra inputs; the matching test at :114 has no adjacent provenance fixtures. The spec closing handoff also still calls this documentation-only and Task1 the next task. Opening scope and actual implementation correctly say Task1 is complete.",
+      "recommendation": "Describe the actual rejection and standalone identity-match coverage without inventing unused-fixture evidence; label initial documentation-only statements historical and set the current next task to Task2. No production change or repeated full suite is needed.",
+      "severity": "Minor",
+      "title": "Align completion wording with actual Task1 evidence"
+    }
+  ],
+  "image_preparation_ready": false,
+  "native_admission": false,
+  "original_design_I1": {
+    "evidence": [
+      "docs/superpowers/specs/2026-11-12-engine-clock-runtime-contract-design.md:86",
+      "docs/superpowers/plans/2026-11-12-engine-clock-runtime-contract.md:53",
+      "tests/test_engine_clock_runtime_contract.py:122",
+      "scripts/engine_clock_runtime_contract.py:212"
+    ],
+    "review_sha256": "0407a67cd85dc474691f9745118e0faca721ad805ba39f0020615e30b680aa13",
+    "status": "CLOSED"
+  },
+  "package_sha256": "74226e52415221d58dfa19ad0fd402435fd6ba5b8b9775eceffe5df0c210a894",
+  "readiness": "Whole branch suitable for Draft as pure metadata Task1 and inactive design. Correct M1 during documentation receipt closure. No preparation/native/scientific approval; final status-only HEAD and baseline CI remain separate root receipts.",
+  "ready_for_draft": true,
+  "review_mutations": [
+    ".superpowers/sdd/2026-11-12-engine-clock-runtime-contract/final-branch-review.md",
+    ".superpowers/sdd/2026-11-12-engine-clock-runtime-contract/final-branch-review.json"
+  ],
+  "reviewed_base": "d7774ce40d62a19176ea2f5239edfc6644cf51ef",
+  "reviewed_head": "a2317468e3a3b4bf1a6e81a6c3d40c92e08331e3",
+  "schema": "engine-clock-runtime-contract-final-branch-review-v1",
+  "scientific_strict": "FAIL",
+  "stage7": "INCOMPLETE",
+  "strengths": [
+    "Exact schema/types/literals and canonical core hash reject legacy/partial/unknown/NaN/duplicate inputs; ordered diffIDs stay binding and output is limited to64 field paths.",
+    "Matching synthetic hashes never authorize native execution; inactive proposal validation separately returns execution_authorized=false.",
+    "Original Important I1 is closed in corrected spec/plan and explicit same-shaped substitution regression; actual authentication remains Task3.",
+    "Old source70/workflow44/registry8 bytes and historical terminal failure are preserved; new tool is outside consumed producer closure.",
+    "Task2/3 inventory, Docker metadata, sanitization and streaming requirements are explicit future gates rather than fabricated current coverage."
+  ],
+  "verdict": "PASS_WITH_MINOR_DOCUMENTATION_CORRECTION"
+}

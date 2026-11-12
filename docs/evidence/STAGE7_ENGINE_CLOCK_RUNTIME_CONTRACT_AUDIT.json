@@ -1,0 +1,383 @@
+{
+  "actual_new_work": {
+    "docker_build_pull_load_run": 0,
+    "image_artifact_id": null,
+    "native_artifact_id": null,
+    "native_engine_runs": 0,
+    "native_run_id": null,
+    "new_clock_getters": 0,
+    "new_gpu_reads": 0,
+    "official_model_calls": 0,
+    "official_weight_downloads": 0,
+    "ort_sessions": 0,
+    "provider_constructors": 0,
+    "pure_metadata_validator_implemented": true,
+    "registry_publications": 0
+  },
+  "base_sha": "d7774ce40d62a19176ea2f5239edfc6644cf51ef",
+  "basic_ci": {
+    "final_head_and_actual_jobs": "Recorded after push in Draft PR and controller receipt, not self-attested by this earlier commit",
+    "status": "PENDING_FINAL_HEAD_PUSH"
+  },
+  "branch": "design/engine-clock-runtime-contract",
+  "cloud_configuration_changed": false,
+  "cloud_observation": {
+    "connectivity": "connected",
+    "current": true,
+    "environment_id": "ccarenv_b64_Y2NhcmVudl80ODAyMDA4Mzg2Zjg4MTkxOTM1YTI3MjIyNGNlOGFkZA",
+    "network_mode": "unrestricted",
+    "network_state": "enforced",
+    "phase": "running",
+    "read_only": true,
+    "spec_revision": "1"
+  },
+  "cloud_published": false,
+  "declined_dispositions": [
+    {
+      "behavior": "Actual image/archive/config/diffID object authentication and API/container association",
+      "cost_if_wrong": "cost:realpreparation/authenticationwork remains before native.",
+      "reason": "Task3 is unimplemented and all16 preparation references remain null; Task1 parses and compares opaque metadata only.",
+      "root_decision": "No actual object/API authentication is claimed until Task3 real artifact evidence;currentmetadata statusesremainnon-admitting."
+    },
+    {
+      "behavior": "Closed installed-tree collection, missing/extra files, modes, symlink escapes/cycles, alias traversal and filesystem race resistance",
+      "cost_if_wrong": "cost:collectorimplementation/verification remains.",
+      "reason": "Task2 is unimplemented. Spec constrains closed roots, bounded traversal and exact four Docker metadata exclusions; no collector behavior or coverage is claimed.",
+      "root_decision": "Keep installed-tree collection and race/alias correctness unproved until Task2 tests+implementation."
+    },
+    {
+      "behavior": "Concrete Docker-managed /etc compatibility and legitimate alias layouts",
+      "cost_if_wrong": "cost:realimage mayfailclosedandneedseparaterevision.",
+      "reason": "Only design rules exist, including exact /etc/mtab exception; actual image layouts require Task2/3 evidence.",
+      "root_decision": "Keep Docker /etc layout compatibility provisional;exact4exclusions arenotmeasuredcompatibility."
+    },
+    {
+      "behavior": "Sanitized actual host/container evidence, env-only forgery rejection, Config.Env/token/proxy redaction and image streaming transport",
+      "cost_if_wrong": "cost:Task3adaptersandredactiontestsremain.",
+      "reason": "Future Task3 tests and adapter are explicit; no API/Docker/image artifact exists. Current CLI path-only errors/comparisons were reviewed separately.",
+      "root_decision": "Keep actualhost/container env/token sanitization andimagestreaming unimplemented;currentCLI onlypaths/metadata."
+    },
+    {
+      "behavior": "Real dependency lock compatibility, prepared image feasibility, disk/hash/load/download costs and Docker compatibility",
+      "cost_if_wrong": "cost:preparationcanfailbeforeanynativeallowance.",
+      "reason": "Unavailable future evidence; limits are proposed caps, not measurements or activation.",
+      "root_decision": "Keep realdependency/image/disk/hash/loadfeasibility unknown;all16refsnullandcapsnotmeasurements."
+    },
+    {
+      "behavior": "Actual GL/driver/plugin selection, GPU identity/freshness, pixels, cache hits, physical-host equality and observer neutrality",
+      "cost_if_wrong": "cost:independentregisterednativeevidence remains necessary.",
+      "reason": "Outside stated assurance and no native probing authorized.",
+      "root_decision": "Keep GL/GPU/pixel/cache/hardware/observerneutrality unproved;thisparser grantsno scientificassurance."
+    },
+    {
+      "behavior": "Future native FD/PID/ancestry/group/reaping integration and revised budgets",
+      "cost_if_wrong": "cost:newprotocol/source/canarydesign remains necessary.",
+      "reason": "Requires a separately registered native protocol after accepted provider-free evidence; old allowance cannot be reused.",
+      "root_decision": "Keep futureFD/PID/cleanupandbudgets outofcurrentimplementation;oldallowanceunavailable."
+    },
+    {
+      "behavior": "Fresh historical raw/archive replay or proof of zero allocation in terminal ABBA",
+      "cost_if_wrong": "cost:allocation/causalunknownsremain.",
+      "reason": "Replay prohibited and unnecessary; retained source bindings and null aggregates are preserved, not freshly attested.",
+      "root_decision": "Preserve historicalfailure/nulls without rawreplayorzeroallocationclaim."
+    },
+    {
+      "behavior": "Live CI, PR, main and Cloud service state or later status-only HEAD",
+      "cost_if_wrong": "cost:laterHEADnotcoveredbyreviewerremoteattestation.",
+      "reason": "Review is exact local HEAD; root owns subsequent remote/CI observations and must report them separately.",
+      "root_decision": "Root separately checks finalremoteHEAD/CI/Draft/mainandreadonlyCloudstatus aftermetadatareceipt."
+    },
+    {
+      "behavior": "Independent repetition of full/focused test suites",
+      "cost_if_wrong": "cost:noindependentsecondsuiterun;freshbaselineCIwillcoverfinalHEAD.",
+      "reason": "Explicitly disallowed absent an uncovered behavioral doubt. Exact source/test/log hashes and retained 17 focused/661 full result were checked; no unresolved runtime doubt warranted a rerun.",
+      "root_decision": "Accept exactsource/test/loghashes+root17/661evidence without duplicatereviewersuite."
+    }
+  ],
+  "design_review": {
+    "important_I1": "Cannot infer object class fromsame-shaped hashes;correctedinspec/planandregressionbeforefinalcode review",
+    "json_sha256": "0407a67cd85dc474691f9745118e0faca721ad805ba39f0020615e30b680aa13",
+    "reviewed_head": "04c91d108cae25b1426529446f1bf4197bd9c710",
+    "verdict": "WITH_FIXES"
+  },
+  "document_sha256": {
+    "docs/STAGE7_ENGINE_CLOCK_RUNTIME_CONTRACT.md": "4e21f3ce3ac6c67b41344dbabb8f2c2786e1448987fa61aeaf3f2b665f67a36f",
+    "docs/evidence/STAGE7_ENGINE_CLOCK_RUNTIME_CONTRACT_PROPOSAL.json": "ab1631a7fc9c07ad6c5cd8c0ef0e61afdf6c4857ea6c93502d7d29fa01010ad0",
+    "docs/superpowers/plans/2026-11-12-engine-clock-runtime-contract.md": "a16434e43af284b36ede78d0a140c82e7def5d8c0a6fcc9a546e8fbe547a529a",
+    "docs/superpowers/specs/2026-11-12-engine-clock-runtime-contract-design.md": "af6d44d7a9afa4d0ae0301d405c4bcdf2233b7721e273d3d50ec0cfcc330a330"
+  },
+  "expanded": "NOT_RUN",
+  "geometry_optics_full_s": "NOT_VALIDATED",
+  "main_head_at_observation": "48e79a7ed5aedf6daa5a62ff68d2225af7955ef1",
+  "main_merged": false,
+  "metadata_implementation": {
+    "execution_authenticity_proven": false,
+    "files": {
+      "scripts/engine_clock_runtime_contract.py": "2cd6151871bf055270addb200930cc50839e9dd63e700bd29cff6a88ea90ec27",
+      "tests/test_engine_clock_runtime_contract.py": "a57a7d9d2fad9ea9cbab5ed5d424dcc6d2280603243e8feeb4d4ad90203df6c8"
+    },
+    "future_import_requires_new_registry": true,
+    "installed_inventory_collected": false,
+    "native_admission": false,
+    "old_producer_closure_members": false
+  },
+  "observed_at_utc": "2026-11-12T20:23:22.685074+00:00",
+  "official_reference_snapshots": [
+    {
+      "name": "github-docs",
+      "path": "content/actions/writing-workflows/choosing-where-your-workflow-runs/running-jobs-in-a-container.md",
+      "reason": "gh: Not Found (HTTP 404)",
+      "repository": "github/docs",
+      "status": "UNAVAILABLE"
+    },
+    {
+      "git_blob_sha": "73e3a1ab1bb70928731106beab0e7074cd0b4eba",
+      "immutable_blob_api": "https://api.github.com/repos/docker/docs/git/blobs/73e3a1ab1bb70928731106beab0e7074cd0b4eba",
+      "name": "docker-docs",
+      "nbytes": 32993,
+      "path": "content/manuals/build/building/best-practices.md",
+      "repository": "docker/docs",
+      "sha256": "349577b488b7867670ac6264908303ba748bcc81682bdf33ef802d4e2e35ad6e",
+      "status": "FETCHED",
+      "url": "https://github.com/docker/docs/blob/main/content/manuals/build/building/best-practices.md"
+    },
+    {
+      "git_blob_sha": "cbb0ec6433933cd83d6c749bffbb24a2513388be",
+      "immutable_blob_api": "https://api.github.com/repos/actions/runner-images/git/blobs/cbb0ec6433933cd83d6c749bffbb24a2513388be",
+      "name": "runner-images",
+      "nbytes": 20705,
+      "path": "README.md",
+      "repository": "actions/runner-images",
+      "sha256": "49a421dc7368312cdc183d5a7626335fa89d2110ef4bf3b29e3c637c72d10801",
+      "status": "FETCHED",
+      "url": "https://github.com/actions/runner-images/blob/main/README.md"
+    },
+    {
+      "git_blob_sha": "56c76d6e4cd9f266f99c670ff29ccc6a4c313494",
+      "immutable_blob_api": "https://api.github.com/repos/opencontainers/image-spec/git/blobs/56c76d6e4cd9f266f99c670ff29ccc6a4c313494",
+      "name": "oci-descriptor",
+      "nbytes": 12950,
+      "path": "descriptor.md",
+      "repository": "opencontainers/image-spec",
+      "sha256": "90d5fa13d43a8f4ebbf50341d6c131f97e894f36190779f2a05ef2c76b31a041",
+      "status": "FETCHED",
+      "url": "https://github.com/opencontainers/image-spec/blob/main/descriptor.md"
+    },
+    {
+      "name": "docker-save",
+      "path": "data/engine-cli/docker_image_save.yaml",
+      "reason": "gh: Not Found (HTTP 404)",
+      "repository": "docker/docs",
+      "status": "UNAVAILABLE"
+    },
+    {
+      "name": "docker-load",
+      "path": "data/engine-cli/docker_image_load.yaml",
+      "reason": "gh: Not Found (HTTP 404)",
+      "repository": "docker/docs",
+      "status": "UNAVAILABLE"
+    },
+    {
+      "final_url": "https://docs.docker.com/reference/cli/docker/image/save/",
+      "http_status": 200,
+      "name": "docker-save-official-html",
+      "nbytes": 460589,
+      "sha256": "bfc00b84e5968f5b5a6961e7ef70c8595f7c1edbaf47bd7f6793d57bde04be6a",
+      "status": "FETCHED",
+      "url": "https://docs.docker.com/reference/cli/docker/image/save/"
+    },
+    {
+      "final_url": "https://docs.docker.com/reference/cli/docker/image/load/",
+      "http_status": 200,
+      "name": "docker-load-official-html",
+      "nbytes": 457619,
+      "sha256": "06733dfa04f713d0ccfde72ca3e16a21dd72a75bf2027fd7a0e4eefd49ee8949",
+      "status": "FETCHED",
+      "url": "https://docs.docker.com/reference/cli/docker/image/load/"
+    }
+  ],
+  "pr_base": "diagnostic/engine-clock-boundaries",
+  "preservation": {
+    "before-registries.json": {
+      "count": 8,
+      "snapshot_sha256": "5bdf6aaa2194b0f882987d8675a26475f39b6d886723bd31862e1c2235e5e771",
+      "unchanged": true
+    },
+    "before-source70.json": {
+      "count": 70,
+      "snapshot_sha256": "e5efce0f270dcde6d0830a1f947d56e2909a4c6cfce79bc6e07fbfb05cc8f449",
+      "unchanged": true
+    },
+    "before-workflows44.json": {
+      "count": 44,
+      "snapshot_sha256": "b1d9c75e6d7b0b40dae3fd1acb84059b5d2abb6fd9b21bc4a103953074be03ee",
+      "unchanged": true
+    }
+  },
+  "proposal_schema": "engine-clock-runtime-contract-proposal-v1",
+  "proposal_sha256": "ab1631a7fc9c07ad6c5cd8c0ef0e61afdf6c4857ea6c93502d7d29fa01010ad0",
+  "reference_scope": "3 GitHub content blobs and2 official Docker HTML responses read;3 unavailable GitHub documentation paths preserved as404, not relied on as evidence. No image/package/native artifact fetched.",
+  "review": {
+    "M1": "Factualprose corrected after review;no code/testchange,no newtautologicaltest or suite repeat",
+    "critical": 0,
+    "final_head_and_actual_ci": "Recorded in Draft PR after push",
+    "important": 0,
+    "json_sha256": "771e987e1f802f1ed8c48eaa2fed385f2e9b0beb4395d29fc6c386e2ba7030a8",
+    "later_changes": "review/status/audit documents only",
+    "minor": 1,
+    "original_I1": "CLOSED",
+    "reviewed_head": "a2317468e3a3b4bf1a6e81a6c3d40c92e08331e3"
+  },
+  "rulings": [
+    "Ruling: preserve current source70/all44workflows/consumedregistries and use a new design branch \u2014 prevents replay or reinterpretation of terminal ABBA \u2014 cost: new namespace and later implementation/verification are required.",
+    "Ruling: recommend sealed OCI userspace identity with separately observed host execution profile; keep outer ImageVersion visible as provenance in the future schema \u2014 a hosted label is not a binary digest and old equality remains frozen \u2014 cost: containers do not pin kernel/CPU/actual loaded GL selection and future strict profile admission can still fail.",
+    "Ruling: design-only deliverables with real image/lock/launch references null and native allowance0 \u2014 no image has been built or authenticated \u2014 cost: current design cannot authorize an image-preparation or native run.",
+    "Ruling: use a future authenticated Docker-save/load Actions artifact plus image config digest/diffIDs instead of requiring registry publication \u2014 keeps image transport in the existing Actions evidence route \u2014 cost: additional archive transfer/load and the archive SHA/config digest must never be mislabeled as an OCI registry manifest digest.",
+    "Ruling: after correcting the builder finding, continue the already-planned pure metadata Task1 in this turn, inline with TDD and a fresh whole-branch review \u2014 user asks sequential actual development and no external/native preparation is needed \u2014 cost: additional code/CPU/review work; metadata matches remain unauthenticated and image/native allowance stays0.",
+    "Ruling: correct factual M1 completion/test-description prose in the final metadata update \u2014 user requires accurate verification records and prose needs no implementation-mirroring test \u2014 cost: later documentation HEAD is not independently re-reviewed; exact code/test hashes and prior661-test evidence remain binding.",
+    "Final: Ruling: Actual image/archive/config/diffID object authentication and API/container association \u2014 No actual object/API authentication is claimed until Task3 real artifact evidence;currentmetadata statusesremainnon-admitting. \u2014 cost:realpreparation/authenticationwork remains before native.",
+    "Final: Ruling: Closed installed-tree collection, missing/extra files, modes, symlink escapes/cycles, alias traversal and filesystem race resistance \u2014 Keep installed-tree collection and race/alias correctness unproved until Task2 tests+implementation. \u2014 cost:collectorimplementation/verification remains.",
+    "Final: Ruling: Concrete Docker-managed /etc compatibility and legitimate alias layouts \u2014 Keep Docker /etc layout compatibility provisional;exact4exclusions arenotmeasuredcompatibility. \u2014 cost:realimage mayfailclosedandneedseparaterevision.",
+    "Final: Ruling: Sanitized actual host/container evidence, env-only forgery rejection, Config.Env/token/proxy redaction and image streaming transport \u2014 Keep actualhost/container env/token sanitization andimagestreaming unimplemented;currentCLI onlypaths/metadata. \u2014 cost:Task3adaptersandredactiontestsremain.",
+    "Final: Ruling: Real dependency lock compatibility, prepared image feasibility, disk/hash/load/download costs and Docker compatibility \u2014 Keep realdependency/image/disk/hash/loadfeasibility unknown;all16refsnullandcapsnotmeasurements. \u2014 cost:preparationcanfailbeforeanynativeallowance.",
+    "Final: Ruling: Actual GL/driver/plugin selection, GPU identity/freshness, pixels, cache hits, physical-host equality and observer neutrality \u2014 Keep GL/GPU/pixel/cache/hardware/observerneutrality unproved;thisparser grantsno scientificassurance. \u2014 cost:independentregisterednativeevidence remains necessary.",
+    "Final: Ruling: Future native FD/PID/ancestry/group/reaping integration and revised budgets \u2014 Keep futureFD/PID/cleanupandbudgets outofcurrentimplementation;oldallowanceunavailable. \u2014 cost:newprotocol/source/canarydesign remains necessary.",
+    "Final: Ruling: Fresh historical raw/archive replay or proof of zero allocation in terminal ABBA \u2014 Preserve historicalfailure/nulls without rawreplayorzeroallocationclaim. \u2014 cost:allocation/causalunknownsremain.",
+    "Final: Ruling: Live CI, PR, main and Cloud service state or later status-only HEAD \u2014 Root separately checks finalremoteHEAD/CI/Draft/mainandreadonlyCloudstatus aftermetadatareceipt. \u2014 cost:laterHEADnotcoveredbyreviewerremoteattestation.",
+    "Final: Ruling: Independent repetition of full/focused test suites \u2014 Accept exactsource/test/loghashes+root17/661evidence without duplicatereviewersuite. \u2014 cost:noindependentsecondsuiterun;freshbaselineCIwillcoverfinalHEAD."
+  ],
+  "schema": "stage7-engine-clock-runtime-contract-audit-v1",
+  "scientific_strict": "FAIL",
+  "scope": "PROVIDER_FREE_DESIGN_AND_PURE_METADATA_TASK1",
+  "source70_sha256": "6f8dcc2fc4aa7b1896a74d43ea4e030f89729b4b7851825cd0bbd444c6acab04",
+  "source_findings": [
+    {
+      "fact": "Runtime records package/Python versions, cv2, ImageOS/ImageVersion; installed/imported ORT rejected. No installed binary hashing.",
+      "line": 99,
+      "path": "scripts/engine_clock_native.py"
+    },
+    {
+      "fact": "runtime_versions explicitly describes distribution metadata, not binary/system equality.",
+      "line": 845,
+      "path": "bigbench/first_divergence.py"
+    },
+    {
+      "fact": "Existing full context/source/runtime comparison remains fail-closed and unchanged.",
+      "line": 622,
+      "path": "scripts/engine_clock_native.py"
+    },
+    {
+      "fact": "ubuntu-24.04 label plus pinned camera package versions; no content-locked container/complete wheel+deb input lock.",
+      "line": 29,
+      "path": ".github/workflows/stage7-engine-clock-boundaries.yml"
+    },
+    {
+      "fact": "Project has no base dependencies and minimum setuptools/Python floors, not a complete native environment binary lock.",
+      "line": 1,
+      "path": "pyproject.toml"
+    },
+    {
+      "fact": "Existing push/PR baseline executes unit+generated SMALL ONNX; its success is separate from native/scientific PASS.",
+      "line": 1,
+      "path": ".github/workflows/ci.yml"
+    }
+  ],
+  "source_references": [
+    {
+      "path": "scripts/engine_clock_native.py",
+      "sha256": "d16bc9232cbdb7ca8159fd33ee9abf28fdd0976e2170204f4351f0582a2aa9c6"
+    },
+    {
+      "path": "bigbench/first_divergence.py",
+      "sha256": "4e0cd0abad43f757149a3953bcba21e5c570a916c3b02a9f366ab6a2b0ebdb1f"
+    },
+    {
+      "path": ".github/workflows/stage7-engine-clock-boundaries.yml",
+      "sha256": "7f4f1296a2560ceea42c43b05cfeeea3d2bb025194df0e63882ce0f64f9c5c38"
+    },
+    {
+      "path": "pyproject.toml",
+      "sha256": "367aa37f01d25a873a3336967ba182df85be725351fb6a48f26ab84834c20a0b"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "sha256": "42448e6f2af43d9d746ca711c3c79f25e2100241956a1478004e153cdd5e930b"
+    },
+    {
+      "path": "docs/evidence/STAGE7_ENGINE_CLOCK_RUNTIME_REJECTION.json",
+      "sha256": "fc46d49922f5294818be20493ba9f5f61278230392e3760c87de696d4d6971b6"
+    }
+  ],
+  "stage7": "INCOMPLETE",
+  "status": "INACTIVE_DESIGN_ONLY",
+  "unresolved_preparation_fields": [
+    "artifact_id",
+    "artifact_zip_sha256",
+    "base_image_platform_manifest_digest",
+    "build_recipe_sha256",
+    "config_digest",
+    "docker_compatibility_profile",
+    "environment_profile_sha256",
+    "image_tar_sha256",
+    "installed_files_sha256",
+    "launch_receipt_sha256",
+    "lock_sha256",
+    "observed_feasibility",
+    "rootfs_diff_ids",
+    "run_id",
+    "source_sha",
+    "workflow_id"
+  ],
+  "verification": {
+    "focused_cpu": {
+      "duration_s": 0.498,
+      "skipped": 0,
+      "tests": 17
+    },
+    "full_cpu": {
+      "duration_s": 73.571,
+      "runs": 1,
+      "skipped": 7,
+      "tests": 661
+    },
+    "logs": {
+      "task-1-cli-proposal.json": {
+        "nbytes": 70,
+        "sha256": "3f429b52150279786f35cc2c9614f83d299f1bc502da9e03ad837aaf3524e809"
+      },
+      "task-1-focused.log": {
+        "nbytes": 2993,
+        "sha256": "0746000258462f96f687c026f1184a7b12ea9bab7ccf7ba83ec1d6dac8afdf49"
+      },
+      "task-1-full-cpu.log": {
+        "nbytes": 125100,
+        "sha256": "b0a520401dc8d5a6aab20f02d5de227cc6933e7f056f0950840bb155bdc17504"
+      },
+      "task-1-green.log": {
+        "nbytes": 4191,
+        "sha256": "0c4985a08bebb829a174f9ac43318c614ddce4ea783070caa7dc1d3ce5cf6ba9"
+      },
+      "task-1-red.log": {
+        "nbytes": 13827,
+        "sha256": "81bf91c2d4bd61c3c1209b6dc356f41d223e394faf17501d42ad6a51dc03d479"
+      }
+    },
+    "native_replay": false,
+    "new_unit_tests": 17,
+    "old_artifact_download_or_extraction": false,
+    "old_native_raw_replay": false,
+    "preserved_source_workflow_registry_bytes": "PASS",
+    "proposal_flags_nulls_zero_allowance": "PASS",
+    "reason_no_new_tests": "Initial checkpoint docs-only;sequentialTask1 nowhas17meaningfulmetadata tests;no prose-onlytests.",
+    "skip_lines": [
+      "test_actual_panda_global_bin_is_restored_without_any_graphics_engine (test_native_opaque_order_matrix.OpaqueBinPolicyTests.test_actual_panda_global_bin_is_restored_without_any_graphics_engine) ... skipped 'Panda CPU contract runs in native CI'",
+      "test_real_ort_uses_camera_and_updates_recurrent_state (test_onnx_ort_integration.NativeOrtTest.test_real_ort_uses_camera_and_updates_recurrent_state) ... skipped 'onnx+onnxruntime optional; GitHub inference CI installs both'",
+      "test_all_four_modes_are_opt_in_and_dispatch_only_for_marker (test_shadow_feedback_probe.PandaGuardTests.test_all_four_modes_are_opt_in_and_dispatch_only_for_marker) ... skipped 'Panda CPU state-contract runs in native CI'",
+      "test_configure_rejects_unknown_state_before_even_sampler_setters (test_shadow_feedback_probe.PandaGuardTests.test_configure_rejects_unknown_state_before_even_sampler_setters) ... skipped 'Panda CPU state-contract runs in native CI'",
+      "test_guard_has_only_two_high_priority_inputs_and_inherits_shader (test_shadow_feedback_probe.PandaGuardTests.test_guard_has_only_two_high_priority_inputs_and_inherits_shader) ... skipped 'Panda CPU state-contract runs in native CI'",
+      "test_preexisting_second_state_fails_before_mutating_first (test_shadow_feedback_probe.PandaGuardTests.test_preexisting_second_state_fails_before_mutating_first) ... skipped 'Panda CPU state-contract runs in native CI'",
+      "test_setup_failure_rolls_back_camera_and_sampler_and_marker (test_shadow_feedback_probe.PandaGuardTests.test_setup_failure_rolls_back_camera_and_sampler_and_marker) ... skipped 'Panda CPU state-contract runs in native CI'"
+    ]
+  },
+  "workspace_retained": true
+}
