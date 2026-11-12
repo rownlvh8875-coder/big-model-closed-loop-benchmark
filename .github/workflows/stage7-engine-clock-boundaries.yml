@@ -1,0 +1,87 @@
+{
+  "name": "Stage7 Engine-clock boundaries (SIM ONLY)",
+  "on": {
+    "push": {
+      "branches": [
+        "diagnostic/engine-clock-boundaries"
+      ],
+      "paths": [
+        "scripts/engine_clock_native.py",
+        "tests/test_engine_clock_native.py",
+        ".github/workflows/stage7-engine-clock-boundaries.yml",
+        ".github/stage7-engine-clock-request.json"
+      ]
+    }
+  },
+  "permissions": {
+    "contents": "read",
+    "actions": "read"
+  },
+  "concurrency": {
+    "group": "stage7-engine-clock-${{ github.ref }}",
+    "cancel-in-progress": false
+  },
+  "jobs": {
+    "diagnostic": {
+      "runs-on": "ubuntu-24.04",
+      "timeout-minutes": 45,
+      "env": {
+        "LIBGL_ALWAYS_SOFTWARE": "1",
+        "PYOPENGL_PLATFORM": "glx",
+        "OMP_NUM_THREADS": "2",
+        "GH_TOKEN": "${{ github.token }}"
+      },
+      "steps": [
+        {
+          "uses": "actions/checkout@v4",
+          "with": {
+            "fetch-depth": 2
+          }
+        },
+        {
+          "uses": "actions/setup-python@v5",
+          "with": {
+            "python-version": "3.11"
+          }
+        },
+        {
+          "name": "Install provided native system route",
+          "shell": "bash",
+          "run": "python - <<'PYCODE'\nimport json, os\nnames=('HTTP_PROXY','HTTPS_PROXY','http_proxy','https_proxy','NO_PROXY','no_proxy',\n       'SSL_CERT_FILE','SSL_CERT_DIR','REQUESTS_CA_BUNDLE','CURL_CA_BUNDLE')\nprint('NATIVE_CI_INSTALL_ROUTE_PRESENCE',json.dumps({name:{'defined':name in os.environ,'nonempty':bool(os.environ.get(name))} for name in names}))\nprint('NATIVE_CI_SCOPED_HELPER_PRESENT',os.access('/usr/local/bin/cloud-agent-packages',os.X_OK))\nPYCODE\n# Retain explicit lowercase settings, including intentionally empty ones.\nif [[ ! -v http_proxy && -v HTTP_PROXY ]]; then export http_proxy=\"$HTTP_PROXY\"; fi\nif [[ ! -v https_proxy && -v HTTPS_PROXY ]]; then export https_proxy=\"$HTTPS_PROXY\"; fi\nif [[ ! -v no_proxy && -v NO_PROXY ]]; then export no_proxy=\"$NO_PROXY\"; fi\nnative_ci_sudo=(sudo -n --preserve-env=HTTP_PROXY,HTTPS_PROXY,http_proxy,https_proxy,NO_PROXY,no_proxy,SSL_CERT_FILE,SSL_CERT_DIR,REQUESTS_CA_BUNDLE,CURL_CA_BUNDLE)\nif [[ -x /usr/local/bin/cloud-agent-packages ]]; then\n  \"${native_ci_sudo[@]}\" /usr/local/bin/cloud-agent-packages update\n  \"${native_ci_sudo[@]}\" /usr/local/bin/cloud-agent-packages install xvfb libgl1 libglu1-mesa libegl1 libx11-6\nelse\n  \"${native_ci_sudo[@]}\" apt-get -o APT::Update::Error-Mode=any update\n  \"${native_ci_sudo[@]}\" apt-get install -y xvfb libgl1 libglu1-mesa libegl1 libx11-6\nfi\n"
+        },
+        {
+          "name": "Install pinned camera dependencies only",
+          "run": "python -m pip install . 'numpy==2.4.6' 'opencv-python-headless==5.0.0.93' 'panda3d==1.10.13' 'metadrive-simulator==0.4.3'\ncommand -v xvfb-run\ncommand -v xauth\n"
+        },
+        {
+          "name": "Read registered phase",
+          "id": "mode",
+          "run": "python - <<'PYCODE'\nimport os\nfrom pathlib import Path\nfrom scripts.engine_clock_native import _request_bytes, _git, REQUEST\nraw = _git('show', os.environ['GITHUB_SHA']+':'+REQUEST)\nif raw != Path(REQUEST).read_bytes():\n    raise ValueError('registered phase request differs from current Git blob')\nr = _request_bytes(raw)\nwith Path(os.environ['GITHUB_OUTPUT']).open('a') as stream:\n    stream.write('mode='+r['mode']+'\\n')\nPYCODE\n"
+        },
+        {
+          "name": "Prepare exact official MetaDrive assets",
+          "run": "mkdir -p \"$RUNNER_TEMP/metadrive-assets\"\ngh release download MetaDrive-0.4.3 --repo metadriverse/metadrive --pattern assets.zip --dir \"$RUNNER_TEMP/metadrive-assets\"\npython - <<'PYCODE'\nimport hashlib, metadrive, os\nfrom pathlib import Path, PurePosixPath\nfrom zipfile import ZipFile\narchive = Path(os.environ['RUNNER_TEMP'])/'metadrive-assets'/'assets.zip'\nassert archive.stat().st_size == 134074203, 'official MetaDrive asset size mismatch'\nassert hashlib.sha256(archive.read_bytes()).hexdigest() == '4f0da9f5143a1258131c5b55f77bdf170c0f9bce8a9f18dd41b3678df779eac9', 'official MetaDrive asset SHA256 mismatch'\npackage = Path(metadrive.__file__).resolve().parent\nwith ZipFile(archive) as z:\n    for f in z.namelist():\n        p = PurePosixPath(f)\n        if p.is_absolute() or '..' in p.parts:\n            raise ValueError('unsafe MetaDrive asset archive entry')\n    z.extractall(package)\nassert (package/'assets'/'version.txt').is_file(), 'asset extraction missing version'\nprint('OFFICIAL_METADRIVE_ASSETS_READY')\nPYCODE\n"
+        },
+        {
+          "name": "CPU clock protocol tests",
+          "run": "python -m unittest tests.test_engine_clock_native tests.test_engine_clock_boundaries -v\n"
+        },
+        {
+          "name": "One bounded phase, no retry or extension",
+          "run": "python -m scripts.engine_clock_native run --out \"$RUNNER_TEMP/engine-clock-${{ steps.mode.outputs.mode }}\"\n"
+        },
+        {
+          "name": "Save bounded phase including failure evidence",
+          "if": "always() && steps.mode.outputs.mode != ''",
+          "uses": "actions/upload-artifact@v4",
+          "with": {
+            "name": "stage7-engine-clock-${{ steps.mode.outputs.mode }}",
+            "path": "${{ runner.temp }}/engine-clock-${{ steps.mode.outputs.mode }}/",
+            "retention-days": 7,
+            "if-no-files-found": "warn"
+          }
+        }
+      ]
+    }
+  }
+}
