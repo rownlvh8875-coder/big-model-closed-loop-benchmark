@@ -1,6 +1,15 @@
 # Stage 7 continuation — verified results, renderer cause still open
 
-## Current checkpoint (2026-11-12 — provider-free runtime contract and pure metadata validator)
+
+## Current checkpoint (2026-11-12 — Task2 bounded caller-root inventory)
+
+Branch analysis/engine-clock-runtime-inventory; base2cc22c0e82dde25429a3f0216a3eb7405b127d5b/PR41. Task1 tool/test/proposal fixed. New purestdlib scripts/engine_clock_runtime_inventory.py and31 filesystem-fixture tests implement validate_inventory/collect_inventory. No CLI/import scan/realhost-image scan/API/Docker/native/model/ORT/GPU/clock work. Expected manifest remains unauthenticated; match is caller-tree verification/native_admissionfalse. Two bounded scans (payload once, metadata twice), nofollow/same-device/checks and main-threadPOSIX alarm; no atomic/mount/actualGL/observer-neutral claim.
+
+Finalfocused31/.335s; finalfullCPU692/76.283s/7optional skips. Freshreviewe0fc6f33e29732052c3619390b3a4dfd53a5bb62:Critical0/ImportantI1/Minor0;singleTDDfixpassclosedmissing/..requiredrootaliasfalsematch. Independent re-review notperformed. Prior30/691 andpre-error-fix690 runsarehistorical. TDD failures and fixture insertion correction retained. See STAGE7_ENGINE_CLOCK_RUNTIME_INVENTORY.md, its new spec/addendum and evidence audit/fixture; final independent review and baseline CI bind exact reviewed/final HEAD separately. Producer70/workflows44/registry8/raw/controller histories unchanged;16preprefsnull/readinessfalse/nativeallowance0. Old ABBA terminal runtimeFAIL/7null/4cases6comparisonsNOT_RUN, no retry or reuse. StrictFAIL/expandedNOT_RUN/geometry-optics-fullS/Stage7INCOMPLETE/mainofficial0/Cloudunpublished/Draftunmerged remain.
+
+Next: Task3 real input resolution and inactive preparation adapter/tests only, separately reviewed before any actual preparation. Never reapply Task1/Task2/native helper study or consume old unused ABBA cases. Earlier checkpoints below are historical.
+
+## Previous checkpoint (2026-11-12 — provider-free runtime contract and pure metadata validator)
 
 Branch design/engine-clock-runtime-contract, base d7774ce40d62a19176ea2f5239edfc6644cf51ef/PR40. Preserved producer70/all44workflows/8consumedrequest-acceptance/protected13/base43/raw/controller histories. New spec,inactiveproposal,futureplan/source-referenceaudit plusTask1purestdlibmetadata validator/tests; no image/nativecollector. No collector/Dockerfile/workflow/request/imagebuild-pull-load-run/registrypublication/nativeprovider/officialweights/model/ORT/extraGPUorclockcalls. Proposal preparation refs16null/nativeallowance0/image_preparation_readyfalse/native_admission_readyfalse. GeneratedSMALLbaselineCI separate.
 

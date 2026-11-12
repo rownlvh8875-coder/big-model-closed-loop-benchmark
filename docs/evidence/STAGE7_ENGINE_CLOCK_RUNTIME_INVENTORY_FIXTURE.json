@@ -1,0 +1,142 @@
+{
+  "actual_image": false,
+  "excluded_metadata_recipe": {
+    "/etc/mtab": "symlink /proc/mounts; no target/payload read"
+  },
+  "expected": {
+    "entries": [
+      {
+        "kind": "symlink",
+        "path": "/lib",
+        "target": "usr/lib"
+      },
+      {
+        "kind": "file",
+        "mode": 384,
+        "nbytes": 0,
+        "path": "/opt/python/empty",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "kind": "symlink",
+        "path": "/usr/lib/alias",
+        "target": "../../opt/python/empty"
+      },
+      {
+        "kind": "file",
+        "mode": 416,
+        "nbytes": 3,
+        "path": "/usr/lib/libfixture.so",
+        "sha256": "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad"
+      }
+    ],
+    "roots": [
+      "/etc",
+      "/lib",
+      "/lib64",
+      "/opt/python",
+      "/opt/venv",
+      "/usr",
+      "/usr/lib"
+    ],
+    "runtime_exclusions": [
+      "/etc/hostname",
+      "/etc/hosts",
+      "/etc/mtab",
+      "/etc/resolv.conf"
+    ],
+    "schema": "installed-files-v1"
+  },
+  "native_artifact": null,
+  "payload_recipe": {
+    "/opt/python/empty": "zero bytes,mode0600",
+    "/usr/lib/libfixture.so": "literal ASCII abc,mode0640"
+  },
+  "preparation_reference": null,
+  "result": {
+    "bytes_read": 3,
+    "canonical_manifest_sha256": "a86076705dfb7722c02dc849415a5599a9f3d851641d04e80466f0dea50c5288",
+    "complete": true,
+    "elapsed_s": 0.0019270649936515838,
+    "error": null,
+    "failure_path": null,
+    "failure_stage": null,
+    "inventory": {
+      "entries": [
+        {
+          "kind": "symlink",
+          "path": "/lib",
+          "target": "usr/lib"
+        },
+        {
+          "kind": "file",
+          "mode": 384,
+          "nbytes": 0,
+          "path": "/opt/python/empty",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "kind": "symlink",
+          "path": "/usr/lib/alias",
+          "target": "../../opt/python/empty"
+        },
+        {
+          "kind": "file",
+          "mode": 416,
+          "nbytes": 3,
+          "path": "/usr/lib/libfixture.so",
+          "sha256": "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad"
+        }
+      ],
+      "roots": [
+        "/etc",
+        "/lib",
+        "/lib64",
+        "/opt/python",
+        "/opt/venv",
+        "/usr",
+        "/usr/lib"
+      ],
+      "runtime_exclusions": [
+        "/etc/hostname",
+        "/etc/hosts",
+        "/etc/mtab",
+        "/etc/resolv.conf"
+      ],
+      "schema": "installed-files-v1"
+    },
+    "matched_entries": 4,
+    "matched_prefix": [
+      {
+        "kind": "symlink",
+        "path": "/lib",
+        "target": "usr/lib"
+      },
+      {
+        "kind": "file",
+        "mode": 384,
+        "nbytes": 0,
+        "path": "/opt/python/empty",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "kind": "symlink",
+        "path": "/usr/lib/alias",
+        "target": "../../opt/python/empty"
+      },
+      {
+        "kind": "file",
+        "mode": 416,
+        "nbytes": 3,
+        "path": "/usr/lib/libfixture.so",
+        "sha256": "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad"
+      }
+    ],
+    "native_admission": false,
+    "schema": "engine-clock-file-inventory-result-v1",
+    "status": "INSTALLED_FILES_MATCH",
+    "visited_nodes": 26
+  },
+  "schema": "stage7-inventory-synthetic-fixture-v1",
+  "scope": "SMALL_TEMPORARY_CALLER_TREE_ONLY"
+}

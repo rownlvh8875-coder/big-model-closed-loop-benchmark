@@ -1,0 +1,77 @@
+{
+  "schema": "task-2-final-code-review-v1",
+  "reviewed_base": "2cc22c0e82dde25429a3f0216a3eb7405b127d5b",
+  "reviewed_head": "e0fc6f33e29732052c3619390b3a4dfd53a5bb62",
+  "findings": [
+    {
+      "id": "I1",
+      "severity": "Important",
+      "file": "scripts/engine_clock_runtime_inventory.py",
+      "line": 126,
+      "related_lines": [
+        134,
+        419,
+        420
+      ],
+      "title": "Missing intermediate components can turn a dangling root alias into a complete match",
+      "description": "The resolver retains unknown components as if traversable and later pops them for dotdot. scan checks only the final graph node, so /lib -> usr/missing/.. resolves logically to /usr although POSIX lookup fails at missing. The required root therefore does not resolve to an actual directory, yet collection succeeds.",
+      "impact": "False INSTALLED_FILES_MATCH/complete=true for a tree missing a usable required root; violates the binding addendum root-alias guarantee. No native admission is granted, limiting severity.",
+      "reproduction": {
+        "fixture": "/tmp/task2-review-root-alias-5h4q8wyu",
+        "setup": "Create plain /etc, /lib64, /opt/python, /opt/venv and /usr under a temporary root. Create /lib as relative symlink with target exactly \"usr/missing/..\"; do not create /usr/missing. Expected manifest has all six base roots, exact four exclusions and only the /lib symlink descriptor.",
+        "observed": {
+          "lib_is_directory": false,
+          "status": "INSTALLED_FILES_MATCH",
+          "complete": true,
+          "native_admission": false,
+          "bytes_read": 0
+        },
+        "expected": "FAILED_OR_INCOMPLETE because required /lib does not resolve to an actual directory."
+      },
+      "recommendation": "For required-root resolution against the observed graph, require every traversed intermediate component to exist as a directory after link expansion, including the component before dotdot. Preserve the distinct permission for in-scope dangling non-root links and do not infer filesystem absence from metadata-only validation graphs (empty directories are omitted). Add a real temporary-tree RED regression and verify valid alias/dotdot cases remain accepted."
+    }
+  ],
+  "declined_to_judge": [
+    "Task1 identity equality, legacy rejection, host ImageVersion semantics and CLI internals: frozen prior increment; checked byte preservation, not re-reviewed.",
+    "Actual image/archive/config/diffID authenticity, dependency closure, lock inputs and preparation: unimplemented Task3, not established by caller manifests or fixture hashes.",
+    "Forged environment-only container claims and sanitized Docker/API/Config.Env evidence: no adapter exists in Task2; Task3 must implement and test these independently.",
+    "Actual Docker-managed mount compatibility, same-device bind mounts and mount authentication: device checks are not mount attestation; explicitly deferred.",
+    "Physical-host authenticity, compromised-host resistance, malicious same-process monkeypatching and hostile concurrent manifest mutation: outside this local trusted-caller verifier threat model.",
+    "Atomic snapshot and changes after the last observation, including same-content ABA or caller-root path replacement after opening: two observed passes are explicitly not an immutable-root proof.",
+    "Loaded GL/driver selection, native provider behavior, GPU freshness, cache hits, deterministic pixels, model/ORT and scientific conclusions: not exercised or admitted by Task2.",
+    "Observer neutrality, full-image resource feasibility and production-scale throughput: three-byte fixture timing and CPU test logs cannot establish these.",
+    "Non-main-thread, non-POSIX and existing-process-timer support, kernel uninterruptible IO and hard real-time scheduling: explicit fail-closed/support limits in ruling six.",
+    "External legitimate image aliases, layouts beyond the six bases, directory-mode identity, empty-directory identity and loadability of non-root dangling links: explicit restricted scope/identity choices; root-directory existence is still required and is the reported finding.",
+    "Broad suite reruns and optional native integration skips: accepted hash-verified root logs as instructed; did not run native dependencies or duplicate suites.",
+    "Remote CI, PR state, merge/publication and later receipt-only HEAD: owned by root; no network actions or approval inferred from this technical assessment.",
+    "Historical raw ABBA archives, consumed allowance and controller histories: no replay or fresh authenticity audit; branch scope/protected-file preservation checked and existing terminal failure retained."
+  ],
+  "assessment": {
+    "ready_to_merge": "With fixes",
+    "reasoning": "One reproducible false-complete root-alias result requires correction. Otherwise this increment preserves the restricted provider-free scope and has hash-verified passing test evidence. Technical readiness does not authorize merge: retain Draft/unmerged, no native admission, Task3 unimplemented."
+  },
+  "evidence_checked": {
+    "review_package_read_first": true,
+    "requirements_read": [
+      "task-2-brief.md",
+      "task-2-report.md",
+      "task-2-report.json",
+      "progress.md six Task2 rulings",
+      "parent runtime-contract design and plan",
+      "runtime-inventory design addendum"
+    ],
+    "reviewed_files": "All nine changed files; full 490-line module and all 30 tests read. Committed audit and synthetic fixture reviewed.",
+    "source_test_sha256_verified": true,
+    "all_report_log_sha256_verified": true,
+    "focused_log": "30 tests / 0.339s / OK",
+    "full_log": "691 tests / 79.388s / OK / 7 optional native skips",
+    "protected_bytes_verified_against_base": [
+      "producer70",
+      "workflows44",
+      "registries8",
+      "Task1 tool/test/proposal3"
+    ],
+    "new_execution": "One concrete small temporary-tree root-alias reproduction only; retained without cleanup. Python -B prevented bytecode writes. No suite rerun.",
+    "head_verified": "e0fc6f33e29732052c3619390b3a4dfd53a5bb62"
+  }
+}

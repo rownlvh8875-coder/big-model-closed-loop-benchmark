@@ -34,7 +34,7 @@ Installed manifest limits:<=100000entries/16MiB JSON/4GiB total read/512MiB per 
 
 ## Current increment completion
 
-The initial design-only checkpoint is preserved at04c91d1. The sequential continuation implements **Task1 only** inline with TDD and a fresh whole-branch review. Tasks2–3 remain intentionally unexecuted and require their separate later gates; no image/native allowance is added.
+The initial design-only checkpoint is preserved at04c91d1 and Task1 at2cc22c0. This increment implements **Task2 caller-root fixture verification** inline with TDD and a fresh whole-branch review. [Task2 addendum](../specs/2026-11-12-engine-clock-runtime-inventory-design.md) fixes concrete alias/exclusion/deadline/two-pass rules. Task3 remains unimplemented with separate later gates; no image/native allowance is added.
 
 ### Task 1: Pure identity/proposal parser and comparator
 
@@ -58,16 +58,16 @@ The initial design-only checkpoint is preserved at04c91d1. The sequential contin
 - [x] Run the targeted command to GREEN. Run one complete CPU suite only after integration changes justify it; retain exact source/test hashes and meaningful skip reasons. Add no implementation-mirroring tests for ordinary documentation.
 - [x] Independent spec+quality review, source70/workflow44/registry8 preservation, own feature branch/Draft based on this design; current sequential Task1 is included in design/engine-clock-runtime-contract. Existing baseline CI only. Commit exact reviewed code; no native/image-preparation workflow is created or run.
 
-### Task 2: Bounded installed-file collector (separate later increment)
+### Task 2: Bounded installed-file collector (current separate increment)
 
 **Files:** create `scripts/engine_clock_runtime_inventory.py`, `tests/test_engine_clock_runtime_inventory.py`; consume Task1 `validate_identity` only where its input is genuinely an identity. Do not put new collectors inside a consumed producer module.
 
 **Interfaces:** `collect_inventory(root: Path, expected: dict, *, deadline: float) -> dict` reads a caller-supplied fixture/sealed root and verifies expected `installed-files-v1`; `validate_inventory(document: dict) -> dict` is pure metadata. Production absolute paths are mapped under `root`; no host machine scan is run as an automatic import/test side effect. Root/entry/runtime-exclusion schemas and limits follow the spec.
 
-- [ ] Write RED tests with small temporary file trees: exact byte/mode preservation; changed/missing/extra/empty files; overlapping root deduplication; valid cross-root symlink and expected `/etc/mtab`; escape/cycle/device/FIFO rejection; unexpected broad exclusions reject; file/entry/byte/JSON/deadline caps preserve a bounded partial stage without claiming a complete inventory.
-- [ ] Pin provider-free behavior: no `ldd`, subprocess, native import, GL context, provider, task or GPU invocation; hashing a file named like a native library is byte IO only. Synthetic caps can be lower in fixtures; production constants remain exact spec values.
-- [ ] Run targeted RED, implement collector, run targeted GREEN, then independently review pure-tool/collector boundary and installed-vs-actual-loaded assurance statements. Record hashing timing as preflight overhead; do not call it neutral.
-- [ ] Keep image/native readiness false. Commit/test/Draft only on a new provider-free branch. Any missing concrete filesystem/alias compatibility blocks preparation rather than changing old runtime rules.
+- [x] Write RED tests with small temporary file trees: exact byte/mode preservation; changed/missing/extra/empty files; overlapping root deduplication; valid cross-root symlink and expected `/etc/mtab`; escape/cycle/device/FIFO rejection; unexpected broad exclusions reject; file/entry/byte/JSON/deadline caps preserve a bounded partial stage without claiming a complete inventory.
+- [x] Pin provider-free behavior: no `ldd`, subprocess, native import, GL context, provider, task or GPU invocation; hashing a file named like a native library is byte IO only. Synthetic caps can be lower in fixtures; production constants remain exact spec values.
+- [x] Run targeted RED, implement collector, run targeted GREEN, then independently review pure-tool/collector boundary and installed-vs-actual-loaded assurance statements. Record hashing timing as preflight overhead; do not call it neutral.
+- [x] Keep image/native readiness false. Commit/test/Draft only on a new provider-free branch. Any missing concrete filesystem/alias compatibility blocks preparation rather than changing old runtime rules.
 
 ### Task 3: Image inputs, preparation adapter and provider-free evidence (separate later increment)
 
