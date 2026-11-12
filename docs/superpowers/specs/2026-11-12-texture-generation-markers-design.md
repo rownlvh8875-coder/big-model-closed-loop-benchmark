@@ -30,7 +30,9 @@ after exactly ONE original get_rgb_array_cpu call. Return that SAME array object
 Record common rawSHA, camera/call order, marker integers/null and bounded wall
 durations. Restore exact prior instance attributes even on failure. No new
 camera/render/task/readback/barrier/GL query or shadow/sampler/clock intervention.
-Expected12readbacks/case, ON24CPUmarker getter calls, OFF0. Startup is outside
+Expected12readbacks/case, ON24CPUmarker readings, OFF0. Each reading calls
+get_image_modified AND get_seq once:24calls to each accessor/ON case,48method
+invocations total. Across canary+ABBA this is72readings/144accessor invocations. Startup is outside
 these observed counts and is not claimed to have zero sensor activity.
 
 Every case uses its own initially empty Mesa disk-cache directory, with driver
@@ -43,15 +45,19 @@ limits; equal marker traces or RGB do not prove no observation effect.
 
 New request `.github/stage7-texture-marker-request.json` starts
 `schema=texture-marker-request-v1,mode=canary,acceptance=null`.
-One ON canary:1provider,6pairs,12observed reads,24CPUmarkers. Root+fresh raw
+One ON canary:1provider,6pairs,12observed reads,24CPUmarker readings. Root+fresh raw
 acceptance must precede a direct-child metadata/docs-only activation commit.
 Second mode `abba`: OFF0/ON0/ON1/OFF1 in4fresh sequential Python/Xvfb processes,
-4providers/24pairs/48observed reads/48CPUmarker getters. No retries/extensions;
-failure stops. Total ceiling5providers/30pairs/60observed reads/72CPUgetters,
+4providers/24pairs/48observed reads/48CPUmarker readings. No retries/extensions;
+failure stops. Total ceiling5providers/30pairs/60observed reads/72CPUmarker readings,
 excluding constructor startup,0official calls/ORT sessions/extraGPUreads.
 
 Per child270s includes launch+wait,300s including cleanup; parent phase1320s;
-32MiB payload/case,1MiB log/case,2MiB JSON/case/phase,192MiB dataset. Bound writes
+32MiB in-memory retained/transient payload/case,40MiB conservative disk-write
+allocation/case,1MiB log/case,2MiB JSON/case/phase,192MiB dataset.
+Frozen PNG writer conservatively reserves38,171,904bytes for6pairs, which fits
+40MiB but exceeds32MiB; preserve its accounting. Worst4case disk allocations
+plus logs/JSON/phase ledger total174MiB, below192MiB. Bound writes
 before allocation, preserve partial payload/logs and FAILED_OR_INCOMPLETE on
 failure; never delete raw evidence or infer zero providers from a missing child.
 One fixed-display xvfb-run attempt per case (probe-only -a omission).
@@ -93,7 +99,12 @@ nonce identities and actual constructor/close/copy counts must bind. Keep every
 matches wrapper rawSHA to common observer, exact source/runtime/marker schema,
 schedule, logs/limits/cache inventories, cleanup and allowed members. Compute
 OFF/OFF,ON/ON and all OFF/ON within-phase comparisons, first raw/canvas/I420
-differences and marker-pattern differences; no automatic scientific PASS.
+differences (capture/camera, packed capture) and marker-pattern differences;
+no automatic scientific PASS. Marker comparisons are null/unobserved if either
+case is OFF. For ON/ON distinguish absolute before/after-value equality from
+within-read equality-pattern equality; absolute counters are not inherently
+comparable across processes. Pixel/byte locations may be quantified posthoc
+from retained payloads without extra native observations.
 
 CPU fixtures cover actual wrapper/call/attribute ownership/order/no-extra-read,
 signed sequence/wrap/equal cases, exception restoration, admission/activation/

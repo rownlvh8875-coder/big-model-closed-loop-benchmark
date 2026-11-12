@@ -15,7 +15,7 @@
 - Preserve old62producer/protected13/baseline43/42workflows/consumed requests; no worktrees/Cloudpublish/main merge/local native.
 - Canary1ONprovider,then accepted direct-child activation ABBA4providers: total5/30pairs/60observedreads/72CPUmarkers,0official/ORT/extraGPUreads; no retry.
 - Fixed retained0pose schedule4+2; common retention wrapper both arms; no graph delays/convergence/render/task/clock/default changes.
-- Child270s/300swithcleanup,phase1320s;32MiBpayload+1MiBlog+2MiBJSON/case,192MiBdataset.
+- Child270s/300swithcleanup,phase1320s;32MiBmemory/40MiBdiskpayload+1MiBlog+2MiBJSON/case,192MiBdataset.
 - Every case starts isolated empty cache; requested route must populate, no cachehit/binary/model/fence/absence-of-observer-effect claim.
 
 ## Review Focus
