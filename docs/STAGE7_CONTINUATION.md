@@ -1,6 +1,19 @@
 # Stage 7 continuation — verified results, renderer cause still open
 
-## Current checkpoint (2026-11-12 — new first-divergence raw evidence accepted)
+## Current checkpoint (2026-11-12 — saved raw pixel CPU interventions complete)
+
+New branch analysis/first-divergence-pixel-neighborhoods adds only a standalone CPU tool/tests/docs; all62producer bytes/protected13/baseline43/42oldworkflows/consumed requests stay unchanged. Tool source1c9d08fbbe7c221129fe31d50c75389af8c2b65a,scriptSHA5e12227932d67a632aa65808d7be71e09826deec090ff09360c4cc6249a4af2e. Actual accepted study582cc59/run43149053427/artifact13912454399 was read only,NOT rerun/downloaded/re-extracted. Fresh API/source/ZIP/extracted bytes verified.
+
+Actual CPU analysis used recorded NumPy2.4.6/OpenCV5.0.0.93 and actual lens intrinsics. Step1 negativecontrol1subset;step2 all16subsets of4rawpixel changes. Road(130,351)/(552,438)/(718,512) contribute1/1/3packedbytes andchecksum+4/+7/+10;Wide(431,315) contributes8bytes/+11. Roadonly5/+21,Wideonly8/+11;all4(mask15) uniquely reconstruct actual B packed13values/checksum+32(48497357→48497389). Joint equals sum of singleton signed deltas in THIS data; unit fixture verifies nonadditive adjacent pixels elsewhere. This is a CPU transform intervention,NOT model counterfactual or unique GPU cause.
+
+Exact report docs/evidence/STAGE7_FIRST_DIVERGENCE_PIXEL_FORENSICS.json SHA c48507e5ec2f56c81960b3a1f38b805bb83fe4579aea0daf015f030f194f01ee; human report docs/STAGE7_FIRST_DIVERGENCE_PIXEL_FORENSICS.md and audit JSON contain allpoints/neighborhoods/packedindices/sourcereferences/limits. New forensic native/GPU/ORT/official calls0. Local targeted15/full501PASS; baseline generated SMALL graph separate. Independent review/branch CI will be recorded at finish.
+
+Next: separately design/register an OFF/ON CPU Texture image-generation marker observer around the unchanged existing RAM copy, fixed retained pose/capture schedule, fresh camera-only ABBA controls, no extra GPU/read/render/task/ORT/model calls. Released Texture.get_image_modified source is a CPU UpdateSeq getter,NOT a completion fence. A new source/canary and exact budgets are required before execution. No old cache/sampler/HDR matrices, acceptedcamera/transport or either consumed model study may be replayed. Original strictFAIL/geometry-optics-fullS/Stage7incomplete/mainofficial0/Cloudunpublished unchanged. Preserve raw/controller histories and do not relabel scientific source582cc59 as the analysis/docs HEAD.
+
+Reproduce CPU report using the existing original files (fresh --out only):
+`/workspace/.cloud-tools/stage7/first-divergence-cpu-replay/bin/python -m scripts.first_divergence_pixel_forensics --root output/stage7-remote-evidence/run-43149053427/extracted/13912454399 --archive output/stage7-remote-evidence/run-43149053427/13912454399.zip --out output/stage7-pixel-forensics/NEW-report.json`
+
+## Previous checkpoint (2026-11-12 — new first-divergence raw evidence accepted)
 
 Draft PR35 is stacked on34;33/34/35 remain DRAFT/unmerged. Actual camera source65d2958ec80afa190af972d798929042f6bb8f27/run43148115766/artifact13912517168 is root+fresh accepted (0officialcalls). Its direct-child activation source582cc594d127e9cde5ff3525e50c143f60285f75/run43149053427/workflow415459577/job130953643905/attempt1 succeeded. API/source/runtime gate passed BEFORE pinned official download BEFORE study. Actual6fresh native children/24calls(4each)/468.141821069s completed; allclosures/exits/cleanup/log limits verified. Artifact13912454399 ZIP27428724B SHA370ef36862e3da5bf39064acc732ff1728b0a0a549b6fba77045ce7380a8c748,141members187115633B,original extracted ONCE. Root+fresh raw ACCEPTED_COMPLETE_DESCRIPTIVE;reviewJSONSHA669c7cfe27a644e8301815e4a9c35797b4ed32d12968c905cf147ed951c197e9.
 

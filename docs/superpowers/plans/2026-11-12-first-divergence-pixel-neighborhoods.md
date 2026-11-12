@@ -33,9 +33,9 @@
 
 **Interfaces:** pixel_locations(lhs,rhs),analyze_pair(raw_a,raw_b,intrinsics),verify_archive(root,archive),run(root,archive,out) return dict/list per spec; CLI --root --archive --out.
 
-- [ ] Write failing tests for signed pixel locations/edge patches, unchanged/cropped pixels, camera isolation, cap/input immutability, output/archive/runtime rejection; run RED.
-- [ ] Implement minimal pure CPU analysis and strict fixed-archive reader; run targeted GREEN.
-- [ ] Run full unittest once, check62source/pins/all42workflows unchanged; commit tool/tests.
+- [x] Write failing tests for signed pixel locations/edge patches, unchanged/cropped pixels, camera isolation, cap/input immutability, output/archive/runtime rejection; run RED.
+- [x] Implement minimal pure CPU analysis and strict fixed-archive reader; run targeted GREEN.
+- [x] Run full unittest once, check62source/pins/all42workflows unchanged; commit tool/tests.
 
 ### Task 2: Actual forensic evidence and source history
 
@@ -43,7 +43,7 @@
 
 **Interfaces:** Consumes Task1 CLI and retained run43149053427 ZIP/extraction; produces authenticated CPU findings and exact next boundary, no native execution registration.
 
-- [ ] Refresh read-only run/job/artifact API metadata; authenticate existing ZIP; run tool with recorded CPU versions and preserve report/input digests.
-- [ ] Inspect4raw pixel neighborhoods, exact subset/camera influences and retained source/history; distinguish measured transforms from GPU hypotheses.
+- [x] Refresh read-only run/job/artifact API metadata; authenticate existing ZIP; run tool with recorded CPU versions and preserve report/input digests.
+- [x] Inspect4raw pixel neighborhoods, exact subset/camera influences and retained source/history; distinguish measured transforms from GPU hypotheses.
 - [ ] Write report/evidence/continuation and commit. Obtain fresh whole-branch code+evidence review; material fixes get RED/GREEN and required suite.
 - [ ] Push reviewed branch/create stacked Draft PR; verify actual basic CI only, no native replay; record finalHEAD/CI/PR and keep original strictFAIL.
