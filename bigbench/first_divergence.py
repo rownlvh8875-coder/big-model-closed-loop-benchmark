@@ -113,6 +113,7 @@ EXISTING_BIGBENCH_PINS = {
 }
 # Fixed source closure includes the isolated transport probe and its workflow.
 PRODUCER_SOURCE_PATHS = ('bigbench/first_divergence.py',
+                         '.github/workflows/stage7-first-divergence-post-transport.yml',
                          'scripts/first_divergence_transport_probe.py',
                          'tests/test_first_divergence_transport.py',
                          '.github/workflows/stage7-first-divergence-transport.yml',

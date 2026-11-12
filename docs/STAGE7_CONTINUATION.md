@@ -1,6 +1,16 @@
 # Stage 7 continuation — verified results, renderer cause still open
 
-## Current checkpoint (2026-11-12 — IPC repair and actual zero-model transport accepted)
+## Current checkpoint (2026-11-12 — new first-divergence raw evidence accepted)
+
+Draft PR35 is stacked on34;33/34/35 remain DRAFT/unmerged. Actual camera source65d2958ec80afa190af972d798929042f6bb8f27/run43148115766/artifact13912517168 is root+fresh accepted (0officialcalls). Its direct-child activation source582cc594d127e9cde5ff3525e50c143f60285f75/run43149053427/workflow415459577/job130953643905/attempt1 succeeded. API/source/runtime gate passed BEFORE pinned official download BEFORE study. Actual6fresh native children/24calls(4each)/468.141821069s completed; allclosures/exits/cleanup/log limits verified. Artifact13912454399 ZIP27428724B SHA370ef36862e3da5bf39064acc732ff1728b0a0a549b6fba77045ce7380a8c748,141members187115633B,original extracted ONCE. Root+fresh raw ACCEPTED_COMPLETE_DESCRIPTIVE;reviewJSONSHA669c7cfe27a644e8301815e4a9c35797b4ed32d12968c905cf147ed951c197e9.
+
+Retained A/A first differs at step2 rawRoad3pixels/max93/rawWide1pixel/max6 with identical accepted pose/intrinsics/source-reconstructed pre-state3/fixedfeeds3. Canvas3/9pixels differ;packed13values/max7;actualinputsum48497357 vs48497389;raw4/plan/poststatefirst2,prestatefirst3. Within-stream reconstruction16/16warps,8/8derivedI420 and8/8actualNEW_IMG SHA;cross-process retainedA/A raw2/8,I4201/4,raw4/plan1/4 each. All9comparisons/88arrays/24idealstate transitions authenticated. No unique GPU cause, intercepted-all-feed, ORT counterfactual or observer-effect-absence claim.
+
+See docs/STAGE7_POST_TRANSPORT_DIAGNOSTIC.md and docs/evidence/STAGE7_POST_TRANSPORT_DIAGNOSTIC.json for exact sources/IDs/runtime/pixels/decisions. Producer62/protected13/base43/old41workflows/consumedrequest fixed. Current source local targeted103/full486 PASS;source CI5jobs/canary and5jobs/modelSUCCESS. RuntimeUbuntu24/ImageVersion20261101.360.1 differs historicUbuntu26. Both one-shot studies are consumed; do not rerun/extend either or reuse leftover allowance. New phase official24/native7(including camera1);old081a callsnull0..4/providersunknown0..1 unchanged;mainofficial0/strictFAIL/original0of4/historiccandidate12of12/geometry-optics-fullS limits/Stage7incomplete/Cloudunpublished.
+
+Next: CPU-only inspect saved step2 differing pixels/neighborhoods and source history. Then design a separately registered bounded raw sensor/render/readback/GPU-state diagnostic with observer controls and fresh source/canary budgets BEFORE any native/model run. Never change converter/renderer/defaults/6-16-10 or declare strictPASS without evidence. Original evidence directories are retained; do not redownload/reextract or overwrite. Current full HEAD is read with `git rev-parse HEAD`; final docs HEAD must not replace actual scientific source582cc59.
+
+## Previous checkpoint (2026-11-12 — IPC repair and actual zero-model transport accepted)
 
 Stacked draft [PR34](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/pull/34)
 base is PR33's feature branch; neither is merged. Actual probe source

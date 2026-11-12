@@ -1,0 +1,55 @@
+{
+  "status": "ACCEPTED_NEW_CANARY_FOR_NEW_BOUNDED_PROTOCOL",
+  "acceptance": {
+    "repository": "rownlvh8875-coder/big-model-closed-loop-benchmark",
+    "workflow_id": 415459577,
+    "source_sha": "65d2958ec80afa190af972d798929042f6bb8f27",
+    "run_id": 43148115766,
+    "run_attempt": 1,
+    "artifact_id": 13912517168,
+    "artifact_name": "stage7-first-divergence-post-transport-canary",
+    "artifact_nbytes": 4875287,
+    "artifact_sha256": "48b72d5857b4409f09d427d95b66b30bd1c9c1eedfefaf066a895893d20d2aef",
+    "root_raw_accepted": true,
+    "fresh_raw_review_accepted": true
+  },
+  "root_report": "output/stage7-post-transport/run-43148115766/root-acceptance.json",
+  "fresh_review_json_sha256": "101e51c2c68a2a09c89e478f01fd3be2a57d546cf269a1b716e23b91cf423a71",
+  "source_review_json_sha256": "80b7c27bb92a91bc540cf211898978b7d3450438b4217c501e08fceb95697a7d",
+  "native_processes": 1,
+  "accepted_pairs": 2,
+  "pair_captures": 5,
+  "sensor_reads_excluding_startup": 10,
+  "official_model_calls": 0,
+  "ort_sessions": 0,
+  "source_paths": 62,
+  "raw_to_canvas_exact": "4/4",
+  "derived_i420_exact": "2/2",
+  "actual_graph_feed_match": null,
+  "runtime": {
+    "python": "3.11.18 (main, Oct 26 2026, 02:48:34) [GCC 13.3.0]",
+    "executable": "/opt/hostedtoolcache/Python/3.11.18/x64/bin/python",
+    "numpy": "2.4.6",
+    "opencv-python-headless": "5.0.0.93",
+    "panda3d": "1.10.13",
+    "metadrive-simulator": "0.4.3",
+    "onnxruntime": "1.31.1",
+    "ImageOS": "ubuntu24",
+    "ImageVersion": "20261101.360.1"
+  },
+  "new_protocol": {
+    "max_children": 6,
+    "max_official_calls": 24,
+    "steps_per_child": 4,
+    "child_timeout_s": 480,
+    "study_timeout_s": 2400,
+    "retries": 0
+  },
+  "consumed_old_study_run": 43128201225,
+  "consumed_old_study_call_bounds": [
+    0,
+    4
+  ],
+  "original_strict_gate": "FAIL",
+  "stage7_complete": false
+}

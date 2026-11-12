@@ -33,10 +33,10 @@ CHILD_LIMIT_S = 480
 STUDY_LIMIT_S = 2400
 PROCESS_LOG_CAP_BYTES = 1024 * 1024
 MIN_LEDGER_BYTES = 4096
-WORKFLOW_PATH = '.github/workflows/stage7-first-divergence.yml'
-REQUEST_PATH = '.github/stage7-first-divergence-request.json'
-ARTIFACT_NAME = 'stage7-first-divergence-canary'
-BRANCH = 'fix/public-onnx-action-frame'
+WORKFLOW_PATH = '.github/workflows/stage7-first-divergence-post-transport.yml'
+REQUEST_PATH = '.github/stage7-first-divergence-post-transport-request.json'
+ARTIFACT_NAME = 'stage7-first-divergence-post-transport-canary'
+BRANCH = 'fix/first-divergence-post-transport'
 REQUEST_SCHEMA = 'first-divergence-request-v1'
 TRIAL_SCHEMA = 'first-divergence-trial-v1'
 STUDY_SCHEMA = 'first-divergence-study-v1'
@@ -289,7 +289,7 @@ class PolicyObserver:
         finally: row['policy_inclusive_wall_s']=perf_counter()-start
 
 REPOSITORY = 'rownlvh8875-coder/big-model-closed-loop-benchmark'
-ACTIVATION_METADATA = {REQUEST_PATH,'.github/stage7-first-divergence-acceptance.json'}
+ACTIVATION_METADATA = {REQUEST_PATH,'.github/stage7-first-divergence-post-transport-acceptance.json'}
 
 
 def _git(*args):

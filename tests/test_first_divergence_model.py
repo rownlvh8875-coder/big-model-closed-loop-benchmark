@@ -27,6 +27,24 @@ except ModuleNotFoundError as exc:
     model = None
 
 
+class PostTransportRegistrationTests(unittest.TestCase):
+    """Prevent consumed run identity from authorizing the successor diagnostic."""
+    def test_successor_api_run_is_accepted_and_consumed_identity_rejected(self):
+        run=dict(id=101,run_attempt=1,event='push',head_sha='a'*40,
+            head_branch='fix/first-divergence-post-transport',
+            path='.github/workflows/stage7-first-divergence-post-transport.yml',
+            workflow_id=77,repository={'full_name':'rownlvh8875-coder/big-model-closed-loop-benchmark'})
+        self.assertEqual(model._run_context(run)['run_id'],101)
+        for changes in (
+            {'head_branch':'fix/public-onnx-action-frame'},
+            {'path':'.github/workflows/stage7-first-divergence.yml'},
+            {'head_branch':'fix/first-divergence-launch-transport'},
+            {'head_branch':'main'},{'event':'pull_request'},{'run_attempt':2}):
+            with self.subTest(changes=changes),self.assertRaises(ValueError):
+                model._run_context({**run,**changes})
+
+
+
 class Parent:
     needs_dual_camera=True
     name='boundary-policy'
@@ -126,8 +144,8 @@ class GateTests(unittest.TestCase):
         (data/'manifest.json').write_text(json.dumps(manifest))
         repo='rownlvh8875-coder/big-model-closed-loop-benchmark'
         accepted='a'*40; current='b'*40
-        context=dict(repository=repo,workflow_path='.github/workflows/stage7-first-divergence.yml',
-            workflow_id=77,head_sha=accepted,run_id=101,attempt=1,event='push',branch='fix/public-onnx-action-frame')
+        context=dict(repository=repo,workflow_path='.github/workflows/stage7-first-divergence-post-transport.yml',
+            workflow_id=77,head_sha=accepted,run_id=101,attempt=1,event='push',branch='fix/first-divergence-post-transport')
         runtime=dict(capture.runtime_versions(),ImageOS='ubuntu24',ImageVersion='20261101.1')
         receipt=dict(schema='first-divergence-source-receipt-v1',context=context,
             source_snapshot=capture.source_snapshot(),runtime=runtime,installed_binary_equality_proven=False)
@@ -139,7 +157,7 @@ class GateTests(unittest.TestCase):
         archive=stream.getvalue()
         request=dict(schema='first-divergence-request-v1',mode='model-study',acceptance=dict(
             repository=repo,workflow_id=77,source_sha=accepted,run_id=101,run_attempt=1,
-            artifact_id=501,artifact_name='stage7-first-divergence-canary',artifact_nbytes=len(archive),
+            artifact_id=501,artifact_name='stage7-first-divergence-post-transport-canary',artifact_nbytes=len(archive),
             artifact_sha256=sha256(archive).hexdigest(),root_raw_accepted=True,fresh_raw_review_accepted=True))
         requestpath=Path(temp)/'request.json'; requestpath.write_text(json.dumps(request))
         def run(number,head,conclusion):
@@ -149,11 +167,11 @@ class GateTests(unittest.TestCase):
         payloads={f'/repos/{repo}/actions/runs/101':run(101,accepted,'success'),
             f'/repos/{repo}/actions/runs/102':run(102,current,None),
             f'/repos/{repo}/actions/workflows/77':dict(id=77,path=context['workflow_path'],state='active'),
-            f'/repos/{repo}/actions/artifacts/501':dict(id=501,name='stage7-first-divergence-canary',expired=False,
+            f'/repos/{repo}/actions/artifacts/501':dict(id=501,name='stage7-first-divergence-post-transport-canary',expired=False,
                 size_in_bytes=len(archive),digest='sha256:'+sha256(archive).hexdigest(),
                 workflow_run=dict(id=101,head_sha=accepted,head_branch=context['branch'])),
             f'/repos/{repo}/commits/{current}':dict(sha=current,parents=[{'sha':accepted}],
-                files=[{'filename':'.github/stage7-first-divergence-request.json','status':'modified'}])}
+                files=[{'filename':'.github/stage7-first-divergence-post-transport-request.json','status':'modified'}])}
         payloads[f'/repos/{repo}/actions/workflows/77/runs?event=push&head_sha={current}&per_page=100']=dict(total_count=1,workflow_runs=[payloads[f'/repos/{repo}/actions/runs/102']])
         class API:
             def json(self,path): return json.loads(json.dumps(payloads[path]))
@@ -164,10 +182,10 @@ class GateTests(unittest.TestCase):
         def git(*args):
             if args==('rev-parse','HEAD'): return current.encode()+b'\n'
             if args==('rev-list','--parents','-n','1','HEAD'): return f'{current} {accepted}\n'.encode()
-            if args==('diff-tree','--no-commit-id','--name-only','-r',current): return b'.github/stage7-first-divergence-request.json\n'
+            if args==('diff-tree','--no-commit-id','--name-only','-r',current): return b'.github/stage7-first-divergence-post-transport-request.json\n'
             if args[0]=='show':
                 head,path=args[1].split(':',1)
-                if path=='.github/stage7-first-divergence-request.json':
+                if path=='.github/stage7-first-divergence-post-transport-request.json':
                     return requestpath.read_bytes() if head==current else b'{"schema":"first-divergence-request-v1","mode":"capture-canary","acceptance":null}'
                 return (capture.REPO_ROOT/path).read_bytes()
             raise AssertionError(args)
@@ -205,7 +223,7 @@ class GateTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp:
             f=self.fixture(temp); original=f.git
             def git(*args):
-                if args==('show',f.accepted+':.github/stage7-first-divergence-request.json'):
+                if args==('show',f.accepted+':.github/stage7-first-divergence-post-transport-request.json'):
                     return f.requestpath.read_bytes()
                 return original(*args)
             f.git=git
@@ -430,7 +448,7 @@ class ValidationTests(unittest.TestCase):
 
 class WorkflowTests(unittest.TestCase):
     def config(self):
-        path=capture.REPO_ROOT/'.github/workflows/stage7-first-divergence.yml'
+        path=capture.REPO_ROOT/'.github/workflows/stage7-first-divergence-post-transport.yml'
         self.assertTrue(path.is_file(),'new diagnostic workflow required')
         return json.loads(path.read_text())
     def test_job_environment_uses_only_supported_contexts(self):
@@ -466,7 +484,7 @@ class WorkflowTests(unittest.TestCase):
             exported=dict(line.split('=',1) for line in envfile.read_text().splitlines())
             expected=temp+'/first-divergence-acceptance/acceptance.json'
             self.assertEqual(exported.get('FIRST_DIVERGENCE_ACCEPTANCE'),expected)
-            request=json.loads((capture.REPO_ROOT/'.github/stage7-first-divergence-request.json').read_text())
+            request=json.loads((capture.REPO_ROOT/'.github/stage7-first-divergence-post-transport-request.json').read_text())
             self.assertEqual(output.read_text(),'mode='+request['mode']+'\n')
             env.update(exported)
             for step,count in ((gate,1),(weights,2),(study,1)):
@@ -485,18 +503,18 @@ class WorkflowTests(unittest.TestCase):
         def selected(event,branch,changed):
             trigger=events.get(event)
             return bool(trigger and branch in trigger['branches'] and set(changed)&set(trigger['paths']))
-        cases=[('push','fix/public-onnx-action-frame',['bigbench/first_divergence_model.py'],True),
-            ('push','fix/public-onnx-action-frame',['.github/stage7-first-divergence-request.json'],True),
-            ('push','fix/public-onnx-action-frame',['docs/result.md'],False),
+        cases=[('push','fix/first-divergence-post-transport',['bigbench/first_divergence_model.py'],True),
+            ('push','fix/first-divergence-post-transport',['.github/stage7-first-divergence-post-transport-request.json'],True),
+            ('push','fix/first-divergence-post-transport',['docs/result.md'],False),
             ('push','main',['bigbench/first_divergence_model.py'],False),
-            ('workflow_dispatch','fix/public-onnx-action-frame',['bigbench/first_divergence_model.py'],False),
-            ('push','fix/public-onnx-action-frame',['bigbench/onnx_policy.py'],False)]
+            ('workflow_dispatch','fix/first-divergence-post-transport',['bigbench/first_divergence_model.py'],False),
+            ('push','fix/first-divergence-post-transport',['bigbench/onnx_policy.py'],False)]
         for event,branch,changed,want in cases:
             with self.subTest(event=event,branch=branch,changed=changed):self.assertEqual(selected(event,branch,changed),want)
         self.assertEqual(workflow['permissions'],{'contents':'read','actions':'read'})
         self.assertEqual(workflow['jobs']['diagnostic']['steps'][0]['with']['fetch-depth'],2)
     def test_initial_request_and_artifact_layout_keep_canary_camera_only(self):
-        workflow=self.config();request=json.loads((capture.REPO_ROOT/'.github/stage7-first-divergence-request.json').read_text())
+        workflow=self.config();request=json.loads((capture.REPO_ROOT/'.github/stage7-first-divergence-post-transport-request.json').read_text())
         self.assertEqual(request['schema'],'first-divergence-request-v1')
         self.assertIn(request['mode'],('capture-canary','model-study'))
         if request['mode']=='capture-canary':self.assertIsNone(request['acceptance'])
@@ -506,14 +524,14 @@ class WorkflowTests(unittest.TestCase):
         self.assertEqual(ids['gate']['if'],"steps.mode.outputs.mode == 'model-study'")
         self.assertEqual(ids['weights']['if'],"steps.mode.outputs.mode == 'model-study'")
         uploads=[s for s in steps if s.get('uses','').startswith('actions/upload-artifact@')]
-        canary=next(s for s in uploads if s['with']['name']=='stage7-first-divergence-canary')
+        canary=next(s for s in uploads if s['with']['name']=='stage7-first-divergence-post-transport-canary')
         self.assertEqual(canary['with']['path'],'${{ runner.temp }}/first-divergence-canary/')
         self.assertEqual(canary['if'],"always() && steps.mode.outputs.mode == 'capture-canary'")
     def test_source_registry_includes_all_new_producers_and_download_closure(self):
         paths=set(capture.required_source_paths())
         self.assertTrue({'bigbench/first_divergence_model.py','tests/test_first_divergence_model.py',
-            '.github/workflows/stage7-first-divergence.yml','bigbench/model_inventory.py','scripts/__init__.py'}<=paths)
-        self.assertNotIn('.github/stage7-first-divergence-request.json',paths)
+            '.github/workflows/stage7-first-divergence-post-transport.yml','bigbench/model_inventory.py','scripts/__init__.py'}<=paths)
+        self.assertNotIn('.github/stage7-first-divergence-post-transport-request.json',paths)
     def test_cli_routes_all_explicit_commands_and_failed_trial_is_nonzero(self):
         from scripts.first_divergence_audit import main
         with patch.object(model,'run_trial',return_value={'status':'FAILED_OR_INCOMPLETE'}):
