@@ -44,3 +44,5 @@ PID·nonce·container ID·실행 HEAD·시간처럼 매번 달라지는 값은 �
 실행 예: `python -m scripts.engine_clock_runtime_contract validate-proposal --proposal docs/evidence/STAGE7_ENGINE_CLOCK_RUNTIME_CONTRACT_PROPOSAL.json`은 `INACTIVE_PROPOSAL_VALIDATED`와 `execution_authorized=false`를 반환한다. `compare-identity --left FILE --right FILE`은 메타데이터 차이의 경로만 반환하고 실제 archive/API/Docker/installed tree를 검사하지 않는다. 두 가짜 identity가 같아도 실제 준비·실행·binary selection 증거가 아니다.
 
 Task1 실제 로컬 전체 CPU 시험:661tests/73.571s/선택 의존성7skip, focused17/0.498s. 최초17개 missing-feature RED와 guard fixture 수정 로그를 보존했다. 같은 code/test의 독립 최종 검토와 최종 HEAD 기본 CI는 후속 영수증 및 Draft PR에서 구분해 기록한다.
+
+독립 최종 검토: a2317468e3a3b4bf1a6e81a6c3d40c92e08331e3에서 Critical0/Important0/문서Minor1, 원래 설계I1 closed. [검토 원본](evidence/STAGE7_ENGINE_CLOCK_RUNTIME_CONTRACT_REVIEW.md)의 M1에 따라 완료 문구와 실제 provenance 거부 시험 설명을 정정했다. 후속 변경은 문서·검토 영수증뿐이며 code/test byte는 그대로다. 검토 JSON SHA256 `771e987e1f802f1ed8c48eaa2fed385f2e9b0beb4395d29fc6c386e2ba7030a8`; 최종 HEAD 및 이후 기본 CI는 Draft PR에 기록한다.

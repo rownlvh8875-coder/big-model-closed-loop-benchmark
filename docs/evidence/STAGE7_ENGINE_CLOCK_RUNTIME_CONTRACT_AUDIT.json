@@ -17,7 +17,7 @@
   "base_sha": "d7774ce40d62a19176ea2f5239edfc6644cf51ef",
   "basic_ci": {
     "final_head_and_actual_jobs": "Recorded after push in Draft PR and controller receipt, not self-attested by this earlier commit",
-    "status": "PENDING_DOCS_ONLY_PUSH"
+    "status": "PENDING_FINAL_HEAD_PUSH"
   },
   "branch": "design/engine-clock-runtime-contract",
   "cloud_configuration_changed": false,
@@ -32,6 +32,68 @@
     "spec_revision": "1"
   },
   "cloud_published": false,
+  "declined_dispositions": [
+    {
+      "behavior": "Actual image/archive/config/diffID object authentication and API/container association",
+      "cost_if_wrong": "cost:realpreparation/authenticationwork remains before native.",
+      "reason": "Task3 is unimplemented and all16 preparation references remain null; Task1 parses and compares opaque metadata only.",
+      "root_decision": "No actual object/API authentication is claimed until Task3 real artifact evidence;currentmetadata statusesremainnon-admitting."
+    },
+    {
+      "behavior": "Closed installed-tree collection, missing/extra files, modes, symlink escapes/cycles, alias traversal and filesystem race resistance",
+      "cost_if_wrong": "cost:collectorimplementation/verification remains.",
+      "reason": "Task2 is unimplemented. Spec constrains closed roots, bounded traversal and exact four Docker metadata exclusions; no collector behavior or coverage is claimed.",
+      "root_decision": "Keep installed-tree collection and race/alias correctness unproved until Task2 tests+implementation."
+    },
+    {
+      "behavior": "Concrete Docker-managed /etc compatibility and legitimate alias layouts",
+      "cost_if_wrong": "cost:realimage mayfailclosedandneedseparaterevision.",
+      "reason": "Only design rules exist, including exact /etc/mtab exception; actual image layouts require Task2/3 evidence.",
+      "root_decision": "Keep Docker /etc layout compatibility provisional;exact4exclusions arenotmeasuredcompatibility."
+    },
+    {
+      "behavior": "Sanitized actual host/container evidence, env-only forgery rejection, Config.Env/token/proxy redaction and image streaming transport",
+      "cost_if_wrong": "cost:Task3adaptersandredactiontestsremain.",
+      "reason": "Future Task3 tests and adapter are explicit; no API/Docker/image artifact exists. Current CLI path-only errors/comparisons were reviewed separately.",
+      "root_decision": "Keep actualhost/container env/token sanitization andimagestreaming unimplemented;currentCLI onlypaths/metadata."
+    },
+    {
+      "behavior": "Real dependency lock compatibility, prepared image feasibility, disk/hash/load/download costs and Docker compatibility",
+      "cost_if_wrong": "cost:preparationcanfailbeforeanynativeallowance.",
+      "reason": "Unavailable future evidence; limits are proposed caps, not measurements or activation.",
+      "root_decision": "Keep realdependency/image/disk/hash/loadfeasibility unknown;all16refsnullandcapsnotmeasurements."
+    },
+    {
+      "behavior": "Actual GL/driver/plugin selection, GPU identity/freshness, pixels, cache hits, physical-host equality and observer neutrality",
+      "cost_if_wrong": "cost:independentregisterednativeevidence remains necessary.",
+      "reason": "Outside stated assurance and no native probing authorized.",
+      "root_decision": "Keep GL/GPU/pixel/cache/hardware/observerneutrality unproved;thisparser grantsno scientificassurance."
+    },
+    {
+      "behavior": "Future native FD/PID/ancestry/group/reaping integration and revised budgets",
+      "cost_if_wrong": "cost:newprotocol/source/canarydesign remains necessary.",
+      "reason": "Requires a separately registered native protocol after accepted provider-free evidence; old allowance cannot be reused.",
+      "root_decision": "Keep futureFD/PID/cleanupandbudgets outofcurrentimplementation;oldallowanceunavailable."
+    },
+    {
+      "behavior": "Fresh historical raw/archive replay or proof of zero allocation in terminal ABBA",
+      "cost_if_wrong": "cost:allocation/causalunknownsremain.",
+      "reason": "Replay prohibited and unnecessary; retained source bindings and null aggregates are preserved, not freshly attested.",
+      "root_decision": "Preserve historicalfailure/nulls without rawreplayorzeroallocationclaim."
+    },
+    {
+      "behavior": "Live CI, PR, main and Cloud service state or later status-only HEAD",
+      "cost_if_wrong": "cost:laterHEADnotcoveredbyreviewerremoteattestation.",
+      "reason": "Review is exact local HEAD; root owns subsequent remote/CI observations and must report them separately.",
+      "root_decision": "Root separately checks finalremoteHEAD/CI/Draft/mainandreadonlyCloudstatus aftermetadatareceipt."
+    },
+    {
+      "behavior": "Independent repetition of full/focused test suites",
+      "cost_if_wrong": "cost:noindependentsecondsuiterun;freshbaselineCIwillcoverfinalHEAD.",
+      "reason": "Explicitly disallowed absent an uncovered behavioral doubt. Exact source/test/log hashes and retained 17 focused/661 full result were checked; no unresolved runtime doubt warranted a rerun.",
+      "root_decision": "Accept exactsource/test/loghashes+root17/661evidence without duplicatereviewersuite."
+    }
+  ],
   "design_review": {
     "important_I1": "Cannot infer object class fromsame-shaped hashes;correctedinspec/planandregressionbeforefinalcode review",
     "json_sha256": "0407a67cd85dc474691f9745118e0faca721ad805ba39f0020615e30b680aa13",
@@ -39,10 +101,10 @@
     "verdict": "WITH_FIXES"
   },
   "document_sha256": {
-    "docs/STAGE7_ENGINE_CLOCK_RUNTIME_CONTRACT.md": "9db8003b707c1a9f95e078bf0d7d93a22493b45801de072e75dfd5a9efbb5c13",
+    "docs/STAGE7_ENGINE_CLOCK_RUNTIME_CONTRACT.md": "4e21f3ce3ac6c67b41344dbabb8f2c2786e1448987fa61aeaf3f2b665f67a36f",
     "docs/evidence/STAGE7_ENGINE_CLOCK_RUNTIME_CONTRACT_PROPOSAL.json": "ab1631a7fc9c07ad6c5cd8c0ef0e61afdf6c4857ea6c93502d7d29fa01010ad0",
-    "docs/superpowers/plans/2026-11-12-engine-clock-runtime-contract.md": "727142a61cab32a83c89aa0e0c57aebc1f343fc0d3bc5bec70d4b9e058ceac26",
-    "docs/superpowers/specs/2026-11-12-engine-clock-runtime-contract-design.md": "e85cf36ccd97c8ff90b5a0f91c7e2b267e1305cba540bef62de7efd4c53b9478"
+    "docs/superpowers/plans/2026-11-12-engine-clock-runtime-contract.md": "a16434e43af284b36ede78d0a140c82e7def5d8c0a6fcc9a546e8fbe547a529a",
+    "docs/superpowers/specs/2026-11-12-engine-clock-runtime-contract-design.md": "af6d44d7a9afa4d0ae0301d405c4bcdf2233b7721e273d3d50ec0cfcc330a330"
   },
   "expanded": "NOT_RUN",
   "geometry_optics_full_s": "NOT_VALIDATED",
@@ -155,13 +217,34 @@
   "proposal_schema": "engine-clock-runtime-contract-proposal-v1",
   "proposal_sha256": "ab1631a7fc9c07ad6c5cd8c0ef0e61afdf6c4857ea6c93502d7d29fa01010ad0",
   "reference_scope": "3 GitHub content blobs and2 official Docker HTML responses read;3 unavailable GitHub documentation paths preserved as404, not relied on as evidence. No image/package/native artifact fetched.",
-  "review": null,
+  "review": {
+    "M1": "Factualprose corrected after review;no code/testchange,no newtautologicaltest or suite repeat",
+    "critical": 0,
+    "final_head_and_actual_ci": "Recorded in Draft PR after push",
+    "important": 0,
+    "json_sha256": "771e987e1f802f1ed8c48eaa2fed385f2e9b0beb4395d29fc6c386e2ba7030a8",
+    "later_changes": "review/status/audit documents only",
+    "minor": 1,
+    "original_I1": "CLOSED",
+    "reviewed_head": "a2317468e3a3b4bf1a6e81a6c3d40c92e08331e3"
+  },
   "rulings": [
     "Ruling: preserve current source70/all44workflows/consumedregistries and use a new design branch \u2014 prevents replay or reinterpretation of terminal ABBA \u2014 cost: new namespace and later implementation/verification are required.",
     "Ruling: recommend sealed OCI userspace identity with separately observed host execution profile; keep outer ImageVersion visible as provenance in the future schema \u2014 a hosted label is not a binary digest and old equality remains frozen \u2014 cost: containers do not pin kernel/CPU/actual loaded GL selection and future strict profile admission can still fail.",
     "Ruling: design-only deliverables with real image/lock/launch references null and native allowance0 \u2014 no image has been built or authenticated \u2014 cost: current design cannot authorize an image-preparation or native run.",
     "Ruling: use a future authenticated Docker-save/load Actions artifact plus image config digest/diffIDs instead of requiring registry publication \u2014 keeps image transport in the existing Actions evidence route \u2014 cost: additional archive transfer/load and the archive SHA/config digest must never be mislabeled as an OCI registry manifest digest.",
-    "Ruling: after correcting the builder finding, continue the already-planned pure metadata Task1 in this turn, inline with TDD and a fresh whole-branch review \u2014 user asks sequential actual development and no external/native preparation is needed \u2014 cost: additional code/CPU/review work; metadata matches remain unauthenticated and image/native allowance stays0."
+    "Ruling: after correcting the builder finding, continue the already-planned pure metadata Task1 in this turn, inline with TDD and a fresh whole-branch review \u2014 user asks sequential actual development and no external/native preparation is needed \u2014 cost: additional code/CPU/review work; metadata matches remain unauthenticated and image/native allowance stays0.",
+    "Ruling: correct factual M1 completion/test-description prose in the final metadata update \u2014 user requires accurate verification records and prose needs no implementation-mirroring test \u2014 cost: later documentation HEAD is not independently re-reviewed; exact code/test hashes and prior661-test evidence remain binding.",
+    "Final: Ruling: Actual image/archive/config/diffID object authentication and API/container association \u2014 No actual object/API authentication is claimed until Task3 real artifact evidence;currentmetadata statusesremainnon-admitting. \u2014 cost:realpreparation/authenticationwork remains before native.",
+    "Final: Ruling: Closed installed-tree collection, missing/extra files, modes, symlink escapes/cycles, alias traversal and filesystem race resistance \u2014 Keep installed-tree collection and race/alias correctness unproved until Task2 tests+implementation. \u2014 cost:collectorimplementation/verification remains.",
+    "Final: Ruling: Concrete Docker-managed /etc compatibility and legitimate alias layouts \u2014 Keep Docker /etc layout compatibility provisional;exact4exclusions arenotmeasuredcompatibility. \u2014 cost:realimage mayfailclosedandneedseparaterevision.",
+    "Final: Ruling: Sanitized actual host/container evidence, env-only forgery rejection, Config.Env/token/proxy redaction and image streaming transport \u2014 Keep actualhost/container env/token sanitization andimagestreaming unimplemented;currentCLI onlypaths/metadata. \u2014 cost:Task3adaptersandredactiontestsremain.",
+    "Final: Ruling: Real dependency lock compatibility, prepared image feasibility, disk/hash/load/download costs and Docker compatibility \u2014 Keep realdependency/image/disk/hash/loadfeasibility unknown;all16refsnullandcapsnotmeasurements. \u2014 cost:preparationcanfailbeforeanynativeallowance.",
+    "Final: Ruling: Actual GL/driver/plugin selection, GPU identity/freshness, pixels, cache hits, physical-host equality and observer neutrality \u2014 Keep GL/GPU/pixel/cache/hardware/observerneutrality unproved;thisparser grantsno scientificassurance. \u2014 cost:independentregisterednativeevidence remains necessary.",
+    "Final: Ruling: Future native FD/PID/ancestry/group/reaping integration and revised budgets \u2014 Keep futureFD/PID/cleanupandbudgets outofcurrentimplementation;oldallowanceunavailable. \u2014 cost:newprotocol/source/canarydesign remains necessary.",
+    "Final: Ruling: Fresh historical raw/archive replay or proof of zero allocation in terminal ABBA \u2014 Preserve historicalfailure/nulls without rawreplayorzeroallocationclaim. \u2014 cost:allocation/causalunknownsremain.",
+    "Final: Ruling: Live CI, PR, main and Cloud service state or later status-only HEAD \u2014 Root separately checks finalremoteHEAD/CI/Draft/mainandreadonlyCloudstatus aftermetadatareceipt. \u2014 cost:laterHEADnotcoveredbyreviewerremoteattestation.",
+    "Final: Ruling: Independent repetition of full/focused test suites \u2014 Accept exactsource/test/loghashes+root17/661evidence without duplicatereviewersuite. \u2014 cost:noindependentsecondsuiterun;freshbaselineCIwillcoverfinalHEAD."
   ],
   "schema": "stage7-engine-clock-runtime-contract-audit-v1",
   "scientific_strict": "FAIL",
