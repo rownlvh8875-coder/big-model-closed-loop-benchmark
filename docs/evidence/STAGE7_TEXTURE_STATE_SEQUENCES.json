@@ -1,0 +1,2316 @@
+{
+  "schema": "texture-marker-state-sequences-v1",
+  "status": "CPU_TEXTURE_STATE_SEQUENCES_VALIDATED",
+  "provenance": [
+    {
+      "source": "0a98918e746fe7df9d5502e21db91c3e5cd15396",
+      "run_id": 43177564313,
+      "artifact_id": 13925041858,
+      "archive_bytes": 14605800,
+      "archive_sha256": "6a8c7a2e3495a5115938d17aee1da8c4e27f4e2ebc1b6350001e0f1090ee1994",
+      "members": 33,
+      "uncompressed_bytes": 15795803
+    },
+    {
+      "source": "4814794243ca61a96264ebe04f4fb1b82f0eeecf",
+      "run_id": 43178394897,
+      "artifact_id": 13925716196,
+      "archive_bytes": 58403425,
+      "archive_sha256": "e6017f302e6879709bf089aaeca97fde9ca8828764b645c8e4bde473db6f16ce",
+      "members": 129,
+      "uncompressed_bytes": 63162078
+    }
+  ],
+  "producer_paths": 65,
+  "cpu_runtime": {
+    "numpy": "2.4.6",
+    "opencv-python-headless": "5.0.0.93"
+  },
+  "cases": [
+    {
+      "id": "canary_ON",
+      "phase": "canary",
+      "index": 0,
+      "enabled": true,
+      "source_sha": "0a98918e746fe7df9d5502e21db91c3e5cd15396",
+      "process_id": 3024
+    },
+    {
+      "id": "OFF0",
+      "phase": "abba",
+      "index": 0,
+      "enabled": false,
+      "source_sha": "4814794243ca61a96264ebe04f4fb1b82f0eeecf",
+      "process_id": 2882
+    },
+    {
+      "id": "ON0",
+      "phase": "abba",
+      "index": 1,
+      "enabled": true,
+      "source_sha": "4814794243ca61a96264ebe04f4fb1b82f0eeecf",
+      "process_id": 2991
+    },
+    {
+      "id": "ON1",
+      "phase": "abba",
+      "index": 2,
+      "enabled": true,
+      "source_sha": "4814794243ca61a96264ebe04f4fb1b82f0eeecf",
+      "process_id": 3098
+    },
+    {
+      "id": "OFF1",
+      "phase": "abba",
+      "index": 3,
+      "enabled": false,
+      "source_sha": "4814794243ca61a96264ebe04f4fb1b82f0eeecf",
+      "process_id": 3204
+    }
+  ],
+  "raw_frames": 60,
+  "accepted_pairs": 30,
+  "retained_raw_bytes": 104806080,
+  "raw_retention_cap": 134217728,
+  "catalogs": [
+    {
+      "pose": 0,
+      "camera": "road",
+      "samples": [
+        {
+          "case": "canary_ON",
+          "capture": 1
+        },
+        {
+          "case": "canary_ON",
+          "capture": 2
+        },
+        {
+          "case": "canary_ON",
+          "capture": 3
+        },
+        {
+          "case": "canary_ON",
+          "capture": 4
+        },
+        {
+          "case": "OFF0",
+          "capture": 1
+        },
+        {
+          "case": "OFF0",
+          "capture": 2
+        },
+        {
+          "case": "OFF0",
+          "capture": 3
+        },
+        {
+          "case": "OFF0",
+          "capture": 4
+        },
+        {
+          "case": "ON0",
+          "capture": 1
+        },
+        {
+          "case": "ON0",
+          "capture": 2
+        },
+        {
+          "case": "ON0",
+          "capture": 3
+        },
+        {
+          "case": "ON0",
+          "capture": 4
+        },
+        {
+          "case": "ON1",
+          "capture": 1
+        },
+        {
+          "case": "ON1",
+          "capture": 2
+        },
+        {
+          "case": "ON1",
+          "capture": 3
+        },
+        {
+          "case": "ON1",
+          "capture": 4
+        },
+        {
+          "case": "OFF1",
+          "capture": 1
+        },
+        {
+          "case": "OFF1",
+          "capture": 2
+        },
+        {
+          "case": "OFF1",
+          "capture": 3
+        },
+        {
+          "case": "OFF1",
+          "capture": 4
+        }
+      ],
+      "states": [
+        {
+          "id": 0,
+          "rgb_sha256": "07973c741a8d0ff7005593fbfefa37e1e6fe3a169df8b4f3b07155e067eb002c",
+          "indices": [
+            0,
+            4,
+            8,
+            12,
+            16
+          ],
+          "representative_index": 0,
+          "canvas_rgb_sha256": "787a3b977213e6f52d431a32b9aad6800890361de196e0c42a282197395e2755"
+        },
+        {
+          "id": 1,
+          "rgb_sha256": "2ec476c27f600192c06fe5fc0a841e392f2a8a7b238f1b18ae875c6a0c3ddbfd",
+          "indices": [
+            3,
+            7,
+            9,
+            13,
+            17
+          ],
+          "representative_index": 3,
+          "canvas_rgb_sha256": "ee39964cc83e9ed3228760c3a82efd58673ecd83001826ecedafc830484c6d8b"
+        },
+        {
+          "id": 2,
+          "rgb_sha256": "5d601f7b0b135f62bc69d02399f43ac89716669950d0dfbe2c80c7e12776c7ef",
+          "indices": [
+            1,
+            2,
+            5,
+            6,
+            10,
+            11,
+            14,
+            15,
+            18,
+            19
+          ],
+          "representative_index": 1,
+          "canvas_rgb_sha256": "5c7fff71587eb62acd678325d31d1a29e74d5d65ac93803238571b57249a6316"
+        }
+      ],
+      "sequence": [
+        0,
+        2,
+        2,
+        1,
+        0,
+        2,
+        2,
+        1,
+        0,
+        1,
+        2,
+        2,
+        0,
+        1,
+        2,
+        2,
+        0,
+        1,
+        2,
+        2
+      ],
+      "differences": [
+        {
+          "left": 0,
+          "right": 1,
+          "changed_pixels": 24899,
+          "changed_values": 74573,
+          "max_abs": 78,
+          "first_xy": [
+            839,
+            162
+          ]
+        },
+        {
+          "left": 0,
+          "right": 2,
+          "changed_pixels": 24898,
+          "changed_values": 74570,
+          "max_abs": 78,
+          "first_xy": [
+            839,
+            162
+          ]
+        },
+        {
+          "left": 1,
+          "right": 2,
+          "changed_pixels": 1,
+          "changed_values": 3,
+          "max_abs": 39,
+          "first_xy": [
+            254,
+            363
+          ]
+        }
+      ]
+    },
+    {
+      "pose": 0,
+      "camera": "wide",
+      "samples": [
+        {
+          "case": "canary_ON",
+          "capture": 1
+        },
+        {
+          "case": "canary_ON",
+          "capture": 2
+        },
+        {
+          "case": "canary_ON",
+          "capture": 3
+        },
+        {
+          "case": "canary_ON",
+          "capture": 4
+        },
+        {
+          "case": "OFF0",
+          "capture": 1
+        },
+        {
+          "case": "OFF0",
+          "capture": 2
+        },
+        {
+          "case": "OFF0",
+          "capture": 3
+        },
+        {
+          "case": "OFF0",
+          "capture": 4
+        },
+        {
+          "case": "ON0",
+          "capture": 1
+        },
+        {
+          "case": "ON0",
+          "capture": 2
+        },
+        {
+          "case": "ON0",
+          "capture": 3
+        },
+        {
+          "case": "ON0",
+          "capture": 4
+        },
+        {
+          "case": "ON1",
+          "capture": 1
+        },
+        {
+          "case": "ON1",
+          "capture": 2
+        },
+        {
+          "case": "ON1",
+          "capture": 3
+        },
+        {
+          "case": "ON1",
+          "capture": 4
+        },
+        {
+          "case": "OFF1",
+          "capture": 1
+        },
+        {
+          "case": "OFF1",
+          "capture": 2
+        },
+        {
+          "case": "OFF1",
+          "capture": 3
+        },
+        {
+          "case": "OFF1",
+          "capture": 4
+        }
+      ],
+      "states": [
+        {
+          "id": 0,
+          "rgb_sha256": "067d86d67984b2d124299b9fc0d1ba17155e6f243440cc4dc94460a58bc519a2",
+          "indices": [
+            0,
+            4,
+            8,
+            12,
+            16
+          ],
+          "representative_index": 0,
+          "canvas_rgb_sha256": "f94697d4ea341808bbacdc62e827797b59443e985276be4233d89e5ffd3102aa"
+        },
+        {
+          "id": 1,
+          "rgb_sha256": "90507344ee0036666318a8ec68720fd9a7f379f1245badf1faca863ca80267ea",
+          "indices": [
+            1,
+            2,
+            3,
+            5,
+            6,
+            7,
+            9,
+            10,
+            13,
+            14,
+            17,
+            18
+          ],
+          "representative_index": 1,
+          "canvas_rgb_sha256": "a18874020b73d973dd7e36a8e5d5e2fe1057581df16ef4111eba2c18c6900263"
+        },
+        {
+          "id": 2,
+          "rgb_sha256": "f73aeaf9a4cc99485063bdd47258e846b74b1764bcf0292268f6f17c49499b32",
+          "indices": [
+            11,
+            15,
+            19
+          ],
+          "representative_index": 11,
+          "canvas_rgb_sha256": "e323d0738e45635b92e8015e5274b069ba1896dadbd1b742e29baf8e9436868c"
+        }
+      ],
+      "sequence": [
+        0,
+        1,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1,
+        0,
+        1,
+        1,
+        2,
+        0,
+        1,
+        1,
+        2,
+        0,
+        1,
+        1,
+        2
+      ],
+      "differences": [
+        {
+          "left": 0,
+          "right": 1,
+          "changed_pixels": 3196,
+          "changed_values": 9582,
+          "max_abs": 77,
+          "first_xy": [
+            557,
+            272
+          ]
+        },
+        {
+          "left": 0,
+          "right": 2,
+          "changed_pixels": 3197,
+          "changed_values": 9585,
+          "max_abs": 77,
+          "first_xy": [
+            557,
+            272
+          ]
+        },
+        {
+          "left": 1,
+          "right": 2,
+          "changed_pixels": 1,
+          "changed_values": 3,
+          "max_abs": 35,
+          "first_xy": [
+            544,
+            352
+          ]
+        }
+      ]
+    },
+    {
+      "pose": 1,
+      "camera": "road",
+      "samples": [
+        {
+          "case": "canary_ON",
+          "capture": 5
+        },
+        {
+          "case": "canary_ON",
+          "capture": 6
+        },
+        {
+          "case": "OFF0",
+          "capture": 5
+        },
+        {
+          "case": "OFF0",
+          "capture": 6
+        },
+        {
+          "case": "ON0",
+          "capture": 5
+        },
+        {
+          "case": "ON0",
+          "capture": 6
+        },
+        {
+          "case": "ON1",
+          "capture": 5
+        },
+        {
+          "case": "ON1",
+          "capture": 6
+        },
+        {
+          "case": "OFF1",
+          "capture": 5
+        },
+        {
+          "case": "OFF1",
+          "capture": 6
+        }
+      ],
+      "states": [
+        {
+          "id": 0,
+          "rgb_sha256": "3a6d9abe66e46346346b46fcfc0718101d89525c20b98c3f2a185d3977317411",
+          "indices": [
+            0,
+            2
+          ],
+          "representative_index": 0,
+          "canvas_rgb_sha256": "992b1b38b225893dd643e68b3c508093ff641fc221df15167ff248f8cb051064"
+        },
+        {
+          "id": 1,
+          "rgb_sha256": "f2748bee88856bcd568620f4d452eb52c966411c17c36a2f904eb46f016f94c4",
+          "indices": [
+            1,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "representative_index": 1,
+          "canvas_rgb_sha256": "a6ccdbd0e808bcb9576727f2fc29a9e4a96713bc162e57c4c4df8ad1f4067f8b"
+        }
+      ],
+      "sequence": [
+        0,
+        1,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "differences": [
+        {
+          "left": 0,
+          "right": 1,
+          "changed_pixels": 3,
+          "changed_values": 9,
+          "max_abs": 93,
+          "first_xy": [
+            130,
+            351
+          ]
+        }
+      ]
+    },
+    {
+      "pose": 1,
+      "camera": "wide",
+      "samples": [
+        {
+          "case": "canary_ON",
+          "capture": 5
+        },
+        {
+          "case": "canary_ON",
+          "capture": 6
+        },
+        {
+          "case": "OFF0",
+          "capture": 5
+        },
+        {
+          "case": "OFF0",
+          "capture": 6
+        },
+        {
+          "case": "ON0",
+          "capture": 5
+        },
+        {
+          "case": "ON0",
+          "capture": 6
+        },
+        {
+          "case": "ON1",
+          "capture": 5
+        },
+        {
+          "case": "ON1",
+          "capture": 6
+        },
+        {
+          "case": "OFF1",
+          "capture": 5
+        },
+        {
+          "case": "OFF1",
+          "capture": 6
+        }
+      ],
+      "states": [
+        {
+          "id": 0,
+          "rgb_sha256": "64047104f0f69b5387bbe48a17dcd5564b72f922cdffc501f5f8413046f420b2",
+          "indices": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "representative_index": 1,
+          "canvas_rgb_sha256": "3a3bb5d58b2e72345dbbe28505d3831b2279c2036eac4d3a0b60b64c8ece51c9"
+        },
+        {
+          "id": 1,
+          "rgb_sha256": "71b4f9ff555b59ab578a354a8f550b00ec2ba14db7fbf8cd9c592559a7551eb0",
+          "indices": [
+            0
+          ],
+          "representative_index": 0,
+          "canvas_rgb_sha256": "79ba046809a7d75325c4f5a5695500b73f02cbd017d1bc934e864f240ccef9ab"
+        }
+      ],
+      "sequence": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "differences": [
+        {
+          "left": 0,
+          "right": 1,
+          "changed_pixels": 1,
+          "changed_values": 3,
+          "max_abs": 6,
+          "first_xy": [
+            431,
+            315
+          ]
+        }
+      ]
+    }
+  ],
+  "ordinal_sparse_differences": [
+    {
+      "capture": 1,
+      "pose": 0,
+      "camera": "road",
+      "cases": [
+        "canary_ON",
+        "OFF0",
+        "ON0",
+        "ON1",
+        "OFF1"
+      ],
+      "points": []
+    },
+    {
+      "capture": 1,
+      "pose": 0,
+      "camera": "wide",
+      "cases": [
+        "canary_ON",
+        "OFF0",
+        "ON0",
+        "ON1",
+        "OFF1"
+      ],
+      "points": []
+    },
+    {
+      "capture": 2,
+      "pose": 0,
+      "camera": "road",
+      "cases": [
+        "canary_ON",
+        "OFF0",
+        "ON0",
+        "ON1",
+        "OFF1"
+      ],
+      "points": [
+        {
+          "xy": [
+            254,
+            363
+          ],
+          "rgb": [
+            [
+              192,
+              183,
+              130
+            ],
+            [
+              192,
+              183,
+              130
+            ],
+            [
+              196,
+              185,
+              91
+            ],
+            [
+              196,
+              185,
+              91
+            ],
+            [
+              196,
+              185,
+              91
+            ]
+          ],
+          "delta_from_first": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              4,
+              2,
+              -39
+            ],
+            [
+              4,
+              2,
+              -39
+            ],
+            [
+              4,
+              2,
+              -39
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "capture": 2,
+      "pose": 0,
+      "camera": "wide",
+      "cases": [
+        "canary_ON",
+        "OFF0",
+        "ON0",
+        "ON1",
+        "OFF1"
+      ],
+      "points": []
+    },
+    {
+      "capture": 3,
+      "pose": 0,
+      "camera": "road",
+      "cases": [
+        "canary_ON",
+        "OFF0",
+        "ON0",
+        "ON1",
+        "OFF1"
+      ],
+      "points": []
+    },
+    {
+      "capture": 3,
+      "pose": 0,
+      "camera": "wide",
+      "cases": [
+        "canary_ON",
+        "OFF0",
+        "ON0",
+        "ON1",
+        "OFF1"
+      ],
+      "points": []
+    },
+    {
+      "capture": 4,
+      "pose": 0,
+      "camera": "road",
+      "cases": [
+        "canary_ON",
+        "OFF0",
+        "ON0",
+        "ON1",
+        "OFF1"
+      ],
+      "points": [
+        {
+          "xy": [
+            254,
+            363
+          ],
+          "rgb": [
+            [
+              196,
+              185,
+              91
+            ],
+            [
+              196,
+              185,
+              91
+            ],
+            [
+              192,
+              183,
+              130
+            ],
+            [
+              192,
+              183,
+              130
+            ],
+            [
+              192,
+              183,
+              130
+            ]
+          ],
+          "delta_from_first": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              -4,
+              -2,
+              39
+            ],
+            [
+              -4,
+              -2,
+              39
+            ],
+            [
+              -4,
+              -2,
+              39
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "capture": 4,
+      "pose": 0,
+      "camera": "wide",
+      "cases": [
+        "canary_ON",
+        "OFF0",
+        "ON0",
+        "ON1",
+        "OFF1"
+      ],
+      "points": [
+        {
+          "xy": [
+            544,
+            352
+          ],
+          "rgb": [
+            [
+              97,
+              100,
+              61
+            ],
+            [
+              97,
+              100,
+              61
+            ],
+            [
+              83,
+              90,
+              26
+            ],
+            [
+              83,
+              90,
+              26
+            ],
+            [
+              83,
+              90,
+              26
+            ]
+          ],
+          "delta_from_first": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              -14,
+              -10,
+              -35
+            ],
+            [
+              -14,
+              -10,
+              -35
+            ],
+            [
+              -14,
+              -10,
+              -35
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "capture": 5,
+      "pose": 1,
+      "camera": "road",
+      "cases": [
+        "canary_ON",
+        "OFF0",
+        "ON0",
+        "ON1",
+        "OFF1"
+      ],
+      "points": [
+        {
+          "xy": [
+            130,
+            351
+          ],
+          "rgb": [
+            [
+              199,
+              187,
+              0
+            ],
+            [
+              199,
+              187,
+              0
+            ],
+            [
+              195,
+              185,
+              93
+            ],
+            [
+              195,
+              185,
+              93
+            ],
+            [
+              195,
+              185,
+              93
+            ]
+          ],
+          "delta_from_first": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              -4,
+              -2,
+              93
+            ],
+            [
+              -4,
+              -2,
+              93
+            ],
+            [
+              -4,
+              -2,
+              93
+            ]
+          ]
+        },
+        {
+          "xy": [
+            552,
+            438
+          ],
+          "rgb": [
+            [
+              114,
+              109,
+              88
+            ],
+            [
+              114,
+              109,
+              88
+            ],
+            [
+              124,
+              119,
+              104
+            ],
+            [
+              124,
+              119,
+              104
+            ],
+            [
+              124,
+              119,
+              104
+            ]
+          ],
+          "delta_from_first": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              10,
+              10,
+              16
+            ],
+            [
+              10,
+              10,
+              16
+            ],
+            [
+              10,
+              10,
+              16
+            ]
+          ]
+        },
+        {
+          "xy": [
+            718,
+            512
+          ],
+          "rgb": [
+            [
+              109,
+              109,
+              86
+            ],
+            [
+              109,
+              109,
+              86
+            ],
+            [
+              122,
+              119,
+              106
+            ],
+            [
+              122,
+              119,
+              106
+            ],
+            [
+              122,
+              119,
+              106
+            ]
+          ],
+          "delta_from_first": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              13,
+              10,
+              20
+            ],
+            [
+              13,
+              10,
+              20
+            ],
+            [
+              13,
+              10,
+              20
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "capture": 5,
+      "pose": 1,
+      "camera": "wide",
+      "cases": [
+        "canary_ON",
+        "OFF0",
+        "ON0",
+        "ON1",
+        "OFF1"
+      ],
+      "points": [
+        {
+          "xy": [
+            431,
+            315
+          ],
+          "rgb": [
+            [
+              199,
+              198,
+              202
+            ],
+            [
+              195,
+              194,
+              196
+            ],
+            [
+              195,
+              194,
+              196
+            ],
+            [
+              195,
+              194,
+              196
+            ],
+            [
+              195,
+              194,
+              196
+            ]
+          ],
+          "delta_from_first": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              -4,
+              -4,
+              -6
+            ],
+            [
+              -4,
+              -4,
+              -6
+            ],
+            [
+              -4,
+              -4,
+              -6
+            ],
+            [
+              -4,
+              -4,
+              -6
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "capture": 6,
+      "pose": 1,
+      "camera": "road",
+      "cases": [
+        "canary_ON",
+        "OFF0",
+        "ON0",
+        "ON1",
+        "OFF1"
+      ],
+      "points": []
+    },
+    {
+      "capture": 6,
+      "pose": 1,
+      "camera": "wide",
+      "cases": [
+        "canary_ON",
+        "OFF0",
+        "ON0",
+        "ON1",
+        "OFF1"
+      ],
+      "points": []
+    }
+  ],
+  "support_union": [
+    {
+      "pose": 0,
+      "camera": "road",
+      "xy": [
+        254,
+        363
+      ],
+      "case_values": [
+        {
+          "case": "canary_ON",
+          "captures": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "rgb": [
+            [
+              192,
+              183,
+              130
+            ],
+            [
+              192,
+              183,
+              130
+            ],
+            [
+              192,
+              183,
+              130
+            ],
+            [
+              196,
+              185,
+              91
+            ]
+          ]
+        },
+        {
+          "case": "OFF0",
+          "captures": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "rgb": [
+            [
+              192,
+              183,
+              130
+            ],
+            [
+              192,
+              183,
+              130
+            ],
+            [
+              192,
+              183,
+              130
+            ],
+            [
+              196,
+              185,
+              91
+            ]
+          ]
+        },
+        {
+          "case": "ON0",
+          "captures": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "rgb": [
+            [
+              192,
+              183,
+              130
+            ],
+            [
+              196,
+              185,
+              91
+            ],
+            [
+              192,
+              183,
+              130
+            ],
+            [
+              192,
+              183,
+              130
+            ]
+          ]
+        },
+        {
+          "case": "ON1",
+          "captures": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "rgb": [
+            [
+              192,
+              183,
+              130
+            ],
+            [
+              196,
+              185,
+              91
+            ],
+            [
+              192,
+              183,
+              130
+            ],
+            [
+              192,
+              183,
+              130
+            ]
+          ]
+        },
+        {
+          "case": "OFF1",
+          "captures": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "rgb": [
+            [
+              192,
+              183,
+              130
+            ],
+            [
+              196,
+              185,
+              91
+            ],
+            [
+              192,
+              183,
+              130
+            ],
+            [
+              192,
+              183,
+              130
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "pose": 0,
+      "camera": "wide",
+      "xy": [
+        544,
+        352
+      ],
+      "case_values": [
+        {
+          "case": "canary_ON",
+          "captures": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "rgb": [
+            [
+              97,
+              100,
+              61
+            ],
+            [
+              97,
+              100,
+              61
+            ],
+            [
+              97,
+              100,
+              61
+            ],
+            [
+              97,
+              100,
+              61
+            ]
+          ]
+        },
+        {
+          "case": "OFF0",
+          "captures": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "rgb": [
+            [
+              97,
+              100,
+              61
+            ],
+            [
+              97,
+              100,
+              61
+            ],
+            [
+              97,
+              100,
+              61
+            ],
+            [
+              97,
+              100,
+              61
+            ]
+          ]
+        },
+        {
+          "case": "ON0",
+          "captures": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "rgb": [
+            [
+              97,
+              100,
+              61
+            ],
+            [
+              97,
+              100,
+              61
+            ],
+            [
+              97,
+              100,
+              61
+            ],
+            [
+              83,
+              90,
+              26
+            ]
+          ]
+        },
+        {
+          "case": "ON1",
+          "captures": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "rgb": [
+            [
+              97,
+              100,
+              61
+            ],
+            [
+              97,
+              100,
+              61
+            ],
+            [
+              97,
+              100,
+              61
+            ],
+            [
+              83,
+              90,
+              26
+            ]
+          ]
+        },
+        {
+          "case": "OFF1",
+          "captures": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "rgb": [
+            [
+              97,
+              100,
+              61
+            ],
+            [
+              97,
+              100,
+              61
+            ],
+            [
+              97,
+              100,
+              61
+            ],
+            [
+              83,
+              90,
+              26
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "pose": 1,
+      "camera": "road",
+      "xy": [
+        130,
+        351
+      ],
+      "case_values": [
+        {
+          "case": "canary_ON",
+          "captures": [
+            5,
+            6
+          ],
+          "rgb": [
+            [
+              199,
+              187,
+              0
+            ],
+            [
+              195,
+              185,
+              93
+            ]
+          ]
+        },
+        {
+          "case": "OFF0",
+          "captures": [
+            5,
+            6
+          ],
+          "rgb": [
+            [
+              199,
+              187,
+              0
+            ],
+            [
+              195,
+              185,
+              93
+            ]
+          ]
+        },
+        {
+          "case": "ON0",
+          "captures": [
+            5,
+            6
+          ],
+          "rgb": [
+            [
+              195,
+              185,
+              93
+            ],
+            [
+              195,
+              185,
+              93
+            ]
+          ]
+        },
+        {
+          "case": "ON1",
+          "captures": [
+            5,
+            6
+          ],
+          "rgb": [
+            [
+              195,
+              185,
+              93
+            ],
+            [
+              195,
+              185,
+              93
+            ]
+          ]
+        },
+        {
+          "case": "OFF1",
+          "captures": [
+            5,
+            6
+          ],
+          "rgb": [
+            [
+              195,
+              185,
+              93
+            ],
+            [
+              195,
+              185,
+              93
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "pose": 1,
+      "camera": "road",
+      "xy": [
+        552,
+        438
+      ],
+      "case_values": [
+        {
+          "case": "canary_ON",
+          "captures": [
+            5,
+            6
+          ],
+          "rgb": [
+            [
+              114,
+              109,
+              88
+            ],
+            [
+              124,
+              119,
+              104
+            ]
+          ]
+        },
+        {
+          "case": "OFF0",
+          "captures": [
+            5,
+            6
+          ],
+          "rgb": [
+            [
+              114,
+              109,
+              88
+            ],
+            [
+              124,
+              119,
+              104
+            ]
+          ]
+        },
+        {
+          "case": "ON0",
+          "captures": [
+            5,
+            6
+          ],
+          "rgb": [
+            [
+              124,
+              119,
+              104
+            ],
+            [
+              124,
+              119,
+              104
+            ]
+          ]
+        },
+        {
+          "case": "ON1",
+          "captures": [
+            5,
+            6
+          ],
+          "rgb": [
+            [
+              124,
+              119,
+              104
+            ],
+            [
+              124,
+              119,
+              104
+            ]
+          ]
+        },
+        {
+          "case": "OFF1",
+          "captures": [
+            5,
+            6
+          ],
+          "rgb": [
+            [
+              124,
+              119,
+              104
+            ],
+            [
+              124,
+              119,
+              104
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "pose": 1,
+      "camera": "road",
+      "xy": [
+        718,
+        512
+      ],
+      "case_values": [
+        {
+          "case": "canary_ON",
+          "captures": [
+            5,
+            6
+          ],
+          "rgb": [
+            [
+              109,
+              109,
+              86
+            ],
+            [
+              122,
+              119,
+              106
+            ]
+          ]
+        },
+        {
+          "case": "OFF0",
+          "captures": [
+            5,
+            6
+          ],
+          "rgb": [
+            [
+              109,
+              109,
+              86
+            ],
+            [
+              122,
+              119,
+              106
+            ]
+          ]
+        },
+        {
+          "case": "ON0",
+          "captures": [
+            5,
+            6
+          ],
+          "rgb": [
+            [
+              122,
+              119,
+              106
+            ],
+            [
+              122,
+              119,
+              106
+            ]
+          ]
+        },
+        {
+          "case": "ON1",
+          "captures": [
+            5,
+            6
+          ],
+          "rgb": [
+            [
+              122,
+              119,
+              106
+            ],
+            [
+              122,
+              119,
+              106
+            ]
+          ]
+        },
+        {
+          "case": "OFF1",
+          "captures": [
+            5,
+            6
+          ],
+          "rgb": [
+            [
+              122,
+              119,
+              106
+            ],
+            [
+              122,
+              119,
+              106
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "pose": 1,
+      "camera": "wide",
+      "xy": [
+        431,
+        315
+      ],
+      "case_values": [
+        {
+          "case": "canary_ON",
+          "captures": [
+            5,
+            6
+          ],
+          "rgb": [
+            [
+              199,
+              198,
+              202
+            ],
+            [
+              195,
+              194,
+              196
+            ]
+          ]
+        },
+        {
+          "case": "OFF0",
+          "captures": [
+            5,
+            6
+          ],
+          "rgb": [
+            [
+              195,
+              194,
+              196
+            ],
+            [
+              195,
+              194,
+              196
+            ]
+          ]
+        },
+        {
+          "case": "ON0",
+          "captures": [
+            5,
+            6
+          ],
+          "rgb": [
+            [
+              195,
+              194,
+              196
+            ],
+            [
+              195,
+              194,
+              196
+            ]
+          ]
+        },
+        {
+          "case": "ON1",
+          "captures": [
+            5,
+            6
+          ],
+          "rgb": [
+            [
+              195,
+              194,
+              196
+            ],
+            [
+              195,
+              194,
+              196
+            ]
+          ]
+        },
+        {
+          "case": "OFF1",
+          "captures": [
+            5,
+            6
+          ],
+          "rgb": [
+            [
+              195,
+              194,
+              196
+            ],
+            [
+              195,
+              194,
+              196
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "cross_process_markers": [
+    {
+      "left": "canary_ON",
+      "right": "OFF0",
+      "observed": false,
+      "values_equal": null,
+      "patterns_equal": null,
+      "raw_trace_equal": false,
+      "same_values_different_raw": null
+    },
+    {
+      "left": "canary_ON",
+      "right": "ON0",
+      "observed": true,
+      "values_equal": true,
+      "patterns_equal": true,
+      "raw_trace_equal": false,
+      "same_values_different_raw": [
+        {
+          "row": 3,
+          "camera": "road",
+          "before": 14,
+          "after": 14
+        },
+        {
+          "row": 7,
+          "camera": "road",
+          "before": 18,
+          "after": 18
+        },
+        {
+          "row": 8,
+          "camera": "wide",
+          "before": 19,
+          "after": 19
+        },
+        {
+          "row": 9,
+          "camera": "road",
+          "before": 20,
+          "after": 20
+        },
+        {
+          "row": 10,
+          "camera": "wide",
+          "before": 21,
+          "after": 21
+        }
+      ]
+    },
+    {
+      "left": "canary_ON",
+      "right": "ON1",
+      "observed": true,
+      "values_equal": true,
+      "patterns_equal": true,
+      "raw_trace_equal": false,
+      "same_values_different_raw": [
+        {
+          "row": 3,
+          "camera": "road",
+          "before": 14,
+          "after": 14
+        },
+        {
+          "row": 7,
+          "camera": "road",
+          "before": 18,
+          "after": 18
+        },
+        {
+          "row": 8,
+          "camera": "wide",
+          "before": 19,
+          "after": 19
+        },
+        {
+          "row": 9,
+          "camera": "road",
+          "before": 20,
+          "after": 20
+        },
+        {
+          "row": 10,
+          "camera": "wide",
+          "before": 21,
+          "after": 21
+        }
+      ]
+    },
+    {
+      "left": "canary_ON",
+      "right": "OFF1",
+      "observed": false,
+      "values_equal": null,
+      "patterns_equal": null,
+      "raw_trace_equal": false,
+      "same_values_different_raw": null
+    },
+    {
+      "left": "OFF0",
+      "right": "ON0",
+      "observed": false,
+      "values_equal": null,
+      "patterns_equal": null,
+      "raw_trace_equal": false,
+      "same_values_different_raw": null
+    },
+    {
+      "left": "OFF0",
+      "right": "ON1",
+      "observed": false,
+      "values_equal": null,
+      "patterns_equal": null,
+      "raw_trace_equal": false,
+      "same_values_different_raw": null
+    },
+    {
+      "left": "OFF0",
+      "right": "OFF1",
+      "observed": false,
+      "values_equal": null,
+      "patterns_equal": null,
+      "raw_trace_equal": false,
+      "same_values_different_raw": null
+    },
+    {
+      "left": "ON0",
+      "right": "ON1",
+      "observed": true,
+      "values_equal": true,
+      "patterns_equal": true,
+      "raw_trace_equal": true,
+      "same_values_different_raw": []
+    },
+    {
+      "left": "ON0",
+      "right": "OFF1",
+      "observed": false,
+      "values_equal": null,
+      "patterns_equal": null,
+      "raw_trace_equal": true,
+      "same_values_different_raw": null
+    },
+    {
+      "left": "ON1",
+      "right": "OFF1",
+      "observed": false,
+      "values_equal": null,
+      "patterns_equal": null,
+      "raw_trace_equal": true,
+      "same_values_different_raw": null
+    }
+  ],
+  "within_process_same_rgb_different_markers": [
+    {
+      "case": "canary_ON",
+      "camera": "road",
+      "left_capture": 2,
+      "right_capture": 3,
+      "left_values": [
+        14,
+        14
+      ],
+      "right_values": [
+        16,
+        16
+      ],
+      "raw_sha256": "5d601f7b0b135f62bc69d02399f43ac89716669950d0dfbe2c80c7e12776c7ef"
+    },
+    {
+      "case": "canary_ON",
+      "camera": "wide",
+      "left_capture": 2,
+      "right_capture": 3,
+      "left_values": [
+        15,
+        15
+      ],
+      "right_values": [
+        17,
+        17
+      ],
+      "raw_sha256": "90507344ee0036666318a8ec68720fd9a7f379f1245badf1faca863ca80267ea"
+    },
+    {
+      "case": "canary_ON",
+      "camera": "wide",
+      "left_capture": 3,
+      "right_capture": 4,
+      "left_values": [
+        17,
+        17
+      ],
+      "right_values": [
+        19,
+        19
+      ],
+      "raw_sha256": "90507344ee0036666318a8ec68720fd9a7f379f1245badf1faca863ca80267ea"
+    },
+    {
+      "case": "ON0",
+      "camera": "wide",
+      "left_capture": 2,
+      "right_capture": 3,
+      "left_values": [
+        15,
+        15
+      ],
+      "right_values": [
+        17,
+        17
+      ],
+      "raw_sha256": "90507344ee0036666318a8ec68720fd9a7f379f1245badf1faca863ca80267ea"
+    },
+    {
+      "case": "ON0",
+      "camera": "road",
+      "left_capture": 3,
+      "right_capture": 4,
+      "left_values": [
+        16,
+        16
+      ],
+      "right_values": [
+        18,
+        18
+      ],
+      "raw_sha256": "5d601f7b0b135f62bc69d02399f43ac89716669950d0dfbe2c80c7e12776c7ef"
+    },
+    {
+      "case": "ON0",
+      "camera": "road",
+      "left_capture": 5,
+      "right_capture": 6,
+      "left_values": [
+        20,
+        20
+      ],
+      "right_values": [
+        22,
+        22
+      ],
+      "raw_sha256": "f2748bee88856bcd568620f4d452eb52c966411c17c36a2f904eb46f016f94c4"
+    },
+    {
+      "case": "ON0",
+      "camera": "wide",
+      "left_capture": 5,
+      "right_capture": 6,
+      "left_values": [
+        21,
+        21
+      ],
+      "right_values": [
+        23,
+        23
+      ],
+      "raw_sha256": "64047104f0f69b5387bbe48a17dcd5564b72f922cdffc501f5f8413046f420b2"
+    },
+    {
+      "case": "ON1",
+      "camera": "wide",
+      "left_capture": 2,
+      "right_capture": 3,
+      "left_values": [
+        15,
+        15
+      ],
+      "right_values": [
+        17,
+        17
+      ],
+      "raw_sha256": "90507344ee0036666318a8ec68720fd9a7f379f1245badf1faca863ca80267ea"
+    },
+    {
+      "case": "ON1",
+      "camera": "road",
+      "left_capture": 3,
+      "right_capture": 4,
+      "left_values": [
+        16,
+        16
+      ],
+      "right_values": [
+        18,
+        18
+      ],
+      "raw_sha256": "5d601f7b0b135f62bc69d02399f43ac89716669950d0dfbe2c80c7e12776c7ef"
+    },
+    {
+      "case": "ON1",
+      "camera": "road",
+      "left_capture": 5,
+      "right_capture": 6,
+      "left_values": [
+        20,
+        20
+      ],
+      "right_values": [
+        22,
+        22
+      ],
+      "raw_sha256": "f2748bee88856bcd568620f4d452eb52c966411c17c36a2f904eb46f016f94c4"
+    },
+    {
+      "case": "ON1",
+      "camera": "wide",
+      "left_capture": 5,
+      "right_capture": 6,
+      "left_values": [
+        21,
+        21
+      ],
+      "right_values": [
+        23,
+        23
+      ],
+      "raw_sha256": "64047104f0f69b5387bbe48a17dcd5564b72f922cdffc501f5f8413046f420b2"
+    }
+  ],
+  "new_native_calls": 0,
+  "new_official_model_calls": 0,
+  "new_ort_sessions": 0,
+  "new_gpu_reads": 0,
+  "original_strict_pass": false,
+  "stage7_complete": false,
+  "limitation": "Image state IDs are SHA-sorted RGB byte classes within a pose/camera group, not renderer frames, physical phase or GPU state. Capture ordinal and virtual pose time do not supply engine frame/time snapshots. OFF retains raw and has no observed markers. Cross-process absolute counters are not globally unique image identities or fences. No new native, GPU, ORT or model work, live API authentication, observer-neutrality, binary-equality or strict-PASS proof."
+}
