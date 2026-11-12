@@ -261,6 +261,21 @@ def _group_gone(pid):
     return False
 
 
+def _wait_group_exit(group, deadline):
+    """Passively reap adopted descendants; never signal a surviving reader."""
+    while True:
+        try:
+            reaped,_=os.waitpid(-group,os.WNOHANG)
+        except InterruptedError:
+            _remaining(deadline,CASE_CAP-CLEANUP_RESERVE)
+            continue
+        except ChildProcessError:
+            reaped=0
+        if _group_gone(group):return
+        remaining=_remaining(deadline,CASE_CAP-CLEANUP_RESERVE)
+        if not reaped:time.sleep(min(.01,remaining))
+
+
 def _case(out, case, parent_uuid, source_hash, runtime_hash, total_deadline):
     model=_production();started=time.monotonic()
     execution_deadline=min(started+CASE_CAP,total_deadline)-CLEANUP_RESERVE
@@ -299,6 +314,10 @@ def _case(out, case, parent_uuid, source_hash, runtime_hash, total_deadline):
             try:
                 process.wait(timeout=max(.001,execution_deadline-time.monotonic()))
                 result['wrapper_waited_before_delivery']=True
+                # Released xvfb-run signals Xvfb without waiting for its exit.
+                # A surviving descendant can still hold the permit read FD.
+                # Wait/reap the original group before the real delivery attempt.
+                _wait_group_exit(process.pid,execution_deadline)
             except BaseException:
                 # Ownership has not reached the production launcher yet.
                 result['cleanup_errors'].extend(model._terminate_group(process))

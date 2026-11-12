@@ -628,6 +628,80 @@ class ProbeTests(unittest.TestCase):
         except Exception as exc:self.assertIsInstance(exc,ValueError)
         else:self.fail('unbounded deadline accepted')
 
+    def retained_reader_wrapper(self, delay):
+        # Model the released wrapper's asynchronous TERM-without-wait teardown.
+        # The helper inherits the actual permit FD and never reads it.
+        helper=self.root/'retained-reader.py'
+        helper.write_text('''import os, signal, sys, time
+from pathlib import Path
+def stop(signum, frame):
+    signal.signal(signal.SIGTERM, signal.SIG_IGN)
+    time.sleep(float(sys.argv[1]))
+    Path(sys.argv[3]).write_text('TERM_COMPLETED')
+    os._exit(0)
+signal.signal(signal.SIGTERM, stop)
+Path(sys.argv[2]).write_text(str(os.getpid()))
+while True: signal.pause()
+''')
+        # Fixture paths come from TemporaryDirectory and contain no shell chars.
+        self.wrapper.write_text(
+            'exec 3>/dev/null\n'
+            f'ready="{self.root}/$5.ready"\ndone="{self.root}/$5.done"\n'
+            f'"$1" "{helper}" "{delay}" "$ready" "$done" &\n'
+            'reader=$!\n'
+            'while [ ! -f "$ready" ]; do sleep 0.01; done\n'
+            '"$@" 3>&-\nstatus=$?\n'
+            'kill -TERM "$reader"\nexit "$status"\n')
+
+    def test_early_exit_passively_reaps_retained_reader_before_delivery(self):
+        self.retained_reader_wrapper(.5)
+        cleanup=model._terminate_group;cleanup_after_completion=[]
+        def raw_cleanup(process):
+            case='normal' if process is self.calls[0] else 'early_exit'
+            cleanup_after_completion.append((case,(self.root/(case+'.done')).exists()))
+            return cleanup(process)
+        with self.boundary(),patch.object(model,'_terminate_group',side_effect=raw_cleanup):
+            result=self.probe.run_probe(self.root/'out')
+        early=result['cases'][1]
+        log=(self.root/'out/early_exit/process.log').read_bytes()
+        with self.subTest(check='actual EPIPE'):
+            self.assertEqual(early['delivery_error'],'BrokenPipeError')
+        with self.subTest(check='no successful delivery'):
+            self.assertNotIn(b'phase=permit_sent',log)
+        with self.subTest(check='passive completion before production cleanup'):
+            self.assertEqual(cleanup_after_completion,[('normal',True),('early_exit',True)])
+        self.assertEqual(result['status'],'TRANSPORT_ASSOCIATION_VALIDATED')
+        self.assertEqual(self.probe.validate_probe(self.root/'out'),result)
+        self.assertEqual(early['exit_code'],73)
+        self.assertIn(b'FIRST_DIVERGENCE_PROBE_EARLY_EXIT_73',log)
+        self.assertEqual(len(self.calls),2)
+        for row,process in zip(result['cases'],self.calls):
+            self.assertTrue(row['group_gone']);self.assertTrue(row['reaped'])
+            self.assertTrue(process.stdout.closed)
+            reader=int((self.root/(row['case']+'.ready')).read_text())
+            with self.assertRaises(ProcessLookupError):os.kill(reader,0)
+            with self.assertRaises(ChildProcessError):os.waitpid(reader,os.WNOHANG)
+            with self.assertRaises(ProcessLookupError):os.killpg(process.pid,0)
+
+    def test_retained_reader_deadline_fails_before_handle_transfer_and_reaps(self):
+        self.retained_reader_wrapper(30)
+        started=time.monotonic()
+        with self.boundary(),patch.object(self.probe,'CASE_CAP',6.4),self.probe._without_acceptance():
+            result=self.probe._case(self.root/'early_exit','early_exit','b'*32,'a'*64,'c'*64,time.monotonic()+20)
+        self.assertIn('TimeoutExpired',result['error'])
+        self.assertIsNone(result['wait_timeout_s'],'adapter still owns the handle at passive-wait expiry')
+        self.assertIsNone(result['delivery_error'])
+        self.assertEqual(result['exit_code'],73)
+        self.assertLess(time.monotonic()-started,6.4)
+        self.assertEqual(len(self.calls),1)
+        self.assertFalse((self.root/'early_exit.done').exists())
+        self.assertTrue(result['group_gone']);self.assertTrue(result['reaped'])
+        self.assertTrue(self.calls[0].stdout.closed)
+        reader=int((self.root/'early_exit.ready').read_text())
+        with self.assertRaises(ProcessLookupError):os.kill(reader,0)
+        with self.assertRaises(ChildProcessError):os.waitpid(reader,os.WNOHANG)
+        with self.assertRaises(ProcessLookupError):os.killpg(self.calls[0].pid,0)
+
 
 if __name__ == '__main__':
     unittest.main()
