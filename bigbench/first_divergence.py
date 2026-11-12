@@ -111,8 +111,11 @@ EXISTING_BIGBENCH_PINS = {
     "pyproject.toml": "367aa37f01d25a873a3336967ba182df85be725351fb6a48f26ab84834c20a0b",
     "scripts/hf_models.py": "bf8661ebfdc1d90cd5326571d19bc8ccdc34fce0f272ed9f96a0456c5764f7e5"
 }
-# Task2 must extend this fixed producer registry before a native canary is run.
+# Fixed source closure includes the isolated transport probe and its workflow.
 PRODUCER_SOURCE_PATHS = ('bigbench/first_divergence.py',
+                         'scripts/first_divergence_transport_probe.py',
+                         'tests/test_first_divergence_transport.py',
+                         '.github/workflows/stage7-first-divergence-transport.yml',
                          'scripts/first_divergence_audit.py',
                          'tests/test_first_divergence.py',
                          'bigbench/first_divergence_model.py',

@@ -1,0 +1,73 @@
+{
+  "name": "Stage 7 first divergence transport",
+  "on": {
+    "push": {
+      "branches": [
+        "fix/first-divergence-launch-transport"
+      ],
+      "paths": [
+        "scripts/first_divergence_transport_probe.py",
+        "tests/test_first_divergence_transport.py",
+        ".github/workflows/stage7-first-divergence-transport.yml",
+        "bigbench/first_divergence_model.py",
+        "bigbench/first_divergence.py",
+        "tests/test_first_divergence_model.py"
+      ]
+    }
+  },
+  "permissions": {
+    "contents": "read"
+  },
+  "jobs": {
+    "transport": {
+      "runs-on": "ubuntu-24.04",
+      "timeout-minutes": 15,
+      "steps": [
+        {
+          "uses": "actions/checkout@v4"
+        },
+        {
+          "uses": "actions/setup-python@v5",
+          "with": {
+            "python-version": "3.11"
+          }
+        },
+        {
+          "name": "Provided native system bootstrap",
+          "shell": "bash",
+          "run": "python - <<'PYCODE'\nimport json, os\nnames=('HTTP_PROXY','HTTPS_PROXY','http_proxy','https_proxy','NO_PROXY','no_proxy',\n       'SSL_CERT_FILE','SSL_CERT_DIR','REQUESTS_CA_BUNDLE','CURL_CA_BUNDLE')\nprint('NATIVE_CI_INSTALL_ROUTE_PRESENCE',json.dumps({name:{'defined':name in os.environ,'nonempty':bool(os.environ.get(name))} for name in names}))\nprint('NATIVE_CI_SCOPED_HELPER_PRESENT',os.access('/usr/local/bin/cloud-agent-packages',os.X_OK))\nPYCODE\n# Retain explicit lowercase settings, including intentionally empty ones.\nif [[ ! -v http_proxy && -v HTTP_PROXY ]]; then export http_proxy=\"$HTTP_PROXY\"; fi\nif [[ ! -v https_proxy && -v HTTPS_PROXY ]]; then export https_proxy=\"$HTTPS_PROXY\"; fi\nif [[ ! -v no_proxy && -v NO_PROXY ]]; then export no_proxy=\"$NO_PROXY\"; fi\nnative_ci_sudo=(sudo -n --preserve-env=HTTP_PROXY,HTTPS_PROXY,http_proxy,https_proxy,NO_PROXY,no_proxy,SSL_CERT_FILE,SSL_CERT_DIR,REQUESTS_CA_BUNDLE,CURL_CA_BUNDLE)\nif [[ -x /usr/local/bin/cloud-agent-packages ]]; then\n  \"${native_ci_sudo[@]}\" /usr/local/bin/cloud-agent-packages update\n  \"${native_ci_sudo[@]}\" /usr/local/bin/cloud-agent-packages install xvfb libgl1 libglu1-mesa libegl1 libx11-6\nelse\n  \"${native_ci_sudo[@]}\" apt-get -o APT::Update::Error-Mode=any update\n  \"${native_ci_sudo[@]}\" apt-get install -y xvfb libgl1 libglu1-mesa libegl1 libx11-6\nfi\n"
+        },
+        {
+          "name": "Preflight wrapper and xauth",
+          "shell": "bash",
+          "run": "set -euo pipefail\ncommand -v xvfb-run\ncommand -v xauth\nxauth -V\n"
+        },
+        {
+          "name": "Pure launcher dependencies",
+          "shell": "bash",
+          "run": "set -euo pipefail\npython -m pip install numpy==2.4.6 opencv-python-headless==5.0.0.93\n"
+        },
+        {
+          "name": "CPU transport regressions",
+          "shell": "bash",
+          "run": "set -euo pipefail\npython -m unittest discover -s tests -p test_first_divergence_transport.py -v\n"
+        },
+        {
+          "name": "Single guarded actual transport probe",
+          "shell": "bash",
+          "run": "set -euo pipefail\npython scripts/first_divergence_transport_probe.py run --out \"$RUNNER_TEMP/first-divergence-transport\"\npython scripts/first_divergence_transport_probe.py validate --root \"$RUNNER_TEMP/first-divergence-transport\"\n"
+        },
+        {
+          "uses": "actions/upload-artifact@v4",
+          "if": "always()",
+          "with": {
+            "name": "stage7-first-divergence-transport",
+            "path": "${{ runner.temp }}/first-divergence-transport",
+            "if-no-files-found": "warn",
+            "retention-days": 7
+          }
+        }
+      ]
+    }
+  }
+}

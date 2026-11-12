@@ -306,5 +306,328 @@ class StudyLaunchDeadlineTests(unittest.TestCase):
                 self.assertEqual(result['model_calls_upper_bound'],4)
 
 
+class ProbeTests(unittest.TestCase):
+    """The only fake is xvfb-run: real launcher, shell, FIFO and fixed receiver."""
+    def run(self, result=None):
+        # Whole discovery can import the existing tiny ORT test before this
+        # class runs. Execute only this method once in a clean CPU interpreter.
+        if any(n == p or n.startswith(p+'.') for n in sys.modules
+               for p in ('onnxruntime','panda3d','direct','metadrive')):
+            result = result or self.defaultTestResult()
+            result.startTest(self)
+            env=dict(os.environ,PYTHONPATH=str(Path(__file__).resolve().parent))
+            completed=subprocess.run([sys.executable,'-m','unittest',
+                'test_first_divergence_transport.ProbeTests.'+self._testMethodName,'-v'],
+                cwd=model.capture.REPO_ROOT,env=env,capture_output=True,timeout=30)
+            if completed.returncode:
+                try:self.fail(completed.stdout.decode()+completed.stderr.decode())
+                except self.failureException:result.addFailure(self,sys.exc_info())
+            else:result.addSuccess(self)
+            result.stopTest(self)
+            return result
+        return super().run(result)
+
+    def setUp(self):
+        import importlib.util
+        self.assertIsNotNone(importlib.util.find_spec('scripts.first_divergence_transport_probe'),
+                             'the guarded fixed transport probe is not implemented')
+        from scripts import first_divergence_transport_probe as probe
+        self.probe = probe
+        model._enable_subreaper()
+        self.temp = self.enterContext(tempfile.TemporaryDirectory())
+        self.root = Path(self.temp)
+        self.wrapper = self.root/'wrapper.sh'
+        self.wrapper.write_text(SHELL)
+        self.calls = []
+        self.real_popen = subprocess.Popen
+        self.head = 'a'*40
+        env = dict(GITHUB_ACTIONS='true',GITHUB_REPOSITORY='rownlvh8875-coder/big-model-closed-loop-benchmark',
+                   GITHUB_SHA=self.head,GITHUB_RUN_ID='123',GITHUB_RUN_ATTEMPT='1',GITHUB_EVENT_NAME='push',
+                   GITHUB_REF_NAME='fix/first-divergence-launch-transport',RUNNER_TEMP=self.temp,
+                   GITHUB_WORKFLOW_REF='rownlvh8875-coder/big-model-closed-loop-benchmark/.github/workflows/stage7-first-divergence-transport.yml@refs/heads/fix/first-divergence-launch-transport',
+                   ImageOS='ubuntu24',ImageVersion='fixture-image',FIRST_DIVERGENCE_ACCEPTANCE='must-be-cleared')
+        self.enterContext(patch.dict(os.environ,env))
+        self.enterContext(patch.object(probe,'_git',side_effect=self.git))
+        self.enterContext(patch.object(probe,'_tools',return_value={
+            'wrapper_path':'/usr/bin/xvfb-run','wrapper_sha256':'b'*64,'wrapper_version':'fixture-xvfb',
+            'xauth_path':'/usr/bin/xauth','xauth_version':'fixture-xauth'}))
+
+    def git(self,*args,**kwargs):
+        if args == ('rev-parse','HEAD'):return (self.head+'\n').encode()
+        if args[0] == 'show':
+            head,name=args[1].split(':',1)
+            self.assertEqual(head,self.head)
+            return (model.capture.REPO_ROOT/name).read_bytes()
+        self.fail(f'unexpected Git plumbing: {args}')
+
+    def boundary(self, *, mutate=None, prefix=b''):
+        def popen(command,**kwargs):
+            self.assertEqual(command[:3],['xvfb-run',sys.executable,str(self.probe.SCRIPT)])
+            self.assertEqual(command[3],'_receive')
+            self.assertEqual(set(kwargs),{'cwd','env','stdout','stderr','start_new_session','pass_fds'})
+            self.assertEqual(kwargs['cwd'],model.capture.REPO_ROOT)
+            self.assertEqual(kwargs['stdout'],subprocess.PIPE)
+            self.assertEqual(kwargs['stderr'],subprocess.STDOUT)
+            self.assertIs(kwargs['start_new_session'],True)
+            fd,=kwargs['pass_fds'];self.assertGreaterEqual(fd,10)
+            self.assertEqual(kwargs['env']['FIRST_DIVERGENCE_TRIAL_FD'],str(fd))
+            self.assertNotIn('FIRST_DIVERGENCE_ACCEPTANCE',kwargs['env'])
+            receiver=command[1:]
+            if mutate:receiver=mutate(receiver)
+            actual=['/bin/sh',str(self.wrapper),*receiver]
+            if prefix:
+                actual=['/bin/sh','-c','printf "%s" "$1"; shift; exec "$@"','fixture',prefix.decode(),*actual]
+            process=self.real_popen(actual,**kwargs);self.calls.append(process)
+            return process
+        return patch.object(subprocess,'Popen',side_effect=popen)
+
+    def run_ok(self):
+        with self.boundary():result=self.probe.run_probe(self.root/'out')
+        self.assertEqual(result['status'],'TRANSPORT_ASSOCIATION_VALIDATED')
+        self.assertEqual(self.probe.validate_probe(self.root/'out'),result)
+        return result
+
+    def rewrite(self,result):
+        (self.root/'out/probe.json').write_text(json.dumps(result,allow_nan=False))
+
+    def test_real_launcher_two_sequential_cases_and_actual_receipts(self):
+        result=self.run_ok()
+        self.assertEqual([r['case'] for r in result['cases']],['normal','early_exit'])
+        self.assertEqual(len(self.calls),2)
+        self.assertEqual([p.returncode for p in self.calls],[0,73])
+        for row,p in zip(result['cases'],self.calls):
+            self.assertEqual(row['launcher_pid'],p.pid)
+            self.assertEqual(row['process_group'],p.pid)
+            self.assertGreaterEqual(row['receiver']['fd'],10)
+            self.assertEqual(row['receiver']['pgid'],p.pid)
+            self.assertNotEqual(row['receiver']['pid'],os.getpid())
+            self.assertTrue(p.stdout.closed)
+            with self.assertRaises(ProcessLookupError):os.killpg(p.pid,0)
+        self.assertEqual(result['claims']['official_model_calls'],0)
+        self.assertEqual(result['claims']['ort_sessions'],0)
+        self.assertEqual(result['claims']['metadrive_providers'],0)
+        self.assertEqual(len(result['source_snapshot']),61)
+        self.assertEqual(os.environ['FIRST_DIVERGENCE_ACCEPTANCE'],'must-be-cleared')
+        self.assertEqual(sorted(str(p.relative_to(self.root/'out')) for p in (self.root/'out').rglob('*') if p.is_file()),
+                         ['early_exit/process.log','normal/process.log','probe.json'])
+
+    def test_guard_rejects_actual_context_before_any_launch(self):
+        for key,value in [('GITHUB_ACTIONS','false'),('GITHUB_EVENT_NAME','workflow_dispatch'),
+                          ('GITHUB_REF_NAME','main'),('GITHUB_RUN_ATTEMPT','2'),('GITHUB_SHA','b'*40),
+                          ('GITHUB_WORKFLOW_REF','wrong'),('GITHUB_RUN_ID','0'),('ImageVersion','')]:
+            with self.subTest(key=key),patch.dict(os.environ,{key:value}),self.boundary():
+                with self.assertRaises(ValueError):self.probe.run_probe(self.root/'out')
+            self.assertFalse((self.root/'out').exists())
+        self.assertEqual(self.calls,[])
+
+    def test_source_git_blob_mismatch_blocks_before_launch(self):
+        with patch.object(self.probe,'_git',side_effect=lambda *a,**kw: b'not-current' if a[0]=='show' else (self.head+'\n').encode()),self.boundary():
+            with self.assertRaises(ValueError):self.probe.run_probe(self.root/'out')
+        self.assertEqual(self.calls,[])
+
+    def test_outside_existing_and_symlink_outputs_rejected(self):
+        existing=self.root/'existing';existing.mkdir()
+        link=self.root/'link';link.symlink_to(self.root,target_is_directory=True)
+        for out in (self.root,self.root.parent/'outside-probe',existing,link/'output'):
+            with self.subTest(out=out),self.boundary():
+                with self.assertRaises(ValueError):self.probe.run_probe(out)
+        self.assertEqual(self.calls,[])
+
+    def test_failed_normal_stops_without_retry_and_keeps_failure_ledger(self):
+        def corrupt(argv):
+            result=list(argv);result[result.index('--nonce')+1]='c'*64;return result
+        with self.boundary(mutate=corrupt):result=self.probe.run_probe(self.root/'out')
+        self.assertEqual(result['status'],'FAILED_OR_INCOMPLETE')
+        self.assertEqual(len(self.calls),1)
+        self.assertIn('error',result)
+        self.assertTrue((self.root/'out/normal/process.log').exists())
+        with self.assertRaises(ValueError):self.probe.validate_probe(self.root/'out')
+
+    def test_log_overflow_is_bounded_and_stops(self):
+        with self.boundary(prefix=b'v'*70000):result=self.probe.run_probe(self.root/'out')
+        self.assertEqual(result['status'],'FAILED_OR_INCOMPLETE')
+        self.assertEqual(len(self.calls),1)
+        self.assertEqual((self.root/'out/normal/process.log').stat().st_size,65536)
+        self.assertLessEqual(sum(p.stat().st_size for p in (self.root/'out').rglob('*') if p.is_file()),2097152)
+        for p in self.calls:
+            self.assertIsNotNone(p.poll())
+            with self.assertRaises(ProcessLookupError):os.killpg(p.pid,0)
+
+    def test_validator_rejects_tampered_identity_source_claims_limits_and_substitutions(self):
+        import copy
+        original=self.run_ok()
+        changes=[lambda x:x['cases'][0]['receiver'].__setitem__('pid',1),
+                 lambda x:x['cases'][0].__setitem__('exit_code',73),
+                 lambda x:x['cases'][0].__setitem__('group_gone',False),
+                 lambda x:x['cases'][0].__setitem__('elapsed_s',121),
+                 lambda x:x['claims'].__setitem__('original_strict_pass',True),
+                 lambda x:x['claims'].__setitem__('official_model_calls',False),
+                 lambda x:x['substitutions'].append('bypass'),
+                 lambda x:x['source_snapshot'].__setitem__('bigbench/first_divergence.py','0'*64),
+                 lambda x:x['cases'][0]['log'].__setitem__('path','../outside'),
+                 lambda x:x['cases'][0]['log'].__setitem__('bytes',65537),
+                 lambda x:x['cases'][0]['receiver'].__setitem__('fd',3),
+                 lambda x:x.__setitem__('extra',True)]
+        for change in changes:
+            candidate=copy.deepcopy(original);change(candidate);self.rewrite(candidate)
+            with self.subTest(change=change),self.assertRaises(ValueError):self.probe.validate_probe(self.root/'out')
+
+    def test_validator_rejects_missing_extra_symlink_and_modified_logs(self):
+        result=self.run_ok();log=self.root/'out/normal/process.log';raw=log.read_bytes()
+        log.write_bytes(raw+b'tamper')
+        with self.assertRaises(ValueError):self.probe.validate_probe(self.root/'out')
+        log.write_bytes(raw);log.unlink()
+        with self.assertRaises(ValueError):self.probe.validate_probe(self.root/'out')
+        target=self.root/'outside';target.write_bytes(raw);log.symlink_to(target)
+        with self.assertRaises(ValueError):self.probe.validate_probe(self.root/'out')
+        log.unlink();log.write_bytes(raw)
+        extra=self.root/'out/extra';extra.write_text('extra')
+        with self.assertRaises(ValueError):self.probe.validate_probe(self.root/'out')
+
+    def test_validator_duplicate_nonfinite_and_cli_are_pure(self):
+        self.run_ok();path=self.root/'out/probe.json';original=path.read_text()
+        for data in ('{"schema":1,"schema":2}',original.replace('"attempt": 1','"attempt": NaN')):
+            path.write_text(data)
+            with self.assertRaises(ValueError):self.probe.validate_probe(self.root/'out')
+        path.write_text(original)
+        # CLI validation of an invalid artifact is stdlib-only and launches nothing.
+        path.write_text('{"x":NaN}')
+        process=self.real_popen([sys.executable,str(self.probe.SCRIPT),'validate','--root',str(self.root/'out')],
+                               stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+        out,err=process.communicate(timeout=5)
+        self.assertNotEqual(process.returncode,0)
+
+    def test_workflow_parsed_contract_and_bash_syntax(self):
+        workflow=json.loads((model.capture.REPO_ROOT/'.github/workflows/stage7-first-divergence-transport.yml').read_text())
+        self.assertEqual(set(workflow['on']),{'push'})
+        self.assertEqual(workflow['on']['push']['branches'],['fix/first-divergence-launch-transport'])
+        self.assertEqual(workflow['permissions'],{'contents':'read'})
+        job,=workflow['jobs'].values();self.assertEqual(job['timeout-minutes'],15)
+        self.assertNotIn('env',job)
+        steps=job['steps'];runs=[s['run'] for s in steps if 'run' in s]
+        self.assertTrue(any('numpy==2.4.6 opencv-python-headless==5.0.0.93' in r for r in runs))
+        from hashlib import sha256
+        bootstrap=next(s['run'] for s in steps if s.get('name')=='Provided native system bootstrap')
+        self.assertEqual(sha256(bootstrap.encode()).hexdigest(),'432772a69fe7b888b80fe5842708653b85253ba4d036d939889f20fa8cbb2175')
+        for run in runs:
+            for forbidden in ('onnxruntime','panda3d','metadrive','hf_models','[inference]','huggingface'):
+                self.assertNotIn(forbidden,run.lower())
+        for run in runs:
+            completed=subprocess.run(['bash','-n'],input=run.encode(),capture_output=True)
+            self.assertEqual(completed.returncode,0,completed.stderr)
+        paths=workflow['on']['push']['paths']
+        self.assertEqual(set(paths),{'scripts/first_divergence_transport_probe.py','tests/test_first_divergence_transport.py',
+                                    '.github/workflows/stage7-first-divergence-transport.yml','bigbench/first_divergence_model.py',
+                                    'bigbench/first_divergence.py','tests/test_first_divergence_model.py'})
+        upload=steps[-1]
+        self.assertEqual(upload['if'],'always()')
+        self.assertEqual(upload['with']['name'],'stage7-first-divergence-transport')
+        self.assertEqual(upload['with']['path'],'${{ runner.temp }}/first-divergence-transport')
+
+
+    def test_fixed_receiver_rejects_private_permit_type_fields_and_association(self):
+        import fcntl
+        from hashlib import sha256
+        source={'registered':'a'*64};runtime={'python':'fixture'}
+        digest=lambda x:sha256(json.dumps(x,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+        mutations=[lambda p:p.__setitem__('repeat',False),lambda p:p.__setitem__('schedule_index',True),
+                   lambda p:p.__setitem__('parent_pid',True),lambda p:p.__setitem__('parent_uuid','bad'),
+                   lambda p:p.__setitem__('nonce','b'*64),lambda p:p.__setitem__('process_group',1),
+                   lambda p:p.__setitem__('source_snapshot',{'wrong':'a'*64}),
+                   lambda p:p.__setitem__('runtime',{'wrong':'fixture'}),
+                   lambda p:p.__setitem__('extra',1),lambda p:p['storage_limits'].__setitem__('log_limit_bytes',True)]
+        for mutation in mutations:
+            low,writer=os.pipe();fd=fcntl.fcntl(low,fcntl.F_DUPFD_CLOEXEC,10);os.close(low)
+            env=dict(os.environ,FIRST_DIVERGENCE_TRIAL_FD=str(fd));env.pop('FIRST_DIVERGENCE_ACCEPTANCE',None)
+            argv=[sys.executable,str(self.probe.SCRIPT),'_receive','--case','normal','--parent-pid',str(os.getpid()),
+                  '--parent-uuid','b'*32,'--nonce','a'*64,'--source-sha256',digest(source),
+                  '--runtime-sha256',digest(runtime),'--model',str(self.root/'missing.onnx'),'--timeout','2']
+            process=self.real_popen(argv,env=env,stdout=subprocess.PIPE,stderr=subprocess.PIPE,
+                                    pass_fds=(fd,),start_new_session=True)
+            os.close(fd)
+            permit=dict(parent_pid=os.getpid(),parent_uuid='b'*32,process_group=process.pid,
+                        nonce='a'*64,arm='original',repeat=0,schedule_index=0,source_snapshot=source,runtime=runtime,
+                        storage_limits=dict(payload_limit_bytes=0,trial_ledger_limit_bytes=4096,log_limit_bytes=65536))
+            mutation(permit)
+            try:os.write(writer,json.dumps(permit).encode())
+            finally:os.close(writer)
+            out,err=process.communicate(timeout=4)
+            with self.subTest(mutation=mutation):
+                self.assertNotEqual(process.returncode,0,(out,err))
+                self.assertNotIn(b'PROBE_PERMIT_RECEIVED',out)
+
+    def test_case_deadline_kills_stalled_wrapper_with_raw_handle(self):
+        # This fixture runs the fixed receiver, then keeps the whole wrapper
+        # alive. The early adapter must own cleanup until Popen returns.
+        self.wrapper.write_text('exec 3>/dev/null\n"$@" 3>&-\nsleep 30\n')
+        started=time.monotonic()
+        with self.boundary(),patch.object(self.probe,'CASE_CAP',6.15),self.probe._without_acceptance():
+            result=self.probe._case(self.root/'early_exit','early_exit','b'*32,'a'*64,'c'*64,time.monotonic()+20)
+        self.assertIn('TimeoutExpired',result['error'])
+        self.assertLess(time.monotonic()-started,6.15)
+        self.assertEqual(len(self.calls),1)
+        self.assertTrue(result['group_gone']);self.assertTrue(result['reaped'])
+        self.assertTrue(self.calls[0].stdout.closed)
+        with self.assertRaises(ProcessLookupError):os.killpg(self.calls[0].pid,0)
+
+    def test_missing_early_stderr_fails_with_real_exit_and_no_retry(self):
+        self.wrapper.write_text('exec 3>/dev/null\n"$@" 3>&- 2>/dev/null\n')
+        with self.boundary():result=self.probe.run_probe(self.root/'out')
+        self.assertEqual(result['status'],'FAILED_OR_INCOMPLETE')
+        self.assertEqual(len(self.calls),2)
+        self.assertEqual(self.calls[1].returncode,73)
+        self.assertIn('missing early stderr',result['error'])
+
+    def test_serialization_failure_preserves_initiating_error_and_bounded_ledger(self):
+        def corrupt(argv):
+            result=list(argv);result[result.index('--nonce')+1]='c'*64;return result
+        with self.boundary(mutate=corrupt),patch.object(self.probe,'_encode',side_effect=TypeError('serialization fixture')):
+            result=self.probe.run_probe(self.root/'out')
+        self.assertEqual(result['status'],'FAILED_OR_INCOMPLETE')
+        self.assertIn('ValueError',result['error'])
+        self.assertIn('TypeError',result['publication_error'])
+        self.assertEqual(len(self.calls),1)
+        self.assertEqual(json.loads((self.root/'out/probe.json').read_text()),result)
+        self.assertLessEqual(sum(p.stat().st_size for p in (self.root/'out').rglob('*') if p.is_file()),2097152)
+
+    def test_parent_forbidden_import_guard_fails_before_context_or_launch(self):
+        with patch.dict(sys.modules,{'onnxruntime.fixture':object()}),self.boundary():
+            with self.assertRaisesRegex(ValueError,'runtime module'):
+                self.probe.run_probe(self.root/'out')
+        self.assertEqual(self.calls,[])
+        self.assertFalse((self.root/'out').exists())
+
+
+    def test_source_preflight_respects_total_deadline_before_any_launch(self):
+        clock=[0.]
+        def slow_git(*args,**kwargs):
+            if args[0]=='show':clock[0]+=20.
+            return self.git(*args,**kwargs)
+        with patch.object(self.probe.time,'monotonic',side_effect=lambda:clock[0]), \
+             patch.object(self.probe,'_git',side_effect=slow_git),self.boundary():
+            with self.assertRaises(subprocess.TimeoutExpired):self.probe.run_probe(self.root/'out')
+        self.assertEqual(self.calls,[])
+        self.assertFalse((self.root/'out').exists())
+
+
+    def test_changed_production_command_cannot_cross_substitution_boundary(self):
+        launch=model._launch_trial
+        def changed(*args,**kwargs):
+            values=list(args);values[3]='proxy'
+            return launch(*values,**kwargs)
+        with self.boundary(),patch.object(model,'_launch_trial',side_effect=changed):
+            result=self.probe.run_probe(self.root/'out')
+        self.assertEqual(result['status'],'FAILED_OR_INCOMPLETE')
+        self.assertIn('unexpected production command/kwargs',result['error'])
+        self.assertEqual(self.calls,[])
+
+
+    def test_validator_rejects_enormous_numeric_deadline_as_value_error(self):
+        result=self.run_ok();result['elapsed_s']=10**1000;self.rewrite(result)
+        try:self.probe.validate_probe(self.root/'out')
+        except Exception as exc:self.assertIsInstance(exc,ValueError)
+        else:self.fail('unbounded deadline accepted')
+
+
 if __name__ == '__main__':
     unittest.main()
