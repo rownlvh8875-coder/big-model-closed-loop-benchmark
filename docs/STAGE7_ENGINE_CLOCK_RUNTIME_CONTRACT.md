@@ -1,6 +1,6 @@
 # Stage7 실행 환경·설치 바이너리 계약 설계
 
-이번 결과는 **설계와 비활성 제안**이다. 실제 image/archive/config digest와 설치 파일 manifest는 아직 없다. 새 collector·Dockerfile·워크플로·요청을 만들거나 image를 build/pull/load/run/publish하지 않았다. Native/provider/공식 모델/ORT/추가 GPU·clock 호출은 모두0이다. 기존 기본 CI의 생성 SMALL ONNX는 별도다.
+이번 결과는 **설계·비활성 제안과 순수 메타데이터 검증기(Task1)**다. 실제 image/archive/config digest와 설치 파일 manifest는 아직 없다. Collector·Dockerfile·워크플로·요청을 만들거나 image를 build/pull/load/run/publish하지 않았다. Native/provider/공식 모델/ORT/추가 GPU·clock 호출은 모두0이다. 기존 기본 CI의 생성 SMALL ONNX는 별도다.
 
 Base `d7774ce40d62a19176ea2f5239edfc6644cf51ef`/PR40에서 `design/engine-clock-runtime-contract` 브랜치를 만들었다. 이전 producer70/all44workflows/소비된 request·acceptance8개와 raw/controller 이력을 보존한다. 기존 canary와 ABBA는 재실행하지 않는다.
 
@@ -26,7 +26,7 @@ PID·nonce·container ID·실행 HEAD·시간처럼 매번 달라지는 값은 �
 
 실제 image 준비에는 완전한 base/Python/wheel/deb/asset lock, authenticated build/workflow/artifact, closed installed manifest, Docker compatibility와 disk/hash/load 비용 검증이 필요하다. 제안된 cap은 tar/ZIP 각2GiB, 설치 content3GiB, inventory4GiB/100000entries/16MiB/180초, file512MiB, identity128KiB, download300초, 가용 저장공간16GiB다. 아직 측정한 성능이 아니며 기존 native1320/270초를 자동 연장하지 않는다.
 
-다음 코딩 작업은 [계획 Task1](superpowers/plans/2026-11-12-engine-clock-runtime-contract.md)의 `scripts/engine_clock_runtime_contract.py`와 CPU 회귀 시험이다. 이 파일은 아직 없다. 표준 라이브러리로 proposal/identity를 파싱·비교하며 합성 identity match도 `native_admission=false`를 반환하도록 설계했다. 파일 inventory·Docker/API 실행·native import는 Task1에 포함하지 않는다. 이후 collector와 image 준비는 각각 별도 검토 단계다.
+[계획 Task1](superpowers/plans/2026-11-12-engine-clock-runtime-contract.md)의 [순수 검증기](../scripts/engine_clock_runtime_contract.py)와 [회귀 시험](../tests/test_engine_clock_runtime_contract.py)을 구현했다. 표준 라이브러리로 proposal/identity를 파싱·비교하며 합성 identity match도 `native_admission=false`를 반환한다. 파일 inventory·Docker/API 실행·native import는 Task1에 포함하지 않는다. 이후 collector와 image 준비는 각각 별도 검토 단계다.
 
 ## 판단과 비용
 
@@ -37,6 +37,10 @@ PID·nonce·container ID·실행 HEAD·시간처럼 매번 달라지는 값은 �
 
 ## 검증 범위와 후속
 
-이번 문서 변경은 proposal의 비활성/null/zero 의미, source·workflow·registry 보존, 문서 링크와 공식 reference snapshot을 검증한다. 구현하지 않은 manifest/collector에 시험 통과 수치를 만들지 않는다. 독립 builder/design 검토와 설계 브랜치의 기존 baseline CI 결과는 review/audit 및 Draft PR에 기록한다. Review 대상 HEAD와 이후 review/status-only HEAD는 구분한다.
+검증은 proposal의 비활성/null/zero 의미, identity의 타입·필드·self-hash·일치/불일치·최대64개 경로 차이, source·workflow·registry 보존, 문서 링크와 공식 reference snapshot을 다룬다. 17개 집중 시험이 통과했다. 구현하지 않은 manifest/collector에 시험 통과 수치를 만들지 않는다. 독립 builder/design 검토가 발견한 해시 객체 종류의 인증 한계를 수정했다. 같은 형식의 가짜 hash도 파싱될 수 있으며 실제 객체를 인증하지 않는다. 다음은 Task2의 bounded installed-file collector이며 아직 구현하지 않았다. 전체 변경 독립 검토와 기존 baseline CI 결과는 review/audit 및 Draft PR에 기록한다. Review 대상 HEAD와 이후 review/status-only HEAD는 구분한다.
 
 실제 새 raw/canvas/I420/ONNX/clock trace/run/artifact는 없다. 원래 모델 step2의 first divergence와 이전 clock canary 결과는 과거 증거로 유지한다. Strict FAIL, expanded NOT_RUN, geometry/physical-optics/production-ISP/full-S 미검증, Stage7 INCOMPLETE, main 공식 호출0, Cloud 설정 변경·게시·main merge0, Draft 유지다. Raw와 controller workspace를 삭제하지 않는다.
+
+실행 예: `python -m scripts.engine_clock_runtime_contract validate-proposal --proposal docs/evidence/STAGE7_ENGINE_CLOCK_RUNTIME_CONTRACT_PROPOSAL.json`은 `INACTIVE_PROPOSAL_VALIDATED`와 `execution_authorized=false`를 반환한다. `compare-identity --left FILE --right FILE`은 메타데이터 차이의 경로만 반환하고 실제 archive/API/Docker/installed tree를 검사하지 않는다. 두 가짜 identity가 같아도 실제 준비·실행·binary selection 증거가 아니다.
+
+Task1 실제 로컬 전체 CPU 시험:661tests/73.571s/선택 의존성7skip, focused17/0.498s. 최초17개 missing-feature RED와 guard fixture 수정 로그를 보존했다. 같은 code/test의 독립 최종 검토와 최종 HEAD 기본 CI는 후속 영수증 및 Draft PR에서 구분해 기록한다.

@@ -1,6 +1,6 @@
 # Engine-clock provider-free runtime contract Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking. This is a future provider-free implementation roadmap, not a native/image-preparation activation.
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [x]`) syntax for tracking. This is a future provider-free implementation roadmap, not a native/image-preparation activation.
 
 **Goal:** Implement and verify a pure metadata identity contract, then a separately reviewable installed-file collector and image-evidence adapter without constructing a provider.
 
@@ -34,7 +34,7 @@ Installed manifest limits:<=100000entries/16MiB JSON/4GiB total read/512MiB per 
 
 ## Current increment completion
 
-The design/proposal/source audit/builder review and docs-only Draft CI are the deliverable of the current increment. All tasks below are intentionally unexecuted. Start **Task1 only** as the next coding increment; do not treat this plan as authorization to execute Tasks2–3 or any native study immediately.
+The initial design-only checkpoint is preserved at04c91d1. The sequential continuation implements **Task1 only** inline with TDD and a fresh whole-branch review. Tasks2–3 remain intentionally unexecuted and require their separate later gates; no image/native allowance is added.
 
 ### Task 1: Pure identity/proposal parser and comparator
 
@@ -47,16 +47,16 @@ The design/proposal/source audit/builder review and docs-only Draft CI are the d
 - `compare_identity(left: dict, right: dict) -> dict`: validates both, returns `status=INSTALLED_PROFILE_MATCH` or `INSTALLED_PROFILE_MISMATCH`, `differences` sorted by JSON field path (at most64), `truncated` bool, `native_admission=False`. Ordered rootfs diffIDs are not sorted away.
 - `main(argv: list[str] | None=None) -> int`: subcommands `validate-proposal --proposal PATH` and `compare-identity --left PATH --right PATH`; bounded JSON stdout,exit0 for valid inactive proposal or matching metadata,exit1 for mismatch/invalid input. Nonzero output includes bounded original cause, no rewritten source/extra IO.
 
-- [ ] Write `test_inactive_proposal_never_authorizes_execution`: assert status and explicit execution_authorizedFalse; every non-null preparation reference, nonzero allowance or ready/native flag rejects. Use the committed proposal as the genuine inactive input, never as an actual identity.
-- [ ] Write `test_complete_fixture_match_is_metadata_only`: fixture core has real-shaped synthetic digests and exact required fields; assert recomputed hash/status/native_admissionFalse and no external action. Patch API/Docker/process constructors and native import paths to raise if touched.
-- [ ] Write `test_every_core_field_and_ordered_diff_ids_are_binding`: mutate each core leaf and recompute that fixture's digest; valid variable-field alternatives must mismatch, while invalid changes to fixed literals/pins must reject. Neither may match. Reordered CPU flags normalize only by rejecting unsorted input; reordered diffIDs remain changed content.
-- [ ] Write `test_rejects_partial_legacy_duplicate_unknown_nan_bool_and_digest_substitution`: old C/A version dictionaries are invalid new identities, tag/index/config/archive substitutions do not parse, bool is not an integer, duplicate JSON keys reject at CLI boundary. Preserve old raw records untouched.
-- [ ] Write `test_provenance_is_not_identity_input`: top-level provenance in identity rejects, while two identical identity fixtures remain a metadata match when adjacent, non-input provenance fixtures have different PID/nonce/ImageVersion. Pass the identities directly, not projected legacy records or ignored envelope keys; no authenticity claim.
-- [ ] Write `test_bounded_differences_and_cli_exit_status`: >64 valid leaf differences truncate deterministically; long errors/oversized128KiB inputs reject; valid inactive input exits0 with execution_authorizedFalse,invalid/legacy inputs exit1.
-- [ ] Run `/workspace/.cloud-tools/stage7/first-divergence-cpu-replay/bin/python -m unittest tests.test_engine_clock_runtime_contract -v` before implementation; retain the meaningful missing-feature RED.
-- [ ] Implement only the interfaces above from the exact spec/proposal. The tool never imports Panda/MetaDrive/CV/NumPy/ORT, mutates env/modules or scans installed packages. Standard-library `json`, `hashlib`, `pathlib`, `argparse` are sufficient.
-- [ ] Run the targeted command to GREEN. Run one complete CPU suite only after integration changes justify it; retain exact source/test hashes and meaningful skip reasons. Add no implementation-mirroring tests for ordinary documentation.
-- [ ] Independent spec+quality review, source70/workflow44/registry8 preservation, own analysis branch/Draft on this design. Existing baseline CI only. Commit exact reviewed code; no native/image-preparation workflow is created or run.
+- [x] Write `test_inactive_proposal_never_authorizes_execution`: assert status and explicit execution_authorizedFalse; every non-null preparation reference, nonzero allowance or ready/native flag rejects. Use the committed proposal as the genuine inactive input, never as an actual identity.
+- [x] Write `test_matching_synthetic_identity_is_metadata_only`: fixture core has real-shaped synthetic digests and exact required fields; assert recomputed hash/status/native_admissionFalse and no external action. Patch API/Docker/process constructors and native import paths to raise if touched.
+- [x] Write `test_every_core_leaf_is_bound_or_rejected` and `test_diff_id_order_is_not_sorted_away`: mutate each core leaf and recompute that fixture's digest; valid variable-field alternatives must mismatch, while invalid changes to fixed literals/pins must reject. Neither may match. Reordered CPU flags normalize only by rejecting unsorted input; reordered diffIDs remain changed content.
+- [x] Write `test_missing_extra_legacy_and_provenance_fields_reject` plus digest/type/CLI negative tests: old C/A version dictionaries are invalid new identities, mutable tags or invalid prefix/length/placement reject; a well-formed same-shaped index/config/archive digest may parse but must not authenticate an object, and comparison detects a changed expected field value, bool is not an integer, duplicate JSON keys reject at CLI boundary. Preserve old raw records untouched.
+- [x] Write the provenance-negative branch of `test_missing_extra_legacy_and_provenance_fields_reject`: top-level provenance in identity rejects, while two identical identity fixtures remain a metadata match when adjacent, non-input provenance fixtures have different PID/nonce/ImageVersion. Pass the identities directly, not projected legacy records or ignored envelope keys; no authenticity claim.
+- [x] Write `test_more_than_64_differences_truncate_in_sorted_path_order` plus CLI status/error tests: >64 valid leaf differences truncate deterministically; long errors/oversized128KiB inputs reject; valid inactive input exits0 with execution_authorizedFalse,invalid/legacy inputs exit1.
+- [x] Run `/workspace/.cloud-tools/stage7/first-divergence-cpu-replay/bin/python -m unittest tests.test_engine_clock_runtime_contract -v` before implementation; retain the meaningful missing-feature RED.
+- [x] Implement only the interfaces above from the exact spec/proposal. The tool never imports Panda/MetaDrive/CV/NumPy/ORT, mutates env/modules or scans installed packages. Standard-library `json`, `hashlib`, `pathlib`, `argparse` are sufficient.
+- [x] Run the targeted command to GREEN. Run one complete CPU suite only after integration changes justify it; retain exact source/test hashes and meaningful skip reasons. Add no implementation-mirroring tests for ordinary documentation.
+- [x] Independent spec+quality review, source70/workflow44/registry8 preservation, own feature branch/Draft based on this design; current sequential Task1 is included in design/engine-clock-runtime-contract. Existing baseline CI only. Commit exact reviewed code; no native/image-preparation workflow is created or run.
 
 ### Task 2: Bounded installed-file collector (separate later increment)
 

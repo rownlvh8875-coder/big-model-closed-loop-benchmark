@@ -11,6 +11,7 @@
     "official_weight_downloads": 0,
     "ort_sessions": 0,
     "provider_constructors": 0,
+    "pure_metadata_validator_implemented": true,
     "registry_publications": 0
   },
   "base_sha": "d7774ce40d62a19176ea2f5239edfc6644cf51ef",
@@ -31,16 +32,33 @@
     "spec_revision": "1"
   },
   "cloud_published": false,
+  "design_review": {
+    "important_I1": "Cannot infer object class fromsame-shaped hashes;correctedinspec/planandregressionbeforefinalcode review",
+    "json_sha256": "0407a67cd85dc474691f9745118e0faca721ad805ba39f0020615e30b680aa13",
+    "reviewed_head": "04c91d108cae25b1426529446f1bf4197bd9c710",
+    "verdict": "WITH_FIXES"
+  },
   "document_sha256": {
-    "docs/STAGE7_ENGINE_CLOCK_RUNTIME_CONTRACT.md": "0fa966cd6767bd72fe8e55642f1f43879c147364d3dba1a6c3dc8c0dfc9ec553",
+    "docs/STAGE7_ENGINE_CLOCK_RUNTIME_CONTRACT.md": "9db8003b707c1a9f95e078bf0d7d93a22493b45801de072e75dfd5a9efbb5c13",
     "docs/evidence/STAGE7_ENGINE_CLOCK_RUNTIME_CONTRACT_PROPOSAL.json": "ab1631a7fc9c07ad6c5cd8c0ef0e61afdf6c4857ea6c93502d7d29fa01010ad0",
-    "docs/superpowers/plans/2026-11-12-engine-clock-runtime-contract.md": "9958d53e2ad6f9aba80d12c260514769bd727f71b8352a826389743ff9d2ad2f",
-    "docs/superpowers/specs/2026-11-12-engine-clock-runtime-contract-design.md": "df93ac7e2aebaa3e46785e3fedabdd51d082c485f8b4d75cbd6c8f79ff95be02"
+    "docs/superpowers/plans/2026-11-12-engine-clock-runtime-contract.md": "727142a61cab32a83c89aa0e0c57aebc1f343fc0d3bc5bec70d4b9e058ceac26",
+    "docs/superpowers/specs/2026-11-12-engine-clock-runtime-contract-design.md": "e85cf36ccd97c8ff90b5a0f91c7e2b267e1305cba540bef62de7efd4c53b9478"
   },
   "expanded": "NOT_RUN",
   "geometry_optics_full_s": "NOT_VALIDATED",
   "main_head_at_observation": "48e79a7ed5aedf6daa5a62ff68d2225af7955ef1",
   "main_merged": false,
+  "metadata_implementation": {
+    "execution_authenticity_proven": false,
+    "files": {
+      "scripts/engine_clock_runtime_contract.py": "2cd6151871bf055270addb200930cc50839e9dd63e700bd29cff6a88ea90ec27",
+      "tests/test_engine_clock_runtime_contract.py": "a57a7d9d2fad9ea9cbab5ed5d424dcc6d2280603243e8feeb4d4ad90203df6c8"
+    },
+    "future_import_requires_new_registry": true,
+    "installed_inventory_collected": false,
+    "native_admission": false,
+    "old_producer_closure_members": false
+  },
   "observed_at_utc": "2026-11-12T20:23:22.685074+00:00",
   "official_reference_snapshots": [
     {
@@ -142,11 +160,12 @@
     "Ruling: preserve current source70/all44workflows/consumedregistries and use a new design branch \u2014 prevents replay or reinterpretation of terminal ABBA \u2014 cost: new namespace and later implementation/verification are required.",
     "Ruling: recommend sealed OCI userspace identity with separately observed host execution profile; keep outer ImageVersion visible as provenance in the future schema \u2014 a hosted label is not a binary digest and old equality remains frozen \u2014 cost: containers do not pin kernel/CPU/actual loaded GL selection and future strict profile admission can still fail.",
     "Ruling: design-only deliverables with real image/lock/launch references null and native allowance0 \u2014 no image has been built or authenticated \u2014 cost: current design cannot authorize an image-preparation or native run.",
-    "Ruling: use a future authenticated Docker-save/load Actions artifact plus image config digest/diffIDs instead of requiring registry publication \u2014 keeps image transport in the existing Actions evidence route \u2014 cost: additional archive transfer/load and the archive SHA/config digest must never be mislabeled as an OCI registry manifest digest."
+    "Ruling: use a future authenticated Docker-save/load Actions artifact plus image config digest/diffIDs instead of requiring registry publication \u2014 keeps image transport in the existing Actions evidence route \u2014 cost: additional archive transfer/load and the archive SHA/config digest must never be mislabeled as an OCI registry manifest digest.",
+    "Ruling: after correcting the builder finding, continue the already-planned pure metadata Task1 in this turn, inline with TDD and a fresh whole-branch review \u2014 user asks sequential actual development and no external/native preparation is needed \u2014 cost: additional code/CPU/review work; metadata matches remain unauthenticated and image/native allowance stays0."
   ],
   "schema": "stage7-engine-clock-runtime-contract-audit-v1",
   "scientific_strict": "FAIL",
-  "scope": "PROVIDER_FREE_DESIGN_ONLY",
+  "scope": "PROVIDER_FREE_DESIGN_AND_PURE_METADATA_TASK1",
   "source70_sha256": "6f8dcc2fc4aa7b1896a74d43ea4e030f89729b4b7851825cd0bbd444c6acab04",
   "source_findings": [
     {
@@ -227,13 +246,55 @@
     "workflow_id"
   ],
   "verification": {
+    "focused_cpu": {
+      "duration_s": 0.498,
+      "skipped": 0,
+      "tests": 17
+    },
+    "full_cpu": {
+      "duration_s": 73.571,
+      "runs": 1,
+      "skipped": 7,
+      "tests": 661
+    },
+    "logs": {
+      "task-1-cli-proposal.json": {
+        "nbytes": 70,
+        "sha256": "3f429b52150279786f35cc2c9614f83d299f1bc502da9e03ad837aaf3524e809"
+      },
+      "task-1-focused.log": {
+        "nbytes": 2993,
+        "sha256": "0746000258462f96f687c026f1184a7b12ea9bab7ccf7ba83ec1d6dac8afdf49"
+      },
+      "task-1-full-cpu.log": {
+        "nbytes": 125100,
+        "sha256": "b0a520401dc8d5a6aab20f02d5de227cc6933e7f056f0950840bb155bdc17504"
+      },
+      "task-1-green.log": {
+        "nbytes": 4191,
+        "sha256": "0c4985a08bebb829a174f9ac43318c614ddce4ea783070caa7dc1d3ce5cf6ba9"
+      },
+      "task-1-red.log": {
+        "nbytes": 13827,
+        "sha256": "81bf91c2d4bd61c3c1209b6dc356f41d223e394faf17501d42ad6a51dc03d479"
+      }
+    },
     "native_replay": false,
-    "new_unit_tests": 0,
+    "new_unit_tests": 17,
     "old_artifact_download_or_extraction": false,
     "old_native_raw_replay": false,
     "preserved_source_workflow_registry_bytes": "PASS",
     "proposal_flags_nulls_zero_allowance": "PASS",
-    "reason_no_new_tests": "Documentation-only increment; future tools/tests not implemented. Semantic assertions and existing baseline CI are recorded separately."
+    "reason_no_new_tests": "Initial checkpoint docs-only;sequentialTask1 nowhas17meaningfulmetadata tests;no prose-onlytests.",
+    "skip_lines": [
+      "test_actual_panda_global_bin_is_restored_without_any_graphics_engine (test_native_opaque_order_matrix.OpaqueBinPolicyTests.test_actual_panda_global_bin_is_restored_without_any_graphics_engine) ... skipped 'Panda CPU contract runs in native CI'",
+      "test_real_ort_uses_camera_and_updates_recurrent_state (test_onnx_ort_integration.NativeOrtTest.test_real_ort_uses_camera_and_updates_recurrent_state) ... skipped 'onnx+onnxruntime optional; GitHub inference CI installs both'",
+      "test_all_four_modes_are_opt_in_and_dispatch_only_for_marker (test_shadow_feedback_probe.PandaGuardTests.test_all_four_modes_are_opt_in_and_dispatch_only_for_marker) ... skipped 'Panda CPU state-contract runs in native CI'",
+      "test_configure_rejects_unknown_state_before_even_sampler_setters (test_shadow_feedback_probe.PandaGuardTests.test_configure_rejects_unknown_state_before_even_sampler_setters) ... skipped 'Panda CPU state-contract runs in native CI'",
+      "test_guard_has_only_two_high_priority_inputs_and_inherits_shader (test_shadow_feedback_probe.PandaGuardTests.test_guard_has_only_two_high_priority_inputs_and_inherits_shader) ... skipped 'Panda CPU state-contract runs in native CI'",
+      "test_preexisting_second_state_fails_before_mutating_first (test_shadow_feedback_probe.PandaGuardTests.test_preexisting_second_state_fails_before_mutating_first) ... skipped 'Panda CPU state-contract runs in native CI'",
+      "test_setup_failure_rolls_back_camera_and_sampler_and_marker (test_shadow_feedback_probe.PandaGuardTests.test_setup_failure_rolls_back_camera_and_sampler_and_marker) ... skipped 'Panda CPU state-contract runs in native CI'"
+    ]
   },
   "workspace_retained": true
 }
