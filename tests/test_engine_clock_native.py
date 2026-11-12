@@ -13,6 +13,26 @@ import numpy as np
 from scripts import engine_clock_native as m
 
 
+def registered_request_bytes(mode):
+    """Synthetic registered request; no current activation or API is consumed."""
+    request=dict(schema=m.REQUEST_SCHEMA,mode=mode,acceptance=None)
+    if mode=='abba':
+        request['acceptance']=dict(source_sha='a'*40,run_id=1,run_attempt=1,workflow_id=2,
+            artifact_id=3,artifact_name='stage7-engine-clock-canary',artifact_size_bytes=100,
+            artifact_sha256='b'*64,root_raw_accepted=True,fresh_raw_review_accepted=True)
+    m._request_data(request)
+    return json.dumps(request,separators=(',',':')).encode()+b'\n'
+
+
+@contextlib.contextmanager
+def registered_request_overlay(raw):
+    """Overlay only request reads in memory, preserving every other file read."""
+    target=m.REPO/m.REQUEST;original=Path.read_bytes
+    def read(path):
+        return raw if path.absolute()==target else original(path)
+    with patch.object(Path,'read_bytes',read):yield
+
+
 class Texture:
     def __init__(self, values, events): self.values=iter(values);self.events=events
     def get_image_modified(self): self.events.append('marker');return self
@@ -413,9 +433,10 @@ class LifecycleTests(unittest.TestCase):
         context={};snapshot={};request=dict(schema=m.REQUEST_SCHEMA,mode='canary',acceptance=None)
         with tempfile.TemporaryDirectory() as temp:
             out=Path(temp)/'output'
-            with patch.object(m.oldmodel,'_github'),patch.object(m,'_context',return_value=(context,snapshot,request,'a'*64)),patch.object(m,'_output',return_value=out),patch.object(m,'_runtime',return_value={}),patch.object(m,'_unique_run'),patch.object(m.oldmodel,'_enable_subreaper'),patch.object(m,'_case',return_value=dict(error='stop',provider_lower_bound=0,provider_upper_bound=1)) as launch:
+            with registered_request_overlay(registered_request_bytes('canary')),patch.object(m.oldmodel,'_github'),patch.object(m,'_context',return_value=(context,snapshot,request,'a'*64)),patch.object(m,'_output',return_value=out),patch.object(m,'_runtime',return_value={}),patch.object(m,'_unique_run'),patch.object(m.oldmodel,'_enable_subreaper'),patch.object(m,'_case',return_value=dict(error='stop',provider_lower_bound=0,provider_upper_bound=1)) as launch:
                 data=m.run_phase(out)
             self.assertEqual(launch.call_count,1);self.assertEqual(data['status'],'FAILED_OR_INCOMPLETE')
+            self.assertEqual(data['failure_stage'],'case_00');self.assertIn('stop',data['error'])
             self.assertTrue((out/'phase.json').is_file());self.assertIsNone(data['providers'])
 
     def test_invalid_candidate_is_published_as_failure(self):
@@ -425,9 +446,10 @@ class LifecycleTests(unittest.TestCase):
             def case(*args):
                 target=args[0];target.mkdir();m._write(target/'case.json',dict(accepted=[],markers=[],enabled=True))
                 return dict(error=None)
-            with patch.object(m.oldmodel,'_github'),patch.object(m,'_context',return_value=(context,snapshot,request,'a'*64)),patch.object(m,'_output',return_value=out),patch.object(m,'_runtime',return_value={}),patch.object(m,'_unique_run'),patch.object(m.oldmodel,'_enable_subreaper'),patch.object(m,'_case',side_effect=case):
+            with registered_request_overlay(registered_request_bytes('canary')),patch.object(m.oldmodel,'_github'),patch.object(m,'_context',return_value=(context,snapshot,request,'a'*64)),patch.object(m,'_output',return_value=out),patch.object(m,'_runtime',return_value={}),patch.object(m,'_unique_run'),patch.object(m.oldmodel,'_enable_subreaper'),patch.object(m,'_case',side_effect=case):
                 data=m.run_phase(out)
             self.assertEqual(data['status'],'FAILED_OR_INCOMPLETE')
+            self.assertEqual(data['failure_stage'],'dataset_validation')
             self.assertEqual(m._read(out/'phase.json')['status'],'FAILED_OR_INCOMPLETE')
 
 
@@ -555,9 +577,10 @@ class SemanticsTests(unittest.TestCase):
         request=dict(schema=m.REQUEST_SCHEMA,mode='canary',acceptance=None)
         with tempfile.TemporaryDirectory() as temp:
             out=Path(temp)/'output'
-            with patch.object(m.oldmodel,'_github'),patch.object(m,'_context',return_value=({}, {},request,'a'*64)),patch.object(m,'_output',return_value=out),patch.object(m,'_runtime',return_value={}),patch.object(m,'_unique_run'),patch.object(m.oldmodel,'_enable_subreaper',side_effect=ValueError('subreaper unavailable')):
+            with registered_request_overlay(registered_request_bytes('canary')),patch.object(m.oldmodel,'_github'),patch.object(m,'_context',return_value=({}, {},request,'a'*64)),patch.object(m,'_output',return_value=out),patch.object(m,'_runtime',return_value={}),patch.object(m,'_unique_run'),patch.object(m.oldmodel,'_enable_subreaper',side_effect=ValueError('subreaper unavailable')):
                 data=m.run_phase(out)
             self.assertEqual(data['status'],'FAILED_OR_INCOMPLETE');self.assertIn('subreaper',data['error'])
+            self.assertEqual(data['failure_stage'],'subreaper')
             self.assertTrue((out/'phase.json').is_file())
 
 
@@ -613,7 +636,7 @@ class FailureCountTests(unittest.TestCase):
         request=dict(schema=m.REQUEST_SCHEMA,mode='canary',acceptance=None)
         with tempfile.TemporaryDirectory() as temp:
             out=Path(temp)/'output'
-            with patch.object(m.oldmodel,'_github'),patch.object(m,'_context',return_value=({}, {},request,'a'*64)),patch.object(m,'_output',return_value=out),patch.object(m,'_runtime',return_value={}),patch.object(m,'_unique_run'),patch.object(m.oldmodel,'_enable_subreaper'),patch.object(m,'_case',return_value=dict(error='child missing')):
+            with registered_request_overlay(registered_request_bytes('canary')),patch.object(m.oldmodel,'_github'),patch.object(m,'_context',return_value=({}, {},request,'a'*64)),patch.object(m,'_output',return_value=out),patch.object(m,'_runtime',return_value={}),patch.object(m,'_unique_run'),patch.object(m.oldmodel,'_enable_subreaper'),patch.object(m,'_case',return_value=dict(error='child missing')):
                 data=m.run_phase(out)
             for key in ('providers','accepted_pairs','observed_reads','marker_reads','task_step_calls','clock_snapshots','clock_getter_invocations'):self.assertIsNone(data[key])
 
@@ -731,26 +754,43 @@ class RegisteredWorkflowTests(unittest.TestCase):
     def test_extracted_registered_phase_step_git_binding_and_actual_newline_bytes(self):
         workflow=json.loads((m.REPO/m.WORKFLOW).read_text())
         step=next(s for s in workflow['jobs']['diagnostic']['steps'] if s.get('name')=='Read registered phase')
-        with tempfile.TemporaryDirectory() as temp:
-            root=Path(temp);output=root/'github-output';receipt=root/'git-receipt'
-            git=root/'git'
-            git.write_text('#!'+m.sys.executable+'\nimport os,sys,pathlib\n'
-                'pathlib.Path(os.environ["FAKE_GIT_RECEIPT"]).write_text(" ".join(sys.argv[1:]))\n'
-                'assert sys.argv[1:]==["show",os.environ["GITHUB_SHA"]+":'+m.REQUEST+'"]\n'
-                'sys.stdout.buffer.write(pathlib.Path(os.environ["FAKE_REQUEST"]).read_bytes())\n')
-            git.chmod(0o700)
-            fake_request=root/'request';fake_request.write_bytes((m.REPO/m.REQUEST).read_bytes())
-            env=dict(os.environ,PATH=str(root)+os.pathsep+os.environ['PATH'],GITHUB_SHA='a'*40,
-                     GITHUB_OUTPUT=str(output),FAKE_GIT_RECEIPT=str(receipt),FAKE_REQUEST=str(fake_request))
-            result=subprocess.run(['bash','-e','-c',step['run']],cwd=m.REPO,env=env,capture_output=True)
-            self.assertEqual(result.returncode,0,result.stderr)
-            self.assertEqual(output.read_bytes(),b'mode=canary\n')
-            self.assertTrue(receipt.is_file(),'registered phase must read the Git-bound request blob')
-            self.assertEqual(receipt.read_text(),'show '+'a'*40+':'+m.REQUEST)
-            output.unlink();fake_request.write_bytes(b'{"schema":"engine-clock-request-v1","mode":"canary","acceptance":null}  ')
-            result=subprocess.run(['bash','-e','-c',step['run']],cwd=m.REPO,env=env,capture_output=True)
-            self.assertNotEqual(result.returncode,0)
-            self.assertFalse(output.exists())
+        for mode in m.SCHEDULES:
+            with self.subTest(mode=mode),tempfile.TemporaryDirectory() as temp:
+                root=Path(temp);output=root/'github-output';receipt=root/'git-receipt'
+                raw=registered_request_bytes(mode)
+                # Propagate only an in-memory request read to the extracted
+                # shell step's Python process. Never change the repository file.
+                (root/'sitecustomize.py').write_text(
+                    'import os\nfrom pathlib import Path\n'
+                    'target=Path(os.environ["CLOCK_TEST_REQUEST_PATH"])\n'
+                    'raw=bytes.fromhex(os.environ["CLOCK_TEST_REQUEST_HEX"])\n'
+                    'original=Path.read_bytes\n'
+                    'def read(path):\n'
+                    '    return raw if path.absolute()==target else original(path)\n'
+                    'Path.read_bytes=read\n')
+                git=root/'git'
+                git.write_text('#!'+m.sys.executable+'\nimport os,sys,pathlib\n'
+                    'pathlib.Path(os.environ["FAKE_GIT_RECEIPT"]).write_text(" ".join(sys.argv[1:]))\n'
+                    'assert sys.argv[1:]==["show",os.environ["GITHUB_SHA"]+":'+m.REQUEST+'"]\n'
+                    'sys.stdout.buffer.write(pathlib.Path(os.environ["FAKE_REQUEST"]).read_bytes())\n')
+                git.chmod(0o700)
+                fake_request=root/'request';fake_request.write_bytes(raw)
+                env=dict(os.environ,PATH=str(root)+os.pathsep+os.environ['PATH'],GITHUB_SHA='a'*40,
+                    PYTHONPATH=os.pathsep.join((str(root),str(m.REPO))),
+                    CLOCK_TEST_REQUEST_PATH=str(m.REPO/m.REQUEST),CLOCK_TEST_REQUEST_HEX=raw.hex(),
+                    GITHUB_OUTPUT=str(output),FAKE_GIT_RECEIPT=str(receipt),FAKE_REQUEST=str(fake_request))
+                result=subprocess.run(['bash','-e','-c',step['run']],cwd=m.REPO,env=env,capture_output=True)
+                self.assertEqual(result.returncode,0,result.stderr)
+                self.assertEqual(output.read_bytes(),('mode='+mode+'\n').encode())
+                self.assertTrue(receipt.is_file(),'registered phase must read the Git-bound request blob')
+                self.assertEqual(receipt.read_text(),'show '+'a'*40+':'+m.REQUEST)
+                # Valid same-mode JSON with different bytes must still fail the
+                # real Git binding; parsing alone cannot admit the phase.
+                output.unlink();fake_request.write_bytes(raw+b' ')
+                result=subprocess.run(['bash','-e','-c',step['run']],cwd=m.REPO,env=env,capture_output=True)
+                self.assertNotEqual(result.returncode,0)
+                self.assertIn(b'registered phase request differs from current Git blob',result.stderr)
+                self.assertFalse(output.exists())
 
 
 class ClockLinkageTests(unittest.TestCase):
@@ -946,8 +986,8 @@ class FailureLedgerRegressionTests(unittest.TestCase):
             with self.subTest(stage=stage),tempfile.TemporaryDirectory() as temp:
                 out=Path(temp)/'engine-clock-canary'
                 context=dict(head_sha='a'*40);snapshot={'fixture':'b'*64}
-                request=m._request_bytes((m.REPO/m.REQUEST).read_bytes());digest=m._sha((m.REPO/m.REQUEST).read_bytes())
-                with patch.dict(os.environ,{'GITHUB_ACTIONS':'true','RUNNER_TEMP':temp}),patch.object(m.oldmodel,'_github'),patch.object(m,'_context',return_value=(context,snapshot,request,digest),side_effect=RuntimeError('context-rejected') if stage=='context' else None),patch.object(m,'_runtime',return_value={'runtime':'confirmed'},side_effect=RuntimeError('runtime-rejected') if stage=='runtime' else None),patch.object(m,'_unique_run',side_effect=RuntimeError('unique_run-rejected') if stage=='unique_run' else None),patch.object(subprocess,'Popen') as popen,patch.object(native,'NativeMetaDriveProvider') as constructor:
+                raw=registered_request_bytes('canary');request=m._request_bytes(raw);digest=m._sha(raw)
+                with registered_request_overlay(raw),patch.dict(os.environ,{'GITHUB_ACTIONS':'true','RUNNER_TEMP':temp}),patch.object(m.oldmodel,'_github'),patch.object(m,'_context',return_value=(context,snapshot,request,digest),side_effect=RuntimeError('context-rejected') if stage=='context' else None),patch.object(m,'_runtime',return_value={'runtime':'confirmed'},side_effect=RuntimeError('runtime-rejected') if stage=='runtime' else None),patch.object(m,'_unique_run',side_effect=RuntimeError('unique_run-rejected') if stage=='unique_run' else None),patch.object(subprocess,'Popen') as popen,patch.object(native,'NativeMetaDriveProvider') as constructor:
                     data=m.run_phase(out)
                 popen.assert_not_called();constructor.assert_not_called()
                 self.assertEqual(data['status'],'FAILED_OR_INCOMPLETE');self.assertEqual(data['failure_stage'],stage)
