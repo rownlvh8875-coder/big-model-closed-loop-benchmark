@@ -1,7 +1,14 @@
 # Stage 7 continuation — verified results, renderer cause still open
 
 
-## Current checkpoint (2026-11-12 — Task2 bounded caller-root inventory)
+
+## Current checkpoint (2026-11-12 — Task3 input compatibility blocked)
+
+Branchdesign/engine-clock-image-inputs;based54d43757eabc60d4f3f5b3d7e51f665bcc9f23e/PR42. Task1/2completeandunchanged. Task3firstinputgatescreened8officialmetadatarequests/allHTTP200/no retry. Exactreleaseversionsavailable. MetaDrive0.4.3wheelPEP658metadata11315bytes/SHA4fb69fa54bb0e8118315aecdc482597af69798e17e47df3c57fbca50d4e7bcf6verified;unconditionalRequires-Distopencv-python conflictswithsupportedone-cv2-providerpolicyandfixedopencv-python-headless5.0.0.93. Thisisupstreampackagingsupportblocker,notpipsolverunsatisfiability/nohistoricalcauseclaim. No actualoverlapinstall/import/payloadhashmeasurement.
+
+SeeSTAGE7_ENGINE_CLOCK_IMAGE_INPUTS.md,newimage-inputsspec/evidenceaudit/rawMETADATA. Freshbuilder/wholebranchreview2e89ffe95b1382823248dd7595f254e1d271afafC0/I0/M0;14declinedjudgmentsrootruledwithcosts;laterreceipt-onlyHEADandfinalCIseparate. ParentTask3firstcheckboxunchecked/allTask3notcomplete;no completelock/Dockerfile/adapter/activeworkflow/imageprep. Nextproposedpolicy:source-boundmetadata-onlyMetaDrivewheelderivativepreservingruntimepayload,properRECORD/original-transform-derivedhashes/hostilearchivefixtures/freshreview;NOTimplementedyet/noofficialwheelclaim. Onlyafterthatpolicygatecancompletebase/Python/wheel/deb/assetresolutionandadaptercontinue;actualpreparationseparategate.16refsnull/readinessfalse/nativeallowance0. Source70/workflows44/registry8/Task1+2tools-tests-proposal/raw/controllerhistoriesfixed. StrictFAIL/expandedNOT_RUN/oldABBAterminal7null4cases6comparisonsNOT_RUN/geometry-optics-fullS/Stage7INCOMPLETE/Cloudunpublished/mainunmergedremain. Earliercheckpointsbelowhistorical.
+
+## Previous checkpoint (2026-11-12 — Task2 bounded caller-root inventory)
 
 Branch analysis/engine-clock-runtime-inventory; base2cc22c0e82dde25429a3f0216a3eb7405b127d5b/PR41. Task1 tool/test/proposal fixed. New purestdlib scripts/engine_clock_runtime_inventory.py and31 filesystem-fixture tests implement validate_inventory/collect_inventory. No CLI/import scan/realhost-image scan/API/Docker/native/model/ORT/GPU/clock work. Expected manifest remains unauthenticated; match is caller-tree verification/native_admissionfalse. Two bounded scans (payload once, metadata twice), nofollow/same-device/checks and main-threadPOSIX alarm; no atomic/mount/actualGL/observer-neutral claim.
 

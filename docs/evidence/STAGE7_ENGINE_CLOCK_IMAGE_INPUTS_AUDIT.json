@@ -1,0 +1,397 @@
+{
+  "adapter_implemented": false,
+  "all_http_status_200": true,
+  "automatic_retries": 0,
+  "base_pr": 42,
+  "base_sha": "d54d43757eabc60d4f3f5b3d7e51f665bcc9f23e",
+  "blocker": {
+    "contract_fixed_distribution": "opencv-python-headless==5.0.0.93",
+    "historical_cause_claim": false,
+    "kind": "UNSUPPORTED_SHARED_CV2_DISTRIBUTIONS",
+    "metadrive_requires_dist": "opencv-python",
+    "overlapping_install_executed": false,
+    "pip_unsatisfiable_claim": false,
+    "upstream_guidance_verbatim": "    There are four different packages (see options 1, 2, 3 and 4 below) and you should **SELECT ONLY ONE OF THEM**. Do not install multiple different packages in the same environment. There is no plugin architecture: all the packages use the same namespace (`cv2`). If you installed multiple different packages in the same environment, uninstall them all with ``pip uninstall`` and reinstall only one package."
+  },
+  "branch": "design/engine-clock-image-inputs",
+  "deferred_minors": [],
+  "execution_authorized": false,
+  "http_body_bytes": 236879,
+  "http_request_count": 8,
+  "http_requests": [
+    {
+      "final_url": "https://pypi.org/simple/metadrive-simulator/",
+      "http_status": 200,
+      "name": "metadrive-simple-index",
+      "nbytes": 16634,
+      "observed_at_utc": "2026-11-12T23:39:27.708953+00:00",
+      "request_url": "https://pypi.org/simple/metadrive-simulator/",
+      "saved_response": ".superpowers/sdd/2026-11-12-engine-clock-runtime-contract/task-3-input-responses/metadrive-simple-index.body",
+      "sha256": "88eef44d4c1e288352401cb09ac84c59e06656b16041a8619bbbb1d90f07bac9",
+      "transport_error": null
+    },
+    {
+      "final_url": "https://pypi.org/pypi/metadrive-simulator/0.4.3/json",
+      "http_status": 200,
+      "name": "metadrive-simulator-0.4.3",
+      "nbytes": 13613,
+      "observed_at_utc": "2026-11-12T23:37:20.284260+00:00",
+      "reported_name": "metadrive-simulator",
+      "reported_version": "0.4.3",
+      "request_url": "https://pypi.org/pypi/metadrive-simulator/0.4.3/json",
+      "requires_python": "<3.12,>=3.6",
+      "saved_response": ".superpowers/sdd/2026-11-12-engine-clock-runtime-contract/task-3-input-responses/metadrive-simulator-0.4.3.body",
+      "sha256": "bcd27d6371877ee55e402c229a2ba3b885149dae38a6eb512f1ec984248e12a8",
+      "transport_error": null
+    },
+    {
+      "final_url": "https://files.pythonhosted.org/packages/1a/9b/6c9e143728f071a560d1deba10d19bf4512d8951e6d15c7328c4d63dc631/metadrive_simulator-0.4.3-py3-none-any.whl.metadata",
+      "http_status": 200,
+      "name": "metadrive-wheel-core-metadata",
+      "nbytes": 11315,
+      "observed_at_utc": "2026-11-12T23:39:27.905863+00:00",
+      "request_url": "https://files.pythonhosted.org/packages/1a/9b/6c9e143728f071a560d1deba10d19bf4512d8951e6d15c7328c4d63dc631/metadrive_simulator-0.4.3-py3-none-any.whl.metadata",
+      "saved_response": ".superpowers/sdd/2026-11-12-engine-clock-runtime-contract/task-3-input-responses/metadrive-wheel-core-metadata.body",
+      "sha256": "4fb69fa54bb0e8118315aecdc482597af69798e17e47df3c57fbca50d4e7bcf6",
+      "transport_error": null
+    },
+    {
+      "final_url": "https://pypi.org/pypi/numpy/2.4.6/json",
+      "http_status": 200,
+      "name": "numpy-2.4.6",
+      "nbytes": 68419,
+      "observed_at_utc": "2026-11-12T23:37:20.282042+00:00",
+      "reported_name": "numpy",
+      "reported_version": "2.4.6",
+      "request_url": "https://pypi.org/pypi/numpy/2.4.6/json",
+      "requires_python": ">=3.11",
+      "saved_response": ".superpowers/sdd/2026-11-12-engine-clock-runtime-contract/task-3-input-responses/numpy-2.4.6.body",
+      "sha256": "47121e3c41e7f6575370e2937674546e87caa261e51c5219ae6996619d7ae07f",
+      "transport_error": null
+    },
+    {
+      "final_url": "https://pypi.org/pypi/opencv-python/5.0.0.93/json",
+      "http_status": 200,
+      "name": "opencv-python-5.0.0.93",
+      "nbytes": 28765,
+      "observed_at_utc": "2026-11-12T23:39:28.133062+00:00",
+      "request_url": "https://pypi.org/pypi/opencv-python/5.0.0.93/json",
+      "saved_response": ".superpowers/sdd/2026-11-12-engine-clock-runtime-contract/task-3-input-responses/opencv-python-5.0.0.93.body",
+      "sha256": "151435e9a3b382752885f5a819271402897eeed992e5198ec50485d99f796aaa",
+      "transport_error": null
+    },
+    {
+      "final_url": "https://pypi.org/pypi/opencv-python-headless/5.0.0.93/json",
+      "http_status": 200,
+      "name": "opencv-python-headless-5.0.0.93",
+      "nbytes": 28963,
+      "observed_at_utc": "2026-11-12T23:37:20.282677+00:00",
+      "reported_name": "opencv-python-headless",
+      "reported_version": "5.0.0.93",
+      "request_url": "https://pypi.org/pypi/opencv-python-headless/5.0.0.93/json",
+      "requires_python": ">=3.6",
+      "saved_response": ".superpowers/sdd/2026-11-12-engine-clock-runtime-contract/task-3-input-responses/opencv-python-headless-5.0.0.93.body",
+      "sha256": "5a5aae8e027ce654a01451fdd1c1cd0e20f4c7945b24d12810b9ddaf7e756adc",
+      "transport_error": null
+    },
+    {
+      "final_url": "https://pypi.org/pypi/panda3d/1.10.13/json",
+      "http_status": 200,
+      "name": "panda3d-1.10.13",
+      "nbytes": 67710,
+      "observed_at_utc": "2026-11-12T23:37:20.283230+00:00",
+      "reported_name": "Panda3D",
+      "reported_version": "1.10.13",
+      "request_url": "https://pypi.org/pypi/panda3d/1.10.13/json",
+      "requires_python": "",
+      "saved_response": ".superpowers/sdd/2026-11-12-engine-clock-runtime-contract/task-3-input-responses/panda3d-1.10.13.body",
+      "sha256": "3762b0684f12050d24632023c7a332d2ef789eecc508a53a654b25e8bab243eb",
+      "transport_error": null
+    },
+    {
+      "final_url": "https://www.python.org/ftp/python/3.11.18/",
+      "http_status": 200,
+      "name": "python-3.11.18",
+      "nbytes": 1460,
+      "observed_at_utc": "2026-11-12T23:37:20.281024+00:00",
+      "request_url": "https://www.python.org/ftp/python/3.11.18/",
+      "saved_response": ".superpowers/sdd/2026-11-12-engine-clock-runtime-contract/task-3-input-responses/python-3.11.18.body",
+      "sha256": "cd96e98340680d5e54f7956fa2bc349eac391e0f656139953b27cb17c3fb8771",
+      "transport_error": null
+    }
+  ],
+  "image_preparation_ready": false,
+  "lock_complete": false,
+  "metadrive_pep658_binding": {
+    "advertised_metadata_sha256": "4fb69fa54bb0e8118315aecdc482597af69798e17e47df3c57fbca50d4e7bcf6",
+    "metadata_receipt": {
+      "final_url": "https://files.pythonhosted.org/packages/1a/9b/6c9e143728f071a560d1deba10d19bf4512d8951e6d15c7328c4d63dc631/metadrive_simulator-0.4.3-py3-none-any.whl.metadata",
+      "http_status": 200,
+      "name": "metadrive-wheel-core-metadata",
+      "nbytes": 11315,
+      "observed_at_utc": "2026-11-12T23:39:27.905863+00:00",
+      "request_url": "https://files.pythonhosted.org/packages/1a/9b/6c9e143728f071a560d1deba10d19bf4512d8951e6d15c7328c4d63dc631/metadrive_simulator-0.4.3-py3-none-any.whl.metadata",
+      "saved_response": ".superpowers/sdd/2026-11-12-engine-clock-runtime-contract/task-3-input-responses/metadrive-wheel-core-metadata.body",
+      "sha256": "4fb69fa54bb0e8118315aecdc482597af69798e17e47df3c57fbca50d4e7bcf6",
+      "transport_error": null
+    },
+    "name": "metadrive-simulator",
+    "requires_dist": [
+      "requests",
+      "gymnasium >=0.28",
+      "numpy >=1.21.6",
+      "matplotlib",
+      "pygame",
+      "yapf",
+      "seaborn",
+      "tqdm",
+      "progressbar",
+      "panda3d ==1.10.13",
+      "panda3d-gltf ==0.13",
+      "pillow",
+      "opencv-python",
+      "lxml",
+      "scipy",
+      "psutil",
+      "shapely",
+      "filelock",
+      "Pygments",
+      "mediapy",
+      "cuda-python ==12.0.0 ; extra == 'cuda'",
+      "PyOpenGL ==3.1.6 ; extra == 'cuda'",
+      "PyOpenGL-accelerate ==3.1.6 ; extra == 'cuda'",
+      "pyrr ==0.10.3 ; extra == 'cuda'",
+      "glfw ; extra == 'cuda'",
+      "gym <=0.26.0,>=0.19.0 ; extra == 'gym'",
+      "zmq ; extra == 'ros'"
+    ],
+    "simple_receipt": {
+      "final_url": "https://pypi.org/simple/metadrive-simulator/",
+      "http_status": 200,
+      "name": "metadrive-simple-index",
+      "nbytes": 16634,
+      "observed_at_utc": "2026-11-12T23:39:27.708953+00:00",
+      "request_url": "https://pypi.org/simple/metadrive-simulator/",
+      "saved_response": ".superpowers/sdd/2026-11-12-engine-clock-runtime-contract/task-3-input-responses/metadrive-simple-index.body",
+      "sha256": "88eef44d4c1e288352401cb09ac84c59e06656b16041a8619bbbb1d90f07bac9",
+      "transport_error": null
+    },
+    "verified": true,
+    "version": "0.4.3",
+    "wheel_filename": "metadrive_simulator-0.4.3-py3-none-any.whl",
+    "wheel_payload_downloaded": false,
+    "wheel_sha256": "c6f8a42baac939a0af53a8e1cd9d48ec2bf0051917e7c19083e156a6506493d9"
+  },
+  "native_admission_ready": false,
+  "native_allowance": 0,
+  "new_execution": {
+    "clock_reads_setters": 0,
+    "cloud_settings_or_publication": 0,
+    "deb_asset_layer_downloads": 0,
+    "extra_gpu_reads": 0,
+    "image_artifacts": 0,
+    "image_build_pull_load_run": 0,
+    "main_merge": 0,
+    "model_weights_downloads": 0,
+    "native_artifacts": 0,
+    "native_engine_runs": 0,
+    "official_inferences": 0,
+    "ort_sessions": 0,
+    "provider_constructors": 0,
+    "raw_canvas_i420_firstdiff_measurements": 0,
+    "wheel_payload_downloads": 0
+  },
+  "next_proposal": "separately reviewed source-bound MetaDrive metadata-only derivative policy/transform; not implemented or executed",
+  "preservation": {
+    "producer70": {
+      "count": 70,
+      "snapshot_file": ".superpowers/sdd/2026-11-12-engine-clock-runtime-contract/before-source70.json",
+      "snapshot_sha256": "e5efce0f270dcde6d0830a1f947d56e2909a4c6cfce79bc6e07fbfb05cc8f449",
+      "unchanged": true
+    },
+    "registries8": {
+      "count": 8,
+      "snapshot_file": ".superpowers/sdd/2026-11-12-engine-clock-runtime-contract/before-registries.json",
+      "snapshot_sha256": "5bdf6aaa2194b0f882987d8675a26475f39b6d886723bd31862e1c2235e5e771",
+      "unchanged": true
+    },
+    "task1_task2_tools_tests_proposal": {
+      "count": 5,
+      "snapshot_file": ".superpowers/sdd/2026-11-12-engine-clock-runtime-contract/task-3-before-tools-proposal.json",
+      "snapshot_sha256": "8c6513c66fbc584037663f718082b4f550264d87c5c173938d61a68693f8edfc",
+      "unchanged": true
+    },
+    "workflows44": {
+      "count": 44,
+      "snapshot_file": ".superpowers/sdd/2026-11-12-engine-clock-runtime-contract/before-workflows44.json",
+      "snapshot_sha256": "b1d9c75e6d7b0b40dae3fd1acb84059b5d2abb6fd9b21bc4a103953074be03ee",
+      "unchanged": true
+    }
+  },
+  "public_evidence_files": {
+    "docs/evidence/engine-clock-image-inputs/metadrive-0.4.3.METADATA": {
+      "nbytes": 11315,
+      "sha256": "4fb69fa54bb0e8118315aecdc482597af69798e17e47df3c57fbca50d4e7bcf6"
+    },
+    "docs/evidence/engine-clock-image-inputs/opencv-package-guidance.txt": {
+      "nbytes": 619,
+      "sha256": "513e79a66aac8f690e03573e287255ec4e39d45142447f9c14783b5c0e2a5394"
+    }
+  },
+  "required_preparation_refs": {
+    "artifact_id": null,
+    "artifact_zip_sha256": null,
+    "base_image_platform_manifest_digest": null,
+    "build_recipe_sha256": null,
+    "config_digest": null,
+    "docker_compatibility_profile": null,
+    "environment_profile_sha256": null,
+    "image_tar_sha256": null,
+    "installed_files_sha256": null,
+    "launch_receipt_sha256": null,
+    "lock_sha256": null,
+    "observed_feasibility": null,
+    "rootfs_diff_ids": null,
+    "run_id": null,
+    "source_sha": null,
+    "workflow_id": null
+  },
+  "review": {
+    "critical": 0,
+    "final_receipt_head_and_ci": "Recorded after push in Draft PR; final receipt-only HEAD differs from reviewed HEAD.",
+    "important": 0,
+    "independent_rereview": false,
+    "minor": 0,
+    "raw_review_sha256": "f2eaca167855b6f5489ae2136684b2ac4c29e6591091142710cacb6acde01fee",
+    "reviewed_base": "d54d43757eabc60d4f3f5b3d7e51f665bcc9f23e",
+    "reviewed_head": "2e89ffe95b1382823248dd7595f254e1d271afaf"
+  },
+  "root_review_dispositions": [
+    {
+      "behavior": "Live transport/time/count attestation",
+      "cost": "No independent live TLS/infrastructure-retry or hard wall-deadline attestation.",
+      "decision": "Root records its eight application-level metadata fetches, saved bodies and response hashes; urlopen socket timeout25s/bodycap2MiB, no application retry.",
+      "reviewer_declined": "Independent live HTTP/TLS provenance, request execution counts, retries and time bounds: reviewed saved receipts and bodies only; no network replay or transport-code audit was authorized."
+    },
+    {
+      "behavior": "Wheel payload and embedded metadata authenticity",
+      "cost": "Embedded bytes/signatures and wheel payload authenticity remain unverified.",
+      "decision": "Accept only the measured PEP658 sidecar and advertised wheel hash; payload remains undownloaded.",
+      "reviewer_declined": "Wheel payload authenticity, embedded METADATA equality and signatures: only the advertised wheel hash and fetched PEP658 sidecar were checked; wheel payload was not downloaded."
+    },
+    {
+      "behavior": "Full dependency/platform solvability",
+      "cost": "Complete Python/OS/base/asset graph remains unresolved.",
+      "decision": "Stop this first compatibility gate; do not infer full graph from version existence.",
+      "reviewer_declined": "Complete transitive dependency solvability and target-platform availability: release existence and this one packaging blocker do not resolve the full Python/OS/base/asset graph."
+    },
+    {
+      "behavior": "Overlapping installation and import selection",
+      "cost": "Actual overwrite/import behavior is not measured; no historical causal inference.",
+      "decision": "Use publisher-supported packaging policy as blocker without installing either combination.",
+      "reviewer_declined": "Actual overlapping installation, import selection and shared-file overwrites: no installation or imports were performed; support-policy reasoning is sufficient for this stop gate."
+    },
+    {
+      "behavior": "Derivative transform/archive/identity/RECORD/license policy",
+      "cost": "No derivative implementation or real derived hash yet.",
+      "decision": "Keep all transform obligations as a future design and source/fixture review gate.",
+      "reviewer_declined": "Derivative transform implementation, exact allowed member changes, distribution identity, RECORD/signature correctness, license compliance and hostile-archive defenses: proposed future design obligations, not implemented behavior."
+    },
+    {
+      "behavior": "Derivative compatibility/upstream endorsement",
+      "cost": "A derivative remains non-official and needs further compatibility evidence.",
+      "decision": "Do not infer runtime compatibility or official endorsement from proposed payload preservation.",
+      "reviewer_declined": "Derivative runtime compatibility and upstream endorsement: payload preservation alone cannot establish either, and the proposal explicitly does not claim them."
+    },
+    {
+      "behavior": "Task1 identity semantics",
+      "cost": "No fresh Task1 semantic assurance from this reviewer.",
+      "decision": "Preserve Task1 tool/test/proposal bytes and prior evidence; no new independent review of its behavior.",
+      "reviewer_declined": "Task1 identity comparison, synthetic-hash admission boundaries, legacy/partial rejection and kernel/CPU/engine mismatch behavior: frozen prior implementation; checked preservation rather than replaying its review or tests."
+    },
+    {
+      "behavior": "Task2 inventory semantics",
+      "cost": "No fresh filesystem/runtime compatibility assurance from this reviewer.",
+      "decision": "Preserve Task2 tool/test bytes and prior fix/test evidence.",
+      "reviewer_declined": "Task2 closed inventory detection, modes, symlink escape/cycle handling, deadlines, Docker-managed /etc exclusions and legitimate aliases: frozen prior implementation; checked preservation, not runtime behavior."
+    },
+    {
+      "behavior": "Future API/env/redaction/streaming adapter",
+      "cost": "Actual provenance, forgery rejection, redaction and transport remain unimplemented.",
+      "decision": "Keep adapter absent until supported inputs and separately reviewed source/tests.",
+      "reviewer_declined": "Future adapter API provenance, forged environment claims, token/proxy/Config.Env redaction and large archive streaming: adapter is absent and outside this stopped input gate."
+    },
+    {
+      "behavior": "Actual image/lock/config/launch/mount/GL selection",
+      "cost": "No prepared image or runtime authentication exists.",
+      "decision": "Leave all preparation refs null and readiness/native admission false.",
+      "reviewer_declined": "Actual lock/recipe, installed filesystem, Docker configuration/diffIDs, launch authentication, mounts, driver/GL selection and image compatibility: no preparation evidence exists in this increment."
+    },
+    {
+      "behavior": "Image-scale feasibility and neutrality",
+      "cost": "Actual disk/download/hash/load costs and observer neutrality remain unknown.",
+      "decision": "Treat future caps as limits, not measurements; metadata fetch cost alone is observed.",
+      "reviewer_declined": "Download/disk/hash/load feasibility and timing neutrality: no actual image or package preparation occurred; future caps are not measurements."
+    },
+    {
+      "behavior": "Native/scientific conclusions",
+      "cost": "Native causality/determinism/geometry-optics-fullS remain unproved.",
+      "decision": "Retain strictFAIL/expandedNOT_RUN/Stage7INCOMPLETE and no new native/model measurement.",
+      "reviewer_declined": "Native/model/weights/ORT/provider/engine/Xvfb/GPU/clock work and scientific pixel causality, determinism, geometry/optics/full-S validity: excluded from this documentation-only review and remain unvalidated."
+    },
+    {
+      "behavior": "Historical raw replay/zero-execution forensic proof",
+      "cost": "Old allocation/causal unknowns remain; consumed allowance unavailable.",
+      "decision": "Preserve archives/controller histories without replay; report own observed actions, not forensic global absence.",
+      "reviewer_declined": "Complete raw archive/extraction/controller history replay or exhaustive filesystem forensic proof of zero execution: no raw artifact replay authorized; frozen mapped files and tracked diff checked only."
+    },
+    {
+      "behavior": "Final CI/PR/Cloud and later HEAD",
+      "cost": "Later receipt HEAD not independently re-reviewed; no merge/preparation authority.",
+      "decision": "Root checks final local/remoteHEAD/basicCI/Draft/main/readonlyCloud after receipt-only commit.",
+      "reviewer_declined": "Final branch CI, post-review corrections, Draft PR publication, merge and Cloud publication: root owns Git/CI; this review binds only the stated HEAD and grants no preparation or merge authority."
+    }
+  ],
+  "rulings": [
+    "Task3: Ruling: resolve mandatory exact upstream release metadata before recipe/adapter work \u2014 parentTask3 explicitly stops unsupported inputs and requires genuine complete locks \u2014 cost:unavailable pins block the increment; no version fallback or guessed lock.",
+    "Task3: Ruling: classify dual cv2 distributions as a publisher-supported packaging compatibility blocker, not pip unsatisfiability \u2014 MetaDrive real metadata plus fixed headless pin contradict OpenCV one-provider guidance \u2014 cost:Task3 input closure/adapter/preparation remain blocked; no causal claim about historical pixels.",
+    "Task3: Ruling: keep complete lock/recipe/adapter/workflow absent and Task3 first checkbox incomplete \u2014 unsupported first gate must not be bypassed with fake hashes, both installs or ignored requirements \u2014 cost:remaining Task3 implementation requires a separate package-policy revision.",
+    "Task3: Ruling: recommend a future source-bound MetaDrive metadata-only derivative policy without implementing it now \u2014 preserves fixed headless contract while making dependency substitution explicit and payload provenance testable \u2014 cost:derived packaging/source-RECORD-signature/license review and real hash preparation are additional work; no current official-wheel/authentication claim.",
+    "Task3: Ruling: use one fresh whole-branch builder/evidence review for this documentation-only input gate and existing baseline CI, without duplicate local CPU suites \u2014 no product implementation changed and parent explicitly stops unsupported resolution \u2014 cost:no independent installed-runtime or full-graph verification;Task3 remains incomplete."
+  ],
+  "schema": "stage7-engine-clock-image-inputs-audit-v1",
+  "scientific": {
+    "expanded": "NOT_RUN",
+    "geometry_optics_full_s": "NOT_VALIDATED",
+    "old_abba_aggregates": "7_NULL_PRESERVED",
+    "old_abba_cases_comparisons": "4_CASES_6_COMPARISONS_NOT_RUN",
+    "stage7": "INCOMPLETE",
+    "strict": "FAIL",
+    "unused_allowance_reusable": false
+  },
+  "status": "BLOCKED_INPUT_COMPATIBILITY",
+  "task3_complete": false,
+  "tests": {
+    "baseline_ci": "Final receipt-only HEAD baseline CI recorded in Draft PR after push; no local CPU repeat.",
+    "local_cpu_suite_repeated": false,
+    "new_product_code": false,
+    "new_tests": 0,
+    "reason": "documentation/input-metadata gate only; required resolution stopped on unsupported packaging before implementation"
+  },
+  "transport_limits": {
+    "automatic_retry_scope": "application code only; infrastructure not attested",
+    "hard_wall_deadline_attested": false,
+    "request_count_scope": "eight application-level source metadata fetches",
+    "response_body_cap_bytes": 2097152,
+    "urlopen_socket_timeout_seconds": 25
+  },
+  "unresolved": [
+    "supported package-policy revision for cv2 ownership",
+    "complete base/platform manifest and Python archive content digest",
+    "complete transitive wheel/deb locks",
+    "actual recipe/adapter/build/config/rootfs/inventory/launch authentication",
+    "actual filesystem/mount/dependency runtime compatibility",
+    "measured disk/hash/load/download feasibility",
+    "actual GL/driver/native selection, observer neutrality and scientific causality"
+  ]
+}

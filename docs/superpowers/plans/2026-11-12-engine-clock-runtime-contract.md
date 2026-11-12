@@ -34,7 +34,7 @@ Installed manifest limits:<=100000entries/16MiB JSON/4GiB total read/512MiB per 
 
 ## Current increment completion
 
-The initial design-only checkpoint is preserved at04c91d1 and Task1 at2cc22c0. This increment implements **Task2 caller-root fixture verification** inline with TDD and a fresh whole-branch review. [Task2 addendum](../specs/2026-11-12-engine-clock-runtime-inventory-design.md) fixes concrete alias/exclusion/deadline/two-pass rules. Task3 remains unimplemented with separate later gates; no image/native allowance is added.
+The initial design-only checkpoint is preserved at04c91d1 and Task1 at2cc22c0. The previous increment implemented **Task2 caller-root fixture verification** inline with TDD and a fresh whole-branch review. The current continuation inspects Task3 mandatory input compatibility and records its blocked first gate. [Task2 addendum](../specs/2026-11-12-engine-clock-runtime-inventory-design.md) fixes concrete alias/exclusion/deadline/two-pass rules. Task3 remains unimplemented with separate later gates; no image/native allowance is added.
 
 ### Task 1: Pure identity/proposal parser and comparator
 
@@ -69,7 +69,9 @@ The initial design-only checkpoint is preserved at04c91d1 and Task1 at2cc22c0. T
 - [x] Run targeted RED, implement collector, run targeted GREEN, then independently review pure-tool/collector boundary and installed-vs-actual-loaded assurance statements. Record hashing timing as preflight overhead; do not call it neutral.
 - [x] Keep image/native readiness false. Commit/test/Draft only on a new provider-free branch. Any missing concrete filesystem/alias compatibility blocks preparation rather than changing old runtime rules.
 
-### Task 3: Image inputs, preparation adapter and provider-free evidence (separate later increment)
+### Task 3: Image inputs, preparation adapter and provider-free evidence (input gate blocked)
+
+Current input-gate result: **BLOCKED_INPUT_COMPATIBILITY**, not Task3 complete. All requested releases exist, but MetaDrive0.4.3 requires opencv-python while the fixed contract requires opencv-python-headless; publisher guidance rejects shared cv2 providers. See [Task3 gate addendum](../specs/2026-11-12-engine-clock-image-inputs-design.md). No complete lock/recipe/adapter/workflow or preparation is created. The first checkbox remains unchecked; proposed metadata-only derivative policy requires a separate source/fixture review before resolution can continue. This is not a pip unsatisfiability or historical-cause claim.
 
 **Planned files:** create `containers/engine-clock-runtime/Dockerfile`, `containers/engine-clock-runtime/inputs.lock.json`, `scripts/engine_clock_image_preflight.py`, `tests/test_engine_clock_image_preflight.py`, and an inactive workflow example under `docs/proposals/engine-clock-image-preparation.workflow.json`. None exists or is active in the current increment.
 
