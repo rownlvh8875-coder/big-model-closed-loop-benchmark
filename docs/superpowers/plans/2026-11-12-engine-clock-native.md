@@ -40,4 +40,6 @@ Consumes actual accepted canaryC; rootdoesnotcommitdocsbetweenC andA.
 
 - [x] Create exactlyone activation child changing only newrequest/acceptance/docs with realcanary IDs/digest/root+freshflags, freeze70/runtime, verify concrete gate thenpushonce.
 - [x] Authenticate actual ABBA4providers or terminalfailure, original artifact extractiononce, pure reconstruction/all6comparisons/clock counts+times+rawlinks, fresh independent raw acceptance. No retries/unusedallowance.
-- [ ] Record actual evidence/unknowns/rulings, final fresh whole-branch review, docs-only Draft update and actual baselineCI/no-native-replay/source/protected/main checks; retain all histories.
+- [x] Record actual evidence/unknowns/rulings, final fresh whole-branch review, docs-only Draft update and actual baselineCI/no-native-replay/source/protected/main checks; retain all histories.
+
+Actual outcome: canary accepted; ABBA terminal runtime rejection before cases. Final broad review passed at77dc86aa53cbb94ec0d840f222a395811aa4b139. Post-receipt docs-only push/basic-CI completion and exact final HEAD are recorded in Draft PR40 and controller ledger; failed diagnostic remains failure. No new native study is part of this completion.
