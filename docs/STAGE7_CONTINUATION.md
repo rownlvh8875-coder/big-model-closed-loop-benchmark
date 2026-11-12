@@ -1,6 +1,16 @@
 # Stage 7 continuation — verified results, renderer cause still open
 
-## Current checkpoint (2026-11-12 — saved raw pixel CPU interventions complete)
+## Current checkpoint (2026-11-12 — zero-model Texture canary and ABBA recorded)
+
+Branch diagnostic/texture-generation-markers / DraftPR37 stacked on36. Canary source0a98918e746fe7df9d5502e21db91c3e5cd15396/run43177564313/job131045412519/artifact13925041858 (ZIP14605800B/SHA6a8c7a2e3495a5115938d17aee1da8c4e27f4e2ebc1b6350001e0f1090ee1994) was root+fresh accepted. Direct-child metadata-only activation4814794243ca61a96264ebe04f4fb1b82f0eeecf/run43178394897/job131048107858/artifact13925716196 (ZIP58403425B/SHAe6017f302e6879709bf089aaeca97fde9ca8828764b645c8e4bde473db6f16ce) succeeded. Same workflow415702769/attempt1/runtime/source65; old62/protected13/base43/42oldworkflows/consumed requests unchanged. Both original archives were extracted once; all33/129members matched original bytes. New docs HEAD is not either native source.
+
+Total5fresh providers/30capturepairs/60observed RGB copies/72sequence readings(144accessor invocations), excluding startup;0official/ORT/extraGPU. Canary6pairs;ABBA OFF0/ON0/ON1/OFF1 each6pairs, allclosed/exit0/groupgone/reaped/clean. All raw-to-recorded-lens warps60/60 and derivedI42030/30 exact; no actual new graphfeed. All ON pre/post equal (road12,14,…22/wide13,15,…23). OFF has no marker getters. ABBA firstOFF differs from all3later cases at raw/canvascapture2Road1pixel/max39; firstpackedcapture4/14values/max9. ON0/ON1/OFF1 fully equal; OFF/OFF difference and fixed order do not identify marker effect or first-case cause. Source unit544tests/7optional skips + separateSMALLgraph and all8source/activation basicCIjobs pass. Canary fresh raw accepted; ABBA+posthoc fresh ACCEPTED_ABBA_DESCRIPTIVE/no findings SHA d19f8df7d49ef7d17dd73d08dcf9fe671f56dbccf7eb08abe3e723481cd272f8.
+
+Bounded posthoc CPU comparison of newcanary5/6 to oldretentionstep2: oldA equals Road5+Wide6 and oldB Road6+Wide5, raw/canvas per-camera exact and composedI420/checksums48497357/48497389 exact. Actual new5/5 and6/6 pairs match neither oldjointinput. Cross-study timing/cache/ORT/model conditions differ; these CPU compositions are not simultaneous observed pairs, newgraphfeeds or causalphase proof. See docs/STAGE7_TEXTURE_GENERATION_MARKERS.md and docs/evidence/STAGE7_TEXTURE_MARKER_{CANARY,ABBA,CROSS_HISTORY,AUDIT}.json for IDs, claims, raw comparisons, limits and rulings.
+
+Both one-shot phases are consumed; no rerun/extension/remaining-allowance reuse. Next work is CPU-only inspection of saved camera-specific states/source references. Any new native experiment needs separate design/source/canary/budgets. Do not add tick/barrier/shader/converter/default changes or claim GPU fence/freshness/binary equality/observer neutrality. StrictFAIL/expandednotrun/geometry-optics-fullS/Stage7incomplete/mainofficial0/Cloudunpublished/Draftunmerged remain. Preserve raw/controller/review histories.
+
+## Previous checkpoint (2026-11-12 — saved raw pixel CPU interventions complete)
 
 New branch analysis/first-divergence-pixel-neighborhoods adds only a standalone CPU tool/tests/docs; all62producer bytes/protected13/baseline43/42oldworkflows/consumed requests stay unchanged. Tool source1c9d08fbbe7c221129fe31d50c75389af8c2b65a,scriptSHA5e12227932d67a632aa65808d7be71e09826deec090ff09360c4cc6249a4af2e. Actual accepted study582cc59/run43149053427/artifact13912454399 was read only,NOT rerun/downloaded/re-extracted. Fresh API/source/ZIP/extracted bytes verified.
 

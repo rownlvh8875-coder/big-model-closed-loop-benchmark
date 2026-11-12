@@ -1,0 +1,1212 @@
+{
+  "schema": "texture-marker-root-actual-raw-review-v1",
+  "run_id": 43177564313,
+  "source_sha": "0a98918e746fe7df9d5502e21db91c3e5cd15396",
+  "workflow_id": 415702769,
+  "run_conclusion": "success",
+  "artifact": {
+    "id": 13925041858,
+    "name": "stage7-texture-marker-canary",
+    "size_in_bytes": 14605800,
+    "sha256": "6a8c7a2e3495a5115938d17aee1da8c4e27f4e2ebc1b6350001e0f1090ee1994",
+    "members": 33,
+    "uncompressed_bytes": 15795803
+  },
+  "source65_verified": true,
+  "all_preexisting_paths_unchanged": true,
+  "original_zip_extraction_equal": true,
+  "validator": {
+    "status": "MARKER_DATASET_VALIDATED",
+    "phase": "canary",
+    "providers": 1,
+    "accepted_pairs": 6,
+    "observed_reads": 12,
+    "marker_reads": 24,
+    "comparisons": [],
+    "claims": {
+      "official_model_calls": 0,
+      "ort_sessions": 0,
+      "extra_gpu_reads": 0,
+      "original_strict_pass": false,
+      "installed_binary_equality_proven": false,
+      "markers_are_fences": false,
+      "observer_effects_absent": false
+    }
+  },
+  "runtime": {
+    "python": "3.11.18 (main, Oct 26 2026, 02:48:34) [GCC 13.3.0]",
+    "executable": "/opt/hostedtoolcache/Python/3.11.18/x64/bin/python",
+    "numpy": "2.4.6",
+    "opencv-python-headless": "5.0.0.93",
+    "panda3d": "1.10.13",
+    "metadrive-simulator": "0.4.3",
+    "onnxruntime": null,
+    "cv2": "5.0.0",
+    "ImageOS": "ubuntu24",
+    "ImageVersion": "20261101.360.1"
+  },
+  "phase_status": "MARKER_DATASET_VALIDATED",
+  "phase_error": null,
+  "elapsed_s": 53.433267887,
+  "parent_pid": 2941,
+  "parent_uuid": "ad540c421e1b47ceaa5e5317d7ba3c6a",
+  "acceptance": null,
+  "cases": [
+    {
+      "launch": {
+        "index": 0,
+        "enabled": true,
+        "nonce": "8a9cd46724bdc711309f5e93fd4dd23d49aee87315d075eaa2817857c7f88dbd",
+        "attempted": true,
+        "launched": true,
+        "launcher_pid": 3012,
+        "process_group": 3012,
+        "exit_code": 0,
+        "cleanup_errors": [],
+        "error": null,
+        "group_gone": true,
+        "reaped": true,
+        "provider_lower_bound": 1,
+        "provider_upper_bound": 1,
+        "provider_attempted": true,
+        "provider_constructed": true,
+        "provider_closed": true,
+        "storage": {
+          "payload_limit_bytes": 41943040,
+          "trial_ledger_limit_bytes": 2097152,
+          "log_limit_bytes": 1048576,
+          "log_bytes": 1513,
+          "limit_error": null
+        },
+        "cache_path": "/home/runner/work/_temp/texture-marker-cache-ad540c421e1b47ceaa5e5317d7ba3c6a-00",
+        "cache_before": {
+          "files": 0,
+          "bytes": 0,
+          "entries": [],
+          "byte_limit": 67108864,
+          "file_limit": 1024,
+          "scope": "bounded post-process metadata inventory; no per-read hit proof"
+        },
+        "cache_after": {
+          "files": 50,
+          "bytes": 1661172,
+          "entries": [
+            {
+              "path": "mesa_shader_cache/02/b3155b515fa8bf0be39da1af1bca1f2a6f12f4",
+              "nbytes": 11359
+            },
+            {
+              "path": "mesa_shader_cache/03/b4f7241507193fd65dd77a4c826d67605c63c3",
+              "nbytes": 14373
+            },
+            {
+              "path": "mesa_shader_cache/06/5cba97ff4466066f3b528dd9db5fab9466410c",
+              "nbytes": 1948
+            },
+            {
+              "path": "mesa_shader_cache/0f/b9f55168208f6c713890c115ed44bae1e6d22a",
+              "nbytes": 13245
+            },
+            {
+              "path": "mesa_shader_cache/11/65bbeefb982dd166b781182a24dc83ea51b641",
+              "nbytes": 2855
+            },
+            {
+              "path": "mesa_shader_cache/13/7689ec69dd47584f22df0a9dc6c1e84797a88b",
+              "nbytes": 12964
+            },
+            {
+              "path": "mesa_shader_cache/16/85d7fc87aa0fbf3ad4ef1b037d441dc8378884",
+              "nbytes": 17448
+            },
+            {
+              "path": "mesa_shader_cache/16/bb7b2d97125f7abcec7ba343e8f47b4cc9e6f6",
+              "nbytes": 594
+            },
+            {
+              "path": "mesa_shader_cache/19/3b073d23a584e000aa861ecf12f219b7e05665",
+              "nbytes": 5411
+            },
+            {
+              "path": "mesa_shader_cache/2b/79a6c1d3609c92344b18c85e5ca3b9368b89ca",
+              "nbytes": 11795
+            },
+            {
+              "path": "mesa_shader_cache/2f/0478196b5c9a06ec8c1f7e6f1a11e9e1813bf7",
+              "nbytes": 5028
+            },
+            {
+              "path": "mesa_shader_cache/30/d1f26f2356af404058dd8df7f76835e3ab999c",
+              "nbytes": 10993
+            },
+            {
+              "path": "mesa_shader_cache/35/d88ab11736e614ad3cb6c9337342b73644bcc4",
+              "nbytes": 596
+            },
+            {
+              "path": "mesa_shader_cache/41/cc76d303e600010542bffe4851fe0f1ef6225e",
+              "nbytes": 9652
+            },
+            {
+              "path": "mesa_shader_cache/4a/4603d9543c5ab66f08dd8e69ccc387455aa26e",
+              "nbytes": 15137
+            },
+            {
+              "path": "mesa_shader_cache/4f/eeabc4d6dbdaae1e9d09f69ac3d6b4054a2e2c",
+              "nbytes": 12545
+            },
+            {
+              "path": "mesa_shader_cache/57/5e3248ede132828335aa38c75d3f8e17b41057",
+              "nbytes": 6130
+            },
+            {
+              "path": "mesa_shader_cache/59/858d6460c0730bd52109145ca5cd612857dffe",
+              "nbytes": 5113
+            },
+            {
+              "path": "mesa_shader_cache/60/b899ef87638b016d242fb6f0c93b3cf22687f4",
+              "nbytes": 2694
+            },
+            {
+              "path": "mesa_shader_cache/61/d932078334d05f6c7161727c660c4fe4c987e1",
+              "nbytes": 15454
+            },
+            {
+              "path": "mesa_shader_cache/67/90f9d87bed4d9bb677047744a933da1a015dd0",
+              "nbytes": 586
+            },
+            {
+              "path": "mesa_shader_cache/73/3307ec6d13e4397f5eb18656b4052f8b47d0e3",
+              "nbytes": 5635
+            },
+            {
+              "path": "mesa_shader_cache/73/c493b294ffa6283b7a954ce5b870954989d7e3",
+              "nbytes": 6338
+            },
+            {
+              "path": "mesa_shader_cache/77/7643d2da9a522d81000dbf62d495fd8c9294f5",
+              "nbytes": 16099
+            },
+            {
+              "path": "mesa_shader_cache/79/3d4dbe744ebceeaf680a4cb4a1e3bdbe4746f4",
+              "nbytes": 15170
+            },
+            {
+              "path": "mesa_shader_cache/7b/eca72eac19219b25a10a6eda7193b9939563c6",
+              "nbytes": 5775
+            },
+            {
+              "path": "mesa_shader_cache/80/2e8343b44d4ac377dd3f87071d3d54dea00258",
+              "nbytes": 13939
+            },
+            {
+              "path": "mesa_shader_cache/84/ca56257fcf6ebc8fdbbb8ce2a8164c49fb554d",
+              "nbytes": 591
+            },
+            {
+              "path": "mesa_shader_cache/8f/3d5156c2e9c7d205a5b7330f82ced88d48e94f",
+              "nbytes": 14748
+            },
+            {
+              "path": "mesa_shader_cache/94/0168b11969d48679e2091601356c18386c15d6",
+              "nbytes": 2659
+            },
+            {
+              "path": "mesa_shader_cache/94/2d0a455e780633f51b87bbebd5f08260deb11a",
+              "nbytes": 12127
+            },
+            {
+              "path": "mesa_shader_cache/af/d5fcc42736f5dd91e607f910daed9305380320",
+              "nbytes": 436
+            },
+            {
+              "path": "mesa_shader_cache/b2/bab0029b8424b59d44a626bff575d243883a5a",
+              "nbytes": 594
+            },
+            {
+              "path": "mesa_shader_cache/b8/ed2f9e43ffdfaa17eca459690ed6c9ea059bc4",
+              "nbytes": 2164
+            },
+            {
+              "path": "mesa_shader_cache/ba/66383e1498109d696c56446372c8246395a2b6",
+              "nbytes": 4903
+            },
+            {
+              "path": "mesa_shader_cache/c7/a72fb21ce992720a2960a8375c7ffbf4541108",
+              "nbytes": 1348
+            },
+            {
+              "path": "mesa_shader_cache/c7/c8263faf67f54ea587fc31d06f9bc8197afd7e",
+              "nbytes": 413
+            },
+            {
+              "path": "mesa_shader_cache/d5/f4afc4cf285b193d5a86738b63ace04e24bed1",
+              "nbytes": 2163
+            },
+            {
+              "path": "mesa_shader_cache/e1/aac98afe97edd2e97a33d289a2af7563169708",
+              "nbytes": 2137
+            },
+            {
+              "path": "mesa_shader_cache/e1/e80b87bd4b5d9623bdb57cb74c8ec98331de99",
+              "nbytes": 3559
+            },
+            {
+              "path": "mesa_shader_cache/e3/71e80bd998b4935c339cbfb25f808ea00384f5",
+              "nbytes": 12652
+            },
+            {
+              "path": "mesa_shader_cache/e3/cfb955c420bc4f7aab1149b9814d42fde6036a",
+              "nbytes": 2641
+            },
+            {
+              "path": "mesa_shader_cache/e6/adda511c410d4c575d1033bbd88cf90da70cd7",
+              "nbytes": 5342
+            },
+            {
+              "path": "mesa_shader_cache/e6/c5e4a0e61030f92101720c81342f71ae2918bb",
+              "nbytes": 10440
+            },
+            {
+              "path": "mesa_shader_cache/ea/51ca80fb74ff5ecf32b6bd4d36662f8a51f141",
+              "nbytes": 13240
+            },
+            {
+              "path": "mesa_shader_cache/ea/9d97de82c4d8a504706af2125993befc050e04",
+              "nbytes": 1197
+            },
+            {
+              "path": "mesa_shader_cache/ed/c67afade0b88dfc677f6d2a870a833fdd124a6",
+              "nbytes": 3559
+            },
+            {
+              "path": "mesa_shader_cache/ee/a2c5055a532fa7fcad3bf025d4244aaf647f38",
+              "nbytes": 11817
+            },
+            {
+              "path": "mesa_shader_cache/f7/ef06a09da8b0767410199ad8a450b34088a2a6",
+              "nbytes": 2838
+            },
+            {
+              "path": "mesa_shader_cache/index",
+              "nbytes": 1310728
+            }
+          ],
+          "byte_limit": 67108864,
+          "file_limit": 1024,
+          "scope": "bounded post-process metadata inventory; no per-read hit proof"
+        },
+        "launch_s": 0.010664512000005288,
+        "wait_s": 51.48191027899999,
+        "elapsed_s": 51.87995427899999,
+        "log": {
+          "path": "process.log",
+          "nbytes": 1513,
+          "sha256": "9163d12994f869f876a827ee6dea18ddbbed057f58bb9e923c849993e3e685f4"
+        }
+      },
+      "case": {
+        "schema": "texture-marker-case-v1",
+        "status": "CAMERA_REPLAY_RECORDED",
+        "phase": "canary",
+        "index": 0,
+        "enabled": true,
+        "repeat": 0,
+        "nonce": "8a9cd46724bdc711309f5e93fd4dd23d49aee87315d075eaa2817857c7f88dbd",
+        "parent_pid": 2941,
+        "parent_uuid": "ad540c421e1b47ceaa5e5317d7ba3c6a",
+        "process_id": 3024,
+        "process_uuid": "08c2d3090f4e4f5fa72bf63302077a0e",
+        "process_group": 3012,
+        "context": {
+          "repository": "rownlvh8875-coder/big-model-closed-loop-benchmark",
+          "workflow_path": ".github/workflows/stage7-texture-generation-markers.yml",
+          "workflow_id": 415702769,
+          "head_sha": "0a98918e746fe7df9d5502e21db91c3e5cd15396",
+          "run_id": 43177564313,
+          "attempt": 1,
+          "event": "push",
+          "branch": "diagnostic/texture-generation-markers"
+        },
+        "source_snapshot": {
+          ".github/workflows/stage7-first-divergence-post-transport.yml": "b0292dffb6a15fe595ebf0a5d8d8508e89c86bd67d70ef0726b94256a37308cb",
+          ".github/workflows/stage7-first-divergence-transport.yml": "016688a331bf257394b6f00297162758c4fcab6659b893aeee4d75396b2d0e0e",
+          ".github/workflows/stage7-first-divergence.yml": "0c1ebdeb022078c442712205f130423cf0c2b271c41ec3a501b535ce80fefa60",
+          ".github/workflows/stage7-texture-generation-markers.yml": "0fb338fce4cb33403c3d835f11f98e735f115c9ec6e24fe65269610017f051f8",
+          "bigbench/__init__.py": "4f8820be6e19183413fe12a5cd5d40eba31161c6fdb7dc045291e56c525cb038",
+          "bigbench/camera.py": "4dc9230176b06fcfc55d776824d915f7ee7b3266cba28c1029d4863ddb4151ae",
+          "bigbench/camera_convergence.py": "f71a4fbc9008aaa3467eb2bc70fa3f030428b826b39583fbfbcb33bc68118a43",
+          "bigbench/camera_rig.py": "f3de46ee7a0b57485713dad3cf95dbc777fae941a701118bebbdf5f9ba837d0c",
+          "bigbench/cli.py": "844233763416536d9f7ef18f3825699bb7ad5cd744ce7f004dafdc76eee45364",
+          "bigbench/cross_engine.py": "e24ff682112f87e36af0780eed3672058d40338e14b9ad616becd0d6477a4cc6",
+          "bigbench/curved_lane_scenarios.py": "49013b0bf16b2969382bbcd890db559df9b78e2eb2a0aefec94d88b02d1af7d0",
+          "bigbench/dashboard.py": "5f6c760cab5ae85e08ba3799ca0e5526b168645d8ba14e9cab0205ab5113d5bf",
+          "bigbench/first_divergence.py": "4e0cd0abad43f757149a3953bcba21e5c570a916c3b02a9f366ab6a2b0ebdb1f",
+          "bigbench/first_divergence_model.py": "efd6e9f9d6119bfb6c128ef37b4c1d07f0fb2972369ccd0501b99e672702e43f",
+          "bigbench/frame_stability.py": "8573965c8092db93b740b0acf37b9fd8edce31fe7b36edcd64bcecff48858b8d",
+          "bigbench/frozen_camera_diagnostic.py": "61f88429e71497ab1afccf57135d3aae10ab420c563aeab9924dd7ef77ef6562",
+          "bigbench/geometry.py": "9615bce13a5dbb5c3abee3210b1ea5b3f648545d3576b80c35fcd035adb038e9",
+          "bigbench/image_adapter.py": "7f6d53989ff072ba5b8461ba207ab68c52ac2b519d18d56d0decc68c467e6f03",
+          "bigbench/kinematics.py": "58c92e9a5b584932cfe73ebbf7de888f2595e88ceacdabe9a457a78fa77bb70a",
+          "bigbench/lane_reprojection.py": "92e77ea0458a2b153960fc494452f558f6ccdc1b7736da4222d17fdf77c4ce12",
+          "bigbench/lane_truth.py": "20850755f7e3ea78666e83ff276a918adb64b72aaa5fac68fb3b0d393dddc449",
+          "bigbench/longitudinal_world.py": "24ba109669ce410dea6d317c33c6a836b088ddbc4bc2d3dc39be0583a1eacab3",
+          "bigbench/metadrive_camera.py": "1c5661e6c9eea6445ebe55cb246e6b48d3384dd5a731353ba3f1a45599e338f9",
+          "bigbench/metrics.py": "7e72813179f8ab3e8cbaf829dd48f31e7885406e665571e51d0b8dbc52082ce5",
+          "bigbench/model_eligibility.py": "22e7966e47e81d7c1a083c72be31fe83babd7f0f978d3fe0a543083436ac7855",
+          "bigbench/model_inventory.py": "ea920f44c18719b8ed9ce4c9240beda7463b917f577ae9089707c9b1aa71786e",
+          "bigbench/model_world_frame.py": "275f5359a975d9e152f61df74cd57803e1322e1f9618784f0993e780516ec092",
+          "bigbench/native_callback_profiler.py": "c3b175a3b2d1de25db220ddd5a79c0820f1c2f7cc9d472120e73c0fe0dff6c3f",
+          "bigbench/native_longitudinal.py": "61e5439ffac8028f548f1db0a4f8e2fff3dae00aa9e235dcea22d1bcd1fc49d4",
+          "bigbench/native_model_campaign.py": "0bcb4ca73e1404a7164be1c879a200eeff5ca41e47e3035301d40fd173000bad",
+          "bigbench/native_pixel_clock.py": "ed0c72cd4e84048bb7f39a246efbb30ed932170b3efe7efd1bb1fbff309572fa",
+          "bigbench/native_route.py": "42be717e92b14dba482904a4c651a56c4af6c70e1a5bfd7a386ab40c626d632c",
+          "bigbench/onnx_contract.py": "9e78baa8b9f7ccedb1be086277d83f356038825d54f31b309678126ddcfda73f",
+          "bigbench/onnx_inspect.py": "d4b980f649c36b1047e3262fb77a0d5084492c65015febcc9d3b65226573afd6",
+          "bigbench/onnx_policy.py": "d983d5950296620a6ae89c88993829b4d2cebd35a6fd0e9046a980f75c9142da",
+          "bigbench/optical_calibration.py": "1a3852d67ea2f15ef31a4224916fb71275f25010a5038179a7e0dd8e984c09ce",
+          "bigbench/panda_clock.py": "c2d3efd98b1f3c2d8598f294abb9741f364cc9577f0dbd16bfcbc8fd64b372d1",
+          "bigbench/policies.py": "d9ac20c3ac2530d9e8fa35f9d78aae3f433afe811ce9e058dd233ead48d687ab",
+          "bigbench/pssm_chase_pose_trace.py": "e2e3ead8be6743457a4e8162481cd1a70fcdb99b605bd7bc66e8702d5ce00e3d",
+          "bigbench/pssm_mvp_trace.py": "8373629bc0eca7d8c1256300bee125512fb91f79ffd80e7417dee6f4afd74487",
+          "bigbench/public_action_frame.py": "7d2beb3b8dc1a0fd020209d416626fbfd416b31e1aa4f4cd920fecd3bf544454",
+          "bigbench/render_causality.py": "ab3deee0370e6479973547f1ea46bf6842725dfdab3e9f070488d77b9751ac5a",
+          "bigbench/report.py": "fec998e2ca57b28ddf230947df5be2c2bad7c759166d6d2630e520b426dbe294",
+          "bigbench/reproducibility.py": "b7aca90982237e7cbda5a03badca7514ee43458beb46ee7498bcefdbcb817c19",
+          "bigbench/runner.py": "b80e983edde8f8523c47567f5d1a35422b5782e947ca550bc4e710f7276a6127",
+          "bigbench/scenario.py": "7f9ff731487b9c5e5745c365901ad15c386be4299b10cf2c4af37233f4db3281",
+          "bigbench/task_ablation.py": "1e8c2c7ac1c96c04a7feb21e8b046a5c0743f9afab00c51c4012dad91adc41c1",
+          "model_specs/light-speed-2.json": "2ce9b7caaa50649612d8323c66d9bc193b4c89d39fb399ec00553055d3f87afa",
+          "model_specs/light-speed.json": "f25bd9ef91503831b64de47be68c65a6a336e2f9fd348894e1c67902998ebe5a",
+          "model_specs/md-v3.json": "689f4d80082070b08ff35920e37d7070e811dfb42a279909751f79e900c735e2",
+          "model_specs/n16.json": "7ac354499ec4cc2277b99eed5497ae4d11c98e9975f438743cb7ac3192e0762c",
+          "pyproject.toml": "367aa37f01d25a873a3336967ba182df85be725351fb6a48f26ab84834c20a0b",
+          "scripts/__init__.py": "c56e3eb2518092a8e1fc6298aa88b1abe36ceaef366060c9d1f74fd89973a109",
+          "scripts/first_divergence_audit.py": "8aa591113aeef2d4f5fc4af3aa9aeca1059a9d367757481da479062509451525",
+          "scripts/first_divergence_transport_probe.py": "6cbbdaf24a25eb0cb56da053e7899a1143da9d088f573d0aac314abf2dfa221d",
+          "scripts/hf_models.py": "bf8661ebfdc1d90cd5326571d19bc8ccdc34fce0f272ed9f96a0456c5764f7e5",
+          "scripts/native_mdv3_candidate_expansion.py": "d86b3be67c8ac3dee31f0bf9928014d3880c8c55a6cd829bb3c46c464d16b42c",
+          "scripts/native_mdv3_renderer_candidate.py": "5a9058102004e2f5eaa4c9dcab4c24d97a9d42702b7a9e7c248c4f576a30d22e",
+          "scripts/native_mdv3_repeat_trial.py": "ddaf0510a775c3a44c908bb4dedf4879ae88bfcb80e1f2d022a8b513a4f42427",
+          "scripts/native_mdv3_world_frame.py": "cd57c4d407e96459921ca61c78eb81ef55851cd4fafa92ca917bbc7f494a3e38",
+          "scripts/texture_generation_markers.py": "a37e7232441667d535fbad7dafbe5137c523f6931fde25400aaf17a066f43e02",
+          "tests/test_first_divergence.py": "b05a0c13153b201bfb97c45433542ec82255bcaae54a57191e490f81105e738b",
+          "tests/test_first_divergence_model.py": "1f76c1b70a30a2d1a934af70792e3adf5b580d3ad890b23032e3cb6108c38c67",
+          "tests/test_first_divergence_transport.py": "b9debeac8a0a3eec6e10dd4ec208d26b9cff3baa2e3c86809997c9c62c1e015c",
+          "tests/test_texture_generation_markers.py": "7d7d8c6bc1e30817e7dc09914683475bc84ead0a1c622cee225cfa00c598bf30"
+        },
+        "runtime": {
+          "python": "3.11.18 (main, Oct 26 2026, 02:48:34) [GCC 13.3.0]",
+          "executable": "/opt/hostedtoolcache/Python/3.11.18/x64/bin/python",
+          "numpy": "2.4.6",
+          "opencv-python-headless": "5.0.0.93",
+          "panda3d": "1.10.13",
+          "metadrive-simulator": "0.4.3",
+          "onnxruntime": null,
+          "cv2": "5.0.0",
+          "ImageOS": "ubuntu24",
+          "ImageVersion": "20261101.360.1"
+        },
+        "request_sha256": "1296454e5a1da1e4969c5d84bf41f879391893d3786f3a2d5eed36f6bc8a2e9e",
+        "protocol": {
+          "seed": 20261109,
+          "scenario": "s_curve_left_right",
+          "poses": [
+            {
+              "t": 0.0,
+              "x": 65.4052721645879,
+              "y": 0.26625325426066837,
+              "heading": 0.09843656981248028,
+              "speed": 8.0
+            },
+            {
+              "t": 0.0,
+              "x": 65.4052721645879,
+              "y": 0.26625325426066837,
+              "heading": 0.09843656981248028,
+              "speed": 8.0
+            },
+            {
+              "t": 0.0,
+              "x": 65.4052721645879,
+              "y": 0.26625325426066837,
+              "heading": 0.09843656981248028,
+              "speed": 8.0
+            },
+            {
+              "t": 0.0,
+              "x": 65.4052721645879,
+              "y": 0.26625325426066837,
+              "heading": 0.09843656981248028,
+              "speed": 8.0
+            },
+            {
+              "t": 0.05,
+              "x": 65.80328679516661,
+              "y": 0.30605719684545585,
+              "heading": 0.10091307127732403,
+              "speed": 8.0
+            },
+            {
+              "t": 0.05,
+              "x": 65.80328679516661,
+              "y": 0.30605719684545585,
+              "heading": 0.10091307127732403,
+              "speed": 8.0
+            }
+          ],
+          "schedule": {
+            "canary": [
+              [
+                true,
+                0
+              ]
+            ],
+            "abba": [
+              [
+                false,
+                0
+              ],
+              [
+                true,
+                0
+              ],
+              [
+                true,
+                1
+              ],
+              [
+                false,
+                1
+              ]
+            ]
+          },
+          "child_s": 270,
+          "case_s": 300,
+          "phase_s": 1320,
+          "storage": {
+            "payload_limit_bytes": 41943040,
+            "trial_ledger_limit_bytes": 2097152,
+            "log_limit_bytes": 1048576
+          },
+          "retention_bytes": 33554432,
+          "dataset_bytes": 201326592,
+          "cache_bytes": 67108864,
+          "cache_files": 1024
+        },
+        "claims": {
+          "official_model_calls": 0,
+          "ort_sessions": 0,
+          "extra_gpu_reads": 0,
+          "original_strict_pass": false,
+          "installed_binary_equality_proven": false,
+          "markers_are_fences": false,
+          "observer_effects_absent": false
+        },
+        "limitation": "Fixed camera-only 4+2 replay with common raw retention and RAM wrapper; startup sensor activity is outside observed read counts. CPU signed generation equality is not freshness or GPU completion. Retention, hashing, wrapper overhead, fresh processes and cold Mesa compilation change wall timing. Cache inventory verifies routing/population, not individual hits. Derived I420 is not a graph feed; no scientific PASS or binary equality claim.",
+        "provider_attempted": true,
+        "provider_constructed": true,
+        "provider_closed": true,
+        "provider_lower_bound": 1,
+        "provider_upper_bound": 1,
+        "markers": [
+          {
+            "call": 1,
+            "camera": "road",
+            "before": 12,
+            "after": 12,
+            "equal": true,
+            "raw_sha256": "07973c741a8d0ff7005593fbfefa37e1e6fe3a169df8b4f3b07155e067eb002c",
+            "status": "RETURNED",
+            "copy_attempted": true,
+            "copy_returned": true,
+            "copy_wall_s": 0.00172576100000299,
+            "wrapper_wall_s": 0.0028701990000001842
+          },
+          {
+            "call": 2,
+            "camera": "wide",
+            "before": 13,
+            "after": 13,
+            "equal": true,
+            "raw_sha256": "067d86d67984b2d124299b9fc0d1ba17155e6f243440cc4dc94460a58bc519a2",
+            "status": "RETURNED",
+            "copy_attempted": true,
+            "copy_returned": true,
+            "copy_wall_s": 0.0017273540000104504,
+            "wrapper_wall_s": 0.0028787459999932707
+          },
+          {
+            "call": 3,
+            "camera": "road",
+            "before": 14,
+            "after": 14,
+            "equal": true,
+            "raw_sha256": "5d601f7b0b135f62bc69d02399f43ac89716669950d0dfbe2c80c7e12776c7ef",
+            "status": "RETURNED",
+            "copy_attempted": true,
+            "copy_returned": true,
+            "copy_wall_s": 0.04528411299999391,
+            "wrapper_wall_s": 0.04643449299999247
+          },
+          {
+            "call": 4,
+            "camera": "wide",
+            "before": 15,
+            "after": 15,
+            "equal": true,
+            "raw_sha256": "90507344ee0036666318a8ec68720fd9a7f379f1245badf1faca863ca80267ea",
+            "status": "RETURNED",
+            "copy_attempted": true,
+            "copy_returned": true,
+            "copy_wall_s": 0.001733145000002878,
+            "wrapper_wall_s": 0.002886892000006469
+          },
+          {
+            "call": 5,
+            "camera": "road",
+            "before": 16,
+            "after": 16,
+            "equal": true,
+            "raw_sha256": "5d601f7b0b135f62bc69d02399f43ac89716669950d0dfbe2c80c7e12776c7ef",
+            "status": "RETURNED",
+            "copy_attempted": true,
+            "copy_returned": true,
+            "copy_wall_s": 0.0017307699999946635,
+            "wrapper_wall_s": 0.002877363999999716
+          },
+          {
+            "call": 6,
+            "camera": "wide",
+            "before": 17,
+            "after": 17,
+            "equal": true,
+            "raw_sha256": "90507344ee0036666318a8ec68720fd9a7f379f1245badf1faca863ca80267ea",
+            "status": "RETURNED",
+            "copy_attempted": true,
+            "copy_returned": true,
+            "copy_wall_s": 0.0017678899999964415,
+            "wrapper_wall_s": 0.00292816900000048
+          },
+          {
+            "call": 7,
+            "camera": "road",
+            "before": 18,
+            "after": 18,
+            "equal": true,
+            "raw_sha256": "2ec476c27f600192c06fe5fc0a841e392f2a8a7b238f1b18ae875c6a0c3ddbfd",
+            "status": "RETURNED",
+            "copy_attempted": true,
+            "copy_returned": true,
+            "copy_wall_s": 0.0017500870000048963,
+            "wrapper_wall_s": 0.0029008379999879708
+          },
+          {
+            "call": 8,
+            "camera": "wide",
+            "before": 19,
+            "after": 19,
+            "equal": true,
+            "raw_sha256": "90507344ee0036666318a8ec68720fd9a7f379f1245badf1faca863ca80267ea",
+            "status": "RETURNED",
+            "copy_attempted": true,
+            "copy_returned": true,
+            "copy_wall_s": 0.0017854729999839947,
+            "wrapper_wall_s": 0.0029385889999957726
+          },
+          {
+            "call": 9,
+            "camera": "road",
+            "before": 20,
+            "after": 20,
+            "equal": true,
+            "raw_sha256": "3a6d9abe66e46346346b46fcfc0718101d89525c20b98c3f2a185d3977317411",
+            "status": "RETURNED",
+            "copy_attempted": true,
+            "copy_returned": true,
+            "copy_wall_s": 0.0017183269999918593,
+            "wrapper_wall_s": 0.002865482000004249
+          },
+          {
+            "call": 10,
+            "camera": "wide",
+            "before": 21,
+            "after": 21,
+            "equal": true,
+            "raw_sha256": "71b4f9ff555b59ab578a354a8f550b00ec2ba14db7fbf8cd9c592559a7551eb0",
+            "status": "RETURNED",
+            "copy_attempted": true,
+            "copy_returned": true,
+            "copy_wall_s": 0.03015657700001384,
+            "wrapper_wall_s": 0.03131213700001467
+          },
+          {
+            "call": 11,
+            "camera": "road",
+            "before": 22,
+            "after": 22,
+            "equal": true,
+            "raw_sha256": "f2748bee88856bcd568620f4d452eb52c966411c17c36a2f904eb46f016f94c4",
+            "status": "RETURNED",
+            "copy_attempted": true,
+            "copy_returned": true,
+            "copy_wall_s": 0.0017485749999934797,
+            "wrapper_wall_s": 0.0029038849999949434
+          },
+          {
+            "call": 12,
+            "camera": "wide",
+            "before": 23,
+            "after": 23,
+            "equal": true,
+            "raw_sha256": "64047104f0f69b5387bbe48a17dcd5564b72f922cdffc501f5f8413046f420b2",
+            "status": "RETURNED",
+            "copy_attempted": true,
+            "copy_returned": true,
+            "copy_wall_s": 0.0017565489999924466,
+            "wrapper_wall_s": 0.0029007990000025075
+          }
+        ],
+        "capture_rows": [
+          {
+            "capture_index": 1,
+            "status": "RETURNED",
+            "pose": {
+              "t": 0.0,
+              "x": 65.4052721645879,
+              "y": 0.26625325426066837,
+              "heading": 0.09843656981248028,
+              "speed": 8.0
+            },
+            "raw_sha256": {
+              "road": "07973c741a8d0ff7005593fbfefa37e1e6fe3a169df8b4f3b07155e067eb002c",
+              "wide": "067d86d67984b2d124299b9fc0d1ba17155e6f243440cc4dc94460a58bc519a2"
+            },
+            "canvas_sha256": {
+              "road": "787a3b977213e6f52d431a32b9aad6800890361de196e0c42a282197395e2755",
+              "wide": "f94697d4ea341808bbacdc62e827797b59443e985276be4233d89e5ffd3102aa"
+            },
+            "capture_wrapper_wall_s": 4.74690296499999,
+            "capture_inclusive_wall_s": 4.744077609000001,
+            "wrapper_observer_arithmetic_wall_s": 0.0028253559999882327,
+            "raw_callback_nested_wall_s": 0.002263850999995043,
+            "accept_observation_wall_s": 0.002432779000002938
+          },
+          {
+            "capture_index": 2,
+            "status": "RETURNED",
+            "pose": {
+              "t": 0.0,
+              "x": 65.4052721645879,
+              "y": 0.26625325426066837,
+              "heading": 0.09843656981248028,
+              "speed": 8.0
+            },
+            "raw_sha256": {
+              "road": "5d601f7b0b135f62bc69d02399f43ac89716669950d0dfbe2c80c7e12776c7ef",
+              "wide": "90507344ee0036666318a8ec68720fd9a7f379f1245badf1faca863ca80267ea"
+            },
+            "canvas_sha256": {
+              "road": "5c7fff71587eb62acd678325d31d1a29e74d5d65ac93803238571b57249a6316",
+              "wide": "a18874020b73d973dd7e36a8e5d5e2fe1057581df16ef4111eba2c18c6900263"
+            },
+            "capture_wrapper_wall_s": 4.108470230000009,
+            "capture_inclusive_wall_s": 4.105663068999988,
+            "wrapper_observer_arithmetic_wall_s": 0.0028071610000210967,
+            "raw_callback_nested_wall_s": 0.0022650129999988167,
+            "accept_observation_wall_s": 0.0024257750000060696
+          },
+          {
+            "capture_index": 3,
+            "status": "RETURNED",
+            "pose": {
+              "t": 0.0,
+              "x": 65.4052721645879,
+              "y": 0.26625325426066837,
+              "heading": 0.09843656981248028,
+              "speed": 8.0
+            },
+            "raw_sha256": {
+              "road": "5d601f7b0b135f62bc69d02399f43ac89716669950d0dfbe2c80c7e12776c7ef",
+              "wide": "90507344ee0036666318a8ec68720fd9a7f379f1245badf1faca863ca80267ea"
+            },
+            "canvas_sha256": {
+              "road": "5c7fff71587eb62acd678325d31d1a29e74d5d65ac93803238571b57249a6316",
+              "wide": "a18874020b73d973dd7e36a8e5d5e2fe1057581df16ef4111eba2c18c6900263"
+            },
+            "capture_wrapper_wall_s": 4.091842455999981,
+            "capture_inclusive_wall_s": 4.0890238030000035,
+            "wrapper_observer_arithmetic_wall_s": 0.002818652999977189,
+            "raw_callback_nested_wall_s": 0.002264412999977594,
+            "accept_observation_wall_s": 0.0024218089999976655
+          },
+          {
+            "capture_index": 4,
+            "status": "RETURNED",
+            "pose": {
+              "t": 0.0,
+              "x": 65.4052721645879,
+              "y": 0.26625325426066837,
+              "heading": 0.09843656981248028,
+              "speed": 8.0
+            },
+            "raw_sha256": {
+              "road": "2ec476c27f600192c06fe5fc0a841e392f2a8a7b238f1b18ae875c6a0c3ddbfd",
+              "wide": "90507344ee0036666318a8ec68720fd9a7f379f1245badf1faca863ca80267ea"
+            },
+            "canvas_sha256": {
+              "road": "ee39964cc83e9ed3228760c3a82efd58673ecd83001826ecedafc830484c6d8b",
+              "wide": "a18874020b73d973dd7e36a8e5d5e2fe1057581df16ef4111eba2c18c6900263"
+            },
+            "capture_wrapper_wall_s": 4.156548665999992,
+            "capture_inclusive_wall_s": 4.153746522999995,
+            "wrapper_observer_arithmetic_wall_s": 0.002802142999996704,
+            "raw_callback_nested_wall_s": 0.002262599000005139,
+            "accept_observation_wall_s": 0.0024105370000029325
+          },
+          {
+            "capture_index": 5,
+            "status": "RETURNED",
+            "pose": {
+              "t": 0.05,
+              "x": 65.80328679516661,
+              "y": 0.30605719684545585,
+              "heading": 0.10091307127732403,
+              "speed": 8.0
+            },
+            "raw_sha256": {
+              "road": "3a6d9abe66e46346346b46fcfc0718101d89525c20b98c3f2a185d3977317411",
+              "wide": "71b4f9ff555b59ab578a354a8f550b00ec2ba14db7fbf8cd9c592559a7551eb0"
+            },
+            "canvas_sha256": {
+              "road": "992b1b38b225893dd643e68b3c508093ff641fc221df15167ff248f8cb051064",
+              "wide": "79ba046809a7d75325c4f5a5695500b73f02cbd017d1bc934e864f240ccef9ab"
+            },
+            "capture_wrapper_wall_s": 4.1735230160000185,
+            "capture_inclusive_wall_s": 4.170692198000012,
+            "wrapper_observer_arithmetic_wall_s": 0.0028308180000067296,
+            "raw_callback_nested_wall_s": 0.002278242000016917,
+            "accept_observation_wall_s": 0.002439863000006426
+          },
+          {
+            "capture_index": 6,
+            "status": "RETURNED",
+            "pose": {
+              "t": 0.05,
+              "x": 65.80328679516661,
+              "y": 0.30605719684545585,
+              "heading": 0.10091307127732403,
+              "speed": 8.0
+            },
+            "raw_sha256": {
+              "road": "f2748bee88856bcd568620f4d452eb52c966411c17c36a2f904eb46f016f94c4",
+              "wide": "64047104f0f69b5387bbe48a17dcd5564b72f922cdffc501f5f8413046f420b2"
+            },
+            "canvas_sha256": {
+              "road": "a6ccdbd0e808bcb9576727f2fc29a9e4a96713bc162e57c4c4df8ad1f4067f8b",
+              "wide": "3a3bb5d58b2e72345dbbe28505d3831b2279c2036eac4d3a0b60b64c8ece51c9"
+            },
+            "capture_wrapper_wall_s": 4.093107994999997,
+            "capture_inclusive_wall_s": 4.090320980000001,
+            "wrapper_observer_arithmetic_wall_s": 0.002787014999995563,
+            "raw_callback_nested_wall_s": 0.0022596339999836346,
+            "accept_observation_wall_s": 0.002407833000006576
+          }
+        ],
+        "accepted": [
+          {
+            "accepted_index": 1,
+            "capture_index": 1,
+            "observation": {
+              "speed_mps": 8.0,
+              "time_s": 0.0
+            },
+            "intrinsics": {
+              "road": {
+                "width": 964,
+                "height": 604,
+                "fx": 1323.9998636245728,
+                "fy": 1323.999942541119,
+                "cx": 482.0,
+                "cy": 302.0
+              },
+              "wide": {
+                "width": 964,
+                "height": 604,
+                "fx": 283.5000333786011,
+                "fy": 283.5000502765209,
+                "cx": 482.0,
+                "cy": 302.0
+              }
+            },
+            "raw": {
+              "road": {
+                "path": "capture_01/raw_road.png",
+                "nbytes": 892609,
+                "sha256": "7ddb195d7bee3c63c3a3e5f4c799231dd424e16be14bdf3e805e2f7ac46a93ae",
+                "rgb_sha256": "07973c741a8d0ff7005593fbfefa37e1e6fe3a169df8b4f3b07155e067eb002c"
+              },
+              "wide": {
+                "path": "capture_01/raw_wide.png",
+                "nbytes": 921247,
+                "sha256": "ca3ac2e0756dd49bcad0d7140ff418d3184376609dddf76478c545bbbc14182b",
+                "rgb_sha256": "067d86d67984b2d124299b9fc0d1ba17155e6f243440cc4dc94460a58bc519a2"
+              }
+            },
+            "canvas": {
+              "road": {
+                "path": "capture_01/canvas_road.png",
+                "nbytes": 229515,
+                "sha256": "9c80a4754a94b555380caa87fd31832a8307123803e2403bca6974e4c2674a69",
+                "rgb_sha256": "787a3b977213e6f52d431a32b9aad6800890361de196e0c42a282197395e2755"
+              },
+              "wide": {
+                "path": "capture_01/canvas_wide.png",
+                "nbytes": 189576,
+                "sha256": "08d72a79b81e3acaa9f3f375f78b2ab55e8be1072acbc0726113a435e119a3d3",
+                "rgb_sha256": "f94697d4ea341808bbacdc62e827797b59443e985276be4233d89e5ffd3102aa"
+              }
+            },
+            "packed": {
+              "path": "capture_01/packed_i420.bin",
+              "nbytes": 393216,
+              "sha256": "c648a7be0c92325dc814b6f8d7e790536aeceb327f4f91e89d56720caf778f05",
+              "actual_input_sha256": null,
+              "association": "DERIVED_ONLY_NO_MODEL_CALL"
+            }
+          },
+          {
+            "accepted_index": 2,
+            "capture_index": 2,
+            "observation": {
+              "speed_mps": 8.0,
+              "time_s": 0.0
+            },
+            "intrinsics": {
+              "road": {
+                "width": 964,
+                "height": 604,
+                "fx": 1323.9998636245728,
+                "fy": 1323.999942541119,
+                "cx": 482.0,
+                "cy": 302.0
+              },
+              "wide": {
+                "width": 964,
+                "height": 604,
+                "fx": 283.5000333786011,
+                "fy": 283.5000502765209,
+                "cx": 482.0,
+                "cy": 302.0
+              }
+            },
+            "raw": {
+              "road": {
+                "path": "capture_02/raw_road.png",
+                "nbytes": 889499,
+                "sha256": "82a263b4b219414eaadbef44863b3e7b092b1762a4c271cba56e118f2eb2dd09",
+                "rgb_sha256": "5d601f7b0b135f62bc69d02399f43ac89716669950d0dfbe2c80c7e12776c7ef"
+              },
+              "wide": {
+                "path": "capture_02/raw_wide.png",
+                "nbytes": 920466,
+                "sha256": "e5c721fc64a1e8e8ebce90ddd4de65f885469be1fb2d11b472933558efbfb73d",
+                "rgb_sha256": "90507344ee0036666318a8ec68720fd9a7f379f1245badf1faca863ca80267ea"
+              }
+            },
+            "canvas": {
+              "road": {
+                "path": "capture_02/canvas_road.png",
+                "nbytes": 229298,
+                "sha256": "35d756dd86cb51e90f16c99e169d99bc59c2a457e8e226eb1af0bd558cc50741",
+                "rgb_sha256": "5c7fff71587eb62acd678325d31d1a29e74d5d65ac93803238571b57249a6316"
+              },
+              "wide": {
+                "path": "capture_02/canvas_wide.png",
+                "nbytes": 188402,
+                "sha256": "1fa359b825f92610d0a0019f369464578b8f7f0a04024c4ca7392d85336bc3a5",
+                "rgb_sha256": "a18874020b73d973dd7e36a8e5d5e2fe1057581df16ef4111eba2c18c6900263"
+              }
+            },
+            "packed": {
+              "path": "capture_02/packed_i420.bin",
+              "nbytes": 393216,
+              "sha256": "f35c3649664dad2dbfd89959eaf92cb6fde6dbe475803d41f7c77e3dc3bf426d",
+              "actual_input_sha256": null,
+              "association": "DERIVED_ONLY_NO_MODEL_CALL"
+            }
+          },
+          {
+            "accepted_index": 3,
+            "capture_index": 3,
+            "observation": {
+              "speed_mps": 8.0,
+              "time_s": 0.0
+            },
+            "intrinsics": {
+              "road": {
+                "width": 964,
+                "height": 604,
+                "fx": 1323.9998636245728,
+                "fy": 1323.999942541119,
+                "cx": 482.0,
+                "cy": 302.0
+              },
+              "wide": {
+                "width": 964,
+                "height": 604,
+                "fx": 283.5000333786011,
+                "fy": 283.5000502765209,
+                "cx": 482.0,
+                "cy": 302.0
+              }
+            },
+            "raw": {
+              "road": {
+                "path": "capture_03/raw_road.png",
+                "nbytes": 889499,
+                "sha256": "82a263b4b219414eaadbef44863b3e7b092b1762a4c271cba56e118f2eb2dd09",
+                "rgb_sha256": "5d601f7b0b135f62bc69d02399f43ac89716669950d0dfbe2c80c7e12776c7ef"
+              },
+              "wide": {
+                "path": "capture_03/raw_wide.png",
+                "nbytes": 920466,
+                "sha256": "e5c721fc64a1e8e8ebce90ddd4de65f885469be1fb2d11b472933558efbfb73d",
+                "rgb_sha256": "90507344ee0036666318a8ec68720fd9a7f379f1245badf1faca863ca80267ea"
+              }
+            },
+            "canvas": {
+              "road": {
+                "path": "capture_03/canvas_road.png",
+                "nbytes": 229298,
+                "sha256": "35d756dd86cb51e90f16c99e169d99bc59c2a457e8e226eb1af0bd558cc50741",
+                "rgb_sha256": "5c7fff71587eb62acd678325d31d1a29e74d5d65ac93803238571b57249a6316"
+              },
+              "wide": {
+                "path": "capture_03/canvas_wide.png",
+                "nbytes": 188402,
+                "sha256": "1fa359b825f92610d0a0019f369464578b8f7f0a04024c4ca7392d85336bc3a5",
+                "rgb_sha256": "a18874020b73d973dd7e36a8e5d5e2fe1057581df16ef4111eba2c18c6900263"
+              }
+            },
+            "packed": {
+              "path": "capture_03/packed_i420.bin",
+              "nbytes": 393216,
+              "sha256": "f35c3649664dad2dbfd89959eaf92cb6fde6dbe475803d41f7c77e3dc3bf426d",
+              "actual_input_sha256": null,
+              "association": "DERIVED_ONLY_NO_MODEL_CALL"
+            }
+          },
+          {
+            "accepted_index": 4,
+            "capture_index": 4,
+            "observation": {
+              "speed_mps": 8.0,
+              "time_s": 0.0
+            },
+            "intrinsics": {
+              "road": {
+                "width": 964,
+                "height": 604,
+                "fx": 1323.9998636245728,
+                "fy": 1323.999942541119,
+                "cx": 482.0,
+                "cy": 302.0
+              },
+              "wide": {
+                "width": 964,
+                "height": 604,
+                "fx": 283.5000333786011,
+                "fy": 283.5000502765209,
+                "cx": 482.0,
+                "cy": 302.0
+              }
+            },
+            "raw": {
+              "road": {
+                "path": "capture_04/raw_road.png",
+                "nbytes": 889499,
+                "sha256": "3ed97135d75221e32cd5f6deed077998890cc8a9a35f34631acf07e10a9e4266",
+                "rgb_sha256": "2ec476c27f600192c06fe5fc0a841e392f2a8a7b238f1b18ae875c6a0c3ddbfd"
+              },
+              "wide": {
+                "path": "capture_04/raw_wide.png",
+                "nbytes": 920466,
+                "sha256": "e5c721fc64a1e8e8ebce90ddd4de65f885469be1fb2d11b472933558efbfb73d",
+                "rgb_sha256": "90507344ee0036666318a8ec68720fd9a7f379f1245badf1faca863ca80267ea"
+              }
+            },
+            "canvas": {
+              "road": {
+                "path": "capture_04/canvas_road.png",
+                "nbytes": 229297,
+                "sha256": "c087c66eccb7e18c89f7a3e6ecc3d61354e39d5a6a8004f64d5a353a411d8576",
+                "rgb_sha256": "ee39964cc83e9ed3228760c3a82efd58673ecd83001826ecedafc830484c6d8b"
+              },
+              "wide": {
+                "path": "capture_04/canvas_wide.png",
+                "nbytes": 188402,
+                "sha256": "1fa359b825f92610d0a0019f369464578b8f7f0a04024c4ca7392d85336bc3a5",
+                "rgb_sha256": "a18874020b73d973dd7e36a8e5d5e2fe1057581df16ef4111eba2c18c6900263"
+              }
+            },
+            "packed": {
+              "path": "capture_04/packed_i420.bin",
+              "nbytes": 393216,
+              "sha256": "f35c3649664dad2dbfd89959eaf92cb6fde6dbe475803d41f7c77e3dc3bf426d",
+              "actual_input_sha256": null,
+              "association": "DERIVED_ONLY_NO_MODEL_CALL"
+            }
+          },
+          {
+            "accepted_index": 5,
+            "capture_index": 5,
+            "observation": {
+              "speed_mps": 8.0,
+              "time_s": 0.05
+            },
+            "intrinsics": {
+              "road": {
+                "width": 964,
+                "height": 604,
+                "fx": 1323.9998636245728,
+                "fy": 1323.999942541119,
+                "cx": 482.0,
+                "cy": 302.0
+              },
+              "wide": {
+                "width": 964,
+                "height": 604,
+                "fx": 283.5000333786011,
+                "fy": 283.5000502765209,
+                "cx": 482.0,
+                "cy": 302.0
+              }
+            },
+            "raw": {
+              "road": {
+                "path": "capture_05/raw_road.png",
+                "nbytes": 894994,
+                "sha256": "63b1a35303c4999ee11ae3ae95e25196d2208335dc8d9c89a19b3ed114659b4c",
+                "rgb_sha256": "3a6d9abe66e46346346b46fcfc0718101d89525c20b98c3f2a185d3977317411"
+              },
+              "wide": {
+                "path": "capture_05/raw_wide.png",
+                "nbytes": 919706,
+                "sha256": "95d526ecd1d85a0fa6d56449e905da2c251ff1ca30f03120b97378b0c34f5a14",
+                "rgb_sha256": "71b4f9ff555b59ab578a354a8f550b00ec2ba14db7fbf8cd9c592559a7551eb0"
+              }
+            },
+            "canvas": {
+              "road": {
+                "path": "capture_05/canvas_road.png",
+                "nbytes": 229934,
+                "sha256": "631aa21d05292111e1183640c76d5950547ca4d7dca4832e75db3b6ada81a261",
+                "rgb_sha256": "992b1b38b225893dd643e68b3c508093ff641fc221df15167ff248f8cb051064"
+              },
+              "wide": {
+                "path": "capture_05/canvas_wide.png",
+                "nbytes": 188848,
+                "sha256": "18ad699070270b7573efe0349f45034d1af3541a254dbdda66f4e28a92dcf798",
+                "rgb_sha256": "79ba046809a7d75325c4f5a5695500b73f02cbd017d1bc934e864f240ccef9ab"
+              }
+            },
+            "packed": {
+              "path": "capture_05/packed_i420.bin",
+              "nbytes": 393216,
+              "sha256": "c62bca15493094f67193622222d14a5f2320b27aaaca27b9db5d100b07155f8d",
+              "actual_input_sha256": null,
+              "association": "DERIVED_ONLY_NO_MODEL_CALL"
+            }
+          },
+          {
+            "accepted_index": 6,
+            "capture_index": 6,
+            "observation": {
+              "speed_mps": 8.0,
+              "time_s": 0.05
+            },
+            "intrinsics": {
+              "road": {
+                "width": 964,
+                "height": 604,
+                "fx": 1323.9998636245728,
+                "fy": 1323.999942541119,
+                "cx": 482.0,
+                "cy": 302.0
+              },
+              "wide": {
+                "width": 964,
+                "height": 604,
+                "fx": 283.5000333786011,
+                "fy": 283.5000502765209,
+                "cx": 482.0,
+                "cy": 302.0
+              }
+            },
+            "raw": {
+              "road": {
+                "path": "capture_06/raw_road.png",
+                "nbytes": 894992,
+                "sha256": "41fcedc95029ec26b30146b0cd775acb42454fd781f321e7caed45f56ec4efc2",
+                "rgb_sha256": "f2748bee88856bcd568620f4d452eb52c966411c17c36a2f904eb46f016f94c4"
+              },
+              "wide": {
+                "path": "capture_06/raw_wide.png",
+                "nbytes": 919705,
+                "sha256": "0d89cf7b58ab8b8311078fc500583c167a3dba113a5f70d1fb1e53e9e6d4d963",
+                "rgb_sha256": "64047104f0f69b5387bbe48a17dcd5564b72f922cdffc501f5f8413046f420b2"
+              }
+            },
+            "canvas": {
+              "road": {
+                "path": "capture_06/canvas_road.png",
+                "nbytes": 229930,
+                "sha256": "414da11bb4a42b2c943cd5ef7b07f9d6193cce028da5a7343740e82ce30dcceb",
+                "rgb_sha256": "a6ccdbd0e808bcb9576727f2fc29a9e4a96713bc162e57c4c4df8ad1f4067f8b"
+              },
+              "wide": {
+                "path": "capture_06/canvas_wide.png",
+                "nbytes": 188849,
+                "sha256": "e7a9874ea78cbb07b7b965ed0e11e08e9df0f8e151d34ec0834808e053fec0c3",
+                "rgb_sha256": "3a3bb5d58b2e72345dbbe28505d3831b2279c2036eac4d3a0b60b64c8ece51c9"
+              }
+            },
+            "packed": {
+              "path": "capture_06/packed_i420.bin",
+              "nbytes": 393216,
+              "sha256": "364d98e5ace40bcf95baef5236e5899ac247666807ab68c1fb568175b2ec0025",
+              "actual_input_sha256": null,
+              "association": "DERIVED_ONLY_NO_MODEL_CALL"
+            }
+          }
+        ],
+        "capture_count": 6,
+        "observed_reads": 12,
+        "marker_reads": 24,
+        "retained_payload_bytes": 28039104,
+        "payload_charged_bytes": 38171904,
+        "error": null,
+        "cleanup_errors": []
+      }
+    }
+  ],
+  "claims": {
+    "official_model_calls": 0,
+    "ort_sessions": 0,
+    "extra_gpu_reads": 0,
+    "original_strict_pass": false,
+    "installed_binary_equality_proven": false,
+    "markers_are_fences": false,
+    "observer_effects_absent": false
+  },
+  "limitations": "Fixed camera-only 4+2 replay with common raw retention and RAM wrapper; startup sensor activity is outside observed read counts. CPU signed generation equality is not freshness or GPU completion. Retention, hashing, wrapper overhead, fresh processes and cold Mesa compilation change wall timing. Cache inventory verifies routing/population, not individual hits. Derived I420 is not a graph feed; no scientific PASS or binary equality claim.",
+  "official_model_calls": 0,
+  "ort_sessions": 0,
+  "extra_gpu_reads": 0,
+  "baseline_generated_small_ort_separate": true,
+  "scientific_strict": "FAIL",
+  "stage7": "INCOMPLETE",
+  "comparison_details": [],
+  "verdict": "ACCEPTED_CANARY"
+}

@@ -1,0 +1,425 @@
+{
+  "schema": "texture-marker-independent-actual-canary-review-v1",
+  "verdict": "ACCEPTED_CANARY",
+  "reviewed_at_utc": "2026-11-12T07:50:28.801572+00:00",
+  "scope": "Actual canary raw acceptance only; ABBA activation/execution and whole-branch final review remain separate.",
+  "identity": {
+    "repository": "rownlvh8875-coder/big-model-closed-loop-benchmark",
+    "branch": "diagnostic/texture-generation-markers",
+    "source_sha": "0a98918e746fe7df9d5502e21db91c3e5cd15396",
+    "run_id": 43177564313,
+    "run_attempt": 1,
+    "workflow_id": 415702769,
+    "workflow_path": ".github/workflows/stage7-texture-generation-markers.yml",
+    "job_id": 131045412519,
+    "artifact_id": 13925041858,
+    "artifact_name": "stage7-texture-marker-canary",
+    "artifact_size_bytes": 14605800,
+    "artifact_sha256": "6a8c7a2e3495a5115938d17aee1da8c4e27f4e2ebc1b6350001e0f1090ee1994"
+  },
+  "api": {
+    "fresh_readonly_endpoints": [
+      "/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43177564313",
+      "/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/workflows/415702769",
+      "/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43177564313/jobs",
+      "/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/artifacts/13925041858",
+      "/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/workflows/415702769/runs?event=push&head_sha=0a98918e746fe7df9d5502e21db91c3e5cd15396&per_page=100",
+      "/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/commits/0a98918e746fe7df9d5502e21db91c3e5cd15396",
+      "/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/jobs/131045412519/logs"
+    ],
+    "response_sha256": {
+      "run": "2ba1023c7ce8939d8279fa5d28500cfc3b88a5bdff541f8bec697f5579234b32",
+      "workflow": "897e0f746e0531ec0aa98c336e79be69d6871eac69fb365d66e2bf1586fd7065",
+      "jobs": "74b363e537bbd4a0014bf665e49597b237355828bf2f7b7f78b81897817e0280",
+      "artifact": "865557a40ec1292f350d54896640b38108e42c9e24324008d31d0edf9d2de975",
+      "unique": "316bc4eec2a7832671814714ee2ede6018207dc98e696426710fea7dde1d8ba6",
+      "commit": "dd2336e459b4c48aec646c564bcc5d58183afeb5ba37b9ca9095b3134c7f82c5",
+      "joblog": "10b4e5b170fe89fbe60c305927fb0e1944635bd12e397e8830b5e344414ad9dd"
+    },
+    "run_conclusion": "success",
+    "workflow_state": "active",
+    "unique_push_runs_for_source": 1,
+    "job_log_identical_to_retained_original": true,
+    "artifact_run_repository_head_branch_size_digest_verified": true
+  },
+  "preservation": {
+    "source65_current_git_and_raw_equal": true,
+    "old62_equal_frozen_base": true,
+    "base_sha": "c8cdcbeebd3e7ff6c3d4f836391a3fb1959f47d4",
+    "diff_from_base": [
+      "A\t.github/stage7-texture-marker-request.json",
+      "A\t.github/workflows/stage7-texture-generation-markers.yml",
+      "A\tdocs/superpowers/plans/2026-11-12-texture-generation-markers.md",
+      "A\tdocs/superpowers/specs/2026-11-12-texture-generation-markers-design.md",
+      "A\tscripts/texture_generation_markers.py",
+      "A\ttests/test_texture_generation_markers.py"
+    ],
+    "all_preexisting_tracked_paths_unchanged": true,
+    "old_workflow_count": 42,
+    "protected13_baseline43_consumed_requests": "All preexisting paths unchanged, which covers these sets; no default/converter/shader/frame/action/old admission edit."
+  },
+  "original_archive": {
+    "members": 33,
+    "uncompressed_bytes": 15795803,
+    "all_members_equal_existing_extraction": true,
+    "downloaded_or_extracted_by_reviewer": false
+  },
+  "validator": {
+    "status": "MARKER_DATASET_VALIDATED",
+    "phase": "canary",
+    "providers": 1,
+    "accepted_pairs": 6,
+    "observed_reads": 12,
+    "marker_reads": 24,
+    "comparisons": [],
+    "claims": {
+      "official_model_calls": 0,
+      "ort_sessions": 0,
+      "extra_gpu_reads": 0,
+      "original_strict_pass": false,
+      "installed_binary_equality_proven": false,
+      "markers_are_fences": false,
+      "observer_effects_absent": false
+    }
+  },
+  "runtime": {
+    "python": "3.11.18 (main, Oct 26 2026, 02:48:34) [GCC 13.3.0]",
+    "executable": "/opt/hostedtoolcache/Python/3.11.18/x64/bin/python",
+    "numpy": "2.4.6",
+    "opencv-python-headless": "5.0.0.93",
+    "panda3d": "1.10.13",
+    "metadrive-simulator": "0.4.3",
+    "onnxruntime": null,
+    "cv2": "5.0.0",
+    "ImageOS": "ubuntu24",
+    "ImageVersion": "20261101.360.1"
+  },
+  "case": {
+    "parent_pid": 2941,
+    "parent_uuid": "ad540c421e1b47ceaa5e5317d7ba3c6a",
+    "launcher_pid": 3012,
+    "child_pid": 3024,
+    "child_uuid": "08c2d3090f4e4f5fa72bf63302077a0e",
+    "process_group": 3012,
+    "nonce": "8a9cd46724bdc711309f5e93fd4dd23d49aee87315d075eaa2817857c7f88dbd",
+    "provider_attempted": true,
+    "provider_constructed": true,
+    "provider_closed": true,
+    "provider_bounds": [
+      1,
+      1
+    ],
+    "group_gone": true,
+    "reaped": true,
+    "exit_code": 0,
+    "phase_elapsed_s": 53.433267887,
+    "case_elapsed_s": 51.87995427899999,
+    "launch_wait_s": 51.492574790999996,
+    "retained_payload_bytes": 28039104,
+    "transient_preflight_estimate_bytes": 32319072,
+    "memory_limit_bytes": 33554432,
+    "disk_charged_bytes": 38171904,
+    "disk_limit_bytes": 41943040,
+    "log_bytes": 1513,
+    "case_json_bytes": 33096,
+    "phase_json_bytes": 18999,
+    "dataset_limit_bytes": 201326592,
+    "cache_path": "/home/runner/work/_temp/texture-marker-cache-ad540c421e1b47ceaa5e5317d7ba3c6a-00",
+    "cache_before_files": 0,
+    "cache_after_files": 50,
+    "cache_after_bytes": 1661172,
+    "errors": [
+      null,
+      null,
+      null
+    ],
+    "cleanup_errors": []
+  },
+  "markers": {
+    "rows": 12,
+    "sequence_readings": 24,
+    "get_image_modified_calls": 24,
+    "get_seq_calls": 24,
+    "camera_order": [
+      "road",
+      "wide",
+      "road",
+      "wide",
+      "road",
+      "wide",
+      "road",
+      "wide",
+      "road",
+      "wide",
+      "road",
+      "wide"
+    ],
+    "before": [
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23
+    ],
+    "after": [
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23
+    ],
+    "all_within_read_equal": true,
+    "all_typed_signed32": true,
+    "wrapper_hashes_bound_to_retained_decoded_rgb": true
+  },
+  "within_case_differences": [
+    {
+      "left_capture": 1,
+      "right_capture": 2,
+      "raw": {
+        "road": {
+          "changed_values": 74570,
+          "changed_pixels": 24898,
+          "max_abs": 78,
+          "first_index": [
+            162,
+            839,
+            0
+          ]
+        },
+        "wide": {
+          "changed_values": 9582,
+          "changed_pixels": 3196,
+          "max_abs": 77,
+          "first_index": [
+            272,
+            557,
+            0
+          ]
+        }
+      },
+      "canvas": {
+        "road": {
+          "changed_values": 26868,
+          "changed_pixels": 8974,
+          "max_abs": 78,
+          "first_index": [
+            0,
+            426,
+            0
+          ]
+        },
+        "wide": {
+          "changed_values": 12981,
+          "changed_pixels": 4336,
+          "max_abs": 77,
+          "first_index": [
+            103,
+            375,
+            0
+          ]
+        }
+      },
+      "i420": {
+        "changed_values": 18364,
+        "changed_pixels": null,
+        "max_abs": 65,
+        "first_index": [
+          213
+        ]
+      }
+    },
+    {
+      "left_capture": 2,
+      "right_capture": 3,
+      "raw": {
+        "road": {
+          "changed_values": 0,
+          "changed_pixels": 0,
+          "max_abs": 0,
+          "first_index": null
+        },
+        "wide": {
+          "changed_values": 0,
+          "changed_pixels": 0,
+          "max_abs": 0,
+          "first_index": null
+        }
+      },
+      "canvas": {
+        "road": {
+          "changed_values": 0,
+          "changed_pixels": 0,
+          "max_abs": 0,
+          "first_index": null
+        },
+        "wide": {
+          "changed_values": 0,
+          "changed_pixels": 0,
+          "max_abs": 0,
+          "first_index": null
+        }
+      },
+      "i420": {
+        "changed_values": 0,
+        "changed_pixels": null,
+        "max_abs": 0,
+        "first_index": null
+      }
+    },
+    {
+      "left_capture": 3,
+      "right_capture": 4,
+      "raw": {
+        "road": {
+          "changed_values": 3,
+          "changed_pixels": 1,
+          "max_abs": 39,
+          "first_index": [
+            363,
+            254,
+            0
+          ]
+        },
+        "wide": {
+          "changed_values": 0,
+          "changed_pixels": 0,
+          "max_abs": 0,
+          "first_index": null
+        }
+      },
+      "canvas": {
+        "road": {
+          "changed_values": 5,
+          "changed_pixels": 2,
+          "max_abs": 7,
+          "first_index": [
+            89,
+            99,
+            1
+          ]
+        },
+        "wide": {
+          "changed_values": 0,
+          "changed_pixels": 0,
+          "max_abs": 0,
+          "first_index": null
+        }
+      },
+      "i420": {
+        "changed_values": 0,
+        "changed_pixels": null,
+        "max_abs": 0,
+        "first_index": null
+      }
+    },
+    {
+      "left_capture": 5,
+      "right_capture": 6,
+      "raw": {
+        "road": {
+          "changed_values": 9,
+          "changed_pixels": 3,
+          "max_abs": 93,
+          "first_index": [
+            351,
+            130,
+            0
+          ]
+        },
+        "wide": {
+          "changed_values": 3,
+          "changed_pixels": 1,
+          "max_abs": 6,
+          "first_index": [
+            315,
+            431,
+            0
+          ]
+        }
+      },
+      "canvas": {
+        "road": {
+          "changed_values": 9,
+          "changed_pixels": 3,
+          "max_abs": 50,
+          "first_index": [
+            81,
+            14,
+            0
+          ]
+        },
+        "wide": {
+          "changed_values": 23,
+          "changed_pixels": 9,
+          "max_abs": 4,
+          "first_index": [
+            172,
+            173,
+            0
+          ]
+        }
+      },
+      "i420": {
+        "changed_values": 13,
+        "changed_pixels": null,
+        "max_abs": 7,
+        "first_index": [
+          24785
+        ]
+      }
+    }
+  ],
+  "findings": [],
+  "observations": [
+    "Pure CPU validator rederived every retained raw -> recorded-lens canvas -> derived I420 exactly; I420 has no actual model graph-feed association.",
+    "Successful one-use FD>=10 log, distinct parent/launcher/child identity, matching UUID/nonce/group/context/source/runtime/request, clean closure and group cleanup. Source inspection confirms fixed camera-child substitution with xvfb -a omission and no official consumer call.",
+    "Marker wrapper invokes one original CPU RAM getter, returns the same array, restores original instance attribute ownership; OFF branch has no marker calls. Actual canary exercises ON only.",
+    "All 12 before/after pairs are equal (12 through23), while retained same-pose pixel changes exist; this supplies no freshness or GPU fence proof.",
+    "Fixed recorded pose schedule is four captures at t0 and two at t0.05; captures1..6 are not prior study model-step indices.",
+    "Empty isolated Mesa route populated after process exit; inventories do not prove individual cache hits."
+  ],
+  "unknowns": [
+    "ABBA has not been run or accepted; OFF/OFF, ON/ON and cross-arm comparisons are unavailable for this one-case canary. Direct-child metadata-only activation and same source65/runtime/original artifact API gate must still be enforced before ABBA constructors.",
+    "Allocator/RSS peak and individual runtime getter invocation counts are source/ledger bounded, not independently instrumented; adding instrumentation/native work was outside this review.",
+    "Startup sensor work is excluded from observed counts; equal marker traces cannot establish observer neutrality, freshness, GPU completion, cross-process absolute UpdateSeq comparability or unique GPU causation.",
+    "Cold cache/fresh process/common retention/all six live allocations/no graph delay differ from old model study. Hard kills cannot preserve unexported RAM; success canary does not exercise partial-failure path.",
+    "Scientific strict FAIL; expanded not run; geometry/optics/full-S and Stage7 incomplete; main official calls0; Cloud unpublished remain unchanged."
+  ],
+  "claims": {
+    "official_model_calls": 0,
+    "ort_sessions": 0,
+    "extra_gpu_reads": 0,
+    "original_strict_pass": false,
+    "installed_binary_equality_proven": false,
+    "markers_are_fences": false,
+    "observer_effects_absent": false
+  },
+  "reviewer_actions": {
+    "pure_cpu_replay_runs": 1,
+    "test_suite_runs": 0,
+    "native_gpu_ort_model_runs": 0,
+    "source_git_ci_mutations": 0,
+    "zip_downloads": 0,
+    "zip_extractions": 0,
+    "subagents": 0
+  },
+  "replay_log": {
+    "path": ".superpowers/sdd/2026-11-12-texture-generation-markers/canary-independent-replay.log",
+    "sha256": "add0d0c8beae685e93d893c3f98193f88016184b1df8abfac0d291553e5aa4a7"
+  }
+}

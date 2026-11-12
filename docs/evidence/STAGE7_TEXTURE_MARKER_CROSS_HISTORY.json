@@ -1,0 +1,169 @@
+{
+  "schema": "texture-marker-posthoc-cross-study-v1",
+  "scope": "Pure CPU comparison of already accepted original saved bytes; not preregistered native endpoint or causal intervention.",
+  "old": {
+    "source": "582cc594d127e9cde5ff3525e50c143f60285f75",
+    "run_id": 43149053427,
+    "artifact_id": 13912454399,
+    "archive_sha256": "370ef36862e3da5bf39064acc732ff1728b0a0a549b6fba77045ce7380a8c748",
+    "trials": [
+      2,
+      3
+    ],
+    "step": 2,
+    "actual_input_association": "Recorded accepted old packed SHA equals actual NEW_IMG SHA; no graph rerun"
+  },
+  "new": {
+    "source": "0a98918e746fe7df9d5502e21db91c3e5cd15396",
+    "run_id": 43177564313,
+    "artifact_id": 13925041858,
+    "case": 0,
+    "captures": [
+      5,
+      6
+    ],
+    "case_json_sha256": "45ad5da324d2aaad2574db828831663722ccac83d4833d2ca4118c7b74b4caed"
+  },
+  "per_camera_exact_matches": [
+    {
+      "old_retention_repeat": 0,
+      "old_step": 2,
+      "old_capture_index": 6,
+      "boundary": "raw",
+      "camera": "road",
+      "new_canary_captures_equal": [
+        5
+      ],
+      "rgb_sha256": "3a6d9abe66e46346346b46fcfc0718101d89525c20b98c3f2a185d3977317411"
+    },
+    {
+      "old_retention_repeat": 0,
+      "old_step": 2,
+      "old_capture_index": 6,
+      "boundary": "raw",
+      "camera": "wide",
+      "new_canary_captures_equal": [
+        6
+      ],
+      "rgb_sha256": "64047104f0f69b5387bbe48a17dcd5564b72f922cdffc501f5f8413046f420b2"
+    },
+    {
+      "old_retention_repeat": 0,
+      "old_step": 2,
+      "old_capture_index": 6,
+      "boundary": "canvas",
+      "camera": "road",
+      "new_canary_captures_equal": [
+        5
+      ],
+      "rgb_sha256": "992b1b38b225893dd643e68b3c508093ff641fc221df15167ff248f8cb051064"
+    },
+    {
+      "old_retention_repeat": 0,
+      "old_step": 2,
+      "old_capture_index": 6,
+      "boundary": "canvas",
+      "camera": "wide",
+      "new_canary_captures_equal": [
+        6
+      ],
+      "rgb_sha256": "3a3bb5d58b2e72345dbbe28505d3831b2279c2036eac4d3a0b60b64c8ece51c9"
+    },
+    {
+      "old_retention_repeat": 1,
+      "old_step": 2,
+      "old_capture_index": 5,
+      "boundary": "raw",
+      "camera": "road",
+      "new_canary_captures_equal": [
+        6
+      ],
+      "rgb_sha256": "f2748bee88856bcd568620f4d452eb52c966411c17c36a2f904eb46f016f94c4"
+    },
+    {
+      "old_retention_repeat": 1,
+      "old_step": 2,
+      "old_capture_index": 5,
+      "boundary": "raw",
+      "camera": "wide",
+      "new_canary_captures_equal": [
+        5
+      ],
+      "rgb_sha256": "71b4f9ff555b59ab578a354a8f550b00ec2ba14db7fbf8cd9c592559a7551eb0"
+    },
+    {
+      "old_retention_repeat": 1,
+      "old_step": 2,
+      "old_capture_index": 5,
+      "boundary": "canvas",
+      "camera": "road",
+      "new_canary_captures_equal": [
+        6
+      ],
+      "rgb_sha256": "a6ccdbd0e808bcb9576727f2fc29a9e4a96713bc162e57c4c4df8ad1f4067f8b"
+    },
+    {
+      "old_retention_repeat": 1,
+      "old_step": 2,
+      "old_capture_index": 5,
+      "boundary": "canvas",
+      "camera": "wide",
+      "new_canary_captures_equal": [
+        5
+      ],
+      "rgb_sha256": "79ba046809a7d75325c4f5a5695500b73f02cbd017d1bc934e864f240ccef9ab"
+    }
+  ],
+  "cpu_canvas_compositions": [
+    {
+      "road_capture": 5,
+      "wide_capture": 5,
+      "sha256": "c62bca15493094f67193622222d14a5f2320b27aaaca27b9db5d100b07155f8d",
+      "checksum": 48497368,
+      "matches_old_retention_repeats": [],
+      "actual_new_pair": true,
+      "association": "CPU_COMPOSITION_NO_NEW_GRAPH_CALL"
+    },
+    {
+      "road_capture": 5,
+      "wide_capture": 6,
+      "sha256": "264fd2731630cb8b7b890eb483d924f09a620e25c3c76e12d8ba955a23b6ecb2",
+      "checksum": 48497357,
+      "matches_old_retention_repeats": [
+        0
+      ],
+      "actual_new_pair": false,
+      "association": "CPU_COMPOSITION_NO_NEW_GRAPH_CALL"
+    },
+    {
+      "road_capture": 6,
+      "wide_capture": 5,
+      "sha256": "e7f3afcaa0ef73978128eef54395cf2b6b18f62facfe93ad8b7e2b7870edca60",
+      "checksum": 48497389,
+      "matches_old_retention_repeats": [
+        1
+      ],
+      "actual_new_pair": false,
+      "association": "CPU_COMPOSITION_NO_NEW_GRAPH_CALL"
+    },
+    {
+      "road_capture": 6,
+      "wide_capture": 6,
+      "sha256": "364d98e5ace40bcf95baef5236e5899ac247666807ab68c1fb568175b2ec0025",
+      "checksum": 48497378,
+      "matches_old_retention_repeats": [],
+      "actual_new_pair": true,
+      "association": "CPU_COMPOSITION_NO_NEW_GRAPH_CALL"
+    }
+  ],
+  "official_calls": 0,
+  "ort_sessions": 0,
+  "native_runs": 0,
+  "new_gpu_reads": 0,
+  "archive_extractions": 0,
+  "limitations": [
+    "Different study/runtime ORT presence/model delays/cache history and allocations; exact image matches do not identify physical temporal phase or unique GPU cause.",
+    "Capture5/6 are distinct same-pose pairs, not prior model step indices. Each actual new pair differs from both old combined inputs; only CPU mixed-camera compositions match old endpoints.",
+    "Markers are per-process CPU metadata, not fences or frame identity. No model output counterfactual, observer-neutrality or scientific repair claim."
+  ]
+}

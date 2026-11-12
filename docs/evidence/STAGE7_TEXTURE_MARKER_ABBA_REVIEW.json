@@ -1,0 +1,2415 @@
+{
+  "schema": "texture-marker-independent-abba-raw-review-v1",
+  "verdict": "ACCEPTED_ABBA_DESCRIPTIVE",
+  "findings": [],
+  "source_sha": "4814794243ca61a96264ebe04f4fb1b82f0eeecf",
+  "accepted_parent": "0a98918e746fe7df9d5502e21db91c3e5cd15396",
+  "run_id": 43178394897,
+  "workflow_id": 415702769,
+  "job_id": 131048107858,
+  "artifact_id": 13925716196,
+  "original_zip": {
+    "size": 58403425,
+    "sha256": "e6017f302e6879709bf089aaeca97fde9ca8828764b645c8e4bde473db6f16ce",
+    "members": 129,
+    "uncompressed_bytes": 63162078
+  },
+  "canary_original_zip": {
+    "size": 14605800,
+    "sha256": "6a8c7a2e3495a5115938d17aee1da8c4e27f4e2ebc1b6350001e0f1090ee1994",
+    "members": 33,
+    "uncompressed_bytes": 15795803
+  },
+  "source65_verified": true,
+  "frozen62_verified": true,
+  "all_preexisting_paths_unchanged": true,
+  "base_to_source_additions": [
+    "A\t.github/stage7-texture-marker-acceptance.json",
+    "A\t.github/stage7-texture-marker-request.json",
+    "A\t.github/workflows/stage7-texture-generation-markers.yml",
+    "A\tdocs/STAGE7_TEXTURE_GENERATION_MARKERS.md",
+    "A\tdocs/evidence/STAGE7_TEXTURE_MARKER_CANARY.json",
+    "A\tdocs/evidence/STAGE7_TEXTURE_MARKER_CANARY_REVIEW.json",
+    "A\tdocs/superpowers/plans/2026-11-12-texture-generation-markers.md",
+    "A\tdocs/superpowers/specs/2026-11-12-texture-generation-markers-design.md",
+    "A\tscripts/texture_generation_markers.py",
+    "A\ttests/test_texture_generation_markers.py"
+  ],
+  "activation_changed_paths": [
+    ".github/stage7-texture-marker-acceptance.json",
+    ".github/stage7-texture-marker-request.json",
+    "docs/STAGE7_TEXTURE_GENERATION_MARKERS.md",
+    "docs/evidence/STAGE7_TEXTURE_MARKER_CANARY.json",
+    "docs/evidence/STAGE7_TEXTURE_MARKER_CANARY_REVIEW.json"
+  ],
+  "activation_direct_parent_metadata_only": true,
+  "activation_gate_before_constructors": "Source run_phase calls _gate before _case; authenticated phase gate receipt agrees with fresh API, accepted raw dataset and exact runtime/source/request.",
+  "runtime": {
+    "python": "3.11.18 (main, Oct 26 2026, 02:48:34) [GCC 13.3.0]",
+    "executable": "/opt/hostedtoolcache/Python/3.11.18/x64/bin/python",
+    "numpy": "2.4.6",
+    "opencv-python-headless": "5.0.0.93",
+    "panda3d": "1.10.13",
+    "metadrive-simulator": "0.4.3",
+    "onnxruntime": null,
+    "cv2": "5.0.0",
+    "ImageOS": "ubuntu24",
+    "ImageVersion": "20261101.360.1"
+  },
+  "api_response_sha256": {
+    "artifact.json": "04d5af013923abb4a2d6633c03325d0c65782dc1ab53ffcb8649871cb657269f",
+    "canary-artifact.json": "865557a40ec1292f350d54896640b38108e42c9e24324008d31d0edf9d2de975",
+    "commit.json": "c4f7bdbf4a9e2da952a2f622f1ef893c11db9e67e408a1d577aa9d7bf1e91efa",
+    "job.log": "d4822793c2b1ab3d469b395ae3203ef7af4ac8e68394098429c2824293591e74",
+    "jobs.json": "d8bc082e91227432cc1a1930c31ea30fa68244b6e2f7142243269102c3a7aa14",
+    "canary-run.json": "95bb6633806589ec5a66571f445875573b4cd4850c9bc56f91628a9176916d91",
+    "workflow.json": "897e0f746e0531ec0aa98c336e79be69d6871eac69fb365d66e2bf1586fd7065",
+    "unique.json": "62f1fc4498345a6f62a0aef5800bdb5998efd787416b257339a9dfcc42beb8c4",
+    "run.json": "3348150d532bb22f765a96215006babe564ddd755cceffb18ab6d888d77fa04d",
+    "artifacts.json": "ffd0f2ad03b68a3c130913712879317fd0e5b8271c230c313d4672965f28d80d"
+  },
+  "fresh_job_log_equals_retained": true,
+  "validator": {
+    "status": "MARKER_DATASET_VALIDATED",
+    "phase": "abba",
+    "providers": 4,
+    "accepted_pairs": 24,
+    "observed_reads": 48,
+    "marker_reads": 48,
+    "comparisons": [
+      {
+        "left": 0,
+        "right": 1,
+        "kind": "OFF/ON",
+        "first_raw_difference": {
+          "capture": 2,
+          "camera": "road"
+        },
+        "first_canvas_difference": {
+          "capture": 2,
+          "camera": "road"
+        },
+        "first_i420_difference": {
+          "capture": 4
+        },
+        "marker_patterns_equal": null,
+        "marker_values_equal": null
+      },
+      {
+        "left": 0,
+        "right": 2,
+        "kind": "OFF/ON",
+        "first_raw_difference": {
+          "capture": 2,
+          "camera": "road"
+        },
+        "first_canvas_difference": {
+          "capture": 2,
+          "camera": "road"
+        },
+        "first_i420_difference": {
+          "capture": 4
+        },
+        "marker_patterns_equal": null,
+        "marker_values_equal": null
+      },
+      {
+        "left": 0,
+        "right": 3,
+        "kind": "OFF/OFF",
+        "first_raw_difference": {
+          "capture": 2,
+          "camera": "road"
+        },
+        "first_canvas_difference": {
+          "capture": 2,
+          "camera": "road"
+        },
+        "first_i420_difference": {
+          "capture": 4
+        },
+        "marker_patterns_equal": null,
+        "marker_values_equal": null
+      },
+      {
+        "left": 1,
+        "right": 2,
+        "kind": "ON/ON",
+        "first_raw_difference": null,
+        "first_canvas_difference": null,
+        "first_i420_difference": null,
+        "marker_patterns_equal": true,
+        "marker_values_equal": true
+      },
+      {
+        "left": 1,
+        "right": 3,
+        "kind": "OFF/ON",
+        "first_raw_difference": null,
+        "first_canvas_difference": null,
+        "first_i420_difference": null,
+        "marker_patterns_equal": null,
+        "marker_values_equal": null
+      },
+      {
+        "left": 2,
+        "right": 3,
+        "kind": "OFF/ON",
+        "first_raw_difference": null,
+        "first_canvas_difference": null,
+        "first_i420_difference": null,
+        "marker_patterns_equal": null,
+        "marker_values_equal": null
+      }
+    ],
+    "claims": {
+      "official_model_calls": 0,
+      "ort_sessions": 0,
+      "extra_gpu_reads": 0,
+      "original_strict_pass": false,
+      "installed_binary_equality_proven": false,
+      "markers_are_fences": false,
+      "observer_effects_absent": false
+    }
+  },
+  "canary_validator": {
+    "status": "MARKER_DATASET_VALIDATED",
+    "phase": "canary",
+    "providers": 1,
+    "accepted_pairs": 6,
+    "observed_reads": 12,
+    "marker_reads": 24,
+    "comparisons": [],
+    "claims": {
+      "official_model_calls": 0,
+      "ort_sessions": 0,
+      "extra_gpu_reads": 0,
+      "original_strict_pass": false,
+      "installed_binary_equality_proven": false,
+      "markers_are_fences": false,
+      "observer_effects_absent": false
+    }
+  },
+  "phase_elapsed_s": 157.788560458,
+  "cases": [
+    {
+      "index": 0,
+      "enabled": false,
+      "parent_pid": 2728,
+      "launcher_pid": 2870,
+      "child_pid": 2882,
+      "process_group": 2870,
+      "uuid": "3ee35982a2854ef395c63724c3276b0b",
+      "nonce": "6221ed04eb6c58799ae0f5dfb4892398302d28b8da7418e69c58563397b6d1ff",
+      "provider_attempted": true,
+      "provider_constructed": true,
+      "provider_closed": true,
+      "capture_count": 6,
+      "observed_reads": 12,
+      "marker_reads": 0,
+      "sequence_pairs": [
+        [
+          null,
+          null
+        ],
+        [
+          null,
+          null
+        ],
+        [
+          null,
+          null
+        ],
+        [
+          null,
+          null
+        ],
+        [
+          null,
+          null
+        ],
+        [
+          null,
+          null
+        ],
+        [
+          null,
+          null
+        ],
+        [
+          null,
+          null
+        ],
+        [
+          null,
+          null
+        ],
+        [
+          null,
+          null
+        ],
+        [
+          null,
+          null
+        ],
+        [
+          null,
+          null
+        ]
+      ],
+      "retained_bytes": 28039104,
+      "disk_reserved": 38171904,
+      "launch_wait_s": 42.05978032899999,
+      "elapsed_s": 42.375479469,
+      "cache_before_files": 0,
+      "cache_after_files": 50,
+      "cache_after_bytes": 1671098,
+      "log_bytes": 1513,
+      "group_gone": true,
+      "reaped": true
+    },
+    {
+      "index": 1,
+      "enabled": true,
+      "parent_pid": 2728,
+      "launcher_pid": 2979,
+      "child_pid": 2991,
+      "process_group": 2979,
+      "uuid": "70510ef037f742d1a482684b343cc0ea",
+      "nonce": "3df911ce5a97f56812a5753512581580fa50cd4aa2535d156ce0c9039a973043",
+      "provider_attempted": true,
+      "provider_constructed": true,
+      "provider_closed": true,
+      "capture_count": 6,
+      "observed_reads": 12,
+      "marker_reads": 24,
+      "sequence_pairs": [
+        [
+          12,
+          12
+        ],
+        [
+          13,
+          13
+        ],
+        [
+          14,
+          14
+        ],
+        [
+          15,
+          15
+        ],
+        [
+          16,
+          16
+        ],
+        [
+          17,
+          17
+        ],
+        [
+          18,
+          18
+        ],
+        [
+          19,
+          19
+        ],
+        [
+          20,
+          20
+        ],
+        [
+          21,
+          21
+        ],
+        [
+          22,
+          22
+        ],
+        [
+          23,
+          23
+        ]
+      ],
+      "retained_bytes": 28039104,
+      "disk_reserved": 38171904,
+      "launch_wait_s": 36.80803927100001,
+      "elapsed_s": 37.11486424899999,
+      "cache_before_files": 0,
+      "cache_after_files": 50,
+      "cache_after_bytes": 1671099,
+      "log_bytes": 1513,
+      "group_gone": true,
+      "reaped": true
+    },
+    {
+      "index": 2,
+      "enabled": true,
+      "parent_pid": 2728,
+      "launcher_pid": 3086,
+      "child_pid": 3098,
+      "process_group": 3086,
+      "uuid": "2b9548b1be1c40369d04ca954351bf46",
+      "nonce": "2fa2ede770930a0dcae6f2da817ccc654a42657f0294e3a2e276abfe1c525008",
+      "provider_attempted": true,
+      "provider_constructed": true,
+      "provider_closed": true,
+      "capture_count": 6,
+      "observed_reads": 12,
+      "marker_reads": 24,
+      "sequence_pairs": [
+        [
+          12,
+          12
+        ],
+        [
+          13,
+          13
+        ],
+        [
+          14,
+          14
+        ],
+        [
+          15,
+          15
+        ],
+        [
+          16,
+          16
+        ],
+        [
+          17,
+          17
+        ],
+        [
+          18,
+          18
+        ],
+        [
+          19,
+          19
+        ],
+        [
+          20,
+          20
+        ],
+        [
+          21,
+          21
+        ],
+        [
+          22,
+          22
+        ],
+        [
+          23,
+          23
+        ]
+      ],
+      "retained_bytes": 28039104,
+      "disk_reserved": 38171904,
+      "launch_wait_s": 36.57079431699998,
+      "elapsed_s": 36.877195352,
+      "cache_before_files": 0,
+      "cache_after_files": 50,
+      "cache_after_bytes": 1671099,
+      "log_bytes": 1513,
+      "group_gone": true,
+      "reaped": true
+    },
+    {
+      "index": 3,
+      "enabled": false,
+      "parent_pid": 2728,
+      "launcher_pid": 3192,
+      "child_pid": 3204,
+      "process_group": 3192,
+      "uuid": "a1c977aa483745cb87b3fce741e81148",
+      "nonce": "e3ffcd92ad6cbd1c1eb5f4ec4e7e3387fb884d1c262bc1784f5792bd9648c16d",
+      "provider_attempted": true,
+      "provider_constructed": true,
+      "provider_closed": true,
+      "capture_count": 6,
+      "observed_reads": 12,
+      "marker_reads": 0,
+      "sequence_pairs": [
+        [
+          null,
+          null
+        ],
+        [
+          null,
+          null
+        ],
+        [
+          null,
+          null
+        ],
+        [
+          null,
+          null
+        ],
+        [
+          null,
+          null
+        ],
+        [
+          null,
+          null
+        ],
+        [
+          null,
+          null
+        ],
+        [
+          null,
+          null
+        ],
+        [
+          null,
+          null
+        ],
+        [
+          null,
+          null
+        ],
+        [
+          null,
+          null
+        ],
+        [
+          null,
+          null
+        ]
+      ],
+      "retained_bytes": 28039104,
+      "disk_reserved": 38171904,
+      "launch_wait_s": 36.605354627999986,
+      "elapsed_s": 36.91189124099998,
+      "cache_before_files": 0,
+      "cache_after_files": 50,
+      "cache_after_bytes": 1671099,
+      "log_bytes": 1513,
+      "group_gone": true,
+      "reaped": true
+    }
+  ],
+  "comparison_details": [
+    {
+      "comparison": {
+        "left": 0,
+        "right": 1,
+        "kind": "OFF/ON",
+        "first_raw_difference": {
+          "capture": 2,
+          "camera": "road"
+        },
+        "first_canvas_difference": {
+          "capture": 2,
+          "camera": "road"
+        },
+        "first_i420_difference": {
+          "capture": 4
+        },
+        "marker_patterns_equal": null,
+        "marker_values_equal": null
+      },
+      "captures": [
+        {
+          "capture": 1,
+          "raw": {
+            "road": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            },
+            "wide": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            }
+          },
+          "canvas": {
+            "road": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            },
+            "wide": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            }
+          },
+          "i420": {
+            "equal": true,
+            "changed_values": 0,
+            "max_abs": 0,
+            "first_index": null,
+            "left_sum": 49029525,
+            "right_sum": 49029525
+          }
+        },
+        {
+          "capture": 2,
+          "raw": {
+            "road": {
+              "equal": false,
+              "changed_values": 3,
+              "max_abs": 39,
+              "changed_pixels": 1,
+              "first_yx": [
+                363,
+                254
+              ]
+            },
+            "wide": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            }
+          },
+          "canvas": {
+            "road": {
+              "equal": false,
+              "changed_values": 5,
+              "max_abs": 7,
+              "changed_pixels": 2,
+              "first_yx": [
+                89,
+                99
+              ]
+            },
+            "wide": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            }
+          },
+          "i420": {
+            "equal": true,
+            "changed_values": 0,
+            "max_abs": 0,
+            "first_index": null,
+            "left_sum": 48398753,
+            "right_sum": 48398753
+          }
+        },
+        {
+          "capture": 3,
+          "raw": {
+            "road": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            },
+            "wide": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            }
+          },
+          "canvas": {
+            "road": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            },
+            "wide": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            }
+          },
+          "i420": {
+            "equal": true,
+            "changed_values": 0,
+            "max_abs": 0,
+            "first_index": null,
+            "left_sum": 48398753,
+            "right_sum": 48398753
+          }
+        },
+        {
+          "capture": 4,
+          "raw": {
+            "road": {
+              "equal": false,
+              "changed_values": 3,
+              "max_abs": 39,
+              "changed_pixels": 1,
+              "first_yx": [
+                363,
+                254
+              ]
+            },
+            "wide": {
+              "equal": false,
+              "changed_values": 3,
+              "max_abs": 35,
+              "changed_pixels": 1,
+              "first_yx": [
+                352,
+                544
+              ]
+            }
+          },
+          "canvas": {
+            "road": {
+              "equal": false,
+              "changed_values": 5,
+              "max_abs": 7,
+              "changed_pixels": 2,
+              "first_yx": [
+                89,
+                99
+              ]
+            },
+            "wide": {
+              "equal": false,
+              "changed_values": 30,
+              "max_abs": 23,
+              "changed_pixels": 12,
+              "first_yx": [
+                231,
+                354
+              ]
+            }
+          },
+          "i420": {
+            "equal": false,
+            "changed_values": 14,
+            "max_abs": 9,
+            "first_index": 226481,
+            "left_sum": 48398753,
+            "right_sum": 48398710
+          }
+        },
+        {
+          "capture": 5,
+          "raw": {
+            "road": {
+              "equal": false,
+              "changed_values": 9,
+              "max_abs": 93,
+              "changed_pixels": 3,
+              "first_yx": [
+                351,
+                130
+              ]
+            },
+            "wide": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            }
+          },
+          "canvas": {
+            "road": {
+              "equal": false,
+              "changed_values": 9,
+              "max_abs": 50,
+              "changed_pixels": 3,
+              "first_yx": [
+                81,
+                14
+              ]
+            },
+            "wide": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            }
+          },
+          "i420": {
+            "equal": false,
+            "changed_values": 5,
+            "max_abs": 7,
+            "first_index": 24785,
+            "left_sum": 48497357,
+            "right_sum": 48497378
+          }
+        },
+        {
+          "capture": 6,
+          "raw": {
+            "road": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            },
+            "wide": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            }
+          },
+          "canvas": {
+            "road": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            },
+            "wide": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            }
+          },
+          "i420": {
+            "equal": true,
+            "changed_values": 0,
+            "max_abs": 0,
+            "first_index": null,
+            "left_sum": 48497378,
+            "right_sum": 48497378
+          }
+        }
+      ]
+    },
+    {
+      "comparison": {
+        "left": 0,
+        "right": 2,
+        "kind": "OFF/ON",
+        "first_raw_difference": {
+          "capture": 2,
+          "camera": "road"
+        },
+        "first_canvas_difference": {
+          "capture": 2,
+          "camera": "road"
+        },
+        "first_i420_difference": {
+          "capture": 4
+        },
+        "marker_patterns_equal": null,
+        "marker_values_equal": null
+      },
+      "captures": [
+        {
+          "capture": 1,
+          "raw": {
+            "road": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            },
+            "wide": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            }
+          },
+          "canvas": {
+            "road": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            },
+            "wide": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            }
+          },
+          "i420": {
+            "equal": true,
+            "changed_values": 0,
+            "max_abs": 0,
+            "first_index": null,
+            "left_sum": 49029525,
+            "right_sum": 49029525
+          }
+        },
+        {
+          "capture": 2,
+          "raw": {
+            "road": {
+              "equal": false,
+              "changed_values": 3,
+              "max_abs": 39,
+              "changed_pixels": 1,
+              "first_yx": [
+                363,
+                254
+              ]
+            },
+            "wide": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            }
+          },
+          "canvas": {
+            "road": {
+              "equal": false,
+              "changed_values": 5,
+              "max_abs": 7,
+              "changed_pixels": 2,
+              "first_yx": [
+                89,
+                99
+              ]
+            },
+            "wide": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            }
+          },
+          "i420": {
+            "equal": true,
+            "changed_values": 0,
+            "max_abs": 0,
+            "first_index": null,
+            "left_sum": 48398753,
+            "right_sum": 48398753
+          }
+        },
+        {
+          "capture": 3,
+          "raw": {
+            "road": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            },
+            "wide": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            }
+          },
+          "canvas": {
+            "road": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            },
+            "wide": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            }
+          },
+          "i420": {
+            "equal": true,
+            "changed_values": 0,
+            "max_abs": 0,
+            "first_index": null,
+            "left_sum": 48398753,
+            "right_sum": 48398753
+          }
+        },
+        {
+          "capture": 4,
+          "raw": {
+            "road": {
+              "equal": false,
+              "changed_values": 3,
+              "max_abs": 39,
+              "changed_pixels": 1,
+              "first_yx": [
+                363,
+                254
+              ]
+            },
+            "wide": {
+              "equal": false,
+              "changed_values": 3,
+              "max_abs": 35,
+              "changed_pixels": 1,
+              "first_yx": [
+                352,
+                544
+              ]
+            }
+          },
+          "canvas": {
+            "road": {
+              "equal": false,
+              "changed_values": 5,
+              "max_abs": 7,
+              "changed_pixels": 2,
+              "first_yx": [
+                89,
+                99
+              ]
+            },
+            "wide": {
+              "equal": false,
+              "changed_values": 30,
+              "max_abs": 23,
+              "changed_pixels": 12,
+              "first_yx": [
+                231,
+                354
+              ]
+            }
+          },
+          "i420": {
+            "equal": false,
+            "changed_values": 14,
+            "max_abs": 9,
+            "first_index": 226481,
+            "left_sum": 48398753,
+            "right_sum": 48398710
+          }
+        },
+        {
+          "capture": 5,
+          "raw": {
+            "road": {
+              "equal": false,
+              "changed_values": 9,
+              "max_abs": 93,
+              "changed_pixels": 3,
+              "first_yx": [
+                351,
+                130
+              ]
+            },
+            "wide": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            }
+          },
+          "canvas": {
+            "road": {
+              "equal": false,
+              "changed_values": 9,
+              "max_abs": 50,
+              "changed_pixels": 3,
+              "first_yx": [
+                81,
+                14
+              ]
+            },
+            "wide": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            }
+          },
+          "i420": {
+            "equal": false,
+            "changed_values": 5,
+            "max_abs": 7,
+            "first_index": 24785,
+            "left_sum": 48497357,
+            "right_sum": 48497378
+          }
+        },
+        {
+          "capture": 6,
+          "raw": {
+            "road": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            },
+            "wide": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            }
+          },
+          "canvas": {
+            "road": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            },
+            "wide": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            }
+          },
+          "i420": {
+            "equal": true,
+            "changed_values": 0,
+            "max_abs": 0,
+            "first_index": null,
+            "left_sum": 48497378,
+            "right_sum": 48497378
+          }
+        }
+      ]
+    },
+    {
+      "comparison": {
+        "left": 0,
+        "right": 3,
+        "kind": "OFF/OFF",
+        "first_raw_difference": {
+          "capture": 2,
+          "camera": "road"
+        },
+        "first_canvas_difference": {
+          "capture": 2,
+          "camera": "road"
+        },
+        "first_i420_difference": {
+          "capture": 4
+        },
+        "marker_patterns_equal": null,
+        "marker_values_equal": null
+      },
+      "captures": [
+        {
+          "capture": 1,
+          "raw": {
+            "road": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            },
+            "wide": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            }
+          },
+          "canvas": {
+            "road": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            },
+            "wide": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            }
+          },
+          "i420": {
+            "equal": true,
+            "changed_values": 0,
+            "max_abs": 0,
+            "first_index": null,
+            "left_sum": 49029525,
+            "right_sum": 49029525
+          }
+        },
+        {
+          "capture": 2,
+          "raw": {
+            "road": {
+              "equal": false,
+              "changed_values": 3,
+              "max_abs": 39,
+              "changed_pixels": 1,
+              "first_yx": [
+                363,
+                254
+              ]
+            },
+            "wide": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            }
+          },
+          "canvas": {
+            "road": {
+              "equal": false,
+              "changed_values": 5,
+              "max_abs": 7,
+              "changed_pixels": 2,
+              "first_yx": [
+                89,
+                99
+              ]
+            },
+            "wide": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            }
+          },
+          "i420": {
+            "equal": true,
+            "changed_values": 0,
+            "max_abs": 0,
+            "first_index": null,
+            "left_sum": 48398753,
+            "right_sum": 48398753
+          }
+        },
+        {
+          "capture": 3,
+          "raw": {
+            "road": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            },
+            "wide": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            }
+          },
+          "canvas": {
+            "road": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            },
+            "wide": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            }
+          },
+          "i420": {
+            "equal": true,
+            "changed_values": 0,
+            "max_abs": 0,
+            "first_index": null,
+            "left_sum": 48398753,
+            "right_sum": 48398753
+          }
+        },
+        {
+          "capture": 4,
+          "raw": {
+            "road": {
+              "equal": false,
+              "changed_values": 3,
+              "max_abs": 39,
+              "changed_pixels": 1,
+              "first_yx": [
+                363,
+                254
+              ]
+            },
+            "wide": {
+              "equal": false,
+              "changed_values": 3,
+              "max_abs": 35,
+              "changed_pixels": 1,
+              "first_yx": [
+                352,
+                544
+              ]
+            }
+          },
+          "canvas": {
+            "road": {
+              "equal": false,
+              "changed_values": 5,
+              "max_abs": 7,
+              "changed_pixels": 2,
+              "first_yx": [
+                89,
+                99
+              ]
+            },
+            "wide": {
+              "equal": false,
+              "changed_values": 30,
+              "max_abs": 23,
+              "changed_pixels": 12,
+              "first_yx": [
+                231,
+                354
+              ]
+            }
+          },
+          "i420": {
+            "equal": false,
+            "changed_values": 14,
+            "max_abs": 9,
+            "first_index": 226481,
+            "left_sum": 48398753,
+            "right_sum": 48398710
+          }
+        },
+        {
+          "capture": 5,
+          "raw": {
+            "road": {
+              "equal": false,
+              "changed_values": 9,
+              "max_abs": 93,
+              "changed_pixels": 3,
+              "first_yx": [
+                351,
+                130
+              ]
+            },
+            "wide": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            }
+          },
+          "canvas": {
+            "road": {
+              "equal": false,
+              "changed_values": 9,
+              "max_abs": 50,
+              "changed_pixels": 3,
+              "first_yx": [
+                81,
+                14
+              ]
+            },
+            "wide": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            }
+          },
+          "i420": {
+            "equal": false,
+            "changed_values": 5,
+            "max_abs": 7,
+            "first_index": 24785,
+            "left_sum": 48497357,
+            "right_sum": 48497378
+          }
+        },
+        {
+          "capture": 6,
+          "raw": {
+            "road": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            },
+            "wide": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            }
+          },
+          "canvas": {
+            "road": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            },
+            "wide": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            }
+          },
+          "i420": {
+            "equal": true,
+            "changed_values": 0,
+            "max_abs": 0,
+            "first_index": null,
+            "left_sum": 48497378,
+            "right_sum": 48497378
+          }
+        }
+      ]
+    },
+    {
+      "comparison": {
+        "left": 1,
+        "right": 2,
+        "kind": "ON/ON",
+        "first_raw_difference": null,
+        "first_canvas_difference": null,
+        "first_i420_difference": null,
+        "marker_patterns_equal": true,
+        "marker_values_equal": true
+      },
+      "captures": [
+        {
+          "capture": 1,
+          "raw": {
+            "road": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            },
+            "wide": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            }
+          },
+          "canvas": {
+            "road": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            },
+            "wide": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            }
+          },
+          "i420": {
+            "equal": true,
+            "changed_values": 0,
+            "max_abs": 0,
+            "first_index": null,
+            "left_sum": 49029525,
+            "right_sum": 49029525
+          }
+        },
+        {
+          "capture": 2,
+          "raw": {
+            "road": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            },
+            "wide": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            }
+          },
+          "canvas": {
+            "road": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            },
+            "wide": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            }
+          },
+          "i420": {
+            "equal": true,
+            "changed_values": 0,
+            "max_abs": 0,
+            "first_index": null,
+            "left_sum": 48398753,
+            "right_sum": 48398753
+          }
+        },
+        {
+          "capture": 3,
+          "raw": {
+            "road": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            },
+            "wide": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            }
+          },
+          "canvas": {
+            "road": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            },
+            "wide": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            }
+          },
+          "i420": {
+            "equal": true,
+            "changed_values": 0,
+            "max_abs": 0,
+            "first_index": null,
+            "left_sum": 48398753,
+            "right_sum": 48398753
+          }
+        },
+        {
+          "capture": 4,
+          "raw": {
+            "road": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            },
+            "wide": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            }
+          },
+          "canvas": {
+            "road": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            },
+            "wide": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            }
+          },
+          "i420": {
+            "equal": true,
+            "changed_values": 0,
+            "max_abs": 0,
+            "first_index": null,
+            "left_sum": 48398710,
+            "right_sum": 48398710
+          }
+        },
+        {
+          "capture": 5,
+          "raw": {
+            "road": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            },
+            "wide": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            }
+          },
+          "canvas": {
+            "road": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            },
+            "wide": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            }
+          },
+          "i420": {
+            "equal": true,
+            "changed_values": 0,
+            "max_abs": 0,
+            "first_index": null,
+            "left_sum": 48497378,
+            "right_sum": 48497378
+          }
+        },
+        {
+          "capture": 6,
+          "raw": {
+            "road": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            },
+            "wide": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            }
+          },
+          "canvas": {
+            "road": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            },
+            "wide": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            }
+          },
+          "i420": {
+            "equal": true,
+            "changed_values": 0,
+            "max_abs": 0,
+            "first_index": null,
+            "left_sum": 48497378,
+            "right_sum": 48497378
+          }
+        }
+      ]
+    },
+    {
+      "comparison": {
+        "left": 1,
+        "right": 3,
+        "kind": "OFF/ON",
+        "first_raw_difference": null,
+        "first_canvas_difference": null,
+        "first_i420_difference": null,
+        "marker_patterns_equal": null,
+        "marker_values_equal": null
+      },
+      "captures": [
+        {
+          "capture": 1,
+          "raw": {
+            "road": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            },
+            "wide": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            }
+          },
+          "canvas": {
+            "road": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            },
+            "wide": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            }
+          },
+          "i420": {
+            "equal": true,
+            "changed_values": 0,
+            "max_abs": 0,
+            "first_index": null,
+            "left_sum": 49029525,
+            "right_sum": 49029525
+          }
+        },
+        {
+          "capture": 2,
+          "raw": {
+            "road": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            },
+            "wide": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            }
+          },
+          "canvas": {
+            "road": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            },
+            "wide": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            }
+          },
+          "i420": {
+            "equal": true,
+            "changed_values": 0,
+            "max_abs": 0,
+            "first_index": null,
+            "left_sum": 48398753,
+            "right_sum": 48398753
+          }
+        },
+        {
+          "capture": 3,
+          "raw": {
+            "road": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            },
+            "wide": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            }
+          },
+          "canvas": {
+            "road": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            },
+            "wide": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            }
+          },
+          "i420": {
+            "equal": true,
+            "changed_values": 0,
+            "max_abs": 0,
+            "first_index": null,
+            "left_sum": 48398753,
+            "right_sum": 48398753
+          }
+        },
+        {
+          "capture": 4,
+          "raw": {
+            "road": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            },
+            "wide": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            }
+          },
+          "canvas": {
+            "road": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            },
+            "wide": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            }
+          },
+          "i420": {
+            "equal": true,
+            "changed_values": 0,
+            "max_abs": 0,
+            "first_index": null,
+            "left_sum": 48398710,
+            "right_sum": 48398710
+          }
+        },
+        {
+          "capture": 5,
+          "raw": {
+            "road": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            },
+            "wide": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            }
+          },
+          "canvas": {
+            "road": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            },
+            "wide": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            }
+          },
+          "i420": {
+            "equal": true,
+            "changed_values": 0,
+            "max_abs": 0,
+            "first_index": null,
+            "left_sum": 48497378,
+            "right_sum": 48497378
+          }
+        },
+        {
+          "capture": 6,
+          "raw": {
+            "road": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            },
+            "wide": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            }
+          },
+          "canvas": {
+            "road": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            },
+            "wide": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            }
+          },
+          "i420": {
+            "equal": true,
+            "changed_values": 0,
+            "max_abs": 0,
+            "first_index": null,
+            "left_sum": 48497378,
+            "right_sum": 48497378
+          }
+        }
+      ]
+    },
+    {
+      "comparison": {
+        "left": 2,
+        "right": 3,
+        "kind": "OFF/ON",
+        "first_raw_difference": null,
+        "first_canvas_difference": null,
+        "first_i420_difference": null,
+        "marker_patterns_equal": null,
+        "marker_values_equal": null
+      },
+      "captures": [
+        {
+          "capture": 1,
+          "raw": {
+            "road": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            },
+            "wide": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            }
+          },
+          "canvas": {
+            "road": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            },
+            "wide": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            }
+          },
+          "i420": {
+            "equal": true,
+            "changed_values": 0,
+            "max_abs": 0,
+            "first_index": null,
+            "left_sum": 49029525,
+            "right_sum": 49029525
+          }
+        },
+        {
+          "capture": 2,
+          "raw": {
+            "road": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            },
+            "wide": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            }
+          },
+          "canvas": {
+            "road": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            },
+            "wide": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            }
+          },
+          "i420": {
+            "equal": true,
+            "changed_values": 0,
+            "max_abs": 0,
+            "first_index": null,
+            "left_sum": 48398753,
+            "right_sum": 48398753
+          }
+        },
+        {
+          "capture": 3,
+          "raw": {
+            "road": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            },
+            "wide": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            }
+          },
+          "canvas": {
+            "road": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            },
+            "wide": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            }
+          },
+          "i420": {
+            "equal": true,
+            "changed_values": 0,
+            "max_abs": 0,
+            "first_index": null,
+            "left_sum": 48398753,
+            "right_sum": 48398753
+          }
+        },
+        {
+          "capture": 4,
+          "raw": {
+            "road": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            },
+            "wide": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            }
+          },
+          "canvas": {
+            "road": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            },
+            "wide": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            }
+          },
+          "i420": {
+            "equal": true,
+            "changed_values": 0,
+            "max_abs": 0,
+            "first_index": null,
+            "left_sum": 48398710,
+            "right_sum": 48398710
+          }
+        },
+        {
+          "capture": 5,
+          "raw": {
+            "road": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            },
+            "wide": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            }
+          },
+          "canvas": {
+            "road": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            },
+            "wide": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            }
+          },
+          "i420": {
+            "equal": true,
+            "changed_values": 0,
+            "max_abs": 0,
+            "first_index": null,
+            "left_sum": 48497378,
+            "right_sum": 48497378
+          }
+        },
+        {
+          "capture": 6,
+          "raw": {
+            "road": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            },
+            "wide": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            }
+          },
+          "canvas": {
+            "road": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            },
+            "wide": {
+              "equal": true,
+              "changed_values": 0,
+              "max_abs": 0,
+              "changed_pixels": 0,
+              "first_yx": null
+            }
+          },
+          "i420": {
+            "equal": true,
+            "changed_values": 0,
+            "max_abs": 0,
+            "first_index": null,
+            "left_sum": 48497378,
+            "right_sum": 48497378
+          }
+        }
+      ]
+    }
+  ],
+  "root_comparison_details_independently_equal": true,
+  "cross_study": {
+    "verdict": "ACCEPTED_BOUNDED_CPU_COMPOSITION",
+    "report_sha256": "2a455f507c9b5e0e63685c8987c949ac3f3ee734c5e5d810d6845c99e3b65ba8",
+    "selected_original_members_verified": [
+      "trial_02/trial.json",
+      "trial_02/capture_02/packed_i420.bin",
+      "trial_02/capture_02/raw_road.png",
+      "trial_02/capture_02/raw_wide.png",
+      "trial_02/capture_02/canvas_road.png",
+      "trial_02/capture_02/canvas_wide.png",
+      "trial_03/trial.json",
+      "trial_03/capture_02/packed_i420.bin",
+      "trial_03/capture_02/raw_road.png",
+      "trial_03/capture_02/raw_wide.png",
+      "trial_03/capture_02/canvas_road.png",
+      "trial_03/capture_02/canvas_wide.png"
+    ],
+    "per_camera_exact_matches": [
+      {
+        "old_retention_repeat": 0,
+        "old_step": 2,
+        "old_capture_index": 6,
+        "boundary": "raw",
+        "camera": "road",
+        "new_canary_captures_equal": [
+          5
+        ],
+        "rgb_sha256": "3a6d9abe66e46346346b46fcfc0718101d89525c20b98c3f2a185d3977317411"
+      },
+      {
+        "old_retention_repeat": 0,
+        "old_step": 2,
+        "old_capture_index": 6,
+        "boundary": "raw",
+        "camera": "wide",
+        "new_canary_captures_equal": [
+          6
+        ],
+        "rgb_sha256": "64047104f0f69b5387bbe48a17dcd5564b72f922cdffc501f5f8413046f420b2"
+      },
+      {
+        "old_retention_repeat": 0,
+        "old_step": 2,
+        "old_capture_index": 6,
+        "boundary": "canvas",
+        "camera": "road",
+        "new_canary_captures_equal": [
+          5
+        ],
+        "rgb_sha256": "992b1b38b225893dd643e68b3c508093ff641fc221df15167ff248f8cb051064"
+      },
+      {
+        "old_retention_repeat": 0,
+        "old_step": 2,
+        "old_capture_index": 6,
+        "boundary": "canvas",
+        "camera": "wide",
+        "new_canary_captures_equal": [
+          6
+        ],
+        "rgb_sha256": "3a3bb5d58b2e72345dbbe28505d3831b2279c2036eac4d3a0b60b64c8ece51c9"
+      },
+      {
+        "old_retention_repeat": 1,
+        "old_step": 2,
+        "old_capture_index": 5,
+        "boundary": "raw",
+        "camera": "road",
+        "new_canary_captures_equal": [
+          6
+        ],
+        "rgb_sha256": "f2748bee88856bcd568620f4d452eb52c966411c17c36a2f904eb46f016f94c4"
+      },
+      {
+        "old_retention_repeat": 1,
+        "old_step": 2,
+        "old_capture_index": 5,
+        "boundary": "raw",
+        "camera": "wide",
+        "new_canary_captures_equal": [
+          5
+        ],
+        "rgb_sha256": "71b4f9ff555b59ab578a354a8f550b00ec2ba14db7fbf8cd9c592559a7551eb0"
+      },
+      {
+        "old_retention_repeat": 1,
+        "old_step": 2,
+        "old_capture_index": 5,
+        "boundary": "canvas",
+        "camera": "road",
+        "new_canary_captures_equal": [
+          6
+        ],
+        "rgb_sha256": "a6ccdbd0e808bcb9576727f2fc29a9e4a96713bc162e57c4c4df8ad1f4067f8b"
+      },
+      {
+        "old_retention_repeat": 1,
+        "old_step": 2,
+        "old_capture_index": 5,
+        "boundary": "canvas",
+        "camera": "wide",
+        "new_canary_captures_equal": [
+          5
+        ],
+        "rgb_sha256": "79ba046809a7d75325c4f5a5695500b73f02cbd017d1bc934e864f240ccef9ab"
+      }
+    ],
+    "cpu_canvas_compositions": [
+      {
+        "road_capture": 5,
+        "wide_capture": 5,
+        "sha256": "c62bca15493094f67193622222d14a5f2320b27aaaca27b9db5d100b07155f8d",
+        "checksum": 48497368,
+        "matches_old_retention_repeats": [],
+        "actual_new_pair": true,
+        "association": "CPU_COMPOSITION_NO_NEW_GRAPH_CALL"
+      },
+      {
+        "road_capture": 5,
+        "wide_capture": 6,
+        "sha256": "264fd2731630cb8b7b890eb483d924f09a620e25c3c76e12d8ba955a23b6ecb2",
+        "checksum": 48497357,
+        "matches_old_retention_repeats": [
+          0
+        ],
+        "actual_new_pair": false,
+        "association": "CPU_COMPOSITION_NO_NEW_GRAPH_CALL"
+      },
+      {
+        "road_capture": 6,
+        "wide_capture": 5,
+        "sha256": "e7f3afcaa0ef73978128eef54395cf2b6b18f62facfe93ad8b7e2b7870edca60",
+        "checksum": 48497389,
+        "matches_old_retention_repeats": [
+          1
+        ],
+        "actual_new_pair": false,
+        "association": "CPU_COMPOSITION_NO_NEW_GRAPH_CALL"
+      },
+      {
+        "road_capture": 6,
+        "wide_capture": 6,
+        "sha256": "364d98e5ace40bcf95baef5236e5899ac247666807ab68c1fb568175b2ec0025",
+        "checksum": 48497378,
+        "matches_old_retention_repeats": [],
+        "actual_new_pair": true,
+        "association": "CPU_COMPOSITION_NO_NEW_GRAPH_CALL"
+      }
+    ],
+    "old_archive_sha256": "370ef36862e3da5bf39064acc732ff1728b0a0a549b6fba77045ce7380a8c748"
+  },
+  "unknowns": [
+    "Absolute UpdateSeq values are per-process counters and do not identify equivalent GPU state; equality is not a completion or freshness fence.",
+    "No independent RSS measurement, cache-hit proof, observer-neutrality, installed-binary equality, model output counterfactual or unique GPU cause.",
+    "Startup sensor activity is outside observed counts. Camera-only fixed cold-cache retention replay differs from prior model study with ORT/model delay/history.",
+    "Cross-study CPU mixes are synthetic combinations of saved canvases and are not new actual graph feeds or native interventions.",
+    "Failure/kill persistence is bounded by already-written prefix; this successful run does not exercise all failure paths."
+  ],
+  "official_model_calls": 0,
+  "ort_sessions": 0,
+  "extra_gpu_reads": 0,
+  "local_native_runs": 0,
+  "archive_downloads": 0,
+  "archive_extractions": 0,
+  "scientific_strict": "FAIL",
+  "expanded": "NOT_RUN",
+  "stage7": "INCOMPLETE",
+  "main_official_calls": 0,
+  "cloud_published": false,
+  "old_workflow_count": 42,
+  "old_workflow_current_and_git_bytes_unchanged": true,
+  "protected13_baseline43_consumed_requests": "All preexisting paths unchanged in exact Git range; current own65 and all42 old workflow bytes independently checked. No inherited defaults/converter/shader/frame/action/admission changes.",
+  "observations": [
+    "Four successful attempted/constructed/closed providers; 24 pairs, 48 observed RAM copies and 48 CPU sequence readings (48 calls to each accessor), excluding startup.",
+    "Cases1/2 ON each have 12 equal before/after pairs with signed integer values12..23. Cases0/3 OFF have only null/unobserved sequence fields.",
+    "All raw/canvas/derived-I420 payloads match across cases1/2/3. Case0 differs from each at raw/canvas capture2 road, capture4 road+wide and capture5 road; I420 differs only at captures4 and5 (14 and5 byte values).",
+    "Capture indices1..6 follow fixed recorded pose schedule4+2; they are not old model step indices and establish no convergence/timing reproduction.",
+    "Source confirms same thin wrapper and common retention in OFF/ON, exact instance-attribute restoration, same-object return, single original RGB copy; separate FD62 transport and own65 binding use fixed camera-child substitution with xvfb -a omitted, no official admission consumer.",
+    "Retained28039104bytes and transient preflight32319072bytes fit32MiB; conservative disk reservation38171904bytes/case fits40MiB; all original129members63162078bytes fit192MiB. Accounting is not independent RSS.",
+    "All four fresh initially empty Mesa routes populated50files, about1.671MiB each; inventory is not individual cache-hit proof.",
+    "Original canary33members and ABBA129members were read in place and matched existing extraction byte-for-byte without downloading/extracting.",
+    "Cross-study selected old modelstep2 packed bytes match recorded actual parent NEW_IMG SHA, observed step ledger and parent trace checksum; only CPU mixed-camera compositions reproduce the two old joint inputs."
+  ],
+  "geometry_optics_full_S": "INCOMPLETE"
+}
