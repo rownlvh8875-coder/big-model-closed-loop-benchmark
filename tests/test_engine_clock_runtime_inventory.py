@@ -146,6 +146,25 @@ class InventoryTests(unittest.TestCase):
         self.assertEqual(result['bytes_read'], 0)
         self.assertIs(result['native_admission'], False)
 
+    def test_required_root_cannot_cancel_a_missing_component_with_dotdot(self):
+        (self.root/'lib').rmdir()
+        root_link = self.link('/lib', 'usr/missing/..')
+        expected = manifest([root_link])
+        self.assertFalse((self.root/'lib').is_dir())
+        self.assert_failure(self.collect(expected))
+        # An existing empty directory is traversable even though manifests
+        # contain no directory payload entries; the same target is now valid.
+        (self.root/'usr/missing').mkdir()
+        result = self.collect(expected)
+        self.assertEqual(result['status'], 'INSTALLED_FILES_MATCH')
+        self.assertEqual(result['bytes_read'], 0)
+        self.assertIs(result['native_admission'], False)
+        (self.root/'usr/missing').rmdir()
+        (self.root/'lib').unlink()
+        root_link = self.link('/lib', 'usr/bridge')
+        bridge = self.link('/usr/bridge', 'missing/..')
+        self.assert_failure(self.collect(manifest([root_link, bridge])))
+
     def test_symlink_cycle_and_escape_are_rejected_before_payload_reads(self):
         bads = [manifest([link_record('/usr/a', 'b'), link_record('/usr/b', 'a')]),
                 manifest([link_record('/usr/a', '/tmp/secret')]),

@@ -112,7 +112,7 @@ def _add(graph, path, node):
     graph[path] = node
 
 
-def _resolve(path, graph, check=lambda: None):
+def _resolve(path, graph, check=lambda: None, *, require_existing=False):
     """Resolve logical components in order; never follow host symlink paths."""
     pending = path.split('/')[1:]
     resolved = []
@@ -132,6 +132,11 @@ def _resolve(path, graph, check=lambda: None):
         if len(resolved) > MAX_DEPTH or not _prefix_allowed(current) or _excluded(current):
             raise _InventoryError('symlink scope or depth escape')
         node = graph.get(current, {})
+        if require_existing and not node:
+            # A later '..' cannot repair ENOENT at an earlier component.
+            # Only observed-root resolution requires existence: metadata-only
+            # graphs omit empty directories and non-root links may dangle.
+            raise _InventoryError('declared root traverses a missing component')
         if node.get('kind') == 'symlink':
             state = (current, tuple(pending))
             followed += 1
@@ -417,7 +422,7 @@ class _Collector:
             if node['kind'] == 'symlink':
                 _resolve(path, self.graph, self.check)
         for root in expected['roots']:
-            target = _resolve(root, self.graph, self.check)
+            target = _resolve(root, self.graph, self.check, require_existing=True)
             if self.graph.get(target, {}).get('kind') != 'directory':
                 raise _InventoryError('declared root does not resolve to a directory')
         if _signature(os.fstat(rootfd)) != _signature(rootstat):

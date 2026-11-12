@@ -21,7 +21,7 @@ Entries are sorted unique by path, with exact fields:
 
 Paths are canonical absolute POSIX UTF-8, at most4096bytes/256components, no NUL, dot/dotdot, duplicate separators or trailing slash. Entries cannot descend through a file or symlink. Declared content totals at most3GiB. Hardlinks remain separate paths/read charges. Directory modes are not identity fields; empty directory topology is checked for stability but not serialized as payload.
 
-The logical resolver expands components in order using the node graph, never host Path.resolve or a following open. Scope escapes, cycles, more than40 expansions and runtime-exclusion targets reject. Cross-base aliases are allowed. In-scope non-root dangling links are allowed without claiming loadability; root aliases must resolve to actual directories. Unsupported legitimate future layouts can fail closed and require separate review.
+The logical resolver expands components in order using the node graph, never host Path.resolve or a following open. Scope escapes, cycles, more than40 expansions and runtime-exclusion targets reject. Cross-base aliases are allowed. In-scope non-root dangling links are allowed without claiming loadability; root aliases must resolve to actual directories through existing intermediate components; a later dotdot cannot cancel a missing component. Unsupported legitimate future layouts can fail closed and require separate review.
 
 ## Runtime exclusions
 

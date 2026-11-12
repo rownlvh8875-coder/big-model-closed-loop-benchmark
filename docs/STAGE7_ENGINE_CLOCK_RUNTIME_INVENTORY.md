@@ -14,9 +14,11 @@ File512MiB/content3GiB/read4GiB/JSON16MiB/순회당100000nodes/depth256/link40/1
 
 ## 시험과 증거
 
-집중 시험30개가 통과했다. 최초25개 missing-feature RED, constructor/path 수정, blocking-read deadline RED, main-thread/timer RED와 외부 예외 문자열 비저장 RED를 보존했다. 마지막 시험 삽입 중 기존 interrupt 블록을 잘못 옮겨 발생한 NameError는 시험 구조를 복원한 뒤 실제 노출2건의 RED만 다시 확인하고 구현을 수정했다. 이전 실패 로그도 삭제하지 않았다.
+수정 후 집중 시험31개/0.335초, 전체 CPU692개/76.283초/선택 의존성7skip으로 통과했다. 수정 전 검토 HEAD의30/691시험과 최초690시험은 과거 증거로 구분한다. 최초25개 missing-feature RED, constructor/path 수정, blocking-read deadline RED, main-thread/timer RED와 외부 예외 문자열 비저장 RED를 보존했다. 마지막 시험 삽입 중 기존 interrupt 블록을 잘못 옮겨 발생한 NameError는 시험 구조를 복원한 뒤 실제 노출2건의 RED만 다시 확인하고 구현을 수정했다. 이전 실패 로그도 삭제하지 않았다.
 
 파일 변경·누락·추가·빈 파일·모드·root 중복·cross-root/루트 alias·cycle/escape/dangling link·제외 payload 비접근·FIFO/socket/device·예산·deadline·descriptor 정리·순회 중 변경·import guard를 시험한다. Fixture Unix socket은 파일 종류 거부 시험이며 외부 통신이 없다. Python child는 import guard 시험용이며 native child가 아니다. 전체 CPU 결과와 합성 fixture는 [audit](evidence/STAGE7_ENGINE_CLOCK_RUNTIME_INVENTORY_AUDIT.json), [fixture 영수증](evidence/STAGE7_ENGINE_CLOCK_RUNTIME_INVENTORY_FIXTURE.json)에 기록한다. 검토 HEAD와 후속 문서 영수증 HEAD/최종 CI를 구분한다.
+
+독립 검토는 e0fc6f33e29732052c3619390b3a4dfd53a5bb62에서 Critical0/ImportantI1/Minor0이다. [검토 원본](evidence/STAGE7_ENGINE_CLOCK_RUNTIME_INVENTORY_REVIEW.md)의 I1은 missing/..를 접어 dangling root를 완전 성공으로 처리한 문제다. 실제 중간 경로 존재 검사와 재현 RED→GREEN으로 한 차례 수정했다. 검토 원본은 수정 전 HEAD의 판단이며 수정 후 독립 재검토를 했다고 표시하지 않는다. 검토에서 제외한13항목의 root 판단·비용은 audit에 모두 보존한다.
 
 ## 판단과 비용
 
