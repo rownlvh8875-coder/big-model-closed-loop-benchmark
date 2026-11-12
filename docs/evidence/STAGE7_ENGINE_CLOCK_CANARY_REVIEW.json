@@ -1,0 +1,1013 @@
+{
+  "api": {
+    "artifact": {
+      "archive_download_url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/artifacts/13957438550/zip",
+      "created_at": "2026-11-12T15:37:09Z",
+      "digest": "sha256:e36df3c500c6a0f82a2a91f426d505ceb922f2cb47bd4a95e0d575a8455908c1",
+      "expired": false,
+      "expires_at": "2026-11-19T15:37:07Z",
+      "id": 13957438550,
+      "name": "stage7-engine-clock-canary",
+      "node_id": "MDg6QXJ0aWZhY3QxMzk1NzQzODU1MA==",
+      "size_in_bytes": 14608013,
+      "updated_at": "2026-11-12T15:37:09Z",
+      "url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/artifacts/13957438550",
+      "workflow_run": {
+        "head_branch": "diagnostic/engine-clock-boundaries",
+        "head_repository_id": 1447652055,
+        "head_sha": "30dcc5b4075dd2cfaf25b3e8d90e324386a278af",
+        "id": 43249493437,
+        "repository_id": 1447652055
+      }
+    },
+    "conclusion": "success",
+    "endpoints": {
+      "artifact": "/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/artifacts/13957438550",
+      "artifacts": "/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43249493437/artifacts?per_page=100",
+      "branch": "/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/branches/diagnostic/engine-clock-boundaries",
+      "jobs": "/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43249493437/jobs?filter=all&per_page=100",
+      "pr": "/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/pulls/40",
+      "run": "/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43249493437",
+      "unique": "/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/workflows/416199727/runs?event=push&head_sha=30dcc5b4075dd2cfaf25b3e8d90e324386a278af&per_page=100",
+      "workflow": "/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/workflows/416199727"
+    },
+    "event": "push",
+    "job_id": 131291074475,
+    "response_sha256": {
+      "artifact": "82a9390fdb4dc5c01c7f6b40fbfdd4585bb663fbef65ef8635457d07982286b6",
+      "artifacts": "70c91d173bc01d2278c867ebf00e5c805a12befe1b459eceb0c2f20030662ab0",
+      "branch": "89264083e2a0fbc7b6a19ed7d5050e4da09f46993dca0b69b2ebf10207659454",
+      "jobs": "35a99e43479ea89f680a8cc53d303a4d162a1c2c12dcc1cf9e6344d6f63a487b",
+      "pr": "f9b41c14d947b4f1f83e4b89ab3ec40ac676b7fde5d53a16473cedf66a075bc2",
+      "run": "506e78dd9b86c35653f779b510692daa0b69a2542324a54ec4cdf750c8af8349",
+      "unique": "cd413bf0798072f2339d4d0f183dcacfedc4aa9d55cc3fea44a2a080bfb9708b",
+      "workflow": "0efd82dfd154deec74176a2cd3929503dfa2cd6ae775c602a37c6edb9052a711"
+    },
+    "run_attempt": 1,
+    "run_id": 43249493437,
+    "run_url": "https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43249493437",
+    "status": "completed",
+    "steps": [
+      {
+        "conclusion": "success",
+        "name": "Set up job",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "Run actions/checkout@v4",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "Run actions/setup-python@v5",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "Install provided native system route",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "Install pinned camera dependencies only",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "Read registered phase",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "Prepare exact official MetaDrive assets",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "CPU clock protocol tests",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "One bounded phase, no retry or extension",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "Save bounded phase including failure evidence",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "Post Run actions/setup-python@v5",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "Post Run actions/checkout@v4",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "Complete job",
+        "status": "completed"
+      }
+    ],
+    "unique_own_head_runs": 1,
+    "workflow_id": 416199727
+  },
+  "budgets": {
+    "actual_payload_bytes": 15742189,
+    "cache_after_bytes": 1671101,
+    "cache_after_files": 50,
+    "cache_before_files": 0,
+    "case_elapsed_s": 31.079335332,
+    "case_json_bytes": 63523,
+    "child_launch_plus_wait_s": 30.806911422,
+    "clock_trace_encoded_bytes": 19123,
+    "disk_limit_bytes": 41943040,
+    "disk_reservation_bytes": 38171904,
+    "logical_retention_estimate_bytes": 32384608,
+    "logical_retention_limit_bytes": 33554432,
+    "phase_elapsed_s": 32.32177170499999,
+    "phase_json_bytes": 19880,
+    "process_log_bytes": 1519,
+    "retained_payload_bytes": 28039104,
+    "trace_limit_bytes": 65536,
+    "uncompressed_dataset_bytes": 15827111
+  },
+  "claims": {
+    "extra_gpu_reads": 0,
+    "installed_binary_equality_proven": false,
+    "markers_are_fences": false,
+    "observer_effects_absent": false,
+    "official_model_calls": 0,
+    "original_strict_pass": false,
+    "ort_sessions": 0
+  },
+  "counts": {
+    "accepted_pairs": 6,
+    "clock_getter_invocations": 96,
+    "clock_snapshots": 48,
+    "marker_reads": 24,
+    "observed_reads": 12,
+    "providers": 1,
+    "task_step_calls": 12
+  },
+  "findings": [],
+  "independent_raw_checks": {
+    "actual_graph_feed_association": false,
+    "canvas_hash_associations": 12,
+    "i420_pairs_independently_rederived": 6,
+    "png_all_chunk_crc": true,
+    "png_files": 24,
+    "raw_png_marker_capture_accepted_hash_associations": 12,
+    "raw_to_canvas_pairs_rederived_by_pure_validator": 6,
+    "zip_all_crc": true
+  },
+  "member_records": [
+    {
+      "nbytes": 229515,
+      "path": "case_00/capture_01/canvas_road.png",
+      "sha256": "9c80a4754a94b555380caa87fd31832a8307123803e2403bca6974e4c2674a69",
+      "zip_crc32": "78c6a3f8"
+    },
+    {
+      "nbytes": 393216,
+      "path": "case_00/capture_01/packed_i420.bin",
+      "sha256": "c648a7be0c92325dc814b6f8d7e790536aeceb327f4f91e89d56720caf778f05",
+      "zip_crc32": "22ef268a"
+    },
+    {
+      "nbytes": 189576,
+      "path": "case_00/capture_01/canvas_wide.png",
+      "sha256": "08d72a79b81e3acaa9f3f375f78b2ab55e8be1072acbc0726113a435e119a3d3",
+      "zip_crc32": "4df7545a"
+    },
+    {
+      "nbytes": 892609,
+      "path": "case_00/capture_01/raw_road.png",
+      "sha256": "7ddb195d7bee3c63c3a3e5f4c799231dd424e16be14bdf3e805e2f7ac46a93ae",
+      "zip_crc32": "ea41e1ea"
+    },
+    {
+      "nbytes": 921247,
+      "path": "case_00/capture_01/raw_wide.png",
+      "sha256": "ca3ac2e0756dd49bcad0d7140ff418d3184376609dddf76478c545bbbc14182b",
+      "zip_crc32": "3504b9aa"
+    },
+    {
+      "nbytes": 188402,
+      "path": "case_00/capture_02/canvas_wide.png",
+      "sha256": "1fa359b825f92610d0a0019f369464578b8f7f0a04024c4ca7392d85336bc3a5",
+      "zip_crc32": "9c7b04c7"
+    },
+    {
+      "nbytes": 229298,
+      "path": "case_00/capture_02/canvas_road.png",
+      "sha256": "35d756dd86cb51e90f16c99e169d99bc59c2a457e8e226eb1af0bd558cc50741",
+      "zip_crc32": "cb9617d8"
+    },
+    {
+      "nbytes": 393216,
+      "path": "case_00/capture_02/packed_i420.bin",
+      "sha256": "f35c3649664dad2dbfd89959eaf92cb6fde6dbe475803d41f7c77e3dc3bf426d",
+      "zip_crc32": "2744c210"
+    },
+    {
+      "nbytes": 889499,
+      "path": "case_00/capture_02/raw_road.png",
+      "sha256": "82a263b4b219414eaadbef44863b3e7b092b1762a4c271cba56e118f2eb2dd09",
+      "zip_crc32": "86aafb6d"
+    },
+    {
+      "nbytes": 920466,
+      "path": "case_00/capture_02/raw_wide.png",
+      "sha256": "e5c721fc64a1e8e8ebce90ddd4de65f885469be1fb2d11b472933558efbfb73d",
+      "zip_crc32": "e5ec6795"
+    },
+    {
+      "nbytes": 229298,
+      "path": "case_00/capture_03/canvas_road.png",
+      "sha256": "35d756dd86cb51e90f16c99e169d99bc59c2a457e8e226eb1af0bd558cc50741",
+      "zip_crc32": "cb9617d8"
+    },
+    {
+      "nbytes": 188402,
+      "path": "case_00/capture_03/canvas_wide.png",
+      "sha256": "1fa359b825f92610d0a0019f369464578b8f7f0a04024c4ca7392d85336bc3a5",
+      "zip_crc32": "9c7b04c7"
+    },
+    {
+      "nbytes": 393216,
+      "path": "case_00/capture_03/packed_i420.bin",
+      "sha256": "f35c3649664dad2dbfd89959eaf92cb6fde6dbe475803d41f7c77e3dc3bf426d",
+      "zip_crc32": "2744c210"
+    },
+    {
+      "nbytes": 889499,
+      "path": "case_00/capture_03/raw_road.png",
+      "sha256": "82a263b4b219414eaadbef44863b3e7b092b1762a4c271cba56e118f2eb2dd09",
+      "zip_crc32": "86aafb6d"
+    },
+    {
+      "nbytes": 920466,
+      "path": "case_00/capture_03/raw_wide.png",
+      "sha256": "e5c721fc64a1e8e8ebce90ddd4de65f885469be1fb2d11b472933558efbfb73d",
+      "zip_crc32": "e5ec6795"
+    },
+    {
+      "nbytes": 229297,
+      "path": "case_00/capture_04/canvas_road.png",
+      "sha256": "c087c66eccb7e18c89f7a3e6ecc3d61354e39d5a6a8004f64d5a353a411d8576",
+      "zip_crc32": "723ff4af"
+    },
+    {
+      "nbytes": 188402,
+      "path": "case_00/capture_04/canvas_wide.png",
+      "sha256": "1fa359b825f92610d0a0019f369464578b8f7f0a04024c4ca7392d85336bc3a5",
+      "zip_crc32": "9c7b04c7"
+    },
+    {
+      "nbytes": 393216,
+      "path": "case_00/capture_04/packed_i420.bin",
+      "sha256": "f35c3649664dad2dbfd89959eaf92cb6fde6dbe475803d41f7c77e3dc3bf426d",
+      "zip_crc32": "2744c210"
+    },
+    {
+      "nbytes": 920466,
+      "path": "case_00/capture_04/raw_wide.png",
+      "sha256": "e5c721fc64a1e8e8ebce90ddd4de65f885469be1fb2d11b472933558efbfb73d",
+      "zip_crc32": "e5ec6795"
+    },
+    {
+      "nbytes": 889499,
+      "path": "case_00/capture_04/raw_road.png",
+      "sha256": "3ed97135d75221e32cd5f6deed077998890cc8a9a35f34631acf07e10a9e4266",
+      "zip_crc32": "27cc6379"
+    },
+    {
+      "nbytes": 229930,
+      "path": "case_00/capture_05/canvas_road.png",
+      "sha256": "414da11bb4a42b2c943cd5ef7b07f9d6193cce028da5a7343740e82ce30dcceb",
+      "zip_crc32": "de018680"
+    },
+    {
+      "nbytes": 188849,
+      "path": "case_00/capture_05/canvas_wide.png",
+      "sha256": "e7a9874ea78cbb07b7b965ed0e11e08e9df0f8e151d34ec0834808e053fec0c3",
+      "zip_crc32": "ac076156"
+    },
+    {
+      "nbytes": 393216,
+      "path": "case_00/capture_05/packed_i420.bin",
+      "sha256": "364d98e5ace40bcf95baef5236e5899ac247666807ab68c1fb568175b2ec0025",
+      "zip_crc32": "e3e85ef6"
+    },
+    {
+      "nbytes": 894992,
+      "path": "case_00/capture_05/raw_road.png",
+      "sha256": "41fcedc95029ec26b30146b0cd775acb42454fd781f321e7caed45f56ec4efc2",
+      "zip_crc32": "c304dd53"
+    },
+    {
+      "nbytes": 919705,
+      "path": "case_00/capture_05/raw_wide.png",
+      "sha256": "0d89cf7b58ab8b8311078fc500583c167a3dba113a5f70d1fb1e53e9e6d4d963",
+      "zip_crc32": "e77810a2"
+    },
+    {
+      "nbytes": 229930,
+      "path": "case_00/capture_06/canvas_road.png",
+      "sha256": "414da11bb4a42b2c943cd5ef7b07f9d6193cce028da5a7343740e82ce30dcceb",
+      "zip_crc32": "de018680"
+    },
+    {
+      "nbytes": 188848,
+      "path": "case_00/capture_06/canvas_wide.png",
+      "sha256": "18ad699070270b7573efe0349f45034d1af3541a254dbdda66f4e28a92dcf798",
+      "zip_crc32": "89b177cd"
+    },
+    {
+      "nbytes": 894992,
+      "path": "case_00/capture_06/raw_road.png",
+      "sha256": "41fcedc95029ec26b30146b0cd775acb42454fd781f321e7caed45f56ec4efc2",
+      "zip_crc32": "c304dd53"
+    },
+    {
+      "nbytes": 393216,
+      "path": "case_00/capture_06/packed_i420.bin",
+      "sha256": "e7f3afcaa0ef73978128eef54395cf2b6b18f62facfe93ad8b7e2b7870edca60",
+      "zip_crc32": "18ff7758"
+    },
+    {
+      "nbytes": 919706,
+      "path": "case_00/capture_06/raw_wide.png",
+      "sha256": "95d526ecd1d85a0fa6d56449e905da2c251ff1ca30f03120b97378b0c34f5a14",
+      "zip_crc32": "cd74ff00"
+    },
+    {
+      "nbytes": 63523,
+      "path": "case_00/case.json",
+      "sha256": "3b03acd945bd16a8a69bb797f30b1fc083bbed42e4302a0ab2a6bf2dbb47a3c2",
+      "zip_crc32": "59062190"
+    },
+    {
+      "nbytes": 1519,
+      "path": "case_00/process.log",
+      "sha256": "4d3f8c8183cd686469086c35f5f7cb87d1da27ebad6186b30c617f2f35077370",
+      "zip_crc32": "815c6169"
+    },
+    {
+      "nbytes": 19880,
+      "path": "phase.json",
+      "sha256": "c178256e8e623a8fa1f6d4a919cf3f68eeee09d757dcf4dcc60d31ba84619d18",
+      "zip_crc32": "95359293"
+    }
+  ],
+  "observer_accessors": {
+    "clock_accessor_invocations": 96,
+    "startup_and_existing_engine_internal_reads_excluded": true,
+    "texture_accessor_invocations": 48,
+    "texture_sequence_readings": 24,
+    "total_observer_accessor_invocations": 144
+  },
+  "original_zip": {
+    "all_original_member_bytes_equal_existing_extraction": true,
+    "existing_extraction": "output/stage7-remote-evidence/run-43249493437/extracted/13957438550",
+    "members": 33,
+    "path": "output/stage7-remote-evidence/run-43249493437/13957438550.zip",
+    "redownloaded": false,
+    "reextracted": false,
+    "sha256": "e36df3c500c6a0f82a2a91f426d505ceb922f2cb47bd4a95e0d575a8455908c1",
+    "size_bytes": 14608013,
+    "uncompressed_bytes": 15827111
+  },
+  "process": {
+    "authorization_fd": 10,
+    "child_pid": 3317,
+    "child_uuid": "e9ed4af080cd44edbcc59c1238c889c1",
+    "cleanup_errors": [],
+    "clock_owner_thread": 140374616009600,
+    "exit_code": 0,
+    "group_gone": true,
+    "launcher_pid": 3305,
+    "main_thread_id": 140374616009600,
+    "nonce": "6630539540975b8ffd5baefdfd5f102eefc55eaedac0a3b68d3832ad2ec37af7",
+    "process_group": 3305,
+    "provider_attempted": true,
+    "provider_bounds": [
+      1,
+      1
+    ],
+    "provider_closed": true,
+    "provider_constructed": true,
+    "reaped": true,
+    "root_pid": 3229,
+    "root_uuid": "4d53c85179444343a98f029cefe05778"
+  },
+  "review_actions": {
+    "ci_mutations": 0,
+    "dependency_actions": 0,
+    "full_suite_runs": 0,
+    "git_mutations": 0,
+    "model_or_ort_executions": 0,
+    "native_engine_or_xvfb_executions": 0,
+    "pure_cpu_python": "/workspace/.cloud-tools/stage7/first-divergence-cpu-replay/bin/python",
+    "subagents": 0
+  },
+  "reviewed_at_utc": "2026-11-12T15:42:12.669401+00:00",
+  "reviewed_branch": "diagnostic/engine-clock-boundaries",
+  "reviewed_head": "30dcc5b4075dd2cfaf25b3e8d90e324386a278af",
+  "root_receipt": {
+    "path": ".superpowers/sdd/2026-11-12-engine-clock-native/canary-root.json",
+    "root_verdict_not_used_as_acceptance": true,
+    "sha256": "9ddd964ff049117e3e50cd998a83340d40bffd8b8e6ce8fddffdc6c16c9f911b"
+  },
+  "runtime": {
+    "ImageOS": "ubuntu24",
+    "ImageVersion": "20261111.370.1",
+    "cv2": "5.0.0",
+    "executable": "/opt/hostedtoolcache/Python/3.11.18/x64/bin/python",
+    "metadrive-simulator": "0.4.3",
+    "numpy": "2.4.6",
+    "onnxruntime": null,
+    "opencv-python-headless": "5.0.0.93",
+    "panda3d": "1.10.13",
+    "python": "3.11.18 (main, Oct 26 2026, 02:48:34) [GCC 13.3.0]"
+  },
+  "runtime_gate_review": "Parent and child pinned distribution/image and installed/imported ORT checks precede constructor; full recorded runtime identity must remain equal for upcoming ABBA, including ImageVersion20261111.370.1. Historical image/binary equality not asserted.",
+  "schema": "stage7-engine-clock-fresh-raw-review-v1",
+  "source": {
+    "all_current_bytes_and_actual_head_git_blobs_verified": true,
+    "compact_sorted_sha256": "6f8dcc2fc4aa7b1896a74d43ea4e030f89729b4b7851825cd0bbd444c6acab04",
+    "count": 70,
+    "preservation": {
+      "baseline43": {
+        "changed": [],
+        "count": 43
+      },
+      "before-source67.json": {
+        "changed": [],
+        "count": 67,
+        "sha256": "f4a9b585e6e3e591c993cb99aecbc0719a35ceb726694cd5062481de2eeec2c2"
+      },
+      "before-workflows43.json": {
+        "changed": [],
+        "count": 43,
+        "sha256": "e5680b61d9179459ff04c6e76761e41b6c81ed084847bbeeefd7e01e56b1cf4d"
+      },
+      "old_requests_acceptances": [
+        ".github/stage7-first-divergence-acceptance.json",
+        ".github/stage7-first-divergence-post-transport-acceptance.json",
+        ".github/stage7-first-divergence-post-transport-request.json",
+        ".github/stage7-first-divergence-request.json",
+        ".github/stage7-texture-marker-acceptance.json",
+        ".github/stage7-texture-marker-request.json"
+      ],
+      "protected13": {
+        "changed": [],
+        "count": 13
+      }
+    },
+    "request_sha256": "2b10f4cba178afb3e73581bcde2b44275f3875a13233552f4f0dfff0fe8d7800"
+  },
+  "trace": {
+    "clock_values": [
+      {
+        "call": 1,
+        "camera": "road",
+        "relative_counts": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "values": [
+          {
+            "boundary": "before_perceive",
+            "count": 10,
+            "time_s": 12.695695
+          },
+          {
+            "boundary": "before_ram_method",
+            "count": 11,
+            "time_s": 14.286578
+          },
+          {
+            "boundary": "after_ram_method",
+            "count": 11,
+            "time_s": 14.286578
+          },
+          {
+            "boundary": "after_perceive",
+            "count": 11,
+            "time_s": 14.286578
+          }
+        ]
+      },
+      {
+        "call": 2,
+        "camera": "wide",
+        "relative_counts": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "values": [
+          {
+            "boundary": "before_perceive",
+            "count": 11,
+            "time_s": 14.286578
+          },
+          {
+            "boundary": "before_ram_method",
+            "count": 12,
+            "time_s": 15.493716000000001
+          },
+          {
+            "boundary": "after_ram_method",
+            "count": 12,
+            "time_s": 15.493716000000001
+          },
+          {
+            "boundary": "after_perceive",
+            "count": 12,
+            "time_s": 15.493716000000001
+          }
+        ]
+      },
+      {
+        "call": 3,
+        "camera": "road",
+        "relative_counts": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "values": [
+          {
+            "boundary": "before_perceive",
+            "count": 12,
+            "time_s": 15.493716000000001
+          },
+          {
+            "boundary": "before_ram_method",
+            "count": 13,
+            "time_s": 16.803771
+          },
+          {
+            "boundary": "after_ram_method",
+            "count": 13,
+            "time_s": 16.803771
+          },
+          {
+            "boundary": "after_perceive",
+            "count": 13,
+            "time_s": 16.803771
+          }
+        ]
+      },
+      {
+        "call": 4,
+        "camera": "wide",
+        "relative_counts": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "values": [
+          {
+            "boundary": "before_perceive",
+            "count": 13,
+            "time_s": 16.803771
+          },
+          {
+            "boundary": "before_ram_method",
+            "count": 14,
+            "time_s": 18.011575
+          },
+          {
+            "boundary": "after_ram_method",
+            "count": 14,
+            "time_s": 18.011575
+          },
+          {
+            "boundary": "after_perceive",
+            "count": 14,
+            "time_s": 18.011575
+          }
+        ]
+      },
+      {
+        "call": 5,
+        "camera": "road",
+        "relative_counts": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "values": [
+          {
+            "boundary": "before_perceive",
+            "count": 14,
+            "time_s": 18.011575
+          },
+          {
+            "boundary": "before_ram_method",
+            "count": 15,
+            "time_s": 19.272295
+          },
+          {
+            "boundary": "after_ram_method",
+            "count": 15,
+            "time_s": 19.272295
+          },
+          {
+            "boundary": "after_perceive",
+            "count": 15,
+            "time_s": 19.272295
+          }
+        ]
+      },
+      {
+        "call": 6,
+        "camera": "wide",
+        "relative_counts": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "values": [
+          {
+            "boundary": "before_perceive",
+            "count": 15,
+            "time_s": 19.272295
+          },
+          {
+            "boundary": "before_ram_method",
+            "count": 16,
+            "time_s": 20.476892
+          },
+          {
+            "boundary": "after_ram_method",
+            "count": 16,
+            "time_s": 20.476892
+          },
+          {
+            "boundary": "after_perceive",
+            "count": 16,
+            "time_s": 20.476892
+          }
+        ]
+      },
+      {
+        "call": 7,
+        "camera": "road",
+        "relative_counts": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "values": [
+          {
+            "boundary": "before_perceive",
+            "count": 16,
+            "time_s": 20.476892
+          },
+          {
+            "boundary": "before_ram_method",
+            "count": 17,
+            "time_s": 21.738317000000002
+          },
+          {
+            "boundary": "after_ram_method",
+            "count": 17,
+            "time_s": 21.738317000000002
+          },
+          {
+            "boundary": "after_perceive",
+            "count": 17,
+            "time_s": 21.738317000000002
+          }
+        ]
+      },
+      {
+        "call": 8,
+        "camera": "wide",
+        "relative_counts": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "values": [
+          {
+            "boundary": "before_perceive",
+            "count": 17,
+            "time_s": 21.738317000000002
+          },
+          {
+            "boundary": "before_ram_method",
+            "count": 18,
+            "time_s": 22.920568
+          },
+          {
+            "boundary": "after_ram_method",
+            "count": 18,
+            "time_s": 22.920568
+          },
+          {
+            "boundary": "after_perceive",
+            "count": 18,
+            "time_s": 22.920568
+          }
+        ]
+      },
+      {
+        "call": 9,
+        "camera": "road",
+        "relative_counts": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "values": [
+          {
+            "boundary": "before_perceive",
+            "count": 18,
+            "time_s": 22.920568
+          },
+          {
+            "boundary": "before_ram_method",
+            "count": 19,
+            "time_s": 24.228686
+          },
+          {
+            "boundary": "after_ram_method",
+            "count": 19,
+            "time_s": 24.228686
+          },
+          {
+            "boundary": "after_perceive",
+            "count": 19,
+            "time_s": 24.228686
+          }
+        ]
+      },
+      {
+        "call": 10,
+        "camera": "wide",
+        "relative_counts": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "values": [
+          {
+            "boundary": "before_perceive",
+            "count": 19,
+            "time_s": 24.228686
+          },
+          {
+            "boundary": "before_ram_method",
+            "count": 20,
+            "time_s": 25.423817
+          },
+          {
+            "boundary": "after_ram_method",
+            "count": 20,
+            "time_s": 25.423817
+          },
+          {
+            "boundary": "after_perceive",
+            "count": 20,
+            "time_s": 25.423817
+          }
+        ]
+      },
+      {
+        "call": 11,
+        "camera": "road",
+        "relative_counts": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "values": [
+          {
+            "boundary": "before_perceive",
+            "count": 20,
+            "time_s": 25.423817
+          },
+          {
+            "boundary": "before_ram_method",
+            "count": 21,
+            "time_s": 26.684349
+          },
+          {
+            "boundary": "after_ram_method",
+            "count": 21,
+            "time_s": 26.684349
+          },
+          {
+            "boundary": "after_perceive",
+            "count": 21,
+            "time_s": 26.684349
+          }
+        ]
+      },
+      {
+        "call": 12,
+        "camera": "wide",
+        "relative_counts": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "values": [
+          {
+            "boundary": "before_perceive",
+            "count": 21,
+            "time_s": 26.684349
+          },
+          {
+            "boundary": "before_ram_method",
+            "count": 22,
+            "time_s": 27.873822
+          },
+          {
+            "boundary": "after_ram_method",
+            "count": 22,
+            "time_s": 27.873822
+          },
+          {
+            "boundary": "after_perceive",
+            "count": 22,
+            "time_s": 27.873822
+          }
+        ]
+      }
+    ],
+    "counts": {
+      "clock_snapshot_attempts": 48,
+      "clock_snapshot_returns": 48,
+      "frame_count_attempts": 48,
+      "frame_count_returns": 48,
+      "frame_time_attempts": 48,
+      "frame_time_returns": 48,
+      "perceive_attempts": 12,
+      "perceive_returns": 12,
+      "ram_attempts": 12,
+      "ram_returns": 12,
+      "task_step_attempts": 12,
+      "task_step_returns": 12
+    },
+    "events": 72,
+    "marker_values": [
+      {
+        "after": 12,
+        "before": 12,
+        "call": 1,
+        "camera": "road",
+        "equal": true
+      },
+      {
+        "after": 13,
+        "before": 13,
+        "call": 2,
+        "camera": "wide",
+        "equal": true
+      },
+      {
+        "after": 14,
+        "before": 14,
+        "call": 3,
+        "camera": "road",
+        "equal": true
+      },
+      {
+        "after": 15,
+        "before": 15,
+        "call": 4,
+        "camera": "wide",
+        "equal": true
+      },
+      {
+        "after": 16,
+        "before": 16,
+        "call": 5,
+        "camera": "road",
+        "equal": true
+      },
+      {
+        "after": 17,
+        "before": 17,
+        "call": 6,
+        "camera": "wide",
+        "equal": true
+      },
+      {
+        "after": 18,
+        "before": 18,
+        "call": 7,
+        "camera": "road",
+        "equal": true
+      },
+      {
+        "after": 19,
+        "before": 19,
+        "call": 8,
+        "camera": "wide",
+        "equal": true
+      },
+      {
+        "after": 20,
+        "before": 20,
+        "call": 9,
+        "camera": "road",
+        "equal": true
+      },
+      {
+        "after": 21,
+        "before": 21,
+        "call": 10,
+        "camera": "wide",
+        "equal": true
+      },
+      {
+        "after": 22,
+        "before": 22,
+        "call": 11,
+        "camera": "road",
+        "equal": true
+      },
+      {
+        "after": 23,
+        "before": 23,
+        "call": 12,
+        "camera": "wide",
+        "equal": true
+      }
+    ],
+    "original_perceive": 12,
+    "original_ram": 12,
+    "original_step": 12,
+    "restoration_complete": true,
+    "restoration_errors": []
+  },
+  "unchanged_scientific_status": {
+    "cloud": "UNPUBLISHED",
+    "draft": "UNMERGED",
+    "expanded": "NOT_RUN",
+    "full_S": "INCOMPLETE",
+    "geometry": "INCOMPLETE",
+    "main_official_calls": 0,
+    "optics": "INCOMPLETE",
+    "stage7": "INCOMPLETE",
+    "strict": "FAIL"
+  },
+  "unknowns": [
+    "CPU count/time snapshots are non-atomic; no GPU identity/completion/freshness, callback ordering, or global count/time epoch identity is established.",
+    "Actual clock advances and marker equality are measured observations; no required increment or timing progression was imposed.",
+    "Successful source-bound native constructor/FD/main-thread/ancestry/restoration checks are inferred from authenticated executed source and linked ledgers/logs, not separate OS tracing.",
+    "Cache inventory establishes fresh routed population only; individual hits and installed binary identity remain unknown. Cache contents are not artifact members.",
+    "Observer neutrality and unique cause are not established; fixed order, startup, cold cache, hashing and retention affect timing.",
+    "No ABBA data or cross-process comparisons exist yet; successful canary acceptance alone does not accept an ABBA run.",
+    "Logical memory estimate is not measured RSS.",
+    "This harness makes zero official model/ORT session/extra GPU read calls; baseline generated SMALL graph evidence remains separate."
+  ],
+  "validator": {
+    "accepted_pairs": 6,
+    "claims": {
+      "extra_gpu_reads": 0,
+      "installed_binary_equality_proven": false,
+      "markers_are_fences": false,
+      "observer_effects_absent": false,
+      "official_model_calls": 0,
+      "original_strict_pass": false,
+      "ort_sessions": 0
+    },
+    "clock_getter_invocations": 96,
+    "clock_snapshots": 48,
+    "comparisons": [],
+    "marker_reads": 24,
+    "observed_reads": 12,
+    "phase": "canary",
+    "providers": 1,
+    "status": "CLOCK_DATASET_VALIDATED",
+    "task_step_calls": 12
+  },
+  "verdict": "ACCEPTED_CANARY"
+}

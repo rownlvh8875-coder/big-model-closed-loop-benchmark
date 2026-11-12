@@ -23,16 +23,16 @@ Preserve old67producer/helper paths/protected13/base43/all43workflows/requests+a
 
 Files:create scripts/engine_clock_native.py,tests/test_engine_clock_native.py,.github/workflows/stage7-engine-clock-boundaries.yml,.github/stage7-engine-clock-request.json. Exactbrief in .superpowers/sdd/2026-11-12-engine-clock-native/task-1-brief.md.
 
-- [ ] TDD new context/request/source70/runtime/admission, composed child, failure prefixes, limits/comparisons and pure validator/workflow output step; no oldfile edits.
-- [ ] TargetedCPU then fullCPU once after integration, actionlint/bash syntax; root verifies old67/workflows/source70 then commits.
-- [ ] Independent spec+quality/source-wide review of complete newsource before one canary push. Material fixes resume original implementer, covering tests and scoped review; no full repeats without a material change/failure.
+- [x] TDD new context/request/source70/runtime/admission, composed child, failure prefixes, limits/comparisons and pure validator/workflow output step; no oldfile edits.
+- [x] TargetedCPU then fullCPU once after integration, actionlint/bash syntax; root verifies old67/workflows/source70 then commits.
+- [x] Independent spec+quality/source-wide review of complete newsource before one canary push. Material fixes resume original implementer, covering tests and scoped review; no full repeats without a material change/failure.
 
 ### Task 2: One actual new ONcanary and fresh raw acceptance
 
 Consumes reviewed source70/requestcanary. RootownsGit/CI/API/archive/evidence; newrequests only.
 
-- [ ] Push source once, create stackedDraft onPR39, authenticate actual workflow/run/job/head/attempt1.
-- [ ] Download/extract original artifact once, verify source/runtime/trace/raw/canvas/I420/cache/log/process/budgets. Fresh independent raw reviewer accepts or authenticates terminal failure; never retry. Failed canary forbidsABBA.
+- [x] Push source once, create stackedDraft onPR39, authenticate actual workflow/run/job/head/attempt1.
+- [x] Download/extract original artifact once, verify source/runtime/trace/raw/canvas/I420/cache/log/process/budgets. Fresh independent raw reviewer accepts or authenticates terminal failure; never retry. Failed canary forbidsABBA.
 
 ### Task 3: Direct-child ABBA and final evidence
 
