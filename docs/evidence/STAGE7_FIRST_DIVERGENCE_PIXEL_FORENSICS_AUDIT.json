@@ -16,7 +16,7 @@
   "forensic_script_sha256": "5e12227932d67a632aa65808d7be71e09826deec090ff09360c4cc6249a4af2e",
   "forensic_source": "1c9d08fbbe7c221129fe31d50c75389af8c2b65a",
   "schema": "first-divergence-pixel-forensics-audit-v1",
-  "status": "ROOT_CPU_ANALYSIS_VALIDATED_REVIEW_PENDING",
+  "status": "ROOT_AND_FRESH_CPU_ANALYSIS_ACCEPTED",
   "base": "322f5f0fc04aaaaf721e400a4cf452ebcdd439fd",
   "branch": "analysis/first-divergence-pixel-neighborhoods",
   "fresh_api_bindings": {
@@ -33,13 +33,20 @@
     "targeted_elapsed_s": 0.722,
     "full": 501,
     "full_elapsed_s": 72.427,
-    "full_skips": 0
+    "full_skips": 0,
+    "recorded_runtime_targeted": 15,
+    "recorded_runtime_targeted_elapsed_s": 0.56
   },
   "rulings": [
     "Ruling: keep analysis CPU-only and outside consumed producer registry — next checkpoint is saved-byte forensics, not another native experiment — cost: GPU/ORT/model causal questions remain unanswered; new native protocol still required later.",
     "Ruling: enumerate all subsets of at most4 changed raw pixels using retained actual intrinsics and unchanged warp/I420 — exact CPU interventions avoid assuming additivity or a conservative support mask — cost: tool deliberately rejects more than4 changed pixels and requires recordedNumPy2.4.6/OpenCV5.0.0.93 for archival replay.",
     "Ruling: retain original archives/extraction/controller histories and current normal checkout — user forbids worktrees and replay/deletion — cost: disk usage; new branch remains stacked draft.",
-    "Ruling: zero-ORT budget applies to forensic tool/actual archive replay; unchanged baseline suite may execute its generated SMALL ONNX fixture separately — existing authorization and required full verification already allow that fixture — cost: a baseline test session, never official MD-V3 inference or evidence of native repair."
+    "Ruling: zero-ORT budget applies to forensic tool/actual archive replay; unchanged baseline suite may execute its generated SMALL ONNX fixture separately — existing authorization and required full verification already allow that fixture — cost: a baseline test session, never official MD-V3 inference or evidence of native repair.",
+    "Final: Ruling: GPU/model causality remains unproven — saved CPU transform interventions establish input contributions only — cost: original scientific cause and Stage7 remain open.",
+    "Final: Ruling: inherited pipeline redesign stays outside this change with62producer bytes unchanged — current task is CPU forensic analysis, not an unsupported renderer/converter fix — cost: existing strictFAIL remains unresolved.",
+    "Final: Ruling: CI installed binary equality remains unproven — versioned local/released source references are labeled references only — cost: no cross-build/environment equivalence conclusion.",
+    "Final: Ruling: future native observer is design-only and unregistered — this phase authorizes0native/model calls, future source/canary/budgets required — cost: another distinct diagnostic preparation before native observations.",
+    "Final: Ruling: future PR/CI state is root's actualAPI check after authorized DraftPRpush — no predictedsuccess or scientificmerge — cost: normal baselineCI jobs, source staysdraft if scientificgateFAIL."
   ],
   "source_references": {
     "panda-texture-source.json": {
@@ -321,5 +328,12 @@
         }
       ]
     }
-  ]
+  ],
+  "review": {
+    "verdict": "PASS",
+    "head": "0cc62028b5c483e19137dfae1c6d74b637ac388a",
+    "json_sha256": "0e874472f0640bff4c146528535d11803f384913d2229e6b88e11c7566e594d1",
+    "replay_report_sha256": "c48507e5ec2f56c81960b3a1f38b805bb83fe4579aea0daf015f030f194f01ee",
+    "findings": []
+  }
 }
