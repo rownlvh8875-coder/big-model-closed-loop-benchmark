@@ -1,0 +1,24 @@
+# Saved Texture-marker state sequences — CPU-only design
+
+Goal: catalog the full RGB states and sparse cross-case differences in the accepted ON canary and OFF/ON/ON/OFF archives, then relate those observations to read-only source references. New native/model execution is zero. This is a follow-up analysis, not a rerun or repair of the consumed protocol.
+
+Root choice under the user's standing instruction to proceed without repeated design questions: retain all captures in a full-frame SHA catalog, and separately compare identical capture ordinals across cases for sparse pixel support. Comparing every pose0 frame as sparse would mix the common broad first-capture transient with the later small differences. Alternatives were ordinal-only deltas (loses repeated state histories) and another live experiment (unnecessary and outside this CPU step). Use inline execution and one final independent whole-branch/evidence reviewer; no parallel implementation.
+
+Inputs are original existing ZIPs/extractions, without download/extraction or mutation:
+
+- Canary source0a98918e746fe7df9d5502e21db91c3e5cd15396/run43177564313/artifact13925041858:14605800 ZIP bytes/SHA6a8c7a2e3495a5115938d17aee1da8c4e27f4e2ebc1b6350001e0f1090ee1994;33members15795803uncompressedbytes.
+- ABBA source4814794243ca61a96264ebe04f4fb1b82f0eeecf/run43178394897/artifact13925716196:58403425 ZIP bytes/SHAe6017f302e6879709bf089aaeca97fde9ca8828764b645c8e4bde473db6f16ce;129members63162078uncompressedbytes.
+
+Standalone script scripts/texture_marker_state_sequences.py and tests/test_texture_marker_state_sequences.py are excluded from consumed producer65. Preserve every old producer65/protected13/baseline43/all43 workflows/request/acceptance and all raw/controller histories. Branch analysis/texture-marker-state-sequences from212401961fa3865eddda90207b51fb0e8ec1b4d2; stacked Draft against diagnostic/texture-generation-markers. No worktrees/Cloud settings or publication/main merge/local native/Panda engine/Xvfb/weights/official inference. Baseline generated SMALL graph remains separately accounted.
+
+Analysis interfaces:
+
+- state_catalog(images): nonempty matching uint8 HWC RGB, at most32 samples; deterministic SHA-sorted full-image state IDs, representative indices/occurrences and sequence. Never mutates inputs. IDs identify image bytes within a pose/camera group, not frames or GPU state.
+- sparse_locations(images, limit=64): common ordinal cohort; union changed pixel coordinates relative to first image, top-left (x,y), each RGB and signed int deltas. Enforce cap before enumeration; no uint8 wrap or unbounded pixel export.
+- compare_markers(left,right): source-validated per-copy marker rows; absolute values, within-read patterns, raw equality, exact equal-counter/different-raw examples. OFF comparisons remain unobserved/null. Preserve signed32 special/wrap values. No inference from absolute cross-process values to physical identity.
+- run(canary_root,canary_archive,abba_root,abba_archive,out): strict exact ZIP size/SHA/members/safe regular files/existing extraction equality; frozen validator and Git source65/context checks; exact NumPy2.4.6/OpenCVheadless5.0.0.93; fresh CPU process with no imported Panda/MetaDrive/ORT. Fresh report outside both inputs, no overwrite. Five cases/30pairs/60raw images, fixed pose4+2. Retained raw bytes104808960 <=128MiB logical cap; bounded transient masks and per-ordinal exports; report<=2MiB. Source validators run before retaining analysis arrays. Source and API authentication are separate: root refreshes read-only API; tool authenticates pinned ZIP/Git/dataset offline.
+- plot_report(report,out): optional Matplotlib Agg rendering of state sequences, no scene/native operations. Figure-only environment may differ from exact replay runtime; record it separately. No visual equality as a measurement.
+
+Report contains all four pose/camera full-frame state catalogs, five ordered sequences, twelve ordinal sparse supports, merged per-pose/camera support, ON cross-process marker/image counterexamples, and within-process unchanged pixels with different markers. Preserve first capture and pose changes; never infer renderer frame numbers from capture index or virtual t.
+
+Read-only source audit hashes local package files and frozen checkout paths. Distinguish the custom RAMCamera override from upstream ImageBuffer.getScreenshot; trace Road-perceive/copy then Wide-perceive/copy and BaseCamera taskMgr.step, with no engine frame/time snapshots. Inspect actual shader loader selection and tonemap inputs; a token search's absence is bounded to named files, not an installed CI binary or all GPU stages. No dither, shadow, MSAA, sample phase or unique cause claim follows from reference inspection. Preserve strictFAIL/expandednotrun/geometry-optics-fullS/Stage7incomplete/mainofficial0/Cloudunpublished.
