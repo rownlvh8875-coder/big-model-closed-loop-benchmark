@@ -1,0 +1,395 @@
+{
+  "production_sources": {
+    "bigbench/native_model_campaign.py": "0bcb4ca73e1404a7164be1c879a200eeff5ca41e47e3035301d40fd173000bad",
+    "bigbench/metadrive_camera.py": "1c5661e6c9eea6445ebe55cb246e6b48d3384dd5a731353ba3f1a45599e338f9",
+    "bigbench/optical_calibration.py": "1a3852d67ea2f15ef31a4224916fb71275f25010a5038179a7e0dd8e984c09ce",
+    "bigbench/image_adapter.py": "7f6d53989ff072ba5b8461ba207ab68c52ac2b519d18d56d0decc68c467e6f03"
+  },
+  "local_source_references": {
+    ".venv/lib/python3.11/site-packages/metadrive/component/sensors/base_camera.py": "23d90c3d12894f855ae64d4607c03f3bf34e31e28dd7f5ce82bd0ddc7b37faf5",
+    ".venv/lib/python3.11/site-packages/metadrive/component/sensors/rgb_camera.py": "a13b38cf0af05966dfa37d09af65ea3779deabdcbf33258b378025e882da4af0"
+  },
+  "local_source_reference_distribution": "metadrive-simulator0.4.3; source read only, not a CI installed-byte or binary equality attestation",
+  "figure_sha256": "8b1daa17b228f128fc96a18a1559e8ebf7a728a7a04d7fedae46a9369d50323f",
+  "figure_bytes": 158504,
+  "report_sha256": "c48507e5ec2f56c81960b3a1f38b805bb83fe4579aea0daf015f030f194f01ee",
+  "forensic_script_sha256": "5e12227932d67a632aa65808d7be71e09826deec090ff09360c4cc6249a4af2e",
+  "forensic_source": "1c9d08fbbe7c221129fe31d50c75389af8c2b65a",
+  "schema": "first-divergence-pixel-forensics-audit-v1",
+  "status": "ROOT_AND_FRESH_CPU_ANALYSIS_ACCEPTED",
+  "base": "322f5f0fc04aaaaf721e400a4cf452ebcdd439fd",
+  "branch": "analysis/first-divergence-pixel-neighborhoods",
+  "fresh_api_bindings": {
+    "run": "31d809b095d519ed7537585812d032ba7447bced9721d252b1fbb2e4e32b3499",
+    "artifact": "b0368a46b0c64b30a7f0975b7bdc1b53d938c5636f2feb9fcba5800117c3118d",
+    "jobs": "2f5974195c0bb9b4206404ffceca9fc8807d1476633ed5ec667a0748bf631c93"
+  },
+  "source_paths_preserved": 62,
+  "protected_pins": 13,
+  "baseline_pins": 43,
+  "old_workflows_preserved": 42,
+  "tests": {
+    "targeted": 15,
+    "targeted_elapsed_s": 0.722,
+    "full": 501,
+    "full_elapsed_s": 72.427,
+    "full_skips": 0,
+    "recorded_runtime_targeted": 15,
+    "recorded_runtime_targeted_elapsed_s": 0.56,
+    "source_ci_unit": {
+      "tests": 501,
+      "optional_skips": 7,
+      "optional_panda_cpu_skips": 6,
+      "optional_onnx_ort_skips": 1,
+      "separate_generated_small_onnx_tests": 1
+    }
+  },
+  "rulings": [
+    "Ruling: keep analysis CPU-only and outside consumed producer registry — next checkpoint is saved-byte forensics, not another native experiment — cost: GPU/ORT/model causal questions remain unanswered; new native protocol still required later.",
+    "Ruling: enumerate all subsets of at most4 changed raw pixels using retained actual intrinsics and unchanged warp/I420 — exact CPU interventions avoid assuming additivity or a conservative support mask — cost: tool deliberately rejects more than4 changed pixels and requires recordedNumPy2.4.6/OpenCV5.0.0.93 for archival replay.",
+    "Ruling: retain original archives/extraction/controller histories and current normal checkout — user forbids worktrees and replay/deletion — cost: disk usage; new branch remains stacked draft.",
+    "Ruling: zero-ORT budget applies to forensic tool/actual archive replay; unchanged baseline suite may execute its generated SMALL ONNX fixture separately — existing authorization and required full verification already allow that fixture — cost: a baseline test session, never official MD-V3 inference or evidence of native repair.",
+    "Final: Ruling: GPU/model causality remains unproven — saved CPU transform interventions establish input contributions only — cost: original scientific cause and Stage7 remain open.",
+    "Final: Ruling: inherited pipeline redesign stays outside this change with62producer bytes unchanged — current task is CPU forensic analysis, not an unsupported renderer/converter fix — cost: existing strictFAIL remains unresolved.",
+    "Final: Ruling: CI installed binary equality remains unproven — versioned local/released source references are labeled references only — cost: no cross-build/environment equivalence conclusion.",
+    "Final: Ruling: future native observer is design-only and unregistered — this phase authorizes0native/model calls, future source/canary/budgets required — cost: another distinct diagnostic preparation before native observations.",
+    "Final: Ruling: future PR/CI state is root's actualAPI check after authorized DraftPRpush — no predictedsuccess or scientificmerge — cost: normal baselineCI jobs, source staysdraft if scientificgateFAIL."
+  ],
+  "source_references": {
+    "panda-texture-source.json": {
+      "url": "https://github.com/panda3d/panda3d/blob/v1.10.13/panda/src/gobj/texture.h",
+      "git_blob": "c2ff9ad24dffa8138efdf05747fac7a57c8bf923",
+      "sha256": "7e42f46d99afcda2b0d1fe3d3c342392a36c9eb04240bf592b46d981c97f4018",
+      "nbytes": 49587,
+      "scope": "released source reference, not installed CI binary attestation"
+    },
+    "panda-texture-inline-source.json": {
+      "url": "https://github.com/panda3d/panda3d/blob/v1.10.13/panda/src/gobj/texture.I",
+      "git_blob": "5ba9aa0f958b4d25e41d86055486e42948564f40",
+      "sha256": "ed22da317065f967c154ad421914016a991a270bef240c1cca78f1a9e513c840",
+      "nbytes": 77308,
+      "scope": "released source reference, not installed CI binary attestation"
+    }
+  },
+  "next_observation_boundary": {
+    "status": "DESIGN_ONLY_NOT_REGISTERED_OR_EXECUTED",
+    "proposal": "OFF/ON CPU Texture image-modified sequence markers around unchanged existing RAM RGB copy; four fresh camera-only processes in ABBA order at retained poses/capture schedule; no extra render/task/readback/ORT/model calls",
+    "limitation": "Sequence markers are CPU image-generation metadata, not GPU completion/fences. OFF/ON recording can change timing/allocation. Need separate source/canary and precise budgets before any new native run."
+  },
+  "new_scientific_calls": {
+    "native_providers": 0,
+    "official_model_calls": 0,
+    "ort_sessions": 0,
+    "gpu_reads": 0
+  },
+  "baseline_small_graph_scope": "unchanged test suite only; not official inference",
+  "original_strict_gate": "FAIL",
+  "stage7_complete": false,
+  "cloud_published": false,
+  "main_official_model_calls": 0,
+  "point_summaries": [
+    {
+      "pixel_id": 0,
+      "camera": "road",
+      "raw_xy_top_left": [
+        130,
+        351
+      ],
+      "predicted_bottom_left_xy": [
+        130,
+        252
+      ],
+      "rgb_a": [
+        199,
+        187,
+        0
+      ],
+      "rgb_b": [
+        195,
+        185,
+        93
+      ],
+      "changed_packed_values": 1,
+      "packed_checksum_delta": 4,
+      "packed_deltas": [
+        {
+          "index": [
+            0,
+            1,
+            40,
+            7
+          ],
+          "a": 163,
+          "b": 167,
+          "delta": 4
+        }
+      ]
+    },
+    {
+      "pixel_id": 1,
+      "camera": "road",
+      "raw_xy_top_left": [
+        552,
+        438
+      ],
+      "predicted_bottom_left_xy": [
+        552,
+        165
+      ],
+      "rgb_a": [
+        114,
+        109,
+        88
+      ],
+      "rgb_b": [
+        124,
+        119,
+        104
+      ],
+      "changed_packed_values": 1,
+      "packed_checksum_delta": 7,
+      "packed_deltas": [
+        {
+          "index": [
+            0,
+            1,
+            70,
+            152
+          ],
+          "a": 109,
+          "b": 116,
+          "delta": 7
+        }
+      ]
+    },
+    {
+      "pixel_id": 2,
+      "camera": "road",
+      "raw_xy_top_left": [
+        718,
+        512
+      ],
+      "predicted_bottom_left_xy": [
+        718,
+        91
+      ],
+      "rgb_a": [
+        109,
+        109,
+        86
+      ],
+      "rgb_b": [
+        122,
+        119,
+        106
+      ],
+      "changed_packed_values": 3,
+      "packed_checksum_delta": 10,
+      "packed_deltas": [
+        {
+          "index": [
+            0,
+            0,
+            96,
+            209
+          ],
+          "a": 102,
+          "b": 109,
+          "delta": 7
+        },
+        {
+          "index": [
+            0,
+            4,
+            96,
+            209
+          ],
+          "a": 116,
+          "b": 118,
+          "delta": 2
+        },
+        {
+          "index": [
+            0,
+            5,
+            96,
+            209
+          ],
+          "a": 129,
+          "b": 130,
+          "delta": 1
+        }
+      ]
+    },
+    {
+      "pixel_id": 3,
+      "camera": "wide",
+      "raw_xy_top_left": [
+        431,
+        315
+      ],
+      "predicted_bottom_left_xy": [
+        431,
+        288
+      ],
+      "rgb_a": [
+        195,
+        194,
+        196
+      ],
+      "rgb_b": [
+        199,
+        198,
+        202
+      ],
+      "changed_packed_values": 8,
+      "packed_checksum_delta": 11,
+      "packed_deltas": [
+        {
+          "index": [
+            1,
+            0,
+            86,
+            87
+          ],
+          "a": 173,
+          "b": 175,
+          "delta": 2
+        },
+        {
+          "index": [
+            1,
+            1,
+            86,
+            87
+          ],
+          "a": 173,
+          "b": 175,
+          "delta": 2
+        },
+        {
+          "index": [
+            1,
+            2,
+            86,
+            87
+          ],
+          "a": 174,
+          "b": 175,
+          "delta": 1
+        },
+        {
+          "index": [
+            1,
+            2,
+            87,
+            87
+          ],
+          "a": 152,
+          "b": 153,
+          "delta": 1
+        },
+        {
+          "index": [
+            1,
+            3,
+            86,
+            87
+          ],
+          "a": 175,
+          "b": 177,
+          "delta": 2
+        },
+        {
+          "index": [
+            1,
+            4,
+            86,
+            87
+          ],
+          "a": 127,
+          "b": 128,
+          "delta": 1
+        },
+        {
+          "index": [
+            1,
+            4,
+            87,
+            87
+          ],
+          "a": 130,
+          "b": 131,
+          "delta": 1
+        },
+        {
+          "index": [
+            1,
+            5,
+            87,
+            87
+          ],
+          "a": 128,
+          "b": 129,
+          "delta": 1
+        }
+      ]
+    }
+  ],
+  "review": {
+    "verdict": "PASS",
+    "head": "0cc62028b5c483e19137dfae1c6d74b637ac388a",
+    "json_sha256": "0e874472f0640bff4c146528535d11803f384913d2229e6b88e11c7566e594d1",
+    "replay_report_sha256": "c48507e5ec2f56c81960b3a1f38b805bb83fe4579aea0daf015f030f194f01ee",
+    "findings": []
+  },
+  "publication": {
+    "pr": 36,
+    "url": "https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/pull/36",
+    "draft": true,
+    "merged": false,
+    "base": "fix/first-divergence-post-transport",
+    "source_checkpoint": "c48c57aa9c8742a5141fa428f7446d6ce1c62a8a",
+    "source_ci": [
+      {
+        "run": 43156644897,
+        "job": 130978020593,
+        "name": "synthetic-unit",
+        "conclusion": "success",
+        "test_summaries": [
+          "Ran 501 tests in 57.750s",
+          "OK (skipped=7)"
+        ]
+      },
+      {
+        "run": 43156644897,
+        "job": 130978020935,
+        "name": "onnx-interface-test",
+        "conclusion": "success",
+        "test_summaries": [
+          "Ran 1 test in 0.049s"
+        ]
+      },
+      {
+        "run": 43156651197,
+        "job": 130978039997,
+        "name": "onnx-interface-test",
+        "conclusion": "success",
+        "test_summaries": [
+          "Ran 1 test in 0.086s"
+        ]
+      },
+      {
+        "run": 43156651197,
+        "job": 130978040159,
+        "name": "synthetic-unit",
+        "conclusion": "success",
+        "test_summaries": [
+          "Ran 501 tests in 52.979s",
+          "OK (skipped=7)"
+        ]
+      }
+    ],
+    "scientific_workflows_selected": false
+  }
+}
