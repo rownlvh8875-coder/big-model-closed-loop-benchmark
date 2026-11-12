@@ -12,7 +12,8 @@
 
 ## Global Constraints
 
-- New native/GPU/ORT/official calls0; no download/re-extraction or input mutation.
+- Forensic native/GPU/ORT/official calls0; unchanged baseline generated SMALL graph is separate.
+- No download/re-extraction or input mutation.
 - Preserve source62/protected13/baseline43/all42workflows/consumed requests.
 - At most4changed pixels,2^Nsubsets,radius2neighborhoods,JSON<=1MiB/fresh/outside input.
 - No worktrees/Cloud publication/main merge/default/renderer/converter/action changes.

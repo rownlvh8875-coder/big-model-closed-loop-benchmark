@@ -6,7 +6,9 @@ User requests sequential autonomous continuation without repeated technical
 questions. Accepted study source582cc594d127e9cde5ff3525e50c143f60285f75,
 run43149053427/artifact13912454399 records retention A/A first raw difference
 at step2: Road3pixels/Wide1pixel, followed by13packed I420 values. The next task
-is CPU analysis of existing evidence, with ZERO new native/GPU/ORT/model calls.
+is CPU analysis of existing evidence, with ZERO new native/GPU/ORT/model calls
+inside the forensic tool/archive replay. Unchanged baseline tests may execute
+their generated SMALL ONNX fixture, counted separately; no official inference.
 
 ## Approach
 
