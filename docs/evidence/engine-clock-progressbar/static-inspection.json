@@ -1,0 +1,459 @@
+{
+  "actual_tool_python": "3.11.17",
+  "build_executed": false,
+  "build_ready": false,
+  "full_lock_ready": false,
+  "image_preparation_ready": false,
+  "inspection_duration_seconds": 0.17915509300655685,
+  "license_text": "You can redistribute and/or modify this library under the terms of the\nGNU LGPL license or BSD license (or both).\n\n---\n\nprogressbar - Text progress bar library for python.\nCopyright (C) 2005 Nilton Volpato\n\nThis library is free software; you can redistribute it and/or\nmodify it under the terms of the GNU Lesser General Public\nLicense as published by the Free Software Foundation; either\nversion 2.1 of the License, or (at your option) any later version.\n\nThis library is distributed in the hope that it will be useful,\nbut WITHOUT ANY WARRANTY; without even the implied warranty of\nMERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU\nLesser General Public License for more details.\n\nYou should have received a copy of the GNU Lesser General Public\nLicense along with this library; if not, write to the Free Software\nFoundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA\n\n---\n\nprogressbar - Text progress bar library for python\nCopyright (c) 2008 Nilton Volpato\n\nAll rights reserved.\n\nRedistribution and use in source and binary forms, with or without\nmodification, are permitted provided that the following conditions are met:\n\n a. Redistributions of source code must retain the above copyright notice,\n    this list of conditions and the following disclaimer.\n b. Redistributions in binary form must reproduce the above copyright\n    notice, this list of conditions and the following disclaimer in the\n    documentation and/or other materials provided with the distribution.\n c. Neither the name of the author nor the names of its contributors\n    may be used to endorse or promote products derived from this software\n    without specific prior written permission.\n\nTHIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS \"AS IS\"\nAND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE\nIMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE\nARE DISCLAIMED. IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE FOR\nANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL\nDAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR\nSERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER\nCAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT\nLIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY\nOUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH\nDAMAGE.\n",
+  "limits": [
+    "Static parsing under3.11.17 is not target3.11.18 execution/runtime proof.",
+    "Installed trusted pip vendored packaging only parses requirements; downloaded tools are not imported.",
+    "Archive checks inspect these fixed bytes, not a reviewed reusable hostile-archive API.",
+    "Default tool closure excludes extras and relies on vendored code covered by full wheel hash."
+  ],
+  "native_admission": false,
+  "python_ast": [
+    {
+      "imports": [
+        {
+          "line": 3,
+          "text": "import os"
+        },
+        {
+          "line": 4,
+          "text": "from setuptools import setup, find_packages"
+        },
+        {
+          "line": 5,
+          "text": "import progressbar"
+        }
+      ],
+      "path": "progressbar-2.5/setup.py",
+      "status": "PARSE_OK"
+    },
+    {
+      "imports": [
+        {
+          "line": 22,
+          "text": "from __future__ import division"
+        },
+        {
+          "line": 24,
+          "text": "import datetime"
+        },
+        {
+          "line": 25,
+          "text": "import math"
+        },
+        {
+          "line": 28,
+          "text": "from abc import ABCMeta, abstractmethod"
+        }
+      ],
+      "path": "progressbar-2.5/progressbar/widgets.py",
+      "status": "PARSE_OK"
+    },
+    {
+      "imports": [
+        {
+          "line": 47,
+          "text": "from .compat import *"
+        },
+        {
+          "line": 48,
+          "text": "from .widgets import *"
+        },
+        {
+          "line": 49,
+          "text": "from .progressbar import *"
+        }
+      ],
+      "path": "progressbar-2.5/progressbar/__init__.py",
+      "status": "PARSE_OK"
+    },
+    {
+      "imports": [],
+      "path": "progressbar-2.5/progressbar/compat.py",
+      "status": "PARSE_OK"
+    },
+    {
+      "imports": [
+        {
+          "line": 22,
+          "text": "from __future__ import division"
+        },
+        {
+          "line": 24,
+          "text": "import math"
+        },
+        {
+          "line": 25,
+          "text": "import os"
+        },
+        {
+          "line": 26,
+          "text": "import signal"
+        },
+        {
+          "line": 27,
+          "text": "import sys"
+        },
+        {
+          "line": 28,
+          "text": "import time"
+        },
+        {
+          "line": 37,
+          "text": "from .compat import *"
+        },
+        {
+          "line": 38,
+          "text": "from . import widgets"
+        },
+        {
+          "line": 31,
+          "text": "from fcntl import ioctl"
+        },
+        {
+          "line": 32,
+          "text": "from array import array"
+        },
+        {
+          "line": 33,
+          "text": "import termios"
+        }
+      ],
+      "path": "progressbar-2.5/progressbar/progressbar.py",
+      "status": "PARSE_OK"
+    },
+    {
+      "imports": [
+        {
+          "line": 4,
+          "text": "import sys"
+        },
+        {
+          "line": 5,
+          "text": "import time"
+        },
+        {
+          "line": 7,
+          "text": "from progressbar import AnimatedMarker, Bar, BouncingBar, Counter, ETA, AdaptiveETA, FileTransferSpeed, FormatLabel, Percentage, ProgressBar, ReverseBar, RotatingMarker, SimpleProgress, Timer"
+        }
+      ],
+      "path": "progressbar-2.5/examples.py",
+      "status": "PARSE_OK"
+    }
+  ],
+  "runtime_payload": [
+    {
+      "kind": "file",
+      "mode": 420,
+      "mtime": 1530238957,
+      "path": "progressbar-2.5/progressbar/widgets.py",
+      "sha256": "4c8dc78717259f6846cbfdec8d643394658443cc66967421aef2a5017d3270ce",
+      "size": 11275
+    },
+    {
+      "kind": "file",
+      "mode": 420,
+      "mtime": 1530239481,
+      "path": "progressbar-2.5/progressbar/__init__.py",
+      "sha256": "2156ed76fa671acd72aca0c3237738c7297172d6830c6495564eeb94f0f50349",
+      "size": 1908
+    },
+    {
+      "kind": "file",
+      "mode": 420,
+      "mtime": 1530233991,
+      "path": "progressbar-2.5/progressbar/compat.py",
+      "sha256": "9895cf77a623746bcf765910dd5df6c6e0ecf737ce34ad34a35fb30227f99a26",
+      "size": 1442
+    },
+    {
+      "kind": "file",
+      "mode": 420,
+      "mtime": 1530238957,
+      "path": "progressbar-2.5/progressbar/progressbar.py",
+      "sha256": "cf501ab25c0d42d6a80080b02a5f318c2fe4174b34f608d88b0047c2b3b6391e",
+      "size": 9592
+    }
+  ],
+  "schema": "engine-clock-progressbar-static-inspection-v1",
+  "setup_imports_runtime": true,
+  "setup_may_write_readme": true,
+  "setup_text": "#!/usr/bin/python\n\nimport os\nfrom setuptools import setup, find_packages\nimport progressbar\n\n# TODO: I don't believe this should be in here. This should be done on package\n#       creation only\ntry:\n    readme = 'README.txt'\n    info = 'progressbar/__init__.py'\n\n    if (not os.path.exists(readme) or\n        os.stat(info).st_mtime > os.stat(readme).st_mtime):\n\n        open(readme,'w').write(progressbar.__doc__)\nexcept: pass\n\nsetup(\n    name='progressbar',\n    version=progressbar.__version__,\n    packages=find_packages(),\n\n    description=progressbar.__doc__.split('\\n')[0],\n    long_description=progressbar.__doc__,\n\n    author=progressbar.__author__,\n    maintainer=progressbar.__author__,\n    author_email=progressbar.__author_email__,\n    maintainer_email=progressbar.__author_email__,\n\n    url='http://code.google.com/p/python-progressbar',\n    license='LICENSE.txt',\n    classifiers=[\n        'Development Status :: 5 - Production/Stable',\n        'Environment :: Console',\n        'Intended Audience :: Developers',\n        'Intended Audience :: Information Technology',\n        'Intended Audience :: System Administrators',\n        'License :: OSI Approved :: '\n            'GNU Library or Lesser General Public License (LGPL)',\n        'License :: OSI Approved :: BSD License',\n        'Operating System :: OS Independent',\n        'Programming Language :: Python',\n        'Programming Language :: Python :: 2',\n        'Programming Language :: Python :: 2.4',\n        'Programming Language :: Python :: 2.5',\n        'Programming Language :: Python :: 2.6',\n        'Programming Language :: Python :: 2.7',\n        'Programming Language :: Python :: 3',\n        'Topic :: Software Development :: Libraries',\n        'Topic :: Software Development :: User Interfaces',\n        'Topic :: Terminals'\n    ],\n)\n",
+  "source_compressed_bytes": 10046,
+  "source_execution": false,
+  "source_expanded_tar_bytes": 61440,
+  "source_members": [
+    {
+      "kind": "directory",
+      "mode": 493,
+      "mtime": 1530239515,
+      "path": "progressbar-2.5",
+      "size": 0
+    },
+    {
+      "kind": "file",
+      "mode": 420,
+      "mtime": 1530239515,
+      "path": "progressbar-2.5/README.txt",
+      "sha256": "62d3c5d1feac458cee77a6ded251de75a2970702cdd1dc7065b188815aecc59c",
+      "size": 845
+    },
+    {
+      "kind": "file",
+      "mode": 420,
+      "mtime": 1530239515,
+      "path": "progressbar-2.5/setup.cfg",
+      "sha256": "1c473cbaee8da5fc46e7f0158794af5cea4414c34a3cf3f180c2001f5e38bd3e",
+      "size": 38
+    },
+    {
+      "kind": "file",
+      "mode": 420,
+      "mtime": 1530233991,
+      "path": "progressbar-2.5/setup.py",
+      "sha256": "1b7a590a8b85b6ced168d25959530df91bbd31ae2fc58ef2162144e9696ba8e9",
+      "size": 1821
+    },
+    {
+      "kind": "file",
+      "mode": 420,
+      "mtime": 1530239515,
+      "path": "progressbar-2.5/PKG-INFO",
+      "sha256": "a846ee1cd41eecbebc858ae2329e566c4b882778aa364d1393a340cbb01162a9",
+      "size": 2188
+    },
+    {
+      "kind": "file",
+      "mode": 420,
+      "mtime": 1530233991,
+      "path": "progressbar-2.5/LICENSE.txt",
+      "sha256": "cd9ae4bad4124563ef2556118ea2d52df165ac42639dee68c02137789ac7aa56",
+      "size": 2451
+    },
+    {
+      "kind": "directory",
+      "mode": 493,
+      "mtime": 1530239515,
+      "path": "progressbar-2.5/progressbar.egg-info",
+      "size": 0
+    },
+    {
+      "kind": "file",
+      "mode": 420,
+      "mtime": 1530239515,
+      "path": "progressbar-2.5/progressbar.egg-info/PKG-INFO",
+      "sha256": "a846ee1cd41eecbebc858ae2329e566c4b882778aa364d1393a340cbb01162a9",
+      "size": 2188
+    },
+    {
+      "kind": "file",
+      "mode": 420,
+      "mtime": 1530239515,
+      "path": "progressbar-2.5/progressbar.egg-info/dependency_links.txt",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "size": 1
+    },
+    {
+      "kind": "file",
+      "mode": 420,
+      "mtime": 1530239515,
+      "path": "progressbar-2.5/progressbar.egg-info/SOURCES.txt",
+      "sha256": "39a1e266214216ba9a0fe63647ce093f8a188186257e11563f9e0a8c64ea42c1",
+      "size": 291
+    },
+    {
+      "kind": "file",
+      "mode": 420,
+      "mtime": 1530239515,
+      "path": "progressbar-2.5/progressbar.egg-info/top_level.txt",
+      "sha256": "566f96e4677f248c4cba5f587db683915bb16c3ffea9dfc69a2d6c23c089b1a1",
+      "size": 12
+    },
+    {
+      "kind": "directory",
+      "mode": 493,
+      "mtime": 1530239515,
+      "path": "progressbar-2.5/progressbar",
+      "size": 0
+    },
+    {
+      "kind": "file",
+      "mode": 420,
+      "mtime": 1530238957,
+      "path": "progressbar-2.5/progressbar/widgets.py",
+      "sha256": "4c8dc78717259f6846cbfdec8d643394658443cc66967421aef2a5017d3270ce",
+      "size": 11275
+    },
+    {
+      "kind": "file",
+      "mode": 420,
+      "mtime": 1530239481,
+      "path": "progressbar-2.5/progressbar/__init__.py",
+      "sha256": "2156ed76fa671acd72aca0c3237738c7297172d6830c6495564eeb94f0f50349",
+      "size": 1908
+    },
+    {
+      "kind": "file",
+      "mode": 420,
+      "mtime": 1530233991,
+      "path": "progressbar-2.5/progressbar/compat.py",
+      "sha256": "9895cf77a623746bcf765910dd5df6c6e0ecf737ce34ad34a35fb30227f99a26",
+      "size": 1442
+    },
+    {
+      "kind": "file",
+      "mode": 420,
+      "mtime": 1530238957,
+      "path": "progressbar-2.5/progressbar/progressbar.py",
+      "sha256": "cf501ab25c0d42d6a80080b02a5f318c2fe4174b34f608d88b0047c2b3b6391e",
+      "size": 9592
+    },
+    {
+      "kind": "file",
+      "mode": 420,
+      "mtime": 1530233991,
+      "path": "progressbar-2.5/examples.py",
+      "sha256": "aa1470d1e4e3cbd88ff88e856138d93e9adf512fadd70b47f43072930db57f43",
+      "size": 6001
+    },
+    {
+      "kind": "file",
+      "mode": 420,
+      "mtime": 1530233991,
+      "path": "progressbar-2.5/MANIFEST.in",
+      "sha256": "d4bf035cb93e39e4eda87fd33917a0c5c980d02535225f2ca012f070271e46ff",
+      "size": 51
+    }
+  ],
+  "source_sha256": "5d81cb529da2e223b53962afd6c8ca0f05c6670e40309a7219eacc36af9b6c63",
+  "tool_default_closure_complete": true,
+  "tool_extras_selected": [],
+  "tool_marker_environment": {
+    "extra": "",
+    "implementation_name": "cpython",
+    "implementation_version": "3.11.18",
+    "os_name": "posix",
+    "platform_machine": "x86_64",
+    "platform_python_implementation": "CPython",
+    "platform_release": "",
+    "platform_system": "Linux",
+    "platform_version": "",
+    "python_full_version": "3.11.18",
+    "python_version": "3.11",
+    "sys_platform": "linux"
+  },
+  "tools": [
+    {
+      "decoded_bytes": 5669712,
+      "default_active_requirements": [],
+      "filename": "pip-26.2.2-py3-none-any.whl",
+      "hash_verified": true,
+      "member_count": 478,
+      "metadata_sha256": "fe157a60a970b288770fad79a124001f538a325b0a2270c594792b6a475eb798",
+      "name": "pip",
+      "nbytes": 1819850,
+      "pure_python_tag": "py3-none-any",
+      "record_verified": true,
+      "requires_dist": [],
+      "requires_python": ">=3.10",
+      "sha256": "fd7f4dfa8190e014013b9f08f3e973f4e4c26ffd179a204895533a7254813a70",
+      "url": "https://files.pythonhosted.org/packages/3f/06/3e4420302363fbb71be3c7f35ce042f54bfca330e3e66b3a2e3c4cca579f/pip-26.2.2-py3-none-any.whl",
+      "version": "26.2.2"
+    },
+    {
+      "decoded_bytes": 4142215,
+      "default_active_requirements": [],
+      "filename": "setuptools-80.9.0-py3-none-any.whl",
+      "hash_verified": true,
+      "member_count": 512,
+      "metadata_sha256": "7f890ca8dbc16b63b568c89312ed6a7f9f0a79d0b2b7f3c83bf796ac3d930615",
+      "name": "setuptools",
+      "nbytes": 1201486,
+      "pure_python_tag": "py3-none-any",
+      "record_verified": true,
+      "requires_dist": [
+        "pytest!=8.1.*,>=6; extra == \"test\"",
+        "virtualenv>=13.0.0; extra == \"test\"",
+        "wheel>=0.44.0; extra == \"test\"",
+        "pip>=19.1; extra == \"test\"",
+        "packaging>=24.2; extra == \"test\"",
+        "jaraco.envs>=2.2; extra == \"test\"",
+        "pytest-xdist>=3; extra == \"test\"",
+        "jaraco.path>=3.7.2; extra == \"test\"",
+        "build[virtualenv]>=1.0.3; extra == \"test\"",
+        "filelock>=3.4.0; extra == \"test\"",
+        "ini2toml[lite]>=0.14; extra == \"test\"",
+        "tomli-w>=1.0.0; extra == \"test\"",
+        "pytest-timeout; extra == \"test\"",
+        "pytest-perf; sys_platform != \"cygwin\" and extra == \"test\"",
+        "jaraco.develop>=7.21; (python_version >= \"3.9\" and sys_platform != \"cygwin\") and extra == \"test\"",
+        "pytest-home>=0.5; extra == \"test\"",
+        "pytest-subprocess; extra == \"test\"",
+        "pyproject-hooks!=1.1; extra == \"test\"",
+        "jaraco.test>=5.5; extra == \"test\"",
+        "sphinx>=3.5; extra == \"doc\"",
+        "jaraco.packaging>=9.3; extra == \"doc\"",
+        "rst.linker>=1.9; extra == \"doc\"",
+        "furo; extra == \"doc\"",
+        "sphinx-lint; extra == \"doc\"",
+        "jaraco.tidelift>=1.4; extra == \"doc\"",
+        "pygments-github-lexers==0.0.5; extra == \"doc\"",
+        "sphinx-favicon; extra == \"doc\"",
+        "sphinx-inline-tabs; extra == \"doc\"",
+        "sphinx-reredirects; extra == \"doc\"",
+        "sphinxcontrib-towncrier; extra == \"doc\"",
+        "sphinx-notfound-page<2,>=1; extra == \"doc\"",
+        "pyproject-hooks!=1.1; extra == \"doc\"",
+        "towncrier<24.7; extra == \"doc\"",
+        "packaging>=24.2; extra == \"core\"",
+        "more_itertools>=8.8; extra == \"core\"",
+        "jaraco.text>=3.7; extra == \"core\"",
+        "importlib_metadata>=6; python_version < \"3.10\" and extra == \"core\"",
+        "tomli>=2.0.1; python_version < \"3.11\" and extra == \"core\"",
+        "wheel>=0.43.0; extra == \"core\"",
+        "platformdirs>=4.2.2; extra == \"core\"",
+        "jaraco.functools>=4; extra == \"core\"",
+        "more_itertools; extra == \"core\"",
+        "pytest-checkdocs>=2.4; extra == \"check\"",
+        "pytest-ruff>=0.2.1; sys_platform != \"cygwin\" and extra == \"check\"",
+        "ruff>=0.8.0; sys_platform != \"cygwin\" and extra == \"check\"",
+        "pytest-cov; extra == \"cover\"",
+        "pytest-enabler>=2.2; extra == \"enabler\"",
+        "pytest-mypy; extra == \"type\"",
+        "mypy==1.14.*; extra == \"type\"",
+        "importlib_metadata>=7.0.2; python_version < \"3.10\" and extra == \"type\"",
+        "jaraco.develop>=7.21; sys_platform != \"cygwin\" and extra == \"type\""
+      ],
+      "requires_python": ">=3.9",
+      "sha256": "062d34222ad13e0cc312a4c02d73f059e86a4acbfbdea8f8f76b28c99f306922",
+      "url": "https://files.pythonhosted.org/packages/a3/dc/17031897dae0efacfea57dfd3a82fdd2a2aeb58e0ff71b77b87e44edc772/setuptools-80.9.0-py3-none-any.whl",
+      "version": "80.9.0"
+    },
+    {
+      "decoded_bytes": 224029,
+      "default_active_requirements": [],
+      "filename": "wheel-0.45.1-py3-none-any.whl",
+      "hash_verified": true,
+      "member_count": 37,
+      "metadata_sha256": "98acfce07ee6ee3b31272cde21c4d53918936f434f315dfd2af3886211a09a30",
+      "name": "wheel",
+      "nbytes": 72494,
+      "pure_python_tag": "py3-none-any",
+      "record_verified": true,
+      "requires_dist": [
+        "pytest >= 6.0.0 ; extra == \"test\"",
+        "setuptools >= 65 ; extra == \"test\""
+      ],
+      "requires_python": ">=3.8",
+      "sha256": "708e7481cc80179af0e556bbf0cc00b8444c7321e2700b8d8580231d13017248",
+      "url": "https://files.pythonhosted.org/packages/0b/2c/87f3254fd8ffd29e4c02732eee68a83a1d3c346ae39bc6822dcbcb697f2b/wheel-0.45.1-py3-none-any.whl",
+      "version": "0.45.1"
+    }
+  ],
+  "unused_kernel_marker_values": "empty placeholders; no input requirement references platform_release/platform_version"
+}
