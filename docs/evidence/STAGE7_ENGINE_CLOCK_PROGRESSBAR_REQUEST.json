@@ -1,0 +1,34 @@
+{
+  "application_retries": 0,
+  "build_authorized": false,
+  "image_preparation_ready": false,
+  "native_admission": false,
+  "output_directory": "output/stage7-progressbar-build-inputs/progressbar-input-20261113-01",
+  "request_id": "progressbar-input-20261113-01",
+  "schema": "engine-clock-progressbar-input-request-v1",
+  "source": {
+    "filename": "progressbar-2.5.tar.gz",
+    "nbytes": 10046,
+    "sha256": "5d81cb529da2e223b53962afd6c8ca0f05c6670e40309a7219eacc36af9b6c63",
+    "url": "https://files.pythonhosted.org/packages/a3/a6/b8e451f6cff1c99b4747a2f7235aa904d2d49e8e1464e0b798272aa84358/progressbar-2.5.tar.gz"
+  },
+  "source_execution_authorized": false,
+  "tool_python": "/workspace/.cloud-tools/stage7/first-divergence-cpu-replay/bin/python",
+  "tools": [
+    {
+      "filename": "pip-26.2.2-py3-none-any.whl",
+      "name": "pip",
+      "version": "26.2.2"
+    },
+    {
+      "filename": "setuptools-80.9.0-py3-none-any.whl",
+      "name": "setuptools",
+      "version": "80.9.0"
+    },
+    {
+      "filename": "wheel-0.45.1-py3-none-any.whl",
+      "name": "wheel",
+      "version": "0.45.1"
+    }
+  ]
+}
