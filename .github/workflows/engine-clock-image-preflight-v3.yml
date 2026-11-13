@@ -1,0 +1,44 @@
+name: One-use sealed renderer image preflight v3
+on:
+  push:
+    branches: ['prepare/engine-clock-image-preflight-20261114-04']
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: engine-clock-image-preflight-20261114-04
+  cancel-in-progress: false
+jobs:
+  preflight:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - name: Reject repeated attempts
+        env:
+          ATTEMPT: ${{ github.run_attempt }}
+        run: test "$ATTEMPT" = 1
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          fetch-depth: 1
+          persist-credentials: false
+      - name: Authenticated one-use preflight
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: /usr/bin/python3 -I -S -B scripts/engine_clock_image_preparation_v3.py --run --role preflight
+      - name: Preserve independent preflight evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: engine-clock-image-preflight-20261114-04
+          path: |
+            output/stage7-image-operations/image-preflight-20261114-04/execution/api/
+            output/stage7-image-operations/image-preflight-20261114-04/execution/consumed-request.json
+            output/stage7-image-operations/image-preflight-20261114-04/execution/source-authentication.json
+            output/stage7-image-operations/image-preflight-20261114-04/execution/producer-authentication.json
+            output/stage7-image-operations/image-preflight-20261114-04/execution/result.json
+            output/stage7-image-operations/image-preflight-20261114-04/execution/preflight.json
+            output/stage7-image-operations/image-preflight-20261114-04/execution/docker/
+          if-no-files-found: warn
+          compression-level: 0
+          retention-days: 30
+          include-hidden-files: true

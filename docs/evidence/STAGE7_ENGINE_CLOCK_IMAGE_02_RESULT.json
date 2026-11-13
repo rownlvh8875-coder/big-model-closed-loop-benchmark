@@ -1,0 +1,102 @@
+{
+  "schema": "engine-clock-image-preparation-terminal-evidence-v2",
+  "status": "FAILED_POST_PIP_INSTALL_CHECK",
+  "request_id": "image-20261114-02",
+  "source_sha": "dc76a5768389e1b63b5d6cb9edabd042650810ba",
+  "activation_sha": "9ac0d916434962f763023419e7f3117899b8818a",
+  "request_sha256": "40a4121a4306a4a19ec04f5b27f54ae57c93a89520649595ce1bb0cb1dd02105",
+  "run_id": 43498324079,
+  "workflow_id": 417692088,
+  "job_id": 132137181257,
+  "elapsed_seconds": 187.535534763,
+  "finished_kst": "2026-11-14T05:08:54.635124+09:00",
+  "artifacts": [
+    {
+      "id": 14071739573,
+      "name": "engine-clock-image-20261114-02-execution",
+      "nbytes": 1199337296,
+      "sha256": "150498a2606bd2c2b029b08999a179a7db7215bc90fa18c69e99dc1eaab8afa4"
+    },
+    {
+      "id": 14071224845,
+      "name": "engine-clock-image-20261114-02",
+      "nbytes": 566,
+      "sha256": "18c18f5ff6dc833499e1049e7d7462bd6c824f481b32f753776d5458959534e8"
+    }
+  ],
+  "staging": {
+    "base": {
+      "archive_layout": "docker-save-legacy",
+      "config_digest": "sha256:7da97f743f397971f35dd21cd2d19a7da070a150e0cfa3eda559e71891ec7533",
+      "config_environment": {
+        "PATH": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+      },
+      "decoded_layer_bytes": 80715776,
+      "image_tar_nbytes": 80721920,
+      "image_tar_sha256": "9d6eb992b55a035e58a8ef6321de6163043ee586e3eb78ed1f91da05caa9616c",
+      "installed_runtime_verified": false,
+      "layer_member_count": 3442,
+      "layers": [
+        {
+          "decoded_bytes": 80715776,
+          "diff_id": "sha256:21210938f5a37a9887b2d0a20428917b923a636ca6efe038c3c7d9cd9f1f9b61",
+          "gzip": false,
+          "members": 3442,
+          "nbytes": 80715776,
+          "path": "21210938f5a37a9887b2d0a20428917b923a636ca6efe038c3c7d9cd9f1f9b61/layer.tar",
+          "regular_bytes": 78201136,
+          "sha256": "21210938f5a37a9887b2d0a20428917b923a636ca6efe038c3c7d9cd9f1f9b61"
+        }
+      ],
+      "native_admission": false,
+      "platform": "linux/amd64",
+      "rootfs_diff_ids": [
+        "sha256:21210938f5a37a9887b2d0a20428917b923a636ca6efe038c3c7d9cd9f1f9b61"
+      ],
+      "schema": "engine-clock-save-archive-check-v1",
+      "status": "DOCKER_SAVE_STRUCTURE_VERIFIED"
+    },
+    "context_bytes": 631987666,
+    "execution_bytes_before_build": 1199197966,
+    "http_gets": 109,
+    "native_admission": false,
+    "payload_bytes": 889905538,
+    "python_archive": {
+      "decoded_bytes": 305721228,
+      "entries": 10546,
+      "extracted": false,
+      "status": "PYTHON_ARCHIVE_MEMBERS_MATCH"
+    },
+    "status": "CLOSED_OFFLINE_CONTEXT_STAGED"
+  },
+  "build_seconds": 34.141744729,
+  "build_returncode": 1,
+  "pip_install_success_marker_observed": true,
+  "installed_distributions_pip_reported": 53,
+  "static_triage": {
+    "schema": "engine-clock-image-02-install-static-triage-v1",
+    "genuine_wheel_metadata_sets_verified": 53,
+    "metadrive_asset_members_in_genuine_wheel": 0,
+    "asset_loader_expected_path": "metadrive/assets",
+    "confirmed_unconditional_blocker": "Installer requires preexisting metadrive/assets directory, but the genuine wheel supplies none; the offline bootstrap must create it.",
+    "actual_failed_image_installed_tree_retained": false,
+    "actual_metadata_or_asset_failure_branch_logged": false,
+    "cause_limit": "The missing-assets condition is proven to block this input set; the actual generic error did not retain its exact substage, so no claim that all other installed-state checks passed.",
+    "payload_package_imports": false,
+    "native_admission": false,
+    "official_model_calls": 0
+  },
+  "docker_calls": {
+    "metadata": 3,
+    "base_load": 1,
+    "build": 1,
+    "container": 0,
+    "save": 0
+  },
+  "image_tar_sha256": null,
+  "config_digest": null,
+  "installed_files_sha256": null,
+  "installed_runtime_verified": false,
+  "native_admission": false,
+  "official_model_calls": 0
+}

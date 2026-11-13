@@ -1,0 +1,107 @@
+{
+  "schema": "engine-clock-assets-bootstrap-review-v1",
+  "base": "dc76a5768389e1b63b5d6cb9edabd042650810ba",
+  "reviewed_head": "cdb734f050e7ec0005a16a1aa210e1af64f8499a",
+  "reviewer": "sealed_assets_bootstrap_review",
+  "model": "gpt-6-astra",
+  "reasoning": "medium",
+  "critical": 0,
+  "important": 0,
+  "minor": 1,
+  "read_only": true,
+  "focused_independent": {
+    "tests": 7,
+    "seconds": 0.037,
+    "status": "PASS"
+  },
+  "independent_actual_payload_verification": {
+    "files": 249,
+    "selected_bytes": 712506101,
+    "carrier_plus_selected_bytes": 1911843397,
+    "all_hashes_sizes_match": true
+  },
+  "deferred_minor": [
+    {
+      "id": "AB-M1",
+      "finding": "New selected symlink/duplicate/unsafe/deadline/decodedsize/runbinding variants and fresh-stage selection lack direct fixtures.",
+      "ruling": "Defer additional parameterized archives/API and stage composition fixtures; reviewer inspected guards and found no bypass.",
+      "cost": "Reduced future regression confidence and possibility of consuming a later activation on wiring regression."
+    }
+  ],
+  "root_discovered_important": [
+    {
+      "id": "AB-I1",
+      "finding": "Pinned Ubuntu base config inherits org.opencontainers.image.version=24.04, but historical normalizer permits only three stage7 labels; genuine launch would reject.",
+      "evidence": "Actual base-config.json hash7da97f743f397971f35dd21cd2d19a7da070a150e0cfa3eda559e71891ec7533 has that label. Owned positive fixture RED before fix.",
+      "resolution": "New backend_v2 imports source-bound v3 normalizer; require exactly four labels including pinned24.04 plus source/request/nonce. Wrong version and unknown secret-labelled field reject. Original backends unchanged.",
+      "cost": "One source-bound backend wrapper copy; inherited fixed metadata admitted, arbitrary labels still rejected."
+    },
+    {
+      "id": "AB-I2",
+      "finding": "Pinned base /etc/alternatives/pager targets /bin/more, outside immutable inventory roots; /bin is the known usr/bin alias. No selected deb replaces util-linux/more.",
+      "evidence": "Actual base-inventory records pager=/bin/more and bin=usr/bin; static scan found exactly this unexcluded absolute target outside roots. No 003workflow event occurred.",
+      "resolution": "Within the same pre-activation fix pass, new installer FD-checks plain parents, exact bin alias and identical regular target inode, retains original symlink under /sealed, records /usr/bin/more before inventory. New separate effective policy lock records the transform; old lock/helper untouched.",
+      "cost": "One explicit metadata-only image symlink transform and new policy hash; private installed image gains no additional root allowance. Unactivated003registration is retired/preserved; fresh004namespace used."
+    }
+  ],
+  "important_fix_passes": 1,
+  "rereview_performed": false,
+  "declined_rulings": [
+    {
+      "behavior": "Old backend/collector shared imports and tag compatibility",
+      "ruling": "Shared constants and metadata helper compatible; root narrows the broad ruling for the separately discovered inherited-label blocker and fixes it in the one pass."
+    },
+    {
+      "behavior": "Tag reuse stale acceptance",
+      "ruling": "Fresh source/IID/config/diffIDs/archive/run bindings establish identity; tag alone never accepted."
+    },
+    {
+      "behavior": "Old code/installed state reused",
+      "ruling": "Only249payloads/base transport selected; fresh source context and installer regenerated."
+    },
+    {
+      "behavior": "Unselected member byte inspection",
+      "ruling": "Entire carrier hash pinned and unselected data never extracted/executed; selected CRC and pins enforced."
+    },
+    {
+      "behavior": "Destination parent traversal",
+      "ruling": "Production uses fresh owned directories and materializes registered regular files only."
+    },
+    {
+      "behavior": "Necessary resource overflow",
+      "ruling": "Actual measured1,911,843,397B plus fresh small metadata fits active unchanged bounds; actualworker checks remain required."
+    },
+    {
+      "behavior": "Missing assets sole actual002cause",
+      "ruling": "Confirmed blocker, not uniquely retained failed substage; other actual installed checks not yet claimed."
+    },
+    {
+      "behavior": "Prior v2 Minor reopening",
+      "ruling": "Prior deferrals retained; not a rereview."
+    },
+    {
+      "behavior": "Independent full suite",
+      "ruling": "Parent actual1056/7skip104.087s verified; reviewer independently ran7focused only; root label fix requires fresh full suite."
+    }
+  ],
+  "native_admission": false,
+  "official_model_calls": 0,
+  "final_parent_full_suite": {
+    "tests": 1060,
+    "skipped": 7,
+    "seconds": 93.819,
+    "status": "PASS"
+  },
+  "superseded_unactivated_registration": {
+    "request_id": "image-20261114-03",
+    "activation_commit": "8ab051d8a33b6f030d615f1a3cabe404c2036718",
+    "request_sha256": "f518c13beb4be2d6df36a7ae7c337cd111b9d88f31929af0a02e4ef22df5ee9d",
+    "source_sha": "0787a7a41ec7c6b9fbbf8dfcee467697d022ed04",
+    "remote_pushed": false,
+    "workflow_events": 0,
+    "budget_consumed": false,
+    "branch_and_registration_retained": true,
+    "next_request_id": "image-20261114-04"
+  },
+  "all_root_important_fixed": true
+}
