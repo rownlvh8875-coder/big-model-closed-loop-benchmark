@@ -1278,3 +1278,5 @@ unchanged preregistered holdout. Sparse lane-truth.15s is3×assigned.05s arithme
 not actual model time. Candidate-specific paint alignment, real optics, default
 renderer equivalence, correct sustained tracking/full-S and Stage7 completion
 remain open. This doc-only reconciliation introduces no native/model rerun.
+
+Final same-pass I5 refinement: available host disk>=1073741824bytes is measured and recorded before component input transport, with failure facts retained. Qualified code `843fb749abe5c672d65d534fac150c90ec1ac3d3` follows initial fix `9aaca76095e611f6ec1bf73700bb1f6a2e33254c`;89focused/815full CPUtests PASS/7optional skips (full74.276s). Preliminary3ee2954 CI4jobs passed/814unit+1SMALL per event/artifacts0, but is historical; exact final source CI is recorded separately in Draft PR50. No target execution or second independent review occurred.

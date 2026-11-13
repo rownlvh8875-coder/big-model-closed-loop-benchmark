@@ -71,6 +71,38 @@
     },
     "scope": "CPU fixtures and metadata only; no downloaded target code execution"
   },
+  "preliminary_basic_ci": {
+    "head_sha": "3ee295499f0b209810e1b16ee50c105fd6209f21",
+    "runs": [
+      {
+        "artifacts": 0,
+        "attempt": 1,
+        "conclusion": "success",
+        "event": "push",
+        "id": 43385193041,
+        "small_job": 131751897304,
+        "small_seconds": 0.064,
+        "small_tests": 1,
+        "unit_job": 131751897489,
+        "unit_seconds": 72.179,
+        "unit_tests": 814
+      },
+      {
+        "artifacts": 0,
+        "attempt": 1,
+        "conclusion": "success",
+        "event": "pull_request",
+        "id": 43385200004,
+        "small_job": 131751920106,
+        "small_seconds": 0.045,
+        "small_tests": 1,
+        "unit_job": 131751920076,
+        "unit_seconds": 69.457,
+        "unit_tests": 814
+      }
+    ],
+    "status": "HISTORICAL_PRE_CAPACITY_CODE_NOT_FINAL_SOURCE_CI"
+  },
   "preservation": {
     "allowed_status_changes": [
       "docs/STAGE7_CONTINUATION.md",
@@ -84,7 +116,24 @@
     "producer70_sha256": "6f8dcc2fc4aa7b1896a74d43ea4e030f89729b4b7851825cd0bbd444c6acab04",
     "unchanged": 453
   },
-  "qualified_fix_sha": "9aaca76095e611f6ec1bf73700bb1f6a2e33254c",
+  "qualified_fix_commits": [
+    "9aaca76095e611f6ec1bf73700bb1f6a2e33254c",
+    "843fb749abe5c672d65d534fac150c90ec1ac3d3"
+  ],
+  "qualified_fix_sha": "843fb749abe5c672d65d534fac150c90ec1ac3d3",
+  "qualified_initial_validation": {
+    "focused": {
+      "seconds": 1.182,
+      "skipped": 0,
+      "tests": 88
+    },
+    "full": {
+      "seconds": 74.321,
+      "skipped": 7,
+      "tests": 814
+    },
+    "scope": "CPU fixtures and metadata only; no downloaded target execution"
+  },
   "real_metadata_plan": {
     "input_transports": 51,
     "plan_sha256": "5371b2ba1e56fa15bc3068e8e579268b44f86091f7ed7a8e8d11fdb7a8c4838d",
@@ -113,7 +162,7 @@
       "minor": 2
     },
     "path": "docs/evidence/STAGE7_ENGINE_CLOCK_BUILDER_STAGING_REVIEW.json",
-    "sha256": "69ac37a39ad1ac9d291973dd726e69cfbb6c6f2b35ecfcc7a1095518dd3dab77"
+    "sha256": "a709175327b595b715f7bd21a51b640be1b8b30877dfb7c4ca649508b315a640"
   },
   "reviewed_sha": "96e97dcdf5ba81b67c995060bf50ddf10459d5c0",
   "rulings_chronological": [
@@ -139,7 +188,8 @@
     "Ruling: Review decline \u2014 Publisher/build attestation: accept bounded scope because pinned bytes/API digest agreement are not cryptographic build/publisher attestation \u2014 cost if wrong: supply-chain trust remains in the selected origins.",
     "Ruling: Review decline \u2014 Future full lock/image/native/model/science: accept bounded scope because these gates remain separate and false/incomplete \u2014 cost if wrong: component success cannot imply benchmark correctness or native admission.",
     "Ruling: Review decline \u2014 Legacy scientific re-execution: accept bounded scope because prohibited consumed protocols remain unchanged; CPU fixture evidence is sufficient for this source review \u2014 cost if wrong: old scientific uncertainty remains unresolved.",
-    "Ruling: Retention certifies available workspace contents at postflight, not every transient file ever created or survival after abrupt runner loss \u2014 upstream ensurepip/build tools may clean internal temporary copies while authenticated originals and before/after source manifests are retained \u2014 cost if wrong: a sudden runner loss or upstream transient state can remain unavailable; mark missing/incomplete evidence rather than infer success."
+    "Ruling: Retention certifies available workspace contents at postflight, not every transient file ever created or survival after abrupt runner loss \u2014 upstream ensurepip/build tools may clean internal temporary copies while authenticated originals and before/after source manifests are retained \u2014 cost if wrong: a sudden runner loss or upstream transient state can remain unavailable; mark missing/incomplete evidence rather than infer success.",
+    "Ruling: Complete I5 disk-capacity precondition with measured host available bytes>=1GiB before any component input transport; preserve insufficient-capacity facts \u2014 the immutable build policy explicitly requires this minimum and retention needs real disk capacity \u2014 cost if wrong: the preliminary source CI becomes historical and exact-final-source checks must run again; no target request was consumed."
   ],
   "schema": "engine-clock-builder-staging-source-audit-v1",
   "stage7_status": "INCOMPLETE",
@@ -147,15 +197,15 @@
   "task1_commit": "01c5c10fb09d5c55766475bae0b4541aaacfe12c",
   "validation": {
     "focused": {
-      "seconds": 1.182,
+      "seconds": 1.204,
       "skipped": 0,
-      "tests": 88
+      "tests": 89
     },
     "full": {
-      "seconds": 74.321,
+      "seconds": 74.276,
       "skipped": 7,
-      "tests": 814
+      "tests": 815
     },
-    "scope": "CPU fixtures and metadata only; no downloaded target execution"
+    "scope": "CPU fixtures/metadata only; no downloaded target execution"
   }
 }
