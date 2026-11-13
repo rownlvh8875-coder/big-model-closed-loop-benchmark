@@ -1,0 +1,74 @@
+{
+  "schema": "namespace-diagnostic-consumption-v1",
+  "request_id": "namespace-diagnostic-20261113-01",
+  "source_sha": "991cbbc3d43d9d123c92e5c77e7575b9f5b5d630",
+  "activation_sha": "2f0ad9cdb4e6a199f24a27296b58b94de5651637",
+  "workflow_id": 417151572,
+  "run_id": 43410163534,
+  "job_id": 131834281984,
+  "run_attempt": 1,
+  "unique_workflow_branch_runs": 1,
+  "request_consumed": true,
+  "created_kst": "2026-11-13T19:34:56+09:00",
+  "finished_kst": "2026-11-13T19:35:08+09:00",
+  "workflow_conclusion": "success",
+  "admission": "BLOCKED_ISOLATION_NOT_PROVEN",
+  "observations": 3,
+  "network_mutations_attempted": 0,
+  "mapping_attempted": 0,
+  "kernel": "7.0.0-1017-azure",
+  "image_version": "20261101.360.1",
+  "host_apparmor_restrict_unprivileged_userns": 1,
+  "host_seccomp": 0,
+  "cause": "UNKNOWN",
+  "evidence_limit": "Post-unshare namespace identities/profile/errno are not retained on the isolation-not-proven return path. No EPERM or LSM attribution follows.",
+  "scientific_execution": false,
+  "build_execution": false,
+  "full_sandbox_verified": false,
+  "files": {
+    "run-logs.zip": {
+      "nbytes": 10665,
+      "sha256": "30b2451bba210acfdc1ea20cb05ce2ba0f1efbb7408af29458e5bd44e3b4b859"
+    },
+    "activation-commit.json": {
+      "nbytes": 1296,
+      "sha256": "bc3272b30dcebc8dbb4eddaed967a82d9f3dc4f48c2de98590e18a472a1dce95"
+    },
+    "jobs.json": {
+      "nbytes": 2356,
+      "sha256": "25c3af931aabc1026c2aad0c0f4971601a766d37e407c50eb8ef15805675c656"
+    },
+    "registration.json": {
+      "nbytes": 610,
+      "sha256": "41d318e06118acd1ca5abf8c0a9d7c0848d1caead0a542aa68352ae0e0d2a5f5"
+    },
+    "original-artifact.zip": {
+      "nbytes": 8701,
+      "sha256": "7b53c249193a83db5e0e8e560a82df5588bc45955d712f5806e7d93edff26081"
+    },
+    "workflow-runs.json": {
+      "nbytes": 15199,
+      "sha256": "3abebdbbf28e5cbab18b4a3ef882d9788dc093cbc19c36f37993f729a3192688"
+    },
+    "workflow.json": {
+      "nbytes": 658,
+      "sha256": "2ea71e0d6faf066daebeb99c947e1e0dfdb6a44350d7803e45d505e16381048d"
+    },
+    "run.json": {
+      "nbytes": 15163,
+      "sha256": "58f5a47e129d25fc22444661626cf7eb02bc33af5cd20859963b055bba064a60"
+    },
+    "artifacts.json": {
+      "nbytes": 840,
+      "sha256": "e6bada6d4a7ebb26994dae8d9c98656dddecf51c7c1d5c5d3d8e17691967e799"
+    },
+    "diagnostic.json": {
+      "nbytes": 8557,
+      "sha256": "bf28dff57b19a2368225a5fe677ca4212a736567d926435373c3c540230d43b5"
+    },
+    "activation-ref.json": {
+      "nbytes": 529,
+      "sha256": "ffe11fd068a364c410bb9e7876a9953dd7211f166be6c64e079657451137827d"
+    }
+  }
+}
