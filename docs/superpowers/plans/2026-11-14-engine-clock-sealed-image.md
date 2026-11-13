@@ -21,15 +21,15 @@ Archive/config/registry digest classes and extra tag/platform/reference payloads
 
 Create scripts/engine_clock_image_archive.py and tests/test_engine_clock_image_archive.py. Interfaces: `inspect_save_archive(path:Path,*,expected_tag:str,deadline:float)->dict`; `validate_preparation(receipt:dict,api_evidence:dict,archive:Path,*,expected:dict)->dict`; `validate_launch(actual:dict,expected:dict,nonce:str)->dict`. Archive function onlyreadsdata; API funcs authenticate semantics of externally acquired proof, no network/Docker. Return native_admissionfalse.
 
-- [ ] Write owned legacy/OCI save fixtures covering exactconfig/layerdiffID/order/tag/platform and two-image/extra member/reference/digest-class/size/truncation/path/JSONduplicate negatives; add token/proxyConfig.Env sentinels to launch fixtures.
-- [ ] Run focusedRED; implement bounded streaming/noextract parser and closed semantic validators; GREEN. No downloaded image or Docker call in fixtures.
+- [x] Write owned legacy/OCI save fixtures covering exactconfig/layerdiffID/order/tag/platform and two-image/extra member/reference/digest-class/size/truncation/path/JSONduplicate negatives; add token/proxyConfig.Env sentinels to launch fixtures.
+- [x] Run focusedRED; implement bounded streaming/noextract parser and closed semantic validators; GREEN. No downloaded image or Docker call in fixtures.
 
 ### Task2: Isolated candidate inventory and verification
 
 Create scripts/engine_clock_image_inventory.py and tests/test_engine_clock_image_inventory.py. Interfaces: `create_inventory(root:Path,*,deadline:float)->dict` (candidate-only); `verify_inventory(root:Path,expected:dict,*,deadline:float)->dict` delegates immutable publiccollector; `verify_prefix(root:Path,observation:dict,*,expected_members:dict)->dict` checks actual fixed alias/plainparents/canonical bytes without native imports. CLI inside actual qualified container only, no import-time/automatichost scan.
 
-- [ ] Write temporary owned root fixtures reproducing requiredaliases/exclusions/emptyfiles/extrafile/mutation/symlinkescape/crossroot/deadline/perfile/aggregate/entry/JSON caps; assert inherited collector globals unchanged and pure source parity/composition.
-- [ ] RED then minimal per-instance subclass/typedCLI/prefix/installedmetadata absenceORT checks thenGREEN. Candidate alone never accepted as prepared image. Stdlib-only version evidence labels contract cv2literal vs observedPython accurately.
+- [x] Write temporary owned root fixtures reproducing requiredaliases/exclusions/emptyfiles/extrafile/mutation/symlinkescape/crossroot/deadline/perfile/aggregate/entry/JSON caps; assert inherited collector globals unchanged and pure source parity/composition.
+- [ ] RED then minimal per-instance subclass/prefix (8GREEN done); finish typedCLI/installedmetadata absenceORT integration withTask3. Candidate alone never accepted as prepared image. Stdlib-only version evidence labels contract cv2literal vs observedPython accurately.
 
 ### Task3: Offline installer, recipe and bounded host worker/preflight
 
