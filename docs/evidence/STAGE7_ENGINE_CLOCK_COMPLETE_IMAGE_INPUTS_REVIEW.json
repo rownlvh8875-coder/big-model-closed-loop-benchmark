@@ -1,0 +1,101 @@
+{
+  "schema": "complete-image-inputs-source-and-actual-values-review-v1",
+  "base_sha": "b992d1e",
+  "reviewed_head_sha": "775d29e",
+  "reviewer": "/root/image_static_inputs_review",
+  "model": "gpt-6-astra",
+  "reasoning_effort": "medium",
+  "critical": [],
+  "important": [],
+  "minor_deferred": [
+    {
+      "id": "IS-M1",
+      "path": "tests/test_engine_clock_image_input_paths.py:22",
+      "finding": "4096byte/64component boundary and unsafe normalized_target rejection fixtures absent.",
+      "ruling": "Defer later helper maintenance; checks exist and no actual input discrepancy found.",
+      "cost": "Generic boundary regression coverage reduced; no actual-input/layout or runtime compatibility claim added."
+    }
+  ],
+  "actual_verification": {
+    "lock_nbytes": 213239,
+    "lock_sha256": "f33c2558295efb57fcb22b2116c3f9f97d5e9f29c1ae017423e7a8423869c26a",
+    "authority_files": 17,
+    "authority_bytes": 9393572,
+    "authority_hash_seconds": 0.042,
+    "distinct_base_os_python_tool_input_files": 197,
+    "retained_input_bytes": 348055040,
+    "retained_input_hash_seconds": 0.727,
+    "wheels": 56,
+    "wheel_bytes": 341667536,
+    "decoded_base_layer_bytes": 80715776,
+    "wheel_base_hash_seconds": 1.765,
+    "elf_records": 1145,
+    "needed_checks": 3519,
+    "ambiguous_checks": 72,
+    "missing_soname_candidates": 0,
+    "missing_version_label_candidates": 0,
+    "actual_relative_links_affected_by_projection": 0
+  },
+  "verification": {
+    "root_focused_tests": 5,
+    "root_full_tests": 979,
+    "root_full_seconds": 92.162,
+    "optional_skips": 7,
+    "independent_focused_tests": 5,
+    "independent_focused_seconds": 0.0,
+    "independent_rereview": false,
+    "source_ci": "PENDING"
+  },
+  "recipe_ruling": {
+    "physical_python_prefix": "/opt/python",
+    "compiled_absolute_prefix_alias": "/opt/hostedtoolcache/Python/3.11.18/x64 -> /opt/python",
+    "status": "REASONABLE_DESIGN_NO_STATIC_BLOCKER",
+    "requirements": [
+      "Authenticate immutable whole image and separately attest exact alias/plain parents.",
+      "Reject prefix or parent mounts and enforce read-only rootfs.",
+      "Isolated stdlib-only prefix/library-map probe must prove inventoried canonical bytes.",
+      "No weakening existing approved inventory roots or LD_LIBRARY_PATH/setup.sh fallback."
+    ],
+    "installed_runtime_demonstrated": false
+  },
+  "declines_rulings": [
+    [
+      "Full CPU rerun",
+      "Use root979tests/92.162s PASS/7skips; reviewer limited to5focused.",
+      "Full result independently reproduced only by root."
+    ],
+    [
+      "Consumed metadata/APT/readelf/download operators",
+      "Review retained evidence and hash actual local bytes; never rerun consumed requests.",
+      "No new live reproduction of those historical operations."
+    ],
+    [
+      "RepeatedGPG/allCRC/member analysis",
+      "Keep prior pinned signature/archive receipts and genuine byte binding.",
+      "Review is bounded evidence verification, not repeating every prior audit."
+    ],
+    [
+      "General relative symlink resolver",
+      "Projection can alter .. semantics generally; independently found zero affected links in actual package descriptors.",
+      "Scope remains authenticated actualUbuntu descriptor projection, not general filesystem resolver."
+    ],
+    [
+      "Actual image/runtime/installation",
+      "No Docker/install/foreign package import/native/model/ORT/GL/network in review; recipe design feasible only.",
+      "Maintscripts, image size/build/disk/load and installed loader/ABI/API require later actual verified preparation."
+    ],
+    [
+      "Further review/correction rounds",
+      "No Important/Critical finding, so no correction pass or rereview required.",
+      "DeferIS-M1 with explicit cost; new image implementation will have its own gate."
+    ]
+  ],
+  "actual_input_values_accepted": true,
+  "recipe_outline_feasible": true,
+  "image_preparation_implemented": false,
+  "preparation_request_activated": false,
+  "installed_runtime_verified": false,
+  "image_preparation_ready": false,
+  "native_admission": false,
+  "official_model_calls": 0
+}
