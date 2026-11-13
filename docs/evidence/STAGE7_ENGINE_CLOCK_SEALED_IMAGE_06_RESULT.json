@@ -1,0 +1,135 @@
+{
+  "schema": "engine-clock-sealed-image-final-result-v1",
+  "status": "AUTHENTICATED_PROVIDER_FREE_IMAGE_AND_INSTALLED_BYTES_MATCH",
+  "source_sha": "1af17fbe6bcaceb3ff7aa72ce869a0d1e3bae840",
+  "source_pr": 80,
+  "source_ci": [
+    {
+      "run_id": 43511648616,
+      "event": "push"
+    },
+    {
+      "run_id": 43511670793,
+      "event": "pull_request"
+    }
+  ],
+  "preparation_activation": "382b2ad201c12836b0adcc54cb2719a47b0cdcb4",
+  "preflight_activation": "34055987b5f1971789170fababab4f93ab6c726e",
+  "preparation_run_id": 43512140336,
+  "preparation_artifact_id": 14078483374,
+  "preparation_execution_artifact_id": 14079975272,
+  "preflight_run_id": 43514088919,
+  "preflight_artifact_id": 14079832009,
+  "config_digest": "sha256:2b0854f1cf91e470994637f52f4e8c78c618ed00b1496a40bb05158290e01a37",
+  "image_tar_sha256": "f69b8ece51bcc6911aaf118d5ea091ba4d6ace8418b480e408be5b9fd8cb2921",
+  "image_tar_nbytes": 1726678016,
+  "rootfs_diff_ids": [
+    "sha256:21210938f5a37a9887b2d0a20428917b923a636ca6efe038c3c7d9cd9f1f9b61",
+    "sha256:2be112340d71ee43c6819c0259e050c865f12bf7c9837bb4cb8839f196db779c",
+    "sha256:f2fca4086c8612de50eccd05fee84655db8d071fd6b0651200f2be6d1ccfc90a",
+    "sha256:239e68b48ac29be0254dfad4b0ee14138d26ff2ea91852b7a6ca147e22ea7f61",
+    "sha256:ed744a455c23963a1766deeb20a89020917f0d1f33a1d663fdc97f99279e12c6",
+    "sha256:a556f0ec831a9814191d64ab66cf3cec89bed47bda59444a61a7c0fe3f45a0ea",
+    "sha256:8f86aac91e848162bd1f7b46663b3f2141c522c54e4fcb415dca6f9aeb972f27",
+    "sha256:0511464e26b9263af5856802ed4e5479c63560dc2d30d0d535d5c8f6b465a769",
+    "sha256:d6799d868d199cfd5482d62aa735e74d9ece7a30489d03b1505a72fa5f123602",
+    "sha256:f150c0ec8770d5d98573cd167c2e705822e18eae979adb2a81dc04ee31f48efe"
+  ],
+  "installed_files_sha256": "f81fa5be38bc9853b6eff1d0ea524be97f3d1e92f5c1f0f9e1449a11b4c4b59f",
+  "installed_files_nbytes": 8339196,
+  "installed_entries": 44232,
+  "effective_policy_sha256": "8f214a1454557e588425d473cefa946c14e443e4cc47f85c1bfce02673d9552a",
+  "native_admission": false,
+  "official_model_calls": 0,
+  "scientific_result_promoted": false,
+  "registry_published": false,
+  "cloud_published": false,
+  "main_merged": false,
+  "stage7_status": "INCOMPLETE",
+  "claim_limit": "Authenticated provider-free image transport, isolated Python/distribution metadata, pre-start code/Python/executable bytes, and installed-file byte/mode/link identity. No renderer/native ABI/GL/model/performance/closed-loop outcome.",
+  "producer_preflight_host_equal": false,
+  "producer_preflight_engine_equal": true,
+  "host_limit": "Each container matches its own pre-execution host profile. Producer and preflight CPU/kernel profiles differ; these runs do not establish future strict native C/A host equality.",
+  "main_head_verified": "48e79a7ed5aedf6daa5a62ff68d2225af7955ef1",
+  "scientific_workflow_id": 416199727,
+  "scientific_workflow_run_ids_unchanged": [
+    43251145868,
+    43249493437
+  ],
+  "full_suite": {
+    "tests": 1067,
+    "skipped": 7,
+    "seconds": 92.519,
+    "status": "PASS"
+  },
+  "authority_files": {
+    "installed-files.json": {
+      "path": "docs/evidence/engine-clock-sealed-image-06/installed-files.json",
+      "nbytes": 8339196,
+      "sha256": "f81fa5be38bc9853b6eff1d0ea524be97f3d1e92f5c1f0f9e1449a11b4c4b59f"
+    },
+    "preparation.json": {
+      "path": "docs/evidence/engine-clock-sealed-image-06/preparation.json",
+      "nbytes": 11478,
+      "sha256": "cdeeabfe6b3d034f147af53340c0f9490d56fcc87d5bc5b75589bb371021a8ff"
+    },
+    "root-image-check.json": {
+      "path": "docs/evidence/engine-clock-sealed-image-06/root-image-check.json",
+      "nbytes": 6299,
+      "sha256": "c0facdacd7d7ca3242f127b4ab5a788c2d0a0fc97c35bd5d984dad7bde9ba30d"
+    },
+    "root-acceptance.json": {
+      "path": "docs/evidence/engine-clock-sealed-image-06/root-acceptance.json",
+      "nbytes": 5280,
+      "sha256": "12ae051035946748ff76d500025922c2e030ecfc06bb51f69f541acc393874cc"
+    },
+    "preparation-request.json": {
+      "path": "docs/evidence/engine-clock-sealed-image-06/preparation-request.json",
+      "nbytes": 12566,
+      "sha256": "10afc64d0ce631dfe6b6edcbdec43c40d621afe3ba37e8e8fd3559eeb752906b"
+    },
+    "preparation-source-authentication.json": {
+      "path": "docs/evidence/engine-clock-sealed-image-06/preparation-source-authentication.json",
+      "nbytes": 702,
+      "sha256": "db6ee15f1382f63b12a17eb1be260332ab647878cfc1da24619a02ace991cd2f"
+    },
+    "preparation-operation-result.json": {
+      "path": "docs/evidence/engine-clock-sealed-image-06/preparation-operation-result.json",
+      "nbytes": 352,
+      "sha256": "4156468da5f75796780a0576ebbe66884dd617ed9639cab950e61d82e3986423"
+    },
+    "preparation-qualification.json": {
+      "path": "docs/evidence/engine-clock-sealed-image-06/preparation-qualification.json",
+      "nbytes": 2421,
+      "sha256": "f38164ca05b7b43623e046c2453406c7bb1903335b62676db2ddb189ddc64e6f"
+    },
+    "preflight-request.json": {
+      "path": "docs/evidence/engine-clock-sealed-image-06/preflight-request.json",
+      "nbytes": 13830,
+      "sha256": "c474a7380d20cb6d56f36a63473bbb1ae851e58ef81b137d37d6bf3597d3e18d"
+    },
+    "preflight-source-authentication.json": {
+      "path": "docs/evidence/engine-clock-sealed-image-06/preflight-source-authentication.json",
+      "nbytes": 702,
+      "sha256": "93de639fd8b9cd703699efbc6ea81d46c8ba4933864a861684bb9473b49b32ed"
+    },
+    "preflight-operation-result.json": {
+      "path": "docs/evidence/engine-clock-sealed-image-06/preflight-operation-result.json",
+      "nbytes": 372,
+      "sha256": "d741786c9ce595c282f77d10be9d0f14cbd4b27694283ed9c71743b64e5f2b27"
+    },
+    "preflight-qualification.json": {
+      "path": "docs/evidence/engine-clock-sealed-image-06/preflight-qualification.json",
+      "nbytes": 2881,
+      "sha256": "a71be0e17d263a2b5eff3ca5199d7b4f5906dd69a6495d62f08bbe956dc7fcb7"
+    },
+    "preflight.json": {
+      "path": "docs/evidence/engine-clock-sealed-image-06/preflight.json",
+      "nbytes": 16049,
+      "sha256": "173dc6752e93e7d6a082ba1eede9c733630aa3026cad8cd44f5b4b865a091821"
+    }
+  },
+  "raw_originals_root": "output/stage7-image-root-authentication",
+  "retention_days": 30,
+  "onnxruntime_named_installed_entries": 0
+}
