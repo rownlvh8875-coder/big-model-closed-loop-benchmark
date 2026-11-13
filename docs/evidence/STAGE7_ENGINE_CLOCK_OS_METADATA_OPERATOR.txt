@@ -1,0 +1,141 @@
+HISTORICAL ONE-USE SIGNED METADATA/READ-ONLY RESOLUTION OPERATOR.
+Run body after marker from repository root with the existing CPU Python. Never replay an existing output path.
+BEGIN PYTHON
+import datetime,hashlib,json,lzma,os,pwd,re,shutil,signal,subprocess,time
+from pathlib import Path
+
+root=Path.cwd();request_path=root/'docs/evidence/STAGE7_ENGINE_CLOCK_OS_METADATA_REQUEST.json'
+q=json.loads(request_path.read_text());out=root/q['output_directory'];out.mkdir(parents=True,exist_ok=False)
+w=root/'.superpowers/sdd/2026-11-13-engine-clock-os-library-inputs';start=time.monotonic();deadline=start+600
+def digest(p):
+    h=hashlib.sha256()
+    with p.open('rb') as f:
+        for b in iter(lambda:f.read(1048576),b''):h.update(b)
+    return h.hexdigest()
+def save(n,v):(out/n).write_text(json.dumps(v,indent=2,sort_keys=True)+'\n')
+attempt={'request_id':q['request_id'],'execution_source_sha':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'started_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'status':'CONSUMED_STARTED','further_execution_authorized':False}
+save('attempt.json',attempt)
+r=dict(attempt,schema='engine-clock-os-metadata-receipt-v1',transfers=[],signatures=[],indexes=[],package_install_executed=False,maintainer_script_executed=False,runtime_executed=False,build_ready=False,full_lock_ready=False,image_preparation_ready=False,native_admission=False)
+def run(cmd,name,timeout=120,env=None):
+    remain=deadline-time.monotonic();assert remain>5
+    with (out/(name+'.stdout')).open('xb') as stdout,(out/(name+'.stderr')).open('xb') as stderr:
+        p=subprocess.Popen(cmd,stdout=stdout,stderr=stderr,env=env,start_new_session=True)
+        stop=None;beg=time.monotonic()
+        try:
+            while True:
+                if time.monotonic()-beg>min(timeout,remain-5):stop='TIME_LIMIT'
+                elif (out/(name+'.stdout')).stat().st_size+(out/(name+'.stderr')).stat().st_size>4194304:stop='LOG_LIMIT'
+                if stop or p.poll() is not None:break
+                time.sleep(.1)
+        finally:
+            if p.poll() is None:
+                os.killpg(p.pid,signal.SIGTERM)
+                try:p.wait(timeout=2)
+                except subprocess.TimeoutExpired:os.killpg(p.pid,signal.SIGKILL);p.wait(timeout=3)
+            else:p.wait()
+    assert p.returncode==0 and stop is None,(name,p.returncode,stop)
+    return (out/(name+'.stdout')).read_text()
+def fetch(name,url,cap):
+    assert url.startswith(q['snapshot_root']) and '..' not in url
+    text=run(['curl','--silent','--show-error','--fail','--proto','=https','--max-time','30','--max-filesize',str(cap),'--retry','0','--output',str(out/name),'--write-out','%{json}',url],name+'.transfer',35)
+    t=json.loads(text);assert t['http_code']==200 and t['ssl_verify_result']==0 and t['num_redirects']==0
+    assert (out/name).stat().st_size<=cap
+    r['transfers'].append({'name':name,**{k:t.get(k) for k in ('http_code','ssl_verify_result','num_redirects','size_download','exitcode','url_effective')}})
+    return out/name
+def paragraphs(path):
+    current={};key=None;decoded=0;stanza=0
+    with lzma.open(path,'rb') as f:
+        while True:
+            line=f.readline(1048577)
+            if not line:break
+            decoded+=len(line);stanza+=len(line);assert decoded<=536870912 and stanza<=1048576 and len(line)<=1048576
+            if line in (b'\n',b'\r\n'):
+                if current:yield current
+                current={};key=None;stanza=0;continue
+            if line[:1] in (b' ',b'\t'):
+                if key in current:current[key]+=' '+line.decode().strip()
+            else:
+                field,value=line.decode().rstrip('\r\n').split(':',1);key=field
+                if field in ('Package','Version','Architecture','Filename','Size','SHA256','Depends','Pre-Depends','Provides','Conflicts','Breaks','Essential','Multi-Arch'):current[field]=value.strip()
+        if current:yield current
+try:
+    assert not subprocess.check_output(['git','status','--porcelain'],text=True).strip()
+    r.update(request_sha256=digest(request_path),operator_sha256=digest(root/'docs/evidence/STAGE7_ENGINE_CLOCK_OS_METADATA_OPERATOR.txt'),free_bytes_before=shutil.disk_usage(out).free)
+    assert r['free_bytes_before']>=2147483648
+    for x in q['cached_inputs']:
+        p=root/x['path'];assert p.stat().st_size==x['nbytes'] and digest(p)==x['sha256'];shutil.copyfile(p,out/p.name)
+    gh=w/'verify-gnupg';gh.mkdir(mode=0o700)
+    gpg=['/usr/bin/gpg','--no-options','--homedir',str(gh),'--batch','--no-autostart','--no-auto-key-retrieve']
+    run(gpg+['--dearmor','--output',str(out/'ubuntu-keyring.gpg'),str(out/'ubuntu-archive-2018.asc')],'key-dearmor',30)
+    gpg+=['--no-default-keyring','--keyring',str(out/'ubuntu-keyring.gpg')]
+    keys=run(gpg+['--with-colons','--fingerprint'],'key-fingerprints',30)
+    assert 'fpr:::::::::'+q['signer_fingerprint']+':' in keys
+    mirror=w/'local-mirror';mirror.mkdir();indexes=[]
+    for pocket in q['pockets']:
+        p=out/(pocket+'.InRelease')
+        if pocket!='noble':p=fetch(p.name,q['snapshot_root']+'dists/'+pocket+'/InRelease',2097152)
+        status=run(gpg+['--status-fd','1','--verify',str(p)],pocket+'.signature',30)
+        assert '[GNUPG:] VALIDSIG '+q['signer_fingerprint']+' ' in status
+        text=p.read_text();plain=text.split('\n\n',1)[1].split('-----BEGIN PGP SIGNATURE-----',1)[0]
+        plain='\n'.join(x[2:] if x.startswith('- ') else x for x in plain.splitlines())+'\n'
+        release=out/(pocket+'.Release');release.write_text(plain)
+        fields={x.split(':',1)[0]:x.split(':',1)[1].strip() for x in plain.splitlines() if x and not x.startswith(' ') and ':' in x}
+        assert fields['Origin']=='Ubuntu' and fields['Suite']==pocket and fields['Codename']=='noble'
+        r['signatures'].append({'pocket':pocket,'fingerprint':q['signer_fingerprint'],'inrelease_sha256':digest(p),'verified_release_sha256':digest(release),'date':fields.get('Date'),'valid_until':fields.get('Valid-Until')})
+        hashes={};section=False
+        for line in plain.splitlines():
+            if line=='SHA256:':section=True;continue
+            if section and not line.startswith(' '):section=False
+            if section:
+                sha,size,path=line.split();assert len(sha)==64;hashes[path]=(sha,int(size))
+        target=mirror/'dists'/pocket;target.mkdir(parents=True);shutil.copyfile(release,target/'Release')
+        for component in q['components']:
+            relative=component+'/binary-amd64/Packages.xz';expected,size=hashes[relative];assert size<=67108864
+            p=fetch(pocket+'-'+component+'.Packages.xz',q['snapshot_root']+'dists/'+pocket+'/'+relative,67108864)
+            assert p.stat().st_size==size and digest(p)==expected
+            dest=target/relative;dest.parent.mkdir(parents=True);shutil.copyfile(p,dest)
+            indexes.append({'pocket':pocket,'component':component,'path':str(p.relative_to(root)),'sha256':expected,'nbytes':size,'signed_inrelease_sha256':digest(out/(pocket+'.InRelease'))})
+    assert sum(x['nbytes'] for x in indexes)<=201326592;r['indexes']=indexes
+    available=set()
+    for x in indexes:
+        for p in paragraphs(root/x['path']):
+            if p.get('Architecture') in ('amd64','all'):available.add(p['Package'])
+    roots={}
+    for name,candidates in q['soname_package_candidates'].items():
+        matches=[p for p in candidates if p in available];assert matches,name;roots[name]=matches[0]
+    seeds=sorted(set(roots.values())|set(q['support_packages']));assert all(p in available for p in seeds)
+    apt=w/'apt';(apt/'etc/empty').mkdir(parents=True);(apt/'state/lists/partial').mkdir(parents=True);(apt/'cache/archives/partial').mkdir(parents=True)
+    (apt/'state/status').write_text('')
+    sources=''.join('deb [trusted=yes arch=amd64] file:'+str(mirror.resolve())+' '+p+' main universe\n' for p in q['pockets'])
+    (apt/'etc/sources.list').write_text(sources)
+    config='\n'.join(['Dir "'+str(apt.resolve())+'";','Dir::State "'+str((apt/'state').resolve())+'";','Dir::State::status "'+str((apt/'state/status').resolve())+'";','Dir::Cache "'+str((apt/'cache').resolve())+'";','Dir::Cache::pkgcache "";','Dir::Cache::srcpkgcache "";','Dir::Etc "'+str((apt/'etc').resolve())+'";','Dir::Etc::sourcelist "sources.list";','Dir::Etc::sourceparts "empty";','Dir::Etc::parts "empty";','Dir::Etc::main "missing.conf";','Dir::Bin::methods "/usr/lib/apt/methods";','APT::Architecture "amd64";','APT::Architectures { "amd64"; };','APT::Install-Recommends "false";','APT::Install-Suggests "false";','APT::Sandbox::User "'+pwd.getpwuid(os.getuid()).pw_name+'";','Acquire::Languages "none";','Acquire::Retries "0";'])+'\n'
+    (apt/'apt.conf').write_text(config)
+    env=dict(os.environ);env['APT_CONFIG']=str((apt/'apt.conf').resolve())
+    r['apt_config_sha256']=digest(apt/'apt.conf');r['local_sources_sha256']=digest(apt/'etc/sources.list')
+    r['apt_version']=run(['/usr/bin/apt-get','--version'],'apt-version',30).splitlines()[0]
+    run(['/usr/bin/apt-get','update'],'apt-update',120,env)
+    simulation=run(['/usr/bin/apt-get','--simulate','--no-install-recommends','install']+seeds,'apt-simulate',120,env)
+    selected={name.split(':',1)[0]:version for name,version in re.findall(r'^Inst ([^ ]+)(?: \[[^]]+\])? \(([^ ]+) ',simulation,re.M)}
+    assert selected and len(selected)<=128 and set(seeds)<=set(selected)
+    matches={name:[] for name in selected}
+    for x in indexes:
+        assert digest(root/x['path'])==x['sha256']
+        for p in paragraphs(root/x['path']):
+            if p.get('Package') in selected and p.get('Version')==selected[p['Package']] and p.get('Architecture') in ('amd64','all'):
+                matches[p['Package']].append({'metadata':p,'index_sha256':x['sha256'],'pocket':x['pocket'],'component':x['component']})
+    packages=[]
+    for name in sorted(selected):
+        found=matches[name];assert found,name
+        p=found[0]['metadata'];assert all(tuple(v['metadata'].get(k) for k in ('Version','Architecture','Filename','Size','SHA256'))==tuple(p.get(k) for k in ('Version','Architecture','Filename','Size','SHA256')) for v in found)
+        assert p['Filename'].startswith('pool/') and '..' not in p['Filename'] and len(p['SHA256'])==64 and int(p['Size'])<=67108864
+        packages.append({'name':name,'version':p['Version'],'architecture':p['Architecture'],'filename':p['Filename'],'nbytes':int(p['Size']),'sha256':p['SHA256'],'depends':p.get('Depends'),'pre_depends':p.get('Pre-Depends'),'provides':p.get('Provides'),'essential':p.get('Essential'),'source_indexes':[{'sha256':v['index_sha256'],'pocket':v['pocket'],'component':v['component']} for v in found]})
+    assert sum(p['nbytes'] for p in packages)<=268435456
+    for x in indexes:assert digest(mirror/'dists'/x['pocket']/(x['component']+'/binary-amd64/Packages.xz'))==x['sha256']
+    assert (apt/'state/status').read_bytes()==b''
+    plan={'schema':'engine-clock-os-candidate-package-plan-v1','snapshot_root':q['snapshot_root'],'signer_fingerprint':q['signer_fingerprint'],'signatures':r['signatures'],'indexes':indexes,'soname_root_packages':roots,'support_packages':q['support_packages'],'seeds':seeds,'packages':packages,'selected_package_count':len(packages),'total_published_deb_bytes':sum(p['nbytes'] for p in packages),'apt_simulation_exit':0,'declared_metadata_resolution_complete':True,'payloads_measured':False,'installed_os_verified':False,'build_ready':False,'full_lock_ready':False,'image_preparation_ready':False,'native_admission':False}
+    save('package-plan.json',plan);r.update(status='SIGNED_METADATA_RESOLUTION_COMPLETE_NOT_INSTALLED',selected_package_count=len(packages),package_plan_sha256=digest(out/'package-plan.json'))
+except Exception as exc:r.update(status='FAILED_OR_INCOMPLETE',error_class=type(exc).__name__,bounded_error=str(exc)[:256])
+finally:
+    r['duration_seconds']=time.monotonic()-start
+    r['files']={p.name:{'nbytes':p.stat().st_size,'sha256':digest(p)} for p in sorted(out.iterdir()) if p.is_file() and p.name!='receipt.json'}
+    save('receipt.json',r);print(json.dumps({k:r.get(k) for k in ('status','execution_source_sha','selected_package_count','duration_seconds','error_class','bounded_error')}))

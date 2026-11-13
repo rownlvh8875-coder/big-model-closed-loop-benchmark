@@ -1,0 +1,106 @@
+{
+  "cached_inputs": [
+    {
+      "nbytes": 255850,
+      "path": ".superpowers/sdd/2026-11-13-engine-clock-os-library-inputs/noble.InRelease",
+      "sha256": "cdb2f31d809f589719a53c6ad15f255b27569c4059542ada282aaa21b8e164b0"
+    },
+    {
+      "nbytes": 4747,
+      "path": ".superpowers/sdd/2026-11-13-engine-clock-os-library-inputs/ubuntu-archive-2018.asc",
+      "sha256": "85309b698b7bdac6f21de64aa1eaa998470bbd9c8c853ea274d0c27a95013210"
+    }
+  ],
+  "components": [
+    "main",
+    "universe"
+  ],
+  "image_preparation_ready": false,
+  "native_admission": false,
+  "output_directory": "output/stage7-os-library-inputs/os-metadata-20261113-01",
+  "package_install_authorized": false,
+  "pockets": [
+    "noble",
+    "noble-updates",
+    "noble-security"
+  ],
+  "request_id": "os-metadata-20261113-01",
+  "runtime_execution_authorized": false,
+  "schema": "engine-clock-os-metadata-request-v1",
+  "signer_fingerprint": "F6ECB3762474EDA9D21B7022871920D1991BC93C",
+  "snapshot_root": "https://snapshot.ubuntu.com/ubuntu/20261113T000000Z/",
+  "soname_package_candidates": {
+    "/lib64/ld-linux-x86-64.so.2": [
+      "libc6"
+    ],
+    "libbz2.so.1.0": [
+      "libbz2-1.0"
+    ],
+    "libc.so.6": [
+      "libc6"
+    ],
+    "libcrypt.so.1": [
+      "libcrypt1"
+    ],
+    "libcrypto.so.3": [
+      "libssl3t64",
+      "libssl3"
+    ],
+    "libffi.so.8": [
+      "libffi8"
+    ],
+    "libgdbm.so.6": [
+      "libgdbm6t64",
+      "libgdbm6"
+    ],
+    "libgdbm_compat.so.4": [
+      "libgdbm-compat4t64",
+      "libgdbm-compat4"
+    ],
+    "liblzma.so.5": [
+      "liblzma5"
+    ],
+    "libm.so.6": [
+      "libc6"
+    ],
+    "libncursesw.so.6": [
+      "libncursesw6"
+    ],
+    "libpanelw.so.6": [
+      "libncursesw6"
+    ],
+    "libreadline.so.8": [
+      "libreadline8t64",
+      "libreadline8"
+    ],
+    "libsqlite3.so.0": [
+      "libsqlite3-0"
+    ],
+    "libssl.so.3": [
+      "libssl3t64",
+      "libssl3"
+    ],
+    "libtcl8.6.so": [
+      "libtcl8.6",
+      "libtcl8.6t64"
+    ],
+    "libtinfo.so.6": [
+      "libtinfo6"
+    ],
+    "libtk8.6.so": [
+      "libtk8.6",
+      "libtk8.6t64"
+    ],
+    "libuuid.so.1": [
+      "libuuid1"
+    ],
+    "libz.so.1": [
+      "zlib1g"
+    ]
+  },
+  "support_packages": [
+    "base-files",
+    "mawk",
+    "libc-bin"
+  ]
+}
