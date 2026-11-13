@@ -1,0 +1,52 @@
+{
+  "schema": "builder-source-directory-source-review-v1",
+  "base_sha": "3727fcdbaa5dd6a23c1a2a48d4e53371cddd8f09",
+  "reviewed_head_sha": "bb285227c61ca2c6cd02c2a6a5139a760adbaa29",
+  "reviewer": "/root/builder_source_directory_review",
+  "model": "gpt-6-astra",
+  "reasoning_effort": "medium",
+  "critical": [],
+  "important": [],
+  "minor_deferred": [],
+  "declines_rulings": [
+    [
+      "Post-check pathname race",
+      "Accept scoped trusted-primary/qualified namespace; only build is writable and no foreign source has executed. FD anchoring/named binding and immediate unchanged hook checks remain.",
+      "Not a general defense against arbitrary concurrent same-UID or hostile-host mutation; that requires a broader boundary."
+    ],
+    [
+      "Device learned from /build",
+      "Accept because namespace/quota/mount/device admission already succeeded; descend only within that same device.",
+      "This gate is not an independent replacement for namespace/build-mount proof."
+    ],
+    [
+      "Failure writing receipt",
+      "Correctly blocks callback admission; immutable hook restores and entry keeps fixed failure wire.",
+      "A failed evidence write can leave limited private diagnostics, never package admission."
+    ],
+    [
+      "Duplicated versioned controller",
+      "Preserve historical bytes; current differences limited to identity/source/closure/plan/budget.",
+      "More composed closure/parity maintenance; no broad refactor in this fix."
+    ],
+    [
+      "Missing live pip fixture",
+      "Accept owned real-filesystem/fake unpack integration under no downloaded/local source execution rule; real07 still required.",
+      "Fixtures do not establish actual pip/wheel compatibility or image readiness."
+    ]
+  ],
+  "verification": {
+    "focused_tests": 16,
+    "focused_seconds": 3.392,
+    "full_tests": 943,
+    "optional_skips": 7,
+    "full_seconds": 106.763,
+    "independent_focused_tests": 16,
+    "independent_focused_seconds": 3.764,
+    "independent_rereview": false,
+    "remote_ci": "PENDING"
+  },
+  "scope_limits": [
+    "Actual sourceCI/new07 activation/namespace/pip/source/wheel/retention/artifact results require separate root verification."
+  ]
+}
