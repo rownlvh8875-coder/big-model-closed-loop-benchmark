@@ -6,7 +6,7 @@
 
 ## 실제 metadata·payload 검증
 
-Snapshot은 `https://snapshot.ubuntu.com/ubuntu/20261113T000000Z/`, noble/noble-updates/noble-security의 main/universe·amd64/all이다. Ubuntu Archive Automatic Signing Key2018 지문 `F6ECB3762474EDA9D21B7022871920D1991BC93C`를 정책 anchor로 고정했다. HTTPS로 받은 공개 키의 실제 지문과 InRelease3개의 GPG VALIDSIG가 일치한다. 이는 선택한 anchor에 대한 검증이며 독립 key-distribution/host attestation은 아니다.
+Snapshot은 `https://snapshot.ubuntu.com/ubuntu/20261113T000000Z/`, noble/noble-updates/noble-security의 main/universe·amd64/all이다. Ubuntu Archive Automatic Signing Key2018 지문 `F6ECB3762474EDA9D21B7022871920D1991BC93C`를 정책 anchor로 고정했다. HTTPS로 받은 공개 키의 실제 지문과 InRelease3개의 GPG VALIDSIG가 일치한다. [공개 키 원문](evidence/engine-clock-os-inputs/ubuntu-archive-2018.json)은 원래 armor의 줄끝 공백까지 보존하는 lossless JSON 문자열이며, 원본 bytes와 복원 hash를 구분했다. 이는 선택한 anchor에 대한 검증이며 독립 key-distribution/host attestation은 아니다.
 
 Discovery2요청으로 base InRelease와 공개 키를 받고, 등록된 metadata operation에서 추가 InRelease2개/index6개를 받았다. Curl 요청은 모두 HTTP200/exit0/TLS verify result0/redirect0, application retry0이다. Signed Release의 SHA256/size로6개 compressed index를 확인했다. 세 Release 모두 Valid-Until 필드가 없어null로 보존했고, 고정 snapshot 이상의 freshness 보장은 주장하지 않는다.
 
