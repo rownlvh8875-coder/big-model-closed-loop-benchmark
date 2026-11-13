@@ -6,6 +6,7 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
+from unittest.mock import patch
 
 try:
     from scripts import engine_clock_namespace_identity as obs
@@ -105,9 +106,59 @@ class IdentityTests(unittest.TestCase):
         root=Path('/fixture')
         args=obs.commands(root)
         self.assertEqual(3,len(args))
-        self.assertEqual('/usr/bin/unshare',args[2][1][0])
-        self.assertEqual(['--user','--map-root-user','--net','--'],args[2][1][1:5])
+        self.assertEqual('--launcher',args[2][1][-1])
+        utility=obs.util_argv(root)
+        self.assertEqual('/usr/bin/unshare',utility[0])
+        self.assertEqual(['--user','--map-root-user','--net','--'],utility[1:5])
         self.assertTrue(all('/usr/bin/python3' in argv for _,argv in args))
+
+    def test_unrelated_journal_records_do_not_establish_relevant_availability(self):
+        rows=[{'MESSAGE':'unrelated kernel notice'},
+              {'MESSAGE':'apparmor="DENIED" operation="userns_create" pid=420'},
+              {'MESSAGE':'apparmor="DENIED" operation="other" pid=42'}]
+        for row in rows:
+            value=obs.parse_journal(json.dumps(row).encode(),{42})
+            self.assertEqual('UNKNOWN',value['availability'])
+            self.assertEqual(1,value['usable_records'])
+
+    def test_permission_denied_proc_reads_are_distinct_from_successful_empty_files(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);(root/'self/attr').mkdir(parents=True)
+            for name in ('status','uid_map','gid_map'): (root/'self'/name).write_bytes(b'')
+            (root/'self/attr/current').write_bytes(b'')
+            blocked={root/'self/status',root/'self/uid_map',root/'self/attr/current'}
+            original=Path.open
+            def guarded(path,*args,**kwargs):
+                if path in blocked: raise PermissionError(13,'SECRET_SENTINEL')
+                return original(path,*args,**kwargs)
+            with patch.object(Path,'open',guarded): value=obs.snapshot(root)
+            self.assertIn('proc_reads',value,'proc error receipts missing')
+            for name in ('self/status','self/uid_map','self/attr/current'):
+                self.assertEqual(13,value['proc_reads'][name]['errno'])
+                self.assertFalse(value['proc_reads'][name]['success'])
+            self.assertTrue(value['proc_reads']['self/gid_map']['success'])
+            self.assertEqual(0,value['proc_reads']['self/gid_map']['nbytes'])
+            self.assertNotIn('SECRET_SENTINEL',json.dumps(value))
+
+    def test_failed_util_control_retains_launcher_pid_and_matching_denial_in_parent(self):
+        def receipt(code):
+            return {'status':'EXITED','returncode':code,'stdout_bytes':0,'stderr_bytes':0,
+                    'stdout_sha256':'0'*64,'stderr_sha256':'0'*64}
+        def capture(argv,**kwargs):
+            if '/usr/bin/journalctl' in argv:
+                raw=json.dumps({'MESSAGE':'apparmor="DENIED" operation="userns_create" pid=42 comm="SECRET_SENTINEL"'}).encode()
+                return receipt(0),raw
+            if '--launcher' in argv or argv[0]=='/usr/bin/unshare':
+                return receipt(1),json.dumps({'schema':'namespace-identity-launcher-v1','pid':42,'before':{'pid':42}}).encode()+b'\n'
+            case=argv[-1]
+            return receipt(0),json.dumps({'case':case,'pid':43 if case=='NOOP' else 44,'admission':False}).encode()
+        with tempfile.TemporaryDirectory() as tmp, patch.object(obs,'authenticate',return_value={}), patch.object(obs,'snapshot',return_value={'pid':1}), patch.object(obs.sandbox,'capture',side_effect=capture):
+            value=obs.run(Path(tmp),{})
+            self.assertEqual(1,len(value['kernel_log']['observations']))
+            self.assertEqual(42,value['cases'][2]['launcher']['pid'])
+            self.assertIsNone(value['cases'][2]['observation'])
+            self.assertEqual('OBSERVATION_INCOMPLETE',value['status'])
+            self.assertNotIn('SECRET_SENTINEL',json.dumps(value))
 
     def test_request_only_activation_and_old_request_rejection(self):
         value={'schema':'namespace-identity-request-v1','request_id':'namespace-diagnostic-20261113-02',

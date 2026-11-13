@@ -11,15 +11,15 @@ import time
 import urllib.parse
 
 if __name__ == '__main__': sys.path.insert(0,str(Path(__file__).resolve().parent.parent))
-from scripts import engine_clock_namespace_diagnostic as previous
-prep, sandbox = previous.prep, previous.sandbox
+from scripts import engine_clock_builder_preparation as prep
+from scripts import engine_clock_builder_sandbox as sandbox
 REQUEST_ID='namespace-diagnostic-20261113-02'
 BRANCH='diagnose/engine-clock-namespace-20261113-02'
 WORKFLOW='.github/workflows/engine-clock-namespace-identity.yml'
 REQUEST_PATH='docs/requests/engine-clock-'+REQUEST_ID+'.json'
 CLOSURE=frozenset([WORKFLOW,'scripts/__init__.py',
     *['scripts/engine_clock_builder_'+x+'.py' for x in ('preparation','staging','sandbox','wheel','driver')],
-    'scripts/engine_clock_namespace_diagnostic.py','scripts/engine_clock_namespace_identity.py',
+    'scripts/engine_clock_namespace_identity.py',
     'tests/test_engine_clock_namespace_identity.py',
     'docs/superpowers/specs/2026-11-13-engine-clock-namespace-identity-design.md',
     'docs/superpowers/plans/2026-11-13-engine-clock-namespace-identity.md'])
@@ -45,20 +45,42 @@ def namespace_detail(path,name):
     return value
 
 
+def read_fact(path,limit=16384):
+    receipt={'success':False,'errno':None,'nbytes':0,'sha256':hashlib.sha256(b'').hexdigest(),'truncated':False}
+    try:
+        with path.open('rb') as f: raw=f.read(limit+1)
+        receipt.update(success=True,nbytes=len(raw),sha256=hashlib.sha256(raw).hexdigest(),truncated=len(raw)>limit)
+        return raw[:limit],receipt
+    except OSError as exc:
+        receipt['errno']=exc.errno
+        return b'',receipt
+
+
 def snapshot(proc=Path('/proc')):
-    value={'pid':os.getpid(),'uid':os.getuid(),'gid':os.getgid(),'facts':previous.facts(proc),
-           'namespace_details':{},'maps':{}}
+    value={'pid':os.getpid(),'uid':os.getuid(),'gid':os.getgid(),
+           'facts':{'effective_uid':os.geteuid(),'effective_gid':os.getegid(),'namespaces':{},'status':{},'sysctls':{}},
+           'namespace_details':{},'maps':{},'proc_reads':{}}
+    def read(name,limit=16384):
+        raw,receipt=read_fact(proc/name,limit);value['proc_reads'][name]=receipt
+        return raw
     for base in ('self','thread-self'):
         for name in ('user','net'):
             value['namespace_details'][base+'/'+name]=namespace_detail(proc/base/'ns'/name,name)
-    raw=previous._read(proc/'self/attr/current')
+    for name in ('user','net'): value['facts']['namespaces'][name]=value['namespace_details']['self/'+name]['stat']
+    for line in read('self/status').decode('ascii','ignore').splitlines():
+        key,sep,text=line.partition(':');text=text.strip()
+        if key in ('CapInh','CapPrm','CapEff','CapBnd','CapAmb') and re.fullmatch('[0-9a-f]{16}',text): value['facts']['status'][key]=text
+        elif key in ('NoNewPrivs','Seccomp','Seccomp_filters') and text.isdigit(): value['facts']['status'][key]=int(text)
+    for name in ('user/max_user_namespaces','kernel/unprivileged_userns_clone','kernel/apparmor_restrict_unprivileged_userns','kernel/cap_last_cap'):
+        raw=read('sys/'+name,32).strip();value['facts']['sysctls'][name]=int(raw) if raw.isdigit() else None
+    raw=read('self/attr/current')
     label=raw.strip()
     allowed=(b'unconfined',b'unprivileged_userns',b'unprivileged_userns (enforce)',b'bwrap (enforce)',b'docker-default (enforce)')
     value['facts']['profile']={'known':label.decode('ascii') if label in allowed else None,
                               'nbytes':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
     for name in ('uid_map','gid_map'):
         rows=[]
-        for line in previous._read(proc/'self'/name,4096).splitlines():
+        for line in read('self/'+name,4096).splitlines():
             words=line.split()
             if len(words)==3 and all(x.isdigit() and len(x)<=10 for x in words): rows.append([int(x) for x in words])
         value['maps'][name]=rows[:16]
@@ -108,14 +130,26 @@ def parse_journal(raw,pids):
                 'message_sha256':hashlib.sha256(message.encode()).hexdigest()})
             if len(value['observations'])>=32: break
         except (ValueError,TypeError,AttributeError): continue
-    if value['usable_records']: value['availability']='READ_COMPLETE_WITH_RECORDS'
+    if value['observations']: value['availability']='READ_COMPLETE_WITH_RECORDS'
     return value
 
 
 def commands(root):
     base=['/usr/bin/python3','-I','-S','-B',str(root/'scripts/engine_clock_namespace_identity.py'),'--worker']
     return [('NOOP',base+['NOOP']),('RAW_USER_NET',base+['RAW_USER_NET']),
-            ('UTIL_MAPPED_USER_NET',['/usr/bin/unshare','--user','--map-root-user','--net','--']+base+['SNAPSHOT'])]
+            ('UTIL_MAPPED_USER_NET',base[:-1]+['--launcher'])]
+
+
+def util_argv(root):
+    return ['/usr/bin/unshare','--user','--map-root-user','--net','--',
+            '/usr/bin/python3','-I','-S','-B',str(root/'scripts/engine_clock_namespace_identity.py'),'--worker','SNAPSHOT']
+
+
+def launch_util(root):
+    header={'schema':'namespace-identity-launcher-v1','pid':os.getpid(),'before':snapshot()}
+    sys.stdout.buffer.write(json.dumps(header,sort_keys=True,separators=(',',':')).encode()+b'\n')
+    sys.stdout.buffer.flush()
+    os.execve('/usr/bin/unshare',util_argv(root),sandbox.HOST_ENV)
 
 
 def validate_request(value):
@@ -178,7 +212,14 @@ def run(root,env):
     start=int(time.time());pids=set()
     for name,argv in commands(root):
         receipt,raw=sandbox.capture(argv,timeout=20,stdout_limit=32768,stderr_limit=8192)
-        item={'case':name,'transport':receipt,'observation':None}
+        item={'case':name,'transport':receipt,'launcher':None,'observation':None}
+        if name=='UTIL_MAPPED_USER_NET' and raw:
+            line,separator,raw=raw.partition(b'\n')
+            header=prep._json(line)
+            prep._need(separator and type(header) is dict and set(header)=={'schema','pid','before'}
+                       and header['schema']=='namespace-identity-launcher-v1' and type(header['pid']) is int
+                       and header['pid']>0 and type(header['before']) is dict,'INVALID_LAUNCHER_RESULT')
+            item['launcher']=header;pids.add(header['pid'])
         if receipt['status']=='EXITED' and receipt['returncode']==0:
             value=prep._json(raw)
             expected='SNAPSHOT' if name=='UTIL_MAPPED_USER_NET' else name
@@ -196,9 +237,14 @@ def run(root,env):
 
 
 def main():
-    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--worker',choices=('NOOP','RAW_USER_NET','SNAPSHOT'));args=parser.parse_args()
+    parser=argparse.ArgumentParser(description=__doc__)
+    modes=parser.add_mutually_exclusive_group()
+    modes.add_argument('--worker',choices=('NOOP','RAW_USER_NET','SNAPSHOT'))
+    modes.add_argument('--launcher',action='store_true')
+    args=parser.parse_args()
     try:
-        if args.worker: sys.stdout.buffer.write(prep.canonical(worker(args.worker)))
+        if args.launcher: launch_util(Path(__file__).resolve().parent.parent)
+        elif args.worker: sys.stdout.buffer.write(prep.canonical(worker(args.worker)))
         else: run(Path(__file__).resolve().parent.parent,dict(os.environ))
     except Exception:
         print('NAMESPACE_IDENTITY_FAILED',file=sys.stderr);return 1

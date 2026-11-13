@@ -7,3 +7,5 @@
 실제 hosted 결과/출처/원본 검증은 소스 검토·기본 CI·새 등록 후 별도 기록한다. 02도 run1/attempt1/workers3이며 이전01을 재실행하지 않는다. 설치된 util-linux는 자기 UID/GID mapping만 수행하고 root 정책을 변경하지 않는다. 세 경우는 mapping/exec 조건이 다르므로 bubblewrap 전체 경로의 호환성을 보증하지 않는다.
 
 strict FAIL / expanded NOT_RUN / Stage 7 INCOMPLETE, main 미병합·Cloud 미게시 판정은 유지한다.
+
+독립 소스 검토7414f17: Critical0/Important3/Minor1. 관련 없는 journal 기록의 가용성 표기, utility 실패 전 PID 보존, procfs 읽기 오류 구분을 한 차례 RED→GREEN 수정에 반영했다. launcher는 PID와 before snapshot을 먼저 flush한 뒤 고정 util-linux 명령을 exec하며, 실패해도 해당 PID의 kernel 관측을 보존한다. profile/maps/status/sysctls는 수치 errno·읽은 bytes 수·SHA·truncation을 별도로 기록한다. 전체 API orchestration fixture 보강은 NI-M1 Minor로 미뤘다. 상세 finding·판단·비용은 [검토 기록](evidence/STAGE7_ENGINE_CLOCK_NAMESPACE_IDENTITY_REVIEW.json)에 있다.

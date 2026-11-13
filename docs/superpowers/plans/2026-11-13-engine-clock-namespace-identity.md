@@ -22,7 +22,7 @@ Existing46 workflows/old01 source/tests/artifacts unchanged. Request namespace-d
 ### Task 1: New identity observer and one-use execution
 
 **Files:** Create scripts/engine_clock_namespace_identity.py, tests/test_engine_clock_namespace_identity.py, .github/workflows/engine-clock-namespace-identity.yml, docs/STAGE7_ENGINE_CLOCK_NAMESPACE_IDENTITY.md. No changes to existing production files.
-**Interfaces:** Reuse previous namespace diagnostic's pure facts and builder helpers; snapshot(proc=Path('/proc'))->dict, worker(case, backend=None)->dict, typed_unshare(libc, flags)->dict, parse_journal(raw,pids)->dict, authenticate(root,env)->binding, run(root,env)->result. Produce identity.json.
+**Interfaces:** Reuse unchanged builder helpers, with observer-local bounded proc readers carrying errno metadata; snapshot(proc=Path('/proc'))->dict, worker(case, backend=None)->dict, typed_unshare(libc, flags)->dict, parse_journal(raw,pids)->dict, authenticate(root,env)->binding, run(root,env)->result. Produce identity.json.
 
 - [ ] Write failing tests for after-state retention on success/error, typed errno reset, syscall flags, procfs numeric failures/readlink/map redaction, strict profile labels, matching kernel observations/empty logs, fixed commands and one-use activation guard.
 - [ ] Run focused unittest; expected assertion RED absent observer.

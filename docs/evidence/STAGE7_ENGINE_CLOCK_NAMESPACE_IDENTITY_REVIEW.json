@@ -1,0 +1,89 @@
+{
+  "schema": "namespace-identity-source-review-v1",
+  "base_sha": "991cbbc3d43d9d123c92e5c77e7575b9f5b5d630",
+  "reviewed_head_sha": "7414f17f708aa49a4d478c3d86f4a6238a867d26",
+  "reviewer": "/root/namespace_identity_review",
+  "model": "gpt-6-astra",
+  "reasoning_effort": "medium",
+  "critical": [],
+  "important": [
+    {
+      "id": "NI-I1",
+      "issue": "Unrelated journal records overstated relevant evidence availability.",
+      "root_grade": "Important",
+      "fix": "Separate general usable record count from relevant availability; UNKNOWN unless supported worker-matching observations exist."
+    },
+    {
+      "id": "NI-I2",
+      "issue": "Failed util-linux launch lost its PID and matching kernel denial.",
+      "root_grade": "Important",
+      "fix": "Fixed launcher flushes numeric PID and before snapshot, then execs installed unshare; parent consumes header on nonzero exit and retains matching journal record."
+    },
+    {
+      "id": "NI-I3",
+      "issue": "Procfs status/map/profile read errors were indistinguishable from empty content.",
+      "root_grade": "Important",
+      "fix": "Observer-local bounded reads retain success/errno/nbytes/hash/truncation metadata and validated fields; permission-denied versus empty-file fixtures."
+    }
+  ],
+  "minor_deferred": [
+    {
+      "id": "NI-M1",
+      "issue": "Activation fixtures exercise pure delta helper rather than full authenticate API orchestration.",
+      "root_grade": "Minor",
+      "cost": "Future endpoint/tree-lookup/source-verification regressions have weaker focused coverage; current orchestration inspected and actual activation remains independently checked."
+    }
+  ],
+  "declines_rulings": [
+    [
+      "Actual hosted namespace/LSM/correspondence with01",
+      "Accept source-only review; separately observed02 run required.",
+      "No cause or runtime success inferred from fixtures."
+    ],
+    [
+      "Installed util-linux version/mapping/host policy",
+      "Accept pending runtime facts.",
+      "Installed binary is trusted host input, not publisher-attested source; mapping success remains unproven."
+    ],
+    [
+      "Full bwrap/build compatibility",
+      "Accept deliberately different controls.",
+      "Namespace identity alone never authorizes build/model/scientific execution."
+    ],
+    [
+      "Deployment branch/run/CI/activation/artifact checks",
+      "Root performs these independently before/after one activation.",
+      "Source review alone cannot establish external provenance."
+    ],
+    [
+      "Previous run43410163534 integrity",
+      "Root independently checked original byte hashes/ZIP CRC; reviewer did not.",
+      "Prior evidence integrity rests on root verification, not a second examiner."
+    ],
+    [
+      "Independent full844 suite",
+      "Accept root full-suite evidence; reviewer did parser reproduction only.",
+      "Full test result not independently reproduced by reviewer."
+    ],
+    [
+      "Adversarial API/binary/checkout replacement",
+      "Accept authenticated GitHub/host/source trust boundary.",
+      "Malicious infrastructure or concurrent replacement is outside this protocol."
+    ],
+    [
+      "General journal readability from unrelated records",
+      "General count may show transport data; relevant availability must stay UNKNOWN without matching observations (fixed NI-I1).",
+      "General logs cannot prove LSM visibility or no-denial cause."
+    ]
+  ],
+  "fix_verification": {
+    "regression_assertion_failures_observed": 3,
+    "focused_tests": 13,
+    "full_tests": 847,
+    "optional_skips": 7,
+    "full_seconds": 80.188,
+    "status": "PASS",
+    "independent_rereview": false,
+    "remote_ci": "PENDING"
+  }
+}
