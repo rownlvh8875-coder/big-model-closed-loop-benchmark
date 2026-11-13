@@ -4,7 +4,13 @@
 
 
 
-## Current checkpoint (2026-11-13 — actual local wheel verified and derived)
+## Current checkpoint (2026-11-13 — binary-only Python lock blocked)
+
+Branch `evidence/engine-clock-python-lock-gate`, base PR45/`cc6d3a986fb54c128b9d69f4e2a4d10eb7c2c898`. One registered dry-run at source `a4b5b1a917caa4cad58510b3f1b59e184d94037d` used the retained derivative wheel f949... and fixed pins, without installation/source execution. Actual Python3.11.17/pip26.2.2 screened target CPython3.11.18/Linux amd64, manylinux<=2.28. Pip exit1 in4.533520s: `No matching distribution found for progressbar`; no successful report. Official PyPI metadata HTTP200/TLS0/redirect0 shows5release keys, all recorded files sdist, latest2.5. Source archive was not downloaded or executed. This is a binary-only packaging blocker, not graph unsatisfiability or historical rendering causation.
+
+See [Python lock result](STAGE7_ENGINE_CLOCK_PYTHON_LOCK.md), request/operator/receipt/audit and raw log/metadata. Request `python-lock-20261113-01` consumed/no rerun; original6files19,988bytes retained. Target flags do not prove patch-version markers/base ABI/runtime compatibility; provisional candidates are not a lock. Full Python/base/Python-build/deb/asset locks, recipe and adapter remain incomplete. Next: reviewed genuine progressbar source/build-tool input policy before any source execution; then resume full lock resolution. No incomplete lock/Dockerfile/adapter/workflow or image preparation. Image16refsnull/nativeallowance0; Task3 incomplete. Preserve producer70/workflows44/registry8/old tools/tests/policy/proposal/raw/workspaces. No new native/official model/image/Cloud publication/main merge. StrictFAIL/expandedNOT_RUN/oldABBA terminalFAIL/geometry-optics-fullS/Stage7INCOMPLETE remain. Earlier checkpoints are historical.
+
+## Previous checkpoint (2026-11-13 — actual local wheel verified and derived)
 
 Branchevidence/engine-clock-real-wheel-preparation;basede30d68027162b4058e029b9687c5a198f1339b2/PR44. Actualone-shotlocalpackagesource63ee25b469c7f11cc901f4e0f8feed7219304866;requestwheel-input-20261113-e369b2c18129CONSUMED_SUCCESS/norerun. Fixedtransform/test/policy/sourceGitbytesunchanged. Actual3metadata+1payloadfetchesallHTTP200/TLS0/redirect0/retry0;source55128766B/SHA c6f8a42baac939a0af53a8e1cd9d48ec2bf0051917e7c19083e156a6506493d9;derived72968610B/SHAf949e89ff4bc32b72c8d09f5c61446bbc2b1f9b415b99a077c02b8df77c217f7. Original1431→derived1432members;preserved1428/72484277bytes/aggregate04b4e3b633322a4477652e5aab6a35f3640f9dd220126a4f77a82088e7fda4c7. Root independentlycheckedallnonmutablebytes/alloriginalattrs/1432RECORDfiles withoutrederive/extract/import.
 

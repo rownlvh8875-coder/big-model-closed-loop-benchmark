@@ -69,7 +69,9 @@ The initial design-only checkpoint is preserved at04c91d1 and Task1 at2cc22c0. T
 - [x] Run targeted RED, implement collector, run targeted GREEN, then independently review pure-tool/collector boundary and installed-vs-actual-loaded assurance statements. Record hashing timing as preflight overhead; do not call it neutral.
 - [x] Keep image/native readiness false. Commit/test/Draft only on a new provider-free branch. Any missing concrete filesystem/alias compatibility blocks preparation rather than changing old runtime rules.
 
-### Task 3: Image inputs, preparation adapter and provider-free evidence (real local wheel measured; full lock pending)
+### Task 3: Image inputs, preparation adapter and provider-free evidence (binary-only Python resolution blocked)
+
+Latest input gate: [Python lock checkpoint](2026-11-13-engine-clock-python-lock-gate.md) used the real retained f949... derivative once at sourcea4b5b1a917caa4cad58510b3f1b59e184d94037d. Binary-only pip dry-run exited1 at `progressbar`, no report. Official PyPI JSON records only sdists across5release keys/latest2.5. No source download/build/install, pin relaxation or replacement. This is not graph unsatisfiability/runtime incompatibility proof. A separately reviewed genuine source-to-wheel/build-tool lock is needed before source execution, then full Python/base/Python/deb/asset locks can continue. Stop unsupported resolution as required below; no incomplete lock/recipe/adapter/workflow/preparation. First checkbox stays unchecked.
 
 Current local package evidence: [real wheel operation](2026-11-13-engine-clock-real-wheel-preparation.md) measured original55128766B/c6f8... and derivative72968610B/f949... with1428preservedmembers; independent input review accepted the local byte checkpoint at3b4179803080e8623ff7a3461b1bca686d29b65c withC0/I0/MinorM1(deferred wording). This addresses the first package-policy candidate only. Complete Python/base/deb/asset locks, runtime compatibility and image/adapter/preparation gates remain unresolved; the first Task3 checkbox below stays unchecked. Do not replay the consumed local package request.
 
