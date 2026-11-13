@@ -1,0 +1,56 @@
+{
+  "schema": "builder-build-binding-source-review-v1",
+  "base_sha": "b4d5e9a5917692a1631227f3030a337f3fdf6b0b",
+  "reviewed_head_sha": "bbf6797409623bc9857d5810dda6dca405872e07",
+  "reviewer": "/root/builder_build_binding_review",
+  "model": "gpt-6-astra",
+  "reasoning_effort": "medium",
+  "critical": [],
+  "important": [],
+  "minor_deferred": [
+    {
+      "id": "BB-M1",
+      "issue": "Exact stdout failure wire test inspects source rather than invoking main() with fake pip/config and failed evidence write.",
+      "root_grade": "Minor",
+      "cost": "Current integration is inspected but later stdout/status drift has no executable main-level regression; record_failure write-failure and public literal separately covered."
+    }
+  ],
+  "declines_rulings": [
+    [
+      "D1 Actual downloaded pip/source build, wheel and target compatibility",
+      "Require authenticated new05 result; fake pip does not prove real package compatibility.",
+      "Actual build may fail despite source/layout fixtures."
+    ],
+    [
+      "D2 Live namespace/profile, mounts/quotas and remote retention",
+      "Require same-job fresh proof and original bounded retention result.",
+      "Preserved wiring is not fresh kernel/runtime evidence."
+    ],
+    [
+      "D3 Future sourceCI/request05/remote artifact consumption",
+      "Root verifies exact sourceCI, fresh branch/allruns0, request-only soleparent and original bytes before claims.",
+      "Source review does not authenticate future remote events."
+    ],
+    [
+      "D4 Independent fullsuite",
+      "Accept root915/7skip98.754s; reviewer independently focused10/5.139s only.",
+      "Fullsuite not independently reproduced."
+    ],
+    [
+      "D5 Comprehensive unchanged legacy stack",
+      "Accept bounded relevant binding/composition/guard/retention review; old modules remain frozen.",
+      "Unchanged unrelated legacy behavior retains prior limitations."
+    ]
+  ],
+  "verification": {
+    "focused_tests": 10,
+    "focused_seconds": 4.477,
+    "full_tests": 915,
+    "optional_skips": 7,
+    "full_seconds": 98.754,
+    "independent_focused_tests": 10,
+    "independent_focused_seconds": 5.139,
+    "independent_rereview": false,
+    "remote_ci": "PENDING"
+  }
+}
