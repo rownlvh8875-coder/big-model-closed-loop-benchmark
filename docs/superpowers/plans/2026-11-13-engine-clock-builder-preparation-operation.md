@@ -34,8 +34,8 @@
 
 - [x] Collect/validate exactb0bfc46 source push/PR CI4jobs/logs/artifacts0 and update DraftPR50 body; mark source Task2 complete in its own ledger. Expected: actual815unit+1generatedSMALL per event/attempt1 and no target build yet.
 - [x] Snapshot all476source-checkpoint tracked bytes; create operation branch and exact request/registration/workflow from approved source, compare every closure byte with `git show b0bfc46:<path>`. Run metadata-only schema/plan/render/old-workflow checks. Expected:51inputs/109285137B, exact plan SHA, old44unchanged/new45total, no network or target execution during validation.
-- [ ] Commit locally; record actual activation HEAD/request/closure/workflow hashes privately before the sole push. Expected: no self-referential guessed producer SHA, source core unchanged, no future run/artifact IDs filled.
-- [ ] Push activation branch once; observe exact workflow run/attempt/listing and bounded job progress. Expected: reviewed fixed preparation pipeline or preserved terminal failure; no rerun/fallback/source patch/extra native/model work.
+- [x] Commit locally; record actual activation HEAD/request/closure/workflow hashes privately before the sole push. Expected: no self-referential guessed producer SHA, source core unchanged, no future run/artifact IDs filled.
+- [x] Push activation branch once; observe exact workflow run/attempt/listing and bounded job progress. Expected: reviewed fixed preparation pipeline or preserved terminal failure; no rerun/fallback/source patch/extra native/model work.
 
 ### Task2: Authenticate evidence, retain result and continue safely
 
@@ -43,7 +43,7 @@
 
 **Interfaces:** consumes Task1 preregistration/actual producer HEAD and original run/job/artifact/log data. Uses strict wheel/snapshot/plan checks and independent bounded archive inspection. Produces truthful accepted component wheel or terminal failure with unknowns preserved; full lock/image/nativefalse.
 
-- [ ] Retain actual API/log/result originals once; authenticate head/repo/push/branch/path/attempt1/unique run and artifact name/ID/digest/size/expiry against preregistration. Expected: exact identity agreement or rejected/incomplete evidence, no downloaded payload execution.
-- [ ] Validate closed ZIP files and stream nested TAR/inventory with hard bounds; check every file/hash/mode/link, source closure/root plan,51raw inputs, helper/source snapshots and optional wheel. Expected: actual retained available workspace and exact source/wheel bytes, or preserved terminal mismatch with no fabricated result/counter.
+- [x] Retain actual API/log/result originals once; authenticate head/repo/push/branch/path/attempt1/unique run and artifact name/ID/digest/size/expiry against preregistration. Expected: exact identity agreement or rejected/incomplete evidence, no downloaded payload execution.
+- [x] Validate closed ZIP files and stream nested TAR/inventory with hard bounds; check every file/hash/mode/link, source closure/root plan,51raw inputs, helper/source snapshots and optional wheel. Expected: actual retained available workspace and exact source/wheel bytes, or preserved terminal mismatch with no fabricated result/counter.
 - [ ] On a separate evidence branch, write result/audit/status with reviewed/qualified/source/producer/final HEADs distinct, preserve all old gates, commit/push/Draft and observe exact-final-HEAD CPU/basic CI. Expected: reviewable truthful data, no activation-branch update, no main/Cloud publication.
 - [ ] If a real component wheel passes, continue directly into a distinct full-Python-lock registration using the accepted wheel and retained MetaDrive derivative. If genuinely terminal, finish the authorized evidence/verification work and report A–E with all chronological rulings/costs/minors. Expected: no source-checkpoint-only final yield or fake Stage7 completion.
