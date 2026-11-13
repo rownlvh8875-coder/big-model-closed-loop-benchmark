@@ -1,0 +1,153 @@
+{
+  "schema": "builder-scoped-preparation-consumption-v1",
+  "request_id": "builder-20261113-02",
+  "source_sha": "dc91b6611a6aa768cb5c3e15093521a2ab6370f4",
+  "activation_sha": "ad25f636cc00e27aa29c5a0612f392d24cae0600",
+  "workflow_id": 417258597,
+  "run_id": 43427237320,
+  "job_id": 131891557480,
+  "run_attempt": 1,
+  "unique_workflow_branch_runs": 1,
+  "request_consumed": true,
+  "created_kst": "2026-11-13T21:40:56+09:00",
+  "finished_kst": "2026-11-13T21:43:30+09:00",
+  "workflow_conclusion": "failure",
+  "status": "FAILED_OR_INCOMPLETE",
+  "errors": [
+    {
+      "code": "BUILDER_EXECUTION_FAILED"
+    }
+  ],
+  "qualification_status": "SUPPORTED_SCOPED_PROFILE",
+  "input_transports": 51,
+  "input_bytes": 109285137,
+  "root_entries_independently_matched": 12723,
+  "root_bytes": 351872090,
+  "candidate_execution_attempted": true,
+  "target_execution_verified": false,
+  "candidate_python_reached_namespace_guard": true,
+  "driver_failure": {
+    "schema": "builder-driver-failure-v1",
+    "status": "FAILED",
+    "code": "UNSUPPORTED_NAMESPACE",
+    "steps": []
+  },
+  "driver_namespace_details_retained": false,
+  "source_build_steps_attempted": 0,
+  "wheel_produced": false,
+  "cause_limit": "Exact99-byte failure wire proves namespace guard failure before VENV/ENSUREPIP/TOOLS/BUILD/SMOKE. UID/readonly mount/visible-userns-limit predicates share this code and were not retained. Fresh instrumented owned driver must preserve facts and test actual nested-userns denial instead of treating child-visible limit0/1 as complete proof.",
+  "archive_check": {
+    "entries": 12905,
+    "files": 11878,
+    "directories": 863,
+    "symlinks": 164,
+    "regular_bytes": 462399995,
+    "decoded_tar_bytes": 480819200,
+    "decoded_tar_sha256": "8b35b8b62960cf5bd78fa6cf3022ccb7368b9a69d54240863f6b2b50c2bfb001",
+    "compressed_sha256": "7b410974e123546fdcd17d229977655fbe4b59d477c0f2db0bb8a4f7af2c9107",
+    "single_gzip_eof_crc": true,
+    "zero_tail_bytes": 10752,
+    "all_inventory_fields_verified": true,
+    "driver_failure_exact_public_wire": {
+      "schema": "builder-driver-failure-v1",
+      "status": "FAILED",
+      "code": "UNSUPPORTED_NAMESPACE",
+      "steps": []
+    },
+    "driver_wire_sha256": "40f8525bb78487faa6438ae6862d032ddc5b66b862a4db6d352764e5bd2ade4f",
+    "payload_executed_locally": false
+  },
+  "source_ci_runs": [
+    43425533059,
+    43425791395
+  ],
+  "image_ready": false,
+  "native_admission": false,
+  "official_model_calls": 0,
+  "files": {
+    "retention.json": {
+      "nbytes": 364,
+      "sha256": "9aa5bd6f345d971c8906ab3cf22f9426a30c9da741ab4108df4d5cbe5f0cd321"
+    },
+    "run-logs.zip": {
+      "nbytes": 19205,
+      "sha256": "dab9c440d05e56dacdaf94ea2ca27abeff5839106d43365e30eb3d51d8e3d902"
+    },
+    "root-files.json": {
+      "nbytes": 8570595,
+      "sha256": "835121e2a4bb7e6996a94d1152209c5921f874d75454a19ee8c52b5189f85a25"
+    },
+    "independent-archive-check.json": {
+      "nbytes": 723,
+      "sha256": "c5196727c7f6cd0be44adfe69ba169cb1fa5dad79bcc449b7d42230ab41c5be4"
+    },
+    "profile.apparmor": {
+      "nbytes": 175,
+      "sha256": "e00bd0234d4d2a14a37d6780cab2a4ff080d7b7bd036b2c398f55a3b1903f14e"
+    },
+    "activation-commit.json": {
+      "nbytes": 1297,
+      "sha256": "9c7ad8831d364c9484235aec9bbd3502486c65ca13dd8afe045dd790ab0a6c0e"
+    },
+    "host-helper.bwrap": {
+      "nbytes": 194592,
+      "sha256": "ed290d7b467eba236ff705a83938ecf78a5dc055648ef5420937b9717b29af3e"
+    },
+    "preparation.json": {
+      "nbytes": 20766,
+      "sha256": "3d4b3fc52b00fef5e0d1d5f6815d68236107c243e0b25600cd9701ab2dce02cf"
+    },
+    "jobs.json": {
+      "nbytes": 2983,
+      "sha256": "008eef452be2fb3323e19f7dc6982213f7fac2ad700481353894cab3235c828b"
+    },
+    "registration.json": {
+      "nbytes": 668,
+      "sha256": "5026f6847fe6847551387ebbd142de7cf8e0678d43052481dbbd550e6f72a31e"
+    },
+    "workflow-runs.json": {
+      "nbytes": 15209,
+      "sha256": "dd78168ab0502237b0081c6f47db8a5a156ade2113ef2d1b66b29b8c3c81881e"
+    },
+    "workflow.json": {
+      "nbytes": 684,
+      "sha256": "74a11d95c8106fb505efe4794eb636821e0ba91f871d8f6362840572735a30e6"
+    },
+    "run.json": {
+      "nbytes": 15173,
+      "sha256": "141b65fa35016f58c8642b5cb418e4e3e8a9de93b49cdf19da218f171d8f42f7"
+    },
+    "artifacts.json": {
+      "nbytes": 829,
+      "sha256": "a54d9ee6cd2a2ae15e158e841e4a7b33c0eac319be812426a69a2980d8a0d847"
+    },
+    "source.tar.xz": {
+      "nbytes": 126452,
+      "sha256": "9760d007363e3abba7c747489910f9f82d9fca53ba3bd3282e396fa3c97a3314"
+    },
+    "retained-inventory.json": {
+      "nbytes": 4049578,
+      "sha256": "d124721636303eb3ccc193614d76b3eca1e1c55d65e39cca2fba1db84ac82981"
+    },
+    "activation-ref.json": {
+      "nbytes": 519,
+      "sha256": "63795e8bb44fc635b597eaff9289460c5de996d0333128e0ac3be62060cb14bf"
+    },
+    "source-closure.json": {
+      "nbytes": 24401,
+      "sha256": "570cf58127ee92624b5232cf6a759955651e4595dfb76d866f7c856ec2c575f9"
+    },
+    "original-artifact.zip": {
+      "nbytes": 242295611,
+      "sha256": "cf18867d5cab62df6f00edf0e3a28f5a505a49c827bdbb7603c95cf1d8bd7551"
+    },
+    "retained-workspaces.tar.gz": {
+      "nbytes": 229307520,
+      "sha256": "7b410974e123546fdcd17d229977655fbe4b59d477c0f2db0bb8a4f7af2c9107"
+    },
+    "retained-workspaces.decoded.tar": {
+      "nbytes": 480819200,
+      "sha256": "8b35b8b62960cf5bd78fa6cf3022ccb7368b9a69d54240863f6b2b50c2bfb001"
+    }
+  }
+}
