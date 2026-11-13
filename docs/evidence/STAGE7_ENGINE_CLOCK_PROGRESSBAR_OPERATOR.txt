@@ -1,0 +1,91 @@
+HISTORICAL ONE-USE STATIC ACQUISITION; never replay after output directory exists.
+Run the body after the marker with the existing CPU Python from repository root.
+BEGIN PYTHON
+import datetime, hashlib, json, os, platform, shutil, signal, subprocess, sys, time
+from pathlib import Path
+from urllib.parse import urlsplit
+
+root = Path.cwd()
+request_path = root / 'docs/evidence/STAGE7_ENGINE_CLOCK_PROGRESSBAR_REQUEST.json'
+request = json.loads(request_path.read_text())
+out = root / request['output_directory']
+out.mkdir(parents=True, exist_ok=False)
+start = time.monotonic()
+deadline = start + 240
+def save(name, value):
+    (out/name).write_text(json.dumps(value, indent=2, sort_keys=True)+'\n')
+def digest(path):
+    h=hashlib.sha256()
+    with path.open('rb') as f:
+        for b in iter(lambda:f.read(1048576),b''): h.update(b)
+    return h.hexdigest()
+head = subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
+attempt={'request_id':request['request_id'],'execution_source_sha':head,
+         'started_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),
+         'status':'CONSUMED_STARTED','further_execution_authorized':False}
+save('attempt.json',attempt)
+receipt=dict(attempt,schema='engine-clock-progressbar-input-receipt-v1',transfers=[],
+             source_execution=False,build_executed=False,build_ready=False,
+             full_lock_ready=False,image_preparation_ready=False,native_admission=False)
+def fetch(name,url,cap):
+    parts=urlsplit(url)
+    assert parts.scheme=='https' and parts.hostname in ('pypi.org','files.pythonhosted.org')
+    assert parts.username is None and parts.password is None and parts.port is None
+    assert not parts.query and not parts.fragment
+    remaining=deadline-time.monotonic()
+    assert remaining>2
+    transfer=out/(name+'.transfer.json')
+    error=out/(name+'.stderr')
+    cmd=['curl','--silent','--show-error','--fail','--proto','=https',
+         '--max-time',str(min(30,remaining-2)),'--max-filesize',str(cap),'--retry','0',
+         '--output',str(out/name),'--write-out','%{json}',url]
+    with transfer.open('xb') as stdout,error.open('xb') as stderr:
+        proc=subprocess.Popen(cmd,stdout=stdout,stderr=stderr,start_new_session=True)
+        try: code=proc.wait(timeout=min(32,remaining))
+        finally:
+            if proc.poll() is None:
+                os.killpg(proc.pid,signal.SIGKILL)
+                proc.wait(timeout=2)
+    stats=json.loads(transfer.read_text())
+    public={k:stats.get(k) for k in ('http_code','ssl_verify_result','num_redirects','size_download','exitcode','url_effective')}
+    public.update(file=name,curl_exit=code)
+    receipt['transfers'].append(public)
+    assert code==0 and stats['http_code']==200 and stats['ssl_verify_result']==0 and stats['num_redirects']==0
+    assert (out/name).stat().st_size<=cap
+    assert sum(p.stat().st_size for p in out.iterdir() if p.is_file())<=33554432
+    assert time.monotonic()<=deadline
+    return out/name
+try:
+    assert not subprocess.check_output(['git','status','--porcelain'],text=True).strip()
+    assert sys.executable==request['tool_python'] and platform.python_version()=='3.11.17'
+    receipt.update(actual_python=platform.python_version(),free_bytes_before=shutil.disk_usage(out).free,
+                   request_sha256=digest(request_path),
+                   operator_sha256=digest(root/'docs/evidence/STAGE7_ENGINE_CLOCK_PROGRESSBAR_OPERATOR.txt'))
+    assert receipt['free_bytes_before']>=1073741824
+    source=request['source']
+    p=fetch(source['filename'],source['url'],65536)
+    assert p.stat().st_size==source['nbytes'] and digest(p)==source['sha256']
+    receipt['source']={**source,'hash_verified':True}
+    receipt['tools']=[]
+    for tool in request['tools']:
+        name,version=tool['name'],tool['version']
+        p=fetch(name+'-'+version+'.release.json','https://pypi.org/pypi/'+name+'/'+version+'/json',1048576)
+        metadata=json.loads(p.read_text())
+        assert metadata['info']['name'].lower()==name and metadata['info']['version']==version
+        candidates=[f for f in metadata['urls'] if f['filename']==tool['filename'] and f['packagetype']=='bdist_wheel' and not f['yanked']]
+        assert len(candidates)==1
+        f=candidates[0]
+        assert f['size']<=8388608
+        p=fetch(f['filename'],f['url'],8388608)
+        assert p.stat().st_size==f['size'] and digest(p)==f['digests']['sha256']
+        receipt['tools'].append({'name':name,'version':version,'filename':p.name,'url':f['url'],
+                                  'nbytes':p.stat().st_size,'sha256':digest(p),'hash_verified':True})
+    receipt['status']='STATIC_BYTES_ACQUIRED_NOT_BUILT'
+except Exception as exc:
+    receipt.update(status='FAILED_OR_INCOMPLETE',error_class=type(exc).__name__)
+finally:
+    receipt['duration_seconds']=time.monotonic()-start
+    receipt['files']={p.name:{'nbytes':p.stat().st_size,'sha256':digest(p)}
+                      for p in sorted(out.iterdir()) if p.is_file() and p.name!='receipt.json'}
+    save('receipt.json',receipt)
+    print(json.dumps({k:receipt.get(k) for k in ('status','execution_source_sha','duration_seconds','source_execution','build_executed')}))

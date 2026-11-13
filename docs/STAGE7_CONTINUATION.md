@@ -4,7 +4,15 @@
 
 
 
-## Current checkpoint (2026-11-13 — binary-only Python lock blocked)
+## Current checkpoint (2026-11-13 — genuine progressbar source/build-tool inputs verified)
+
+Branch `evidence/engine-clock-progressbar-build-inputs`, base PR46/`3fbc5c0193e0a45d766c7efe276fcf4f3369b42e`. Registered acquisition source `bacf44f2e1f6e010b413e4400a5c47d26ac7026b` fetched actual progressbar2.5 source plus pip26.2.2/setuptools80.9.0/wheel0.45.1 wheel bytes and3versioned JSONs once. All7HTTP200/TLS0/redirect0/retry0; payload3,137,991bytes/2.953218s, retained23rawfiles3,202,941bytes. Source10,046bytes measured SHA5d81...;18tar members/6Python AST parses/4runtimefiles. Tool1,027RECORDrows/10,035,956decodedbytes verified; default tool metadata closure has0active external requirements with explicit target3.11.18/Linux markers/no extras. This is a component closure, not Python/bootstrap/OS/full lock. setup.py imports runtime and may rewrite README, so a build is source execution, not passive metadata inspection. No source build/import or downloaded-tool execution occurred.
+
+See [source/tool result](STAGE7_ENGINE_CLOCK_PROGRESSBAR_BUILD_INPUTS.md), component inputs/inactive build policy/audit/static findings. Request `progressbar-input-20261113-01` consumed/no rerun; original inputs/workspaces retained. No rewrite/substitution selected. Next independently authenticate genuine Python3.11.18/stdlib/venv/ensurepip/bootstrap closure, implement and fixture-review a bounded offline source-build launcher, then register a separate execution request. Target/bootstrap/sandbox/outputwheel hashes remain unresolved/null; build_readyfalse, full lock false, Task3 incomplete, image16refsnull/nativeallowance0. Preserve producer70/workflows44/registry8/old tools/tests/policy/proposal/raw/workspaces. No native/model/image/Cloud publication/main merge. StrictFAIL/expandedNOT_RUN/ABBA terminalFAIL/geometry-optics-fullS/Stage7INCOMPLETE remain. Earlier checkpoints are historical.
+
+Fresh whole-branch/raw review at `1ee42089c67fd7ef22209504b287911c9f577c62` accepted evidence-only C0/I0/M0. Seven declined scopes have root rulings/costs in audit. Future launcher must explicitly bind its staged source and pip's actual build tree, preserving before/after snapshots through cleanup. No current deferred minors. Actual acquisition source, reviewed HEAD and final receipt/CI HEAD stay distinct; final integration observations are recorded in the Draft PR.
+
+## Previous checkpoint (2026-11-13 — binary-only Python lock blocked)
 
 Branch `evidence/engine-clock-python-lock-gate`, base PR45/`cc6d3a986fb54c128b9d69f4e2a4d10eb7c2c898`. One registered dry-run at source `a4b5b1a917caa4cad58510b3f1b59e184d94037d` used the retained derivative wheel f949... and fixed pins, without installation/source execution. Actual Python3.11.17/pip26.2.2 screened target CPython3.11.18/Linux amd64, manylinux<=2.28. Pip exit1 in4.533520s: `No matching distribution found for progressbar`; no successful report. Official PyPI metadata HTTP200/TLS0/redirect0 shows5release keys, all recorded files sdist, latest2.5. Source archive was not downloaded or executed. This is a binary-only packaging blocker, not graph unsatisfiability or historical rendering causation.
 

@@ -1,0 +1,206 @@
+{
+  "actions_artifact_id": null,
+  "actions_run_id": null,
+  "actual_acquisition_source_sha": "bacf44f2e1f6e010b413e4400a5c47d26ac7026b",
+  "all_old_tracked_files_unchanged_before_status_updates": 401,
+  "base_sha": "3fbc5c0193e0a45d766c7efe276fcf4f3369b42e",
+  "build_executed": false,
+  "build_ready": false,
+  "component_inputs_sha256": "119328fbee29d849aa9d938d0e45111369ec9cbd49f15285cb7eb4423d2324b6",
+  "current_deferred_minors": [],
+  "default_tool_metadata_closure_complete": true,
+  "full_lock_ready": false,
+  "further_execution_authorized": false,
+  "image_preparation_ready": false,
+  "inactive_build_policy_sha256": "e37c559811b28eae4384fa1a431b11008ac7753e86901395275cee01bd836af3",
+  "limits": [
+    "Published SHA matched actual payload; no publisher signature/endorsement/host attestation.",
+    "Component tool default closure is not bootstrap/runtime/OS/full image lock.",
+    "Python3.11.17 AST parsing is not3.11.18 runtime compatibility proof.",
+    "Build policy inactive; launcher/isolation/target runtime/bootstrap/output not implemented or measured.",
+    "Static checks cover these fixed archives, not a reviewed reusable hostile-input API.",
+    "Curl payload totals exclude HTTP/TLS/transfer-file overhead; local raw totals exclude private inspection workspace."
+  ],
+  "native_admission": false,
+  "new_native_process_count": 0,
+  "new_official_model_calls": 0,
+  "payload_download_bytes": 3137991,
+  "raw_directory": "output/stage7-progressbar-build-inputs/progressbar-input-20261113-01",
+  "raw_files": {
+    "attempt.json": {
+      "nbytes": 248,
+      "sha256": "dfdebdfa7e6b833a6fd07c4c22b81ee5fc4eb0c81810f7669f038f3fef885eb6"
+    },
+    "pip-26.2.2-py3-none-any.whl": {
+      "nbytes": 1819850,
+      "sha256": "fd7f4dfa8190e014013b9f08f3e973f4e4c26ffd179a204895533a7254813a70"
+    },
+    "pip-26.2.2-py3-none-any.whl.stderr": {
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "pip-26.2.2-py3-none-any.whl.transfer.json": {
+      "nbytes": 8278,
+      "sha256": "8391901bfbc4c7a52590c4d60037c16176f13a6cbab6dc68bb266cd49b001ac9"
+    },
+    "pip-26.2.2.release.json": {
+      "nbytes": 6683,
+      "sha256": "d0b07879e414dc3347bf20a492a9e8a15cfb1962e3cae3843b93453d9940f5f9"
+    },
+    "pip-26.2.2.release.json.stderr": {
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "pip-26.2.2.release.json.transfer.json": {
+      "nbytes": 7807,
+      "sha256": "fb73a32f0cb4c3d2bb71c29898155b4f33141252620db76dd253e6e7a42d1ee3"
+    },
+    "progressbar-2.5.tar.gz": {
+      "nbytes": 10046,
+      "sha256": "5d81cb529da2e223b53962afd6c8ca0f05c6670e40309a7219eacc36af9b6c63"
+    },
+    "progressbar-2.5.tar.gz.stderr": {
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "progressbar-2.5.tar.gz.transfer.json": {
+      "nbytes": 8249,
+      "sha256": "e7daeee81846346f7a7630b4f9a6496156055c4503b8ea53ea4eeebf9ebbf59a"
+    },
+    "receipt.json": {
+      "nbytes": 8109,
+      "sha256": "644a3d3568a3c9ea91028279bfc4bd5f1a75edee94e0601c46c651642da59900"
+    },
+    "setuptools-80.9.0-py3-none-any.whl": {
+      "nbytes": 1201486,
+      "sha256": "062d34222ad13e0cc312a4c02d73f059e86a4acbfbdea8f8f76b28c99f306922"
+    },
+    "setuptools-80.9.0-py3-none-any.whl.stderr": {
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "setuptools-80.9.0-py3-none-any.whl.transfer.json": {
+      "nbytes": 8313,
+      "sha256": "99113bbd04fbfebc08588b56e89dfad5edf6fb685cf5fca75778b4a03e5d76ed"
+    },
+    "setuptools-80.9.0.release.json": {
+      "nbytes": 15392,
+      "sha256": "e3188a9a8921b0bd16ae2728753269376a4b90ca3413f67b77f77417ab2e503e"
+    },
+    "setuptools-80.9.0.release.json.stderr": {
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "setuptools-80.9.0.release.json.transfer.json": {
+      "nbytes": 7843,
+      "sha256": "5edb565805d41bebb5ad4c6532214d010c339d08437ca5f2030ae06250cb4ff3"
+    },
+    "wheel-0.45.1-py3-none-any.whl": {
+      "nbytes": 72494,
+      "sha256": "708e7481cc80179af0e556bbf0cc00b8444c7321e2700b8d8580231d13017248"
+    },
+    "wheel-0.45.1-py3-none-any.whl.stderr": {
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "wheel-0.45.1-py3-none-any.whl.transfer.json": {
+      "nbytes": 8285,
+      "sha256": "ac6ba34738f83534d2e421e66e5a7974dabc1958140d5a9543c6e0643455162d"
+    },
+    "wheel-0.45.1.release.json": {
+      "nbytes": 12040,
+      "sha256": "617c2b62cc17caeef3fc1e10144bd3d5b8dc2fb93bb67a87f2802c2d0a856c32"
+    },
+    "wheel-0.45.1.release.json.stderr": {
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "wheel-0.45.1.release.json.transfer.json": {
+      "nbytes": 7818,
+      "sha256": "0283df1e0fe6f95b8911a0dad100661074ffd052e9d86229d10a01c133fbea3b"
+    }
+  },
+  "raw_total_bytes": 3202941,
+  "request_consumed": true,
+  "request_id": "progressbar-input-20261113-01",
+  "review": {
+    "critical": 0,
+    "head": "1ee42089c67fd7ef22209504b287911c9f577c62",
+    "important": 0,
+    "merge_authorized": false,
+    "minor": 0,
+    "model": "gpt-6-astra",
+    "raw_review_sha256": "ece209c67c80f9aa490027ebe203b365da59b0abcb5fcfd8fd89f9e7a8f286c5",
+    "reasoning_effort": "medium",
+    "reviewer": "progressbar_inputs_final_review",
+    "source_build_authorized": false,
+    "status": "PASS_SCOPED_EVIDENCE_REVIEW_FINAL_CI_PENDING"
+  },
+  "review_decline_rulings": [
+    {
+      "cost_if_wrong": "A later build/API incompatibility may still block the wheel.",
+      "id": "D1",
+      "ruling": "Keep actual target3.11.18 build/import/API compatibility unresolved until authenticated runtime and reviewed source execution"
+    },
+    {
+      "cost_if_wrong": "Additional launcher work/delay; staging or cleanup could otherwise invalidate byte-preservation evidence.",
+      "id": "D2",
+      "ruling": "Require future fixture-proven isolation/quotas/group cleanup and explicit staged-versus-pip build-tree snapshots surviving cleanup before activation"
+    },
+    {
+      "cost_if_wrong": "Stronger origin/host/replay assurance remains absent.",
+      "id": "D3",
+      "ruling": "Accept published-hash/TLS/local-receipt agreement only; do not claim signatures/host attestation/global anti-replay"
+    },
+    {
+      "cost_if_wrong": "Further dependencies or incompatibilities may block full preparation.",
+      "id": "D4",
+      "ruling": "Treat three-tool metadata closure as component-only; runtime/bootstrap/OS/full-image locks remain blockers"
+    },
+    {
+      "cost_if_wrong": "Adversarial reuse or unknown tool vulnerabilities remain outside evidence.",
+      "id": "D5",
+      "ruling": "Accept fixed-archive inspection only, not a reusable validator or full tool security audit"
+    },
+    {
+      "cost_if_wrong": "Stage7 remains incomplete and original strict failure unresolved.",
+      "id": "D6",
+      "ruling": "Preserve all historical native/model/rendering failures and unknowns; no scientific equivalence follows"
+    },
+    {
+      "cost_if_wrong": "Later observations can become stale; source/review/final evidence must not be conflated.",
+      "id": "D7",
+      "ruling": "Check final Draft/CI/local-remote/main/Cloud state directly after reviewed HEAD and report separately"
+    }
+  ],
+  "root_checks": [
+    "raw23size/hash match",
+    "public receipt/release/static bytes match",
+    "registered request/operator exact execution-commit bytes",
+    "source/tool payload hash and1027RECORD rows verified",
+    "explicit target default tool marker closure only",
+    "401priorfiles preserved except2statusdocs",
+    "proposal frozen; no incomplete image lock",
+    "new document links valid"
+  ],
+  "root_rulings": [
+    "Execute inline without repeated design/execution questions \u2014 user's prior autonomous sequential authorization and question opt-out apply \u2014 cost if wrong: user must review the concrete selected scope afterward.",
+    "New branch in current checkout, preserve every raw/workspace and avoid duplicate local suite for data-only changes \u2014 existing preferences and unchanged product code \u2014 cost if wrong: retained disk/reduced isolation and local regressions depend on baseline CI.",
+    "Inspect original progressbar2.5 plus exact pip26.2.2/setuptools80.9.0/wheel0.45.1 before any source execution \u2014 minimal fixed candidate tools avoid uncontrolled backend resolution \u2014 cost if wrong: older fixed tools or source may be unsuitable, requiring a separately reviewed revision.",
+    "Keep acquisition/static evidence separate from source build; target runtime and any source patch require concrete review before execution \u2014 parent requires genuine reviewed inputs and forbids unsupported bypass \u2014 cost if wrong: an otherwise straightforward source build is delayed.",
+    "Three-tool metadata closure excludes Python/venv/ensurepip/bootstrap and OS/sandbox; require genuine separate bootstrap closure before source build \u2014 a self-bootstrapping claim would hide executable inputs \u2014 cost if wrong: extra runtime acquisition/review work delays the small pure-Python wheel.",
+    "Keep the original source with no rewrite, but treat setup import/README mutation and anticipated output paths as unmeasured build behavior \u2014 static parsing is not execution proof \u2014 cost if wrong: a later legitimate output/path difference requires policy revision rather than automatic acceptance."
+  ],
+  "runtime_payload_files": 4,
+  "schema": "engine-clock-progressbar-build-input-audit-v1",
+  "source_archive_members": 18,
+  "source_execution": false,
+  "source_expanded_tar_bytes": 61440,
+  "source_python_parse_ok": 6,
+  "started_kst": "2026-11-13T11:31:31.759418+09:00",
+  "static_inspection_script_sha256": "ae1eb86ba9987d350cf0a68416d41ae0a68884689ac4084d465b48bfa751d8db",
+  "task3_complete": false,
+  "tool_decoded_bytes_verified": 10035956,
+  "tool_record_rows_verified": 1027,
+  "transfer_count": 7
+}
