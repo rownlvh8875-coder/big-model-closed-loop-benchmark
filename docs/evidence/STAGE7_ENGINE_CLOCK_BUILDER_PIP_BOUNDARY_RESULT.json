@@ -1,0 +1,432 @@
+{
+  "activation_sha": "8f2b8c6fbc50ad46324086ed782ed00353661fad",
+  "archive_check": {
+    "all_input_payloads_matched": 51,
+    "all_inventory_fields_verified": true,
+    "all_root_nodes_matched": 12728,
+    "compressed_sha256": "e8ff5fae417e124e7bc3f916c64dc02a4378ba321ad920ca5ff2b260ee209951",
+    "counts": {
+      "directory": 1032,
+      "file": 12926,
+      "symlink": 168
+    },
+    "decoded_tar_bytes": 491827200,
+    "decoded_tar_sha256": "c6d919df042d18d925dc0396b90c95467900d59f174720e1342aa26c4977682f",
+    "entries": 14126,
+    "payload_executed_locally": false,
+    "regular_bytes": 472479810,
+    "single_gzip_eof_crc": true,
+    "zero_tail_bytes": 1024,
+    "zip_digest_crc_members_verified": true
+  },
+  "created_kst": "2026-11-13T23:30:36+09:00",
+  "diagnosis": "SOURCE_DIRECTORY_LIFECYCLE_MISMATCH_CONFIRMED",
+  "diagnosis_basis": {
+    "anchors": [
+      {
+        "first_line": 339,
+        "last_line": 363,
+        "lines": [
+          "        # This is the only remaining place where we manually determine the path",
+          "        # for the temporary directory. It is only needed for editables where",
+          "        # it is the value of the --src option.",
+          "",
+          "        # When parallel builds are enabled, add a UUID to the build directory",
+          "        # name so multiple builds do not interfere with each other.",
+          "        dir_name: str = canonicalize_name(self.req.name)",
+          "        if parallel_builds:",
+          "            dir_name = f\"{dir_name}_{uuid.uuid4().hex}\"",
+          "",
+          "        # FIXME: Is there a better place to create the build_dir? (hg and bzr",
+          "        # need this)",
+          "        if not os.path.exists(build_dir):",
+          "            logger.debug(\"Creating directory %s\", build_dir)",
+          "            os.makedirs(build_dir)",
+          "        actual_build_dir = os.path.join(build_dir, dir_name)",
+          "        # `None` indicates that we respect the globally-configured deletion",
+          "        # settings, which is what we actually want when auto-deleting.",
+          "        delete_arg = None if autodelete else False",
+          "        return TempDirectory(",
+          "            path=actual_build_dir,",
+          "            delete=delete_arg,",
+          "            kind=tempdir_kinds.REQ_BUILD,",
+          "            globally_managed=True,",
+          "        ).path"
+        ],
+        "member": "pip/_internal/req/req_install.py",
+        "source_sha256": "af6f3dfff58d55a4f1a51b4b154cf716936f746bfcc986bcec6f9090fe43b097"
+      },
+      {
+        "first_line": 111,
+        "last_line": 149,
+        "lines": [
+          "    def __init__(",
+          "        self,",
+          "        path: str | None = None,",
+          "        delete: bool | None | _Default = _default,",
+          "        kind: str = \"temp\",",
+          "        globally_managed: bool = False,",
+          "        ignore_cleanup_errors: bool = True,",
+          "    ):",
+          "        super().__init__()",
+          "",
+          "        if delete is _default:",
+          "            if path is not None:",
+          "                # If we were given an explicit directory, resolve delete option",
+          "                # now.",
+          "                delete = False",
+          "            else:",
+          "                # Otherwise, we wait until cleanup and see what",
+          "                # tempdir_registry says.",
+          "                delete = None",
+          "",
+          "        # The only time we specify path is in for editables where it",
+          "        # is the value of the --src option.",
+          "        if path is None:",
+          "            path = self._create(kind)",
+          "",
+          "        self._path = path",
+          "        self._deleted = False",
+          "        self.delete = delete",
+          "        self.kind = kind",
+          "        self.ignore_cleanup_errors = ignore_cleanup_errors",
+          "",
+          "        if globally_managed:",
+          "            assert _tempdir_manager is not None",
+          "            _tempdir_manager.enter_context(self)",
+          "",
+          "    @property",
+          "    def path(self) -> str:",
+          "        assert not self._deleted, f\"Attempted to access deleted path: {self._path}\"",
+          "        return self._path"
+        ],
+        "member": "pip/_internal/utils/temp_dir.py",
+        "source_sha256": "4c388bf41cc4a767876a540b1f4ae1c8cde6db1bb274483d73ab758786d3e65f"
+      },
+      {
+        "first_line": 157,
+        "last_line": 197,
+        "lines": [
+          "def unpack_url(",
+          "    link: Link,",
+          "    location: str,",
+          "    download: Downloader,",
+          "    verbosity: int,",
+          "    download_dir: str | None = None,",
+          "    hashes: Hashes | None = None,",
+          ") -> File | None:",
+          "    \"\"\"Unpack link into location, downloading if required.",
+          "",
+          "    :param hashes: A Hashes object, one of whose embedded hashes must match,",
+          "        or HashMismatch will be raised. If the Hashes is empty, no matches are",
+          "        required, and unhashable types of requirements (like VCS ones, which",
+          "        would ordinarily raise HashUnsupported) are allowed.",
+          "    \"\"\"",
+          "    # non-editable vcs urls",
+          "    if link.is_vcs:",
+          "        unpack_vcs_link(link, location, verbosity=verbosity)",
+          "        return None",
+          "",
+          "    assert not link.is_existing_dir()",
+          "",
+          "    # file urls",
+          "    if link.is_file:",
+          "        file = get_file_url(link, download_dir, hashes=hashes)",
+          "",
+          "    # http urls",
+          "    else:",
+          "        file = get_http_url(",
+          "            link,",
+          "            download,",
+          "            download_dir,",
+          "            hashes=hashes,",
+          "        )",
+          "",
+          "    # unpack the archive to the build dir location. even when only downloading",
+          "    # archives, they have to be unpacked to parse dependencies, except wheels",
+          "    if not link.is_wheel:",
+          "        unpack_file(file.path, location, file.content_type)",
+          "",
+          "    return file"
+        ],
+        "member": "pip/_internal/operations/prepare.py",
+        "source_sha256": "ccb9153120eef5c511d0a9c39b76d9dd0bc879a12b8492abaf5d3d5320cc94a4"
+      },
+      {
+        "first_line": 437,
+        "last_line": 458,
+        "lines": [
+          "    def _ensure_link_req_src_dir(",
+          "        self, req: InstallRequirement, parallel_builds: bool",
+          "    ) -> None:",
+          "        \"\"\"Ensure source_dir of a linked InstallRequirement.\"\"\"",
+          "        # Since source_dir is only set for editable requirements.",
+          "        if req.link.is_wheel:",
+          "            # We don't need to unpack wheels, so no need for a source",
+          "            # directory.",
+          "            return",
+          "        assert req.source_dir is None",
+          "        if req.link.is_existing_dir():",
+          "            # build local directories in-tree",
+          "            req.source_dir = req.link.file_path",
+          "            return",
+          "",
+          "        # We always delete unpacked sdists after pip runs.",
+          "        req.ensure_has_source_dir(",
+          "            self.build_dir,",
+          "            autodelete=True,",
+          "            parallel_builds=parallel_builds,",
+          "        )",
+          "        req.ensure_pristine_source_checkout()"
+        ],
+        "member": "pip/_internal/operations/prepare.py",
+        "source_sha256": "ccb9153120eef5c511d0a9c39b76d9dd0bc879a12b8492abaf5d3d5320cc94a4"
+      },
+      {
+        "first_line": 164,
+        "last_line": 174,
+        "lines": [
+          "def untar_file(filename: str, location: str) -> None:",
+          "    \"\"\"",
+          "    Untar the file (with path `filename`) to the destination `location`.",
+          "    All files are written based on system defaults and umask (i.e. permissions",
+          "    are not preserved), except that regular file members with any execute",
+          "    permissions (user, group, or world) have \"chmod +x\" applied on top of the",
+          "    default.  Note that for windows, any execute changes using os.chmod are",
+          "    no-ops per the python docs.",
+          "    \"\"\"",
+          "    ensure_dir(location)",
+          "    if filename.lower().endswith(\".gz\") or filename.lower().endswith(\".tgz\"):"
+        ],
+        "member": "pip/_internal/utils/unpacking.py",
+        "source_sha256": "e62f529fffd2344961a025e72edd92bd0690f929d3cdc51a0c7d7f248d531d4c"
+      },
+      {
+        "first_line": 154,
+        "last_line": 168,
+        "lines": [
+          "                os.dup2(devnull, 1)",
+          "            finally:",
+          "                os.close(devnull)",
+          "",
+          "            return BROKEN_STDOUT",
+          "        except KeyboardInterrupt:",
+          "            logger.critical(\"Operation cancelled by user\")",
+          "            logger.debug(\"Exception information:\", exc_info=True)",
+          "",
+          "            return ERROR",
+          "        except BaseException:",
+          "            logger.critical(\"Exception:\", exc_info=True)",
+          "",
+          "            return UNKNOWN_ERROR",
+          ""
+        ],
+        "member": "pip/_internal/cli/base_command.py",
+        "source_sha256": "c85e7f990108acb1b61b49efca6652d272e18838380744fcf56e625fbf07e79f"
+      }
+    ],
+    "interpretation": "Named req ensure_build_location creates only parent and passes a provided final path to TempDirectory; its constructor creates only when path is None. unpack_url delegates archive extraction, untar_file creates final location. Our earlier _location lstat walks final directory before calling original unpack_url. These phases conflict; no source/payload change is needed.",
+    "schema": "registered-pip-directory-lifecycle-v1",
+    "wheel_sha256": "fd7f4dfa8190e014013b9f08f3e973f4e4c26ffd179a204895533a7254813a70"
+  },
+  "diagnosis_limit": "Actual06 facts and registered pip/owned source ordering establish this failure; do not retrofill missing05 values. No raw log/traceback/environment persisted.",
+  "driver_failure": {
+    "code": "COMMAND_FAILED",
+    "schema": "builder-driver-failure-v1",
+    "status": "FAILED",
+    "steps": [
+      {
+        "returncode": 0,
+        "stage": "VENV",
+        "status": "EXITED",
+        "stderr_bytes": 0,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_bytes": 0,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "returncode": 0,
+        "stage": "ENSUREPIP",
+        "status": "EXITED",
+        "stderr_bytes": 0,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_bytes": 257,
+        "stdout_sha256": "32c50a41c8e89745bb73a90ae9554cc8c8d0771f6aabf65153673b303fddea7b"
+      },
+      {
+        "returncode": 0,
+        "stage": "TOOLS",
+        "status": "EXITED",
+        "stderr_bytes": 0,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_bytes": 729,
+        "stdout_sha256": "6b9d3cac9ec5a5c08a0cb819f3bab158c605d813efb2de13d0811402714cfb95"
+      },
+      {
+        "returncode": 1,
+        "stage": "BUILD",
+        "status": "EXITED",
+        "stderr_bytes": 0,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_bytes": 72,
+        "stdout_sha256": "37c566ff834bbac22a5f442bbece5d117587427c5ca26cbfac095862948a96e0"
+      }
+    ]
+  },
+  "errors": [
+    {
+      "code": "BUILDER_EXECUTION_FAILED"
+    }
+  ],
+  "exact_outer_core_wires_reconstructed": true,
+  "files": {
+    "observed-source-failure.json": {
+      "nbytes": 899,
+      "sha256": "910037f1fd84f2c5238f270f1c339dd03e8315cfa1e1dc122e20b52198144105"
+    },
+    "original-artifact.zip": {
+      "nbytes": 245898358,
+      "sha256": "933a32e4797003ef879dc71eea87ea219007ffb980d237013f2aea9e6fa1b453"
+    },
+    "pip-directory-lifecycle-anchors.json": {
+      "nbytes": 9155,
+      "sha256": "bfff75b47507c10b11a5e0465ed6ce30cc03bbbad90481afae4c6637db6f7ddb"
+    },
+    "preparation.json": {
+      "nbytes": 23261,
+      "sha256": "1aed68961839a11abd74743d13ed71ca176288bb6472001636721925a34c4b80"
+    },
+    "retained-inventory.json": {
+      "nbytes": 4389428,
+      "sha256": "c4495f27d43035e999169d87d9a091ed56a66611a6991303ec74fcb424d928dd"
+    },
+    "retained-workspaces.decoded.tar": {
+      "nbytes": 491827200,
+      "sha256": "c6d919df042d18d925dc0396b90c95467900d59f174720e1342aa26c4977682f"
+    },
+    "retained-workspaces.tar.gz": {
+      "nbytes": 232561975,
+      "sha256": "e8ff5fae417e124e7bc3f916c64dc02a4378ba321ad920ca5ff2b260ee209951"
+    },
+    "root-files.json": {
+      "nbytes": 8573384,
+      "sha256": "f6ba2690980f18915808a90f6ac012a63c1762d48095379ee8b53cfea662ba20"
+    },
+    "source-closure.json": {
+      "nbytes": 27559,
+      "sha256": "17b715c3eff9d4b97b0a99785259fd4bf73fa1bbd2220c008c37dea780c85f52"
+    }
+  },
+  "finished_kst": "2026-11-13T23:33:07+09:00",
+  "full_lock_ready": false,
+  "image_preparation_ready": false,
+  "input_bytes": 109285137,
+  "input_transports": 51,
+  "job_id": 131946437674,
+  "namespace": {
+    "additional_userns": {
+      "errno": 28,
+      "returncode": -1,
+      "status": "RETURNED"
+    },
+    "build": {
+      "bytes": 268435456,
+      "readonly": false,
+      "tmpfs": true
+    },
+    "capabilities": {
+      "CapAmb": 0,
+      "CapBnd": 0,
+      "CapEff": 0,
+      "CapInh": 0,
+      "CapPrm": 0
+    },
+    "errors": [],
+    "gid": 0,
+    "network": {
+      "interface_count": null,
+      "interfaces_present": false,
+      "only_loopback": null,
+      "route_lines": 1
+    },
+    "python": {
+      "dont_write_bytecode": true,
+      "isolated": true,
+      "no_site": true,
+      "version": [
+        3,
+        11,
+        18
+      ]
+    },
+    "readonly": {
+      "/": true,
+      "/dev": true,
+      "/dev/pts": true,
+      "/proc": true
+    },
+    "schema": "builder-namespace-proof-v1",
+    "uid": 0,
+    "visible_userns_limit": 2147483647
+  },
+  "namespace_validated": true,
+  "native_admission": false,
+  "official_model_calls": 0,
+  "progressbar_source_execution": false,
+  "qualification_status": "SUPPORTED_SCOPED_PROFILE",
+  "raw_directory": "output/stage7-builder-pip-evidence/builder-20261113-06",
+  "request_consumed": true,
+  "request_id": "builder-20261113-06",
+  "root_bytes": 351898227,
+  "root_nodes_independently_matched": 12728,
+  "run_attempt": 1,
+  "run_id": 43443371678,
+  "schema": "builder-pip-boundary-consumption-v1",
+  "source_failure": {
+    "code": "MISSING_SOURCE_UNPACK",
+    "observation": {
+      "error_sites": [
+        {
+          "exception_code": "builtin.FileNotFoundError",
+          "level": 50,
+          "line": 165,
+          "member": "pip/_internal/cli/base_command.py"
+        }
+      ],
+      "hook_errno": 2,
+      "hook_error_code": null,
+      "hook_exception_code": "builtin.FileNotFoundError",
+      "hook_returns": 0,
+      "location": {
+        "kind": "STR",
+        "length": 74,
+        "matches_owned_pattern": true,
+        "relative_to_tmp": true,
+        "sha256": "38d362d236639070e8a0a9c794a62e1a8a05275334153425139788f0fb137c1e"
+      },
+      "logs": {
+        "stderr_bytes": 3927,
+        "stderr_sha256": "8ff27f85b0054bed99e360d9ae9aa768c2163df81da0de543a7b5c96d40311de",
+        "stdout_bytes": 85,
+        "stdout_sha256": "089547fe484618a84b84cf9874a98dd3ef8232e3774d426a1d6187bde01b674a"
+      },
+      "observer_errors": 0,
+      "pip_exception_code": null,
+      "pip_invocations": 1,
+      "pip_raised": false,
+      "pip_returncode": 2,
+      "schema": "pip-boundary-observation-v1",
+      "unpack_calls": 1
+    },
+    "observation_validated": true,
+    "schema": "source-failure-v3",
+    "status": "FAILED"
+  },
+  "source_sha": "15409cf9d021ae42b13066c17b43314e4c085790",
+  "status": "FAILED_OR_INCOMPLETE",
+  "target_execution_verified": false,
+  "unique_workflow_branch_runs": 1,
+  "wheel_verified": false,
+  "workflow_conclusion": "failure",
+  "workflow_id": 417365792
+}
