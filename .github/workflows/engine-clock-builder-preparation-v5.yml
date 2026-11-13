@@ -1,0 +1,77 @@
+{
+  "name": "Engine Clock Scoped Builder Preparation v5",
+  "on": {
+    "push": {
+      "branches": [
+        "prepare/engine-clock-builder-20261113-05"
+      ]
+    }
+  },
+  "permissions": {
+    "contents": "read",
+    "actions": "read"
+  },
+  "concurrency": {
+    "group": "engine-clock-builder-20261113-05",
+    "cancel-in-progress": false
+  },
+  "jobs": {
+    "prepare": {
+      "runs-on": "ubuntu-24.04",
+      "timeout-minutes": 30,
+      "steps": [
+        {
+          "name": "Reject repeated attempts",
+          "run": "test \"$GITHUB_RUN_ATTEMPT\" = 1"
+        },
+        {
+          "uses": "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "with": {
+            "fetch-depth": 1,
+            "persist-credentials": false,
+            "submodules": false,
+            "lfs": false
+          }
+        },
+        {
+          "name": "Authenticate source and unique request before host setup",
+          "env": {
+            "GH_TOKEN": "${{ github.token }}"
+          },
+          "run": "/usr/bin/python3 -I -S -B scripts/engine_clock_builder_bound_preparation.py --guard-only"
+        },
+        {
+          "name": "Compile pinned private trusted primary helper and prepare owned tmpfs",
+          "run": "set -euo pipefail\ntest -x /usr/sbin/apparmor_parser\nsudo test ! -e /usr/local/libexec/stage7-bwrap\nsudo apt-get update -qq\nsudo apt-get install -y --no-install-recommends meson ninja-build gcc pkg-config libcap-dev\nmkdir -m 0700 /tmp/engine-clock-profile-host-helper\nmkdir -p output/stage7-builder-preparation/builder-20261113-05\ncp docs/proposals/stage7-bwrap.apparmor output/stage7-builder-preparation/builder-20261113-05/profile.apparmor\ncurl --fail --silent --location --proto '=https' --max-time 60 --max-filesize 131072 https://github.com/containers/bubblewrap/releases/download/v0.12.0/bubblewrap-0.12.0.tar.xz --output output/stage7-builder-preparation/builder-20261113-05/source.tar.xz\nprintf '%s  %s\\n' 9760d007363e3abba7c747489910f9f82d9fca53ba3bd3282e396fa3c97a3314 output/stage7-builder-preparation/builder-20261113-05/source.tar.xz | sha256sum --check --status\ncp output/stage7-builder-preparation/builder-20261113-05/source.tar.xz /tmp/engine-clock-profile-host-helper/source.tar.xz\ncd /tmp/engine-clock-profile-host-helper\ntar -xf source.tar.xz\nenv -i PATH=/usr/bin:/bin LC_ALL=C meson setup build bubblewrap-0.12.0 -Dtests=false -Dman=disabled -Dselinux=disabled -Dbash_completion=disabled -Dzsh_completion=disabled\nenv -i PATH=/usr/bin:/bin LC_ALL=C ninja -C build\nsudo install -D -m 0755 build/bwrap /usr/local/libexec/stage7-bwrap\ncp build/bwrap \"$GITHUB_WORKSPACE/output/stage7-builder-preparation/builder-20261113-05/host-helper.bwrap\"\nmkdir -m 0700 /tmp/engine-clock-build-builder-20261113-05-probe\nsudo mount -t tmpfs -o size=268435456,mode=0700,uid=\"$(id -u)\",gid=\"$(id -g)\",nosuid,nodev,noexec engine-clock-profile /tmp/engine-clock-build-builder-20261113-05-probe\nmkdir -m 0700 /tmp/engine-clock-build-builder-20261113-05\nsudo mount -t tmpfs -o size=268435456,mode=0700,uid=\"$(id -u)\",gid=\"$(id -g)\",nosuid,nodev,noexec engine-clock-candidate /tmp/engine-clock-build-builder-20261113-05\n"
+        },
+        {
+          "name": "Requalify scoped backend then stage and build candidate with explicit legacy build binding",
+          "env": {
+            "GH_TOKEN": "${{ github.token }}"
+          },
+          "run": "/usr/bin/python3 -I -S -B scripts/engine_clock_builder_bound_preparation.py"
+        },
+        {
+          "name": "Retain bounded available candidate probe and primary helper workspaces",
+          "if": "${{ always() && github.run_attempt == 1 }}",
+          "env": {
+            "GH_TOKEN": "${{ github.token }}"
+          },
+          "run": "/usr/bin/python3 -I -S -B scripts/engine_clock_builder_bound_preparation.py --retain"
+        },
+        {
+          "name": "Preserve original bounded observations",
+          "if": "${{ always() && github.run_attempt == 1 }}",
+          "uses": "actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+          "with": {
+            "name": "engine-clock-builder-20261113-05",
+            "path": "output/stage7-builder-preparation/builder-20261113-05/",
+            "compression-level": 0,
+            "retention-days": 30,
+            "if-no-files-found": "error"
+          }
+        }
+      ]
+    }
+  }
+}
