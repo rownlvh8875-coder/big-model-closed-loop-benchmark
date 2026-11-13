@@ -23,3 +23,12 @@ Mutable registry tag is discovery only; bind actual manifest/config/layer descri
 - [ ] Register the exact newly selected base/asset/deb payload URLs/sizes/SHA256 and aggregate caps after discovery. Fetch each new payload once; reuse old matching debs unchanged. Preserve raw bytes, failures and hashes.
 - [ ] Independently verify actual hashes/archive safety/package identity/static ELF SONAME/version coverage and asset inventory. Emit complete actual input lock only for supported closure; otherwise explicit partial/failure status, no fallback or retry.
 - [ ] Fresh read-only actual lock/recipe review before any separately source-qualified image preparation implementation/activation. Record every ruling/cost/deferred Minor, retain all evidence and continue parentTask3 only within verified scope.
+
+### Genuine merged-/usr projection regression
+
+Files:create scripts/engine_clock_image_input_paths.py;tests/test_engine_clock_image_input_paths.py. Interface from spec addendum.
+
+- [ ] Write owned fixtures for exact base-files`lib->usr/lib` descriptor plus libunwind8`lib`directory and payload projection; preserve original dict/data/hash/mode.
+- [ ] Assert normalized hardlink/symlink targets map without following host paths; reject unsafe names/unregistered aliases/changed alias targets/regular object at alias root; leave ordinary paths unchanged.
+- [ ] Run focused RED (missing helper); implement pure projection only; GREEN. Use this source in a new local static-analysis request and reuse141retained06outputs without reexecution;06 remains consumed.
+- [ ] Complete measured input/candidate coverage, then full CPU and one fresh source+actual-input review before image preparation. No image operation is implied by this pure helper.
