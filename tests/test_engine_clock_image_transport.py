@@ -61,4 +61,25 @@ class ImageTransportTests(unittest.TestCase):
    with self.assertRaisesRegex(ValueError,'^IMAGE_TRANSPORT_REJECTED$'):c.get_json('actions/runs/1','run.json')
    self.assertEqual(1,opener.calls)
 
+
+ def test_blocking_trickle_and_delayed_eof_have_interruptible_absolute_deadlines(self):
+  from unittest.mock import patch
+  for mode in ('blocked','trickle','eof'):
+   with self.subTest(mode=mode),tempfile.TemporaryDirectory() as tmp:
+    class Slow(Response):
+     def read(self,n):
+      if mode=='blocked':time.sleep(.2)
+      if mode=='trickle':
+       time.sleep(.03);return self.data.read(1)
+      raw=self.data.read(n)
+      if mode=='eof' and not raw:time.sleep(.2)
+      return raw
+    class Opener:
+     def open(self,req,timeout):return Slow(b'owned')
+    root=Path(tmp);c=self.client(root,Opener());p=root/'payload';start=time.monotonic()
+    with patch.object(transport,'MAX_TRANSFER_SECONDS',.06):
+     with self.assertRaisesRegex(ValueError,'^IMAGE_TRANSPORT_REJECTED$'):
+      c.download('https://files.pythonhosted.org/packages/owned',p,nbytes=5,sha256=hashlib.sha256(b'owned').hexdigest(),kind='public')
+    self.assertLess(time.monotonic()-start,.16);self.assertFalse(p.exists());self.assertTrue(p.with_name('payload.partial').exists())
+
 if __name__=='__main__':unittest.main()

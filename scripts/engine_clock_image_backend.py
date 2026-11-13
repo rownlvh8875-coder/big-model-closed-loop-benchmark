@@ -16,7 +16,7 @@ def need(value):
 class Docker:
     def __init__(self,out,*,deadline,source_root=None):
         self.out=Path(out);self.out.mkdir(parents=True,exist_ok=True,mode=0o700)
-        self.deadline=deadline;self.source_root=Path(source_root) if source_root else None;self.counter=0;self.used=set()
+        self.cleanup_deadline=deadline;self.deadline=deadline-12;self.source_root=Path(source_root) if source_root else None;self.counter=0;self.used=set()
         self.config=self.out/'offline-config';self.config.mkdir(mode=0o700)
         (self.config/'config.json').write_text('{"auths":{},"proxies":{}}\n')
         self.env={k:v for k,v in os.environ.items() if not k.startswith(('DOCKER_','GH_','GITHUB_','AWS_','AZURE_','OPENAI_','ANTHROPIC_')) and k.upper() not in ('HTTP_PROXY','HTTPS_PROXY','ALL_PROXY','NO_PROXY')}
@@ -24,13 +24,13 @@ class Docker:
         self.redact=make_redactor(os.environ)
     def once(self,name):
         need(name not in self.used);self.used.add(name)
-    def call(self,args,*,timeout=60,private=True,stdout_limit=4*1024**2,stdin=None,file_limit=None):
-        self.counter+=1;left=min(timeout,self.deadline-time.perf_counter());need(left>0)
+    def call(self,args,*,timeout=60,private=True,stdout_limit=4*1024**2,stdin=None,file_limit=None,cleanup=False):
+        self.counter+=1;left=min(timeout,(self.cleanup_deadline if cleanup else self.deadline)-time.perf_counter());need(left>0)
         result=process.capture(['docker','--host=unix:///var/run/docker.sock','--config',str(self.config),*args],self.out/('command-%03d'%self.counter),timeout=left,stdout_limit=stdout_limit if private else 512*1024,stderr_limit=1024**2 if private else 512*1024,stdin=stdin,env=self.env,keep_stdout=not private,keep_stderr=not private,redact=None if private else self.redact,file_size_limit=file_limit)
         need(result['status']=='EXITED' and result['returncode']==0 and result['streams_complete'] is True)
         return result
-    def json(self,args):
-        result=self.call(args)
+    def json(self,args,*,cleanup=False):
+        result=self.call(args,cleanup=cleanup)
         from scripts.engine_clock_image_preparation import parse
         return parse(result['_stdout'])
     def qualify(self,archive_path):
@@ -81,12 +81,30 @@ class Docker:
     def save(self,image,path):
         from scripts.engine_clock_image_preparation import IMAGE_TAG
         self.once('save');self.call(['image','save','--output',str(path),IMAGE_TAG],timeout=180,private=False,file_limit=2*1024**3)
+    def terminate(self,cid):
+        from scripts.engine_clock_image_preparation import canonical
+        result={'container_id':cid,'cleanup_allowance_seconds':12,'stop_succeeded':False,'kill_succeeded':False,'stopped_state_established':False}
+        def stopped():
+            try:
+                state=self.json(['container','inspect','--format','{{json .State}}',cid],cleanup=True)
+                return state['Running'] is False and state['Status'] in ('exited','dead','created')
+            except Exception:return False
+        try:self.call(['stop','--time=2',cid],timeout=5,cleanup=True);result['stop_succeeded']=True
+        except Exception:pass
+        result['stopped_state_established']=stopped()
+        if not result['stopped_state_established']:
+            try:self.call(['kill',cid],timeout=3,cleanup=True);result['kill_succeeded']=True
+            except Exception:pass
+            result['stopped_state_established']=stopped()
+        (self.out/'termination.json').write_bytes(canonical(result))
+        return result
     def copied_tree(self,cid,remote,prefix,entries,name):
         target=self.out/(name+'.tar')
         result=self.call(['cp',cid+':'+remote,'-'],timeout=120,stdout_limit=512*1024**2)
         # Private binary bytes are retained only after successful bounded capture.
         raw=result['_stdout'];need(len(raw)<=512*1024**2)
         with target.open('xb') as f:f.write(raw)
+        if remote=='/opt/venv/bin/python':return archive.verify_executable_archive(target,entries,deadline=min(self.deadline,time.perf_counter()+180))
         return archive.verify_tree_archive(target,entries,prefix=prefix,deadline=min(self.deadline,time.perf_counter()+180))
     def collect(self,image,request,*,expected_manifest=None,precheck=False):
         from scripts.engine_clock_image_preparation import SCRIPT_PATH,canonical,parse,normalize_launch
@@ -112,6 +130,8 @@ class Docker:
             copied.append(self.copied_tree(cid,'/usr/local/libexec/stage7','stage7',entries,'copied-code'))
             members=parse((self.source_root/'docs/evidence/engine-clock-python-bootstrap/archive-members.json').read_bytes())['entries']
             copied.append(self.copied_tree(cid,'/opt/python','python',members,'copied-python'))
+            layout=parse((self.source_root/'docs/locks/engine-clock-python-layout.json').read_bytes())
+            copied.append(self.copied_tree(cid,'/opt/venv/bin/python','python',layout['expected_members']['bin/python3.11'],'copied-executable'))
         inp=None
         try:
             if verify:
@@ -119,10 +139,7 @@ class Docker:
             r=self.call(['start','--attach',*(['--interactive'] if verify else []),cid],timeout=180,stdout_limit=16*1024**2,stdin=inp)
         except Exception:
             # Bound the owned container lifetime; retain the stopped container, never remove it.
-            try:self.call(['stop','--time=2',cid],timeout=5,private=True)
-            except Exception:
-                try:self.call(['kill',cid],timeout=5,private=True)
-                except Exception:pass
+            self.terminate(cid)
             raise
         finally:
             if inp is not None:inp.close()

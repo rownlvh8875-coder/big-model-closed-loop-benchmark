@@ -285,3 +285,23 @@ def extract_image_bundle(path:Path,destination:Path)->dict:
                 _need(_signature(before)==_signature(os.fstat(stream.fileno())))
         return {'status':'CLOSED_IMAGE_BUNDLE_EXTRACTED','files':files,'root_filesystem_extracted':False}
     except Exception:raise ValueError('IMAGE_BUNDLE_REJECTED') from None
+
+
+def verify_executable_archive(path:Path,expected:dict,*,deadline:float)->dict:
+    """Authenticate the actual resolved launch file from a stopped image, as data."""
+    try:
+        _need(perf_counter()<deadline and type(expected['nbytes']) is int and 0<expected['nbytes']<=MAX_JSON_BYTES and _hex(expected['sha256']))
+        fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK)
+        with os.fdopen(fd,'rb') as stream:
+            before=os.fstat(stream.fileno());_need(stat.S_ISREG(before.st_mode) and before.st_nlink==1 and 0<before.st_size<=MAX_JSON_BYTES)
+            raw=stream.read(MAX_JSON_BYTES+1);_need(len(raw)==before.st_size and _signature(before)==_signature(os.fstat(stream.fileno())))
+            import io
+            with tarfile.open(fileobj=io.BytesIO(raw),mode='r:') as t:
+                rows=t.getmembers();_need(len(rows)==1);m=rows[0]
+                _need(_path(m.name)=='python' and m.isfile() and m.size==expected['nbytes'] and m.mode&0o111 and not m.mode&0o022)
+                data=t.extractfile(m).read(expected['nbytes']+1)
+                _need(len(data)==expected['nbytes'] and hashlib.sha256(data).hexdigest()==expected['sha256'])
+                end=m.offset_data+((m.size+511)//512)*512;_need(1024<=len(raw)-end<=CHUNK and not any(raw[end:]))
+            _need(perf_counter()<deadline)
+        return {'status':'PRESTART_EXECUTABLE_BYTES_MATCH','archive_sha256':hashlib.sha256(raw).hexdigest(),'archive_nbytes':len(raw),'executable_sha256':expected['sha256'],'executable_nbytes':expected['nbytes'],'final_member_regular_file':True,'source_path':'/opt/venv/bin/python','payload_extracted':False,'native_admission':False}
+    except Exception:raise ValueError('IMAGE_EXECUTABLE_REJECTED') from None

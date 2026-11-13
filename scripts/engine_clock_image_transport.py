@@ -1,4 +1,8 @@
 """Finite HTTPS data transfer with query/auth sanitization and retained partial files."""
+from contextlib import contextmanager
+from functools import wraps
+import signal
+import threading
 import fnmatch
 import hashlib
 import json
@@ -11,6 +15,8 @@ import urllib.parse
 import urllib.request
 
 
+MAX_TRANSFER_SECONDS=300
+
 def _need(value):
     if not value:raise ValueError('IMAGE_TRANSPORT_REJECTED')
 
@@ -19,6 +25,35 @@ def _pairs(rows):
     result={}
     for k,v in rows:_need(k not in result);result[k]=v
     return result
+
+
+@contextmanager
+def _absolute_deadline(stop):
+    """Linux main-thread wall-clock interrupt, including blocking SSL/socket reads."""
+    _need(threading.current_thread() is threading.main_thread() and hasattr(signal,'setitimer'))
+    remaining=stop-monotonic();_need(remaining>0)
+    previous_handler=signal.getsignal(signal.SIGALRM);previous_timer=signal.getitimer(signal.ITIMER_REAL);started=monotonic()
+    def expired(signum,frame):raise TimeoutError('IMAGE_TRANSPORT_DEADLINE')
+    signal.signal(signal.SIGALRM,expired)
+    signal.setitimer(signal.ITIMER_REAL,min(remaining,previous_timer[0]) if previous_timer[0]>0 else remaining)
+    try:yield
+    finally:
+        signal.setitimer(signal.ITIMER_REAL,0);signal.signal(signal.SIGALRM,previous_handler)
+        if previous_timer[0]>0:
+            left=previous_timer[0]-(monotonic()-started)
+            _need(left>0);signal.setitimer(signal.ITIMER_REAL,left,previous_timer[1])
+
+
+def _bounded_transfer(method):
+    @wraps(method)
+    def wrapped(self,*args,**kwargs):
+        old=self.deadline;self.deadline=min(old,monotonic()+MAX_TRANSFER_SECONDS)
+        try:
+            with _absolute_deadline(self.deadline):
+                result=method(self,*args,**kwargs);_need(monotonic()<self.deadline);return result
+        except Exception:raise ValueError('IMAGE_TRANSPORT_REJECTED') from None
+        finally:self.deadline=old
+    return wrapped
 
 
 class _NoRedirect(urllib.request.HTTPRedirectHandler):
@@ -58,6 +93,7 @@ class Client:
         p=urllib.parse.urlsplit(url);row={'source_url':urllib.parse.urlunsplit((p.scheme,p.hostname or '',p.path,'','')),**record};self.events.append(row)
         with (self.out/'http-events.jsonl').open('a') as f:f.write(json.dumps(row,sort_keys=True)+'\n')
         return row
+    @_bounded_transfer
     def _json_url(self,url,name,kind='api'):
         path=None
         try:
@@ -67,6 +103,7 @@ class Client:
                 _need(response.status==200)
                 while True:
                     _need(monotonic()<self.deadline);block=response.read(min(65536,4*1024**2-len(raw)+1))
+                    _need(monotonic()<self.deadline)
                     if not block:break
                     raw.extend(block);_need(len(raw)<=4*1024**2 and self.json_bytes+len(raw)<=64*1024**2)
             body=bytes(raw);self.json_bytes+=len(body)
@@ -84,6 +121,7 @@ class Client:
         return self._json_url('https://api.github.com/repos/'+self.repository+'/'+endpoint,name)
     def registry_authenticate(self):
         result=self._json_url('https://auth.docker.io/token?service=registry.docker.io&scope=repository:library/ubuntu:pull',None,'token');_need(type(result.get('token')) is str and len(result['token'])<=20000);self.registry_token=result['token']
+    @_bounded_transfer
     def download(self,url,path:Path,*,nbytes,sha256,kind):
         path=Path(path);partial=path.with_name(path.name+'.partial')
         try:
@@ -94,6 +132,7 @@ class Client:
                 if response.headers.get('Content-Length') is not None:_need(int(response.headers['Content-Length'])==nbytes)
                 while True:
                     _need(monotonic()<self.deadline);block=response.read(min(1024**2,nbytes-count+1))
+                    _need(monotonic()<self.deadline)
                     if not block:break
                     count+=len(block);self.payload_bytes+=len(block);_need(count<=nbytes and self.payload_bytes<=self.max_payload_bytes);target.write(block);digest.update(block)
             _need(count==nbytes and digest.hexdigest()==sha256);partial.rename(path)

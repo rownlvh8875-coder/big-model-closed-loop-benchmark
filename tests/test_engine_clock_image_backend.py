@@ -21,4 +21,35 @@ class BackendTests(unittest.TestCase):
    e=b.Docker(Path(tmp),deadline=b.time.perf_counter()+30)
    with self.assertRaisesRegex(ValueError,'^IMAGE_DOCKER_REJECTED$'):e.json(['inspect','owned'])
 
+
+ def test_exhausted_normal_deadline_still_stops_and_establishes_final_state(self):
+  calls=[]
+  def capture(argv,out,**kw):
+   calls.append(argv)
+   raw=b'{"Status":"exited","Running":false,"ExitCode":137}' if 'inspect' in argv else b''
+   return {'status':'EXITED','returncode':0,'streams_complete':True,'_stdout':raw,'_stderr':b''}
+  with tempfile.TemporaryDirectory() as tmp,patch.object(b.process,'capture',side_effect=capture):
+   e=b.Docker(Path(tmp),deadline=b.time.perf_counter()+30);e.deadline=b.time.perf_counter()-1
+   result=e.terminate('a'*64)
+   self.assertTrue(result['stopped_state_established']);self.assertTrue(any('stop' in c for c in calls));self.assertTrue(any('inspect' in c for c in calls))
+ def test_changed_actual_venv_executable_never_reaches_start(self):
+  from scripts import engine_clock_image_preparation as p
+  from test_engine_clock_image_archive import launch_fixture
+  cid='b'*64;image='sha256:'+'4'*64;calls=[]
+  with tempfile.TemporaryDirectory() as tmp:
+   e=b.Docker(Path(tmp),deadline=b.time.perf_counter()+30,source_root=Path(__file__).resolve().parent.parent);e.host={}
+   def call(args,**kw):
+    calls.append(args)
+    if args[0]=='create':return {'_stdout':cid.encode(),'_stderr':b''}
+    self.fail('start reached before executable authentication')
+   def normalize(raw,expected,nonce):
+    result=launch_fixture(image,nonce);result['labels']['stage7.source']='1'*40;return result
+   def copied(cid,remote,*args,**kw):
+    if remote=='/opt/venv/bin/python':raise ValueError('IMAGE_EXECUTABLE_REJECTED')
+    return {'status':'CLOSED_COPIED_TREE_MATCH'}
+   with patch.object(e,'call',side_effect=call),patch.object(e,'json',return_value=[{}]),patch.object(p,'normalize_launch',side_effect=normalize),patch.object(e,'copied_tree',side_effect=copied):
+    with self.assertRaisesRegex(ValueError,'^IMAGE_EXECUTABLE_REJECTED$'):
+     e.collect({'config_digest':image},{'request_id':'owned','reviewed_source_sha':'1'*40},expected_manifest=b'{}',precheck=True)
+   self.assertFalse(any(c[0]=='start' for c in calls))
+
 if __name__=='__main__':unittest.main()

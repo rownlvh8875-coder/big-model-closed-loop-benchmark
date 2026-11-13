@@ -46,6 +46,16 @@ def launch_fixture(cid,nonce='a'*32):
 class ImageArchiveTests(unittest.TestCase):
  def setUp(self):self.assertIsNotNone(a,'bounded image archive/API/launch verifier missing')
  def inspect(self,path):return a.inspect_save_archive(path,expected_tag=TAG,deadline=time.perf_counter()+10)
+ def test_actual_executable_copy_requires_pinned_regular_file_bytes(self):
+  with tempfile.TemporaryDirectory() as tmp:
+   path=Path(tmp)/'exe.tar';raw=b'owned interpreter';pin={'nbytes':len(raw),'sha256':sha(raw)}
+   buf=io.BytesIO()
+   with tarfile.open(fileobj=buf,mode='w') as out:
+    m=tarfile.TarInfo('python');m.size=len(raw);m.mode=0o755;out.addfile(m,io.BytesIO(raw))
+   path.write_bytes(buf.getvalue());self.assertEqual('PRESTART_EXECUTABLE_BYTES_MATCH',a.verify_executable_archive(path,pin,deadline=time.perf_counter()+10)['status'])
+   for entries in [[('python',b'substituted')],[('python',('/opt/python/bin/python3.11',))]]:
+    path.write_bytes(tarbytes(entries))
+    with self.assertRaisesRegex(ValueError,'^IMAGE_EXECUTABLE_REJECTED$'):a.verify_executable_archive(path,pin,deadline=time.perf_counter()+10)
  def test_base_environment_is_a_distinct_fixed_profile(self):
   with tempfile.TemporaryDirectory() as tmp:
    p,_,_=make_save(Path(tmp),config_patch={'config':{'Env':['PATH='+a.IMAGE_ENV['PATH']]}})
