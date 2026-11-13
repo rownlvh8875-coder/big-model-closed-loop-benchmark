@@ -1,0 +1,97 @@
+HISTORICAL ONE-USE OPERATOR; do not replay after attempt.json exists.
+Run from repository root with the existing CPU Python using this body after the marker.
+BEGIN PYTHON
+import datetime, hashlib, json, os, platform, shutil, signal, subprocess, sys, time
+from pathlib import Path
+
+root = Path.cwd()
+request_path = root / 'docs/evidence/STAGE7_ENGINE_CLOCK_PYTHON_LOCK_REQUEST.json'
+request = json.loads(request_path.read_text())
+out = root / request['output_directory']
+out.mkdir(parents=True, exist_ok=False)
+def save(name, data):
+    (out / name).write_text(json.dumps(data, indent=2, sort_keys=True) + '\n')
+start = time.monotonic()
+head = subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip()
+attempt = {'request_id': request['request_id'], 'execution_source_sha': head,
+           'started_utc': datetime.datetime.now(datetime.timezone.utc).isoformat(),
+           'status': 'CONSUMED_STARTED', 'further_execution_authorized': False}
+save('attempt.json', attempt)
+receipt = dict(attempt, schema='engine-clock-python-resolution-receipt-v1',
+               full_lock_ready=False, image_preparation_ready=False, native_admission=False)
+def digest(p):
+    h = hashlib.sha256()
+    with p.open('rb') as f:
+        for b in iter(lambda: f.read(1048576), b''): h.update(b)
+    return h.hexdigest()
+try:
+    assert not subprocess.check_output(['git', 'status', '--porcelain'], text=True).strip()
+    assert sys.executable == request['tool_python']
+    assert platform.python_version() == '3.11.17'
+    free = shutil.disk_usage(out).free
+    assert free >= request['minimum_free_bytes']
+    wheel = root / request['local_wheel']['path']
+    assert wheel.stat().st_size == request['local_wheel']['nbytes']
+    assert digest(wheel) == request['local_wheel']['sha256']
+    receipt.update(free_bytes_before=free, actual_python=platform.python_version(),
+                   actual_pip=subprocess.check_output([sys.executable, '-m', 'pip', '--version'], text=True).strip(),
+                   request_sha256=digest(request_path),
+                   operator_sha256=digest(root / 'docs/evidence/STAGE7_ENGINE_CLOCK_PYTHON_LOCK_OPERATOR.txt'),
+                   wheel_sha256=digest(wheel))
+    env = {k:v for k,v in os.environ.items() if not k.startswith('PIP_')}
+    env['PIP_CONFIG_FILE'] = os.devnull
+    env['PYTHONNOUSERSITE'] = '1'
+    temp = out / 'tmp'
+    temp.mkdir()
+    env['TMPDIR'] = str(temp)
+    cmd = [sys.executable, '-m', 'pip', '--isolated', '--disable-pip-version-check',
+           '--no-input', '--no-cache-dir', '--retries', '0', '--timeout', '20',
+           'install', '--dry-run', '--ignore-installed', '--only-binary=:all:',
+           '--index-url', 'https://pypi.org/simple', '--python-version', '3.11.18',
+           '--implementation', 'cp', '--abi', 'cp311', '--report', str(out / 'pip-report.json')]
+    for tag in request['platform_tags']: cmd.extend(['--platform', tag])
+    cmd.extend([str(wheel), 'numpy==2.4.6', 'opencv-python-headless==5.0.0.93', 'panda3d==1.10.13'])
+    receipt['pip_argv'] = cmd
+    pip_start = time.monotonic()
+    reason = None
+    peak = 0
+    with (out / 'pip.log').open('xb') as log:
+        proc = subprocess.Popen(cmd, stdout=log, stderr=subprocess.STDOUT, env=env, start_new_session=True)
+        try:
+            while True:
+                sizes = [p.stat().st_size for p in out.rglob('*') if p.is_file()]
+                peak = max(peak, sum(sizes))
+                if time.monotonic() - pip_start > request['pip_timeout_seconds']: reason = 'TIME_LIMIT'
+                elif peak > request['operation_tree_limit_bytes']: reason = 'TREE_LIMIT'
+                elif (out / 'pip.log').stat().st_size > request['log_limit_bytes']: reason = 'LOG_LIMIT'
+                if reason or proc.poll() is not None: break
+                time.sleep(.1)
+        finally:
+            if proc.poll() is None:
+                os.killpg(proc.pid, signal.SIGTERM)
+                try: proc.wait(timeout=2)
+                except subprocess.TimeoutExpired:
+                    os.killpg(proc.pid, signal.SIGKILL)
+                    proc.wait(timeout=2)
+            else: proc.wait()
+    receipt.update(pip_exit_code=proc.returncode, pip_limit_failure=reason,
+                   pip_duration_seconds=time.monotonic()-pip_start, observed_tree_peak_bytes=peak,
+                   pip_report_exists=(out / 'pip-report.json').exists())
+    # A separately specified source-only dependency metadata inspection; never executes package source.
+    curl = ['curl', '--silent', '--show-error', '--fail', '--proto', '=https',
+            '--max-time', '30', '--max-filesize', '2097152', '--retry', '0',
+            '--output', str(out / 'progressbar-release.json'),
+            '--write-out', '%{json}', 'https://pypi.org/pypi/progressbar/json']
+    with (out / 'curl-transfer.json').open('xb') as stdout, (out / 'curl.stderr').open('xb') as stderr:
+        result = subprocess.run(curl, stdout=stdout, stderr=stderr, timeout=35, env=env)
+    receipt['metadata_curl_exit_code'] = result.returncode
+    receipt['status'] = 'COMPLETED_SCREEN_ONLY' if proc.returncode == 0 and not reason else 'BLOCKED_BINARY_RESOLUTION'
+except Exception as exc:
+    # Keep bounded exception class only; do not serialize environment-derived exception strings.
+    receipt.update(status='FAILED_OR_INCOMPLETE', error_class=type(exc).__name__)
+finally:
+    receipt['duration_seconds'] = time.monotonic()-start
+    receipt['files'] = {str(p.relative_to(out)): {'nbytes':p.stat().st_size, 'sha256':digest(p)}
+                        for p in sorted(out.rglob('*')) if p.is_file() and p.name != 'receipt.json'}
+    save('receipt.json', receipt)
+    print(json.dumps({k:receipt.get(k) for k in ('status','execution_source_sha','pip_exit_code','pip_report_exists','duration_seconds')}))
