@@ -69,7 +69,9 @@ The initial design-only checkpoint is preserved at04c91d1 and Task1 at2cc22c0. T
 - [x] Run targeted RED, implement collector, run targeted GREEN, then independently review pure-tool/collector boundary and installed-vs-actual-loaded assurance statements. Record hashing timing as preflight overhead; do not call it neutral.
 - [x] Keep image/native readiness false. Commit/test/Draft only on a new provider-free branch. Any missing concrete filesystem/alias compatibility blocks preparation rather than changing old runtime rules.
 
-### Task 3: Image inputs, preparation adapter and provider-free evidence (input gate blocked)
+### Task 3: Image inputs, preparation adapter and provider-free evidence (real local wheel measured; full lock pending)
+
+Current local package evidence: [real wheel operation](2026-11-13-engine-clock-real-wheel-preparation.md) measured original55128766B/c6f8... and derivative72968610B/f949... with1428preservedmembers; independent input review is pending. This addresses the first package-policy candidate only. Complete Python/base/deb/asset locks, runtime compatibility and image/adapter/preparation gates remain unresolved; the first Task3 checkbox below stays unchecked. Do not replay the consumed local package request.
 
 Follow-up: [metadata derivative plan](2026-11-13-engine-clock-wheel-derivative.md) implements the explicit policy on synthetic bytes only. It does not resolve actual original/derived wheel provenance, full locks or preparation; all Task3 checkboxes below remain unchecked.
 

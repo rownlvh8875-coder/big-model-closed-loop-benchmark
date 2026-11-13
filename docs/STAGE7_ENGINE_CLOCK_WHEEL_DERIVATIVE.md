@@ -1,5 +1,7 @@
 # Stage7 MetaDrive metadata 파생 wheel 변환기
 
+이 문서는 PR44의 합성 변환기 체크포인트다. 후속 [실제 wheel 검증·파생 입력](STAGE7_ENGINE_CLOCK_REAL_WHEEL_PREPARATION.md)은 별도 단계이며 Task3 전체·이미지·native 준비 완료가 아니다.
+
 Task3 입력 충돌의 후속으로 합성 wheel을 처리하는 순수 bytes 변환기를 구현한다. Base `b9812ae4a7d795c22fc277036064e57ae8cfd3dd`/PR43, 브랜치 `feature/engine-clock-wheel-derivative`다. 실제 MetaDrive wheel을 다운로드·변환·설치하거나 지원되는 image를 준비한 결과가 아니다. Task3 전체는 미완료다.
 
 ## 범위와 정책
