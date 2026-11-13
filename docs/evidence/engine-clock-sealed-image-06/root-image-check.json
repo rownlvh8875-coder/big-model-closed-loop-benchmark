@@ -1,0 +1,143 @@
+{
+  "archive": {
+    "archive_layout": "docker-save-oci-layout",
+    "compatibility_metadata_authoritative": false,
+    "compatibility_metadata_files": 10,
+    "config_digest": "sha256:2b0854f1cf91e470994637f52f4e8c78c618ed00b1496a40bb05158290e01a37",
+    "config_environment": {
+      "LIBGL_ALWAYS_SOFTWARE": "1",
+      "OMP_NUM_THREADS": "2",
+      "PATH": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+      "PYOPENGL_PLATFORM": "glx"
+    },
+    "decoded_layer_bytes": 1726644736,
+    "image_tar_nbytes": 1726678016,
+    "image_tar_sha256": "f69b8ece51bcc6911aaf118d5ea091ba4d6ace8418b480e408be5b9fd8cb2921",
+    "installed_runtime_verified": false,
+    "layer_member_count": 50127,
+    "layers": [
+      {
+        "decoded_bytes": 80715776,
+        "diff_id": "sha256:21210938f5a37a9887b2d0a20428917b923a636ca6efe038c3c7d9cd9f1f9b61",
+        "gzip": false,
+        "members": 3442,
+        "nbytes": 80715776,
+        "path": "blobs/sha256/21210938f5a37a9887b2d0a20428917b923a636ca6efe038c3c7d9cd9f1f9b61",
+        "regular_bytes": 78201136,
+        "sha256": "21210938f5a37a9887b2d0a20428917b923a636ca6efe038c3c7d9cd9f1f9b61"
+      },
+      {
+        "decoded_bytes": 348270592,
+        "diff_id": "sha256:2be112340d71ee43c6819c0259e050c865f12bf7c9837bb4cb8839f196db779c",
+        "gzip": false,
+        "members": 16468,
+        "nbytes": 348270592,
+        "path": "blobs/sha256/2be112340d71ee43c6819c0259e050c865f12bf7c9837bb4cb8839f196db779c",
+        "regular_bytes": 337751294,
+        "sha256": "2be112340d71ee43c6819c0259e050c865f12bf7c9837bb4cb8839f196db779c"
+      },
+      {
+        "decoded_bytes": 139264,
+        "diff_id": "sha256:f2fca4086c8612de50eccd05fee84655db8d071fd6b0651200f2be6d1ccfc90a",
+        "gzip": false,
+        "members": 99,
+        "nbytes": 139264,
+        "path": "blobs/sha256/f2fca4086c8612de50eccd05fee84655db8d071fd6b0651200f2be6d1ccfc90a",
+        "regular_bytes": 79048,
+        "sha256": "f2fca4086c8612de50eccd05fee84655db8d071fd6b0651200f2be6d1ccfc90a"
+      },
+      {
+        "decoded_bytes": 6586880,
+        "diff_id": "sha256:239e68b48ac29be0254dfad4b0ee14138d26ff2ea91852b7a6ca147e22ea7f61",
+        "gzip": false,
+        "members": 789,
+        "nbytes": 6586880,
+        "path": "blobs/sha256/239e68b48ac29be0254dfad4b0ee14138d26ff2ea91852b7a6ca147e22ea7f61",
+        "regular_bytes": 5938727,
+        "sha256": "239e68b48ac29be0254dfad4b0ee14138d26ff2ea91852b7a6ca147e22ea7f61"
+      },
+      {
+        "decoded_bytes": 1290746880,
+        "diff_id": "sha256:ed744a455c23963a1766deeb20a89020917f0d1f33a1d663fdc97f99279e12c6",
+        "gzip": false,
+        "members": 29300,
+        "nbytes": 1290746880,
+        "path": "blobs/sha256/ed744a455c23963a1766deeb20a89020917f0d1f33a1d663fdc97f99279e12c6",
+        "regular_bytes": 1268725173,
+        "sha256": "ed744a455c23963a1766deeb20a89020917f0d1f33a1d663fdc97f99279e12c6"
+      },
+      {
+        "decoded_bytes": 58880,
+        "diff_id": "sha256:a556f0ec831a9814191d64ab66cf3cec89bed47bda59444a61a7c0fe3f45a0ea",
+        "gzip": false,
+        "members": 9,
+        "nbytes": 58880,
+        "path": "blobs/sha256/a556f0ec831a9814191d64ab66cf3cec89bed47bda59444a61a7c0fe3f45a0ea",
+        "regular_bytes": 51729,
+        "sha256": "a556f0ec831a9814191d64ab66cf3cec89bed47bda59444a61a7c0fe3f45a0ea"
+      },
+      {
+        "decoded_bytes": 4608,
+        "diff_id": "sha256:8f86aac91e848162bd1f7b46663b3f2141c522c54e4fcb415dca6f9aeb972f27",
+        "gzip": false,
+        "members": 5,
+        "nbytes": 4608,
+        "path": "blobs/sha256/8f86aac91e848162bd1f7b46663b3f2141c522c54e4fcb415dca6f9aeb972f27",
+        "regular_bytes": 958,
+        "sha256": "8f86aac91e848162bd1f7b46663b3f2141c522c54e4fcb415dca6f9aeb972f27"
+      },
+      {
+        "decoded_bytes": 104960,
+        "diff_id": "sha256:0511464e26b9263af5856802ed4e5479c63560dc2d30d0d535d5c8f6b465a769",
+        "gzip": false,
+        "members": 5,
+        "nbytes": 104960,
+        "path": "blobs/sha256/0511464e26b9263af5856802ed4e5479c63560dc2d30d0d535d5c8f6b465a769",
+        "regular_bytes": 100899,
+        "sha256": "0511464e26b9263af5856802ed4e5479c63560dc2d30d0d535d5c8f6b465a769"
+      },
+      {
+        "decoded_bytes": 5632,
+        "diff_id": "sha256:d6799d868d199cfd5482d62aa735e74d9ece7a30489d03b1505a72fa5f123602",
+        "gzip": false,
+        "members": 5,
+        "nbytes": 5632,
+        "path": "blobs/sha256/d6799d868d199cfd5482d62aa735e74d9ece7a30489d03b1505a72fa5f123602",
+        "regular_bytes": 1796,
+        "sha256": "d6799d868d199cfd5482d62aa735e74d9ece7a30489d03b1505a72fa5f123602"
+      },
+      {
+        "decoded_bytes": 11264,
+        "diff_id": "sha256:f150c0ec8770d5d98573cd167c2e705822e18eae979adb2a81dc04ee31f48efe",
+        "gzip": false,
+        "members": 5,
+        "nbytes": 11264,
+        "path": "blobs/sha256/f150c0ec8770d5d98573cd167c2e705822e18eae979adb2a81dc04ee31f48efe",
+        "regular_bytes": 7235,
+        "sha256": "f150c0ec8770d5d98573cd167c2e705822e18eae979adb2a81dc04ee31f48efe"
+      }
+    ],
+    "native_admission": false,
+    "platform": "linux/amd64",
+    "rootfs_diff_ids": [
+      "sha256:21210938f5a37a9887b2d0a20428917b923a636ca6efe038c3c7d9cd9f1f9b61",
+      "sha256:2be112340d71ee43c6819c0259e050c865f12bf7c9837bb4cb8839f196db779c",
+      "sha256:f2fca4086c8612de50eccd05fee84655db8d071fd6b0651200f2be6d1ccfc90a",
+      "sha256:239e68b48ac29be0254dfad4b0ee14138d26ff2ea91852b7a6ca147e22ea7f61",
+      "sha256:ed744a455c23963a1766deeb20a89020917f0d1f33a1d663fdc97f99279e12c6",
+      "sha256:a556f0ec831a9814191d64ab66cf3cec89bed47bda59444a61a7c0fe3f45a0ea",
+      "sha256:8f86aac91e848162bd1f7b46663b3f2141c522c54e4fcb415dca6f9aeb972f27",
+      "sha256:0511464e26b9263af5856802ed4e5479c63560dc2d30d0d535d5c8f6b465a769",
+      "sha256:d6799d868d199cfd5482d62aa735e74d9ece7a30489d03b1505a72fa5f123602",
+      "sha256:f150c0ec8770d5d98573cd167c2e705822e18eae979adb2a81dc04ee31f48efe"
+    ],
+    "schema": "engine-clock-save-archive-check-v1",
+    "status": "DOCKER_SAVE_STRUCTURE_VERIFIED"
+  },
+  "artifact_id": 14078483374,
+  "external_api_origin_authenticated": true,
+  "installed_runtime_verified": false,
+  "native_admission": false,
+  "root_verified_source_closure_files": 79,
+  "status": "PREPARATION_METADATA_AND_ARCHIVE_MATCH"
+}
