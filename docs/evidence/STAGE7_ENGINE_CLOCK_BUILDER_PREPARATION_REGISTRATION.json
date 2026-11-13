@@ -1,0 +1,171 @@
+{
+  "activation_head": null,
+  "activation_head_policy": "Actual locally committed HEAD is recorded externally before the sole push, then matched to original API evidence; no self-referential guessed SHA.",
+  "approved_source_blob_shas": {
+    "docs/evidence/STAGE7_ENGINE_CLOCK_OS_BINDING.json": "bf91a0f385f22f95dbea22ad1b6347d44de92bad",
+    "docs/evidence/STAGE7_ENGINE_CLOCK_OS_INPUTS.json": "d713ef050c46f0d755886e90902b49c70ba753fd",
+    "docs/evidence/STAGE7_ENGINE_CLOCK_PROGRESSBAR_BUILD_INPUTS.json": "25cb2d5be965e1605250bf4240f68a27797fd891",
+    "docs/evidence/STAGE7_ENGINE_CLOCK_PROGRESSBAR_BUILD_POLICY.json": "6aa109e8de5745449d55b266e649efe0a3971868",
+    "docs/evidence/STAGE7_ENGINE_CLOCK_PYTHON_BOOTSTRAP_BINDING.json": "639fd2c27c3aa0b7c525d74da8a1dbc55f9226f3",
+    "docs/evidence/STAGE7_ENGINE_CLOCK_PYTHON_BOOTSTRAP_INPUTS.json": "d7b909d56a070e7a3ca91617d86733dd29c631dc",
+    "docs/evidence/engine-clock-os-inputs/package-members.json": "137368faaac629da2fbc6c620e0834aa7d172546",
+    "docs/evidence/engine-clock-os-inputs/package-plan.json": "d8b9cb42f1566f954f4df35b1811c37b9fc68600",
+    "docs/evidence/engine-clock-progressbar/static-inspection.json": "69aaa4fb981512934f61320a3dfd6c62174df858",
+    "docs/evidence/engine-clock-python-bootstrap/archive-members.json": "b2129aafb581035a74b7eade915b95151f3d0dbd",
+    "docs/proposals/engine-clock-builder-preparation.workflow.json": "367f918031b1ed1550afa90f53b7215bc73d007c",
+    "docs/proposals/engine-clock-pip-wheel-static-contract.json": "1aad8d580ee8b8cf81d1eaeecca118adca7e351f",
+    "docs/superpowers/specs/2026-11-13-engine-clock-builder-staging-design.md": "2bc2372a599b68be10d7b59b2277df514e144151",
+    "scripts/__init__.py": "f91475cf7fe5630624e5aeb0371f3cef2f5f133e",
+    "scripts/engine_clock_builder_build.py": "044fe6bd7d82b8b4b9d4b7c84085a78533fec955",
+    "scripts/engine_clock_builder_driver.py": "7a94a8df929d5b2521bad1f3716d6c5a56eccfdc",
+    "scripts/engine_clock_builder_preparation.py": "9ec8c2e124e1fda0b03752897e901d3fe8c9d72e",
+    "scripts/engine_clock_builder_retention.py": "39c59a642a747ccc629c64506e3e526fe48d514e",
+    "scripts/engine_clock_builder_sandbox.py": "d3b53223167ea29e72f55deaf18422682291bc84",
+    "scripts/engine_clock_builder_staging.py": "76a103c9cc0a525689565a21c7e115b5fd8295b6",
+    "scripts/engine_clock_builder_wheel.py": "ec1fae60cfeb90627d34867da61892ce4fd94061",
+    "tests/test_engine_clock_builder_build.py": "ee2bfbd0ee0d3245c9157b6b8f9331877d865cdd",
+    "tests/test_engine_clock_builder_driver.py": "8d67edb1b82d2a3eb10020d062e6dda9a885b461",
+    "tests/test_engine_clock_builder_preparation.py": "06449ed1f9b403ac3f30ec9bbcf66c150dc3541d",
+    "tests/test_engine_clock_builder_retention.py": "c99e135a24a6d894121b10e42108d941ad1dc7ff",
+    "tests/test_engine_clock_builder_sandbox.py": "44ad35dd38a8ef498763944aab7d5ef1a9fcd421",
+    "tests/test_engine_clock_builder_staging.py": "8aab3261845518396758de43146f478378160e3f",
+    "tests/test_engine_clock_builder_wheel.py": "d73a723d6dec38d6abc25ac04b0af3d40e520e63"
+  },
+  "approved_source_checkpoint": "b0bfc46a8fb151897cec8f9db47965a39af66944",
+  "artifact_id": null,
+  "budget": {
+    "attempts": 1,
+    "builds": 1,
+    "runs": 1
+  },
+  "deferred_minors": [
+    "M6 controller review SHA is informational; external preregistration and consumption bind source/qualification.",
+    "M7 reusable maximum deadline is deferred; fixed callers supply180s."
+  ],
+  "execution_limits": {
+    "cleanup_seconds": 5,
+    "job_minutes": 15,
+    "minimum_free_disk_bytes": 1073741824,
+    "process_address_space_bytes": 1073741824,
+    "process_limit": 64,
+    "stderr_bytes": 1048576,
+    "stdout_wire_bytes": 3145728,
+    "target_seconds": 180,
+    "tmpfs_bytes": 268435456,
+    "wheel_bytes": 1048576,
+    "writable_file_bytes": 4194304
+  },
+  "expected_root_files_artifact_nbytes": 8570595,
+  "expected_root_files_artifact_sha256": "835121e2a4bb7e6996a94d1152209c5921f874d75454a19ee8c52b5189f85a25",
+  "expected_root_plan_sha256": "5371b2ba1e56fa15bc3068e8e579268b44f86091f7ed7a8e8d11fdb7a8c4838d",
+  "full_lock_ready": false,
+  "image_preparation_ready": false,
+  "input_bytes": 109285137,
+  "input_count": 51,
+  "job_id": null,
+  "native_admission": false,
+  "preservation": {
+    "consumed_registry8_unchanged": true,
+    "old_originals_and_workspaces_retained": true,
+    "old_workflows_unchanged": 44,
+    "producer70_unchanged": true,
+    "source_checkpoint_tracked": 476,
+    "workflow_total_after_activation": 45
+  },
+  "qualified_fix_shas": [
+    "9aaca76095e611f6ec1bf73700bb1f6a2e33254c",
+    "843fb749abe5c672d65d534fac150c90ec1ac3d3"
+  ],
+  "request_branch": "prepare/engine-clock-builder-20261113-01",
+  "request_id": "builder-20261113-01",
+  "request_path": "docs/requests/engine-clock-builder-20261113-01.json",
+  "request_sha256": "5b5ce1de1b00b963c781c2e1b2f46f44b716179be7f7b99295c910dc2080e18a",
+  "retention_limits": {
+    "archive_seconds": 180,
+    "file_bytes": 134217728,
+    "gzip_bytes": 943718400,
+    "manifest_bytes": 16777216,
+    "nodes": 40000,
+    "outer_artifact_bytes": 1073741824,
+    "physical_tar_bytes": 943718400,
+    "regular_file_bytes": 838860800
+  },
+  "review_receipt_path": "docs/evidence/STAGE7_ENGINE_CLOCK_BUILDER_STAGING_REVIEW.json",
+  "review_receipt_sha256": "a709175327b595b715f7bd21a51b640be1b8b30877dfb7c4ca649508b315a640",
+  "reviewed_source_sha": "96e97dcdf5ba81b67c995060bf50ddf10459d5c0",
+  "run_id": null,
+  "schema": "engine-clock-builder-preparation-registration-v1",
+  "scope": "ONE_PROVIDER_FREE_BUILDER_PIPELINE_ONLY; builds counts pip-wheel invocations, not setup.py/backend executions.",
+  "source_ci": [
+    {
+      "artifact_count": 0,
+      "attempt": 1,
+      "conclusion": "success",
+      "event": "push",
+      "head_sha": "b0bfc46a8fb151897cec8f9db47965a39af66944",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "id": 131755189688,
+          "name": "onnx-interface-test"
+        },
+        {
+          "conclusion": "success",
+          "id": 131755190312,
+          "name": "synthetic-unit"
+        }
+      ],
+      "run_id": 43386207237,
+      "tests": {
+        "0_synthetic-unit.txt": {
+          "seconds": 69.852,
+          "skips": 7,
+          "tests": 815
+        },
+        "1_onnx-interface-test.txt": {
+          "seconds": 0.049,
+          "skips": 0,
+          "tests": 1
+        }
+      }
+    },
+    {
+      "artifact_count": 0,
+      "attempt": 1,
+      "conclusion": "success",
+      "event": "pull_request",
+      "head_sha": "b0bfc46a8fb151897cec8f9db47965a39af66944",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "id": 131755210756,
+          "name": "synthetic-unit"
+        },
+        {
+          "conclusion": "success",
+          "id": 131755210996,
+          "name": "onnx-interface-test"
+        }
+      ],
+      "run_id": 43386214092,
+      "tests": {
+        "0_onnx-interface-test.txt": {
+          "seconds": 0.047,
+          "skips": 0,
+          "tests": 1
+        },
+        "1_synthetic-unit.txt": {
+          "seconds": 46.434,
+          "skips": 7,
+          "tests": 815
+        }
+      }
+    }
+  ],
+  "source_closure_sha256": "7752a9c4f564403bae726db7775a03b133f60a08af403f077800fb3b5ac13946",
+  "stage7_status": "INCOMPLETE",
+  "status": "REGISTERED_NOT_YET_PUSHED",
+  "template_sha256": "4027735377771237b29208975df5e8c81c97b536ba824bff8b4844cd5efed37b",
+  "workflow_path": ".github/workflows/engine-clock-builder-preparation.yml",
+  "workflow_sha256": "80d9af523f3eb59bf554e6d21d7e94eb590a5b36187ca540de9322582086fc4c"
+}
