@@ -46,4 +46,6 @@ Archive SHA·manifest artifact SHA·canonical SHA는 설치된 runtime identity�
 
 새 native/provider/engine/Xvfb/GL/GPU/clock·공식 model/weights/ORT·image build/pull/load/run은0이다. 생성 SMALL ONNX 기본 CI는 별도다. 새 RGB/I420/공식 ONNX 일치율·first-divergence 수치는 없다. 기존 strict0/4 FAIL, expanded NOT_RUN, ABBA terminal FAIL/7null/4case·6비교 NOT_RUN, geometry·optics·full-S 한계와 **Stage7 INCOMPLETE**를 유지한다. Nativeallowance0, main 병합·Cloud 게시 없음.
 
-독립 whole-branch/raw 검토는 `b1e0989bde0d95403503a61fb04af9eb58834f63`에서 Critical0/Important0/Minor0으로 증거 범위를 수락했다. [검토 원문](evidence/STAGE7_ENGINE_CLOCK_PYTHON_BOOTSTRAP_REVIEW.md)을 보존하고, 범위 밖7항목의 root 판단·비용은 audit에 남겼다. 보류 Minor는 없다. 이후 receipt-only HEAD와 기본 CI는 Draft PR에서 별도 확인하며, 검토 수락은 설치 identity·OS/ABI·bootstrap/source/image/native 실행이나 merge 승인이 아니다.
+독립 whole-branch/raw 검토는 `b1e0989bde0d95403503a61fb04af9eb58834f63`에서 Critical0/Important0/Minor0으로 증거 범위를 수락했다. [검토 기록](evidence/STAGE7_ENGINE_CLOCK_PYTHON_BOOTSTRAP_REVIEW.md)을 보존하고, 범위 밖7항목의 root 판단·비용은 audit에 남겼다. 보류 Minor는 없다. 이후 receipt-only HEAD와 기본 CI는 Draft PR에서 별도 확인하며, 검토 수락은 설치 identity·OS/ABI·bootstrap/source/image/native 실행이나 merge 승인이 아니다.
+
+최종 문서 검사에서 검토 기록의 Markdown 줄끝 공백2곳을 정리했다. 원문 bytes는 commit `1ad4dafd1c16585e3338ab4bcf0d253b7b9aaff0`와 private 원본에 보존하고, audit에 원문·표시용 전사본의 hash를 구분했다. 검토 내용·판정과 제품 코드는 바뀌지 않았다.
