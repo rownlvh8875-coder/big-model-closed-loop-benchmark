@@ -39,3 +39,5 @@ Root는 입력 wheel hash, 실제 METADATA의 무조건부 `Requires-Dist: progr
 기존 tracked389파일은 status 문서2개를 제외하고 동일하게 보존한다. Producer70/workflows44/consumed registry8·Task1/2·파생 변환기/시험/policy·비활성 proposal·과거 raw/controller/review workspace를 변경하거나 삭제하지 않는다. 새 product 코드/시험은 없고 변경되지 않은 local 전체 suite는 반복하지 않는다. 최종 Draft PR의 기본 CI는 실제 run/job 결과를 별도로 기록한다.
 
 새 native process·공식 model/weights/ORT·provider/engine/Xvfb/GPU/clock·image build/pull/load/run은0이다. 기본 생성 SMALL ONNX CI는 별도다. 새 RGB/I420/ONNX 일치율·first-divergence 자료는 없다. 과거 strict0/4 FAIL, expanded NOT_RUN, ABBA terminal FAIL/7null/4case·6비교 NOT_RUN, geometry·optics·full-S 한계, Stage7 INCOMPLETE를 유지한다. Cloud 게시와 main 병합은 하지 않는다.
+
+독립 whole-branch 검토는 `d220a1f86f1eff512fa324c32f0162ca707e734e`에서 Critical0/Important0/Minor0으로 증거 범위만 수락했다. [검토 원문](evidence/STAGE7_ENGINE_CLOCK_PYTHON_LOCK_REVIEW.md)을 보존한다. 검토 범위 밖 D1–D4는 audit에 root 판단과 비용을 기록했고, 이후 최종 HEAD/기본 CI는 Draft PR에서 별도로 확인한다. 이번 단계의 보류 Minor는 없다. 이전 PR45의 M1 attribute 표현 보류는 이번 검토의 지적사항으로 재분류하지 않는다.
