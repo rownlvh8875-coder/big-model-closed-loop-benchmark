@@ -1,0 +1,110 @@
+{
+  "schema": "bwrap-profile-preflight-consumption-v1",
+  "request_id": "namespace-diagnostic-20261113-03",
+  "source_sha": "915e0d61558b41619cb9175dba3b8aa717798a84",
+  "activation_sha": "a769a59b56d93bf93551835448952478df477813",
+  "workflow_id": 417191553,
+  "run_id": 43416517415,
+  "job_id": 131855679633,
+  "run_attempt": 1,
+  "unique_workflow_branch_runs": 1,
+  "request_consumed": true,
+  "created_kst": "2026-11-13T20:22:16+09:00",
+  "finished_kst": "2026-11-13T20:22:43+09:00",
+  "workflow_conclusion": "success",
+  "admission": "BLOCKED_VALIDATION",
+  "before_exit": 1,
+  "before_stderr_sha256": "ed3471f7900377f86150471417911309833a36d664cb5af7409e139103f67ddf",
+  "profile_loads": 1,
+  "after_exit": 0,
+  "after_stdout_nbytes": 612,
+  "after_stdout_sha256": "0eab8fd7d18727cbc5555ba75ceaf6b552f1f6fd0769940bced03cc67f7e26ca",
+  "after_observation_retained": false,
+  "build_mount": {
+    "bytes": 268435456,
+    "device_matches": true,
+    "empty": true,
+    "filesystem": "tmpfs",
+    "named_inode_matches": true,
+    "options": [
+      "rw",
+      "nosuid",
+      "nodev",
+      "noexec",
+      "relatime"
+    ],
+    "owner_matches": true,
+    "readonly": false
+  },
+  "helper": {
+    "mode": 493,
+    "nbytes": 194592,
+    "owner": 0,
+    "sha256": "ed290d7b467eba236ff705a83938ecf78a5dc055648ef5420937b9717b29af3e",
+    "source_sha256": "9760d007363e3abba7c747489910f9f82d9fca53ba3bd3282e396fa3c97a3314"
+  },
+  "profile_sha256": "e00bd0234d4d2a14a37d6780cab2a4ff080d7b7bd036b2c398f55a3b1903f14e",
+  "cause_limit": "Profile removed the process-level block in the same-job pair, but after JSON failed validation and was discarded. Pinned source bubblewrap.c:3427 explicitly sets PWD;03 validator omitted this owned field. Exact live failing fields are not recoverable from the retained result.",
+  "candidate_execution": false,
+  "model_execution": false,
+  "native_admission": false,
+  "image_ready": false,
+  "files": {
+    "run-logs.zip": {
+      "nbytes": 17623,
+      "sha256": "c8ff288c6415154a1e9c0399a99c8c48002396e38143f9c710978763132d462e"
+    },
+    "profile.apparmor": {
+      "nbytes": 175,
+      "sha256": "e00bd0234d4d2a14a37d6780cab2a4ff080d7b7bd036b2c398f55a3b1903f14e"
+    },
+    "activation-commit.json": {
+      "nbytes": 1298,
+      "sha256": "177643cee4f77f643425db474b44abd1917dad8c5e31aab7ae68dd5037ecd8db"
+    },
+    "host-helper.bwrap": {
+      "nbytes": 194592,
+      "sha256": "ed290d7b467eba236ff705a83938ecf78a5dc055648ef5420937b9717b29af3e"
+    },
+    "jobs.json": {
+      "nbytes": 2785,
+      "sha256": "e3fa81567bbac1e6448e6c1ccf36b805cff48f7845aeb2fdb4d2f2b297918099"
+    },
+    "registration.json": {
+      "nbytes": 633,
+      "sha256": "99d192d0640130f0020b26a972bd3a2419b0748ed27b9f21d8f9eb1888ba30bc"
+    },
+    "original-artifact.zip": {
+      "nbytes": 328216,
+      "sha256": "faa29840b896207eed7e3a61087722ef150d1ce6e5c9de3a124909d34e8e29cb"
+    },
+    "workflow-runs.json": {
+      "nbytes": 15219,
+      "sha256": "2f5788b4e21c7c33e5a1988cfa3ca52bba259a50c1f40c2279ac67abc7bd695b"
+    },
+    "workflow.json": {
+      "nbytes": 694,
+      "sha256": "377e900907258cc49e099174fd510fab38f94ba36b52492262303e970cb4814a"
+    },
+    "run.json": {
+      "nbytes": 15183,
+      "sha256": "40795f18db113e08ed1d58270f96d4a95f63bb590126f62778cfbad8c0deddea"
+    },
+    "artifacts.json": {
+      "nbytes": 842,
+      "sha256": "f10535d83331ddc86c0ad4c6f7f6a4d2316e888aa5e333f3befb7ea09f06aec5"
+    },
+    "preflight.json": {
+      "nbytes": 6487,
+      "sha256": "b520edefc7bf238c157497c863f23945debd3d9e0761b19169e39cc6fd0c14d5"
+    },
+    "source.tar.xz": {
+      "nbytes": 126452,
+      "sha256": "9760d007363e3abba7c747489910f9f82d9fca53ba3bd3282e396fa3c97a3314"
+    },
+    "activation-ref.json": {
+      "nbytes": 529,
+      "sha256": "e589cd08e9bbf6cd02396191f2d02457c1c3affba840fdb224a7e1fae349e205"
+    }
+  }
+}
