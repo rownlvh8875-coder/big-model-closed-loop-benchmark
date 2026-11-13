@@ -1,0 +1,50 @@
+{
+  "schema": "builder-namespace-source-review-v1",
+  "base_sha": "b63c9dc5f923cb89cf1987d171db1c642b8b50a6",
+  "reviewed_head_sha": "807dff454604eeb31ea5b748bf61925eaf046c95",
+  "reviewer": "/root/builder_namespace_proof_review",
+  "model": "gpt-6-astra",
+  "reasoning_effort": "medium",
+  "critical": [],
+  "important": [],
+  "minor_deferred": [
+    {
+      "id": "BN-M1",
+      "issue": "LiveBackend actual mountinfo/status/route parser and phase-error collection lack direct mocked filesystem fixtures.",
+      "root_grade": "Minor",
+      "cost": "Reduced collection confidence on unusual host data; all fields fail closed and actual new03 observations remain required."
+    }
+  ],
+  "declines_rulings": [
+    [
+      "Actual remote namespace denial, scoped profile behavior, and build/wheel outcome",
+      "Require actual new single-use run before claiming any success; reviewer live exclusion accepted.",
+      "Local fixtures cannot establish real kernel, package or wheel behavior."
+    ],
+    [
+      "Builder02 exact failed predicate",
+      "Keep unknown and preserve exact legacy failure; new03 facts do not retrofill02.",
+      "Original predicate values remain unavailable."
+    ],
+    [
+      "Future request hashes, activation, artifact/inventory consumption, subsequent image readiness",
+      "Root authenticates source CI, fresh registration and original result bytes; image stays false.",
+      "Source review is not remote provenance or full lock/image proof."
+    ],
+    [
+      "Independent fullsuite",
+      "Accept root892/7skip85.863s and independent focused18/4.876s.",
+      "Fullsuite not independently reproduced."
+    ]
+  ],
+  "verification": {
+    "focused_tests": 18,
+    "full_tests": 892,
+    "optional_skips": 7,
+    "full_seconds": 85.863,
+    "independent_focused_tests": 18,
+    "independent_focused_seconds": 4.876,
+    "independent_rereview": false,
+    "remote_ci": "PENDING"
+  }
+}
