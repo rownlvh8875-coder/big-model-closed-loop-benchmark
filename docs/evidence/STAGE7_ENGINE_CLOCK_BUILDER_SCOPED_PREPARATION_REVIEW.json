@@ -1,0 +1,64 @@
+{
+  "schema": "builder-scoped-preparation-source-review-v1",
+  "base_sha": "89ed942a336b18033609382bc07ccefbf92c896a",
+  "reviewed_head_sha": "d0d9600f21f401fa1698574152361403be316a35",
+  "reviewer": "/root/builder_scoped_preparation_review",
+  "model": "gpt-6-astra",
+  "reasoning_effort": "medium",
+  "critical": [],
+  "important": [],
+  "minor_deferred": [
+    {
+      "id": "BS-M1",
+      "issue": "Retention tests lack valid-context delegation fixture for roots/output/deadline.",
+      "root_grade": "Minor",
+      "cost": "Future wrapper wiring drift has weaker focused coverage; reviewer inspected current correct delegation and old tests cover nofollow traversal."
+    }
+  ],
+  "declines_rulings": [
+    [
+      "Actual activation/run/API/sourceCI",
+      "Root verifies exact sourceCI and one request-only activation before operation.",
+      "Source review is not remote provenance."
+    ],
+    [
+      "Fresh kernel/AppArmor/parser/helper/ns/quota/FD behavior",
+      "Accept actual same-job qualification required before transport.",
+      "Prior04 support is a recipe, not runtime credit."
+    ],
+    [
+      "Dependency transport/candidate/startup/pip/source/smoke/wheel",
+      "Accept pending authentic one-use build result.",
+      "No success/installed package/full image inference before actual checks."
+    ],
+    [
+      "Failure archive timing/upload/independent consumption",
+      "Root preserves originals and checks bounded inventory/bytes/CRC after operation.",
+      "Available-workspace retention cannot guarantee lost upstream transient state."
+    ],
+    [
+      "Independent04 originalZIP reconstruction",
+      "Root previously checked original bytes; reviewer checked pinned record and validator only.",
+      "Prior proof integrity is root-observed, not independently reproduced."
+    ],
+    [
+      "Independent fullsuite",
+      "Accept root874/7skip76.420s; reviewer independently focused10/1.051s.",
+      "Fullsuite not independently reproduced."
+    ],
+    [
+      "Model/scientific/ORTGL/fullimage/native readiness",
+      "Accept unchanged false gates and zero official calls.",
+      "Built wheel alone cannot authorize scientific execution or fill image refs."
+    ]
+  ],
+  "verification": {
+    "focused_tests": 10,
+    "full_tests": 874,
+    "optional_skips": 7,
+    "full_seconds": 76.42,
+    "independent_focus_pass": true,
+    "independent_rereview": false,
+    "remote_ci": "PENDING"
+  }
+}
