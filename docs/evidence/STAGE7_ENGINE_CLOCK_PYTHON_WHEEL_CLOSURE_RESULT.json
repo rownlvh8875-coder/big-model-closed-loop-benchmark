@@ -1,0 +1,751 @@
+{
+  "schema": "python-wheel-closure-evidence-v1",
+  "status": "GENUINE_PYTHON_WHEEL_INPUT_CLOSURE_ACCEPTED",
+  "request_id": "python-lock-20261114-02",
+  "source_sha": "a47112590a17539e55ae7a643f3c601a1f003e45",
+  "activation_sha": "08d27d130fa69214654f8bb28563749bb9368d5b",
+  "request_sha256": "1ccda3d98dce6fd45631485423a570a1e33cb17bcbb0f49363b53fcc01cb7366",
+  "source_ci": [
+    {
+      "run_id": 43462735340,
+      "event": "push",
+      "attempt": 1,
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 132013604384,
+          "name": "onnx-interface-test",
+          "conclusion": "success"
+        },
+        {
+          "id": 132013604563,
+          "name": "synthetic-unit",
+          "conclusion": "success"
+        }
+      ],
+      "artifacts": 0,
+      "proofs": {
+        "run": {
+          "path": "output/stage7-python-wheel-closure-preflight/python-lock-20261114-02/source-43462735340-run.json",
+          "nbytes": 15833,
+          "sha256": "b2f3ff42064c32b816822c0ab621e3e9757741c4d91dbabd4b507c0ee0dac9fd"
+        },
+        "jobs": {
+          "path": "output/stage7-python-wheel-closure-preflight/python-lock-20261114-02/source-43462735340-jobs.json",
+          "nbytes": 5106,
+          "sha256": "3d9c7297cc7ae90f755d102195281e9ab0574844db8dc3ef5ea83f3e4b02401f"
+        },
+        "artifacts": {
+          "path": "output/stage7-python-wheel-closure-preflight/python-lock-20261114-02/source-43462735340-artifacts.json",
+          "nbytes": 32,
+          "sha256": "244563f989470892c537c9a4622920af0d228ee4528f7d00c64a06d6cd95856c"
+        }
+      }
+    },
+    {
+      "run_id": 43462746773,
+      "event": "pull_request",
+      "attempt": 1,
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 132013643842,
+          "name": "synthetic-unit",
+          "conclusion": "success"
+        },
+        {
+          "id": 132013644305,
+          "name": "onnx-interface-test",
+          "conclusion": "success"
+        }
+      ],
+      "artifacts": 0,
+      "proofs": {
+        "run": {
+          "path": "output/stage7-python-wheel-closure-preflight/python-lock-20261114-02/source-43462746773-run.json",
+          "nbytes": 15849,
+          "sha256": "6ca2b575ceb879418b1863f27bec692f7202803dc1dd32687871d5b1cc31e292"
+        },
+        "jobs": {
+          "path": "output/stage7-python-wheel-closure-preflight/python-lock-20261114-02/source-43462746773-jobs.json",
+          "nbytes": 5106,
+          "sha256": "a6661d7b277797658378ba92541dff47591bf9beb8d3e9c8c4fa20aed331cf08"
+        },
+        "artifacts": {
+          "path": "output/stage7-python-wheel-closure-preflight/python-lock-20261114-02/source-43462746773-artifacts.json",
+          "nbytes": 32,
+          "sha256": "244563f989470892c537c9a4622920af0d228ee4528f7d00c64a06d6cd95856c"
+        }
+      }
+    }
+  ],
+  "registration": {
+    "schema": "python-wheel-closure-registration-v1",
+    "request_id": "python-lock-20261114-02",
+    "source_sha": "a47112590a17539e55ae7a643f3c601a1f003e45",
+    "activation_sha": "08d27d130fa69214654f8bb28563749bb9368d5b",
+    "request_path": "docs/requests/engine-clock-python-lock-20261114-02.json",
+    "request_sha256": "1ccda3d98dce6fd45631485423a570a1e33cb17bcbb0f49363b53fcc01cb7366",
+    "closure_files": 13,
+    "source_ci_runs": [
+      43462735340,
+      43462746773
+    ],
+    "preactivation_remote_ref_absent": true,
+    "preactivation_branch_runs": 0,
+    "local_output_absent": true,
+    "source_and_activation_authenticated": true,
+    "native_model_docker_allowance": 0,
+    "registered_kst": "2026-11-14T01:28:46.421937+09:00"
+  },
+  "operator_receipt_path": "docs/evidence/STAGE7_ENGINE_CLOCK_PYTHON_WHEEL_CLOSURE_RECEIPT.json",
+  "operator_receipt_sha256": "9fdaea955f1c02f89cdf1a0ca95a17dcc6b0af12d6906cb682f51be211b6d5e1",
+  "root_verification_path": "docs/evidence/STAGE7_ENGINE_CLOCK_PYTHON_WHEEL_CLOSURE_ROOT_VERIFICATION.json",
+  "lock_path": "docs/locks/engine-clock-python-wheels.lock.json",
+  "lock_sha256": "ec68e4d643de0237e3902122197b766c4677ef2aab83da1051f712f96a35193e",
+  "lock_nbytes": 104668,
+  "wheel_count": 56,
+  "archive_bytes": 341667536,
+  "decoded_bytes": 864698838,
+  "members": 17311,
+  "target_graph_edges": 78,
+  "publisher_authenticated_files": 54,
+  "registered_local_files": 2,
+  "local_raw": [
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/attempt.json",
+      "nbytes": 283,
+      "sha256": "56184bfe77c02e6596ea705fdd8a96c678b4baadb48bec2490027c8a7a5999d7"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/binary-gate.json",
+      "nbytes": 279,
+      "sha256": "f34d0a1c76b4a29762575e97ace7be820b6d75b89056fb3d1b6bcae792b7f7bc"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/pip.log",
+      "nbytes": 22118,
+      "sha256": "17855698949ceeaaf8fe7f51b34c33d8e8ab7253c474ab2e9c676d69b16e9173"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/publisher/asttokens-3.0.2.json",
+      "nbytes": 7849,
+      "sha256": "32d65aea2c95500c4c389d5725dba00c2627166cd40ac332a3cbe4a8a39c0010"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/publisher/certifi-2026.10.23.json",
+      "nbytes": 4631,
+      "sha256": "546ce90e02c152f5ff565baca6bc2a8f43c355855f637756f49a0143e312bdb2"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/publisher/charset-normalizer-3.5.2.json",
+      "nbytes": 202370,
+      "sha256": "9fda300857ae6a0486b4cd2d2fec7817ed2d45657249a6dfc0c2bbd1a44267b6"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/publisher/cloudpickle-3.1.2.json",
+      "nbytes": 9624,
+      "sha256": "36cd9b8b2a3b6691c78f87bac524652edbe9e81cda0f13767577174de31954bc"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/publisher/contourpy-1.3.3.json",
+      "nbytes": 68262,
+      "sha256": "d9f84d19398beebd015473d40ea0b10a1eb96705ee18df05bd947a12584ac28d"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/publisher/cycler-0.12.1.json",
+      "nbytes": 5598,
+      "sha256": "c4dc853a4b3611f48cfef3e363faeb85c70af63e3d49fe2c64dbe56ab5d688f0"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/publisher/executing-2.3.0.json",
+      "nbytes": 11293,
+      "sha256": "2c3aeb1e7d240b720056390929e0e93c60a9d3ab78f1d1ddfdb37cf70d92f18e"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/publisher/farama-notifications-0.0.6.json",
+      "nbytes": 3091,
+      "sha256": "255e53466f2342ed6fd2ac3a515fba20840db532ffffc4841f01a13140d081de"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/publisher/filelock-4.2.10.json",
+      "nbytes": 4337,
+      "sha256": "e1fa5ec4b21c9be0d1c5dd3bec7ad4dc500ad5b9affd45ee59e5693507baa04f"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/publisher/flatbuffers-25.12.19.json",
+      "nbytes": 2562,
+      "sha256": "3800bcba3177624044bb53f06f4a588061c10034f93467a0d163549b0928045a"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/publisher/fonttools-4.68.0.json",
+      "nbytes": 198972,
+      "sha256": "a76b3575b2320fd89468148fe33e94e9f8ea298d5857384473afdbdd08bf4847"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/publisher/gymnasium-1.4.0.json",
+      "nbytes": 10768,
+      "sha256": "2a5102dc09bca3086e94c896f4125aeb22678b43f6ae03acc5df9355fed9a349"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/publisher/idna-3.20.json",
+      "nbytes": 9180,
+      "sha256": "e7cbd26e23ce60f6cb3a151d2adf3b1b087bb8f10ac2d9d6db70fdccbf3bb041"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/publisher/ipython-9.18.1.json",
+      "nbytes": 6341,
+      "sha256": "0f7c28e1456f7de2f82cb9f174c3e3fb5412b8b06004bbe7a3e7163701ca9bb2"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/publisher/ipython-pygments-lexers-1.1.1.json",
+      "nbytes": 3478,
+      "sha256": "e70f8c8b43eaa50a85c76375516387f8147ebc4c5494d7e1c6018dffb5369f89"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/publisher/jedi-0.20.1.json",
+      "nbytes": 25771,
+      "sha256": "d85a6dec8206149763afea6dfffc051d26002a0cbcc6b0b1375bebbca91bafcd"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/publisher/kiwisolver-1.5.1.json",
+      "nbytes": 128722,
+      "sha256": "9b4053c476b6cd0da61e905cc5cdf4a7309dc0ce17809475e615c5444ade86fe"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/publisher/lxml-6.1.3.json",
+      "nbytes": 155078,
+      "sha256": "1f03dafdc0bd6c308a1e69aff7caef27f6d7c586eadd34e02229703a8541fe61"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/publisher/matplotlib-3.11.2.json",
+      "nbytes": 128500,
+      "sha256": "5f75d7e3ecb136a2b41d647188dd25f670558870661e0f870aedc76643d20606"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/publisher/matplotlib-inline-0.2.2.json",
+      "nbytes": 4530,
+      "sha256": "820bd765c47195ab362a0577189bc976636e638c9b977720240391564e1f68d4"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/publisher/mediapy-1.2.7.json",
+      "nbytes": 6954,
+      "sha256": "61446401943e789c487c7806540e2acadd05af41522af84471bd66db9a3d1f68"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/publisher/numpy-2.4.6.json",
+      "nbytes": 68419,
+      "sha256": "47121e3c41e7f6575370e2937674546e87caa261e51c5219ae6996619d7ae07f"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/publisher/onnxruntime-1.32.0.json",
+      "nbytes": 26865,
+      "sha256": "6f7c26d60b6aa8e2903adec283d5b3657c0f6b6f262ea4c6963e520927d825c1"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/publisher/opencv-python-headless-5.0.0.93.json",
+      "nbytes": 28963,
+      "sha256": "5a5aae8e027ce654a01451fdd1c1cd0e20f4c7945b24d12810b9ddaf7e756adc"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/publisher/packaging-26.3.json",
+      "nbytes": 5748,
+      "sha256": "4f190d2f0b312b3086058cee64ab4333bf3ce67fb78b4c2bdb43899049b29f4d"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/publisher/panda3d-1.10.13.json",
+      "nbytes": 67710,
+      "sha256": "3762b0684f12050d24632023c7a332d2ef789eecc508a53a654b25e8bab243eb"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/publisher/panda3d-gltf-0.13.json",
+      "nbytes": 5956,
+      "sha256": "37f93084f9cc55e437e772938e64cb0890e44eb7c26f886006ee6e7746793a0d"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/publisher/panda3d-simplepbr-0.13.1.json",
+      "nbytes": 5464,
+      "sha256": "998666e5ec3999affe276164da974f440a9903914fd4be7cf2cc2c421e5f96e5"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/publisher/pandas-3.1.1.json",
+      "nbytes": 66124,
+      "sha256": "89c7b02c67ebcd7f8afdd667b54b198afd5a6c106b680257de81a4e4a862d581"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/publisher/parso-0.8.7.json",
+      "nbytes": 10343,
+      "sha256": "d307f3b8667c32bb1122b571c6b70a412fcd5c5a726f280c0ec8900d4bbab3b8"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/publisher/pexpect-4.9.0.json",
+      "nbytes": 4579,
+      "sha256": "d6e320041db827fce8fe20dd62c807170fd83bd7f2566613c30824e156e16fc8"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/publisher/pillow-13.0.0.json",
+      "nbytes": 80892,
+      "sha256": "183d4151cbc909acf39d4d5d48469d6bc66d5516e7f506854241839d0611b69e"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/publisher/platformdirs-4.14.5.json",
+      "nbytes": 7933,
+      "sha256": "f1295e796f0e8cd9e16779b16acfa8824c07369a974bab361732d414bff79950"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/publisher/prompt-toolkit-3.0.53.json",
+      "nbytes": 8697,
+      "sha256": "6ca170e9088be13eab820444feb4a9cbc8432293efcba8695b8528f5b37c0119"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/publisher/protobuf-7.36.2.json",
+      "nbytes": 7940,
+      "sha256": "38d5c8ef9f0bc79403979baa746281979abdebeeb72fc180194731d71e3d87a4"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/publisher/psutil-7.2.2.json",
+      "nbytes": 40819,
+      "sha256": "84f9d2597c3c15fe19d1ce069bfdbf25951dc423dc51d67c3979468c029b6415"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/publisher/ptyprocess-0.7.0.json",
+      "nbytes": 3561,
+      "sha256": "0c0fc6ffeabfe060db4b7657d629baba51763670b3733671c7472188c9341dd8"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/publisher/pure-eval-0.2.4.json",
+      "nbytes": 8740,
+      "sha256": "c6a2451497d997129716c8ca9592c0e96157cd26bcbcfb9d33e97fb23c4b6ca7"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/publisher/pygame-2.6.1.json",
+      "nbytes": 65543,
+      "sha256": "84a9a2365d7e4450bf32a7e0b5b19853e1a219b34be37713244856a692c91b07"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/publisher/pygments-2.21.0.json",
+      "nbytes": 4500,
+      "sha256": "330104a10adc8a587e3f98f4e207557125ca0c1d489e129334da5acb2b813a03"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/publisher/pyparsing-3.3.3.json",
+      "nbytes": 7951,
+      "sha256": "b851d5414eca50b38263f56c00a1fbec80383a26a3ad8e41a204b72cdeee5751"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/publisher/python-dateutil-4.0.0.json",
+      "nbytes": 9677,
+      "sha256": "b13eb57b123adf7f9268e59818dd21bd119d1c55e0f3a2bcceb7057e37c36436"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/publisher/requests-2.34.2.json",
+      "nbytes": 6811,
+      "sha256": "8622e50ffd295ed759ec793f2a009172a4ed0204bbc5e948de23111bc3d2aeae"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/publisher/scipy-1.17.1.json",
+      "nbytes": 115626,
+      "sha256": "5a0dc75a7c2399082d11c0af1ec97d39212a971cc5e73efac6d935a5359ff648"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/publisher/seaborn-0.13.2.json",
+      "nbytes": 7260,
+      "sha256": "54127c7bf83d0104aa5cf5307dddab643c6c42bf909a93dda92914e147f79edc"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/publisher/shapely-2.2.0.json",
+      "nbytes": 62230,
+      "sha256": "8dfba531c2ab2a8e62ef0d295b8e29a29dd235e113f4b2e63e4a1c2d6007e605"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/publisher/stack-data-0.6.3.json",
+      "nbytes": 20962,
+      "sha256": "661ff6aa33a0a0ab2ef7070273aaace251db44ee30225198443474f213396b9a"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/publisher/tqdm-4.70.1.json",
+      "nbytes": 60697,
+      "sha256": "0589819a1bc3437c8f215d95f3f64ff24d602dc6a62598eb8d2e420c8e6a0b25"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/publisher/traitlets-5.16.1.json",
+      "nbytes": 13450,
+      "sha256": "6a0e4dbcca0a80d132f0d534e7d5446e184e88d152a72d4731386d7b1a6facc3"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/publisher/typing-extensions-4.16.0.json",
+      "nbytes": 5631,
+      "sha256": "2140da00d62dde967f52d0be0ae28444f1d6a3fe603f52c83c23988c32122d5a"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/publisher/tzdata-2026.6.json",
+      "nbytes": 3613,
+      "sha256": "82888ae1ccdc2ed984ce983353520631122c4504e5af2dc40b8eddf8398206a0"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/publisher/urllib3-2.8.0.json",
+      "nbytes": 9510,
+      "sha256": "5315e7401db3cacccd0c2ce5daf81f752a9cc3614b18c37f2b79930b7159ce2f"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/publisher/wcwidth-0.9.4.json",
+      "nbytes": 49787,
+      "sha256": "61510acbb60cd06e9225053c6e9ae009dd4e729e23363bb95f4c7ae2222c0cc1"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/publisher/yapf-0.43.0.json",
+      "nbytes": 47254,
+      "sha256": "290f6a98e061bd08f7f5e1ddf86bd66cdbfeedcc40e187e49cf1f0900dacba60"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/receipt.json",
+      "nbytes": 22051,
+      "sha256": "9fdaea955f1c02f89cdf1a0ca95a17dcc6b0af12d6906cb682f51be211b6d5e1"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/root-verification.json",
+      "nbytes": 6488,
+      "sha256": "745be5affb48e492cc02d8db524f870b72ea4590885e821164eac0c689596cf4"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/source-ci/source-43462735340-artifacts.json",
+      "nbytes": 32,
+      "sha256": "244563f989470892c537c9a4622920af0d228ee4528f7d00c64a06d6cd95856c"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/source-ci/source-43462735340-jobs.json",
+      "nbytes": 5106,
+      "sha256": "3d9c7297cc7ae90f755d102195281e9ab0574844db8dc3ef5ea83f3e4b02401f"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/source-ci/source-43462735340-run.json",
+      "nbytes": 15833,
+      "sha256": "b2f3ff42064c32b816822c0ab621e3e9757741c4d91dbabd4b507c0ee0dac9fd"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/source-ci/source-43462746773-artifacts.json",
+      "nbytes": 32,
+      "sha256": "244563f989470892c537c9a4622920af0d228ee4528f7d00c64a06d6cd95856c"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/source-ci/source-43462746773-jobs.json",
+      "nbytes": 5106,
+      "sha256": "a6661d7b277797658378ba92541dff47591bf9beb8d3e9c8c4fa20aed331cf08"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/source-ci/source-43462746773-run.json",
+      "nbytes": 15849,
+      "sha256": "6ca2b575ceb879418b1863f27bec692f7202803dc1dd32687871d5b1cc31e292"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/target-graph.json",
+      "nbytes": 12413,
+      "sha256": "2cf3eee621b0402b2f579e64d6e34c8cda463c238f029acf4973ea56524adf84"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/wheels/asttokens-3.0.2-py3-none-any.whl",
+      "nbytes": 28702,
+      "sha256": "9da13157f5b28becde0bd374fc677dcd3c290614264eff096f167c469cd9f933"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/wheels/certifi-2026.10.23-py3-none-any.whl",
+      "nbytes": 135082,
+      "sha256": "e9b54de76e530bb6cf0ccd036787103acb58fd42ba930ea8bf948ddbaa2f61d1"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/wheels/charset_normalizer-3.5.2-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+      "nbytes": 269972,
+      "sha256": "211d5a3eb6af8f513b8d4ca19a8c1b7accab1b5f0d3175f9826b03c1a920dc1f"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/wheels/cloudpickle-3.1.2-py3-none-any.whl",
+      "nbytes": 22228,
+      "sha256": "9acb47f6afd73f60dc1df93bb801b472f05ff42fa6c84167d25cb206be1fbf4a"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/wheels/contourpy-1.3.3-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+      "nbytes": 355238,
+      "sha256": "51e79c1f7470158e838808d4a996fa9bac72c498e93d8ebe5119bc1e6becb0db"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/wheels/cycler-0.12.1-py3-none-any.whl",
+      "nbytes": 8321,
+      "sha256": "85cef7cff222d8644161529808465972e51340599459b8ac3ccbac5a854e0d30"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/wheels/executing-2.3.0-py3-none-any.whl",
+      "nbytes": 29393,
+      "sha256": "736e859c9f8701f11fcf516856f26f562e04776387824b43a35a1dfe21c84122"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/wheels/farama_notifications-0.0.6-py3-none-any.whl",
+      "nbytes": 2897,
+      "sha256": "f84839188efa1ce5bb361c2a84881b2dc2c0d0d7fb661ff00421820170930935"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/wheels/filelock-4.2.10-py3-none-any.whl",
+      "nbytes": 218040,
+      "sha256": "9479aaeb4db20b5a53e3da28493edd24720b66b8a0b84030aa56ccdf243d6857"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/wheels/flatbuffers-25.12.19-py2.py3-none-any.whl",
+      "nbytes": 26661,
+      "sha256": "7634f50c427838bb021c2d66a3d1168e9d199b0607e6329399f04846d42e20b4"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/wheels/fonttools-4.68.0-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+      "nbytes": 5493829,
+      "sha256": "4b9c89b5876f1a74b1341632dfaf4c4c2be565d76c060445df401ebe7a4ceefa"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/wheels/gymnasium-1.4.0-py3-none-any.whl",
+      "nbytes": 476306,
+      "sha256": "1cb947c59e7c72d8eabb2c2274c00cd20948e69f8452a9ef4092223be24fdf0e"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/wheels/idna-3.20-py3-none-any.whl",
+      "nbytes": 69583,
+      "sha256": "ab7ae7122974553370f0bdb919e1a960b2cd1bc1ef0276416d896db81c14582c"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/wheels/ipython-9.18.1-py3-none-any.whl",
+      "nbytes": 649819,
+      "sha256": "997ce9140d374531a61069c70c0f9ef299d6dd3559ea0f94b8af589726e3c1d5"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/wheels/ipython_pygments_lexers-1.1.1-py3-none-any.whl",
+      "nbytes": 8074,
+      "sha256": "a9462224a505ade19a605f71f8fa63c2048833ce50abc86768a0d81d876dc81c"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/wheels/jedi-0.20.1-py2.py3-none-any.whl",
+      "nbytes": 4885980,
+      "sha256": "0fb16d86c4a4c73c37ba518c77419975e30fcc620658a8d14fbb5720cdd34142"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/wheels/kiwisolver-1.5.1-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+      "nbytes": 1438206,
+      "sha256": "95a02752aa032eef4aed01cda6d9b687c669bd0396bf4519eef8bba22a286720"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/wheels/lxml-6.1.3-cp311-cp311-manylinux_2_26_x86_64.manylinux_2_28_x86_64.whl",
+      "nbytes": 5211431,
+      "sha256": "527195c188d7d0af748cd48d220ab8cdc5cb99be3d49ac4d9be7324d8abf9bc0"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/wheels/matplotlib-3.11.2-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+      "nbytes": 9854405,
+      "sha256": "07d9b9fa60cd4c393692f50d0bb03123242ddf61c99bb0e95e75feb354e7c1a8"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/wheels/matplotlib_inline-0.2.2-py3-none-any.whl",
+      "nbytes": 9534,
+      "sha256": "3c821cf1c209f59fb2d2d64abbf5b23b67bcb2210d663f9918dd851c6da1fcf6"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/wheels/mediapy-1.2.7-py3-none-any.whl",
+      "nbytes": 28015,
+      "sha256": "fc81a9190d9724b02286efac4e7a67f384024e078fda0a3cac9fdf25e2f8878f"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/wheels/metadrive_simulator-0.4.3-1headless-py3-none-any.whl",
+      "nbytes": 72968610,
+      "sha256": "f949e89ff4bc32b72c8d09f5c61446bbc2b1f9b415b99a077c02b8df77c217f7"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/wheels/numpy-2.4.6-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+      "nbytes": 16918164,
+      "sha256": "89cd468399cfd2504718f0ba50e410dca55a170b61a02ad92bb18c8a65186e93"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/wheels/onnxruntime-1.32.0-cp311-cp311-manylinux_2_28_x86_64.whl",
+      "nbytes": 27773237,
+      "sha256": "5a34fc4dfeb5a7b4a74c95dcba1e773d722abda720b474edf1b0c419dc6d163d"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/wheels/opencv_python_headless-5.0.0.93-cp37-abi3-manylinux_2_28_x86_64.whl",
+      "nbytes": 61204038,
+      "sha256": "ed709fdf9aa0bd1f2ed8549e71d19449b03a675bb581eb292285f6861953be37"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/wheels/packaging-26.3-py3-none-any.whl",
+      "nbytes": 129956,
+      "sha256": "d7193f7c8e4e93f444fde0262bf90af30e16fa0ad0ad44cb553c87339b23cd1c"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/wheels/panda3d-1.10.13-cp311-cp311-manylinux2014_x86_64.whl",
+      "nbytes": 55102056,
+      "sha256": "68e9e215c4192ca14ab1304be79f86657f43d6d663b3dbe3af209caf8eb9793c"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/wheels/panda3d_gltf-0.13-py3-none-any.whl",
+      "nbytes": 25568,
+      "sha256": "02d1a980f447bb1895ff4b48c667f289ba78f07a28ef308d8839b665a621efe2"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/wheels/panda3d_simplepbr-0.13.1-py3-none-any.whl",
+      "nbytes": 2457097,
+      "sha256": "cda41cb57cff035b851646956cfbdcc408bee42511dabd4f2d7bd4fbf48c57a9"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/wheels/pandas-3.1.1-cp311-cp311-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl",
+      "nbytes": 12356904,
+      "sha256": "4f1602f614bb83f443381dbcbb94c4ac764b2e50c8d6c965614c5cd83e328c47"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/wheels/parso-0.8.7-py2.py3-none-any.whl",
+      "nbytes": 107025,
+      "sha256": "a8926eb2a1b915486941fdbd31e86a4baf88fe8c210f25f2f35ecec5b574ca1c"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/wheels/pexpect-4.9.0-py2.py3-none-any.whl",
+      "nbytes": 63772,
+      "sha256": "7236d1e080e4936be2dc3e326cec0af72acf9212a7e1d060210e70a47e253523"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/wheels/pillow-13.0.0-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+      "nbytes": 7140667,
+      "sha256": "a625df9a2a5597fa5e5266e01aefc82604bb85d291e3547981e863560d75da6c"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/wheels/platformdirs-4.14.5-py3-none-any.whl",
+      "nbytes": 35402,
+      "sha256": "8e778c6fa421516f4d3369449f8df3b0e1b72c0e0005fe88e3ec772d0a14e750"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/wheels/progressbar-2.5-py3-none-any.whl",
+      "nbytes": 12144,
+      "sha256": "6d700c40ef5826211c7fa03701fc0bd9131a93f40e170963cff507c622ee3dd1"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/wheels/prompt_toolkit-3.0.53-py3-none-any.whl",
+      "nbytes": 392288,
+      "sha256": "01c0891d7f9237d5e339f7d3e42cdae80b7534abb1c7c0e3352efba6231492f2"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/wheels/protobuf-7.36.2-cp310-abi3-manylinux2014_x86_64.whl",
+      "nbytes": 343223,
+      "sha256": "89f23aa53c24553a2416fd4fd1ec06f74fa42b14b546d8883128813f775bbfd2"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/wheels/psutil-7.2.2-cp36-abi3-manylinux2010_x86_64.manylinux_2_12_x86_64.manylinux_2_28_x86_64.whl",
+      "nbytes": 155560,
+      "sha256": "076a2d2f923fd4821644f5ba89f059523da90dc9014e85f8e45a5774ca5bc6f9"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/wheels/ptyprocess-0.7.0-py2.py3-none-any.whl",
+      "nbytes": 13993,
+      "sha256": "4b41f3967fce3af57cc7e94b888626c18bf37a083e3651ca8feeb66d492fef35"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/wheels/pure_eval-0.2.4-py3-none-any.whl",
+      "nbytes": 11893,
+      "sha256": "96cae060a313cfaad51bb761278bfb0e62dc0248d9315a81173752dc546cd37a"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/wheels/pygame-2.6.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+      "nbytes": 13977107,
+      "sha256": "ce8cc108b92de9b149b344ad2e25eedbe773af0dc41dfb24d1f07f679b558c60"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/wheels/pygments-2.21.0-py3-none-any.whl",
+      "nbytes": 1250147,
+      "sha256": "2363c69b61c4a97c838da3b130dcd6468f4848992b21a82f2a63ec34377137d9"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/wheels/pyparsing-3.3.3-py3-none-any.whl",
+      "nbytes": 126420,
+      "sha256": "ece8c00a69cf01b45d0b1dedabb469c90d8caf996d4fda40f147627a122849a4"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/wheels/python_dateutil-4.0.0-py3-none-any.whl",
+      "nbytes": 92853,
+      "sha256": "a5e246f79eb80475e691bf93862cead98decd8a498cf53ba0516fcdc0f50dc1c"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/wheels/requests-2.34.2-py3-none-any.whl",
+      "nbytes": 73075,
+      "sha256": "2a0d60c172f83ac6ab31e4554906c0f3b3588d37b5cb939b1c061f4907e278e0"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/wheels/scipy-1.17.1-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+      "nbytes": 35349300,
+      "sha256": "43af8d1f3bea642559019edfe64e9b11192a8978efbd1539d7bc2aaa23d92de4"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/wheels/seaborn-0.13.2-py3-none-any.whl",
+      "nbytes": 294914,
+      "sha256": "636f8336facf092165e27924f223d3c62ca560b1f2bb5dff7ab7fad265361987"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/wheels/shapely-2.2.0-cp311-cp311-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl",
+      "nbytes": 2307874,
+      "sha256": "5d61088e2ef71dafad0dd4fae8a521cc1f20da4a89d3096bab5b3260b39b3052"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/wheels/stack_data-0.6.3-py3-none-any.whl",
+      "nbytes": 24521,
+      "sha256": "d5558e0c25a4cb0853cddad3d77da9891a08cb85dd9f9f91b9f8cd66e511e695"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/wheels/tqdm-4.70.1-py3-none-any.whl",
+      "nbytes": 80199,
+      "sha256": "c293e525e6fef9c20e8728fd4612df02a0aa31bb5fe91ecd93e123b1b7bffa73"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/wheels/traitlets-5.16.1-py3-none-any.whl",
+      "nbytes": 86211,
+      "sha256": "f775618166caa0396c8e337099240f2bd3e5e917d203b2e6fbe21a58d3cb1f6b"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/wheels/typing_extensions-4.16.0-py3-none-any.whl",
+      "nbytes": 45571,
+      "sha256": "481caa481374e813c1b176ada14e97f1f67a4539ce9cfeb3f350d78d6370c2e8"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/wheels/tzdata-2026.6-py2.py3-none-any.whl",
+      "nbytes": 348210,
+      "sha256": "0a10eec6e13ef16b627fabed9a5f2ba61a62b1c67f327305f4e7e412a70b4aec"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/wheels/urllib3-2.8.0-py3-none-any.whl",
+      "nbytes": 135717,
+      "sha256": "0cf3cae568d36aa9576b28dfb35f11328f1cb974ca7647d9475ebb86c75ac6e3"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/wheels/wcwidth-0.9.4-cp310-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+      "nbytes": 785946,
+      "sha256": "b185c8b927b23af2721be1783499d1cfa5c028b098b0858951b4ae224477f1c2"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/wheels/yapf-0.43.0-py3-none-any.whl",
+      "nbytes": 256158,
+      "sha256": "224faffbc39c428cb095818cf6ef5511fdab6f7430a10783fdfb292ccf2852ca"
+    },
+    {
+      "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/wheels.lock.json",
+      "nbytes": 104668,
+      "sha256": "ec68e4d643de0237e3902122197b766c4677ef2aab83da1051f712f96a35193e"
+    }
+  ],
+  "private_pip_log_published": false,
+  "pip_internal_http_requests": null,
+  "pip_internal_network_bytes": null,
+  "tree_polling_is_hard_quota": false,
+  "request_consumed": true,
+  "further_execution_authorized": false,
+  "python_wheel_inputs_ready": true,
+  "full_runtime_lock_ready": false,
+  "installed_runtime_verified": false,
+  "image_preparation_ready": false,
+  "native_admission": false,
+  "official_model_calls": 0,
+  "package_installs": 0,
+  "source_executions": 0,
+  "docker_calls": 0,
+  "root_verified_kst": "2026-11-14T01:31:17.491853+09:00",
+  "minor_rulings": {
+    "PW-M1": "General validator remains unchanged/deferred. All56actual dist-info directory identities were separately checked against filename/metadata, without claiming a general regression fix.",
+    "PW-M2": "No response failed in this operation; all54completed JSON originals retained. General partial-failure retention limitation remains deferred."
+  }
+}
