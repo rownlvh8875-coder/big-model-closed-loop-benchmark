@@ -1,0 +1,72 @@
+{
+  "schema": "bwrap-profile-confirmation-source-review-v1",
+  "base_sha": "915e0d61558b41619cb9175dba3b8aa717798a84",
+  "reviewed_head_sha": "c794e5a980b061f781273104f1410e59337361e1",
+  "reviewer": "/root/bwrap_profile_confirmation_review",
+  "model": "gpt-6-astra",
+  "reasoning_effort": "medium",
+  "critical": [],
+  "important": [],
+  "minor_deferred": [
+    {
+      "id": "BC-M1",
+      "issue": "FD fixture checks executable/observer/descriptors but not every intervening strict argv flag.",
+      "root_grade": "Minor",
+      "cost": "Future argument drift has weaker focused coverage; reviewer independently verified argv identical to03 except observer."
+    },
+    {
+      "id": "BP-M1",
+      "inherited": true,
+      "issue": "An exception inside qualify can lose intermediate phase evidence.",
+      "root_grade": "Minor",
+      "cost": "Fail-closed unexpected exceptions can consume budget with weaker evidence; ordinary semantic rejection now retains safe facts."
+    }
+  ],
+  "declines_rulings": [
+    [
+      "Actual04 execution/backend/namespace/caps/mount/profile",
+      "Accept source-only review; actual04 proof required.",
+      "No backend/native/scientific support inferred from fixtures."
+    ],
+    [
+      "Missing03 observations",
+      "Accept unrecoverable fields; keep03blocked.",
+      "No hash/size-based reconstruction or retroactive qualification."
+    ],
+    [
+      "Live API/CI/activation/unique/artifacts",
+      "Root independently verifies before/after registration.",
+      "Source review cannot prove external provenance."
+    ],
+    [
+      "Helper build/packages/AppArmor/kernel/runner",
+      "Accept primary trusted host boundary and actual proof, retain source/binary/profile/current host metadata.",
+      "No full-image reproducibility or publisher attestation follows."
+    ],
+    [
+      "Independent fullsuite",
+      "Accept root864/7skip73.094s; reviewer independently focused7/.015s.",
+      "Fullsuite not independently reproduced."
+    ],
+    [
+      "Candidate/model/build/image/main/Cloud",
+      "Accept excluded gates remain unchanged/false.",
+      "Scoped helper proof is not candidate/image/scientific readiness."
+    ],
+    [
+      "General unchanged dependencies",
+      "Accept inspected composition/transport/validation/auth paths only.",
+      "No recertification of all unchanged helper behavior."
+    ]
+  ],
+  "verification": {
+    "focused_tests": 7,
+    "full_tests": 864,
+    "optional_skips": 7,
+    "full_seconds": 73.094,
+    "status": "PASS",
+    "independent_focus_pass": true,
+    "independent_rereview": false,
+    "remote_ci": "PENDING"
+  }
+}
