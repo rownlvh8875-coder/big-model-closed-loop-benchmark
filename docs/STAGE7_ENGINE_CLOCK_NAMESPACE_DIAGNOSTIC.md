@@ -17,3 +17,11 @@
 이전 bubblewrap stderr의 정확한 문구는 보존한다. 다만 원본 network.c의 rtnl_read_reply가 오류 응답에서 errno를 복사하지 않으므로 문구의 EPERM은 실제 netlink 오류 번호를 증명하지 않는다. 새 진단은 ACK에서 signed errno를 직접 읽는다.
 
 최종 수정 소스 로컬 검증: 집중 18개 PASS, 전체 834개 PASS / 선택적 native 의존성 skip 7개, 94.450초. 원격 CI 및 실제 진단은 아직 별도 확인 대상이다.
+
+실제 01 결과: activation `2f0ad9cdb4e6a199f24a27296b58b94de5651637`, workflow 417151572, run [43410163534](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43410163534), job 131834281984, attempt 1, 해당 workflow/branch 실행 1개. 2026-11-13 19:34:56–19:35:08 (Asia/Seoul). 수집 workflow는 SUCCESS지만 격리 admission은 BLOCKED다. 요청 01은 소진됐고 재실행하지 않는다.
+
+세 자식은 모두 정상 종료했으며 `unshare` 호출 뒤 `ISOLATION_NOT_PROVEN`으로 반환했다. UID/GID mapping, capability intervention, loopback/netlink는 하나도 시도하지 않았다. 이 경로는 생성 직후 namespace IDs/profile을 저장하기 전에 반환하므로, 어떤 ID 확인이 실패했는지 판별할 수 없다. 커널의 거부나 AppArmor 원인으로 단정할 수 없다. kernel 7.0.0-1017-azure, image 20261101.360.1, 호스트 Seccomp 0 및 AppArmor unprivileged_userns 제한 sysctl 1은 관측 사실이다.
+
+원본 artifact 14029461462: ZIP 8,701 bytes / SHA256 `7b53c249193a83db5e0e8e560a82df5588bc45955d712f5806e7d93edff26081`; 단일 diagnostic.json 8,557 bytes / SHA256 `bf28dff57b19a2368225a5fe677ca4212a736567d926435373c3c540230d43b5`. API digest와 실제 ZIP hash/CRC/경로/크기, request·소스 closure·activation 부모·run/head/attempt·유일 실행을 확인했다. [소비 영수증](evidence/STAGE7_ENGINE_CLOCK_NAMESPACE_DIAGNOSTIC_RESULT.json)에 원본 파일별 hash를 기록했다. 원본 API/ZIP/log는 `output/stage7-namespace-diagnostic-evidence/namespace-diagnostic-20261113-01/`에 유지한다.
+
+다음 필요 작업은 새로운 별도 요청에서 생성 직후 namespace identity/readlink/수치 오류와 mapping 전후 관측을 보완하는 것이다. 관측 누락 때문에 호스트 정책을 변경하거나 전체 격리 성공으로 승격하지 않는다. 기존 01을 반복하는 대신 새 소스/예산을 먼저 검증한다.
