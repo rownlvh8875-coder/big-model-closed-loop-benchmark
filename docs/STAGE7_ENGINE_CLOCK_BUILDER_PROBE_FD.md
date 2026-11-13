@@ -11,3 +11,5 @@
 이 수정은 지원되는 backend에서 발생할 추가 FD 오류를 예방하는 source 품질 보완이다. 관측된 loopback 권한 거부의 host/kernel/LSM/capability 정책 원인은 미확정이고, 실제 namespace 지원이나 Python/bootstrap/build 호환성을 증명하지 않는다. wheel/full lock/image/native readinessfalse, old16image refsnull/nativeallowance0, strictFAIL/expandedNOT_RUN/ABBAterminalFAIL/geometry-optics-fullS/Stage7INCOMPLETE가 유지된다. Main merge/Cloud 게시·기존 native/model/default 실험을 하지 않았다. 실제 후속 실행에는 새 검토 프로토콜과 격리 전제 확인이 필요하다.
 
 실제 로컬 결과: 단일 회귀1/0.029s, 집중90/1.355s, 전체816/69.171s PASS(7optional skips). 단 한 줄의 전달 tuple 수정과 이를 검증하는 trusted-child 시험이며, 미래 backend 지원 증거가 아니다. 원격 요청은 추가하지 않았다.
+
+이 별도 delta의 실제 독립 검토31578499: C0/I0/M1. Source-only FD 수정은 올바른 것으로 평가됐고, owned-child 회귀1/0.029s를 독립 재실행했다. FD-M1은 검토 시점의 review/CI 완료 문구에 대한 Minor로 유예한다. 최종 CI는 commit 후 실제 Draft PR에서 관측해 기록한다. 원래 source 전체 수정 pass의 재검토나 runtime 성공 인증이 아니다.
