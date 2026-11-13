@@ -95,9 +95,55 @@
   "request_consumed": true,
   "request_id": "python-bootstrap-20261113-01",
   "review": {
-    "head": null,
-    "status": "PENDING"
+    "critical": 0,
+    "execution_authorization": false,
+    "head": "b1e0989bde0d95403503a61fb04af9eb58834f63",
+    "important": 0,
+    "merge_authorization": false,
+    "minor": 0,
+    "model": "gpt-6-astra",
+    "raw_review_sha256": "617543a263aec587b07fe3b29778a682622374c469f367f31de02f8aa0227648",
+    "reasoning_effort": "medium",
+    "reviewer": "python_bootstrap_final_review",
+    "status": "APPROVED_SCOPE_ONLY"
   },
+  "review_decline_rulings": [
+    {
+      "cost_if_wrong": "Stronger origin or independent-host assurance remains absent.",
+      "id": "D1",
+      "ruling": "Accept GitHub API/payload digest agreement only, not publisher/build-source/host attestation"
+    },
+    {
+      "cost_if_wrong": "A later compatible-looking archive may still fail execution or require another candidate.",
+      "id": "D2",
+      "ruling": "Keep runtime/bootstrap/venv/installed identity/ABI/loader/transitive closure/relocation unresolved until separately reviewed environment and execution evidence"
+    },
+    {
+      "cost_if_wrong": "Adversarial reuse outside these exact bytes is unsupported.",
+      "id": "D3",
+      "ruling": "Accept complete fixed-archive descriptor/hash/RECORD checks without certifying a reusable hostile-input admission API"
+    },
+    {
+      "cost_if_wrong": "Unobserved transport failure paths need fixtures before a reusable controller or future execution protocol.",
+      "id": "D4",
+      "ruling": "Accept the consumed successful operation only; no failure replay/injection or universal transport/descendant/credential-error containment claim"
+    },
+    {
+      "cost_if_wrong": "Exact cost/resource or network-accounting guarantees remain unavailable.",
+      "id": "D5",
+      "ruling": "Keep hard quota/RSS/complete transport counters unknown; retain polling/post-capture assurance limits"
+    },
+    {
+      "cost_if_wrong": "Original scientific failures remain unresolved; local regressions rely on baseline CI.",
+      "id": "D6",
+      "ruling": "Preserve unchanged product/native/model/image/rendering gates; use final baseline CI for product regression evidence"
+    },
+    {
+      "cost_if_wrong": "Snapshots can become stale; review and final integration must not be conflated.",
+      "id": "D7",
+      "ruling": "Observe final Draft/CI/local-remote/main/Cloud state after reviewed HEAD and report separately"
+    }
+  ],
   "root_checks": [
     "all9rawsize/hashmatch",
     "registeredrequest/operator exact acquisition-commit bytes",

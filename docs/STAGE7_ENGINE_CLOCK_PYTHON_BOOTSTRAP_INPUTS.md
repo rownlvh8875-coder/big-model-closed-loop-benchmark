@@ -45,3 +45,5 @@ Archive SHA·manifest artifact SHA·canonical SHA는 설치된 runtime identity�
 기존 tracked416파일은 continuation/parent Task3 status2개 외 그대로 보존한다. Producer70/workflows44/consumed registry8·기존 tools/tests/policies/proposal·원본 archive/controller/review workspace를 바꾸거나 삭제하지 않는다. Product 코드/시험은 없고 동일한 local 전체 suite는 반복하지 않는다. 최종 independent review와 기본 CI는 실제 source와 별도 HEAD로 기록한다.
 
 새 native/provider/engine/Xvfb/GL/GPU/clock·공식 model/weights/ORT·image build/pull/load/run은0이다. 생성 SMALL ONNX 기본 CI는 별도다. 새 RGB/I420/공식 ONNX 일치율·first-divergence 수치는 없다. 기존 strict0/4 FAIL, expanded NOT_RUN, ABBA terminal FAIL/7null/4case·6비교 NOT_RUN, geometry·optics·full-S 한계와 **Stage7 INCOMPLETE**를 유지한다. Nativeallowance0, main 병합·Cloud 게시 없음.
+
+독립 whole-branch/raw 검토는 `b1e0989bde0d95403503a61fb04af9eb58834f63`에서 Critical0/Important0/Minor0으로 증거 범위를 수락했다. [검토 원문](evidence/STAGE7_ENGINE_CLOCK_PYTHON_BOOTSTRAP_REVIEW.md)을 보존하고, 범위 밖7항목의 root 판단·비용은 audit에 남겼다. 보류 Minor는 없다. 이후 receipt-only HEAD와 기본 CI는 Draft PR에서 별도 확인하며, 검토 수락은 설치 identity·OS/ABI·bootstrap/source/image/native 실행이나 merge 승인이 아니다.
