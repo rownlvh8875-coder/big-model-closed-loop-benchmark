@@ -1,0 +1,43 @@
+{
+  "assessment": "SOURCE_ONLY_FD_CORRECTION_CORRECT_NO_RUNTIME_CERTIFICATION",
+  "base_sha": "a103c1ebe4611bb859336c4bb7dbe3f88e485aa9",
+  "counts": {
+    "critical": 0,
+    "important": 0,
+    "minor": 1
+  },
+  "declined_to_judge": [
+    "Additional descriptor exposure",
+    "FD reuse masking failure",
+    "Missing unrelated-inheritable-FD sentinel/exact tuple assertion",
+    "Expected identities derived from unchanged argv rather than independent fixture paths",
+    "Trusted Python child substitution for namespace command",
+    "Non-executable metadata fixture/helper/version/help stubs",
+    "Closed FD/invalid build descriptor and ownership semantics",
+    "Historical source/request binding differs from corrected source",
+    "Nullable review/CI fields accurately pending at review time",
+    "Unchanged deferred M6/M7",
+    "Actual network denial/namespace/Python/bootstrap/build compatibility"
+  ],
+  "findings": [
+    {
+      "file": "docs/STAGE7_CONTINUATION.md:9",
+      "id": "FD-M1",
+      "issue": "At reviewed checkpoint wording says review/final CI are recorded while corresponding audit/plan records remain pending.",
+      "root_disposition": "DEFERRED_HISTORICAL_STATUS_WORDING; actual review and exact-final-HEAD CI are recorded subsequently without rewriting historical checkpoint.",
+      "severity": "Minor"
+    }
+  ],
+  "reviewed_sha": "31578499df046fb6c27a0d69cc2ef4ad7b2af48f",
+  "reviewer": "gpt-6-astra/medium/fresh context",
+  "schema": "engine-clock-builder-probe-fd-review-v1",
+  "scope": "Entire separate nine-file source-only FD delta; not an independent rereview of the earlier source fix pass.",
+  "verification": {
+    "checkout_mutated": false,
+    "full_suite_rerun": false,
+    "namespace_or_downloaded_code_executed": false,
+    "regression_tests": 1,
+    "retained_logs_inspected": "RED/GREEN90focused/816full7skips",
+    "seconds": 0.029
+  }
+}

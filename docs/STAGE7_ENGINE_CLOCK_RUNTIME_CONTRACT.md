@@ -60,3 +60,5 @@ Final same-pass I5 refinement: available host disk>=1073741824bytes is measured 
 ## Task3 actual provider-free preparation failure (2026-11-13)
 
 Producer78deaec/requestbuilder-20261113-01/run43389231348/attempt1 failed trusted-host namespace preflight with loopback RTM_NEWADDR/EPERM; no component transport or target source execution. Artifact14019513519 and120retained entries independently authenticated; see [actual preparation result](STAGE7_ENGINE_CLOCK_BUILDER_PREPARATION.md). Request consumed/no retry; wheel/full lock/image/native readinessfalse,16old image refsnull/nativebudget0/Task3incomplete. Separate latent preflight build-FD omission is recorded for source-only repair; it does not explain this earlier network failure. Old native/ABBA/default/scientific gates remain fixed.
+
+Source-only latent PF1 correction now passes both root/build FDs into preflight, verified with a real trusted fstat child (90focused/816full CPUtests PASS/7skips). It does not alter or replay the consumed loopback-EPERM failure. Actual backend/build/full lock/image/native readiness remains unproven/false; see STAGE7_ENGINE_CLOCK_BUILDER_PROBE_FD.md.

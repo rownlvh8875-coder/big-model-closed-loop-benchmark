@@ -1,0 +1,81 @@
+{
+  "actual_target_execution_verified": false,
+  "base_sha": "a103c1ebe4611bb859336c4bb7dbe3f88e485aa9",
+  "basic_ci": null,
+  "basic_ci_record_location": "Actual exact-final-source HEAD/run/jobs/log counts in Draft PR after push.",
+  "deferred_minors": [
+    "M6 controller review SHA requires external source/qualification binding",
+    "M7 reusable staging maximum deadline is not enforced; controlled callers supply180s",
+    "FD-M1 historical reviewed-checkpoint review/CI completion wording"
+  ],
+  "full_lock_ready": false,
+  "image_preparation_ready": false,
+  "immutable_previous_operation": {
+    "artifact_id": 14019513519,
+    "caused_by_PF1": false,
+    "producer_sha": "78deaec1a3158889f0f90ede159b9466bfc9b194",
+    "replayed": false,
+    "request_id": "builder-20261113-01",
+    "run_id": 43389231348,
+    "status": "CONSUMED_TERMINAL_LOOPBACK_RTM_NEWADDR_EPERM"
+  },
+  "native_admission": false,
+  "new_target_request_created": false,
+  "preservation": {
+    "allowed_changes": [
+      "docs/STAGE7_CONTINUATION.md",
+      "docs/STAGE7_ENGINE_CLOCK_RUNTIME_CONTRACT.md",
+      "docs/superpowers/plans/2026-11-13-engine-clock-builder-preparation-operation.md",
+      "scripts/engine_clock_builder_preparation.py",
+      "tests/test_engine_clock_builder_preparation.py"
+    ],
+    "before_tracked": 485,
+    "originals_and_workspaces_retained": true,
+    "unchanged": 480,
+    "workflow_bytes_unchanged": 45
+  },
+  "review": {
+    "counts": {
+      "critical": 0,
+      "important": 0,
+      "minor": 1
+    },
+    "independent_rereview_of_original_source_pass": false,
+    "path": "docs/evidence/STAGE7_ENGINE_CLOCK_BUILDER_PROBE_FD_REVIEW.json",
+    "scope": "Entire separate nine-file source-only FD delta; not an independent rereview of the earlier source fix pass."
+  },
+  "reviewed_sha": "31578499df046fb6c27a0d69cc2ef4ad7b2af48f",
+  "rulings_chronological": [
+    "Ruling: Correct only the separate latent PF1 FD propagation defect through an owned trusted-child regression, without actual namespace/target execution or a new request \u2014 user continuous authorization covers safe source repair; observed loopback EPERM remains terminal and is not attributed to PF1 \u2014 cost if wrong: additional code/test/CI work will not resolve the actual backend blocker.",
+    "Ruling: Review this separate source delta once with fresh context and retain old source/evidence hashes as historical producer identities \u2014 source correction must not rewrite or reclassify consumed request01 \u2014 cost if wrong: an extra narrowly scoped review adds effort; no independent rereview of the original whole-source fix pass is requested.",
+    "Ruling: Defer FD-M1 historical review/CI wording; preserve reviewed315 checkpoint and publish actual review/CI records through the planned audit/PR \u2014 minor status phrasing does not change code or admission \u2014 cost if wrong: readers inspecting an intermediate checkpoint may overread completion.",
+    "Ruling: Review decline \u2014 Additional FD exposure: accept because only the intended build FD is added and close_fds remains true \u2014 cost if wrong: a future broader tuple change would need renewed isolation checks.",
+    "Ruling: Review decline \u2014 FD reuse masking: accept because both device and inode are compared while parent descriptors remain owned \u2014 cost if wrong: this does not certify malicious same-user interference resistance.",
+    "Ruling: Review decline \u2014 No unrelated-FD sentinel/exact tuple test: accept because the real regression covers this omission and the call visibly passes only two FDs \u2014 cost if wrong: future isolation expansions may need broader negative coverage.",
+    "Ruling: Review decline \u2014 Identities derived from argv: accept because the test isolates transport of unchanged selected descriptors \u2014 cost if wrong: upstream selection mistakes are outside this unchanged path.",
+    "Ruling: Review decline \u2014 Python substituted for namespace command: accept because owned-child isolation is required to avoid forbidden live probes \u2014 cost if wrong: actual namespace support remains unproven.",
+    "Ruling: Review decline \u2014 Non-executable helper and metadata stubs: accept because the fixture helper is never launched and real child uses isolated installed Python \u2014 cost if wrong: real helper option integration is not re-certified by this fixture.",
+    "Ruling: Review decline \u2014 Closed FD/ownership concerns: accept because caller owns the validated build FD and probe still closes only its root FD \u2014 cost if wrong: misuse by uncontrolled future callers can still fail.",
+    "Ruling: Review decline \u2014 Historical binding differs from corrected source: accept because request01 and producer bytes remain immutable and cannot be reused \u2014 cost if wrong: future execution needs new source binding/protocol rather than old-request replay.",
+    "Ruling: Review decline \u2014 Nullable audit fields: accept because they truthfully describe pending work at review time \u2014 cost if wrong: readers must follow exact final PR evidence rather than infer CI success from a placeholder.",
+    "Ruling: Review decline \u2014 Unchanged M6/M7: accept because existing external provenance binding and controlled180s callers remain the scoped mitigations \u2014 cost if wrong: review-SHA overinterpretation and longer arbitrary SDK deadlines remain possible.",
+    "Ruling: Review decline \u2014 Actual backend/build compatibility: accept because this source-only delta cannot establish network-policy support or target runtime behavior \u2014 cost if wrong: the genuine loopback EPERM blocker and absent wheel remain unresolved."
+  ],
+  "schema": "engine-clock-builder-probe-fd-source-audit-v1",
+  "source_delta": "capability probe capture passes only intended root+build FDs; no isolation/credential/limit/profile change",
+  "stage7_status": "INCOMPLETE",
+  "validation": {
+    "behavioral_red": "UNSUPPORTED_HOST_NAMESPACE from missing build descriptor in trusted fstat child",
+    "focused": {
+      "seconds": 1.355,
+      "tests": 90
+    },
+    "full": {
+      "seconds": 69.171,
+      "skipped": 7,
+      "tests": 816
+    },
+    "namespace_or_downloaded_code_executed": false
+  },
+  "wheel_sha256": null
+}
