@@ -1,0 +1,33 @@
+{
+  "schema": "engine-clock-base-overlay-metadata-request-v1",
+  "request_id": "image-base-overlay-20261114-08",
+  "output_directory": "output/stage7-image-static-inputs/image-base-overlay-20261114-08",
+  "inputs": {
+    "docs/locks/engine-clock-image-inputs.lock.json": {
+      "nbytes": 213239,
+      "sha256": "f33c2558295efb57fcb22b2116c3f9f97d5e9f29c1ae017423e7a8423869c26a"
+    },
+    "output/stage7-image-input-verification/base-assets-20261114/base-layer-0.tar": {
+      "nbytes": 80715776,
+      "sha256": "21210938f5a37a9887b2d0a20428917b923a636ca6efe038c3c7d9cd9f1f9b61"
+    },
+    "output/stage7-image-static-inputs/graphics-graph-20261114-04/graphics-package-plan.json": {
+      "nbytes": 142098,
+      "sha256": "35ca4bb6665de78069368650722a1dd4daa0fea0b3f5c00ada00b760b81b12f7"
+    }
+  },
+  "operation": "Fresh local APT simulation from genuine base var/lib/dpkg/status with all192selected exact name=version arguments; reject removals/unregistered selected packages/version drift. No metadata refresh/network/install/maintainer script/image/engine call.",
+  "budget": {
+    "seconds": 60,
+    "apt_simulations": 1,
+    "output_bytes": 4194304
+  },
+  "permissions": {
+    "network": false,
+    "package_install": false,
+    "payload_execution": false,
+    "docker": false,
+    "native_model": false
+  },
+  "request_consumption": "exclusive-marker/no-retry"
+}
