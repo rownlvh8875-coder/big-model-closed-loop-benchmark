@@ -1,0 +1,60 @@
+{
+  "allowance": {
+    "attempts": 1,
+    "extra_gpu_clock_access": 0,
+    "image_build_pull_load_run": 0,
+    "metadata_fetches": 3,
+    "native_engine_runs": 0,
+    "official_model_calls": 0,
+    "package_installs_imports": 0,
+    "transform_invocations": 1,
+    "wheel_payload_fetches": 1
+  },
+  "base_sha": "de30d68027162b4058e029b9687c5a198f1339b2",
+  "expanded": "NOT_RUN",
+  "failure_policy": "CONSUMED_TERMINAL_NO_RETRY_NO_SOURCE_OR_CAP_REPAIR",
+  "image_preparation_authorized": false,
+  "limits": {
+    "automatic_retries": 0,
+    "connect_seconds": 10,
+    "controller_kill_after_seconds": 10,
+    "controller_seconds": 360,
+    "derived_bytes": 536870912,
+    "metadata_response_bytes": 1048576,
+    "metadata_seconds": 30,
+    "minimum_free_package_storage_bytes": 1073741824,
+    "payload_file_bytes": 67108864,
+    "payload_seconds": 120,
+    "redirects": 0,
+    "transform_seconds": 180
+  },
+  "local_package_operation_authorized": true,
+  "native_execution_authorized": false,
+  "operator_sha256": "74dd736798f78d4495a7c4517712f7843d1caa6e6a2952d6e83bfad60ce60c31",
+  "operator_source_path": "docs/evidence/STAGE7_ENGINE_CLOCK_REAL_WHEEL_OPERATOR.txt",
+  "output_directory": "output/stage7-real-wheel-preparation/wheel-input-20261113-e369b2c18129",
+  "request_id": "wheel-input-20261113-e369b2c18129",
+  "schema": "engine-clock-local-wheel-request-v1",
+  "scope": "CODEX_CLOUD_LOCAL_PACKAGE_INPUT",
+  "source": {
+    "filename": "metadrive_simulator-0.4.3-py3-none-any.whl",
+    "metadata_sha256": "4fb69fa54bb0e8118315aecdc482597af69798e17e47df3c57fbca50d4e7bcf6",
+    "metadata_url": "https://files.pythonhosted.org/packages/1a/9b/6c9e143728f071a560d1deba10d19bf4512d8951e6d15c7328c4d63dc631/metadrive_simulator-0.4.3-py3-none-any.whl.metadata",
+    "nbytes": 55128766,
+    "release_url": "https://pypi.org/pypi/metadrive-simulator/0.4.3/json",
+    "sha256": "c6f8a42baac939a0af53a8e1cd9d48ec2bf0051917e7c19083e156a6506493d9",
+    "simple_url": "https://pypi.org/simple/metadrive-simulator/",
+    "wheel_url": "https://files.pythonhosted.org/packages/1a/9b/6c9e143728f071a560d1deba10d19bf4512d8951e6d15c7328c4d63dc631/metadrive_simulator-0.4.3-py3-none-any.whl"
+  },
+  "source_sha256_by_path": {
+    "docs/evidence/STAGE7_ENGINE_CLOCK_WHEEL_DERIVATIVE_POLICY.json": "3a93bec192c72a918e4d39cd240b5721c35145dbf2c62200f1e1b443e78ead8a",
+    "docs/evidence/engine-clock-image-inputs/metadrive-0.4.3.METADATA": "4fb69fa54bb0e8118315aecdc482597af69798e17e47df3c57fbca50d4e7bcf6",
+    "scripts/engine_clock_wheel_derivative.py": "fedac489da5ee1f95efc6b6121247cd7c2f8a6b8de348f47338a47d7975708cc",
+    "tests/test_engine_clock_wheel_derivative.py": "28921a39ed50ae2e7d13d0664a78a855aefb116bdbac8380c9f56c8575fd6a36"
+  },
+  "stage7": "INCOMPLETE",
+  "status": "REGISTERED_ONCE",
+  "strict": "FAIL",
+  "task3_complete": false,
+  "transform_source_base_sha": "de30d68027162b4058e029b9687c5a198f1339b2"
+}

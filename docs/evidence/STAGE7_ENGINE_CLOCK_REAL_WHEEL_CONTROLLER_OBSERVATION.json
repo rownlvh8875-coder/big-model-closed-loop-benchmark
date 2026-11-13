@@ -1,0 +1,17 @@
+{
+  "actual_execution_source_sha": "63ee25b469c7f11cc901f4e0f8feed7219304866",
+  "configured_command": [
+    "timeout",
+    "--kill-after=10s",
+    "360s",
+    "/workspace/.cloud-tools/stage7/first-divergence-cpu-replay/bin/python",
+    "-B",
+    "docs/evidence/STAGE7_ENGINE_CLOCK_REAL_WHEEL_OPERATOR.txt"
+  ],
+  "new_attempt_or_replay": false,
+  "observed_exit_code": 0,
+  "origin": "ROOT_TOOL_OBSERVATION_NOT_INDEPENDENT_PROCESS_ATTESTATION",
+  "process_group_timeout_behavior_independently_tested": false,
+  "schema": "engine-clock-local-wheel-controller-observation-v1",
+  "tool_session_id": 33425
+}
