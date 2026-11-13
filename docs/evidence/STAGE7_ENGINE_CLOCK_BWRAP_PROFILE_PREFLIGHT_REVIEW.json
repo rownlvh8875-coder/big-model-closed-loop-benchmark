@@ -1,0 +1,65 @@
+{
+  "schema": "bwrap-profile-preflight-source-review-v1",
+  "base_sha": "1d07c705784cbb4dba3bbe0e4c66d57bb51e8d78",
+  "reviewed_head_sha": "7c226bf217790afc5768b78c3eacf2783cb383cd",
+  "reviewer": "/root/bwrap_profile_preflight_review",
+  "model": "gpt-6-astra",
+  "reasoning_effort": "medium",
+  "critical": [],
+  "important": [],
+  "minor_deferred": [
+    {
+      "id": "BP-M1",
+      "issue": "Exceptions inside qualify can omit earlier baseline/host evidence because records attach after completion.",
+      "root_grade": "Minor",
+      "cost": "Run remains fail-closed but an unexpected exception can consume budget with weaker diagnostic evidence; successful ordinary paths retain full facts."
+    }
+  ],
+  "declines_rulings": [
+    [
+      "Actual AppArmor ABI/parser/attachment/inheritance/userns",
+      "Accept source-only review; actual03 is required.",
+      "No runtime policy effectiveness inferred from syntax or fixtures."
+    ],
+    [
+      "Baseline reproduction/profile repair",
+      "Accept hypothesis pending same-job before/after.",
+      "No broad policy change or readiness claim if known baseline is absent or after fails."
+    ],
+    [
+      "Actual namespace/caps/mount/UID/GID",
+      "Root must consume exact trusted observer output independently.",
+      "Unit validation alone is not actual isolation proof."
+    ],
+    [
+      "Live compilation/packages/source/binary/ownership",
+      "Accept primary-host trust and pinned source with retained bytes, owner/mode/version/help and hash checks.",
+      "No publisher attestation or full-image reproducibility is established."
+    ],
+    [
+      "GitHub indexing/activation/CI/artifacts/raw",
+      "Root performs branch0, sole-parent/request-only, exact source CI, unique-run and original byte checks.",
+      "Source review cannot prove remote provenance or preserve runner internals beyond selected artifacts."
+    ],
+    [
+      "Independent full suite",
+      "Accept root857/7skip77.949s; reviewer independently focused10 only.",
+      "Full suite not independently reproduced."
+    ],
+    [
+      "Candidate/wheel/model/image/scientific/native/main/Cloud",
+      "Accept excluded scope; these gates stay false/unchanged.",
+      "Supported helper backend alone cannot authorize candidate execution or scientific claims."
+    ]
+  ],
+  "verification": {
+    "focused_tests": 10,
+    "full_tests": 857,
+    "optional_skips": 7,
+    "full_seconds": 77.949,
+    "status": "PASS",
+    "independent_focus_pass": true,
+    "independent_rereview": false,
+    "remote_ci": "PENDING"
+  }
+}
