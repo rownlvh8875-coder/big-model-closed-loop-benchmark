@@ -1,0 +1,71 @@
+{
+  "schema": "engine-clock-image-preparation-terminal-evidence-v1",
+  "status": "FAILED_INPUT_TRANSFER_BEFORE_INSTALL",
+  "request_id": "image-20261114-01",
+  "source_sha": "d3d0658cc2cd565bd1319736e3229478184de412",
+  "activation_sha": "fa6bc4c02079dc59665e85257209314ac07c99e1",
+  "run_id": 43494291177,
+  "workflow_id": 417668663,
+  "job_id": 132123219927,
+  "request_sha256": "be315c6237e15fe796316179a28bfce33fed91b43c98ebbcc752a96399448ae8",
+  "elapsed_seconds": 637.181325824,
+  "started_kst": "2026-11-14T04:39:46+09:00",
+  "finished_kst": "2026-11-14T04:50:23.507871+09:00",
+  "artifacts": [
+    {
+      "id": 14071188737,
+      "name": "engine-clock-image-20261114-01",
+      "nbytes": 566,
+      "sha256": "dc8ad7f549ddb4d7b13d0dbad5a89c5ca0acd7c17e56dabf5f9b639383644793"
+    },
+    {
+      "id": 14071118928,
+      "name": "engine-clock-image-20261114-01-execution",
+      "nbytes": 74669370,
+      "sha256": "ca7b706651a35a6f46e0e337f6d5106f89a3a9290d7cc8535af463f38c93cca2"
+    }
+  ],
+  "root_input_verification": {
+    "schema": "engine-clock-image-failed-inputs-root-verification-v1",
+    "status": "REGISTERED_DEB_BYTES_MATCH",
+    "run_id": 43494291177,
+    "artifact_id": 14071118928,
+    "artifact_sha256": "ca7b706651a35a6f46e0e337f6d5106f89a3a9290d7cc8535af463f38c93cca2",
+    "artifact_nbytes": 74669370,
+    "verified_files": 166,
+    "verified_bytes": 74460858,
+    "next_not_completed": {
+      "name": "libxmuu1",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20261113T000000Z/pool/main/libx/libxmu/libxmuu1_1.1.3-3build2_amd64.deb",
+      "nbytes": 8958,
+      "sha256": "27428f8d7b63c38424177d5b3b8b2b89d519956ccfe969927cd0a20cdec977c0"
+    },
+    "next_failure_http_status_preserved": false,
+    "precise_transport_cause": "NOT_PROVEN",
+    "docker_calls": {
+      "metadata": 2,
+      "base_load": 0,
+      "build": 0,
+      "container": 0,
+      "save": 0
+    },
+    "native_admission": false,
+    "official_model_calls": 0
+  },
+  "transport_details_limit": "Failure HTTP status/exception type were held in memory but not retained; precise cause NOT_PROVEN. No timeout/HTTP status inference.",
+  "free_filesystem_union_bytes": 91499675648,
+  "filesystem_count": 1,
+  "host_cpu": "AMD EPYC 9V74 80-Core Processor",
+  "host_kernel": "7.0.0-1017-azure",
+  "docker": "28.0.4",
+  "docker_api": "1.48",
+  "storage_driver": "overlay2",
+  "oci_runtime": "runc:v1.5.2-0-g29dd3dc2",
+  "image_tar_sha256": null,
+  "config_digest": null,
+  "installed_files_sha256": null,
+  "image_preparation_ready": false,
+  "installed_runtime_verified": false,
+  "native_admission": false,
+  "official_model_calls": 0
+}
