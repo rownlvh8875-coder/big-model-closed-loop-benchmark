@@ -89,6 +89,18 @@ class RecordControllerTests(unittest.TestCase):
   for steps in ([{**self.receipt(),'extra':'SECRET'}],[{**self.receipt(),'stage':'BUILD'}],[{**self.receipt(),'status':'SECRET'}],[{**self.receipt(),'stdout_bytes':True}]):
    v={**core,'steps':steps}
    with self.assertRaisesRegex(ValueError,'^INVALID_DRIVER_WIRE$'):b.decode_failure(json.dumps(v).encode())
+ def test_bounded_failure_read_overshoot_retained_and_reconstructed(self):
+  for stream,limit in (('stdout',3145728),('stderr',1048576)):
+   for status in ('OUTPUT_LIMIT','CLEANUP_FAILED','TRANSPORT_FAILED','TIMEOUT'):
+    with self.subTest(stream=stream,status=status):
+     row={**self.receipt(),'status':status,'returncode':-9,stream+'_bytes':limit+65536}
+     core={'schema':'builder-driver-failure-v1','status':'FAILED','code':'COMMAND_FAILED','steps':[row]}
+     raw=b.compact(core);self.assertEqual(core,b.decode_failure(raw));self.assertEqual(raw,b.compact(b.decode_failure(raw)))
+     row[stream+'_bytes']+=1
+     with self.assertRaisesRegex(ValueError,'^INVALID_DRIVER_WIRE$'):b.decode_failure(b.compact(core))
+     row[stream+'_bytes']=limit+1;row['status']='EXITED'
+     with self.assertRaisesRegex(ValueError,'^INVALID_DRIVER_WIRE$'):b.decode_failure(b.compact(core))
+
  def test_driver_and_argv_keep_namespace_and_commands(self):
   expected=b.sandbox.launch_argv(10,11);expected[0]=b.HELPER;expected[-1]='--registered-builder-v3';self.assertEqual(expected,b.private_launch_argv(10,11))
   text=(ROOT/'scripts/engine_clock_builder_record_driver.py').read_text();self.assertIn('proof.collect(facts);proof.validate(facts)',text);self.assertIn('legacy.commands().items()',text);self.assertNotIn('legacy.verify_tools(',text);self.assertEqual(2,text.count('toolcheck.verify_tools('))

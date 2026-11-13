@@ -125,7 +125,10 @@ def decode_failure(raw):
             _need(set(row)=={'stage','status','returncode','stdout_bytes','stderr_bytes','stdout_sha256','stderr_sha256'} and
                   row['status'] in ('EXITED','TIMEOUT','CLEANUP_FAILED','OUTPUT_LIMIT','SPAWN_FAILED','TRANSPORT_FAILED'),'INVALID_DRIVER_WIRE')
             _need(row['returncode'] is None or type(row['returncode']) is int and -2**31<=row['returncode']<2**31,'INVALID_DRIVER_WIRE')
-            _need(all(type(row[k]) is int and 0<=row[k]<=limit for k,limit in (('stdout_bytes',3145728),('stderr_bytes',1048576))) and
+            # Capture stops at the first failed budget after one <=64KiB read.
+            # Cleanup/transport failure may subsequently replace OUTPUT_LIMIT.
+            overshoot=0 if row['status']=='EXITED' else 65536
+            _need(all(type(row[k]) is int and 0<=row[k]<=limit+overshoot for k,limit in (('stdout_bytes',3145728),('stderr_bytes',1048576))) and
                   all(prep._digest(row[k]) for k in ('stdout_sha256','stderr_sha256')),'INVALID_DRIVER_WIRE')
         return value
     except (ValueError,TypeError,KeyError,UnicodeError,RecursionError,OverflowError):raise ValueError('INVALID_DRIVER_WIRE') from None
