@@ -42,13 +42,18 @@ def _target(path, value):
     _need(type(value) is str and value and '\0' not in value and '\\' not in value
           and len(value.encode()) <= 4096, 'BAD_LINK')
     stack = [] if value.startswith('/') else path.split('/')[:-1]
+    seen_component = False
     for part in value.split('/'):
         if part in ('', '.'):
             continue
         if part == '..':
+            # Lexically cancelling a preceding component is unsafe when that
+            # component can be a symlink. This builder profile rejects it.
+            _need(not seen_component, 'AMBIGUOUS_LINK_PARENT')
             _need(stack, 'LINK_ESCAPE')
             stack.pop()
         else:
+            seen_component = True
             stack.append(part)
     return _path('/'.join(stack) or '.', root=True)
 
@@ -124,7 +129,8 @@ def compile_plan(sources: list[dict]) -> dict:
         for end in range(1, len(parts)):
             raw.setdefault('/'.join(parts[:end]), dict(directory))
 
-    def resolve(path, final):
+    def resolve(path, final, nodes=None):
+        nodes = raw if nodes is None else nodes
         visited = set()
         for _ in range(41):
             _need(path not in visited, 'LINK_LOOP')
@@ -134,7 +140,7 @@ def compile_plan(sources: list[dict]) -> dict:
             limit = len(parts) if final else len(parts) - 1
             for end in range(1, limit + 1):
                 prefix = '/'.join(parts[:end])
-                node = raw.get(prefix)
+                node = nodes.get(prefix)
                 if node and node['kind'] == 'symlink':
                     target = _target(prefix, node['target'])
                     rest = '/'.join(parts[end:])
@@ -156,8 +162,10 @@ def compile_plan(sources: list[dict]) -> dict:
             output[dest] = dict(node)
     for path, node in output.items():
         if node['kind'] == 'symlink':
-            target = resolve(_target(path, node['target']), True)
+            target = resolve(_target(path, node['target']), True, output)
             _need(target in output, 'DANGLING_LINK')
+            if node['target'].endswith(('/', '/.')):
+                _need(output[target]['kind'] == 'directory', 'LINK_DIRECTORY_REQUIRED')
         if path != '.':
             parent = posixpath.dirname(path) or '.'
             _need(parent in output and output[parent]['kind'] == 'directory', 'FILE_ANCESTOR')

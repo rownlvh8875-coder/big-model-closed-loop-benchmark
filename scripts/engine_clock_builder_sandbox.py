@@ -18,7 +18,7 @@ CHILD_ENV = {'PATH': '/build/env/bin:/usr/bin:/bin', 'LANG': 'C', 'LC_ALL': 'C',
              'PYTHONDONTWRITEBYTECODE': '1', 'PYTHONHASHSEED': '0'}
 REQUIRED_OPTIONS = ('--unshare-user', '--unshare-pid', '--unshare-net', '--unshare-ipc',
                     '--unshare-uts', '--disable-userns', '--assert-userns-disabled',
-                    '--ro-bind-fd', '--size', '--cap-drop', '--die-with-parent',
+                    '--ro-bind-fd', '--bind-fd', '--cap-drop', '--die-with-parent',
                     '--new-session', '--clearenv', '--remount-ro', '--proc', '--dev')
 
 
@@ -26,8 +26,17 @@ def supported_options(help_text):
     return type(help_text) is str and set(REQUIRED_OPTIONS) <= set(help_text.split())
 
 
-def launch_argv(rootfd):
-    if type(rootfd) is not int or rootfd < 0:
+def supported_tmpfs(facts):
+    return (type(facts) is dict and facts.get('filesystem') == 'tmpfs'
+            and type(facts.get('bytes')) is int and 0 < facts['bytes'] <= 268435456
+            and facts.get('readonly') is False and type(facts.get('options')) is list
+            and {'rw', 'nosuid', 'nodev', 'noexec'} <= set(facts['options'])
+            and all(facts.get(k) is True for k in ('owner_matches', 'device_matches', 'named_inode_matches', 'empty')))
+
+
+def launch_argv(rootfd, buildfd):
+    if (type(rootfd) is not int or rootfd < 3 or type(buildfd) is not int or buildfd < 3
+            or rootfd == buildfd):
         raise ValueError('INVALID_ROOT_FD')
     args = ['/usr/bin/bwrap', '--unshare-user', '--unshare-pid', '--unshare-net',
             '--unshare-ipc', '--unshare-uts', '--uid', '0', '--gid', '0',
@@ -35,7 +44,7 @@ def launch_argv(rootfd):
             '--die-with-parent', '--new-session', '--clearenv',
             '--ro-bind-fd', str(rootfd), '/', '--proc', '/proc', '--remount-ro', '/proc',
             '--dev', '/dev', '--remount-ro', '/dev/pts', '--remount-ro', '/dev',
-            '--size', '268435456', '--tmpfs', '/build', '--chdir', '/build']
+            '--bind-fd', str(buildfd), '/build', '--chdir', '/build']
     for key, value in CHILD_ENV.items():
         args += ['--setenv', key, value]
     return args + ['--', PYTHON, '-I', '-S', '-B', '/run/builder/driver.py', '--registered-builder-v1']
@@ -151,12 +160,13 @@ def failure_code(raw):
 
 def decode_wire(raw):
     try:
+        from scripts import engine_clock_builder_driver as driver
         if type(raw) is not bytes or not 0 < len(raw) <= 3145728:
             raise ValueError()
         value = json.loads(raw, object_pairs_hook=_pairs,
                            parse_constant=lambda _: (_ for _ in ()).throw(ValueError()))
         if (type(value) is not dict or set(value) != {'schema', 'status', 'python', 'steps',
-                'tools_verified', 'source_verified', 'smoke_verified', 'wheel_b64', 'verification'}
+                'tools_verified', 'source_verified', 'smoke_verified', 'wheel_b64', 'verification', 'source_snapshots'}
                 or value['schema'] != 'builder-driver-v1' or value['status'] != 'BUILT'
                 or value['python'] != '3.11.18'
                 or any(value[k] is not True for k in ('tools_verified', 'source_verified', 'smoke_verified'))
@@ -165,6 +175,7 @@ def decode_wire(raw):
                    != ['VENV', 'ENSUREPIP', 'TOOLS', 'BUILD', 'SMOKE']):
             raise ValueError()
         verification = value['verification']
+        driver.validate_snapshots(value['source_snapshots'])
         if type(verification) is not dict or set(verification) != {'bootstrap', 'tools', 'source'}:
             raise ValueError()
         for name, row in verification.items():
@@ -174,6 +185,8 @@ def decode_wire(raw):
                     or type(row['snapshot_sha256']) is not str or len(row['snapshot_sha256']) != 64
                     or any(c not in '0123456789abcdef' for c in row['snapshot_sha256'])):
                 raise ValueError()
+        if verification['source'] != {k: value['source_snapshots']['after'][k] for k in ('snapshot_sha256', 'files')}:
+            raise ValueError()
         keys = {'stage', 'status', 'returncode', 'stdout_bytes', 'stderr_bytes', 'stdout_sha256', 'stderr_sha256'}
         for row in value['steps']:
             if (type(row) is not dict or set(row) != keys or row['stage'] not in ('VENV', 'ENSUREPIP', 'TOOLS', 'BUILD', 'SMOKE')

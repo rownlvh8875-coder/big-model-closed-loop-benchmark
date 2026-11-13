@@ -5,6 +5,7 @@ import importlib.util
 import json
 import os
 from pathlib import Path
+import re
 import stat
 import sys
 from time import monotonic
@@ -14,6 +15,9 @@ BASE = '/opt/hostedtoolcache/Python/3.11.18/x64/bin/python3.11'
 VENV = '/build/env/bin/python'
 OUTPUT = '/build/out/progressbar-2.5-py3-none-any.whl'
 MAX_FILES = 20000
+SOURCE_FILES = {'README.txt', 'setup.cfg', 'setup.py', 'PKG-INFO', 'LICENSE.txt', 'examples.py', 'MANIFEST.in',
+                *['progressbar/' + n for n in ('__init__.py', 'compat.py', 'progressbar.py', 'widgets.py')],
+                *['progressbar.egg-info/' + n for n in ('PKG-INFO', 'dependency_links.txt', 'SOURCES.txt', 'top_level.txt')]}
 
 
 def _need(ok, code):
@@ -80,19 +84,73 @@ def verify_tools(site, wheels):
         raise ValueError('TOOL_PAYLOAD_MISMATCH') from None
 
 
-def verify_source(root, source_rows):
+def _generated_source_path(path, expected):
+    if path.startswith('build/lib/') and path[len('build/lib/'):] in expected:
+        return path[len('build/lib/'):].startswith('progressbar/')
+    if path.startswith('progressbar.egg-info/'):
+        return path.split('/') == ['progressbar.egg-info', path.split('/')[-1]] and path.split('/')[-1] in {
+            'PKG-INFO', 'SOURCES.txt', 'dependency_links.txt', 'top_level.txt', 'requires.txt', 'zip-safe', 'not-zip-safe'}
+    return False
+
+
+def _check_source_map(rows, expected, before=False):
+    _need(type(rows) is dict and 0 < len(rows) <= 256 and all(_safe(p) and type(h) is str and
+          re.fullmatch('[0-9a-f]{64}', h) for p, h in rows.items()), 'SOURCE_PAYLOAD_MISMATCH')
+    if before:
+        _need(rows == expected, 'SOURCE_PAYLOAD_MISMATCH')
+        return
+    for path, digest in expected.items():
+        mutable = path == 'README.txt' or path.startswith('progressbar.egg-info/')
+        _need(path in rows and (mutable or rows[path] == digest), 'SOURCE_PAYLOAD_MISMATCH')
+    for path in set(rows) - set(expected):
+        _need(_generated_source_path(path, expected), 'SOURCE_PAYLOAD_MISMATCH')
+
+
+def source_snapshot(root):
+    rows = _snapshot(root)
+    return {**_receipt(rows), 'files_sha256': rows}
+
+
+def verify_source(root, source_rows, *, before=False):
     try:
-        rows = _snapshot(root)
+        snapshot = source_snapshot(root)
+        rows = snapshot['files_sha256']
         expected = {row['path']: row['sha256'] for row in source_rows}
         _need(len(expected) == len(source_rows) and all(_safe(p) for p in expected), 'SOURCE_PAYLOAD_MISMATCH')
-        for path, digest in expected.items():
-            mutable = path == 'README.txt' or path.startswith('progressbar.egg-info/')
-            _need(path in rows and (mutable or rows[path] == digest), 'SOURCE_PAYLOAD_MISMATCH')
-        for path in set(rows) - set(expected):
-            _need(path.startswith('build/') or path.startswith('progressbar.egg-info/'), 'SOURCE_PAYLOAD_MISMATCH')
-        return _receipt(rows)
+        _check_source_map(rows, expected, before=before)
+        return snapshot
     except (OSError, ValueError, KeyError, TypeError):
         raise ValueError('SOURCE_PAYLOAD_MISMATCH') from None
+
+
+def pip_wheel_args():
+    return ['--isolated', '--disable-pip-version-check', '--no-input', '--no-cache-dir',
+            'wheel', '--no-index', '--no-deps', '--require-hashes', '--no-build-isolation',
+            '--no-clean', '--wheel-dir', '/build/out', '-r', '/run/builder/source.txt']
+
+
+def validate_snapshots(value, source_rows=None):
+    _need(type(value) is dict and set(value) == {'schema', 'status', 'source_relative', 'source_identity', 'before', 'after', 'logs'}
+          and value['schema'] == 'source-snapshots-v1' and value['status'] == 'SOURCE_SNAPSHOTS_VERIFIED'
+          and type(value['source_relative']) is str
+          and re.fullmatch(r'pip-wheel-[a-z0-9_-]{1,64}/progressbar_[0-9a-f]{32}', value['source_relative']), 'INVALID_SOURCE_SNAPSHOTS')
+    identity = value['source_identity']
+    _need(type(identity) is dict and set(identity) == {'device', 'inode'}
+          and all(type(v) is int and 0 < v < 2**64 for v in identity.values()), 'INVALID_SOURCE_SNAPSHOTS')
+    for name in ('before', 'after'):
+        row = value[name]
+        _need(type(row) is dict and set(row) == {'snapshot_sha256', 'files', 'files_sha256'}
+              and type(row['files']) is int and type(row['files_sha256']) is dict
+              and row['files'] == len(row['files_sha256']) and _receipt(row['files_sha256']) == {k: row[k] for k in ('files', 'snapshot_sha256')}, 'INVALID_SOURCE_SNAPSHOTS')
+    expected = value['before']['files_sha256'] if source_rows is None else {r['path']: r['sha256'] for r in source_rows}
+    _need(set(value['before']['files_sha256']) <= SOURCE_FILES, 'INVALID_SOURCE_SNAPSHOTS')
+    _check_source_map(value['before']['files_sha256'], expected, before=True)
+    _check_source_map(value['after']['files_sha256'], expected)
+    logs = value['logs']
+    _need(type(logs) is dict and set(logs) == {'stdout_bytes', 'stderr_bytes', 'stdout_sha256', 'stderr_sha256'}, 'INVALID_SOURCE_SNAPSHOTS')
+    _need(all(type(logs[k]) is int and 0 <= logs[k] <= 1048576 for k in ('stdout_bytes', 'stderr_bytes'))
+          and all(type(logs[k]) is str and re.fullmatch('[0-9a-f]{64}', logs[k]) for k in ('stdout_sha256', 'stderr_sha256')), 'INVALID_SOURCE_SNAPSHOTS')
+    return value
 
 
 def commands():
@@ -101,7 +159,7 @@ def commands():
     return {'VENV': [BASE, '-I', '-S', '-B', '-m', 'venv', '--without-pip', '--symlinks', '/build/env'],
             'ENSUREPIP': [VENV, '-I', '-B', '-m', 'ensurepip', '--upgrade'],
             'TOOLS': pip + ['install'] + offline + ['--find-links', '/inputs', '-r', '/run/builder/tools.txt'],
-            'BUILD': pip + ['wheel'] + offline + ['--no-build-isolation', '--no-clean', '--wheel-dir', '/build/out', '-r', '/run/builder/source.txt'],
+            'BUILD': [VENV, '-I', '-B', '/run/builder/build.py', '--registered-pip-wheel-v1'],
             'SMOKE': [VENV, '-I', '-B', '-c', 'import sys;sys.path.insert(0,"' + OUTPUT + '");import progressbar;assert progressbar.__version__=="2.5";print("progressbar2.5-import-ok")']}
 
 
@@ -137,6 +195,7 @@ def main():
         stop = monotonic() + 175
         site = Path('/build/env/lib/python3.11/site-packages')
         verification = {}
+        snapshots = None
         for stage, argv in commands().items():
             receipt, raw = helper.capture(argv, timeout=max(.001, stop - monotonic()), child_environment=True)
             result['steps'].append({'stage': stage, **receipt})
@@ -148,16 +207,16 @@ def main():
             elif stage == 'TOOLS':
                 verification['tools'] = verify_tools(site, [Path('/inputs', n) for n in config['tool_filenames']])
             elif stage == 'BUILD':
-                sources = list(Path('/build/tmp').glob('pip-req-build-*'))
-                _need(len(sources) == 1, 'SOURCE_PAYLOAD_MISMATCH')
-                verification['source'] = verify_source(sources[0], config['source_rows'])
+                snapshots = validate_snapshots(json.loads(raw), config['source_rows'])
+                verification['source'] = {k: snapshots['after'][k] for k in ('snapshot_sha256', 'files')}
             elif stage == 'SMOKE':
                 _need(raw == b'progressbar2.5-import-ok\n', 'SMOKE_FAILED')
         wheel = Path(OUTPUT).read_bytes()
         _need(0 < len(wheel) <= 1048576 and sorted(p.name for p in Path('/build/out').iterdir()) == [Path(OUTPUT).name], 'OUTPUT_MISMATCH')
         result = {'schema': 'builder-driver-v1', 'status': 'BUILT', 'python': '3.11.18',
                   'steps': result['steps'], 'tools_verified': True, 'source_verified': True,
-                  'smoke_verified': True, 'wheel_b64': base64.b64encode(wheel).decode(), 'verification': verification}
+                  'smoke_verified': True, 'wheel_b64': base64.b64encode(wheel).decode(), 'verification': verification,
+                  'source_snapshots': snapshots}
     except ValueError as exc:
         if str(exc) in {'UNSUPPORTED_PYTHON', 'UNSUPPORTED_NAMESPACE', 'UNSUPPORTED_QUOTA',
                         'UNSUPPORTED_CAPABILITIES', 'UNSUPPORTED_NETWORK', 'COMMAND_FAILED',

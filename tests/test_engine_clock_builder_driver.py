@@ -1,6 +1,7 @@
 """Driver verification on owned fixture files, without bootstrap execution."""
 import hashlib
 import io
+import json
 from pathlib import Path
 import tempfile
 import unittest
@@ -61,7 +62,8 @@ class DriverTests(unittest.TestCase):
         self.make_source()
         before = driver.verify_source(self.root, self.rows())
         (self.root / 'README.txt').write_bytes(b'generated readme')
-        (self.root / 'build/lib').mkdir(parents=True);(self.root / 'build/lib/generated.py').write_bytes(b'generated')
+        (self.root / 'build/lib/progressbar').mkdir(parents=True)
+        (self.root / 'build/lib/progressbar/__init__.py').write_bytes(b'runtime')
         after = driver.verify_source(self.root, self.rows())
         self.assertNotEqual(before['snapshot_sha256'], after['snapshot_sha256'])
         self.assertEqual(5, after['files'])
@@ -87,11 +89,16 @@ class DriverTests(unittest.TestCase):
         commands = driver.commands()
         self.assertEqual(['VENV', 'ENSUREPIP', 'TOOLS', 'BUILD', 'SMOKE'], list(commands))
         self.assertIn('--without-pip', commands['VENV'])
-        for stage in ('TOOLS', 'BUILD'):
-            for flag in ('--no-index', '--no-deps', '--require-hashes', '--no-compile'):
-                self.assertIn(flag, commands[stage])
-        self.assertIn('--no-build-isolation', commands['BUILD'])
-        self.assertIn('--no-clean', commands['BUILD'])
+        for flag in ('--no-index', '--no-deps', '--require-hashes', '--no-compile'):
+            self.assertIn(flag, commands['TOOLS'])
+        build = driver.pip_wheel_args()
+        contract = json.loads(Path('docs/proposals/engine-clock-pip-wheel-static-contract.json').read_bytes())
+        self.assertEqual('fd7f4dfa8190e014013b9f08f3e973f4e4c26ffd179a204895533a7254813a70', contract['wheel_sha256'])
+        self.assertNotIn('no_compile', contract['observed_cmdoptions_factories'])
+        self.assertNotIn(contract['install_only_rejected_flag'], build)
+        self.assertTrue({v for v in build if v.startswith('-')} <= set(contract['supported_recipe_flags']))
+        self.assertIn('--no-build-isolation', build)
+        self.assertIn('--no-clean', build)
         self.assertNotIn('-S', commands['ENSUREPIP'])
         self.assertIn('-I', commands['SMOKE'])
 

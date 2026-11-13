@@ -88,6 +88,32 @@ class StagingTests(unittest.TestCase):
         os.chmod(self.root / 'usr/lib', 0o555)
         self.assertEqual('FAILED_OR_INCOMPLETE', staging.verify_open_tree(fd, self.plan(), deadline=perf_counter() + 10)['status'])
 
+    def test_nonleading_parent_after_a_symlink_is_explicitly_unsupported(self):
+        rows = [{'path': 'dir/sub', 'kind': 'directory', 'mode': 0o755, 'nbytes': 0},
+                file_row('file'),
+                {'path': 'a', 'kind': 'symlink', 'mode': 0o777, 'nbytes': 0, 'target': 'dir/sub'},
+                {'path': 'x', 'kind': 'symlink', 'mode': 0o777, 'nbytes': 0, 'target': 'a/../file'}]
+        sources = [{'id': 'fixture', 'prefix': '.', 'archive_sha256': '0' * 64, 'entries': rows}]
+        with self.assertRaisesRegex(ValueError, '^AMBIGUOUS_LINK_PARENT$'):
+            staging.compile_plan(sources)
+
+    def test_file_under_ambiguous_alias_is_rejected_before_staging(self):
+        rows = [{'path': p, 'kind': 'directory', 'mode': 0o755, 'nbytes': 0} for p in ('dir/sub', 'dir/dest', 'dest')]
+        rows += [{'path': 'a', 'kind': 'symlink', 'mode': 0o777, 'nbytes': 0, 'target': 'dir/sub'},
+                 {'path': 'x', 'kind': 'symlink', 'mode': 0o777, 'nbytes': 0, 'target': 'a/../dest'}, file_row('x/file')]
+        sources = [{'id': 'fixture', 'prefix': '.', 'archive_sha256': '0' * 64, 'entries': rows}]
+        with self.assertRaisesRegex(ValueError, '^AMBIGUOUS_LINK_PARENT$'):
+            staging.compile_plan(sources)
+        self.assertFalse(self.root.exists())
+
+    def test_cycles_and_directory_suffixes_use_canonical_output_nodes(self):
+        for extras in ([{'path': 'bin/a', 'kind': 'symlink', 'mode': 0o777, 'nbytes': 0, 'target': '/bin/b'},
+                        {'path': 'bin/b', 'kind': 'symlink', 'mode': 0o777, 'nbytes': 0, 'target': '/bin/a'}],
+                       [{'path': 'usr/lib/bad', 'kind': 'symlink', 'mode': 0o777, 'nbytes': 0, 'target': 'data/'}]):
+            self.sources[0]['entries'].extend(extras)
+            with self.assertRaises(ValueError):staging.compile_plan(self.sources)
+            del self.sources[0]['entries'][-len(extras):]
+
     def test_normalized_modes_remove_special_bits_and_writes(self):
         self.stage()
         self.assertEqual(0o555, stat.S_IMODE((self.root / 'usr/bin/tool').stat().st_mode))

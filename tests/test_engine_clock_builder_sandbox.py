@@ -1,6 +1,7 @@
 """Trusted host child fixtures; no downloaded Python/source is executed."""
 import base64
 import json
+import hashlib
 import os
 from pathlib import Path
 import sys
@@ -19,13 +20,14 @@ class SandboxTests(unittest.TestCase):
         self.assertIsNotNone(sandbox, 'namespace protocol implementation missing')
 
     def test_fixed_profile_has_mandatory_isolation_and_literal_environment(self):
-        args = sandbox.launch_argv(17)
+        args = sandbox.launch_argv(17, 18)
         for flag in ('--unshare-user', '--unshare-pid', '--unshare-net', '--unshare-ipc',
                      '--unshare-uts', '--disable-userns', '--assert-userns-disabled',
                      '--die-with-parent', '--new-session', '--clearenv'):
             self.assertIn(flag, args)
         self.assertEqual(['17', '/'], args[args.index('--ro-bind-fd') + 1:args.index('--ro-bind-fd') + 3])
-        self.assertEqual(['268435456', '--tmpfs', '/build'], args[args.index('--size') + 1:args.index('--size') + 4])
+        self.assertEqual(['18', '/build'], args[args.index('--bind-fd') + 1:args.index('--bind-fd') + 3])
+        self.assertEqual(1, args.count('--bind-fd'))
         self.assertEqual(['ALL'], args[args.index('--cap-drop') + 1:args.index('--cap-drop') + 2])
         for forbidden in ('--share-net', '--unshare-user-try', '--bind', '--dev-bind', '--not-a-security-boundary'):
             self.assertNotIn(forbidden, args)
@@ -42,7 +44,18 @@ class SandboxTests(unittest.TestCase):
     def test_invalid_root_descriptors(self):
         for value in (-1, True, '17', None):
             with self.assertRaises(ValueError):
-                sandbox.launch_argv(value)
+                sandbox.launch_argv(value, 18)
+            with self.assertRaises(ValueError):sandbox.launch_argv(17, value)
+
+    def test_writable_descriptor_requires_real_tmpfs_quota_facts(self):
+        facts = {'filesystem': 'tmpfs', 'bytes': 268435456, 'readonly': False,
+                 'options': ['rw', 'nosuid', 'nodev', 'noexec'], 'owner_matches': True,
+                 'device_matches': True, 'named_inode_matches': True, 'empty': True}
+        self.assertTrue(sandbox.supported_tmpfs(facts))
+        for key, value in [('filesystem', 'ext4'), ('bytes', 268435457), ('readonly', True),
+                           ('options', ['rw']), ('owner_matches', False), ('device_matches', False),
+                           ('named_inode_matches', False), ('empty', False)]:
+            self.assertFalse(sandbox.supported_tmpfs({**facts, key: value}))
 
     def test_capture_success_and_closed_environment(self):
         code = 'import os; print(os.getenv("SECRET_TOKEN", "absent")); print(os.getenv("HTTPS_PROXY", "absent"))'
@@ -100,7 +113,15 @@ class SandboxTests(unittest.TestCase):
                 sandbox.capture(['/usr/bin/true'], **kwargs)
 
     def wire(self):
-        return {'schema': 'builder-driver-v1', 'status': 'BUILT', 'python': '3.11.18',
+        files = {'setup.py': '0' * 64}
+        digest = hashlib.sha256(json.dumps(files, sort_keys=True, separators=(',', ':')).encode()).hexdigest()
+        snapshots = {'schema': 'source-snapshots-v1', 'status': 'SOURCE_SNAPSHOTS_VERIFIED',
+                     'source_relative': 'pip-wheel-fixture/progressbar_' + 'a' * 32,
+                     'source_identity': {'device': 1, 'inode': 1},
+                     'before': {'files': 1, 'snapshot_sha256': digest, 'files_sha256': files},
+                     'after': {'files': 1, 'snapshot_sha256': digest, 'files_sha256': files},
+                     'logs': {'stdout_bytes': 0, 'stderr_bytes': 0, 'stdout_sha256': '0' * 64, 'stderr_sha256': '0' * 64}}
+        value = {'schema': 'builder-driver-v1', 'status': 'BUILT', 'python': '3.11.18',
                 'steps': [{'stage': stage, 'status': 'EXITED', 'returncode': 0,
                            'stdout_bytes': 0, 'stderr_bytes': 0,
                            'stdout_sha256': '0' * 64, 'stderr_sha256': '0' * 64}
@@ -109,7 +130,9 @@ class SandboxTests(unittest.TestCase):
                 'verification': {name: {'snapshot_sha256': '0' * 64, 'files': 1,
                                        **({'payload_files': 1, 'installed_files': 1} if name != 'source' else {})}
                                  for name in ('bootstrap', 'tools', 'source')},
-                'smoke_verified': True, 'wheel_b64': base64.b64encode(b'fixture').decode()}
+                'smoke_verified': True, 'wheel_b64': base64.b64encode(b'fixture').decode(), 'source_snapshots': snapshots}
+        value['verification']['source']['snapshot_sha256'] = digest
+        return value
 
     def test_wire_rejects_missing_or_duplicate_phase_evidence(self):
         for stages in ([], self.wire()['steps'][:-1], self.wire()['steps'][:1] * 5):
@@ -139,6 +162,26 @@ class SandboxTests(unittest.TestCase):
         for raw in cases:
             with self.assertRaisesRegex(ValueError, '^INVALID_DRIVER_WIRE$'):
                 sandbox.decode_wire(raw)
+
+    def test_source_manifests_cannot_hide_hash_changes_unknown_paths_or_missing_evidence(self):
+        import copy
+        for mode in ('digest', 'unknown', 'missing', 'unknown_before'):
+            value = copy.deepcopy(self.wire())
+            snapshot = value['source_snapshots']['after']
+            if mode == 'digest':snapshot['files_sha256']['setup.py'] = '1' * 64
+            elif mode == 'missing':del value['source_snapshots']['before']
+            elif mode == 'unknown_before':
+                for name in ('before', 'after'):
+                    row = value['source_snapshots'][name]
+                    row['files_sha256'] = {'SECRET_SENTINEL': '0' * 64}
+                    row['snapshot_sha256'] = hashlib.sha256(json.dumps(row['files_sha256'],sort_keys=True,separators=(',',':')).encode()).hexdigest()
+                value['verification']['source']['snapshot_sha256'] = value['source_snapshots']['after']['snapshot_sha256']
+            else:
+                snapshot['files_sha256']['SECRET_SENTINEL'] = '1' * 64
+                snapshot['files'] = len(snapshot['files_sha256'])
+                snapshot['snapshot_sha256'] = hashlib.sha256(json.dumps(snapshot['files_sha256'],sort_keys=True,separators=(',',':')).encode()).hexdigest()
+            with self.assertRaisesRegex(ValueError, '^INVALID_DRIVER_WIRE$'):
+                sandbox.decode_wire(json.dumps(value).encode())
 
 
 if __name__ == '__main__':

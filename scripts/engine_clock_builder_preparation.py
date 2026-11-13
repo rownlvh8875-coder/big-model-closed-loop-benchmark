@@ -19,6 +19,7 @@ if __name__ == '__main__':
 from scripts import engine_clock_builder_staging as staging
 from scripts import engine_clock_builder_sandbox as sandbox
 from scripts import engine_clock_builder_wheel as wheel_check
+from scripts import engine_clock_builder_driver as driver_logic
 
 REPOSITORY = 'rownlvh8875-coder/big-model-closed-loop-benchmark'
 TEMPLATE = 'docs/proposals/engine-clock-builder-preparation.workflow.json'
@@ -29,14 +30,14 @@ PYTHON_MEMBERS = 'docs/evidence/engine-clock-python-bootstrap/archive-members.js
 OS_PLAN = 'docs/evidence/engine-clock-os-inputs/package-plan.json'
 OS_MEMBERS = 'docs/evidence/engine-clock-os-inputs/package-members.json'
 SOURCE_INSPECTION = 'docs/evidence/engine-clock-progressbar/static-inspection.json'
-CLOSURE_PATHS = frozenset([TEMPLATE, PROGRESS, POLICY, PYTHON_INPUT, PYTHON_MEMBERS, OS_PLAN,
+CLOSURE_PATHS = frozenset([TEMPLATE, 'docs/proposals/engine-clock-pip-wheel-static-contract.json', PROGRESS, POLICY, PYTHON_INPUT, PYTHON_MEMBERS, OS_PLAN,
     OS_MEMBERS, SOURCE_INSPECTION, 'scripts/__init__.py',
     'docs/evidence/STAGE7_ENGINE_CLOCK_OS_INPUTS.json',
     'docs/evidence/STAGE7_ENGINE_CLOCK_OS_BINDING.json',
     'docs/evidence/STAGE7_ENGINE_CLOCK_PYTHON_BOOTSTRAP_BINDING.json',
     'docs/superpowers/specs/2026-11-13-engine-clock-builder-staging-design.md',
-    *['scripts/engine_clock_builder_' + n + '.py' for n in ('staging', 'sandbox', 'wheel', 'driver', 'preparation')],
-    *['tests/test_engine_clock_builder_' + n + '.py' for n in ('staging', 'sandbox', 'wheel', 'driver', 'preparation')]])
+    *['scripts/engine_clock_builder_' + n + '.py' for n in ('staging', 'sandbox', 'wheel', 'driver', 'build', 'retention', 'preparation')],
+    *['tests/test_engine_clock_builder_' + n + '.py' for n in ('staging', 'sandbox', 'wheel', 'driver', 'build', 'retention', 'preparation')]])
 
 
 def _need(ok, code):
@@ -272,6 +273,7 @@ def _generated(root, request):
                 'etc/group': b'root:x:0:\n', 'etc/nsswitch.conf': b'passwd: files\ngroup: files\nhosts: files\n',
                 'etc/hosts': b'127.0.0.1 localhost\n::1 localhost\n', 'etc/resolv.conf': b'', 'etc/timezone': b'Etc/UTC\n',
                 'run/builder/driver.py': (root / 'scripts/engine_clock_builder_driver.py').read_bytes(),
+                'run/builder/build.py': (root / 'scripts/engine_clock_builder_build.py').read_bytes(),
                 'run/builder/sandbox.py': (root / 'scripts/engine_clock_builder_sandbox.py').read_bytes(),
                 'run/builder/config.json': canonical(config),
                 'run/builder/tools.txt': ''.join(p['name'] + '==' + p['version'] + ' --hash=sha256:' + p['sha256'] + '\n' for p in tools['tools']).encode(),
@@ -327,7 +329,28 @@ def input_members(sources, request, store, generated):
                 process.stdout.close();process.wait(timeout=5)
 
 
-def capability_probe(work, facts=None):
+def open_build_mount(request_id):
+    path = Path('/tmp/engine-clock-build-' + request_id)
+    fd = staging._absolute_dir(path)
+    try:
+        s, named, fs = os.fstat(fd), os.stat(path, follow_symlinks=False), os.fstatvfs(fd)
+        mounts = [line.split() for line in Path('/proc/self/mountinfo').read_text().splitlines()]
+        mounts = [row for row in mounts if row[4] == str(path)]
+        _need(len(mounts) == 1, 'UNSUPPORTED_HOST_QUOTA')
+        mount = mounts[0];separator = mount.index('-')
+        facts = {'filesystem': mount[separator + 1], 'bytes': fs.f_blocks * fs.f_frsize,
+                 'readonly': bool(fs.f_flag & os.ST_RDONLY), 'options': mount[5].split(','),
+                 'owner_matches': s.st_uid == os.getuid() and s.st_gid == os.getgid() and s.st_mode & 0o7777 == 0o700,
+                 'device_matches': mount[2] == str(os.major(s.st_dev)) + ':' + str(os.minor(s.st_dev)),
+                 'named_inode_matches': (s.st_dev, s.st_ino) == (named.st_dev, named.st_ino),
+                 'empty': not os.listdir(fd)}
+        _need(sandbox.supported_tmpfs(facts), 'UNSUPPORTED_HOST_QUOTA')
+        return fd, facts
+    except BaseException:
+        os.close(fd);raise
+
+
+def capability_probe(work, buildfd, facts=None):
     tool = Path('/usr/bin/bwrap')
     _need(tool.is_file() and not tool.stat().st_mode & 0o6000 and tool.stat().st_size <= 1048576, 'UNSUPPORTED_HOST_TOOL')
     if facts is None:facts = {}
@@ -345,7 +368,7 @@ def capability_probe(work, facts=None):
     for p in ('usr', 'lib', 'lib64', 'proc', 'dev', 'build'):(root / p).mkdir()
     fd = os.open(root, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW)
     try:
-        argv = sandbox.launch_argv(fd);at = argv.index('--')
+        argv = sandbox.launch_argv(fd, buildfd);at = argv.index('--')
         argv = argv[:at] + ['--ro-bind', '/usr', '/usr', '--ro-bind', '/lib', '/lib', '--ro-bind', '/lib64', '/lib64', '--', '/usr/bin/true']
         facts['trusted_true'], _ = sandbox.capture(argv, timeout=10, pass_fds=(fd,))
     finally:os.close(fd)
@@ -361,11 +384,13 @@ def run_preparation(root, request, env):
                'image_preparation_ready': False, 'native_admission': False, 'full_lock_ready': False,
                'official_model_calls': 0, 'transports': []}
     work = Path('/tmp/engine-clock-preparation-' + request['request_id'])
+    buildfd = None
     try:
         receipt['context'] = authenticate(root, request, env)
         work.mkdir(mode=0o700, exist_ok=False)
+        buildfd, receipt['build_mount'] = open_build_mount(request['request_id'])
         receipt['host'] = {}
-        capability_probe(work, receipt['host'])
+        capability_probe(work, buildfd, receipt['host'])
         store = work / 'inputs';store.mkdir()
         stop = monotonic() + 300
         for row in request['inputs']:receipt['transports'].append(download_input(row, store, stop))
@@ -381,20 +406,24 @@ def run_preparation(root, request, env):
             receipt['open_root_verification'] = staging.verify_open_tree(fd, plan, deadline=perf_counter() + 180)
             _need(receipt['open_root_verification']['status'] == 'STAGED_CONTENT_MATCH', 'ROOT_VERIFICATION_FAILED')
             receipt['source_execution_attempted'] = True
-            receipt['execution'], raw = sandbox.capture(sandbox.launch_argv(fd), timeout=180, pass_fds=(fd,))
+            receipt['execution'], raw = sandbox.capture(sandbox.launch_argv(fd, buildfd), timeout=180, pass_fds=(fd, buildfd))
         finally:os.close(fd)
         if receipt['execution']['status'] == 'EXITED' and receipt['execution']['returncode'] != 0:
             receipt['driver_failure_claim'] = sandbox.failure_code(raw)
         _need(receipt['execution']['status'] == 'EXITED' and receipt['execution']['returncode'] == 0, 'BUILDER_EXECUTION_FAILED')
-        receipt['driver'], wheel = sandbox.decode_wire(raw)
+        driver_result, wheel = sandbox.decode_wire(raw)
+        source_rows = [{'path': r['path'].split('/', 1)[1], 'sha256': r['sha256']}
+                       for r in _json((root / SOURCE_INSPECTION).read_bytes())['source_members'] if r['kind'] == 'file']
+        driver_logic.validate_snapshots(driver_result['source_snapshots'], source_rows)
         policy = _json((root / POLICY).read_bytes())['output_policy']
         pins = {**policy['runtime_files'], 'progressbar-2.5.dist-info/licenses/LICENSE.txt': policy['license_bytes_sha256']}
         receipt['wheel'] = wheel_check.validate_wheel(wheel, pins)
         _need(receipt['wheel']['status'] == 'WHEEL_BYTES_MATCH', 'WHEEL_REJECTED')
+        receipt['driver'] = driver_result
         (out / policy['expected_filename']).write_bytes(wheel)
         receipt.update(status='BUILT_WHEEL_VERIFIED', target_execution_verified=True)
     except ValueError as exc:
-        allowed = {'UNSUPPORTED_HOST_TOOL', 'UNSUPPORTED_HOST_OPTIONS', 'UNSUPPORTED_HOST_NAMESPACE',
+        allowed = {'UNSUPPORTED_HOST_TOOL', 'UNSUPPORTED_HOST_OPTIONS', 'UNSUPPORTED_HOST_NAMESPACE', 'UNSUPPORTED_HOST_QUOTA',
                    'DOWNLOAD_URL_REJECTED', 'DOWNLOAD_REDIRECT_REJECTED', 'DOWNLOAD_HTTP_REJECTED',
                    'DOWNLOAD_DEADLINE', 'DOWNLOAD_SIZE_MISMATCH', 'DOWNLOAD_CONTENT_MISMATCH',
                    'STAGING_FAILED', 'ROOT_VERIFICATION_FAILED', 'BUILDER_EXECUTION_FAILED',
@@ -404,6 +433,7 @@ def run_preparation(root, request, env):
     except Exception:
         receipt['errors'] = [{'code': 'PREPARATION_FAILED'}]
     finally:
+        if buildfd is not None:os.close(buildfd)
         (out / 'source-closure.json').write_bytes(canonical(request))
         (out / 'preparation.json').write_bytes(canonical(receipt))
     return receipt
