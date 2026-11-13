@@ -1,0 +1,211 @@
+{
+  "base_sha": "565bc7a124b35eaeee2f209185b8aad11e10f1b8",
+  "basic_ci": null,
+  "basic_ci_record_location": "Exact final source HEAD/run/job results will be observed after push and recorded in the source Draft PR body; no self-referential CI assertion in this pre-push commit.",
+  "branch": "feature/engine-clock-builder-staging",
+  "built_wheel_sha256": null,
+  "deferred_minors": [
+    "M6: reviewed_source_sha is informational; external preregistration/consumer must bind reviewed/qualified source and exact closure.",
+    "M7: reusable staging maximum180s not internally enforced; actual controlled callers supply180s."
+  ],
+  "full_lock_ready": false,
+  "host_helper_source_api": {
+    "api_digest_matches": true,
+    "asset_id": 530629244,
+    "digest": "sha256:9760d007363e3abba7c747489910f9f82d9fca53ba3bd3282e396fa3c97a3314",
+    "nbytes": 126452,
+    "publisher_build_attested": false,
+    "release_id": 377041403
+  },
+  "image_preparation_ready": false,
+  "local_capability_probe": {
+    "argv": [
+      "/usr/bin/bwrap",
+      "--unshare-user",
+      "--unshare-pid",
+      "--unshare-net",
+      "--uid",
+      "0",
+      "--gid",
+      "0",
+      "--clearenv",
+      "--ro-bind",
+      "/usr",
+      "/usr",
+      "--ro-bind",
+      "/lib",
+      "/lib",
+      "--ro-bind",
+      "/lib64",
+      "/lib64",
+      "--",
+      "/usr/bin/true"
+    ],
+    "bwrap_sha256": "573236e5328ac2ebb08f59ae3a9805b4f8d12bdef14be8af4450d5463294985f",
+    "downloaded_code_executed": false,
+    "duration_seconds": 0.009117281006183475,
+    "exit_code": 1,
+    "filesystem_staged": false,
+    "native_admission": false,
+    "network_filesystem_isolation_supported": false,
+    "raw_stderr": "bwrap: setting up uid map: Read-only file system\n",
+    "schema": "engine-clock-builder-kernel-capability-probe-v1",
+    "source_sha": "565bc7a124b35eaeee2f209185b8aad11e10f1b8",
+    "stderr_bytes": 49,
+    "stderr_sha256": "f427400003f1438951931a9e02e12a36f46d63466731694d824cbf9e0d36a5d4",
+    "stdout_bytes": 0,
+    "target": "TRUSTED_HOST_TRUE_ONLY_NOT_DOWNLOADED_RUNTIME"
+  },
+  "native_admission": false,
+  "next": "Observe exact final source HEAD basic CI/Draft, then continue without ending the user task to a separately registered provider-free remote request; preserve real bounded evidence or terminal failure.",
+  "pre_review_validation": {
+    "focused": {
+      "seconds": 1.138,
+      "skipped": 0,
+      "tests": 74
+    },
+    "full": {
+      "seconds": 67.441,
+      "skipped": 7,
+      "tests": 800
+    },
+    "scope": "CPU fixtures and metadata only; no downloaded target code execution"
+  },
+  "preliminary_basic_ci": {
+    "head_sha": "3ee295499f0b209810e1b16ee50c105fd6209f21",
+    "runs": [
+      {
+        "artifacts": 0,
+        "attempt": 1,
+        "conclusion": "success",
+        "event": "push",
+        "id": 43385193041,
+        "small_job": 131751897304,
+        "small_seconds": 0.064,
+        "small_tests": 1,
+        "unit_job": 131751897489,
+        "unit_seconds": 72.179,
+        "unit_tests": 814
+      },
+      {
+        "artifacts": 0,
+        "attempt": 1,
+        "conclusion": "success",
+        "event": "pull_request",
+        "id": 43385200004,
+        "small_job": 131751920106,
+        "small_seconds": 0.045,
+        "small_tests": 1,
+        "unit_job": 131751920076,
+        "unit_seconds": 69.457,
+        "unit_tests": 814
+      }
+    ],
+    "status": "HISTORICAL_PRE_CAPACITY_CODE_NOT_FINAL_SOURCE_CI"
+  },
+  "preservation": {
+    "allowed_status_changes": [
+      "docs/STAGE7_CONTINUATION.md",
+      "docs/STAGE7_ENGINE_CLOCK_RUNTIME_CONTRACT.md"
+    ],
+    "consumed_registry_count": 8,
+    "old_raw_and_workspaces_retained": true,
+    "old_tracked": 455,
+    "old_workflow_bytes_unchanged": true,
+    "old_workflows": 44,
+    "producer70_sha256": "6f8dcc2fc4aa7b1896a74d43ea4e030f89729b4b7851825cd0bbd444c6acab04",
+    "unchanged": 453
+  },
+  "qualified_fix_commits": [
+    "9aaca76095e611f6ec1bf73700bb1f6a2e33254c",
+    "843fb749abe5c672d65d534fac150c90ec1ac3d3"
+  ],
+  "qualified_fix_sha": "843fb749abe5c672d65d534fac150c90ec1ac3d3",
+  "qualified_initial_validation": {
+    "focused": {
+      "seconds": 1.182,
+      "skipped": 0,
+      "tests": 88
+    },
+    "full": {
+      "seconds": 74.321,
+      "skipped": 7,
+      "tests": 814
+    },
+    "scope": "CPU fixtures and metadata only; no downloaded target execution"
+  },
+  "real_metadata_plan": {
+    "input_transports": 51,
+    "plan_sha256": "5371b2ba1e56fa15bc3068e8e579268b44f86091f7ed7a8e8d11fdb7a8c4838d",
+    "serialized_plan_bytes": 8570595,
+    "source_entries": 13047,
+    "sources": 52,
+    "staged_bytes": 351872090,
+    "staged_nodes": 12723,
+    "status": "QUALIFIED_FIX_METADATA_ONLY_NO_STAGING_OR_EXECUTION"
+  },
+  "retention_limits": {
+    "file_bytes": 134217728,
+    "gzip_bytes": 943718400,
+    "manifest_bytes": 16777216,
+    "nodes": 40000,
+    "outer_artifact_bytes": 1073741824,
+    "physical_tar_bytes": 943718400,
+    "regular_file_bytes": 838860800
+  },
+  "review": {
+    "closed_important": 5,
+    "independent_rereview": false,
+    "original_counts": {
+      "critical": 0,
+      "important": 5,
+      "minor": 2
+    },
+    "path": "docs/evidence/STAGE7_ENGINE_CLOCK_BUILDER_STAGING_REVIEW.json",
+    "sha256": "a709175327b595b715f7bd21a51b640be1b8b30877dfb7c4ca649508b315a640"
+  },
+  "reviewed_sha": "96e97dcdf5ba81b67c995060bf50ddf10459d5c0",
+  "rulings_chronological": [
+    "Ruling: User explicitly requests continuous work and final-only review; proceed inline without choice/approval menus, with only concise mandatory progress updates \u2014 existing authorization covers own Draft/basic CI \u2014 cost if wrong: more work may need later scope review.",
+    "Ruling: Current checkout/new branch and all original/partial workspaces preserved \u2014 user preference overrides worktree/cleanup defaults \u2014 cost if wrong: reduced isolation and disk retention.",
+    "Ruling: Local trusted-true namespace discovery failed readonly UID mapping; select a separately reviewed remote provider-free job instead of local downloaded-code execution \u2014 mandatory isolation cannot be relaxed \u2014 cost if wrong: remote setup/provenance work and possible separate backend failure.",
+    "Ruling: Normalize builder-only ownership/modes and generated files explicitly, retaining all source bytes and old main inventory rules \u2014 single-user readonly sandbox needs a concrete recipe \u2014 cost if wrong: normalized permissions or generated config can change behavior and must fail/revise before admission.",
+    "Ruling: Keep bounded untrusted logs only as byte counts/hashes/fixed errors \u2014 environment/secret sentinels must never persist \u2014 cost if wrong: terminal failures provide less textual diagnosis.",
+    "Ruling: Old44workflows remain byte-identical; inactive template now, later separately registered narrowly gated new provider-free workflow allowed \u2014 latest continuous authorization and original GitHub Actions scope support necessary remote preparation \u2014 cost if wrong: an extra ephemeral job/host dependency setup may be unnecessary; no main/Cloud publication is granted.",
+    "Ruling: Increase new builder per-file write limit from1MiB to4MiB, retaining wheel1MiB and tmpfs256MiB \u2014 authenticated ensurepip source copies its bundled pip wheel2110226B to temporary storage before installation;1MiB would guarantee a false bootstrap failure \u2014 cost if wrong: each writable file can consume3MiB more within the unchanged aggregate tmpfs quota. Static tar read only; no execution.",
+    "Ruling: Remote primary host setup builds pinned bubblewrap0.12.0 from official release archive126452B/SHA9760d007363e3abba7c747489910f9f82d9fca53ba3bd3282e396fa3c97a3314 and installs it at the standard ephemeral /usr/bin/bwrap path before any target input/source execution \u2014 Ubuntu24.04 bubblewrap0.9 source demonstrably lacks mandatory --ro-bind-fd; knowingly choosing it would waste the one-use operation \u2014 cost if wrong: extra trusted host build dependencies and setup work; no local downloaded-code execution or post-failure fallback. Host build source is a separate pinned setup input, not target runtime/library provenance.",
+    "Ruling: Accept I1/I2/I4 as one coherent build-protocol repair: exact pip wheel supported options plus an owned unpack hook before source metadata/build, with bounded per-file before/after evidence \u2014 pinned CLI/layout inspection proves current commands fail and snapshots are incomplete \u2014 cost if wrong: tighter coupling to pinned pip internals; fail unsupported layouts rather than silently continue.",
+    "Ruling: Accept I3 with conservative rejection of nonleading parent components and canonical output-chain validation \u2014 POSIX link semantics differ from lexical cancellation \u2014 cost if wrong: some otherwise valid POSIX link layouts are unsupported; all real52source metadata must still compile.",
+    "Ruling: Accept I5 with a sole predeclared host tmpfs256MiB, verified and bound by FD as /build, plus bounded retained archive/inventory for raw inputs, partial roots/build and host-helper workspace on success/failure \u2014 an internal-only tmpfs cannot survive namespace exit \u2014 cost if wrong: privileged primary host mount setup and larger evidence storage; no local mount or post-failure fallback.",
+    "Ruling: Raise new outer evidence budget from16MiB metadata-only to1GiB, with retained gzip<=900MiB/decoded<=800MiB/40000nodes/file128MiB \u2014 preserving actual352MiBroot+110MiBinputs+256MiBbuild requires a concrete bounded package \u2014 cost if wrong: additional transfer/storage; artifact cap failure stays terminal/incomplete, never claims full preservation.",
+    "Ruling: Defer M6: controller reviewed_source_sha remains informational unless independently established; preregistration/external consumer must bind reviewed/qualified source commits and exact closure before activation/admission claims \u2014 source execution HEAD/closure still gated \u2014 cost if wrong: readers may overinterpret a syntactically valid review SHA.",
+    "Ruling: Defer M7: public staging guard maximum is not enforced internally beyond finite deadlines; controlled operation supplies180s and bounded job runtime \u2014 minor reusable-API issue is outside this Important-only pass \u2014 cost if wrong: an uncontrolled future caller could request a longer staging deadline.",
+    "Ruling: Review decline \u2014 Actual namespace/quota/startup: accept bounded scope because must be proven by the separately registered remote capability/target run \u2014 cost if wrong: unsupported backend may terminate without a wheel.",
+    "Ruling: Review decline \u2014 Actual build/smoke success: accept bounded scope because source fixtures cannot certify downloaded target execution \u2014 cost if wrong: a genuine runtime/build failure may remain.",
+    "Ruling: Review decline \u2014 Complete bubblewrap/kernel security: accept bounded scope because review covers the fixed recipe and pins, not an exploit-resistance certificate \u2014 cost if wrong: unknown host/kernel weaknesses remain outside assurance.",
+    "Ruling: Review decline \u2014 Aggregate memory/PIDs/same-user interference: accept bounded scope because claims stay per-process plus tmpfs quota, with trusted ephemeral host \u2014 cost if wrong: shared-user interference or aggregate pressure can still fail the job.",
+    "Ruling: Review decline \u2014 Administrator-proof global replay: accept bounded scope because history-deletion resistance is explicitly excluded; unique run/attempt checks are bounded \u2014 cost if wrong: an administrator can invalidate assumptions outside this protocol.",
+    "Ruling: Review decline \u2014 Publisher/build attestation: accept bounded scope because pinned bytes/API digest agreement are not cryptographic build/publisher attestation \u2014 cost if wrong: supply-chain trust remains in the selected origins.",
+    "Ruling: Review decline \u2014 Future full lock/image/native/model/science: accept bounded scope because these gates remain separate and false/incomplete \u2014 cost if wrong: component success cannot imply benchmark correctness or native admission.",
+    "Ruling: Review decline \u2014 Legacy scientific re-execution: accept bounded scope because prohibited consumed protocols remain unchanged; CPU fixture evidence is sufficient for this source review \u2014 cost if wrong: old scientific uncertainty remains unresolved.",
+    "Ruling: Retention certifies available workspace contents at postflight, not every transient file ever created or survival after abrupt runner loss \u2014 upstream ensurepip/build tools may clean internal temporary copies while authenticated originals and before/after source manifests are retained \u2014 cost if wrong: a sudden runner loss or upstream transient state can remain unavailable; mark missing/incomplete evidence rather than infer success.",
+    "Ruling: Complete I5 disk-capacity precondition with measured host available bytes>=1GiB before any component input transport; preserve insufficient-capacity facts \u2014 the immutable build policy explicitly requires this minimum and retention needs real disk capacity \u2014 cost if wrong: the preliminary source CI becomes historical and exact-final-source checks must run again; no target request was consumed."
+  ],
+  "schema": "engine-clock-builder-staging-source-audit-v1",
+  "stage7_status": "INCOMPLETE",
+  "target_execution_verified": false,
+  "task1_commit": "01c5c10fb09d5c55766475bae0b4541aaacfe12c",
+  "validation": {
+    "focused": {
+      "seconds": 1.204,
+      "skipped": 0,
+      "tests": 89
+    },
+    "full": {
+      "seconds": 74.276,
+      "skipped": 7,
+      "tests": 815
+    },
+    "scope": "CPU fixtures/metadata only; no downloaded target execution"
+  }
+}

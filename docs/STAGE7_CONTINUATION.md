@@ -4,7 +4,15 @@
 
 
 
-## Current checkpoint (2026-11-13 — signed Ubuntu package inputs and static ELF coverage verified)
+## Current checkpoint (2026-11-13 — bounded builder source and fixtures implemented; remote operation follows review)
+
+Branch `feature/engine-clock-builder-staging`, base PR49/`565bc7a124b35eaeee2f209185b8aad11e10f1b8`. New nofollow staging/open-FD verification, fixed namespace launcher/owned offline driver, strict progressbar wheel validator and one-use remote source/request protocol are implemented. Combined new fixtures74PASS/1.138s; full CPU800PASS/67.441s,7optional skips. Real metadata only compiled52sources/13046source entries/12722staged nodes/351862567file bytes/8570052serialized bytes; no actual candidate staging/execution yet. Local trusted-true probe failed readonly UID mapping, not target code. See [builder source result](STAGE7_ENGINE_CLOCK_BUILDER_STAGING.md) and audit for source/review/final/CI distinctions.
+
+Qualified fix: fresh review96e97dc C0/I5/M2; all5Important accepted/closed in one TDD pass9aaca760, no independent rereview.88focused/814full CPUtests PASS/7optional skips. Actual named source unpack is snapshotted before metadata/build and per-file before/after maps persist; canonical link semantics reject ambiguity. Verified host tmpfs FD retains the sole256MiB writable tree for bounded available-workspace preservation (outer1GiB). M6review-SHA external binding/M7reusable deadline maximum remain deferred. No downloaded code/local mount executed. Exact final source CI precedes separate remote registration.
+
+Existing44workflows remain byte-identical; only an inactive JSON template is added. After whole-branch source review/basic CI, continuous authorized work proceeds into a separate plan registering exact source closure and a unique provider-free remote request. Ubuntu24.04 primary host setup uses pinned bubblewrap0.12.0 because packaged0.9 lacks mandatory --ro-bind-fd; unsupported namespace/quota or a failed build stays terminal with no fallback/retry. Old requests remain consumed. New request transport of immutable public inputs is not an old operator/science replay. Old16image refsnull/nativeallowance0/Task3incomplete, strictFAIL/expandedNOT_RUN/ABBAterminalFAIL/geometry-optics-fullS/Stage7INCOMPLETE remain. No Cloud publication/main merge/native/model/ORT/GL/default/clock run. Earlier checkpoints historical.
+
+## Previous checkpoint (2026-11-13 — signed Ubuntu package inputs and static ELF coverage verified)
 
 Branch `evidence/engine-clock-os-library-inputs`, base PR48/`82156fe621339722ef687fb95d925aeb41968bef`. Metadata source `b5fa7a1ec90f4503806765ce6346f107ee2ae00c` verified3Ubuntu InRelease signatures/6index hashes at snapshot20261113T000000Z and task-local file-only/empty-state APT3.0.3 simulation selected46debs/13,570,700published bytes. Payload source `cf479f0e62a61fa319f3d0a3c3507fbc3d3f9268` acquired all46once, actual SHA256/size matched, allHTTP200/TLS0/redirect0/retry0. Both requests consumed/no rerun; original metadata49files23,177,543B/deb140files13,996,650B retained. Metadata51.423935s/payload35.694546s, not installed/runtime evidence. Local trusted=yes is only independently GPG/hash-verified file metadata, no system source/config/install changes.
 
@@ -1270,3 +1278,5 @@ unchanged preregistered holdout. Sparse lane-truth.15s is3×assigned.05s arithme
 not actual model time. Candidate-specific paint alignment, real optics, default
 renderer equivalence, correct sustained tracking/full-S and Stage7 completion
 remain open. This doc-only reconciliation introduces no native/model rerun.
+
+Final same-pass I5 refinement: available host disk>=1073741824bytes is measured and recorded before component input transport, with failure facts retained. Qualified code `843fb749abe5c672d65d534fac150c90ec1ac3d3` follows initial fix `9aaca76095e611f6ec1bf73700bb1f6a2e33254c`;89focused/815full CPUtests PASS/7optional skips (full74.276s). Preliminary3ee2954 CI4jobs passed/814unit+1SMALL per event/artifacts0, but is historical; exact final source CI is recorded separately in Draft PR50. No target execution or second independent review occurred.

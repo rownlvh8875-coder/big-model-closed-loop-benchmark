@@ -1,0 +1,50 @@
+{
+  "schema": "pinned-pip-wheel-static-contract-v1",
+  "wheel_sha256": "fd7f4dfa8190e014013b9f08f3e973f4e4c26ffd179a204895533a7254813a70",
+  "source_path": "pip/_internal/commands/wheel.py",
+  "source_sha256": "e66dcdbd529ab6a2c3395a02ff858e1620c3aef4118c1e768e46efa5b640a6e8",
+  "observed_cmdoptions_factories": [
+    "build_constraints",
+    "check_build_constraints",
+    "check_build_deps",
+    "check_only_deps_option_does_not_conflict",
+    "check_release_control_exclusive",
+    "config_settings",
+    "constraints",
+    "editable",
+    "ignore_requires_python",
+    "make_option_group",
+    "no_build_isolation",
+    "no_deps",
+    "no_require_hashes",
+    "only_deps",
+    "progress_bar",
+    "require_hashes",
+    "requirements",
+    "requirements_from_scripts",
+    "src",
+    "use_pep517"
+  ],
+  "supported_recipe_flags": [
+    "--isolated",
+    "--disable-pip-version-check",
+    "--no-input",
+    "--no-cache-dir",
+    "wheel",
+    "--no-index",
+    "--no-deps",
+    "--require-hashes",
+    "--no-build-isolation",
+    "--no-clean",
+    "--wheel-dir",
+    "-r"
+  ],
+  "install_only_rejected_flag": "--no-compile",
+  "unpack_hook": {
+    "source_path": "pip/_internal/operations/prepare.py",
+    "source_sha256": "ccb9153120eef5c511d0a9c39b76d9dd0bc879a12b8492abaf5d3d5320cc94a4",
+    "call_before_source_metadata": "unpack_url(link, location, download, verbosity, download_dir, hashes)",
+    "named_location": "pip-wheel-*/progressbar_UUID"
+  },
+  "execution_performed": false
+}
