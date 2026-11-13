@@ -147,3 +147,35 @@ def install_renderer(root:Path,context:Path,pins:dict,*,create_venv,run_pip)->di
         metadata=verify_installed_metadata(root,plan['wheels']);assets=replace_assets(prefix/'lib/python3.11/site-packages/metadrive',context/pins['assets']['path'],context/'original-metadrive-assets',expected_sha256=pins['assets']['sha256'])
         return {'status':'OFFLINE_RENDERER_INSTALL_RECORDED','pip_invocations':1,'venv_creations':1,'metadata':metadata,'assets':assets,'native_admission':False,'installed_abi_verified':False,'official_model_calls':0}
     except Exception:raise ValueError('IMAGE_INSTALL_REJECTED') from None
+
+
+def main(argv=None):
+    """Only the explicit isolated target-interpreter build-stage invocation runs."""
+    import argparse
+    import subprocess
+    import sys
+    import venv
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--install-owned-image-stage',action='store_true',required=True)
+    parser.parse_args(argv)
+    try:
+        _need(sys.executable=='/opt/python/bin/python3.11' and sys.version_info[:3]==(3,11,18) and sys.flags.isolated and sys.flags.no_site and sys.flags.dont_write_bytecode and os.geteuid()==0)
+        context=Path('/sealed')
+        pins={'plan_sha256':'052b6dd97b126bb2b79ea1b0573b6bf6dc70a800d587dec7316cb3e5fe99d51c','tool':{'path':'pip-tool.whl','nbytes':1819850,'sha256':'fd7f4dfa8190e014013b9f08f3e973f4e4c26ffd179a204895533a7254813a70'},'assets':{'path':'assets.zip','nbytes':134074203,'sha256':'4f0da9f5143a1258131c5b55f77bdf170c0f9bce8a9f18dd41b3678df779eac9'}}
+        def create(prefix):venv.create(prefix,with_pip=False,symlinks=False)
+        sys.path.insert(0,str(context))
+        from scripts.engine_clock_image_process import capture
+        def run(command):
+            result=capture(command,context/'pip-capture',timeout=300,stdout_limit=CHUNK//2,stderr_limit=CHUNK//2,file_size_limit=MAX_FILE)
+            stdout=(context/'pip-capture/stdout.bin').read_bytes();stderr=(context/'pip-capture/stderr.bin').read_bytes()
+            sys.stdout.buffer.write(stdout);sys.stdout.buffer.flush();sys.stderr.buffer.write(stderr);sys.stderr.buffer.flush()
+            good=result['status']=='EXITED' and result['returncode']==0 and result['streams_complete'] is True and stdout.splitlines()[-1:]==[b'PIP_OFFLINE_WHEELS_INSTALLED_NO_PAYLOAD_IMPORTS']
+            return {'returncode':0 if good else 1,'payload_imports':False if good else None}
+        receipt=install_renderer(Path('/'),context,pins,create_venv=create,run_pip=run)
+        fd=os.open(context/'install-receipt.json',os.O_WRONLY|os.O_CREAT|os.O_EXCL|os.O_NOFOLLOW,0o600)
+        with os.fdopen(fd,'w') as f:json.dump(receipt,f,sort_keys=True,indent=2);f.write('\n')
+        print('OFFLINE_RENDERER_INSTALL_RECORDED');return 0
+    except Exception:print('IMAGE_INSTALL_REJECTED');return 1
+
+
+if __name__=='__main__':raise SystemExit(main())

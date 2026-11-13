@@ -111,7 +111,7 @@ def _layer(stream,remaining,member_budget,check):
     return {'diff_id':'sha256:'+reader.hasher.hexdigest(),'decoded_bytes':reader.nbytes,'members':len(seen),'regular_bytes':regular,'gzip':reader.gzip}
 
 
-def inspect_save_archive(path:Path,*,expected_tag:str,deadline:float)->dict:
+def inspect_save_archive(path:Path,*,expected_tag:str,deadline:float,environment_profile="renderer")->dict:
     """Verify one closed Docker-save object; establish no installed/native admission."""
     try:
         _need(type(deadline) in (int,float) and math.isfinite(deadline));stop=min(deadline,perf_counter()+180)
@@ -168,7 +168,7 @@ def inspect_save_archive(path:Path,*,expected_tag:str,deadline:float)->dict:
             environment={}
             for value in config.get('config',{}).get('Env',[]):
                 name,sep,v=value.partition('=');_need(sep and name not in environment);environment[name]=v
-            _need(environment==IMAGE_ENV)
+            _need(environment_profile in ("renderer","base") and environment==(IMAGE_ENV if environment_profile=="renderer" else {"PATH":IMAGE_ENV["PATH"]}))
             stream.seek(0);remaining=[MAX_LAYER_BYTES];member_budget=[MAX_LAYER_MEMBERS];audits={}
             with tarfile.open(fileobj=stream,mode='r:') as outer:
                 for member in outer:
@@ -212,3 +212,76 @@ def validate_launch(actual:dict,expected:dict,nonce:str)->dict:
         if 'source_sha' in expected:need(actual['labels']['stage7.source']==expected['source_sha'])
         return {'status':'CLOSED_IMAGE_LAUNCH_METADATA_MATCH','container_id':actual['container_id'],'image_id':actual['image_id'],'nonce':nonce,'native_admission':False,'installed_runtime_verified':False}
     except Exception:raise ValueError('IMAGE_LAUNCH_REJECTED') from None
+
+
+def verify_tree_archive(path:Path,expected_entries:list[dict],*,prefix:str,deadline:float)->dict:
+    """Compare a stopped container's closed copied tree as data, without extraction."""
+    try:
+        _need(type(deadline) in (int,float) and math.isfinite(deadline));stop=min(deadline,perf_counter()+180)
+        def check():_need(perf_counter()<stop)
+        check();prefix=_path(prefix);_need('/' not in prefix and type(expected_entries) is list and len(expected_entries)<=MAX_LAYER_MEMBERS)
+        expected={};expected_bytes=0
+        for row in expected_entries:
+            name=_path(row['path'],True);_need(name not in expected and row['kind'] in ('file','directory','symlink'))
+            if name=='.':_need(row['kind']=='directory');continue
+            if row['kind']=='file':_need(type(row['nbytes']) is int and 0<=row['nbytes']<=MAX_FILE_BYTES and _hex(row['sha256']));expected_bytes+=row['nbytes']
+            elif row['kind']=='symlink':_link(name,row['target'])
+            expected[name]=row
+        _need(expected_bytes<=MAX_FILE_BYTES);observed={};outer_end=0
+        fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK)
+        with os.fdopen(fd,'rb') as stream:
+            before=os.fstat(stream.fileno());_need(stat.S_ISREG(before.st_mode) and before.st_nlink==1 and 0<before.st_size<=MAX_FILE_BYTES and before.st_size%512==0);archive_hash=hashlib.sha256()
+            for block in iter(lambda:stream.read(CHUNK),b''):check();archive_hash.update(block)
+            stream.seek(0)
+            with tarfile.open(fileobj=stream,mode='r:') as tar:
+                for member in tar:
+                    check();outer_end=member.offset_data+((member.size+511)//512)*512;name=_path(member.name,True)
+                    if name in ('.',prefix):_need(member.isdir());continue
+                    _need(name.startswith(prefix+'/'));name=name[len(prefix)+1:];_need(name not in observed and len(observed)<MAX_LAYER_MEMBERS and (member.isfile() or member.isdir() or member.issym() or member.islnk()))
+                    if member.isdir() and name not in expected:
+                        _need(any(p.startswith(name+'/') for p in expected));continue
+                    _need(name in expected);row={'kind':'file' if member.isfile() else 'directory' if member.isdir() else 'symlink' if member.issym() else 'hardlink','mode':member.mode,'nbytes':member.size}
+                    if member.isfile():
+                        _need(0<=member.size<=MAX_FILE_BYTES);digest=hashlib.sha256();count=0
+                        with tar.extractfile(member) as data:
+                            for block in iter(lambda:data.read(CHUNK),b''):check();count+=len(block);_need(count<=member.size);digest.update(block)
+                        _need(count==member.size);row['sha256']=digest.hexdigest()
+                    elif member.issym():_link(name,member.linkname);row['target']=member.linkname
+                    elif member.islnk():
+                        target=_path(member.linkname);_need(target.startswith(prefix+'/'));row['target']=target[len(prefix)+1:]
+                    observed[name]=row
+            tail=before.st_size-outer_end;_need(1024<=tail<=CHUNK);stream.seek(outer_end);_need(not any(stream.read(tail)) and _signature(os.fstat(stream.fileno()))==_signature(before))
+        def resolve(name,seen):
+            _need(name in observed and name not in seen and len(seen)<40);row=observed[name]
+            if row['kind']!='hardlink':return row
+            target=resolve(row['target'],seen|{name});_need(target['kind']=='file');return {**target,'mode':row['mode']}
+        _need(set(observed)==set(expected))
+        for name,row in expected.items():
+            actual=resolve(name,set());_need(actual['kind']==row['kind'] and actual['mode']==row['mode'])
+            if row['kind']=='file':_need(actual['nbytes']==row['nbytes'] and actual['sha256']==row['sha256'])
+            elif row['kind']=='symlink':_need(actual['target']==row['target'])
+        return {'status':'CLOSED_COPIED_TREE_MATCH','archive_sha256':archive_hash.hexdigest(),'archive_nbytes':before.st_size,'prefix':prefix,'entries':len(observed),'file_bytes':expected_bytes,'payload_extracted':False,'native_admission':False,'external_container_origin_authenticated':False}
+    except Exception:raise ValueError('IMAGE_TREE_REJECTED') from None
+
+
+def extract_image_bundle(path:Path,destination:Path)->dict:
+    """Extract only three authenticated carrier files, never a root filesystem."""
+    import zipfile
+    try:
+        fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK)
+        with os.fdopen(fd,'rb') as stream:
+            before=os.fstat(stream.fileno());_need(stat.S_ISREG(before.st_mode) and before.st_nlink==1 and 0<before.st_size<=MAX_ARCHIVE_BYTES)
+            with zipfile.ZipFile(stream) as z:
+                rows=z.infolist();_need(len(rows)==3 and {r.filename for r in rows}=={'image.tar','preparation.json','installed-files.json'})
+                _need(sum(r.file_size for r in rows)<=MAX_ARCHIVE_BYTES)
+                for r in rows:_need(not r.flag_bits&1 and not r.is_dir() and (r.external_attr>>16)&0o170000 in (0,0o100000) and 0<r.file_size<=(MAX_ARCHIVE_BYTES if r.filename=='image.tar' else 16*1024**2))
+                destination=Path(destination);destination.mkdir(mode=0o700,exist_ok=False);files={}
+                for r in rows:
+                    digest=hashlib.sha256();count=0
+                    with z.open(r) as src,(destination/r.filename).open('xb') as out:
+                        for block in iter(lambda:src.read(CHUNK),b''):
+                            count+=len(block);_need(count<=r.file_size);out.write(block);digest.update(block)
+                    _need(count==r.file_size);files[r.filename]={'nbytes':count,'sha256':digest.hexdigest()}
+                _need(_signature(before)==_signature(os.fstat(stream.fileno())))
+        return {'status':'CLOSED_IMAGE_BUNDLE_EXTRACTED','files':files,'root_filesystem_extracted':False}
+    except Exception:raise ValueError('IMAGE_BUNDLE_REJECTED') from None

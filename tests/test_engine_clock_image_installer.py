@@ -87,6 +87,9 @@ class ImageInstallerTests(unittest.TestCase):
   with tempfile.TemporaryDirectory() as tmp:
    root=Path(tmp);context,pins=setup_context(root);target=root/'metadrive';(target/'assets').mkdir(parents=True);(target/'assets/old').write_bytes(b'original');archive=context/'assets.zip'
    r=install.replace_assets(target,archive,root/'backup',expected_sha256=digest(archive));self.assertEqual(b'original',(root/'backup/old').read_bytes());self.assertEqual(b'owned fixture asset',(target/'assets/owned.dat').read_bytes());self.assertEqual('0.4.3',r['version']);self.assertEqual(2,r['members']);self.assertFalse(r['payload_execution'])
+ def test_real_cli_refuses_current_host_before_any_install_callback(self):
+  with patch.object(install,'install_renderer',side_effect=AssertionError('host install forbidden')):
+   self.assertEqual(1,install.main(['--install-owned-image-stage']))
  def test_real_renderer_lock_matches_model_free_contract_without_changing_full_graph(self):
   root=Path(__file__).resolve().parent.parent;plan=json.loads((root/'docs/locks/engine-clock-renderer-wheels.lock.json').read_bytes());self.assertEqual(53,len(plan['wheels']));self.assertFalse(any(r['name'].startswith('onnxruntime') for r in plan['wheels']));full=json.loads((root/'docs/locks/engine-clock-python-wheels.lock.json').read_bytes());self.assertEqual(56,len(full['wheels']));self.assertIn('onnxruntime',[r['name'] for r in full['wheels']])
 

@@ -21,7 +21,7 @@ def tarbytes(entries):
  with tarfile.open(fileobj=buf,mode='w',format=tarfile.PAX_FORMAT) as out:
   for path,value in entries:
    info=tarfile.TarInfo(path);info.mode=0o644
-   if isinstance(value,tuple):info.type=tarfile.SYMTYPE;info.linkname=value[0];out.addfile(info)
+   if isinstance(value,tuple):info.type=tarfile.LNKTYPE if len(value)>1 and value[1]=='hardlink' else tarfile.SYMTYPE;info.mode=0o644 if info.islnk() else 0o777;info.linkname=value[0];out.addfile(info)
    else:info.size=len(value);out.addfile(info,io.BytesIO(value))
  return buf.getvalue()
 def make_save(root,*,layout='legacy',layers=None,config_patch=None,manifest_patch=None,extra=None,reverse=False):
@@ -46,6 +46,21 @@ def launch_fixture(cid,nonce='a'*32):
 class ImageArchiveTests(unittest.TestCase):
  def setUp(self):self.assertIsNotNone(a,'bounded image archive/API/launch verifier missing')
  def inspect(self,path):return a.inspect_save_archive(path,expected_tag=TAG,deadline=time.perf_counter()+10)
+ def test_base_environment_is_a_distinct_fixed_profile(self):
+  with tempfile.TemporaryDirectory() as tmp:
+   p,_,_=make_save(Path(tmp),config_patch={'config':{'Env':['PATH='+a.IMAGE_ENV['PATH']]}})
+   with self.assertRaises(ValueError):self.inspect(p)
+   self.assertEqual({'PATH':a.IMAGE_ENV['PATH']},a.inspect_save_archive(p,expected_tag=TAG,deadline=time.perf_counter()+10,environment_profile='base')['config_environment'])
+   with self.assertRaises(ValueError):a.inspect_save_archive(p,expected_tag=TAG,deadline=time.perf_counter()+10,environment_profile='arbitrary')
+ def test_closed_three_file_bundle_crc_and_extra_member(self):
+  import zipfile
+  with tempfile.TemporaryDirectory() as tmp:
+   root=Path(tmp);z=root/'bundle.zip'
+   with zipfile.ZipFile(z,'w') as out:
+    for name,data in [('image.tar',b'owned archive'),('preparation.json',b'{}'),('installed-files.json',b'{}')]:out.writestr(name,data)
+   r=a.extract_image_bundle(z,root/'good');self.assertEqual(3,len(r['files']))
+   with zipfile.ZipFile(z,'a') as out:out.writestr('../secret',b'SENTINEL')
+   with self.assertRaisesRegex(ValueError,'^IMAGE_BUNDLE_REJECTED$'):a.extract_image_bundle(z,root/'bad')
  def test_owned_legacy_save_binds_actual_config_and_ordered_diffids_only(self):
   with tempfile.TemporaryDirectory() as tmp:
    p,cid,c=make_save(Path(tmp));r=self.inspect(p);self.assertEqual('DOCKER_SAVE_STRUCTURE_VERIFIED',r['status']);self.assertEqual(cid,r['config_digest']);self.assertEqual(c['rootfs']['diff_ids'],r['rootfs_diff_ids']);self.assertEqual('linux/amd64',r['platform']);self.assertEqual(sha(p.read_bytes()),r['image_tar_sha256']);self.assertFalse(r['native_admission']);self.assertFalse(r['installed_runtime_verified'])
@@ -89,6 +104,18 @@ class ImageArchiveTests(unittest.TestCase):
    import os
    os.link(p,root/'hard.tar')
    with self.assertRaisesRegex(ValueError,'^IMAGE_ARCHIVE_REJECTED$'):self.inspect(p)
+ def test_closed_copied_tree_matches_expected_bytes_links_and_hardlinks_without_extracting(self):
+  with tempfile.TemporaryDirectory() as tmp:
+   root=Path(tmp);data=b'owned source';path=root/'copy.tar';path.write_bytes(tarbytes([('bundle/scripts/code.py',data),('bundle/link',('scripts/code.py',)),('bundle/copy.py',('bundle/scripts/code.py','hardlink'))]))
+   expected=[{'path':'scripts/code.py','kind':'file','nbytes':len(data),'sha256':sha(data),'mode':420},{'path':'link','kind':'symlink','target':'scripts/code.py','mode':511,'nbytes':0},{'path':'copy.py','kind':'file','nbytes':len(data),'sha256':sha(data),'mode':420}]
+   r=a.verify_tree_archive(path,expected,prefix='bundle',deadline=time.perf_counter()+10);self.assertEqual('CLOSED_COPIED_TREE_MATCH',r['status']);self.assertFalse(r['payload_extracted']);self.assertFalse(r['native_admission'])
+ def test_copied_tree_extra_changed_or_escaping_data_rejects_with_safe_code(self):
+  cases=[[('bundle/code.py',b'changed')],[('bundle/code.py',b'owned'),('bundle/SECRET_SENTINEL',b'bad')],[('../escape',b'owned')]]
+  expected=[{'path':'code.py','kind':'file','nbytes':5,'sha256':sha(b'owned'),'mode':420}]
+  for entries in cases:
+   with tempfile.TemporaryDirectory() as tmp:
+    p=Path(tmp)/'copy.tar';p.write_bytes(tarbytes(entries))
+    with self.assertRaisesRegex(ValueError,'^IMAGE_TREE_REJECTED$'):a.verify_tree_archive(p,expected,prefix='bundle',deadline=time.perf_counter()+10)
  def test_semantic_api_binding_is_not_external_authentication_by_itself(self):
   with tempfile.TemporaryDirectory() as tmp:
    p,cid,c=make_save(Path(tmp));ar=self.inspect(p)

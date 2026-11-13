@@ -67,6 +67,17 @@ class ImageCandidateInventoryTests(unittest.TestCase):
  def test_expired_deadline_never_returns_a_candidate(self):
   with tempfile.TemporaryDirectory() as tmp:
    root=Path(tmp);tree(root);r=image.create_inventory(root,deadline=0);self.assertFalse(r['complete']);self.assertEqual(0,r['bytes_read'])
+ def test_host_profile_uses_supplied_system_facts_and_rejects_mixed_or_invalid_counts(self):
+  from types import SimpleNamespace
+  uname=SimpleNamespace(sysname='Linux',release='owned-kernel',version='owned-version',machine='x86_64')
+  info='processor : 0\nvendor_id : GenuineIntel\nmodel name : OwnedCPU\nflags : sse2 avx\n\nprocessor : 1\nvendor_id : GenuineIntel\nmodel name : OwnedCPU\nflags : sse2 avx\n'
+  with patch.dict(os.environ,{'ImageVersion':'FAKE_ENV_SENTINEL'}):
+   r=image.collect_host_profile(cpuinfo=info,uname=uname,logical_cpus=2,affinity_cpus=2);self.assertEqual(['avx','sse2'],r['cpu_flags']);self.assertEqual('owned-kernel',r['release']);self.assertNotIn('FAKE_ENV_SENTINEL',str(r))
+  with self.assertRaisesRegex(ValueError,'^IMAGE_HOST_REJECTED$'):image.collect_host_profile(cpuinfo=info.replace('OwnedCPU','OtherCPU',1),uname=uname,logical_cpus=2,affinity_cpus=2)
+  with self.assertRaisesRegex(ValueError,'^IMAGE_HOST_REJECTED$'):image.collect_host_profile(cpuinfo=info,uname=uname,logical_cpus=2,affinity_cpus=3)
+ def test_real_image_cli_refuses_host_before_any_root_scan(self):
+  with patch.object(image,'create_inventory',side_effect=AssertionError('host root scan forbidden')):
+   self.assertEqual(1,image.main(['--candidate','--nonce','a'*32]))
  def test_prefix_uses_caller_root_literal_alias_and_verified_canonical_bytes(self):
   with tempfile.TemporaryDirectory() as tmp:
    root=Path(tmp);members,obs=prefix_tree(root);r=image.verify_prefix(root,obs,expected_members=members);self.assertEqual('PREFIX_LAYOUT_AND_OBSERVATION_MATCH',r['status']);self.assertFalse(r['external_container_origin_authenticated']);self.assertFalse(r['native_admission'])
