@@ -1,0 +1,59 @@
+{
+  "schema": "builder-vendored-records-source-review-v1",
+  "base_sha": "046e51faae1d9f868e718c441521ff1049a838b3",
+  "reviewed_head_sha": "e042ccf59099dcbf261dc617548151a8cc6196ae",
+  "reviewer": "/root/builder_vendored_records_review",
+  "model": "gpt-6-astra",
+  "reasoning_effort": "medium",
+  "critical": [],
+  "important_closed": [
+    {
+      "id": "BR-I1",
+      "issue": "Failure decoder dropped genuine one-read output overflow receipts and later cleanup/transport statuses.",
+      "root_grade": "Important",
+      "fix_sha": "88f80e60812c12bb3380f524efd35239501c88e6",
+      "fix": "Non-EXITED counts admit at most65536-byte final read overshoot; EXITED retains strict limits. Typed fields/prefix/hash and larger-count rejection unchanged.",
+      "red": "13tests/errors8",
+      "green": "13PASS4.436s; full905PASS7skip86.008s",
+      "independent_rereview": false
+    }
+  ],
+  "minor_deferred": [],
+  "declines_rulings": [
+    [
+      "Live namespace/mounts/profile/remote activation/genuine package execution",
+      "Root requires same-job proof and authenticated new04 original result; reviewer exclusion accepted.",
+      "Static fixtures do not establish actual kernel/build/wheel behavior."
+    ],
+    [
+      "Genuine retained-wheel replay and fullsuite",
+      "Root observed replay1036payload/1894installed and full905/7skip86.008s; independent reviewer focused12/4.294s only.",
+      "These specific checks were not independently reproduced."
+    ],
+    [
+      "Exhaustive unchanged legacy-module correctness",
+      "Accept incremental review of relevant bounded snapshot/capture/schema/composition; old source remains frozen.",
+      "Unchanged unrelated legacy behavior may retain prior limitations."
+    ],
+    [
+      "Model/scientific/native readiness or publication",
+      "Remain false/out of scope; no inference from a wheel.",
+      "Full lock/image/native evidence and authorization are separate."
+    ]
+  ],
+  "verification": {
+    "focused_tests": 13,
+    "full_tests": 905,
+    "optional_skips": 7,
+    "full_seconds": 86.008,
+    "independent_focused_tests": 12,
+    "independent_focused_seconds": 4.294,
+    "remote_ci": "PENDING",
+    "real_retained_bootstrap_replay": {
+      "original_payload_files": 1036,
+      "installed_files": 1894,
+      "status": "PASS",
+      "package_execution": false
+    }
+  }
+}
