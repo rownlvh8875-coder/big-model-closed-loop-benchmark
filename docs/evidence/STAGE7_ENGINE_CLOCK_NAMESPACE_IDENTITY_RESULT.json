@@ -1,0 +1,87 @@
+{
+  "schema": "namespace-identity-consumption-v1",
+  "request_id": "namespace-diagnostic-20261113-02",
+  "source_sha": "1d07c705784cbb4dba3bbe0e4c66d57bb51e8d78",
+  "activation_sha": "e08d152890bee8f1d2004e8e03020383c5f114a0",
+  "workflow_id": 417168959,
+  "run_id": 43412775071,
+  "job_id": 131843040332,
+  "run_attempt": 1,
+  "unique_workflow_branch_runs": 1,
+  "request_consumed": true,
+  "created_kst": "2026-11-13T19:54:43+09:00",
+  "finished_kst": "2026-11-13T19:54:52+09:00",
+  "workflow_conclusion": "success",
+  "observation_status": "OBSERVATION_INCOMPLETE",
+  "admission": "BLOCKED",
+  "kernel": "7.0.0-1017-azure",
+  "image_version": "20261101.360.1",
+  "observed": {
+    "user_and_net_readlinks_changed": true,
+    "unshare_return": 0,
+    "unshare_errno": 0,
+    "unmapped_uid_gid": 65534,
+    "namespace_stat_open_errno": 13,
+    "profile_before": "unconfined",
+    "profile_after": "unprivileged_userns (enforce)",
+    "effective_capabilities_after": "000001ffffffffff",
+    "util_exit": 1,
+    "util_stderr_exact_public_literal_sha_match": true,
+    "util_failure": "write /proc/self/uid_map: Operation not permitted",
+    "matching_userns_audit_pids": [
+      2156,
+      2157
+    ]
+  },
+  "cause_limit": "Namespace creation succeeded; stat/open admission failed with EACCES before mapping. AppArmor enforced-profile transition and util UID-map failure are observed. Specific policy rule and original bwrap netlink errno remain unproven.",
+  "network_configuration": false,
+  "build_execution": false,
+  "model_execution": false,
+  "full_sandbox_verified": false,
+  "files": {
+    "run-logs.zip": {
+      "nbytes": 10634,
+      "sha256": "d75e083f6badca4c502af3641776d2746bc663c7f66445c29a47644daadaa178"
+    },
+    "identity.json": {
+      "nbytes": 37179,
+      "sha256": "66d84bc2ad6daf96c88ca1ece14c6f63d7b37582a3483f49c0ea1123ee00cacb"
+    },
+    "activation-commit.json": {
+      "nbytes": 1294,
+      "sha256": "b0254a5ddb77b6bf64829d90b6cc5a23740656e5de6e138fa2f1e1e270915247"
+    },
+    "jobs.json": {
+      "nbytes": 2353,
+      "sha256": "aea6f3599c3145ddf29012c5d1c8085bd1d259557b4b65ca342c8f0aab763353"
+    },
+    "registration.json": {
+      "nbytes": 610,
+      "sha256": "db844eb293d2085706eaf5c92e862728db4d82c63e0e6270c47af580df16f416"
+    },
+    "original-artifact.zip": {
+      "nbytes": 37319,
+      "sha256": "99571654741e1882a389f305d0b5869a0514189bcab15d3d895c8872c2f37adf"
+    },
+    "workflow-runs.json": {
+      "nbytes": 15191,
+      "sha256": "faded77a6356b50e3319cef1d5b4604da5d26a0a334eb990d0576b070c6cfa1d"
+    },
+    "workflow.json": {
+      "nbytes": 650,
+      "sha256": "597891239f008dcf12a75df244cbd730406a583d62093cf14b4d47f6465f2c91"
+    },
+    "run.json": {
+      "nbytes": 15155,
+      "sha256": "15aa0bc73433e0639660593aeac3095acf5f3c7ca898011a7f18b4fc471f5feb"
+    },
+    "artifacts.json": {
+      "nbytes": 841,
+      "sha256": "e6d1b5236682be4f35275700d142525d1745766270bb85979875e792d4b8b4ba"
+    },
+    "activation-ref.json": {
+      "nbytes": 529,
+      "sha256": "ee5e7e6fac10506c60b96c13ef347eb9ef8b3a11c2058d747daaaa49f9c71ad3"
+    }
+  }
+}
