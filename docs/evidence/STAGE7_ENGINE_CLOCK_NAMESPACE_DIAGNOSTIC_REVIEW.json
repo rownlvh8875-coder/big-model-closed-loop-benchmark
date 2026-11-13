@@ -1,0 +1,100 @@
+{
+  "schema": "namespace-diagnostic-source-review-v1",
+  "base_sha": "5fa88364f5c0a66f21233e16327e532114865d05",
+  "reviewed_head_sha": "58760d231747b9a4ed3e19433abd104763c981ed",
+  "reviewer": "/root/namespace_diagnostic_review",
+  "model": "gpt-6-astra",
+  "reasoning_effort": "medium",
+  "critical": [],
+  "important": [
+    {
+      "id": "I1",
+      "issue": "Activation did not prove sole reviewed parent and complete request-only tree delta.",
+      "root_grade": "Important",
+      "fix": "validate_activation authenticates Git commit parent/tree and exactly one newly added regular request leaf; API-shaped integration and mutation fixtures."
+    },
+    {
+      "id": "I2",
+      "issue": "Netlink ACK parser accepted zero or mismatched embedded original request headers.",
+      "root_grade": "Important",
+      "fix": "Bind embedded request header and available payload to exact emitted bytes; realistic success, capped error, full error and malformed fixtures."
+    }
+  ],
+  "minor_deferred": [
+    {
+      "id": "ND-M1",
+      "issue": "Successful empty journalctl output is labeled READ_COMPLETE.",
+      "root_grade": "Minor",
+      "cost": "Command completion can be mistaken for observed log availability; raw byte counts and no-denial-does-not-prove-no-LSM interpretation remain mandatory."
+    },
+    {
+      "id": "ND-M2",
+      "issue": "Lossy ASCII profile decoding can classify unknown non-ASCII bytes as a known label.",
+      "root_grade": "Minor",
+      "cost": "Label classification can be inaccurate; original byte length/SHA remains and no policy permission depends on it."
+    }
+  ],
+  "declines_rulings": [
+    [
+      "Actual Ubuntu namespace/LSM behavior",
+      "Accept source-only limit; new hosted observations are still required.",
+      "CPU fixtures cannot prove live syscall support."
+    ],
+    [
+      "Precise bubblewrap reproduction",
+      "Accept diagnostic-only scope; UID mapping order differs.",
+      "Successful syscall controls do not establish the complete bwrap path."
+    ],
+    [
+      "Historical errno/AppArmor causation",
+      "Accept unknown; original bwrap network.c fails without copying NLMSG_ERROR errno.",
+      "Prior displayed EPERM may be stale; only new response errno is direct evidence."
+    ],
+    [
+      "Complete builder/benchmark readiness",
+      "Accept outside this diagnostic.",
+      "Wheel/image/full lock and scientific stages remain unresolved."
+    ],
+    [
+      "Actual activation/CI/unique run/artifacts",
+      "Accept pending at source review; root independently verifies each.",
+      "No runtime result may be inferred from source review."
+    ],
+    [
+      "Malicious repository administrator",
+      "Accept trusted GitHub administration boundary; source review externally bound in evidence.",
+      "Admin rewrite/deletion/forged review designation is not prevented by in-repository hashes."
+    ],
+    [
+      "Likelihood of corrupt/spoofed kernel ACK",
+      "Fix promised parser contract regardless of likelihood.",
+      "Parser tests do not measure kernel reliability or malicious kernel resistance."
+    ],
+    [
+      "Unchanged capture/API helpers",
+      "Accept integration reuse with existing regression suite.",
+      "No new independent recertification of all shared implementation paths."
+    ],
+    [
+      "Independent full-suite rerun",
+      "Accept reviewer focused15 versus root full-suite evidence distinction.",
+      "Full suite is root-observed, not independently reproduced by reviewer."
+    ],
+    [
+      "Resource stress beyond SDK limits",
+      "Accept source inspection and bounded capture/deadlines.",
+      "Actual hosted pressure/OS-wide resource accounting is not stress-certified."
+    ]
+  ],
+  "fix_verification": {
+    "focused_tests": 18,
+    "full_tests": 834,
+    "optional_skips": 7,
+    "full_seconds": 94.45,
+    "important_regressions_observed_red": 2,
+    "commit_tree_lookup_regression_observed_red": true,
+    "final_suite": "PASS",
+    "independent_rereview": false,
+    "remote_ci": "PENDING"
+  }
+}
