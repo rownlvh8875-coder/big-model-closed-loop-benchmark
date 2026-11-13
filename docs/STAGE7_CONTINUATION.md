@@ -4,7 +4,13 @@
 
 
 
-## Current checkpoint (2026-11-13 — provider-free preparation terminal network-namespace failure)
+## Current checkpoint (2026-11-13 — source-only probe FD correction; real network preflight remains blocked)
+
+Separate fix/engine-clock-builder-probe-fd from evidencea103c1e corrects only latent PF1: capability_probe now preserves both verified root/build descriptors, matching target launch. An actual trusted host Python fstat child through real capture/Popen proves both device/inode identities; metadata stubs do not run bubblewrap or create namespaces. Behavioral RED→GREEN1/0.029s, new-builder90/1.355s/full816/69.171s PASS/7optional skips. Fresh review of this separate delta/final CI are recorded in its own audit/PR; original source review/fix pass and actual producer remain distinct.
+
+See [source-only FD result](STAGE7_ENGINE_CLOCK_BUILDER_PROBE_FD.md). No actual namespace/target retry/new request/privilege fallback. Request01/producer78deaec/run43389231348/artifact14019513519 stays consumed terminal loopback RTM_NEWADDR/EPERM; PF1 occurs later and is not its cause. Evidencea103c1e DraftPR51 exact CI4PASS/815unit7skip+1SMALL each/artifacts0. All45workflow bytes, request/registration/result/binding/audit/raw/workspaces unchanged. Source-only correction cannot prove supported backend or a built wheel/full lock/image/native readiness. Old16refsnull/native0/strictFAIL/expandedNOT_RUN/ABBAterminalFAIL/geometry-optics-fullS/Stage7INCOMPLETE remain; no main merge/Cloud publish. Earlier checkpoints historical.
+
+## Previous checkpoint (2026-11-13 — provider-free preparation terminal network-namespace failure)
 
 Actual producer78deaec1a3158889f0f90ede159b9466bfc9b194/requestbuilder-20261113-01/run43389231348/job131764894606/workflow417016407/attempt1 terminated at trusted-host true namespace preflight. Pinned helper0.12.0, mandatory options, owned256MiBtmpfs and measured91974352896Bhost free space passed; loopback RTM_NEWADDR returned EPERM.61Bstderr hash matches pinned network.c182 public source/errno text exactly, without replay; exact host policy cause unknown. No component transport/target launch/staging/bootstrap/build/smoke occurred. Request consumed/no retry/fallback; no wheel/full lock/image readiness/native admission. See [actual result](STAGE7_ENGINE_CLOCK_BUILDER_PREPARATION.md) and new registration/result/binding/audit.
 

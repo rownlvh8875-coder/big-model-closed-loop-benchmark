@@ -1,0 +1,59 @@
+{
+  "actual_target_execution_verified": false,
+  "base_sha": "a103c1ebe4611bb859336c4bb7dbe3f88e485aa9",
+  "basic_ci": null,
+  "basic_ci_record_location": "Actual exact-final-source HEAD/run/jobs/log counts in Draft PR after push.",
+  "deferred_minors": [
+    "M6 controller review SHA requires external source/qualification binding",
+    "M7 reusable staging maximum deadline is not enforced; controlled callers supply180s"
+  ],
+  "full_lock_ready": false,
+  "image_preparation_ready": false,
+  "immutable_previous_operation": {
+    "artifact_id": 14019513519,
+    "caused_by_PF1": false,
+    "producer_sha": "78deaec1a3158889f0f90ede159b9466bfc9b194",
+    "replayed": false,
+    "request_id": "builder-20261113-01",
+    "run_id": 43389231348,
+    "status": "CONSUMED_TERMINAL_LOOPBACK_RTM_NEWADDR_EPERM"
+  },
+  "native_admission": false,
+  "new_target_request_created": false,
+  "preservation": {
+    "allowed_changes": [
+      "docs/STAGE7_CONTINUATION.md",
+      "docs/STAGE7_ENGINE_CLOCK_RUNTIME_CONTRACT.md",
+      "docs/superpowers/plans/2026-11-13-engine-clock-builder-preparation-operation.md",
+      "scripts/engine_clock_builder_preparation.py",
+      "tests/test_engine_clock_builder_preparation.py"
+    ],
+    "before_tracked": 485,
+    "originals_and_workspaces_retained": true,
+    "unchanged": 480,
+    "workflow_bytes_unchanged": 45
+  },
+  "review": null,
+  "reviewed_sha": null,
+  "rulings_chronological": [
+    "Ruling: Correct only the separate latent PF1 FD propagation defect through an owned trusted-child regression, without actual namespace/target execution or a new request \u2014 user continuous authorization covers safe source repair; observed loopback EPERM remains terminal and is not attributed to PF1 \u2014 cost if wrong: additional code/test/CI work will not resolve the actual backend blocker.",
+    "Ruling: Review this separate source delta once with fresh context and retain old source/evidence hashes as historical producer identities \u2014 source correction must not rewrite or reclassify consumed request01 \u2014 cost if wrong: an extra narrowly scoped review adds effort; no independent rereview of the original whole-source fix pass is requested."
+  ],
+  "schema": "engine-clock-builder-probe-fd-source-audit-v1",
+  "source_delta": "capability probe capture passes only intended root+build FDs; no isolation/credential/limit/profile change",
+  "stage7_status": "INCOMPLETE",
+  "validation": {
+    "behavioral_red": "UNSUPPORTED_HOST_NAMESPACE from missing build descriptor in trusted fstat child",
+    "focused": {
+      "seconds": 1.355,
+      "tests": 90
+    },
+    "full": {
+      "seconds": 69.171,
+      "skipped": 7,
+      "tests": 816
+    },
+    "namespace_or_downloaded_code_executed": false
+  },
+  "wheel_sha256": null
+}

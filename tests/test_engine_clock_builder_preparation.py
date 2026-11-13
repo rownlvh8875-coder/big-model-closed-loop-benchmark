@@ -3,7 +3,9 @@ import copy
 import hashlib
 import io
 import json
+import os
 from pathlib import Path
+import sys
 import tarfile
 import tempfile
 import unittest
@@ -168,6 +170,39 @@ class PreparationTests(unittest.TestCase):
         self.assertGreater(len(plan['entries']), 12000)
         self.assertLess(plan['staged_bytes'], 512 * 1024 * 1024)
         self.assertLess(len(prep.canonical(plan)), 16 * 1024 * 1024)
+
+    def test_preflight_preserves_both_directory_descriptors_in_real_trusted_child(self):
+        # Metadata stubs do not launch bubblewrap. The actual child is trusted
+        # installed Python doing fstat only, through the real bounded capture.
+        from scripts import engine_clock_builder_sandbox
+        real_capture = engine_clock_builder_sandbox.capture
+        child_observations = []
+        with tempfile.TemporaryDirectory() as tmp:
+            base = Path(tmp);work = base / 'work';work.mkdir()
+            build = base / 'build';build.mkdir()
+            tool = base / 'fixture-helper';tool.write_bytes(b'owned metadata fixture')
+            buildfd = os.open(build, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW)
+            try:
+                def fixture_capture(argv, **kwargs):
+                    if argv[-1] == '--version':return {'status':'EXITED','returncode':0}, b'bubblewrap 0.12.0\n'
+                    if argv[-1] == '--help':return {'status':'EXITED','returncode':0}, ' '.join(engine_clock_builder_sandbox.REQUIRED_OPTIONS).encode()
+                    rootfd = int(argv[argv.index('--ro-bind-fd') + 1])
+                    writablefd = int(argv[argv.index('--bind-fd') + 1])
+                    expected = [[fd, os.fstat(fd).st_dev, os.fstat(fd).st_ino] for fd in (rootfd, writablefd)]
+                    code = ('import json,os,sys\nmatched=[]\n'
+                            'for fd,device,inode in json.loads(sys.argv[1]):\n'
+                            ' try:\n  s=os.fstat(fd);matched.append((s.st_dev,s.st_ino)==(device,inode))\n'
+                            ' except OSError:matched.append(False)\n'
+                            'print(json.dumps(matched));sys.exit(0 if all(matched) else 1)\n')
+                    receipt, raw = real_capture([sys.executable, '-I', '-S', '-B', '-c', code, json.dumps(expected)], **kwargs)
+                    child_observations.append(json.loads(raw))
+                    return receipt, raw
+                with patch.object(prep, 'Path', side_effect=lambda value: tool if value == '/usr/bin/bwrap' else Path(value)), \
+                     patch.object(prep.sandbox, 'capture', side_effect=fixture_capture):
+                    facts = prep.capability_probe(work, buildfd)
+                self.assertEqual(0, facts['trusted_true']['returncode'])
+                self.assertEqual([[True, True]], child_observations)
+            finally:os.close(buildfd)
 
 
 if __name__ == '__main__':unittest.main()

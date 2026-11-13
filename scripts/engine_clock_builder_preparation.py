@@ -379,7 +379,7 @@ def capability_probe(work, buildfd, facts=None):
     try:
         argv = sandbox.launch_argv(fd, buildfd);at = argv.index('--')
         argv = argv[:at] + ['--ro-bind', '/usr', '/usr', '--ro-bind', '/lib', '/lib', '--ro-bind', '/lib64', '/lib64', '--', '/usr/bin/true']
-        facts['trusted_true'], _ = sandbox.capture(argv, timeout=10, pass_fds=(fd,))
+        facts['trusted_true'], _ = sandbox.capture(argv, timeout=10, pass_fds=(fd, buildfd))
     finally:os.close(fd)
     _need(facts['trusted_true']['status'] == 'EXITED' and facts['trusted_true']['returncode'] == 0, 'UNSUPPORTED_HOST_NAMESPACE')
     return facts
