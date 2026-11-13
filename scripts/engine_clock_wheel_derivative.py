@@ -14,6 +14,7 @@ import math
 import re
 import stat
 import struct
+import zlib
 from time import perf_counter
 from zipfile import ZipFile, ZipInfo, ZIP_STORED, ZIP_DEFLATED
 
@@ -173,6 +174,7 @@ class _Transform:
             _require(size <= MAX_MEMBER_BYTES and expanded <= MAX_EXPANDED_BYTES,
                      'EXPANDED_OR_MEMBER_LIMIT')
             _require(compressed <= len(source), 'BAD_CENTRAL_DIRECTORY')
+            _require(compression != ZIP_STORED or compressed == size, 'STORED_SIZE_MISMATCH')
             offset += 46 + nlen
             _require(offset <= len(source) - 22, 'BAD_CENTRAL_DIRECTORY')
         _require(observed == count and offset == len(source) - 22, 'BAD_CENTRAL_DIRECTORY')
@@ -191,6 +193,7 @@ class _Transform:
             _require(info.filename == info.orig_filename, 'BAD_PATH')
             directory = info.is_dir()
             path = _name(info.filename, directory)
+            _require(path != PROOF and not path.startswith(PROOF+'/'), 'SOURCE_MARKER_CONFLICT')
             _require(path not in paths, 'DUPLICATE_PATH')
             kind = stat.S_IFMT(info.external_attr >> 16)
             _require(kind in ((0, stat.S_IFDIR) if directory else (0, stat.S_IFREG))
@@ -215,6 +218,7 @@ class _Transform:
             for end in range(1, len(components)):
                 _require(paths.get('/'.join(components[:end])) != 'file', 'FILE_ANCESTOR')
         offset = 0
+        self.data_ranges = {}
         for info in sorted(infos, key=lambda value: value.header_offset):
             self.check()
             _require(info.header_offset == offset and offset + 30 <= cd_offset, 'HIDDEN_ZIP_DATA')
@@ -225,27 +229,59 @@ class _Transform:
                      'LOCAL_CENTRAL_MISMATCH')
             name = source[offset+30:offset+30+nlen]
             _require(name == info.filename.encode('utf-8' if flags & 0x800 else 'cp437'), 'LOCAL_CENTRAL_MISMATCH')
-            offset += 30 + nlen + csize
+            start = offset + 30 + nlen
+            self.data_ranges[info.filename] = start, start + csize
+            offset = start + csize
             _require(offset <= cd_offset, 'BAD_ZIP_LAYOUT')
         _require(offset == cd_offset, 'HIDDEN_ZIP_DATA')
         return entries
 
-    def read(self, archive, info, *, collect=False, writer=None):
+    def read(self, info, *, collect=False, writer=None):
+        """Decode exactly the validated range; ZipExtFile may ignore tails."""
         self.check()
         hasher, count, chunks = hashlib.sha256(), 0, []
-        remaining = info.file_size
-        with archive.open(info) as stream:
-            while remaining:
+        crc = 0
+
+        def consume(chunk):
+            nonlocal count, crc
+            _require(len(chunk) <= MAX_READ_BYTES - self.receipt['uncompressed_bytes_read'], 'READ_LIMIT')
+            self.receipt['uncompressed_bytes_read'] += len(chunk)
+            count += len(chunk)
+            _require(count <= info.file_size, 'BAD_MEMBER_SIZE')
+            hasher.update(chunk)
+            crc = zlib.crc32(chunk, crc)
+            if collect: chunks.append(chunk)
+            if writer is not None: writer.write(chunk)
+
+        position, end = self.data_ranges[info.filename]
+        if info.compress_type == ZIP_STORED:
+            _require(info.compress_size == info.file_size, 'STORED_SIZE_MISMATCH')
+            while position < end:
                 self.check()
-                n = min(READ_CHUNK, remaining, MAX_READ_BYTES - self.receipt['uncompressed_bytes_read'])
+                n = min(READ_CHUNK, end-position, MAX_READ_BYTES-self.receipt['uncompressed_bytes_read'])
                 _require(n > 0, 'READ_LIMIT')
-                chunk = stream.read(n)
-                self.receipt['uncompressed_bytes_read'] += len(chunk)
-                _require(chunk and len(chunk) <= n, 'BAD_MEMBER_SIZE')
-                remaining -= len(chunk); count += len(chunk); hasher.update(chunk)
-                if collect: chunks.append(chunk)
-                if writer is not None: writer.write(chunk)
-            _require(not stream.read(1), 'BAD_MEMBER_SIZE')
+                consume(self.source[position:position+n])
+                position += n
+        else:
+            decoder, pending = zlib.decompressobj(-15), b''
+            while not decoder.eof:
+                self.check()
+                if not pending and position < end:
+                    size = min(READ_CHUNK, end-position)
+                    pending = self.source[position:position+size]
+                    position += size
+                budget = MAX_READ_BYTES-self.receipt['uncompressed_bytes_read']
+                _require(budget > 0, 'READ_LIMIT')
+                before = pending
+                chunk = decoder.decompress(pending, min(READ_CHUNK, budget, max(1, info.file_size-count+1)))
+                pending = decoder.unconsumed_tail
+                consume(chunk)
+                if decoder.eof:
+                    _require(not pending and not decoder.unused_data and position == end,
+                             'DEFLATE_TRAILING_DATA')
+                else:
+                    _require(chunk or pending != before, 'INCOMPLETE_DEFLATE')
+        _require(count == info.file_size and crc == info.CRC, 'MEMBER_CONTENT_MISMATCH')
         return hasher.hexdigest(), count, b''.join(chunks) if collect else None
 
     def records(self, raw, entries):
@@ -275,7 +311,7 @@ class _Transform:
     def run(self, archive, metadata_pin, policy_hash):
         entries = self.inspect(archive)
         self.stage('read_record')
-        _, _, record_data = self.read(archive, entries[RECORD], collect=True)
+        _, _, record_data = self.read(entries[RECORD], collect=True)
         records = self.records(record_data, entries)
         cached, hashes = {RECORD: record_data}, {}
         self.stage('validate_members')
@@ -284,7 +320,7 @@ class _Transform:
             if name == RECORD:
                 value, count = _sha(record_data), len(record_data)
             else:
-                value, count, data = self.read(archive, info, collect=name in MUTABLE)
+                value, count, data = self.read(info, collect=name in MUTABLE)
                 if name in MUTABLE: cached[name] = data
                 if not info.is_dir(): _require(value == records[name], 'RECORD_CONTENT_MISMATCH')
             hashes[name] = value
@@ -325,7 +361,7 @@ class _Transform:
                     value, count = _sha(data), len(data)
                 else:
                     with output.open(info, 'w') as writer:
-                        value, count, _ = self.read(archive, old, writer=writer)
+                        value, count, _ = self.read(old, writer=writer)
                     _require(value == hashes[name] and count == old.file_size, 'PAYLOAD_CHANGED')
                 # ZipFile substitutes a default mode for external_attr == 0.
                 # Attributes live in the central record, so restore afterward.

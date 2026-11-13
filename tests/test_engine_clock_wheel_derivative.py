@@ -13,6 +13,7 @@ from time import perf_counter
 import unittest
 from unittest.mock import patch
 import warnings
+import zlib
 from zipfile import ZipFile, ZipInfo, ZIP_STORED, ZIP_DEFLATED
 
 try:
@@ -70,6 +71,25 @@ def fixture(*, metadata=BASE_META, wheel_metadata=BASE_WHEEL, changes=None,
                 if info_change: info_change(info)
                 z.writestr(info, data)
     return buffer.getvalue(), metadata
+
+
+def replace_compressed_range(source, name, replacement):
+    """Keep decoded-size/CRC claims while rebuilding physical sizes/offsets."""
+    with ZipFile(io.BytesIO(source)) as z:info=z.getinfo(name)
+    nlen,xlen=struct.unpack_from('<2H',source,info.header_offset+26)
+    start=info.header_offset+30+nlen+xlen;end=start+info.compress_size
+    delta=len(replacement)-info.compress_size
+    raw=bytearray(source[:start]+replacement+source[end:])
+    struct.pack_into('<L',raw,info.header_offset+18,len(replacement))
+    central=struct.unpack_from('<L',source,len(source)-6)[0]+delta
+    struct.pack_into('<L',raw,len(raw)-6,central)
+    pos=central
+    while raw[pos:pos+4]==b'PK\x01\x02':
+        local=struct.unpack_from('<L',raw,pos+42)[0]
+        if local==info.header_offset:struct.pack_into('<L',raw,pos+20,len(replacement))
+        elif local>info.header_offset:struct.pack_into('<L',raw,pos+42,local+delta)
+        n,x,c=struct.unpack_from('<3H',raw,pos+28);pos+=46+n+x+c
+    return bytes(raw)
 
 
 class WheelDerivativeTests(unittest.TestCase):
@@ -168,6 +188,47 @@ class WheelDerivativeTests(unittest.TestCase):
         self.assertTrue(r['complete'])
         with ZipFile(io.BytesIO(output)) as z:self.assertEqual(z.read('metadrive/empty'),b'')
 
+    def test_declared_compressed_ranges_cannot_hide_trailing_bytes(self):
+        for compression in [ZIP_STORED,ZIP_DEFLATED]:
+            source,meta=fixture(changes={'metadrive/empty':b''},compression=compression)
+            for name in ['metadrive/__init__.py','metadrive/empty']:
+                with self.subTest(compression=compression,name=name):
+                    with ZipFile(io.BytesIO(source)) as z:info=z.getinfo(name)
+                    n,x=struct.unpack_from('<2H',source,info.header_offset+26)
+                    start=info.header_offset+30+n+x
+                    encoded=source[start:start+info.compress_size]+b'UNACCOUNTED'
+                    altered=replace_compressed_range(source,name,encoded)
+                    self.assert_failed(*self.run_fixture((altered,meta)))
+
+    def test_deflate_stream_must_finish_even_when_decoded_size_is_satisfied(self):
+        source,meta=fixture(changes={'metadrive/empty':b''},compression=ZIP_DEFLATED)
+        for name in ['metadrive/__init__.py','metadrive/empty']:
+            with self.subTest(name=name):
+                with ZipFile(io.BytesIO(source)) as z:info=z.getinfo(name)
+                n,x=struct.unpack_from('<2H',source,info.header_offset+26)
+                start=info.header_offset+30+n+x
+                encoded=source[start:start+info.compress_size-1]
+                altered=replace_compressed_range(source,name,encoded)
+                self.assert_failed(*self.run_fixture((altered,meta)))
+
+    def test_deflate_cannot_decode_more_than_declared_member_size(self):
+        source,meta=fixture(changes={'metadrive/empty':b''},compression=ZIP_DEFLATED)
+        for name in ['metadrive/__init__.py','metadrive/empty']:
+            with self.subTest(name=name):
+                with ZipFile(io.BytesIO(source)) as z:data=z.read(name)
+                compressor=zlib.compressobj(wbits=-15)
+                encoded=compressor.compress(data+b'EXTRA')+compressor.flush()
+                altered=replace_compressed_range(source,name,encoded)
+                self.assert_failed(*self.run_fixture((altered,meta)))
+
+    def test_small_decode_chunks_preserve_large_and_empty_deflated_members(self):
+        data=bytes(range(256))*20
+        pair=fixture(changes={'metadrive/large':data,'metadrive/empty':b''},compression=ZIP_DEFLATED)
+        with patch.object(derivative,'READ_CHUNK',7):output,r=self.run_fixture(pair)
+        self.assertTrue(r['complete'])
+        with ZipFile(io.BytesIO(output)) as z:
+            self.assertEqual(z.read('metadrive/large'),data);self.assertEqual(z.read('metadrive/empty'),b'')
+
     def test_source_and_metadata_pin_mismatches_return_no_output(self):
         for changes in [dict(expected_source_sha256='0'*64),dict(expected_metadata_sha256='0'*64)]:
             with self.subTest(changes=changes):self.assert_failed(*self.run_fixture(**changes))
@@ -199,6 +260,11 @@ class WheelDerivativeTests(unittest.TestCase):
     def test_signatures_foreign_metadata_and_preexisting_provenance_reject(self):
         for name in [DIST+'RECORD.jws',DIST+'RECORD.p7s',PROOF,'other-1.dist-info/METADATA']:
             self.assert_failed(*self.run_fixture(fixture(changes={name:b'fixture'})))
+
+    def test_provenance_path_is_reserved_for_file_directory_and_descendants(self):
+        for name in [PROOF+'/',PROOF+'/child']:
+            with self.subTest(name=name):
+                self.assert_failed(*self.run_fixture(fixture(changes={name:b'' if name.endswith('/') else b'payload'})))
 
     def test_duplicate_archive_members_reject(self):
         self.assert_failed(*self.run_fixture(fixture(duplicate='metadrive/assets/raw.bin')))

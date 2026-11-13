@@ -14,15 +14,16 @@
     "upstream_metadata_fetches": 0
   },
   "base_sha": "b9812ae4a7d795c22fc277036064e57ae8cfd3dd",
-  "baseline_generated_small_onnx_ci": "separate; final HEAD CI pending",
+  "baseline_generated_small_onnx_ci": "Final corrected HEAD baseline CI recorded in Draft PR after push.",
   "branch": "feature/engine-clock-wheel-derivative",
   "canonical_policy_sha256": "9cd40ffe7ced1db55a1f8bc3a981207a8137ee575180b80f03719ba2b8db05cd",
   "execution_authorized": false,
-  "fixture_sha256": "aa98612b1241550229fdfa6358f3e8c06e07585a96d8080763afbbe77bd83ad0",
+  "fixture_sha256": "2e31312498afc9ddd41260aec9f63b394ea7e5d2df66fd0afe3d76d7bd215e61",
   "focused": {
+    "log": "review-fix-focused.log",
     "result": "OK",
-    "seconds": 0.102,
-    "tests": 29
+    "seconds": 0.099,
+    "tests": 34
   },
   "full_before_material_attribute_fix": {
     "code_hashes": {
@@ -36,8 +37,9 @@
     "tests": 720
   },
   "full_final": {
+    "log": "review-fix-full.log",
     "result": "OK",
-    "seconds": 71.982,
+    "seconds": 70.128,
     "skip_lines": [
       "test_actual_panda_global_bin_is_restored_without_any_graphics_engine (test_native_opaque_order_matrix.OpaqueBinPolicyTests.test_actual_panda_global_bin_is_restored_without_any_graphics_engine) ... skipped 'Panda CPU contract runs in native CI'",
       "test_real_ort_uses_camera_and_updates_recurrent_state (test_onnx_ort_integration.NativeOrtTest.test_real_ort_uses_camera_and_updates_recurrent_state) ... skipped 'onnx+onnxruntime optional; GitHub inference CI installs both'",
@@ -48,10 +50,22 @@
       "test_setup_failure_rolls_back_camera_and_sampler_and_marker (test_shadow_feedback_probe.PandaGuardTests.test_setup_failure_rolls_back_camera_and_sampler_and_marker) ... skipped 'Panda CPU state-contract runs in native CI'"
     ],
     "skipped": 7,
-    "tests": 721
+    "tests": 726
   },
   "image_preparation_ready": false,
   "logs": {
+    "review-R1-R2-red.log": {
+      "nbytes": 71378,
+      "sha256": "f6cc1e15cfccd4100ad689bf43f428f90778db917f52bad994b91a146e25fdae"
+    },
+    "review-fix-focused.log": {
+      "nbytes": 6547,
+      "sha256": "1d6dcf483407413bb53b1976030e4ae9da55e0dd5ec213bd84726712ee661419"
+    },
+    "review-fix-full.log": {
+      "nbytes": 136900,
+      "sha256": "87fcd7c302a4e0f4754de9a41844146bf372c56a581dd8cb118a8f8668ba3548"
+    },
     "task-1-central-budget-red.log": {
       "nbytes": 1028,
       "sha256": "81e85be5ab6add4ab1d25cb2af38e390bed0b91940f7182ad301d6674e79380f"
@@ -94,6 +108,33 @@
   "official_distribution": false,
   "policy_file_sha256": "3a93bec192c72a918e4d39cd240b5721c35145dbf2c62200f1e1b443e78ead8a",
   "policy_hash_is_not_implementation_authentication": true,
+  "pre_review_verification": {
+    "fixture_sha256": "aa98612b1241550229fdfa6358f3e8c06e07585a96d8080763afbbe77bd83ad0",
+    "focused": {
+      "result": "OK",
+      "seconds": 0.102,
+      "tests": 29
+    },
+    "full": {
+      "result": "OK",
+      "seconds": 71.982,
+      "skip_lines": [
+        "test_actual_panda_global_bin_is_restored_without_any_graphics_engine (test_native_opaque_order_matrix.OpaqueBinPolicyTests.test_actual_panda_global_bin_is_restored_without_any_graphics_engine) ... skipped 'Panda CPU contract runs in native CI'",
+        "test_real_ort_uses_camera_and_updates_recurrent_state (test_onnx_ort_integration.NativeOrtTest.test_real_ort_uses_camera_and_updates_recurrent_state) ... skipped 'onnx+onnxruntime optional; GitHub inference CI installs both'",
+        "test_all_four_modes_are_opt_in_and_dispatch_only_for_marker (test_shadow_feedback_probe.PandaGuardTests.test_all_four_modes_are_opt_in_and_dispatch_only_for_marker) ... skipped 'Panda CPU state-contract runs in native CI'",
+        "test_configure_rejects_unknown_state_before_even_sampler_setters (test_shadow_feedback_probe.PandaGuardTests.test_configure_rejects_unknown_state_before_even_sampler_setters) ... skipped 'Panda CPU state-contract runs in native CI'",
+        "test_guard_has_only_two_high_priority_inputs_and_inherits_shader (test_shadow_feedback_probe.PandaGuardTests.test_guard_has_only_two_high_priority_inputs_and_inherits_shader) ... skipped 'Panda CPU state-contract runs in native CI'",
+        "test_preexisting_second_state_fails_before_mutating_first (test_shadow_feedback_probe.PandaGuardTests.test_preexisting_second_state_fails_before_mutating_first) ... skipped 'Panda CPU state-contract runs in native CI'",
+        "test_setup_failure_rolls_back_camera_and_sampler_and_marker (test_shadow_feedback_probe.PandaGuardTests.test_setup_failure_rolls_back_camera_and_sampler_and_marker) ... skipped 'Panda CPU state-contract runs in native CI'"
+      ],
+      "skipped": 7,
+      "tests": 721
+    },
+    "source_test_sha256": {
+      "scripts/engine_clock_wheel_derivative.py": "5c82a5cb408d7139f70719612f0144931909bb8c36211688ac0bbc5ca0a265d2",
+      "tests/test_engine_clock_wheel_derivative.py": "94d7ef1e150d659b92a15edc7659a077b5e576edeffe53681aa4888fb1ec4eb9"
+    }
+  },
   "preservation": {
     "all_preexisting_source_tests_unchanged": true,
     "baseline_snapshot_sha256": "b751c33f5e0c4c48069e7b20f45a73ea0fc1a79d55c3520657f919c08982e4f6",
@@ -109,6 +150,7 @@
     "registry8_unchanged": true,
     "task1_task2_tools_tests_proposal5_unchanged": true,
     "unchanged_except_three_status_documents": true,
+    "verified_after_single_review_fix_pass": true,
     "workflow44_unchanged": true
   },
   "required_preparation_refs": {
@@ -128,6 +170,88 @@
     "run_id": null,
     "source_sha": null,
     "workflow_id": null
+  },
+  "root_review_dispositions": {
+    "declined_to_judge_dispositions": [
+      {
+        "behavior": "Actual official wheel origin/layout/API/Git",
+        "cost": "Real original/derived hashes and upstream layout compatibility remain unverified.",
+        "decision": "Keep real wheel preparation and source/API authentication outside this synthetic increment.",
+        "reviewer_declined": "Actual official wheel download, WHEEL/layout compatibility, origin and API/Git authentication: excluded by the explicit synthetic-only scope; caller pins do not establish origin."
+      },
+      {
+        "behavior": "Implementation authentication/policy hash",
+        "cost": "A matching caller pin or policy hash alone cannot authorize preparation.",
+        "decision": "Keep both authentication flags false; future authenticated wrapper must bind Git/source and actual hashes.",
+        "reviewer_declined": "Transform implementation authentication or policy-hash authorization: future authenticated wrapper responsibility; current receipts correctly deny it."
+      },
+      {
+        "behavior": "Installed dependency graph/resolver/OpenCV runtime",
+        "cost": "A supported complete environment still requires genuine resolution and tests.",
+        "decision": "Keep full locks/install/runtime compatibility unimplemented and Task3 incomplete.",
+        "reviewer_declined": "Real installed dependency graph, package resolver behavior, OpenCV runtime compatibility and supported complete environment: no install or full lock is authorized or implemented."
+      },
+      {
+        "behavior": "License/endorsement/signatures",
+        "cost": "No legal/redistribution/upstream assurance; signed originals need a separate policy.",
+        "decision": "Preserve original bytes, label nonofficial derivative, reject signed inputs.",
+        "reviewer_declined": "License/legal compatibility, redistribution rights, upstream endorsement and signed-wheel support: preservation is byte-level only; signed inputs intentionally reject."
+      },
+      {
+        "behavior": "Native/scientific/ABBA work",
+        "cost": "GL/GPU/pixel causality/determinism/geometry-optics-fullS remain unproved.",
+        "decision": "Keep zero new native/official work and all historical failures/nulls/allowances fixed.",
+        "reviewer_declined": "Native MetaDrive/Panda/ORT/model/engine/GPU/GL execution, observer neutrality, deterministic pixels, scientific causality and historical ABBA replay: expressly excluded, allowance remains zero."
+      },
+      {
+        "behavior": "Real memory/disk/transport feasibility",
+        "cost": "Actual resource/scale feasibility remains unmeasured and may fail caps.",
+        "decision": "Use bounded in-memory fixture tool only, separate from multi-GiB image transport.",
+        "reviewer_declined": "Real-wheel memory/disk/download/hash/load feasibility and multi-GiB transport: synthetic fixtures do not measure these; documented in-memory caps are not transport feasibility evidence."
+      },
+      {
+        "behavior": "Realtime/future blocking IO deadlines",
+        "cost": "Future IO wrapper needs its own deadline/budget implementation.",
+        "decision": "Keep cooperative bounded-memory checks; no hard realtime claim.",
+        "reviewer_declined": "Hard realtime preemption or deadlines during future blocking IO: this helper promises cooperative bounded in-memory checks only."
+      },
+      {
+        "behavior": "Otherwise valid unsupported ZIP/metadata layouts",
+        "cost": "Legitimate actual inputs may reject and require a separately reviewed policy.",
+        "decision": "Keep explicit fail-closed classic ZIP/signature/header/platform scope.",
+        "reviewer_declined": "Acceptance of otherwise valid ZIP64, descriptors, extras, comments, signed archives, alternate metadata/WHEEL conventions or alternate platform tags: deliberate fail-closed policy, not supported compatibility."
+      },
+      {
+        "behavior": "Cross-platform extraction aliases",
+        "cost": "Case-folding/Unicode-normalization/filesystem portability remain unproved.",
+        "decision": "Keep canonical POSIX bytes/namespace checks and no extraction claim.",
+        "reviewer_declined": "Cross-platform case folding, Unicode normalization and filesystem-specific extraction aliases beyond canonical POSIX names: no extraction occurs and no portable filesystem support is claimed."
+      },
+      {
+        "behavior": "Opaque malicious payload content",
+        "cost": "No code safety or malware-scanning assurance is provided.",
+        "decision": "Preserve and hash payload without executing or interpreting its program semantics.",
+        "reviewer_declined": "Malicious runtime code or asset content in a caller-pinned wheel: payload is intentionally opaque and never executed; this transform is not a malware scanner."
+      },
+      {
+        "behavior": "Final corrected HEAD/CI/PR/main/Cloud",
+        "cost": "Corrected/receipt HEAD is not independently re-reviewed.",
+        "decision": "Root separately verifies final local/remoteHEAD/basicCI/Draft/main and readonly Cloud status.",
+        "reviewer_declined": "Final remote branch publication, Draft PR state, CI job IDs, main/Cloud state and post-review receipt commit: root owns these later checks; review makes no merge/publication authorization."
+      },
+      {
+        "behavior": "Unrelated historical source/test behavior",
+        "cost": "No new independent semantic review of old implementation/scientific evidence.",
+        "decision": "Preserve baseline byte maps and saved suite evidence without raw replay.",
+        "reviewer_declined": "General historical source/test behavior beyond preservation and saved suite evidence: unrelated existing implementation is frozen; no old raw replay or duplicate test run was authorized."
+      }
+    ],
+    "deferred_minors": [],
+    "findings": {
+      "R1": "Important accepted: exact raw compressed-range decoder with completed-stream/no-unused-input/size/CRC checks",
+      "R2": "Important accepted: reserve canonical marker path including directory and descendants"
+    },
+    "reviewed_head": "a4684d46d4e9fde9d9a32ec0b07428dbc93bc2eb"
   },
   "rulings": [
     "Ruling: use pure in-memory bytes transform only, no filesystem/network/CLI or actual wheel preparation \u2014 isolates metadata policy and avoids conflating it with future authenticated streaming IO \u2014 cost: bounded memory use may be hundreds of MiB and wrapper/real feasibility remain unimplemented.",
@@ -149,8 +273,8 @@
   },
   "source_origin_authenticated": false,
   "source_test_sha256": {
-    "scripts/engine_clock_wheel_derivative.py": "5c82a5cb408d7139f70719612f0144931909bb8c36211688ac0bbc5ca0a265d2",
-    "tests/test_engine_clock_wheel_derivative.py": "94d7ef1e150d659b92a15edc7659a077b5e576edeffe53681aa4888fb1ec4eb9"
+    "scripts/engine_clock_wheel_derivative.py": "fedac489da5ee1f95efc6b6121247cd7c2f8a6b8de348f47338a47d7975708cc",
+    "tests/test_engine_clock_wheel_derivative.py": "28921a39ed50ae2e7d13d0664a78a855aefb116bdbac8380c9f56c8575fd6a36"
   },
   "status": "DERIVATIVE_POLICY_IMPLEMENTED_SYNTHETIC_ONLY",
   "task3_complete": false,
@@ -161,5 +285,22 @@
     "real memory/disk/download/hash/load feasibility and runtime compatibility",
     "actual GL/GPU/observer neutrality/deterministic pixels/scientific causality"
   ],
-  "whole_branch_review": "PENDING"
+  "whole_branch_review": {
+    "critical": 0,
+    "important": [
+      "R1",
+      "R2"
+    ],
+    "independent_rereview": false,
+    "minor": 0,
+    "raw_review_sha256": "06a4b6fc78feb5514404d1d84b61878d55831285978ac565ca79c0039725e163",
+    "reviewed_base": "b9812ae4a7d795c22fc277036064e57ae8cfd3dd",
+    "reviewed_head": "a4684d46d4e9fde9d9a32ec0b07428dbc93bc2eb",
+    "root_fixed": [
+      "R1",
+      "R2"
+    ],
+    "root_unresolved": [],
+    "single_fix_pass": true
+  }
 }
