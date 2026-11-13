@@ -1,0 +1,188 @@
+{
+  "activation_sha": "c981a4af9c47859d4006a245e46ff8edc3fe29bb",
+  "archive_check": {
+    "all_input_payloads_matched": 51,
+    "all_inventory_fields_verified": true,
+    "all_root_nodes_matched": 12726,
+    "compressed_sha256": "63061034d2ade4070ed58f3b1739902c8b7dd93c8674c613b77451c3ad5ffacc",
+    "counts": {
+      "directory": 1032,
+      "file": 12924,
+      "symlink": 168
+    },
+    "decoded_tar_bytes": 491816960,
+    "decoded_tar_sha256": "863579e114f18eaebc60d1806209c3a1bc50678bdd6ed2e55f0ea0c8be83b6b7",
+    "entries": 14124,
+    "payload_executed_locally": false,
+    "regular_bytes": 472467670,
+    "single_gzip_eof_crc": true,
+    "zero_tail_bytes": 4608,
+    "zip_digest_crc_members_verified": true
+  },
+  "core_wire": {
+    "nbytes": 1103,
+    "sha256": "7682048978578ccb785c95e3db8477618f690b541363e821a9a5bad14768e62c"
+  },
+  "created_kst": "2026-11-13T23:00:12+09:00",
+  "driver_failure": {
+    "code": "COMMAND_FAILED",
+    "schema": "builder-driver-failure-v1",
+    "status": "FAILED",
+    "steps": [
+      {
+        "returncode": 0,
+        "stage": "VENV",
+        "status": "EXITED",
+        "stderr_bytes": 0,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_bytes": 0,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "returncode": 0,
+        "stage": "ENSUREPIP",
+        "status": "EXITED",
+        "stderr_bytes": 0,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_bytes": 257,
+        "stdout_sha256": "3076c968d89b08c4866db2bd7d454e35d15831b3ab29dd02d80a41ad0334787a"
+      },
+      {
+        "returncode": 0,
+        "stage": "TOOLS",
+        "status": "EXITED",
+        "stderr_bytes": 0,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_bytes": 729,
+        "stdout_sha256": "6b9d3cac9ec5a5c08a0cb819f3bab158c605d813efb2de13d0811402714cfb95"
+      },
+      {
+        "returncode": 1,
+        "stage": "BUILD",
+        "status": "EXITED",
+        "stderr_bytes": 0,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_bytes": 72,
+        "stdout_sha256": "37c566ff834bbac22a5f442bbece5d117587427c5ca26cbfac095862948a96e0"
+      }
+    ]
+  },
+  "errors": [
+    {
+      "code": "BUILDER_EXECUTION_FAILED"
+    }
+  ],
+  "exact_outer_core_source_failure_wires_reconstructed": true,
+  "files": {
+    "observed-source-failure.json": {
+      "nbytes": 80,
+      "sha256": "47eb8912162791542a91592c2e9c81d655917a2caef359b699e683144d752715"
+    },
+    "original-artifact.zip": {
+      "nbytes": 245893691,
+      "sha256": "fca9e6131492c80cd33c55ff4f1782d27d54553c69048db30c63aabc28610bc3"
+    },
+    "preparation.json": {
+      "nbytes": 23261,
+      "sha256": "0c4b4e7d3e8932a15080693f50850b68413becb0568cd36bbbbf55b6355ee6d2"
+    },
+    "retained-inventory.json": {
+      "nbytes": 4388915,
+      "sha256": "0d1b390fbd32054b6004c2d5bbd8c919047af156d4a8b73f1aca6011f2cf9955"
+    },
+    "retained-workspaces.decoded.tar": {
+      "nbytes": 491816960,
+      "sha256": "863579e114f18eaebc60d1806209c3a1bc50678bdd6ed2e55f0ea0c8be83b6b7"
+    },
+    "retained-workspaces.tar.gz": {
+      "nbytes": 232559870,
+      "sha256": "63061034d2ade4070ed58f3b1739902c8b7dd93c8674c613b77451c3ad5ffacc"
+    },
+    "root-files.json": {
+      "nbytes": 8572266,
+      "sha256": "9117f83677b7f5083ad6ea2271351b1adf3f9e9179fc8d8d7d0f51f2d63e0975"
+    },
+    "source-closure.json": {
+      "nbytes": 26628,
+      "sha256": "f113aeab96cc4eb01e06d78fbb861387619ae61b67e15469955b25b2452ad601"
+    }
+  },
+  "finished_kst": "2026-11-13T23:02:46+09:00",
+  "full_lock_ready": false,
+  "image_preparation_ready": false,
+  "input_bytes": 109285137,
+  "input_transports": 51,
+  "job_id": 131930113206,
+  "namespace": {
+    "additional_userns": {
+      "errno": 28,
+      "returncode": -1,
+      "status": "RETURNED"
+    },
+    "build": {
+      "bytes": 268435456,
+      "readonly": false,
+      "tmpfs": true
+    },
+    "capabilities": {
+      "CapAmb": 0,
+      "CapBnd": 0,
+      "CapEff": 0,
+      "CapInh": 0,
+      "CapPrm": 0
+    },
+    "errors": [],
+    "gid": 0,
+    "network": {
+      "interface_count": null,
+      "interfaces_present": false,
+      "only_loopback": null,
+      "route_lines": 1
+    },
+    "python": {
+      "dont_write_bytecode": true,
+      "isolated": true,
+      "no_site": true,
+      "version": [
+        3,
+        11,
+        18
+      ]
+    },
+    "readonly": {
+      "/": true,
+      "/dev": true,
+      "/dev/pts": true,
+      "/proc": true
+    },
+    "schema": "builder-namespace-proof-v1",
+    "uid": 0,
+    "visible_userns_limit": 2147483647
+  },
+  "namespace_validated": true,
+  "native_admission": false,
+  "official_model_calls": 0,
+  "progressbar_source_execution": "NOT_PROVEN",
+  "qualification_status": "SUPPORTED_SCOPED_PROFILE",
+  "raw_directory": "output/stage7-builder-binding-evidence/builder-20261113-05",
+  "request_consumed": true,
+  "request_id": "builder-20261113-05",
+  "root_bytes": 351886906,
+  "root_nodes_independently_matched": 12726,
+  "run_attempt": 1,
+  "run_id": 43438618230,
+  "schema": "builder-build-binding-consumption-v1",
+  "source_failure": {
+    "code": "MISSING_SOURCE_UNPACK",
+    "schema": "source-failure-v2",
+    "status": "FAILED"
+  },
+  "source_failure_interpretation": "Explicit legacy API binding reached run_with_snapshots; pip_main returned without a captured unpack. Pip return value, own-hook phase, error coordinates/types and failure log digests were not retained, so exact cause and progressbar source execution are not proven. No wheel or SMOKE.",
+  "source_sha": "5726e610f2af5840f4a69874107bd5e502c538de",
+  "status": "FAILED_OR_INCOMPLETE",
+  "target_execution_verified": false,
+  "unique_workflow_branch_runs": 1,
+  "wheel_verified": false,
+  "workflow_conclusion": "failure",
+  "workflow_id": 417334313
+}
