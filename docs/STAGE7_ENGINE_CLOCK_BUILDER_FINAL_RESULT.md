@@ -143,4 +143,3 @@ old16image refsnull/nativeallowance0, strictFAIL/expandedNOT_RUN/ABBA authentic 
 45. [source-only FD] Review decline — Unchanged M6/M7: accept because existing external provenance binding and controlled180s callers remain the scoped mitigations — cost if wrong: review-SHA overinterpretation and longer arbitrary SDK deadlines remain possible.
 
 46. [source-only FD] Review decline — Actual backend/build compatibility: accept because this source-only delta cannot establish network-policy support or target runtime behavior — cost if wrong: the genuine loopback EPERM blocker and absent wheel remain unresolved.
-
