@@ -7,3 +7,5 @@
 배포 경로 그대로 driver.py=owned entry, legacy-driver.py=원래 검증 모듈인 fixture에서 구helper는 fake pip 이전 실패, 새helper는 fake pip 경계 도달을 확인한다. 실제 다운로드 패키지/runtime/source 실행이나 namespace/policy 호출이 없는 CPU 검증이다. 새 recipe는 owned build.py만 바꾸고 나머지 namespace/entry/tool/제3자51inputs109285137B를 유지한다. 새 rootplan hash는 요청에 등록한다.
 
 별도 v5 request builder-20261113-05는 run1/attempt1/build1/probes<=2/profileload<=1/candidate userns assertion<=1. 실제 sourceCI와52개composedsource closure/unique run/soleparent request-only/authenticated API를 확인하고 같은 job의 fresh backend·빈 별도256MiB noexec tmpfs·두FD·bounded4root retention을 요구한다. 구52workflow/source와 모든 raw를 보존한다. 모델/ORT/GL/과학native/main merge/Cloud 게시 없이 wheel을 준비·검증한다. full-lock/image/native/Stage7 완료는 별도다.
+
+독립 검토bbf6797 C0/I0/Minor1(BB-M1: main 통합 호출 대신 failure wire literal 검사). 현재 main의 고정 wire/rc1과 record_failure의 write-error 처리는 검토로 확인했고, 후속 stdout/status 변경 회귀 커버리지 비용을 남겨 Minor를 보류했다. root 집중10 PASS4.477초·전체915 PASS/7skip98.754초, 독립 집중10 PASS5.139초. 수정 pass/재검토는 없다. [검토·각 판단·비용](evidence/STAGE7_ENGINE_CLOCK_BUILDER_BUILD_BINDING_REVIEW.json)에 남겼다. 실제 sourceCI/05/pip/source/wheel 성공은 별도 확인한다.
