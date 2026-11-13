@@ -1,0 +1,11 @@
+# Namespace identity observation repair
+
+Diagnostic01 consumed its single run: every child returned ISOLATION_NOT_PROVEN after unshare, but the early return omitted post-call identity/profile. The next authorized diagnostic must preserve that evidence, not infer a kernel/LSM cause. Keep original01 source/workflow/requests/artifacts and all existing46 workflows unchanged; no model/build/scientific run, host network/policy change, main merge or Cloud publication.
+
+New request namespace-diagnostic-20261113-02, exact branch diagnose/engine-clock-namespace-20261113-02, one run/attempt, three fresh workers. Compare typed libc unshare(0), typed libc USER|NET without mapping, and installed util-linux USER|NET with map-root-user then snapshot. No worker sends network requests or configures loopback. The installed tool writes only its own UID/GID mappings; it has no child credentials. The cases differ intentionally in mapping and exec behavior and do not certify bwrap compatibility.
+
+Always retain before/after snapshots around direct syscalls, including raw numeric return/errno, effective/real IDs, self and thread-self namespace readlink/stat/open-fstat results with numeric error codes, UID/GID map integer rows and strict-whitelisted AppArmor labels/status/sysctls. Unknown text is hashed or discarded. Missing/invalid journal observations remain UNKNOWN. Retain only AppArmor userns_create/capable observations matching worker PIDs, with fixed decisions/operation/capability fields and hashed message. Per-worker20s/32KiB stdout/8KiB stderr, journal10s/1MiB stdout, result131072B maximum.
+
+Use a separate observer module/workflow, reusing unchanged API/context/source-closure/capture helpers. Authenticate exact one-use request, sole reviewed activation parent and complete request-only tree delta; resolve actual commit tree SHA explicitly. Source TDD/full CPU suite, one fresh review and source exact-head basic CI precede activation. Keep scratch and every original byte. Authorization to proceed autonomously persists.
+
+Alternatives: patching01 and retrying would violate its consumed budget; guessing AppArmor policy changes would erase evidence. Separate read-only controls supply the missing measurements with no host network mutations.
