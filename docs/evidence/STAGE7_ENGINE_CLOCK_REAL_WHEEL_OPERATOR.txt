@@ -1,0 +1,140 @@
+# One-use operational transcript: existing curl + frozen transform, not a product API.
+# Execute only for the committed request after the source and journal gates below.
+from pathlib import Path
+from time import perf_counter
+from datetime import datetime, timezone
+import hashlib
+import json
+import os
+import resource
+import shutil
+import subprocess
+import sys
+
+repo = Path(__file__).resolve().parents[2]
+request_path = repo/'docs/evidence/STAGE7_ENGINE_CLOCK_REAL_WHEEL_REQUEST.json'
+request_bytes = request_path.read_bytes()
+r = json.loads(request_bytes)
+assert r['schema'] == 'engine-clock-local-wheel-request-v1'
+assert r['status'] == 'REGISTERED_ONCE' and r['local_package_operation_authorized']
+assert not r['image_preparation_authorized'] and not r['native_execution_authorized']
+assert r['transform_source_base_sha'] == 'de30d68027162b4058e029b9687c5a198f1339b2'
+assert hashlib.sha256(Path(__file__).read_bytes()).hexdigest() == r['operator_sha256']
+assert subprocess.check_output(['git','status','--porcelain'],cwd=repo,text=True) == ''
+head = subprocess.check_output(['git','rev-parse','HEAD'],cwd=repo,text=True).strip()
+subprocess.run(['git','merge-base','--is-ancestor',r['transform_source_base_sha'],head],cwd=repo,check=True)
+expected_paths = {'scripts/engine_clock_wheel_derivative.py','tests/test_engine_clock_wheel_derivative.py',
+                  'docs/evidence/STAGE7_ENGINE_CLOCK_WHEEL_DERIVATIVE_POLICY.json',
+                  'docs/evidence/engine-clock-image-inputs/metadrive-0.4.3.METADATA'}
+assert set(r['source_sha256_by_path']) == expected_paths
+for name, expected in r['source_sha256_by_path'].items():
+    assert hashlib.sha256((repo/name).read_bytes()).hexdigest() == expected
+    assert hashlib.sha256(subprocess.check_output(['git','show',r['transform_source_base_sha']+':'+name],cwd=repo)).hexdigest() == expected
+s = r['source']; limits = r['limits']
+wheel_url = 'https://files.pythonhosted.org/packages/1a/9b/6c9e143728f071a560d1deba10d19bf4512d8951e6d15c7328c4d63dc631/metadrive_simulator-0.4.3-py3-none-any.whl'
+assert s['wheel_url'] == wheel_url and s['metadata_url'] == wheel_url+'.metadata'
+assert s['release_url'] == 'https://pypi.org/pypi/metadrive-simulator/0.4.3/json'
+assert s['simple_url'] == 'https://pypi.org/simple/metadrive-simulator/'
+assert s['nbytes'] == 55128766 and s['sha256'] == 'c6f8a42baac939a0af53a8e1cd9d48ec2bf0051917e7c19083e156a6506493d9'
+assert s['metadata_sha256'] == '4fb69fa54bb0e8118315aecdc482597af69798e17e47df3c57fbca50d4e7bcf6'
+out = repo/r['output_directory']
+assert out.parent == repo/'output/stage7-real-wheel-preparation'
+out.parent.mkdir(parents=True,exist_ok=True)
+assert shutil.disk_usage(out.parent).free >= limits['minimum_free_package_storage_bytes']
+os.umask(0o077)
+out.mkdir(mode=0o700)  # exclusive one-use claim; never remove to obtain another attempt
+started = perf_counter()
+receipt = {'schema':'engine-clock-local-wheel-preparation-v1','status':'FAILED_OR_INCOMPLETE',
+           'origin':'CODEX_CLOUD_LOCAL_PACKAGE_INPUT','request_id':r['request_id'],
+           'request_sha256':hashlib.sha256(request_bytes).hexdigest(),'execution_source_sha':head,
+           'transform_source_base_sha':r['transform_source_base_sha'],'source_sha256_by_path':r['source_sha256_by_path'],
+           'operator_sha256':r['operator_sha256'],'started_at_utc':datetime.now(timezone.utc).isoformat(),
+           'python':sys.version,'curl_version':subprocess.check_output(['curl','--version'],text=True).splitlines()[0],
+           'routing_presence_only':{key:bool(os.environ.get(key)) for key in ['HTTP_PROXY','HTTPS_PROXY','SSL_CERT_FILE','CURL_CA_BUNDLE']},
+           'attempts':1,'transfers':[],'wheel_payload_fetches':0,'transform_invocations':0,
+           'published_pin_bytes_verified':False,'derived_file_verified':False,
+           'source_signature_verified':False,'installed_runtime_verified':False,
+           'image_preparation_ready':False,'native_admission':False,'task3_complete':False,
+           'failure_stage':'claim','error_code':None,'elapsed_s':None}
+(out/'attempt.json').write_text(json.dumps(receipt,indent=2,sort_keys=True)+'\n')
+stage = 'metadata'
+try:
+    for label,url,filename,cap,seconds,accept in [
+        ('release',s['release_url'],'release.json',limits['metadata_response_bytes'],limits['metadata_seconds'],'application/json'),
+        ('simple',s['simple_url'],'simple.json',limits['metadata_response_bytes'],limits['metadata_seconds'],'application/vnd.pypi.simple.v1+json'),
+        ('sidecar',s['metadata_url'],'METADATA.sidecar',limits['metadata_response_bytes'],limits['metadata_seconds'],'text/plain'),
+        ('wheel',s['wheel_url'],s['filename']+'.part',limits['payload_file_bytes'],limits['payload_seconds'],'application/octet-stream')]:
+        stage = 'fetch_'+label
+        if label == 'wheel':
+            release = json.loads((out/'release.json').read_bytes())
+            simple = json.loads((out/'simple.json').read_bytes())
+            a = [x for x in release['urls'] if x['filename'] == s['filename']]
+            b = [x for x in simple['files'] if x['filename'] == s['filename']]
+            assert len(a) == len(b) == 1
+            assert a[0]['url'] == b[0]['url'] == s['wheel_url']
+            assert a[0]['digests']['sha256'] == b[0]['hashes']['sha256'] == s['sha256']
+            assert a[0]['size'] == s['nbytes'] and not a[0]['yanked'] and not b[0]['yanked']
+            assert b[0].get('core-metadata',b[0].get('dist-info-metadata'))['sha256'] == s['metadata_sha256']
+            assert hashlib.sha256((out/'METADATA.sidecar').read_bytes()).hexdigest() == s['metadata_sha256']
+            receipt['wheel_payload_fetches'] += 1
+        tick = perf_counter()
+        command = ['curl','--disable','--fail','--silent','--show-error','--proto','=https','--connect-timeout',str(limits['connect_seconds']),
+                   '--max-time',str(seconds),'--max-filesize',str(cap),'--retry','0','--header','Accept: '+accept,
+                   '--output',str(out/filename),'--write-out','%{http_code} %{size_download} %{num_redirects} %{ssl_verify_result}',
+                   '--url',url]
+        completed = subprocess.run(command,cwd=repo,capture_output=True,text=True,timeout=seconds+5)
+        fields = completed.stdout.split()
+        transfer = {'label':label,'url':url,'curl_exit':completed.returncode,'elapsed_s':perf_counter()-tick,
+                    'stderr_nbytes':len(completed.stderr.encode()),'stderr_sha256':hashlib.sha256(completed.stderr.encode()).hexdigest()}
+        receipt['transfers'].append(transfer)
+        assert len(fields) == 4
+        transfer.update(http_status=int(fields[0]),reported_bytes=float(fields[1]),redirects=int(fields[2]),ssl_verify_result=int(fields[3]))
+        assert completed.returncode == 0 and transfer['http_status'] == 200 and transfer['redirects'] == transfer['ssl_verify_result'] == 0
+        transfer['nbytes'] = (out/filename).stat().st_size
+        assert transfer['nbytes'] <= cap and transfer['reported_bytes'] == transfer['nbytes']
+        transfer['sha256'] = hashlib.sha256((out/filename).read_bytes()).hexdigest()
+    stage = 'verify_original'
+    original = out/(s['filename']+'.part')
+    assert original.stat().st_size == s['nbytes']
+    with original.open('rb') as stream: source = stream.read(limits['payload_file_bytes']+1)
+    assert len(source) == s['nbytes'] and hashlib.sha256(source).hexdigest() == s['sha256']
+    original.rename(out/s['filename'])
+    receipt['published_pin_bytes_verified'] = True
+    stage = 'derive'
+    sys.path.insert(0,str(repo))
+    from scripts.engine_clock_wheel_derivative import derive_wheel
+    receipt['transform_invocations'] += 1
+    tick = perf_counter()
+    derived,result = derive_wheel(source,expected_source_sha256=s['sha256'],expected_metadata_sha256=s['metadata_sha256'],deadline=perf_counter()+limits['transform_seconds'])
+    receipt['transform_elapsed_s'] = perf_counter()-tick
+    receipt['transform_result'] = result
+    (out/'transform-result.json').write_text(json.dumps(result,indent=2,sort_keys=True)+'\n')
+    assert result['complete'] and derived is not None
+    assert not any(result[k] for k in ['native_admission','execution_authorized','image_preparation_ready','official_distribution','source_origin_authenticated','implementation_authenticated'])
+    assert len(derived) <= limits['derived_bytes'] and hashlib.sha256(derived).hexdigest() == result['derived_wheel_sha256']
+    stage = 'persist_derived'
+    destination = out/result['derived_filename']
+    partial = out/(result['derived_filename']+'.part')
+    with partial.open('xb') as stream:
+        for pos in range(0,len(derived),1048576):stream.write(derived[pos:pos+1048576])
+        stream.flush();os.fsync(stream.fileno())
+    check = hashlib.sha256()
+    with partial.open('rb') as stream:
+        for chunk in iter(lambda:stream.read(1048576),b''):check.update(chunk)
+    assert partial.stat().st_size == len(derived) and check.hexdigest() == result['derived_wheel_sha256']
+    os.link(partial,destination)  # exclusive publish, no replacement of existing data
+    partial.unlink()
+    receipt.update(status='LOCAL_WHEEL_DERIVED_PUBLISHED_PINS_MATCH',derived_file_verified=True,
+                   derived_filename=destination.name,derived_nbytes=len(derived),derived_sha256=check.hexdigest(),
+                   original_filename=s['filename'],original_nbytes=len(source),original_sha256=s['sha256'],failure_stage=None)
+except Exception:
+    receipt.update(failure_stage=stage,error_code='LOCAL_PACKAGE_OPERATION_FAILED')
+finally:
+    receipt['elapsed_s'] = perf_counter()-started
+    receipt['finished_at_utc'] = datetime.now(timezone.utc).isoformat()
+    receipt['self_peak_rss_kib_linux'] = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
+    receipt['retained_files'] = {p.name:p.stat().st_size for p in sorted(out.iterdir()) if p.is_file()}
+    (out/'receipt.json').write_text(json.dumps(receipt,indent=2,sort_keys=True)+'\n')
+    print(json.dumps({'status':receipt['status'],'failure_stage':receipt['failure_stage'],'original_sha256':receipt.get('original_sha256'),
+                      'derived_sha256':receipt.get('derived_sha256'),'elapsed_s':receipt['elapsed_s'],'output_directory':r['output_directory']}))
+if receipt['status'] != 'LOCAL_WHEEL_DERIVED_PUBLISHED_PINS_MATCH':sys.exit(1)
