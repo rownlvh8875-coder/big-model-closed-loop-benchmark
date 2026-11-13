@@ -16,6 +16,14 @@ def save(n,v):(out/n).write_text(json.dumps(v,indent=2,sort_keys=True)+'\n')
 attempt={'request_id':q['request_id'],'execution_source_sha':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'started_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'status':'CONSUMED_STARTED','further_execution_authorized':False}
 save('attempt.json',attempt)
 r=dict(attempt,schema='engine-clock-os-metadata-receipt-v1',transfers=[],signatures=[],indexes=[],package_install_executed=False,maintainer_script_executed=False,runtime_executed=False,build_ready=False,full_lock_ready=False,image_preparation_ready=False,native_admission=False)
+def workspace_bytes():
+    total=0
+    for base in (w,out):
+        for p in base.rglob('*'):
+            try:
+                if p.is_file():total+=p.stat().st_size
+            except FileNotFoundError:pass
+    return total
 def run(cmd,name,timeout=120,env=None):
     remain=deadline-time.monotonic();assert remain>5
     with (out/(name+'.stdout')).open('xb') as stdout,(out/(name+'.stderr')).open('xb') as stderr:
@@ -25,6 +33,7 @@ def run(cmd,name,timeout=120,env=None):
             while True:
                 if time.monotonic()-beg>min(timeout,remain-5):stop='TIME_LIMIT'
                 elif (out/(name+'.stdout')).stat().st_size+(out/(name+'.stderr')).stat().st_size>4194304:stop='LOG_LIMIT'
+                elif workspace_bytes()>1073741824:stop='WORKSPACE_LIMIT'
                 if stop or p.poll() is not None:break
                 time.sleep(.1)
         finally:
@@ -42,13 +51,15 @@ def fetch(name,url,cap):
     assert (out/name).stat().st_size<=cap
     r['transfers'].append({'name':name,**{k:t.get(k) for k in ('http_code','ssl_verify_result','num_redirects','size_download','exitcode','url_effective')}})
     return out/name
+decoded_read_total=0
 def paragraphs(path):
+    global decoded_read_total
     current={};key=None;decoded=0;stanza=0
     with lzma.open(path,'rb') as f:
         while True:
             line=f.readline(1048577)
             if not line:break
-            decoded+=len(line);stanza+=len(line);assert decoded<=536870912 and stanza<=1048576 and len(line)<=1048576
+            decoded+=len(line);decoded_read_total+=len(line);stanza+=len(line);assert decoded_read_total<=536870912 and stanza<=1048576 and len(line)<=1048576 and time.monotonic()<deadline
             if line in (b'\n',b'\r\n'):
                 if current:yield current
                 current={};key=None;stanza=0;continue
@@ -137,5 +148,7 @@ try:
 except Exception as exc:r.update(status='FAILED_OR_INCOMPLETE',error_class=type(exc).__name__,bounded_error=str(exc)[:256])
 finally:
     r['duration_seconds']=time.monotonic()-start
+    r['workspace_logical_bytes_after']=workspace_bytes()
+    r['python_index_decoded_read_bytes']=decoded_read_total
     r['files']={p.name:{'nbytes':p.stat().st_size,'sha256':digest(p)} for p in sorted(out.iterdir()) if p.is_file() and p.name!='receipt.json'}
     save('receipt.json',r);print(json.dumps({k:r.get(k) for k in ('status','execution_source_sha','selected_package_count','duration_seconds','error_class','bounded_error')}))
