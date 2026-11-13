@@ -1,0 +1,170 @@
+{
+  "activation_sha": "d6ef299e9ee6d02c7992653e9dc0dac68aa910b7",
+  "archive_check": {
+    "all_input_payloads_matched": 51,
+    "all_inventory_fields_verified": true,
+    "all_root_nodes_matched": 12725,
+    "compressed_sha256": "246d6f4c076b4ca7fb4cedf330af71e8fdb3187e085bffc3dd4876505aaeff0a",
+    "counts": {
+      "directory": 1114,
+      "file": 13781,
+      "symlink": 168
+    },
+    "decoded_tar_bytes": 506787840,
+    "decoded_tar_sha256": "6b9e89d7f377c0717d5e9f8da7c102d75992b8132fc087f16646140e4fe07766",
+    "entries": 15063,
+    "payload_executed_locally": false,
+    "regular_bytes": 486403901,
+    "single_gzip_eof_crc": true,
+    "zero_tail_bytes": 9216,
+    "zip_digest_crc_members_verified": true
+  },
+  "bootstrap_comparison": {
+    "changed": 0,
+    "installed_files": 1894,
+    "interpretation": "Legacy verifier skips every nested .dist-info/RECORD from expected, but only permits generated metadata under top-level distribution names; original vendored RECORD files are incorrectly rejected. No BUILD or SMOKE can follow this tool-validation exception.",
+    "missing": 0,
+    "old_verifier_rejected_original_nested_RECORD_paths": [
+      "setuptools/_vendor/autocommand-2.2.2.dist-info/RECORD",
+      "setuptools/_vendor/backports.tarfile-1.2.0.dist-info/RECORD",
+      "setuptools/_vendor/importlib_metadata-8.0.0.dist-info/RECORD",
+      "setuptools/_vendor/inflect-7.3.1.dist-info/RECORD",
+      "setuptools/_vendor/jaraco.collections-5.1.0.dist-info/RECORD",
+      "setuptools/_vendor/jaraco.context-5.3.0.dist-info/RECORD",
+      "setuptools/_vendor/jaraco.functools-4.0.1.dist-info/RECORD",
+      "setuptools/_vendor/jaraco.text-3.12.1.dist-info/RECORD",
+      "setuptools/_vendor/more_itertools-10.3.0.dist-info/RECORD",
+      "setuptools/_vendor/packaging-24.2.dist-info/RECORD",
+      "setuptools/_vendor/platformdirs-4.2.2.dist-info/RECORD",
+      "setuptools/_vendor/tomli-2.0.1.dist-info/RECORD",
+      "setuptools/_vendor/typeguard-4.3.0.dist-info/RECORD",
+      "setuptools/_vendor/typing_extensions-4.12.2.dist-info/RECORD",
+      "setuptools/_vendor/wheel-0.45.1.dist-info/RECORD",
+      "setuptools/_vendor/zipp-3.19.2.dist-info/RECORD"
+    ],
+    "pyc_checked": 852,
+    "pyc_magic_mismatches": 0,
+    "wheel_payload_files_matched": 1020
+  },
+  "core_wire": {
+    "nbytes": 605,
+    "sha256": "e9a84829dd2001ada998fb589cde6cd2184242be83a5559210e673754ade28a5"
+  },
+  "created_kst": "2026-11-13T22:26:13+09:00",
+  "driver_failure_claim": "TOOL_PAYLOAD_MISMATCH",
+  "errors": [
+    {
+      "code": "BUILDER_EXECUTION_FAILED"
+    }
+  ],
+  "files": {
+    "bootstrap-independent-comparison-corrected.json": {
+      "nbytes": 1187,
+      "sha256": "742ccd90141dc1cac1870481f2d7caf5b40a79fd3f7d5c38371c37ea6265d048"
+    },
+    "bootstrap-independent-comparison.json": {
+      "nbytes": 617,
+      "sha256": "5f373a8531a719e2ee888eec7e23ea987683a736ceee2a7f9936ea030e3a5b6f"
+    },
+    "original-artifact.zip": {
+      "nbytes": 251663366,
+      "sha256": "e2c59983e1e5a10a295f2f7922304acfb50b50d2888e678c0a2cfb3632e53c6e"
+    },
+    "preparation.json": {
+      "nbytes": 21775,
+      "sha256": "875278dab2b6b3021f96f4300e6fea9cdd9f3b92eac2fb862dce9418e66f5d95"
+    },
+    "retained-inventory.json": {
+      "nbytes": 4675576,
+      "sha256": "bcd0fc3c81855dc6a6d194703d44b5b5563d52cf38defaa56629f75d4d3832c1"
+    },
+    "retained-workspaces.decoded.tar": {
+      "nbytes": 506787840,
+      "sha256": "6b9e89d7f377c0717d5e9f8da7c102d75992b8132fc087f16646140e4fe07766"
+    },
+    "retained-workspaces.tar.gz": {
+      "nbytes": 238046655,
+      "sha256": "246d6f4c076b4ca7fb4cedf330af71e8fdb3187e085bffc3dd4876505aaeff0a"
+    },
+    "root-files.json": {
+      "nbytes": 8571713,
+      "sha256": "f472a59214cbebbd598d07c823306094cd44284d3997920efac1f6b5d13069f4"
+    },
+    "source-closure.json": {
+      "nbytes": 24896,
+      "sha256": "9bfeb3558dd4f6e12de6ec2de1e782f271ea1d1e2ddbc14210129aabdc98aa14"
+    }
+  },
+  "finished_kst": "2026-11-13T22:28:00+09:00",
+  "full_lock_ready": false,
+  "image_preparation_ready": false,
+  "individual_stage_receipts_retained": false,
+  "input_bytes": 109285137,
+  "input_transports": 51,
+  "job_id": 131913041330,
+  "namespace": {
+    "additional_userns": {
+      "errno": 28,
+      "returncode": -1,
+      "status": "RETURNED"
+    },
+    "build": {
+      "bytes": 268435456,
+      "readonly": false,
+      "tmpfs": true
+    },
+    "capabilities": {
+      "CapAmb": 0,
+      "CapBnd": 0,
+      "CapEff": 0,
+      "CapInh": 0,
+      "CapPrm": 0
+    },
+    "errors": [],
+    "gid": 0,
+    "network": {
+      "interface_count": null,
+      "interfaces_present": false,
+      "only_loopback": null,
+      "route_lines": 1
+    },
+    "python": {
+      "dont_write_bytecode": true,
+      "isolated": true,
+      "no_site": true,
+      "version": [
+        3,
+        11,
+        18
+      ]
+    },
+    "readonly": {
+      "/": true,
+      "/dev": true,
+      "/dev/pts": true,
+      "/proc": true
+    },
+    "schema": "builder-namespace-proof-v1",
+    "uid": 0,
+    "visible_userns_limit": 2147483647
+  },
+  "namespace_validated": true,
+  "native_admission": false,
+  "official_model_calls": 0,
+  "qualification_status": "SUPPORTED_SCOPED_PROFILE",
+  "raw_directory": "output/stage7-builder-namespace-evidence/builder-20261113-03",
+  "request_consumed": true,
+  "request_id": "builder-20261113-03",
+  "root_bytes": 351883355,
+  "root_nodes_independently_matched": 12725,
+  "run_attempt": 1,
+  "run_id": 43433626161,
+  "schema": "builder-namespace-proof-consumption-v1",
+  "source_sha": "2a7cb86bf6827ef4e300840c8a39efcad787fcf0",
+  "status": "FAILED_OR_INCOMPLETE",
+  "target_execution_verified": false,
+  "unique_workflow_branch_runs": 1,
+  "wheel_verified": false,
+  "workflow_conclusion": "failure",
+  "workflow_id": 417299193
+}
