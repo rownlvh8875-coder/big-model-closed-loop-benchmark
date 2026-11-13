@@ -50,3 +50,5 @@ Package plan/member hash를 설치된 OS/image identity로 바꾸지 않았다. 
 기존 tracked429파일은 continuation/parent Task3 status2개 외 그대로 보존한다. Producer70/workflows44/registry8·기존 tools/tests/policies/proposal·old/new raw/controller/review workspace를 변경·삭제하지 않는다. Product 코드/시험은 없고 local 전체 suite는 반복하지 않는다. 최종 independent review와 기본 CI는 source와 별도 HEAD로 기록한다.
 
 새 simulator/native child·공식 model/weights/ORT·image build/pull/load/run·engine/Xvfb/GL/GPU/clock 작업은0이다. 생성 SMALL ONNX 기본 CI는 별도다. 새 RGB/I420/공식 ONNX 일치율·first-divergence 수치는 없다. 기존 strict0/4 FAIL, expanded NOT_RUN, ABBA terminal FAIL/7null/4case·6비교 NOT_RUN, geometry·optics·full-S 한계와 **Stage7 INCOMPLETE**를 유지한다. main 병합·Cloud 게시 없음.
+
+독립 whole-branch/raw 검토는 `718fbec5f5ac14965f7ebb01438b3ae11b35f0f9`에서 Critical0/Important0/Minor0으로 증거 범위를 수락했다. [검토 원문](evidence/STAGE7_ENGINE_CLOCK_OS_REVIEW.md)을 보존하고, 범위 밖8항목의 root 판단·비용을 audit에 기록했다. 현재 보류 Minor는 없다. 이후 최종 receipt-only HEAD/기본 CI는 Draft PR에서 별도 확인하며 검토 수락은 설치/ABI·bootstrap/build/image/native 실행이나 merge 승인이 아니다.

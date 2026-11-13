@@ -818,9 +818,60 @@
   },
   "public_signature_verify_no_autostart_succeeded": true,
   "review": {
-    "head": null,
-    "status": "PENDING"
+    "critical": 0,
+    "head": "718fbec5f5ac14965f7ebb01438b3ae11b35f0f9",
+    "important": 0,
+    "merge_authorized": false,
+    "minor": 0,
+    "model": "gpt-6-astra",
+    "raw_review_sha256": "0c9ef307b7e9db59151ed71ae484b014dd878191f38be49b86bcac68523765df",
+    "reasoning_effort": "medium",
+    "reviewer": "os_library_inputs_final_review",
+    "status": "APPROVED_DATA_ONLY_PENDING_FINAL_CI",
+    "target_execution_authorized": false
   },
+  "review_decline_rulings": [
+    {
+      "cost_if_wrong": "Stronger origin/host assurance remains unavailable.",
+      "id": "D1",
+      "ruling": "Accept signatures against the explicit Ubuntu anchor only, not independent key distribution/host/toolchain attestation"
+    },
+    {
+      "cost_if_wrong": "Later repository/security state may differ or need a newly reviewed input set.",
+      "id": "D2",
+      "ruling": "Bind this fixed snapshot and preserve absent Valid-Until fields; do not infer broader freshness"
+    },
+    {
+      "cost_if_wrong": "The eventual staged environment can still be incomplete or behave differently.",
+      "id": "D3",
+      "ruling": "Keep installed OS/implicit Essential/base/script/config/cache/ownership/usrmerge completeness unresolved until staging design and evidence"
+    },
+    {
+      "cost_if_wrong": "A candidate that passes name/label checks can still fail actual execution.",
+      "id": "D4",
+      "ruling": "Keep actual paths/prefix/RUNPATH/hooks/timezone/symbol/ABI/runtime behavior unverified despite static coverage"
+    },
+    {
+      "cost_if_wrong": "Adversarial/failure inputs and future containment need dedicated fixtures.",
+      "id": "D5",
+      "ruling": "Accept historical fixed-input operations and measured bounds, not a reusable hostile-input controller or hard resource certificate"
+    },
+    {
+      "cost_if_wrong": "Additional implementation/review delays activation; no current runtime allowance exists.",
+      "id": "D6",
+      "ruling": "Require separately reviewed offline launcher/isolation/cleanup/staging/bootstrap/build/image implementation before execution"
+    },
+    {
+      "cost_if_wrong": "Stage7 remains incomplete; no scientific cause or improvement is established here.",
+      "id": "D7",
+      "ruling": "Preserve all original simulator/native/model/ORT/GL/GPU/benchmark failures and unknowns"
+    },
+    {
+      "cost_if_wrong": "Observed snapshots can become stale; review and final integration cannot be conflated.",
+      "id": "D8",
+      "ruling": "Check final Draft/remote/main/Cloud/exactHEAD-CI/artifact state directly after review and report separately"
+    }
+  ],
   "root_checks": [
     "all49metadata/140payload rawsize-hashes match",
     "request/operators exact acquisition source commit bytes",
