@@ -1,12 +1,12 @@
 name: One-use sealed renderer image preflight v3
 on:
   push:
-    branches: ['prepare/engine-clock-image-preflight-20261114-03']
+    branches: ['prepare/engine-clock-image-preflight-20261114-04']
 permissions:
   contents: read
   actions: read
 concurrency:
-  group: engine-clock-image-preflight-20261114-03
+  group: engine-clock-image-preflight-20261114-04
   cancel-in-progress: false
 jobs:
   preflight:
@@ -29,15 +29,15 @@ jobs:
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: engine-clock-image-preflight-20261114-03
+          name: engine-clock-image-preflight-20261114-04
           path: |
-            output/stage7-image-operations/image-preflight-20261114-03/execution/api/
-            output/stage7-image-operations/image-preflight-20261114-03/execution/consumed-request.json
-            output/stage7-image-operations/image-preflight-20261114-03/execution/source-authentication.json
-            output/stage7-image-operations/image-preflight-20261114-03/execution/producer-authentication.json
-            output/stage7-image-operations/image-preflight-20261114-03/execution/result.json
-            output/stage7-image-operations/image-preflight-20261114-03/execution/preflight.json
-            output/stage7-image-operations/image-preflight-20261114-03/execution/docker/
+            output/stage7-image-operations/image-preflight-20261114-04/execution/api/
+            output/stage7-image-operations/image-preflight-20261114-04/execution/consumed-request.json
+            output/stage7-image-operations/image-preflight-20261114-04/execution/source-authentication.json
+            output/stage7-image-operations/image-preflight-20261114-04/execution/producer-authentication.json
+            output/stage7-image-operations/image-preflight-20261114-04/execution/result.json
+            output/stage7-image-operations/image-preflight-20261114-04/execution/preflight.json
+            output/stage7-image-operations/image-preflight-20261114-04/execution/docker/
           if-no-files-found: warn
           compression-level: 0
           retention-days: 30

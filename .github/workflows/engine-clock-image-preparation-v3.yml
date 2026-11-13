@@ -1,12 +1,12 @@
 name: One-use sealed renderer image prepare v3
 on:
   push:
-    branches: ['prepare/engine-clock-image-20261114-03']
+    branches: ['prepare/engine-clock-image-20261114-04']
 permissions:
   contents: read
   actions: read
 concurrency:
-  group: engine-clock-image-20261114-03
+  group: engine-clock-image-20261114-04
   cancel-in-progress: false
 jobs:
   prepare:
@@ -29,8 +29,8 @@ jobs:
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: engine-clock-image-20261114-03
-          path: output/stage7-image-operations/image-20261114-03/image/
+          name: engine-clock-image-20261114-04
+          path: output/stage7-image-operations/image-20261114-04/image/
           if-no-files-found: warn
           compression-level: 0
           retention-days: 30
@@ -39,8 +39,8 @@ jobs:
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: engine-clock-image-20261114-03-execution
-          path: output/stage7-image-operations/image-20261114-03/execution/
+          name: engine-clock-image-20261114-04-execution
+          path: output/stage7-image-operations/image-20261114-04/execution/
           if-no-files-found: warn
           compression-level: 0
           retention-days: 30

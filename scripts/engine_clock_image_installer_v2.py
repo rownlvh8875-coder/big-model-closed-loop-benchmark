@@ -142,13 +142,47 @@ def replace_assets(package:Path,archive_path:Path,backup:Path,*,expected_sha256:
     except Exception:raise ValueError('IMAGE_INSTALL_REJECTED') from None
 
 
+def normalize_pager(root:Path,backup:Path)->dict:
+    """Record the known Ubuntu usrmerge pager alias using approved physical paths."""
+    from contextlib import ExitStack
+    try:
+        _need(not backup.exists() and not backup.is_symlink() and backup.parent.is_dir() and not backup.parent.is_symlink())
+        with ExitStack() as stack:
+            flags=os.O_RDONLY|os.O_DIRECTORY|os.O_NOFOLLOW|os.O_CLOEXEC
+            rootfd=os.open(root,flags);stack.callback(os.close,rootfd);anchor=os.fstat(rootfd)
+            def directory(parts):
+                fd=rootfd
+                for part in parts:
+                    fd=os.open(part,flags,dir_fd=fd);stack.callback(os.close,fd);s=os.fstat(fd)
+                    _need(s.st_dev==anchor.st_dev and s.st_uid==anchor.st_uid and not s.st_mode&0o022)
+                return fd
+            usrbin=directory(('usr','bin'));alternatives=directory(('etc','alternatives'))
+            link=os.stat('bin',dir_fd=rootfd,follow_symlinks=False)
+            _need(stat.S_ISLNK(link.st_mode) and link.st_uid==anchor.st_uid and link.st_dev==anchor.st_dev and os.readlink('bin',dir_fd=rootfd)=='usr/bin')
+            more=os.open('more',os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK,dir_fd=usrbin);stack.callback(os.close,more);physical=os.fstat(more)
+            alias=os.open('bin/more',os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK,dir_fd=rootfd);stack.callback(os.close,alias);logical=os.fstat(alias)
+            _need(stat.S_ISREG(physical.st_mode) and physical.st_uid==anchor.st_uid and physical.st_dev==anchor.st_dev and (physical.st_dev,physical.st_ino)==(logical.st_dev,logical.st_ino))
+            before=os.stat('pager',dir_fd=alternatives,follow_symlinks=False);_need(stat.S_ISLNK(before.st_mode) and before.st_uid==anchor.st_uid and before.st_dev==anchor.st_dev)
+            target=os.readlink('pager',dir_fd=alternatives);_need(target in ('/bin/more','/usr/bin/more'))
+            _need(_signature(link)==_signature(os.stat('bin',dir_fd=rootfd,follow_symlinks=False)) and _signature(before)==_signature(os.stat('pager',dir_fd=alternatives,follow_symlinks=False)))
+            changed=target=='/bin/more'
+            if changed:
+                _need(backup.parent.stat().st_dev==anchor.st_dev)
+                os.rename('pager',backup,src_dir_fd=alternatives)
+                os.symlink('/usr/bin/more','pager',dir_fd=alternatives)
+                _need(os.readlink(backup)==target)
+            _need(os.readlink('pager',dir_fd=alternatives)=='/usr/bin/more')
+        return {'status':'CANONICAL_BASE_PAGER_ALIAS_RECORDED','previous_target':target,'canonical_target':'/usr/bin/more','bin_alias':'usr/bin','changed':changed,'original_link_preserved_outside_final_image':changed,'same_regular_target_observed':True,'payload_bytes_modified':False,'native_admission':False}
+    except Exception:raise ValueError('IMAGE_INSTALL_REJECTED') from None
+
+
 def install_renderer(root:Path,context:Path,pins:dict,*,create_venv,run_pip)->dict:
     try:
-        plan=_plan(context,pins);print('INSTALLER_PLAN_VERIFIED');prefix=root/'opt/venv';_need(not prefix.exists() and not prefix.is_symlink());_need(callable(create_venv) and callable(run_pip));create_venv(prefix);print('INSTALLER_VENV_CREATED')
+        plan=_plan(context,pins);print('INSTALLER_PLAN_VERIFIED');pager=normalize_pager(root,context/'original-pager-link');print('INSTALLER_PAGER_ALIAS_RECORDED');prefix=root/'opt/venv';_need(not prefix.exists() and not prefix.is_symlink());_need(callable(create_venv) and callable(run_pip));create_venv(prefix);print('INSTALLER_VENV_CREATED')
         command=pip_command(root,context/pins['tool']['path'],[context/'wheels'/r['filename'] for r in plan['wheels']]);result=run_pip(command);_need(type(result) is dict and type(result['returncode']) is int and result['returncode']==0 and result['payload_imports'] is False)
         print('INSTALLER_PIP_FINISHED');metadata=verify_installed_metadata(root,plan['wheels']);print('INSTALLER_METADATA_VERIFIED');assets=replace_assets(prefix/'lib/python3.11/site-packages/metadrive',context/pins['assets']['path'],context/'original-metadrive-assets',expected_sha256=pins['assets']['sha256'])
         print('INSTALLER_ASSETS_WRITTEN')
-        return {'status':'OFFLINE_RENDERER_INSTALL_RECORDED','pip_invocations':1,'venv_creations':1,'metadata':metadata,'assets':assets,'native_admission':False,'installed_abi_verified':False,'official_model_calls':0}
+        return {'status':'OFFLINE_RENDERER_INSTALL_RECORDED','pip_invocations':1,'venv_creations':1,'metadata':metadata,'assets':assets,'pager_alias':pager,'native_admission':False,'installed_abi_verified':False,'official_model_calls':0}
     except Exception:raise ValueError('IMAGE_INSTALL_REJECTED') from None
 
 

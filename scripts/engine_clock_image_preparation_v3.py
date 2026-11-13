@@ -28,19 +28,19 @@ REPOSITORY='rownlvh8875-coder/big-model-closed-loop-benchmark'
 SOURCE_BRANCH='prepare/engine-clock-sealed-image-v3'
 INPUT_SHA='f33c2558295efb57fcb22b2116c3f9f97d5e9f29c1ae017423e7a8423869c26a'
 RENDERER_SHA='052b6dd97b126bb2b79ea1b0573b6bf6dc70a800d587dec7316cb3e5fe99d51c'
-EFFECTIVE_SHA='1111eeea801471b9e6e46298cfbff87d887e0ebcf0e417a425bcfb631130c185'
+EFFECTIVE_SHA='8f214a1454557e588425d473cefa946c14e443e4cc47f85c1bfce02673d9552a'
 LAYOUT_SHA='701e4d9754700b96b2b9daaf18602bc69dd34d98bf4fbe1d7608a54831e7cc79'
 INPUT_PATH='docs/locks/engine-clock-image-inputs.lock.json'
 RENDERER_PATH='docs/locks/engine-clock-renderer-wheels.lock.json'
 LAYOUT_PATH='docs/locks/engine-clock-python-layout.json'
-EFFECTIVE_PATH='docs/locks/engine-clock-sealed-image.lock.json'
+EFFECTIVE_PATH='docs/locks/engine-clock-sealed-image-v2.lock.json'
 GIB=1024**3
 MIB=1024**2
 IMAGE_TAG='stage7-engine-clock:image-20261114-01'
 BASE_TAG='stage7-engine-clock-base:7da97f743f397971'
 SCRIPT_PATH='/usr/local/libexec/stage7/scripts/engine_clock_image_inventory.py'
 ROLES={}
-for _role,_id,_workflow in [('prepare','image-20261114-03','engine-clock-image-preparation-v3.yml'),('preflight','image-preflight-20261114-03','engine-clock-image-preflight-v3.yml')]:
+for _role,_id,_workflow in [('prepare','image-20261114-04','engine-clock-image-preparation-v3.yml'),('preflight','image-preflight-20261114-04','engine-clock-image-preflight-v3.yml')]:
     ROLES[_role]={'request_id':_id,'branch':'prepare/engine-clock-'+_id,'request_path':'docs/requests/engine-clock-'+_id+'.json','output':'output/stage7-image-operations/'+_id,'workflow':'.github/workflows/'+_workflow,'artifact_name':'engine-clock-'+_id,'execution_artifact_name':'engine-clock-'+_id+'-execution'}
 BUDGETS={
  'prepare':{'total_seconds':1800,'download_seconds':900,'build_seconds':600,'save_seconds':180,'inventory_seconds':180,'http_gets':384,'payload_bytes':1536*MIB,'context_bytes':GIB,'execution_bytes':2*GIB-16*MIB,'image_tar_bytes':2*GIB,'image_zip_bytes':2*GIB,'log_bytes':MIB,'metadata_json_bytes':4*MIB,'minimum_free_union_bytes':16*GIB,'cleanup_seconds':12,'docker_base_loads':1,'docker_builds':1,'docker_saves':1,'containers':1,'docker_image_loads':0},
@@ -51,6 +51,7 @@ FIXED_PATHS={
  'scripts/engine_clock_image_preparation_v2.py','scripts/engine_clock_image_staging_v2.py','tests/test_engine_clock_image_retained.py',
  'docs/locks/engine-clock-retained-image-debs-01.lock.json','docs/evidence/STAGE7_ENGINE_CLOCK_IMAGE_01_RESULT.json',
  'docs/superpowers/specs/2026-11-14-engine-clock-retained-image-design.md','docs/superpowers/plans/2026-11-14-engine-clock-retained-image.md',
+ 'tests/test_engine_clock_image_pager_alias.py','docs/locks/engine-clock-sealed-image.lock.json',
  'scripts/engine_clock_image_backend_v2.py',
  'scripts/engine_clock_image_preparation_v3.py','scripts/engine_clock_image_staging_v3.py','scripts/engine_clock_image_installer_v2.py','tests/test_engine_clock_image_assets_bootstrap.py','tests/test_engine_clock_image_payloads.py',
  'docs/locks/engine-clock-retained-image-payloads-02.lock.json','docs/evidence/STAGE7_ENGINE_CLOCK_IMAGE_02_RESULT.json',
