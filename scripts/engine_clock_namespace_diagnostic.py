@@ -70,10 +70,14 @@ def facts(proc=Path('/proc')):
     return result
 
 
-def parse_ack(raw, seq):
-    if len(raw) < 36: raise ValueError('INVALID_NETLINK_ACK')
+def parse_ack(raw, seq, *, request=None):
+    if (type(request) is not bytes or len(request) < 16 or len(raw) < 36):
+        raise ValueError('INVALID_NETLINK_ACK')
+    req_len, req_kind, req_flags, req_seq, req_pid = struct.unpack_from('=IHHII', request)
     length, kind, flags, actual_seq, pid = struct.unpack_from('=IHHII', raw)
-    if length != len(raw) or kind != 2 or actual_seq != seq:
+    if (req_len != len(request) or req_seq != seq or req_kind not in (16, 20)
+            or req_flags & 5 != 5 or length != len(raw) or kind != 2 or actual_seq != seq
+            or length not in (36, 20 + len(request)) or raw[20:] != request[:length - 20]):
         raise ValueError('INVALID_NETLINK_ACK')
     error, = struct.unpack_from('=i', raw, 16)
     if not -4095 <= error <= 0: raise ValueError('INVALID_NETLINK_ACK')
@@ -121,7 +125,7 @@ class Linux:
             sock.sendto(header + payload, (0, 0))
             raw, peer = sock.recvfrom(4096)
             if peer[0] != 0: raise ValueError('INVALID_NETLINK_PEER')
-            error = parse_ack(raw, seq)
+            error = parse_ack(raw, seq, request=header + payload)
             if error: raise OSError(error, 'NETLINK_FAILED')
 
     def address(self):
@@ -196,6 +200,28 @@ def validate_request(value):
     except (ValueError, TypeError, KeyError): raise ValueError('INVALID_REQUEST') from None
 
 
+def validate_activation(request, head, current, reviewed, commit):
+    """A complete leaf-tree delta must add only the regular request file."""
+    try:
+        prep._need(commit['sha'] == head and len(commit['parents']) == 1
+                   and commit['parents'][0]['sha'] == request['reviewed_source_sha']
+                   and commit['tree']['sha'] == current['sha'], 'INVALID_ACTIVATION')
+        def leaves(tree):
+            prep._need(tree['truncated'] is False, 'INVALID_ACTIVATION')
+            result = {}
+            for row in tree['tree']:
+                prep._need(row['type'] in ('blob', 'tree', 'commit'), 'INVALID_ACTIVATION')
+                if row['type'] == 'tree': continue
+                prep._need(row['path'] not in result, 'INVALID_ACTIVATION')
+                result[row['path']] = (row['type'], row['mode'], row['sha'])
+            return result
+        before, after = leaves(reviewed), leaves(current)
+        changes = {p for p in set(before) | set(after) if before.get(p) != after.get(p)}
+        prep._need(changes == {REQUEST_PATH} and REQUEST_PATH not in before
+                   and after[REQUEST_PATH][:2] == ('blob', '100644'), 'INVALID_ACTIVATION')
+    except (ValueError, TypeError, KeyError): raise ValueError('INVALID_ACTIVATION') from None
+
+
 def authenticate(root, env):
     prep.require_remote_environment(env)
     request = validate_request(prep._json((root / REQUEST_PATH).read_bytes()))
@@ -207,9 +233,15 @@ def authenticate(root, env):
     run = api('/actions/runs/' + env['GITHUB_RUN_ID'])
     listing = api('/actions/workflows/engine-clock-namespace-diagnostic.yml/runs?branch=' + urllib.parse.quote(BRANCH, safe='') + '&per_page=2')
     prep.validate_context(request, run, listing, run_id=int(env['GITHUB_RUN_ID']), head=env['GITHUB_SHA'])
-    tree = api('/git/trees/' + env['GITHUB_SHA'] + '?recursive=1')
+    commit = api('/git/commits/' + env['GITHUB_SHA'])
+    prep._need(commit['sha'] == env['GITHUB_SHA'], 'INVALID_ACTIVATION')
+    tree = api('/git/trees/' + commit['tree']['sha'] + '?recursive=1')
     prep.verify_source_closure(root, request, tree)
-    prep.verify_source_closure(root, request, api('/git/trees/' + request['reviewed_source_sha'] + '?recursive=1'))
+    reviewed_commit = api('/git/commits/' + request['reviewed_source_sha'])
+    prep._need(reviewed_commit['sha'] == request['reviewed_source_sha'], 'INVALID_ACTIVATION')
+    reviewed = api('/git/trees/' + reviewed_commit['tree']['sha'] + '?recursive=1')
+    prep.verify_source_closure(root, request, reviewed)
+    validate_activation(request, env['GITHUB_SHA'], tree, reviewed, commit)
     blobs = {row['path']: row['sha'] for row in tree['tree'] if row['type'] == 'blob'}
     prep._need(blobs.get(REQUEST_PATH) == prep.git_blob_sha((root / REQUEST_PATH).read_bytes()), 'SOURCE_CLOSURE_MISMATCH')
     return {'request': request, 'run_id': int(env['GITHUB_RUN_ID']), 'head_sha': env['GITHUB_SHA'],
