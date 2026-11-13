@@ -1,0 +1,60 @@
+{
+  "schema": "builder-pip-boundary-source-review-v1",
+  "base_sha": "a324d10a807f5d40963eb818aed4648a53026b7c",
+  "reviewed_head_sha": "8663c90e71bad7ec718b039def3cf08511a033db",
+  "reviewer": "/root/builder_pip_boundary_review",
+  "model": "gpt-6-astra",
+  "reasoning_effort": "medium",
+  "critical": [],
+  "important": [],
+  "minor_deferred": [
+    {
+      "id": "PB-M1",
+      "issue": "Logging reset fixture clears handlers and directly invokes factory instead of normal logger.error through logging.config.dictConfig.",
+      "root_grade": "Minor",
+      "cost": "Factory design supports handler reset by inspection; actual pip-style reconfiguration dispatch has weaker executable regression coverage."
+    }
+  ],
+  "declines_rulings": [
+    [
+      "pip_context lacks another payload hash check",
+      "Accept existing registered transport/root/path/open-FD and installed-tool checks that pin the readonly pip wheel.",
+      "This metadata reader is not an independent publisher-authentication boundary."
+    ],
+    [
+      "Unknown log paths become null",
+      "Accept specified privacy boundary; retain bounded level/line and approved exception enum.",
+      "Unknown-path coordinates lose detail and may require another registered diagnostic."
+    ],
+    [
+      "Only in-process logging observed",
+      "Accept intentionally scoped pip observation; original stream digests cover consumed text, not subprocess internals.",
+      "Child-process error details may remain unavailable."
+    ],
+    [
+      "Controller duplication",
+      "Accept preserving historical controller bytes; no refactor in this diagnostic increment.",
+      "Composed closure and parity maintenance grow with each immutable version."
+    ],
+    [
+      "No package fix/source execution claim",
+      "Keep exact live cause/source execution unproven until authenticated06 observations.",
+      "Static/fake-pip fixtures do not establish real package behavior."
+    ]
+  ],
+  "verification": {
+    "focused_tests": 12,
+    "focused_seconds": 3.576,
+    "full_tests": 927,
+    "optional_skips": 7,
+    "full_seconds": 94.178,
+    "independent_focused_tests": 12,
+    "independent_focused_seconds": 3.61,
+    "independent_rereview": false,
+    "remote_ci": "PENDING"
+  },
+  "scope_limits": [
+    "Actual new source CI/activation/remote kernel/build/retention/artifacts remain root verification obligations.",
+    "Independent fullsuite and actual source execution/wheel compatibility were not established by focused review."
+  ]
+}
