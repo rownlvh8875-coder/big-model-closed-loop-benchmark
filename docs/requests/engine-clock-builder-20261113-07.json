@@ -1,0 +1,500 @@
+{
+  "branch": "prepare/engine-clock-builder-20261113-07",
+  "budget": {
+    "attempts": 1,
+    "builds": 1,
+    "candidate_userns_assertions": 1,
+    "probes": 2,
+    "profile_loads": 1,
+    "runs": 1,
+    "source_directory_preparations": 1
+  },
+  "expected_plan": {
+    "nbytes": 8573958,
+    "plan_sha256": "71ac5087658d8bae822e3a0836305107ce726b0172fa0e1535e9d2f7b21e1e0c",
+    "serialized_sha256": "8d5e30f9f9c376510eef2033dcf08b3ce672f5a73fc00240f9d8fb48605f7327"
+  },
+  "inputs": [
+    {
+      "filename": "python-3.11.18-linux-24.04-x64.tar.gz",
+      "id": "python",
+      "kind": "python",
+      "nbytes": 92610561,
+      "sha256": "099ef30fc27f0d7067a67be5a5fb7fd66154cfa1e4186c88f71c3a3070c81abc",
+      "url": "https://github.com/actions/python-versions/releases/download/3.11.18-40260280589/python-3.11.18-linux-24.04-x64.tar.gz"
+    },
+    {
+      "filename": "base-files_13ubuntu10.5_amd64.deb",
+      "id": "deb-472b3d716961b91797c595f751d1e8d9",
+      "kind": "deb",
+      "nbytes": 73220,
+      "sha256": "87e8c41e62f61625fb78a982d0bc0a70f40ef8375bc313b154914d1b3759c823",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20261113T000000Z/pool/main/b/base-files/base-files_13ubuntu10.5_amd64.deb"
+    },
+    {
+      "filename": "debconf_1.5.86ubuntu1_all.deb",
+      "id": "deb-dc3c45cc69e443519ff044fa1373181c",
+      "kind": "deb",
+      "nbytes": 124096,
+      "sha256": "bb390da466a7461bfc87aa3e6b7cd145dae84af3e26bf437f2c0c218ba226294",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20261113T000000Z/pool/main/d/debconf/debconf_1.5.86ubuntu1_all.deb"
+    },
+    {
+      "filename": "fontconfig-config_2.15.0-1.1ubuntu2_amd64.deb",
+      "id": "deb-d146fc96cc5f694ce3f2ccc531c0d015",
+      "kind": "deb",
+      "nbytes": 37298,
+      "sha256": "9df0579cd298a1f2b7a40efd519c849745aecd193a09733cf4d1032284a62bbf",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20261113T000000Z/pool/main/f/fontconfig/fontconfig-config_2.15.0-1.1ubuntu2_amd64.deb"
+    },
+    {
+      "filename": "fonts-dejavu-core_2.37-8_all.deb",
+      "id": "deb-3afcce4d01cb9a265c549775cf591e22",
+      "kind": "deb",
+      "nbytes": 835172,
+      "sha256": "40049660c194f3b8a2541fc7369efebb10e9f94bdac836a2f38fafedd10fa73a",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20261113T000000Z/pool/main/f/fonts-dejavu/fonts-dejavu-core_2.37-8_all.deb"
+    },
+    {
+      "filename": "fonts-dejavu-mono_2.37-8_all.deb",
+      "id": "deb-554dd5a403b6050ebdb5009233d50274",
+      "kind": "deb",
+      "nbytes": 502232,
+      "sha256": "8a599d6553307db7ecb795d2f0e5a301e03234afc75c7358b0ba43466454c89a",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20261113T000000Z/pool/main/f/fonts-dejavu/fonts-dejavu-mono_2.37-8_all.deb"
+    },
+    {
+      "filename": "gcc-14-base_14.2.0-4ubuntu2~24.04.1_amd64.deb",
+      "id": "deb-381c80b5db9febd79b261718b2159323",
+      "kind": "deb",
+      "nbytes": 51014,
+      "sha256": "b95c172411a7fdae70307cf33a9f5320ba5e056b556454543dd5b679d5ce1c4f",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20261113T000000Z/pool/main/g/gcc-14/gcc-14-base_14.2.0-4ubuntu2~24.04.1_amd64.deb"
+    },
+    {
+      "filename": "libbrotli1_1.1.0-2ubuntu0.1_amd64.deb",
+      "id": "deb-f0d4515ccac7a44ab5817251dd4e296c",
+      "kind": "deb",
+      "nbytes": 330968,
+      "sha256": "70b188a86d81f30d7510aab30e25d638ed5037dded6691af1533952b71ac61de",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20261113T000000Z/pool/main/b/brotli/libbrotli1_1.1.0-2ubuntu0.1_amd64.deb"
+    },
+    {
+      "filename": "libbsd0_0.12.1-1build1.1_amd64.deb",
+      "id": "deb-cfb187ff4c10443e84116a4690362690",
+      "kind": "deb",
+      "nbytes": 41238,
+      "sha256": "f3857b0863ac5cfd4263e9bf6cfb1d4be88d5321e4070d5bc2b62b0949e6c86f",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20261113T000000Z/pool/main/libb/libbsd/libbsd0_0.12.1-1build1.1_amd64.deb"
+    },
+    {
+      "filename": "libbz2-1.0_1.0.8-5.1ubuntu0.1_amd64.deb",
+      "id": "deb-66e87cc312ca77118bf4234d2885db5f",
+      "kind": "deb",
+      "nbytes": 34562,
+      "sha256": "36ee08b00b1ee5018b2fce02881b7d2d73c9b4e32990bde3388400d86c48126a",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20261113T000000Z/pool/main/b/bzip2/libbz2-1.0_1.0.8-5.1ubuntu0.1_amd64.deb"
+    },
+    {
+      "filename": "libc-bin_2.39-0ubuntu8.12_amd64.deb",
+      "id": "deb-31ffe2dac54bb83dfb245c50b5f21b77",
+      "kind": "deb",
+      "nbytes": 681714,
+      "sha256": "22f0393621e72ed1b53d228ee332180269182b5445761c7d7b74f5cba75a1dd6",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20261113T000000Z/pool/main/g/glibc/libc-bin_2.39-0ubuntu8.12_amd64.deb"
+    },
+    {
+      "filename": "libc6_2.39-0ubuntu8.12_amd64.deb",
+      "id": "deb-fb9ce3b804ed6882db53398f268a9c8e",
+      "kind": "deb",
+      "nbytes": 3264258,
+      "sha256": "d821b41fc59cb4978ecd53bc83e5c964ac15d305c8d2ac4c8a35aebe55010fb9",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20261113T000000Z/pool/main/g/glibc/libc6_2.39-0ubuntu8.12_amd64.deb"
+    },
+    {
+      "filename": "libcrypt1_4.4.36-4build1_amd64.deb",
+      "id": "deb-595004aec848930e3c917fb651f56fc1",
+      "kind": "deb",
+      "nbytes": 82302,
+      "sha256": "9474785cd6f398512bf8c305c3901dbb111569dccb6f5832002373c0a8ac5832",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20261113T000000Z/pool/main/libx/libxcrypt/libcrypt1_4.4.36-4build1_amd64.deb"
+    },
+    {
+      "filename": "libexpat1_2.6.1-2ubuntu0.6_amd64.deb",
+      "id": "deb-166445e0556fe430315815dcb7dad95b",
+      "kind": "deb",
+      "nbytes": 98940,
+      "sha256": "494b8e672f722130c6bca6a7bc4cc31a43ca891a31d60d868bfdd699a3c20b13",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20261113T000000Z/pool/main/e/expat/libexpat1_2.6.1-2ubuntu0.6_amd64.deb"
+    },
+    {
+      "filename": "libffi8_3.4.6-1build1_amd64.deb",
+      "id": "deb-767ea08541a1d63a4aa9e7b6337e00bf",
+      "kind": "deb",
+      "nbytes": 24718,
+      "sha256": "637e6a7744de08cd331a41f4efd0d24e6ea9064843dea9d1c6ca87bdb5f038a2",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20261113T000000Z/pool/main/libf/libffi/libffi8_3.4.6-1build1_amd64.deb"
+    },
+    {
+      "filename": "libfontconfig1_2.15.0-1.1ubuntu2_amd64.deb",
+      "id": "deb-aa869416fb59477bd361b755c0f38b7f",
+      "kind": "deb",
+      "nbytes": 138572,
+      "sha256": "a2bc05cfef021fdb84285036f98eda5ebec3c4b7a378f5aa2bdba5c4d3d8d586",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20261113T000000Z/pool/main/f/fontconfig/libfontconfig1_2.15.0-1.1ubuntu2_amd64.deb"
+    },
+    {
+      "filename": "libfreetype6_2.13.2+dfsg-1ubuntu0.2_amd64.deb",
+      "id": "deb-82c1434e677b2bd67e36e4cdcea5a0fa",
+      "kind": "deb",
+      "nbytes": 402610,
+      "sha256": "8c6d3bac5a6197fa2f48b2d56f04f3ffecaa7082eeab91b0939f97a40adc88a6",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20261113T000000Z/pool/main/f/freetype/libfreetype6_2.13.2+dfsg-1ubuntu0.2_amd64.deb"
+    },
+    {
+      "filename": "libgcc-s1_14.2.0-4ubuntu2~24.04.1_amd64.deb",
+      "id": "deb-9244dde6b5841c9a94c188f7e5cac526",
+      "kind": "deb",
+      "nbytes": 78392,
+      "sha256": "aa7fadbe33b78bcf99885318040601c550c208929565b179891d9a3cc2aa68cd",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20261113T000000Z/pool/main/g/gcc-14/libgcc-s1_14.2.0-4ubuntu2~24.04.1_amd64.deb"
+    },
+    {
+      "filename": "libgdbm-compat4t64_1.23-5.1build1_amd64.deb",
+      "id": "deb-b779fe39a7034b9b363152eaeb21536d",
+      "kind": "deb",
+      "nbytes": 6710,
+      "sha256": "fb8564afd7b7d74d55207070ba50339478e22d29a39ec740dc482f069ac7ee65",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20261113T000000Z/pool/main/g/gdbm/libgdbm-compat4t64_1.23-5.1build1_amd64.deb"
+    },
+    {
+      "filename": "libgdbm6t64_1.23-5.1build1_amd64.deb",
+      "id": "deb-445ceafdb72bd11bce6df304057282bf",
+      "kind": "deb",
+      "nbytes": 34440,
+      "sha256": "18d6d74a5c038b458d95ba0c0909e0f086cd50bb9a0fee32697902724fc5645e",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20261113T000000Z/pool/main/g/gdbm/libgdbm6t64_1.23-5.1build1_amd64.deb"
+    },
+    {
+      "filename": "liblzma5_5.6.1+really5.4.5-1ubuntu0.4_amd64.deb",
+      "id": "deb-d9fac4d265e6d768744e9fa3b9fc9740",
+      "kind": "deb",
+      "nbytes": 127704,
+      "sha256": "5bcf5da2339331e21d3f42a831e82c61c54c6b2f29804010e8d59abd0ae52167",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20261113T000000Z/pool/main/x/xz-utils/liblzma5_5.6.1+really5.4.5-1ubuntu0.4_amd64.deb"
+    },
+    {
+      "filename": "libmd0_1.1.0-2build1.1_amd64.deb",
+      "id": "deb-a157d982af29f963c317d5fbaf5f6bd5",
+      "kind": "deb",
+      "nbytes": 26976,
+      "sha256": "e5ba01d3c41f256aaf57ec59aa0554857162e3e7f97cdfbff1ed2c0e8d720ee7",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20261113T000000Z/pool/main/libm/libmd/libmd0_1.1.0-2build1.1_amd64.deb"
+    },
+    {
+      "filename": "libncursesw6_6.4+20240113-1ubuntu2.2_amd64.deb",
+      "id": "deb-b8543e2e11481a710372639445ad8377",
+      "kind": "deb",
+      "nbytes": 147816,
+      "sha256": "579c9488755d1ddd70f66480cafd2f68776f68314d15d9cf4b5449d0de0fc968",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20261113T000000Z/pool/main/n/ncurses/libncursesw6_6.4+20240113-1ubuntu2.2_amd64.deb"
+    },
+    {
+      "filename": "libpng16-16t64_1.6.43-5ubuntu0.7_amd64.deb",
+      "id": "deb-a30a21ee6eacf16ba996f3398f61d092",
+      "kind": "deb",
+      "nbytes": 188998,
+      "sha256": "863d6abb089b2820ceba98e6b18f06eaacc55f9b05827001e7b4021a9a7b246c",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20261113T000000Z/pool/main/libp/libpng1.6/libpng16-16t64_1.6.43-5ubuntu0.7_amd64.deb"
+    },
+    {
+      "filename": "libreadline8t64_8.2-4build1_amd64.deb",
+      "id": "deb-0353419c3d97552cb000add7cfc21b8a",
+      "kind": "deb",
+      "nbytes": 152856,
+      "sha256": "563977a16df03b611f5239cc1e9a0426e86479fcc616b5c9e200ea32063119e5",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20261113T000000Z/pool/main/r/readline/libreadline8t64_8.2-4build1_amd64.deb"
+    },
+    {
+      "filename": "libsqlite3-0_3.45.1-1ubuntu2.9_amd64.deb",
+      "id": "deb-8f573ce0fb4766baddd5fb05e4559035",
+      "kind": "deb",
+      "nbytes": 701804,
+      "sha256": "e04c9d3cf7d0fc4d63332bea2395280550a0b5daef35d19c3c079fc2e96a92e5",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20261113T000000Z/pool/main/s/sqlite3/libsqlite3-0_3.45.1-1ubuntu2.9_amd64.deb"
+    },
+    {
+      "filename": "libssl3t64_3.0.13-0ubuntu3.16_amd64.deb",
+      "id": "deb-2e94fb9a0b8c9f6360b0d1133e5ff340",
+      "kind": "deb",
+      "nbytes": 1945300,
+      "sha256": "219f43b1cd836a4da550938db5fda93160d269d39a4edcf1f1ce698a470db797",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20261113T000000Z/pool/main/o/openssl/libssl3t64_3.0.13-0ubuntu3.16_amd64.deb"
+    },
+    {
+      "filename": "libtcl8.6_8.6.14+dfsg-1build1_amd64.deb",
+      "id": "deb-be2b5310e9ca981c64da42254bd81ccd",
+      "kind": "deb",
+      "nbytes": 987614,
+      "sha256": "7534eb825f6317514d747ce53b4d6c23bf24df1dc1785f9599610ece5515e685",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20261113T000000Z/pool/main/t/tcl8.6/libtcl8.6_8.6.14+dfsg-1build1_amd64.deb"
+    },
+    {
+      "filename": "libtinfo6_6.4+20240113-1ubuntu2.2_amd64.deb",
+      "id": "deb-d6af4b8f5282fadc8a988f0b37ca5f2e",
+      "kind": "deb",
+      "nbytes": 108086,
+      "sha256": "b67a6df2bdab61d273eabebd208bb6a3fb12618a390a067e1ee305a409ff03d9",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20261113T000000Z/pool/main/n/ncurses/libtinfo6_6.4+20240113-1ubuntu2.2_amd64.deb"
+    },
+    {
+      "filename": "libtk8.6_8.6.14-1build1_amd64.deb",
+      "id": "deb-6c75df4ac1fd744c30640ed8bd621b8e",
+      "kind": "deb",
+      "nbytes": 778878,
+      "sha256": "c5edb6c79c91a9f4c25cf0ad68c3341467a6604cb97789b2ac36c6d3de352725",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20261113T000000Z/pool/main/t/tk8.6/libtk8.6_8.6.14-1build1_amd64.deb"
+    },
+    {
+      "filename": "libuuid1_2.39.3-9ubuntu6.6_amd64.deb",
+      "id": "deb-506cdcff3ffd8c9067762f8f7833dac3",
+      "kind": "deb",
+      "nbytes": 36596,
+      "sha256": "7e2992d3a79fc05514dc5966558ee9c66a7214a47edf2a36017b9e2777528665",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20261113T000000Z/pool/main/u/util-linux/libuuid1_2.39.3-9ubuntu6.6_amd64.deb"
+    },
+    {
+      "filename": "libx11-6_1.8.7-1ubuntu0.1_amd64.deb",
+      "id": "deb-1b0ed0ef7566066aecee57eb802b8d09",
+      "kind": "deb",
+      "nbytes": 653072,
+      "sha256": "9102f73477081a9a57994c80587ca9760341f644ed51bdfa46f2248083d418b3",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20261113T000000Z/pool/main/libx/libx11/libx11-6_1.8.7-1ubuntu0.1_amd64.deb"
+    },
+    {
+      "filename": "libx11-data_1.8.7-1ubuntu0.1_all.deb",
+      "id": "deb-3cfc77c29be8dbf9031466fd465bacf8",
+      "kind": "deb",
+      "nbytes": 115970,
+      "sha256": "5cb70f7a8e7178e0bae4fd49eee49feaed623d2d821caf6ea5862b66f9e9630b",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20261113T000000Z/pool/main/libx/libx11/libx11-data_1.8.7-1ubuntu0.1_all.deb"
+    },
+    {
+      "filename": "libxau6_1.0.9-1build6_amd64.deb",
+      "id": "deb-6bd6416310cb97e775dcd34ae462e493",
+      "kind": "deb",
+      "nbytes": 7160,
+      "sha256": "e40d29f1d1a62393bacaedebe0da3d9006084152a9f7e5e029293f08ce1c5c80",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20261113T000000Z/pool/main/libx/libxau/libxau6_1.0.9-1build6_amd64.deb"
+    },
+    {
+      "filename": "libxcb1_1.15-1ubuntu2_amd64.deb",
+      "id": "deb-ccb36e3148624fa42123c125b4eb72f9",
+      "kind": "deb",
+      "nbytes": 47730,
+      "sha256": "e1c6611d11ad7398326f1bf028afc34c3b14c51d917a3426b966ed4b9687fa58",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20261113T000000Z/pool/main/libx/libxcb/libxcb1_1.15-1ubuntu2_amd64.deb"
+    },
+    {
+      "filename": "libxdmcp6_1.1.3-0ubuntu6_amd64.deb",
+      "id": "deb-37e90bc487590e0199237c2a6822270b",
+      "kind": "deb",
+      "nbytes": 10254,
+      "sha256": "bcd336fce11ce2a45f34d0f95e6980af22529f22147e8f98c156e5cee8ee42bb",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20261113T000000Z/pool/main/libx/libxdmcp/libxdmcp6_1.1.3-0ubuntu6_amd64.deb"
+    },
+    {
+      "filename": "libxext6_1.3.4-1build2_amd64.deb",
+      "id": "deb-0d2493bf3bf27e4bbc7fea6c862bfa82",
+      "kind": "deb",
+      "nbytes": 30406,
+      "sha256": "45783969a9ece9d7b7b733b8c60981584c53c6bc5ee3b42d295d2f80d1285679",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20261113T000000Z/pool/main/libx/libxext/libxext6_1.3.4-1build2_amd64.deb"
+    },
+    {
+      "filename": "libxft2_2.3.6-1build1_amd64.deb",
+      "id": "deb-c50a335e4e9b1b8efd717945a8bb6f2e",
+      "kind": "deb",
+      "nbytes": 45280,
+      "sha256": "b4f4f3255c0b8773b260c61cbe20ee7c63799cfc0e4e389fa58375dd480b093a",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20261113T000000Z/pool/main/x/xft/libxft2_2.3.6-1build1_amd64.deb"
+    },
+    {
+      "filename": "libxrender1_0.9.10-1.1build1_amd64.deb",
+      "id": "deb-9ce11044ba9898beaccd5a65e41480a4",
+      "kind": "deb",
+      "nbytes": 19016,
+      "sha256": "d70bd831aebe8d4834b5dd2ed98df26dd6bd27f1042c47543bd7f66df1ae22ea",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20261113T000000Z/pool/main/libx/libxrender/libxrender1_0.9.10-1.1build1_amd64.deb"
+    },
+    {
+      "filename": "libxss1_1.2.3-1build3_amd64.deb",
+      "id": "deb-7c3d0f937eb31cc3d6bcff8328220b13",
+      "kind": "deb",
+      "nbytes": 7204,
+      "sha256": "0ac60a2cc034ccc4bf4e2f846f38110469d7ae43b47e808d67aafc538bc3695e",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20261113T000000Z/pool/main/libx/libxss/libxss1_1.2.3-1build3_amd64.deb"
+    },
+    {
+      "filename": "lsb-base_11.6_all.deb",
+      "id": "deb-7b4814d492fec11c8be7920330def6ec",
+      "kind": "deb",
+      "nbytes": 4606,
+      "sha256": "08a563e3c1984acdb295f12b77b4ec18d2ccf52fd03280a5bea29e506a3350ee",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20261113T000000Z/pool/main/l/lsb/lsb-base_11.6_all.deb"
+    },
+    {
+      "filename": "mawk_1.3.4.20240123-1build1_amd64.deb",
+      "id": "deb-aa27083a2f5806b0b92f0892b7f2746b",
+      "kind": "deb",
+      "nbytes": 127222,
+      "sha256": "dc7f7f4dad4b48f6012ea65de3198d8376604afef39f06d65ec6167740e203c9",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20261113T000000Z/pool/main/m/mawk/mawk_1.3.4.20240123-1build1_amd64.deb"
+    },
+    {
+      "filename": "readline-common_8.2-4build1_all.deb",
+      "id": "deb-1f7ff6aaf3c6453833adfb6ed7541378",
+      "kind": "deb",
+      "nbytes": 56484,
+      "sha256": "879bfd7f8a9bc4c0f7cdc777cdd8bc6de5f8c4a2ac80c060322a1b22f13504bb",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20261113T000000Z/pool/main/r/readline/readline-common_8.2-4build1_all.deb"
+    },
+    {
+      "filename": "sysvinit-utils_3.08-6ubuntu3_amd64.deb",
+      "id": "deb-cc647cfd8acce42a9b3a8da04de541ba",
+      "kind": "deb",
+      "nbytes": 34170,
+      "sha256": "03cf5c9c28a5d186fb7f5214e464f831ff28177695cbb61e66083237267a047e",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20261113T000000Z/pool/main/s/sysvinit/sysvinit-utils_3.08-6ubuntu3_amd64.deb"
+    },
+    {
+      "filename": "tzdata_2026e-0ubuntu0.24.04.1_all.deb",
+      "id": "deb-572d4fe95e2cfd3425b70544a829f391",
+      "kind": "deb",
+      "nbytes": 282136,
+      "sha256": "2f6794a7f31753fc947d9ac02ff03ea46510f34864f9d132a93d7b105e3c4447",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20261113T000000Z/pool/main/t/tzdata/tzdata_2026e-0ubuntu0.24.04.1_all.deb"
+    },
+    {
+      "filename": "x11-common_7.7+23ubuntu3_all.deb",
+      "id": "deb-ded6f5b1f86c0eaacd1bb783401065eb",
+      "kind": "deb",
+      "nbytes": 21748,
+      "sha256": "b545fa5196dd7467ba3770d6ce575abcd7941071961ea9f7535a319d9d20fd46",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20261113T000000Z/pool/main/x/xorg/x11-common_7.7+23ubuntu3_all.deb"
+    },
+    {
+      "filename": "zlib1g_1.3.dfsg-3.1ubuntu2.3_amd64.deb",
+      "id": "deb-2f69b326b2949605a5ac35819ff19c6e",
+      "kind": "deb",
+      "nbytes": 63158,
+      "sha256": "376249c8de139568221dbb242318cc8cb8f02299e3a62b7432948e1754fbddf9",
+      "url": "https://snapshot.ubuntu.com/ubuntu/20261113T000000Z/pool/main/z/zlib/zlib1g_1.3.dfsg-3.1ubuntu2.3_amd64.deb"
+    },
+    {
+      "filename": "progressbar-2.5.tar.gz",
+      "id": "input-source",
+      "kind": "input",
+      "nbytes": 10046,
+      "sha256": "5d81cb529da2e223b53962afd6c8ca0f05c6670e40309a7219eacc36af9b6c63",
+      "url": "https://files.pythonhosted.org/packages/a3/a6/b8e451f6cff1c99b4747a2f7235aa904d2d49e8e1464e0b798272aa84358/progressbar-2.5.tar.gz"
+    },
+    {
+      "filename": "pip-26.2.2-py3-none-any.whl",
+      "id": "input-pip",
+      "kind": "input",
+      "nbytes": 1819850,
+      "sha256": "fd7f4dfa8190e014013b9f08f3e973f4e4c26ffd179a204895533a7254813a70",
+      "url": "https://files.pythonhosted.org/packages/3f/06/3e4420302363fbb71be3c7f35ce042f54bfca330e3e66b3a2e3c4cca579f/pip-26.2.2-py3-none-any.whl"
+    },
+    {
+      "filename": "setuptools-80.9.0-py3-none-any.whl",
+      "id": "input-setuptools",
+      "kind": "input",
+      "nbytes": 1201486,
+      "sha256": "062d34222ad13e0cc312a4c02d73f059e86a4acbfbdea8f8f76b28c99f306922",
+      "url": "https://files.pythonhosted.org/packages/a3/dc/17031897dae0efacfea57dfd3a82fdd2a2aeb58e0ff71b77b87e44edc772/setuptools-80.9.0-py3-none-any.whl"
+    },
+    {
+      "filename": "wheel-0.45.1-py3-none-any.whl",
+      "id": "input-wheel",
+      "kind": "input",
+      "nbytes": 72494,
+      "sha256": "708e7481cc80179af0e556bbf0cc00b8444c7321e2700b8d8580231d13017248",
+      "url": "https://files.pythonhosted.org/packages/0b/2c/87f3254fd8ffd29e4c02732eee68a83a1d3c346ae39bc6822dcbcb697f2b/wheel-0.45.1-py3-none-any.whl"
+    }
+  ],
+  "repository": "rownlvh8875-coder/big-model-closed-loop-benchmark",
+  "request_id": "builder-20261113-07",
+  "reviewed_source_sha": "b8979edf2d592431c85864936bdc04519e932e41",
+  "schema": "builder-preparation-request-v7",
+  "source_closure": {
+    ".github/workflows/engine-clock-builder-preparation-v3.yml": "9bf6d08e658fd654021d35516fcb94f2c602b1f16d1b27056c84a37262e46fde",
+    ".github/workflows/engine-clock-builder-preparation-v4.yml": "74e20b0c7b891787230c8c744d96bb5e59b67bee3163139190b14cb96a4fdb82",
+    ".github/workflows/engine-clock-builder-preparation-v5.yml": "9ca832984a11accf685f0e7da30c3eb2792006ebe4a51d1d38d645c2efcbac47",
+    ".github/workflows/engine-clock-builder-preparation-v6.yml": "d166ff6e3d611c079a12f121adc53c4b2c588e2ca492c9e452095a00e4eadcf4",
+    ".github/workflows/engine-clock-builder-preparation-v7.yml": "0ad834c3c8a42d0caa2cdeb726c323ce47e099fb506877867aed220532431fc3",
+    "docs/evidence/STAGE7_ENGINE_CLOCK_BWRAP_PROFILE_CONFIRMATION_RESULT.json": "ba1743cb246377ea2d8d92832aa62cd50501104d02c3feb2ea9bc5eebc4c74bc",
+    "docs/evidence/STAGE7_ENGINE_CLOCK_OS_BINDING.json": "594b30058f0561eda60fd03e0bda301d88bfc49e9ac55aea32ee4c5a86476f0b",
+    "docs/evidence/STAGE7_ENGINE_CLOCK_OS_INPUTS.json": "308c3bd60127a9fdbcaad274150b9d92c6763d861309560e7ba7e9b1741c1174",
+    "docs/evidence/STAGE7_ENGINE_CLOCK_PROGRESSBAR_BUILD_INPUTS.json": "119328fbee29d849aa9d938d0e45111369ec9cbd49f15285cb7eb4423d2324b6",
+    "docs/evidence/STAGE7_ENGINE_CLOCK_PROGRESSBAR_BUILD_POLICY.json": "e37c559811b28eae4384fa1a431b11008ac7753e86901395275cee01bd836af3",
+    "docs/evidence/STAGE7_ENGINE_CLOCK_PYTHON_BOOTSTRAP_BINDING.json": "46669881caba901d98b84f575b10c1b0b206e8b3a4b82aa362ea859a92a52f6c",
+    "docs/evidence/STAGE7_ENGINE_CLOCK_PYTHON_BOOTSTRAP_INPUTS.json": "79ea921947cf3827de727144c6d40f2ca348d73e16527d88c466be8634d0d04a",
+    "docs/evidence/engine-clock-os-inputs/package-members.json": "773871d5f9016b934939249ba3c66ccedc02f3eec1cb087a12937c4d595f51b7",
+    "docs/evidence/engine-clock-os-inputs/package-plan.json": "250936b267cf5023a9ad4be210ba5728675f5d930220bd95a7a9d7e7c9b1c206",
+    "docs/evidence/engine-clock-progressbar/static-inspection.json": "87dd5ca9329e06ea76ee4ff3e18c768d29e6ca961402ef46d1c47303879b58d4",
+    "docs/evidence/engine-clock-python-bootstrap/archive-members.json": "f5db8b1d16639d151b7a1b4554677afc1fdf391a370487504a3f3fd7cb3fc05f",
+    "docs/proposals/engine-clock-builder-preparation.workflow.json": "4027735377771237b29208975df5e8c81c97b536ba824bff8b4844cd5efed37b",
+    "docs/proposals/engine-clock-pip-wheel-static-contract.json": "321461cda2ec6102d82de6e98cb40bd6e0ff0f65acf52673b2711932d1e52042",
+    "docs/proposals/stage7-bwrap.apparmor": "e00bd0234d4d2a14a37d6780cab2a4ff080d7b7bd036b2c398f55a3b1903f14e",
+    "docs/superpowers/plans/2026-11-13-engine-clock-builder-build-binding.md": "189c598ccf7368d8bcb242d619407c2f8930eb27d80d12d0f5d1f5731a66ac89",
+    "docs/superpowers/plans/2026-11-13-engine-clock-builder-namespace-proof.md": "385a340a5d91eb9ac816745a7e844a31f89c7f793733c913da6d19177d6cb5a5",
+    "docs/superpowers/plans/2026-11-13-engine-clock-builder-pip-boundary.md": "65d9e0db269ab41bd6d70d707fe7738ae35a9ab9288bcb3306908ae41c8354ea",
+    "docs/superpowers/plans/2026-11-13-engine-clock-builder-source-directory.md": "ca24629b041f4b7aa09ce904861e62c102b07da639bb8f981f8802a4a3b51c7c",
+    "docs/superpowers/plans/2026-11-13-engine-clock-builder-vendored-records.md": "ff0c61eb1e832eabc8cd17bb1faba36e2801729712cb0740b15a627e7c0379e2",
+    "docs/superpowers/specs/2026-11-13-engine-clock-builder-build-binding-design.md": "cb9e389eac50459881a991d194e320a0f158af08a23c2ec700cbff177ba5b29e",
+    "docs/superpowers/specs/2026-11-13-engine-clock-builder-namespace-proof-design.md": "67bb8b620ce27f156faefabb06fbaa6ab9b9f5b3e948c616a14b1bbeb57d1903",
+    "docs/superpowers/specs/2026-11-13-engine-clock-builder-pip-boundary-design.md": "804505a53f6598654f3646212050be1a694eb7474db2833ad389496d69e7869e",
+    "docs/superpowers/specs/2026-11-13-engine-clock-builder-source-directory-design.md": "16b740048a1f0ec62716d65cf09c3626be83cc82977b3a5a7fb684c3f9c24579",
+    "docs/superpowers/specs/2026-11-13-engine-clock-builder-staging-design.md": "c3ff64f81ff387385daa920b0627c4c8285b7c364bb8d3f018b448f1f067724d",
+    "docs/superpowers/specs/2026-11-13-engine-clock-builder-vendored-records-design.md": "4a28bd12290dfab26dc651eeeab63143a287f1b2e3ceb6a4af0752abc6a239d6",
+    "scripts/__init__.py": "c56e3eb2518092a8e1fc6298aa88b1abe36ceaef366060c9d1f74fd89973a109",
+    "scripts/engine_clock_builder_bound_build.py": "dd9edb2851452c7ba8ce2755cf20eb33037b493d6a10d704e60d654e9241c2c1",
+    "scripts/engine_clock_builder_bound_preparation.py": "ae910ef63c5089ae822c652329d165ae983e0d8c41b2bf2395c6884bf44cce39",
+    "scripts/engine_clock_builder_build.py": "0be2ad230723efd98bb29244a28dae199b2086143bd2d53ddfc43142fb2e2109",
+    "scripts/engine_clock_builder_directory_build.py": "bf8f75f86bbb81fd748537c48572f387798b13ec2da5fef4244819416cbbf031",
+    "scripts/engine_clock_builder_directory_preparation.py": "f6d710bbea789c9223bebd6800f6eae44ce523ceefb24efa37406cbb8cba4681",
+    "scripts/engine_clock_builder_driver.py": "3685c4c9b349eb2a33aaee581d5abaaac62a2b03b5fac1f170c8b4f81cf22530",
+    "scripts/engine_clock_builder_namespace.py": "a26640f37916a022392119d74f2ee707a073626e0e831283782406915dbfdfd3",
+    "scripts/engine_clock_builder_namespace_driver.py": "2865a756facb4b36e58dbcee63b897e4ae841f462a2bab8bb8769f1f3ead6021",
+    "scripts/engine_clock_builder_namespace_preparation.py": "2d7abcaf15390796af3bd99ac9c930a00555a1e91d51e524d6aee994c80a0240",
+    "scripts/engine_clock_builder_observed_build.py": "cf174ca6b505d0c01ecc9d5ee47cfbe90521520986fe88cbb9f36a78c8431543",
+    "scripts/engine_clock_builder_observed_preparation.py": "6656ec5c443306a6f4da2309242b5d323defe77d815d992fa23c4ce49d886ee0",
+    "scripts/engine_clock_builder_pip_observation.py": "c291ac858005142415ccd69c27f9ddd5659ddad79158fcb45747ba29d87ecd34",
+    "scripts/engine_clock_builder_preparation.py": "0e79e8c2909a5c9f9226c1e031cd845435b549a8072831fbbe110d10faa2fdd9",
+    "scripts/engine_clock_builder_record_driver.py": "7d59d46214acdf467f1ec3687734aa35662946c65e35c598ee71cb139471624e",
+    "scripts/engine_clock_builder_record_preparation.py": "b3360afcf37c2def19dcb0b9de3d901c7773583ec992d189911d06286865e010",
+    "scripts/engine_clock_builder_retention.py": "a8da9241cba62cc3048ea9d973194d9551c9008ec96e4457670d46fa89a8f025",
+    "scripts/engine_clock_builder_sandbox.py": "d8ee49f20d65a442ab3e5f4b73997e0cba7e63233e1ab5390237c722334311c0",
+    "scripts/engine_clock_builder_source_directory.py": "db5a79df222c86f23b43573d75c6710b95c25c117ae8cbb5eacf102d4a3b4d32",
+    "scripts/engine_clock_builder_staging.py": "08f50aa50f527cf79afd32de41a9999c8576bd8100546d42ab173765b91c5b31",
+    "scripts/engine_clock_builder_tool_records.py": "8b771f59d6b2f3a0dea03dd9c678ed37c54bca60a8e223064b7a8bddf1643df7",
+    "scripts/engine_clock_builder_wheel.py": "1dc3c97b85625a0b945eac7a3e46e4c0cf8d46f517d5fcbb7d2b4649a20e617a",
+    "scripts/engine_clock_bwrap_profile_confirmation.py": "356c03dca1a46412387f7bd89ef2ed79bdeec9eb8a42d62eaca990908e7b303d",
+    "scripts/engine_clock_bwrap_profile_preflight.py": "7fef21da9ccf5c05266547f614400f63063c3986da897534e26f5eca993d6593",
+    "tests/test_engine_clock_builder_build.py": "d96a162e9dd8f50e90e0a220bc7a655527396649ba1e1c661c7983bccc5a2db3",
+    "tests/test_engine_clock_builder_build_binding.py": "a8c8f5f3b86a6f335f77a6d281acfda89f0338be369cabf3a21a2589be2020bb",
+    "tests/test_engine_clock_builder_driver.py": "92a1d57c39beb540efe5c14c3584c66b9df905d447c419df0cd51004cd56d455",
+    "tests/test_engine_clock_builder_namespace.py": "b24685d67ecd597c3cd1257148adbe6305ba7fbee6f23228c47c04b3a715c16f",
+    "tests/test_engine_clock_builder_pip_observation.py": "94d7e9aca5d51ed4ae5de09667269e68e6ff314fc56269182a3759b75ddb0c12",
+    "tests/test_engine_clock_builder_preparation.py": "c3ca63856e8f85aa6b18776e47fd4597a9e23d7ac958b33d80538913e1b83cab",
+    "tests/test_engine_clock_builder_retention.py": "7366687aeeeca1b3580e239ba2d70aa9806f90f599cdd207ff8770a6151df8db",
+    "tests/test_engine_clock_builder_sandbox.py": "c7f9e906e6e3d184066fca791ba97dd183ad748ae711c0d686ca464184b89aa1",
+    "tests/test_engine_clock_builder_source_directory.py": "97247442397efbf8547a518cfcaf5e16d338dfd2ca31ca393cf43d08736e3c80",
+    "tests/test_engine_clock_builder_staging.py": "5a0bc13dbbad1ab0cbf2dec5f7e4a478ba6ef7dfea9fb7269be045888df1bc39",
+    "tests/test_engine_clock_builder_tool_records.py": "a87d157b00d59143e61ef75882f36a18c2046fc3d323e95aac561d2efbe2a0fb",
+    "tests/test_engine_clock_builder_wheel.py": "9306df5ea7cd0b819846a9905365636b5ac69b3b65d69d36ae03b70549d86394"
+  },
+  "workflow_path": ".github/workflows/engine-clock-builder-preparation-v7.yml"
+}
