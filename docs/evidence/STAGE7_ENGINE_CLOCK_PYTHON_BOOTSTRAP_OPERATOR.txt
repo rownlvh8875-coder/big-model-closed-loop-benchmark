@@ -1,0 +1,75 @@
+HISTORICAL ONE-USE ARCHIVE INPUT OPERATOR; do not replay after output exists.
+Run the body after the marker with the existing CPU Python from repository root.
+BEGIN PYTHON
+import datetime,hashlib,json,os,platform,shutil,signal,subprocess,sys,time
+from pathlib import Path
+
+root=Path.cwd()
+request_path=root/'docs/evidence/STAGE7_ENGINE_CLOCK_PYTHON_BOOTSTRAP_REQUEST.json'
+request=json.loads(request_path.read_text())
+out=root/request['output_directory'];out.mkdir(parents=True,exist_ok=False)
+start=time.monotonic()
+def digest(p):
+    h=hashlib.sha256()
+    with p.open('rb') as f:
+        for b in iter(lambda:f.read(1048576),b''):h.update(b)
+    return h.hexdigest()
+def save(name,v):(out/name).write_text(json.dumps(v,indent=2,sort_keys=True)+'\n')
+attempt={'request_id':request['request_id'],'execution_source_sha':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),
+         'started_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'status':'CONSUMED_STARTED','further_execution_authorized':False}
+save('attempt.json',attempt)
+r=dict(attempt,schema='engine-clock-python-bootstrap-acquisition-v1',runtime_executed=False,bootstrap_executed=False,
+       source_build_executed=False,installed_identity_verified=False,build_ready=False,full_lock_ready=False,image_preparation_ready=False,native_admission=False)
+try:
+    assert not subprocess.check_output(['git','status','--porcelain'],text=True).strip()
+    assert sys.executable==request['tool_python'] and platform.python_version()=='3.11.17'
+    r.update(actual_tool_python=platform.python_version(),request_sha256=digest(request_path),
+             operator_sha256=digest(root/'docs/evidence/STAGE7_ENGINE_CLOCK_PYTHON_BOOTSTRAP_OPERATOR.txt'),free_bytes_before=shutil.disk_usage(out).free)
+    assert r['free_bytes_before']>=1073741824
+    for meta in request['discovery_inputs']:
+        p=root/meta['path'];assert p.stat().st_size==meta['nbytes'] and digest(p)==meta['sha256']
+        shutil.copyfile(p,out/p.name)
+    filename=request['asset']['name']
+    cmd=['gh','release','download',request['release_tag'],'--repo','github.com/actions/python-versions',
+         '--pattern',filename,'--output',str(out/filename)]
+    r['download_argv']=cmd
+    env=dict(os.environ)
+    for key in ('GH_DEBUG','GH_TRACE','GIT_TRACE','GIT_TRACE_CURL'):env.pop(key,None)
+    env['GH_PROMPT_DISABLED']='1'
+    reason=None;peak=0
+    with (out/'download.stdout').open('xb') as stdout,(out/'download.stderr').open('xb') as stderr:
+        proc=subprocess.Popen(cmd,stdout=stdout,stderr=stderr,env=env,start_new_session=True)
+        try:
+            while True:
+                sizes=[]
+                for p in out.rglob('*'):
+                    try:
+                        if p.is_file():sizes.append(p.stat().st_size)
+                    except FileNotFoundError:pass
+                peak=max(peak,sum(sizes))
+                if time.monotonic()-start>180:reason='DEADLINE'
+                elif peak>167772160:reason='TREE_LIMIT'
+                elif (out/filename).exists() and (out/filename).stat().st_size>134217728:reason='ARCHIVE_LIMIT'
+                elif (out/'download.stdout').stat().st_size+(out/'download.stderr').stat().st_size>1048576:reason='LOG_LIMIT'
+                if reason or proc.poll() is not None:break
+                time.sleep(.1)
+        finally:
+            if proc.poll() is None:
+                os.killpg(proc.pid,signal.SIGTERM)
+                try:proc.wait(timeout=2)
+                except subprocess.TimeoutExpired:
+                    os.killpg(proc.pid,signal.SIGKILL);proc.wait(timeout=3)
+            else:proc.wait()
+    r.update(download_exit_code=proc.returncode,limit_failure=reason,observed_tree_peak_bytes=peak,
+             application_download_invocations=1,internal_request_count=None,internal_redirect_count=None,tls_verify_counter=None)
+    assert proc.returncode==0 and reason is None
+    p=out/filename
+    assert p.stat().st_size==request['asset']['size'] and digest(p)==request['asset']['digest'].split(':',1)[1]
+    r.update(status='ARCHIVE_BYTES_ACQUIRED_NOT_EXECUTED',archive={'name':filename,'nbytes':p.stat().st_size,'sha256':digest(p)},published_digest_match=True)
+except Exception as exc:
+    r.update(status='FAILED_OR_INCOMPLETE',error_class=type(exc).__name__)
+finally:
+    r['duration_seconds']=time.monotonic()-start
+    r['files']={p.name:{'nbytes':p.stat().st_size,'sha256':digest(p)} for p in sorted(out.iterdir()) if p.is_file() and p.name!='receipt.json'}
+    save('receipt.json',r)
+    print(json.dumps({k:r.get(k) for k in ('status','execution_source_sha','download_exit_code','duration_seconds','runtime_executed')}))

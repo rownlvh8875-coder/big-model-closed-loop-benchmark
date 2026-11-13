@@ -1,0 +1,38 @@
+{
+  "activation": "INACTIVE_CANDIDATE_INPUT_ONLY",
+  "archive_namespace_is_not_installed_identity": true,
+  "bootstrap_execution_authorized": false,
+  "bootstrap_selection": {
+    "actual_selection_verified": false,
+    "after_bootstrap_tools": "PR47 exact pip26.2.2/setuptools80.9.0/wheel0.45.1 wheels, offline/hash-bound only",
+    "bundled_pip_version": "24.0",
+    "bundled_setuptools_version": "79.0.1",
+    "ensurepip_config_wheel_pkg_dir": ""
+  },
+  "build_ready": false,
+  "candidate_deployment_prefix": "/opt/hostedtoolcache/Python/3.11.18/x64",
+  "component_input_sha256": "79ea921947cf3827de727144c6d40f2ca348d73e16527d88c466be8634d0d04a",
+  "current_cloud_python_substitution_allowed": false,
+  "full_lock_ready": false,
+  "image_preparation_ready": false,
+  "installed_identity_sha256": null,
+  "loader_environment_override_allowed": false,
+  "native_admission": false,
+  "parent_progressbar_policy_sha256": "e37c559811b28eae4384fa1a431b11008ac7753e86901395275cee01bd836af3",
+  "prefix_scope": "builder candidate only, outside the unchanged main runtime inventory roots; not an admitted full-image recipe",
+  "remaining_gates": [
+    "Genuine base/OS/loader and transitive native-library hashes plus symbol-version/ABI compatibility;19uncovered dependency names and PT_INTERP are hints, not complete resolution.",
+    "Source-controlled bounded archive staging/actual prefix/mount/venv/isolated environment and startup-hook policy, fixtures, cleanup and failure preservation. Do not invoke included setup.sh.",
+    "Authenticate actual extracted/staged executable/stdlib/bootstrap bytes against archive manifest; design separately from old main-image inventory roots.",
+    "Review exact executable3.11.18 bootstrap/venv behavior under admitted OS/prefix with no loader override, network or fallback. No such execution now.",
+    "Implement and fixture-review progressbar source staging versus pip build-tree snapshots and original payload/license/output checks before registering a new one-use build request."
+  ],
+  "required_fixture_review_sha": null,
+  "required_launcher_source_sha": null,
+  "required_os_input_lock_sha256": null,
+  "runtime_execution_authorized": false,
+  "schema": "engine-clock-python-bootstrap-inactive-binding-v1",
+  "setup_sh_execution_allowed": false,
+  "source_build_authorized": false,
+  "source_relocation_patch_allowed": false
+}
