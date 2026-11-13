@@ -222,6 +222,15 @@ def _release(name,version,path,deadline):
     return parse(data),{'url':url,'http_status':200,'nbytes':len(data),'sha256':hashlib.sha256(data).hexdigest(),'seconds':time.monotonic()-start,'tls_default_context_verified':True,'redirects':0}
 
 
+def audit_wheels(paths,*,deadline):
+    remaining={'archive_bytes':BUDGET['max_total_archive_bytes'],'decoded_bytes':BUDGET['max_decoded_bytes'],'members':BUDGET['max_members']};rows=[]
+    for path in paths:
+        row=wheel.inspect_wheel(path,deadline=deadline,remaining=remaining)
+        rows.append(row)
+        for key,field in (('archive_bytes','nbytes'),('decoded_bytes','decoded_bytes'),('members','member_count')):remaining[key]-=row[field]
+    return rows
+
+
 def _kst():return datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9))).isoformat()
 
 def _write(path,value):
@@ -253,10 +262,8 @@ def run_preparation(root,request):
               and type(gate['requirements_checked']) is int and 0<gate['requirements_checked']<=1024 and gate['rejections']==[],'BINARY_GATE_FAILED')
         receipt['binary_gate']=gate
         paths=sorted((out/'wheels').iterdir());_need(0<len(paths)<=96 and all(p.suffix=='.whl' and not p.is_symlink() for p in paths),'UNSUPPORTED_DOWNLOADED_SET')
-        rows=[];audit_stop=time.perf_counter()+120
-        for path in paths:
-            _need(time.monotonic()-started<BUDGET['total_timeout_seconds'],'OPERATION_DEADLINE');rows.append(wheel.inspect_wheel(path,deadline=audit_stop))
-        _need(sum(v['nbytes'] for v in rows)<=BUDGET['max_total_archive_bytes'] and sum(v['decoded_bytes'] for v in rows)<=BUDGET['max_decoded_bytes'] and sum(v['member_count'] for v in rows)<=BUDGET['max_members'],'WHEEL_SET_LIMIT')
+        _need(time.monotonic()-started<BUDGET['total_timeout_seconds'],'OPERATION_DEADLINE');audit_stop=time.perf_counter()+min(120,BUDGET['total_timeout_seconds']-(time.monotonic()-started))
+        rows=audit_wheels(paths,deadline=audit_stop)
         graph=wheel.validate_graph(rows,request['root_requirements'],deadline=audit_stop);_write(out/'target-graph.json',graph)
         local={Path(v['path']).name:v for v in LOCAL_INPUTS};seen=set();stop=min(started+BUDGET['total_timeout_seconds'],time.monotonic()+300)
         for row in rows:

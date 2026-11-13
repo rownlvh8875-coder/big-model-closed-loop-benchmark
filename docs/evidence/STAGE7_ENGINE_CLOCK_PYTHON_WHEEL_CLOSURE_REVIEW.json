@@ -1,0 +1,96 @@
+{
+  "schema": "python-wheel-closure-source-review-v1",
+  "base_sha": "264da597c32f0189e4f9ed1e7f27d71dffd8006d",
+  "reviewed_head_sha": "d61e72dd350cc4ceebfc0a04194ff703a4409507",
+  "reviewer": "/root/python_wheel_closure_review",
+  "model": "gpt-6-astra",
+  "reasoning_effort": "medium",
+  "critical": [],
+  "important": [
+    {
+      "id": "PW-I1",
+      "finding": "Aggregate archive/decoded/member limits enforced after expensive multi-wheel audit.",
+      "ruling": "Accept; one TDD correction passes remaining aggregate allowances to every reader. Archive limit checked before hashing, members before processing, decoded count before member opening.",
+      "regression": "Small-budget two-wheel archive/decoded/member cases reject before second payload opens. RED then23 focused GREEN/0.182s.",
+      "cost": "One source/test change and required full CPU rerun; no rereview."
+    }
+  ],
+  "minor_deferred": [
+    {
+      "id": "PW-M1",
+      "finding": "Top-level dist-info directory name/version identity not checked independently of METADATA/filename.",
+      "ruling": "Defer general malformed-layout regression; actual completed input wheel layouts will be inspected separately before promotion.",
+      "cost": "General input reader can accept malformed dist-info layout; no execution/install or installed compatibility approval follows."
+    },
+    {
+      "id": "PW-M2",
+      "finding": "Partial publisher JSON response not retained on timeout/size/transport failure.",
+      "ruling": "Defer transport-partial enhancement. Completed JSON remains preserved and hash-bound; consumed failure retains fixed error/status where available.",
+      "cost": "Reduced diagnostic bytes for failed publisher request; success integrity unaffected."
+    }
+  ],
+  "declines_rulings": [
+    [
+      "Wheel download source execution",
+      "Accept inspected pip wheel path and real offline owned source rejection; no concrete source bypass.",
+      "Trusted-tool source binding and preparation guards remain required; fixtures are not real package success."
+    ],
+    [
+      "Host marker disagreement",
+      "Require separate target3.11.18 graph verification after pip; fail consumed without retry on disagreement.",
+      "May reject a host-resolved set; no target ABI claim."
+    ],
+    [
+      "CI proof authenticity",
+      "Root must acquire authenticated GitHub API bytes and bind exact hashes before registering; operator checks semantic correspondence.",
+      "Local JSON verifier alone does not establish GitHub authenticity."
+    ],
+    [
+      "Pip redirects",
+      "Admit genuine HTTPS public origins and require final genuine publisher SHA/size; defer full redirect instrumentation.",
+      "No assertion that every pip redirect hop was metered/origin-validated."
+    ],
+    [
+      "Polling peaks/internal traffic",
+      "Keep explicit polling/not-hard-quota and null pip traffic totals.",
+      "May miss transient peaks; no full HTTP/temp evidence claim."
+    ],
+    [
+      "Installed ABI/startup/native",
+      "Keep all installed/runtime/image/native flags false.",
+      "Separate later installed/input recipe review and provider-free image evidence remain necessary."
+    ],
+    [
+      "Broad style refactor/review rounds",
+      "Preserve incremental code and single review/one Important fix pass.",
+      "No fresh independent rereview after root correction."
+    ]
+  ],
+  "verification": {
+    "initial_full_tests": 973,
+    "initial_full_seconds": 100.216,
+    "optional_skips": 7,
+    "independent_pure_operator_tests": 22,
+    "independent_pure_operator_seconds": 0.201,
+    "independent_gate_tests": 8,
+    "independent_gate_seconds": 1.148,
+    "independent_rereview": false,
+    "final_full": {
+      "tests": 974,
+      "seconds": 100.959,
+      "optional_skips": 7,
+      "result": "PASS"
+    },
+    "source_ci": "PENDING",
+    "final_focused": {
+      "pure_operator_tests": 23,
+      "pure_operator_seconds": 0.182,
+      "gate_tests": 8,
+      "gate_seconds": 1.177
+    }
+  },
+  "scope_limits": [
+    "Actual publisher downloads, source CI, activation and completed lock not established by source review.",
+    "No Docker/native/model/package install or Cloud publication/main merge."
+  ]
+}

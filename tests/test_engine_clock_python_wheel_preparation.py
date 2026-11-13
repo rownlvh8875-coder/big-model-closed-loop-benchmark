@@ -91,4 +91,24 @@ class WheelPreparationTests(unittest.TestCase):
     with self.assertRaisesRegex(ValueError,'^OUTPUT_EXISTS$'):b.run_preparation(root,req)
    self.assertEqual(b'preserved',(out/'attempt.json').read_bytes())
 
+ def test_multi_wheel_aggregate_caps_block_before_second_payload_open(self):
+  from test_engine_clock_python_wheel_closure import make_wheel
+  import zipfile
+  with tempfile.TemporaryDirectory() as tmp:
+   root=Path(tmp);paths=[make_wheel(root,name=n) for n in ('first','second')]
+   first,second=[b.wheel.inspect_wheel(p) for p in paths]
+   with zipfile.ZipFile(paths[1]) as archive:first_payload=archive.infolist()[0].file_size
+   limits={'max_total_archive_bytes':first['nbytes']+second['nbytes']-1,
+           'max_decoded_bytes':first['decoded_bytes']+first_payload-1,
+           'max_members':first['member_count']+second['member_count']-1}
+   original=zipfile.ZipFile.open
+   for key,cap in limits.items():
+    opened=[]
+    def observe(archive,member,*args,**kwargs):
+     opened.append(member.filename if isinstance(member,zipfile.ZipInfo) else member)
+     return original(archive,member,*args,**kwargs)
+    with self.subTest(cap=key),patch.dict(b.BUDGET,{key:cap}),patch.object(zipfile.ZipFile,'open',observe):
+     with self.assertRaisesRegex(ValueError,'^WHEEL_SET_LIMIT$'):b.audit_wheels(paths,deadline=b.time.perf_counter()+10)
+     self.assertEqual(first['member_count'],len(opened),'second wheel payload must remain unopened')
+
 if __name__=='__main__':unittest.main()

@@ -58,8 +58,10 @@ def _message(raw):
     _need(not value.defects and not value.is_multipart(),'INVALID_WHEEL_INPUT');return value
 
 
-def inspect_wheel(path,*,deadline=None):
+def inspect_wheel(path,*,deadline=None,remaining=None):
     stop=perf_counter()+120 if deadline is None else deadline
+    remaining={'archive_bytes':MAX_ARCHIVE,'decoded_bytes':MAX_DECODED,'members':MAX_MEMBERS} if remaining is None else remaining
+    _need(type(remaining) is dict and set(remaining)=={'archive_bytes','decoded_bytes','members'} and all(type(v) is int and v>=0 for v in remaining.values()),'WHEEL_SET_LIMIT')
     try:
         path=Path(path);_need(re.fullmatch(r'[A-Za-z0-9_.+!\-]{1,240}\.whl',path.name) is not None,'INVALID_WHEEL_INPUT')
         name,version,build,tags=parse_wheel_filename(path.name)
@@ -67,17 +69,20 @@ def inspect_wheel(path,*,deadline=None):
         fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK)
         with os.fdopen(fd,'rb') as stream:
             before=os.fstat(stream.fileno());_need(stat.S_ISREG(before.st_mode) and before.st_nlink==1 and 0<before.st_size<=MAX_ARCHIVE,'INVALID_WHEEL_INPUT')
+            _need(before.st_size<=remaining['archive_bytes'],'WHEEL_SET_LIMIT')
             archive_hash=hashlib.sha256();n=0
             for block in iter(lambda:stream.read(MIB),b''):_time(stop);archive_hash.update(block);n+=len(block);_need(n<=MAX_ARCHIVE,'INVALID_WHEEL_INPUT')
             _need(n==before.st_size,'INVALID_WHEEL_INPUT');stream.seek(0)
             kinds,hashes,sizes,headers={}, {}, {}, {};decoded=0
             with zipfile.ZipFile(stream) as archive:
                 infos=archive.infolist();_need(0<len(infos)<=MAX_MEMBERS,'INVALID_WHEEL_INPUT')
+                _need(len(infos)<=remaining['members'],'WHEEL_SET_LIMIT')
                 for info in infos:
                     _time(stop);directory=info.is_dir();p=info.filename[:-1] if directory else info.filename
                     _need(info.orig_filename==info.filename and _safe(p) and p not in kinds and not info.flag_bits&1 and info.compress_type in (0,8),'INVALID_WHEEL_INPUT')
                     mode=info.external_attr>>16;_need(stat.S_IFMT(mode) in ((0,stat.S_IFDIR) if directory else (0,stat.S_IFREG)) and not stat.S_IMODE(mode)&0o7000,'INVALID_WHEEL_INPUT')
-                    _need(0<=info.file_size<=MAX_MEMBER and decoded+info.file_size<=MAX_DECODED,'INVALID_WHEEL_INPUT');kinds[p]='directory' if directory else 'file'
+                    _need(0<=info.file_size<=MAX_MEMBER and decoded+info.file_size<=MAX_DECODED,'INVALID_WHEEL_INPUT')
+                    _need(decoded+info.file_size<=remaining['decoded_bytes'],'WHEEL_SET_LIMIT');kinds[p]='directory' if directory else 'file'
                     if directory:_need(info.file_size==0,'INVALID_WHEEL_INPUT');continue
                     keep=p.count('/')==1 and p.split('/')[0].endswith('.dist-info') and p.rsplit('/',1)[1] in ('METADATA','WHEEL','RECORD')
                     digesters={a:hashlib.new(a) for a in ('sha256','sha384','sha512')};count=0;raw=bytearray()
@@ -119,7 +124,7 @@ def inspect_wheel(path,*,deadline=None):
                 'provides_extra':sorted(extras),'tags':sorted(str(v) for v in tags),'member_count':len(infos),'decoded_bytes':decoded,
                 'startup_hooks':sorted(p for p in hashes if p.endswith('.pth') or p.rsplit('/',1)[-1] in ('sitecustomize.py','usercustomize.py'))}
     except (OSError,ValueError,TypeError,KeyError,UnicodeError,zipfile.BadZipFile,csv.Error) as exc:
-        allowed={'WHEEL_AUDIT_DEADLINE','UNSUPPORTED_WHEEL_TARGET','UNSUPPORTED_WHEEL_PYTHON','WHEEL_INPUT_CHANGED'}
+        allowed={'WHEEL_SET_LIMIT','WHEEL_AUDIT_DEADLINE','UNSUPPORTED_WHEEL_TARGET','UNSUPPORTED_WHEEL_PYTHON','WHEEL_INPUT_CHANGED'}
         raise ValueError(str(exc) if type(exc) is ValueError and str(exc) in allowed else 'INVALID_WHEEL_INPUT') from None
 
 
