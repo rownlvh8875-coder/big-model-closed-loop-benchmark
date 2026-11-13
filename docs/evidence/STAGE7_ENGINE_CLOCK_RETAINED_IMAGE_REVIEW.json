@@ -1,0 +1,85 @@
+{
+  "schema": "engine-clock-retained-image-review-v1",
+  "base": "d3d0658cc2cd565bd1319736e3229478184de412",
+  "reviewed_head": "3bc98d73024b7b921b124d00fdb7bd70aa31bc6f",
+  "reviewer": "sealed_retained_input_review",
+  "model": "gpt-6-astra",
+  "reasoning": "medium",
+  "read_only": true,
+  "critical": 0,
+  "important": 0,
+  "minor": 2,
+  "focused_independent": {
+    "tests": 6,
+    "status": "PASS",
+    "seconds": 0.087
+  },
+  "full_parent_verified": {
+    "tests": 1049,
+    "skipped": 7,
+    "seconds": 97.365,
+    "status": "PASS"
+  },
+  "retained_lock_independent_check": {
+    "files": 166,
+    "bytes": 74460858,
+    "remaining": 26
+  },
+  "important_fix_passes": 0,
+  "rereview_performed": false,
+  "deferred_minor": [
+    {
+      "id": "RI-M1",
+      "finding": "API JSON partial file retained by inherited client is not passed to failure-event size projection.",
+      "ruling": "Defer; original partial remains preserved and authentication unaffected.",
+      "cost": "Manual inspection of retained JSON partial files is required to obtain their byte count."
+    },
+    {
+      "id": "RI-M2",
+      "finding": "Six fixture names imply duplicate/archive traversal/unregistered member/CRC/partial and complete API success-path coverage they do not directly exercise.",
+      "ruling": "Defer additional owned negative and fake-success path fixtures; reviewer inspected guards and found no bypass.",
+      "cost": "Future guard regressions in those branches are not all detected by current six cases; no claim of exhaustive fixture coverage."
+    }
+  ],
+  "declined_rulings": [
+    {
+      "behavior": "Live API/token/artifact/redirect availability",
+      "ruling": "Future actual worker and root must authenticate real service responses; fixtures do not prove availability."
+    },
+    {
+      "behavior": "Reacquiring historical original ZIP provenance",
+      "ruling": "Parent already authenticated original API/digest/size/CRC/166pinnedmembers and retained raw; reviewer independently checked committed lock-to-full-lock membership, not original ZIP."
+    },
+    {
+      "behavior": "Precise original transfer cause",
+      "ruling": "Remains NOT_PROVEN; no inferred timeout/status."
+    },
+    {
+      "behavior": "Actual v2 timing/disk/artifact/image/install/preflight",
+      "ruling": "Must be measured by new single-use operation; null until established."
+    },
+    {
+      "behavior": "Native/ABI/GL/model",
+      "ruling": "Outside provider-free scope; admissionfalse/calls0."
+    },
+    {
+      "behavior": "Separate unchanged v1 rereview",
+      "ruling": "Historical review/three repairs preserved; only compatibility examined in new scope."
+    },
+    {
+      "behavior": "Full-suite independent rerun",
+      "ruling": "Parent actual full1049/7skip log verified; reviewer independently ran six focused cases only."
+    },
+    {
+      "behavior": "Registry/Cloud/main publication",
+      "ruling": "Excluded and remain unperformed."
+    },
+    {
+      "behavior": "Future sourceCI/request qualification",
+      "ruling": "Final exact-head push/PR fourPASS/artifacts0 plus actual sole-request activation required before any new run."
+    }
+  ],
+  "verdict": "READY_FOR_SOURCE_QUALIFICATION_WITH_MINOR_DEFERRALS",
+  "native_admission": false,
+  "official_model_calls": 0
+}
