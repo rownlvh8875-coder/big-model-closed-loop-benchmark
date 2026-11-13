@@ -1,0 +1,192 @@
+{
+  "activation_sha": "a9fee1c19b975d2dd218eb8c5b14fe941a257969",
+  "archive_check": {
+    "all_input_payloads_matched": 51,
+    "all_inventory_fields_verified": true,
+    "all_root_nodes_matched": 12726,
+    "compressed_sha256": "9f87792afdebcbbadacd5e353c2ddd2e50e3e1a78bcfcbc5e010c1cf879ab465",
+    "counts": {
+      "directory": 1030,
+      "file": 12923,
+      "symlink": 168
+    },
+    "decoded_tar_bytes": 491816960,
+    "decoded_tar_sha256": "cf67a5f7e18043545825f68eaeb0026905856b8e14c90ac13602865c74be65b2",
+    "entries": 14121,
+    "payload_executed_locally": false,
+    "regular_bytes": 472466795,
+    "single_gzip_eof_crc": true,
+    "zero_tail_bytes": 7168,
+    "zip_digest_crc_members_verified": true
+  },
+  "build_binding_diagnosis": {
+    "deployed_entry": "engine_clock_builder_record_driver.py",
+    "first_missing_call_before_pip_main": "pip_wheel_args",
+    "genuine_legacy_module_present": "legacy-driver.py",
+    "interpretation": "New entry adapter changed sibling driver identity; unchanged build helper requires legacy snapshot API. The missing pip_wheel_args raises before pip_main, matching retained fixed failure and absence of unpack manifests.",
+    "legacy_build_loads_sibling": "driver.py",
+    "missing_legacy_APIs": [
+      "_check_source_map",
+      "pip_wheel_args",
+      "source_snapshot",
+      "validate_snapshots"
+    ],
+    "package_source_execution": false
+  },
+  "core_wire": {
+    "nbytes": 1103,
+    "sha256": "339025c267cff82780e403e1b14271847ce818a2431342c82a2f73f007c1e438"
+  },
+  "created_kst": "2026-11-13T22:45:08+09:00",
+  "driver_failure": {
+    "code": "COMMAND_FAILED",
+    "schema": "builder-driver-failure-v1",
+    "status": "FAILED",
+    "steps": [
+      {
+        "returncode": 0,
+        "stage": "VENV",
+        "status": "EXITED",
+        "stderr_bytes": 0,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_bytes": 0,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "returncode": 0,
+        "stage": "ENSUREPIP",
+        "status": "EXITED",
+        "stderr_bytes": 0,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_bytes": 257,
+        "stdout_sha256": "4705d610d463f9772491b2832f2b8fe5d2f0db25f7b672f1608ceb389bcf5419"
+      },
+      {
+        "returncode": 0,
+        "stage": "TOOLS",
+        "status": "EXITED",
+        "stderr_bytes": 0,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_bytes": 729,
+        "stdout_sha256": "6b9d3cac9ec5a5c08a0cb819f3bab158c605d813efb2de13d0811402714cfb95"
+      },
+      {
+        "returncode": 1,
+        "stage": "BUILD",
+        "status": "EXITED",
+        "stderr_bytes": 0,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_bytes": 72,
+        "stdout_sha256": "37c566ff834bbac22a5f442bbece5d117587427c5ca26cbfac095862948a96e0"
+      }
+    ]
+  },
+  "errors": [
+    {
+      "code": "BUILDER_EXECUTION_FAILED"
+    }
+  ],
+  "exact_outer_core_source_failure_wires_reconstructed": true,
+  "files": {
+    "original-artifact.zip": {
+      "nbytes": 245892528,
+      "sha256": "9b7fdf9bb3d890b7f91ad8123f02857ea9d5326ce5d8adac1a18f8fc8e0b6d8c"
+    },
+    "preparation.json": {
+      "nbytes": 23261,
+      "sha256": "82fd7c7b34dfca52cda61ddb7dc92d6dd5c0bf4c6b59b7a0ab227bd1dd91cb36"
+    },
+    "retained-inventory.json": {
+      "nbytes": 4388343,
+      "sha256": "1eb64440cca5c397e21a5a8dee5e0f76edfd1a5997d9fcd0c7e3a21d631324ce"
+    },
+    "retained-workspaces.decoded.tar": {
+      "nbytes": 491816960,
+      "sha256": "cf67a5f7e18043545825f68eaeb0026905856b8e14c90ac13602865c74be65b2"
+    },
+    "retained-workspaces.tar.gz": {
+      "nbytes": 232560081,
+      "sha256": "9f87792afdebcbbadacd5e353c2ddd2e50e3e1a78bcfcbc5e010c1cf879ab465"
+    },
+    "root-files.json": {
+      "nbytes": 8572266,
+      "sha256": "64cf42d7de79b780ee23addbab7212f95068e2a17d5383cd1e3dbf98dd84fb55"
+    },
+    "source-closure.json": {
+      "nbytes": 25826,
+      "sha256": "3a24e64418b2abae9353715ff1e61a019dc9f40a627800be94be9d53e2054d0e"
+    }
+  },
+  "finished_kst": "2026-11-13T22:46:49+09:00",
+  "full_lock_ready": false,
+  "image_preparation_ready": false,
+  "input_bytes": 109285137,
+  "input_transports": 51,
+  "job_id": 131922493264,
+  "namespace": {
+    "additional_userns": {
+      "errno": 28,
+      "returncode": -1,
+      "status": "RETURNED"
+    },
+    "build": {
+      "bytes": 268435456,
+      "readonly": false,
+      "tmpfs": true
+    },
+    "capabilities": {
+      "CapAmb": 0,
+      "CapBnd": 0,
+      "CapEff": 0,
+      "CapInh": 0,
+      "CapPrm": 0
+    },
+    "errors": [],
+    "gid": 0,
+    "network": {
+      "interface_count": null,
+      "interfaces_present": false,
+      "only_loopback": null,
+      "route_lines": 1
+    },
+    "python": {
+      "dont_write_bytecode": true,
+      "isolated": true,
+      "no_site": true,
+      "version": [
+        3,
+        11,
+        18
+      ]
+    },
+    "readonly": {
+      "/": true,
+      "/dev": true,
+      "/dev/pts": true,
+      "/proc": true
+    },
+    "schema": "builder-namespace-proof-v1",
+    "uid": 0,
+    "visible_userns_limit": 2147483647
+  },
+  "namespace_validated": true,
+  "native_admission": false,
+  "official_model_calls": 0,
+  "qualification_status": "SUPPORTED_SCOPED_PROFILE",
+  "raw_directory": "output/stage7-builder-record-evidence/builder-20261113-04",
+  "request_consumed": true,
+  "request_id": "builder-20261113-04",
+  "root_bytes": 351886111,
+  "root_nodes_independently_matched": 12726,
+  "run_attempt": 1,
+  "run_id": 43436389710,
+  "schema": "builder-vendored-records-consumption-v1",
+  "source_failure_public_wire_bytes": 72,
+  "source_sha": "398a2912f6b688cd684ded7829b6ebf715e3ea13",
+  "status": "FAILED_OR_INCOMPLETE",
+  "target_execution_verified": false,
+  "unique_workflow_branch_runs": 1,
+  "wheel_verified": false,
+  "workflow_conclusion": "failure",
+  "workflow_id": 417318675
+}
