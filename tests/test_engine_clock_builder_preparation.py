@@ -144,6 +144,19 @@ class PreparationTests(unittest.TestCase):
                 prep.require_remote_environment({})
             self.assertFalse(out.exists())
 
+    def test_required_host_disk_capacity_is_measured_and_failure_facts_survive(self):
+        from types import SimpleNamespace
+        with tempfile.TemporaryDirectory() as tmp:
+            observed = prep.check_host_capacity(Path(tmp))
+            self.assertEqual(1073741824, observed['required_free_bytes'])
+            self.assertGreaterEqual(observed['available_bytes'], 1073741824)
+            facts = {}
+            with patch.object(prep.os, 'statvfs', return_value=SimpleNamespace(f_bavail=1, f_frsize=4096)):
+                with self.assertRaisesRegex(ValueError, '^HOST_CAPACITY_INSUFFICIENT$'):
+                    prep.check_host_capacity(Path(tmp), facts)
+            self.assertEqual(4096, facts['available_bytes'])
+            self.assertTrue(facts['checked_before_input_transport'])
+
     def test_real_input_metadata_compiles_without_staging_or_execution(self):
         root = Path(__file__).resolve().parent.parent
         request = copy.deepcopy(self.request);request['inputs'] = prep.expected_inputs(root)

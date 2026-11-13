@@ -329,6 +329,15 @@ def input_members(sources, request, store, generated):
                 process.stdout.close();process.wait(timeout=5)
 
 
+def check_host_capacity(path, facts=None):
+    if facts is None:facts = {}
+    fs = os.statvfs(path)
+    facts.update(available_bytes=fs.f_bavail * fs.f_frsize, required_free_bytes=1073741824,
+                 checked_before_input_transport=True)
+    _need(facts['available_bytes'] >= facts['required_free_bytes'], 'HOST_CAPACITY_INSUFFICIENT')
+    return facts
+
+
 def open_build_mount(request_id):
     path = Path('/tmp/engine-clock-build-' + request_id)
     fd = staging._absolute_dir(path)
@@ -388,6 +397,8 @@ def run_preparation(root, request, env):
     try:
         receipt['context'] = authenticate(root, request, env)
         work.mkdir(mode=0o700, exist_ok=False)
+        receipt['host_capacity'] = {}
+        check_host_capacity(work, receipt['host_capacity'])
         buildfd, receipt['build_mount'] = open_build_mount(request['request_id'])
         receipt['host'] = {}
         capability_probe(work, buildfd, receipt['host'])
@@ -423,7 +434,7 @@ def run_preparation(root, request, env):
         (out / policy['expected_filename']).write_bytes(wheel)
         receipt.update(status='BUILT_WHEEL_VERIFIED', target_execution_verified=True)
     except ValueError as exc:
-        allowed = {'UNSUPPORTED_HOST_TOOL', 'UNSUPPORTED_HOST_OPTIONS', 'UNSUPPORTED_HOST_NAMESPACE', 'UNSUPPORTED_HOST_QUOTA',
+        allowed = {'UNSUPPORTED_HOST_TOOL', 'UNSUPPORTED_HOST_OPTIONS', 'UNSUPPORTED_HOST_NAMESPACE', 'UNSUPPORTED_HOST_QUOTA', 'HOST_CAPACITY_INSUFFICIENT',
                    'DOWNLOAD_URL_REJECTED', 'DOWNLOAD_REDIRECT_REJECTED', 'DOWNLOAD_HTTP_REJECTED',
                    'DOWNLOAD_DEADLINE', 'DOWNLOAD_SIZE_MISMATCH', 'DOWNLOAD_CONTENT_MISMATCH',
                    'STAGING_FAILED', 'ROOT_VERIFICATION_FAILED', 'BUILDER_EXECUTION_FAILED',
