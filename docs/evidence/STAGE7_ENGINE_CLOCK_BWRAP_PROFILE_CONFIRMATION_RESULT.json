@@ -1,0 +1,185 @@
+{
+  "schema": "bwrap-profile-confirmation-consumption-v1",
+  "request_id": "namespace-diagnostic-20261113-04",
+  "source_sha": "197cd79fe3ee26342f970a1c8f153ef0215652e5",
+  "activation_sha": "4c02fb15e3a671c9aa2c9b42645260cd1d21ef41",
+  "workflow_id": 417212710,
+  "run_id": 43419969613,
+  "job_id": 131867219327,
+  "run_attempt": 1,
+  "unique_workflow_branch_runs": 1,
+  "request_consumed": true,
+  "created_kst": "2026-11-13T20:48:21+09:00",
+  "finished_kst": "2026-11-13T20:48:49+09:00",
+  "workflow_conclusion": "success",
+  "status": "SUPPORTED_SCOPED_PROFILE",
+  "scope": "Trusted helper backend on this exact job; not candidate/image/scientific readiness",
+  "before_exit": 1,
+  "profile_loads": 1,
+  "after_exit": 0,
+  "after_validated": true,
+  "observation": {
+    "build_write": true,
+    "caps": {
+      "CapAmb": "0000000000000000",
+      "CapBnd": "0000000000000000",
+      "CapEff": "0000000000000000",
+      "CapInh": "0000000000000000",
+      "CapPrm": "0000000000000000"
+    },
+    "env_keys": [
+      "LANG",
+      "LC_ALL",
+      "PATH",
+      "PIP_CONFIG_FILE",
+      "PIP_NO_COMPILE",
+      "PWD",
+      "PYTHONDONTWRITEBYTECODE",
+      "PYTHONHASHSEED",
+      "SOURCE_DATE_EPOCH",
+      "TMPDIR",
+      "TZ"
+    ],
+    "gid": 0,
+    "namespaces": {
+      "ipc": "ipc:[4026532317]",
+      "mnt": "mnt:[4026532315]",
+      "net": "net:[4026532319]",
+      "pid": "pid:[4026532318]",
+      "user": "user:[4026532379]",
+      "uts": "uts:[4026532316]"
+    },
+    "profile": "stage7-bwrap (unconfined)",
+    "profile_sha256": "a9cbfb0d0c0284dd89ca44208cc1810d5108980e83d5d6b754883f0ef1b4c04e",
+    "pwd": "/build",
+    "pwd_sha256": "5c3174b74edc6f2b9e0743594b8bd3c7f31e4f4405758cc9872b3fe1de1d28b4",
+    "root_write_errno": 30,
+    "uid": 0
+  },
+  "host": {
+    "apparmor_enabled": true,
+    "image_version": "20261101.360.1",
+    "kernel": "7.0.0-1017-azure",
+    "namespaces": {
+      "ipc": "ipc:[4026531839]",
+      "mnt": "mnt:[4026531832]",
+      "net": "net:[4026531833]",
+      "pid": "pid:[4026531836]",
+      "user": "user:[4026531837]",
+      "uts": "uts:[4026531838]"
+    },
+    "profile_list_after": {
+      "any_dedicated_name": true,
+      "dedicated_profile": true,
+      "transport": {
+        "returncode": 0,
+        "status": "EXITED",
+        "stderr_bytes": 0,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_bytes": 3160,
+        "stdout_sha256": "ccd6655358791eeaac9018465c884ea7f423f132359121e2a7b859fa5dce256f"
+      },
+      "unprivileged_profile": true
+    },
+    "profile_list_before": {
+      "any_dedicated_name": false,
+      "dedicated_profile": false,
+      "transport": {
+        "returncode": 0,
+        "status": "EXITED",
+        "stderr_bytes": 0,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_bytes": 3134,
+        "stdout_sha256": "4e942c378ff43ef4656e0d8bf5511eada43f5ffa3a511280802f00258e8afaa1"
+      },
+      "unprivileged_profile": true
+    },
+    "restrict_unprivileged_userns": true
+  },
+  "helper": {
+    "mode": 493,
+    "nbytes": 194592,
+    "owner": 0,
+    "sha256": "ed290d7b467eba236ff705a83938ecf78a5dc055648ef5420937b9717b29af3e",
+    "source_sha256": "9760d007363e3abba7c747489910f9f82d9fca53ba3bd3282e396fa3c97a3314"
+  },
+  "build_mount": {
+    "bytes": 268435456,
+    "device_matches": true,
+    "empty": true,
+    "filesystem": "tmpfs",
+    "named_inode_matches": true,
+    "options": [
+      "rw",
+      "nosuid",
+      "nodev",
+      "noexec",
+      "relatime"
+    ],
+    "owner_matches": true,
+    "readonly": false
+  },
+  "profile_sha256": "e00bd0234d4d2a14a37d6780cab2a4ff080d7b7bd036b2c398f55a3b1903f14e",
+  "candidate_execution": false,
+  "model_execution": false,
+  "native_admission": false,
+  "image_ready": false,
+  "files": {
+    "run-logs.zip": {
+      "nbytes": 17592,
+      "sha256": "d2075f2c22da765d48760fffd7a5e4fd0888df2e0f6a55d81b60964fe15869e7"
+    },
+    "profile.apparmor": {
+      "nbytes": 175,
+      "sha256": "e00bd0234d4d2a14a37d6780cab2a4ff080d7b7bd036b2c398f55a3b1903f14e"
+    },
+    "activation-commit.json": {
+      "nbytes": 1295,
+      "sha256": "f4a54524a3a484afe5c0568e9f5dace6625ac44ca52df995caa858b27a81ccd2"
+    },
+    "host-helper.bwrap": {
+      "nbytes": 194592,
+      "sha256": "ed290d7b467eba236ff705a83938ecf78a5dc055648ef5420937b9717b29af3e"
+    },
+    "jobs.json": {
+      "nbytes": 2788,
+      "sha256": "534ba34e7e98bf86db3c59dc6c5d8568a859b6a54ea9c440c54defcc30e25279"
+    },
+    "registration.json": {
+      "nbytes": 633,
+      "sha256": "3b7b75c346be701ed2b4596bab66028642fefae0d9f9e6835d236b210a35fd1d"
+    },
+    "original-artifact.zip": {
+      "nbytes": 329563,
+      "sha256": "c1a3a2f7d99b8a362838bc7e312ef1842daf228097f07767c688dc5f4d6f28f3"
+    },
+    "workflow-runs.json": {
+      "nbytes": 15219,
+      "sha256": "72884f3805c07fbb7129ef9c12958685963d0b8b0e52b9c56205d361c74d9bf6"
+    },
+    "workflow.json": {
+      "nbytes": 706,
+      "sha256": "0c74713c6ed1d1c84221a3bafc11c1544763b5973c3f06e2ae2b0b2c83055896"
+    },
+    "run.json": {
+      "nbytes": 15183,
+      "sha256": "bf486a3e762e32ae47fcf27ac95b1d607e9e14dcb370610bc26582519816defc"
+    },
+    "artifacts.json": {
+      "nbytes": 842,
+      "sha256": "e5efe3811a3711732d8b9f8471daca6ee3cdad22c2e99978a342414b38ed8f66"
+    },
+    "preflight.json": {
+      "nbytes": 7834,
+      "sha256": "87d6e5e28265e220d8daf76bbe8acd415f7f9bb164583f8dc85e3515f4aa79a9"
+    },
+    "source.tar.xz": {
+      "nbytes": 126452,
+      "sha256": "9760d007363e3abba7c747489910f9f82d9fca53ba3bd3282e396fa3c97a3314"
+    },
+    "activation-ref.json": {
+      "nbytes": 529,
+      "sha256": "2c33e1cb2590e892f44ec464d35df5db3591cb279bd9cd48ca04254feb69e402"
+    }
+  }
+}
