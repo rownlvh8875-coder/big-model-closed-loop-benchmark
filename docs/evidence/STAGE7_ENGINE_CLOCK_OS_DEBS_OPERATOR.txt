@@ -1,0 +1,46 @@
+HISTORICAL ONE-USE EXACT DEB ACQUISITION; do not replay an existing output path.
+Run body after marker with existing CPU Python from repository root.
+BEGIN PYTHON
+import datetime,hashlib,json,os,platform,shutil,signal,subprocess,sys,time
+from pathlib import Path
+root=Path.cwd();request_path=root/'docs/evidence/STAGE7_ENGINE_CLOCK_OS_DEBS_REQUEST.json';q=json.loads(request_path.read_text())
+out=root/q['output_directory'];out.mkdir(parents=True,exist_ok=False);start=time.monotonic();deadline=start+600
+def digest(p):
+    h=hashlib.sha256()
+    with p.open('rb') as f:
+        for b in iter(lambda:f.read(1048576),b''):h.update(b)
+    return h.hexdigest()
+def save(n,v):(out/n).write_text(json.dumps(v,indent=2,sort_keys=True)+'\n')
+a={'request_id':q['request_id'],'execution_source_sha':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'started_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'status':'CONSUMED_STARTED','further_execution_authorized':False};save('attempt.json',a)
+r=dict(a,schema='engine-clock-os-deb-acquisition-v1',transfers=[],packages=[],package_install_executed=False,maintainer_script_executed=False,runtime_executed=False,build_ready=False,full_lock_ready=False,image_preparation_ready=False,native_admission=False)
+try:
+    assert not subprocess.check_output(['git','status','--porcelain'],text=True).strip()
+    assert sys.executable==q['tool_python'] and platform.python_version()=='3.11.17'
+    r.update(actual_tool_python=platform.python_version(),free_bytes_before=shutil.disk_usage(out).free)
+    assert r['free_bytes_before']>=2147483648
+    p=root/q['package_plan_path'];assert digest(p)==q['package_plan_sha256'];plan=json.loads(p.read_text())
+    r.update(request_sha256=digest(request_path),operator_sha256=digest(root/'docs/evidence/STAGE7_ENGINE_CLOCK_OS_DEBS_OPERATOR.txt'),package_plan_sha256=digest(p))
+    assert len(plan['packages'])==46 and plan['total_published_deb_bytes']==13570700 and len(plan['packages'])<=128
+    for pkg in plan['packages']:
+        name=Path(pkg['filename']).name;assert name.endswith('.deb') and pkg['filename'].startswith('pool/') and '..' not in pkg['filename']
+        remaining=deadline-time.monotonic();assert remaining>5
+        cmd=['curl','--silent','--show-error','--fail','--proto','=https','--max-time',str(min(30,remaining-5)),'--max-filesize','67108864','--retry','0','--output',str(out/name),'--write-out','%{json}',plan['snapshot_root']+pkg['filename']]
+        with (out/(name+'.transfer.json')).open('xb') as stdout,(out/(name+'.stderr')).open('xb') as stderr:
+            proc=subprocess.Popen(cmd,stdout=stdout,stderr=stderr,start_new_session=True)
+            try:code=proc.wait(timeout=min(35,remaining-5))
+            finally:
+                if proc.poll() is None:
+                    os.killpg(proc.pid,signal.SIGTERM)
+                    try:proc.wait(timeout=2)
+                    except subprocess.TimeoutExpired:os.killpg(proc.pid,signal.SIGKILL);proc.wait(timeout=3)
+        t=json.loads((out/(name+'.transfer.json')).read_text());assert code==0 and t['http_code']==200 and t['ssl_verify_result']==0 and t['num_redirects']==0
+        f=out/name;assert f.stat().st_size==pkg['nbytes'] and digest(f)==pkg['sha256']
+        r['packages'].append({'name':pkg['name'],'version':pkg['version'],'filename':name,'nbytes':f.stat().st_size,'sha256':digest(f)})
+        r['transfers'].append({'file':name,**{k:t.get(k) for k in ('http_code','ssl_verify_result','num_redirects','size_download','exitcode','url_effective')}})
+        assert sum(p['nbytes'] for p in r['packages'])<=268435456 and time.monotonic()<deadline
+    r['status']='DEB_BYTES_VERIFIED_NOT_INSTALLED'
+except Exception as exc:r.update(status='FAILED_OR_INCOMPLETE',error_class=type(exc).__name__,bounded_error=str(exc)[:256])
+finally:
+    r['duration_seconds']=time.monotonic()-start
+    r['files']={p.name:{'nbytes':p.stat().st_size,'sha256':digest(p)} for p in sorted(out.iterdir()) if p.is_file() and p.name!='receipt.json'}
+    save('receipt.json',r);print(json.dumps({**{k:r.get(k) for k in ('status','execution_source_sha','duration_seconds','error_class','bounded_error')},'measured_packages':len(r['packages'])}))
