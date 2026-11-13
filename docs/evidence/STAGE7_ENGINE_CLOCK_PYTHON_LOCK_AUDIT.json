@@ -1,0 +1,168 @@
+{
+  "actions_artifact_id": null,
+  "actions_run_id": null,
+  "actual_execution_source_sha": "a4b5b1a917caa4cad58510b3f1b59e184d94037d",
+  "actual_pip_exit_code": 1,
+  "current_deferred_minors": [],
+  "full_base_deb_asset_lock_ready": false,
+  "full_python_lock_ready": false,
+  "further_execution_authorized": false,
+  "image_preparation_ready": false,
+  "image_preparation_refs_filled": 0,
+  "independent_review": {
+    "critical": 0,
+    "head": "d220a1f86f1eff512fa324c32f0162ca707e734e",
+    "image_authorized": false,
+    "important": 0,
+    "merge_authorized": false,
+    "minor": 0,
+    "model": "gpt-6-astra",
+    "native_authorized": false,
+    "raw_review_sha256": "a4233afcc0ee763a7726a3f4ec5f2dd46a40a1905166f3a8ff5f070e37f5f3fa",
+    "reasoning_effort": "medium",
+    "reviewer": "python_lock_final_review",
+    "status": "ACCEPT_EVIDENCE_SCOPE_ONLY"
+  },
+  "independent_root_checks": [
+    "all_raw_file_sizes_and_sha256_match_receipt",
+    "request_and_operator_hashes_match_execution_receipt",
+    "retained_derivative_wheel_hash_matches_PR45",
+    "actual_wheel_has_unconditional_progressbar_requirement",
+    "pip_log_exit1_no_report_match_binary_only_missing_distribution",
+    "official_metadata_5_release_keys_all_recorded_files_sdist",
+    "curl_http200_tls_result0_redirect0_exit0",
+    "all_preexisting_tracked_files_unchanged_before_status_updates"
+  ],
+  "limits": [
+    "cross-target wheel screen; tool Python3.11.17 not actual target3.11.18",
+    "pip markers partly host-evaluated; no base ABI/runtime proof",
+    "no mathematical unsatisfiability or historical pixel-cause claim",
+    "PyPI metadata not publisher signature/all future releases proof",
+    "pip network totals not instrumented; candidate versions not locked",
+    "local receipts not Actions artifacts or independent host attestation",
+    "full lock/recipe/adapter/image/installed-content/launch evidence missing"
+  ],
+  "local_raw_directory": "output/stage7-python-lock-gate/python-lock-20261113-01",
+  "local_raw_files": {
+    "attempt.json": {
+      "nbytes": 242,
+      "sha256": "3063a70e71ae85ea1ee93a88aa92032451c86c0637764533210aa07bec13f2fb"
+    },
+    "curl-transfer.json": {
+      "nbytes": 7798,
+      "sha256": "c32daad8cb7c6583e35966f94863caaf3fa802e3d7d7c191dd025d98126b0f3f"
+    },
+    "curl.stderr": {
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "pip.log": {
+      "nbytes": 1756,
+      "sha256": "145de293e40c359ac7af3320929a6b8b1c71442dce8efc6243d507ee49c04477"
+    },
+    "progressbar-release.json": {
+      "nbytes": 6237,
+      "sha256": "7898acdac13362d3e5a3b206e7aaf2abb21b60b048f77c66fa3b7dbe9bb020b6"
+    },
+    "receipt.json": {
+      "nbytes": 3955,
+      "sha256": "46746062fad03efddd1e23106b81e8077e41cde5852edd60728bd191f6f90898"
+    }
+  },
+  "metadata_transfer": {
+    "exitcode": 0,
+    "http_code": 200,
+    "num_redirects": 0,
+    "size_download": 6237,
+    "ssl_verify_result": 0,
+    "url_effective": "https://pypi.org/pypi/progressbar/json"
+  },
+  "native_admission": false,
+  "new_native_process_count": 0,
+  "new_official_model_calls": 0,
+  "next_step": "Design/review exact progressbar2.5 source-to-wheel preparation with genuine source/build-tool locks and bounded isolated build before source execution; then resume full Python/base/deb/asset lock.",
+  "observed_tree_peak_bytes": 493724,
+  "observed_tree_peak_scope": "polled operation directory; not cumulative transfer/process RSS or hard quota",
+  "pip_network_request_count": null,
+  "pip_success_report_exists": false,
+  "pip_total_network_bytes": null,
+  "preserved_preexisting_tracked_file_count": 389,
+  "progressbar": {
+    "latest_files": [
+      {
+        "digests": {
+          "blake2b_256": "a3a6b8e451f6cff1c99b4747a2f7235aa904d2d49e8e1464e0b798272aa84358",
+          "md5": "4aaf51533764d520c89b366a45ada248",
+          "sha256": "5d81cb529da2e223b53962afd6c8ca0f05c6670e40309a7219eacc36af9b6c63"
+        },
+        "filename": "progressbar-2.5.tar.gz",
+        "size": 10046,
+        "url": "https://files.pythonhosted.org/packages/a3/a6/b8e451f6cff1c99b4747a2f7235aa904d2d49e8e1464e0b798272aa84358/progressbar-2.5.tar.gz"
+      }
+    ],
+    "latest_version": "2.5",
+    "name": "progressbar",
+    "observed_file_count": 4,
+    "observed_file_types": [
+      "sdist"
+    ],
+    "release_keys": [
+      "2.1",
+      "2.2",
+      "2.3",
+      "2.3-dev",
+      "2.5"
+    ],
+    "source_digest_kind": "PYPI_METADATA_CLAIM_NOT_LOCALLY_MEASURED_PAYLOAD",
+    "source_payload_downloaded": false
+  },
+  "request_consumed": true,
+  "request_id": "python-lock-20261113-01",
+  "root_rulings": [
+    {
+      "id": "R1",
+      "ruling": "Continue inline without repeated design/execution questions \u2014 user authorized sequential autonomous work and opted out repeated questions \u2014 cost if wrong: user reviews a narrower dependency checkpoint before later preparation."
+    },
+    {
+      "id": "R2",
+      "ruling": "Work on a new feature branch in the current checkout; retain all workspaces and original evidence \u2014 user's existing preservation/no-worktree preference overrides skill setup/cleanup \u2014 cost if wrong: disk retained, less isolation than a linked worktree."
+    },
+    {
+      "id": "R3",
+      "ruling": "Use a binary-only cross-target screen before any source build and stop unsupported resolution \u2014 parent Task3 requires genuine reviewed locks and stopping unsupported inputs \u2014 cost if wrong: a buildable source dependency can delay lock completion; this does not establish unsatisfiability."
+    },
+    {
+      "id": "R4",
+      "ruling": "Ops/data-only changes use direct evidence checks and baseline CI; no local repeat of unchanged726-test suite or new product tests \u2014 no product behavior changes \u2014 cost if wrong: local environment regressions may only appear in baseline CI."
+    },
+    {
+      "id": "R5",
+      "ruling": "manylinux<=2.28 is a candidate wheel screen, not a selected base; pip's cross-target marker limits remain explicit \u2014 base is still unresolved \u2014 cost if wrong: another base/target may need a separately reviewed resolution."
+    },
+    {
+      "cost_if_wrong": "Delayed lock completion; another incompatibility may appear after this blocker.",
+      "id": "D1",
+      "ruling": "Keep full graph/source-build/target-runtime conclusions unresolved; define genuine reviewed inputs before source execution"
+    },
+    {
+      "cost_if_wrong": "Reusing this transcript could miss arbitrary failure or hostile-child cases; no replay is authorized.",
+      "id": "D2",
+      "ruling": "Accept only the consumed actual operator outcome, not a reusable resolver or universal hard-containment guarantee"
+    },
+    {
+      "cost_if_wrong": "Unobserved host actions or network details remain outside these receipts.",
+      "id": "D3",
+      "ruling": "Keep host attestation/exhaustive network totals/absolute absence proof unclaimed; local scoped observations only"
+    },
+    {
+      "cost_if_wrong": "A later observation can become stale; review is not final publication or merge authorization.",
+      "id": "D4",
+      "ruling": "Verify later Draft PR/final CI/main/cloud state directly and report separately from reviewed HEAD"
+    }
+  ],
+  "schema": "engine-clock-python-lock-audit-v1",
+  "source_base_sha": "cc6d3a986fb54c128b9d69f4e2a4d10eb7c2c898",
+  "started_kst": "2026-11-13T11:07:03.852510+09:00",
+  "status": "BLOCKED_BINARY_ONLY_PROGRESSBAR",
+  "task3_complete": false
+}
