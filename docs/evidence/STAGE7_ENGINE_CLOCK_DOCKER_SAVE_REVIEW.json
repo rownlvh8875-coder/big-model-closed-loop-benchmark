@@ -1,0 +1,69 @@
+{
+  "schema": "engine-clock-docker-save-compat-review-v1",
+  "base": "1527a1d678103ae7969fadc624dd7d92c5a70cd4",
+  "reviewed_head": "ef1e21ebbc3622a4abc7f7a5b31d2d7b512815d3",
+  "reviewer": "sealed_docker_save_review",
+  "model": "gpt-6-astra",
+  "reasoning": "medium",
+  "read_only": true,
+  "critical": 0,
+  "important": 0,
+  "minor": 1,
+  "independent_owned_fixtures": {
+    "tests": 18,
+    "status": "PASS",
+    "composition": "3new+15existingarchivecasesredirectedinmemorytov2"
+  },
+  "parent_full": {
+    "tests": 1067,
+    "skipped": 7,
+    "seconds": 92.519,
+    "status": "PASS"
+  },
+  "parent_genuine_tar_check": {
+    "seconds": 35.119126179,
+    "decoded_bytes": 1726644736,
+    "members": 50127,
+    "compatibility_metadata_files": 10,
+    "creator_still_failed_unaccepted": true
+  },
+  "important_fix_passes": 0,
+  "rereview_performed": false,
+  "deferred_minor": [
+    {
+      "id": "DS-M1",
+      "finding": "No explicit sidecar filename/hash,64KiB,count,unknownfield negative fixtures.",
+      "ruling": "Defer additional small mutations; guards present and no defect found.",
+      "cost": "Reduced future regression coverage, no known acceptance bypass."
+    }
+  ],
+  "declined_rulings": [
+    {
+      "behavior": "LegacyIDsnotboundtolayerdigest",
+      "ruling": "Closeduniquechainisexplicitlynon-authoritative;modernconfigbytes/ordereddecodeddiffIDsretainidentity."
+    },
+    {
+      "behavior": "Topcompatibilitycommands",
+      "ruling": "Dummycontainerconfigexacttypedempty;topconfigequalsmodern+emptydefaults;JSONneverexecutes."
+    },
+    {
+      "behavior": "RelaxedOCIidentity",
+      "ruling": "Tagonlyrequirescanonicalfullcontainerdname;legacyfulltag/config/orderedlayersindependentlycrossbind."
+    },
+    {
+      "behavior": "Caps/privacy",
+      "ruling": "Originalarchive/decoded/member/JSON/timecapsremain;sidecarcount/sizearenarrower;genericerrors/nosidecarcontentsreturned."
+    },
+    {
+      "behavior": "Oldparserusedinnewpath",
+      "ruling": "V5prepareandindependentproducer-checkresolvev2includingnestedvalidate_preparation;oldbasestaging/backenddo notrevalidatesavedcarrierthrougholdparser."
+    },
+    {
+      "behavior": "Promotingfailed005",
+      "ruling": "006newidentities/sourceCI/activation;successfuldistinctproducerstillrequired;005unaccepted."
+    }
+  ],
+  "verdict": "READY_FOR_EXACT_SOURCE_QUALIFICATION_AND_ONE_006_THEN_DISTINCT_PREFLIGHT",
+  "native_admission": false,
+  "official_model_calls": 0
+}
