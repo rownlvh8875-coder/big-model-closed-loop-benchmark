@@ -1,6 +1,6 @@
 # Stage7 실제 wheel 검증·파생 입력 증거
 
-공식 게시 hash와 일치하는 MetaDrive0.4.3 wheel을 한 번 다운로드하고, 고정된 metadata 변환기로 파생 wheel을 만들었다. **로컬 package-input 단계이며 Task3 전체·이미지·native 준비 완료가 아니다.** Root의 byte/RECORD 검증은 통과했고 독립 검토가 남아 있다.
+공식 게시 hash와 일치하는 MetaDrive0.4.3 wheel을 한 번 다운로드하고, 고정된 metadata 변환기로 파생 wheel을 만들었다. **로컬 package-input 단계이며 Task3 전체·이미지·native 준비 완료가 아니다.** Root와 독립 검토자의 실제 byte/RECORD 검증을 통과했다.
 
 실제 실행 source HEAD는 `63ee25b469c7f11cc901f4e0f8feed7219304866`, 변환기 source 기준은 PR44의 `de30d68027162b4058e029b9687c5a198f1339b2`다. 이후 증거·검토 commit HEAD를 실제 실행 source로 바꾸지 않는다. 사용자 기준 실행 시작은 **2026-11-13 10:03:16 KST**다. 실제 도구 Python은3.11.17이며, 미래 image의 Python3.11.18 준비 증거로 표시하지 않는다.
 
@@ -32,3 +32,5 @@
 다음은 파생 wheel hash를 명시적으로 묶은 완전한 Python/base/deb/asset dependency lock과 비활성 image adapter 설계다. 설치 환경·OpenCV runtime 호환성, image/config/rootfs·installed inventory·API/launch 인증은 미완료다. 현재 image 준비16참조null/nativeallowance0/Task3incomplete를 유지한다.
 
 Producer70/workflows44/registry8·Task1/2·변환기 코드/시험/policy·비활성 proposal은 그대로다. 새 공식 모델·weights·ORT/provider/engine/Xvfb/GPU/clock·image build/pull/load/run은0이며 기본 생성 SMALL ONNX CI는 별도다. 새 raw/canvas/I420/first-divergence 측정은 없다. 과거 ABBA terminal FAIL/7null/4case·6비교 NOT_RUN, strict FAIL/expanded NOT_RUN/geometry·optics·full-S 한계/Stage7 INCOMPLETE를 유지한다. Cloud 게시와 main 병합은 하지 않는다.
+
+독립 검토: `3b4179803080e8623ff7a3461b1bca686d29b65c`에서 Critical0/Important0/MinorM1로 로컬 입력 checkpoint를 수락했다. [검토 원본](evidence/STAGE7_ENGINE_CLOCK_REAL_WHEEL_REVIEW.md)을 보존하고, M1 문서 표현은 보류 항목으로 기록한다. 검토 범위 밖13항목의 root 판단·비용과 관측 범위는 audit에 남긴다. 이후 영수증 HEAD와 기본 CI는 별도로 기록하며 이미지·native·merge 승인은 부여하지 않는다.
