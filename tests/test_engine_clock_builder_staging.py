@@ -78,6 +78,16 @@ class StagingTests(unittest.TestCase):
         self.assertFalse(result['native_admission'])
         self.assertFalse(result['image_preparation_ready'])
 
+    def test_open_descriptor_verification_is_bound_to_the_tree_that_will_be_mounted(self):
+        self.stage()
+        fd = os.open(self.root, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW)
+        self.addCleanup(os.close, fd)
+        self.assertEqual('STAGED_CONTENT_MATCH', staging.verify_open_tree(fd, self.plan(), deadline=perf_counter() + 10)['status'])
+        os.chmod(self.root / 'usr/lib', 0o755)
+        (self.root / 'usr/lib/extra').write_bytes(b'extra')
+        os.chmod(self.root / 'usr/lib', 0o555)
+        self.assertEqual('FAILED_OR_INCOMPLETE', staging.verify_open_tree(fd, self.plan(), deadline=perf_counter() + 10)['status'])
+
     def test_normalized_modes_remove_special_bits_and_writes(self):
         self.stage()
         self.assertEqual(0o555, stat.S_IMODE((self.root / 'usr/bin/tool').stat().st_mode))

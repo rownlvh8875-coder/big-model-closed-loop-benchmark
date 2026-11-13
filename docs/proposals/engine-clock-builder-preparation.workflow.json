@@ -1,0 +1,69 @@
+{
+  "name": "Engine Clock Builder Preparation",
+  "on": {
+    "push": {
+      "branches": [
+        "__PREPARE_BRANCH__"
+      ]
+    }
+  },
+  "permissions": {
+    "contents": "read",
+    "actions": "read"
+  },
+  "concurrency": {
+    "group": "engine-clock-__REQUEST_ID__",
+    "cancel-in-progress": false
+  },
+  "jobs": {
+    "prepare": {
+      "runs-on": "ubuntu-24.04",
+      "timeout-minutes": 15,
+      "steps": [
+        {
+          "name": "Reject repeated attempts",
+          "run": "test \"$GITHUB_RUN_ATTEMPT\" = 1"
+        },
+        {
+          "uses": "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "with": {
+            "persist-credentials": false,
+            "fetch-depth": 1,
+            "submodules": false,
+            "lfs": false
+          }
+        },
+        {
+          "name": "Authenticate registered source and unique run",
+          "env": {
+            "GH_TOKEN": "${{ github.token }}"
+          },
+          "run": "/usr/bin/python3 -I -B scripts/engine_clock_builder_preparation.py --guard-only --request docs/requests/engine-clock-__REQUEST_ID__.json"
+        },
+        {
+          "name": "Prepare pinned host namespace helper",
+          "run": "set -euo pipefail\nsudo apt-get update -qq\nsudo apt-get install -y --no-install-recommends bubblewrap meson ninja-build gcc pkg-config libcap-dev\nmkdir /tmp/engine-clock-bwrap-source\ncd /tmp/engine-clock-bwrap-source\ncurl --fail --silent --location --proto '=https' --max-time 60 https://github.com/containers/bubblewrap/releases/download/v0.12.0/bubblewrap-0.12.0.tar.xz --output source.tar.xz\nprintf '%s  %s\\n' 9760d007363e3abba7c747489910f9f82d9fca53ba3bd3282e396fa3c97a3314 source.tar.xz | sha256sum --check --status\ntar -xf source.tar.xz\nmeson setup build bubblewrap-0.12.0 -Dtests=false -Dman=disabled -Dselinux=disabled -Dbash_completion=disabled -Dzsh_completion=disabled\nninja -C build\nsudo install -m 0755 build/bwrap /usr/bin/bwrap\n/usr/bin/bwrap --version\n"
+        },
+        {
+          "name": "Prepare and build offline in mandatory namespace",
+          "env": {
+            "GH_TOKEN": "${{ github.token }}"
+          },
+          "run": "/usr/bin/python3 -I -B scripts/engine_clock_builder_preparation.py --request docs/requests/engine-clock-__REQUEST_ID__.json"
+        },
+        {
+          "name": "Retain original bounded result",
+          "if": "${{ always() }}",
+          "uses": "actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+          "with": {
+            "name": "engine-clock-__REQUEST_ID__",
+            "path": "output/stage7-builder-preparation/__REQUEST_ID__/",
+            "if-no-files-found": "error",
+            "compression-level": 0,
+            "retention-days": 30
+          }
+        }
+      ]
+    }
+  }
+}

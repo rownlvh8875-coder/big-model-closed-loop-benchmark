@@ -15,7 +15,7 @@
 - Preserve old455trackedfiles except continuation/parent status docs; old workflows44 and producer70/registry8 unchanged.
 - No local downloaded runtime/bootstrap/source execution; local trusted-true discovery failed UID mapping.
 - Plan/stage limits128sources/20000nodes/512MiB/file128MiB/path4096/depth64/40hops/JSON16MiB/deadline180s.
-- Run limits phase180s/cleanup5s/tmpfs256MiB/wheel1MiB/wire3MiB/stderr1MiB/perfile1MiB/perprocessAS1GiB/process64; no global containment overclaim.
+- Run limits phase180s/cleanup5s/tmpfs256MiB/wheel1MiB/wire3MiB/stderr1MiB/perfile4MiB/perprocessAS1GiB/process64; no global containment overclaim.
 - All native/image admissionfalse; old16refsnull/nativeallowance0. No worktrees/Cloud publish/main merge; retain all evidence/workspaces.
 
 ## Review Focus
@@ -42,9 +42,9 @@
 
 **Interfaces:** consumes Task1 plan/root verifier and PR47/48/49 input manifests. Produces fixed launch profile, bounded sanitized execution/output API, exact built-wheel validator and inactive remote source/request protocol.
 
-- [ ] Write RED tests for mandatory isolation/env/root checks, unsupported-capability rejection, actual trusted-child pipe caps/timeouts/cleanup, secret sentinels, malformed output and strict wheel corruption/tails/RECORD/payloads. Expected: real missing behavior failures.
-- [ ] Implement minimum source for tests; driver commands/protocol remain incapable of accidental execution on import or missing registered request. Expected: GREEN, no real downloaded runtime or remote workflow yet.
-- [ ] Test remote API/source/attempt/duplicate request and artifact-boundary fixtures; implement controller/template. Expected: no network in fixtures, no active workflow addition yet.
-- [ ] Run focused/full CPU suite and preservation checks; commit. Expected: GREEN and explicit source-only readiness.
+- [x] Write RED tests for mandatory isolation/env/root checks, unsupported-capability rejection, actual trusted-child pipe caps/timeouts/cleanup, secret sentinels, malformed output and strict wheel corruption/tails/RECORD/payloads. Expected: real missing behavior failures.
+- [x] Implement minimum source for tests; driver commands/protocol remain incapable of accidental execution on import or missing registered request. Expected: GREEN, no real downloaded runtime or remote workflow yet.
+- [x] Test remote API/source/attempt/duplicate request and artifact-boundary fixtures; implement controller/template. Expected: no network in fixtures, no active workflow addition yet.
+- [x] Run focused/full CPU suite and preservation checks; commit. Expected: GREEN and explicit source-only readiness.
 - [ ] One fresh whole-branch review; regrade and one Important/Critical TDD fix pass if needed, no rereview; record all decline rulings/minors; own-branch Draft/basic CI. Expected: actual reviewed/final HEAD/CI, unchanged old gates.
 - [ ] Continue without ending the user task into a distinct operational plan that registers reviewed source and exact provider-free remote request; activate only after source review/CI. Expected: real bounded evidence or preserved terminal failure, no unsupported local execution or old request reuse.

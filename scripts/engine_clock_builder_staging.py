@@ -434,3 +434,23 @@ def verify_tree(root: Path, plan: dict, *, deadline: float) -> dict:
     finally:
         if fd is not None: os.close(fd)
     return result
+
+
+def verify_open_tree(rootfd: int, plan: dict, *, deadline: float) -> dict:
+    """Check the exact already-open directory FD passed to the namespace mount."""
+    result = _receipt(plan)
+    fd = None
+    try:
+        with _guard(deadline) as check:
+            _need(type(rootfd) is int and rootfd >= 0, 'BAD_ROOT_FD')
+            plan = _checked(plan)
+            fd = os.dup(rootfd)
+            result['bytes_verified'] = _scan(fd, plan, check)
+            result.update(status='STAGED_CONTENT_MATCH', entries_verified=len(plan['entries']))
+    except _Error as exc:
+        result['errors'] = [{'code': str(exc)}]
+    except (OSError, ValueError, TypeError, KeyError, OverflowError):
+        result['errors'] = [{'code': 'FILESYSTEM_OR_INPUT_ERROR'}]
+    finally:
+        if fd is not None:os.close(fd)
+    return result

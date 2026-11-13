@@ -1,0 +1,101 @@
+{
+  "base_sha": "565bc7a124b35eaeee2f209185b8aad11e10f1b8",
+  "basic_ci": null,
+  "branch": "feature/engine-clock-builder-staging",
+  "built_wheel_sha256": null,
+  "deferred_minors": [],
+  "full_lock_ready": false,
+  "image_preparation_ready": false,
+  "local_capability_probe": {
+    "argv": [
+      "/usr/bin/bwrap",
+      "--unshare-user",
+      "--unshare-pid",
+      "--unshare-net",
+      "--uid",
+      "0",
+      "--gid",
+      "0",
+      "--clearenv",
+      "--ro-bind",
+      "/usr",
+      "/usr",
+      "--ro-bind",
+      "/lib",
+      "/lib",
+      "--ro-bind",
+      "/lib64",
+      "/lib64",
+      "--",
+      "/usr/bin/true"
+    ],
+    "bwrap_sha256": "573236e5328ac2ebb08f59ae3a9805b4f8d12bdef14be8af4450d5463294985f",
+    "downloaded_code_executed": false,
+    "duration_seconds": 0.009117281006183475,
+    "exit_code": 1,
+    "filesystem_staged": false,
+    "native_admission": false,
+    "network_filesystem_isolation_supported": false,
+    "raw_stderr": "bwrap: setting up uid map: Read-only file system\n",
+    "schema": "engine-clock-builder-kernel-capability-probe-v1",
+    "source_sha": "565bc7a124b35eaeee2f209185b8aad11e10f1b8",
+    "stderr_bytes": 49,
+    "stderr_sha256": "f427400003f1438951931a9e02e12a36f46d63466731694d824cbf9e0d36a5d4",
+    "stdout_bytes": 0,
+    "target": "TRUSTED_HOST_TRUE_ONLY_NOT_DOWNLOADED_RUNTIME"
+  },
+  "native_admission": false,
+  "next": "Fresh whole-branch review and qualified fix pass/basic CI, then continue to a separately registered provider-free remote operation without ending at the source checkpoint.",
+  "preservation": {
+    "allowed_status_changes": [
+      "docs/STAGE7_CONTINUATION.md",
+      "docs/STAGE7_ENGINE_CLOCK_RUNTIME_CONTRACT.md"
+    ],
+    "consumed_registry_count": 8,
+    "old_raw_and_workspaces_retained": true,
+    "old_tracked": 455,
+    "old_workflow_bytes_unchanged": true,
+    "old_workflows": 44,
+    "producer70_sha256": "6f8dcc2fc4aa7b1896a74d43ea4e030f89729b4b7851825cd0bbd444c6acab04",
+    "unchanged": 453
+  },
+  "real_metadata_plan": {
+    "input_transports": 51,
+    "plan_sha256": "2b9ddf8f055881317498e555e116a5420d49281d51e492cf618cf0a966ca3caa",
+    "serialized_plan_bytes": 8570052,
+    "source_entries": 13046,
+    "sources": 52,
+    "staged_bytes": 351862567,
+    "staged_nodes": 12722,
+    "status": "METADATA_PLAN_ONLY_NO_STAGING_OR_EXECUTION"
+  },
+  "review": null,
+  "reviewed_sha": null,
+  "rulings_chronological": [
+    "Ruling: User explicitly requests continuous work and final-only review; proceed inline without choice/approval menus, with only concise mandatory progress updates \u2014 existing authorization covers own Draft/basic CI \u2014 cost if wrong: more work may need later scope review.",
+    "Ruling: Current checkout/new branch and all original/partial workspaces preserved \u2014 user preference overrides worktree/cleanup defaults \u2014 cost if wrong: reduced isolation and disk retention.",
+    "Ruling: Local trusted-true namespace discovery failed readonly UID mapping; select a separately reviewed remote provider-free job instead of local downloaded-code execution \u2014 mandatory isolation cannot be relaxed \u2014 cost if wrong: remote setup/provenance work and possible separate backend failure.",
+    "Ruling: Normalize builder-only ownership/modes and generated files explicitly, retaining all source bytes and old main inventory rules \u2014 single-user readonly sandbox needs a concrete recipe \u2014 cost if wrong: normalized permissions or generated config can change behavior and must fail/revise before admission.",
+    "Ruling: Keep bounded untrusted logs only as byte counts/hashes/fixed errors \u2014 environment/secret sentinels must never persist \u2014 cost if wrong: terminal failures provide less textual diagnosis.",
+    "Ruling: Old44workflows remain byte-identical; inactive template now, later separately registered narrowly gated new provider-free workflow allowed \u2014 latest continuous authorization and original GitHub Actions scope support necessary remote preparation \u2014 cost if wrong: an extra ephemeral job/host dependency setup may be unnecessary; no main/Cloud publication is granted.",
+    "Ruling: Increase new builder per-file write limit from1MiB to4MiB, retaining wheel1MiB and tmpfs256MiB \u2014 authenticated ensurepip source copies its bundled pip wheel2110226B to temporary storage before installation;1MiB would guarantee a false bootstrap failure \u2014 cost if wrong: each writable file can consume3MiB more within the unchanged aggregate tmpfs quota. Static tar read only; no execution.",
+    "Ruling: Remote primary host setup builds pinned bubblewrap0.12.0 from official release archive126452B/SHA9760d007363e3abba7c747489910f9f82d9fca53ba3bd3282e396fa3c97a3314 and installs it at the standard ephemeral /usr/bin/bwrap path before any target input/source execution \u2014 Ubuntu24.04 bubblewrap0.9 source demonstrably lacks mandatory --ro-bind-fd; knowingly choosing it would waste the one-use operation \u2014 cost if wrong: extra trusted host build dependencies and setup work; no local downloaded-code execution or post-failure fallback. Host build source is a separate pinned setup input, not target runtime/library provenance."
+  ],
+  "schema": "engine-clock-builder-staging-source-audit-v1",
+  "stage7_status": "INCOMPLETE",
+  "target_execution_verified": false,
+  "task1_commit": "01c5c10fb09d5c55766475bae0b4541aaacfe12c",
+  "validation": {
+    "focused": {
+      "seconds": 1.138,
+      "skipped": 0,
+      "tests": 74
+    },
+    "full": {
+      "seconds": 67.441,
+      "skipped": 7,
+      "tests": 800
+    },
+    "scope": "CPU fixtures and metadata only; no downloaded target code execution"
+  }
+}
