@@ -1,0 +1,7 @@
+# Authenticate current run after bounded API visibility snapshots
+
+Actual004request failed1.024s before Docker/payload/install/container: current-run API existed in_progress, workflow-list HTTP200 contained0runs; later root-authenticated list contains exactly43504610291. Preserve original failed request/source/artifacts and null image fields. This observes temporal visibility, not a proven internal GitHub cause.
+
+New sourcev4/request005/preflight005 preserves historicalv1/v2/v3sources/workflows and all package/asset/pager/effective8f policy. Before validating unchanged strict current-run/unique semantics, acquire up to6distinct successful metadata-list snapshots over30s, spaced5s only when exactly empty(total0/list[]). Nonempty response immediately reaches strict validator; duplicate/wrong run/attempt/head still rejects. Any HTTP/parse error fails immediately, no HTTP error retry. Shared request/download/total limits unchanged; explicit visibility counters are additional narrower sublimits. Each raw snapshot has a unique path; retain actual count/time. Restore original client deadline after bounded phase.
+
+No image work begins until actual unique proof. This is a new one-use workflow request, no old request/image operation rerun, no native/model call or publication. Input249archive transport and source-fresh installer/base-label/pager policies unchanged. Inline TDD/fullverification/one new-scope read-only review; Importantfixpass once/no rereview, Minorwithcosts. Actual prepared image still requires independent authenticated preflight.
