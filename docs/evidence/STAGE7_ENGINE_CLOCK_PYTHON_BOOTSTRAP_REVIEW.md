@@ -8,8 +8,8 @@
 
 ### Issues
 
-**Critical:** None.  
-**Important:** None.  
+**Critical:** None.
+**Important:** None.
 **Minor:** None.
 
 ### Recommendations
