@@ -1,0 +1,5 @@
+abi <abi/4.0>,
+# Dedicated trusted primary helper only; no existing profile replacement.
+profile stage7-bwrap /usr/local/libexec/stage7-bwrap flags=(unconfined) {
+  userns,
+}
