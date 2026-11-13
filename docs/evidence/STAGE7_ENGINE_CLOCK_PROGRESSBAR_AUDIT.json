@@ -124,9 +124,55 @@
   "request_consumed": true,
   "request_id": "progressbar-input-20261113-01",
   "review": {
-    "head": null,
-    "status": "PENDING"
+    "critical": 0,
+    "head": "1ee42089c67fd7ef22209504b287911c9f577c62",
+    "important": 0,
+    "merge_authorized": false,
+    "minor": 0,
+    "model": "gpt-6-astra",
+    "raw_review_sha256": "ece209c67c80f9aa490027ebe203b365da59b0abcb5fcfd8fd89f9e7a8f286c5",
+    "reasoning_effort": "medium",
+    "reviewer": "progressbar_inputs_final_review",
+    "source_build_authorized": false,
+    "status": "PASS_SCOPED_EVIDENCE_REVIEW_FINAL_CI_PENDING"
   },
+  "review_decline_rulings": [
+    {
+      "cost_if_wrong": "A later build/API incompatibility may still block the wheel.",
+      "id": "D1",
+      "ruling": "Keep actual target3.11.18 build/import/API compatibility unresolved until authenticated runtime and reviewed source execution"
+    },
+    {
+      "cost_if_wrong": "Additional launcher work/delay; staging or cleanup could otherwise invalidate byte-preservation evidence.",
+      "id": "D2",
+      "ruling": "Require future fixture-proven isolation/quotas/group cleanup and explicit staged-versus-pip build-tree snapshots surviving cleanup before activation"
+    },
+    {
+      "cost_if_wrong": "Stronger origin/host/replay assurance remains absent.",
+      "id": "D3",
+      "ruling": "Accept published-hash/TLS/local-receipt agreement only; do not claim signatures/host attestation/global anti-replay"
+    },
+    {
+      "cost_if_wrong": "Further dependencies or incompatibilities may block full preparation.",
+      "id": "D4",
+      "ruling": "Treat three-tool metadata closure as component-only; runtime/bootstrap/OS/full-image locks remain blockers"
+    },
+    {
+      "cost_if_wrong": "Adversarial reuse or unknown tool vulnerabilities remain outside evidence.",
+      "id": "D5",
+      "ruling": "Accept fixed-archive inspection only, not a reusable validator or full tool security audit"
+    },
+    {
+      "cost_if_wrong": "Stage7 remains incomplete and original strict failure unresolved.",
+      "id": "D6",
+      "ruling": "Preserve all historical native/model/rendering failures and unknowns; no scientific equivalence follows"
+    },
+    {
+      "cost_if_wrong": "Later observations can become stale; source/review/final evidence must not be conflated.",
+      "id": "D7",
+      "ruling": "Check final Draft/CI/local-remote/main/Cloud state directly after reviewed HEAD and report separately"
+    }
+  ],
   "root_checks": [
     "raw23size/hash match",
     "public receipt/release/static bytes match",
