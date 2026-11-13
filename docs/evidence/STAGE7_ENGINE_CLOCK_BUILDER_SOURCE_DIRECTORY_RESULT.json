@@ -1,0 +1,306 @@
+{
+  "activation_sha": "3bc04985cc05498f7a8f1686a0c45d186381e3ad",
+  "all_generated_build_runtime_copies_match": true,
+  "all_original_runtime_source_and_license_bytes_match": true,
+  "archive_check": {
+    "all_input_payloads_matched": 51,
+    "all_inventory_fields_verified": true,
+    "all_root_nodes_matched": 12729,
+    "compressed_sha256": "46ddf28a1b2a21a042eb9326086a67da9c41d88dfeb1a2c0cd87bfd454f5edf7",
+    "counts": {
+      "directory": 1044,
+      "file": 12951,
+      "symlink": 168
+    },
+    "decoded_tar_bytes": 491970560,
+    "decoded_tar_sha256": "a8a35f13028e0ae54412316960fcb9ca942fb8d366d3c23ccc0af32431885626",
+    "entries": 14163,
+    "payload_executed_locally": false,
+    "regular_bytes": 472578225,
+    "single_gzip_eof_crc": true,
+    "zero_tail_bytes": 9728,
+    "zip_digest_crc_members_verified": true
+  },
+  "created_kst": "2026-11-13T23:57:21+09:00",
+  "driver_steps": [
+    {
+      "returncode": 0,
+      "stage": "VENV",
+      "status": "EXITED",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "returncode": 0,
+      "stage": "ENSUREPIP",
+      "status": "EXITED",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 257,
+      "stdout_sha256": "39c2fcc0e96b6a3b74147edca11f380172780370c8c8bd5db9093824b8488108"
+    },
+    {
+      "returncode": 0,
+      "stage": "TOOLS",
+      "status": "EXITED",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 729,
+      "stdout_sha256": "6b9d3cac9ec5a5c08a0cb819f3bab158c605d813efb2de13d0811402714cfb95"
+    },
+    {
+      "returncode": 0,
+      "stage": "BUILD",
+      "status": "EXITED",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 3761,
+      "stdout_sha256": "8b469f31e9d53a85632b304d1fa016bf15f6a8b33e14fa07d4034c89bc8267bf"
+    },
+    {
+      "returncode": 0,
+      "stage": "SMOKE",
+      "status": "EXITED",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 25,
+      "stdout_sha256": "e690837d6b617fb02e43e4fb503f01c511c29b7c75cb0496666a84b0324e6df5"
+    }
+  ],
+  "exact_outer_core_wires_reconstructed": true,
+  "files": {
+    "observed-source-after.json": {
+      "nbytes": 1873,
+      "sha256": "3a3b9e934cccc7570624aed80b036876fd092413d6f6050e520860ce7b11fdaa"
+    },
+    "observed-source-before.json": {
+      "nbytes": 1461,
+      "sha256": "113164b53424b8ad0bb065d7a0bea416f475066518dbd852719240baa30e5dd0"
+    },
+    "observed-source-directory.json": {
+      "nbytes": 408,
+      "sha256": "13ec8ad128e0ca56587b8c9043e1224a8c9f6125a357ebbce76465ef1b3d5245"
+    },
+    "original-artifact.zip": {
+      "nbytes": 245969559,
+      "sha256": "950c47e3aafbc0be6212bd082155e8138bce518e5c4967f19698d1b8f2e364d5"
+    },
+    "preparation.json": {
+      "nbytes": 28958,
+      "sha256": "1d2b9900acb32045ff3e06ca2c5a6fbd2f6434cc0d38e70e257c2f106041a917"
+    },
+    "progressbar-2.5-py3-none-any.whl": {
+      "nbytes": 12144,
+      "sha256": "6d700c40ef5826211c7fa03701fc0bd9131a93f40e170963cff507c622ee3dd1"
+    },
+    "retained-inventory.json": {
+      "nbytes": 4399541,
+      "sha256": "e5ca9bbb3aea3278f9413d01b6c080574c6f1bb02b5bcb5736e6ec6ad5359d9a"
+    },
+    "retained-workspaces.decoded.tar": {
+      "nbytes": 491970560,
+      "sha256": "a8a35f13028e0ae54412316960fcb9ca942fb8d366d3c23ccc0af32431885626"
+    },
+    "retained-workspaces.tar.gz": {
+      "nbytes": 232603509,
+      "sha256": "46ddf28a1b2a21a042eb9326086a67da9c41d88dfeb1a2c0cd87bfd454f5edf7"
+    },
+    "root-files.json": {
+      "nbytes": 8573958,
+      "sha256": "8d5e30f9f9c376510eef2033dcf08b3ce672f5a73fc00240f9d8fb48605f7327"
+    },
+    "source-closure.json": {
+      "nbytes": 28542,
+      "sha256": "d2335f26d30467a2266c7c28ac5b9aed64c04833b17dd416f642c87cba21b9df"
+    }
+  },
+  "finished_kst": "2026-11-13T23:59:22+09:00",
+  "full_lock_ready": false,
+  "image_preparation_ready": false,
+  "independent_wheel_zip_crc_record_metadata_runtime_license": true,
+  "input_bytes": 109285137,
+  "input_transports": 51,
+  "job_id": 131961362812,
+  "kernel_identity_limit": "Original kernel inode/device reports agree; archive cannot independently re-observe the past kernel inode. Actual final source bytes independently matched to retained after map.",
+  "namespace": {
+    "additional_userns": {
+      "errno": 28,
+      "returncode": -1,
+      "status": "RETURNED"
+    },
+    "build": {
+      "bytes": 268435456,
+      "readonly": false,
+      "tmpfs": true
+    },
+    "capabilities": {
+      "CapAmb": 0,
+      "CapBnd": 0,
+      "CapEff": 0,
+      "CapInh": 0,
+      "CapPrm": 0
+    },
+    "errors": [],
+    "gid": 0,
+    "network": {
+      "interface_count": null,
+      "interfaces_present": false,
+      "only_loopback": null,
+      "route_lines": 1
+    },
+    "python": {
+      "dont_write_bytecode": true,
+      "isolated": true,
+      "no_site": true,
+      "version": [
+        3,
+        11,
+        18
+      ]
+    },
+    "readonly": {
+      "/": true,
+      "/dev": true,
+      "/dev/pts": true,
+      "/proc": true
+    },
+    "schema": "builder-namespace-proof-v1",
+    "uid": 0,
+    "visible_userns_limit": 2147483647
+  },
+  "namespace_validated": true,
+  "native_admission": false,
+  "official_model_calls": 0,
+  "qualification_status": "SUPPORTED_SCOPED_PROFILE",
+  "raw_directory": "output/stage7-builder-directory-evidence/builder-20261113-07",
+  "request_consumed": true,
+  "request_id": "builder-20261113-07",
+  "root_bytes": 351904828,
+  "root_nodes_independently_matched": 12729,
+  "run_attempt": 1,
+  "run_id": 43447694201,
+  "schema": "builder-source-directory-consumption-v1",
+  "smoke_stdout_sha256": "e690837d6b617fb02e43e4fb503f01c511c29b7c75cb0496666a84b0324e6df5",
+  "smoke_verified_in_target": true,
+  "source_after_files": 19,
+  "source_before_files": 15,
+  "source_directory": {
+    "build_device": 53,
+    "created": true,
+    "empty": true,
+    "errno": null,
+    "location_sha256": "dfccfea8a295f926199ed9d85ede811667e73c37cf830a9ee911897735e2dfcf",
+    "parent_device": 53,
+    "parent_named_inode_matches": true,
+    "schema": "source-directory-v1",
+    "stage": "READY",
+    "status": "EMPTY_SOURCE_DIRECTORY_READY",
+    "target_device": 53,
+    "target_inode": 3384,
+    "target_mode": 448,
+    "target_named_inode_matches": true,
+    "target_uid": 0,
+    "tmp_device": 53
+  },
+  "source_directory_matches_reported_snapshot_identity": true,
+  "source_sha": "b8979edf2d592431c85864936bdc04519e932e41",
+  "source_snapshots": {
+    "after": {
+      "files": 19,
+      "files_sha256": {
+        "LICENSE.txt": "cd9ae4bad4124563ef2556118ea2d52df165ac42639dee68c02137789ac7aa56",
+        "MANIFEST.in": "d4bf035cb93e39e4eda87fd33917a0c5c980d02535225f2ca012f070271e46ff",
+        "PKG-INFO": "a846ee1cd41eecbebc858ae2329e566c4b882778aa364d1393a340cbb01162a9",
+        "README.txt": "62d3c5d1feac458cee77a6ded251de75a2970702cdd1dc7065b188815aecc59c",
+        "build/lib/progressbar/__init__.py": "2156ed76fa671acd72aca0c3237738c7297172d6830c6495564eeb94f0f50349",
+        "build/lib/progressbar/compat.py": "9895cf77a623746bcf765910dd5df6c6e0ecf737ce34ad34a35fb30227f99a26",
+        "build/lib/progressbar/progressbar.py": "cf501ab25c0d42d6a80080b02a5f318c2fe4174b34f608d88b0047c2b3b6391e",
+        "build/lib/progressbar/widgets.py": "4c8dc78717259f6846cbfdec8d643394658443cc66967421aef2a5017d3270ce",
+        "examples.py": "aa1470d1e4e3cbd88ff88e856138d93e9adf512fadd70b47f43072930db57f43",
+        "progressbar.egg-info/PKG-INFO": "3809acd58231ff87753bf5ab9bd5249ae5ead75bfe4cf0b15285214437df5db3",
+        "progressbar.egg-info/SOURCES.txt": "7bb701dfff234daeca09243d48ffb5e334e97334ce5d094a4e1eb3e310bbfcee",
+        "progressbar.egg-info/dependency_links.txt": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+        "progressbar.egg-info/top_level.txt": "566f96e4677f248c4cba5f587db683915bb16c3ffea9dfc69a2d6c23c089b1a1",
+        "progressbar/__init__.py": "2156ed76fa671acd72aca0c3237738c7297172d6830c6495564eeb94f0f50349",
+        "progressbar/compat.py": "9895cf77a623746bcf765910dd5df6c6e0ecf737ce34ad34a35fb30227f99a26",
+        "progressbar/progressbar.py": "cf501ab25c0d42d6a80080b02a5f318c2fe4174b34f608d88b0047c2b3b6391e",
+        "progressbar/widgets.py": "4c8dc78717259f6846cbfdec8d643394658443cc66967421aef2a5017d3270ce",
+        "setup.cfg": "1c473cbaee8da5fc46e7f0158794af5cea4414c34a3cf3f180c2001f5e38bd3e",
+        "setup.py": "1b7a590a8b85b6ced168d25959530df91bbd31ae2fc58ef2162144e9696ba8e9"
+      },
+      "snapshot_sha256": "ec1fda57b2ca0ba49a0f40633bda0f8b103d7953f12fa116a699b8ba4d07203d"
+    },
+    "before": {
+      "files": 15,
+      "files_sha256": {
+        "LICENSE.txt": "cd9ae4bad4124563ef2556118ea2d52df165ac42639dee68c02137789ac7aa56",
+        "MANIFEST.in": "d4bf035cb93e39e4eda87fd33917a0c5c980d02535225f2ca012f070271e46ff",
+        "PKG-INFO": "a846ee1cd41eecbebc858ae2329e566c4b882778aa364d1393a340cbb01162a9",
+        "README.txt": "62d3c5d1feac458cee77a6ded251de75a2970702cdd1dc7065b188815aecc59c",
+        "examples.py": "aa1470d1e4e3cbd88ff88e856138d93e9adf512fadd70b47f43072930db57f43",
+        "progressbar.egg-info/PKG-INFO": "a846ee1cd41eecbebc858ae2329e566c4b882778aa364d1393a340cbb01162a9",
+        "progressbar.egg-info/SOURCES.txt": "39a1e266214216ba9a0fe63647ce093f8a188186257e11563f9e0a8c64ea42c1",
+        "progressbar.egg-info/dependency_links.txt": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+        "progressbar.egg-info/top_level.txt": "566f96e4677f248c4cba5f587db683915bb16c3ffea9dfc69a2d6c23c089b1a1",
+        "progressbar/__init__.py": "2156ed76fa671acd72aca0c3237738c7297172d6830c6495564eeb94f0f50349",
+        "progressbar/compat.py": "9895cf77a623746bcf765910dd5df6c6e0ecf737ce34ad34a35fb30227f99a26",
+        "progressbar/progressbar.py": "cf501ab25c0d42d6a80080b02a5f318c2fe4174b34f608d88b0047c2b3b6391e",
+        "progressbar/widgets.py": "4c8dc78717259f6846cbfdec8d643394658443cc66967421aef2a5017d3270ce",
+        "setup.cfg": "1c473cbaee8da5fc46e7f0158794af5cea4414c34a3cf3f180c2001f5e38bd3e",
+        "setup.py": "1b7a590a8b85b6ced168d25959530df91bbd31ae2fc58ef2162144e9696ba8e9"
+      },
+      "snapshot_sha256": "2a845e8f7ff0090e6a76d0c87823bf4d9a0420e41aef06e495618db1eccd9696"
+    },
+    "logs": {
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 710,
+      "stdout_sha256": "f8d304da419ef9fbc9f79cffcd848044dab1b92c61b8e0dc94cecd15db85ca45"
+    },
+    "schema": "source-snapshots-v1",
+    "source_identity": {
+      "device": 53,
+      "inode": 3384
+    },
+    "source_relative": "pip-wheel-bt3kwsrm/progressbar_6eabcba704284eadb8c985d4c504988d",
+    "status": "SOURCE_SNAPSHOTS_VERIFIED"
+  },
+  "status": "BUILT_WHEEL_VERIFIED",
+  "target_execution_verified": true,
+  "tool_verification": {
+    "bootstrap": {
+      "files": 1894,
+      "installed_files": 1894,
+      "payload_files": 1036,
+      "snapshot_sha256": "3a76fdeed495814537505c7d7d17c7b2bac477fd2d6c955e47eff6bdd6a0390d"
+    },
+    "source": {
+      "files": 19,
+      "snapshot_sha256": "ec1fda57b2ca0ba49a0f40633bda0f8b103d7953f12fa116a699b8ba4d07203d"
+    },
+    "tools": {
+      "files": 1033,
+      "installed_files": 1033,
+      "payload_files": 1024,
+      "snapshot_sha256": "b220645921161657575de88410c4b1417474df0aa220bcd4fc331d38fcb5d46a"
+    }
+  },
+  "unique_workflow_branch_runs": 1,
+  "wheel": {
+    "decoded_bytes": 29802,
+    "errors": [],
+    "image_preparation_ready": false,
+    "member_count": 9,
+    "native_admission": false,
+    "nbytes": 12144,
+    "publisher_authenticated": false,
+    "schema": "progressbar-wheel-byte-check-v1",
+    "status": "WHEEL_BYTES_MATCH",
+    "wheel_sha256": "6d700c40ef5826211c7fa03701fc0bd9131a93f40e170963cff507c622ee3dd1"
+  },
+  "wheel_locally_executed": false,
+  "workflow_conclusion": "success",
+  "workflow_id": 417393804
+}
