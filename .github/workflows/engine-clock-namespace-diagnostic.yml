@@ -1,0 +1,58 @@
+{
+  "name": "Engine Clock Namespace Diagnostic",
+  "on": {
+    "push": {
+      "branches": [
+        "diagnose/engine-clock-namespace-20261113-01"
+      ]
+    }
+  },
+  "permissions": {
+    "contents": "read",
+    "actions": "read"
+  },
+  "concurrency": {
+    "group": "engine-clock-namespace-diagnostic-20261113-01",
+    "cancel-in-progress": false
+  },
+  "jobs": {
+    "diagnose": {
+      "runs-on": "ubuntu-24.04",
+      "timeout-minutes": 5,
+      "steps": [
+        {
+          "name": "Reject repeated attempts",
+          "run": "test \"$GITHUB_RUN_ATTEMPT\" = 1"
+        },
+        {
+          "uses": "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "with": {
+            "fetch-depth": 1,
+            "persist-credentials": false,
+            "submodules": false,
+            "lfs": false
+          }
+        },
+        {
+          "name": "Authenticate source and run three bounded model-free observations",
+          "env": {
+            "GH_TOKEN": "${{ github.token }}"
+          },
+          "run": "/usr/bin/python3 -I -S -B scripts/engine_clock_namespace_diagnostic.py"
+        },
+        {
+          "name": "Preserve original bounded observations",
+          "if": "${{ always() && github.run_attempt == 1 }}",
+          "uses": "actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+          "with": {
+            "name": "engine-clock-namespace-diagnostic-20261113-01",
+            "path": "output/stage7-namespace-diagnostic/namespace-diagnostic-20261113-01/",
+            "compression-level": 0,
+            "retention-days": 30,
+            "if-no-files-found": "error"
+          }
+        }
+      ]
+    }
+  }
+}
