@@ -1,0 +1,64 @@
+{
+  "schema": "engine-clock-run-visibility-review-v1",
+  "base": "5e496f12da2476cc56afa3d8ec3f447c4d315bf2",
+  "reviewed_head": "d48e4e97788f7958b5313d688c95a9fa29e2d3c3",
+  "reviewer": "sealed_run_visibility_review",
+  "model": "gpt-6-astra",
+  "reasoning": "medium",
+  "read_only": true,
+  "critical": 0,
+  "important": 0,
+  "minor": 2,
+  "independent_focused": {
+    "tests": 4,
+    "status": "PASS"
+  },
+  "parent_full": {
+    "tests": 1064,
+    "skipped": 7,
+    "seconds": 99.466,
+    "status": "PASS"
+  },
+  "important_fix_passes": 0,
+  "rereview_performed": false,
+  "deferred_minor": [
+    {
+      "id": "RV-M1",
+      "finding": "Exhaustion/early validation failure has no dedicated visibility phase summary.",
+      "ruling": "Defer; rawsnapshots/HTTPdurations/overalloperation evidence retained and no admission/budget weakness.",
+      "cost": "Investigators reconstruct phase timing/count from raw files and events."
+    },
+    {
+      "id": "RV-M2",
+      "finding": "Earlier original deadline and API-call-consumed-time paths not directly exercised by four fixtures.",
+      "ruling": "Defer; reviewed before/afterchecks and underlying transport hard shortened deadline enforce bounds.",
+      "cost": "Reduced regression protection for those deadline branches."
+    }
+  ],
+  "declined_rulings": [
+    {
+      "behavior": "Hardcoded30/6/5 mismatch",
+      "ruling": "Closed request validator requires identical fixed values; no mismatch."
+    },
+    {
+      "behavior": "Malformed nonempty permissive admission",
+      "ruling": "Immediately following unchanged strict validator rejects it."
+    },
+    {
+      "behavior": "HTTP/parse retry",
+      "ruling": "Exceptions immediately propagate; finally only restoresdeadline."
+    },
+    {
+      "behavior": "Clockorigin mismatch on specifiedrunner",
+      "ruling": "UbuntuCPython monotonic/performance shareunderlyingclock; no new originissue."
+    },
+    {
+      "behavior": "GitHubinternal cause",
+      "ruling": "Unproven; only observed temporalvisibility recorded."
+    }
+  ],
+  "actual_image_or_preflight_success_established": false,
+  "verdict": "READY_FOR_EXACT_SOURCE_QUALIFICATION_THEN_ONE_005_ACTIVATION",
+  "native_admission": false,
+  "official_model_calls": 0
+}
