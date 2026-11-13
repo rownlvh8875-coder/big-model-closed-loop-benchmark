@@ -51,6 +51,7 @@ FIXED_PATHS={
  'scripts/engine_clock_image_preparation_v2.py','scripts/engine_clock_image_staging_v2.py','tests/test_engine_clock_image_retained.py',
  'docs/locks/engine-clock-retained-image-debs-01.lock.json','docs/evidence/STAGE7_ENGINE_CLOCK_IMAGE_01_RESULT.json',
  'docs/superpowers/specs/2026-11-14-engine-clock-retained-image-design.md','docs/superpowers/plans/2026-11-14-engine-clock-retained-image.md',
+ 'scripts/engine_clock_image_backend_v2.py',
  'scripts/engine_clock_image_preparation_v3.py','scripts/engine_clock_image_staging_v3.py','scripts/engine_clock_image_installer_v2.py','tests/test_engine_clock_image_assets_bootstrap.py','tests/test_engine_clock_image_payloads.py',
  'docs/locks/engine-clock-retained-image-payloads-02.lock.json','docs/evidence/STAGE7_ENGINE_CLOCK_IMAGE_02_RESULT.json',
  'docs/superpowers/specs/2026-11-14-engine-clock-assets-bootstrap-design.md','docs/superpowers/plans/2026-11-14-engine-clock-assets-bootstrap.md',
@@ -175,7 +176,7 @@ def normalize_launch(raw,expected,nonce):
             mounts.append({'type':row['Type'],'destination':row['Destination'],'rw':row['RW']})
         result={'container_id':raw['Id'],'image_id':raw['Image'],'read_only_rootfs':h['ReadonlyRootfs'],'network_mode':h['NetworkMode'],'privileged':h['Privileged'],'cap_drop':h['CapDrop'],'security_opt':h['SecurityOpt'],'pid_mode':h['PidMode'],'ipc_mode':h['IpcMode'],'pids_limit':h['PidsLimit'],'memory_bytes':h['Memory'],'nano_cpus':h['NanoCpus'],'devices':h['Devices'] or [],'device_requests':h['DeviceRequests'] or [],'binds':h['Binds'] or [],'mounts':mounts,'tmpfs':h['Tmpfs'],'entrypoint':c['Entrypoint'],'command':c['Cmd'],'user':c['User'],'working_dir':c['WorkingDir'],'env':environment,'labels':c['Labels'],'unknown_env_count':len(set(environment)-set(archive.IMAGE_ENV))}
         archive.validate_launch(result,expected,nonce)
-        _need(set(result['labels'])<= {'stage7.request','stage7.nonce','stage7.source'})
+        _need(set(result['labels'])=={'stage7.request','stage7.nonce','stage7.source','org.opencontainers.image.version'} and result['labels']['org.opencontainers.image.version']=='24.04')
         return result
     except Exception:raise ValueError('IMAGE_LAUNCH_REJECTED') from None
 
@@ -239,7 +240,7 @@ def authenticate_image(client,request,work,root):
 
 
 def run_operation(role):
-    from scripts.engine_clock_image_backend import Docker
+    from scripts.engine_clock_image_backend_v2 import Docker
     from scripts.engine_clock_image_staging_v3 import stage_inputs,RetainedClient
     started=time.perf_counter();cfg=ROLES[role];root=Path(__file__).resolve().parent.parent
     def git(*args):

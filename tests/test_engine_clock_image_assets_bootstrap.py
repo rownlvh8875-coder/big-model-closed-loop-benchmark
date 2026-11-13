@@ -24,4 +24,20 @@ class AssetsBootstrapTests(unittest.TestCase):
     if kind=='symlink':(package/'assets').symlink_to(root/'outside')
     else:(package/'assets').write_bytes(b'keep')
     with self.assertRaisesRegex(ValueError,'^IMAGE_INSTALL_REJECTED$'):installer.replace_assets(package,z,root/'backup',expected_sha256=hashlib.sha256(z.read_bytes()).hexdigest())
+
+class PinnedBaseLabelTests(unittest.TestCase):
+ def test_actual_pinned_ubuntu_label_is_required_without_allowing_other_labels(self):
+  from scripts import engine_clock_image_preparation_v3 as p
+  from test_engine_clock_image_archive import launch_fixture
+  import copy
+  cid='sha256:'+'4'*64;nonce='a'*32;clean=launch_fixture(cid,nonce)
+  h={'ReadonlyRootfs':True,'NetworkMode':'none','Privileged':False,'CapDrop':['ALL'],'SecurityOpt':['no-new-privileges'],'PidMode':'','IpcMode':'private','PidsLimit':128,'Memory':2147483648,'NanoCpus':2000000000,'Devices':[],'DeviceRequests':None,'Binds':None,'Tmpfs':clean['tmpfs']}
+  labels={'stage7.request':'image-20261114-03','stage7.nonce':nonce,'stage7.source':'1'*40,'org.opencontainers.image.version':'24.04'}
+  raw={'Id':clean['container_id'],'Image':cid,'HostConfig':h,'Mounts':[],'Config':{'Entrypoint':clean['entrypoint'],'Cmd':clean['command'],'User':'0:0','WorkingDir':'/','Env':[k+'='+v for k,v in clean['env'].items()],'Labels':labels}}
+  expected={'config_digest':cid,'request_id':'image-20261114-03','source_sha':'1'*40,'command':clean['command']}
+  self.assertEqual(labels,p.normalize_launch(raw,expected,nonce)['labels'])
+  for key,value in [('org.opencontainers.image.version','24.10'),('unregistered','SECRET_SENTINEL')]:
+   bad=copy.deepcopy(raw);bad['Config']['Labels'][key]=value
+   with self.assertRaisesRegex(ValueError,'^IMAGE_LAUNCH_REJECTED$'):p.normalize_launch(bad,expected,nonce)
+
 if __name__=='__main__':unittest.main()
