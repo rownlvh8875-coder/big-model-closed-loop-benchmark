@@ -1,0 +1,161 @@
+{
+  "branch": "prepare/engine-clock-python-lock-20261114-02",
+  "budget": {
+    "log_limit_bytes": 1048576,
+    "max_archive_bytes": 268435456,
+    "max_decoded_bytes": 3221225472,
+    "max_json_bytes": 4194304,
+    "max_json_total_bytes": 134217728,
+    "max_member_bytes": 536870912,
+    "max_members": 100000,
+    "max_total_archive_bytes": 1073741824,
+    "max_wheels": 96,
+    "metadata_requests": 96,
+    "minimum_free_bytes": 17179869184,
+    "operation_tree_limit_bytes": 2147483648,
+    "pip_downloads": 1,
+    "pip_timeout_seconds": 300,
+    "total_timeout_seconds": 900
+  },
+  "local_inputs": [
+    {
+      "id": "metadrive-headless",
+      "name": "metadrive-simulator",
+      "nbytes": 72968610,
+      "path": "output/stage7-real-wheel-preparation/wheel-input-20261113-e369b2c18129/metadrive_simulator-0.4.3-1headless-py3-none-any.whl",
+      "sha256": "f949e89ff4bc32b72c8d09f5c61446bbc2b1f9b415b99a077c02b8df77c217f7",
+      "version": "0.4.3"
+    },
+    {
+      "id": "progressbar",
+      "name": "progressbar",
+      "nbytes": 12144,
+      "path": "output/stage7-builder-directory-evidence/builder-20261113-07/progressbar-2.5-py3-none-any.whl",
+      "sha256": "6d700c40ef5826211c7fa03701fc0bd9131a93f40e170963cff507c622ee3dd1",
+      "version": "2.5"
+    }
+  ],
+  "output_directory": "output/stage7-python-wheel-closure/python-lock-20261114-02",
+  "permissions": {
+    "docker_calls": false,
+    "model_calls": false,
+    "native_calls": false,
+    "package_installs": false,
+    "source_execution": false,
+    "wheel_downloads": true
+  },
+  "repository": "rownlvh8875-coder/big-model-closed-loop-benchmark",
+  "request_id": "python-lock-20261114-02",
+  "reviewed_source_branch": "prepare/engine-clock-python-wheel-closure",
+  "reviewed_source_sha": "a47112590a17539e55ae7a643f3c601a1f003e45",
+  "root_requirements": [
+    "metadrive-simulator==0.4.3",
+    "progressbar==2.5",
+    "numpy==2.4.6",
+    "opencv-python-headless==5.0.0.93",
+    "panda3d==1.10.13",
+    "onnxruntime>=1.19",
+    "numpy>=1.26",
+    "opencv-python-headless>=4.8"
+  ],
+  "schema": "python-wheel-closure-request-v1",
+  "source_ci": [
+    {
+      "event": "push",
+      "proofs": {
+        "artifacts": {
+          "nbytes": 32,
+          "path": "output/stage7-python-wheel-closure-preflight/python-lock-20261114-02/source-43462735340-artifacts.json",
+          "sha256": "244563f989470892c537c9a4622920af0d228ee4528f7d00c64a06d6cd95856c"
+        },
+        "jobs": {
+          "nbytes": 5106,
+          "path": "output/stage7-python-wheel-closure-preflight/python-lock-20261114-02/source-43462735340-jobs.json",
+          "sha256": "3d9c7297cc7ae90f755d102195281e9ab0574844db8dc3ef5ea83f3e4b02401f"
+        },
+        "run": {
+          "nbytes": 15833,
+          "path": "output/stage7-python-wheel-closure-preflight/python-lock-20261114-02/source-43462735340-run.json",
+          "sha256": "b2f3ff42064c32b816822c0ab621e3e9757741c4d91dbabd4b507c0ee0dac9fd"
+        }
+      },
+      "run_id": 43462735340
+    },
+    {
+      "event": "pull_request",
+      "proofs": {
+        "artifacts": {
+          "nbytes": 32,
+          "path": "output/stage7-python-wheel-closure-preflight/python-lock-20261114-02/source-43462746773-artifacts.json",
+          "sha256": "244563f989470892c537c9a4622920af0d228ee4528f7d00c64a06d6cd95856c"
+        },
+        "jobs": {
+          "nbytes": 5106,
+          "path": "output/stage7-python-wheel-closure-preflight/python-lock-20261114-02/source-43462746773-jobs.json",
+          "sha256": "a6661d7b277797658378ba92541dff47591bf9beb8d3e9c8c4fa20aed331cf08"
+        },
+        "run": {
+          "nbytes": 15849,
+          "path": "output/stage7-python-wheel-closure-preflight/python-lock-20261114-02/source-43462746773-run.json",
+          "sha256": "6ca2b575ceb879418b1863f27bec692f7202803dc1dd32687871d5b1cc31e292"
+        }
+      },
+      "run_id": 43462746773
+    }
+  ],
+  "source_closure": {
+    "docs/evidence/STAGE7_ENGINE_CLOCK_BUILDER_SOURCE_DIRECTORY_RESULT.json": "09875ca7cd9a9e3cf6c55960f028a1c0abdcedaeb1b8f13d43482716d994063e",
+    "docs/evidence/STAGE7_ENGINE_CLOCK_REAL_WHEEL_RECEIPT.json": "db30e87837b1b18ef0d7ed78ebe75161d401ea6352d7f27f3f06222ccfd4c6f4",
+    "docs/evidence/STAGE7_ENGINE_CLOCK_REAL_WHEEL_ROOT_VERIFICATION.json": "1f2d3541f87e340490d3d61349fc711fe27fecca988cdc6f4957f6f595601036",
+    "docs/superpowers/plans/2026-11-14-engine-clock-python-wheel-closure.md": "ed24c86b3253d82ae57701535bb7a2f861daca95d2b82d09537e96d1d4eaba09",
+    "docs/superpowers/specs/2026-11-14-engine-clock-python-wheel-closure-design.md": "0a75d5f0cd100ca99c6af8385eda2dd22557f0b104053f121fa60d6b17dc0e01",
+    "pyproject.toml": "367aa37f01d25a873a3336967ba182df85be725351fb6a48f26ab84834c20a0b",
+    "scripts/__init__.py": "c56e3eb2518092a8e1fc6298aa88b1abe36ceaef366060c9d1f74fd89973a109",
+    "scripts/engine_clock_binary_pip_download.py": "f3b96fb75984152b375672120e71cca020a3bba907e7c898fa816ba361c342fa",
+    "scripts/engine_clock_python_wheel_closure.py": "6088ef3bd989696f06b01c7a264dd7872e525be650ebd5ad8d12a77b7042ee24",
+    "scripts/engine_clock_python_wheel_preparation.py": "5d79bbc2bd937148cca5c68079c37ba29558c282173f97e40c7f2c5255d2e6cf",
+    "tests/test_engine_clock_binary_pip_download.py": "fc5b27c40b7f686e19c9431f9148c0a688e03877a9665392f2d3f3560f69d863",
+    "tests/test_engine_clock_python_wheel_closure.py": "1614dc6e808ef30571b64a239aaeacdede57841a0328b2f682a32d7ca8955e77",
+    "tests/test_engine_clock_python_wheel_preparation.py": "99f312a3108e232f3ca07c433fbe3aa57d9990d0ba4b89b0c2231c23544ec213"
+  },
+  "target": {
+    "abi": "cp311",
+    "implementation": "cp",
+    "platform": "linux/amd64",
+    "platform_tags": [
+      "manylinux_2_28_x86_64",
+      "manylinux_2_27_x86_64",
+      "manylinux_2_26_x86_64",
+      "manylinux_2_25_x86_64",
+      "manylinux_2_24_x86_64",
+      "manylinux_2_23_x86_64",
+      "manylinux_2_22_x86_64",
+      "manylinux_2_21_x86_64",
+      "manylinux_2_20_x86_64",
+      "manylinux_2_19_x86_64",
+      "manylinux_2_18_x86_64",
+      "manylinux_2_17_x86_64",
+      "manylinux_2_16_x86_64",
+      "manylinux_2_15_x86_64",
+      "manylinux_2_14_x86_64",
+      "manylinux_2_13_x86_64",
+      "manylinux_2_12_x86_64",
+      "manylinux_2_11_x86_64",
+      "manylinux_2_10_x86_64",
+      "manylinux_2_9_x86_64",
+      "manylinux_2_8_x86_64",
+      "manylinux_2_7_x86_64",
+      "manylinux_2_6_x86_64",
+      "manylinux_2_5_x86_64",
+      "manylinux2014_x86_64",
+      "manylinux2010_x86_64",
+      "manylinux1_x86_64"
+    ],
+    "python": "3.11.18"
+  },
+  "tool": {
+    "pip": "26.2.2",
+    "python": "/workspace/.cloud-tools/stage7/first-divergence-cpu-replay/bin/python",
+    "version": "3.11.17"
+  }
+}
