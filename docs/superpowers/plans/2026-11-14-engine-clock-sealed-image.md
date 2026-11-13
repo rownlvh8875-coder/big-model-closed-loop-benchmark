@@ -26,7 +26,7 @@ Create scripts/engine_clock_image_archive.py and tests/test_engine_clock_image_a
 
 ### Task2: Isolated candidate inventory and verification
 
-Create scripts/engine_clock_image_inventory.py and tests/test_engine_clock_image_inventory.py. Interfaces: `create_inventory(root:Path,*,deadline:float)->dict` (candidate-only); `verify_inventory(root:Path,expected:dict,*,deadline:float)->dict` delegates immutable publiccollector; `verify_prefix(root:Path,observation:dict)->dict` checks actual fixed alias/plainparents/canonical bytes without native imports. CLI inside actual qualified container only, no import-time/automatichost scan.
+Create scripts/engine_clock_image_inventory.py and tests/test_engine_clock_image_inventory.py. Interfaces: `create_inventory(root:Path,*,deadline:float)->dict` (candidate-only); `verify_inventory(root:Path,expected:dict,*,deadline:float)->dict` delegates immutable publiccollector; `verify_prefix(root:Path,observation:dict,*,expected_members:dict)->dict` checks actual fixed alias/plainparents/canonical bytes without native imports. CLI inside actual qualified container only, no import-time/automatichost scan.
 
 - [ ] Write temporary owned root fixtures reproducing requiredaliases/exclusions/emptyfiles/extrafile/mutation/symlinkescape/crossroot/deadline/perfile/aggregate/entry/JSON caps; assert inherited collector globals unchanged and pure source parity/composition.
 - [ ] RED then minimal per-instance subclass/typedCLI/prefix/installedmetadata absenceORT checks thenGREEN. Candidate alone never accepted as prepared image. Stdlib-only version evidence labels contract cv2literal vs observedPython accurately.
