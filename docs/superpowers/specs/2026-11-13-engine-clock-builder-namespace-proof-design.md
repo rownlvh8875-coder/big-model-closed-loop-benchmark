@@ -1,0 +1,11 @@
+# Builder03 namespace proof and retained facts
+
+Builder02 is consumed and FAILED. Its exact 99-byte core failure and root/input inventory are preserved in PR62. The failed grouped predicate is unknown. This new request repairs an owned control condition, not third-party package bytes or scientific code.
+
+The child-visible user.max_user_namespaces is diagnostic, not a complete hierarchical security proof. Collect Python/uid/gid/root/proc/dev/devpts read-only flags, build tmpfs quota/RW, all five capability sets, route/interface facts and the visible limit. Retain fixed fields and bounded integer/hash/error enums only; no exception text, arbitrary process text or environment. Check all initial constraints before exactly one typed libc unshare(CLONE_NEWUSER). Accept only return -1 and EPERM or ENOSPC; success or unavailable evidence fails before all package stages. A large visible limit does not reject an otherwise proven denial. A small limit never substitutes for the denial.
+
+Separate owned driver uses the unchanged legacy build commands, tool/source/wheel/smoke checks and strict core-v1 wire. An outer v2 envelope carries safe namespace facts even on failure. Preserve the legacy driver unchanged at /run/builder/legacy-driver.py; replace only the owned entry driver and add the owned proof module. Every third-party input/source stays identical. Compute/register the new root plan; never force the old golden plan.
+
+New v3 controller/workflow, builder-20261113-03: one run, one attempt, one build, at most two backend probes, one profile load, one candidate userns assertion. Fresh scoped backend proof and separate empty 256MiB candidate/probe noexec tmpfs required. Sole-parent request-only activation, authenticated source closure and selected inputs, independent artifact/inventory consumption, always bounded four-root retention. Old workflows/modules/tests/policies/requests/raw unchanged. No model, ORT, GL, scientific/native run, main merge or Cloud publication. A verified wheel is not a full dependency/image/native lock.
+
+User explicitly authorized autonomous necessary repair and new requests. Inline existing checkout; retain all workspaces. No design/approval pause or implementer delegation. One fresh independent review before activation, one Important/Critical TDD fix pass, defer Minor with cost.
