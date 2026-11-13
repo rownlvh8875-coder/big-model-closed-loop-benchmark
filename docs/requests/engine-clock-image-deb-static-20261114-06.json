@@ -1,0 +1,62 @@
+{
+  "schema": "engine-clock-new-deb-static-request-v1",
+  "request_id": "image-deb-static-20261114-06",
+  "output_directory": "output/stage7-image-static-inputs/image-deb-static-20261114-06",
+  "source_inputs": {
+    "docs/evidence/engine-clock-os-inputs/static-coverage.json": {
+      "nbytes": 586209,
+      "sha256": "f78d5ccc85cc573224683d179de8a1f98ef7efc26103443e0437131ef45d37c2"
+    },
+    "docs/evidence/engine-clock-os-inputs/package-members.json": {
+      "nbytes": 633611,
+      "sha256": "773871d5f9016b934939249ba3c66ccedc02f3eec1cb087a12937c4d595f51b7"
+    },
+    "output/stage7-image-static-inputs/image-static-delta-20261114-03/wheel-elf.json": {
+      "nbytes": 690095,
+      "sha256": "c45cdfe9065c8ee9eb07c5c4186bb13c02518ade85e0213e4bbc09c663a6c99b"
+    },
+    "output/stage7-image-static-inputs/graphics-graph-20261114-04/graphics-package-plan.json": {
+      "nbytes": 142098,
+      "sha256": "35ca4bb6665de78069368650722a1dd4daa0fea0b3f5c00ada00b760b81b12f7"
+    },
+    "output/stage7-image-static-inputs/image-payloads-20261114-05/receipt.json": {
+      "nbytes": 94539,
+      "sha256": "3cc4f26765324027fa8b3adfb566da9550feb27af35bd78e3a01bd88461d0308"
+    }
+  },
+  "scope": {
+    "selected_packages": 192,
+    "previously_inspected_debs_reused": 46,
+    "new_debs": 146,
+    "old_elf_metadata_reused": 412,
+    "wheel_elf_metadata_reused": 526,
+    "new_readelf_objects_max": 2048,
+    "trusted_tools": [
+      "dpkg-deb archive-read",
+      "readelf static-read"
+    ]
+  },
+  "budget": {
+    "total_seconds": 180,
+    "decoded_tar_bytes": 1610612736,
+    "max_members": 75000,
+    "max_member_bytes": 536870912,
+    "new_elf_blob_bytes": 1073741824,
+    "readelf_per_output_bytes": 4194304,
+    "readelf_total_output_bytes": 100663296,
+    "new_readelf_objects": 2048,
+    "manifest_json_bytes": 16777216
+  },
+  "permissions": {
+    "network": false,
+    "package_install": false,
+    "maintainer_scripts": false,
+    "payload_execution": false,
+    "docker": false,
+    "native_model": false
+  },
+  "claim_limit": "Complete measured input and candidate SONAME/version-label coverage only; multiple provider candidates and runtime loader selection/ABI remain explicitly unverified. No missing candidate may be silently omitted.",
+  "request_consumption": "exclusive-marker/no-retry",
+  "full_runtime_lock_ready": false,
+  "image_preparation_ready": false
+}

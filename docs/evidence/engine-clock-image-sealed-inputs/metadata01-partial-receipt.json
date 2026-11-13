@@ -1,0 +1,64 @@
+{
+  "request_id": "image-inputs-20261114-01",
+  "status": "PARTIAL_OR_FAILED_METADATA",
+  "request_consumed": true,
+  "metadata_gets": 5,
+  "metadata_bytes": 23365,
+  "transports": [
+    {
+      "source": "https://auth.docker.io/token?service=registry.docker.io&scope=repository:library/ubuntu:pull",
+      "http_status": 200,
+      "nbytes": 5489,
+      "sha256": "2beb0dd0a6dedc4a446348e1bc56f6555de25f538c92ae160862f8dd1dc8f6ae",
+      "seconds": 0.18481772500672378,
+      "tls_default_context_verified": true,
+      "redirects": 0,
+      "raw_preserved": false,
+      "credential_body_intentionally_not_persisted": true
+    },
+    {
+      "source": "https://registry-1.docker.io/v2/library/ubuntu/manifests/24.04",
+      "http_status": 200,
+      "nbytes": 6688,
+      "sha256": "2198e4c65076e9cb0b3d695219df667c0e3b0072da64ca3c2648aca17dcecaf5",
+      "seconds": 0.4433548010129016,
+      "tls_default_context_verified": true,
+      "redirects": 0,
+      "raw_preserved": true,
+      "credential_body_intentionally_not_persisted": false
+    },
+    {
+      "source": "https://registry-1.docker.io/v2/library/ubuntu/manifests/sha256:77eb101c607d6e3d4f5ad0c8a02c2136c689b98aba1f359e6502ba517e5c57ec",
+      "http_status": 200,
+      "nbytes": 424,
+      "sha256": "77eb101c607d6e3d4f5ad0c8a02c2136c689b98aba1f359e6502ba517e5c57ec",
+      "seconds": 0.3549588850000873,
+      "tls_default_context_verified": true,
+      "redirects": 0,
+      "raw_preserved": true,
+      "credential_body_intentionally_not_persisted": false
+    },
+    {
+      "source": "https://api.github.com/repos/metadriverse/metadrive/releases/tags/MetaDrive-0.4.3",
+      "http_status": 200,
+      "nbytes": 10764,
+      "sha256": "3d80f0473a433a07ebb797a474c623a658a4ec970d64e8b70b1ef9d55a90fb59",
+      "seconds": 0.7033826179977041,
+      "raw_preserved": true
+    }
+  ],
+  "errors": [
+    {
+      "stage": "base-metadata",
+      "code": "HTTP_307"
+    }
+  ],
+  "package_installs": 0,
+  "source_executions": 0,
+  "docker_calls": 0,
+  "native_model_calls": 0,
+  "full_runtime_lock_ready": false,
+  "image_preparation_ready": false,
+  "asset_metadata_ready": true,
+  "seconds": 2.017667979991529
+}

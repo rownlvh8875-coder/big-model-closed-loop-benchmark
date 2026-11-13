@@ -1,0 +1,102 @@
+{
+  "schema": "engine-clock-image-local-static-request-v1",
+  "request_id": "graphics-graph-20261114-04",
+  "repository": "rownlvh8875-coder/big-model-closed-loop-benchmark",
+  "output_directory": "output/stage7-image-static-inputs/graphics-graph-20261114-04",
+  "inputs": {
+    "docs/locks/engine-clock-python-wheels.lock.json": {
+      "nbytes": 104668,
+      "sha256": "ec68e4d643de0237e3902122197b766c4677ef2aab83da1051f712f96a35193e"
+    },
+    "docs/evidence/engine-clock-python-bootstrap/selected-distribution.json": {
+      "nbytes": 4249,
+      "sha256": "2b47d82d32d0f50fd780b0f725306ea31b45da95e11a7a79031f607236930b48"
+    },
+    "docs/evidence/engine-clock-os-inputs/package-plan.json": {
+      "nbytes": 37729,
+      "sha256": "250936b267cf5023a9ad4be210ba5728675f5d930220bd95a7a9d7e7c9b1c206"
+    },
+    "docs/evidence/engine-clock-os-inputs/resolver-profile.json": {
+      "nbytes": 2215,
+      "sha256": "657ee16dcbf2833109c33fca58019e6b220ef3f6dc2fec0771e8c73aea961a47"
+    }
+  },
+  "base_discovery": {
+    "repository": "library/ubuntu",
+    "tag": "24.04",
+    "platform": "linux/amd64",
+    "sealed_input": false
+  },
+  "asset_release": {
+    "repository": "metadriverse/metadrive",
+    "tag": "MetaDrive-0.4.3",
+    "filename": "assets.zip",
+    "nbytes": 134074203,
+    "sha256": "4f0da9f5143a1258131c5b55f77bdf170c0f9bce8a9f18dd41b3678df779eac9"
+  },
+  "budget": {
+    "metadata_gets": 0,
+    "max_json_bytes": 4194304,
+    "max_json_total_bytes": 33554432,
+    "metadata_seconds": 120,
+    "readelf_files": 0,
+    "readelf_copied_bytes": 0,
+    "readelf_process_seconds": 30,
+    "readelf_total_seconds": 180,
+    "readelf_output_bytes": 2097152,
+    "readelf_all_output_bytes": 67108864,
+    "minimum_free_bytes": 17179869184
+  },
+  "permissions": {
+    "public_metadata": false,
+    "local_apt_simulation": true,
+    "static_payload_bytes": true,
+    "payload_downloads": false,
+    "package_install": false,
+    "source_execution": false,
+    "docker": false,
+    "native_model": false
+  },
+  "request_consumption": "exclusive-marker/no-retry",
+  "further_execution_authorized": false,
+  "prior_metadata_result": {
+    "path": "output/stage7-image-static-inputs/image-inputs-20261114-01/metadata-receipt.json",
+    "sha256": "4c0b20ece51597d4250383079c057fe8941e2af381f51e6e29e35ac29b21da9e",
+    "state": "PARTIAL_OR_FAILED_METADATA/consumed/no-retry"
+  },
+  "prior_static_result": {
+    "path": "output/stage7-image-static-inputs/image-static-20261114-02/receipt.json",
+    "sha256": "e8c349fbb599182c10fa096e565afa40f56192428c70076d0d5572578f60dae6",
+    "state": "FAILED_OR_INCOMPLETE/512file-cap/consumed/no-retry"
+  },
+  "actual_elf_inventory": {
+    "path": "output/stage7-image-static-analysis/elf-inventory-20261114.json",
+    "sha256": "54049e599a8160813a198c1f8263339cab3da75af120e882c83fd8ba9d0c25fa",
+    "actual_count": 526,
+    "retained_outputs_reused": 512,
+    "new_ordinals": [
+      512,
+      513,
+      514,
+      515,
+      516,
+      517,
+      518,
+      519,
+      520,
+      521,
+      522,
+      523,
+      524,
+      525
+    ]
+  },
+  "ruling": "Independent exact inventory also confirms libnsl.so.1 already supplied by retained libc6, so no guessed missing-package conclusion or compatibility library substitution. Extend fresh local signed-index simulation with actual GTK2 root; prior137-package plan is preserved, not overwritten.",
+  "observed_external_root_additions": {
+    "libgtk2.0-0t64": "Panda3D panda3d_tools/pstats actual DT_NEEDED; retains this installed tool closure even though engine render does not invoke pstats."
+  },
+  "prior_wheel_elf": {
+    "path": "output/stage7-image-static-inputs/image-static-delta-20261114-03/wheel-elf.json",
+    "sha256": "c45cdfe9065c8ee9eb07c5c4186bb13c02518ade85e0213e4bbc09c663a6c99b"
+  }
+}
