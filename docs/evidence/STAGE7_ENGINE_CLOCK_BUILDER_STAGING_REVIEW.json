@@ -1,0 +1,114 @@
+{
+  "assessment": "NOT_READY_FOR_REMOTE_ACTIVATION_UNTIL_IMPORTANT_FIX_PASS",
+  "base_sha": "565bc7a124b35eaeee2f209185b8aad11e10f1b8",
+  "counts": {
+    "critical": 0,
+    "important": 5,
+    "minor": 2
+  },
+  "declined_to_judge": [
+    "Actual Ubuntu24.04 namespace/quota support and target startup",
+    "Actual build/runtime smoke success after source fixes",
+    "Complete bubblewrap/kernel vulnerability resistance",
+    "Aggregate memory/PID guarantees and malicious same-user interference",
+    "Global anti-replay against administrator history rewriting",
+    "Publisher/build authentication of pinned input origins",
+    "Future full lock/image/native/model/scientific admission",
+    "Legacy/full scientific experiment re-execution"
+  ],
+  "deferred_minors": [
+    "M6: reviewed_source_sha is informational; external preregistration/consumer must bind reviewed/qualified source and exact closure.",
+    "M7: reusable staging maximum180s not internally enforced; actual controlled callers supply180s."
+  ],
+  "findings": [
+    {
+      "id": "I1",
+      "issue": "pip wheel inherits unsupported install-only --no-compile",
+      "resolution": "Separate install and wheel options; static exact-pinned CLI contract regression.",
+      "severity": "Important"
+    },
+    {
+      "id": "I2",
+      "issue": "Named requirement source lives under pip-wheel-*/progressbar_UUID, not pip-req-build-*",
+      "resolution": "Owned pip unpack hook captures and validates the exact actual named source location before metadata execution.",
+      "severity": "Important"
+    },
+    {
+      "id": "I3",
+      "issue": "Lexical .. cancellation precedes POSIX symlink resolution",
+      "resolution": "Explicitly reject nonleading .. targets, validate final chains on canonical output nodes, and reject file targets with directory suffixes.",
+      "severity": "Important"
+    },
+    {
+      "id": "I4",
+      "issue": "No production before-source snapshot or retained per-file before/after maps",
+      "resolution": "Owned offline build hook validates the actual unpacked tree before first source execution, retains full bounded before/after manifests and actual workspace.",
+      "severity": "Important"
+    },
+    {
+      "id": "I5",
+      "issue": "Remote /tmp downloads/partial roots and tmpfs working tree would disappear without retained artifact",
+      "resolution": "Primary host creates one hard-quota256MiB tmpfs accessible through a fixed passed FD; retain bounded exact workspace archive and inventory on success/failure.",
+      "severity": "Important"
+    },
+    {
+      "disposition": "DEFERRED; operational preregistration and independent external consumer must bind actual reviewed/qualified source closure.",
+      "id": "M6",
+      "issue": "reviewed_source_sha is syntax-only, unbound in controller",
+      "severity": "Minor"
+    },
+    {
+      "disposition": "DEFERRED; actual controller always supplies180s and remote job has an outer limit.",
+      "id": "M7",
+      "issue": "Reusable staging deadline accepts values beyond advertised180s",
+      "severity": "Minor"
+    }
+  ],
+  "focused_recheck": {
+    "seconds": 1.189,
+    "status": "PASS",
+    "tests": 74
+  },
+  "independent_rereview_performed": false,
+  "remote_operation_executed": false,
+  "reviewed_sha": "96e97dcdf5ba81b67c995060bf50ddf10459d5c0",
+  "reviewer": "gpt-6-astra/medium/fresh context",
+  "root_dispositions": [
+    {
+      "finding": "I1",
+      "regraded": "Important",
+      "status": "CLOSED_IN_SINGLE_TDD_FIX_PASS"
+    },
+    {
+      "finding": "I2",
+      "regraded": "Important",
+      "status": "CLOSED_IN_SINGLE_TDD_FIX_PASS"
+    },
+    {
+      "finding": "I3",
+      "regraded": "Important",
+      "status": "CLOSED_IN_SINGLE_TDD_FIX_PASS"
+    },
+    {
+      "finding": "I4",
+      "regraded": "Important",
+      "status": "CLOSED_IN_SINGLE_TDD_FIX_PASS"
+    },
+    {
+      "finding": "I5",
+      "regraded": "Important",
+      "status": "CLOSED_IN_SINGLE_TDD_FIX_PASS"
+    }
+  ],
+  "root_qualified_assessment": "SOURCE_QUALIFIED_PENDING_EXACT_FINAL_HEAD_BASIC_CI_NOT_RUNTIME_CERTIFICATION",
+  "root_qualified_code_sha": "9aaca76095e611f6ec1bf73700bb1f6a2e33254c",
+  "root_validation": {
+    "focused_seconds": 1.182,
+    "focused_tests": 88,
+    "full_seconds": 74.321,
+    "full_tests": 814,
+    "optional_skips": 7,
+    "target_executed": false
+  },
+  "target_executed": false
+}

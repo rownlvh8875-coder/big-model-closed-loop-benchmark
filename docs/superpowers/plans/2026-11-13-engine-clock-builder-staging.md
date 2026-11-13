@@ -16,6 +16,7 @@
 - No local downloaded runtime/bootstrap/source execution; local trusted-true discovery failed UID mapping.
 - Plan/stage limits128sources/20000nodes/512MiB/file128MiB/path4096/depth64/40hops/JSON16MiB/deadline180s.
 - Run limits phase180s/cleanup5s/tmpfs256MiB/wheel1MiB/wire3MiB/stderr1MiB/perfile4MiB/perprocessAS1GiB/process64; no global containment overclaim.
+- Qualified I5 repair: one predeclared host tmpfs hard256MiB passed by fixed FD; retention outer1GiB/gzip900MiB/physicalTAR900MiB/regular-files800MiB/nodes40000/file128MiB/manifest16MiB/archiving180s. Preserve available original/partial workspaces on graceful success/failure; abrupt loss remains incomplete.
 - All native/image admissionfalse; old16refsnull/nativeallowance0. No worktrees/Cloud publish/main merge; retain all evidence/workspaces.
 
 ## Review Focus
@@ -48,3 +49,5 @@
 - [x] Run focused/full CPU suite and preservation checks; commit. Expected: GREEN and explicit source-only readiness.
 - [ ] One fresh whole-branch review; regrade and one Important/Critical TDD fix pass if needed, no rereview; record all decline rulings/minors; own-branch Draft/basic CI. Expected: actual reviewed/final HEAD/CI, unchanged old gates.
 - [ ] Continue without ending the user task into a distinct operational plan that registers reviewed source and exact provider-free remote request; activate only after source review/CI. Expected: real bounded evidence or preserved terminal failure, no unsupported local execution or old request reuse.
+
+Review outcome:96e97dc C0/I5/M2. Root accepted I1-I5; single qualified TDD fix code9aaca76095e611f6ec1bf73700bb1f6a2e33254c has88focused/814full CPUtests PASS,7optional skips. No independent rereview. M6review-SHA binding and M7reusable deadline maximum remain deferred, with operational external binding/controlled180s callers. Fresh review and all root rulings are retained in the new review/audit; exact-final-source basic CI and the separate operation follow.
