@@ -2,7 +2,14 @@
 
 
 
-## Current checkpoint (2026-11-12 — Task3 input compatibility blocked)
+
+## Current checkpoint (2026-11-13 — synthetic wheel metadata derivative)
+
+Branchfeature/engine-clock-wheel-derivative;baseb9812ae4a7d795c22fc277036064e57ae8cfd3dd/PR43. Newpurestdlibscripts/engine_clock_wheel_derivative.py/fixturetests implement derive_wheel(bytes,pins,deadline)->bytes-or-None+nonadmittingreceipt. ExactMETADATAdependencychange;WHEELGenerator/Build1headless/provenance/RECORD labelderivative;NameVersion0.4.3unchanged. Everyothermemberbytes/external_attr/create_systempreserved,includinglicense/entrypoints/directories. NoCLI/filesystem/network/process/packageIO. Callerpinmatch/policyhashnotupstreamorimplementationauth;allofficial/origin/implementation/prep/execution/nativeflagsfalse. ClassicZIP/resource/cooperativedeadlinecaps;parsercountprecheckbeforeallocation,zeroexternalattrpreserved. Syntheticoriginal/derivedbytes retained innewplanworkspace;notactualofficialwheel.
+
+SeeSTAGE7_ENGINE_CLOCK_WHEEL_DERIVATIVE.md,new2026-11-13spec/plan/evidenceaudit-policy-fixture. MeaningfulREDs/fixturemockorderingcorrection/realtestlogsretained;reviewedHEADandfinalreceiptHEAD/CIseparate. Producer70/workflows44/registry8/Task1+2tools-tests-proposal/oldraw-controllerhistoriesunchanged. Task3realoriginal/derivedhash/fullgraph/base/Python/deb/recipe/adapter/imagefeasibilityremainunresolved;16preprefsnull/nativeallowance0. Next:separatelyreviewedboundedactualwheelverification/derivationevidence,thencompletelocks/adapter;no actualpackage/image/nativepreparationnow. StrictFAIL/expandedNOT_RUN/oldABBAterminal7null4cases6comparisonsNOT_RUN/geometry-optics-fullS/Stage7INCOMPLETE/mainofficial0/Cloudunpublished/mainunmergedremain. Earliercheckpointsbelowhistorical.
+
+## Previous checkpoint (2026-11-12 — Task3 input compatibility blocked)
 
 Branchdesign/engine-clock-image-inputs;based54d43757eabc60d4f3f5b3d7e51f665bcc9f23e/PR42. Task1/2completeandunchanged. Task3firstinputgatescreened8officialmetadatarequests/allHTTP200/no retry. Exactreleaseversionsavailable. MetaDrive0.4.3wheelPEP658metadata11315bytes/SHA4fb69fa54bb0e8118315aecdc482597af69798e17e47df3c57fbca50d4e7bcf6verified;unconditionalRequires-Distopencv-python conflictswithsupportedone-cv2-providerpolicyandfixedopencv-python-headless5.0.0.93. Thisisupstreampackagingsupportblocker,notpipsolverunsatisfiability/nohistoricalcauseclaim. No actualoverlapinstall/import/payloadhashmeasurement.
 

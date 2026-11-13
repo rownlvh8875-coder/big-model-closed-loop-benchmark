@@ -1,0 +1,165 @@
+{
+  "actual_new_execution": {
+    "cloud_changes_publication": 0,
+    "docker_image_build_pull_load_run": 0,
+    "extra_gpu_or_clock_access": 0,
+    "image_native_artifacts": 0,
+    "main_merge": 0,
+    "new_raw_canvas_i420_firstdiff": 0,
+    "official_inferences": 0,
+    "official_model_or_weights_downloads": 0,
+    "official_wheel_payload_downloads_or_derivations": 0,
+    "package_installs_imports": 0,
+    "provider_native_engine_runs": 0,
+    "upstream_metadata_fetches": 0
+  },
+  "base_sha": "b9812ae4a7d795c22fc277036064e57ae8cfd3dd",
+  "baseline_generated_small_onnx_ci": "separate; final HEAD CI pending",
+  "branch": "feature/engine-clock-wheel-derivative",
+  "canonical_policy_sha256": "9cd40ffe7ced1db55a1f8bc3a981207a8137ee575180b80f03719ba2b8db05cd",
+  "execution_authorized": false,
+  "fixture_sha256": "aa98612b1241550229fdfa6358f3e8c06e07585a96d8080763afbbe77bd83ad0",
+  "focused": {
+    "result": "OK",
+    "seconds": 0.102,
+    "tests": 29
+  },
+  "full_before_material_attribute_fix": {
+    "code_hashes": {
+      "scripts/engine_clock_wheel_derivative.py": "a3d65d332f251af1c5ecab143d894eb5fd85765742ddb013d4528e8bc908177d",
+      "tests/test_engine_clock_wheel_derivative.py": "4aba7350692fc08f47d21c2b282310451f6cee50f68c97d8fb96d69b9777bcd2"
+    },
+    "is_final": false,
+    "result": "OK",
+    "seconds": 74.445,
+    "skipped": 7,
+    "tests": 720
+  },
+  "full_final": {
+    "result": "OK",
+    "seconds": 71.982,
+    "skip_lines": [
+      "test_actual_panda_global_bin_is_restored_without_any_graphics_engine (test_native_opaque_order_matrix.OpaqueBinPolicyTests.test_actual_panda_global_bin_is_restored_without_any_graphics_engine) ... skipped 'Panda CPU contract runs in native CI'",
+      "test_real_ort_uses_camera_and_updates_recurrent_state (test_onnx_ort_integration.NativeOrtTest.test_real_ort_uses_camera_and_updates_recurrent_state) ... skipped 'onnx+onnxruntime optional; GitHub inference CI installs both'",
+      "test_all_four_modes_are_opt_in_and_dispatch_only_for_marker (test_shadow_feedback_probe.PandaGuardTests.test_all_four_modes_are_opt_in_and_dispatch_only_for_marker) ... skipped 'Panda CPU state-contract runs in native CI'",
+      "test_configure_rejects_unknown_state_before_even_sampler_setters (test_shadow_feedback_probe.PandaGuardTests.test_configure_rejects_unknown_state_before_even_sampler_setters) ... skipped 'Panda CPU state-contract runs in native CI'",
+      "test_guard_has_only_two_high_priority_inputs_and_inherits_shader (test_shadow_feedback_probe.PandaGuardTests.test_guard_has_only_two_high_priority_inputs_and_inherits_shader) ... skipped 'Panda CPU state-contract runs in native CI'",
+      "test_preexisting_second_state_fails_before_mutating_first (test_shadow_feedback_probe.PandaGuardTests.test_preexisting_second_state_fails_before_mutating_first) ... skipped 'Panda CPU state-contract runs in native CI'",
+      "test_setup_failure_rolls_back_camera_and_sampler_and_marker (test_shadow_feedback_probe.PandaGuardTests.test_setup_failure_rolls_back_camera_and_sampler_and_marker) ... skipped 'Panda CPU state-contract runs in native CI'"
+    ],
+    "skipped": 7,
+    "tests": 721
+  },
+  "image_preparation_ready": false,
+  "logs": {
+    "task-1-central-budget-red.log": {
+      "nbytes": 1028,
+      "sha256": "81e85be5ab6add4ab1d25cb2af38e390bed0b91940f7182ad301d6674e79380f"
+    },
+    "task-1-first-green.log": {
+      "nbytes": 7118,
+      "sha256": "132ee0582124ac4b65af86db6daf8e0a2bafcfdfccf8f72b856b58a0033fdf41"
+    },
+    "task-1-focused-final-29.log": {
+      "nbytes": 5552,
+      "sha256": "3b9be1c14f7a373fd23c19dcc5b3e6f4bd0001722110f959ce7692bf5fb465d7"
+    },
+    "task-1-focused-final.log": {
+      "nbytes": 5351,
+      "sha256": "7d6ceeb0bf5b85441af1e6a427cbe46af8e0ae07012b1b7fecb1134776f61754"
+    },
+    "task-1-focused.log": {
+      "nbytes": 5152,
+      "sha256": "b1aeb7336354b6d389cd7477cf4e8c7165b95605af0ba099d67e67d4994e2042"
+    },
+    "task-1-full-cpu-final.log": {
+      "nbytes": 135935,
+      "sha256": "c659e65d50c901ffbbe249b89103d565f5e256a09e772dd570836337877cbb3f"
+    },
+    "task-1-full-cpu.log": {
+      "nbytes": 135740,
+      "sha256": "59e216c6774e0d7205778de5d931dfad49a98587bd156945fdf9d826b18d39d5"
+    },
+    "task-1-red.log": {
+      "nbytes": 23021,
+      "sha256": "825fa69075db786313b8b584a1d2c71ef54d56c5adc34840880cc1ff0c8d92d3"
+    },
+    "task-1-zero-attributes-red.log": {
+      "nbytes": 1086,
+      "sha256": "9d3c9f8a0c5aa8a612f4d6410d6223adaaa39aeaaacc71d2180ded09eaf5e7ea"
+    }
+  },
+  "native_admission": false,
+  "native_allowance": 0,
+  "official_distribution": false,
+  "policy_file_sha256": "3a93bec192c72a918e4d39cd240b5721c35145dbf2c62200f1e1b443e78ead8a",
+  "policy_hash_is_not_implementation_authentication": true,
+  "preservation": {
+    "all_preexisting_source_tests_unchanged": true,
+    "baseline_snapshot_sha256": "b751c33f5e0c4c48069e7b20f45a73ea0fc1a79d55c3520657f919c08982e4f6",
+    "baseline_tracked_files": 366,
+    "changed_status_documents": [
+      "docs/STAGE7_CONTINUATION.md",
+      "docs/STAGE7_ENGINE_CLOCK_IMAGE_INPUTS.md",
+      "docs/superpowers/plans/2026-11-12-engine-clock-runtime-contract.md"
+    ],
+    "historical_producer70_aggregate_sha256": "6f8dcc2fc4aa7b1896a74d43ea4e030f89729b4b7851825cd0bbd444c6acab04",
+    "producer70_preserved_by_entire_preexisting_source_freeze": true,
+    "raw_controller_workspaces_retained": true,
+    "registry8_unchanged": true,
+    "task1_task2_tools_tests_proposal5_unchanged": true,
+    "unchanged_except_three_status_documents": true,
+    "workflow44_unchanged": true
+  },
+  "required_preparation_refs": {
+    "artifact_id": null,
+    "artifact_zip_sha256": null,
+    "base_image_platform_manifest_digest": null,
+    "build_recipe_sha256": null,
+    "config_digest": null,
+    "docker_compatibility_profile": null,
+    "environment_profile_sha256": null,
+    "image_tar_sha256": null,
+    "installed_files_sha256": null,
+    "launch_receipt_sha256": null,
+    "lock_sha256": null,
+    "observed_feasibility": null,
+    "rootfs_diff_ids": null,
+    "run_id": null,
+    "source_sha": null,
+    "workflow_id": null
+  },
+  "rulings": [
+    "Ruling: use pure in-memory bytes transform only, no filesystem/network/CLI or actual wheel preparation \u2014 isolates metadata policy and avoids conflating it with future authenticated streaming IO \u2014 cost: bounded memory use may be hundreds of MiB and wrapper/real feasibility remain unimplemented.",
+    "Ruling: retain Name/Version0.4.3, mark build1headless/newGenerator/mandatory provenance, modify exactlyMETADATA-WHEEL-RECORD and addone marker \u2014 compatible with fixed identity pins while explicitly labelling nonofficial derivative \u2014 cost: futureadapter mustbind source/build/provenance; version equality alone does not authenticate derivation.",
+    "Ruling: preserve every other member including license/entrypoints and attributes; reject signed wheels instead of dropping signatures \u2014 narrow testable preservation boundary \u2014 cost: no legal/upstream/runtime assurance and signed originals need a separate policy.",
+    "Ruling: require classic contiguous single-disk ZIP/no descriptors/extras/comments/ZIP64 plus strict RECORD and resource limits \u2014 keeps hostile archive behavior finite and unambiguous \u2014 cost: legitimate actual wheel layout may fail closed and real preparation remains unmeasured.",
+    "Ruling: caller SHA equality and policy hash are not upstream or transform implementation authentication; all receipts deny execution/prep/native/official status \u2014 synthetic fixtures cannot grant authority \u2014 cost: futureAPI/Git/source/actualhash proof remains mandatory.",
+    "Ruling: use cooperative deadlines for bounded immutable memory work, not process-global timers \u2014 no blocking IO/caller callbacks in API \u2014 cost: no hard realtime guarantee; actual wrapper IO deadlines remain futurework."
+  ],
+  "schema": "stage7-engine-clock-wheel-derivative-audit-v1",
+  "scientific": {
+    "expanded": "NOT_RUN",
+    "geometry_optics_full_s": "NOT_VALIDATED",
+    "old_abba_aggregates": "7_NULL_PRESERVED",
+    "old_abba_cases_comparisons": "4_CASES_6_COMPARISONS_NOT_RUN",
+    "stage7": "INCOMPLETE",
+    "strict": "FAIL",
+    "unused_allowance_reusable": false
+  },
+  "source_origin_authenticated": false,
+  "source_test_sha256": {
+    "scripts/engine_clock_wheel_derivative.py": "5c82a5cb408d7139f70719612f0144931909bb8c36211688ac0bbc5ca0a265d2",
+    "tests/test_engine_clock_wheel_derivative.py": "94d7ef1e150d659b92a15edc7659a077b5e576edeffe53681aa4888fb1ec4eb9"
+  },
+  "status": "DERIVATIVE_POLICY_IMPLEMENTED_SYNTHETIC_ONLY",
+  "task3_complete": false,
+  "unresolved": [
+    "actual official wheel payload/WHEEL/layout/hash and real derivative preparation",
+    "complete dependency/base/Python/deb/asset graph and supported installed environment",
+    "API/Git/transform implementation/launch authentication and streaming wrapper",
+    "real memory/disk/download/hash/load feasibility and runtime compatibility",
+    "actual GL/GPU/observer neutrality/deterministic pixels/scientific causality"
+  ],
+  "whole_branch_review": "PENDING"
+}

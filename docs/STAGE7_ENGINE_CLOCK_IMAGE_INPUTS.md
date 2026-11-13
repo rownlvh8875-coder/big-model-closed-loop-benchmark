@@ -1,5 +1,7 @@
 # Stage7 Task3 입력 호환성 사전 확인
 
+이 문서는 PR43의 과거 입력 체크포인트다. 후속 [합성 wheel metadata 변환기](STAGE7_ENGINE_CLOCK_WHEEL_DERIVATIVE.md)는 별도 범위이며 실제 package/image 준비와 Task3 전체는 아직 미완료다.
+
 **Task3는 입력 호환성 단계에서 차단됐다.** Python/필수 패키지 버전은 존재하지만, MetaDrive의 `opencv-python` 요구와 현재 계약의 고정 headless 패키지가 같은 `cv2` namespace를 사용한다. OpenCV는 이들을 함께 설치하지 말라고 안내한다. Pip resolver의 불가능성이나 과거 이미지 차이의 원인을 입증한 결과는 아니다.
 
 브랜치 `design/engine-clock-image-inputs`, base `d54d43757eabc60d4f3f5b3d7e51f665bcc9f23e`/Draft PR42. Task1·2 구현과 시험은 그대로다. [설계 및 후속 정책 제안](superpowers/specs/2026-11-12-engine-clock-image-inputs-design.md), [audit](evidence/STAGE7_ENGINE_CLOCK_IMAGE_INPUTS_AUDIT.json)에 확인 범위와 미확인 항목을 기록한다.
