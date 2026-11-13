@@ -7,3 +7,5 @@
 원래 입력51개/109285137B, source52개, rootplan self SHA5371b2ba1e56fa15bc3068e8e579268b44f86091f7ed7a8e8d11fdb7a8c4838d 및 JSON8570595B/SHA835121e2a4bb7e6996a94d1152209c5921f874d75454a19ee8c52b5189f85a25를 유지한다. 후보 Python3.11.18 원래 prefix/startup/venv/offline build/smoke와 source/wheel 검증을 변경하지 않는다. 후보 실행은 새 job 격리와 root FD 검증 뒤에만 허용한다.
 
 별도 정해진 네 root(workspace/build/probe-build/closed-build host-helper)의 available contents를 기존 nofollow retention 한도 내에서 보존한다. 기존49 workflow와 이전 helpers/tests/policies는 수정하지 않는다. profile 전용 경로 외 기본 정책/sysctl을 변경하지 않는다. 모델/ORT/GL/과학 native/main merge/Cloud 게시를 하지 않으며, 성공한 wheel도 full-lock/image/native readiness로 승격하지 않는다. 실제 실행은 소스 검토·기본 CI 뒤 새 요청02를 등록한 후 기록한다.
+
+독립 검토d0d9600 C0/I0/Minor1(BS-M1: valid retention delegation fixture 보강). 현재 네 root/출력/deadline 전달과 후보 argv/입력/격리 gate는 별도 검토자가 확인했다. 집중10 PASS/1.051초, root 전체874 PASS/7skip76.420초. [검토·판단·비용](evidence/STAGE7_ENGINE_CLOCK_BUILDER_SCOPED_PREPARATION_REVIEW.json)에 남겼으며 원격 CI/실제builder02는 별도 확인 대상이다.
