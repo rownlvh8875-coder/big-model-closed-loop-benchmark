@@ -1,0 +1,39 @@
+{
+  "base_and_full_input_lock": {
+    "nbytes": 213239,
+    "path": "docs/locks/engine-clock-image-inputs.lock.json",
+    "sha256": "f33c2558295efb57fcb22b2116c3f9f97d5e9f29c1ae017423e7a8423869c26a"
+  },
+  "image_preparation_ready": false,
+  "installation_policy": {
+    "canonical_python_prefix": "/opt/python",
+    "compiled_prefix_alias": "/opt/hostedtoolcache/Python/3.11.18/x64 -> /opt/python",
+    "installed_renderer_distributions": 53,
+    "ld_library_path_override": false,
+    "ort_installed": false,
+    "payload_package_imports_during_preparation": false,
+    "pip_no_compile": true,
+    "pip_no_source": true,
+    "pip_offline": true,
+    "python_setup_sh": false,
+    "read_only_verification_rootfs": true
+  },
+  "installed_renderer_wheel_lock": {
+    "nbytes": 100899,
+    "path": "docs/locks/engine-clock-renderer-wheels.lock.json",
+    "sha256": "052b6dd97b126bb2b79ea1b0573b6bf6dc70a800d587dec7316cb3e5fe99d51c"
+  },
+  "native_admission": false,
+  "official_model_calls": 0,
+  "python_layout": {
+    "nbytes": 958,
+    "path": "docs/locks/engine-clock-python-layout.json",
+    "sha256": "701e4d9754700b96b2b9daaf18602bc69dd34d98bf4fbe1d7608a54831e7cc79"
+  },
+  "render_env": {
+    "LIBGL_ALWAYS_SOFTWARE": "1",
+    "OMP_NUM_THREADS": "2",
+    "PYOPENGL_PLATFORM": "glx"
+  },
+  "schema": "engine-clock-sealed-renderer-effective-inputs-v1"
+}

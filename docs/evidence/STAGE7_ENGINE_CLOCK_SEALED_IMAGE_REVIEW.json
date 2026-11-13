@@ -1,0 +1,78 @@
+{
+  "schema": "engine-clock-sealed-image-source-review-v1",
+  "reviewed_head": "d4fd52aae5510a853c08515904f8a212fef8755d",
+  "base": "e0a97b1ea48b0b0c0c7f0b432e91981e22a2de4b",
+  "reviewer": "sealed_image_final_review",
+  "model": "gpt-6-astra",
+  "reasoning": "medium",
+  "read_only": true,
+  "critical": 0,
+  "important": 3,
+  "minor": 0,
+  "findings": [
+    {
+      "id": "SI-I1",
+      "finding": "Actual venv launch executable was not checked before start.",
+      "resolution": "Third bounded stopped-container copy; require one regular executable with pinned Python bytes before any start. Changed executable fixture proves start not reached.",
+      "cost": "One extra copy archive; copy count2->3 before activation; existing512MiB per-copy cap unchanged."
+    },
+    {
+      "id": "SI-I2",
+      "finding": "Expired shared operation deadline disabled container stop and kill.",
+      "resolution": "Reserve12s inside total budget for cleanup; stop/kill use that allowance and retain actual inspected final-state outcome.",
+      "cost": "Normal Docker operations have12s less; cleanup failure remains explicitly unknown, never accepted."
+    },
+    {
+      "id": "SI-I3",
+      "finding": "Blocking/trickling/final EOF reads could exceed deadline; individual artifact300s limit missing.",
+      "resolution": "Linux main-thread SIGALRM absolute deadline wraps connection/redirect/body processing, min(global remaining,300s); explicit post-read checks and partial retention.",
+      "cost": "Transport is explicitly main-thread Linux-only and fails closed elsewhere; no retry or cap increase."
+    }
+  ],
+  "regressions": {
+    "initial_suite_tests": 1039,
+    "initial_skipped": 7,
+    "initial_seconds": 94.454,
+    "focused_after_fix_tests": 69,
+    "focused_after_fix_seconds": 0.624,
+    "focused_status": "PASS",
+    "deadline_red_modes": [
+      "blocked",
+      "trickle",
+      "eof"
+    ],
+    "actual_executable_changed_no_start": true,
+    "expired_normal_deadline_cleanup_capture_and_state": true,
+    "final_full_suite": {
+      "tests": 1043,
+      "skipped": 7,
+      "seconds": 97.471,
+      "status": "PASS"
+    }
+  },
+  "fix_passes": 1,
+  "rereview_performed": false,
+  "deferred_minor": [],
+  "declined_to_judge_rulings": [
+    {
+      "behavior": "Native renderer/ABI/GL/provider/model",
+      "ruling": "Explicitly separate native protocol; zero calls and no scientific promotion remain required."
+    },
+    {
+      "behavior": "Publisher availability/Actions timing/Docker install feasibility/image size",
+      "ruling": "Not established by review or fixtures; next actual one-use request must measure and fail consumed if unsupported."
+    },
+    {
+      "behavior": "Registry/Cloud publication and main integration",
+      "ruling": "Excluded and remain unauthorized in this increment."
+    },
+    {
+      "behavior": "Parent-reported1039-test full suite",
+      "ruling": "Parent verified actual command log; reviewer did not rerun; final fix pass requires new full suite."
+    }
+  ],
+  "ready_to_activate_at_review": false,
+  "native_admission": false,
+  "official_model_calls": 0,
+  "all_important_fixed_in_one_pass": true
+}
