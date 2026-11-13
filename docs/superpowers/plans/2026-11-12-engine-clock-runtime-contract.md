@@ -71,6 +71,8 @@ The initial design-only checkpoint is preserved at04c91d1 and Task1 at2cc22c0. T
 
 ### Task 3: Image inputs, preparation adapter and provider-free evidence (input gate blocked)
 
+Follow-up: [metadata derivative plan](2026-11-13-engine-clock-wheel-derivative.md) implements the explicit policy on synthetic bytes only. It does not resolve actual original/derived wheel provenance, full locks or preparation; all Task3 checkboxes below remain unchecked.
+
 Current input-gate result: **BLOCKED_INPUT_COMPATIBILITY**, not Task3 complete. All requested releases exist, but MetaDrive0.4.3 requires opencv-python while the fixed contract requires opencv-python-headless; publisher guidance rejects shared cv2 providers. See [Task3 gate addendum](../specs/2026-11-12-engine-clock-image-inputs-design.md). No complete lock/recipe/adapter/workflow or preparation is created. The first checkbox remains unchecked; proposed metadata-only derivative policy requires a separate source/fixture review before resolution can continue. This is not a pip unsatisfiability or historical-cause claim.
 
 **Planned files:** create `containers/engine-clock-runtime/Dockerfile`, `containers/engine-clock-runtime/inputs.lock.json`, `scripts/engine_clock_image_preflight.py`, `tests/test_engine_clock_image_preflight.py`, and an inactive workflow example under `docs/proposals/engine-clock-image-preparation.workflow.json`. None exists or is active in the current increment.
