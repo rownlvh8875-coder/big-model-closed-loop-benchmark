@@ -1,0 +1,155 @@
+{
+  "activation_push_basic_ci": {
+    "artifacts": 0,
+    "attempt": 1,
+    "conclusion": "success",
+    "event": "push",
+    "head": "78deaec1a3158889f0f90ede159b9466bfc9b194",
+    "id": 43389231245,
+    "jobs": [
+      {
+        "conclusion": "success",
+        "id": 131764894028,
+        "name": "onnx-interface-test"
+      },
+      {
+        "conclusion": "success",
+        "id": 131764894624,
+        "name": "synthetic-unit"
+      }
+    ],
+    "tests": {
+      "0_synthetic-unit.txt": {
+        "seconds": 69.02,
+        "skips": 7,
+        "tests": 815
+      },
+      "1_onnx-interface-test.txt": {
+        "seconds": 0.058,
+        "skips": 0,
+        "tests": 1
+      }
+    }
+  },
+  "actual_preparation_run": {
+    "artifact_count": 1,
+    "attempt": 1,
+    "conclusion": "failure",
+    "head": "78deaec1a3158889f0f90ede159b9466bfc9b194",
+    "id": 43389231348,
+    "job_id": 131764894606
+  },
+  "archive_originals_preserved": true,
+  "artifact_and_all120entries_independently_verified": true,
+  "binding_path": "docs/evidence/STAGE7_ENGINE_CLOCK_BUILDER_PREPARATION_BINDING.json",
+  "binding_sha256": "83f0ee01a8158dee85438382c6db9b62f56f8f1e9fd3a2b46baa7828689174fe",
+  "consumed_registry8_unchanged": true,
+  "deferred_minors": [
+    "M6 controller review SHA is informational; external preregistration and consumption bind source/qualification.",
+    "M7 reusable maximum deadline is deferred; fixed callers supply180s."
+  ],
+  "final_evidence_ci": null,
+  "final_evidence_ci_policy": "Observed after exact final commit and recorded in the Draft PR body without a self-referential commit assertion.",
+  "full_lock_ready": false,
+  "image_preparation_ready": false,
+  "native_admission": false,
+  "native_allowance": 0,
+  "new_latent_source_issue": {
+    "caused_observed_failure": false,
+    "file": "scripts/engine_clock_builder_preparation.py",
+    "id": "PF1",
+    "issue": "capability_probe passes root FD but omits writable build FD in capture.pass_fds",
+    "reason": "Observed network.c182 loopback setup fails before bind-mount processing; latent handoff bug remains a separate future-execution defect.",
+    "severity": "Important",
+    "status": "OPEN_SEPARATE_SOURCE_ONLY_FOLLOWUP"
+  },
+  "old16image_refs_remain_null": true,
+  "old44workflows_unchanged": true,
+  "payloads_executed_locally": false,
+  "producer70_unchanged": true,
+  "raw_location": "output/stage7-builder-preparation-evidence/43389231348",
+  "registration_path": "docs/evidence/STAGE7_ENGINE_CLOCK_BUILDER_PREPARATION_REGISTRATION.json",
+  "registration_sha256": "0d63e90186874050cfdd8383ae4de9288eff7d5c4f5d9dde7cfc23f26f476b1a",
+  "result_path": "docs/evidence/STAGE7_ENGINE_CLOCK_BUILDER_PREPARATION_RESULT.json",
+  "result_sha256": "014054473cd23b22eedb40a0bfe7c2fb38954b0ff28daded3923280ca5ab3653",
+  "rulings_chronological": [
+    "Ruling: Continue inline through the separate operation under the user's explicit continuous/final-only instruction, overriding skill plan-review/choice handoff \u2014 execution method and authorization persist \u2014 cost if wrong: additional reversible work/ephemeral job must be reviewed later.",
+    "Ruling: External preregistration binds actual reviewed96e97dc, qualified9aaca760/843fb749 and approvedb0bfc46 source/code/CI closure before activation and independent consumption \u2014 deferred M6 is informational inside the controller \u2014 cost if wrong: an inaccurate external binding could undermine source provenance; no native/image admission follows.",
+    "Ruling: One exact preparation-branch push adds the45th workflow while old44bytes remain fixed; all later evidence uses a separate branch \u2014 reviewed template plus prior Actions/continuous authorization cover this provider-free job \u2014 cost if wrong: one extra host setup/build/storage operation, never main/Cloud publication.",
+    "Ruling: Retain original APIs/log/result archives and bounded available-workspace data once; stream nested archives without following links or executing payloads \u2014 source-mode inventory alone cannot replace actual evidence \u2014 cost if wrong: transfer/disk consumption up to declared1GiB and terminal incomplete evidence on cap/runner loss.",
+    "Ruling: Reuse only immutable public input bytes and prior component facts under a new request, never invoke consumed old operators or native/scientific cases \u2014 this is new provider-free transport/preparation \u2014 cost if wrong: provenance could be confused with an old run, so request/source/producer identities remain separate.",
+    "Ruling: Keep the observed failure as loopback RTM_NEWADDR/EPERM identified by exact public-source/errno hash agreement, not a claim that user namespaces are wholly unsupported \u2014 the helper reached network setup \u2014 cost if wrong: the exact host policy remains unidentified; no retry or privilege/capability relaxation is authorized by this evidence.",
+    "Ruling: Record a separate latent capability-probe defect: its capture call passes the root FD but omits the build FD; the observed EPERM occurs earlier in bubblewrap and is not explained by this later mount defect \u2014 do not conflate causal diagnosis with an additional source issue \u2014 cost if wrong: future supported backends could still fail until a separately verified source-only correction is made.",
+    "Ruling: Permanently consume request01 and preserve its terminal loopback failure; complete evidence publication and then a separate source-only FD handoff correction, with no new live namespace/target retry \u2014 the additional defect is safe to repair with trusted owned-child fixtures but does not remove the observed backend blocker \u2014 cost if wrong: extra source/test/CI work without a built wheel; any future actual execution still requires a new reviewed protocol."
+  ],
+  "schema": "engine-clock-builder-preparation-operation-audit-v1",
+  "source_ci": [
+    {
+      "artifact_count": 0,
+      "attempt": 1,
+      "conclusion": "success",
+      "event": "push",
+      "head_sha": "b0bfc46a8fb151897cec8f9db47965a39af66944",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "id": 131755189688,
+          "name": "onnx-interface-test"
+        },
+        {
+          "conclusion": "success",
+          "id": 131755190312,
+          "name": "synthetic-unit"
+        }
+      ],
+      "run_id": 43386207237,
+      "tests": {
+        "0_synthetic-unit.txt": {
+          "seconds": 69.852,
+          "skips": 7,
+          "tests": 815
+        },
+        "1_onnx-interface-test.txt": {
+          "seconds": 0.049,
+          "skips": 0,
+          "tests": 1
+        }
+      }
+    },
+    {
+      "artifact_count": 0,
+      "attempt": 1,
+      "conclusion": "success",
+      "event": "pull_request",
+      "head_sha": "b0bfc46a8fb151897cec8f9db47965a39af66944",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "id": 131755210756,
+          "name": "synthetic-unit"
+        },
+        {
+          "conclusion": "success",
+          "id": 131755210996,
+          "name": "onnx-interface-test"
+        }
+      ],
+      "run_id": 43386214092,
+      "tests": {
+        "0_onnx-interface-test.txt": {
+          "seconds": 0.047,
+          "skips": 0,
+          "tests": 1
+        },
+        "1_synthetic-unit.txt": {
+          "seconds": 46.434,
+          "skips": 7,
+          "tests": 815
+        }
+      }
+    }
+  ],
+  "source_phase_rulings_path": "docs/evidence/STAGE7_ENGINE_CLOCK_BUILDER_STAGING_AUDIT.json",
+  "stage7_status": "INCOMPLETE",
+  "total_workflows": 45
+}

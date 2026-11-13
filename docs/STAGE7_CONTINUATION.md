@@ -4,7 +4,13 @@
 
 
 
-## Current checkpoint (2026-11-13 — bounded builder source and fixtures implemented; remote operation follows review)
+## Current checkpoint (2026-11-13 — provider-free preparation terminal network-namespace failure)
+
+Actual producer78deaec1a3158889f0f90ede159b9466bfc9b194/requestbuilder-20261113-01/run43389231348/job131764894606/workflow417016407/attempt1 terminated at trusted-host true namespace preflight. Pinned helper0.12.0, mandatory options, owned256MiBtmpfs and measured91974352896Bhost free space passed; loopback RTM_NEWADDR returned EPERM.61Bstderr hash matches pinned network.c182 public source/errno text exactly, without replay; exact host policy cause unknown. No component transport/target launch/staging/bootstrap/build/smoke occurred. Request consumed/no retry/fallback; no wheel/full lock/image readiness/native admission. See [actual result](STAGE7_ENGINE_CLOCK_BUILDER_PREPARATION.md) and new registration/result/binding/audit.
+
+Original artifact14019513519/582689B/SHA977a9e8c is API-bound; all5ZIP files and120nested entries(91files/27dirs/2links/1241638regularB) plus source/helper bytes and gzip/TAR tail independently checked. Original API/log/result archives/extraction retained. Active preparation branch remains78deaec, later evidence uses a separate branch; old44workflows unchanged/total45. Sourceb0bfc46 DraftPR50 exact CI4PASS(815unit/7skip+1generatedSMALL per event)/artifacts0. Additional latent PF1 omits build FD in preflight pass_fds; it occurs later than observed network failure and needs a separate source-only regression/fix, not an old-request replay. M6/M7 still deferred. Old16refsnull/nativebudget0/strictFAIL/expandedNOT_RUN/ABBAterminalFAIL/geometry-optics-fullS/Stage7INCOMPLETE/main48e79a7 unchanged, Cloud unpublished. Earlier checkpoints historical.
+
+## Previous checkpoint (2026-11-13 — bounded builder source and fixtures implemented; remote operation follows review)
 
 Branch `feature/engine-clock-builder-staging`, base PR49/`565bc7a124b35eaeee2f209185b8aad11e10f1b8`. New nofollow staging/open-FD verification, fixed namespace launcher/owned offline driver, strict progressbar wheel validator and one-use remote source/request protocol are implemented. Combined new fixtures74PASS/1.138s; full CPU800PASS/67.441s,7optional skips. Real metadata only compiled52sources/13046source entries/12722staged nodes/351862567file bytes/8570052serialized bytes; no actual candidate staging/execution yet. Local trusted-true probe failed readonly UID mapping, not target code. See [builder source result](STAGE7_ENGINE_CLOCK_BUILDER_STAGING.md) and audit for source/review/final/CI distinctions.
 

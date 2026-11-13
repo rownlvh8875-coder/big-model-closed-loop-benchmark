@@ -1,0 +1,125 @@
+{
+  "approved_source_checkpoint": "b0bfc46a8fb151897cec8f9db47965a39af66944",
+  "artifact": {
+    "api_digest_matches": true,
+    "files": [
+      {
+        "nbytes": 2416,
+        "path": "preparation.json",
+        "sha256": "41bba93aab40557b59cb33671323629dcf0089eda037819874e46e49e2179663"
+      },
+      {
+        "nbytes": 527425,
+        "path": "retained-workspaces.tar.gz",
+        "sha256": "afca2bf16d2afcbc4c94207a823ee16f18b824ce372f55cfe576248996b9fc5d"
+      },
+      {
+        "nbytes": 28664,
+        "path": "retained-inventory.json",
+        "sha256": "080fdd1f8b7a3f17d2d3587a1aaa9dc88c756d6193a3d8ec48cca26fbf902651"
+      },
+      {
+        "nbytes": 357,
+        "path": "retention.json",
+        "sha256": "a1c1decb519b38fcb1a249e99b57b816fa81db3b5120a947c7fa3709945e8f49"
+      },
+      {
+        "nbytes": 23149,
+        "path": "source-closure.json",
+        "sha256": "5b5ce1de1b00b963c781c2e1b2f46f44b716179be7f7b99295c910dc2080e18a"
+      }
+    ],
+    "id": 14019513519,
+    "nbytes": 582689,
+    "sha256": "977a9e8c3432e51ef0696b3793aa447f72be6ab41b19e58a37de237ba133ce62"
+  },
+  "attempt": 1,
+  "component_input_bytes": 0,
+  "component_input_transports": 0,
+  "failure": {
+    "diagnostic_limit": "Hash agreement identifies denied loopback RTM_NEWADDR; exact kernel/LSM/capability policy cause is not established. No production replay or stderr text retrieval occurred.",
+    "known_source_hash_match": {
+      "errno": 1,
+      "errno_name": "EPERM",
+      "file": "host-helper/bubblewrap-0.12.0/network.c",
+      "file_sha256": "1cfe04fcc38d33d5197feb96fc503d3fd51d234fb9392699a00bf4780ed6e9f0",
+      "line": 182,
+      "literal": "loopback: Failed RTM_NEWADDR",
+      "reconstructed_public_message": "bwrap: loopback: Failed RTM_NEWADDR: Operation not permitted\n"
+    },
+    "reported_code": "UNSUPPORTED_HOST_NAMESPACE",
+    "stage": "TRUSTED_HOST_TRUE_NAMESPACE_PREFLIGHT",
+    "stderr_bytes": 61,
+    "stderr_sha256": "ed3471f7900377f86150471417911309833a36d664cb5af7409e139103f67ddf"
+  },
+  "full_lock_ready": false,
+  "image_preparation_ready": false,
+  "job_id": 131764894606,
+  "latent_source_issue": {
+    "caused_observed_failure": false,
+    "file": "scripts/engine_clock_builder_preparation.py",
+    "id": "PF1",
+    "issue": "capability_probe passes root FD but omits writable build FD in capture.pass_fds",
+    "reason": "Observed network.c182 loopback setup fails before bind-mount processing; latent handoff bug remains a separate future-execution defect.",
+    "severity": "Important",
+    "status": "OPEN_SEPARATE_SOURCE_ONLY_FOLLOWUP"
+  },
+  "native_admission": false,
+  "nested_archive_tail_check": {
+    "derived_tighter_cap": 3217958,
+    "gzip_eof_and_crc_valid": true,
+    "hard_physical_cap": 943718400,
+    "hidden_nonzero_tail": false,
+    "last_member_end": 1326592,
+    "member_count": 120,
+    "payload_execution": false,
+    "physical_tar_bytes": 1331200,
+    "physical_tar_sha256": "18381b66fc67ec80a971491278356e80cefce9f570a2a851d4697801a099a09d",
+    "schema": "independent-nested-tar-tail-check-v1",
+    "single_gzip_member": true,
+    "trailing_zero_bytes": 4608
+  },
+  "producer_head": "78deaec1a3158889f0f90ede159b9466bfc9b194",
+  "request_consumed": true,
+  "request_sha256": "5b5ce1de1b00b963c781c2e1b2f46f44b716179be7f7b99295c910dc2080e18a",
+  "retained_counts": {
+    "directories": 27,
+    "entries": 120,
+    "files": 91,
+    "regular_file_bytes": 1241638,
+    "symlinks": 2
+  },
+  "retention": {
+    "archive_bytes": 527425,
+    "archive_sha256": "afca2bf16d2afcbc4c94207a823ee16f18b824ce372f55cfe576248996b9fc5d",
+    "entries": 120,
+    "errors": [],
+    "file_bytes": 1241638,
+    "image_preparation_ready": false,
+    "missing_roots": [],
+    "native_admission": false,
+    "schema": "builder-workspace-retention-v1",
+    "status": "PRESERVED_AVAILABLE_WORKSPACES"
+  },
+  "retry_performed": false,
+  "run_id": 43389231348,
+  "schema": "independent-builder-preparation-consumption-v1",
+  "source_closure_files_checked": 28,
+  "stage7_status": "INCOMPLETE",
+  "staging": "NOT_RUN",
+  "status": "AUTHENTIC_TERMINAL_PREPARATION_FAILURE",
+  "target_execution_verified": false,
+  "target_source_execution_attempted": false,
+  "timing": {
+    "created_asia_seoul": "2026-11-13T16:55:25+09:00",
+    "created_utc": "2026-11-13T07:55:25Z",
+    "total_seconds": 21,
+    "updated_asia_seoul": "2026-11-13T16:55:46+09:00",
+    "updated_utc": "2026-11-13T07:55:46Z"
+  },
+  "wheel_build": "NOT_RUN",
+  "wheel_sha256": null,
+  "wheel_smoke": "NOT_RUN",
+  "workflow_id": 417016407,
+  "workflow_runs_for_branch": 1
+}
