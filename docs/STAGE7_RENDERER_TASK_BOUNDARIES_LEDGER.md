@@ -26,3 +26,8 @@ KeyboardInterrupt/SystemExit/TimeoutError propagate intact. Test fixture's combi
 subTest/assertRaises initially obscured the failure; nesting corrected before GREEN.
 Final18new+23clocktests=41PASS/0.195s. All261frozen hashes match03CPU report pins.
 No provider/native/model imports or execution. No original source edit.
+
+Task2 RED:9adapter/audit tests failed with module absent. GREEN:27new+23frozenclock
+tests=50PASS/0.229s. Structural adapter checks current engine/callback/camera owners
+on each snapshot, copies two split matrices, limits48snapshots before getter49.
+Native classes are supplied by a future admitted caller; no import/constructor here.
