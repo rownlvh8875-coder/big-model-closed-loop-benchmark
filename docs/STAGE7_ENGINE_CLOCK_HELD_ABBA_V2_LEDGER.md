@@ -22,3 +22,13 @@ No native/model/localengine executed. Deterministic clock bounds original
 responses/selected exact-byte alias and failure/no-retry/no-deadline-extension.
 Task1: Ruling: add original15KBqueuedbody to closure rather than unpinned test
 input — cost:248instead247pins; spec/plan corrected before source qualification.
+Final review7a8343d: Critical0/Important0/Minor2; no fix pass/rereview.
+Final: minor (deferred): HV-M1 numeric equality permits malformedqueuedfloatID/
+booleanjobcount extra observation; final run exact-IDgate stillmandatory; cost:
+API schema-hardening debt, literal immediate-malformed rejection incomplete.
+Final: minor (deferred): HV-M2 peerrowstructure/provenance checked onlylater;
+cost: malformedpeer may pass calleradmission, never later Acompletionauthority.
+All6review declined-scope rulings/costs recorded in
+[evidence/ENGINE_CLOCK_HELD_ABBA_V2_SOURCE_REVIEW.md](evidence/ENGINE_CLOCK_HELD_ABBA_V2_SOURCE_REVIEW.md).
+Task1: complete (basef06c231..7a8343d; focused23PASS/full1168PASS/7skip/109.862s).
+Onlysource qualification is next, no native authority from review or CPUfixtures.

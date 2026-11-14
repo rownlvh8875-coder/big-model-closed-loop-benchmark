@@ -24,9 +24,9 @@ Preserve235oldfiles/consumedrequests/raws. NewIDheld-abba-20261114-02/sourcefix/
 **Create:** scripts/engine_clock_held_abba_v2{,_lifecycle,_archive,_run,_container,_attest}.py; tests/test_engine_clock_held_abba_v2{,_lifecycle,_execution}.py; .github/workflows/engine-clock-held-abba-v2.yml.
 **Interfaces:** lifecycle.observe_running(client,context,clock=...,pause=...) -> (actualrun,visibilityproof); lifecycle.find_job -> actualrunningcaller; authenticate_producer -> context with run_status_visibility and all prior provenance. Protocol.source_paths unions old235+12new.
 
-- [ ] Write real recorded queued visibility and derivative request/archive/workflow tests; run focused ExpectedfeaturemissingFAIL.
-- [ ] Static derivatives, bounded observer + caller job handling, preserve exact original admitted alias; focused ExpectedPASS/fullunittestdiscover ExpectedPASS.
-- [ ] Commit with ledger; one fresh source review. Critical/Important single RED→GREEN pass/fullsuite; defer Minor; record all scope rulings/costs, no rereview.
+- [x] Write real recorded queued visibility and derivative request/archive/workflow tests; run focused ExpectedfeaturemissingFAIL.
+- [x] Static derivatives, bounded observer + caller job handling, preserve exact original admitted alias; focused ExpectedPASS/fullunittestdiscover ExpectedPASS.
+- [x] Commit with ledger; one fresh source review. Critical/Important single RED→GREEN pass/fullsuite; defer Minor; record all scope rulings/costs, no rereview.
 
 ## Task2: Qualified one-use live C and retained A
 
