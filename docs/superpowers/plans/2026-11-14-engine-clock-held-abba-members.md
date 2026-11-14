@@ -24,9 +24,9 @@ Old248bytes/02requests/raws/129legacyguard immutable. New03/sourcefix/engine-clo
 **Create:** scripts/engine_clock_held_abba_v3{,_lifecycle,_archive,_run,_container,_attest}.py; tests/test_engine_clock_held_abba_v3{,_lifecycle,_execution}.py; .github/workflows/engine-clock-held-abba-v3.yml.
 **Interfaces:** protocol.audit_phase_members(root,mode)->bounded summary; parent report.member_audit; protocol.source_paths old248+new13=261; existing lifecycle/control/archive interfaces unchanged.
 
-- [ ] Testsreal170names/sizes sparsefixtures, oldreject/newAaccept/Cstillreject, limits/unsafe/emptydir; derivative admission/archive/workflow tests. Run ExpectedfeaturemissingFAIL.
-- [ ] Static derivatives/new budget/pure auditor/final parent call, preserve oldcasevalidator. Focused ExpectedPASS/fullunittestdiscover ExpectedPASS.
-- [ ] Commit+ledger; one fresh whole-source review, Important/Critical singleRED→GREEN/fullsuite; deferMinor/ruleeverydeclinedscope/cost, no rereview.
+- [x] Testsreal170names/sizes sparsefixtures, oldreject/newAaccept/Cstillreject, limits/unsafe/emptydir; derivative admission/archive/workflow tests. Run ExpectedfeaturemissingFAIL.
+- [x] Static derivatives/new budget/pure auditor/final parent call, preserve oldcasevalidator. Focused ExpectedPASS/fullunittestdiscover ExpectedPASS.
+- [x] Commit+ledger; one fresh whole-source review, Important/Critical singleRED→GREEN/fullsuite; deferMinor/ruleeverydeclinedscope/cost, no rereview.
 
 ## Task2: New source-qualified C03 and held A03
 

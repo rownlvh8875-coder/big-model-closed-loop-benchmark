@@ -22,3 +22,7 @@ Ruling: Cmetadataattestor requires finalmembership summary/count/entry/byte-rang
 binding to originalZIP — cost: recordedprepersist bytes are bounded, notexactly
 reconstructible fromfinalledger; root independently checks finalcount/finalbytes.
 No native/model/localengine or new request before exactsourceCI.
+Finalsource reviewc9991c0 Critical0/Important0/newactionableMinor0; oldHV-M1/HV-M2
+remain deferredwithsamecosts. No fixpass/rereview. All7scope declines/authorcost
+rulings in evidence/ENGINE_CLOCK_HELD_ABBA_V3_SOURCE_REVIEW.md. Task1complete:
+31focused4.443s/full1199PASS7skip102.717s; sourcecodeunchangedafterreview.
