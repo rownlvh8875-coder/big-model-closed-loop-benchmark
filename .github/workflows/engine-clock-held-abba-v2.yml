@@ -1,0 +1,137 @@
+{
+  "name": "Bounded live visibility and retained host C acceptance with ABBA",
+  "on": {
+    "push": {
+      "branches": [
+        "diagnostic/engine-clock-held-abba-20261114-02"
+      ],
+      "paths": [
+        "docs/requests/engine-clock-held-abba-20261114-02-canary.json"
+      ]
+    }
+  },
+  "permissions": {
+    "contents": "read",
+    "actions": "read"
+  },
+  "concurrency": {
+    "group": "engine-clock-held-abba-20261114-02",
+    "cancel-in-progress": false
+  },
+  "jobs": {
+    "native-host": {
+      "name": "native-host",
+      "runs-on": "ubuntu-24.04",
+      "timeout-minutes": 110,
+      "steps": [
+        {
+          "name": "Reject repeated attempts",
+          "env": {
+            "ATTEMPT": "${{ github.run_attempt }}"
+          },
+          "run": "test \"$ATTEMPT\" = 1"
+        },
+        {
+          "uses": "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "with": {
+            "fetch-depth": 2,
+            "persist-credentials": false
+          }
+        },
+        {
+          "name": "Run sealed canary C",
+          "env": {
+            "GH_TOKEN": "${{ github.token }}"
+          },
+          "run": "/usr/bin/python3 -I -S -B scripts/engine_clock_held_abba_v2_run.py --canary"
+        },
+        {
+          "name": "Upload original canary C",
+          "uses": "actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+          "with": {
+            "name": "engine-clock-held-abba-20261114-02-canary",
+            "path": "output/stage7-held-abba/held-abba-20261114-02/canary/execution/",
+            "if-no-files-found": "warn",
+            "compression-level": 0,
+            "retention-days": 30,
+            "include-hidden-files": true
+          },
+          "if": "always()"
+        },
+        {
+          "name": "Wait for approved A and run ABBA",
+          "env": {
+            "GH_TOKEN": "${{ github.token }}"
+          },
+          "run": "/usr/bin/python3 -I -S -B scripts/engine_clock_held_abba_v2_run.py --abba"
+        },
+        {
+          "name": "Upload original ABBA or control failure",
+          "uses": "actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+          "with": {
+            "name": "engine-clock-held-abba-20261114-02-abba",
+            "path": "output/stage7-held-abba/held-abba-20261114-02/abba/execution/",
+            "if-no-files-found": "warn",
+            "compression-level": 0,
+            "retention-days": 30,
+            "include-hidden-files": true
+          },
+          "if": "always()"
+        }
+      ]
+    },
+    "canary-attestor": {
+      "name": "canary-attestor",
+      "runs-on": "ubuntu-24.04",
+      "timeout-minutes": 30,
+      "steps": [
+        {
+          "name": "Reject repeated attempts",
+          "env": {
+            "ATTEMPT": "${{ github.run_attempt }}"
+          },
+          "run": "test \"$ATTEMPT\" = 1"
+        },
+        {
+          "uses": "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "with": {
+            "fetch-depth": 2,
+            "persist-credentials": false
+          }
+        },
+        {
+          "name": "Attest completed native C evidence",
+          "env": {
+            "GH_TOKEN": "${{ github.token }}"
+          },
+          "run": "/usr/bin/python3 -I -S -B scripts/engine_clock_held_abba_v2_attest.py --run"
+        },
+        {
+          "name": "Upload terminal C attestation",
+          "uses": "actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+          "with": {
+            "name": "engine-clock-held-abba-20261114-02-canary-attestation",
+            "path": "output/stage7-held-abba/held-abba-20261114-02/attestor/canary-attestation.json",
+            "if-no-files-found": "warn",
+            "compression-level": 0,
+            "retention-days": 30,
+            "include-hidden-files": true
+          }
+        },
+        {
+          "name": "Preserve attestor metadata diagnostics",
+          "uses": "actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+          "with": {
+            "name": "engine-clock-held-abba-20261114-02-attestor-diagnostics",
+            "path": "output/stage7-held-abba/held-abba-20261114-02/attestor/diagnostics/",
+            "if-no-files-found": "warn",
+            "compression-level": 0,
+            "retention-days": 30,
+            "include-hidden-files": true
+          },
+          "if": "always()"
+        }
+      ]
+    }
+  }
+}
