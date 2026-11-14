@@ -11,12 +11,12 @@ no arbitrary host/runtime executable files, source filtering, model or publicati
 
 ## Task1: Pure classification and bounded pre-gate evidence
 
-- [ ] RED fixtures: verified image/source mapping, image data outside lib prefix,
+- [x] RED fixtures: verified image/source mapping, image data outside lib prefix,
   mapped registered cache index; unknown/executable runtime files reject;
   named anonymous/SYSV/zero distinct from files; malformed/deleted/cap cases.
-- [ ] RED module files require closed set; builtin/frozen/no-file metadata separate;
+- [x] RED module files require closed set; builtin/frozen/no-file metadata separate;
   arbitrary tmp modules reject. All reports bounded, incomplete never accepted.
-- [ ] Implement helper/v6routes and4map/2module pre-gate reports; policy hash in
+- [x] Implement helper/v6routes and4map/2module pre-gate reports; policy hash in
   identity. No extra observations/GL operations. Targeted GREEN/full suite with
  7existing skips. One fresh source review, one Important/Critical TDD pass/no
  rereview, retain all Minor/declined costs.

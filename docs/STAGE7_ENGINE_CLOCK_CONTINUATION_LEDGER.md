@@ -405,6 +405,35 @@ PASS0.009s, full1101tests/7existing skips PASS106.185s. Fresh source review and
 exact sourceCI precede new05request; no scientific or publication promotion.
 # Q. Native05 camera-byte success / post-capture protocol failure / v6
 
+Task1 complete: fresh review7ddf636..50e9b63 Critical0/Important0/Minor2 plus
+prior5costs. Root full1108tests/7skip PASS110.510s; reviewer5purefixtures plus
+transient caps/alias checks PASS. No fix pass/rereview. Full10declined rulings/
+costs in docs/evidence/STAGE7_ENGINE_CLOCK_SEALED_NATIVE_V6_SOURCE_REVIEW.md.
+Final: minor (deferred): NS-M1 reversed range accepted syntactically, cost weaker
+malformed pure-input coverage; deployed kernelmaps, no observed bypass.
+Final: minor (deferred): NS-M2 caps/alias transientchecks not retained, cost
+future regression coverage; current checks passed independent inspection.
+Final: minor (deferred): prior SN-M1/M2/EB-M1/NM-M1/M2 costs retained unchanged.
+Final: Ruling: actual06requiresrun — independent originals govern — cost if
+wrong: consumed failed06/no accepted native canary.
+Final: Ruling: original05not reauthenticated by reviewer — root partial6pairs,
+whole05FAILED — cost if wrong: upstream evidence invalid.
+Final: Ruling: exact05predicate absent — no attribution/retroactivepass — cost
+if wrong: false diagnosis hiding another rejection.
+Final: Ruling: old04OOMunproved — retainUNKNOWN — cost if wrong: causaloverclaim.
+Final: Ruling: generatedmemorynames notorigin/equality — categoriesonly — cost
+if wrong: overstated generated/JIT assurance.
+Final: Ruling: hostile metadata/hostforgery notattested — source/image/isolation
+admission governs — cost if wrong: invalid origin assurance.
+Final: Ruling: wholesuite notindependentlyrerun — root1108plus4externaljobs —
+cost if wrong: author verification blindspot.
+Final: Ruling: later views can be unreached — reached views persist beforegate,
+4/2successbudgetonly — cost if wrong: overstated failed-run evidence.
+Final: Ruling: oldMinor limits remain — retain costs — cost if wrong: coverage/
+timing/diagnostic overclaim.
+Final: Ruling: science/model/ORT/main/publishoutside sourceaccept — no promotion
+— cost if wrong: unsupported scientific/publication outcome.
+
 V5sourced58e2823b46b3be5231b48f2d0b2bacab2e39723/Draft86 exact4CI success:
 push43544560353(132292708610/132292708806), PR43544563710(132292716909/132292717202),
 attempt1/artifacts0. Activation7ddf636a494cba6439e15cd503c2dacfae9bca39/
