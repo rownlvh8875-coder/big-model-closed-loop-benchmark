@@ -1,0 +1,318 @@
+{
+  "schema": "renderer-pipeline-sealed-01-result-v1",
+  "status": "GENUINE_CPU_PIPELINE_CAMERA_CANARY_ABBA_ACCEPTED",
+  "checked_at_kst": "2026-11-14T21:11:10.621360+09:00",
+  "source_sha": "09ad7e3272713ec86031ab8158e3f9fdf0cf245d",
+  "source_paths": 299,
+  "frozen_predecessor_paths_unchanged": 280,
+  "source_pr": 102,
+  "source_review": {
+    "critical": 0,
+    "important": 0,
+    "minor": 0
+  },
+  "source_tests": {
+    "total": 1285,
+    "skips": 7,
+    "seconds": 120.713,
+    "new_focused": 33,
+    "mock_smoke_exit_code": 0
+  },
+  "source_ci": [
+    {
+      "event": "push",
+      "run_id": 43591616769,
+      "head_sha": "09ad7e3272713ec86031ab8158e3f9fdf0cf245d",
+      "attempt": 1,
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 132437357007,
+          "name": "synthetic-unit",
+          "conclusion": "success"
+        },
+        {
+          "id": 132437357502,
+          "name": "onnx-interface-test",
+          "conclusion": "success"
+        }
+      ],
+      "artifacts": 0
+    },
+    {
+      "event": "pull_request",
+      "run_id": 43591698760,
+      "head_sha": "09ad7e3272713ec86031ab8158e3f9fdf0cf245d",
+      "attempt": 1,
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 132437608247,
+          "name": "onnx-interface-test",
+          "conclusion": "success"
+        },
+        {
+          "id": 132437608503,
+          "name": "synthetic-unit",
+          "conclusion": "success"
+        }
+      ],
+      "artifacts": 0
+    }
+  ],
+  "producer_head_sha": "f91d46df1c9be00b66f81ec9c2a63d47a44e202c",
+  "control_head_sha": "4869ca92e6798e563c572f9384b9ff99e83d59ca",
+  "canary_request_sha256": "8faf64e14b7a4239c7ca728e21534c040d58d3dceccf072caa09d90f668967f6",
+  "abba_request_sha256": "05d8d07005dea66e010357400abbd36a6e7f18ba943931a681b8d4eeedc6fd9c",
+  "workflow_id": 418257705,
+  "run_id": 43591877488,
+  "attempt": 1,
+  "conclusion": "success",
+  "host_job_id": 132438144103,
+  "jobs": [
+    {
+      "id": 132438143857,
+      "name": "canary-attestor",
+      "conclusion": "success"
+    },
+    {
+      "id": 132438144103,
+      "name": "native-host",
+      "conclusion": "success"
+    }
+  ],
+  "artifacts": [
+    {
+      "id": 14113011109,
+      "name": "renderer-pipeline-20261114-01-canary",
+      "nbytes": 339390427,
+      "sha256": "123e060848fb7d7b5dd8f221d5434209da7455cd008d6c6e4be7c38b72bc9211"
+    },
+    {
+      "id": 14112987413,
+      "name": "renderer-pipeline-20261114-01-abba",
+      "nbytes": 406827081,
+      "sha256": "ef743f9a20ee67379faa64bf98151e2fae2165b61351f05bc78ac92ef344972f"
+    },
+    {
+      "id": 14112428484,
+      "name": "renderer-pipeline-20261114-01-canary-attestation",
+      "nbytes": 1276,
+      "sha256": "1cff11d1ace1f0b017f0c64421dd82fbcad12014deac00134fc70ecc55ffbcac"
+    },
+    {
+      "id": 14112274187,
+      "name": "renderer-pipeline-20261114-01-attestor-diagnostics",
+      "nbytes": 437500,
+      "sha256": "148dac33cbe21cfa6736d3a0774088560d41346523c38ac32b35535cea10605c"
+    }
+  ],
+  "full_identity_sha256": "2c5816166c09d16c3f67e2e10fffe6a67cc80cf995c74b42c3263b599b1f8c02",
+  "host_lease_sha256": "aeb312ecfc1cf61e24b507ee9084df3216a5c5764f530c0ba7c1ceb027588564",
+  "root_accepted": {
+    "canary": true,
+    "abba": true
+  },
+  "fresh_raw_accepted": {
+    "canary": true,
+    "abba": true
+  },
+  "root_original_fresh_flags_preserved_false": true,
+  "campaign": {
+    "providers": 5,
+    "closed_providers": 5,
+    "capture_pairs": 30,
+    "task_steps": 60,
+    "original_ram_reads": 60,
+    "common_clock_texture_named_getters": 720,
+    "legacy_snapshots": 144,
+    "legacy_named_getters": 5040,
+    "submitted_snapshots": 72,
+    "submitted_named_getters": 2304,
+    "named_observer_getters": 8064,
+    "observed_processes": 3,
+    "observed_events": 504,
+    "profile_installs": 72,
+    "remaining_allowance": 0
+  },
+  "observed_pipeline_orders": [
+    {
+      "order": [
+        "PSSM.update",
+        "MainCamera._chase_task",
+        "igLoop"
+      ],
+      "ticks": 36
+    }
+  ],
+  "observed_ram_orders": [
+    {
+      "order": [
+        [
+          "call",
+          "RAM.method"
+        ],
+        [
+          "c_call",
+          "RAM.image_as"
+        ],
+        [
+          "c_return",
+          "RAM.image_as"
+        ],
+        [
+          "return",
+          "RAM.method"
+        ]
+      ],
+      "calls": 36
+    }
+  ],
+  "observed_ticks_cpu_submission_unchanged_and_equal_post_pssm": 36,
+  "full_signature_counterexamples": [
+    {
+      "left": "C_ON",
+      "right": "ON0",
+      "calls": [
+        2,
+        11,
+        12
+      ]
+    },
+    {
+      "left": "C_ON",
+      "right": "ON1",
+      "calls": [
+        2,
+        3,
+        9
+      ]
+    },
+    {
+      "left": "ON0",
+      "right": "ON1",
+      "calls": [
+        3,
+        9,
+        11,
+        12
+      ]
+    }
+  ],
+  "abba_aggregate_pixel_changes": [
+    {
+      "left": "OFF0",
+      "right": "ON0",
+      "changed": 32,
+      "pixels": 8559936
+    },
+    {
+      "left": "OFF0",
+      "right": "ON1",
+      "changed": 19,
+      "pixels": 8559936
+    },
+    {
+      "left": "OFF0",
+      "right": "OFF1",
+      "changed": 45,
+      "pixels": 8559936
+    },
+    {
+      "left": "ON0",
+      "right": "ON1",
+      "changed": 25,
+      "pixels": 8559936
+    },
+    {
+      "left": "ON0",
+      "right": "OFF1",
+      "changed": 65,
+      "pixels": 8559936
+    },
+    {
+      "left": "ON1",
+      "right": "OFF1",
+      "changed": 64,
+      "pixels": 8559936
+    }
+  ],
+  "raw_retained_cpu_bytes": 104806080,
+  "phase_members": {
+    "canary": {
+      "before_final_phase_ledger": true,
+      "byte_limit": 201326592,
+      "case_content_verified_here": false,
+      "entries": 56,
+      "entry_limit": 256,
+      "file_limit": 129,
+      "files": 49,
+      "mode": "canary",
+      "nbytes_before_final_phase_ledger": 16758057,
+      "status": "BOUNDED_PHASE_MEMBER_SNAPSHOT"
+    },
+    "abba": {
+      "before_final_phase_ledger": true,
+      "byte_limit": 201326592,
+      "case_content_verified_here": false,
+      "entries": 198,
+      "entry_limit": 512,
+      "file_limit": 256,
+      "files": 170,
+      "mode": "abba",
+      "nbytes_before_final_phase_ledger": 66120180,
+      "status": "BOUNDED_PHASE_MEMBER_SNAPSHOT"
+    }
+  },
+  "scientific": {
+    "original_strict_pass": false,
+    "strict_passed": 0,
+    "strict_total": 4,
+    "stage7_complete": false,
+    "official_model_calls": 0,
+    "ort_sessions": 0,
+    "unique_gpu_cause_proven": false,
+    "observer_neutrality_proven": false,
+    "shared_frame_identity_proven": false,
+    "gpu_uniforms_observed": false,
+    "gpu_completion_proven": false
+  },
+  "costs": {
+    "phase_seconds": {
+      "canary": 95.764747438,
+      "abba": 293.27347803099997
+    },
+    "operation_seconds": {
+      "canary": 212.772285297,
+      "abba": 711.708444878
+    },
+    "phase_operation_seconds": {
+      "canary": 212.772286499,
+      "abba": 386.527179358
+    },
+    "control_wait_seconds": 325.181265841,
+    "finished_utc": "2026-11-14T12:05:35.425032+00:00",
+    "finished_kst": "2026-11-14T21:05:35.425032+09:00",
+    "memory_limit_bytes": 4294967296,
+    "peak_is_rss": false,
+    "headroom_proven": false,
+    "oom_events": 0,
+    "intervals_are_observer_overhead": false,
+    "intervals_are_end_to_end_campaign_cost": false
+  },
+  "limitations": [
+    "CPU submitted source locals and recorded call/return order only; no GPU uniform, completion/fence, shared-frame identity, or unique cause.",
+    "All clocks/Texture commonON. OFF events are null; profiler/hooks/state getters are intrusive and non-atomic. No observer neutrality or timing improvement.",
+    "4GiB cgroup limit/peak and zero OOM do not establish RSS or headroom. Phase/operation timings are not pure observer overhead or full end-to-end campaign cost.",
+    "Root/fresh validation reuses pinned complete pixel validator; original archive/source/event/digest checks are separate. Saved inventory is not fresh physical binary proof.",
+    "No private pixel subset intervention in this campaign. Raw/canvas/I420 comparisons are saved CPU data, no model-input or model counterfactual association.",
+    "Originalstrict0/4FAIL/Stage7INCOMPLETE persist. No officialmodel/ORT campaign calls, original optics/fullS/driving/ranking claim, main merge, Cloud or registry publication."
+  ],
+  "proof_index": "renderer-pipeline-sealed-01/proof-index.json",
+  "proof_files": 359,
+  "proof_bytes": 8665619,
+  "original_json_copies": 264,
+  "attestor_diagnostic_json_copies": 59,
+  "comparison_rows": 10,
+  "independent_trials_not_claimed": true
+}

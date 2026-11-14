@@ -58,3 +58,64 @@ execution authorizes bounded diagnostics/owned branches, not publication — no 
 deployment or finished original strict result is delivered by this campaign.
 Deferred minors: none. All declined-to-judge items above are explicitly ruled on.
 Pre-native main48e79a7e and seven old workflow counts verified unchanged.
+
+Task3: complete. Genuine C f91d46df→separateAcontrol4869ca92 on sole
+run43591877488/workflow418257705/attempt1SUCCESS. C root+fresh approved whileheld;
+controller live-requeried terminalattestor/host before A push. Producer stayedC.
+All5providers closed/30pairs replayed,8064namedgetters spent/remaining0.
+Actual source299pins/old280unchanged. C fresh and A fresh Critical0/Important0/Minor0.
+Original root fresh flags remainfalse; separate fresh receipts true.
+All36 observedticks PSSM→Chase→igLoop;72submitted snapshots equalbefore/aftersetter
+and postPSMrig. Equal sampled states/submission/order/count/Texture butdifferentRGB
+comparison calls:C/ON0[2,11,12],C/ON1[2,3,9],ON0/ON1[3,9,11,12]. No GPU cause.
+ABBAraw+canvas totals32,19,45,25,65,64 per8559936. ON0/ON1 firstraw/canvascap2road,
+firstI420cap5. Ten rows are not ten independent trials; no private CPU intervention.
+Cphase95.764747438s/op212.772285297s; Aphase293.273478031s/phaseop386.527179358s,
+control325.181265841s/total711.708444878s; finish21:05:35.425032KST.
+359proofs/8665619B/264originalJSON+60diagnosticJSON. Full originalZIPs/PNG/I420/TAR
+retained; two large installedmanifest duplicates alreadyversioned, not lost.
+
+Actual C/A fresh declined-to-judge rulings (all items covered; costs retained):
+
+Final raw: Ruling1: Accept only the exact original artifacts and receipt times —
+fresh reviewers used saved API, while controller separately live-requeried before A;
+post-control live observation is explicitly not backdated. Diagnostics are preserved
+as metadata, outside pixel acceptance — stale/external changes beyond those instants
+would require a new observation, not invented live proof or an artifact retry.
+Final raw: Ruling2: Exact CPU source-line calls/source-local identity and sampled
+poses are the observed boundary — not GPU uniform/completion/shared camera or GPU
+frame/light/HDR/shadow state; pose has no separate digest — cause and physical runtime
+identity remain unproved even when CPU submissions match.
+Final raw: Ruling3: Keep non-atomic/intrusive/absolute-time/OFF-null limits — common
+clock/Texture and wrappers remain; profilerON state reads perturb execution — no
+neutrality, determinism, reproducibility or performance improvement follows.
+Final raw: Ruling4: Keep officialmodel/ORTcampaign0,derived-onlyI420,originalstrict
+0/4FAIL/Stage7INCOMPLETE and no merge/publication — no private pixel subsets or model
+counterfactual ran — model association/optics/fullS/driving/ranking remain separate.
+Final raw: Ruling5: Clarify all named counts include commonclock/Texture getters —
+C144+1680+768=2592;A576+3360+1536=5472;whole720+5040+2304=8064 — private copies,
+indexing,72profileinstalls and root/API/hash/decode/review cost are additional work,
+not extra unaccounted named getters; allowance0 cannot fund another native attempt.
+Final raw: Ruling6: Preserve exact phase/operation/control intervals, not pure
+observer overhead or campaign end-to-end time — C excludes held review and all
+root/sourceCI/review work adds CPU/I/O/latency — total cost cannot be inferred by
+treating these overlapping scopes as a complete observer tax.
+Final raw: Ruling7: Cgroup4GiB/zeroOOM and saved inventory/copied TAR hashes stay
+bounded admission evidence — no RSS/headroom/fresh inventory/physical binary proof;
+TARs include installer material, not a standalone299-source tree — unknown native
+resource/state behavior beyond this actual cohort remains possible.
+Final raw: Ruling8: Reuse the pinned reviewed pixel/lifecycle validator explicitly —
+ZIP/source/event/projection/216MVPdigests/critical originalpixel comparisons were
+independently coded; C was authenticated for A comparison without repeating its full
+review — shared-validator blind spots remain possible, not erased by two acceptances.
+Final raw: Ruling9: Ten signature comparison rows and raw+canvas sums are dependent
+comparisons across five processes — not ten trials, independent pixels or causal
+effect estimates — overconfidence in a unique cause would exceed this evidence.
+Deferred minors: none across source,C,A. No rereview/fix pass was necessary.
+Next scope is separate GPU-facing original call/frame provenance design; no consumed
+request retry, naive GPU extraction, repeated completed cohort or official model run.
+Packaging verification: index359proofs initially found82nested output/ JSON paths
+ignored by Git. A direct membership assertion was RED, explicit inclusion of only
+the evidence directory made it GREEN; all359proofs are now present in Git before
+the first evidence push. Original receipts were not changed. This corrects packaging,
+not source or native execution, and adds no observer/getter allowance.
