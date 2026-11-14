@@ -1,6 +1,27 @@
 # Stage 7 continuation — verified results, renderer cause still open
 
-## Current checkpoint (2026-11-14 17:18 KST — saved03 clock/pixel analysis)
+## Current checkpoint (2026-11-14 18:08 KST — bounded renderer task observer/source preparation)
+
+New renderer_task_callbacks + renderer_task_binding preserve261frozen producer
+paths; no native/provider/getter/model/ORT/GL execution or new request/workflow.
+Profile exactPSSM/Chase code+self only during each original taskMgr.step, bind
+camera call through frozenclocktrace, finite copiedpose+2splitMVP, task.contnormal
+return, OFFeventsnull,12step/48snapshot/256KiB caps. Getterbudget35namedmethods/
+snapshot (1680/process); privatecopies/indexing separate, notallC++APIcalls.
+Retainedheadlesswheel72968610B/f949e89f matches acceptedimage006manifestf81fa5be
+for4completePythonfiles/ASTranges, codeexecuted0.27newtests + reviewregression1;
+focused51PASS, full1237tests/7skip/122.515sPASS. FreshreviewC0/I1/M0; RT-I1caught
+malformedclockrowstickyfailurefixed once RED4subcases→GREEN, no rereview.
+[Result](STAGE7_RENDERER_TASK_BOUNDARIES.md),
+[sourceaudit](evidence/RENDERER_TASK_BOUNDARY_SOURCE_AUDIT.json),
+[review](evidence/RENDERER_TASK_BOUNDARIES_01_REVIEW.md),
+[ledger](STAGE7_RENDERER_TASK_BOUNDARIES_LEDGER.md).
+ActualnativeNOT_RUN; next is separate sealed producer/schema/sourceclosure/new
+allowance/lifecycle composition beforecanary. Original03allowance0; strict0/4FAIL,
+Stage7INCOMPLETE/geometry/optics/fullS unchanged. OwnDraft/exactheadCI authority is
+retained in the branch Draftbody and output/stage7-renderer-task-boundaries-01/closeout.
+
+## Previous checkpoint (2026-11-14 17:18 KST — saved03 clock/pixel analysis)
 
 Pinned original03 ZIPs independently rehashed; all261 producer files match frozen
 source60f6d7f/current bytes. CPU-only reconstruction of30pairs/60rawframes passed;

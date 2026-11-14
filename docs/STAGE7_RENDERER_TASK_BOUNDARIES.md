@@ -100,3 +100,19 @@ OFF/ON·비정상행4subcase RED→GREEN 수정 후 현재51PASS/0.210초다.
 이 증분에서는 실행 요청·workflow activation을 추가하지 않았다. 실제 provider,
 추가 frame/readback/getter, 공식 MD-V3 모델/ORT 호출은0이다. renderer/shader/default
 변경·임의 warmup삭제·pixel보정·main병합·Cloud/registry게시는 없다.
+
+## 코드 검증 마감
+
+수정 소스76236ed14fcb412c6964ab554ccefaf81bc6d7b3에서 전체1237시험:
+실패0/오류0/기존7skip/122.515초다.
+[수정 후 검증](evidence/RENDERER_TASK_BOUNDARIES_01_POST_FIX_CHECK.json)은 표준
+라이브러리만의 import와261생산파일 불변도 확인했다. 현재 관측기
+SHA cb623b30cc5ed97dbb8b381866fa28f51e7cd0d4e2b031793a5cf747b37f37d2,
+binding SHA889b79da9f41d3cde33a538846bb745f6b3582bd1cbb1509b9a4e5b3dff103ac다.
+이후 수정은 문서·증거만 추가한다. 중요한 지적1건은 위 회귀 시험과 전체 시험으로
+수정 검증했으며 독립 재검토를 받았다고 주장하지 않는다. 새 Minor보류는 없다.
+
+[소유 브랜치 Draft 검색](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/pulls?q=is%3Apr+head%3Adiagnostic%2Frenderer-task-boundaries-v1)의
+최종 본문과 output/stage7-renderer-task-boundaries-01/closeout/final-verification.json에
+정확한 최종 HEAD·push/PR CI run/job·Draft/미병합·main불변·기존 native실행 수를
+검증해 남긴다. 일반 CI의 생성 SMALL ONNX시험은 공식 MD-V3 호출이 아니다.

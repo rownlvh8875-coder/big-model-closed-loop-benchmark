@@ -59,3 +59,16 @@ does not isolate later unrelated uncommitted edits.
 
 Final: deferred Minor findings: none for this increment. Historical CP-M1 and
 other prior deferrals keep their original scope; no retroactive fix claim.
+
+Task2 complete after one fix pass: focused51PASS0.210s; full1237tests,
+0failures/0errors/7existing skips/122.515s. Post-fix sourcecheck PASS under-I-S;
+all261frozenpins unchanged; sourceaudit unchanged. Logs and initial/final receipts
+preserved in output/stage7-renderer-task-boundaries-01/closeout. No rereview.
+Transient apply_patch transport failure made no document changes; inspected tree,
+then reapplied exact patch. No source/test rollback or repeated native action.
+
+Task3 preflight: branch diagnostic/renderer-task-boundaries-v1 stacked on
+analysis/engine-clock-pixel-forensics-03; no workflow/request change. Actual native
+run remains sole43571004531. Own Draft/exactHEAD push+PR jobs/main/sole-native-run
+verification will be retained in Draftbody and output closeout/final-verification.json.
+These remote observations are separate from reviewed4c39793/corrected76236ed.
