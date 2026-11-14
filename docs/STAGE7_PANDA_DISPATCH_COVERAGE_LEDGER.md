@@ -1,0 +1,10 @@
+# Panda dispatch coverage ledger
+
+Base93475a36e8a68889aa632182dccd4cdc3dde39c0;branchfeature/panda-dispatch-coverage-v1;3083basefiles. Prior full1415tests/1408PASS/7skip94.349s; current exactDraft108push43653415901/PR43653426883 all4jobsSUCCESS/attempt1/artifacts0. Same managedconnected environment/spec1. Clean checkout; no previously completed work reapplied.
+Ruling: Continue inline/samecheckout/noquestions per persistent user preference, using brainstorming/writing-plans/executing-plans/TDD — next missing prerequisite is actual static dispatch coverage — CPU/development cost only, no native allowance.
+Ruling: Prefer future source-integrated dispatch over GOT-only or ambient preload/audit/dlsym interposition — actual source has private GLX resolver/POSIX fallback and existing sealed profile rejects ambient preload — requires a separately qualified new build/installer/environment before any native use.
+Ruling: Conservatively retain all conditional source branches and report ELF spelling presence separately — source version cannot prove active compiled paths — more unresolved names/budget pressure, never a false coverage/native success.
+Ruling: Vendor four small pinned upstream sources and LICENSE, but no Panda ELF/model/camera originals — reproducible lexical input and legal provenance — approximately592KiB extra source evidence, no execution authority.
+Ruling: Keep all3083basefiles immutable, including prior dispatcher/cache — this task detects concrete missing legacy/context/delete-buffer routes rather than silently activating a partial fix — those adapters and fresh build qualification are explicit next implementation work.
+Ruling: Use the already-tested exact clean base and freshly confirmed Draft108 receipt rather than repeat unchanged baseline fullsuite — exact source is unchanged and both source CI events passed — final changed-tree fullsuite still required.
+Preflight Task1→2: inspect_imports returns actual loader relocation-backed names/slots; scanner/assessor consumes them as possible imports alongside conservative source literals, never as executed call receipts. No interface conflict found.
