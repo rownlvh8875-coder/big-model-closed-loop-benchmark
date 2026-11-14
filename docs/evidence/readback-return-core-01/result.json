@@ -1,12 +1,13 @@
 {
-  "asan_ubsan_scenarios": 22,
+  "asan_ubsan_scenarios": 25,
   "base_files_preserved": 2431,
   "base_sha": "f8994f1d6c0f4cb6c6348d50c8c6f25d6b4628c0",
   "binary_data_header_bytes": 160,
   "build_receipt": "synthetic-build.json",
-  "build_smoke_wall_seconds": 3.627116567979101,
+  "build_smoke_wall_seconds": 3.795422939991113,
   "consumed_native_allowance_remaining": 0,
   "gpu_write_proven": false,
+  "historical_reviewed_proofs": "before-fix/relocated-proof-index.json",
   "largest_synthetic_stream_bytes": 55900512,
   "max_reads_per_window": 2,
   "max_records": 24,
@@ -32,17 +33,27 @@
   "original_gpu_bytes_observed": false,
   "original_strict_pass": false,
   "physical_frame_proven": false,
+  "producer_finalization_receipt_required": true,
+  "producer_receipt_transport_native_qualified": false,
+  "review": {
+    "critical": 0,
+    "fix_passes": 1,
+    "important_fixed": 2,
+    "important_found": 2,
+    "minor": 0,
+    "rereviews": 0
+  },
   "runtime_admission_ready": false,
   "schema": "readback-return-core-result-v1",
   "source_audit": "static-source-audit.json",
   "stage7_complete": false,
-  "status": "CPU_PREPARATION_REVIEW_PENDING",
-  "synthetic_scenarios": 22,
+  "status": "CPU_CORE_VERIFIED_NATIVE_INACTIVE",
+  "synthetic_scenarios": 25,
   "terminal_footer_bytes": 96,
   "tests": {
-    "focused": 26,
-    "seconds": 120.285,
+    "focused": 29,
+    "seconds": 121.931,
     "skipped": 7,
-    "total": 1348
+    "total": 1351
   }
 }

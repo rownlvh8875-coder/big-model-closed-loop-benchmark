@@ -83,9 +83,11 @@ void rb_read(void *ctx,rb_read_fn original,int32_t x,int32_t y,int32_t w,int32_t
   rb_context *c=ctx;
   if(!original){(void)fail(c,RB_NO_ORIGINAL);return;}
   if(!atomic_load(&c->active)){original(x,y,w,h,f,t,pixels);return;}
-  atomic_fetch_add(&c->forwards,1);
+  uint64_t ordinal=atomic_fetch_add(&c->forwards,1)+1;
   if(!owner(c)){original(x,y,w,h,f,t,pixels);return;}
   if(c->busy){(void)fail(c,RB_REENTRANT);original(x,y,w,h,f,t,pixels);return;}
+  /* Bound observation before touching metadata, even on the excess call itself. */
+  if(ordinal-c->window_start>c->config.reads_per_window)(void)fail(c,RB_SEQUENCE);
   c->busy=1;
   rb_read_state saved={0};
   int observe=c->config.enabled && !atomic_load(&c->error);

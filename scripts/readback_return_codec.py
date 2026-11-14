@@ -4,6 +4,7 @@ The bytes describe after-call memory, not successful/fresh GPU writes. Every lab
 and borrowed extent originates with an as-yet unqualified caller/ABI adapter.
 """
 from dataclasses import dataclass
+import hashlib
 import struct
 
 HEADER=struct.Struct('<8sIIQ32sIIIIQiiiiIIIIIIIIQQQQ')
@@ -79,8 +80,14 @@ def _validate(record):
           type(record.payload) is bytes and len(record.payload)==record.payload_bytes,'payload extent')
     return components
 
-def decode_stream(blob,*,expected_nonce,expected_windows,reads_per_window,enabled):
-    """Accept only a complete CPU window, bound by externally supplied expectations."""
+def decode_stream(blob,*,expected_nonce,expected_windows,reads_per_window,enabled,producer_receipt=None):
+    """Require complete bytes AND trusted out-of-band producer finalization.
+
+    The caller must obtain finish_result/error/counters from the actual producer
+    after rb_finish returns, then bind the finalized spool's hash/length and nonce.
+    Never reconstruct successful producer status from the footer. This receipt
+    is a caller-trust boundary, not a signature or native process attestation.
+    """
     _need(_nonce(expected_nonce),'expected nonce')
     _need(_integer(expected_windows,1,12) and _integer(reads_per_window,1,2) and type(enabled) is bool,'expected window')
     _need(type(blob) is bytes and 96<=len(blob)<=MAX_WIRE,'wire size')
@@ -102,6 +109,14 @@ def decode_stream(blob,*,expected_nonce,expected_windows,reads_per_window,enable
     captured=expected if enabled else 0
     _need(f[4:]==(expected,captured,captured,offset,expected_windows,0,int(enabled)),'terminal counters/status')
     _need(len(records)==captured,'record count')
+    receipt_fields={'schema','nonce','stream_sha256','stream_nbytes','finish_result','error',
+                    'forwards','attempts','captured','data_wire_bytes'}
+    p=producer_receipt
+    _need(type(p) is dict and set(p)==receipt_fields,'out-of-band producer finalization required')
+    _need(all(type(p[k]) is int for k in ('stream_nbytes','finish_result','error','forwards','attempts','captured','data_wire_bytes')),'producer counter types')
+    _need(p==dict(schema='readback-return-producer-finalization-v1',nonce=expected_nonce.hex(),
+        stream_sha256=hashlib.sha256(blob).hexdigest(),stream_nbytes=len(blob),finish_result=0,error=0,
+        forwards=expected,attempts=captured,captured=captured,data_wire_bytes=offset),'producer finalization/status binding')
     return dict(records=tuple(records),footer=dict(forwards=f[4],attempts=f[5],captured=f[6],
         data_wire_bytes=f[7],closed_windows=f[8],error=f[9],enabled=bool(f[10])),
         cpu_window_closed=True,**_authority())

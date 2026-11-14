@@ -1,6 +1,7 @@
 """Independent wire mutations and actual compiled CPU-fake interoperability."""
 from dataclasses import replace
 from pathlib import Path
+import hashlib
 import tempfile
 import unittest
 from tests.test_readback_return_core import compile_fixture,fixture_result,HEADER,FOOTER,NONCE
@@ -13,6 +14,13 @@ def change_header(raw,index,value,offset=0):
     fields=list(HEADER.unpack_from(raw,offset));fields[index]=value
     return raw[:offset]+HEADER.pack(*fields)+raw[offset+160:]
 
+def finalization_receipt(raw,stats):
+    """Out-of-band producer return/stats plus the spooled stream identity."""
+    return dict(schema='readback-return-producer-finalization-v1',nonce=NONCE.hex(),
+                stream_sha256=hashlib.sha256(raw).hexdigest(),stream_nbytes=len(raw),
+                finish_result=stats['finish'],error=stats['error'],forwards=stats['forwards'],
+                attempts=stats['attempts'],captured=stats['captured'],data_wire_bytes=stats['wire_bytes'])
+
 class ReturnCodecTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -20,7 +28,7 @@ class ReturnCodecTests(unittest.TestCase):
         if codec is not None:
             cls.temp=tempfile.TemporaryDirectory(prefix='rb-codec-test-');exe=Path(cls.temp.name)/'fixture'
             compile_fixture(exe)
-            for mode in ('basic','rgb','rgba','bgra','packed','off','ambiguous','unknownproducer','limit','max'):
+            for mode in ('basic','rgb','rgba','bgra','packed','off','ambiguous','unknownproducer','limit','max','footerfail'):
                 cls.samples[mode]=fixture_result(exe,mode)
     @classmethod
     def tearDownClass(cls):
@@ -28,6 +36,8 @@ class ReturnCodecTests(unittest.TestCase):
     def setUp(self):self.assertIsNotNone(codec,'strict return-buffer codec required')
     def decode(self,mode='basic',raw=None,**kwargs):
         options=dict(expected_nonce=NONCE,expected_windows=12 if mode=='max' else 1,reads_per_window=2,enabled=mode!='off')
+        sample,stats=self.samples[mode]
+        options['producer_receipt']=finalization_receipt(sample if raw is None else raw,stats)
         options.update(kwargs)
         return codec.decode_stream(self.samples[mode][0] if raw is None else raw,**options)
     def test_c_stream_closes_cpu_window_without_native_or_gpu_authority(self):
@@ -70,6 +80,19 @@ class ReturnCodecTests(unittest.TestCase):
             with self.subTest(index=i),self.assertRaises(ValueError):self.decode(raw=raw[:-96]+FOOTER.pack(*changed))
     def test_failed_capture_footer_is_rejected(self):
         with self.assertRaises(ValueError):self.decode('limit')
+    def test_complete_footer_write_followed_by_emitter_failure_cannot_close_window(self):
+        raw,stats=self.samples['footerfail'];self.assertEqual(raw,self.samples['basic'][0])
+        self.assertNotEqual(stats['finish'],0);self.assertNotEqual(stats['error'],0)
+        with self.assertRaises(ValueError):self.decode('footerfail')
+    def test_successful_out_of_band_receipt_is_mandatory_and_bound_to_entire_stream(self):
+        raw,stats=self.samples['basic'];receipt=finalization_receipt(raw,stats)
+        for changed in (None,{},receipt|{'extra':1},receipt|{'nonce':'0'*64},receipt|{'stream_sha256':'0'*64},
+                        receipt|{'stream_nbytes':len(raw)-1},receipt|{'finish_result':-1},receipt|{'error':1},
+                        receipt|{'forwards':1},receipt|{'attempts':1},receipt|{'captured':1},
+                        receipt|{'data_wire_bytes':409},receipt|{'finish_result':False}):
+            with self.subTest(receipt=changed),self.assertRaises(ValueError):self.decode(producer_receipt=changed)
+        # Successful status from another byte stream cannot be reused even for same nonce/counts.
+        with self.assertRaises(ValueError):self.decode('rgb',producer_receipt=receipt)
     def test_unique_match_requires_all_labels_and_bytes(self):
         records=self.decode()['records'];rgb=codec.normalize_rgb(records[0])
         args=dict(nonce=NONCE,host_call=1,camera=1,context_tag=101,width=5,height=3,rgb=rgb)

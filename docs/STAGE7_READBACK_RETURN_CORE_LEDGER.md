@@ -31,3 +31,22 @@ Fullsuite: python -B -m unittest discover -s tests -v →1348tests PASS7skip120.
 Preservation before review: all2431basefiles actual Gitblob identities match;299sourceSHA256pins match;2traces+4graphs+2originalsealedZIPhashes match; main/oldDraft102/103/104/nativehistory unchanged.
 Task2: complete implementation+pre-review verification. Independentwholebranchreview and exactDraftCI are closeout gates.
 Ruling: Keep actual adapter/runtime admission inactive — static source/ELF identity and CPUmalloc tests cannot validate dispatch/span/producer identity — nextstage must supply new reviewed mechanicalcontract and fresh bounded canary, adding qualification work before realbytes.
+
+Final review: onefreshgpt-6-astra/medium source+syntheticdata review at20f0d7e;Critical0/Important2/Minor0. Originalreport docs/evidence/READBACK_RETURN_CORE_01_REVIEW.md. Reviewreran26focused,verified32proofs+4retainedhashes/22scenariooutcomes; didnot independently rerunwhole/sanitizers.
+Final: regraded both findings Important; allowedonefixpass, no rereview. RootI1 was end-only capcheck aftercopy; rootI2 serializedfooterstatus before emitterreturn.
+Final: regression RED2tests/3failures: excess1captured2instead1/excess2captured3instead2; fullfooter+failedemitter accepted byolddecoder. FocusedGREEN29/29 in2.003s after fixes.
+Ruling: Require trusted out-of-band producer finalization receipt as well as footer — footer cannot describe the result of its own emission — consumers now must supply actual postfinish status/counters plus finalized spool SHA/length/nonce; future adapter must qualify receipt transport, and an invented receipt conveys no native authority.
+Final: Ruling: Actual dispatch/instruction ABI stays unproven — static metadata is only a callpoint candidate — liveadapterqualification remains futurecost.
+Final: Ruling: Real Texture/view extent and producer identity stay caller preconditions — CPUmalloc/labels cannot attest real allocation/camera — incorrect future suppliers could read wrongmemory or mislabel candidates until qualified.
+Final: Ruling: GPUwrite success/freshness/physicalframe stay unproven — void return/equalCPUbytes do not establish them — realcorrespondence evidence remains futurework.
+Final: Ruling: Live concurrency and overhead stay unmeasured — serializedCPUfake+ASan/UBSan do not establish native scheduling/racefreedom/performance — actual adapter needs scope/thread rules and bounded control measurements.
+Final: Ruling: Context/storage/metadata lifetime, serialized lifecycle and normally returning original remain C API preconditions — invalid pointers/longjmp cannot be made safe by this bounded noquery core — violating callers can fault and are outside accepted integration.
+Final: Ruling: Runtime admission/freshnativeallowance/deployment stay inactive — existing sealedmechanicalcontract rejects addedpreload and no newcontract exists — qualification/canaryreview is required before actualGPUbytes.
+Final: minor (deferred): none.
+
+Final: fixed Important1 — test_excess_reads_forward_without_exceeding_per_window_copy_budget(1and2readwindows) RED→GREEN; suite1351PASS7skip121.931s.
+Final: fixed Important2 — test_complete_footer_write_followed_by_emitter_failure_cannot_close_window RED→GREEN; mandatorywhole-stream-boundreceipt mutations/absent/failure/crossstream rejection covered; samegreenwhole suite.
+Final: focused29PASS2.003s;25ASan/UBSan cases PASS, exactstreams/stats; finalbuildwall3.795422940s excludes tests/review/CI and proves no nativeoverhead. An earlierpostfixbuild5.526125476s preceded headercomment clarification; active receipt regenerated to match finalsourcehashes.
+Final: oneImportantfixpass; zeroCritical/remainingImportant/Minor, zero rereviews.25actualoutofbandfinalizationreceipts retained with producerstats/rawSHA+length; receipttransport not qualified for native.
+
+Finalpreservation afterfix: all2431baseGitblobs/299sourcepins/10original trace+graph+ZIP artifacts match; main/oldDrafts/nativehistories unchanged. OwnDraft/exactheadCI follows; no sharedbasepush/merge/publication.

@@ -93,5 +93,13 @@ class ReturnCoreTests(unittest.TestCase):
         for mode in ('nested','shortwindow'):
             _,s=fixture_result(self.executable,mode)
             with self.subTest(mode=mode):self.assertNotEqual(s['error'],0);self.assertNotEqual(s['finish'],0)
+    def test_excess_reads_forward_without_exceeding_per_window_copy_budget(self):
+        for mode,limit,forwards in (('excess1',1,2),('excess2',2,3)):
+            raw,s=fixture_result(self.executable,mode);rows,tail=split_records(raw)
+            with self.subTest(mode=mode):
+                self.assertEqual(s['original_calls'],forwards);self.assertEqual(s['forwards'],forwards)
+                self.assertEqual((s['args_ok'],s['errno_ok'],s['source_unchanged']),(1,1,1))
+                self.assertEqual((s['captured'],s['attempts'],len(rows)),(limit,limit,limit))
+                self.assertNotEqual(s['error'],0);self.assertNotEqual(tail[9],0)
 
 if __name__=='__main__':unittest.main()

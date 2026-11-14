@@ -9,6 +9,9 @@
  * No concurrent lifecycle calls: begin/end/finish/stats run on the init thread.
  * A scoped foreign-thread read only forwards and records a sticky error.
  * The original must be nonnull and must return normally (no longjmp).
+ * Footer bytes alone cannot attest to their emitter's eventual return status.
+ * Acceptance requires an out-of-band successful rb_finish result/error/counters
+ * bound to the finalized stream by the trusted caller, even with a full footer.
  */
 #define RB_KNOWN_ALL 255u
 typedef void (*rb_read_fn)(int32_t,int32_t,int32_t,int32_t,uint32_t,uint32_t,void *);

@@ -13,13 +13,14 @@ static unsigned char *pixels,*snapshot;
 static uint32_t format_value=0x80e0,producer=1;
 static int width_value=5,height_value=3;
 static unsigned original_calls,emits,args_ok=1,unchanged=1,errno_ok=1;
-static int reentrant,depth,mutate,emit_failure,pbo_mode;
+static int reentrant,depth,mutate,emit_failure,pbo_mode,footer_failure;
 static size_t source_size=8*1024*1024;
 
 static int emit_record(const unsigned char *header,size_t hn,const unsigned char *data,size_t n,void *user) {
   (void)user;emits++;
   if(emit_failure){(void)fwrite(header,1,7,stdout);errno=EIO;return -1;}
   if(fwrite(header,1,hn,stdout)!=hn || (n && fwrite(data,1,n,stdout)!=n))return -1;
+  if(footer_failure && hn==96){errno=EIO;return -1;}
   errno=EIO;return 0;
 }
 static unsigned channels(void){return format_value==0x1908 || format_value==0x80e1 ? 4u:3u;}
@@ -57,6 +58,7 @@ int main(int argc,char **argv){
   rb_config config={0};for(unsigned i=0;i<32;i++)config.nonce[i]=(unsigned char)(i+1);
   config.enabled=strcmp(mode,"off")!=0;config.windows=1;config.reads_per_window=2;
   config.max_records=24;config.max_wire_bytes=64u*1024u*1024u;
+  if(strcmp(mode,"excess1")==0)config.reads_per_window=1;
   if(strcmp(mode,"limit")==0)config.max_records=1;
   if(strcmp(mode,"bytes")==0)config.max_wire_bytes=96+160+44;
   if(strcmp(mode,"max")==0){width_value=964;height_value=604;format_value=0x80e1;config.windows=12;}
@@ -65,6 +67,7 @@ int main(int argc,char **argv){
   if(strcmp(mode,"bgra")==0 || strcmp(mode,"packed")==0)format_value=0x80e1;
   reentrant=strcmp(mode,"reentrant")==0;mutate=strcmp(mode,"mutate")==0;
   emit_failure=strcmp(mode,"emitfail")==0;pbo_mode=strcmp(mode,"pbo")==0;
+  footer_failure=strcmp(mode,"footerfail")==0;
   pixels=calloc(1,source_size);snapshot=calloc(1,source_size);
   unsigned char *scratch=calloc(1,source_size);context=calloc(1,rb_context_size());
   if(!pixels || !snapshot || !scratch || !context)return 2;
@@ -75,8 +78,9 @@ int main(int argc,char **argv){
     if(rb_begin(context,window,window%2?1:2)!=0)break;
     if(strcmp(mode,"nested")==0)(void)rb_begin(context,window,1);
     unsigned loops=(reentrant || strcmp(mode,"shortwindow")==0)?1:2;
+    if(strcmp(mode,"excess2")==0)loops=3;
     for(unsigned j=0;j<loops;j++){
-      producer=j+1;memset(&state,0,sizeof(state));state.known=RB_KNOWN_ALL;
+      producer=j%2+1;memset(&state,0,sizeof(state));state.known=RB_KNOWN_ALL;
       state.alignment=1;state.capacity=source_size;state.context_tag=101;state.read_fbo=7+producer;
       state.producer_camera=producer;state.label_basis=1;
       if(strcmp(mode,"packed")==0){state.alignment=4;state.row_length=8;state.skip_pixels=1;state.skip_rows=2;}

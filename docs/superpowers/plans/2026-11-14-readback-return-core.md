@@ -31,9 +31,9 @@ tests/test_readback_return_core.py.
 original seven GL ABI arguments. Immutable rb_read_state supplies pack/context/labels/
 borrowedcapacity. Emitter accepts constheader+payload only.
 
-- [ ] Write compiledfixture/independent wire tests RED (missingcore); implement minimal
+- [x] Write compiledfixture/independent wire tests RED (missingcore); implement minimal
 core preserving oneforward/errno and stickyfailure. Focused unittest expectedPASS.
-- [ ] Verify layouts,OFF/no data,unsupported/PBO/short/alias/thread/reentrant/caps/emit
+- [x] Verify layouts,OFF/no data,unsupported/PBO/short/alias/thread/reentrant/caps/emit
 failure,window/terminalcounts. CPU-only compilation/harness; commit with ledger.
 
 ### Task2: Python codec, source audit and synthetic handoff
@@ -41,11 +41,11 @@ failure,window/terminalcounts. CPU-only compilation/harness; commit with ledger.
 **Files:** scripts/readback_return_codec.py,scripts/audit_readback_return_source.py;
 tests/test_readback_return_codec.py; docs/evidence/readback-return-core-01/,result/ledger.
 **Interfaces:** decode_stream(blob,expected_nonce,expected_windows,reads_per_window,
-enabled); normalize_rgb(record); match_cpu_candidate(...). No native authorization.
+enabled,producer_receipt); normalize_rgb(record); match_cpu_candidate(...). No native authorization.
 
-- [ ] RED codec malformed/truncated/footer/layout/nonces/scopes/normalization/ambiguity
+- [x] RED codec malformed/truncated/footer/layout/nonces/scopes/normalization/ambiguity
 tests; implement bounded decoder/matcher, focused expectedPASS; interop realCfixture.
-- [ ] Static pinned wheel/source/ELF audit, existingenvironment+LD_PRELOAD pureguard
+- [x] Static pinned wheel/source/ELF audit, existingenvironment+LD_PRELOAD pureguard
 rejection; generate syntheticcompiler/flags/binary/harness/dependency/sanitizerreceipt,
 inactive actualruntime/ABI/span-supplier handoff. Native/GL/model/ORT0.
 - [ ] Fullsuite expectedPASS. Onefreshwholebranchreview,allrulings/costs ledgered;

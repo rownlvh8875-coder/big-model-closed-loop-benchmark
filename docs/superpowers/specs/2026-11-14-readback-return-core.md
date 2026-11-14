@@ -47,6 +47,17 @@ captured-records/data-wire-bytes/closed-windows u64,erroru32,enabledu32. Decoder
 requires external expectednonce/windows/reads/mode, full footer and exact totals;
 truncation at any record boundary is not successful completion.
 
+Review correction: a complete footer cannot attest to its own emission success.
+decode_stream additionally requires a trusted out-of-band producer_receipt with
+schema readback-return-producer-finalization-v1,nonce(hex),stream_sha256,
+stream_nbytes,finish_result,error,forwards,attempts,captured,data_wire_bytes.
+The caller obtains actual post-rb_finish return/stats and successful sink/spool
+finalization, then binds the stream hash/length. Never derive success from footer
+status. Missing/failed/mismatched receipts reject completion. This is a trusted
+caller precondition, not cryptographic process/native attestation. A future adapter
+must qualify that receipt transport and process/window binding.
+Per-window excess reads fail before observing metadata/copying; originals still run.
+
 Python normalizes to top-down RGB without touching source bytes. A matcher returns
 unique/no/ambiguous CPU-byte candidates only, requiring nonce/call/requester/producer
 labels/context/shape. Unknown producer metadata cannot become a unique association.

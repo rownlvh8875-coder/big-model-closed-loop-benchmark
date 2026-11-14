@@ -16,7 +16,11 @@ Data records use independent160B little-endian headers plus tightly packed origi
 component bytes, retaining bottom-up RGB/RGBA/BGR/BGRA order. Padding/skipped bytes
 and pointers are not serialized. A96Bterminal footer is mandatory. The Python
 decoder requires external nonce/window/read/mode expectations, exact sequence and
-counter totals. It normalizes to top-down RGB and reports unique, absent, ambiguous
+counter totals and a trusted out-of-band producer-finalization receipt. The caller
+obtains actual post-rb_finish return/stats and finalized sink/spool success, then
+binds nonce, whole-stream SHA256 and size. Footer bytes alone cannot attest their
+own emission result. Missing/failed/mismatched receipts reject completion; receipt
+transport remains a caller trust boundary, not native/process attestation. It normalizes to top-down RGB and reports unique, absent, ambiguous
 or insufficient-label CPU-byte candidates. None implies native/frame/GPU authority.
 
 Limits are24records,64MiBwire including footer,12windows,1or2reads/window,
@@ -33,10 +37,10 @@ The existing sealed environment accepts its baseline dictionary and rejects adde
 LD_PRELOAD. It was not changed. The local compiled core is not qualified for that
 native image and is not loaded into it.
 
-Before independent review,26focused tests and1348whole-suite tests pass,7skip,
-120.285s. The real C CPU fake covers22scenarios; each also passes ASan/UBSan with
-the same stream and counters, including negative paths/max size. Build smoke took
-3.627116568s wall; this excludes fullsuite/review/CI/development and measures no
+Before independent review,26focused tests and1348whole-suite tests passed,7skip,
+120.285s before review. The final C CPU fake covers25scenarios; each also passes ASan/UBSan with
+the same stream and counters, including negative paths/max size. Initial build smoke took
+3.627116568s wall; final build wall time is in the active receipt. This excludes fullsuite/review/CI/development and measures no
 runtime GL overhead. Compiler flags, executable/source hashes, ELF dependencies,
 raw small synthetic streams and max-stream identity are retained in the
 [proof index](evidence/readback-return-core-01/proof-index.json).
@@ -45,7 +49,13 @@ All2431base tracked files and299old source pins are byte-preserved, along with b
 original trace streams, four before/after route graphs and original sealedC/ABBA
 ZIPs. Main, old Drafts and native workflow histories are unchanged. New native,
 GL, provider, official model and official ORT execution counts are0. No main merge
-or Cloud/registry publication. Review/CI closeout is pending.
+or Cloud/registry publication. The sole fresh review found2Important issues and noCritical/Minor. One fix pass
+limits capture before excess per-window reads and requires the external completion
+receipt, including full-footer-write/emitter-failure rejection.29focused tests pass;
+final whole suite1351tests PASS7skip121.931s. Exact Draft/head CI closeout
+is recorded separately in the PR and retained `output/stage7-readback-return-core/ci-closeout/`. The reviewed pre-fix proofs remain in
+`before-fix/` with relocated index; the original review is
+[retained](evidence/READBACK_RETURN_CORE_01_REVIEW.md). No rereview.
 
 The next gate is a qualified adapter: original GL dispatch/instruction ABI, actual
 Texture/view RAM extent, observed pack/PBO/context/read-FBO state and camera identity,
