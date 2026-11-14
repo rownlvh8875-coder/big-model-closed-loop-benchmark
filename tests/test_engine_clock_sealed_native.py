@@ -137,7 +137,41 @@ class SealedNativeTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError,'prestart rejection'):
                 runner.launch_canary(Engine(),{'config_digest':receipt['config_digest']},self.request(),
                     {'request_sha256':'a'*64},receipt,(ROOT/(n.AUTH+'installed-files.json')).read_bytes(),Path(td),ROOT)
+            # Container UID0 is an ordinary "other" user on runner-owned inodes
+            # when every capability is dropped. umask must not erase its access.
+            import stat
+            self.assertEqual(0o755,stat.S_IMODE((Path(td)/'binding').stat().st_mode))
+            self.assertEqual(0o777,stat.S_IMODE((Path(td)/'output').stat().st_mode))
+            self.assertEqual(0o777,stat.S_IMODE((Path(td)/'cache').stat().st_mode))
+            self.assertEqual(0o644,stat.S_IMODE((Path(td)/'binding/binding.json').stat().st_mode))
         self.assertNotIn('start',calls);self.assertIn('terminate',calls)
+
+    def test_actual_full_inventory_has_compact_parent_and_child_admission(self):
+        from scripts import engine_clock_sealed_native_container as c
+        self.assertTrue(callable(getattr(c,'compact_inventory',None)),
+                        'actual full installed manifest cannot fit 2MiB admission')
+        raw=(ROOT/(n.AUTH+'installed-files.json')).read_bytes()
+        self.assertEqual(8339196,len(raw))
+        # The prior CLI deliberately retained a summary, not the full collector
+        # return. Compose its measured counters with the real accepted manifest
+        # using the public collector's complete return shape.
+        actual=dict(schema='engine-clock-file-inventory-result-v1',status='INSTALLED_FILES_MATCH',
+            complete=True,native_admission=False,inventory=json.loads(raw),
+            canonical_manifest_sha256='f81fa5be38bc9853b6eff1d0ea524be97f3d1e92f5c1f0f9e1449a11b4c4b59f',
+            matched_entries=44232,matched_prefix=[],bytes_read=1670492280,visited_nodes=96862,
+            elapsed_s=5.606336747,failure_stage=None,failure_path=None,error=None)
+        self.assertEqual(44232,len(actual['inventory']['entries']))
+        compact=c.compact_inventory(actual,raw)
+        self.assertNotIn('inventory',compact)
+        self.assertEqual(dict(path='/work/binding/installed-files.json',nbytes=8339196,
+            sha256='f81fa5be38bc9853b6eff1d0ea524be97f3d1e92f5c1f0f9e1449a11b4c4b59f'),compact['inventory_manifest'])
+        self.assertEqual(1670492280,compact['bytes_read'])
+        with tempfile.TemporaryDirectory() as td:
+            for role in ('parent','child'):
+                path=Path(td)/(role+'.json');c.write(path,dict(inventory=compact,permit=self.permit()))
+                self.assertLess(path.stat().st_size,2*1024*1024)
+        bad=copy.deepcopy(actual);bad['inventory']['entries'][0]['mode']=0
+        with self.assertRaises(ValueError):c.compact_inventory(bad,raw)
 
     def test_source_bytes_are_verified_and_symlink_rejected(self):
         with tempfile.TemporaryDirectory() as td:

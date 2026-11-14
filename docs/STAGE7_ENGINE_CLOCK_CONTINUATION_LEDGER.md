@@ -159,7 +159,30 @@ Separatepreflight006sole-requestactivation34055987b5f1971789170fababab4f93ab6c72
 Root independentlyauthenticatedpreflightoriginalAPI/ZIP and repeated code/Python/exe TAR data checks, expectedstdinmanifest/imageCID/TARSHA/installedSHA/nonce/actualhost+engine comparisons. Finalstatus AUTHENTICATED_PROVIDER_FREE_IMAGE_AND_INSTALLED_BYTES_MATCH; providerfree_image_preparedtrue/installed_runtime_verifiedtrue forbytesonly, nativeadmissionfalse/modelcalls0/scientificpromotionfalse. Producer/preflighthostsDIFFER(AMD/azure vsIntelXeon6975P-C/kernel7.0.0-1014-aws), enginesmatch; eachcontainer matchesownactualpre-exechost. No futurestrictnativeC/Ahosteligibilityclaim.
 
 Newauthorityfiles docs/evidence/engine-clock-sealed-image-06/ retainexactoriginalmanifest/receipts/requests/sourceauth androotacceptance; finalJSONdeclaresallhashes. Raworiginals/copyTARs retained under output/stage7-image-root-authentication/. No officialmodel/nativeengine/GL/profile/clock/closedloopcalls, no registry/Cloudpublication/mainmerge. Main48e79a7ed5aedf6daa5a62ff68d2225af7955ef1 and scientificworkflow416199727 twohistoricalruns43251145868/43249493437 reverifiedunchanged. Oldinactiveproposals/nativebudgets/scientificfailures remainunchanged; Stage7INCOMPLETE. No additionaltestimplementationforreceipt-onlyevidence; exactevidenceheadCI trackedseparatelyfromqualifiedsource/runtimeheads.
-# L. New sealed native canary — implementation in progress
+# L. New sealed native canary — source complete, activation pending
+
+Task1 complete; Task2 complete: final full suite1082 tests/7 skips PASS99.150s.
+Final source review: Critical0/Important2/Minor2 at924c46dd8d0b5bc49771ed630bac97da56529082.
+SN-I1 permission composition and SN-I2 full-manifest ledger overflow fixed in
+one RED→GREEN pass,15/15 targeted PASS1.923s. All five declined judgments and
+both deferred Minor costs are exhaustive in
+docs/evidence/STAGE7_ENGINE_CLOCK_SEALED_NATIVE_SOURCE_REVIEW.md. No rereview.
+Final: minor (deferred): SN-M1 collector failure prefix/stage omitted before
+assertion; cost is less precise diagnosis, never provider admission.
+Final: minor (deferred): SN-M2 earlier prefix reads use enclosing watchdogs,
+not an encompassing180s collector timer; cost is delayed rejection on stalled IO.
+Final: Ruling: startup/cache/maps require actual canary — leave runtime outcome
+unclaimed until raw acceptance — cost if wrong: sole failed request consumed.
+Final: Ruling: actual injected env requires execution — exact inspected/live
+profiles fail closed — cost if wrong: startup rejection without retry.
+Final: Ruling: fresh bytes/host/timing need execution — strict actual comparisons
+and independent raw acceptance govern — cost if wrong: no native/ABBA acceptance.
+Final: Ruling: accepted image internals not re-reviewed — preserve image006 proof
+and separate old/new source bindings — cost if wrong: upstream defect invalidates
+dependent canary, with no broader transport acceptance claim.
+Final: Ruling: science/GL freshness/inference/future C/A equality remain outside
+source proof — retain existing FAIL/NOT_RUN/INCOMPLETE and zero model/ORT — cost
+if wrong: misleading scientific promotion, which remains prohibited.
 
 Base b895800a0a1a3bc399e6ec5d47ffe05106f53127; source branch
 diagnostic/engine-clock-sealed-native-v1. Image006 and independent preflight006

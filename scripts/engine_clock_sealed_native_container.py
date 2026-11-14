@@ -53,6 +53,18 @@ def module_origins():
     return origins
 
 
+def compact_inventory(result,expected_raw):
+    """Keep actual verification evidence without duplicating its 8MiB manifest."""
+    n.need(result['complete'] is True and result['status']=='INSTALLED_FILES_MATCH'
+           and result['canonical_manifest_sha256']==n.sha(expected_raw)
+           and inventory.core._canonical(result['inventory'])==expected_raw)
+    summary={key:value for key,value in result.items() if key!='inventory'}
+    summary['inventory_manifest']=dict(path='/work/binding/installed-files.json',
+        nbytes=len(expected_raw),sha256=n.sha(expected_raw))
+    n.need(len(n.canonical(summary))<n.BUDGET['ledger_bytes']//2)
+    return summary
+
+
 def preflight(role):
     started=perf_counter()
     n.need(sys.executable=='/opt/venv/bin/python' and sys.version_info[:3]==(3,11,18)
@@ -77,6 +89,7 @@ def preflight(role):
     prefix=inventory.verify_prefix(Path('/'),observation,expected_members=layout['expected_members'])
     result=inventory.verify_inventory(Path('/'),expected,deadline=started+n.BUDGET['inventory_seconds'])
     n.need(result['complete'] is True and result['canonical_manifest_sha256']==n.sha(expected_raw))
+    result=compact_inventory(result,expected_raw)
     host=inventory.collect_host_profile();n.need(host==binding['host'])
     # Explicit isolated path selection, no site/.pth execution.
     package='/opt/venv/lib/python3.11/site-packages'

@@ -25,11 +25,11 @@ tests/test_engine_clock_sealed_native.py, new workflow and this spec/plan.
 Interfaces: source_paths, validate_request, validate_activation, validate_source_ci,
 validate_live, environment_profile, validate_launch, validate_permit, make_identity.
 
-- [ ] Write RED tests for request scope/one-use activation, exact CI/run, native
+- [x] Write RED tests for request scope/one-use activation, exact CI/run, native
   env/mount injection, permit ancestry/group/binding, and strict host/core identity.
-- [ ] Run `python -m unittest discover -s tests -p test_engine_clock_sealed_native.py -v`.
+- [x] Run `python -m unittest discover -s tests -p test_engine_clock_sealed_native.py -v`.
   Expected: assertion failures naming absent implementation, no native/network.
-- [ ] Implement minimum pure logic; targeted command GREEN.
+- [x] Implement minimum pure logic; targeted command GREEN.
 
 ## Task2: Actual outer controller and isolated native harness
 
@@ -38,12 +38,12 @@ scripts/engine_clock_sealed_native_container.py; extend owned tests only.
 Interfaces: new controller authenticates source/image and freezes binding;
 container parent/child consume exact binding, two inventories and one-use FIFO.
 
-- [ ] RED transport/launch/composition and refusal-before-provider fixtures.
-- [ ] Implement bounded controller, prestart copies, exact inspected launch,
+- [x] RED transport/launch/composition and refusal-before-provider fixtures.
+- [x] Implement bounded controller, prestart copies, exact inspected launch,
   parent/child native lifecycle and offline validation. Do not call native locally.
-- [ ] Targeted GREEN then full unittest discover with existing CPU interpreter.
+- [x] Targeted GREEN then full unittest discover with existing CPU interpreter.
   Expected: green suite, baseline skip reasons retained.
-- [ ] Commit source and use one fresh whole-branch reviewer; one Important fix
+- [x] Commit source and use one fresh whole-branch reviewer; one Important fix
   pass if needed. Ledger all findings/declined rulings and costs; no rereview.
 
 ## Task3: Exact-head CI and one new canary

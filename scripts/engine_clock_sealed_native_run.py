@@ -30,13 +30,18 @@ def launch_canary(engine,image,request,context,receipt,manifest_raw,work,root):
     work=Path(work);root=Path(root);nonce=secrets.token_hex(16)
     routes={'repo':str(root.resolve())}
     for name in ('binding','output','cache'):
-        path=work/name;path.mkdir(mode=0o700);routes[name]=str(path.resolve())
+        path=work/name;mode=0o755 if name=='binding' else 0o777
+        # UID0 has no DAC capabilities. Fresh dedicated mounts must explicitly
+        # allow its ordinary-other access; source and binding remain mount-RO.
+        path.mkdir(mode=mode);path.chmod(mode)
+        n.need(path.stat().st_mode&0o777==mode);routes[name]=str(path.resolve())
     identity=n.make_identity(receipt,request['image_evidence']['expected'],engine.host,engine.profile)
     binding=dict(schema='engine-clock-sealed-native-binding-v1',request=request,context=context,
                  receipt=receipt,identity=identity,host=engine.host,engine=engine.profile,
                  outer_provenance={k:os.environ.get(k) for k in ('ImageOS','ImageVersion')})
     (work/'binding'/'binding.json').write_bytes(n.canonical(binding))
     (work/'binding'/'installed-files.json').write_bytes(manifest_raw)
+    for name in ('binding.json','installed-files.json'):(work/'binding'/name).chmod(0o644)
     engine.once('native-container')
     args=['create','--read-only','--network=none','--cap-drop=ALL','--security-opt=no-new-privileges',
           '--ipc=private','--pids-limit=128','--memory=2147483648','--cpus=2','--tmpfs','/tmp:'+n.TMPFS,
