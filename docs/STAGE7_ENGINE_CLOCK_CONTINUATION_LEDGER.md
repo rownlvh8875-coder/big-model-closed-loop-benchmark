@@ -203,3 +203,32 @@ New native allowance includes4maps/2module-origin snapshots and no GL getters.
 Binary Mesa cache is excluded from upload, with terminal metadata retained.
 No new native process or model call has run at this checkpoint.
 
+# M. Native01 prestart failure and v2 launch evidence
+
+Native01 sourcec856876df773bf0fd05c85bed24d713f8ab25e3a/Draft82 had all4exact
+push/PR CI jobsSUCCESS/attempt1/artifacts0:43534804876(push) and43534811556(PR).
+Activation428e7fc44996807fcc3442b41049d99d53b331a5/requestSHAd85221ee9e74e4031eebde827d75c8b467ac5467122f28fc047d67d231a216f3;
+162source files, priorbranch absent/runs0. Actual run43535065594/workflow417891451/
+job132261951896 FAILED at pre-start launch validation after102.786246261s.
+Artifact14088334080/322440650B/SHA3b4f94d7328567cacb35ecc42fd10b723e3d4cc4d8b408d63088433827186b01
+original API/ZIP/all CRCs retained. All11Docker command receiptsEXIT0;9inspect,
+10stop,11state argv hashes independently reproduced. No start/provider/model/ORT.
+Stopped canonical Python/executable/4code TARs independently reverified. Failure
+authority docs/evidence/STAGE7_ENGINE_CLOCK_SEALED_NATIVE_01_RESULT.json preserves
+all real records. Consumed request01 is never rerun.
+
+Exact rejected field from01's private inspect was not retained. Investigation
+found an independently reproducible carrier defect using genuine accepted
+preflight43514088919: Docker28.0.4/API1.48 reports HostConfig.Tmpfs with exact
+required options but Mounts[]; v1fixture/gate incorrectly required redundant
+Mounts/tmp. New v2 source supports both equivalent projections with unchanged
+mandatory Tmpfs map,4exact binds and no extras. This does not retrospectively
+prove01 had no other rejected field. New bounded pre-gate diagnostics retain
+safe exact equality predicates, never arbitrary Env/labels/argv/path values.
+
+V2 source branch diagnostic/engine-clock-sealed-native-v2, new request02 (not yet
+registered). Actual closure171 files including immutable v1, genuine prior
+preflight carrier data and failed01authority.5new RED→GREEN tests include real
+Docker28carrier shape and secret sentinels; no native/Docker in fixtures. New
+full suite in progress; one fresh whole-source review precedes qualification.
+Existing SN-M1/SN-M2 costs and all five source-review rulings remain retained.
