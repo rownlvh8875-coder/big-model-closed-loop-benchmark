@@ -303,3 +303,53 @@ commits both profiles and snapshot policy; old partial identity is not promoted.
 Image006 and consumed sources/requests01/02 remain frozen. Actual closure179
 includes failed02authority.4new RED→GREEN fixtures PASS0.025s; full suite in
 progress. Fresh whole-source review and exact CI precede one new03request.
+# O. Native03 artifact-loss boundary and v4
+
+Task1 complete: fresh review f542239..6b253d0 Critical0/Important1/Minor1 plus
+existingSN-M1/M2. EB-I1 uppercase credential-URL/short-token disclosure fixed
+locally in one RED→GREEN pass;6targeted PASS0.022s/full1097tests/7skip PASS104.517s.
+No rereview. Full6declined rulings/costs and3deferred Minors in
+docs/evidence/STAGE7_ENGINE_CLOCK_SEALED_NATIVE_V4_SOURCE_REVIEW.md.
+Final: minor (deferred): EB-M1 topology fixture is not actual uploader/UID
+integration; cost reduced direct permission/uploader regression coverage.
+Final: minor (deferred): SN-M1 failed inventory detail omitted; cost diagnosis.
+Final: minor (deferred): SN-M2 enclosing timers govern prefix; cost delayedreject.
+Final: Ruling:03native raw absent — retainUNKNOWN/[0,1], never6pairs — cost if
+wrong: invented scientific evidence, promotion prohibited.
+Final: Ruling:04/upload need actual run — original bytes govern — cost if wrong:
+consumed failed request/no accepted canary.
+Final: Ruling: whole-suite not rerun by reviewer — root fresh1097/7skip plus
+exact external4CI required — cost if wrong: author-side verification blindspot.
+Final: Ruling:03API/logauth not rechecked by reviewer — retain root originals/
+hash and0artifacts — cost if wrong: invalid diagnosis, never native acceptance.
+Final: Ruling: SN-M1/M2 remain unresolved — retain bounded diagnosis/timer costs
+— cost if wrong: misleading diagnostic/timing assurance.
+Final: Ruling: universalpayloadreadability unproved statically — actualartifact
+CRC/membership/bytes mandatory — cost if wrong: upload/rootcheckfailure/noaccept.
+
+V3source74d3f1ae44750e9d1c373e81016a7ca092da1a87/Draft84 exact4CI success:
+push43539525250(132276541762/132276542014), PR43539532163(132276565086/132276565520),
+attempt1/artifacts0. Activationf5422390b1e222b098d1b1886e33ffd5d582c8a7/
+requestSHA4b64bbf8d4887eb49ebf2551ebd1c79bff5327a3de1024830e14a818fba828e7,
+179files/priorbranch absent/runs0. Run43539772433/workflow417913776/
+job132277351673 FAILED137.869755572s at one-native-canary. Upload alsoFAILED:
+EACCES scandir execution/cache/case_00/mesa_shader_cache despite glob exclusion.
+OriginalAPI artifacts0 and failed job log retained; no original case/phase data
+available. NativecauseUNKNOWN/providerbounds[0,1]/no accepted canary. Never infer
+six pairs or successful closure. New failure authority preserves all real API
+and masked-log hash, not invented native data. Consumed03is not rerun.
+
+Architecture correction: exclusions do not stop uploader traversal of a private
+subtree. V4physically moves cache to operation/native-cache beside execution;
+container route /work/cache unchanged. Upload walks execution only. No chmod of
+private cache. Real inaccessible-directory topology fixture passes. Bounded
+redacted outer diagnostic-only summary preserves phase/case errors/bounds when
+strictly bound; missing/unbound/malformed/oversized/symlink stays unknown[0,1].
+Summary never replaces original bytes/acceptance. Actual image006xvfb-run5701B
+was read statically from retained TAR and has no umask override; public payload
+writers are ordinary readable files. No native probe was used for this check.
+
+V4source branch diagnostic/engine-clock-sealed-native-v4; request04not yet
+registered.4new RED→GREEN fixtures PASS0.031s; final full1095tests/7existing
+skips PASS94.720s. Source review/qualification precede new04scope. Image006,
+v1–v3sources/requests/rawfailures and scientificFAIL/INCOMPLETE remain frozen.
