@@ -460,3 +460,70 @@ assertion. No new views/GL reads; selection policy binds identity. No assertion
 of sole old05cause. New helper/7RED→GREEN fixtures, frozen-file-as-host-path
 negative fixed before review. Full1108tests/7existing skips PASS110.510s;
 actual closure205existing paths; request06absent. Fresh review/CI precede06.
+# R. Native06 accepted — actual camera/clock execution, not scientific promotion
+
+Qualified source4d0372201b29d993c7c74b77bc95f59fc146563e/Draft87: exact push
+43548194435/jobs132304307714+132304308000 and PR43548198549/jobs132304320330+
+132304320659 allSUCCESS/attempt1/artifacts0. Sole new request06activation
+6fef49ae763ba386a2677484f491f2a994712c98/requestSHAa3e23ed6a8fc591343f99d1a0f7903598ade2d396deffe0ed467e8643a306023,
+205pins/priorbranchabsent/runs0. Actualrun43548412476/workflow417960609/
+job132305005643 SUCCESS/attempt1. Originalartifact14095151728/338901808B/
+SHAea391fa87f421f838b5424f6b32c34b19990c53c247a954bb55e2c726e44458b,94safeuniqueZIP
+members/CRC/SHA verified. Finished2026-11-14 11:53:10KST, phase63.728969068s,
+wholeoperation196.503483619s. Actualsource, activation and evidenceHEAD distinct.
+
+Root independently authenticated original API/source205pins/image006CID2b0854.../
+manifestf81fa5.../TARf69b8e..., repeated3stopped-container TAR checks, bothactual
+44,232-entry1,670,492,280B+23,107,322Bprefix checks, completepre/postcv2profiles,
+resource/selection identity, FIFO nonce/parent/group, actual6raw→canvas→derivedI420
+reconstructions, traces and clean process/container termination. ParentPID1/
+childPID22/providerconstructed1closed1,6pairs/12RAM/12task/24Texture/48clock/
+96clockgetters/144observergetters. Childexit0/reaped/groupgone/cleanup[],
+StateOOMKilledfalse. Retainedlogical28039104B, diskreserved38171904B.
+
+4CGsnapshots inode6909/max4GiB/oom&kill0; aggregatepeak4GiB/max-limit1357,
+NOTRSS/non-atomic/notchildmodelmemory. Old04OOMunproven.6selectionreports pass;
+postchild388imagefiles/20kernelregions/1registerednonexecMesa cacheindex. This
+actualcachemapping is outsideoldlibraryprefix, but sole05predicate remainsnot
+retained, and05remainswholeFAIL. Cache50files1651194B; no per-read hit proof.
+All12relativeclockpatterns[0,1,1,1], descriptive/non-atomic/notGPUfence.
+
+One fresh independent raw reviewer ACCEPTED: refreshed run/artifactAPI, hashed
+originalZIP/94members, comparedallselectedrecords/payloads/TARs, independently
+ranpurecase reconstruction,205pins/exactCI/image/identities/permits/CG/selection/
+cleanup checks. No native rerun, mutation or source rereview. Originalrootstage
+freshflagfalse preserved; finalresult records root+fresh true. Full11declined
+rulings/costs at docs/evidence/engine-clock-sealed-native-06/fresh-raw-review.md.
+Final: Ruling: generatedcode names notbinary/sourceproof — categoriesonly —
+cost if wrong: overstated JIT/runtime assurance.
+Final: Ruling: hostilehost/process notforensicattested — source/image/isolation
+trustboundary — cost if wrong: invalid origin assurance.
+Final: Ruling: fullimage006not reverifiedagain — priorproduceracceptance plus
+actualnewbytes — cost if wrong: upstream image defect invalidates dependent data.
+Final: Ruling: no newnative/sourcereview/suiterun byrawreviewer — original06and
+existingqualifiedsourceproof govern — cost if wrong: broader runtime blindspot.
+Final: Ruling: originalproctext absent — normalizedreports/digests and reviewed
+collector boundary — cost if wrong: collector defect invalidates observations.
+Final: Ruling: peaknotRSS/atomic/OOMcausation — retain distinctions/04UNKNOWN —
+cost if wrong: misleading memory or causation conclusion.
+Final: Ruling:05notretroaccepted — whole05FAILED despite6pairs — cost if wrong:
+failed protocol relabeled.
+Final: Ruling: noGPUfreshness/geometry/atomicclock/frameID — CPU/tracescopeonly
+— cost if wrong: unsupported sensor/scientific conclusion.
+Final: Ruling: noABBA/C-A/model/main/publishapproval — strictFAIL/INCOMPLETEand
+no promotion — cost if wrong: unsupported benchmark or publication outcome.
+Final: Ruling: nocachehitproof — terminalboundedcontentsonly — cost if wrong:
+false cache/performance interpretation.
+Final: Ruling: externalCI/job/unique notrefreshedbyrawreviewer — originalproofs
+validated, fresh run/artifactAPI — cost if wrong: stale provenance undermines
+acceptance, no broader refreshclaim.
+
+Task2 complete at actual canary acceptance. Evidence-only branch preserves all
+205producer bytes; no requestreplay/ABBA/model/Cloud/registry/main action. Source
+MinorsNS-M1/M2 and priorSN-M1/M2/EB-M1/NM-M1/M2 retain documented costs. Current
+strict0/4FAIL, expandedNOT_RUN, geometry/optics/fullSunknown, Stage7INCOMPLETE.
+Next: separately design/source-review/newbudget/nativeprotocol for newcanaryC
+and directchildABBAA; freeze Cproducer bytes, require actualroot+fresh Cacceptance
+before A. Current06andold4unexecutedcases are consumed/unavailable; current
+source supports canary only, not futureABBA authorization. Strictactual C/Ahost/
+engine/image/env/resource identity cannot be relaxed to make that future testpass.

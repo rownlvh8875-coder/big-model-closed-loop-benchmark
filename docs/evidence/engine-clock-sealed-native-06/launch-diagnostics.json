@@ -1,0 +1,149 @@
+{
+  "config": {
+    "Cmd": {
+      "matches": true
+    },
+    "Entrypoint": {
+      "matches": true
+    },
+    "Hostname": {
+      "matches": true
+    },
+    "OpenStdin": {
+      "matches": true
+    },
+    "Tty": {
+      "matches": true
+    },
+    "User": {
+      "matches": true
+    },
+    "WorkingDir": {
+      "matches": true
+    }
+  },
+  "environment": {
+    "duplicate_or_invalid": 0,
+    "known_key_matches": {
+      "GITHUB_ACTIONS": true,
+      "HOME": true,
+      "HOSTNAME": true,
+      "LANG": true,
+      "LC_ALL": true,
+      "LIBGL_ALWAYS_SOFTWARE": true,
+      "OMP_NUM_THREADS": true,
+      "PATH": true,
+      "PYOPENGL_PLATFORM": true,
+      "RUNNER_TEMP": true,
+      "TMPDIR": true
+    },
+    "unexpected_names": 0
+  },
+  "failed": [],
+  "gate_passed": true,
+  "host": {
+    "Binds": {
+      "empty": true
+    },
+    "CapAdd": {
+      "empty": true
+    },
+    "CapDrop": {
+      "matches": true,
+      "observed": [
+        "ALL"
+      ]
+    },
+    "CgroupnsMode": {
+      "matches": true,
+      "observed": "private"
+    },
+    "DeviceRequests": {
+      "empty": true
+    },
+    "Devices": {
+      "empty": true
+    },
+    "ExtraHosts": {
+      "empty": true
+    },
+    "GroupAdd": {
+      "empty": true
+    },
+    "IpcMode": {
+      "matches": true,
+      "observed": "private"
+    },
+    "Memory": {
+      "matches": true,
+      "observed": 4294967296
+    },
+    "NanoCpus": {
+      "matches": true,
+      "observed": 2000000000
+    },
+    "NetworkMode": {
+      "matches": true,
+      "observed": "none"
+    },
+    "PidMode": {
+      "matches": true,
+      "observed": ""
+    },
+    "PidsLimit": {
+      "matches": true,
+      "observed": 128
+    },
+    "PortBindings": {
+      "empty": true
+    },
+    "Privileged": {
+      "matches": true,
+      "observed": false
+    },
+    "ReadonlyRootfs": {
+      "matches": true,
+      "observed": true
+    },
+    "SecurityOpt": {
+      "matches": true,
+      "observed": [
+        "no-new-privileges"
+      ]
+    },
+    "Tmpfs": {
+      "matches": true,
+      "observed": "REDACTED_OR_UNREGISTERED"
+    }
+  },
+  "labels_match": true,
+  "mounts": {
+    "/work/binding": {
+      "propagation": "rprivate",
+      "rw_matches": true,
+      "source_matches": true,
+      "type_matches": true
+    },
+    "/work/cache": {
+      "propagation": "rprivate",
+      "rw_matches": true,
+      "source_matches": true,
+      "type_matches": true
+    },
+    "/work/output": {
+      "propagation": "rprivate",
+      "rw_matches": true,
+      "source_matches": true,
+      "type_matches": true
+    },
+    "/work/repo": {
+      "propagation": "rprivate",
+      "rw_matches": true,
+      "source_matches": true,
+      "type_matches": true
+    }
+  },
+  "schema": "sealed-native-launch-diagnostics-v1",
+  "tmpfs_representation": "host_config_only",
+  "unknown_mounts": 0
+}
