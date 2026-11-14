@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/scripts/gl_read_provenance.py", line 250, in analyze
+    elif fn=='glDrawBuffer':f['draw_buffers']=[integer(a['buf'])]
+                                                       ~^^^^^^^
+KeyError: 'buf'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/tmp/debug-gl-read.py", line 11, in <module>
+    try:p.analyze(observed())
+        ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/scripts/gl_read_provenance.py", line 307, in analyze
+    raise ValueError('malformed or unsupported recorded call') from exc
+ValueError: malformed or unsupported recorded call
+{"call": 6097, "function": "glDrawBuffer", "args": [["mode", 36064]], "ret": null, "flags": 0}

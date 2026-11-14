@@ -1,0 +1,1302 @@
+{
+  "status": "OBSERVED_NATIVE_PIXEL_CLOCK",
+  "process_id": 34475,
+  "process_uuid": "19e5aac4fe154d32a7e7ae4982a044e0",
+  "scenario": "s_curve_left_right",
+  "seed": 20261109,
+  "fraction": 0.12,
+  "camera_pose": [
+    [
+      65.4052721645879,
+      0.26625325426066837,
+      1.22
+    ],
+    [
+      -84.36,
+      0.0,
+      0.0
+    ]
+  ],
+  "mode": "perceive_sequential",
+  "ablation": "baseline",
+  "ablation_receipt": null,
+  "frames": 10,
+  "warmup": 2,
+  "raw_sensor_rgb_dims": [
+    964,
+    604
+  ],
+  "model_rgb_dims": [
+    512,
+    256
+  ],
+  "capture_schedule": "existing native MetaDrive paths, no extra ticks",
+  "source_rgb": {
+    "road": {
+      "all_frame_sha256": [
+        "fd89a7d0046daa8437a4718d5fc8144c89ee40c4464ae67b0de20ef65aa87111",
+        "20ab988f153005e6dae418f7a737ce312e5c89b77cdb85dad5e0c5832365279f",
+        "20ab988f153005e6dae418f7a737ce312e5c89b77cdb85dad5e0c5832365279f",
+        "20ab988f153005e6dae418f7a737ce312e5c89b77cdb85dad5e0c5832365279f",
+        "20ab988f153005e6dae418f7a737ce312e5c89b77cdb85dad5e0c5832365279f",
+        "20ab988f153005e6dae418f7a737ce312e5c89b77cdb85dad5e0c5832365279f",
+        "975efb7edce3dd81892446876fa91652ff28ddaac06571e457b487b4fa644678",
+        "20ab988f153005e6dae418f7a737ce312e5c89b77cdb85dad5e0c5832365279f",
+        "975efb7edce3dd81892446876fa91652ff28ddaac06571e457b487b4fa644678",
+        "975efb7edce3dd81892446876fa91652ff28ddaac06571e457b487b4fa644678"
+      ],
+      "all_unique_sha256": 3,
+      "warmup_frames_separated_not_discarded": 2,
+      "post_warmup_unique_sha256": 2,
+      "bit_exact_after_warmup": false,
+      "max_changed_pixels_post_warmup": 2,
+      "first_divergence_frame_index_zero_based": 6,
+      "per_frame_vs_first_post_warmup": [
+        {
+          "first_sha256": "20ab988f153005e6dae418f7a737ce312e5c89b77cdb85dad5e0c5832365279f",
+          "second_sha256": "20ab988f153005e6dae418f7a737ce312e5c89b77cdb85dad5e0c5832365279f",
+          "identical": true,
+          "changed_pixels": 0,
+          "changed_pixel_fraction": 0.0,
+          "changed_channel_values": 0,
+          "max_channel_delta": 0,
+          "bounding_box_xyxy_inclusive": null,
+          "first_changed_pixel_xy": null,
+          "changed_rows_count": 0,
+          "changed_columns_count": 0,
+          "changed_pixel_examples": [],
+          "source_coordinate_convention": "top-left 0-based x-column y-row"
+        },
+        {
+          "first_sha256": "20ab988f153005e6dae418f7a737ce312e5c89b77cdb85dad5e0c5832365279f",
+          "second_sha256": "20ab988f153005e6dae418f7a737ce312e5c89b77cdb85dad5e0c5832365279f",
+          "identical": true,
+          "changed_pixels": 0,
+          "changed_pixel_fraction": 0.0,
+          "changed_channel_values": 0,
+          "max_channel_delta": 0,
+          "bounding_box_xyxy_inclusive": null,
+          "first_changed_pixel_xy": null,
+          "changed_rows_count": 0,
+          "changed_columns_count": 0,
+          "changed_pixel_examples": [],
+          "source_coordinate_convention": "top-left 0-based x-column y-row"
+        },
+        {
+          "first_sha256": "20ab988f153005e6dae418f7a737ce312e5c89b77cdb85dad5e0c5832365279f",
+          "second_sha256": "20ab988f153005e6dae418f7a737ce312e5c89b77cdb85dad5e0c5832365279f",
+          "identical": true,
+          "changed_pixels": 0,
+          "changed_pixel_fraction": 0.0,
+          "changed_channel_values": 0,
+          "max_channel_delta": 0,
+          "bounding_box_xyxy_inclusive": null,
+          "first_changed_pixel_xy": null,
+          "changed_rows_count": 0,
+          "changed_columns_count": 0,
+          "changed_pixel_examples": [],
+          "source_coordinate_convention": "top-left 0-based x-column y-row"
+        },
+        {
+          "first_sha256": "20ab988f153005e6dae418f7a737ce312e5c89b77cdb85dad5e0c5832365279f",
+          "second_sha256": "20ab988f153005e6dae418f7a737ce312e5c89b77cdb85dad5e0c5832365279f",
+          "identical": true,
+          "changed_pixels": 0,
+          "changed_pixel_fraction": 0.0,
+          "changed_channel_values": 0,
+          "max_channel_delta": 0,
+          "bounding_box_xyxy_inclusive": null,
+          "first_changed_pixel_xy": null,
+          "changed_rows_count": 0,
+          "changed_columns_count": 0,
+          "changed_pixel_examples": [],
+          "source_coordinate_convention": "top-left 0-based x-column y-row"
+        },
+        {
+          "first_sha256": "20ab988f153005e6dae418f7a737ce312e5c89b77cdb85dad5e0c5832365279f",
+          "second_sha256": "975efb7edce3dd81892446876fa91652ff28ddaac06571e457b487b4fa644678",
+          "identical": false,
+          "changed_pixels": 2,
+          "changed_pixel_fraction": 3.4349152262922152e-06,
+          "changed_channel_values": 6,
+          "max_channel_delta": 80,
+          "bounding_box_xyxy_inclusive": [
+            259,
+            364,
+            660,
+            481
+          ],
+          "first_changed_pixel_xy": [
+            259,
+            364
+          ],
+          "changed_rows_count": 2,
+          "changed_columns_count": 2,
+          "changed_pixel_examples": [
+            {
+              "x": 259,
+              "y": 364,
+              "first_rgb": [
+                194,
+                183,
+                80
+              ],
+              "second_rgb": [
+                199,
+                188,
+                0
+              ]
+            },
+            {
+              "x": 660,
+              "y": 481,
+              "first_rgb": [
+                124,
+                121,
+                107
+              ],
+              "second_rgb": [
+                112,
+                112,
+                88
+              ]
+            }
+          ],
+          "source_coordinate_convention": "top-left 0-based x-column y-row"
+        },
+        {
+          "first_sha256": "20ab988f153005e6dae418f7a737ce312e5c89b77cdb85dad5e0c5832365279f",
+          "second_sha256": "20ab988f153005e6dae418f7a737ce312e5c89b77cdb85dad5e0c5832365279f",
+          "identical": true,
+          "changed_pixels": 0,
+          "changed_pixel_fraction": 0.0,
+          "changed_channel_values": 0,
+          "max_channel_delta": 0,
+          "bounding_box_xyxy_inclusive": null,
+          "first_changed_pixel_xy": null,
+          "changed_rows_count": 0,
+          "changed_columns_count": 0,
+          "changed_pixel_examples": [],
+          "source_coordinate_convention": "top-left 0-based x-column y-row"
+        },
+        {
+          "first_sha256": "20ab988f153005e6dae418f7a737ce312e5c89b77cdb85dad5e0c5832365279f",
+          "second_sha256": "975efb7edce3dd81892446876fa91652ff28ddaac06571e457b487b4fa644678",
+          "identical": false,
+          "changed_pixels": 2,
+          "changed_pixel_fraction": 3.4349152262922152e-06,
+          "changed_channel_values": 6,
+          "max_channel_delta": 80,
+          "bounding_box_xyxy_inclusive": [
+            259,
+            364,
+            660,
+            481
+          ],
+          "first_changed_pixel_xy": [
+            259,
+            364
+          ],
+          "changed_rows_count": 2,
+          "changed_columns_count": 2,
+          "changed_pixel_examples": [
+            {
+              "x": 259,
+              "y": 364,
+              "first_rgb": [
+                194,
+                183,
+                80
+              ],
+              "second_rgb": [
+                199,
+                188,
+                0
+              ]
+            },
+            {
+              "x": 660,
+              "y": 481,
+              "first_rgb": [
+                124,
+                121,
+                107
+              ],
+              "second_rgb": [
+                112,
+                112,
+                88
+              ]
+            }
+          ],
+          "source_coordinate_convention": "top-left 0-based x-column y-row"
+        },
+        {
+          "first_sha256": "20ab988f153005e6dae418f7a737ce312e5c89b77cdb85dad5e0c5832365279f",
+          "second_sha256": "975efb7edce3dd81892446876fa91652ff28ddaac06571e457b487b4fa644678",
+          "identical": false,
+          "changed_pixels": 2,
+          "changed_pixel_fraction": 3.4349152262922152e-06,
+          "changed_channel_values": 6,
+          "max_channel_delta": 80,
+          "bounding_box_xyxy_inclusive": [
+            259,
+            364,
+            660,
+            481
+          ],
+          "first_changed_pixel_xy": [
+            259,
+            364
+          ],
+          "changed_rows_count": 2,
+          "changed_columns_count": 2,
+          "changed_pixel_examples": [
+            {
+              "x": 259,
+              "y": 364,
+              "first_rgb": [
+                194,
+                183,
+                80
+              ],
+              "second_rgb": [
+                199,
+                188,
+                0
+              ]
+            },
+            {
+              "x": 660,
+              "y": 481,
+              "first_rgb": [
+                124,
+                121,
+                107
+              ],
+              "second_rgb": [
+                112,
+                112,
+                88
+              ]
+            }
+          ],
+          "source_coordinate_convention": "top-left 0-based x-column y-row"
+        }
+      ]
+    },
+    "wide": {
+      "all_frame_sha256": [
+        "2425f1e68f4409393f4999b1cf85cdaa021868f5e1615bfce20474930b62d422",
+        "03d3bca5198c9b388ee4bf6a13d6c45931be420e22efb918a4c9f147b3a77199",
+        "d3dd8e376cd56ed791ab6d207333cb29cd3d0cf1a216eaa8ba7bcb00e6078117",
+        "d3dd8e376cd56ed791ab6d207333cb29cd3d0cf1a216eaa8ba7bcb00e6078117",
+        "03d3bca5198c9b388ee4bf6a13d6c45931be420e22efb918a4c9f147b3a77199",
+        "d3dd8e376cd56ed791ab6d207333cb29cd3d0cf1a216eaa8ba7bcb00e6078117",
+        "d3dd8e376cd56ed791ab6d207333cb29cd3d0cf1a216eaa8ba7bcb00e6078117",
+        "d3dd8e376cd56ed791ab6d207333cb29cd3d0cf1a216eaa8ba7bcb00e6078117",
+        "03d3bca5198c9b388ee4bf6a13d6c45931be420e22efb918a4c9f147b3a77199",
+        "d3dd8e376cd56ed791ab6d207333cb29cd3d0cf1a216eaa8ba7bcb00e6078117"
+      ],
+      "all_unique_sha256": 3,
+      "warmup_frames_separated_not_discarded": 2,
+      "post_warmup_unique_sha256": 2,
+      "bit_exact_after_warmup": false,
+      "max_changed_pixels_post_warmup": 1,
+      "first_divergence_frame_index_zero_based": 4,
+      "per_frame_vs_first_post_warmup": [
+        {
+          "first_sha256": "d3dd8e376cd56ed791ab6d207333cb29cd3d0cf1a216eaa8ba7bcb00e6078117",
+          "second_sha256": "d3dd8e376cd56ed791ab6d207333cb29cd3d0cf1a216eaa8ba7bcb00e6078117",
+          "identical": true,
+          "changed_pixels": 0,
+          "changed_pixel_fraction": 0.0,
+          "changed_channel_values": 0,
+          "max_channel_delta": 0,
+          "bounding_box_xyxy_inclusive": null,
+          "first_changed_pixel_xy": null,
+          "changed_rows_count": 0,
+          "changed_columns_count": 0,
+          "changed_pixel_examples": [],
+          "source_coordinate_convention": "top-left 0-based x-column y-row"
+        },
+        {
+          "first_sha256": "d3dd8e376cd56ed791ab6d207333cb29cd3d0cf1a216eaa8ba7bcb00e6078117",
+          "second_sha256": "d3dd8e376cd56ed791ab6d207333cb29cd3d0cf1a216eaa8ba7bcb00e6078117",
+          "identical": true,
+          "changed_pixels": 0,
+          "changed_pixel_fraction": 0.0,
+          "changed_channel_values": 0,
+          "max_channel_delta": 0,
+          "bounding_box_xyxy_inclusive": null,
+          "first_changed_pixel_xy": null,
+          "changed_rows_count": 0,
+          "changed_columns_count": 0,
+          "changed_pixel_examples": [],
+          "source_coordinate_convention": "top-left 0-based x-column y-row"
+        },
+        {
+          "first_sha256": "d3dd8e376cd56ed791ab6d207333cb29cd3d0cf1a216eaa8ba7bcb00e6078117",
+          "second_sha256": "03d3bca5198c9b388ee4bf6a13d6c45931be420e22efb918a4c9f147b3a77199",
+          "identical": false,
+          "changed_pixels": 1,
+          "changed_pixel_fraction": 1.7174576131461076e-06,
+          "changed_channel_values": 3,
+          "max_channel_delta": 19,
+          "bounding_box_xyxy_inclusive": [
+            738,
+            374,
+            738,
+            374
+          ],
+          "first_changed_pixel_xy": [
+            738,
+            374
+          ],
+          "changed_rows_count": 1,
+          "changed_columns_count": 1,
+          "changed_pixel_examples": [
+            {
+              "x": 738,
+              "y": 374,
+              "first_rgb": [
+                119,
+                115,
+                100
+              ],
+              "second_rgb": [
+                106,
+                104,
+                81
+              ]
+            }
+          ],
+          "source_coordinate_convention": "top-left 0-based x-column y-row"
+        },
+        {
+          "first_sha256": "d3dd8e376cd56ed791ab6d207333cb29cd3d0cf1a216eaa8ba7bcb00e6078117",
+          "second_sha256": "d3dd8e376cd56ed791ab6d207333cb29cd3d0cf1a216eaa8ba7bcb00e6078117",
+          "identical": true,
+          "changed_pixels": 0,
+          "changed_pixel_fraction": 0.0,
+          "changed_channel_values": 0,
+          "max_channel_delta": 0,
+          "bounding_box_xyxy_inclusive": null,
+          "first_changed_pixel_xy": null,
+          "changed_rows_count": 0,
+          "changed_columns_count": 0,
+          "changed_pixel_examples": [],
+          "source_coordinate_convention": "top-left 0-based x-column y-row"
+        },
+        {
+          "first_sha256": "d3dd8e376cd56ed791ab6d207333cb29cd3d0cf1a216eaa8ba7bcb00e6078117",
+          "second_sha256": "d3dd8e376cd56ed791ab6d207333cb29cd3d0cf1a216eaa8ba7bcb00e6078117",
+          "identical": true,
+          "changed_pixels": 0,
+          "changed_pixel_fraction": 0.0,
+          "changed_channel_values": 0,
+          "max_channel_delta": 0,
+          "bounding_box_xyxy_inclusive": null,
+          "first_changed_pixel_xy": null,
+          "changed_rows_count": 0,
+          "changed_columns_count": 0,
+          "changed_pixel_examples": [],
+          "source_coordinate_convention": "top-left 0-based x-column y-row"
+        },
+        {
+          "first_sha256": "d3dd8e376cd56ed791ab6d207333cb29cd3d0cf1a216eaa8ba7bcb00e6078117",
+          "second_sha256": "d3dd8e376cd56ed791ab6d207333cb29cd3d0cf1a216eaa8ba7bcb00e6078117",
+          "identical": true,
+          "changed_pixels": 0,
+          "changed_pixel_fraction": 0.0,
+          "changed_channel_values": 0,
+          "max_channel_delta": 0,
+          "bounding_box_xyxy_inclusive": null,
+          "first_changed_pixel_xy": null,
+          "changed_rows_count": 0,
+          "changed_columns_count": 0,
+          "changed_pixel_examples": [],
+          "source_coordinate_convention": "top-left 0-based x-column y-row"
+        },
+        {
+          "first_sha256": "d3dd8e376cd56ed791ab6d207333cb29cd3d0cf1a216eaa8ba7bcb00e6078117",
+          "second_sha256": "03d3bca5198c9b388ee4bf6a13d6c45931be420e22efb918a4c9f147b3a77199",
+          "identical": false,
+          "changed_pixels": 1,
+          "changed_pixel_fraction": 1.7174576131461076e-06,
+          "changed_channel_values": 3,
+          "max_channel_delta": 19,
+          "bounding_box_xyxy_inclusive": [
+            738,
+            374,
+            738,
+            374
+          ],
+          "first_changed_pixel_xy": [
+            738,
+            374
+          ],
+          "changed_rows_count": 1,
+          "changed_columns_count": 1,
+          "changed_pixel_examples": [
+            {
+              "x": 738,
+              "y": 374,
+              "first_rgb": [
+                119,
+                115,
+                100
+              ],
+              "second_rgb": [
+                106,
+                104,
+                81
+              ]
+            }
+          ],
+          "source_coordinate_convention": "top-left 0-based x-column y-row"
+        },
+        {
+          "first_sha256": "d3dd8e376cd56ed791ab6d207333cb29cd3d0cf1a216eaa8ba7bcb00e6078117",
+          "second_sha256": "d3dd8e376cd56ed791ab6d207333cb29cd3d0cf1a216eaa8ba7bcb00e6078117",
+          "identical": true,
+          "changed_pixels": 0,
+          "changed_pixel_fraction": 0.0,
+          "changed_channel_values": 0,
+          "max_channel_delta": 0,
+          "bounding_box_xyxy_inclusive": null,
+          "first_changed_pixel_xy": null,
+          "changed_rows_count": 0,
+          "changed_columns_count": 0,
+          "changed_pixel_examples": [],
+          "source_coordinate_convention": "top-left 0-based x-column y-row"
+        }
+      ]
+    }
+  },
+  "model_rgb": {
+    "road": {
+      "all_frame_sha256": [
+        "a647c2da236dd9923bac3390f058d5a77e51a1386211a4371098ae94f83e6489",
+        "8ecd656296ed0d4c70df4f26a8e5862334e7c9b846b56228fd51bc52bf269e74",
+        "8ecd656296ed0d4c70df4f26a8e5862334e7c9b846b56228fd51bc52bf269e74",
+        "8ecd656296ed0d4c70df4f26a8e5862334e7c9b846b56228fd51bc52bf269e74",
+        "8ecd656296ed0d4c70df4f26a8e5862334e7c9b846b56228fd51bc52bf269e74",
+        "8ecd656296ed0d4c70df4f26a8e5862334e7c9b846b56228fd51bc52bf269e74",
+        "4325cde92cfe22e1aaa5bea74e7c6de5f6c04580fe413e76a87d53d9354bfb25",
+        "8ecd656296ed0d4c70df4f26a8e5862334e7c9b846b56228fd51bc52bf269e74",
+        "4325cde92cfe22e1aaa5bea74e7c6de5f6c04580fe413e76a87d53d9354bfb25",
+        "4325cde92cfe22e1aaa5bea74e7c6de5f6c04580fe413e76a87d53d9354bfb25"
+      ],
+      "all_unique_sha256": 3,
+      "warmup_frames_separated_not_discarded": 2,
+      "post_warmup_unique_sha256": 2,
+      "bit_exact_after_warmup": false,
+      "max_changed_pixels_post_warmup": 3,
+      "first_divergence_frame_index_zero_based": 6,
+      "per_frame_vs_first_post_warmup": [
+        {
+          "first_sha256": "8ecd656296ed0d4c70df4f26a8e5862334e7c9b846b56228fd51bc52bf269e74",
+          "second_sha256": "8ecd656296ed0d4c70df4f26a8e5862334e7c9b846b56228fd51bc52bf269e74",
+          "identical": true,
+          "changed_pixels": 0,
+          "changed_pixel_fraction": 0.0,
+          "changed_channel_values": 0,
+          "max_channel_delta": 0,
+          "bounding_box_xyxy_inclusive": null,
+          "first_changed_pixel_xy": null,
+          "changed_rows_count": 0,
+          "changed_columns_count": 0,
+          "changed_pixel_examples": [],
+          "source_coordinate_convention": "top-left 0-based x-column y-row"
+        },
+        {
+          "first_sha256": "8ecd656296ed0d4c70df4f26a8e5862334e7c9b846b56228fd51bc52bf269e74",
+          "second_sha256": "8ecd656296ed0d4c70df4f26a8e5862334e7c9b846b56228fd51bc52bf269e74",
+          "identical": true,
+          "changed_pixels": 0,
+          "changed_pixel_fraction": 0.0,
+          "changed_channel_values": 0,
+          "max_channel_delta": 0,
+          "bounding_box_xyxy_inclusive": null,
+          "first_changed_pixel_xy": null,
+          "changed_rows_count": 0,
+          "changed_columns_count": 0,
+          "changed_pixel_examples": [],
+          "source_coordinate_convention": "top-left 0-based x-column y-row"
+        },
+        {
+          "first_sha256": "8ecd656296ed0d4c70df4f26a8e5862334e7c9b846b56228fd51bc52bf269e74",
+          "second_sha256": "8ecd656296ed0d4c70df4f26a8e5862334e7c9b846b56228fd51bc52bf269e74",
+          "identical": true,
+          "changed_pixels": 0,
+          "changed_pixel_fraction": 0.0,
+          "changed_channel_values": 0,
+          "max_channel_delta": 0,
+          "bounding_box_xyxy_inclusive": null,
+          "first_changed_pixel_xy": null,
+          "changed_rows_count": 0,
+          "changed_columns_count": 0,
+          "changed_pixel_examples": [],
+          "source_coordinate_convention": "top-left 0-based x-column y-row"
+        },
+        {
+          "first_sha256": "8ecd656296ed0d4c70df4f26a8e5862334e7c9b846b56228fd51bc52bf269e74",
+          "second_sha256": "8ecd656296ed0d4c70df4f26a8e5862334e7c9b846b56228fd51bc52bf269e74",
+          "identical": true,
+          "changed_pixels": 0,
+          "changed_pixel_fraction": 0.0,
+          "changed_channel_values": 0,
+          "max_channel_delta": 0,
+          "bounding_box_xyxy_inclusive": null,
+          "first_changed_pixel_xy": null,
+          "changed_rows_count": 0,
+          "changed_columns_count": 0,
+          "changed_pixel_examples": [],
+          "source_coordinate_convention": "top-left 0-based x-column y-row"
+        },
+        {
+          "first_sha256": "8ecd656296ed0d4c70df4f26a8e5862334e7c9b846b56228fd51bc52bf269e74",
+          "second_sha256": "4325cde92cfe22e1aaa5bea74e7c6de5f6c04580fe413e76a87d53d9354bfb25",
+          "identical": false,
+          "changed_pixels": 3,
+          "changed_pixel_fraction": 2.288818359375e-05,
+          "changed_channel_values": 7,
+          "max_channel_delta": 32,
+          "bounding_box_xyxy_inclusive": [
+            103,
+            90,
+            378,
+            171
+          ],
+          "first_changed_pixel_xy": [
+            103,
+            90
+          ],
+          "changed_rows_count": 3,
+          "changed_columns_count": 2,
+          "changed_pixel_examples": [
+            {
+              "x": 103,
+              "y": 90,
+              "first_rgb": [
+                188,
+                179,
+                109
+              ],
+              "second_rgb": [
+                190,
+                181,
+                77
+              ]
+            },
+            {
+              "x": 378,
+              "y": 170,
+              "first_rgb": [
+                132,
+                128,
+                118
+              ],
+              "second_rgb": [
+                132,
+                128,
+                117
+              ]
+            },
+            {
+              "x": 378,
+              "y": 171,
+              "first_rgb": [
+                94,
+                99,
+                51
+              ],
+              "second_rgb": [
+                92,
+                97,
+                46
+              ]
+            }
+          ],
+          "source_coordinate_convention": "top-left 0-based x-column y-row"
+        },
+        {
+          "first_sha256": "8ecd656296ed0d4c70df4f26a8e5862334e7c9b846b56228fd51bc52bf269e74",
+          "second_sha256": "8ecd656296ed0d4c70df4f26a8e5862334e7c9b846b56228fd51bc52bf269e74",
+          "identical": true,
+          "changed_pixels": 0,
+          "changed_pixel_fraction": 0.0,
+          "changed_channel_values": 0,
+          "max_channel_delta": 0,
+          "bounding_box_xyxy_inclusive": null,
+          "first_changed_pixel_xy": null,
+          "changed_rows_count": 0,
+          "changed_columns_count": 0,
+          "changed_pixel_examples": [],
+          "source_coordinate_convention": "top-left 0-based x-column y-row"
+        },
+        {
+          "first_sha256": "8ecd656296ed0d4c70df4f26a8e5862334e7c9b846b56228fd51bc52bf269e74",
+          "second_sha256": "4325cde92cfe22e1aaa5bea74e7c6de5f6c04580fe413e76a87d53d9354bfb25",
+          "identical": false,
+          "changed_pixels": 3,
+          "changed_pixel_fraction": 2.288818359375e-05,
+          "changed_channel_values": 7,
+          "max_channel_delta": 32,
+          "bounding_box_xyxy_inclusive": [
+            103,
+            90,
+            378,
+            171
+          ],
+          "first_changed_pixel_xy": [
+            103,
+            90
+          ],
+          "changed_rows_count": 3,
+          "changed_columns_count": 2,
+          "changed_pixel_examples": [
+            {
+              "x": 103,
+              "y": 90,
+              "first_rgb": [
+                188,
+                179,
+                109
+              ],
+              "second_rgb": [
+                190,
+                181,
+                77
+              ]
+            },
+            {
+              "x": 378,
+              "y": 170,
+              "first_rgb": [
+                132,
+                128,
+                118
+              ],
+              "second_rgb": [
+                132,
+                128,
+                117
+              ]
+            },
+            {
+              "x": 378,
+              "y": 171,
+              "first_rgb": [
+                94,
+                99,
+                51
+              ],
+              "second_rgb": [
+                92,
+                97,
+                46
+              ]
+            }
+          ],
+          "source_coordinate_convention": "top-left 0-based x-column y-row"
+        },
+        {
+          "first_sha256": "8ecd656296ed0d4c70df4f26a8e5862334e7c9b846b56228fd51bc52bf269e74",
+          "second_sha256": "4325cde92cfe22e1aaa5bea74e7c6de5f6c04580fe413e76a87d53d9354bfb25",
+          "identical": false,
+          "changed_pixels": 3,
+          "changed_pixel_fraction": 2.288818359375e-05,
+          "changed_channel_values": 7,
+          "max_channel_delta": 32,
+          "bounding_box_xyxy_inclusive": [
+            103,
+            90,
+            378,
+            171
+          ],
+          "first_changed_pixel_xy": [
+            103,
+            90
+          ],
+          "changed_rows_count": 3,
+          "changed_columns_count": 2,
+          "changed_pixel_examples": [
+            {
+              "x": 103,
+              "y": 90,
+              "first_rgb": [
+                188,
+                179,
+                109
+              ],
+              "second_rgb": [
+                190,
+                181,
+                77
+              ]
+            },
+            {
+              "x": 378,
+              "y": 170,
+              "first_rgb": [
+                132,
+                128,
+                118
+              ],
+              "second_rgb": [
+                132,
+                128,
+                117
+              ]
+            },
+            {
+              "x": 378,
+              "y": 171,
+              "first_rgb": [
+                94,
+                99,
+                51
+              ],
+              "second_rgb": [
+                92,
+                97,
+                46
+              ]
+            }
+          ],
+          "source_coordinate_convention": "top-left 0-based x-column y-row"
+        }
+      ]
+    },
+    "wide": {
+      "all_frame_sha256": [
+        "30e395b49545df020fd49eb0db6545d25a99c51f6b85d307b8b01f041ffda928",
+        "dfe32ea7e695ed3a594e748946c8d2c94ff16232b2eb49539f2d9e604ecda5f5",
+        "dfe32ea7e695ed3a594e748946c8d2c94ff16232b2eb49539f2d9e604ecda5f5",
+        "dfe32ea7e695ed3a594e748946c8d2c94ff16232b2eb49539f2d9e604ecda5f5",
+        "dfe32ea7e695ed3a594e748946c8d2c94ff16232b2eb49539f2d9e604ecda5f5",
+        "dfe32ea7e695ed3a594e748946c8d2c94ff16232b2eb49539f2d9e604ecda5f5",
+        "dfe32ea7e695ed3a594e748946c8d2c94ff16232b2eb49539f2d9e604ecda5f5",
+        "dfe32ea7e695ed3a594e748946c8d2c94ff16232b2eb49539f2d9e604ecda5f5",
+        "dfe32ea7e695ed3a594e748946c8d2c94ff16232b2eb49539f2d9e604ecda5f5",
+        "dfe32ea7e695ed3a594e748946c8d2c94ff16232b2eb49539f2d9e604ecda5f5"
+      ],
+      "all_unique_sha256": 2,
+      "warmup_frames_separated_not_discarded": 2,
+      "post_warmup_unique_sha256": 1,
+      "bit_exact_after_warmup": true,
+      "max_changed_pixels_post_warmup": 0,
+      "first_divergence_frame_index_zero_based": null,
+      "per_frame_vs_first_post_warmup": [
+        {
+          "first_sha256": "dfe32ea7e695ed3a594e748946c8d2c94ff16232b2eb49539f2d9e604ecda5f5",
+          "second_sha256": "dfe32ea7e695ed3a594e748946c8d2c94ff16232b2eb49539f2d9e604ecda5f5",
+          "identical": true,
+          "changed_pixels": 0,
+          "changed_pixel_fraction": 0.0,
+          "changed_channel_values": 0,
+          "max_channel_delta": 0,
+          "bounding_box_xyxy_inclusive": null,
+          "first_changed_pixel_xy": null,
+          "changed_rows_count": 0,
+          "changed_columns_count": 0,
+          "changed_pixel_examples": [],
+          "source_coordinate_convention": "top-left 0-based x-column y-row"
+        },
+        {
+          "first_sha256": "dfe32ea7e695ed3a594e748946c8d2c94ff16232b2eb49539f2d9e604ecda5f5",
+          "second_sha256": "dfe32ea7e695ed3a594e748946c8d2c94ff16232b2eb49539f2d9e604ecda5f5",
+          "identical": true,
+          "changed_pixels": 0,
+          "changed_pixel_fraction": 0.0,
+          "changed_channel_values": 0,
+          "max_channel_delta": 0,
+          "bounding_box_xyxy_inclusive": null,
+          "first_changed_pixel_xy": null,
+          "changed_rows_count": 0,
+          "changed_columns_count": 0,
+          "changed_pixel_examples": [],
+          "source_coordinate_convention": "top-left 0-based x-column y-row"
+        },
+        {
+          "first_sha256": "dfe32ea7e695ed3a594e748946c8d2c94ff16232b2eb49539f2d9e604ecda5f5",
+          "second_sha256": "dfe32ea7e695ed3a594e748946c8d2c94ff16232b2eb49539f2d9e604ecda5f5",
+          "identical": true,
+          "changed_pixels": 0,
+          "changed_pixel_fraction": 0.0,
+          "changed_channel_values": 0,
+          "max_channel_delta": 0,
+          "bounding_box_xyxy_inclusive": null,
+          "first_changed_pixel_xy": null,
+          "changed_rows_count": 0,
+          "changed_columns_count": 0,
+          "changed_pixel_examples": [],
+          "source_coordinate_convention": "top-left 0-based x-column y-row"
+        },
+        {
+          "first_sha256": "dfe32ea7e695ed3a594e748946c8d2c94ff16232b2eb49539f2d9e604ecda5f5",
+          "second_sha256": "dfe32ea7e695ed3a594e748946c8d2c94ff16232b2eb49539f2d9e604ecda5f5",
+          "identical": true,
+          "changed_pixels": 0,
+          "changed_pixel_fraction": 0.0,
+          "changed_channel_values": 0,
+          "max_channel_delta": 0,
+          "bounding_box_xyxy_inclusive": null,
+          "first_changed_pixel_xy": null,
+          "changed_rows_count": 0,
+          "changed_columns_count": 0,
+          "changed_pixel_examples": [],
+          "source_coordinate_convention": "top-left 0-based x-column y-row"
+        },
+        {
+          "first_sha256": "dfe32ea7e695ed3a594e748946c8d2c94ff16232b2eb49539f2d9e604ecda5f5",
+          "second_sha256": "dfe32ea7e695ed3a594e748946c8d2c94ff16232b2eb49539f2d9e604ecda5f5",
+          "identical": true,
+          "changed_pixels": 0,
+          "changed_pixel_fraction": 0.0,
+          "changed_channel_values": 0,
+          "max_channel_delta": 0,
+          "bounding_box_xyxy_inclusive": null,
+          "first_changed_pixel_xy": null,
+          "changed_rows_count": 0,
+          "changed_columns_count": 0,
+          "changed_pixel_examples": [],
+          "source_coordinate_convention": "top-left 0-based x-column y-row"
+        },
+        {
+          "first_sha256": "dfe32ea7e695ed3a594e748946c8d2c94ff16232b2eb49539f2d9e604ecda5f5",
+          "second_sha256": "dfe32ea7e695ed3a594e748946c8d2c94ff16232b2eb49539f2d9e604ecda5f5",
+          "identical": true,
+          "changed_pixels": 0,
+          "changed_pixel_fraction": 0.0,
+          "changed_channel_values": 0,
+          "max_channel_delta": 0,
+          "bounding_box_xyxy_inclusive": null,
+          "first_changed_pixel_xy": null,
+          "changed_rows_count": 0,
+          "changed_columns_count": 0,
+          "changed_pixel_examples": [],
+          "source_coordinate_convention": "top-left 0-based x-column y-row"
+        },
+        {
+          "first_sha256": "dfe32ea7e695ed3a594e748946c8d2c94ff16232b2eb49539f2d9e604ecda5f5",
+          "second_sha256": "dfe32ea7e695ed3a594e748946c8d2c94ff16232b2eb49539f2d9e604ecda5f5",
+          "identical": true,
+          "changed_pixels": 0,
+          "changed_pixel_fraction": 0.0,
+          "changed_channel_values": 0,
+          "max_channel_delta": 0,
+          "bounding_box_xyxy_inclusive": null,
+          "first_changed_pixel_xy": null,
+          "changed_rows_count": 0,
+          "changed_columns_count": 0,
+          "changed_pixel_examples": [],
+          "source_coordinate_convention": "top-left 0-based x-column y-row"
+        },
+        {
+          "first_sha256": "dfe32ea7e695ed3a594e748946c8d2c94ff16232b2eb49539f2d9e604ecda5f5",
+          "second_sha256": "dfe32ea7e695ed3a594e748946c8d2c94ff16232b2eb49539f2d9e604ecda5f5",
+          "identical": true,
+          "changed_pixels": 0,
+          "changed_pixel_fraction": 0.0,
+          "changed_channel_values": 0,
+          "max_channel_delta": 0,
+          "bounding_box_xyxy_inclusive": null,
+          "first_changed_pixel_xy": null,
+          "changed_rows_count": 0,
+          "changed_columns_count": 0,
+          "changed_pixel_examples": [],
+          "source_coordinate_convention": "top-left 0-based x-column y-row"
+        }
+      ]
+    }
+  },
+  "onnx_i420": {
+    "all_frame_sha256": [
+      "ff586ee7e1f33c08d1515eddd0b2d5071a9715cc2bbd9ad4ad0d8f290c8f7e21",
+      "124c669f0b9c4c64c0aee2c6fb10ca121d0fe4fcae4ed401866fac6cb10e208e",
+      "124c669f0b9c4c64c0aee2c6fb10ca121d0fe4fcae4ed401866fac6cb10e208e",
+      "124c669f0b9c4c64c0aee2c6fb10ca121d0fe4fcae4ed401866fac6cb10e208e",
+      "124c669f0b9c4c64c0aee2c6fb10ca121d0fe4fcae4ed401866fac6cb10e208e",
+      "124c669f0b9c4c64c0aee2c6fb10ca121d0fe4fcae4ed401866fac6cb10e208e",
+      "5cf689e360fd1023d5b1345b49559f84075e2c80bd99d9b114c579e7c8544729",
+      "124c669f0b9c4c64c0aee2c6fb10ca121d0fe4fcae4ed401866fac6cb10e208e",
+      "5cf689e360fd1023d5b1345b49559f84075e2c80bd99d9b114c579e7c8544729",
+      "5cf689e360fd1023d5b1345b49559f84075e2c80bd99d9b114c579e7c8544729"
+    ],
+    "post_warmup_unique_sha256": 2,
+    "bit_exact_after_warmup": false,
+    "first_divergence_frame_index_zero_based": 6,
+    "max_changed_elements_post_warmup": 3,
+    "per_frame_vs_first_post_warmup": [
+      {
+        "sha256_a": "124c669f0b9c4c64c0aee2c6fb10ca121d0fe4fcae4ed401866fac6cb10e208e",
+        "sha256_b": "124c669f0b9c4c64c0aee2c6fb10ca121d0fe4fcae4ed401866fac6cb10e208e",
+        "changed_elements": 0,
+        "max_element_delta": 0,
+        "first_changed_indices_camera_plane_row_col": null,
+        "first_12_changed_element_indices": [],
+        "bit_exact": true
+      },
+      {
+        "sha256_a": "124c669f0b9c4c64c0aee2c6fb10ca121d0fe4fcae4ed401866fac6cb10e208e",
+        "sha256_b": "124c669f0b9c4c64c0aee2c6fb10ca121d0fe4fcae4ed401866fac6cb10e208e",
+        "changed_elements": 0,
+        "max_element_delta": 0,
+        "first_changed_indices_camera_plane_row_col": null,
+        "first_12_changed_element_indices": [],
+        "bit_exact": true
+      },
+      {
+        "sha256_a": "124c669f0b9c4c64c0aee2c6fb10ca121d0fe4fcae4ed401866fac6cb10e208e",
+        "sha256_b": "124c669f0b9c4c64c0aee2c6fb10ca121d0fe4fcae4ed401866fac6cb10e208e",
+        "changed_elements": 0,
+        "max_element_delta": 0,
+        "first_changed_indices_camera_plane_row_col": null,
+        "first_12_changed_element_indices": [],
+        "bit_exact": true
+      },
+      {
+        "sha256_a": "124c669f0b9c4c64c0aee2c6fb10ca121d0fe4fcae4ed401866fac6cb10e208e",
+        "sha256_b": "124c669f0b9c4c64c0aee2c6fb10ca121d0fe4fcae4ed401866fac6cb10e208e",
+        "changed_elements": 0,
+        "max_element_delta": 0,
+        "first_changed_indices_camera_plane_row_col": null,
+        "first_12_changed_element_indices": [],
+        "bit_exact": true
+      },
+      {
+        "sha256_a": "124c669f0b9c4c64c0aee2c6fb10ca121d0fe4fcae4ed401866fac6cb10e208e",
+        "sha256_b": "5cf689e360fd1023d5b1345b49559f84075e2c80bd99d9b114c579e7c8544729",
+        "changed_elements": 3,
+        "max_element_delta": 2,
+        "first_changed_indices_camera_plane_row_col": [
+          0,
+          1,
+          85,
+          189
+        ],
+        "first_12_changed_element_indices": [
+          [
+            0,
+            1,
+            85,
+            189
+          ],
+          [
+            0,
+            2,
+            45,
+            51
+          ],
+          [
+            0,
+            5,
+            85,
+            189
+          ]
+        ],
+        "bit_exact": false
+      },
+      {
+        "sha256_a": "124c669f0b9c4c64c0aee2c6fb10ca121d0fe4fcae4ed401866fac6cb10e208e",
+        "sha256_b": "124c669f0b9c4c64c0aee2c6fb10ca121d0fe4fcae4ed401866fac6cb10e208e",
+        "changed_elements": 0,
+        "max_element_delta": 0,
+        "first_changed_indices_camera_plane_row_col": null,
+        "first_12_changed_element_indices": [],
+        "bit_exact": true
+      },
+      {
+        "sha256_a": "124c669f0b9c4c64c0aee2c6fb10ca121d0fe4fcae4ed401866fac6cb10e208e",
+        "sha256_b": "5cf689e360fd1023d5b1345b49559f84075e2c80bd99d9b114c579e7c8544729",
+        "changed_elements": 3,
+        "max_element_delta": 2,
+        "first_changed_indices_camera_plane_row_col": [
+          0,
+          1,
+          85,
+          189
+        ],
+        "first_12_changed_element_indices": [
+          [
+            0,
+            1,
+            85,
+            189
+          ],
+          [
+            0,
+            2,
+            45,
+            51
+          ],
+          [
+            0,
+            5,
+            85,
+            189
+          ]
+        ],
+        "bit_exact": false
+      },
+      {
+        "sha256_a": "124c669f0b9c4c64c0aee2c6fb10ca121d0fe4fcae4ed401866fac6cb10e208e",
+        "sha256_b": "5cf689e360fd1023d5b1345b49559f84075e2c80bd99d9b114c579e7c8544729",
+        "changed_elements": 3,
+        "max_element_delta": 2,
+        "first_changed_indices_camera_plane_row_col": [
+          0,
+          1,
+          85,
+          189
+        ],
+        "first_12_changed_element_indices": [
+          [
+            0,
+            1,
+            85,
+            189
+          ],
+          [
+            0,
+            2,
+            45,
+            51
+          ],
+          [
+            0,
+            5,
+            85,
+            189
+          ]
+        ],
+        "bit_exact": false
+      }
+    ]
+  },
+  "clock_timeline": [
+    {
+      "render_frame_index_zero_based": 0,
+      "before": {
+        "frame_count": 10,
+        "frame_time_s": 35.866674,
+        "real_time_s": 35.898486000000005,
+        "dt_s": 1.7116479999999967
+      },
+      "after": {
+        "frame_count": 12,
+        "frame_time_s": 40.443014000000005,
+        "real_time_s": 40.44928899999999,
+        "dt_s": 2.0922740000000033
+      },
+      "global_clock_frame_count_delta": 2,
+      "global_clock_time_delta_s": 4.576340000000002,
+      "real_time_delta_s": 4.550802999999988
+    },
+    {
+      "render_frame_index_zero_based": 1,
+      "before": {
+        "frame_count": 12,
+        "frame_time_s": 40.443014000000005,
+        "real_time_s": 40.452766,
+        "dt_s": 2.0922740000000033
+      },
+      "after": {
+        "frame_count": 14,
+        "frame_time_s": 44.503788,
+        "real_time_s": 44.516431,
+        "dt_s": 1.995954999999995
+      },
+      "global_clock_frame_count_delta": 2,
+      "global_clock_time_delta_s": 4.060773999999995,
+      "real_time_delta_s": 4.063665
+    },
+    {
+      "render_frame_index_zero_based": 2,
+      "before": {
+        "frame_count": 14,
+        "frame_time_s": 44.503788,
+        "real_time_s": 44.518878,
+        "dt_s": 1.995954999999995
+      },
+      "after": {
+        "frame_count": 16,
+        "frame_time_s": 48.763161,
+        "real_time_s": 48.778335,
+        "dt_s": 1.8155809999999946
+      },
+      "global_clock_frame_count_delta": 2,
+      "global_clock_time_delta_s": 4.2593729999999965,
+      "real_time_delta_s": 4.259456999999998
+    },
+    {
+      "render_frame_index_zero_based": 3,
+      "before": {
+        "frame_count": 16,
+        "frame_time_s": 48.763161,
+        "real_time_s": 48.781419,
+        "dt_s": 1.8155809999999946
+      },
+      "after": {
+        "frame_count": 18,
+        "frame_time_s": 52.793566,
+        "real_time_s": 52.801418999999996,
+        "dt_s": 1.8967250000000035
+      },
+      "global_clock_frame_count_delta": 2,
+      "global_clock_time_delta_s": 4.030405000000002,
+      "real_time_delta_s": 4.019999999999996
+    },
+    {
+      "render_frame_index_zero_based": 4,
+      "before": {
+        "frame_count": 18,
+        "frame_time_s": 52.793566,
+        "real_time_s": 52.805379,
+        "dt_s": 1.8967250000000035
+      },
+      "after": {
+        "frame_count": 20,
+        "frame_time_s": 57.41602,
+        "real_time_s": 57.442402,
+        "dt_s": 2.548855000000003
+      },
+      "global_clock_frame_count_delta": 2,
+      "global_clock_time_delta_s": 4.622454000000005,
+      "real_time_delta_s": 4.637022999999999
+    },
+    {
+      "render_frame_index_zero_based": 5,
+      "before": {
+        "frame_count": 20,
+        "frame_time_s": 57.41602,
+        "real_time_s": 57.450614,
+        "dt_s": 2.548855000000003
+      },
+      "after": {
+        "frame_count": 22,
+        "frame_time_s": 61.683201999999994,
+        "real_time_s": 61.689629,
+        "dt_s": 1.9947439999999972
+      },
+      "global_clock_frame_count_delta": 2,
+      "global_clock_time_delta_s": 4.267181999999991,
+      "real_time_delta_s": 4.239014999999995
+    },
+    {
+      "render_frame_index_zero_based": 6,
+      "before": {
+        "frame_count": 22,
+        "frame_time_s": 61.683201999999994,
+        "real_time_s": 61.692178,
+        "dt_s": 1.9947439999999972
+      },
+      "after": {
+        "frame_count": 24,
+        "frame_time_s": 65.63563400000001,
+        "real_time_s": 65.65021300000001,
+        "dt_s": 1.9962230000000147
+      },
+      "global_clock_frame_count_delta": 2,
+      "global_clock_time_delta_s": 3.952432000000016,
+      "real_time_delta_s": 3.9580350000000095
+    },
+    {
+      "render_frame_index_zero_based": 7,
+      "before": {
+        "frame_count": 24,
+        "frame_time_s": 65.63563400000001,
+        "real_time_s": 65.652741,
+        "dt_s": 1.9962230000000147
+      },
+      "after": {
+        "frame_count": 26,
+        "frame_time_s": 69.860409,
+        "real_time_s": 69.866605,
+        "dt_s": 1.7716199999999986
+      },
+      "global_clock_frame_count_delta": 2,
+      "global_clock_time_delta_s": 4.224774999999994,
+      "real_time_delta_s": 4.213864000000001
+    },
+    {
+      "render_frame_index_zero_based": 8,
+      "before": {
+        "frame_count": 26,
+        "frame_time_s": 69.860409,
+        "real_time_s": 69.868727,
+        "dt_s": 1.7716199999999986
+      },
+      "after": {
+        "frame_count": 28,
+        "frame_time_s": 73.50473600000001,
+        "real_time_s": 73.513484,
+        "dt_s": 1.7684750000000093
+      },
+      "global_clock_frame_count_delta": 2,
+      "global_clock_time_delta_s": 3.644327000000004,
+      "real_time_delta_s": 3.6447569999999985
+    },
+    {
+      "render_frame_index_zero_based": 9,
+      "before": {
+        "frame_count": 28,
+        "frame_time_s": 73.50473600000001,
+        "real_time_s": 73.516537,
+        "dt_s": 1.7684750000000093
+      },
+      "after": {
+        "frame_count": 30,
+        "frame_time_s": 77.034418,
+        "real_time_s": 77.04196300000001,
+        "dt_s": 1.721063000000001
+      },
+      "global_clock_frame_count_delta": 2,
+      "global_clock_time_delta_s": 3.529681999999994,
+      "real_time_delta_s": 3.52542600000001
+    }
+  ],
+  "expected_panda_global_frame_count_delta_per_pair": 2,
+  "all_panda_frame_count_deltas_as_expected": true,
+  "task_manager_step_invocations_from_capture_call_path": 2,
+  "global_frame_counter_cannot_identify_task_manager_execution": true,
+  "clock_observations_finite": true,
+  "cpu_readbacks_bit_exact_without_new_render": true,
+  "camera_plus_2m_positive": {
+    "road": true,
+    "wide": true
+  },
+  "registered_tasks_before": [
+    "PSSM.update",
+    "collisionLoop",
+    "dataLoop",
+    "eventManager",
+    "igLoop",
+    "ivalLoop",
+    "resetPrevTransform",
+    "update main chase camera"
+  ],
+  "registered_tasks_after": [
+    "PSSM.update",
+    "collisionLoop",
+    "dataLoop",
+    "eventManager",
+    "igLoop",
+    "ivalLoop",
+    "resetPrevTransform",
+    "update main chase camera"
+  ],
+  "scene_visual_ego_pose_unchanged": true,
+  "pssm_task_identity_correct": true,
+  "gpu_texture_extract_calls": 0,
+  "onnx_inference_used": false,
+  "same_original_renderer_semantics_after_ablation_unproven": true,
+  "model_scoring_allowed": false,
+  "real_vehicle_testing": false,
+  "cd210_fallback": false,
+  "carrot_tuning_used": false,
+  "warning": "Both taskMgr.step and graphicsEngine.renderFrame increment Panda global frame count. Known call-path task count and global clock count must never be conflated; no specific shader cause proven."
+}
