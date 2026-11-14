@@ -11,11 +11,11 @@ new05budget only, no fallback, resized cameras, GL override, model or publicatio
 
 ## Task1: Explicit resource binding and bounded observations
 
-- [ ] RED temporary cgroup fixtures:4GiB cap required; finite counters/peak;
+- [x] RED temporary cgroup fixtures:4GiB cap required; finite counters/peak;
   missing/malformed/oversize/symlink/FIFO reject; OOM delta blocks acceptance.
-- [ ] RED host-memory minimum, exact4GiB Docker admission and safe state projection;
+- [x] RED host-memory minimum, exact4GiB Docker admission and safe state projection;
   secret Error/Env fields never persisted; identity binds resources.
-- [ ] Implement v5modules/workflow/derived closure and4snapshots without new
+- [x] Implement v5modules/workflow/derived closure and4snapshots without new
   Docker state calls or cleanup-budget changes. Targeted GREEN/full unittest
   discover with7existing skips. One fresh source review; one Important/Critical
   TDD fix pass, no rereview; retain Minor/declined costs.

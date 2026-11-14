@@ -355,6 +355,30 @@ skips PASS94.720s. Source review/qualification precede new04scope. Image006,
 v1–v3sources/requests/rawfailures and scientificFAIL/INCOMPLETE remain frozen.
 # P. Native04 original evidence and explicit memory experiment v5
 
+Task1 complete: fresh source review8e1d039..842439e Critical0/Important0/Minor2
+plus existing costs. No fix pass/rereview.4targetedRED→GREEN PASS0.009s and
+full1101tests/7skip PASS106.185s observed by root. All6declined rulings/costs
+in docs/evidence/STAGE7_ENGINE_CLOCK_SEALED_NATIVE_V5_SOURCE_REVIEW.md.
+Final: minor (deferred): NM-M1 statewrapper lacks direct integration fixtures,
+cost reduced diagnostic-hook regression coverage, inspected calls unchanged.
+Final: minor (deferred): NM-M2 rejected preflight CGsnapshot not retained, cost
+less precise pre-admission OOM diagnosis, never provider admission.
+Final: minor (deferred): existing SN-M1/SN-M2/EB-M1 retain prefix/timer/fixture
+costs; actual04upload success is a separate live fact.
+Final: Ruling: actual05memory/runtime/capture/closure need execution — original
+independent data govern — cost if wrong: consumed05/no accepted canary.
+Final: Ruling: remote04auth not rechecked by reviewer — preserve root original
+API/ZIP/CRC and failed04 — cost if wrong: invalid upstream diagnosis.
+Final: Ruling:04OOM unproved by137 — retainUNKNOWN/separate05experiment — cost
+if wrong: misleading causal/scientific conclusion.
+Final: Ruling: suite not rerun by reviewer — root1101 plus exact4externaljobs
+govern — cost if wrong: author-side verification blind spot.
+Final: Ruling: oldMinor fixtures not fixed — retain costs and live04upload fact
+separately — cost if wrong: overstated diagnosis/timer/coverage assurance.
+Final: Ruling: hostile fixture-root ancestor races outside deployed API — fixed
+privateCG/cap-dropped root supplies origin — cost if wrong: no cgroup assurance,
+no generalized hostile-root API guarantee.
+
 V4sourcef60259738af14b590062892f9cd1f776c3c7ee18/Draft85 exact4CI success:
 push43541643080(132283317544/132283317691), PR43541648939(132283334379/132283334584),
 attempt1/artifacts0. Activation8e1d0399d72fb5e303155274b7d0a56a330d8091/
