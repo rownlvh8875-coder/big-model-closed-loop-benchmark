@@ -1,0 +1,62 @@
+native-host	Run sealed canary C	﻿2026-11-14T05:46:08.1736325Z ##[group]Run /usr/bin/python3 -I -S -B scripts/engine_clock_held_abba_run.py --canary
+native-host	Run sealed canary C	2026-11-14T05:46:08.1738550Z [36;1m/usr/bin/python3 -I -S -B scripts/engine_clock_held_abba_run.py --canary[0m
+native-host	Run sealed canary C	2026-11-14T05:46:08.1753765Z shell: /usr/bin/bash -e {0}
+native-host	Run sealed canary C	2026-11-14T05:46:08.1754837Z env:
+native-host	Run sealed canary C	2026-11-14T05:46:08.1764298Z   GH_TOKEN: ***
+native-host	Run sealed canary C	2026-11-14T05:46:08.1765253Z ##[endgroup]
+native-host	Run sealed canary C	2026-11-14T05:46:08.4047501Z /home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/scripts/engine_clock_sealed_native.py:155: SyntaxWarning: invalid escape sequence '\.'
+native-host	Run sealed canary C	2026-11-14T05:46:08.4052034Z   if auth is not None:need(re.fullmatch('/tmp/xvfb-run\.[A-Za-z0-9]+/Xauthority',auth) is not None)
+native-host	Run sealed canary C	2026-11-14T05:46:09.4725001Z {
+native-host	Run sealed canary C	2026-11-14T05:46:09.4725830Z   "control_elapsed_seconds": 0.0,
+native-host	Run sealed canary C	2026-11-14T05:46:09.4726473Z   "control_head_sha": null,
+native-host	Run sealed canary C	2026-11-14T05:46:09.4726956Z   "elapsed_seconds": 1.188167453999995,
+native-host	Run sealed canary C	2026-11-14T05:46:09.4727475Z   "error_detail": "SEALED_NATIVE_REJECTED",
+native-host	Run sealed canary C	2026-11-14T05:46:09.4728316Z   "error_type": "ValueError",
+native-host	Run sealed canary C	2026-11-14T05:46:09.4728781Z   "finished_utc": "2026-11-14T05:46:09.471918+00:00",
+native-host	Run sealed canary C	2026-11-14T05:46:09.4729383Z   "last_stage": "producer-authentication",
+native-host	Run sealed canary C	2026-11-14T05:46:09.4729811Z   "mode": "canary",
+native-host	Run sealed canary C	2026-11-14T05:46:09.4730195Z   "native_failure_summary": {
+native-host	Run sealed canary C	2026-11-14T05:46:09.4730592Z     "accepted": false,
+native-host	Run sealed canary C	2026-11-14T05:46:09.4730958Z     "provider_bounds": [
+native-host	Run sealed canary C	2026-11-14T05:46:09.4731496Z       0,
+native-host	Run sealed canary C	2026-11-14T05:46:09.4731816Z       4
+native-host	Run sealed canary C	2026-11-14T05:46:09.4732192Z     ],
+native-host	Run sealed canary C	2026-11-14T05:46:09.4732556Z     "status": "UNAVAILABLE_OR_UNBOUND"
+native-host	Run sealed canary C	2026-11-14T05:46:09.4732959Z   },
+native-host	Run sealed canary C	2026-11-14T05:46:09.4733312Z   "official_model_calls": 0,
+native-host	Run sealed canary C	2026-11-14T05:46:09.4733695Z   "ort_sessions": 0,
+native-host	Run sealed canary C	2026-11-14T05:46:09.4734124Z   "phase_operation_seconds": 1.1881681339999943,
+native-host	Run sealed canary C	2026-11-14T05:46:09.4734692Z   "producer_head_sha": "01ca6198d90f3624546b3a28c43507007b6d2354",
+native-host	Run sealed canary C	2026-11-14T05:46:09.4735215Z   "request_id": "held-abba-20261114-01",
+native-host	Run sealed canary C	2026-11-14T05:46:09.4735679Z   "schema": "engine-clock-held-abba-operation-v1",
+native-host	Run sealed canary C	2026-11-14T05:46:09.4736037Z   "scientific_result_promoted": false,
+native-host	Run sealed canary C	2026-11-14T05:46:09.4736379Z   "status": "FAILED_OR_INCOMPLETE",
+native-host	Run sealed canary C	2026-11-14T05:46:09.4736708Z   "workflow_completion_not_claimed": true
+native-host	Run sealed canary C	2026-11-14T05:46:09.4737003Z }
+native-host	Run sealed canary C	2026-11-14T05:46:09.4737115Z 
+native-host	Run sealed canary C	2026-11-14T05:46:09.4862249Z ##[error]Process completed with exit code 1.
+canary-attestor	Attest completed native C evidence	﻿2026-11-14T05:46:07.9479706Z ##[group]Run /usr/bin/python3 -I -S -B scripts/engine_clock_held_abba_attest.py --run
+canary-attestor	Attest completed native C evidence	2026-11-14T05:46:07.9481329Z [36;1m/usr/bin/python3 -I -S -B scripts/engine_clock_held_abba_attest.py --run[0m
+canary-attestor	Attest completed native C evidence	2026-11-14T05:46:07.9499879Z shell: /usr/bin/bash -e {0}
+canary-attestor	Attest completed native C evidence	2026-11-14T05:46:07.9500570Z env:
+canary-attestor	Attest completed native C evidence	2026-11-14T05:46:07.9507323Z   GH_TOKEN: ***
+canary-attestor	Attest completed native C evidence	2026-11-14T05:46:07.9507934Z ##[endgroup]
+canary-attestor	Attest completed native C evidence	2026-11-14T05:46:08.1351197Z /home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/scripts/engine_clock_sealed_native.py:155: SyntaxWarning: invalid escape sequence '\.'
+canary-attestor	Attest completed native C evidence	2026-11-14T05:46:08.1353769Z   if auth is not None:need(re.fullmatch('/tmp/xvfb-run\.[A-Za-z0-9]+/Xauthority',auth) is not None)
+canary-attestor	Attest completed native C evidence	2026-11-14T05:46:09.2149745Z {
+canary-attestor	Attest completed native C evidence	2026-11-14T05:46:09.2150191Z   "elapsed_seconds": 1.1742862420000009,
+canary-attestor	Attest completed native C evidence	2026-11-14T05:46:09.2150460Z   "error": {
+canary-attestor	Attest completed native C evidence	2026-11-14T05:46:09.2150651Z     "detail": "SEALED_NATIVE_REJECTED",
+canary-attestor	Attest completed native C evidence	2026-11-14T05:46:09.2150905Z     "type": "ValueError"
+canary-attestor	Attest completed native C evidence	2026-11-14T05:46:09.2151093Z   },
+canary-attestor	Attest completed native C evidence	2026-11-14T05:46:09.2151399Z   "finished_utc": "2026-11-14T05:46:09.214647+00:00",
+canary-attestor	Attest completed native C evidence	2026-11-14T05:46:09.2151680Z   "independent_pixel_replay": false,
+canary-attestor	Attest completed native C evidence	2026-11-14T05:46:09.2151933Z   "last_stage": "producer-authentication",
+canary-attestor	Attest completed native C evidence	2026-11-14T05:46:09.2152181Z   "native_providers": 0,
+canary-attestor	Attest completed native C evidence	2026-11-14T05:46:09.2152396Z   "observed_installed_tree_here": false,
+canary-attestor	Attest completed native C evidence	2026-11-14T05:46:09.2152653Z   "official_model_calls": 0,
+canary-attestor	Attest completed native C evidence	2026-11-14T05:46:09.2152864Z   "ort_sessions": 0,
+canary-attestor	Attest completed native C evidence	2026-11-14T05:46:09.2153057Z   "status": "FAILED_OR_INCOMPLETE"
+canary-attestor	Attest completed native C evidence	2026-11-14T05:46:09.2153265Z }
+canary-attestor	Attest completed native C evidence	2026-11-14T05:46:09.2153352Z 
+canary-attestor	Attest completed native C evidence	2026-11-14T05:46:09.2269283Z ##[error]Process completed with exit code 1.

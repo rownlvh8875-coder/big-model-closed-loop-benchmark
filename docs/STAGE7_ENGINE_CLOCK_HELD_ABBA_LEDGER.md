@@ -42,3 +42,24 @@ heldnative C+terminalattestor/root+fresh. No old request or runtime allowance re
 Final single-correction verification: focused16PASS/2.835s; full1145PASS/
 7skip/103.435s. Old223bytes still frozen. Root stdlib attestor import loaded
 no numpy/cv2/Panda/MetaDrive/ORT. No actual native authority before sourceCI.
+
+Task3 actual terminal checkpoint KST14:46:09: qualifiedsource5ab516cb4b52b40b589b97257604fc02487de1cd,
+sourceDraft92; push43562901223/jobs132350308534+132350308805 and
+PR43562905120/jobs132350320427+132350320611 SUCCESS/attempt1/artifacts0.
+Uniqueabsentbranch/runs0 verified then sole Caddition01ca6198d90f3624546b3a28c43507007b6d2354
+request9694a844bb089bc36ebf21da7091345eb71f4dc559ff8b96648091338f693d1e/235pins.
+Ownrun43563102068/workflow418051491/attempt1FAIL. Nativehost132350924448 and
+attestor132350924625 originalHTTP200live-run bothqueued; validate_live requires
+in_progress; both failproducer-authentication in1.188167454s/1.174286242s.
+C14101256672/33625B and attdiagnostics14101346363/33218B all5+5originalmembers,
+APIs/hashes/Git235pins/exact4sourceCI verified by root+fresh. FreshACCEPT authentic
+terminalfailureonly, no C/attestation/Acontrol/nativeABBA/sixcomparisons.
+Sourcebacked0load/container/start/provider/getter is not OSattestation; original
+coarseproviderbounds[0,4] unchanged. Campaignconsumed/remainingallowance0/no retry.
+Ruling: close out honest failure rather than alter consumedsource or acceptqueued;
+cost: same-host native feasibility remains unknown. Next distinct protocol must
+add bounded successfulpendingAPIvisibility observation and actualin_progress gate,
+RED→GREEN failure/deadline tests/freshsource/exactCI/newrequest. No claim exact
+GitHub/proxy/cache reason proved. All fresh scope declines/costs in versioned
+terminal-failure/fresh-raw-review.md. Stage7INCOMPLETE/strict0of4FAIL; main/model/
+Cloud/registry untouched. Source235files frozen even on docs-only evidencebranch.

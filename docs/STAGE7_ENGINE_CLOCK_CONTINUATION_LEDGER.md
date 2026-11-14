@@ -544,3 +544,17 @@ failure only; source-backed preload rejection, originalbounds[0,4] unchanged,
 4cases/6comparisonsNOT_RUN. No gate relaxation/retry/oldunusedcases/model/main/
 publication. Next separate same-host lifecycle design needed; oldnative06and
 campaign01/02cannot grant future scientific authorization. Stage7INCOMPLETE.
+
+## Retained-host campaign01 terminal admission failure — 2026-11-14 KST14:46
+
+Source5ab516c/Draft92 preserves223oldfiles/new235closure;16focused/full1145tests
+PASS/7skip/103.435s and4exactsourceCIjobsPASS. New sole C01ca6198 ran43563102068
+(workflow418051491/attempt1) failed before native: both actualHTTP200runmetadata
+snapshotsqueued, strictgate requiresin_progress. Root+fresh authenticate twooriginal
+ZIPs/all10members/sourceCI/Git235pins/diagnosis only; no Cacceptance/attestation/
+Acontrol/ABBA/comparisons. Source-backedzero is not physicalOSattestation, original
+bounds[0,4] preserved. No retry/allowancereuse/oldgatechange/model/main/publication.
+New result STAGE7_ENGINE_CLOCK_HELD_ABBA_RESULT.md and authority
+ evidence/STAGE7_ENGINE_CLOCK_HELD_ABBA_01_RESULT.json retain exactIDs/hashes/rulings.
+Next distinct source needs bounded successfulqueued→actualin_progress observation,
+not acceptance of queued nor replay of this consumed request. Stage7INCOMPLETE.
