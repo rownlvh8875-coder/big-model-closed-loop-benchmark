@@ -1,6 +1,30 @@
 # Stage 7 continuation — verified results, renderer cause still open
 
-## Current checkpoint (2026-11-14 15:34 KST — held C accepted; four-case diagnostics rejected at final member cap)
+## Current checkpoint (2026-11-14 16:40 KST — original native camera C and ABBA accepted)
+
+Newsource60f6d7fbadf9c0cdbeb087f6452d7b07ea77abd5/Draft96 preserves248oldfiles/
+261pins;31focused/full1199testsPASS/7skip102.717s/source4exactCIjobsSUCCESS.
+Freshsource reviewC0I0/newM0, inheritedHV-M1numeric/HV-M2peer deferred.
+Explicitphasecaps C129files256entries/A256files512entries/192MiB unchangedbytes;
+legacypercase129guard/consumed02source/failure unchanged. Sole03run43571004531/
+workflow418107188/attempt1completedSUCCESS;host132375169212/attestor132375169062
+SUCCESS. Cfd57f5efab90c7b410b699250a47603f364aace5 acceptedclosed6pairs/root+fresh/
+completedattestor whileheld; onlythen directchildAcontrol498647977af799ba0b765440d44985565eee7d13
+adds separateArequest, actualproducercheckout staysC. FullC/Aidentity/lease equal:
+Intel6973P-C/118flags/[0..3]/MemTotal16759304192/image006/kernel/engine/env/resources.
+All4ABBAchildren24pairs/6comparisons/controllerexit0/cleanup/source261/inventory/
+prefix/env/TAR/CG and boundedmembership root+freshACCEPT. A170files198entries,
+FINAL65449553B within192MiB; prepersist65446270B separatelyscoped. No OOM;
+peak4GiBaggregateNOTRSS. C+A5providers/30pairs/528getters spent/0remain.
+ON0/ON1/OFF1 bit-identical; firstOFF0differs35of8559936aggregatepixels, firstroad2/
+I420first3; descriptive/no causalclock/GPUfreshness/neutrality/opticsproof.
+[Result](STAGE7_ENGINE_CLOCK_HELD_ABBA_V3_RESULT.md),
+[authority](evidence/STAGE7_ENGINE_CLOCK_HELD_ABBA_03_RESULT.json),
+[ledger](STAGE7_ENGINE_CLOCK_HELD_ABBA_V3_LEDGER.md). Nativecameraexperimentaccepted;
+officialmodel/ORT0, strict0of4FAIL/Stage7INCOMPLETE/geometryfullSunknown unchanged.
+No oldquota/retry/mainmerge/Cloud/registrypublication.
+
+## Previous checkpoint (2026-11-14 15:34 KST — held C accepted; four-case diagnostics rejected at final member cap)
 
 Newsourcebee8072aa01d570a546ea709aa01103f069cf07f/Draft94 preserves235oldfiles/
 248pins;23focused/full1168testsPASS/7skip/109.862s and4exactsourceCIjobsSUCCESS.

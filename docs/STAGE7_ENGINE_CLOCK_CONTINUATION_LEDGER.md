@@ -575,3 +575,20 @@ no rerun/main/model/Cloud/registrypub. New explicitphase member/traversalbudget
 needed in distinctsource with170fileTDD/source review/CI/newrequest, never rewrite
 consumedsource/129guard. See STAGE7_ENGINE_CLOCK_HELD_ABBA_V2_RESULT.md and
  evidence/STAGE7_ENGINE_CLOCK_HELD_ABBA_02_RESULT.json. Strict0/4FAIL/Stage7INCOMPLETE.
+
+## Retained-host03 native camera ABBA accepted — 2026-11-14 KST16:40
+
+Source60f6d7f/Draft96/261pins preserves248oldfiles;31focused/full1199PASS7skip
+102.717s/exact4sourceCIjobsPASS/newreviewC0I0M0 (inheritedHV-M1/HV-M2deferred).
+Newexplicitphase capsC129/256,A256/512,192MiBunchanged; oldcaseguard/02failure
+unaltered. Sole03Cfd57f5e then genuineCroot+fresh/terminalattestor→separateAcontrol
+4986479; actualcheckoutC/fullidentity+leaseequalIntel6973P-C/118flags/[0..3]/
+MemTotal16759304192/image006. Run43571004531/wf418107188/attempt1/bothjobsSUCCESS.
+All4ABBAchildren24pairs/6comparisons/controllerexit0/cleanup/memberaudit/root+fresh
+accepted. A170files198entries/FINAL65449553B vs distinctprepersist65446270B within
+192MiB. Peak4GiBaggregate/OOM0/NOTRSS. ON0/ON1/OFF1same; initialOFF0diff35aggregate
+pixels (firstroad2/I4203), no causal/GPUfreshness/neutralityclaim. C+A5providers/
+30pairs/528getters spent/0remain/no rerun. Nativecamera resultaccepted; original
+strict0of4FAIL/Stage7INCOMPLETE/geometryopticsfullSunknown/actualofficialmodelORT0
+remain. No mainmerge/Cloud/registrypub. ResultSTAGE7_ENGINE_CLOCK_HELD_ABBA_V3_RESULT.md,
+authorityevidence/STAGE7_ENGINE_CLOCK_HELD_ABBA_03_RESULT.json withallrawreviewcosts.

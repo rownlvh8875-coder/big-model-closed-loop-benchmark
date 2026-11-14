@@ -1,0 +1,40 @@
+{
+  "artifacts": 0,
+  "attempt": 1,
+  "source_branch": "fix/engine-clock-held-abba-members-v3",
+  "source_ci": [
+    {
+      "event": "push",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "id": 132373682916,
+          "name": "onnx-interface-test"
+        },
+        {
+          "conclusion": "success",
+          "id": 132373683126,
+          "name": "synthetic-unit"
+        }
+      ],
+      "run_id": 43570517907
+    },
+    {
+      "event": "pull_request",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "id": 132373695864,
+          "name": "onnx-interface-test"
+        },
+        {
+          "conclusion": "success",
+          "id": 132373696076,
+          "name": "synthetic-unit"
+        }
+      ],
+      "run_id": 43570522632
+    }
+  ],
+  "source_sha": "60f6d7fbadf9c0cdbeb087f6452d7b07ea77abd5"
+}

@@ -1,0 +1,794 @@
+{
+  "authorization_fd": 10,
+  "binding_sha256": "c0208fb9a205b1329a227f6536b9753ff9aeefc1c9da65e8638287b6be1e1fe5",
+  "elapsed_seconds": 5.705626306999989,
+  "environment": {
+    "DISPLAY": ":99",
+    "FIRST_DIVERGENCE_TRIAL_FD": "10",
+    "GITHUB_ACTIONS": "true",
+    "HOME": "/tmp",
+    "HOSTNAME": "stage7-sealed-native",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "LD_LIBRARY_PATH": "/opt/venv/lib/python3.11/site-packages/cv2/../../lib64:",
+    "LIBGL_ALWAYS_SOFTWARE": "1",
+    "MESA_SHADER_CACHE_DIR": "/work/cache/case_00",
+    "OMP_NUM_THREADS": "2",
+    "PATH": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+    "PWD": "/work/repo",
+    "PYOPENGL_PLATFORM": "glx",
+    "RUNNER_TEMP": "/work",
+    "TMPDIR": "/tmp",
+    "XAUTHORITY": "/tmp/xvfb-run.zgnDOm/Xauthority"
+  },
+  "identity": {
+    "core_sha256": "6563f6af12ed20dafbe5ff7a67e960f0878bb0ac40c1731b4d45ad1c92a03f2c",
+    "host_details": {
+      "affinity_ids": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "memory_total_bytes": 16759304192
+    },
+    "installed_identity": {
+      "core": {
+        "configuration": {
+          "cache_policy": "fresh-per-case-external-bounded",
+          "device_passthrough": false,
+          "environment_profile_sha256": "afaaa5fe258f0bbb5ee702bad96f0869325b01f5b6e1b98761a15c06f6801fc6",
+          "host_display_mounts": false,
+          "host_native_library_mounts": false,
+          "imports_isolated": true,
+          "read_only_rootfs": true,
+          "render_env": {
+            "LIBGL_ALWAYS_SOFTWARE": "1",
+            "OMP_NUM_THREADS": "2",
+            "PYOPENGL_PLATFORM": "glx"
+          },
+          "source_mount_read_only": true
+        },
+        "engine": {
+          "docker_api": "1.48",
+          "docker_client": "28.0.4",
+          "docker_server": "28.0.4",
+          "oci_runtime": "runc:v1.5.2-0-g29dd3dc2",
+          "storage_driver": "overlay2"
+        },
+        "host": {
+          "affinity_cpus": 4,
+          "byteorder": "little",
+          "cpu_flags": [
+            "3dnowprefetch",
+            "abm",
+            "adx",
+            "aes",
+            "amx_bf16",
+            "amx_int8",
+            "amx_tile",
+            "aperfmperf",
+            "apic",
+            "arch_capabilities",
+            "avx",
+            "avx2",
+            "avx512_bf16",
+            "avx512_bitalg",
+            "avx512_fp16",
+            "avx512_vbmi2",
+            "avx512_vnni",
+            "avx512_vpopcntdq",
+            "avx512bw",
+            "avx512cd",
+            "avx512dq",
+            "avx512f",
+            "avx512ifma",
+            "avx512vbmi",
+            "avx512vl",
+            "avx_vnni",
+            "bmi1",
+            "bmi2",
+            "cldemote",
+            "clflush",
+            "clflushopt",
+            "clwb",
+            "cmov",
+            "constant_tsc",
+            "cpuid",
+            "cx16",
+            "cx8",
+            "de",
+            "ept",
+            "ept_ad",
+            "erms",
+            "f16c",
+            "fma",
+            "fpu",
+            "fsgsbase",
+            "fsrm",
+            "fxsr",
+            "gfni",
+            "hle",
+            "ht",
+            "hypervisor",
+            "ibt",
+            "invpcid",
+            "la57",
+            "lahf_lm",
+            "lm",
+            "mca",
+            "mce",
+            "mmx",
+            "movbe",
+            "movdir64b",
+            "movdiri",
+            "msr",
+            "mtrr",
+            "nonstop_tsc",
+            "nopl",
+            "nx",
+            "pae",
+            "pat",
+            "pcid",
+            "pclmulqdq",
+            "pdpe1gb",
+            "pge",
+            "pni",
+            "popcnt",
+            "pse",
+            "pse36",
+            "rdpid",
+            "rdrand",
+            "rdseed",
+            "rdtscp",
+            "rep_good",
+            "rtm",
+            "sep",
+            "serialize",
+            "sha_ni",
+            "smap",
+            "smep",
+            "ss",
+            "sse",
+            "sse2",
+            "sse4_1",
+            "sse4_2",
+            "ssse3",
+            "syscall",
+            "tpr_shadow",
+            "tsc",
+            "tsc_adjust",
+            "tsc_deadline_timer",
+            "tsc_known_freq",
+            "tsc_reliable",
+            "tsxldtrk",
+            "umip",
+            "user_shstk",
+            "vaes",
+            "vme",
+            "vmx",
+            "vnmi",
+            "vpclmulqdq",
+            "vpid",
+            "waitpkg",
+            "x2apic",
+            "xgetbv1",
+            "xsave",
+            "xsavec",
+            "xsaveopt",
+            "xsaves",
+            "xtopology"
+          ],
+          "cpu_model": "Intel(R) Xeon(R) 6973P-C",
+          "cpu_vendor": "GenuineIntel",
+          "logical_cpus": 4,
+          "machine": "x86_64",
+          "release": "7.0.0-1017-azure",
+          "sysname": "Linux",
+          "version": "#17~24.04.1-Ubuntu SMP PREEMPT Thu Sep 24 18:46:57 UTC 2026"
+        },
+        "image": {
+          "artifact_id": 14078483374,
+          "artifact_zip_sha256": "62e09e31d565890a82b4965bafe855ad382e9a22794d12310fe0f06e695e920a",
+          "assets_zip_sha256": "4f0da9f5143a1258131c5b55f77bdf170c0f9bce8a9f18dd41b3678df779eac9",
+          "build_recipe_sha256": "86484b019f95f0b3087c32c0fbf24001e69ea6b3af3727129f0a005dcdcb8d6c",
+          "config_digest": "sha256:2b0854f1cf91e470994637f52f4e8c78c618ed00b1496a40bb05158290e01a37",
+          "distribution": "actions-docker-save-v1",
+          "image_tar_sha256": "f69b8ece51bcc6911aaf118d5ea091ba4d6ace8418b480e408be5b9fd8cb2921",
+          "installed_files_sha256": "f81fa5be38bc9853b6eff1d0ea524be97f3d1e92f5c1f0f9e1449a11b4c4b59f",
+          "lock_sha256": "8f214a1454557e588425d473cefa946c14e443e4cc47f85c1bfce02673d9552a",
+          "platform": "linux/amd64",
+          "rootfs_diff_ids": [
+            "sha256:21210938f5a37a9887b2d0a20428917b923a636ca6efe038c3c7d9cd9f1f9b61",
+            "sha256:2be112340d71ee43c6819c0259e050c865f12bf7c9837bb4cb8839f196db779c",
+            "sha256:f2fca4086c8612de50eccd05fee84655db8d071fd6b0651200f2be6d1ccfc90a",
+            "sha256:239e68b48ac29be0254dfad4b0ee14138d26ff2ea91852b7a6ca147e22ea7f61",
+            "sha256:ed744a455c23963a1766deeb20a89020917f0d1f33a1d663fdc97f99279e12c6",
+            "sha256:a556f0ec831a9814191d64ab66cf3cec89bed47bda59444a61a7c0fe3f45a0ea",
+            "sha256:8f86aac91e848162bd1f7b46663b3f2141c522c54e4fcb415dca6f9aeb972f27",
+            "sha256:0511464e26b9263af5856802ed4e5479c63560dc2d30d0d535d5c8f6b465a769",
+            "sha256:d6799d868d199cfd5482d62aa735e74d9ece7a30489d03b1505a72fa5f123602",
+            "sha256:f150c0ec8770d5d98573cd167c2e705822e18eae979adb2a81dc04ee31f48efe"
+          ]
+        },
+        "versions": {
+          "cv2": "5.0.0",
+          "executable": "/opt/venv/bin/python",
+          "metadrive_simulator": "0.4.3",
+          "numpy": "2.4.6",
+          "opencv_python_headless": "5.0.0.93",
+          "panda3d": "1.10.13",
+          "python": "3.11.18"
+        }
+      },
+      "core_sha256": "6fd20bcca67a77250031f49ea09cccbd92424226bd69e45e21cc6930eff1ab2c",
+      "schema": "engine-clock-installed-identity-v1"
+    },
+    "schema": "engine-clock-held-abba-identity-v3"
+  },
+  "inventory": {
+    "bytes_read": 1670492280,
+    "canonical_manifest_sha256": "f81fa5be38bc9853b6eff1d0ea524be97f3d1e92f5c1f0f9e1449a11b4c4b59f",
+    "complete": true,
+    "elapsed_s": 4.21234850999997,
+    "error": null,
+    "failure_path": null,
+    "failure_stage": null,
+    "inventory_manifest": {
+      "nbytes": 8339196,
+      "path": "/work/binding/installed-files.json",
+      "sha256": "f81fa5be38bc9853b6eff1d0ea524be97f3d1e92f5c1f0f9e1449a11b4c4b59f"
+    },
+    "matched_entries": 44232,
+    "matched_prefix": [
+      {
+        "kind": "file",
+        "mode": 384,
+        "nbytes": 0,
+        "path": "/etc/.pwd.lock",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "kind": "file",
+        "mode": 493,
+        "nbytes": 709,
+        "path": "/etc/X11/Xreset",
+        "sha256": "a6a17509c4d16c95018c14c199350527c2c358cf440e32331eb3fc2afc12aa62"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "nbytes": 205,
+        "path": "/etc/X11/Xreset.d/README",
+        "sha256": "d56429429532b7e87013aca475067890964e3e4746ee2d7025180800310d0f26"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "nbytes": 319,
+        "path": "/etc/X11/Xresources/x11-common",
+        "sha256": "abb8f49e63779b32ffc3b678212650b4c307567afc9216f522876d7b5857b25b"
+      },
+      {
+        "kind": "file",
+        "mode": 493,
+        "nbytes": 4139,
+        "path": "/etc/X11/Xsession",
+        "sha256": "55fd60f9b2b2c6589719a85c94407bfc5bace37aa90866e882d8cdc45fd461ca"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "nbytes": 1867,
+        "path": "/etc/X11/Xsession.d/20x11-common_process-args",
+        "sha256": "ec8cce2ca0022c33088113e930ceda164746ba82262a9dc37ae5874ee300ac51"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "nbytes": 878,
+        "path": "/etc/X11/Xsession.d/30x11-common_xresources",
+        "sha256": "afe858a06cfa7f21b8b5694780b98766de39c0cb6eaf7a4623b978ad3c6bc51c"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "nbytes": 389,
+        "path": "/etc/X11/Xsession.d/35x11-common_xhost-local",
+        "sha256": "162189201eaa9ee96f1fc9546b83d88682903b69dc326e8c3cb51f58043a18d4"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "nbytes": 187,
+        "path": "/etc/X11/Xsession.d/40x11-common_xsessionrc",
+        "sha256": "76944eea06861af747d0ed1cd516ef597d4f1543b040e025bfa1df15906ce73f"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "nbytes": 1568,
+        "path": "/etc/X11/Xsession.d/50x11-common_determine-startup",
+        "sha256": "c8aa9d6622178eeae1b0c20475338384f0f4e6a3b1a2f788906006bdacf3792a"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "nbytes": 991,
+        "path": "/etc/X11/Xsession.d/60x11-common_xdg_path",
+        "sha256": "1df2f67a9322edbd1e4a85c31de8962c36d498fc58b88edafd4d382efa3b8e14"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "nbytes": 385,
+        "path": "/etc/X11/Xsession.d/90x11-common_ssh-agent",
+        "sha256": "91ccb7ffc6e17cb36c7cefcd39a6f7b95c355ef1187c91e1f23f9367ca3a588b"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "nbytes": 166,
+        "path": "/etc/X11/Xsession.d/99x11-common_start",
+        "sha256": "e1e8fccc5299746efba8d7550ac0cf19002659ee298c53c8591ee6e3efcc7220"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "nbytes": 265,
+        "path": "/etc/X11/Xsession.options",
+        "sha256": "0d59030f6d7a466ba62f301ff970ebda039cc9eac8ed9045dcf570460d41fb64"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "nbytes": 17394,
+        "path": "/etc/X11/rgb.txt",
+        "sha256": "2c8ab5acc9eb072f4cc88696834188100d05e50af5d1425501d993700aaa3164"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "nbytes": 100,
+        "path": "/etc/alternatives/README",
+        "sha256": "a44afdb50eacfc09e45f6dac1e18ae231c179feec633c106e1060bae8ae11df1"
+      },
+      {
+        "kind": "symlink",
+        "path": "/etc/alternatives/awk",
+        "target": "/usr/bin/mawk"
+      },
+      {
+        "kind": "symlink",
+        "path": "/etc/alternatives/nawk",
+        "target": "/usr/bin/mawk"
+      },
+      {
+        "kind": "symlink",
+        "path": "/etc/alternatives/pager",
+        "target": "/usr/bin/more"
+      },
+      {
+        "kind": "symlink",
+        "path": "/etc/alternatives/rmt",
+        "target": "/usr/sbin/rmt-tar"
+      },
+      {
+        "kind": "symlink",
+        "path": "/etc/alternatives/which",
+        "target": "/usr/bin/which.debianutils"
+      },
+      {
+        "kind": "symlink",
+        "path": "/etc/alternatives/x-cursor-theme",
+        "target": "/usr/share/icons/Adwaita/cursor.theme"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "nbytes": 92,
+        "path": "/etc/apt/apt.conf.d/01-vendor-ubuntu",
+        "sha256": "364d5eeac5475b7dddfd629899ea88b91ed8d8e8e319c29bb9dbd6772e87ed55"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "nbytes": 399,
+        "path": "/etc/apt/apt.conf.d/01autoremove",
+        "sha256": "35b4360d9126e5e5efc1ce42cea8a957ba42921de749ad8502922d536c9f385c"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "nbytes": 182,
+        "path": "/etc/apt/apt.conf.d/70debconf",
+        "sha256": "db749e19baf3b72ca2c157c70c52522cae23d94bc8b2dc5793fd43d427445367"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "nbytes": 44,
+        "path": "/etc/apt/apt.conf.d/docker-autoremove-suggests",
+        "sha256": "4f4226614def131b475bcdaf1e5dda59a1af62fee838cbfc02a01c25e614efc1"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "nbytes": 318,
+        "path": "/etc/apt/apt.conf.d/docker-clean",
+        "sha256": "49d72455b2eaa50fa4b09b3ecffff753f3b90193266b2999f30e3f696403fde2"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "nbytes": 27,
+        "path": "/etc/apt/apt.conf.d/docker-disable-periodic-update",
+        "sha256": "76438287a35c23e21dcadba0db4d4aff4be121c581e759ad425c16ed4e4f4dbb"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "nbytes": 70,
+        "path": "/etc/apt/apt.conf.d/docker-gzip-indexes",
+        "sha256": "151044925acbe5c83434424d1b628e208790ecb2db0aabbe83dc8622495cf846"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "nbytes": 27,
+        "path": "/etc/apt/apt.conf.d/docker-no-languages",
+        "sha256": "5970f921a86106d617c00deb6b2c7e5a37922fda8f2296bf43eebb83a72a2a4a"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "nbytes": 270,
+        "path": "/etc/apt/sources.list",
+        "sha256": "8ce6407d5487bed332b5fcb4aab26dacf3f516d811c26792efb0c67f06f1958b"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "nbytes": 2552,
+        "path": "/etc/apt/sources.list.d/ubuntu.sources",
+        "sha256": "9a4af756e974a7a6b0a447705d1d12366cfa4d860d8722b652d69d8e1b44e34f"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "nbytes": 1165,
+        "path": "/etc/apt/trusted.gpg.d/ubuntu-keyring-2012-cdimage.gpg",
+        "sha256": "192b3782ba2e00e05b6521371fbe67847efad3fdd1cfb87621882d833c8703fa"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "nbytes": 1167,
+        "path": "/etc/apt/trusted.gpg.d/ubuntu-keyring-2018-archive.gpg",
+        "sha256": "5ebbeeb474034b1fa7e50abbe6f136e177fc826219e01f314b3623f7b3097e96"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "nbytes": 2319,
+        "path": "/etc/bash.bashrc",
+        "sha256": "29128d49b590338131373ec431a59c0b5318330050aac9ac61d5098517ac9a25"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "nbytes": 367,
+        "path": "/etc/bindresvport.blacklist",
+        "sha256": "63229551ffc257f56e3df60ca97e1f2963f3ab2128ce27a0f398b4418fa454d0"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "nbytes": 50,
+        "path": "/etc/cloud/build.info",
+        "sha256": "1388601eb2b588dd9a1f2d511d5cb54a4a783f7bf7a9946768d1ec84ffe221ce"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "nbytes": 201,
+        "path": "/etc/cron.d/e2scrub_all",
+        "sha256": "d4df081b982b23e66cac7102f9d91032f296caf13031991d90af44ee6cbf6e3b"
+      },
+      {
+        "kind": "file",
+        "mode": 493,
+        "nbytes": 1478,
+        "path": "/etc/cron.daily/apt-compat",
+        "sha256": "1983c659b042b1ec26127e7874954d83cd97eb8dcfd03238a7d2031ea0182fbe"
+      },
+      {
+        "kind": "file",
+        "mode": 493,
+        "nbytes": 123,
+        "path": "/etc/cron.daily/dpkg",
+        "sha256": "9f2fdd4b4e7706dda74e8e443e1e1da0fbbb19c62a58e230e90d648b69177c35"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "nbytes": 2967,
+        "path": "/etc/debconf.conf",
+        "sha256": "0d0e7109df366b0e963add08e218d62afb516218deeb3b5aa9259b821efb569c"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "nbytes": 11,
+        "path": "/etc/debian_version",
+        "sha256": "2697ab64a99349ddc186811c17cc891780c0497e03f2eeeedc1cd16e156b386d"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "nbytes": 13,
+        "path": "/etc/default/locale",
+        "sha256": "89dd29db91ea608d72b5b4d3d3f5816cc2d3c1dd730741dc41b20ce12f1c2b3b"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "nbytes": 1117,
+        "path": "/etc/default/useradd",
+        "sha256": "6702e1cb0d7035a0d7a2beeded69f69acd8ac2b2778913b5afe60595936448f5"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "nbytes": 446,
+        "path": "/etc/dpkg/dpkg.cfg",
+        "sha256": "fead43b89af3ea5691c48f32d7fe1ba0f7ab229fb5d230f612d76fe8e6f5a015"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "nbytes": 16,
+        "path": "/etc/dpkg/dpkg.cfg.d/docker-apt-speedup",
+        "sha256": "94372f4a7672c283c0fe956b0638ec8731e21584d880ba782a1a338b906caeb1"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "nbytes": 364,
+        "path": "/etc/dpkg/dpkg.cfg.d/excludes",
+        "sha256": "61159013263411a7c7a4157a6ddcd4eca3329ee698e508850070af11338098db"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "nbytes": 83,
+        "path": "/etc/dpkg/origins/debian",
+        "sha256": "bd81f9756beb90195877d808492a55d66c7155b1017679ced60fb278d378b55a"
+      },
+      {
+        "kind": "symlink",
+        "path": "/etc/dpkg/origins/default",
+        "target": "ubuntu"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "nbytes": 114,
+        "path": "/etc/dpkg/origins/ubuntu",
+        "sha256": "d2537b95a64d238223bd22c18cab773379359d078d495ed212f28b1ac139662d"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "nbytes": 685,
+        "path": "/etc/e2scrub.conf",
+        "sha256": "461e21f3dc1a5f9f3fe7c4e425c93de09fe11e77f5be67b719c81c5b2202ce53"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "nbytes": 106,
+        "path": "/etc/environment",
+        "sha256": "3d88795b8d42b87bbbf91f8d30dae43b6db9ecd4b1eb93a883062352c902ff5d"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "nbytes": 874,
+        "path": "/etc/fonts/conf.avail/20-unhint-small-dejavu-lgc-sans-mono.conf",
+        "sha256": "0a6b0f1c1f5d1c06a811b517a3d2690700bba8e961cd55dd2c7648cde3605a21"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "nbytes": 864,
+        "path": "/etc/fonts/conf.avail/20-unhint-small-dejavu-lgc-sans.conf",
+        "sha256": "144619057c0a040de247c74cf09f230d737b9c1c534f3ba8804fdd3ddeded8b0"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "nbytes": 866,
+        "path": "/etc/fonts/conf.avail/20-unhint-small-dejavu-lgc-serif.conf",
+        "sha256": "977c24eb43f10d21263bbdb624649e5edf63147bd7bb4f84db97ce7d53bb9054"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "nbytes": 866,
+        "path": "/etc/fonts/conf.avail/20-unhint-small-dejavu-sans-mono.conf",
+        "sha256": "3e90c9c36beef46f10d1529251f8683b9c4ac900695adbb4a23a4b6036f938a5"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "nbytes": 856,
+        "path": "/etc/fonts/conf.avail/20-unhint-small-dejavu-sans.conf",
+        "sha256": "0d9c177b6a85daa9957ed6750d4eb26122604da18d340e7ba31e6f4d24f963ed"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "nbytes": 858,
+        "path": "/etc/fonts/conf.avail/20-unhint-small-dejavu-serif.conf",
+        "sha256": "68777b1705ec7a05a86430def4be093668e84e305cc7e11291df52403a7318cc"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "nbytes": 1201,
+        "path": "/etc/fonts/conf.avail/57-dejavu-sans-mono.conf",
+        "sha256": "1f2ead86f8203d809abfc9d88d92b04316edd67b6291795ea74ea8a0c3c2e04d"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "nbytes": 1711,
+        "path": "/etc/fonts/conf.avail/57-dejavu-sans.conf",
+        "sha256": "f6285e2d336f93086acfa2ac7895ef75ef5ff34f833ba5a63c09fb2841aedc27"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "nbytes": 1357,
+        "path": "/etc/fonts/conf.avail/57-dejavu-serif.conf",
+        "sha256": "7c596f7e202090ded38fded904c4a17d5a189b6c9cc914a2e88554116f6474ca"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "nbytes": 1545,
+        "path": "/etc/fonts/conf.avail/58-dejavu-lgc-sans-mono.conf",
+        "sha256": "807e5222c6d11a72ad527ebc088f42daf2a807e7718c8f7ff227cbfecafd3d70"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "nbytes": 2063,
+        "path": "/etc/fonts/conf.avail/58-dejavu-lgc-sans.conf",
+        "sha256": "ecde2093f005c73d7da21cdd7b80c791910050609db36cb5eea84a4ba8da5cef"
+      },
+      {
+        "kind": "file",
+        "mode": 420,
+        "nbytes": 1689,
+        "path": "/etc/fonts/conf.avail/58-dejavu-lgc-serif.conf",
+        "sha256": "e685632c3edbb6868a7ca5275e7c71f25486a8cfd16113a478194a5631205619"
+      }
+    ],
+    "native_admission": false,
+    "schema": "engine-clock-file-inventory-result-v1",
+    "status": "INSTALLED_FILES_MATCH",
+    "visited_nodes": 96862
+  },
+  "launch_environment": {
+    "DISPLAY": ":99",
+    "FIRST_DIVERGENCE_TRIAL_FD": "10",
+    "GITHUB_ACTIONS": "true",
+    "HOME": "/tmp",
+    "HOSTNAME": "stage7-sealed-native",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "LIBGL_ALWAYS_SOFTWARE": "1",
+    "MESA_SHADER_CACHE_DIR": "/work/cache/case_00",
+    "OMP_NUM_THREADS": "2",
+    "PATH": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+    "PWD": "/work/repo",
+    "PYOPENGL_PLATFORM": "glx",
+    "RUNNER_TEMP": "/work",
+    "TMPDIR": "/tmp",
+    "XAUTHORITY": "/tmp/xvfb-run.zgnDOm/Xauthority"
+  },
+  "maps_before_native": [
+    "/opt/python/lib/libpython3.11.so.1.0",
+    "/opt/python/lib/python3.11/lib-dynload/_bisect.cpython-311-x86_64-linux-gnu.so",
+    "/opt/python/lib/python3.11/lib-dynload/_blake2.cpython-311-x86_64-linux-gnu.so",
+    "/opt/python/lib/python3.11/lib-dynload/_bz2.cpython-311-x86_64-linux-gnu.so",
+    "/opt/python/lib/python3.11/lib-dynload/_csv.cpython-311-x86_64-linux-gnu.so",
+    "/opt/python/lib/python3.11/lib-dynload/_datetime.cpython-311-x86_64-linux-gnu.so",
+    "/opt/python/lib/python3.11/lib-dynload/_hashlib.cpython-311-x86_64-linux-gnu.so",
+    "/opt/python/lib/python3.11/lib-dynload/_json.cpython-311-x86_64-linux-gnu.so",
+    "/opt/python/lib/python3.11/lib-dynload/_lzma.cpython-311-x86_64-linux-gnu.so",
+    "/opt/python/lib/python3.11/lib-dynload/_posixsubprocess.cpython-311-x86_64-linux-gnu.so",
+    "/opt/python/lib/python3.11/lib-dynload/_random.cpython-311-x86_64-linux-gnu.so",
+    "/opt/python/lib/python3.11/lib-dynload/_sha512.cpython-311-x86_64-linux-gnu.so",
+    "/opt/python/lib/python3.11/lib-dynload/_socket.cpython-311-x86_64-linux-gnu.so",
+    "/opt/python/lib/python3.11/lib-dynload/_ssl.cpython-311-x86_64-linux-gnu.so",
+    "/opt/python/lib/python3.11/lib-dynload/_struct.cpython-311-x86_64-linux-gnu.so",
+    "/opt/python/lib/python3.11/lib-dynload/_typing.cpython-311-x86_64-linux-gnu.so",
+    "/opt/python/lib/python3.11/lib-dynload/_uuid.cpython-311-x86_64-linux-gnu.so",
+    "/opt/python/lib/python3.11/lib-dynload/array.cpython-311-x86_64-linux-gnu.so",
+    "/opt/python/lib/python3.11/lib-dynload/binascii.cpython-311-x86_64-linux-gnu.so",
+    "/opt/python/lib/python3.11/lib-dynload/fcntl.cpython-311-x86_64-linux-gnu.so",
+    "/opt/python/lib/python3.11/lib-dynload/grp.cpython-311-x86_64-linux-gnu.so",
+    "/opt/python/lib/python3.11/lib-dynload/math.cpython-311-x86_64-linux-gnu.so",
+    "/opt/python/lib/python3.11/lib-dynload/resource.cpython-311-x86_64-linux-gnu.so",
+    "/opt/python/lib/python3.11/lib-dynload/select.cpython-311-x86_64-linux-gnu.so",
+    "/opt/python/lib/python3.11/lib-dynload/zlib.cpython-311-x86_64-linux-gnu.so",
+    "/opt/venv/bin/python",
+    "/usr/lib/locale/C.utf8/LC_CTYPE",
+    "/usr/lib/x86_64-linux-gnu/gconv/gconv-modules.cache",
+    "/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2",
+    "/usr/lib/x86_64-linux-gnu/libbz2.so.1.0.4",
+    "/usr/lib/x86_64-linux-gnu/libc.so.6",
+    "/usr/lib/x86_64-linux-gnu/libcrypto.so.3",
+    "/usr/lib/x86_64-linux-gnu/liblzma.so.5.4.5",
+    "/usr/lib/x86_64-linux-gnu/libm.so.6",
+    "/usr/lib/x86_64-linux-gnu/libssl.so.3",
+    "/usr/lib/x86_64-linux-gnu/libuuid.so.1.3.0",
+    "/usr/lib/x86_64-linux-gnu/libz.so.1.3"
+  ],
+  "memory_before": {
+    "cgroup_inode": 8257,
+    "current_bytes": 241414144,
+    "events": {
+      "high": 0,
+      "low": 0,
+      "max": 0,
+      "oom": 0,
+      "oom_group_kill": 0,
+      "oom_kill": 0,
+      "sock_throttled": 0
+    },
+    "max_bytes": 4294967296,
+    "non_atomic": true,
+    "peak_bytes": 427393024,
+    "peak_is_rss": false,
+    "schema": "native-cgroup-memory-v1"
+  },
+  "permit": {
+    "binding_sha256": "c0208fb9a205b1329a227f6536b9753ff9aeefc1c9da65e8638287b6be1e1fe5",
+    "identity_sha256": "6563f6af12ed20dafbe5ff7a67e960f0878bb0ac40c1731b4d45ad1c92a03f2c",
+    "index": 0,
+    "mode": "abba",
+    "nonce": "bce2881567725d8d2da78f75cb6dc59bcac40ea4c13c3c3a52b0e07f95605ad9",
+    "parent_pid": 1,
+    "parent_uuid": "818c4297d56d494da1e661ba3de78ee1",
+    "process_group": 10,
+    "schema": "engine-clock-sealed-abba-permit-v1"
+  },
+  "prefix": {
+    "alias_target": "/opt/python",
+    "canonical_prefix": "/opt/python",
+    "compiled_prefix": "/opt/hostedtoolcache/Python/3.11.18/x64",
+    "external_container_origin_authenticated": false,
+    "installed_runtime_verified": false,
+    "measured": {
+      "/opt/python/lib/libpython3.11.so.1.0": {
+        "nbytes": 23050048,
+        "sha256": "bb41a7ec12bb82772ffb9099b944d2d338a357318548a260a58385f7e802730f"
+      },
+      "/opt/python/lib/python3.11/os.py": {
+        "nbytes": 39530,
+        "sha256": "8a5d4ac7b87c6c5b31fcb5081f7f7c06f8403a2fdb3eb23692c48933baeb899e"
+      },
+      "/opt/venv/bin/python": {
+        "nbytes": 17744,
+        "sha256": "f85c83d76e58e52cc231fe99afe152ff8030a0c92aa0899af995fce839e2e044"
+      }
+    },
+    "native_admission": false,
+    "root_uid": 0,
+    "status": "PREFIX_LAYOUT_AND_OBSERVATION_MATCH"
+  }
+}
