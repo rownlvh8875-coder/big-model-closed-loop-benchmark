@@ -1,0 +1,992 @@
+
+output/stage7-readback-return-core/source-audit/libpandagl.so:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+0000000000062c50 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base>:
+   62c50:	41 57                	push   r15
+   62c52:	41 56                	push   r14
+   62c54:	41 55                	push   r13
+   62c56:	41 54                	push   r12
+   62c58:	4d 89 c4             	mov    r12,r8
+   62c5b:	55                   	push   rbp
+   62c5c:	48 89 fd             	mov    rbp,rdi
+   62c5f:	53                   	push   rbx
+   62c60:	48 89 f3             	mov    rbx,rsi
+   62c63:	48 83 ec 58          	sub    rsp,0x58
+   62c67:	89 54 24 18          	mov    DWORD PTR [rsp+0x18],edx
+   62c6b:	89 4c 24 04          	mov    DWORD PTR [rsp+0x4],ecx
+   62c6f:	48 85 f6             	test   rsi,rsi
+   62c72:	0f 84 88 0a 00 00    	je     63700 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0xab0>
+   62c78:	4d 85 c0             	test   r8,r8
+   62c7b:	0f 84 7f 0a 00 00    	je     63700 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0xab0>
+   62c81:	41 8b 71 08          	mov    esi,DWORD PTR [r9+0x8]
+   62c85:	48 89 ef             	mov    rdi,rbp
+   62c88:	e8 93 89 fc ff       	call   2b620 <_ZN23GLGraphicsStateGuardian15set_read_bufferEi@plt>
+   62c8d:	be 01 00 00 00       	mov    esi,0x1
+   62c92:	bf 05 0d 00 00       	mov    edi,0xd05
+   62c97:	e8 64 6f fc ff       	call   29c00 <glPixelStorei@plt>
+   62c9c:	48 8b 05 fd 8d 06 00 	mov    rax,QWORD PTR [rip+0x68dfd]        # cbaa0 <_ZN11ConfigFlags16_global_modifiedE>
+   62ca3:	48 8b 00             	mov    rax,QWORD PTR [rax]
+   62ca6:	48 39 05 bb b7 06 00 	cmp    QWORD PTR [rip+0x6b7bb],rax        # ce468 <gl_debug@@Base+0xe8>
+   62cad:	0f 85 0d 04 00 00    	jne    630c0 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x470>
+   62cb3:	80 3d b6 b7 06 00 00 	cmp    BYTE PTR [rip+0x6b7b6],0x0        # ce470 <gl_debug@@Base+0xf0>
+   62cba:	74 2c                	je     62ce8 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x98>
+   62cbc:	83 bd 64 03 00 00 0f 	cmp    DWORD PTR [rbp+0x364],0xf
+   62cc3:	74 23                	je     62ce8 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x98>
+   62cc5:	b9 01 00 00 00       	mov    ecx,0x1
+   62cca:	ba 01 00 00 00       	mov    edx,0x1
+   62ccf:	be 01 00 00 00       	mov    esi,0x1
+   62cd4:	c7 85 64 03 00 00 0f 	mov    DWORD PTR [rbp+0x364],0xf
+   62cdb:	00 00 00 
+   62cde:	bf 01 00 00 00       	mov    edi,0x1
+   62ce3:	e8 88 67 fc ff       	call   29470 <glColorMask@plt>
+   62ce8:	48 8b 45 00          	mov    rax,QWORD PTR [rbp+0x0]
+   62cec:	4c 8b 7d 60          	mov    r15,QWORD PTR [rbp+0x60]
+   62cf0:	4c 8d 74 24 30       	lea    r14,[rsp+0x30]
+   62cf5:	4c 89 f7             	mov    rdi,r14
+   62cf8:	4c 8b a8 70 01 00 00 	mov    r13,QWORD PTR [rax+0x170]
+   62cff:	48 8b 05 42 90 06 00 	mov    rax,QWORD PTR [rip+0x69042]        # cbd48 <_ZN11RenderState12_empty_stateE>
+   62d06:	48 8b 30             	mov    rsi,QWORD PTR [rax]
+   62d09:	e8 92 10 03 00       	call   93da0 <_ZN23GLGraphicsStateGuardian23setup_antialias_polygonEv@@Base+0x23b0>
+   62d0e:	48 8b 74 24 30       	mov    rsi,QWORD PTR [rsp+0x30]
+   62d13:	4c 89 fa             	mov    rdx,r15
+   62d16:	48 89 ef             	mov    rdi,rbp
+   62d19:	41 ff d5             	call   r13
+   62d1c:	4c 8b 6c 24 30       	mov    r13,QWORD PTR [rsp+0x30]
+   62d21:	4d 85 ed             	test   r13,r13
+   62d24:	74 12                	je     62d38 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0xe8>
+   62d26:	49 8b 45 00          	mov    rax,QWORD PTR [r13+0x0]
+   62d2a:	4c 89 ef             	mov    rdi,r13
+   62d2d:	ff 50 58             	call   QWORD PTR [rax+0x58]
+   62d30:	84 c0                	test   al,al
+   62d32:	0f 84 d8 04 00 00    	je     63210 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x5c0>
+   62d38:	e8 03 83 fd ff       	call   3b040 <_Z18init_libx11displayv@@Base+0xadc0>
+   62d3d:	4d 8b 94 24 78 01 00 	mov    r10,QWORD PTR [r12+0x178]
+   62d44:	00 
+   62d45:	48 63 40 7c          	movsxd rax,DWORD PTR [rax+0x7c]
+   62d49:	48 8d 04 40          	lea    rax,[rax+rax*2]
+   62d4d:	49 8d 04 c2          	lea    rax,[r10+rax*8]
+   62d51:	48 8b 40 08          	mov    rax,QWORD PTR [rax+0x8]
+   62d55:	48 8b 40 28          	mov    rax,QWORD PTR [rax+0x28]
+   62d59:	8b 50 10             	mov    edx,DWORD PTR [rax+0x10]
+   62d5c:	8b 48 18             	mov    ecx,DWORD PTR [rax+0x18]
+   62d5f:	8b 70 14             	mov    esi,DWORD PTR [rax+0x14]
+   62d62:	8b 40 1c             	mov    eax,DWORD PTR [rax+0x1c]
+   62d65:	89 54 24 20          	mov    DWORD PTR [rsp+0x20],edx
+   62d69:	29 d6                	sub    esi,edx
+   62d6b:	29 c8                	sub    eax,ecx
+   62d6d:	89 4c 24 1c          	mov    DWORD PTR [rsp+0x1c],ecx
+   62d71:	89 74 24 08          	mov    DWORD PTR [rsp+0x8],esi
+   62d75:	89 44 24 14          	mov    DWORD PTR [rsp+0x14],eax
+   62d79:	e8 c2 82 fd ff       	call   3b040 <_Z18init_libx11displayv@@Base+0xadc0>
+   62d7e:	e8 bd 82 fd ff       	call   3b040 <_Z18init_libx11displayv@@Base+0xadc0>
+   62d83:	4c 8b 5b 50          	mov    r11,QWORD PTR [rbx+0x50]
+   62d87:	48 63 40 7c          	movsxd rax,DWORD PTR [rax+0x7c]
+   62d8b:	48 8d 04 40          	lea    rax,[rax+rax*2]
+   62d8f:	49 8d 04 c3          	lea    rax,[r11+rax*8]
+   62d93:	48 8b 40 08          	mov    rax,QWORD PTR [rax+0x8]
+   62d97:	44 8b a8 44 01 00 00 	mov    r13d,DWORD PTR [rax+0x144]
+   62d9e:	41 83 fd 18          	cmp    r13d,0x18
+   62da2:	0f 84 e8 07 00 00    	je     63590 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x940>
+   62da8:	0f 87 f2 02 00 00    	ja     630a0 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x450>
+   62dae:	41 83 fd 01          	cmp    r13d,0x1
+   62db2:	0f 84 f8 08 00 00    	je     636b0 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0xa60>
+   62db8:	41 83 fd 17          	cmp    r13d,0x17
+   62dbc:	0f 85 9e 08 00 00    	jne    63660 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0xa10>
+   62dc2:	48 8b 85 d0 00 00 00 	mov    rax,QWORD PTR [rbp+0xd0]
+   62dc9:	c7 44 24 10 02 00 00 	mov    DWORD PTR [rsp+0x10],0x2
+   62dd0:	00 
+   62dd1:	f6 40 3c 80          	test   BYTE PTR [rax+0x3c],0x80
+   62dd5:	0f 84 55 08 00 00    	je     63630 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x9e0>
+   62ddb:	0f 1f 44 00 00       	nop    DWORD PTR [rax+rax*1+0x0]
+   62de0:	8b 44 24 04          	mov    eax,DWORD PTR [rsp+0x4]
+   62de4:	41 89 c4             	mov    r12d,eax
+   62de7:	c1 f8 1f             	sar    eax,0x1f
+   62dea:	41 89 c7             	mov    r15d,eax
+   62ded:	41 c1 fc 1f          	sar    r12d,0x1f
+   62df1:	e8 4a 82 fd ff       	call   3b040 <_Z18init_libx11displayv@@Base+0xadc0>
+   62df6:	4c 8b 43 50          	mov    r8,QWORD PTR [rbx+0x50]
+   62dfa:	41 83 e4 fb          	and    r12d,0xfffffffb
+   62dfe:	41 83 e7 fd          	and    r15d,0xfffffffd
+   62e02:	48 63 40 7c          	movsxd rax,DWORD PTR [rax+0x7c]
+   62e06:	41 83 c4 06          	add    r12d,0x6
+   62e0a:	41 83 c7 04          	add    r15d,0x4
+   62e0e:	48 8d 04 40          	lea    rax,[rax+rax*2]
+   62e12:	49 8d 04 c0          	lea    rax,[r8+rax*8]
+   62e16:	48 8b 40 08          	mov    rax,QWORD PTR [rax+0x8]
+   62e1a:	8b 80 34 01 00 00    	mov    eax,DWORD PTR [rax+0x134]
+   62e20:	89 44 24 24          	mov    DWORD PTR [rsp+0x24],eax
+   62e24:	e8 17 82 fd ff       	call   3b040 <_Z18init_libx11displayv@@Base+0xadc0>
+   62e29:	4c 8b 4b 50          	mov    r9,QWORD PTR [rbx+0x50]
+   62e2d:	8b 54 24 08          	mov    edx,DWORD PTR [rsp+0x8]
+   62e31:	48 63 40 7c          	movsxd rax,DWORD PTR [rax+0x7c]
+   62e35:	48 8d 04 40          	lea    rax,[rax+rax*2]
+   62e39:	49 8d 04 c1          	lea    rax,[r9+rax*8]
+   62e3d:	48 8b 40 08          	mov    rax,QWORD PTR [rax+0x8]
+   62e41:	3b 90 28 01 00 00    	cmp    edx,DWORD PTR [rax+0x128]
+   62e47:	0f 84 b3 04 00 00    	je     63300 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x6b0>
+   62e4d:	e8 ee 81 fd ff       	call   3b040 <_Z18init_libx11displayv@@Base+0xadc0>
+   62e52:	ba 01 00 00 00       	mov    edx,0x1
+   62e57:	4c 89 f7             	mov    rdi,r14
+   62e5a:	48 89 c1             	mov    rcx,rax
+   62e5d:	48 8d 43 38          	lea    rax,[rbx+0x38]
+   62e61:	48 89 c6             	mov    rsi,rax
+   62e64:	48 89 44 24 28       	mov    QWORD PTR [rsp+0x28],rax
+   62e69:	e8 62 ed 02 00       	call   91bd0 <_ZN23GLGraphicsStateGuardian23setup_antialias_polygonEv@@Base+0x1e0>
+   62e6e:	4c 89 f7             	mov    rdi,r14
+   62e71:	e8 ea fa 02 00       	call   92960 <_ZN23GLGraphicsStateGuardian23setup_antialias_polygonEv@@Base+0xf70>
+   62e76:	41 55                	push   r13
+   62e78:	48 89 df             	mov    rdi,rbx
+   62e7b:	45 89 e1             	mov    r9d,r12d
+   62e7e:	48 89 c6             	mov    rsi,rax
+   62e81:	8b 44 24 18          	mov    eax,DWORD PTR [rsp+0x18]
+   62e85:	44 89 fa             	mov    edx,r15d
+   62e88:	50                   	push   rax
+   62e89:	44 8b 44 24 24       	mov    r8d,DWORD PTR [rsp+0x24]
+   62e8e:	8b 4c 24 18          	mov    ecx,DWORD PTR [rsp+0x18]
+   62e92:	e8 69 75 fc ff       	call   2a400 <_ZN7Texture16do_setup_textureEPNS_5CDataENS_11TextureTypeEiiiNS_13ComponentTypeENS_6FormatE@plt>
+   62e97:	5e                   	pop    rsi
+   62e98:	5f                   	pop    rdi
+   62e99:	48 83 7c 24 40 00    	cmp    QWORD PTR [rsp+0x40],0x0
+   62e9f:	74 4e                	je     62eef <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x29f>
+   62ea1:	48 8b 05 60 89 06 00 	mov    rax,QWORD PTR [rip+0x68960]        # cb808 <_ZN15ThreadPosixImpl17_got_pt_ptr_indexE>
+   62ea8:	4c 8b 6c 24 30       	mov    r13,QWORD PTR [rsp+0x30]
+   62ead:	80 38 00             	cmp    BYTE PTR [rax],0x0
+   62eb0:	0f 84 42 07 00 00    	je     635f8 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x9a8>
+   62eb6:	48 8b 05 b3 8e 06 00 	mov    rax,QWORD PTR [rip+0x68eb3]        # cbd70 <_ZN15ThreadPosixImpl13_pt_ptr_indexE>
+   62ebd:	8b 38                	mov    edi,DWORD PTR [rax]
+   62ebf:	e8 ec 89 fc ff       	call   2b8b0 <pthread_getspecific@plt>
+   62ec4:	48 85 c0             	test   rax,rax
+   62ec7:	0f 84 3b 07 00 00    	je     63608 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x9b8>
+   62ecd:	48 63 40 7c          	movsxd rax,DWORD PTR [rax+0x7c]
+   62ed1:	49 8d 7d 28          	lea    rdi,[r13+0x28]
+   62ed5:	48 8d 0c 40          	lea    rcx,[rax+rax*2]
+   62ed9:	49 8b 45 18          	mov    rax,QWORD PTR [r13+0x18]
+   62edd:	83 6c c8 10 01       	sub    DWORD PTR [rax+rcx*8+0x10],0x1
+   62ee2:	e8 09 75 fc ff       	call   2a3f0 <pthread_mutex_unlock@plt>
+   62ee7:	85 c0                	test   eax,eax
+   62ee9:	0f 85 df 0d 00 00    	jne    63cce <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x107e>
+   62eef:	8b 44 24 18          	mov    eax,DWORD PTR [rsp+0x18]
+   62ef3:	8b 4c 24 24          	mov    ecx,DWORD PTR [rsp+0x24]
+   62ef7:	83 c0 01             	add    eax,0x1
+   62efa:	41 89 cf             	mov    r15d,ecx
+   62efd:	39 c8                	cmp    eax,ecx
+   62eff:	44 0f 4d f8          	cmovge r15d,eax
+   62f03:	41 83 ff 01          	cmp    r15d,0x1
+   62f07:	7e 38                	jle    62f41 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x2f1>
+   62f09:	e8 32 81 fd ff       	call   3b040 <_Z18init_libx11displayv@@Base+0xadc0>
+   62f0e:	48 8b 74 24 28       	mov    rsi,QWORD PTR [rsp+0x28]
+   62f13:	ba 01 00 00 00       	mov    edx,0x1
+   62f18:	4c 89 f7             	mov    rdi,r14
+   62f1b:	48 89 c1             	mov    rcx,rax
+   62f1e:	e8 ad ec 02 00       	call   91bd0 <_ZN23GLGraphicsStateGuardian23setup_antialias_polygonEv@@Base+0x1e0>
+   62f23:	4c 89 f7             	mov    rdi,r14
+   62f26:	e8 35 fa 02 00       	call   92960 <_ZN23GLGraphicsStateGuardian23setup_antialias_polygonEv@@Base+0xf70>
+   62f2b:	48 89 df             	mov    rdi,rbx
+   62f2e:	44 89 fa             	mov    edx,r15d
+   62f31:	48 89 c6             	mov    rsi,rax
+   62f34:	e8 37 63 fc ff       	call   29270 <_ZN7Texture16do_set_num_viewsEPNS_5CDataEi@plt>
+   62f39:	4c 89 f7             	mov    rdi,r14
+   62f3c:	e8 ef f8 02 00       	call   92830 <_ZN23GLGraphicsStateGuardian23setup_antialias_polygonEv@@Base+0xe40>
+   62f41:	e8 fa 80 fd ff       	call   3b040 <_Z18init_libx11displayv@@Base+0xadc0>
+   62f46:	4c 8b 63 50          	mov    r12,QWORD PTR [rbx+0x50]
+   62f4a:	8b 4c 24 04          	mov    ecx,DWORD PTR [rsp+0x4]
+   62f4e:	48 63 40 7c          	movsxd rax,DWORD PTR [rax+0x7c]
+   62f52:	48 8d 04 40          	lea    rax,[rax+rax*2]
+   62f56:	49 8d 04 c4          	lea    rax,[r12+rax*8]
+   62f5a:	48 8b 40 08          	mov    rax,QWORD PTR [rax+0x8]
+   62f5e:	3b 88 30 01 00 00    	cmp    ecx,DWORD PTR [rax+0x130]
+   62f64:	0f 8d 26 08 00 00    	jge    63790 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0xb40>
+   62f6a:	48 89 de             	mov    rsi,rbx
+   62f6d:	48 89 ef             	mov    rdi,rbp
+   62f70:	e8 eb 8c fc ff       	call   2bc60 <_ZNK23GLGraphicsStateGuardian25get_external_image_formatEP7Texture@plt>
+   62f75:	4c 8b 25 04 8b 06 00 	mov    r12,QWORD PTR [rip+0x68b04]        # cba80 <glgsg_cat@@Base-0x2408>
+   62f7c:	41 89 c5             	mov    r13d,eax
+   62f7f:	4c 89 e7             	mov    rdi,r12
+   62f82:	e8 89 8e fc ff       	call   2be10 <_ZN19NotifyCategoryProxyI31NotifyCategoryGetCategory_glgsgE14get_unsafe_ptrEv@plt>
+   62f87:	49 89 c7             	mov    r15,rax
+   62f8a:	48 8b 05 0f 8b 06 00 	mov    rax,QWORD PTR [rip+0x68b0f]        # cbaa0 <_ZN11ConfigFlags16_global_modifiedE>
+   62f91:	48 8b 00             	mov    rax,QWORD PTR [rax]
+   62f94:	49 39 47 50          	cmp    QWORD PTR [r15+0x50],rax
+   62f98:	0f 85 42 01 00 00    	jne    630e0 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x490>
+   62f9e:	41 83 7f 58 01       	cmp    DWORD PTR [r15+0x58],0x1
+   62fa3:	0f 8e 4a 01 00 00    	jle    630f3 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x4a3>
+   62fa9:	4c 89 f7             	mov    rdi,r14
+   62fac:	48 89 de             	mov    rsi,rbx
+   62faf:	e8 0c f0 02 00       	call   91fc0 <_ZN23GLGraphicsStateGuardian23setup_antialias_polygonEv@@Base+0x5d0>
+   62fb4:	48 8b 7c 24 30       	mov    rdi,QWORD PTR [rsp+0x30]
+   62fb9:	48 85 ff             	test   rdi,rdi
+   62fbc:	0f 84 2e 07 00 00    	je     636f0 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0xaa0>
+   62fc2:	4c 8b 7f 28          	mov    r15,QWORD PTR [rdi+0x28]
+   62fc6:	b8 00 00 00 00       	mov    eax,0x0
+   62fcb:	4c 39 7f 30          	cmp    QWORD PTR [rdi+0x30],r15
+   62fcf:	4c 0f 44 f8          	cmove  r15,rax
+   62fd3:	e8 48 30 03 00       	call   96020 <_ZN23GLGraphicsStateGuardian23setup_antialias_polygonEv@@Base+0x4630>
+   62fd8:	e8 63 80 fd ff       	call   3b040 <_Z18init_libx11displayv@@Base+0xadc0>
+   62fdd:	4c 8b 5b 50          	mov    r11,QWORD PTR [rbx+0x50]
+   62fe1:	48 63 40 7c          	movsxd rax,DWORD PTR [rax+0x7c]
+   62fe5:	48 8d 04 40          	lea    rax,[rax+rax*2]
+   62fe9:	49 8d 04 c3          	lea    rax,[r11+rax*8]
+   62fed:	48 8b 40 08          	mov    rax,QWORD PTR [rax+0x8]
+   62ff1:	48 8b 90 d0 01 00 00 	mov    rdx,QWORD PTR [rax+0x1d0]
+   62ff8:	48 39 90 d8 01 00 00 	cmp    QWORD PTR [rax+0x1d8],rdx
+   62fff:	0f 84 db 06 00 00    	je     636e0 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0xa90>
+   63005:	48 8b 02             	mov    rax,QWORD PTR [rdx]
+   63008:	45 31 e4             	xor    r12d,r12d
+   6300b:	48 85 c0             	test   rax,rax
+   6300e:	74 08                	je     63018 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x3c8>
+   63010:	4c 8b 60 30          	mov    r12,QWORD PTR [rax+0x30]
+   63014:	4c 2b 60 28          	sub    r12,QWORD PTR [rax+0x28]
+   63018:	44 8b 54 24 04       	mov    r10d,DWORD PTR [rsp+0x4]
+   6301d:	45 85 d2             	test   r10d,r10d
+   63020:	0f 89 fa 01 00 00    	jns    63220 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x5d0>
+   63026:	44 8b 4c 24 18       	mov    r9d,DWORD PTR [rsp+0x18]
+   6302b:	45 85 c9             	test   r9d,r9d
+   6302e:	0f 8f ec 01 00 00    	jg     63220 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x5d0>
+   63034:	8b 74 24 10          	mov    esi,DWORD PTR [rsp+0x10]
+   63038:	48 89 ef             	mov    rdi,rbp
+   6303b:	e8 90 97 fc ff       	call   2c7d0 <_ZN23GLGraphicsStateGuardian18get_component_typeEN7Texture13ComponentTypeE@plt>
+   63040:	48 83 ec 08          	sub    rsp,0x8
+   63044:	45 89 e8             	mov    r8d,r13d
+   63047:	41 57                	push   r15
+   63049:	8b 4c 24 24          	mov    ecx,DWORD PTR [rsp+0x24]
+   6304d:	41 89 c1             	mov    r9d,eax
+   63050:	8b 54 24 18          	mov    edx,DWORD PTR [rsp+0x18]
+   63054:	8b 74 24 2c          	mov    esi,DWORD PTR [rsp+0x2c]
+   63058:	8b 7c 24 30          	mov    edi,DWORD PTR [rsp+0x30]
+   6305c:	e8 3f 6a fc ff       	call   29aa0 <glReadPixels@plt>
+   63061:	41 8d 85 f9 e6 ff ff 	lea    eax,[r13-0x1907]
+   63068:	5a                   	pop    rdx
+   63069:	59                   	pop    rcx
+   6306a:	83 f8 01             	cmp    eax,0x1
+   6306d:	0f 86 2d 05 00 00    	jbe    635a0 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x950>
+   63073:	44 0f b6 a5 18 0e 00 	movzx  r12d,BYTE PTR [rbp+0xe18]
+   6307a:	00 
+   6307b:	45 84 e4             	test   r12b,r12b
+   6307e:	0f 85 d4 04 00 00    	jne    63558 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x908>
+   63084:	41 bc 01 00 00 00    	mov    r12d,0x1
+   6308a:	48 83 c4 58          	add    rsp,0x58
+   6308e:	44 89 e0             	mov    eax,r12d
+   63091:	5b                   	pop    rbx
+   63092:	5d                   	pop    rbp
+   63093:	41 5c                	pop    r12
+   63095:	41 5d                	pop    r13
+   63097:	41 5e                	pop    r14
+   63099:	41 5f                	pop    r15
+   6309b:	c3                   	ret
+   6309c:	0f 1f 40 00          	nop    DWORD PTR [rax+0x0]
+   630a0:	41 8d 45 e7          	lea    eax,[r13-0x19]
+   630a4:	83 f8 01             	cmp    eax,0x1
+   630a7:	0f 87 b3 05 00 00    	ja     63660 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0xa10>
+   630ad:	c7 44 24 10 02 00 00 	mov    DWORD PTR [rsp+0x10],0x2
+   630b4:	00 
+   630b5:	e9 26 fd ff ff       	jmp    62de0 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x190>
+   630ba:	66 0f 1f 44 00 00    	nop    WORD PTR [rax+rax*1+0x0]
+   630c0:	48 8d 3d 99 b3 06 00 	lea    rdi,[rip+0x6b399]        # ce460 <gl_debug@@Base+0xe0>
+   630c7:	e8 d4 6f fc ff       	call   2a0a0 <_ZNK18ConfigVariableBool12reload_valueEv@plt>
+   630cc:	80 3d 9d b3 06 00 00 	cmp    BYTE PTR [rip+0x6b39d],0x0        # ce470 <gl_debug@@Base+0xf0>
+   630d3:	0f 84 0f fc ff ff    	je     62ce8 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x98>
+   630d9:	e9 de fb ff ff       	jmp    62cbc <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x6c>
+   630de:	66 90                	xchg   ax,ax
+   630e0:	4c 89 ff             	mov    rdi,r15
+   630e3:	e8 78 92 fc ff       	call   2c360 <_ZN14NotifyCategory21update_severity_cacheEv@plt>
+   630e8:	41 83 7f 58 01       	cmp    DWORD PTR [r15+0x58],0x1
+   630ed:	0f 8f b6 fe ff ff    	jg     62fa9 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x359>
+   630f3:	be 01 00 00 00       	mov    esi,0x1
+   630f8:	4c 89 e7             	mov    rdi,r12
+   630fb:	e8 00 88 fc ff       	call   2b900 <_ZN19NotifyCategoryProxyI31NotifyCategoryGetCategory_glgsgE4spamEb@plt>
+   63100:	48 8d 35 a2 f8 04 00 	lea    rsi,[rip+0x4f8a2]        # b29a9 <_fini@@Base+0xb721>
+   63107:	48 89 c7             	mov    rdi,rax
+   6310a:	e8 01 7a fc ff       	call   2ab10 <_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@plt>
+   6310f:	8b 74 24 20          	mov    esi,DWORD PTR [rsp+0x20]
+   63113:	48 89 c7             	mov    rdi,rax
+   63116:	e8 15 91 fc ff       	call   2c230 <_ZNSolsEi@plt>
+   6311b:	48 8d 35 3c 22 05 00 	lea    rsi,[rip+0x5223c]        # b535e <_fini@@Base+0xe0d6>
+   63122:	48 89 c7             	mov    rdi,rax
+   63125:	e8 e6 79 fc ff       	call   2ab10 <_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@plt>
+   6312a:	8b 74 24 1c          	mov    esi,DWORD PTR [rsp+0x1c]
+   6312e:	48 89 c7             	mov    rdi,rax
+   63131:	e8 fa 90 fc ff       	call   2c230 <_ZNSolsEi@plt>
+   63136:	48 8d 35 21 22 05 00 	lea    rsi,[rip+0x52221]        # b535e <_fini@@Base+0xe0d6>
+   6313d:	48 89 c7             	mov    rdi,rax
+   63140:	e8 cb 79 fc ff       	call   2ab10 <_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@plt>
+   63145:	8b 74 24 08          	mov    esi,DWORD PTR [rsp+0x8]
+   63149:	48 89 c7             	mov    rdi,rax
+   6314c:	e8 df 90 fc ff       	call   2c230 <_ZNSolsEi@plt>
+   63151:	48 8d 35 06 22 05 00 	lea    rsi,[rip+0x52206]        # b535e <_fini@@Base+0xe0d6>
+   63158:	48 89 c7             	mov    rdi,rax
+   6315b:	e8 b0 79 fc ff       	call   2ab10 <_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@plt>
+   63160:	8b 74 24 14          	mov    esi,DWORD PTR [rsp+0x14]
+   63164:	48 89 c7             	mov    rdi,rax
+   63167:	e8 c4 90 fc ff       	call   2c230 <_ZNSolsEi@plt>
+   6316c:	48 8d 35 eb 21 05 00 	lea    rsi,[rip+0x521eb]        # b535e <_fini@@Base+0xe0d6>
+   63173:	48 89 c7             	mov    rdi,rax
+   63176:	e8 95 79 fc ff       	call   2ab10 <_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@plt>
+   6317b:	41 81 fd e0 80 00 00 	cmp    r13d,0x80e0
+   63182:	0f 84 88 09 00 00    	je     63b10 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0xec0>
+   63188:	0f 8e 32 02 00 00    	jle    633c0 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x770>
+   6318e:	41 81 fd 27 82 00 00 	cmp    r13d,0x8227
+   63195:	0f 84 35 09 00 00    	je     63ad0 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0xe80>
+   6319b:	41 81 fd f9 84 00 00 	cmp    r13d,0x84f9
+   631a2:	0f 85 f8 02 00 00    	jne    634a0 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x850>
+   631a8:	31 f6                	xor    esi,esi
+   631aa:	4c 89 e7             	mov    rdi,r12
+   631ad:	e8 4e 87 fc ff       	call   2b900 <_ZN19NotifyCategoryProxyI31NotifyCategoryGetCategory_glgsgE4spamEb@plt>
+   631b2:	48 8d 35 13 f8 04 00 	lea    rsi,[rip+0x4f813]        # b29cc <_fini@@Base+0xb744>
+   631b9:	48 89 c7             	mov    rdi,rax
+   631bc:	e8 4f 79 fc ff       	call   2ab10 <_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@plt>
+   631c1:	0f 1f 80 00 00 00 00 	nop    DWORD PTR [rax+0x0]
+   631c8:	8b 74 24 10          	mov    esi,DWORD PTR [rsp+0x10]
+   631cc:	48 89 ef             	mov    rdi,rbp
+   631cf:	e8 fc 95 fc ff       	call   2c7d0 <_ZN23GLGraphicsStateGuardian18get_component_typeEN7Texture13ComponentTypeE@plt>
+   631d4:	3d 36 80 00 00       	cmp    eax,0x8036
+   631d9:	0f 87 21 02 00 00    	ja     63400 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x7b0>
+   631df:	3d 31 80 00 00       	cmp    eax,0x8031
+   631e4:	0f 87 16 03 00 00    	ja     63500 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x8b0>
+   631ea:	2d 00 14 00 00       	sub    eax,0x1400
+   631ef:	83 f8 0b             	cmp    eax,0xb
+   631f2:	0f 87 e8 05 00 00    	ja     637e0 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0xb90>
+   631f8:	48 8d 15 d9 3c 05 00 	lea    rdx,[rip+0x53cd9]        # b6ed8 <_fini@@Base+0xfc50>
+   631ff:	48 63 04 82          	movsxd rax,DWORD PTR [rdx+rax*4]
+   63203:	48 01 d0             	add    rax,rdx
+   63206:	ff e0                	jmp    rax
+   63208:	0f 1f 84 00 00 00 00 	nop    DWORD PTR [rax+rax*1+0x0]
+   6320f:	00 
+   63210:	49 8b 45 00          	mov    rax,QWORD PTR [r13+0x0]
+   63214:	4c 89 ef             	mov    rdi,r13
+   63217:	ff 50 08             	call   QWORD PTR [rax+0x8]
+   6321a:	e9 19 fb ff ff       	jmp    62d38 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0xe8>
+   6321f:	90                   	nop
+   63220:	e8 1b 7e fd ff       	call   3b040 <_Z18init_libx11displayv@@Base+0xadc0>
+   63225:	4c 8b 43 50          	mov    r8,QWORD PTR [rbx+0x50]
+   63229:	48 63 40 7c          	movsxd rax,DWORD PTR [rax+0x7c]
+   6322d:	48 8d 04 40          	lea    rax,[rax+rax*2]
+   63231:	49 8d 04 c0          	lea    rax,[r8+rax*8]
+   63235:	48 8b 40 08          	mov    rax,QWORD PTR [rax+0x8]
+   63239:	44 8b a0 28 01 00 00 	mov    r12d,DWORD PTR [rax+0x128]
+   63240:	44 0f af a0 2c 01 00 	imul   r12d,DWORD PTR [rax+0x12c]
+   63247:	00 
+   63248:	44 0f af a0 38 01 00 	imul   r12d,DWORD PTR [rax+0x138]
+   6324f:	00 
+   63250:	44 0f af a0 3c 01 00 	imul   r12d,DWORD PTR [rax+0x13c]
+   63257:	00 
+   63258:	8b 44 24 04          	mov    eax,DWORD PTR [rsp+0x4]
+   6325c:	4d 63 e4             	movsxd r12,r12d
+   6325f:	85 c0                	test   eax,eax
+   63261:	78 1d                	js     63280 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x630>
+   63263:	48 63 c8             	movsxd rcx,eax
+   63266:	8b 7c 24 18          	mov    edi,DWORD PTR [rsp+0x18]
+   6326a:	49 0f af cc          	imul   rcx,r12
+   6326e:	49 01 cf             	add    r15,rcx
+   63271:	85 ff                	test   edi,edi
+   63273:	0f 8e bb fd ff ff    	jle    63034 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x3e4>
+   63279:	0f 1f 80 00 00 00 00 	nop    DWORD PTR [rax+0x0]
+   63280:	48 89 df             	mov    rdi,rbx
+   63283:	e8 88 b8 02 00       	call   8eb10 <_ZN16GLGraphicsBuffer15force_init_typeEv@@Base+0x4f0>
+   63288:	0f af 44 24 18       	imul   eax,DWORD PTR [rsp+0x18]
+   6328d:	48 98                	cdqe
+   6328f:	49 0f af c4          	imul   rax,r12
+   63293:	49 01 c7             	add    r15,rax
+   63296:	e8 a5 7d fd ff       	call   3b040 <_Z18init_libx11displayv@@Base+0xadc0>
+   6329b:	48 8b 73 50          	mov    rsi,QWORD PTR [rbx+0x50]
+   6329f:	8b 54 24 18          	mov    edx,DWORD PTR [rsp+0x18]
+   632a3:	48 63 40 7c          	movsxd rax,DWORD PTR [rax+0x7c]
+   632a7:	48 8d 04 40          	lea    rax,[rax+rax*2]
+   632ab:	48 8d 04 c6          	lea    rax,[rsi+rax*8]
+   632af:	48 8b 40 08          	mov    rax,QWORD PTR [rax+0x8]
+   632b3:	3b 90 34 01 00 00    	cmp    edx,DWORD PTR [rax+0x134]
+   632b9:	0f 8c 75 fd ff ff    	jl     63034 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x3e4>
+   632bf:	e8 ac 78 fc ff       	call   2ab70 <_ZN6Notify3ptrEv@plt>
+   632c4:	48 8d 0d 3d 6f 04 00 	lea    rcx,[rip+0x46f3d]        # aa208 <_fini@@Base+0x2f80>
+   632cb:	ba 31 1d 00 00       	mov    edx,0x1d31
+   632d0:	48 8d 35 f8 f8 04 00 	lea    rsi,[rip+0x4f8f8]        # b2bcf <_fini@@Base+0xb947>
+   632d7:	48 89 c7             	mov    rdi,rax
+   632da:	e8 f1 5d fc ff       	call   290d0 <_ZN6Notify14assert_failureEPKciS1_@plt>
+   632df:	84 c0                	test   al,al
+   632e1:	0f 84 4d fd ff ff    	je     63034 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x3e4>
+   632e7:	66 0f 1f 84 00 00 00 	nop    WORD PTR [rax+rax*1+0x0]
+   632ee:	00 00 
+   632f0:	45 31 e4             	xor    r12d,r12d
+   632f3:	e9 92 fd ff ff       	jmp    6308a <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x43a>
+   632f8:	0f 1f 84 00 00 00 00 	nop    DWORD PTR [rax+rax*1+0x0]
+   632ff:	00 
+   63300:	e8 3b 7d fd ff       	call   3b040 <_Z18init_libx11displayv@@Base+0xadc0>
+   63305:	48 8b 4b 50          	mov    rcx,QWORD PTR [rbx+0x50]
+   63309:	8b 54 24 14          	mov    edx,DWORD PTR [rsp+0x14]
+   6330d:	48 63 40 7c          	movsxd rax,DWORD PTR [rax+0x7c]
+   63311:	48 8d 04 40          	lea    rax,[rax+rax*2]
+   63315:	48 8d 04 c1          	lea    rax,[rcx+rax*8]
+   63319:	48 8b 40 08          	mov    rax,QWORD PTR [rax+0x8]
+   6331d:	3b 90 2c 01 00 00    	cmp    edx,DWORD PTR [rax+0x12c]
+   63323:	0f 85 24 fb ff ff    	jne    62e4d <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x1fd>
+   63329:	48 89 df             	mov    rdi,rbx
+   6332c:	e8 df b7 02 00       	call   8eb10 <_ZN16GLGraphicsBuffer15force_init_typeEv@@Base+0x4f0>
+   63331:	44 39 e0             	cmp    eax,r12d
+   63334:	0f 85 13 fb ff ff    	jne    62e4d <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x1fd>
+   6333a:	48 8b 05 c7 84 06 00 	mov    rax,QWORD PTR [rip+0x684c7]        # cb808 <_ZN15ThreadPosixImpl17_got_pt_ptr_indexE>
+   63341:	80 38 00             	cmp    BYTE PTR [rax],0x0
+   63344:	0f 84 53 09 00 00    	je     63c9d <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x104d>
+   6334a:	48 8b 05 1f 8a 06 00 	mov    rax,QWORD PTR [rip+0x68a1f]        # cbd70 <_ZN15ThreadPosixImpl13_pt_ptr_indexE>
+   63351:	8b 38                	mov    edi,DWORD PTR [rax]
+   63353:	e8 58 85 fc ff       	call   2b8b0 <pthread_getspecific@plt>
+   63358:	48 85 c0             	test   rax,rax
+   6335b:	0f 84 46 09 00 00    	je     63ca7 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x1057>
+   63361:	48 63 40 7c          	movsxd rax,DWORD PTR [rax+0x7c]
+   63365:	48 8b 53 50          	mov    rdx,QWORD PTR [rbx+0x50]
+   63369:	48 8d 04 40          	lea    rax,[rax+rax*2]
+   6336d:	48 8d 04 c2          	lea    rax,[rdx+rax*8]
+   63371:	8b 54 24 10          	mov    edx,DWORD PTR [rsp+0x10]
+   63375:	48 8b 40 08          	mov    rax,QWORD PTR [rax+0x8]
+   63379:	3b 90 48 01 00 00    	cmp    edx,DWORD PTR [rax+0x148]
+   6337f:	0f 85 c8 fa ff ff    	jne    62e4d <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x1fd>
+   63385:	48 89 df             	mov    rdi,rbx
+   63388:	e8 03 b9 02 00       	call   8ec90 <_ZN16GLGraphicsBuffer15force_init_typeEv@@Base+0x670>
+   6338d:	44 39 e8             	cmp    eax,r13d
+   63390:	0f 85 b7 fa ff ff    	jne    62e4d <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x1fd>
+   63396:	48 89 df             	mov    rdi,rbx
+   63399:	e8 72 b8 02 00       	call   8ec10 <_ZN16GLGraphicsBuffer15force_init_typeEv@@Base+0x5f0>
+   6339e:	8b 4c 24 24          	mov    ecx,DWORD PTR [rsp+0x24]
+   633a2:	39 4c 24 18          	cmp    DWORD PTR [rsp+0x18],ecx
+   633a6:	0f 8d a1 fa ff ff    	jge    62e4d <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x1fd>
+   633ac:	44 39 f8             	cmp    eax,r15d
+   633af:	0f 85 98 fa ff ff    	jne    62e4d <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x1fd>
+   633b5:	e9 87 fb ff ff       	jmp    62f41 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x2f1>
+   633ba:	66 0f 1f 44 00 00    	nop    WORD PTR [rax+rax*1+0x0]
+   633c0:	41 81 fd 07 19 00 00 	cmp    r13d,0x1907
+   633c7:	0f 84 e3 06 00 00    	je     63ab0 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0xe60>
+   633cd:	41 81 fd 08 19 00 00 	cmp    r13d,0x1908
+   633d4:	0f 85 4e 01 00 00    	jne    63528 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x8d8>
+   633da:	31 f6                	xor    esi,esi
+   633dc:	4c 89 e7             	mov    rdi,r12
+   633df:	e8 1c 85 fc ff       	call   2b900 <_ZN19NotifyCategoryProxyI31NotifyCategoryGetCategory_glgsgE4spamEb@plt>
+   633e4:	48 8d 35 05 f6 04 00 	lea    rsi,[rip+0x4f605]        # b29f0 <_fini@@Base+0xb768>
+   633eb:	48 89 c7             	mov    rdi,rax
+   633ee:	e8 1d 77 fc ff       	call   2ab10 <_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@plt>
+   633f3:	e9 d0 fd ff ff       	jmp    631c8 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x578>
+   633f8:	0f 1f 84 00 00 00 00 	nop    DWORD PTR [rax+rax*1+0x0]
+   633ff:	00 
+   63400:	3d 68 83 00 00       	cmp    eax,0x8368
+   63405:	77 31                	ja     63438 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x7e8>
+   63407:	3d 61 83 00 00       	cmp    eax,0x8361
+   6340c:	0f 86 ce 03 00 00    	jbe    637e0 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0xb90>
+   63412:	2d 63 83 00 00       	sub    eax,0x8363
+   63417:	83 f8 05             	cmp    eax,0x5
+   6341a:	0f 87 b0 07 00 00    	ja     63bd0 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0xf80>
+   63420:	48 8d 15 e1 3a 05 00 	lea    rdx,[rip+0x53ae1]        # b6f08 <_fini@@Base+0xfc80>
+   63427:	31 f6                	xor    esi,esi
+   63429:	4c 89 e7             	mov    rdi,r12
+   6342c:	48 63 04 82          	movsxd rax,DWORD PTR [rdx+rax*4]
+   63430:	48 01 d0             	add    rax,rdx
+   63433:	ff e0                	jmp    rax
+   63435:	0f 1f 00             	nop    DWORD PTR [rax]
+   63438:	3d 3e 8c 00 00       	cmp    eax,0x8c3e
+   6343d:	0f 84 65 07 00 00    	je     63ba8 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0xf58>
+   63443:	0f 86 82 00 00 00    	jbe    634cb <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x87b>
+   63449:	3d ad 8d 00 00       	cmp    eax,0x8dad
+   6344e:	0f 85 8c 03 00 00    	jne    637e0 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0xb90>
+   63454:	31 f6                	xor    esi,esi
+   63456:	4c 89 e7             	mov    rdi,r12
+   63459:	e8 a2 84 fc ff       	call   2b900 <_ZN19NotifyCategoryProxyI31NotifyCategoryGetCategory_glgsgE4spamEb@plt>
+   6345e:	48 8d 35 33 be 04 00 	lea    rsi,[rip+0x4be33]        # af298 <_fini@@Base+0x8010>
+   63465:	48 89 c7             	mov    rdi,rax
+   63468:	e8 a3 76 fc ff       	call   2ab10 <_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@plt>
+   6346d:	0f 1f 00             	nop    DWORD PTR [rax]
+   63470:	31 f6                	xor    esi,esi
+   63472:	4c 89 e7             	mov    rdi,r12
+   63475:	e8 86 84 fc ff       	call   2b900 <_ZN19NotifyCategoryProxyI31NotifyCategoryGetCategory_glgsgE4spamEb@plt>
+   6347a:	48 8d 35 81 60 04 00 	lea    rsi,[rip+0x46081]        # a9502 <_fini@@Base+0x227a>
+   63481:	48 89 c7             	mov    rdi,rax
+   63484:	e8 87 76 fc ff       	call   2ab10 <_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@plt>
+   63489:	48 89 c7             	mov    rdi,rax
+   6348c:	e8 8f 66 fc ff       	call   29b20 <_ZSt4endlIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_@plt>
+   63491:	e9 13 fb ff ff       	jmp    62fa9 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x359>
+   63496:	66 2e 0f 1f 84 00 00 	cs nop WORD PTR [rax+rax*1+0x0]
+   6349d:	00 00 00 
+   634a0:	41 81 fd e1 80 00 00 	cmp    r13d,0x80e1
+   634a7:	0f 85 43 06 00 00    	jne    63af0 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0xea0>
+   634ad:	31 f6                	xor    esi,esi
+   634af:	4c 89 e7             	mov    rdi,r12
+   634b2:	e8 49 84 fc ff       	call   2b900 <_ZN19NotifyCategoryProxyI31NotifyCategoryGetCategory_glgsgE4spamEb@plt>
+   634b7:	48 8d 35 45 f5 04 00 	lea    rsi,[rip+0x4f545]        # b2a03 <_fini@@Base+0xb77b>
+   634be:	48 89 c7             	mov    rdi,rax
+   634c1:	e8 4a 76 fc ff       	call   2ab10 <_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@plt>
+   634c6:	e9 fd fc ff ff       	jmp    631c8 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x578>
+   634cb:	3d fa 84 00 00       	cmp    eax,0x84fa
+   634d0:	0f 84 ea 02 00 00    	je     637c0 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0xb70>
+   634d6:	3d 3b 8c 00 00       	cmp    eax,0x8c3b
+   634db:	0f 85 ff 02 00 00    	jne    637e0 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0xb90>
+   634e1:	31 f6                	xor    esi,esi
+   634e3:	4c 89 e7             	mov    rdi,r12
+   634e6:	e8 15 84 fc ff       	call   2b900 <_ZN19NotifyCategoryProxyI31NotifyCategoryGetCategory_glgsgE4spamEb@plt>
+   634eb:	48 8d 35 86 bd 04 00 	lea    rsi,[rip+0x4bd86]        # af278 <_fini@@Base+0x7ff0>
+   634f2:	48 89 c7             	mov    rdi,rax
+   634f5:	e8 16 76 fc ff       	call   2ab10 <_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@plt>
+   634fa:	e9 71 ff ff ff       	jmp    63470 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x820>
+   634ff:	90                   	nop
+   63500:	2d 33 80 00 00       	sub    eax,0x8033
+   63505:	83 f8 03             	cmp    eax,0x3
+   63508:	0f 87 e2 06 00 00    	ja     63bf0 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0xfa0>
+   6350e:	48 8d 15 0b 3a 05 00 	lea    rdx,[rip+0x53a0b]        # b6f20 <_fini@@Base+0xfc98>
+   63515:	31 f6                	xor    esi,esi
+   63517:	4c 89 e7             	mov    rdi,r12
+   6351a:	48 63 04 82          	movsxd rax,DWORD PTR [rdx+rax*4]
+   6351e:	48 01 d0             	add    rax,rdx
+   63521:	ff e0                	jmp    rax
+   63523:	0f 1f 44 00 00       	nop    DWORD PTR [rax+rax*1+0x0]
+   63528:	41 81 fd 02 19 00 00 	cmp    r13d,0x1902
+   6352f:	0f 85 bb 05 00 00    	jne    63af0 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0xea0>
+   63535:	31 f6                	xor    esi,esi
+   63537:	4c 89 e7             	mov    rdi,r12
+   6353a:	e8 c1 83 fc ff       	call   2b900 <_ZN19NotifyCategoryProxyI31NotifyCategoryGetCategory_glgsgE4spamEb@plt>
+   6353f:	48 8d 35 71 f4 04 00 	lea    rsi,[rip+0x4f471]        # b29b7 <_fini@@Base+0xb72f>
+   63546:	48 89 c7             	mov    rdi,rax
+   63549:	e8 c2 75 fc ff       	call   2ab10 <_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@plt>
+   6354e:	e9 75 fc ff ff       	jmp    631c8 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x578>
+   63553:	0f 1f 44 00 00       	nop    DWORD PTR [rax+rax*1+0x0]
+   63558:	48 8d 15 a9 6c 04 00 	lea    rdx,[rip+0x46ca9]        # aa208 <_fini@@Base+0x2f80>
+   6355f:	be 44 1d 00 00       	mov    esi,0x1d44
+   63564:	48 89 ef             	mov    rdi,rbp
+   63567:	e8 84 2a fe ff       	call   45ff0 <_ZN23GLGraphicsStateGuardian18report_errors_loopEiPKcjRi@@Base+0x440>
+   6356c:	e9 19 fb ff ff       	jmp    6308a <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x43a>
+   63571:	83 fa 0a             	cmp    edx,0xa
+   63574:	75 1a                	jne    63590 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x940>
+   63576:	83 fe 02             	cmp    esi,0x2
+   63579:	75 0b                	jne    63586 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x936>
+   6357b:	41 bd 2c 00 00 00    	mov    r13d,0x2c
+   63581:	83 f9 0a             	cmp    ecx,0xa
+   63584:	74 0a                	je     63590 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x940>
+   63586:	41 bd 0c 00 00 00    	mov    r13d,0xc
+   6358c:	0f 1f 40 00          	nop    DWORD PTR [rax+0x0]
+   63590:	c7 44 24 10 01 00 00 	mov    DWORD PTR [rsp+0x10],0x1
+   63597:	00 
+   63598:	e9 43 f8 ff ff       	jmp    62de0 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x190>
+   6359d:	0f 1f 00             	nop    DWORD PTR [rax]
+   635a0:	48 8b 05 c1 86 06 00 	mov    rax,QWORD PTR [rip+0x686c1]        # cbc68 <uchar_type_handle>
+   635a7:	4c 89 fe             	mov    rsi,r15
+   635aa:	49 89 d8             	mov    r8,rbx
+   635ad:	44 89 e9             	mov    ecx,r13d
+   635b0:	48 c7 44 24 30 00 00 	mov    QWORD PTR [rsp+0x30],0x0
+   635b7:	00 00 
+   635b9:	4c 89 e2             	mov    rdx,r12
+   635bc:	4c 89 f7             	mov    rdi,r14
+   635bf:	8b 00                	mov    eax,DWORD PTR [rax]
+   635c1:	89 44 24 38          	mov    DWORD PTR [rsp+0x38],eax
+   635c5:	e8 06 f0 ff ff       	call   625d0 <_ZN23GLGraphicsStateGuardian20extract_texture_dataEP7Texture@@Base+0x180>
+   635ca:	48 89 c6             	mov    rsi,rax
+   635cd:	49 39 c7             	cmp    r15,rax
+   635d0:	74 0b                	je     635dd <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x98d>
+   635d2:	4c 89 e2             	mov    rdx,r12
+   635d5:	4c 89 ff             	mov    rdi,r15
+   635d8:	e8 83 70 fc ff       	call   2a660 <memcpy@plt>
+   635dd:	48 8b 7c 24 30       	mov    rdi,QWORD PTR [rsp+0x30]
+   635e2:	48 85 ff             	test   rdi,rdi
+   635e5:	0f 84 88 fa ff ff    	je     63073 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x423>
+   635eb:	e8 30 2a 03 00       	call   96020 <_ZN23GLGraphicsStateGuardian23setup_antialias_polygonEv@@Base+0x4630>
+   635f0:	e9 7e fa ff ff       	jmp    63073 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x423>
+   635f5:	0f 1f 00             	nop    DWORD PTR [rax]
+   635f8:	e8 73 83 fc ff       	call   2b970 <_ZN15ThreadPosixImpl17init_pt_ptr_indexEv@plt>
+   635fd:	e9 b4 f8 ff ff       	jmp    62eb6 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x266>
+   63602:	66 0f 1f 44 00 00    	nop    WORD PTR [rax+rax*1+0x0]
+   63608:	4c 8b 25 49 82 06 00 	mov    r12,QWORD PTR [rip+0x68249]        # cb858 <_ZN6Thread16_external_threadE>
+   6360f:	49 8b 04 24          	mov    rax,QWORD PTR [r12]
+   63613:	48 85 c0             	test   rax,rax
+   63616:	0f 85 b1 f8 ff ff    	jne    62ecd <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x27d>
+   6361c:	e8 df 79 fc ff       	call   2b000 <_ZN6Thread20init_external_threadEv@plt>
+   63621:	49 8b 04 24          	mov    rax,QWORD PTR [r12]
+   63625:	e9 a3 f8 ff ff       	jmp    62ecd <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x27d>
+   6362a:	66 0f 1f 44 00 00    	nop    WORD PTR [rax+rax*1+0x0]
+   63630:	8b 00                	mov    eax,DWORD PTR [rax]
+   63632:	c7 44 24 10 00 00 00 	mov    DWORD PTR [rsp+0x10],0x0
+   63639:	00 
+   6363a:	83 f8 08             	cmp    eax,0x8
+   6363d:	0f 8e 9d f7 ff ff    	jle    62de0 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x190>
+   63643:	83 f8 10             	cmp    eax,0x10
+   63646:	0f 9f c0             	setg   al
+   63649:	0f b6 c0             	movzx  eax,al
+   6364c:	83 c0 01             	add    eax,0x1
+   6364f:	89 44 24 10          	mov    DWORD PTR [rsp+0x10],eax
+   63653:	e9 88 f7 ff ff       	jmp    62de0 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x190>
+   63658:	0f 1f 84 00 00 00 00 	nop    DWORD PTR [rax+rax*1+0x0]
+   6365f:	00 
+   63660:	48 8b 85 d0 00 00 00 	mov    rax,QWORD PTR [rbp+0xd0]
+   63667:	8b 50 3c             	mov    edx,DWORD PTR [rax+0x3c]
+   6366a:	8b 70 14             	mov    esi,DWORD PTR [rax+0x14]
+   6366d:	89 d1                	mov    ecx,edx
+   6366f:	83 e1 40             	and    ecx,0x40
+   63672:	83 e2 20             	and    edx,0x20
+   63675:	0f 84 c5 00 00 00    	je     63740 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0xaf0>
+   6367b:	83 fe 01             	cmp    esi,0x1
+   6367e:	41 bd 1e 00 00 00    	mov    r13d,0x1e
+   63684:	c7 44 24 10 02 00 00 	mov    DWORD PTR [rsp+0x10],0x2
+   6368b:	00 
+   6368c:	41 83 dd ff          	sbb    r13d,0xffffffff
+   63690:	85 c9                	test   ecx,ecx
+   63692:	0f 85 48 f7 ff ff    	jne    62de0 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x190>
+   63698:	8b 48 10             	mov    ecx,DWORD PTR [rax+0x10]
+   6369b:	8b 50 0c             	mov    edx,DWORD PTR [rax+0xc]
+   6369e:	8b 78 08             	mov    edi,DWORD PTR [rax+0x8]
+   636a1:	44 8b 40 04          	mov    r8d,DWORD PTR [rax+0x4]
+   636a5:	e9 fe 01 00 00       	jmp    638a8 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0xc58>
+   636aa:	66 0f 1f 44 00 00    	nop    WORD PTR [rax+rax*1+0x0]
+   636b0:	48 8b 85 d0 00 00 00 	mov    rax,QWORD PTR [rbp+0xd0]
+   636b7:	ba 03 00 00 00       	mov    edx,0x3
+   636bc:	8b 40 3c             	mov    eax,DWORD PTR [rax+0x3c]
+   636bf:	25 80 00 00 00       	and    eax,0x80
+   636c4:	83 f8 01             	cmp    eax,0x1
+   636c7:	83 d2 ff             	adc    edx,0xffffffff
+   636ca:	85 c0                	test   eax,eax
+   636cc:	b8 1a 00 00 00       	mov    eax,0x1a
+   636d1:	89 54 24 10          	mov    DWORD PTR [rsp+0x10],edx
+   636d5:	44 0f 45 e8          	cmovne r13d,eax
+   636d9:	e9 02 f7 ff ff       	jmp    62de0 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x190>
+   636de:	66 90                	xchg   ax,ax
+   636e0:	45 31 e4             	xor    r12d,r12d
+   636e3:	e9 30 f9 ff ff       	jmp    63018 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x3c8>
+   636e8:	0f 1f 84 00 00 00 00 	nop    DWORD PTR [rax+rax*1+0x0]
+   636ef:	00 
+   636f0:	45 31 ff             	xor    r15d,r15d
+   636f3:	e9 e0 f8 ff ff       	jmp    62fd8 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x388>
+   636f8:	0f 1f 84 00 00 00 00 	nop    DWORD PTR [rax+rax*1+0x0]
+   636ff:	00 
+   63700:	4c 89 4c 24 08       	mov    QWORD PTR [rsp+0x8],r9
+   63705:	e8 66 74 fc ff       	call   2ab70 <_ZN6Notify3ptrEv@plt>
+   6370a:	48 8d 0d f7 6a 04 00 	lea    rcx,[rip+0x46af7]        # aa208 <_fini@@Base+0x2f80>
+   63711:	ba 0c 1c 00 00       	mov    edx,0x1c0c
+   63716:	48 8d 35 c3 b9 04 00 	lea    rsi,[rip+0x4b9c3]        # af0e0 <_fini@@Base+0x7e58>
+   6371d:	48 89 c7             	mov    rdi,rax
+   63720:	e8 ab 59 fc ff       	call   290d0 <_ZN6Notify14assert_failureEPKciS1_@plt>
+   63725:	4c 8b 4c 24 08       	mov    r9,QWORD PTR [rsp+0x8]
+   6372a:	84 c0                	test   al,al
+   6372c:	0f 84 4f f5 ff ff    	je     62c81 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x31>
+   63732:	e9 b9 fb ff ff       	jmp    632f0 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x6a0>
+   63737:	66 0f 1f 84 00 00 00 	nop    WORD PTR [rax+rax*1+0x0]
+   6373e:	00 00 
+   63740:	8b 78 08             	mov    edi,DWORD PTR [rax+0x8]
+   63743:	85 c9                	test   ecx,ecx
+   63745:	0f 84 35 01 00 00    	je     63880 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0xc30>
+   6374b:	85 f6                	test   esi,esi
+   6374d:	0f 84 0d 04 00 00    	je     63b60 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0xf10>
+   63753:	41 bd 16 00 00 00    	mov    r13d,0x16
+   63759:	83 ff 10             	cmp    edi,0x10
+   6375c:	0f 85 4b f9 ff ff    	jne    630ad <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x45d>
+   63762:	83 78 0c 10          	cmp    DWORD PTR [rax+0xc],0x10
+   63766:	0f 85 41 f9 ff ff    	jne    630ad <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x45d>
+   6376c:	83 78 10 10          	cmp    DWORD PTR [rax+0x10],0x10
+   63770:	75 0f                	jne    63781 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0xb31>
+   63772:	41 bd 15 00 00 00    	mov    r13d,0x15
+   63778:	83 fe 10             	cmp    esi,0x10
+   6377b:	0f 84 2c f9 ff ff    	je     630ad <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x45d>
+   63781:	41 bd 16 00 00 00    	mov    r13d,0x16
+   63787:	e9 21 f9 ff ff       	jmp    630ad <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x45d>
+   6378c:	0f 1f 40 00          	nop    DWORD PTR [rax+0x0]
+   63790:	e8 db 73 fc ff       	call   2ab70 <_ZN6Notify3ptrEv@plt>
+   63795:	48 8d 0d 6c 6a 04 00 	lea    rcx,[rip+0x46a6c]        # aa208 <_fini@@Base+0x2f80>
+   6379c:	ba ac 1c 00 00       	mov    edx,0x1cac
+   637a1:	48 8d 35 eb f1 04 00 	lea    rsi,[rip+0x4f1eb]        # b2993 <_fini@@Base+0xb70b>
+   637a8:	48 89 c7             	mov    rdi,rax
+   637ab:	e8 20 59 fc ff       	call   290d0 <_ZN6Notify14assert_failureEPKciS1_@plt>
+   637b0:	84 c0                	test   al,al
+   637b2:	0f 84 b2 f7 ff ff    	je     62f6a <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x31a>
+   637b8:	e9 33 fb ff ff       	jmp    632f0 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x6a0>
+   637bd:	0f 1f 00             	nop    DWORD PTR [rax]
+   637c0:	31 f6                	xor    esi,esi
+   637c2:	4c 89 e7             	mov    rdi,r12
+   637c5:	e8 36 81 fc ff       	call   2b900 <_ZN19NotifyCategoryProxyI31NotifyCategoryGetCategory_glgsgE4spamEb@plt>
+   637ca:	48 8d 35 cd f3 04 00 	lea    rsi,[rip+0x4f3cd]        # b2b9e <_fini@@Base+0xb916>
+   637d1:	48 89 c7             	mov    rdi,rax
+   637d4:	e8 37 73 fc ff       	call   2ab10 <_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@plt>
+   637d9:	e9 92 fc ff ff       	jmp    63470 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x820>
+   637de:	66 90                	xchg   ax,ax
+   637e0:	31 f6                	xor    esi,esi
+   637e2:	4c 89 e7             	mov    rdi,r12
+   637e5:	e8 16 81 fc ff       	call   2b900 <_ZN19NotifyCategoryProxyI31NotifyCategoryGetCategory_glgsgE4spamEb@plt>
+   637ea:	48 8d 35 27 ef 04 00 	lea    rsi,[rip+0x4ef27]        # b2718 <_fini@@Base+0xb490>
+   637f1:	48 89 c7             	mov    rdi,rax
+   637f4:	e8 17 73 fc ff       	call   2ab10 <_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@plt>
+   637f9:	e9 72 fc ff ff       	jmp    63470 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x820>
+   637fe:	66 90                	xchg   ax,ax
+   63800:	e8 fb 80 fc ff       	call   2b900 <_ZN19NotifyCategoryProxyI31NotifyCategoryGetCategory_glgsgE4spamEb@plt>
+   63805:	48 8d 35 51 f2 04 00 	lea    rsi,[rip+0x4f251]        # b2a5d <_fini@@Base+0xb7d5>
+   6380c:	48 89 c7             	mov    rdi,rax
+   6380f:	e8 fc 72 fc ff       	call   2ab10 <_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@plt>
+   63814:	e9 57 fc ff ff       	jmp    63470 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x820>
+   63819:	0f 1f 80 00 00 00 00 	nop    DWORD PTR [rax+0x0]
+   63820:	e8 db 80 fc ff       	call   2b900 <_ZN19NotifyCategoryProxyI31NotifyCategoryGetCategory_glgsgE4spamEb@plt>
+   63825:	48 8d 35 57 f3 04 00 	lea    rsi,[rip+0x4f357]        # b2b83 <_fini@@Base+0xb8fb>
+   6382c:	48 89 c7             	mov    rdi,rax
+   6382f:	e8 dc 72 fc ff       	call   2ab10 <_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@plt>
+   63834:	e9 37 fc ff ff       	jmp    63470 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x820>
+   63839:	0f 1f 80 00 00 00 00 	nop    DWORD PTR [rax+0x0]
+   63840:	e8 bb 80 fc ff       	call   2b900 <_ZN19NotifyCategoryProxyI31NotifyCategoryGetCategory_glgsgE4spamEb@plt>
+   63845:	48 8d 35 03 f3 04 00 	lea    rsi,[rip+0x4f303]        # b2b4f <_fini@@Base+0xb8c7>
+   6384c:	48 89 c7             	mov    rdi,rax
+   6384f:	e8 bc 72 fc ff       	call   2ab10 <_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@plt>
+   63854:	e9 17 fc ff ff       	jmp    63470 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x820>
+   63859:	0f 1f 80 00 00 00 00 	nop    DWORD PTR [rax+0x0]
+   63860:	e8 9b 80 fc ff       	call   2b900 <_ZN19NotifyCategoryProxyI31NotifyCategoryGetCategory_glgsgE4spamEb@plt>
+   63865:	48 8d 35 d7 f1 04 00 	lea    rsi,[rip+0x4f1d7]        # b2a43 <_fini@@Base+0xb7bb>
+   6386c:	48 89 c7             	mov    rdi,rax
+   6386f:	e8 9c 72 fc ff       	call   2ab10 <_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@plt>
+   63874:	e9 f7 fb ff ff       	jmp    63470 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x820>
+   63879:	0f 1f 80 00 00 00 00 	nop    DWORD PTR [rax+0x0]
+   63880:	8b 48 10             	mov    ecx,DWORD PTR [rax+0x10]
+   63883:	8b 50 0c             	mov    edx,DWORD PTR [rax+0xc]
+   63886:	44 8b 40 04          	mov    r8d,DWORD PTR [rax+0x4]
+   6388a:	85 f6                	test   esi,esi
+   6388c:	0f 84 9e 02 00 00    	je     63b30 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0xee0>
+   63892:	41 bd 0c 00 00 00    	mov    r13d,0xc
+   63898:	83 ff 0a             	cmp    edi,0xa
+   6389b:	0f 84 d0 fc ff ff    	je     63571 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x921>
+   638a1:	0f 1f 80 00 00 00 00 	nop    DWORD PTR [rax+0x0]
+   638a8:	83 ff 08             	cmp    edi,0x8
+   638ab:	0f 9e c0             	setle  al
+   638ae:	83 fa 08             	cmp    edx,0x8
+   638b1:	41 0f 9e c1          	setle  r9b
+   638b5:	44 21 c8             	and    eax,r9d
+   638b8:	83 f9 08             	cmp    ecx,0x8
+   638bb:	41 0f 9e c1          	setle  r9b
+   638bf:	44 84 c8             	test   al,r9b
+   638c2:	0f 84 c8 fc ff ff    	je     63590 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x940>
+   638c8:	01 fa                	add    edx,edi
+   638ca:	01 ca                	add    edx,ecx
+   638cc:	44 39 c2             	cmp    edx,r8d
+   638cf:	41 0f 4c d0          	cmovl  edx,r8d
+   638d3:	83 fa 18             	cmp    edx,0x18
+   638d6:	0f 8f b4 fc ff ff    	jg     63590 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x940>
+   638dc:	31 c0                	xor    eax,eax
+   638de:	83 fe 08             	cmp    esi,0x8
+   638e1:	0f 9f c0             	setg   al
+   638e4:	89 44 24 10          	mov    DWORD PTR [rsp+0x10],eax
+   638e8:	e9 f3 f4 ff ff       	jmp    62de0 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x190>
+   638ed:	0f 1f 00             	nop    DWORD PTR [rax]
+   638f0:	e8 0b 80 fc ff       	call   2b900 <_ZN19NotifyCategoryProxyI31NotifyCategoryGetCategory_glgsgE4spamEb@plt>
+   638f5:	48 8d 35 5c b9 04 00 	lea    rsi,[rip+0x4b95c]        # af258 <_fini@@Base+0x7fd0>
+   638fc:	48 89 c7             	mov    rdi,rax
+   638ff:	e8 0c 72 fc ff       	call   2ab10 <_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@plt>
+   63904:	e9 67 fb ff ff       	jmp    63470 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x820>
+   63909:	0f 1f 80 00 00 00 00 	nop    DWORD PTR [rax+0x0]
+   63910:	e8 eb 7f fc ff       	call   2b900 <_ZN19NotifyCategoryProxyI31NotifyCategoryGetCategory_glgsgE4spamEb@plt>
+   63915:	48 8d 35 4b f2 04 00 	lea    rsi,[rip+0x4f24b]        # b2b67 <_fini@@Base+0xb8df>
+   6391c:	48 89 c7             	mov    rdi,rax
+   6391f:	e8 ec 71 fc ff       	call   2ab10 <_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@plt>
+   63924:	e9 47 fb ff ff       	jmp    63470 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x820>
+   63929:	0f 1f 80 00 00 00 00 	nop    DWORD PTR [rax+0x0]
+   63930:	e8 cb 7f fc ff       	call   2b900 <_ZN19NotifyCategoryProxyI31NotifyCategoryGetCategory_glgsgE4spamEb@plt>
+   63935:	48 8d 35 3b f1 04 00 	lea    rsi,[rip+0x4f13b]        # b2a77 <_fini@@Base+0xb7ef>
+   6393c:	48 89 c7             	mov    rdi,rax
+   6393f:	e8 cc 71 fc ff       	call   2ab10 <_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@plt>
+   63944:	e9 27 fb ff ff       	jmp    63470 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x820>
+   63949:	0f 1f 80 00 00 00 00 	nop    DWORD PTR [rax+0x0]
+   63950:	e8 ab 7f fc ff       	call   2b900 <_ZN19NotifyCategoryProxyI31NotifyCategoryGetCategory_glgsgE4spamEb@plt>
+   63955:	48 8d 35 9b f1 04 00 	lea    rsi,[rip+0x4f19b]        # b2af7 <_fini@@Base+0xb86f>
+   6395c:	48 89 c7             	mov    rdi,rax
+   6395f:	e8 ac 71 fc ff       	call   2ab10 <_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@plt>
+   63964:	e9 07 fb ff ff       	jmp    63470 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x820>
+   63969:	0f 1f 80 00 00 00 00 	nop    DWORD PTR [rax+0x0]
+   63970:	e8 8b 7f fc ff       	call   2b900 <_ZN19NotifyCategoryProxyI31NotifyCategoryGetCategory_glgsgE4spamEb@plt>
+   63975:	48 8d 35 97 f1 04 00 	lea    rsi,[rip+0x4f197]        # b2b13 <_fini@@Base+0xb88b>
+   6397c:	48 89 c7             	mov    rdi,rax
+   6397f:	e8 8c 71 fc ff       	call   2ab10 <_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@plt>
+   63984:	e9 e7 fa ff ff       	jmp    63470 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x820>
+   63989:	0f 1f 80 00 00 00 00 	nop    DWORD PTR [rax+0x0]
+   63990:	e8 6b 7f fc ff       	call   2b900 <_ZN19NotifyCategoryProxyI31NotifyCategoryGetCategory_glgsgE4spamEb@plt>
+   63995:	48 8d 35 95 f1 04 00 	lea    rsi,[rip+0x4f195]        # b2b31 <_fini@@Base+0xb8a9>
+   6399c:	48 89 c7             	mov    rdi,rax
+   6399f:	e8 6c 71 fc ff       	call   2ab10 <_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@plt>
+   639a4:	e9 c7 fa ff ff       	jmp    63470 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x820>
+   639a9:	0f 1f 80 00 00 00 00 	nop    DWORD PTR [rax+0x0]
+   639b0:	31 f6                	xor    esi,esi
+   639b2:	4c 89 e7             	mov    rdi,r12
+   639b5:	e8 46 7f fc ff       	call   2b900 <_ZN19NotifyCategoryProxyI31NotifyCategoryGetCategory_glgsgE4spamEb@plt>
+   639ba:	48 8d 35 f6 f0 04 00 	lea    rsi,[rip+0x4f0f6]        # b2ab7 <_fini@@Base+0xb82f>
+   639c1:	48 89 c7             	mov    rdi,rax
+   639c4:	e8 47 71 fc ff       	call   2ab10 <_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@plt>
+   639c9:	e9 a2 fa ff ff       	jmp    63470 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x820>
+   639ce:	66 90                	xchg   ax,ax
+   639d0:	31 f6                	xor    esi,esi
+   639d2:	4c 89 e7             	mov    rdi,r12
+   639d5:	e8 26 7f fc ff       	call   2b900 <_ZN19NotifyCategoryProxyI31NotifyCategoryGetCategory_glgsgE4spamEb@plt>
+   639da:	48 8d 35 b5 f0 04 00 	lea    rsi,[rip+0x4f0b5]        # b2a96 <_fini@@Base+0xb80e>
+   639e1:	48 89 c7             	mov    rdi,rax
+   639e4:	e8 27 71 fc ff       	call   2ab10 <_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@plt>
+   639e9:	e9 82 fa ff ff       	jmp    63470 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x820>
+   639ee:	66 90                	xchg   ax,ax
+   639f0:	31 f6                	xor    esi,esi
+   639f2:	4c 89 e7             	mov    rdi,r12
+   639f5:	e8 06 7f fc ff       	call   2b900 <_ZN19NotifyCategoryProxyI31NotifyCategoryGetCategory_glgsgE4spamEb@plt>
+   639fa:	48 8d 35 16 f0 04 00 	lea    rsi,[rip+0x4f016]        # b2a17 <_fini@@Base+0xb78f>
+   63a01:	48 89 c7             	mov    rdi,rax
+   63a04:	e8 07 71 fc ff       	call   2ab10 <_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@plt>
+   63a09:	e9 62 fa ff ff       	jmp    63470 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x820>
+   63a0e:	66 90                	xchg   ax,ax
+   63a10:	31 f6                	xor    esi,esi
+   63a12:	4c 89 e7             	mov    rdi,r12
+   63a15:	e8 e6 7e fc ff       	call   2b900 <_ZN19NotifyCategoryProxyI31NotifyCategoryGetCategory_glgsgE4spamEb@plt>
+   63a1a:	48 8d 35 07 f0 04 00 	lea    rsi,[rip+0x4f007]        # b2a28 <_fini@@Base+0xb7a0>
+   63a21:	48 89 c7             	mov    rdi,rax
+   63a24:	e8 e7 70 fc ff       	call   2ab10 <_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@plt>
+   63a29:	e9 42 fa ff ff       	jmp    63470 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x820>
+   63a2e:	66 90                	xchg   ax,ax
+   63a30:	31 f6                	xor    esi,esi
+   63a32:	4c 89 e7             	mov    rdi,r12
+   63a35:	e8 c6 7e fc ff       	call   2b900 <_ZN19NotifyCategoryProxyI31NotifyCategoryGetCategory_glgsgE4spamEb@plt>
+   63a3a:	48 8d 35 4e f0 04 00 	lea    rsi,[rip+0x4f04e]        # b2a8f <_fini@@Base+0xb807>
+   63a41:	48 89 c7             	mov    rdi,rax
+   63a44:	e8 c7 70 fc ff       	call   2ab10 <_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@plt>
+   63a49:	e9 22 fa ff ff       	jmp    63470 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x820>
+   63a4e:	66 90                	xchg   ax,ax
+   63a50:	31 f6                	xor    esi,esi
+   63a52:	4c 89 e7             	mov    rdi,r12
+   63a55:	e8 a6 7e fc ff       	call   2b900 <_ZN19NotifyCategoryProxyI31NotifyCategoryGetCategory_glgsgE4spamEb@plt>
+   63a5a:	48 8d 35 46 f0 04 00 	lea    rsi,[rip+0x4f046]        # b2aa7 <_fini@@Base+0xb81f>
+   63a61:	48 89 c7             	mov    rdi,rax
+   63a64:	e8 a7 70 fc ff       	call   2ab10 <_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@plt>
+   63a69:	e9 02 fa ff ff       	jmp    63470 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x820>
+   63a6e:	66 90                	xchg   ax,ax
+   63a70:	31 f6                	xor    esi,esi
+   63a72:	4c 89 e7             	mov    rdi,r12
+   63a75:	e8 86 7e fc ff       	call   2b900 <_ZN19NotifyCategoryProxyI31NotifyCategoryGetCategory_glgsgE4spamEb@plt>
+   63a7a:	48 8d 35 b9 ef 04 00 	lea    rsi,[rip+0x4efb9]        # b2a3a <_fini@@Base+0xb7b2>
+   63a81:	48 89 c7             	mov    rdi,rax
+   63a84:	e8 87 70 fc ff       	call   2ab10 <_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@plt>
+   63a89:	e9 e2 f9 ff ff       	jmp    63470 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x820>
+   63a8e:	66 90                	xchg   ax,ax
+   63a90:	31 f6                	xor    esi,esi
+   63a92:	4c 89 e7             	mov    rdi,r12
+   63a95:	e8 66 7e fc ff       	call   2b900 <_ZN19NotifyCategoryProxyI31NotifyCategoryGetCategory_glgsgE4spamEb@plt>
+   63a9a:	48 8d 35 fd ef 04 00 	lea    rsi,[rip+0x4effd]        # b2a9e <_fini@@Base+0xb816>
+   63aa1:	48 89 c7             	mov    rdi,rax
+   63aa4:	e8 67 70 fc ff       	call   2ab10 <_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@plt>
+   63aa9:	e9 c2 f9 ff ff       	jmp    63470 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x820>
+   63aae:	66 90                	xchg   ax,ax
+   63ab0:	31 f6                	xor    esi,esi
+   63ab2:	4c 89 e7             	mov    rdi,r12
+   63ab5:	e8 46 7e fc ff       	call   2b900 <_ZN19NotifyCategoryProxyI31NotifyCategoryGetCategory_glgsgE4spamEb@plt>
+   63aba:	48 8d 35 26 ef 04 00 	lea    rsi,[rip+0x4ef26]        # b29e7 <_fini@@Base+0xb75f>
+   63ac1:	48 89 c7             	mov    rdi,rax
+   63ac4:	e8 47 70 fc ff       	call   2ab10 <_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@plt>
+   63ac9:	e9 fa f6 ff ff       	jmp    631c8 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x578>
+   63ace:	66 90                	xchg   ax,ax
+   63ad0:	31 f6                	xor    esi,esi
+   63ad2:	4c 89 e7             	mov    rdi,r12
+   63ad5:	e8 26 7e fc ff       	call   2b900 <_ZN19NotifyCategoryProxyI31NotifyCategoryGetCategory_glgsgE4spamEb@plt>
+   63ada:	48 8d 35 fe ee 04 00 	lea    rsi,[rip+0x4eefe]        # b29df <_fini@@Base+0xb757>
+   63ae1:	48 89 c7             	mov    rdi,rax
+   63ae4:	e8 27 70 fc ff       	call   2ab10 <_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@plt>
+   63ae9:	e9 da f6 ff ff       	jmp    631c8 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x578>
+   63aee:	66 90                	xchg   ax,ax
+   63af0:	31 f6                	xor    esi,esi
+   63af2:	4c 89 e7             	mov    rdi,r12
+   63af5:	e8 06 7e fc ff       	call   2b900 <_ZN19NotifyCategoryProxyI31NotifyCategoryGetCategory_glgsgE4spamEb@plt>
+   63afa:	48 8d 35 0c ef 04 00 	lea    rsi,[rip+0x4ef0c]        # b2a0d <_fini@@Base+0xb785>
+   63b01:	48 89 c7             	mov    rdi,rax
+   63b04:	e8 07 70 fc ff       	call   2ab10 <_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@plt>
+   63b09:	e9 ba f6 ff ff       	jmp    631c8 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x578>
+   63b0e:	66 90                	xchg   ax,ax
+   63b10:	31 f6                	xor    esi,esi
+   63b12:	4c 89 e7             	mov    rdi,r12
+   63b15:	e8 e6 7d fc ff       	call   2b900 <_ZN19NotifyCategoryProxyI31NotifyCategoryGetCategory_glgsgE4spamEb@plt>
+   63b1a:	48 8d 35 d9 ee 04 00 	lea    rsi,[rip+0x4eed9]        # b29fa <_fini@@Base+0xb772>
+   63b21:	48 89 c7             	mov    rdi,rax
+   63b24:	e8 e7 6f fc ff       	call   2ab10 <_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@plt>
+   63b29:	e9 9a f6 ff ff       	jmp    631c8 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x578>
+   63b2e:	66 90                	xchg   ax,ax
+   63b30:	85 c9                	test   ecx,ecx
+   63b32:	0f 85 d8 00 00 00    	jne    63c10 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0xfc0>
+   63b38:	85 d2                	test   edx,edx
+   63b3a:	0f 84 1d 01 00 00    	je     63c5d <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x100d>
+   63b40:	83 ff 10             	cmp    edi,0x10
+   63b43:	75 0f                	jne    63b54 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0xf04>
+   63b45:	41 bd 1c 00 00 00    	mov    r13d,0x1c
+   63b4b:	83 fa 10             	cmp    edx,0x10
+   63b4e:	0f 84 3c fa ff ff    	je     63590 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x940>
+   63b54:	41 bd 2d 00 00 00    	mov    r13d,0x2d
+   63b5a:	e9 49 fd ff ff       	jmp    638a8 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0xc58>
+   63b5f:	90                   	nop
+   63b60:	8b 50 10             	mov    edx,DWORD PTR [rax+0x10]
+   63b63:	85 d2                	test   edx,edx
+   63b65:	0f 84 b5 00 00 00    	je     63c20 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0xfd0>
+   63b6b:	83 ff 0b             	cmp    edi,0xb
+   63b6e:	0f 84 09 01 00 00    	je     63c7d <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x102d>
+   63b74:	41 bd 25 00 00 00    	mov    r13d,0x25
+   63b7a:	83 ff 10             	cmp    edi,0x10
+   63b7d:	0f 85 2a f5 ff ff    	jne    630ad <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x45d>
+   63b83:	83 78 0c 10          	cmp    DWORD PTR [rax+0xc],0x10
+   63b87:	0f 85 05 01 00 00    	jne    63c92 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x1042>
+   63b8d:	83 fa 10             	cmp    edx,0x10
+   63b90:	0f 85 fc 00 00 00    	jne    63c92 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x1042>
+   63b96:	41 bd 1d 00 00 00    	mov    r13d,0x1d
+   63b9c:	e9 0c f5 ff ff       	jmp    630ad <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x45d>
+   63ba1:	0f 1f 80 00 00 00 00 	nop    DWORD PTR [rax+0x0]
+   63ba8:	31 f6                	xor    esi,esi
+   63baa:	4c 89 e7             	mov    rdi,r12
+   63bad:	e8 4e 7d fc ff       	call   2b900 <_ZN19NotifyCategoryProxyI31NotifyCategoryGetCategory_glgsgE4spamEb@plt>
+   63bb2:	48 8d 35 fa ef 04 00 	lea    rsi,[rip+0x4effa]        # b2bb3 <_fini@@Base+0xb92b>
+   63bb9:	48 89 c7             	mov    rdi,rax
+   63bbc:	e8 4f 6f fc ff       	call   2ab10 <_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@plt>
+   63bc1:	e9 aa f8 ff ff       	jmp    63470 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x820>
+   63bc6:	66 2e 0f 1f 84 00 00 	cs nop WORD PTR [rax+rax*1+0x0]
+   63bcd:	00 00 00 
+   63bd0:	31 f6                	xor    esi,esi
+   63bd2:	4c 89 e7             	mov    rdi,r12
+   63bd5:	e8 26 7d fc ff       	call   2b900 <_ZN19NotifyCategoryProxyI31NotifyCategoryGetCategory_glgsgE4spamEb@plt>
+   63bda:	48 8d 35 fb ee 04 00 	lea    rsi,[rip+0x4eefb]        # b2adc <_fini@@Base+0xb854>
+   63be1:	48 89 c7             	mov    rdi,rax
+   63be4:	e8 27 6f fc ff       	call   2ab10 <_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@plt>
+   63be9:	e9 82 f8 ff ff       	jmp    63470 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x820>
+   63bee:	66 90                	xchg   ax,ax
+   63bf0:	31 f6                	xor    esi,esi
+   63bf2:	4c 89 e7             	mov    rdi,r12
+   63bf5:	e8 06 7d fc ff       	call   2b900 <_ZN19NotifyCategoryProxyI31NotifyCategoryGetCategory_glgsgE4spamEb@plt>
+   63bfa:	48 8d 35 c4 ee 04 00 	lea    rsi,[rip+0x4eec4]        # b2ac5 <_fini@@Base+0xb83d>
+   63c01:	48 89 c7             	mov    rdi,rax
+   63c04:	e8 07 6f fc ff       	call   2ab10 <_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@plt>
+   63c09:	e9 62 f8 ff ff       	jmp    63470 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x820>
+   63c0e:	66 90                	xchg   ax,ax
+   63c10:	41 bd 07 00 00 00    	mov    r13d,0x7
+   63c16:	e9 8d fc ff ff       	jmp    638a8 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0xc58>
+   63c1b:	0f 1f 44 00 00       	nop    DWORD PTR [rax+rax*1+0x0]
+   63c20:	8b 40 0c             	mov    eax,DWORD PTR [rax+0xc]
+   63c23:	85 c0                	test   eax,eax
+   63c25:	74 1f                	je     63c46 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0xff6>
+   63c27:	83 ff 10             	cmp    edi,0x10
+   63c2a:	75 0f                	jne    63c3b <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0xfeb>
+   63c2c:	41 bd 1c 00 00 00    	mov    r13d,0x1c
+   63c32:	83 f8 10             	cmp    eax,0x10
+   63c35:	0f 84 72 f4 ff ff    	je     630ad <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x45d>
+   63c3b:	41 bd 24 00 00 00    	mov    r13d,0x24
+   63c41:	e9 67 f4 ff ff       	jmp    630ad <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x45d>
+   63c46:	45 31 ed             	xor    r13d,r13d
+   63c49:	83 ff 10             	cmp    edi,0x10
+   63c4c:	41 0f 95 c5          	setne  r13b
+   63c50:	46 8d 2c ed 1b 00 00 	lea    r13d,[r13*8+0x1b]
+   63c57:	00 
+   63c58:	e9 50 f4 ff ff       	jmp    630ad <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x45d>
+   63c5d:	44 39 c7             	cmp    edi,r8d
+   63c60:	44 89 c0             	mov    eax,r8d
+   63c63:	41 bd 1b 00 00 00    	mov    r13d,0x1b
+   63c69:	0f 4d c7             	cmovge eax,edi
+   63c6c:	83 f8 10             	cmp    eax,0x10
+   63c6f:	b8 03 00 00 00       	mov    eax,0x3
+   63c74:	44 0f 45 e8          	cmovne r13d,eax
+   63c78:	e9 2b fc ff ff       	jmp    638a8 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0xc58>
+   63c7d:	83 78 0c 0b          	cmp    DWORD PTR [rax+0xc],0xb
+   63c81:	75 0f                	jne    63c92 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x1042>
+   63c83:	41 bd 2a 00 00 00    	mov    r13d,0x2a
+   63c89:	83 fa 0a             	cmp    edx,0xa
+   63c8c:	0f 84 1b f4 ff ff    	je     630ad <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x45d>
+   63c92:	41 bd 25 00 00 00    	mov    r13d,0x25
+   63c98:	e9 10 f4 ff ff       	jmp    630ad <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x45d>
+   63c9d:	e8 ce 7c fc ff       	call   2b970 <_ZN15ThreadPosixImpl17init_pt_ptr_indexEv@plt>
+   63ca2:	e9 a3 f6 ff ff       	jmp    6334a <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x6fa>
+   63ca7:	48 8b 05 aa 7b 06 00 	mov    rax,QWORD PTR [rip+0x67baa]        # cb858 <_ZN6Thread16_external_threadE>
+   63cae:	48 8b 00             	mov    rax,QWORD PTR [rax]
+   63cb1:	48 85 c0             	test   rax,rax
+   63cb4:	0f 85 a7 f6 ff ff    	jne    63361 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x711>
+   63cba:	e8 41 73 fc ff       	call   2b000 <_ZN6Thread20init_external_threadEv@plt>
+   63cbf:	48 8b 05 92 7b 06 00 	mov    rax,QWORD PTR [rip+0x67b92]        # cb858 <_ZN6Thread16_external_threadE>
+   63cc6:	48 8b 00             	mov    rax,QWORD PTR [rax]
+   63cc9:	e9 93 f6 ff ff       	jmp    63361 <_ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer@@Base+0x711>
+   63cce:	e8 dd ae fd ff       	call   3ebb0 <_ZN23GLGraphicsStateGuardian20end_bind_clip_planesEv@@Base+0x120>
