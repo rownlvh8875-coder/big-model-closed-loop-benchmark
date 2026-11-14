@@ -353,3 +353,29 @@ V4source branch diagnostic/engine-clock-sealed-native-v4; request04not yet
 registered.4new RED→GREEN fixtures PASS0.031s; final full1095tests/7existing
 skips PASS94.720s. Source review/qualification precede new04scope. Image006,
 v1–v3sources/requests/rawfailures and scientificFAIL/INCOMPLETE remain frozen.
+# P. Native04 original evidence and explicit memory experiment v5
+
+V4sourcef60259738af14b590062892f9cd1f776c3c7ee18/Draft85 exact4CI success:
+push43541643080(132283317544/132283317691), PR43541648939(132283334379/132283334584),
+attempt1/artifacts0. Activation8e1d0399d72fb5e303155274b7d0a56a330d8091/
+requestSHA5db0f8eca59ad604d6c3ec499cc06340cf678a1411c7ad7f49d0701fc0adcb28,
+187files/priorbranch absent/runs0. Run43541976073 FAILED146.894498571s; upload
+SUCCEEDED with artifact14092059036/322552572B/SHA029f0600b8a1cb5716bed815303e7777a8965220650bdca9960a80d622c0d031.
+Original API/ZIP/all CRCs retained. Cache outside artifact tree fixed traversal.
+
+Both actual parent/child admissions exist. Childprocess.log records MetaDrive
+0.4.3/original964x604/offscreenGLX/assets0.4.3 initialization, then `Killed`;
+launcher exit137/groupgone/reaped/cleanup[]. No case.json or capture payloads
+retained. Constructor return/capture count/closure unknown; no accepted canary.
+Known cap2GiB, but OOMNOTCONFIRMED (no CG/state evidence). Providerbounds[0,1],
+model/ORT0. Actual records preserved in STAGE7_ENGINE_CLOCK_SEALED_NATIVE_04_RESULT.json.
+
+V5is a separately reviewed resource experiment: explicit4GiB, hostMemTotal>=6GiB,
+private cgroup namespace, identity binds memory/CPU/PID/namespace,4bounded CG
+snapshots and safe projections from already-issued State inspections. No extra
+Docker cleanup calls; no automatic escalation/fallback or old retry. Peak is
+whole cgroup charge including page cache/parent/Xvfb, not childRSS. Original
+04OOMremainsunproven. All camera/render/getter/clock/payload/time policies and
+image006 stay unchanged. Source5closure195 existing files;4new RED→GREEN tests
+PASS0.009s, full1101tests/7existing skips PASS106.185s. Fresh source review and
+exact sourceCI precede new05request; no scientific or publication promotion.
