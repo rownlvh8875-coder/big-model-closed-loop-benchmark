@@ -1,6 +1,6 @@
 {
   "schema": "readback-delivery-cpu-evidence-v1",
-  "checked_at_kst": "2026-11-15T08:18:54.943579+09:00",
+  "checked_at_kst": "2026-11-15T08:25:17.508692+09:00",
   "builds": [
     {
       "variant": "plain",
@@ -27,19 +27,19 @@
         "-o",
         "/workspace/big-model-closed-loop-benchmark/output/stage7-readback-delivery-boundary-01/plain/fixture"
       ],
-      "build_wall_seconds": 0.9029752740007098,
-      "exe_sha256": "d866c1cc52a8eef66e2b916ca47fa04e5a967e2fd9b8d79339f019c96e5f5c9a",
+      "build_wall_seconds": 0.7621709659997578,
+      "exe_sha256": "b46215605ddf8110cb0082d5d161136ed6a88b1fa39e2db64186cb86c3e8819c",
       "codeprofile": {
         "rd_fixture_call": {
-          "vaddr": 29908,
+          "vaddr": 30068,
           "size": 178
         },
         "rd_probe_read": {
-          "vaddr": 27904,
+          "vaddr": 28064,
           "size": 202
         },
         "rd_probe_store": {
-          "vaddr": 29200,
+          "vaddr": 29360,
           "size": 167
         }
       }
@@ -73,25 +73,25 @@
         "-o",
         "/workspace/big-model-closed-loop-benchmark/output/stage7-readback-delivery-boundary-01/asan-ubsan/fixture"
       ],
-      "build_wall_seconds": 0.8534711120000793,
-      "exe_sha256": "21bdc7dc5cbc5680e13319263acef492094b0a0a9a8bb8d493205cc3d600ab63",
+      "build_wall_seconds": 0.9105771940003251,
+      "exe_sha256": "75e038e428dd51dbfa2184155bd2e3540c696870faa6b3f8c1d43eef773e1945",
       "codeprofile": {
         "rd_fixture_call": {
-          "vaddr": 4284672,
+          "vaddr": 4284800,
           "size": 178
         },
         "rd_probe_read": {
-          "vaddr": 4271372,
+          "vaddr": 4271309,
           "size": 698
         },
         "rd_probe_store": {
-          "vaddr": 4272942,
+          "vaddr": 4272879,
           "size": 108
         }
       }
     }
   ],
-  "build_wall_seconds": 1.756446386000789,
+  "build_wall_seconds": 1.6727481600000829,
   "cases": [
     {
       "kind": "standalone",
@@ -656,9 +656,65 @@
       "variant": "asan-ubsan",
       "mode": "preserve",
       "rejected": false
+    },
+    {
+      "kind": "unsafe-allowlist",
+      "variant": "plain",
+      "name": "glNamedFramebufferReadBuffer",
+      "exit_code": 3,
+      "rejected": true
+    },
+    {
+      "kind": "unsafe-allowlist",
+      "variant": "plain",
+      "name": "glNamedFramebufferReadBufferEXT",
+      "exit_code": 3,
+      "rejected": true
+    },
+    {
+      "kind": "unsafe-allowlist",
+      "variant": "plain",
+      "name": "glFramebufferReadBufferEXT",
+      "exit_code": 3,
+      "rejected": true
+    },
+    {
+      "kind": "unsafe-allowlist",
+      "variant": "plain",
+      "name": "glXCopyContext",
+      "exit_code": 3,
+      "rejected": true
+    },
+    {
+      "kind": "unsafe-allowlist",
+      "variant": "asan-ubsan",
+      "name": "glNamedFramebufferReadBuffer",
+      "exit_code": 3,
+      "rejected": true
+    },
+    {
+      "kind": "unsafe-allowlist",
+      "variant": "asan-ubsan",
+      "name": "glNamedFramebufferReadBufferEXT",
+      "exit_code": 3,
+      "rejected": true
+    },
+    {
+      "kind": "unsafe-allowlist",
+      "variant": "asan-ubsan",
+      "name": "glFramebufferReadBufferEXT",
+      "exit_code": 3,
+      "rejected": true
+    },
+    {
+      "kind": "unsafe-allowlist",
+      "variant": "asan-ubsan",
+      "name": "glXCopyContext",
+      "exit_code": 3,
+      "rejected": true
     }
   ],
-  "case_count": 78,
+  "case_count": 86,
   "sanitizers": "ASan+UBSan; no recover; all subprocesses exited as expected",
   "native_admitted": false,
   "driver_state_proven": false,

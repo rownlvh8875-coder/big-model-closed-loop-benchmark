@@ -1,0 +1,30 @@
+[
+  {
+    "kind": "unsafe-allowlist",
+    "variant": "asan-ubsan",
+    "name": "glNamedFramebufferReadBuffer",
+    "exit_code": 3,
+    "rejected": true
+  },
+  {
+    "kind": "unsafe-allowlist",
+    "variant": "asan-ubsan",
+    "name": "glNamedFramebufferReadBufferEXT",
+    "exit_code": 3,
+    "rejected": true
+  },
+  {
+    "kind": "unsafe-allowlist",
+    "variant": "asan-ubsan",
+    "name": "glFramebufferReadBufferEXT",
+    "exit_code": 3,
+    "rejected": true
+  },
+  {
+    "kind": "unsafe-allowlist",
+    "variant": "asan-ubsan",
+    "name": "glXCopyContext",
+    "exit_code": 3,
+    "rejected": true
+  }
+]

@@ -30,13 +30,21 @@ not a sandbox, signature, hostile same-UID defense or native process attestation
 
 Evidence: docs/evidence/readback-delivery-boundary-01/proof-index.json indexes all
 retained raw CPU streams/statuses/binaries/build commands and verification logs.
-The78CPU scenarios comprise24standalone modes in plain and ASan/UBSan builds plus
-15channel modes in both builds. Standalone bytes/status match between builds;
-valid channel cases pass, badnonce/PID/mapping/status/sink/exit/extra/empty/latewrite
-cases reject. Compile+link1.756446386s excludes tests/review/CI/development and is
-not native instrumentation overhead. Focused18testsPASS1.654s before review.
-Fullsuite1414tests/1407PASS/7skip94.729s, zero failures before review. One fresh
-whole-branch review and exactDraftCI closure are next.
+The86CPU scenarios comprise24standalone modes in plain and ASan/UBSan builds,
+15channel modes in both builds, and4unsafe-allowlist installation rejections in both
+builds. Standalone bytes/status match between builds; valid channel cases pass,
+badnonce/PID/mapping/status/sink/exit/extra/empty/latewrite cases reject.
+Compile+link1.672748160s excludes tests/review/CI/development and is not native
+instrumentation overhead. Focused19testsPASS1.604s; full1415tests/1408PASS/7skip94.349s.
+
+The sole fresh whole-branch review found0Critical/1Important/0Minor. One TDDfixpass
+(1test/4REDsubcases→19GREENfocusedtests) rejects DSA framebuffer-read-selector and
+GLXcontext-copy mutators from the safe-name table at installation. Ordinary safe
+routing remains valid. No rereview/minor polishing. All14reviewer-declined behaviors
+have explicit executor rulings in the ledger. Reviewed binaries/streams/source pins
+remain in before-fix/ and Git-reviewed HEADbcb8e11e4183b2c6f50ebd48dcad357181b77a6a.
+Exact immutable-source Draft/CI closure is recorded in the PR body and retained
+output/stage7-readback-delivery-boundary-01/final-verification.json after commit.
 
 Remaining native gates: qualify exact live original delivery/resolver installation
 and complete mutation coverage; bind actual camera/GSG/native lifetimes and process

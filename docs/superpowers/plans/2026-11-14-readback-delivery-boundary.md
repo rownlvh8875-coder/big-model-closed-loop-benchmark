@@ -47,5 +47,5 @@ CPUfixture controlpacket mode,docs/result/ledger/evidence.
 
 - [x] RED actualsocket credentials/truncation/rights cleanup/foreignsender, childnonce/status/extra/exit/spool/sink/map failures; missingchannelFAIL.
 - [x] Implement samechildcode+status+spool+codec binding; focusedPASS and realCPUprocess artifact receipts; fullsuitePASS.
-- [ ] Onefreshwholebranchreview,oneImportant/CriticalRED→GREENfixpass+fullsuite,no rereview; ledgerallrulings/costs/declineditems.
-- [ ] OwnDraft/exactpush+PRCI; finalallbase/299pins/original/main/nativehistory audit. Retain concrete nextnativeadmission gates; copy/remove only thisplan scratch.
+- [x] Onefreshwholebranchreview,oneImportant/CriticalRED→GREENfixpass+fullsuite,no rereview; ledgerallrulings/costs/declineditems.
+- [x] Prepare ownDraft/exactpush+PRCI closeout with immutable-HEAD external receipts; finalallbase/299pins/original/main/nativehistory audit passed. Retain concrete nextnativeadmission gates; copy/remove only thisplan scratch after fix commit.

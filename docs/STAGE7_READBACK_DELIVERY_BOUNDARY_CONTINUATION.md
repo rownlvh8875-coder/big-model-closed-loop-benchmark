@@ -14,6 +14,10 @@ with kernel sender identity, freshnonce, held-child code proof, finalized spool 
 exit. The CPU fixture exposes rd_probe_store/read/fixture_call only for reviewed
 CPU tests. It never loads Panda/GL/MetaDrive/official model/ORT.
 
+Final verification: full1415tests/1408PASS/7skip94.349s;19focusedPASS1.604s;
+86CPUscenarios plain/ASan/UBSan. One fresh review found1Important safe-name bypass,
+fixed with4REDsubcases;0unresolved/0minors/0rereviews. All14declined behaviors ruled.
+
 Reproduce:
 
 ```sh

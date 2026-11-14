@@ -54,6 +54,13 @@ for sanitize in (False, True):
         if sanitize:
             assert raw == (out/'plain'/(mode+'.rbr')).read_bytes()
             assert status == json.loads((out/'plain'/(mode+'.json')).read_text())
+    rejections=[]
+    for name in ('glNamedFramebufferReadBuffer','glNamedFramebufferReadBufferEXT','glFramebufferReadBufferEXT','glXCopyContext'):
+        p=subprocess.run([str(exe),'safe',name],capture_output=True,timeout=15)
+        assert p.returncode==3 and not p.stdout and not p.stderr,(variant,name,p.returncode,p.stderr)
+        row=dict(kind='unsafe-allowlist',variant=variant,name=name,exit_code=p.returncode,rejected=True)
+        rejections.append(row);cases.append(row)
+    (folder/'unsafe-allowlist-rejections.json').write_text(json.dumps(rejections,indent=2)+'\n')
     for mode in sorted(MODES):
         import os
         nonce = os.urandom(32)
