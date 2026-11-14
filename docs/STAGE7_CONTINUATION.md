@@ -1,10 +1,36 @@
 # Stage 7 continuation — verified results, renderer cause still open
 
+## Current checkpoint (2026-11-14 11:53 KST — sealed native camera canary accepted)
+
+New sealed image006 actually ran the original MetaDrive camera/engine-clock
+canary. Run43548412476/job132305005643/attempt1 SUCCESS at source
+`4d0372201b29d993c7c74b77bc95f59fc146563e`, activation
+`6fef49ae763ba386a2677484f491f2a994712c98`. Original artifact14095151728/
+338901808B/SHAea391fa87f421f838b5424f6b32c34b19990c53c247a954bb55e2c726e44458b.
+Root and one fresh independent original-byte reviewer accepted205sourcepins,
+bothinstalledinventories/prepostenv/resource/selection identities and6raw→canvas→
+derivedI420pairs/12RAM/12task/24Texture/48clock/144getters, provider1/1 and clean
+exit/reaping.4GiB cgrouppeak,OOM0, NOTRSS; old04OOMunproven. Full1108tests/7existing
+skips and4exactsourceCIjobs pass. Details and all failure/cost history:
+[result](STAGE7_ENGINE_CLOCK_SEALED_NATIVE_RESULT.md),
+[continuation ledger](STAGE7_ENGINE_CLOCK_CONTINUATION_LEDGER.md),
+[final authority](evidence/STAGE7_ENGINE_CLOCK_SEALED_NATIVE_06_RESULT.json).
+
+Earlier checkpoints below are historical, not current blockers to image/native
+readiness. Preserve all consumed native01–06/oldrequests/imageinputs/raws and
+producer bytes; no old rerun or unusedbudget reuse. Current source is canary-only.
+Next is a separate new source/protocol/budget containing newcanaryC and directchild
+ABBAA, with root+fresh Cacceptance before A and exact actual C/Ahost/image/engine/
+env/resource identity. Do not loosen that identity or use current06/old4cases as
+authorization. Official model/ORT0in nativecanary; strict0/4FAIL, expandedNOT_RUN,
+geometry/optics/fullSunknown and Stage7INCOMPLETE remain. No mainmerge or Cloud/
+registry publish. No claim of GPUfence/freshness/neutralobserver or actualgraphfeed.
 
 
 
 
-## Current checkpoint (2026-11-13 — source-only probe FD correction; real network preflight remains blocked)
+
+## Previous checkpoint (2026-11-13 — source-only probe FD correction; real network preflight remains blocked)
 
 Separate fix/engine-clock-builder-probe-fd from evidencea103c1e corrects only latent PF1: capability_probe now preserves both verified root/build descriptors, matching target launch. An actual trusted host Python fstat child through real capture/Popen proves both device/inode identities; metadata stubs do not run bubblewrap or create namespaces. Behavioral RED→GREEN1/0.029s, new-builder90/1.355s/full816/69.171s PASS/7optional skips. Fresh review of this separate delta/final CI are recorded in its own audit/PR; original source review/fix pass and actual producer remain distinct.
 

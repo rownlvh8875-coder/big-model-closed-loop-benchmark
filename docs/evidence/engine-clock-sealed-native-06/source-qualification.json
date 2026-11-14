@@ -1,0 +1,40 @@
+{
+  "artifacts": 0,
+  "attempt": 1,
+  "source_branch": "diagnostic/engine-clock-sealed-native-v6",
+  "source_ci": [
+    {
+      "event": "push",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "id": 132304307714,
+          "name": "synthetic-unit"
+        },
+        {
+          "conclusion": "success",
+          "id": 132304308000,
+          "name": "onnx-interface-test"
+        }
+      ],
+      "run_id": 43548194435
+    },
+    {
+      "event": "pull_request",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "id": 132304320330,
+          "name": "synthetic-unit"
+        },
+        {
+          "conclusion": "success",
+          "id": 132304320659,
+          "name": "onnx-interface-test"
+        }
+      ],
+      "run_id": 43548198549
+    }
+  ],
+  "source_sha": "4d0372201b29d993c7c74b77bc95f59fc146563e"
+}
