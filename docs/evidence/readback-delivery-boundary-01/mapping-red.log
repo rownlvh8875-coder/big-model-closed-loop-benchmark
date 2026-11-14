@@ -1,0 +1,53 @@
+FFFFFF
+======================================================================
+FAIL: test_actual_owned_cpu_code_matches_file_and_memory (tests.test_readback_process_mapping.ProcessMappingTests.test_actual_owned_cpu_code_matches_file_and_memory)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_readback_process_mapping.py", line 48, in setUp
+    self.assertIsNotNone(mapping, 'process code checker required')
+AssertionError: unexpectedly None : process code checker required
+
+======================================================================
+FAIL: test_elf_parser_rejects_wrong_format_and_truncated_program_headers (tests.test_readback_process_mapping.ProcessMappingTests.test_elf_parser_rejects_wrong_format_and_truncated_program_headers)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_readback_process_mapping.py", line 48, in setUp
+    self.assertIsNotNone(mapping, 'process code checker required')
+AssertionError: unexpectedly None : process code checker required
+
+======================================================================
+FAIL: test_maps_parser_rejects_malformed_overlapping_and_unbounded_rows (tests.test_readback_process_mapping.ProcessMappingTests.test_maps_parser_rejects_malformed_overlapping_and_unbounded_rows)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_readback_process_mapping.py", line 48, in setUp
+    self.assertIsNotNone(mapping, 'process code checker required')
+AssertionError: unexpectedly None : process code checker required
+
+======================================================================
+FAIL: test_pure_mapping_validator_rejects_protection_offset_identity_and_bytes (tests.test_readback_process_mapping.ProcessMappingTests.test_pure_mapping_validator_rejects_protection_offset_identity_and_bytes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_readback_process_mapping.py", line 48, in setUp
+    self.assertIsNotNone(mapping, 'process code checker required')
+AssertionError: unexpectedly None : process code checker required
+
+======================================================================
+FAIL: test_range_budgets_and_exact_named_addresses (tests.test_readback_process_mapping.ProcessMappingTests.test_range_budgets_and_exact_named_addresses)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_readback_process_mapping.py", line 48, in setUp
+    self.assertIsNotNone(mapping, 'process code checker required')
+AssertionError: unexpectedly None : process code checker required
+
+======================================================================
+FAIL: test_wrong_hash_address_pid_and_symlink_are_rejected (tests.test_readback_process_mapping.ProcessMappingTests.test_wrong_hash_address_pid_and_symlink_are_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_readback_process_mapping.py", line 48, in setUp
+    self.assertIsNotNone(mapping, 'process code checker required')
+AssertionError: unexpectedly None : process code checker required
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.044s
+
+FAILED (failures=6)

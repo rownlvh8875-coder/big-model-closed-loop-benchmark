@@ -1,0 +1,724 @@
+{
+  "schema": "readback-delivery-cpu-evidence-v1",
+  "checked_at_kst": "2026-11-15T08:25:17.508692+09:00",
+  "builds": [
+    {
+      "variant": "plain",
+      "command": [
+        "/usr/bin/cc",
+        "-std=c11",
+        "-O2",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pthread",
+        "-I",
+        "/workspace/big-model-closed-loop-benchmark/native",
+        "-Dpb_fixture_call=rd_fixture_call",
+        "-Dpb_fixture_return=rd_fixture_return",
+        "/workspace/big-model-closed-loop-benchmark/native/readback_return_core.c",
+        "/workspace/big-model-closed-loop-benchmark/native/panda_readback_bridge.c",
+        "/workspace/big-model-closed-loop-benchmark/native/panda_readback_bridge.S",
+        "/workspace/big-model-closed-loop-benchmark/native/readback_command_state.c",
+        "/workspace/big-model-closed-loop-benchmark/native/readback_call_delivery.c",
+        "/workspace/big-model-closed-loop-benchmark/native/readback_delivery_entry.S",
+        "/workspace/big-model-closed-loop-benchmark/tests/fixtures/readback_delivery_fixture.c",
+        "/workspace/big-model-closed-loop-benchmark/output/stage7-readback-delivery-boundary-01/plain/fixture-caller.S",
+        "-o",
+        "/workspace/big-model-closed-loop-benchmark/output/stage7-readback-delivery-boundary-01/plain/fixture"
+      ],
+      "build_wall_seconds": 0.7621709659997578,
+      "exe_sha256": "b46215605ddf8110cb0082d5d161136ed6a88b1fa39e2db64186cb86c3e8819c",
+      "codeprofile": {
+        "rd_fixture_call": {
+          "vaddr": 30068,
+          "size": 178
+        },
+        "rd_probe_read": {
+          "vaddr": 28064,
+          "size": 202
+        },
+        "rd_probe_store": {
+          "vaddr": 29360,
+          "size": 167
+        }
+      }
+    },
+    {
+      "variant": "asan-ubsan",
+      "command": [
+        "/usr/bin/cc",
+        "-std=c11",
+        "-O1",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pthread",
+        "-I",
+        "/workspace/big-model-closed-loop-benchmark/native",
+        "-Dpb_fixture_call=rd_fixture_call",
+        "-Dpb_fixture_return=rd_fixture_return",
+        "-fsanitize=address,undefined",
+        "-fno-sanitize-recover=all",
+        "-fno-omit-frame-pointer",
+        "-no-pie",
+        "/workspace/big-model-closed-loop-benchmark/native/readback_return_core.c",
+        "/workspace/big-model-closed-loop-benchmark/native/panda_readback_bridge.c",
+        "/workspace/big-model-closed-loop-benchmark/native/panda_readback_bridge.S",
+        "/workspace/big-model-closed-loop-benchmark/native/readback_command_state.c",
+        "/workspace/big-model-closed-loop-benchmark/native/readback_call_delivery.c",
+        "/workspace/big-model-closed-loop-benchmark/native/readback_delivery_entry.S",
+        "/workspace/big-model-closed-loop-benchmark/tests/fixtures/readback_delivery_fixture.c",
+        "/workspace/big-model-closed-loop-benchmark/output/stage7-readback-delivery-boundary-01/asan-ubsan/fixture-caller.S",
+        "-o",
+        "/workspace/big-model-closed-loop-benchmark/output/stage7-readback-delivery-boundary-01/asan-ubsan/fixture"
+      ],
+      "build_wall_seconds": 0.9105771940003251,
+      "exe_sha256": "75e038e428dd51dbfa2184155bd2e3540c696870faa6b3f8c1d43eef773e1945",
+      "codeprofile": {
+        "rd_fixture_call": {
+          "vaddr": 4284800,
+          "size": 178
+        },
+        "rd_probe_read": {
+          "vaddr": 4271309,
+          "size": 698
+        },
+        "rd_probe_store": {
+          "vaddr": 4272879,
+          "size": 108
+        }
+      }
+    }
+  ],
+  "build_wall_seconds": 1.6727481600000829,
+  "cases": [
+    {
+      "kind": "standalone",
+      "variant": "plain",
+      "mode": "basic",
+      "cpu_stream_accepted": true,
+      "stream_sha256": "429539ca93fd5e36ada6a32caaf7eb1074b27e270f7c4c2ca4a97d2fa2de9a96",
+      "stream_nbytes": 506
+    },
+    {
+      "kind": "standalone",
+      "variant": "plain",
+      "mode": "aliases",
+      "cpu_stream_accepted": true,
+      "stream_sha256": "429539ca93fd5e36ada6a32caaf7eb1074b27e270f7c4c2ca4a97d2fa2de9a96",
+      "stream_nbytes": 506
+    },
+    {
+      "kind": "standalone",
+      "variant": "plain",
+      "mode": "safe",
+      "cpu_stream_accepted": true,
+      "stream_sha256": "429539ca93fd5e36ada6a32caaf7eb1074b27e270f7c4c2ca4a97d2fa2de9a96",
+      "stream_nbytes": 506
+    },
+    {
+      "kind": "standalone",
+      "variant": "plain",
+      "mode": "null",
+      "cpu_stream_accepted": true,
+      "stream_sha256": "429539ca93fd5e36ada6a32caaf7eb1074b27e270f7c4c2ca4a97d2fa2de9a96",
+      "stream_nbytes": 506
+    },
+    {
+      "kind": "standalone",
+      "variant": "plain",
+      "mode": "delete",
+      "cpu_stream_accepted": true,
+      "stream_sha256": "429539ca93fd5e36ada6a32caaf7eb1074b27e270f7c4c2ca4a97d2fa2de9a96",
+      "stream_nbytes": 506
+    },
+    {
+      "kind": "standalone",
+      "variant": "plain",
+      "mode": "attrib",
+      "cpu_stream_accepted": true,
+      "stream_sha256": "429539ca93fd5e36ada6a32caaf7eb1074b27e270f7c4c2ca4a97d2fa2de9a96",
+      "stream_nbytes": 506
+    },
+    {
+      "kind": "standalone",
+      "variant": "plain",
+      "mode": "createfail",
+      "cpu_stream_accepted": true,
+      "stream_sha256": "429539ca93fd5e36ada6a32caaf7eb1074b27e270f7c4c2ca4a97d2fa2de9a96",
+      "stream_nbytes": 506
+    },
+    {
+      "kind": "standalone",
+      "variant": "plain",
+      "mode": "failedswitch",
+      "cpu_stream_accepted": true,
+      "stream_sha256": "429539ca93fd5e36ada6a32caaf7eb1074b27e270f7c4c2ca4a97d2fa2de9a96",
+      "stream_nbytes": 506
+    },
+    {
+      "kind": "standalone",
+      "variant": "plain",
+      "mode": "makeboth",
+      "cpu_stream_accepted": true,
+      "stream_sha256": "429539ca93fd5e36ada6a32caaf7eb1074b27e270f7c4c2ca4a97d2fa2de9a96",
+      "stream_nbytes": 506
+    },
+    {
+      "kind": "standalone",
+      "variant": "plain",
+      "mode": "preserve",
+      "cpu_stream_accepted": true,
+      "stream_sha256": "429539ca93fd5e36ada6a32caaf7eb1074b27e270f7c4c2ca4a97d2fa2de9a96",
+      "stream_nbytes": 506
+    },
+    {
+      "kind": "standalone",
+      "variant": "plain",
+      "mode": "mismatch",
+      "cpu_stream_accepted": false,
+      "stream_sha256": "4c1727b76464607bfd765a11fb1acf497400a08ea3e4c5cc99d8a71fd0dbf7b4",
+      "stream_nbytes": 96
+    },
+    {
+      "kind": "standalone",
+      "variant": "plain",
+      "mode": "unknown",
+      "cpu_stream_accepted": false,
+      "stream_sha256": "4c1727b76464607bfd765a11fb1acf497400a08ea3e4c5cc99d8a71fd0dbf7b4",
+      "stream_nbytes": 96
+    },
+    {
+      "kind": "standalone",
+      "variant": "plain",
+      "mode": "glerror",
+      "cpu_stream_accepted": false,
+      "stream_sha256": "4c1727b76464607bfd765a11fb1acf497400a08ea3e4c5cc99d8a71fd0dbf7b4",
+      "stream_nbytes": 96
+    },
+    {
+      "kind": "standalone",
+      "variant": "plain",
+      "mode": "invalidate",
+      "cpu_stream_accepted": false,
+      "stream_sha256": "4c1727b76464607bfd765a11fb1acf497400a08ea3e4c5cc99d8a71fd0dbf7b4",
+      "stream_nbytes": 96
+    },
+    {
+      "kind": "standalone",
+      "variant": "plain",
+      "mode": "display",
+      "cpu_stream_accepted": false,
+      "stream_sha256": "4c1727b76464607bfd765a11fb1acf497400a08ea3e4c5cc99d8a71fd0dbf7b4",
+      "stream_nbytes": 96
+    },
+    {
+      "kind": "standalone",
+      "variant": "plain",
+      "mode": "thread",
+      "cpu_stream_accepted": false,
+      "stream_sha256": "4c1727b76464607bfd765a11fb1acf497400a08ea3e4c5cc99d8a71fd0dbf7b4",
+      "stream_nbytes": 96
+    },
+    {
+      "kind": "standalone",
+      "variant": "plain",
+      "mode": "reentrant",
+      "cpu_stream_accepted": false,
+      "stream_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stream_nbytes": 0
+    },
+    {
+      "kind": "standalone",
+      "variant": "plain",
+      "mode": "shared",
+      "cpu_stream_accepted": false,
+      "stream_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stream_nbytes": 0
+    },
+    {
+      "kind": "standalone",
+      "variant": "plain",
+      "mode": "cap",
+      "cpu_stream_accepted": false,
+      "stream_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stream_nbytes": 0
+    },
+    {
+      "kind": "standalone",
+      "variant": "plain",
+      "mode": "destroy",
+      "cpu_stream_accepted": false,
+      "stream_sha256": "4c1727b76464607bfd765a11fb1acf497400a08ea3e4c5cc99d8a71fd0dbf7b4",
+      "stream_nbytes": 96
+    },
+    {
+      "kind": "standalone",
+      "variant": "plain",
+      "mode": "pbo",
+      "cpu_stream_accepted": false,
+      "stream_sha256": "1fa7aedf59336a6566134ff4a286bb37118df2361ea43e016f6d03d1d7bd25f3",
+      "stream_nbytes": 96
+    },
+    {
+      "kind": "standalone",
+      "variant": "plain",
+      "mode": "footerfail",
+      "cpu_stream_accepted": false,
+      "stream_sha256": "429539ca93fd5e36ada6a32caaf7eb1074b27e270f7c4c2ca4a97d2fa2de9a96",
+      "stream_nbytes": 506
+    },
+    {
+      "kind": "standalone",
+      "variant": "plain",
+      "mode": "off",
+      "cpu_stream_accepted": true,
+      "stream_sha256": "16dfd8210ba820e67f703b25466b1a004bf2907d191cce64f8fecdbde1d0aa70",
+      "stream_nbytes": 96
+    },
+    {
+      "kind": "standalone",
+      "variant": "plain",
+      "mode": "offinvalid",
+      "cpu_stream_accepted": false,
+      "stream_sha256": "16dfd8210ba820e67f703b25466b1a004bf2907d191cce64f8fecdbde1d0aa70",
+      "stream_nbytes": 96
+    },
+    {
+      "kind": "channel",
+      "variant": "plain",
+      "mode": "aliases",
+      "rejected": false
+    },
+    {
+      "kind": "channel",
+      "variant": "plain",
+      "mode": "basic",
+      "rejected": false
+    },
+    {
+      "kind": "channel",
+      "variant": "plain",
+      "mode": "channel_empty",
+      "rejected": true
+    },
+    {
+      "kind": "channel",
+      "variant": "plain",
+      "mode": "channel_exit",
+      "rejected": true
+    },
+    {
+      "kind": "channel",
+      "variant": "plain",
+      "mode": "channel_extra",
+      "rejected": true
+    },
+    {
+      "kind": "channel",
+      "variant": "plain",
+      "mode": "channel_map",
+      "rejected": true
+    },
+    {
+      "kind": "channel",
+      "variant": "plain",
+      "mode": "channel_nonce",
+      "rejected": true
+    },
+    {
+      "kind": "channel",
+      "variant": "plain",
+      "mode": "channel_pid",
+      "rejected": true
+    },
+    {
+      "kind": "channel",
+      "variant": "plain",
+      "mode": "channel_status",
+      "rejected": true
+    },
+    {
+      "kind": "channel",
+      "variant": "plain",
+      "mode": "channel_tamper",
+      "rejected": true
+    },
+    {
+      "kind": "channel",
+      "variant": "plain",
+      "mode": "footerfail",
+      "rejected": true
+    },
+    {
+      "kind": "channel",
+      "variant": "plain",
+      "mode": "invalidate",
+      "rejected": true
+    },
+    {
+      "kind": "channel",
+      "variant": "plain",
+      "mode": "off",
+      "rejected": false
+    },
+    {
+      "kind": "channel",
+      "variant": "plain",
+      "mode": "offinvalid",
+      "rejected": true
+    },
+    {
+      "kind": "channel",
+      "variant": "plain",
+      "mode": "preserve",
+      "rejected": false
+    },
+    {
+      "kind": "standalone",
+      "variant": "asan-ubsan",
+      "mode": "basic",
+      "cpu_stream_accepted": true,
+      "stream_sha256": "429539ca93fd5e36ada6a32caaf7eb1074b27e270f7c4c2ca4a97d2fa2de9a96",
+      "stream_nbytes": 506
+    },
+    {
+      "kind": "standalone",
+      "variant": "asan-ubsan",
+      "mode": "aliases",
+      "cpu_stream_accepted": true,
+      "stream_sha256": "429539ca93fd5e36ada6a32caaf7eb1074b27e270f7c4c2ca4a97d2fa2de9a96",
+      "stream_nbytes": 506
+    },
+    {
+      "kind": "standalone",
+      "variant": "asan-ubsan",
+      "mode": "safe",
+      "cpu_stream_accepted": true,
+      "stream_sha256": "429539ca93fd5e36ada6a32caaf7eb1074b27e270f7c4c2ca4a97d2fa2de9a96",
+      "stream_nbytes": 506
+    },
+    {
+      "kind": "standalone",
+      "variant": "asan-ubsan",
+      "mode": "null",
+      "cpu_stream_accepted": true,
+      "stream_sha256": "429539ca93fd5e36ada6a32caaf7eb1074b27e270f7c4c2ca4a97d2fa2de9a96",
+      "stream_nbytes": 506
+    },
+    {
+      "kind": "standalone",
+      "variant": "asan-ubsan",
+      "mode": "delete",
+      "cpu_stream_accepted": true,
+      "stream_sha256": "429539ca93fd5e36ada6a32caaf7eb1074b27e270f7c4c2ca4a97d2fa2de9a96",
+      "stream_nbytes": 506
+    },
+    {
+      "kind": "standalone",
+      "variant": "asan-ubsan",
+      "mode": "attrib",
+      "cpu_stream_accepted": true,
+      "stream_sha256": "429539ca93fd5e36ada6a32caaf7eb1074b27e270f7c4c2ca4a97d2fa2de9a96",
+      "stream_nbytes": 506
+    },
+    {
+      "kind": "standalone",
+      "variant": "asan-ubsan",
+      "mode": "createfail",
+      "cpu_stream_accepted": true,
+      "stream_sha256": "429539ca93fd5e36ada6a32caaf7eb1074b27e270f7c4c2ca4a97d2fa2de9a96",
+      "stream_nbytes": 506
+    },
+    {
+      "kind": "standalone",
+      "variant": "asan-ubsan",
+      "mode": "failedswitch",
+      "cpu_stream_accepted": true,
+      "stream_sha256": "429539ca93fd5e36ada6a32caaf7eb1074b27e270f7c4c2ca4a97d2fa2de9a96",
+      "stream_nbytes": 506
+    },
+    {
+      "kind": "standalone",
+      "variant": "asan-ubsan",
+      "mode": "makeboth",
+      "cpu_stream_accepted": true,
+      "stream_sha256": "429539ca93fd5e36ada6a32caaf7eb1074b27e270f7c4c2ca4a97d2fa2de9a96",
+      "stream_nbytes": 506
+    },
+    {
+      "kind": "standalone",
+      "variant": "asan-ubsan",
+      "mode": "preserve",
+      "cpu_stream_accepted": true,
+      "stream_sha256": "429539ca93fd5e36ada6a32caaf7eb1074b27e270f7c4c2ca4a97d2fa2de9a96",
+      "stream_nbytes": 506
+    },
+    {
+      "kind": "standalone",
+      "variant": "asan-ubsan",
+      "mode": "mismatch",
+      "cpu_stream_accepted": false,
+      "stream_sha256": "4c1727b76464607bfd765a11fb1acf497400a08ea3e4c5cc99d8a71fd0dbf7b4",
+      "stream_nbytes": 96
+    },
+    {
+      "kind": "standalone",
+      "variant": "asan-ubsan",
+      "mode": "unknown",
+      "cpu_stream_accepted": false,
+      "stream_sha256": "4c1727b76464607bfd765a11fb1acf497400a08ea3e4c5cc99d8a71fd0dbf7b4",
+      "stream_nbytes": 96
+    },
+    {
+      "kind": "standalone",
+      "variant": "asan-ubsan",
+      "mode": "glerror",
+      "cpu_stream_accepted": false,
+      "stream_sha256": "4c1727b76464607bfd765a11fb1acf497400a08ea3e4c5cc99d8a71fd0dbf7b4",
+      "stream_nbytes": 96
+    },
+    {
+      "kind": "standalone",
+      "variant": "asan-ubsan",
+      "mode": "invalidate",
+      "cpu_stream_accepted": false,
+      "stream_sha256": "4c1727b76464607bfd765a11fb1acf497400a08ea3e4c5cc99d8a71fd0dbf7b4",
+      "stream_nbytes": 96
+    },
+    {
+      "kind": "standalone",
+      "variant": "asan-ubsan",
+      "mode": "display",
+      "cpu_stream_accepted": false,
+      "stream_sha256": "4c1727b76464607bfd765a11fb1acf497400a08ea3e4c5cc99d8a71fd0dbf7b4",
+      "stream_nbytes": 96
+    },
+    {
+      "kind": "standalone",
+      "variant": "asan-ubsan",
+      "mode": "thread",
+      "cpu_stream_accepted": false,
+      "stream_sha256": "4c1727b76464607bfd765a11fb1acf497400a08ea3e4c5cc99d8a71fd0dbf7b4",
+      "stream_nbytes": 96
+    },
+    {
+      "kind": "standalone",
+      "variant": "asan-ubsan",
+      "mode": "reentrant",
+      "cpu_stream_accepted": false,
+      "stream_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stream_nbytes": 0
+    },
+    {
+      "kind": "standalone",
+      "variant": "asan-ubsan",
+      "mode": "shared",
+      "cpu_stream_accepted": false,
+      "stream_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stream_nbytes": 0
+    },
+    {
+      "kind": "standalone",
+      "variant": "asan-ubsan",
+      "mode": "cap",
+      "cpu_stream_accepted": false,
+      "stream_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stream_nbytes": 0
+    },
+    {
+      "kind": "standalone",
+      "variant": "asan-ubsan",
+      "mode": "destroy",
+      "cpu_stream_accepted": false,
+      "stream_sha256": "4c1727b76464607bfd765a11fb1acf497400a08ea3e4c5cc99d8a71fd0dbf7b4",
+      "stream_nbytes": 96
+    },
+    {
+      "kind": "standalone",
+      "variant": "asan-ubsan",
+      "mode": "pbo",
+      "cpu_stream_accepted": false,
+      "stream_sha256": "1fa7aedf59336a6566134ff4a286bb37118df2361ea43e016f6d03d1d7bd25f3",
+      "stream_nbytes": 96
+    },
+    {
+      "kind": "standalone",
+      "variant": "asan-ubsan",
+      "mode": "footerfail",
+      "cpu_stream_accepted": false,
+      "stream_sha256": "429539ca93fd5e36ada6a32caaf7eb1074b27e270f7c4c2ca4a97d2fa2de9a96",
+      "stream_nbytes": 506
+    },
+    {
+      "kind": "standalone",
+      "variant": "asan-ubsan",
+      "mode": "off",
+      "cpu_stream_accepted": true,
+      "stream_sha256": "16dfd8210ba820e67f703b25466b1a004bf2907d191cce64f8fecdbde1d0aa70",
+      "stream_nbytes": 96
+    },
+    {
+      "kind": "standalone",
+      "variant": "asan-ubsan",
+      "mode": "offinvalid",
+      "cpu_stream_accepted": false,
+      "stream_sha256": "16dfd8210ba820e67f703b25466b1a004bf2907d191cce64f8fecdbde1d0aa70",
+      "stream_nbytes": 96
+    },
+    {
+      "kind": "channel",
+      "variant": "asan-ubsan",
+      "mode": "aliases",
+      "rejected": false
+    },
+    {
+      "kind": "channel",
+      "variant": "asan-ubsan",
+      "mode": "basic",
+      "rejected": false
+    },
+    {
+      "kind": "channel",
+      "variant": "asan-ubsan",
+      "mode": "channel_empty",
+      "rejected": true
+    },
+    {
+      "kind": "channel",
+      "variant": "asan-ubsan",
+      "mode": "channel_exit",
+      "rejected": true
+    },
+    {
+      "kind": "channel",
+      "variant": "asan-ubsan",
+      "mode": "channel_extra",
+      "rejected": true
+    },
+    {
+      "kind": "channel",
+      "variant": "asan-ubsan",
+      "mode": "channel_map",
+      "rejected": true
+    },
+    {
+      "kind": "channel",
+      "variant": "asan-ubsan",
+      "mode": "channel_nonce",
+      "rejected": true
+    },
+    {
+      "kind": "channel",
+      "variant": "asan-ubsan",
+      "mode": "channel_pid",
+      "rejected": true
+    },
+    {
+      "kind": "channel",
+      "variant": "asan-ubsan",
+      "mode": "channel_status",
+      "rejected": true
+    },
+    {
+      "kind": "channel",
+      "variant": "asan-ubsan",
+      "mode": "channel_tamper",
+      "rejected": true
+    },
+    {
+      "kind": "channel",
+      "variant": "asan-ubsan",
+      "mode": "footerfail",
+      "rejected": true
+    },
+    {
+      "kind": "channel",
+      "variant": "asan-ubsan",
+      "mode": "invalidate",
+      "rejected": true
+    },
+    {
+      "kind": "channel",
+      "variant": "asan-ubsan",
+      "mode": "off",
+      "rejected": false
+    },
+    {
+      "kind": "channel",
+      "variant": "asan-ubsan",
+      "mode": "offinvalid",
+      "rejected": true
+    },
+    {
+      "kind": "channel",
+      "variant": "asan-ubsan",
+      "mode": "preserve",
+      "rejected": false
+    },
+    {
+      "kind": "unsafe-allowlist",
+      "variant": "plain",
+      "name": "glNamedFramebufferReadBuffer",
+      "exit_code": 3,
+      "rejected": true
+    },
+    {
+      "kind": "unsafe-allowlist",
+      "variant": "plain",
+      "name": "glNamedFramebufferReadBufferEXT",
+      "exit_code": 3,
+      "rejected": true
+    },
+    {
+      "kind": "unsafe-allowlist",
+      "variant": "plain",
+      "name": "glFramebufferReadBufferEXT",
+      "exit_code": 3,
+      "rejected": true
+    },
+    {
+      "kind": "unsafe-allowlist",
+      "variant": "plain",
+      "name": "glXCopyContext",
+      "exit_code": 3,
+      "rejected": true
+    },
+    {
+      "kind": "unsafe-allowlist",
+      "variant": "asan-ubsan",
+      "name": "glNamedFramebufferReadBuffer",
+      "exit_code": 3,
+      "rejected": true
+    },
+    {
+      "kind": "unsafe-allowlist",
+      "variant": "asan-ubsan",
+      "name": "glNamedFramebufferReadBufferEXT",
+      "exit_code": 3,
+      "rejected": true
+    },
+    {
+      "kind": "unsafe-allowlist",
+      "variant": "asan-ubsan",
+      "name": "glFramebufferReadBufferEXT",
+      "exit_code": 3,
+      "rejected": true
+    },
+    {
+      "kind": "unsafe-allowlist",
+      "variant": "asan-ubsan",
+      "name": "glXCopyContext",
+      "exit_code": 3,
+      "rejected": true
+    }
+  ],
+  "case_count": 86,
+  "sanitizers": "ASan+UBSan; no recover; all subprocesses exited as expected",
+  "native_admitted": false,
+  "driver_state_proven": false,
+  "original_gpu_bytes_observed": false,
+  "new_native_runs": 0,
+  "build_timing_scope": "compilation/link only; excludes tests,review,CI,development; not native instrumentation overhead"
+}

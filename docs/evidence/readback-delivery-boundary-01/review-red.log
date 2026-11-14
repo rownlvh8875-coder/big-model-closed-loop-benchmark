@@ -1,0 +1,37 @@
+FFFF
+======================================================================
+FAIL: test_known_unsupported_selector_and_context_copy_cannot_be_safe_names (tests.test_readback_call_delivery.CallDeliveryTests.test_known_unsupported_selector_and_context_copy_cannot_be_safe_names) (name='glNamedFramebufferReadBuffer')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_readback_call_delivery.py", line 45, in test_known_unsupported_selector_and_context_copy_cannot_be_safe_names
+    self.assertEqual(p.returncode,3,'unsafe allowlist must reject installation')
+AssertionError: 0 != 3 : unsafe allowlist must reject installation
+
+======================================================================
+FAIL: test_known_unsupported_selector_and_context_copy_cannot_be_safe_names (tests.test_readback_call_delivery.CallDeliveryTests.test_known_unsupported_selector_and_context_copy_cannot_be_safe_names) (name='glNamedFramebufferReadBufferEXT')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_readback_call_delivery.py", line 45, in test_known_unsupported_selector_and_context_copy_cannot_be_safe_names
+    self.assertEqual(p.returncode,3,'unsafe allowlist must reject installation')
+AssertionError: 0 != 3 : unsafe allowlist must reject installation
+
+======================================================================
+FAIL: test_known_unsupported_selector_and_context_copy_cannot_be_safe_names (tests.test_readback_call_delivery.CallDeliveryTests.test_known_unsupported_selector_and_context_copy_cannot_be_safe_names) (name='glFramebufferReadBufferEXT')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_readback_call_delivery.py", line 45, in test_known_unsupported_selector_and_context_copy_cannot_be_safe_names
+    self.assertEqual(p.returncode,3,'unsafe allowlist must reject installation')
+AssertionError: 0 != 3 : unsafe allowlist must reject installation
+
+======================================================================
+FAIL: test_known_unsupported_selector_and_context_copy_cannot_be_safe_names (tests.test_readback_call_delivery.CallDeliveryTests.test_known_unsupported_selector_and_context_copy_cannot_be_safe_names) (name='glXCopyContext')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_readback_call_delivery.py", line 45, in test_known_unsupported_selector_and_context_copy_cannot_be_safe_names
+    self.assertEqual(p.returncode,3,'unsafe allowlist must reject installation')
+AssertionError: 0 != 3 : unsafe allowlist must reject installation
+
+----------------------------------------------------------------------
+Ran 1 test in 0.781s
+
+FAILED (failures=4)

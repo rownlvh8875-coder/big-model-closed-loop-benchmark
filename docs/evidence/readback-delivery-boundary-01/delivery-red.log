@@ -1,0 +1,59 @@
+FFFFFF
+======================================================================
+FAIL: test_alias_and_allowlisted_resolver_routes_preserve_results (tests.test_readback_call_delivery.CallDeliveryTests.test_alias_and_allowlisted_resolver_routes_preserve_results)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_readback_call_delivery.py", line 33, in setUp
+    def setUp(self):self.assertIsNotNone(self.exe,'typed delivery/bootstrap/tail required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : typed delivery/bootstrap/tail required
+
+======================================================================
+FAIL: test_bootstrap_replay_has_no_extra_original_calls_and_tail_keeps_panda_abi (tests.test_readback_call_delivery.CallDeliveryTests.test_bootstrap_replay_has_no_extra_original_calls_and_tail_keeps_panda_abi)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_readback_call_delivery.py", line 33, in setUp
+    def setUp(self):self.assertIsNotNone(self.exe,'typed delivery/bootstrap/tail required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : typed delivery/bootstrap/tail required
+
+======================================================================
+FAIL: test_delivery_failures_continue_originals_but_reject_completion (tests.test_readback_call_delivery.CallDeliveryTests.test_delivery_failures_continue_originals_but_reject_completion)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_readback_call_delivery.py", line 33, in setUp
+    def setUp(self):self.assertIsNotNone(self.exe,'typed delivery/bootstrap/tail required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : typed delivery/bootstrap/tail required
+
+======================================================================
+FAIL: test_off_error_is_not_hidden_by_core_footer (tests.test_readback_call_delivery.CallDeliveryTests.test_off_error_is_not_hidden_by_core_footer)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_readback_call_delivery.py", line 33, in setUp
+    def setUp(self):self.assertIsNotNone(self.exe,'typed delivery/bootstrap/tail required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : typed delivery/bootstrap/tail required
+
+======================================================================
+FAIL: test_original_context_returns_determine_creation_and_current_events (tests.test_readback_call_delivery.CallDeliveryTests.test_original_context_returns_determine_creation_and_current_events)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_readback_call_delivery.py", line 33, in setUp
+    def setUp(self):self.assertIsNotNone(self.exe,'typed delivery/bootstrap/tail required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : typed delivery/bootstrap/tail required
+
+======================================================================
+FAIL: test_original_incoming_and_unchanged_errno_survive_every_layer (tests.test_readback_call_delivery.CallDeliveryTests.test_original_incoming_and_unchanged_errno_survive_every_layer)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_readback_call_delivery.py", line 33, in setUp
+    def setUp(self):self.assertIsNotNone(self.exe,'typed delivery/bootstrap/tail required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : typed delivery/bootstrap/tail required
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.001s
+
+FAILED (failures=6)

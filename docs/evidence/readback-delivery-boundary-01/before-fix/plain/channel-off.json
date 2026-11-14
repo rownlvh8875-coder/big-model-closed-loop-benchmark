@@ -1,0 +1,91 @@
+{
+  "mode": "off",
+  "rejected": false,
+  "result": {
+    "schema": "readback-cpu-channel-result-v1",
+    "kernel_sender_verified": true,
+    "mapping": {
+      "schema": "readback-process-code-v1",
+      "process_code_verified": true,
+      "pid": 10739,
+      "starttime": 465372,
+      "file_sha256": "d866c1cc52a8eef66e2b916ca47fa04e5a967e2fd9b8d79339f019c96e5f5c9a",
+      "ranges": {
+        "rd_fixture_call": {
+          "vaddr": 29908,
+          "file_offset": 29908,
+          "size": 178,
+          "sha256": "664e996dcdf45ae73452f327ff5c3f2a6ea9f6c59655549c2641936fdc6e2c43"
+        },
+        "rd_probe_read": {
+          "vaddr": 27904,
+          "file_offset": 27904,
+          "size": 202,
+          "sha256": "74c13faa49c3e9cd5a0ccbdad9e82eb6cadca3c7b49a966aed8291b8f9cc8e9d"
+        },
+        "rd_probe_store": {
+          "vaddr": 29200,
+          "file_offset": 29200,
+          "size": 167,
+          "sha256": "93a2893e287343adf0ba7e41245d3bbb2891d9a598069e2a244482e6dcb1b480"
+        }
+      },
+      "native_admitted": false,
+      "panda_runtime_mapping_verified": false
+    },
+    "receipt": {
+      "schema": "readback-return-producer-finalization-v1",
+      "nonce": "ec10304fb253efbd89b92117f784d178565a896eec04299e52756b579f4bea7a",
+      "stream_sha256": "2b8ffd5d4018b8f5dfb412564acc85066dcfa85c4119be7d426be94fa8c5b147",
+      "stream_nbytes": 96,
+      "finish_result": 0,
+      "error": 0,
+      "forwards": 2,
+      "attempts": 0,
+      "captured": 0,
+      "data_wire_bytes": 0
+    },
+    "status": {
+      "source": "SYNTHETIC_TYPED_DISPATCH_ONLY",
+      "original_commands": 9,
+      "original_calls": 2,
+      "resolver_calls": 2,
+      "args_ok": 1,
+      "errno_ok": 1,
+      "regs_ok": 1,
+      "attached": 0,
+      "bound": 0,
+      "delivery_error": 0,
+      "events": 9,
+      "replayed": 5,
+      "error": 0,
+      "captured": 0,
+      "attempts": 0,
+      "forwards": 2,
+      "wire_bytes": 0,
+      "finish": 0,
+      "driver_state_proven": false,
+      "runtime_admission_ready": false
+    },
+    "exit_code": 0,
+    "native_admitted": false,
+    "driver_state_proven": false,
+    "panda_runtime_mapping_verified": false,
+    "decoded_summary": {
+      "footer": {
+        "forwards": 2,
+        "attempts": 0,
+        "captured": 0,
+        "data_wire_bytes": 0,
+        "closed_windows": 1,
+        "error": 0,
+        "enabled": false
+      },
+      "cpu_window_closed": true,
+      "native_admitted": false,
+      "gpu_write_proven": false,
+      "physical_frame_proven": false,
+      "record_count": 0
+    }
+  }
+}
