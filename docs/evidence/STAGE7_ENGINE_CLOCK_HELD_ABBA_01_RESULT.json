@@ -1,0 +1,128 @@
+{
+  "abba_cases_status": "NOT_RUN",
+  "abba_control_issued": false,
+  "activation_sha": "01ca6198d90f3624546b3a28c43507007b6d2354",
+  "artifacts": [
+    {
+      "id": 14101346363,
+      "name": "engine-clock-held-abba-20261114-01-attestor-diagnostics",
+      "nbytes": 33218,
+      "sha256": "911651cc50e64316a52d7c93886c05573c1fe1eaa896f199b5d7cc6f2aac88ee"
+    },
+    {
+      "id": 14101256672,
+      "name": "engine-clock-held-abba-20261114-01-canary",
+      "nbytes": 33625,
+      "sha256": "150d6a822afdcfb946f76f6ffcd565685b0fc341340f019f7e73b2dd039c5b5a"
+    }
+  ],
+  "attestor_accepted": false,
+  "canary_accepted": false,
+  "cloud_or_registry_published": false,
+  "controller_stage": "producer-authentication",
+  "counterfactual_pure_gate": {
+    "engine-clock-held-abba-20261114-01-attestor-diagnostics": "ONLY_STATUS_CHANGED_IN_MEMORY_PASSES_PURE_GATE_NOT_OBSERVED",
+    "engine-clock-held-abba-20261114-01-canary": "ONLY_STATUS_CHANGED_IN_MEMORY_PASSES_PURE_GATE_NOT_OBSERVED"
+  },
+  "counts_are_os_attestation": false,
+  "evidence_branch": "evidence/engine-clock-held-abba-01",
+  "expanded_status": "NOT_RUN",
+  "first_rejected_boundary": "validate_live_requires_in_progress_but_original_successful_API_snapshot_is_queued",
+  "fresh_raw_review_accepted": true,
+  "fresh_raw_review_scope": "terminal failure authenticity and diagnosis only",
+  "fresh_receipt": "engine-clock-held-abba-01/terminal-failure/fresh-raw-acceptance.json",
+  "geometry_optics_proven": false,
+  "gpu_freshness_proven": false,
+  "jobs": {
+    "canary-attestor": 132350924625,
+    "native-host": 132350924448
+  },
+  "main_merged": false,
+  "members": {
+    "engine-clock-held-abba-20261114-01-attestor-diagnostics": 5,
+    "engine-clock-held-abba-20261114-01-canary": 5
+  },
+  "next_required_source_change": "bounded successful queued-to-in_progress status observation before unchanged strict live gate; distinct source/protocol/CI/request, no old retry",
+  "observer_neutrality_proven": false,
+  "official_model_calls": 0,
+  "original_generic_provider_bounds": [
+    0,
+    4
+  ],
+  "ort_sessions": 0,
+  "physical_host_attestation": false,
+  "recorded_live_status": {
+    "engine-clock-held-abba-20261114-01-attestor-diagnostics": "queued",
+    "engine-clock-held-abba-20261114-01-canary": "queued"
+  },
+  "remaining_campaign_native_allowance": 0,
+  "request_sha256": "9694a844bb089bc36ebf21da7091345eb71f4dc559ff8b96648091338f693d1e",
+  "results": {
+    "engine-clock-held-abba-20261114-01-attestor-diagnostics": {
+      "elapsed_seconds": 1.1742862420000009,
+      "error": {
+        "detail": "SEALED_NATIVE_REJECTED",
+        "type": "ValueError"
+      },
+      "finished_utc": "2026-11-14T05:46:09.214647+00:00",
+      "independent_pixel_replay": false,
+      "last_stage": "producer-authentication",
+      "native_providers": 0,
+      "observed_installed_tree_here": false,
+      "official_model_calls": 0,
+      "ort_sessions": 0,
+      "status": "FAILED_OR_INCOMPLETE"
+    },
+    "engine-clock-held-abba-20261114-01-canary": {
+      "control_elapsed_seconds": 0.0,
+      "control_head_sha": null,
+      "elapsed_seconds": 1.188167453999995,
+      "error_detail": "SEALED_NATIVE_REJECTED",
+      "error_type": "ValueError",
+      "finished_utc": "2026-11-14T05:46:09.471918+00:00",
+      "last_stage": "producer-authentication",
+      "mode": "canary",
+      "native_failure_summary": {
+        "accepted": false,
+        "provider_bounds": [
+          0,
+          4
+        ],
+        "status": "UNAVAILABLE_OR_UNBOUND"
+      },
+      "official_model_calls": 0,
+      "ort_sessions": 0,
+      "phase_operation_seconds": 1.1881681339999943,
+      "producer_head_sha": "01ca6198d90f3624546b3a28c43507007b6d2354",
+      "request_id": "held-abba-20261114-01",
+      "schema": "engine-clock-held-abba-operation-v1",
+      "scientific_result_promoted": false,
+      "status": "FAILED_OR_INCOMPLETE",
+      "workflow_completion_not_claimed": true
+    }
+  },
+  "retry_performed": false,
+  "root_original_api_artifact_authenticated": true,
+  "run_id": 43563102068,
+  "schema": "engine-clock-held-abba-terminal-root-acceptance-v1",
+  "scientific_result_promoted": false,
+  "six_comparisons_status": "NOT_RUN",
+  "source_backed_native_counts": {
+    "capture_pairs": 0,
+    "containers": 0,
+    "image_loads": 0,
+    "native_starts": 0,
+    "observer_getters": 0,
+    "providers": 0
+  },
+  "source_branch": "feature/engine-clock-held-abba-v1",
+  "source_closure_files": 235,
+  "source_draft_pr": 92,
+  "source_sha": "5ab516cb4b52b40b589b97257604fc02487de1cd",
+  "stage7_status": "INCOMPLETE",
+  "status": "AUTHENTICATED_TERMINAL_QUEUED_API_ADMISSION_FAILURE",
+  "strict_completed": 0,
+  "strict_status": "FAIL",
+  "strict_total": 4,
+  "workflow_id": 418051491
+}
