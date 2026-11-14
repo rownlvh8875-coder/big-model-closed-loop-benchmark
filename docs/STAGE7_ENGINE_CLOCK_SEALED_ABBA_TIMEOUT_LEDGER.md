@@ -34,3 +34,33 @@ one fresh source review/CI precede any02request. Existing sourceMinors/costs ret
 Task1 implementation complete: full1129tests/7existing skips PASS94.807s,
 /tmp/sealed-abba-v2-full-suite.log. Primitive timeout cap/source215unchanged,
 actual223source closure and02module/workflow routes checked. No02request exists.
+
+Final fresh reviewc849d05: C0/I0/M0new/SOURCE_READY for exactCI/newC. Independent
+CPUfixture1PASS0.024s plus correct C/Adeltas/old01rejection/215unchanged/223paths.
+No correction pass/no rereview. All12declined rulings/costs are exhaustive in
+docs/evidence/STAGE7_ENGINE_CLOCK_SEALED_ABBA_V2_SOURCE_REVIEW.md.
+Final: Ruling: actual runtime unjudged — exactCI/newCraw acceptance — costifwrong:
+consumed failed request.
+Final: Ruling: flags are attestations — actual separate root/fresh+externalproof
+required — costifwrong: false flags invalidate A.
+Final: Ruling: profile equality not hostile/physical attestation — trustboundary
+retained — costifwrong: invalid origin assurance outside trust.
+Final: Ruling: science/model unjudged — no promotion/zero model — costifwrong:
+unsupported sensor/scientific conclusions.
+Final: Ruling: malicious native resistance unexpanded — source/image/isolation
+trusted — costifwrong: compromised boundary invalidates observations.
+Final: Ruling: not all archive/codecs retested — bounded canonical original audit
+governs — costifwrong: inherited unsupported-input defect/rejection.
+Final: Ruling: real child/index routes untested — genuine raw check required —
+costifwrong: consumed launch/admission failure.
+Final: Ruling: frozen diagnostic/timing/generated/observer limits unchanged —
+retain costs — costifwrong: overstated guarantees.
+Final: Ruling: no independent whole-suite replay — root1129/7skip+exactCI —
+costifwrong: author blind spot.
+Final: Ruling: no primitive cap increase —1800newstart — cost: slower campaign
+may time out earlier, no retry.
+Final: Ruling: no consumed-source refactor — explicit copied routes — cost:
+duplication/future consistency maintenance.
+Final: Ruling: don't rewrite failurebounds — preserve[0,4]/source-backed0separate
+— costifwrong: overstated native allocation certainty.
+Final: minor (deferred): no new findings; inherited7native limits/costs remain.
