@@ -11,11 +11,11 @@ no permission changes to private caches, no gate relaxation or model/publication
 
 ## Task1: Physical artifact boundary and safe failure summary
 
-- [ ] RED real fixture: cache beside execution, unreadable nested cache cannot
+- [x] RED real fixture: cache beside execution, unreadable nested cache cannot
   enter any artifact-root walk; container still mounts exact /work/cache route.
-- [ ] RED failure fixtures: bound partial/case summary, unknown bounds when
+- [x] RED failure fixtures: bound partial/case summary, unknown bounds when
   absent/mismatched/malformed/oversized/symlink, redaction of secret and URL values.
-- [ ] Implement v4modules/workflow/full closure and new evidence policy. Targeted
+- [x] Implement v4modules/workflow/full closure and new evidence policy. Targeted
   GREEN/full unittest discover, expected green with7existing skips. One fresh
   read-only whole-source review; one Important/Critical fix pass, no rereview;
   retain all Minor/declined costs.

@@ -305,6 +305,28 @@ includes failed02authority.4new RED→GREEN fixtures PASS0.025s; full suite in
 progress. Fresh whole-source review and exact CI precede one new03request.
 # O. Native03 artifact-loss boundary and v4
 
+Task1 complete: fresh review f542239..6b253d0 Critical0/Important1/Minor1 plus
+existingSN-M1/M2. EB-I1 uppercase credential-URL/short-token disclosure fixed
+locally in one RED→GREEN pass;6targeted PASS0.022s/full1097tests/7skip PASS104.517s.
+No rereview. Full6declined rulings/costs and3deferred Minors in
+docs/evidence/STAGE7_ENGINE_CLOCK_SEALED_NATIVE_V4_SOURCE_REVIEW.md.
+Final: minor (deferred): EB-M1 topology fixture is not actual uploader/UID
+integration; cost reduced direct permission/uploader regression coverage.
+Final: minor (deferred): SN-M1 failed inventory detail omitted; cost diagnosis.
+Final: minor (deferred): SN-M2 enclosing timers govern prefix; cost delayedreject.
+Final: Ruling:03native raw absent — retainUNKNOWN/[0,1], never6pairs — cost if
+wrong: invented scientific evidence, promotion prohibited.
+Final: Ruling:04/upload need actual run — original bytes govern — cost if wrong:
+consumed failed request/no accepted canary.
+Final: Ruling: whole-suite not rerun by reviewer — root fresh1097/7skip plus
+exact external4CI required — cost if wrong: author-side verification blindspot.
+Final: Ruling:03API/logauth not rechecked by reviewer — retain root originals/
+hash and0artifacts — cost if wrong: invalid diagnosis, never native acceptance.
+Final: Ruling: SN-M1/M2 remain unresolved — retain bounded diagnosis/timer costs
+— cost if wrong: misleading diagnostic/timing assurance.
+Final: Ruling: universalpayloadreadability unproved statically — actualartifact
+CRC/membership/bytes mandatory — cost if wrong: upload/rootcheckfailure/noaccept.
+
 V3source74d3f1ae44750e9d1c373e81016a7ca092da1a87/Draft84 exact4CI success:
 push43539525250(132276541762/132276542014), PR43539532163(132276565086/132276565520),
 attempt1/artifacts0. Activationf5422390b1e222b098d1b1886e33ffd5d582c8a7/

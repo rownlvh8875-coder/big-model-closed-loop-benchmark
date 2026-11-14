@@ -43,6 +43,23 @@ class NativeEvidenceTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as td:
             work=Path(td);(work/'output').mkdir();(work/'output/phase.json').symlink_to('/etc/passwd')
             self.assertEqual([0,1],r.failure_summary(work,self.context(),{})['provider_bounds'])
+
+    def test_mixed_case_credential_urls_and_short_tokens_are_redacted(self):
+        with tempfile.TemporaryDirectory() as td:
+            work=Path(td);ctx=self.context()
+            for scheme in ('HTTPS','HtTpS','HTTP'):
+                self.put(work,'output/phase.json',dict(context=ctx,parent_pid=1,parent_uuid='e'*32,status='FAILED_OR_INCOMPLETE',launch=dict(nonce='d'*64,error=scheme+'://name:CasePassword@host/path?token=private abc')))
+                self.put(work,'output/case_00/case.json',dict(context=ctx,nonce='d'*64,parent_pid=1,parent_uuid='e'*32,request_sha256='a'*64,provider_lower_bound=1,provider_upper_bound=1,error='short abc and key xy'))
+                encoded=json.dumps(r.failure_summary(work,ctx,{'GH_TOKEN':'abc','API_KEY':'xy'}))
+                for value in ('CasePassword','token=private','abc','xy'):self.assertNotIn(value,encoded)
+
+    def test_hostile_malformed_metadata_never_echoes_raw_error_values(self):
+        with tempfile.TemporaryDirectory() as td:
+            work=Path(td);ctx=self.context()
+            self.put(work,'output/phase.json',dict(context=ctx,parent_pid=True,parent_uuid='e'*32,launch=dict(nonce='d'*64,error={'bad':'HTTPS://user:HiddenPassword@host/path'})))
+            encoded=json.dumps(r.failure_summary(work,ctx,{'GH_TOKEN':'a'}))
+            self.assertNotIn('HiddenPassword',encoded)
+            self.assertEqual([0,1],r.failure_summary(work,ctx,{})['provider_bounds'])
             (work/'output/phase.json').unlink();(work/'output/phase.json').write_bytes(b'x'*(2*1024**2+1))
             self.assertEqual([0,1],r.failure_summary(work,self.context(),{})['provider_bounds'])
 

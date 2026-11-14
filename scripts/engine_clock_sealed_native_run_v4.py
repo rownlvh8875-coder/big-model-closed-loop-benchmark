@@ -3,6 +3,7 @@ import datetime
 import os
 from pathlib import Path
 import secrets
+import re
 import subprocess
 import sys
 from time import perf_counter
@@ -38,7 +39,14 @@ def failure_summary(work,context,environment):
             for component in name.split('/'):
                 path=path/component;n.need(not path.is_symlink())
             return n.image.parse(n.image.read_regular(path,2*n.MIB))
-        redact=n.image.make_redactor(environment)
+        inherited_redactor=n.image.make_redactor(environment)
+        credential_values=sorted({value.encode('utf-8') for key,value in environment.items()
+            if type(value) is str and value and re.search(r'TOKEN|SECRET|PASSWORD|CREDENTIAL|PRIVATE.?KEY|API.?KEY|AUTH',key,re.I)},key=len,reverse=True)
+        def redact(raw):
+            for value in credential_values:raw=raw.replace(value,b'[REDACTED]')
+            raw=inherited_redactor(raw)
+            raw=re.sub(rb'(https?://)[^/\s@]+@',rb'\1[REDACTED]@',raw,flags=re.I)
+            return re.sub(rb'(https?://[^\s?]+)\?[^\s]+',rb'\1?[REDACTED]',raw,flags=re.I)
         def detail(value):
             if type(value) is not str:return None
             return redact(value.encode('utf-8',errors='replace')).decode('utf-8',errors='replace')[:1024]
