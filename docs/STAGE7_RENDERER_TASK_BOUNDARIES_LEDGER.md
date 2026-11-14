@@ -31,3 +31,31 @@ Task2 RED:9adapter/audit tests failed with module absent. GREEN:27new+23frozencl
 tests=50PASS/0.229s. Structural adapter checks current engine/callback/camera owners
 on each snapshot, copies two split matrices, limits48snapshots before getter49.
 Native classes are supplied by a future admitted caller; no import/constructor here.
+
+Task2 actual audit PASS: retained72968610B wheel/f949e89f and accepted44232entry
+manifest/f81fa5be;4complete sourcefiles byte-identical, AST ranges recorded as data.
+Root independent crosscheck PASS, both modules import under python -I -S with no
+NumPy/cv2/Panda/MetaDrive/ORT loaded; all261frozen pins unchanged.
+Pre-review full suite1236tests/7existing skips/0failures/127.509s.
+
+Final review on4c3979371fae7d08c38a19a828abc19d4059e215: C0/I1/M0.
+Final: fixed RT-I1 malformed clock row could escape sticky error —
+test_caught_malformed_clock_row_cannot_be_repaired_into_success RED4subcases→GREEN;
+focused51/51PASS0.210s. Non-dict row rejected; call/camera types checked before
+potentially throwing comparisons. Whole suite rerun after this correction below.
+One correction pass, no rereview. Source audit and binding module unchanged.
+
+Final: Ruling: Actual native callback behavior/binary identity/neutrality/sealed
+admission remains unjudged — this source-only increment creates no native authority —
+cost: new sealed integration/qualified source and allowance remain necessary.
+
+Final: Ruling: Unique renderer/GPU cause and strict benchmark success remains
+unjudged — no new native or model observations exist — cost: strict0/4FAIL and
+Stage7INCOMPLETE remain, no renderer fix is justified.
+
+Final: Ruling: Hypothetical unrelated uncommitted work does not block this branch —
+the checkout was clean and user preference allows inline work — cost: the branch
+does not isolate later unrelated uncommitted edits.
+
+Final: deferred Minor findings: none for this increment. Historical CP-M1 and
+other prior deferrals keep their original scope; no retroactive fix claim.

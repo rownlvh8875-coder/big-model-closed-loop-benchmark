@@ -78,8 +78,12 @@ GPU출력·물리호스트를 인증하지 않는다. 구조적 synthetic engine
 
 ## 검증과 남은 실제 실행 연결
 
-새27개 시험은 각 모듈 부재 RED 및 예외 회귀 RED를 확인한 뒤 GREEN이다.
-기존23clock시험과 합쳐50PASS/0.229초다. 전체 시험·fresh 검토·최종 Draft/CI의
+모듈 부재 RED 및 예외 회귀 RED 뒤 새27시험+기존23clock시험50개가 통과했다.
+fresh 검토에서 RT-I1 malformed행의 실패 기록 누락을 재현했고, 회귀1시험의
+OFF/ON·비정상행4subcase RED→GREEN 수정 후 현재51PASS/0.210초다.
+검토는 Critical0/Important1수정/Minor0, 추가 검토 없이 한 차례 수정했다.
+[검토 원본·범위](evidence/RENDERER_TASK_BOUNDARIES_01_REVIEW.md).
+전체 시험·fresh 검토·최종 Draft/CI의
 실제 관측은 [ledger](STAGE7_RENDERER_TASK_BOUNDARIES_LEDGER.md)의 후속 closeout과
 해당 소유 브랜치 Draft본문을 기준으로 한다.
 

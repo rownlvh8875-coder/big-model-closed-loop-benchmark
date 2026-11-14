@@ -168,8 +168,9 @@ def task_callback_scope(manager,enabled,trace,*,clock_trace,targets=None,snapsho
         calls=clock_trace.get('calls')
         if type(calls) is not list or not calls:reject('missing active clock camera binding')
         bound=calls[-1];index=len(trace['steps'])
-        if (bound.get('call')!=index+1 or type(bound.get('call')) is not int or
-            bound.get('camera')!=('road','wide')[index%2] or
+        if type(bound) is not dict:reject('typed active camera row required')
+        if (type(bound.get('call')) is not int or bound.get('call')!=index+1 or
+            type(bound.get('camera')) is not str or bound.get('camera')!=('road','wide')[index%2] or
             bound.get('task_step_attempted') is not True or bound.get('task_step_returned') is not False or
             bound.get('ram_attempted') is not False):reject('wrong active camera step binding')
         if sys.getprofile() is not None:reject('profile hook changed before original step')

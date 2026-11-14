@@ -199,6 +199,25 @@ class RendererTaskCallbackTests(unittest.TestCase):
                     else:attempt()
             self.assertEqual(m.steps,0);self.assertTrue(errors)
 
+    def test_caught_malformed_clock_row_cannot_be_repaired_into_success(self):
+        # Review RT-I1: an exception before sticky recording must not disappear.
+        class BadEquality:
+            def __ne__(self,other):raise ValueError('invalid metadata comparison')
+        for bad in (None,{'call':BadEquality(),'camera':'road'}):
+            for on in (False,True):
+                p,m,r,w=self.fixture();trace={};clock={'calls':[bad]}
+                with self.subTest(bad=type(bad),on=on):
+                    with self.assertRaises(observer.CallbackBoundaryError):
+                        with self.scope(m,on,trace,clock):
+                            try:m.step()
+                            except Exception:pass
+                            clock.clear()
+                            with camera_clock_scope(p,False,clock,max_pairs=1):r.perceive();w.perceive()
+                    self.assertIsNotNone(trace['error'])
+                    self.assertEqual(trace['status'],'FAILED_OR_INCOMPLETE')
+                    self.assertEqual(m.steps,0)
+                    self.assertIsNone(sys.getprofile())
+
     def test_six_pairs_bound_snapshots_without_additional_steps(self):
         p,m,r,w=self.fixture();trace={};clock={}
         with self.scope(m,True,trace,clock,pairs=6),camera_clock_scope(p,True,clock,max_pairs=6):
