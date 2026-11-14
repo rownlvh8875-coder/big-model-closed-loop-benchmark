@@ -61,7 +61,7 @@ class ReadProvenanceTests(unittest.TestCase):
     def test_selected_read_attachment_is_independent_of_draw_target(self):
         e=Events();e.texture(1);e.texture(2);e.framebuffer(1,texture=1)
         e.add('glFramebufferTexture2D',target=FBO,attachment=COLOR+1,textarget=TEX,texture=2,level=0)
-        e.add('glDrawBuffer',buf=COLOR+1);a=e.clear();e.add('glReadBuffer',mode=COLOR+1)
+        e.add('glDrawBuffer',mode=COLOR+1);a=e.clear();e.add('glReadBuffer',mode=COLOR+1)
         e.framebuffer(2,texture=1);e.clear();e.add('glBindFramebuffer',target=READ,framebuffer=1);e.read()
         q=p.analyze(e.rows)['reads'][0];self.assertEqual(q['potential_writer'],a);self.assertEqual(q['source_descriptor']['name'],2)
     def test_context_namespaces_do_not_share_equal_gl_names(self):

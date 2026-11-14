@@ -1,0 +1,15 @@
+{"request_bytes": 201326592, "decoded_before": 1196660, "last_call": [6784, "glTexParameteri"]}
+Traceback (most recent call last):
+  File "/tmp/recon-gl-request.py", line 15, in <module>
+    for value in r.read_pickles(pipe):last[:]=[(value[0],value[1])]
+                 ^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/scripts/gl_trace_reader.py", line 46, in read_pickles
+    try:value=Restricted(bounded).load()
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/recon-gl-request.py", line 12, in measured
+    return original(self,n)
+           ^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/scripts/gl_trace_reader.py", line 24, in read
+    if not 0<=n<=64*1024*1024:raise ValueError('pickle read request cap')
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: pickle read request cap

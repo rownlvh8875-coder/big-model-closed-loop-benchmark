@@ -24,3 +24,29 @@ explicit extension, not a false full-GL reconstruction.
 Ruling: Add64MiB individual pickle-read request cap — the whole2GiB budget alone
 does not bound a malicious declared allocation — larger valid blob records stop
 analysis rather than allocating unbounded memory; pinned actual traces checked later.
+Actual saved-data failure01 is retained: originalglDrawBuffer argument ismode,notbuf.
+Corrected fixture/consumer RED→GREEN; decoder closure on reducer failure RED→GREEN.
+Failure02 is retained: pinned originalCPUupload atcall6785 requests201326592B.
+Ruling: Raise per-request cap64→256MiB under unchanged2GiBstreamcap — authenticated
+192MiB originalblob cannot fit64MiB; validrequest regression RED→GREEN — transient
+CPU allocation can be hundreds of MiB, not memory-headroom proof. No new native run.
+Failure03 retained: a later originalCPUupload atcall12606 requests507510784B.
+Ruling: Final per-request cap512MiB under unchanged2GiBstreamcap — actual pinned
+484MiB upload exceeds256MiB, regression RED→GREEN — transient decoder/Python memory
+can approach/exceed1GiB across copies; no RSS/headroom claim or live graphics work.
+Failure04 retained: defaultdump omits6021verbosecalls (100534vs106555pickle).
+Fullthreadscan with --verbose independently yields106555/oneGLthread0/22547015textB.
+Decoder command regression RED→GREEN; strict count equality is retained rather than
+relaxed. Failure receipts now include current decoder receipt, even if incomplete.
+Task2 actualanalysis05: completewhole106555/106580calls,60reads+90blitseach,
+all60pairedreadroutesmatch. ON0/ON1 fullgraphs6354660/6354686B, retainedoriginaloutputs;
+decodedpickle978935426/978937188B;thread0/2unsharedcontexts. Originaltrace/input/tool
+SHAverified including packagedbinary. Source299pins independentlyhashcheckedunchanged.
+Wholeanalysiswall32.334334439s,parentCPU20.660532352s excludingdecoderchildCPU,
+failed/debuganalyses,tests/review/CI. No native/GL/model/ORT/newprovider/allowance.
+Focused31PASS0.159s; full1316tests/7skipPASS116.057s. Freshwholebranch+saveddatareviewpending.
+Ruling: Treat samples4 as recorded storage-request metadata — no new or interpreted
+actual sample-count query — physical allocation/effect is not established by thisfield.
+Ruling: Keep existing primary10-frame read mapping labeled schedule-only — original
+read arguments contain no returned pixel bytes or capture nonce — matching routes
+cannot prove same physical camera/GPUframe or associate newer sealed counterexamples.

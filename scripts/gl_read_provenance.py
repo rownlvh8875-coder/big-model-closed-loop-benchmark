@@ -247,7 +247,7 @@ def analyze(events,*,max_calls=120000,max_nodes=20000,max_reads=256):
                 f=c['read'] if fn=='glReadBuffer' else c['draw']
                 if f is None:continue
                 if fn=='glReadBuffer':f['read_buffer']=integer(a['mode'])
-                elif fn=='glDrawBuffer':f['draw_buffers']=[integer(a['buf'])]
+                elif fn=='glDrawBuffer':f['draw_buffers']=[integer(a['mode'])]
                 else:
                     if type(a['bufs']) is not list or len(a['bufs'])!=integer(a['n']):raise ValueError('draw buffers values')
                     f['draw_buffers']=[integer(v) for v in a['bufs']]

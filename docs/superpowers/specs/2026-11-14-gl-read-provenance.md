@@ -23,7 +23,8 @@ Restricted unpickling permits only unpickle.Pointer mapped to a private int clas
 Reject unknown globals, incomplete records, missing/ambiguous argument fields,
 nonmonotonic calls, unsupported shared contexts/multiple GL threads and missing
 context. Bound120000calls/2GiB decodedpickle/128MiB textualmetadata/1MiB textline,
-20000nodes/256objects perkind-context/256reads/16MiB finalJSON/120s eachdecoder.
+20000nodes/256objects perkind-context/256reads/16MiB finalJSON/120s eachdecoder;
+individual pickle read request512MiB (actual pinned CPU texture blobs include507510784B).
 Preserve all original files/299sealedsourcepins/consumedrequests/main. No native
 allowance is created. Same checkout, own branch, no additional worktree/delegation.
 

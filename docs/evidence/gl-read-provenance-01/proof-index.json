@@ -1,0 +1,167 @@
+{
+  "schema": "gl-read-provenance-evidence-index-v1",
+  "files": [
+    {
+      "path": "docs/evidence/gl-read-provenance-01/result.json",
+      "nbytes": 8202,
+      "sha256": "70d2bec494991cc9169825943cbb9861150e9358b7e7d471710959969c7b7e11",
+      "kind": "derived-actual-whole-trace-analysis",
+      "origin": "/workspace/big-model-closed-loop-benchmark/output/stage7-gl-read-provenance-05/result.json"
+    },
+    {
+      "path": "docs/evidence/gl-read-provenance-01/on_0-read-routes.json",
+      "nbytes": 263522,
+      "sha256": "508f1be926597e4a2542c9cb53d7e600340b1baaa20dd8505c4883e930fe156c",
+      "kind": "derived-actual-whole-trace-analysis",
+      "origin": "/workspace/big-model-closed-loop-benchmark/output/stage7-gl-read-provenance-05/on_0-read-routes.json"
+    },
+    {
+      "path": "docs/evidence/gl-read-provenance-01/on_1-read-routes.json",
+      "nbytes": 263524,
+      "sha256": "887144ff5c5fd246323dbebd1aab8be9a59cf56a6c202d96ce4960ef8dc7109b",
+      "kind": "derived-actual-whole-trace-analysis",
+      "origin": "/workspace/big-model-closed-loop-benchmark/output/stage7-gl-read-provenance-05/on_1-read-routes.json"
+    },
+    {
+      "path": "docs/evidence/gl-read-provenance-01/route-comparison.json",
+      "nbytes": 87320,
+      "sha256": "c70d7561b37afbd744a2ed0baa3b9418e899354cca7996688247327bf2cb897d",
+      "kind": "derived-actual-whole-trace-analysis",
+      "origin": "/workspace/big-model-closed-loop-benchmark/output/stage7-gl-read-provenance-05/route-comparison.json"
+    },
+    {
+      "path": "docs/evidence/gl-read-provenance-01/original-inputs/plan.json",
+      "nbytes": 1676,
+      "sha256": "f6e586cc7e0356c75a5e8b54909ae023458d277bb22674ee1a727d18535e214b",
+      "kind": "original-retained-local-receipt",
+      "origin": "/workspace/big-model-closed-loop-benchmark/output/apitrace-draw-pilot-v2/plan.json"
+    },
+    {
+      "path": "docs/evidence/gl-read-provenance-01/original-inputs/execution_receipts.json",
+      "nbytes": 119919,
+      "sha256": "5612907aaea8cad3e7728a1f85ddcd97351a598907b4eb28af24f2eae3899697",
+      "kind": "original-retained-local-receipt",
+      "origin": "/workspace/big-model-closed-loop-benchmark/output/apitrace-draw-pilot-v2/execution_receipts.json"
+    },
+    {
+      "path": "docs/evidence/gl-read-provenance-01/original-inputs/off_0.json",
+      "nbytes": 41109,
+      "sha256": "49311317638676df5226931effd5c157c3cffee4869566f4fd383e6fef642e69",
+      "kind": "original-retained-local-receipt",
+      "origin": "/workspace/big-model-closed-loop-benchmark/output/apitrace-draw-pilot-v2/off_0.json"
+    },
+    {
+      "path": "docs/evidence/gl-read-provenance-01/original-inputs/on_0.json",
+      "nbytes": 38794,
+      "sha256": "9af3cae862da26b5be53a4200357f9901cb3b5c86c776bb772d75da03028d05a",
+      "kind": "original-retained-local-receipt",
+      "origin": "/workspace/big-model-closed-loop-benchmark/output/apitrace-draw-pilot-v2/on_0.json"
+    },
+    {
+      "path": "docs/evidence/gl-read-provenance-01/original-inputs/on_1.json",
+      "nbytes": 44153,
+      "sha256": "818836fb5d3c0c411180da15abbbdd963475b97fc848315f3449506c1f92a856",
+      "kind": "original-retained-local-receipt",
+      "origin": "/workspace/big-model-closed-loop-benchmark/output/apitrace-draw-pilot-v2/on_1.json"
+    },
+    {
+      "path": "docs/evidence/gl-read-provenance-01/original-inputs/off_1.json",
+      "nbytes": 39978,
+      "sha256": "7022aeee3ae76dbe2334fa4017e95b9952a43b4be2f0c823d1457128a08e1351",
+      "kind": "original-retained-local-receipt",
+      "origin": "/workspace/big-model-closed-loop-benchmark/output/apitrace-draw-pilot-v2/off_1.json"
+    },
+    {
+      "path": "docs/evidence/gl-read-provenance-01/failed-analysis-01.json",
+      "nbytes": 212,
+      "sha256": "5a6bf052aa50d9e2680a9ed2808198b3b947b29cbcc342fafa3721c3f202f22d",
+      "kind": "original-failed-offline-analysis",
+      "origin": "/workspace/big-model-closed-loop-benchmark/output/stage7-gl-read-provenance-01/failure.json"
+    },
+    {
+      "path": "docs/evidence/gl-read-provenance-01/failed-analysis-02.json",
+      "nbytes": 197,
+      "sha256": "6f1dfc5ccbd3adea0db6165bd23e12047781805643f01dad55688261c21683dc",
+      "kind": "original-failed-offline-analysis",
+      "origin": "/workspace/big-model-closed-loop-benchmark/output/stage7-gl-read-provenance-02/failure.json"
+    },
+    {
+      "path": "docs/evidence/gl-read-provenance-01/failed-analysis-03.json",
+      "nbytes": 197,
+      "sha256": "6f1dfc5ccbd3adea0db6165bd23e12047781805643f01dad55688261c21683dc",
+      "kind": "original-failed-offline-analysis",
+      "origin": "/workspace/big-model-closed-loop-benchmark/output/stage7-gl-read-provenance-03/failure.json"
+    },
+    {
+      "path": "docs/evidence/gl-read-provenance-01/failed-analysis-04.json",
+      "nbytes": 207,
+      "sha256": "4bea9b2bf97b6e042660735857e1954b166c0b3d6f9a503ee4c13640d7b1f12c",
+      "kind": "original-failed-offline-analysis",
+      "origin": "/workspace/big-model-closed-loop-benchmark/output/stage7-gl-read-provenance-04/failure.json"
+    },
+    {
+      "path": "docs/evidence/gl-read-provenance-01/diagnostics/request-cap-recon-01.log",
+      "nbytes": 873,
+      "sha256": "bf9dcb86675cd5155c7e5ef1eeb67b94fb348e4b5cc2997c17bf4697bf47fe21",
+      "kind": "offline-data-debug-receipt",
+      "origin": "/tmp/gl-request-recon.log"
+    },
+    {
+      "path": "docs/evidence/gl-read-provenance-01/diagnostics/request-cap-recon-02.log",
+      "nbytes": 1072,
+      "sha256": "3508a4350ac9dcb520bf18a7befdbe35d9b8505cbaa533712511933aae5edcaa",
+      "kind": "offline-data-debug-receipt",
+      "origin": "/tmp/gl-request-recon-02.log"
+    },
+    {
+      "path": "docs/evidence/gl-read-provenance-01/diagnostics/thread-coverage-recon.log",
+      "nbytes": 317,
+      "sha256": "9aa4ab3645833781a1669942458f2161b09b17a13333d8b88a4629bffe2d8ea4",
+      "kind": "offline-data-debug-receipt",
+      "origin": "/tmp/gl-thread-count.log"
+    },
+    {
+      "path": "docs/evidence/gl-read-provenance-01/diagnostics/drawbuffer-debug.log",
+      "nbytes": 826,
+      "sha256": "541cae224829b0eb768b738275231944697db0ffb5d163e37e45fba0c272259b",
+      "kind": "offline-data-debug-receipt",
+      "origin": "/tmp/gl-debug.log"
+    },
+    {
+      "path": "docs/evidence/gl-read-provenance-01/source-integrity.json",
+      "nbytes": 1023,
+      "sha256": "8317f62aa92b050c4d356cc5813861f987c2cc37a1d036503d17cebbf27ec48b",
+      "kind": "independent-current-source-hash-check",
+      "origin": "Currentfiles+precedessorqualifiedrequest"
+    }
+  ],
+  "proof_bytes": 913121,
+  "full_graphs_retained_not_in_git": [
+    {
+      "nbytes": 6354660,
+      "path": "on_0-full-provenance.json",
+      "sha256": "2926fbe33f82bb51624455e392f713c1b8a7c7f1acdd9c587382c7578c2f72ca",
+      "retained_path": "/workspace/big-model-closed-loop-benchmark/output/stage7-gl-read-provenance-05/on_0-full-provenance.json"
+    },
+    {
+      "nbytes": 6354686,
+      "path": "on_1-full-provenance.json",
+      "sha256": "4a5ee5e3d8b4fd344fbd89aa04fe742d751e4180ce5f7e3915c76973eb77ce41",
+      "retained_path": "/workspace/big-model-closed-loop-benchmark/output/stage7-gl-read-provenance-05/on_1-full-provenance.json"
+    }
+  ],
+  "original_trace_pins": {
+    "on_0.trace": [
+      209757595,
+      "9665413782cbe05d0f5460c8983643b5cdf8e6d8415ad88f2a2e85f135136e9a"
+    ],
+    "on_1.trace": [
+      209758897,
+      "6ddef5fc8a2c29d6f296e991fe32322b22d73a38dfd86f8764e78990622d3192"
+    ]
+  },
+  "original_scope": "Older local traced ABBA v2; no new sealed/live/native/GPUframe identity",
+  "original_bytes_preserved": true,
+  "new_native_calls": 0,
+  "new_gl_calls": 0
+}
