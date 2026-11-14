@@ -142,5 +142,14 @@ class SealedAbbaProtocolTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 a.authenticate_canary(Client(),request,dict(workflow_id=31),Path(td))
 
+    def test_original_zip_name_with_nul_is_never_normalized_into_record(self):
+        with tempfile.TemporaryDirectory() as td:
+            root=Path(td);archive=root/'nul.zip'
+            with zipfile.ZipFile(archive,'w') as z:z.writestr('output/phase.json_suffix',b'{}')
+            original=archive.read_bytes()
+            self.assertEqual(2,original.count(b'output/phase.json_suffix'))
+            archive.write_bytes(original.replace(b'output/phase.json_suffix',b'output/phase.json\x00suffix'))
+            with self.assertRaises(ValueError):a.audit_archive(archive,root/'selected')
+
 
 if __name__=='__main__':unittest.main()

@@ -38,8 +38,8 @@ def audit_archive(path,dest,*,total_limit=1024*n.MIB):
     with zipfile.ZipFile(path) as z:
         rows=z.infolist();n.need(0<len(rows)<=256)
         for row in rows:
-            name=row.filename;parts=name.split('/')
-            n.need(type(name) is str and len(name.encode())<=4096 and not name.startswith('/')
+            name=row.orig_filename;parts=name.split('/')
+            n.need(name==row.filename and type(name) is str and len(name.encode())<=4096 and not name.startswith('/')
                 and '\\' not in name and all(v not in ('','.','..') for v in parts)
                 and all(ord(c)>=32 and ord(c)!=127 for c in name)
                 and name not in members and not row.is_dir() and not row.flag_bits&1)
@@ -98,7 +98,7 @@ def stage_accepted_archive(path,dest,a,request):
     for record in (phase,controller,result):
         n.need(record['status']=='SEALED_ABBA_CANARY_RECORDED' and record['official_model_calls']==0
             and record['ort_sessions']==0 and record['scientific_result_promoted'] is False)
-    n.need(phase['mode']=='canary' and len(phase['launches'])==1 and phase['comparisons']==[]
+    n.need(phase['mode']=='canary' and phase['identity_verified'] is True and len(phase['launches'])==1 and phase['comparisons']==[]
         and phase['native_budget']==n.native_budget('canary') and phase['budget']==n.BUDGET
         and n.exact(controller['identity'],phase['identity'])
         and controller['phase_sha256']==n.sha(n.image.read_regular(dest/'output/phase.json'))

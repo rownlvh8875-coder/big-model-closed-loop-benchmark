@@ -27,3 +27,33 @@ Fixture correction: first prestart fixture placed its external empty cache at
 /tmp/native-cache; corrected test operation/execution topology keeps it in its
 owned temporary operation. No production protocol or old raw changed.
 Source review and exact CI precede any request registration; no canary activated.
+
+Final review9d9e5d3: C0/I3/M0; all3Important accepted, reproduced in3REDfixtures,
+fixed together once: SA-I1 original ZIPNUL names rejected; SA-I2 independent inner
+host/identity comparisons persist before gate; SA-I3 bound failure phase exists
+before parent preflight.20focused PASS1.206s; final full suite now running. No
+rereview. Full original findings/rulings at STAGE7_ENGINE_CLOCK_SEALED_ABBA_V1_SOURCE_REVIEW.md.
+Final: Ruling: actual runtime unjudged — new authentic C/A originals decide — cost
+if wrong: consumed request without native acceptance.
+Final: Ruling: acceptance flags are attestations — genuine root/fresh decisions
+plus external run/job/ZIP mandatory — cost if wrong: false attestation invalidates A.
+Final: Ruling: profile equality not physical/hostile-host attestation — preserve
+trust boundary — cost if wrong: origin assurance fails beyond admitted trust.
+Final: Ruling: rendering/science/model outcomes not reviewed — descriptive camera
+only/zero model/strictFAIL — cost if wrong: unsupported scientific claim.
+Final: Ruling: arbitrary malicious native resistance not established — reviewed
+source/image/isolation boundary — cost if wrong: compromised trust invalidates data.
+Final: Ruling: every CRC/codec variant not tested — bounded canonical reader and
+actual original audit — cost if wrong: malformed/unsupported input regression.
+Final: Ruling: real child permit/index routes not executed by reviewer — pure
+constraints plus actual raw validation — cost if wrong: consumed launch failure.
+Final: Ruling: frozen observer/diagnostic/generated-memory limits preserved — no
+stronger proof — cost if wrong: overstated timing/origin/neutrality/diagnostics.
+Final: Ruling: reviewer did not rerun full suite — root final suite+exact CI — cost
+if wrong: author blind spot/no independent whole-suite replay claim.
+Final: minor (deferred): prior7nativeMinor costs retained; no new Minor finding.
+
+Final: fixed SA-I1/I2/I3 — all3owned fixtures RED→GREEN in one pass; full1128tests/
+7existing skips PASS102.383s (/tmp/sealed-abba-fixed-full-suite.log), no rereview.
+Task1/Task2 source implementation complete. Runtime outcome remains NOT_RUN until
+exact qualified source/sole Crequest and independent actual raw acceptance.

@@ -124,5 +124,39 @@ class SealedAbbaExecutionTests(unittest.TestCase):
             path=output/'case_00/capture_01/raw_road.png';path.write_bytes(b'changed')
             with self.assertRaises(ValueError):c.replay_canary(output,phase,request)
 
+    def test_parent_child_identity_mismatches_persist_independent_observations(self):
+        from unittest.mock import patch
+        self.assertTrue(callable(getattr(c,'admission_comparison',None)), 'typed inner admission evidence missing')
+        for tag in ('parent','child-00'):
+            for kind,left,right,path in [('host',dict(release='a'),dict(release='b'),'release'),
+                ('identity',dict(host_details=dict(affinity_ids=[0,1],memory_total_bytes=8*1024**3)),
+                 dict(host_details=dict(affinity_ids=[1,2],memory_total_bytes=9*1024**3)),'host_details.affinity_ids')]:
+                with tempfile.TemporaryDirectory() as td,patch.object(c,'OUT',Path(td)):
+                    constructed=[]
+                    with self.assertRaises(ValueError):
+                        c.admission_comparison(tag,kind,left,right)
+                        constructed.append('provider')
+                    report=json.loads((Path(td)/(tag+'-'+kind+'-comparison.json')).read_bytes())
+                    self.assertEqual([],constructed);self.assertFalse(report['equal'])
+                    self.assertEqual(right,report['observed'])
+                    self.assertTrue(any(d['path']==path for d in report['differences']))
+
+    def test_parent_selection_failure_preserves_bound_phase_before_provider(self):
+        from unittest.mock import patch
+        binding=dict(request=dict(mode='canary'),context=dict(run_id=21,head_sha='2'*40),identity=dict(expected=True))
+        with tempfile.TemporaryDirectory() as td,patch.object(c,'OUT',Path(td)),\
+            patch.object(c,'read_binding',return_value=(binding,'a'*64),create=True),\
+            patch.object(c,'preflight',side_effect=ValueError('owned selection rejection')),\
+            patch.object(c,'run_case',side_effect=AssertionError('provider must not start')):
+            try:result=c.parent()
+            except ValueError:result=None
+            path=Path(td)/'phase.json'
+            self.assertTrue(path.is_file(),'parent admission rejection lost its phase ledger')
+            report=json.loads(path.read_bytes())
+            self.assertEqual(1,result);self.assertEqual('FAILED_OR_INCOMPLETE',report['status'])
+            self.assertEqual(binding['context'],report['context']);self.assertEqual([],report['launches'])
+            self.assertFalse(report['identity_verified']);self.assertEqual('parent-preflight',report['admission_stage'])
+            self.assertIn('owned selection rejection',str(report['error']))
+
 
 if __name__=='__main__':unittest.main()

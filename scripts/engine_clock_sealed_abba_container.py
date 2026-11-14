@@ -106,6 +106,30 @@ def compact_inventory(result,expected_raw):
     return summary
 
 
+def read_binding():
+    """Establish bounded request/context binding before recording admission failures."""
+    raw=n.image.read_regular(BINDING/'binding.json');binding=n.image.parse(raw)
+    n.need(binding['schema']=='engine-clock-sealed-abba-binding-v1')
+    request=n.validate_request(binding['request'],ROOT);context=binding['context']
+    request_raw=n.image.read_regular(ROOT/n.REQUEST)
+    n.need(n.sha(request_raw)==context['request_sha256'] and n.image.parse(request_raw)==request
+        and context['mode']==request['mode'] and context['repository']==n.REPOSITORY
+        and context['source_sha']==request['reviewed_source_sha'] and n.image._hex(context['head_sha'],40)
+        and type(context['run_id']) is int and context['run_id']>0)
+    return binding,n.sha(raw)
+
+
+def admission_comparison(tag,kind,accepted,observed):
+    n.need(re.fullmatch(r'parent|child-0[0-3]',tag) is not None and kind in ('host','identity'))
+    differences=n.identity_difference(accepted,observed)
+    report=dict(schema='sealed-abba-inner-admission-comparison-v1',role=tag,kind=kind,
+        equal=not differences,accepted_sha256=n.sha(n.canonical(accepted)),observed=observed,
+        observed_sha256=n.sha(n.canonical(observed)),differences=differences)
+    write(OUT/(tag+'-'+kind+'-comparison.json'),report)
+    n.need(not differences)
+    return report
+
+
 def preflight(role,index=None):
     started=perf_counter()
     n.need(sys.executable=='/opt/venv/bin/python' and sys.version_info[:3]==(3,11,18)
@@ -115,8 +139,7 @@ def preflight(role,index=None):
     launch_environment=dict(os.environ)
     tag=role if role=='parent' else 'child-%02d'%index
     n.need(not any(k.split('.',1)[0] in {'numpy','cv2','panda3d','metadrive','onnxruntime'} for k in sys.modules))
-    raw=n.image.read_regular(BINDING/'binding.json');binding=n.image.parse(raw)
-    request=n.validate_request(binding['request'],ROOT)
+    binding,binding_sha=read_binding();request=binding['request']
     if role=='child':
         n.need(type(index) is int and 0<=index<len(n.schedule(request['mode']))
                and os.environ.get('MESA_SHADER_CACHE_DIR')=='/work/cache/case_%02d'%index)
@@ -137,7 +160,8 @@ def preflight(role,index=None):
     result=inventory.verify_inventory(Path('/'),expected,deadline=started+n.BUDGET['inventory_seconds'])
     n.need(result['complete'] is True and result['canonical_manifest_sha256']==n.sha(expected_raw))
     result=compact_inventory(result,expected_raw)
-    host=inventory.collect_host_profile();n.need(host==binding['host'])
+    host=inventory.collect_host_profile()
+    admission_comparison(tag,'host',binding['host'],host)
     # Explicit isolated path selection, no site/.pth execution.
     package='/opt/venv/lib/python3.11/site-packages'
     n.need(package not in sys.path);sys.path.append(package)
@@ -147,12 +171,12 @@ def preflight(role,index=None):
     n.need(not any(d.metadata.get('Name','').lower()=='onnxruntime' for d in importlib.metadata.distributions()))
     n.check_post_import_environment(os.environ,role)
     identity=n.make_identity(binding['receipt'],request['image_evidence']['expected'],host,binding['engine'])
-    n.need(identity==binding['identity'])
+    admission_comparison(tag,'identity',binding['identity'],identity)
     # Also enforce immutable old protected-source pins, without invoking its gates.
     from bigbench import first_divergence as capture
     capture.source_snapshot()
     memory=memory_snapshot();require_no_oom(memory,memory)
-    return binding,n.sha(raw),identity,dict(inventory=result,prefix=prefix,maps_before_native=maps,memory_before=memory,
+    return binding,binding_sha,identity,dict(inventory=result,prefix=prefix,maps_before_native=maps,memory_before=memory,
            elapsed_seconds=perf_counter()-started,launch_environment=launch_environment,environment=dict(os.environ))
 
 
@@ -343,12 +367,11 @@ def replay_canary(root,phase,request):
 
 
 def parent():
-    started=perf_counter();binding,bsha,identity,proof=preflight('parent')
-    write(OUT/'parent-admission.json',dict(proof,identity=identity,binding_sha256=bsha))
-    from scripts import engine_clock_native as old
-    old.oldmodel._enable_subreaper();parent_uuid=uuid.uuid4().hex;mode=binding['request']['mode']
+    started=perf_counter();binding,bsha=read_binding()
+    parent_uuid=uuid.uuid4().hex;mode=binding['request']['mode']
     report=dict(schema='engine-clock-sealed-abba-phase-v1',status='FAILED_OR_INCOMPLETE',mode=mode,
-        context=binding['context'],identity=identity,parent_pid=os.getpid(),parent_uuid=parent_uuid,
+        context=binding['context'],identity=binding['identity'],identity_verified=False,
+        admission_stage='parent-preflight',parent_pid=os.getpid(),parent_uuid=parent_uuid,
         binding_sha256=bsha,launches=[],comparisons=[],error=None,elapsed_seconds=0.,budget=n.BUDGET,
         native_budget=n.native_budget(mode),official_model_calls=0,ort_sessions=0,scientific_result_promoted=False)
     def persist(rows):
@@ -356,13 +379,21 @@ def parent():
         write(OUT/'phase.next.json',report);os.replace(OUT/'phase.next.json',OUT/'phase.json')
     persist([])
     try:
+        checked,checked_sha,identity,proof=preflight('parent')
+        n.need(checked_sha==bsha and n.exact(checked,binding))
+        report.update(identity=identity,identity_verified=True,admission_stage='parent-admitted')
+        write(OUT/'parent-admission.json',dict(proof,identity=identity,binding_sha256=bsha))
+        from scripts import engine_clock_native as old
+        old.oldmodel._enable_subreaper()
         if mode=='abba':
             accepted=binding['accepted_canary'];n.need(accepted is not None and n.exact(accepted['identity'],identity))
             original=BINDING/'accepted-canary/output'
             phase=n.image.parse(n.image.read_regular(original/'phase.json'))
             replay=replay_canary(original,phase,binding['request'])
             n.need(n.exact(replay['identity'],identity));write(OUT/'accepted-canary-replay.json',replay)
-        def run(index,enabled,repeat):return run_case(binding,bsha,identity,proof,parent_uuid,index,enabled,repeat)
+        def run(index,enabled,repeat):
+            report['admission_stage']='case_%02d'%index;persist(report['launches'])
+            return run_case(binding,bsha,identity,proof,parent_uuid,index,enabled,repeat)
         rows,complete=execute_cases(mode,run,persist)
         n.need(complete)
         cases=[old._read(OUT/('case_%02d/case.json'%i)) for i in range(len(rows))]
@@ -373,7 +404,8 @@ def parent():
         write(OUT/'parent-loaded-files.json',dict(maps=maps_snapshot(image_files,sources,'post-parent-maps.json'),modules=module_origins(image_files,sources,'post-parent-modules.json')))
         old._members(OUT,n.BUDGET['case_bytes'])
         report['status']=n.recorded_status(mode)
-    except BaseException as exc:report['error']=old._detail(exc)
+    except BaseException as exc:
+        report['error']=dict(type=type(exc).__name__,detail=str(exc)[:1024])
     persist(report['launches'])
     return 0 if report['status']==n.recorded_status(mode) else 1
 
