@@ -65,7 +65,10 @@ int main(int argc,char **argv){
  if(!delivery || !cache || !bridge || !scratch)return 2;
  rd_dispatch dispatch={0};dispatch.pixel_store=rd_probe_store;dispatch.bind_buffer=buffer;dispatch.bind_buffer_arb=buffer;dispatch.bind_framebuffer=frame;dispatch.bind_framebuffer_ext=strcmp(mode,"null")==0?NULL:frame_ext;dispatch.read_buffer=selector;dispatch.delete_framebuffers=remove_frames;dispatch.delete_framebuffers_ext=remove_frames;dispatch.read_pixels=rd_probe_read;
  dispatch.create_new=create_new;dispatch.create_attribs=create_attr;dispatch.make_current=make_current;dispatch.make_context_current=make_both;dispatch.destroy_context=destroy;dispatch.get_error=error_value;dispatch.get_proc=resolver;dispatch.get_proc_arb=resolver;
- const char *safe[]={"glDrawArrays"};if(rd_install(delivery,rd_context_size(),&dispatch,safe,1,strcmp(mode,"cap")==0?3:10000))return 3;
+ const char *safe[]={argc>2?argv[2]:"glDrawArrays"};
+ if(rd_install(delivery,rd_context_size(),&dispatch,safe,1,strcmp(mode,"cap")==0?3:10000)){
+   free(scratch);free(bridge);free(cache);free(delivery);return 3;
+ }
  want_display=(rd_display *)(uintptr_t)1;want_share=strcmp(mode,"shared")==0?(rd_context)(uintptr_t)7:NULL;
  errno=ERANGE;rd_context ctx;
  if(strcmp(mode,"attrib")==0){int attrs[]={0x2091,3,0};ctx=rd_create_attribs(want_display,(rd_fbconfig)(uintptr_t)2,want_share,1,attrs);}

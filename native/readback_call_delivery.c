@@ -61,7 +61,7 @@ static int copy_name(const unsigned char *input,char out[64]){
   return 0;
 }
 static int unsafe_name(const char *s){
-  const char *prefix[]={"glPixelStore","glBindBuffer","glDeleteBuffers","glBindFramebuffer","glDeleteFramebuffers","glReadBuffer","glPushClientAttrib","glPopClientAttrib","glXCreate","glXMake","glXDestroy"};
+  const char *prefix[]={"glPixelStore","glBindBuffer","glDeleteBuffers","glBindFramebuffer","glDeleteFramebuffers","glReadBuffer","glNamedFramebufferReadBuffer","glFramebufferReadBuffer","glPushClientAttrib","glPopClientAttrib","glXCreate","glXMake","glXDestroy","glXCopyContext"};
   for(unsigned i=0;i<sizeof(prefix)/sizeof(prefix[0]);i++)if(!strncmp(s,prefix[i],strlen(prefix[i])))return 1;
   return 0;
 }

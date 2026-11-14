@@ -37,6 +37,15 @@ class CallDeliveryTests(unittest.TestCase):
         for mode in ('aliases','safe','null','delete'):
             raw,s=sample(self.exe,mode)
             with self.subTest(mode=mode):self.assertTrue(decode(raw,s,mode)['cpu_window_closed']);self.assertEqual((s['args_ok'],s['errno_ok']),(1,1))
+    def test_known_unsupported_selector_and_context_copy_cannot_be_safe_names(self):
+        for name in ('glNamedFramebufferReadBuffer','glNamedFramebufferReadBufferEXT',
+                     'glFramebufferReadBufferEXT','glXCopyContext'):
+            p=subprocess.run([str(self.exe),'safe',name],capture_output=True,timeout=15)
+            with self.subTest(name=name):
+                self.assertEqual(p.returncode,3,'unsafe allowlist must reject installation')
+                self.assertEqual((p.stdout,p.stderr),(b'',b''))
+        raw,status=sample(self.exe,'safe')
+        self.assertTrue(decode(raw,status,'safe')['cpu_window_closed'])
     def test_original_context_returns_determine_creation_and_current_events(self):
         for mode in ('attrib','createfail','failedswitch','makeboth'):
             raw,s=sample(self.exe,mode)
