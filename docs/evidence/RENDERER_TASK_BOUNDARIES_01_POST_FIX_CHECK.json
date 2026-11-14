@@ -1,0 +1,27 @@
+{
+  "status": "POST_FIX_CPU_SOURCECHECK_PASS",
+  "correction_head": "76236ed14fcb412c6964ab554ccefaf81bc6d7b3",
+  "stdlib_only_import": true,
+  "frozen_producer_paths_unchanged": 261,
+  "source_audit_sha256": "40bb1acd6b2ee14681f95527475fb90b35a0d14131c4b36610a56079452c5b78",
+  "modules": {
+    "scripts/renderer_task_callbacks.py": "cb623b30cc5ed97dbb8b381866fa28f51e7cd0d4e2b031793a5cf747b37f37d2",
+    "scripts/renderer_task_binding.py": "889b79da9f41d3cde33a538846bb745f6b3582bd1cbb1509b9a4e5b3dff103ac"
+  },
+  "full_tests": 1237,
+  "skips": 7,
+  "full_seconds": 122.515,
+  "focused_tests": 51,
+  "focused_seconds": 0.21,
+  "review": {
+    "critical": 0,
+    "important": 1,
+    "important_fixed": 1,
+    "minor": 0,
+    "rereview": false
+  },
+  "actual_native_status": "NOT_RUN",
+  "new_native_calls": 0,
+  "new_model_calls": 0,
+  "new_ort_sessions": 0
+}
