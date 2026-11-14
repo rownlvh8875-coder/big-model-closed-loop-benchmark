@@ -65,6 +65,14 @@ class DispatchCoverageTests(unittest.TestCase):
         self.assertEqual(data['direct_calls'], [])
         self.assertFalse(data['active_compiled_paths_proven'])
 
+    def test_parentheses_inside_literal_arguments_are_not_source_delimiters(self):
+        for source,field,name in (('glDebugMessageInsert(0,0,1,0,-1,"(");','direct_calls','glDebugMessageInsert'),
+                                  ('_glPushGroupMarkerEXT(1,")");','member_calls','_glPushGroupMarkerEXT'),
+                                  ("glReadBuffer('(');",'direct_calls','glReadBuffer')):
+            with self.subTest(source=source):
+                data=self.scan(source)
+                self.assertEqual([r['name'] for r in data[field]],[name])
+
     def test_malformed_and_unbounded_source_is_rejected(self):
         for source in (b'/* no close', b'"no close', b'get_extension_func("glReadPixels";',
                        b'get_ext\\\nension_func("glReadPixels");', b'R"(glReadPixels())"',

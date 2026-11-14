@@ -98,6 +98,8 @@ def _tokens(data):
 def _closing(tokens, opening):
     depth = 0
     for index in range(opening, len(tokens)):
+        if tokens[index][0] != 'punct':
+            continue
         if tokens[index][1] == '(':
             depth += 1
             _need(depth <= 64, 'source nesting budget')

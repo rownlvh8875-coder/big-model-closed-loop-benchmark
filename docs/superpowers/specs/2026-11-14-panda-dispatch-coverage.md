@@ -69,7 +69,7 @@ planning candidate, not execution. Inputs include --image,--source-dir and optio
 coverage, method ABI and concrete source-integrated hook prerequisites. Unknown
 build flags, inactive branches, full-image coverage, native lifetimes/driver state,
 actual installer/build/runtime/environment qualification and fresh canary remain
-open. Do not confuse a conservative335-name source union with335executed calls.
+open. Do not confuse a conservative lexical name union with executed calls.
 
 Proof: compile CPU-only unresolved-symbol ELF without loading it; compare literal
 imports/slots with independent readelf; exercise dynamic-table corruption, absent
