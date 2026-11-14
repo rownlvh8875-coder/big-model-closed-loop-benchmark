@@ -403,3 +403,31 @@ whole cgroup charge including page cache/parent/Xvfb, not childRSS. Original
 image006 stay unchanged. Source5closure195 existing files;4new RED→GREEN tests
 PASS0.009s, full1101tests/7existing skips PASS106.185s. Fresh source review and
 exact sourceCI precede new05request; no scientific or publication promotion.
+# Q. Native05 camera-byte success / post-capture protocol failure / v6
+
+V5sourced58e2823b46b3be5231b48f2d0b2bacab2e39723/Draft86 exact4CI success:
+push43544560353(132292708610/132292708806), PR43544563710(132292716909/132292717202),
+attempt1/artifacts0. Activation7ddf636a494cba6439e15cd503c2dacfae9bca39/
+requestSHA0069e0c68b9d6be3217c13b09d9056cb2574b62b4bdfa1a76c20c5e61ebaab6b,
+195files/priorbranch absent/runs0. Run43544891016 FAILED137.919200923s; original
+artifact14093307765/338395210B/SHAe36efa5681873d6713a69b3d1ad1cdd58d4c16ec2884c460b12d5fca667477cf
+API/ZIP/CRCs retained. Root independently validated all195source blobs, image/
+both admissions/pre/post env/identity and full case RGB/canvas/I420/trace bytes.
+Real provider constructed1/closed1,6accepted pairs,12RAM/12task/24Texture/48clock/
+96clock getters/144observer getters, caseerrorNone/cleanup[]. Root partial report
+AUTHENTICATED_SIX_PAIR_CAMERA_BYTES_PROTOCOL_FAILED, NOT whole canary acceptance.
+
+4CGsnapshots sameinode6847/max4294967296, oom=oom_kill0; peak4GiB aggregatecharge
+(NOTRSS), max-reclaim counter1348. Old04OOMstillunproven. Childexit1 after case
+and child-memory writes, before child-loaded-files; exact map/module predicate
+was not retained. Whole05FAILED stays frozen; providerclose and actual6camera
+bytes are separate proven facts. Authority STAGE7_ENGINE_CLOCK_SEALED_NATIVE_05_RESULT.json.
+
+V6selection policy uses complete verified image/source sets, separately records
+declared nonexec runtimecache/tmp/shm/config data and kernel/anonymous/memfd/SYSV
+objects without installed-binary/source-origin claims. Unknown executable-file
+or module paths reject. Every4map/2module view is bounded and written BEFORE
+assertion. No new views/GL reads; selection policy binds identity. No assertion
+of sole old05cause. New helper/7RED→GREEN fixtures, frozen-file-as-host-path
+negative fixed before review. Full1108tests/7existing skips PASS110.510s;
+actual closure205existing paths; request06absent. Fresh review/CI precede06.
