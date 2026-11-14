@@ -558,3 +558,20 @@ New result STAGE7_ENGINE_CLOCK_HELD_ABBA_RESULT.md and authority
  evidence/STAGE7_ENGINE_CLOCK_HELD_ABBA_01_RESULT.json retain exactIDs/hashes/rulings.
 Next distinct source needs bounded successfulqueued→actualin_progress observation,
 not acceptance of queued nor replay of this consumed request. Stage7INCOMPLETE.
+
+## Retained-host campaign02 — 2026-11-14 KST15:34
+
+Sourcebee8072/Draft94/248pins preserves235oldfiles; focused23/full1168PASS/7skip/
+109.862s/exact4sourceCIjobsPASS, source reviewC0I0M2(HV-M1numeric/HV-M2peer deferred).
+Boundedvisibility requires actualactive; Cactualfirstactive/queued0. SoleC23d3dbc
+run43565472170/wf418069748; genuineC6pair/root+fresh/terminalattestor accepted
+whilehostheld. Then separateAcontrol5ea6152, actualcheckoutstillC/fullidentityequal.
+All4ABBAchildren closed/24pairs/6comparisons verified, but final129memberguard
+rejected170files/65433113B (<192MiB). Workflow/phaseFAIL/containerexit1/OOMfalse,
+no successfulcontroller. Root+fresh ACCEPT terminalfailure+4caseCPUdiagnosticsONLY.
+ON0/ON1/OFF1 match; firstOFF0 differs65aggregatepixels (6rawwide+59canvaswide),
+not causalclock/GPUfreshnessproof. C+A5providers/30pairs/528getters consumed/0left;
+no rerun/main/model/Cloud/registrypub. New explicitphase member/traversalbudget
+needed in distinctsource with170fileTDD/source review/CI/newrequest, never rewrite
+consumedsource/129guard. See STAGE7_ENGINE_CLOCK_HELD_ABBA_V2_RESULT.md and
+ evidence/STAGE7_ENGINE_CLOCK_HELD_ABBA_02_RESULT.json. Strict0/4FAIL/Stage7INCOMPLETE.

@@ -1,6 +1,30 @@
 # Stage 7 continuation — verified results, renderer cause still open
 
-## Current checkpoint (2026-11-14 14:46 KST — held-host campaign rejected queued API snapshot)
+## Current checkpoint (2026-11-14 15:34 KST — held C accepted; four-case diagnostics rejected at final member cap)
+
+Newsourcebee8072aa01d570a546ea709aa01103f069cf07f/Draft94 preserves235oldfiles/
+248pins;23focused/full1168testsPASS/7skip/109.862s and4exactsourceCIjobsSUCCESS.
+Freshsource review C0/I0/M2; HV-M1numeric/HV-M2peer gaps explicitlydeferred.
+Run43565472170/workflow418069748/attempt1 is soleheldworkflow, actualproducer C
+23d3dbc85202c307546876645941e513cb7e567b. Genuine closedC+successfulCstep/upload+
+terminalSUCCESSattestor+root/fresh accepted6pairs while workflowhostinprogress,
+neverwholeworkflowcompletion. Onlythen directchildAcontrol5ea6152755f348609d6a29f5b8b6eecf6ee9bde4
+added separateArequest. Actualcheckout remainedC; fullC/Aidentity/lease matched.
+All4OFF0/ON0/ON1/OFF1children exit0/reaped/groupgone/providerclosed/24pairs,
+6comparisons recomputed. Final frozen _members rejected170files/65433113B at
+129-filecap (not192MiBbytecap), reproducedCPU. Workflow/phaseFAIL,containerexit1/
+OOMfalse,no successfulcontroller. Root+fresh ACCEPT authenticfailure and4case
+CPUdiagnosticsONLY. C+A5providers/30pairs/528getters consumed/remaining0/no retry.
+ON0/ON1/OFF1 rawcanvasI420identical; initialOFF0differs65aggregatepixelsof8559936
+(6rawwide+59canvaswide), descriptive/no causalclockproof. SameAMD7763/fullflags/
+affinity[0..3]/MemTotal16760344576/image006. Peak4GiBaggregate/OOM0/NOTRSS.
+Next distinctsource needs explicit4case+metadata member/traversalbudgets, retaining
+legacy129guard and consumedrequests; no model/main/Cloud/registrypublication.
+[Result](STAGE7_ENGINE_CLOCK_HELD_ABBA_V2_RESULT.md),
+[authority](evidence/STAGE7_ENGINE_CLOCK_HELD_ABBA_02_RESULT.json),
+[ledger](STAGE7_ENGINE_CLOCK_HELD_ABBA_V2_LEDGER.md). Strict0/4FAIL/Stage7INCOMPLETE.
+
+## Previous checkpoint (2026-11-14 14:46 KST — held-host campaign rejected queued API snapshot)
 
 New retained-host source5ab516cb4b52b40b589b97257604fc02487de1cd/Draft92 preserves
 all223old producer files and qualifies235pins;16focused/full1145tests PASS/7skip,
