@@ -11,13 +11,13 @@ new03request only; no inherited LD at exec, silent stripping, model or publicati
 
 ## Task1: Snapshot boundary and explicit environment identity
 
-- [ ] RED fixtures from real02post-import environment: initial LD rejected,
+- [x] RED fixtures from real02post-import environment: initial LD rejected,
   exact expected mutation accepted only after import, wrong/missing/extra values
   rejected; child built from immutable validated launch snapshot and original
   actual parent remains unchanged; identity commits to both profiles/policy.
-- [ ] Implement v3 entry modules/workflow and derived full source closure with
+- [x] Implement v3 entry modules/workflow and derived full source closure with
   failed02authority. Preserve every other gate and finite budget.
-- [ ] Targeted GREEN and full unittest discover. Expected green/7existing skips.
+- [x] Targeted GREEN and full unittest discover. Expected green/7existing skips.
   One fresh whole-source review, one Critical/Important TDD pass if needed, retain
   all Minor/declined costs; no rereview.
 

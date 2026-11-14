@@ -257,6 +257,25 @@ full suite in progress; one fresh whole-source review precedes qualification.
 Existing SN-M1/SN-M2 costs and all five source-review rulings remain retained.
 # N. Native02 parent success / child launch environment / v3
 
+Task1 complete:1091tests/7skip PASS97.266s;4new RED→GREEN PASS0.025s. One fresh
+review f6bedb3..429dff9 Critical0/Important0, no newMinor; reviewer4fixtures
+PASS0.032s. No fix pass/rereview. Full4declined rulings/costs in
+docs/evidence/STAGE7_ENGINE_CLOCK_SEALED_NATIVE_V3_SOURCE_REVIEW.md.
+Final: minor (deferred): SN-M1 failed collector detail lost, cost less precise
+diagnosis/possible separate qualified observation, no provider admission.
+Final: minor (deferred): SN-M2 enclosing watchdog bounds prefix IO, cost delayed
+rejection beyond narrower180s allowance.
+Final: Ruling: actualv3child/camera/maps/cleanup need execution — raw one-use
+acceptance governs — cost if wrong: consumed failed03request/no accepted canary.
+Final: Ruling: oldv2original authenticity not rechecked by source reviewer —
+preserve root-authenticated originals/failed status — cost if wrong: invalid
+upstream diagnosis, no broader guarantee.
+Final: Ruling: remoteexactCI/absence/activation not checked by reviewer — root
+authenticates4named jobs/attempt1/artifacts0 and sole fresh request — cost if
+wrong: invalid unqualified execution, never accepted.
+Final: Ruling: science/future C/A outside source proof — retain0model/ORT,
+strictFAIL/INCOMPLETE — cost if wrong: unsupported scientific conclusions.
+
 V2 source69ed28ef0d61af6e4bf6629dc2cbf0bbbbc85f07/Draft83 qualified all4jobs:
 push43537427386(132269701424/132269701593), PR43537432346(132269719450/132269719657),
 attempt1/artifacts0. Sole fresh activationf6bedb3d8d8da977b283401c7745429928940e2e,
