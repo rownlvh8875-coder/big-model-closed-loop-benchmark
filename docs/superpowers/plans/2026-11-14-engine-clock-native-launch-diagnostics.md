@@ -12,14 +12,14 @@ request rerun, no broader native allowance or relaxed predicate, no publication.
 
 ## Task1: Source and safe evidence
 
-- [ ] RED tests: absent diagnostic projection; accepted fixture has no failed
+- [x] RED tests: absent diagnostic projection; accepted fixture has no failed
   predicates; changed host/mount/env/label/config produces exact safe field codes;
   token/proxy/argv/path sentinels absent; v2 scope rejects old request identity.
-- [ ] Implement v2 entry files and safe pre-gate evidence. Derived source closure
+- [x] Implement v2 entry files and safe pre-gate evidence. Derived source closure
   includes v1 closure, all new files, failed01authority and genuine preflight
   tmpfs carrier evidence. Keep gate semantics except explicit new entry/request
   and optional redundant /tmp Mounts projection; HostConfig.Tmpfs remains exact.
-- [ ] Run targeted GREEN then full unittest discover. Expected all green,7 existing
+- [x] Run targeted GREEN then full unittest discover. Expected all green,7 existing
   skips; no native/Docker/network in tests. Commit, one fresh whole-source review;
   fix Important/Critical once with RED→GREEN, ledger minors/declined costs.
 
