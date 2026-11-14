@@ -104,6 +104,7 @@ def validate_native_canary_archive(path,dest,producer,expected_context,artifact)
                 permit=proof['permit']
                 n.validate_permit(permit,ancestors=[phase['parent_pid']],group=row['process_group'],nonce=row['nonce'],
                     binding_sha=n.sha(binding_raw),identity_sha=identity['core_sha256'],mode='canary',index=0)
+                n.need(permit['parent_uuid']==phase['parent_uuid'])
         n.need(len({m['cgroup_inode'] for m in memories})==1)
         for m in memories:n.need(m['max_bytes']==4294967296 and m['events']['oom']==m['events']['oom_kill']==0 and m['peak_is_rss'] is False)
         stage='copied-archive-hashes'

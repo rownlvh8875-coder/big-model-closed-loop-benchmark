@@ -24,17 +24,17 @@ All223oldproducer bytes/consumedrequests/raws unchanged. No legacy gate relaxati
 **Files:** create scripts/engine_clock_held_abba.py, engine_clock_held_abba_lifecycle.py, engine_clock_held_abba_archive.py; tests/test_engine_clock_held_abba.py, test_engine_clock_held_abba_lifecycle.py.
 **Interfaces:** source_paths(root), validate_request(value,root), validate_activation(...), make_identity/identity_from_profiles, validate_completion_api(...), validate_control_delta(...), create/validate_lease(...), observe_control(...), validate_native_canary_archive(...).
 
-- [ ] RED exact C/Aseparate additions, source union, wrong producer/control/jobs/terminalattestor/ZIP reject; real safe archive and lease/cadence/deadline fixtures.
-- [ ] Run focused unittest, ExpectedfeaturemissingFAIL; implement immutable derivative and bounded helpers, samefixturesGREEN.
-- [ ] Commit with ledger and every interface/ruling recorded.
+- [x] RED exact C/Aseparate additions, source union, wrong producer/control/jobs/terminalattestor/ZIP reject; real safe archive and lease/cadence/deadline fixtures.
+- [x] Run focused unittest, ExpectedfeaturemissingFAIL; implement immutable derivative and bounded helpers, samefixturesGREEN.
+- [x] Commit with ledger and every interface/ruling recorded.
 
 ## Task2: Native orchestration, stdlib attestor, C-only workflow
 
 **Files:** create scripts/engine_clock_held_abba_run.py, engine_clock_held_abba_container.py, engine_clock_held_abba_attest.py; tests/test_engine_clock_held_abba_execution.py; .github/workflows/engine-clock-held-abba-v1.yml.
 **Interfaces:** consume Task1 authority/lease; producer Ccontext/effective Acontrol preserved in read-only binding, held host phases and successful metadataattestor.
 
-- [ ] RED prestart rejection/initialphase failures/dualrequest binding/attestor pending and terminal failures/no-local-checkout paths; parsed workflow tests C-onlypath/twojobs/zero installs and pinned actions.
-- [ ] Implement explicit derivatives and finite CLI steps; frozen pure case/comparison helpers only, no old-module global mutation.
+- [x] RED prestart rejection/initialphase failures/dualrequest binding/attestor pending and terminal failures/no-local-checkout paths; parsed workflow tests C-onlypath/twojobs/zero installs and pinned actions.
+- [x] Implement explicit derivatives and finite CLI steps; frozen pure case/comparison helpers only, no old-module global mutation.
 - [ ] FocusedGREEN/fullunittestdiscoverGREEN, preserve223hashes. One fresh source review; Important/Critical single RED→GREEN correction pass/fullsuite; all Minors/declined costs in ledger. No rereview.
 
 ## Task3: Actual held C/attestor and gated A

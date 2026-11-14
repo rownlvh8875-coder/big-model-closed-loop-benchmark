@@ -32,3 +32,13 @@ Pinned upload-artifact ea165f8 README lines55–56 explicitly documents immediat
 RESTavailability and immutableZIP/newIDonreplacement. Actualheldvisibility still
 requires measured original APIs, not documentationalone. Unused oldsingle-request
 delta helper removed from newcontroller; no frozenmodule changed.
+
+Fresh source review d8f2e5a: Critical0/Important0/Minor1. HA-M1 permit/phase
+parentUUID cross-link fixed in single negative-fixture RED→GREEN pass; no rereview.
+All reviewer scope declines/cost rulings preserved in
+[evidence/ENGINE_CLOCK_HELD_ABBA_SOURCE_REVIEW.md](evidence/ENGINE_CLOCK_HELD_ABBA_SOURCE_REVIEW.md).
+No authority from sourceflags/CPUfixtures; nextrequires exactsourceCI then genuine
+heldnative C+terminalattestor/root+fresh. No old request or runtime allowance reused.
+Final single-correction verification: focused16PASS/2.835s; full1145PASS/
+7skip/103.435s. Old223bytes still frozen. Root stdlib attestor import loaded
+no numpy/cv2/Panda/MetaDrive/ORT. No actual native authority before sourceCI.

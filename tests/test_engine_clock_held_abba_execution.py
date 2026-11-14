@@ -103,6 +103,15 @@ class HeldExecutionTests(unittest.TestCase):
             bad=dict(receipt);bad[field]=value
             with self.assertRaises(ValueError):archive.validate_attestation_receipt(bad,approval(),checked)
 
+    def test_permit_parent_uuid_must_match_completed_phase(self):
+        with tempfile.TemporaryDirectory() as td:
+            p=Path(td);req,ctx,*_=fixture(p/'raw')
+            path=p/'raw/output/child-00-admission.json';data=json.loads(path.read_bytes())
+            data['permit']['parent_uuid']='9'*32;path.write_bytes(n.canonical(data))
+            z=p/'bad.zip';zip_fixture(p/'raw',z)
+            with self.assertRaises(ValueError):
+                archive.validate_native_canary_archive(z,p/'selected',req,ctx,dict(id=51,name=n.artifact('canary'),size_in_bytes=z.stat().st_size,digest='sha256:'+n.sha(z.read_bytes())))
+
     def test_workflow_only_canary_push_holds_native_host_and_separate_attestor(self):
         workflow=json.loads((ROOT/n.WORKFLOW).read_bytes())
         self.assertEqual(dict(branches=[n.BRANCH],paths=[n.C_REQUEST]),workflow['on']['push'])
