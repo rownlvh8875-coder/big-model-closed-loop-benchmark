@@ -16,3 +16,7 @@ Task2: RED6missingchecker→GREEN6/6. Actual locally compiled CPU.so/selfmem mat
 Investigation: raw FileIO.read on proc/maps returned4055B while EOF contained6304B and the new CPU library. Bounded proc reader now loops short reads to EOF within the same1MiB cap; actual positive test covers the regression.
 Ruling: Compare target-file mappings around code reads, plus process starttime/executable/file identity — unrelated Python heap mappings may grow during verification — point-in-time target-code evidence only, no whole-image or future immutability claim.
 Task2complete; Task3actualchild/channel/spool binding next.
+
+Task3: RED6missingchannel→GREEN6/6 (combined18testsPASS1.654s). Real kernel SCMcredentials reject foreignsender/bodyPID/nonce/rights/truncation; actual compiled CPUchild rejects badmappedaddress,counter/finish/sink/exit/extra/empty/latewrite. Parent executes the opened inode, inspects code while child holds, hashes the same regular spool before ACK and after exit, then constructs the existing codec receipt from actual status. Childcaps stream64MiB and packet16KiB; parent closes rejected ancillaryFDs and reaps timed-out/failed children.
+Ruling: Require caller-generated fresh32Bnonce per run and isolate child environment, rather than introduce a persistent replay database or ambient loader settings — protocol binds one owned child/session; no cross-run replay registry, hostile same-UID defense, native authority or complete image attestation.
+Task3implementationcomplete; ASan/UBSan CPUevidence/fullsuite and onefreshwholebranchreview next.

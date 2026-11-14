@@ -1,4 +1,5 @@
 /* CPU-shaped GL/GLX originals only. No GL/Panda library is linked or loaded. */
+#define _POSIX_C_SOURCE 200809L
 #include "readback_call_delivery.h"
 #include <errno.h>
 #include <inttypes.h>
@@ -6,6 +7,10 @@
 #include <stdlib.h>
 #include <string.h>
 #include <pthread.h>
+#include <sys/socket.h>
+#include <sys/stat.h>
+#include <sys/resource.h>
+#include <unistd.h>
 typedef struct {int32_t x,y,w,h;uint32_t f,t;void *p;uintptr_t tex,gsg,capacity,image;int32_t z,view;} cpu_call;
 extern int rd_fixture_call(const cpu_call *);
 extern void rd_fixture_return(void);
@@ -55,6 +60,8 @@ static int emit(const unsigned char *h,size_t hn,const unsigned char *p,size_t n
 static void *foreign(void *p){(void)p;expected(0xd05,1);rd_pixel_store(0xd05,1);checked();return NULL;}
 int main(int argc,char **argv){
  mode=argc>1?argv[1]:"basic";delivery=calloc(1,rd_context_size());void *cache=calloc(1,rc_context_size()),*bridge=calloc(1,pb_context_size());unsigned char *scratch=calloc(1,4096);
+ const char *control=getenv("RD_CONTROL_FD"),*nonce=getenv("RD_NONCE");int channel=control?atoi(control):-1;
+ if(channel>=0){struct rlimit cap={64u*1024u*1024u,64u*1024u*1024u};if(setrlimit(RLIMIT_FSIZE,&cap))return 7;}
  if(!delivery || !cache || !bridge || !scratch)return 2;
  rd_dispatch dispatch={0};dispatch.pixel_store=rd_probe_store;dispatch.bind_buffer=buffer;dispatch.bind_buffer_arb=buffer;dispatch.bind_framebuffer=frame;dispatch.bind_framebuffer_ext=strcmp(mode,"null")==0?NULL:frame_ext;dispatch.read_buffer=selector;dispatch.delete_framebuffers=remove_frames;dispatch.delete_framebuffers_ext=remove_frames;dispatch.read_pixels=rd_probe_read;
  dispatch.create_new=create_new;dispatch.create_attribs=create_attr;dispatch.make_current=make_current;dispatch.make_context_current=make_both;dispatch.destroy_context=destroy;dispatch.get_error=error_value;dispatch.get_proc=resolver;dispatch.get_proc_arb=resolver;
@@ -72,6 +79,10 @@ int main(int argc,char **argv){
  rc_config config={0x333,{0x111,0x222},10000};if(rc_init(cache,rc_context_size(),&config))return 4;
  unsigned before=originals;int attached=rd_attach(cache);if(originals!=before)args_ok=0;
  rb_config core={0};for(unsigned i=0;i<32;i++)core.nonce[i]=(unsigned char)(i+1);core.enabled=strncmp(mode,"off",3)!=0;core.windows=1;core.reads_per_window=2;core.max_records=24;core.max_wire_bytes=64u*1024u*1024u;
+ if(channel>=0){
+   if(!nonce || strlen(nonce)!=64)return 7;
+   for(unsigned i=0;i<32;i++){unsigned n;if(sscanf(nonce+2*i,"%2x",&n)!=1)return 7;core.nonce[i]=(unsigned char)n;}
+ }
  pb_binding binding={rd_probe_read,(uintptr_t)rd_fixture_return,0x333,{0x111,0x222},rd_observe,delivery};
  int bound=attached==0?rd_bind_bridge(bridge,pb_context_size(),&core,scratch,4096,emit,NULL,&binding):-1;
  if(strcmp(mode,"display")==0){want_display=(rd_display *)(uintptr_t)2;errno=ERANGE;(void)rd_create_new(want_display,(rd_fbconfig)(uintptr_t)2,3,NULL,1);checked();}
@@ -95,6 +106,17 @@ int main(int argc,char **argv){
  }
  if(bound==0)(void)pb_end(bridge);
  int finish=rd_finish();pb_stats stats={0};if(bound==0)pb_get_stats(bridge,&stats);rd_counts counts;rd_get_stats(&counts);
- fprintf(stderr,"{\"source\":\"SYNTHETIC_TYPED_DISPATCH_ONLY\",\"original_commands\":%u,\"original_calls\":%u,\"resolver_calls\":%u,\"args_ok\":%u,\"errno_ok\":%u,\"regs_ok\":%u,\"attached\":%d,\"bound\":%d,\"delivery_error\":%u,\"events\":%" PRIu64 ",\"replayed\":%" PRIu64 ",\"error\":%u,\"captured\":%" PRIu64 ",\"attempts\":%" PRIu64 ",\"forwards\":%" PRIu64 ",\"wire_bytes\":%" PRIu64 ",\"finish\":%d,\"driver_state_proven\":false,\"runtime_admission_ready\":false}\n",originals,reads,resolves,args_ok,errno_ok,regs_ok,attached,bound,counts.error,counts.events,counts.replayed,stats.core.error,stats.core.captured,stats.core.attempts,stats.core.forwards,stats.core.data_wire_bytes,finish);
- free(scratch);free(bridge);free(cache);free(delivery);return 0;
+ if(channel>=0 && (fflush(stdout) || fsync(STDOUT_FILENO)))finish=-1;
+ char status[4096];int status_n=snprintf(status,sizeof(status),"{\"source\":\"SYNTHETIC_TYPED_DISPATCH_ONLY\",\"original_commands\":%u,\"original_calls\":%u,\"resolver_calls\":%u,\"args_ok\":%u,\"errno_ok\":%u,\"regs_ok\":%u,\"attached\":%d,\"bound\":%d,\"delivery_error\":%u,\"events\":%" PRIu64 ",\"replayed\":%" PRIu64 ",\"error\":%u,\"captured\":%" PRIu64 ",\"attempts\":%" PRIu64 ",\"forwards\":%" PRIu64 ",\"wire_bytes\":%" PRIu64 ",\"finish\":%d,\"driver_state_proven\":false,\"runtime_admission_ready\":false}",originals,reads,resolves,args_ok,errno_ok,regs_ok,attached,bound,counts.error,counts.events,counts.replayed,stats.core.error,stats.core.captured,stats.core.attempts,stats.core.forwards+(strcmp(mode,"channel_status")==0),stats.core.data_wire_bytes,finish);
+ if(status_n<0 || (size_t)status_n>=sizeof(status))return 8;
+ fprintf(stderr,"%s\n",status);
+ if(channel>=0 && strcmp(mode,"channel_empty")!=0){
+   struct stat spool;if(fstat(STDOUT_FILENO,&spool) || !S_ISREG(spool.st_mode))return 9;
+   char packet[8192];int n=snprintf(packet,sizeof(packet),"{\"schema\":\"readback-cpu-producer-ready-v1\",\"nonce\":\"%s\",\"pid\":%ld,\"code\":{\"rd_probe_store\":%" PRIuPTR ",\"rd_probe_read\":%" PRIuPTR ",\"rd_fixture_call\":%" PRIuPTR "},\"stream_nbytes\":%jd,\"status\":%s}",strcmp(mode,"channel_nonce")==0?"0000000000000000000000000000000000000000000000000000000000000000":nonce,(long)getpid()+(strcmp(mode,"channel_pid")==0),(uintptr_t)rd_probe_store+(strcmp(mode,"channel_map")==0),(uintptr_t)rd_probe_read,(uintptr_t)rd_fixture_call,(intmax_t)spool.st_size,status);
+   if(n<0 || (size_t)n>=sizeof(packet) || send(channel,packet,(size_t)n,0)!=n)return 10;
+   if(strcmp(mode,"channel_extra")==0 && send(channel,packet,(size_t)n,0)!=n)return 10;
+   char ack;if(recv(channel,&ack,1,0)!=1 || ack!='A')return 11;
+   if(strcmp(mode,"channel_tamper")==0 && (lseek(STDOUT_FILENO,0,SEEK_SET)<0 || write(STDOUT_FILENO,"X",1)!=1 || fsync(STDOUT_FILENO)))return 12;
+ }
+ free(scratch);free(bridge);free(cache);free(delivery);return strcmp(mode,"channel_exit")==0?3:0;
 }
