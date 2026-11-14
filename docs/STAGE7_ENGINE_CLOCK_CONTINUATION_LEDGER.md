@@ -4,7 +4,7 @@
 
 The user delegated continued sequential inline work and asked to inspect the final result later. No worktree or implementer delegation was used. Each source increment receives one fresh bounded read-only review, one Important/Critical TDD correction pass if needed, and no rereview; Minor deferrals remain explicit. No old consumed request/study was retried. Earlier reviews/workspaces/raw/API/archives remain retained.
 
-Current accepted result: [genuine progressbar wheel](STAGE7_ENGINE_CLOCK_BUILDER_SOURCE_DIRECTORY.md), [56-wheel target Python closure](STAGE7_ENGINE_CLOCK_PYTHON_WHEEL_CLOSURE.md), and [complete measured base/OS/assets input set](STAGE7_ENGINE_CLOCK_COMPLETE_IMAGE_INPUTS.md). Image implementation/preparation and native/scientific admission remain separate uncompleted gates. Historical strict0/4FAIL, expandedNOT_RUN, ABBA terminalFAIL/7null/4case·6comparisonNOT_RUN and geometry/optics/full-S limitations remain; Stage7 is incomplete. A package/input success does not explain or reverse old scientific failures.
+Current accepted result: [actual sealed renderer callback C→ABBA](STAGE7_RENDERER_TASKS_SEALED_RESULT.md), source62dc0ab/run43584877011: all5closedproviders/30camera pairs and root+fresh original replay accepted,280pinned sources. Image006 and the bounded capture path have actual runtime evidence. This is a camera diagnostic; original strict0/4FAIL, geometry/physical-optics/full-S/driving and unique renderer/GPU cause remain unpassed. Stage7 is incomplete; package/image/camera success does not reverse scientific failures.
 
 ## B. Chronological genuine outcomes
 
@@ -12,6 +12,7 @@ All times are KST. Source Drafts and evidence Drafts are distinct; the accepted 
 
 | Increment | Actual run/result | Ruling and cost |
 | --- | --- | --- |
+| [Actual callback sealed01](STAGE7_RENDERER_TASKS_SEALED_RESULT.md) | 2026-11-14 19:51KST;43584877011/attempt1SUCCESS | Source280pins/15focused/full1252PASS7skip;freshC0I0M0/4sourceCIjobsPASS. GenuineheldC→separateAcontrol;5closedproviders30pairs5760namedgetters,root+freshaccepted. CvsONwide1sameobservedCPUstate/order/counts/Texture/differentRGB;OFF0vsothers35pixels/ON0ON1OFF1identical. No model/uniquecause/neutrality/strictPASS. |
 | [Bounded renderer callback source](STAGE7_RENDERER_TASK_BOUNDARIES.md) | 2026-11-14 18:08KST; CPU/source preparation, nativeNOT_RUN | Exactcode+self/camera binding,12step/48snapshot caps;4wheel/installedsourcesmatch; full1237/7skip/122.515sPASS. FreshC0/I1fixed/M0; actualsealedintegration/newallowance remains. No native/model work or original261filechanges. |
 | [Saved03 clock/pixel CPU](STAGE7_ENGINE_CLOCK_PIXEL_FORENSICS.md) | 2026-11-14 17:18KST;30pairs/60raw; no new native/model | Both originalZIPs+261pins checked; fullRGBstates3/3/2/2; CvsON samecount+Texture/differentRGB4rows each;16copied subsets; raw2lostatI420,3/4wide14values±43,5road5values−21. Full1209/7skip/111.217sPASS, freshC0I0/M1historicalwording. strict0/4FAIL/Stage7INCOMPLETE unchanged; final ownDraft/exactHEADCI receipt in branch PRbody/output closeout. |
 | [Namespace diagnostic01](STAGE7_ENGINE_CLOCK_NAMESPACE_DIAGNOSTIC.md), PR53/54 |43410163534,2026-11-13 19:34:56–19:35:08;diagnostic jobSUCCESS | unshare exit0 did not prove namespace identity; omitted after-facts forbid uidmap/cap/network claims. Additional observation needed; no builder credit. |
