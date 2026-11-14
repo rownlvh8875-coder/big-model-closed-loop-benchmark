@@ -1,0 +1,37 @@
+name: One-use sealed-image new canary and direct-child ABBA v2
+on:
+  push:
+    branches: ['diagnostic/engine-clock-sealed-abba-20261114-02']
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: engine-clock-sealed-abba-20261114-02
+  cancel-in-progress: false
+jobs:
+  campaign:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 70
+    steps:
+      - name: Reject repeated attempts
+        env:
+          ATTEMPT: ${{ github.run_attempt }}
+        run: test "$ATTEMPT" = 1
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          fetch-depth: 2
+          persist-credentials: false
+      - name: Authenticate source and image; run registered phase
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: /usr/bin/python3 -I -S -B scripts/engine_clock_sealed_abba_run_v2.py --run
+      - name: Preserve original canary and failure evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: engine-clock-sealed-abba-20261114-02
+          path: output/stage7-sealed-native/sealed-abba-20261114-02/execution/
+          if-no-files-found: warn
+          compression-level: 0
+          retention-days: 30
+          include-hidden-files: true
