@@ -114,3 +114,9 @@ data/comparisons notcompleted.93authorityfiles bind actual evidence; PNG/I420/
 largeZIP/TAR remain Actions/output only. Evidence docs-only branch preserves223
 producer bytes. Scientific strict0/4FAIL/expandedNOT_RUN/geometry-optics-fullSunknown/
 Stage7INCOMPLETE/mainunmerged/Cloudandregistryunpublished remain. No oldcleanup.
+
+Evidence packaging check found repository output/ignore pattern also hides17nested
+selected/output JSONmetadata files. Explicitly added those17already hash-bound
+small original records, preserving ignore rules and excluding PNG/I420/TAR/ZIP.
+All93authority paths must be Gittracked with exact recorded size/hash before final
+evidence qualification. This packaging correction changes no223producer bytes.
