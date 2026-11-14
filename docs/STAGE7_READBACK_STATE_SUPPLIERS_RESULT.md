@@ -44,7 +44,12 @@ Pre-review verification:24focused tests PASS0.587s; whole1394tests PASS7skip95.0
 Python fake64bit registry handles through Ccache→assembly→core→strictcodec. Maximum
 12windows emits24records/5016B for the5×3fixture; original core image/wire caps remain
 unchanged. Synthetic build1.502365051s wall excludes tests/review/CI/development and
-measures no native overhead. Review/CI closeout follows separately.
+measures no native overhead. The sole fresh review found2Important registrycallback gaps, noCritical/Minor.
+One RED→GREEN fix pass checks stickyfailure after each handle descriptor read and
+revalidates owners after the bounded getter pair.26focused tests PASS0.598s; final
+whole1396PASS7skip92.299s;41sanitizer scenarios PASS, build1.742395934s wall. No
+rereview. Pre-fix proofs remain before-fix/; exact Draft/HEAD CI closeout is recorded
+in the PR body and retained output directory.
 
 All2624base tracked files/299oldsourcepins and10original trace/graph/ZIP artifacts
 are preserved. Main, old Draft102–106 and native histories stay unchanged. No merge,
@@ -53,3 +58,6 @@ Cloud/registry publication or consumed native request reuse.
 See [machine result](evidence/readback-state-suppliers-01/result.json),
 [proofs](evidence/readback-state-suppliers-01/proof-index.json) and
 [rulings/costs](STAGE7_READBACK_STATE_SUPPLIERS_LEDGER.md).
+
+See the [original review](evidence/READBACK_STATE_SUPPLIERS_01_REVIEW.md) and
+[next execution steps](STAGE7_READBACK_STATE_SUPPLIERS_CONTINUATION.md).

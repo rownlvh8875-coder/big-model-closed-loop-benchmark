@@ -21,3 +21,22 @@ ASan/UBSan41CPUscenarios exactnormal/sanitizedstreams+stats PASS; originalargs/i
 Preservation before review: all2624baseGitblobs/299pins/10originals/main/oldDraft102–106/eightnativehistories unchanged.
 
 Task2complete pre-review:24focusedPASS0.587s; full1394PASS7skip95.025s after cancellationfix;41ASan/UBSan PASS; finalbuild1.502365051s(notnativeoverhead). Onefreshwholebranchreview follows.
+
+Finalreview: onefreshgpt-6-astra/medium at0d330c3,Critical0/Important2/Minor0. Reviewer independently reran24focused/41normal+sanitizedcases and47proof582205B hashes; full1394suite notrerun. Originalreport docs/evidence/READBACK_STATE_SUPPLIERS_01_REVIEW.md.
+Final: regraded bothImportant. I1check preceded descriptorcallback; I2owners were checked onlybefore GSGgetters. Regressions RED2tests/8failures; onefixpass adds stickycheckafter_handle andpostgetterownercheck whilebusy, no extra getGsgcalls. Ccache/bridge/core untouched. No rereview.
+Final: Ruling: Actualdriverstate/GPUwrites remain unproven — voidCPUshaped originals cannot establish successfuldriverchanges — nativeerror/state evidence remains futurecost.
+Final: Ruling: Contextnotification authenticity stays unqualified — creation/current/destroy are caller-delivered inputs — livebootstrap/return binding must be checked before native acceptance.
+Final: Ruling: Undeliveredmutations remain coveragegate — cache cannot see calls it never receives — futurelayer must cover or invalidate clientattribute and othermutators.
+Final: Ruling: RealPanda/nativeidentity/allocation/lifetime/sameaddressreuse compatibility stays unqualified — onlyprovider-shaped fakes were used — actualprovider/lifetime receipts remain necessary.
+Final: Ruling: DefaultFBO/sharedcontext/differentGSG support stays rejected — currentexplicitcontract excludes guessing those states — futureusers need separatelyqualified support.
+Final: Ruling: ValidCstorage/deleteinputspan/nonnullnormaloriginals/noconcurrentstorage destruction remain callerpreconditions — bounded noquery Ccannot authenticate arbitrarymemory — violations canfault outside acceptedintegration.
+Final: Ruling: Process/window/sinkreceipt authenticity remains unqualified — syntheticdicts establishconsistency only — realtransport andsinkclosure must still be qualified.
+Final: Ruling: Runtime loader/maps/activation/nativecanary/model/officialORT stay inactive — currentcomponents grant no runtime admission — newcontract/freshcanary stillrequired.
+Final: Ruling: Nativeperformance remains unmeasured — CPUbuild/testwall excludes rendererwork — actualoverhead/control measurements are futurecost.
+Final: Ruling: Priorcore/assembly/codec remain immutable revieweddependencies — authorfullsuite covers integration; reviewer focused on newsource/all41CPUcases — no new fullbaseline independentreview was purchased.
+Final: Ruling: ExactsourceCI/Draft/finalpreservation closeout follows review — reviewed snapshot reported these as pending — externalimmutableHEAD receipts will verify finalstate without claiming prematurecompletion.
+Final: minor (deferred): none.
+
+Final: fixed Important1 — test_swallowed_reentry_from_final_gsg_handle_read_cannot_return_success RED→GREEN; fixedImportant2 — test_getter_induced_owner_mutations_reject_registration_and_guard RED→GREEN.26focusedPASS0.598s, full1396PASS7skip92.299s.
+Final:41ASan/UBSan scenarios PASS exactstreams/stats; activebuild1.742395934s wall excludes tests/review/CI/development, no nativeoverhead claim. No Ccache/core/assemblychanges in reviewfixpass; no rereview/minors.
+Finalpreservation afterfix: all2624baseGitblobs/299pins/10originals/main/oldDrafts102–106/eightnativehistories unchanged. SourceCI/Draft closeout follows externally.

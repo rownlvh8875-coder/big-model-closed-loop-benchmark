@@ -24,15 +24,15 @@ Base868f65e368bcb811bce64f61c988a27bbed612f2/all2624basefiles/299oldpins/origina
 **Files:** scripts/readback_camera_registry.py; tests/test_readback_camera_registry.py.
 **Interfaces:** CameraRegistry(provider,nonce,max_windows=12),guard(host_call,requested_camera),native_binding()->(road_texture,wide_texture,gsg),descriptor(),close(). No native imports. Handles private; guards cheapchecks before exact2bound getGsg calls. Budget26getter attempts/returns maximum including init.
 
-- [ ] Write RED tests for complete owners/handles/commonGSG,role/requester independence,mutation/reentry/thread/closed/budget and no addresses in descriptors; missingregistry expectedFAIL.
-- [ ] Implement minimal registry; focused PASS; commit with ledger.
+- [x] Write RED tests for complete owners/handles/commonGSG,role/requester independence,mutation/reentry/thread/closed/budget and no addresses in descriptors; missingregistry expectedFAIL.
+- [x] Implement minimal registry; focused PASS; commit with ledger.
 
 ### Task2: Bounded C command cache and bridge callback
 
 **Files:** native/readback_command_state.{h,c}; tests/fixtures/readback_state_fixture.c; tests/test_readback_command_state.py.
 **Interfaces:** rc_context_size/init; rc_context_new/current/destroy/invalidate; rc_pixel_store/bind_buffer/bind_framebuffer/read_buffer/delete_framebuffers; rc_observe(Texture,GSG,state,user);rc_snapshot/stats. Observe callback directly feeds unchanged pb_binding. Post-return event functions grant only command coverage, not real state authority.
 
-- [ ] RED compiled CPUfixture covers spec/focus input classes, proper original args/errno/counts and raw Ccache→bridge→codec records. MissingCmodule expectedFAIL.
-- [ ] Minimal cache/context/FBO transitions and typed forwarding; focused PASS; ASan/UBSan allscenario streams/counters; preserve compiler/source/binary/dependency evidence and command-only limitations.
+- [x] RED compiled CPUfixture covers spec/focus input classes, proper original args/errno/counts and raw Ccache→bridge→codec records. MissingCmodule expectedFAIL.
+- [x] Minimal cache/context/FBO transitions and typed forwarding; focused PASS; ASan/UBSan allscenario streams/counters; preserve compiler/source/binary/dependency evidence and command-only limitations.
 - [ ] Fullsuite PASS; one fresh wholebranch/source+syntheticreview; one Important/Critical TDDfixpass+greensuite, no rereview. Ledger everyruling/declined item/cost.
 - [ ] OwnDraft/exact push+PRCI and finalallbase/source299/original/main/nativehistory audit; continuation with remaining real delivery/mapping/receipt/canary gates. Copy progress and delete only thisplan scratch.

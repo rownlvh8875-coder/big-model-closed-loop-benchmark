@@ -23,7 +23,10 @@ class CameraRegistry:
             self._texture_handles=tuple(self._handle(t) for t in self._textures)
             self._buffer_handles=tuple(self._handle(t) for t in self._buffers)
             if len(set(self._texture_handles))!=2 or len(set(self._buffer_handles))!=2:self._reject()
-            self._busy=True;self._gsg_refs,self._gsg=self._read_gsg();self._busy=False
+            self._busy=True;self._gsg_refs,self._gsg=self._read_gsg()
+            self._owners()
+            if self._error is not None:self._reject()
+            self._busy=False
         except BaseException as exc:
             self._error=type(exc).__name__
             if not isinstance(exc,Exception):raise
@@ -34,6 +37,8 @@ class CameraRegistry:
 
     def _handle(self,obj):
         value=obj.this
+        # A descriptor can swallow a nested reentry exception before returning.
+        if self._error is not None:self._reject()
         if type(value) is not int or not 0<value<2**64:self._reject()
         return value
 
@@ -69,6 +74,9 @@ class CameraRegistry:
             if self._error is not None:self._reject()
             refs,gsg=self._read_gsg()
             if gsg!=self._gsg or any(self._handle(g)!=self._gsg for g in self._gsg_refs):self._reject()
+            # Getters may change ownership; recheck without more getGsg calls.
+            self._owners()
+            if self._error is not None:self._reject()
             self._gsg_refs=refs;self._calls=host_call;self._guards+=1
         except BaseException as exc:
             self._error=type(exc).__name__
@@ -82,6 +90,7 @@ class CameraRegistry:
         try:
             self._owners()
             if self._error is not None or any(self._handle(g)!=self._gsg for g in self._gsg_refs):self._reject()
+            if self._error is not None:self._reject()
         except BaseException as exc:
             self._error=type(exc).__name__
             if not isinstance(exc,Exception):raise

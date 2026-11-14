@@ -116,5 +116,39 @@ class CameraRegistryTests(unittest.TestCase):
         with self.assertRaises(KeyboardInterrupt):r.guard(1,1)
         with self.assertRaises(registry.RegistryError):r.native_binding()
         self.assertEqual((r.descriptor()['getter_attempts'],r.descriptor()['guards_returned']),(3,0))
+    def test_swallowed_reentry_from_final_gsg_handle_read_cannot_return_success(self):
+        class Gsg:
+            count=0;hook=None;trigger=0
+            @property
+            def this(self):
+                self.count+=1
+                if self.hook and self.count==self.trigger:self.hook()
+                return 0xabcdef123456
+        for operation,trigger in (('binding',1),('guard',4)):
+            p=provider();g=Gsg()
+            for c in p.env.engine.sensors.values():c.buffer.gsg=g
+            r=registry.CameraRegistry(p,NONCE);g.count=0;g.trigger=trigger
+            def nested():
+                try:r.guard(1,1)
+                except registry.RegistryError:pass
+            g.hook=nested
+            with self.subTest(operation=operation),self.assertRaises(registry.RegistryError):
+                r.native_binding() if operation=='binding' else r.guard(1,1)
+            self.assertEqual(r.descriptor()['guards_returned'],0)
+            with self.assertRaises(registry.RegistryError):r.native_binding()
+    def test_getter_induced_owner_mutations_reject_registration_and_guard(self):
+        def handle(p):p.env.engine.sensors['bigbench_road'].copy_texture.this=123
+        def camera(p):p.env.engine.sensors['bigbench_road']=NS()
+        def chain(p):p.env=NS(engine=NS(sensors={}))
+        for stage in ('registration','guard'):
+            for mutation in (handle,camera,chain):
+                p=provider();s=p.env.engine.sensors;r=None
+                if stage=='guard':r=registry.CameraRegistry(p,NONCE)
+                s['bigbench_wide'].buffer.hook=lambda:mutation(p)
+                with self.subTest(stage=stage,mutation=mutation.__name__),self.assertRaises(registry.RegistryError):
+                    registry.CameraRegistry(p,NONCE) if r is None else r.guard(1,1)
+                if r is not None:
+                    self.assertEqual((r.descriptor()['guards_returned'],r.descriptor()['getter_attempts']),(0,4))
+                    with self.assertRaises(registry.RegistryError):r.native_binding()
 
 if __name__=='__main__':unittest.main()
