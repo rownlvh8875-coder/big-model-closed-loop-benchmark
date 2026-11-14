@@ -527,3 +527,20 @@ and directchildABBAA; freeze Cproducer bytes, require actualroot+fresh Cacceptan
 before A. Current06andold4unexecutedcases are consumed/unavailable; current
 source supports canary only, not futureABBA authorization. Strictactual C/Ahost/
 engine/image/env/resource identity cannot be relaxed to make that future testpass.
+
+# S. Actual new sealed C/A campaign02 — Caccepted/Ahost-rejected
+
+See STAGE7_ENGINE_CLOCK_SEALED_ABBA_RESULT.md and both new ABBAledgers for exact
+source/activation/CI/API/artifact/ZIP/hash/CPU data/rulings/costs. V1source17ef2f5/
+Draft89 C01failed pre-Popen2100>frozen1800cap; all215bytes/request/raw preserved.
+V2source4f667825b2c4b913ed89328937bbccfd7139349f/Draft90 narrows only newstart
+budget1800;1129tests/7skip PASS94.807s/exact4sourceCIjobsPASS/newreviewC0I0M0.
+New223closure Cactivationadcb489f39d812544155a976eca4895aed26f561 actually ran
+43555898389 SUCCESS; root+fresh6pairoriginalCPUacceptance/provider1closed1/clean
+exit/typedidentity/installed/env/CG/clock accepted. Direct-child request-only
+A2981d89a17b2e1339be378db560960f6a4cc2729 ran43556701512 FAILED strict hostgate:
+CPU9V45/119flags vs9V74/102flags, otheridentityequal. Root+fresh ACCEPT authentic
+failure only; source-backed preload rejection, originalbounds[0,4] unchanged,
+4cases/6comparisonsNOT_RUN. No gate relaxation/retry/oldunusedcases/model/main/
+publication. Next separate same-host lifecycle design needed; oldnative06and
+campaign01/02cannot grant future scientific authorization. Stage7INCOMPLETE.
