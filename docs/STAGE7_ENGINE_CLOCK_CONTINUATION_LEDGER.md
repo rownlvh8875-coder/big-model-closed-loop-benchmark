@@ -159,3 +159,24 @@ Separatepreflight006sole-requestactivation34055987b5f1971789170fababab4f93ab6c72
 Root independentlyauthenticatedpreflightoriginalAPI/ZIP and repeated code/Python/exe TAR data checks, expectedstdinmanifest/imageCID/TARSHA/installedSHA/nonce/actualhost+engine comparisons. Finalstatus AUTHENTICATED_PROVIDER_FREE_IMAGE_AND_INSTALLED_BYTES_MATCH; providerfree_image_preparedtrue/installed_runtime_verifiedtrue forbytesonly, nativeadmissionfalse/modelcalls0/scientificpromotionfalse. Producer/preflighthostsDIFFER(AMD/azure vsIntelXeon6975P-C/kernel7.0.0-1014-aws), enginesmatch; eachcontainer matchesownactualpre-exechost. No futurestrictnativeC/Ahosteligibilityclaim.
 
 Newauthorityfiles docs/evidence/engine-clock-sealed-image-06/ retainexactoriginalmanifest/receipts/requests/sourceauth androotacceptance; finalJSONdeclaresallhashes. Raworiginals/copyTARs retained under output/stage7-image-root-authentication/. No officialmodel/nativeengine/GL/profile/clock/closedloopcalls, no registry/Cloudpublication/mainmerge. Main48e79a7ed5aedf6daa5a62ff68d2225af7955ef1 and scientificworkflow416199727 twohistoricalruns43251145868/43249493437 reverifiedunchanged. Oldinactiveproposals/nativebudgets/scientificfailures remainunchanged; Stage7INCOMPLETE. No additionaltestimplementationforreceipt-onlyevidence; exactevidenceheadCI trackedseparatelyfromqualifiedsource/runtimeheads.
+# L. New sealed native canary — implementation in progress
+
+Base b895800a0a1a3bc399e6ec5d47ffe05106f53127; source branch
+diagnostic/engine-clock-sealed-native-v1. Image006 and independent preflight006
+remain accepted; old canary/ABBA requests are consumed and untouched. Current
+scope is exactly one new six-pair model-free camera/clock canary, not ABBA.
+
+Task1: pure new protocol, derived162-file producer union, source-only request,
+exact source CI/run, environment/mount and same-namespace one-use FIFO tests.
+Task2: actual image authentication separates old source1af from new native source;
+stopped Python/code proofs, parent+child installed inventories, bounded native
+capture and offline payload validation implemented. Initial9RED/14GREEN fixtures;
+PID1 ancestor and aggregate prestart deadline corrected RED→GREEN. First full
+suite1081 tests/7 skips PASS95.487s. Final source review/CI/activation still pending.
+
+The explicit launch environment includes fixed HOSTNAME and locale; registered
+xvfb-run DISPLAY/XAUTHORITY and optional exact shell PWD are process routes.
+New native allowance includes4maps/2module-origin snapshots and no GL getters.
+Binary Mesa cache is excluded from upload, with terminal metadata retained.
+No new native process or model call has run at this checkpoint.
+
