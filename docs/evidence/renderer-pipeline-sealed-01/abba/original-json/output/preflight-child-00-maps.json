@@ -1,0 +1,94 @@
+{
+  "accepted": true,
+  "anonymous_region_counts": {
+    "data": 17,
+    "executable": 0
+  },
+  "generated_memory_binary_equality_proven": false,
+  "image_files": [
+    "/opt/python/lib/libpython3.11.so.1.0",
+    "/opt/python/lib/python3.11/lib-dynload/_bisect.cpython-311-x86_64-linux-gnu.so",
+    "/opt/python/lib/python3.11/lib-dynload/_blake2.cpython-311-x86_64-linux-gnu.so",
+    "/opt/python/lib/python3.11/lib-dynload/_bz2.cpython-311-x86_64-linux-gnu.so",
+    "/opt/python/lib/python3.11/lib-dynload/_csv.cpython-311-x86_64-linux-gnu.so",
+    "/opt/python/lib/python3.11/lib-dynload/_datetime.cpython-311-x86_64-linux-gnu.so",
+    "/opt/python/lib/python3.11/lib-dynload/_hashlib.cpython-311-x86_64-linux-gnu.so",
+    "/opt/python/lib/python3.11/lib-dynload/_json.cpython-311-x86_64-linux-gnu.so",
+    "/opt/python/lib/python3.11/lib-dynload/_lzma.cpython-311-x86_64-linux-gnu.so",
+    "/opt/python/lib/python3.11/lib-dynload/_posixsubprocess.cpython-311-x86_64-linux-gnu.so",
+    "/opt/python/lib/python3.11/lib-dynload/_random.cpython-311-x86_64-linux-gnu.so",
+    "/opt/python/lib/python3.11/lib-dynload/_sha512.cpython-311-x86_64-linux-gnu.so",
+    "/opt/python/lib/python3.11/lib-dynload/_socket.cpython-311-x86_64-linux-gnu.so",
+    "/opt/python/lib/python3.11/lib-dynload/_ssl.cpython-311-x86_64-linux-gnu.so",
+    "/opt/python/lib/python3.11/lib-dynload/_struct.cpython-311-x86_64-linux-gnu.so",
+    "/opt/python/lib/python3.11/lib-dynload/_typing.cpython-311-x86_64-linux-gnu.so",
+    "/opt/python/lib/python3.11/lib-dynload/_uuid.cpython-311-x86_64-linux-gnu.so",
+    "/opt/python/lib/python3.11/lib-dynload/array.cpython-311-x86_64-linux-gnu.so",
+    "/opt/python/lib/python3.11/lib-dynload/binascii.cpython-311-x86_64-linux-gnu.so",
+    "/opt/python/lib/python3.11/lib-dynload/fcntl.cpython-311-x86_64-linux-gnu.so",
+    "/opt/python/lib/python3.11/lib-dynload/grp.cpython-311-x86_64-linux-gnu.so",
+    "/opt/python/lib/python3.11/lib-dynload/math.cpython-311-x86_64-linux-gnu.so",
+    "/opt/python/lib/python3.11/lib-dynload/resource.cpython-311-x86_64-linux-gnu.so",
+    "/opt/python/lib/python3.11/lib-dynload/select.cpython-311-x86_64-linux-gnu.so",
+    "/opt/python/lib/python3.11/lib-dynload/zlib.cpython-311-x86_64-linux-gnu.so",
+    "/opt/venv/bin/python",
+    "/usr/lib/locale/C.utf8/LC_CTYPE",
+    "/usr/lib/x86_64-linux-gnu/gconv/gconv-modules.cache",
+    "/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2",
+    "/usr/lib/x86_64-linux-gnu/libbz2.so.1.0.4",
+    "/usr/lib/x86_64-linux-gnu/libc.so.6",
+    "/usr/lib/x86_64-linux-gnu/libcrypto.so.3",
+    "/usr/lib/x86_64-linux-gnu/liblzma.so.5.4.5",
+    "/usr/lib/x86_64-linux-gnu/libm.so.6",
+    "/usr/lib/x86_64-linux-gnu/libssl.so.3",
+    "/usr/lib/x86_64-linux-gnu/libuuid.so.1.3.0",
+    "/usr/lib/x86_64-linux-gnu/libz.so.1.3"
+  ],
+  "policy": "image-source-and-indexed-runtime-data-v1",
+  "raw_view_bytes": 25840,
+  "raw_view_sha256": "d1fe761a5bb4ca94330b71c0d498c2274d8aa7095a6970aa5f6b391f2c3b2e74",
+  "rejected_rows": 0,
+  "rejections": [],
+  "rejections_omitted": 0,
+  "rows": 200,
+  "runtime_mappings": [
+    {
+      "category": "kernel-region",
+      "deleted": false,
+      "path": "[heap]",
+      "permissions": "rw-p"
+    },
+    {
+      "category": "kernel-region",
+      "deleted": false,
+      "path": "[vvar]",
+      "permissions": "r--p"
+    },
+    {
+      "category": "kernel-region",
+      "deleted": false,
+      "path": "[vvar_vclock]",
+      "permissions": "r--p"
+    },
+    {
+      "category": "kernel-region",
+      "deleted": false,
+      "path": "[vdso]",
+      "permissions": "r-xp"
+    },
+    {
+      "category": "kernel-region",
+      "deleted": false,
+      "path": "[stack]",
+      "permissions": "rw-p"
+    },
+    {
+      "category": "kernel-region",
+      "deleted": false,
+      "path": "[vsyscall]",
+      "permissions": "--xp"
+    }
+  ],
+  "schema": "native-mapping-selection-v1",
+  "source_files": []
+}

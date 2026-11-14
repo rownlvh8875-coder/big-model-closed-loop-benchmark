@@ -1,0 +1,88 @@
+{
+  "accepted": true,
+  "status": "FRESH_ORIGINAL_ABBA_RAW_REVIEW_ACCEPTED",
+  "fresh_raw_review_accepted": true,
+  "artifact_id": 14112987413,
+  "artifact_sha256": "ef743f9a20ee67379faa64bf98151e2fae2165b61351f05bc78ac92ef344972f",
+  "artifact_nbytes": 406827081,
+  "run_id": 43591877488,
+  "workflow_id": 418257705,
+  "job_id": 132438144103,
+  "source_sha": "09ad7e3272713ec86031ab8158e3f9fdf0cf245d",
+  "producer_head_sha": "f91d46df1c9be00b66f81ec9c2a63d47a44e202c",
+  "control_head_sha": "4869ca92e6798e563c572f9384b9ff99e83d59ca",
+  "reviewer": "renderer_pipeline_01_abba_raw_review",
+  "counted_defects": {
+    "critical": 0,
+    "important": 0,
+    "minor": 0
+  },
+  "critical": 0,
+  "important": 0,
+  "minor": 0,
+  "independent_pixel_replay": true,
+  "independent_mvp_hash_recomputation": true,
+  "independent_signature_comparison": true,
+  "providers": 4,
+  "pairs": 24,
+  "named_getters": 5472,
+  "source_pins": 299,
+  "counts": {
+    "archive_members": 363,
+    "legacy_states": 96,
+    "submitted_states": 48,
+    "pipeline_events": 336,
+    "profile_installs": 48,
+    "mvp_digest_recomputations": 144
+  },
+  "pairwise_raw_plus_canvas_changed_pixels": [
+    32,
+    19,
+    45,
+    25,
+    65,
+    64
+  ],
+  "pair_order": [
+    "OFF0/ON0",
+    "OFF0/ON1",
+    "OFF0/OFF1",
+    "ON0/ON1",
+    "ON0/OFF1",
+    "ON1/OFF1"
+  ],
+  "same_signature_different_rgb_calls": {
+    "ON0/ON1": [
+      3,
+      9,
+      11,
+      12
+    ],
+    "C/ON0": [
+      2,
+      11,
+      12
+    ],
+    "C/ON1": [
+      2,
+      3,
+      9
+    ]
+  },
+  "limitations": [
+    "Acceptance applies only to actual original ABBA artifact14112987413. Saved API receipts authenticate their observation times; no fresh remote query or new native execution was performed.",
+    "CPU exact-source-line profiling observes bound original calls, normal returns and submitted source-local identity. It proves neither GPU uniform values nor GPU completion/fences, shared physical frame, shared camera frame, light/HDR/shadow-depth state, unique cause, or physical binary/runtime proof.",
+    "Sampled rig/pose/matrix/order/count/Texture equality is incomplete, intrusive and non-atomic. Absolute clock times differ. OFF callback and submission states remain unobserved. No observer neutrality, reproducibility, deterministic-rendering or performance improvement claim follows.",
+    "No model call, ORT session, official model-input association, counterfactual model result, original strictPASS, Stage7 completion, publication or merge is accepted. I420 is derived-only. No private pixel-subset intervention was performed.",
+    "Four A providers/24 pairs/5472 named getters comprise576 common+3360 legacy+1536 submitted. C2592 includes144 common; total5 providers/30 pairs/8064 named getters consumes the allowance, remaining0. Clock/Texture operations, profile overhead and copy/array work are additional costs, not free observations.",
+    "A phase293.273478031s, phase operation386.527179358s, control325.181265841s and total operation711.708444878s are recorded scopes, not pure instrumentation overhead or campaign end-to-end time. C phase95.764747438s and operation212.772285297s exclude held review. ZIP hashing/CRC/decode/reprojection/source hashing/review incur extra CPU/I/O costs.",
+    "Zero OOM and bounded cgroup accounting do not prove RSS or available headroom. Installed inventory is saved admission evidence, not a fresh native inventory. Copied installer/code/Python/executable archive hashes are not independent physical runtime proof.",
+    "Full24-pair raw-to-canvas-to-I420/lifecycle validation reused the reviewed root helper with pinned CPU runtime. Original ZIP/member hashes,299 source pins against Git and current files, event/callback projections,144 MVP float64BE digests and original-byte pairwise/signature comparisons were independently coded. C was authenticated for comparisons without repeating its full prior review.",
+    "Ten equal-signature/different-RGB comparison rows across C/ON0/ON1 are not ten independent trials. Pairwise changed-pixel totals sum raw and canvas boundaries; these are not independent pixels or causal effect estimates."
+  ],
+  "reviewed_utc": "2026-11-14T12:10:16.988179+00:00",
+  "official_model_calls": 0,
+  "ort_sessions": 0,
+  "original_strict_pass": false,
+  "stage7_complete": false
+}
