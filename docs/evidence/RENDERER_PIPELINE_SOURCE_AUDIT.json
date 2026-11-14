@@ -1,0 +1,166 @@
+{
+  "schema": "renderer-pipeline-static-source-audit-v1",
+  "status": "PINNED_SOURCE_BYTES_AND_CALLS_MATCH",
+  "checked_at_kst": "2026-11-14T20:41:14.247165+09:00",
+  "installed_manifest_sha256": "f81fa5be38bc9853b6eff1d0ea524be97f3d1e92f5c1f0f9e1449a11b4c4b59f",
+  "installed_entries": 44232,
+  "files": [
+    {
+      "path": "metadrive/engine/core/pssm.py",
+      "wheel": "metadrive_simulator-0.4.3-1headless-py3-none-any.whl",
+      "wheel_sha256": "f949e89ff4bc32b72c8d09f5c61446bbc2b1f9b415b99a077c02b8df77c217f7",
+      "source_sha256": "2ef41669565d43eb83d3f2b3d5876b9303a321b74179a760f537a87936421f32",
+      "source_nbytes": 8184,
+      "classname": "PSSM",
+      "method": "update",
+      "lineno": 80,
+      "end_lineno": 102,
+      "profile_c_line": 96,
+      "target_call": "self.engine.render.set_shader_inputs(pssm_mvps=mvp_array)",
+      "syntactic_calls": [
+        {
+          "lineno": 89,
+          "call": "self.directional_light.get_mat().xform"
+        },
+        {
+          "lineno": 89,
+          "call": "self.directional_light.get_mat"
+        },
+        {
+          "lineno": 89,
+          "call": "self.directional_light.node().get_direction"
+        },
+        {
+          "lineno": 89,
+          "call": "self.directional_light.node"
+        },
+        {
+          "lineno": 90,
+          "call": "self.camera_rig.update"
+        },
+        {
+          "lineno": 92,
+          "call": "self.camera_rig.get_mvp_array"
+        },
+        {
+          "lineno": 93,
+          "call": "PTA_LMatrix4"
+        },
+        {
+          "lineno": 95,
+          "call": "mvp_array.push_back"
+        },
+        {
+          "lineno": 96,
+          "call": "self.engine.render.set_shader_inputs"
+        },
+        {
+          "lineno": 101,
+          "call": "self.camera_rig.reset_film_size_cache"
+        }
+      ],
+      "code_executed": false
+    },
+    {
+      "path": "direct/showbase/ShowBase.py",
+      "wheel": "panda3d-1.10.13-cp311-cp311-manylinux2014_x86_64.whl",
+      "wheel_sha256": "68e9e215c4192ca14ab1304be79f86657f43d6d663b3dbe3af209caf8eb9793c",
+      "source_sha256": "683162e54a3e524f4119929ea0a72afd1db9c169c17c2601f33df5609c8a8bf2",
+      "source_nbytes": 135505,
+      "classname": "ShowBase",
+      "method": "__igLoop",
+      "lineno": 2148,
+      "end_lineno": 2186,
+      "profile_c_line": 2158,
+      "target_call": "self.graphicsEngine.renderFrame()",
+      "syntactic_calls": [
+        {
+          "lineno": 2152,
+          "call": "self.onScreenDebug.render"
+        },
+        {
+          "lineno": 2155,
+          "call": "self.recorder.recordFrame"
+        },
+        {
+          "lineno": 2158,
+          "call": "self.graphicsEngine.renderFrame"
+        },
+        {
+          "lineno": 2160,
+          "call": "self.graphicsEngine.syncFrame"
+        },
+        {
+          "lineno": 2162,
+          "call": "time.sleep"
+        },
+        {
+          "lineno": 2167,
+          "call": "self.onScreenDebug.clear"
+        },
+        {
+          "lineno": 2170,
+          "call": "self.recorder.playFrame"
+        },
+        {
+          "lineno": 2181,
+          "call": "time.sleep"
+        },
+        {
+          "lineno": 2185,
+          "call": "throw_new_frame"
+        }
+      ],
+      "code_executed": false
+    },
+    {
+      "path": "bigbench/metadrive_camera.py",
+      "wheel": null,
+      "wheel_sha256": null,
+      "source_sha256": "1c5661e6c9eea6445ebe55cb246e6b48d3384dd5a731353ba3f1a45599e338f9",
+      "source_nbytes": 11156,
+      "classname": "RAMCamera",
+      "method": "get_rgb_array_cpu",
+      "lineno": 83,
+      "end_lineno": 88,
+      "profile_c_line": 85,
+      "target_call": "texture.getRamImageAs('RGB')",
+      "syntactic_calls": [
+        {
+          "lineno": 85,
+          "call": "np.frombuffer"
+        },
+        {
+          "lineno": 85,
+          "call": "texture.getRamImageAs('RGB').getData"
+        },
+        {
+          "lineno": 85,
+          "call": "texture.getRamImageAs"
+        },
+        {
+          "lineno": 87,
+          "call": "OpticalContractError"
+        },
+        {
+          "lineno": 88,
+          "call": "np.ascontiguousarray"
+        },
+        {
+          "lineno": 88,
+          "call": "data.reshape"
+        }
+      ],
+      "code_executed": false
+    }
+  ],
+  "native_execution_status": "NOT_RUN",
+  "new_native_calls": 0,
+  "new_model_calls": 0,
+  "new_ort_sessions": 0,
+  "native_admission_proven": false,
+  "code_executed": false,
+  "gpu_uniforms_observed": false,
+  "gpu_completion_proven": false,
+  "limitation": "AST/byte equality only. Actual bound Python/C owner and profile support require the separate one-use qualified native canary."
+}
