@@ -1,6 +1,24 @@
 # Stage 7 continuation — verified results, renderer cause still open
 
-## Current checkpoint (2026-11-14 16:40 KST — original native camera C and ABBA accepted)
+## Current checkpoint (2026-11-14 17:18 KST — saved03 clock/pixel analysis)
+
+Pinned original03 ZIPs independently rehashed; all261 producer files match frozen
+source60f6d7f/current bytes. CPU-only reconstruction of30pairs/60rawframes passed;
+no download/extraction/native/provider/getter/GPU/ORT/official-model work. Raw logical
+retention104806080B/128MiB; report264966B/2MiB. C vs eachON has4same numeric count+
+Texture signatures with differentRGB (calls4/8/11/12); ON0/ON1 all12RGB equal despite
+different times. This is descriptive, not physical-frame identity or a clock cause.
+Full per-pose/camera RGB states3/3/2/2 retain broad first captures. Six-capture
+OFF0→ON0 copied-array subset study:16total subsets, first raw2 is lost at I420,
+first I4203 differs14values/+43;4 reverses14/-43;5road3pixels→5values/-21.
+All saved endpoints exactly reconstructed. No real model input association or fixes.
+[Result](STAGE7_ENGINE_CLOCK_PIXEL_FORENSICS.md),
+[CPU report](evidence/STAGE7_ENGINE_CLOCK_PIXEL_FORENSICS_03.json),
+[ledger](STAGE7_ENGINE_CLOCK_PIXEL_FORENSICS_LEDGER.md).
+Source/review/full-suite/CI closeout recorded in the result as completed below.
+strict0/4FAIL/Stage7INCOMPLETE/geometry/optics/full-S unresolved; original03 allowance0.
+
+## Previous checkpoint (2026-11-14 16:40 KST — original native camera C and ABBA accepted)
 
 Newsource60f6d7fbadf9c0cdbeb087f6452d7b07ea77abd5/Draft96 preserves248oldfiles/
 261pins;31focused/full1199testsPASS/7skip102.717s/source4exactCIjobsSUCCESS.

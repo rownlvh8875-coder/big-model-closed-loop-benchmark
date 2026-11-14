@@ -12,6 +12,7 @@ All times are KST. Source Drafts and evidence Drafts are distinct; the accepted 
 
 | Increment | Actual run/result | Ruling and cost |
 | --- | --- | --- |
+| [Saved03 clock/pixel CPU](STAGE7_ENGINE_CLOCK_PIXEL_FORENSICS.md) | 2026-11-14 17:18KST;30pairs/60raw; no new native/model | Both originalZIPs+261pins checked; fullRGBstates3/3/2/2; CvsON samecount+Texture/differentRGB4rows each;16copied subsets; raw2lostatI420,3/4wide14values±43,5road5values−21. Full1209/7skip/111.217sPASS, freshC0I0/M1historicalwording. strict0/4FAIL/Stage7INCOMPLETE unchanged; final ownDraft/exactHEADCI receipt in branch PRbody/output closeout. |
 | [Namespace diagnostic01](STAGE7_ENGINE_CLOCK_NAMESPACE_DIAGNOSTIC.md), PR53/54 |43410163534,2026-11-13 19:34:56–19:35:08;diagnostic jobSUCCESS | unshare exit0 did not prove namespace identity; omitted after-facts forbid uidmap/cap/network claims. Additional observation needed; no builder credit. |
 | [Identity02](STAGE7_ENGINE_CLOCK_NAMESPACE_IDENTITY.md), PR55/56 |43412775071,19:54:43–19:54:52;SUCCESS | typed unshare and readlink changes observed; uid/gid65534/empty maps, stat/openEACCES13 and util uidmap failure retained. These are diagnostic facts, not builder qualification. |
 | [Scoped profile03](STAGE7_ENGINE_CLOCK_BWRAP_PROFILE_PREFLIGHT.md), PR57/58 |43416517415,20:22:16–20:22:43;jobSUCCESS but resultBLOCKED | after-helper output rejected because owned validator omitted bwrap's PWD; no accepted after-facts. Keep blocked result and use distinct confirmation source/request. |
