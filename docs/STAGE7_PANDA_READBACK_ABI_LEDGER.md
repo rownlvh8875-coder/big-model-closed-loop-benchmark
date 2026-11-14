@@ -12,3 +12,9 @@ Recon: Texture upstream1.10.13h/I/cxx downloaded as data with hashes in output/s
 Task1: RED6/6missingqualifier→GREEN6/6in0.006s; syntheticELF mutations rejected. Actualpinned913073BELFstructural/hash/4227Bmethodfingerprint/call/PLT/GOT/JUMP_SLOT qualification PASS. File-levelABIonly, runtime_mapping_boundFalse. MethodSHAf2b072cf0eec59f8972329124719f328d442cea81134d6058afba4c4f7b7f90d.
 Ruling: Structural ELF checks accept ordinary unused trailingpadding changes while exactqualification rejects them — physical ELF tables/spans, not artificial fixture length, determine valid structure — only exactpinnedSHA is admissible for the Panda file contract.
 Task1: complete. Task2compiledCPUbridge tests next.
+
+Task2: RED10missingbridge→GREEN10/10in1.393s; final18focusedPASS1.482s (includes6ELFtests). Assembledfakecaller checks original signedargs,stack7thpointer,6callee-saved registers and2Panda locals. Additional OFFbridgeerror/corefooter0 and outsidewindow accounting checks pass.
+Task2:31CPUscenarios exactnormal/ASan/UBSanstreams+stats PASS; largest55,900,512B; finalbuild2.934881606swall excludes test/review/CI/development and is no nativeoverhead measure.
+Fullsuite: python -B -m unittest discover -s tests -v →1369tests PASS7skip117.097s.
+Pre-reviewpreservation: all2515baseGitblobs+299oldsourcepins+10originals match; oldDraft102/103/104/105/main/nativehistories unchanged.
+Task2: complete implementation/pre-review verification. Freshwholebranchreview follows; runtime inactive and no consumedallowance reuse.
