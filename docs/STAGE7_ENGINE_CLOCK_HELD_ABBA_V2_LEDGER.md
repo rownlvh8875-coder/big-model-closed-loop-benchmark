@@ -81,3 +81,8 @@ and costs are complete in versioned fresh-raw-review.md files. Originalrootfresh
 flagsfalse retained; separate genuinefreshreceipts recordactualverdicts.
 Task2: complete as honestterminalfailure closeout; Stage7INCOMPLETE/strict0of4FAIL,
 modelORT0, main/oldsource/oldrequests/16inactiveproposals/Cloud/registryuntouched.
+Evidence packaging: initial glob selected the attestation-only manifest for C;
+indexverification rejected before staging proof files. Corrected exact role artifact
+manifest; fail-fast packaging and actualGitblob verification govern final evidence.
+Intermediate14315ff docs-only commit is not final evidence authority. Native/source/
+original/root-fresh records unchanged; no rerun or scientific recategorization.

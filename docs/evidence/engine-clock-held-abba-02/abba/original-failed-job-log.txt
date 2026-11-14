@@ -1,0 +1,39 @@
+native-host	Wait for approved A and run ABBA	﻿2026-11-14T06:19:11.1312280Z ##[group]Run /usr/bin/python3 -I -S -B scripts/engine_clock_held_abba_v2_run.py --abba
+native-host	Wait for approved A and run ABBA	2026-11-14T06:19:11.1312882Z [36;1m/usr/bin/python3 -I -S -B scripts/engine_clock_held_abba_v2_run.py --abba[0m
+native-host	Wait for approved A and run ABBA	2026-11-14T06:19:11.1333633Z shell: /usr/bin/bash -e {0}
+native-host	Wait for approved A and run ABBA	2026-11-14T06:19:11.1333894Z env:
+native-host	Wait for approved A and run ABBA	2026-11-14T06:19:11.1336796Z   GH_TOKEN: ***
+native-host	Wait for approved A and run ABBA	2026-11-14T06:19:11.1337019Z ##[endgroup]
+native-host	Wait for approved A and run ABBA	2026-11-14T06:19:11.4125314Z /home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/scripts/engine_clock_sealed_native.py:155: SyntaxWarning: invalid escape sequence '\.'
+native-host	Wait for approved A and run ABBA	2026-11-14T06:19:11.4127951Z   if auth is not None:need(re.fullmatch('/tmp/xvfb-run\.[A-Za-z0-9]+/Xauthority',auth) is not None)
+native-host	Wait for approved A and run ABBA	2026-11-14T06:34:05.9376446Z {
+native-host	Wait for approved A and run ABBA	2026-11-14T06:34:05.9376945Z   "control_elapsed_seconds": 472.084237119,
+native-host	Wait for approved A and run ABBA	2026-11-14T06:34:05.9377559Z   "control_head_sha": "5ea6152755f348609d6a29f5b8b6eecf6ee9bde4",
+native-host	Wait for approved A and run ABBA	2026-11-14T06:34:05.9378150Z   "elapsed_seconds": 894.6758525280001,
+native-host	Wait for approved A and run ABBA	2026-11-14T06:34:05.9378615Z   "error_detail": "IMAGE_DOCKER_REJECTED",
+native-host	Wait for approved A and run ABBA	2026-11-14T06:34:05.9379158Z   "error_type": "ValueError",
+native-host	Wait for approved A and run ABBA	2026-11-14T06:34:05.9379600Z   "finished_utc": "2026-11-14T06:34:05.935596+00:00",
+native-host	Wait for approved A and run ABBA	2026-11-14T06:34:05.9380088Z   "last_stage": "one-native-phase",
+native-host	Wait for approved A and run ABBA	2026-11-14T06:34:05.9380491Z   "mode": "abba",
+native-host	Wait for approved A and run ABBA	2026-11-14T06:34:05.9380821Z   "native_failure_summary": {
+native-host	Wait for approved A and run ABBA	2026-11-14T06:34:05.9381189Z     "accepted": false,
+native-host	Wait for approved A and run ABBA	2026-11-14T06:34:05.9381527Z     "launches_retained": 4,
+native-host	Wait for approved A and run ABBA	2026-11-14T06:34:05.9381913Z     "phase_status": "FAILED_OR_INCOMPLETE",
+native-host	Wait for approved A and run ABBA	2026-11-14T06:34:05.9382364Z     "provider_bounds": [
+native-host	Wait for approved A and run ABBA	2026-11-14T06:34:05.9382696Z       0,
+native-host	Wait for approved A and run ABBA	2026-11-14T06:34:05.9382968Z       4
+native-host	Wait for approved A and run ABBA	2026-11-14T06:34:05.9383237Z     ],
+native-host	Wait for approved A and run ABBA	2026-11-14T06:34:05.9383553Z     "status": "BOUND_PHASE_DIAGNOSTIC_ONLY"
+native-host	Wait for approved A and run ABBA	2026-11-14T06:34:05.9383955Z   },
+native-host	Wait for approved A and run ABBA	2026-11-14T06:34:05.9384258Z   "official_model_calls": 0,
+native-host	Wait for approved A and run ABBA	2026-11-14T06:34:05.9385147Z   "ort_sessions": 0,
+native-host	Wait for approved A and run ABBA	2026-11-14T06:34:05.9385522Z   "phase_operation_seconds": 422.59161578,
+native-host	Wait for approved A and run ABBA	2026-11-14T06:34:05.9386062Z   "producer_head_sha": "23d3dbc85202c307546876645941e513cb7e567b",
+native-host	Wait for approved A and run ABBA	2026-11-14T06:34:05.9386630Z   "request_id": "held-abba-20261114-02",
+native-host	Wait for approved A and run ABBA	2026-11-14T06:34:05.9387111Z   "schema": "engine-clock-held-abba-operation-v2",
+native-host	Wait for approved A and run ABBA	2026-11-14T06:34:05.9387601Z   "scientific_result_promoted": false,
+native-host	Wait for approved A and run ABBA	2026-11-14T06:34:05.9388026Z   "status": "FAILED_OR_INCOMPLETE",
+native-host	Wait for approved A and run ABBA	2026-11-14T06:34:05.9388447Z   "workflow_completion_not_claimed": true
+native-host	Wait for approved A and run ABBA	2026-11-14T06:34:05.9388885Z }
+native-host	Wait for approved A and run ABBA	2026-11-14T06:34:05.9389037Z 
+native-host	Wait for approved A and run ABBA	2026-11-14T06:34:05.9827734Z ##[error]Process completed with exit code 1.

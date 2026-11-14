@@ -1,0 +1,108 @@
+{
+  "command": [
+    "-I",
+    "-S",
+    "-B",
+    "/work/repo/scripts/engine_clock_held_abba_v2_container.py",
+    "parent"
+  ],
+  "container_id": "aa2be40cc207f892c35294147fc0d74b6726402c4ef69d3afeac646a42869946",
+  "copied_trees": [
+    {
+      "archive_nbytes": 57344,
+      "archive_sha256": "9c6c5e54395cb0e0d3cee86eae04c9122e79dc7d21c2b19382d846286bd8761a",
+      "entries": 4,
+      "external_container_origin_authenticated": false,
+      "file_bytes": 51729,
+      "native_admission": false,
+      "payload_extracted": false,
+      "prefix": "stage7",
+      "status": "CLOSED_COPIED_TREE_MATCH"
+    },
+    {
+      "archive_nbytes": 313732608,
+      "archive_sha256": "d7d8cb98b32b9e2354d081ad3fb2cbbb2d596facd02e990647484f3e0017113b",
+      "entries": 10545,
+      "external_container_origin_authenticated": false,
+      "file_bytes": 305721228,
+      "native_admission": false,
+      "payload_extracted": false,
+      "prefix": "python",
+      "status": "CLOSED_COPIED_TREE_MATCH"
+    },
+    {
+      "archive_nbytes": 19456,
+      "archive_sha256": "5f3f262aebd02fb779cac618f9ef71ccb2d179212ae011decd6df6edef354dab",
+      "executable_nbytes": 17744,
+      "executable_sha256": "f85c83d76e58e52cc231fe99afe152ff8030a0c92aa0899af995fce839e2e044",
+      "final_member_regular_file": true,
+      "native_admission": false,
+      "payload_extracted": false,
+      "source_path": "/opt/venv/bin/python",
+      "status": "PRESTART_EXECUTABLE_BYTES_MATCH"
+    }
+  ],
+  "environment": {
+    "GITHUB_ACTIONS": "true",
+    "HOME": "/tmp",
+    "HOSTNAME": "stage7-sealed-native",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "LIBGL_ALWAYS_SOFTWARE": "1",
+    "OMP_NUM_THREADS": "2",
+    "PATH": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+    "PYOPENGL_PLATFORM": "glx",
+    "RUNNER_TEMP": "/work",
+    "TMPDIR": "/tmp"
+  },
+  "host_configuration": {
+    "CapDrop": [
+      "ALL"
+    ],
+    "CgroupnsMode": "private",
+    "IpcMode": "private",
+    "Memory": 4294967296,
+    "NanoCpus": 2000000000,
+    "NetworkMode": "none",
+    "PidMode": "",
+    "PidsLimit": 128,
+    "Privileged": false,
+    "ReadonlyRootfs": true,
+    "SecurityOpt": [
+      "no-new-privileges"
+    ],
+    "Tmpfs": {
+      "/tmp": "rw,nosuid,nodev,noexec,size=67108864,mode=0700"
+    }
+  },
+  "image_id": "sha256:2b0854f1cf91e470994637f52f4e8c78c618ed00b1496a40bb05158290e01a37",
+  "labels": {
+    "org.opencontainers.image.version": "24.04",
+    "stage7.nonce": "364a22f77500cb030caaf7c894071a83",
+    "stage7.request": "held-abba-20261114-02",
+    "stage7.source": "bee8072aa01d570a546ea709aa01103f069cf07f"
+  },
+  "mounts": {
+    "/work/binding": {
+      "rw": false,
+      "source": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-held-abba/held-abba-20261114-02/abba/execution/binding",
+      "type": "bind"
+    },
+    "/work/cache": {
+      "rw": true,
+      "source": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-held-abba/held-abba-20261114-02/abba/native-cache",
+      "type": "bind"
+    },
+    "/work/output": {
+      "rw": true,
+      "source": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-held-abba/held-abba-20261114-02/abba/execution/output",
+      "type": "bind"
+    },
+    "/work/repo": {
+      "rw": false,
+      "source": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark",
+      "type": "bind"
+    }
+  },
+  "validated": true
+}
