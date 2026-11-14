@@ -1,0 +1,197 @@
+{
+  "jobs": [
+    {
+      "check_run_url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/check-runs/132358240513",
+      "completed_at": "2026-11-14T06:34:13Z",
+      "conclusion": "failure",
+      "created_at": "2026-11-14T06:15:49Z",
+      "head_branch": "diagnostic/engine-clock-held-abba-20261114-02",
+      "head_sha": "23d3dbc85202c307546876645941e513cb7e567b",
+      "html_url": "https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43565472170/job/132358240513",
+      "id": 132358240513,
+      "labels": [
+        "ubuntu-24.04"
+      ],
+      "name": "native-host",
+      "node_id": "CR_kwDOVklq188AAAAe0Sp5AQ",
+      "run_attempt": 1,
+      "run_id": 43565472170,
+      "run_url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43565472170",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions",
+      "runner_id": 1000006456,
+      "runner_name": "GitHub Actions 1000006456",
+      "started_at": "2026-11-14T06:15:51Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completed_at": "2026-11-14T06:15:53Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "started_at": "2026-11-14T06:15:52Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-14T06:15:53Z",
+          "conclusion": "success",
+          "name": "Reject repeated attempts",
+          "number": 2,
+          "started_at": "2026-11-14T06:15:53Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-14T06:15:55Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "number": 3,
+          "started_at": "2026-11-14T06:15:53Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-14T06:19:06Z",
+          "conclusion": "success",
+          "name": "Run sealed canary C",
+          "number": 4,
+          "started_at": "2026-11-14T06:15:55Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-14T06:19:11Z",
+          "conclusion": "success",
+          "name": "Upload original canary C",
+          "number": 5,
+          "started_at": "2026-11-14T06:19:06Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-14T06:34:05Z",
+          "conclusion": "failure",
+          "name": "Wait for approved A and run ABBA",
+          "number": 6,
+          "started_at": "2026-11-14T06:19:11Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-14T06:34:11Z",
+          "conclusion": "success",
+          "name": "Upload original ABBA or control failure",
+          "number": 7,
+          "started_at": "2026-11-14T06:34:05Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-14T06:34:11Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "number": 14,
+          "started_at": "2026-11-14T06:34:11Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-14T06:34:11Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 15,
+          "started_at": "2026-11-14T06:34:11Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/jobs/132358240513",
+      "workflow_name": "Bounded live visibility and retained host C acceptance with ABBA"
+    },
+    {
+      "check_run_url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/check-runs/132358240800",
+      "completed_at": "2026-11-14T06:19:21Z",
+      "conclusion": "success",
+      "created_at": "2026-11-14T06:15:49Z",
+      "head_branch": "diagnostic/engine-clock-held-abba-20261114-02",
+      "head_sha": "23d3dbc85202c307546876645941e513cb7e567b",
+      "html_url": "https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43565472170/job/132358240800",
+      "id": 132358240800,
+      "labels": [
+        "ubuntu-24.04"
+      ],
+      "name": "canary-attestor",
+      "node_id": "CR_kwDOVklq188AAAAe0Sp6IA",
+      "run_attempt": 1,
+      "run_id": 43565472170,
+      "run_url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43565472170",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions",
+      "runner_id": 1000006457,
+      "runner_name": "GitHub Actions 1000006457",
+      "started_at": "2026-11-14T06:15:51Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completed_at": "2026-11-14T06:15:53Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "started_at": "2026-11-14T06:15:51Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-14T06:15:54Z",
+          "conclusion": "success",
+          "name": "Reject repeated attempts",
+          "number": 2,
+          "started_at": "2026-11-14T06:15:53Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-14T06:15:59Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "number": 3,
+          "started_at": "2026-11-14T06:15:54Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-14T06:19:17Z",
+          "conclusion": "success",
+          "name": "Attest completed native C evidence",
+          "number": 4,
+          "started_at": "2026-11-14T06:15:59Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-14T06:19:18Z",
+          "conclusion": "success",
+          "name": "Upload terminal C attestation",
+          "number": 5,
+          "started_at": "2026-11-14T06:19:17Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-14T06:19:19Z",
+          "conclusion": "success",
+          "name": "Preserve attestor metadata diagnostics",
+          "number": 6,
+          "started_at": "2026-11-14T06:19:18Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-14T06:19:19Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "number": 12,
+          "started_at": "2026-11-14T06:19:19Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-14T06:19:19Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 13,
+          "started_at": "2026-11-14T06:19:19Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/jobs/132358240800",
+      "workflow_name": "Bounded live visibility and retained host C acceptance with ABBA"
+    }
+  ],
+  "total_count": 2
+}
