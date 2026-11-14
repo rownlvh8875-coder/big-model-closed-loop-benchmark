@@ -11,3 +11,8 @@ Preflight Task1→2→3: delivery fixture exposes private codeaddresses/status; 
 Task1: RED6missingdelivery→GREEN6/6; originalaliases/NULL/safe/mismatch/error/thread/reentry/context/bootstrap/tail/errno/scopedcodec cases pass. Initial-Werror rejected4misleadingindentation clauses; braces clarified before GREEN. Cache stats outputs use fail-default sentinels if the void supplier rejects its caller.
 Ruling: Keep actual forward counts distinct from local cache-replay applications — replay applies alreadyobserved commands through CPU no-ops — no extra original/GL call is represented as real execution.
 Task1complete, Task2mappedcodechecker next.
+
+Task2: RED6missingchecker→GREEN6/6. Actual locally compiled CPU.so/selfmem matches ELF SHA,dev/inode,offset/protection and bytes; malformed/foreign/deleted/writable/offset/address/hash/range-budget mutations reject.
+Investigation: raw FileIO.read on proc/maps returned4055B while EOF contained6304B and the new CPU library. Bounded proc reader now loops short reads to EOF within the same1MiB cap; actual positive test covers the regression.
+Ruling: Compare target-file mappings around code reads, plus process starttime/executable/file identity — unrelated Python heap mappings may grow during verification — point-in-time target-code evidence only, no whole-image or future immutability claim.
+Task2complete; Task3actualchild/channel/spool binding next.
