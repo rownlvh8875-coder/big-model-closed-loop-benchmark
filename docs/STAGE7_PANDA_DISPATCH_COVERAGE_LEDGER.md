@@ -8,3 +8,6 @@ Ruling: Vendor four small pinned upstream sources and LICENSE, but no Panda ELF/
 Ruling: Keep all3083basefiles immutable, including prior dispatcher/cache — this task detects concrete missing legacy/context/delete-buffer routes rather than silently activating a partial fix — those adapters and fresh build qualification are explicit next implementation work.
 Ruling: Use the already-tested exact clean base and freshly confirmed Draft108 receipt rather than repeat unchanged baseline fullsuite — exact source is unchanged and both source CI events passed — final changed-tree fullsuite still required.
 Preflight Task1→2: inspect_imports returns actual loader relocation-backed names/slots; scanner/assessor consumes them as possible imports alongside conservative source literals, never as executed call receipts. No interface conflict found.
+
+Task1: RED5missingreader→GREEN5tests0.038s. Actual compiled CPU ELF verifies JUMP_SLOT originals and address-taken GLOB_DAT against independent readelf; section headers removed still works. Foreign/truncated/invaliddynamic/size/overlap/unterminated/duplicate inputs reject. Actual pinned Panda image parsed via loader tables without loading it; legacy glXCreateContext relocation is present and glXGetProcAddress imports are absent.
+Task1complete; Task2scanner/coverage/CLI next.
