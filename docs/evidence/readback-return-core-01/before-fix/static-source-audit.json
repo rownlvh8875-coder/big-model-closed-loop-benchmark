@@ -1,0 +1,106 @@
+{
+  "environment_probe": {
+    "added_preload_rejected": true,
+    "baseline_accepted": true,
+    "old_contract_modified": false,
+    "probe_kind": "PURE_DICTIONARY_GUARD_NO_PROCESS_LAUNCH",
+    "runtime_admission_ready": false
+  },
+  "gl_read_import": [
+    "188: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND glReadPixels"
+  ],
+  "gl_read_relocations": [
+    "00000000000cc550  000000bc00000007 R_X86_64_JUMP_SLOT     0000000000000000 glReadPixels + 0"
+  ],
+  "gsg_method": [
+    "1274: 0000000000062c50  4227 FUNC    GLOBAL DEFAULT    8 _ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer"
+  ],
+  "gsg_relocations": [
+    "00000000000ca488  000004fa00000001 R_X86_64_64            0000000000062c50 _ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer + 0",
+    "00000000000cad28  000004fa00000001 R_X86_64_64            0000000000062c50 _ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer + 0",
+    "00000000000cb370  000004fa00000001 R_X86_64_64            0000000000062c50 _ZN23GLGraphicsStateGuardian23framebuffer_copy_to_ramEP7TextureiiPK13DisplayRegionRK12RenderBuffer + 0"
+  ],
+  "inactive_gates": [
+    "Qualified original GL dispatch ABI and actual instruction binding; no ambient symbol lookup assumption.",
+    "Validated accessible borrowed RAM span from actual Texture/view/face state, including 2D offset and component type.",
+    "Observed pre-call pack/PBO/read-FBO/context and producer camera identity; labels must not be inferred from requester/order.",
+    "Same-process window nonce/host call binding and original post-return memory copy before Panda component reordering.",
+    "New reviewed runtime/source/build/maps/environment contract; old sealed contract rejects preload and stays unchanged.",
+    "Fresh bounded native canary allowance, ON/OFF control and raw evidence review before any new native collection.",
+    "GPU write success/freshness and physical-frame association remain separate from void return or CPU byte equality."
+  ],
+  "installed_manifest": {
+    "nbytes": 8339196,
+    "path": "docs/evidence/engine-clock-sealed-image-06/installed-files.json",
+    "sha256": "f81fa5be38bc9853b6eff1d0ea524be97f3d1e92f5c1f0f9e1449a11b4c4b59f"
+  },
+  "kind": "STATIC_DATA_ONLY_NO_ELF_LOAD",
+  "members": {
+    "panda3d/libpanda.so.1.10": {
+      "installed_identity_matches": true,
+      "nbytes": 18747689,
+      "readelf_files": {
+        "dynamic": {
+          "nbytes": 2153,
+          "path": "libpanda.so.1.10.dynamic.txt",
+          "sha256": "fbe1cf4ed5bcbcf8b77a4d46ced7124a59e3c8d03d172c0ef3d544a9f3c4ae77"
+        },
+        "relocations": {
+          "nbytes": 3220804,
+          "path": "libpanda.so.1.10.relocations.txt",
+          "sha256": "3d4bd0954123742d89e99cda1aace5ecc705264b90a9c6a2fa04504298b81957"
+        },
+        "symbols": {
+          "nbytes": 2129504,
+          "path": "libpanda.so.1.10.symbols.txt",
+          "sha256": "fa224665dde44687ab5ecbb54956ed9e17f8587232b3b0e67d72f096c6f8ecd4"
+        }
+      },
+      "sha256": "2750e15c1f171536fabaeb07e283b866930ba16dd51aa442f819d84240f1cd5f"
+    },
+    "panda3d/libpandagl.so": {
+      "installed_identity_matches": true,
+      "nbytes": 913073,
+      "readelf_files": {
+        "dynamic": {
+          "nbytes": 2343,
+          "path": "libpandagl.so.dynamic.txt",
+          "sha256": "21d893fda1e932e53130dd6d41541a721385e211f77a2e362553de0f621bec09"
+        },
+        "relocations": {
+          "nbytes": 262603,
+          "path": "libpandagl.so.relocations.txt",
+          "sha256": "9dc5b51eb4003f8cc7ac86003528fbbaebdbb4eafed06acba74863f78279e8d8"
+        },
+        "symbols": {
+          "nbytes": 159022,
+          "path": "libpandagl.so.symbols.txt",
+          "sha256": "9898d476835341b924e31c58dc7b78fc9c9599aaebe95e2a68db8ce426b7dc2a"
+        }
+      },
+      "sha256": "f38e0734a5344eda9a11e3024695febf2cea0177aa80985b67ceef5837a088d7"
+    }
+  },
+  "new_gl_calls": 0,
+  "new_model_runs": 0,
+  "new_native_runs": 0,
+  "new_official_ort_runs": 0,
+  "original_gpu_bytes_observed": false,
+  "runtime_admission_ready": false,
+  "schema": "readback-return-static-source-audit-v1",
+  "standalone_ram_size_exports": [],
+  "upstream_source": {
+    "component_reordering_after_read": true,
+    "excerpt": "source-excerpt.txt",
+    "nbytes": 491575,
+    "original_read_line": 7477,
+    "path": "/workspace/.cloud-tools/stage7/glGraphicsStateGuardian-1.10.13.cxx",
+    "sha256": "a7ee480dbafa47f652bbab8b525606421cde6d9a15507422c423fe62128f2d6a",
+    "source_to_compiled_instruction_binding_proven": false
+  },
+  "wheel": {
+    "nbytes": 55102056,
+    "path": "output/stage7-python-wheel-closure/python-lock-20261114-02/wheels/panda3d-1.10.13-cp311-cp311-manylinux2014_x86_64.whl",
+    "sha256": "68e9e215c4192ca14ab1304be79f86657f43d6d663b3dbe3af209caf8eb9793c"
+  }
+}

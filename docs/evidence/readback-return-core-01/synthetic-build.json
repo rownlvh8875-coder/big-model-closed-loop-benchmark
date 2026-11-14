@@ -1,0 +1,1219 @@
+{
+  "binaries": [
+    {
+      "nbytes": 21832,
+      "path": "output/stage7-readback-return-core/build/cpu-fixture",
+      "sha256": "d8b3327aed22feddef91adea2561e520f74edfc06d5f2709c7b2db36afee102b"
+    },
+    {
+      "nbytes": 72008,
+      "path": "output/stage7-readback-return-core/build/cpu-fixture-asan-ubsan",
+      "sha256": "ab741487c01580824ed2eb6c56d2108b8b9a22caa550d3cd23d907866e0bdab6"
+    },
+    {
+      "nbytes": 19736,
+      "path": "output/stage7-readback-return-core/build/libreadback_return_core_cpu_build.so",
+      "sha256": "31e286bcf4ea49eb9d5b5255e92d498ba5064ce14538ad53e92bf0ba2f4ad83c"
+    }
+  ],
+  "checked_at_kst": "2026-11-14T23:34:37.151598+09:00",
+  "commands": {
+    "fixture": [
+      "/usr/bin/cc",
+      "-std=c11",
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pthread",
+      "-I",
+      "/workspace/big-model-closed-loop-benchmark/native",
+      "/workspace/big-model-closed-loop-benchmark/native/readback_return_core.c",
+      "/workspace/big-model-closed-loop-benchmark/tests/fixtures/readback_return_fixture.c",
+      "-o",
+      "/workspace/big-model-closed-loop-benchmark/output/stage7-readback-return-core/build/cpu-fixture"
+    ],
+    "sanitized_fixture": [
+      "/usr/bin/cc",
+      "-fsanitize=address,undefined",
+      "-fno-sanitize-recover=all",
+      "-fno-omit-frame-pointer",
+      "-no-pie",
+      "-std=c11",
+      "-O1",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pthread",
+      "-I",
+      "/workspace/big-model-closed-loop-benchmark/native",
+      "/workspace/big-model-closed-loop-benchmark/native/readback_return_core.c",
+      "/workspace/big-model-closed-loop-benchmark/tests/fixtures/readback_return_fixture.c",
+      "-o",
+      "/workspace/big-model-closed-loop-benchmark/output/stage7-readback-return-core/build/cpu-fixture-asan-ubsan"
+    ],
+    "shared_core": [
+      "/usr/bin/cc",
+      "-std=c11",
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-fPIC",
+      "-shared",
+      "-pthread",
+      "-I",
+      "native",
+      "native/readback_return_core.c",
+      "-o",
+      "/workspace/big-model-closed-loop-benchmark/output/stage7-readback-return-core/build/libreadback_return_core_cpu_build.so"
+    ]
+  },
+  "compiler": {
+    "executable": "/usr/bin/x86_64-linux-gnu-gcc-14",
+    "sha256": "a23ecab8ff08f09ad8c80602c2c5df7f49e09c25905cb8975902e101bf72635f",
+    "version": "x86_64-linux-gnu-gcc-14 (Debian 14.2.0-19) 14.2.0\nCopyright (C) 2024 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n"
+  },
+  "elf": [
+    {
+      "nbytes": 1287,
+      "path": "output/stage7-readback-return-core/build/core-dynamic.txt",
+      "sha256": "f3ac41af2b2a21e6d85899f4d025f9b548b0ea9ed42c5745db93a1e07fc32871"
+    },
+    {
+      "nbytes": 3908,
+      "path": "output/stage7-readback-return-core/build/core-symbols.txt",
+      "sha256": "e6327e60f4775766782de0a90aab41279496eb396d03d3854461ec43dd0e494e"
+    }
+  ],
+  "kind": "SYNTHETIC_CPU_FAKE_ONLY",
+  "limitations": [
+    "Caller-supplied labels/capacity are not authenticated.",
+    "Void return cannot establish GPU write success or freshness.",
+    "Synthetic malloc buffers do not validate a real Panda Texture span.",
+    "Local CPU compiler/shared artifact is not qualified for sealed native image006.",
+    "ASan/UBSan runs do not prove all possible races, adapter ABIs or live performance."
+  ],
+  "native_admitted": false,
+  "new_gl_calls": 0,
+  "new_model_runs": 0,
+  "new_native_runs": 0,
+  "new_official_ort_runs": 0,
+  "new_provider_runs": 0,
+  "no_gl_linkage": true,
+  "original_gpu_bytes_observed": false,
+  "runtime_admission_ready": false,
+  "samples": [
+    {
+      "asan_ubsan_passed": true,
+      "decoder_accepts_cpu_window": true,
+      "match": {
+        "gpu_write_proven": false,
+        "native_admitted": false,
+        "physical_frame_proven": false,
+        "record_indices": [
+          1
+        ],
+        "status": "unique_cpu_byte_candidate",
+        "unknown_producer_indices": []
+      },
+      "mode": "basic",
+      "producer_receipt": {
+        "attempts": 2,
+        "captured": 2,
+        "data_wire_bytes": 410,
+        "error": 0,
+        "finish_result": 0,
+        "forwards": 2,
+        "nonce": "0102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f20",
+        "schema": "readback-return-producer-finalization-v1",
+        "stream_nbytes": 506,
+        "stream_sha256": "51fd5a47efcf67150117a09ac52593ce2b7b7b96699ae2b295bfc3d52b607469"
+      },
+      "raw": {
+        "nbytes": 506,
+        "path": "output/stage7-readback-return-core/build/basic.synthetic.rbr",
+        "sha256": "51fd5a47efcf67150117a09ac52593ce2b7b7b96699ae2b295bfc3d52b607469"
+      },
+      "seconds": 0.10099924704991281,
+      "stats": {
+        "args_ok": 1,
+        "attempts": 2,
+        "captured": 2,
+        "emits": 3,
+        "errno_ok": 1,
+        "error": 0,
+        "finish": 0,
+        "forwards": 2,
+        "native_admitted": false,
+        "new_gl_calls": 0,
+        "original_calls": 2,
+        "source": "SYNTHETIC_CPU_FAKE_ONLY",
+        "source_unchanged": 1,
+        "wire_bytes": 410
+      }
+    },
+    {
+      "asan_ubsan_passed": true,
+      "decoder_accepts_cpu_window": true,
+      "match": null,
+      "mode": "off",
+      "producer_receipt": {
+        "attempts": 0,
+        "captured": 0,
+        "data_wire_bytes": 0,
+        "error": 0,
+        "finish_result": 0,
+        "forwards": 2,
+        "nonce": "0102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f20",
+        "schema": "readback-return-producer-finalization-v1",
+        "stream_nbytes": 96,
+        "stream_sha256": "16dfd8210ba820e67f703b25466b1a004bf2907d191cce64f8fecdbde1d0aa70"
+      },
+      "raw": {
+        "nbytes": 96,
+        "path": "output/stage7-readback-return-core/build/off.synthetic.rbr",
+        "sha256": "16dfd8210ba820e67f703b25466b1a004bf2907d191cce64f8fecdbde1d0aa70"
+      },
+      "seconds": 0.01673460501478985,
+      "stats": {
+        "args_ok": 1,
+        "attempts": 0,
+        "captured": 0,
+        "emits": 1,
+        "errno_ok": 1,
+        "error": 0,
+        "finish": 0,
+        "forwards": 2,
+        "native_admitted": false,
+        "new_gl_calls": 0,
+        "original_calls": 2,
+        "source": "SYNTHETIC_CPU_FAKE_ONLY",
+        "source_unchanged": 1,
+        "wire_bytes": 0
+      }
+    },
+    {
+      "asan_ubsan_passed": true,
+      "decoder_accepts_cpu_window": true,
+      "match": {
+        "gpu_write_proven": false,
+        "native_admitted": false,
+        "physical_frame_proven": false,
+        "record_indices": [
+          1
+        ],
+        "status": "unique_cpu_byte_candidate",
+        "unknown_producer_indices": []
+      },
+      "mode": "rgb",
+      "producer_receipt": {
+        "attempts": 2,
+        "captured": 2,
+        "data_wire_bytes": 410,
+        "error": 0,
+        "finish_result": 0,
+        "forwards": 2,
+        "nonce": "0102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f20",
+        "schema": "readback-return-producer-finalization-v1",
+        "stream_nbytes": 506,
+        "stream_sha256": "a62ab5bae685c7644248cafd5366dfb5bee43264f69004242487b2f0e4107609"
+      },
+      "raw": {
+        "nbytes": 506,
+        "path": "output/stage7-readback-return-core/build/rgb.synthetic.rbr",
+        "sha256": "a62ab5bae685c7644248cafd5366dfb5bee43264f69004242487b2f0e4107609"
+      },
+      "seconds": 0.056065558979753405,
+      "stats": {
+        "args_ok": 1,
+        "attempts": 2,
+        "captured": 2,
+        "emits": 3,
+        "errno_ok": 1,
+        "error": 0,
+        "finish": 0,
+        "forwards": 2,
+        "native_admitted": false,
+        "new_gl_calls": 0,
+        "original_calls": 2,
+        "source": "SYNTHETIC_CPU_FAKE_ONLY",
+        "source_unchanged": 1,
+        "wire_bytes": 410
+      }
+    },
+    {
+      "asan_ubsan_passed": true,
+      "decoder_accepts_cpu_window": true,
+      "match": {
+        "gpu_write_proven": false,
+        "native_admitted": false,
+        "physical_frame_proven": false,
+        "record_indices": [
+          1
+        ],
+        "status": "unique_cpu_byte_candidate",
+        "unknown_producer_indices": []
+      },
+      "mode": "rgba",
+      "producer_receipt": {
+        "attempts": 2,
+        "captured": 2,
+        "data_wire_bytes": 440,
+        "error": 0,
+        "finish_result": 0,
+        "forwards": 2,
+        "nonce": "0102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f20",
+        "schema": "readback-return-producer-finalization-v1",
+        "stream_nbytes": 536,
+        "stream_sha256": "8312b740a3e51bd03664f548b73827cc95d96d7548b601465a471c43efcd9551"
+      },
+      "raw": {
+        "nbytes": 536,
+        "path": "output/stage7-readback-return-core/build/rgba.synthetic.rbr",
+        "sha256": "8312b740a3e51bd03664f548b73827cc95d96d7548b601465a471c43efcd9551"
+      },
+      "seconds": 0.04567229299573228,
+      "stats": {
+        "args_ok": 1,
+        "attempts": 2,
+        "captured": 2,
+        "emits": 3,
+        "errno_ok": 1,
+        "error": 0,
+        "finish": 0,
+        "forwards": 2,
+        "native_admitted": false,
+        "new_gl_calls": 0,
+        "original_calls": 2,
+        "source": "SYNTHETIC_CPU_FAKE_ONLY",
+        "source_unchanged": 1,
+        "wire_bytes": 440
+      }
+    },
+    {
+      "asan_ubsan_passed": true,
+      "decoder_accepts_cpu_window": true,
+      "match": {
+        "gpu_write_proven": false,
+        "native_admitted": false,
+        "physical_frame_proven": false,
+        "record_indices": [
+          1
+        ],
+        "status": "unique_cpu_byte_candidate",
+        "unknown_producer_indices": []
+      },
+      "mode": "bgra",
+      "producer_receipt": {
+        "attempts": 2,
+        "captured": 2,
+        "data_wire_bytes": 440,
+        "error": 0,
+        "finish_result": 0,
+        "forwards": 2,
+        "nonce": "0102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f20",
+        "schema": "readback-return-producer-finalization-v1",
+        "stream_nbytes": 536,
+        "stream_sha256": "80485aefd191f3a12726b1c38e2bf5744693a82aa283dbca5e3d513f2538f6b0"
+      },
+      "raw": {
+        "nbytes": 536,
+        "path": "output/stage7-readback-return-core/build/bgra.synthetic.rbr",
+        "sha256": "80485aefd191f3a12726b1c38e2bf5744693a82aa283dbca5e3d513f2538f6b0"
+      },
+      "seconds": 0.03517833701334894,
+      "stats": {
+        "args_ok": 1,
+        "attempts": 2,
+        "captured": 2,
+        "emits": 3,
+        "errno_ok": 1,
+        "error": 0,
+        "finish": 0,
+        "forwards": 2,
+        "native_admitted": false,
+        "new_gl_calls": 0,
+        "original_calls": 2,
+        "source": "SYNTHETIC_CPU_FAKE_ONLY",
+        "source_unchanged": 1,
+        "wire_bytes": 440
+      }
+    },
+    {
+      "asan_ubsan_passed": true,
+      "decoder_accepts_cpu_window": true,
+      "match": {
+        "gpu_write_proven": false,
+        "native_admitted": false,
+        "physical_frame_proven": false,
+        "record_indices": [
+          1
+        ],
+        "status": "unique_cpu_byte_candidate",
+        "unknown_producer_indices": []
+      },
+      "mode": "packed",
+      "producer_receipt": {
+        "attempts": 2,
+        "captured": 2,
+        "data_wire_bytes": 440,
+        "error": 0,
+        "finish_result": 0,
+        "forwards": 2,
+        "nonce": "0102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f20",
+        "schema": "readback-return-producer-finalization-v1",
+        "stream_nbytes": 536,
+        "stream_sha256": "58583a08a3e6e5d018dce9a322a338201765561318d900e2bfed332be4f56053"
+      },
+      "raw": {
+        "nbytes": 536,
+        "path": "output/stage7-readback-return-core/build/packed.synthetic.rbr",
+        "sha256": "58583a08a3e6e5d018dce9a322a338201765561318d900e2bfed332be4f56053"
+      },
+      "seconds": 0.041320982039906085,
+      "stats": {
+        "args_ok": 1,
+        "attempts": 2,
+        "captured": 2,
+        "emits": 3,
+        "errno_ok": 1,
+        "error": 0,
+        "finish": 0,
+        "forwards": 2,
+        "native_admitted": false,
+        "new_gl_calls": 0,
+        "original_calls": 2,
+        "source": "SYNTHETIC_CPU_FAKE_ONLY",
+        "source_unchanged": 1,
+        "wire_bytes": 440
+      }
+    },
+    {
+      "asan_ubsan_passed": true,
+      "decoder_accepts_cpu_window": false,
+      "match": null,
+      "mode": "unknown",
+      "producer_receipt": {
+        "attempts": 1,
+        "captured": 0,
+        "data_wire_bytes": 0,
+        "error": 5,
+        "finish_result": -1,
+        "forwards": 2,
+        "nonce": "0102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f20",
+        "schema": "readback-return-producer-finalization-v1",
+        "stream_nbytes": 96,
+        "stream_sha256": "4c1727b76464607bfd765a11fb1acf497400a08ea3e4c5cc99d8a71fd0dbf7b4"
+      },
+      "raw": {
+        "nbytes": 96,
+        "path": "output/stage7-readback-return-core/build/unknown.synthetic.rbr",
+        "sha256": "4c1727b76464607bfd765a11fb1acf497400a08ea3e4c5cc99d8a71fd0dbf7b4"
+      },
+      "seconds": 0.059242442017421126,
+      "stats": {
+        "args_ok": 1,
+        "attempts": 1,
+        "captured": 0,
+        "emits": 1,
+        "errno_ok": 1,
+        "error": 5,
+        "finish": -1,
+        "forwards": 2,
+        "native_admitted": false,
+        "new_gl_calls": 0,
+        "original_calls": 2,
+        "source": "SYNTHETIC_CPU_FAKE_ONLY",
+        "source_unchanged": 1,
+        "wire_bytes": 0
+      }
+    },
+    {
+      "asan_ubsan_passed": true,
+      "decoder_accepts_cpu_window": false,
+      "match": null,
+      "mode": "pbo",
+      "producer_receipt": {
+        "attempts": 1,
+        "captured": 0,
+        "data_wire_bytes": 0,
+        "error": 6,
+        "finish_result": -1,
+        "forwards": 2,
+        "nonce": "0102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f20",
+        "schema": "readback-return-producer-finalization-v1",
+        "stream_nbytes": 96,
+        "stream_sha256": "1fa7aedf59336a6566134ff4a286bb37118df2361ea43e016f6d03d1d7bd25f3"
+      },
+      "raw": {
+        "nbytes": 96,
+        "path": "output/stage7-readback-return-core/build/pbo.synthetic.rbr",
+        "sha256": "1fa7aedf59336a6566134ff4a286bb37118df2361ea43e016f6d03d1d7bd25f3"
+      },
+      "seconds": 0.01511759200366214,
+      "stats": {
+        "args_ok": 1,
+        "attempts": 1,
+        "captured": 0,
+        "emits": 1,
+        "errno_ok": 1,
+        "error": 6,
+        "finish": -1,
+        "forwards": 2,
+        "native_admitted": false,
+        "new_gl_calls": 0,
+        "original_calls": 2,
+        "source": "SYNTHETIC_CPU_FAKE_ONLY",
+        "source_unchanged": 1,
+        "wire_bytes": 0
+      }
+    },
+    {
+      "asan_ubsan_passed": true,
+      "decoder_accepts_cpu_window": false,
+      "match": null,
+      "mode": "short",
+      "producer_receipt": {
+        "attempts": 1,
+        "captured": 0,
+        "data_wire_bytes": 0,
+        "error": 8,
+        "finish_result": -1,
+        "forwards": 2,
+        "nonce": "0102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f20",
+        "schema": "readback-return-producer-finalization-v1",
+        "stream_nbytes": 96,
+        "stream_sha256": "816b3a0f8d3a932446ebf38ee4cf6a17fbe4c8f750f4e08cab183d6eaabc9b18"
+      },
+      "raw": {
+        "nbytes": 96,
+        "path": "output/stage7-readback-return-core/build/short.synthetic.rbr",
+        "sha256": "816b3a0f8d3a932446ebf38ee4cf6a17fbe4c8f750f4e08cab183d6eaabc9b18"
+      },
+      "seconds": 0.038958396995440125,
+      "stats": {
+        "args_ok": 1,
+        "attempts": 1,
+        "captured": 0,
+        "emits": 1,
+        "errno_ok": 1,
+        "error": 8,
+        "finish": -1,
+        "forwards": 2,
+        "native_admitted": false,
+        "new_gl_calls": 0,
+        "original_calls": 2,
+        "source": "SYNTHETIC_CPU_FAKE_ONLY",
+        "source_unchanged": 1,
+        "wire_bytes": 0
+      }
+    },
+    {
+      "asan_ubsan_passed": true,
+      "decoder_accepts_cpu_window": false,
+      "match": null,
+      "mode": "alias",
+      "producer_receipt": {
+        "attempts": 1,
+        "captured": 0,
+        "data_wire_bytes": 0,
+        "error": 9,
+        "finish_result": -1,
+        "forwards": 2,
+        "nonce": "0102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f20",
+        "schema": "readback-return-producer-finalization-v1",
+        "stream_nbytes": 96,
+        "stream_sha256": "854643d21a11de7ec971683923b5a58344d422ba9b74f39fafbbae0d0bfe44a7"
+      },
+      "raw": {
+        "nbytes": 96,
+        "path": "output/stage7-readback-return-core/build/alias.synthetic.rbr",
+        "sha256": "854643d21a11de7ec971683923b5a58344d422ba9b74f39fafbbae0d0bfe44a7"
+      },
+      "seconds": 0.04326011601369828,
+      "stats": {
+        "args_ok": 1,
+        "attempts": 1,
+        "captured": 0,
+        "emits": 1,
+        "errno_ok": 1,
+        "error": 9,
+        "finish": -1,
+        "forwards": 2,
+        "native_admitted": false,
+        "new_gl_calls": 0,
+        "original_calls": 2,
+        "source": "SYNTHETIC_CPU_FAKE_ONLY",
+        "source_unchanged": 1,
+        "wire_bytes": 0
+      }
+    },
+    {
+      "asan_ubsan_passed": true,
+      "decoder_accepts_cpu_window": false,
+      "match": null,
+      "mode": "overlap",
+      "producer_receipt": {
+        "attempts": 1,
+        "captured": 0,
+        "data_wire_bytes": 0,
+        "error": 7,
+        "finish_result": -1,
+        "forwards": 2,
+        "nonce": "0102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f20",
+        "schema": "readback-return-producer-finalization-v1",
+        "stream_nbytes": 96,
+        "stream_sha256": "91f3685ce0725f1fd7e5cefce2a7bfc6d4dbc15b6f643e2880ba44d5486fb0fc"
+      },
+      "raw": {
+        "nbytes": 96,
+        "path": "output/stage7-readback-return-core/build/overlap.synthetic.rbr",
+        "sha256": "91f3685ce0725f1fd7e5cefce2a7bfc6d4dbc15b6f643e2880ba44d5486fb0fc"
+      },
+      "seconds": 0.04140996799105778,
+      "stats": {
+        "args_ok": 1,
+        "attempts": 1,
+        "captured": 0,
+        "emits": 1,
+        "errno_ok": 1,
+        "error": 7,
+        "finish": -1,
+        "forwards": 2,
+        "native_admitted": false,
+        "new_gl_calls": 0,
+        "original_calls": 2,
+        "source": "SYNTHETIC_CPU_FAKE_ONLY",
+        "source_unchanged": 1,
+        "wire_bytes": 0
+      }
+    },
+    {
+      "asan_ubsan_passed": true,
+      "decoder_accepts_cpu_window": false,
+      "match": null,
+      "mode": "limit",
+      "producer_receipt": {
+        "attempts": 2,
+        "captured": 1,
+        "data_wire_bytes": 205,
+        "error": 10,
+        "finish_result": -1,
+        "forwards": 2,
+        "nonce": "0102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f20",
+        "schema": "readback-return-producer-finalization-v1",
+        "stream_nbytes": 301,
+        "stream_sha256": "78c4652639c0af22014205a0d26864fbc7028fa5aa642326d25fa67d92b587ca"
+      },
+      "raw": {
+        "nbytes": 301,
+        "path": "output/stage7-readback-return-core/build/limit.synthetic.rbr",
+        "sha256": "78c4652639c0af22014205a0d26864fbc7028fa5aa642326d25fa67d92b587ca"
+      },
+      "seconds": 0.04363830800866708,
+      "stats": {
+        "args_ok": 1,
+        "attempts": 2,
+        "captured": 1,
+        "emits": 2,
+        "errno_ok": 1,
+        "error": 10,
+        "finish": -1,
+        "forwards": 2,
+        "native_admitted": false,
+        "new_gl_calls": 0,
+        "original_calls": 2,
+        "source": "SYNTHETIC_CPU_FAKE_ONLY",
+        "source_unchanged": 1,
+        "wire_bytes": 205
+      }
+    },
+    {
+      "asan_ubsan_passed": true,
+      "decoder_accepts_cpu_window": false,
+      "match": null,
+      "mode": "bytes",
+      "producer_receipt": {
+        "attempts": 1,
+        "captured": 0,
+        "data_wire_bytes": 0,
+        "error": 10,
+        "finish_result": -1,
+        "forwards": 2,
+        "nonce": "0102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f20",
+        "schema": "readback-return-producer-finalization-v1",
+        "stream_nbytes": 96,
+        "stream_sha256": "70ade139bf6da18b143acd57b64a23f2412bf427ecb682cd0a077ce7d86ff2b6"
+      },
+      "raw": {
+        "nbytes": 96,
+        "path": "output/stage7-readback-return-core/build/bytes.synthetic.rbr",
+        "sha256": "70ade139bf6da18b143acd57b64a23f2412bf427ecb682cd0a077ce7d86ff2b6"
+      },
+      "seconds": 0.03569452802184969,
+      "stats": {
+        "args_ok": 1,
+        "attempts": 1,
+        "captured": 0,
+        "emits": 1,
+        "errno_ok": 1,
+        "error": 10,
+        "finish": -1,
+        "forwards": 2,
+        "native_admitted": false,
+        "new_gl_calls": 0,
+        "original_calls": 2,
+        "source": "SYNTHETIC_CPU_FAKE_ONLY",
+        "source_unchanged": 1,
+        "wire_bytes": 0
+      }
+    },
+    {
+      "asan_ubsan_passed": true,
+      "decoder_accepts_cpu_window": false,
+      "match": null,
+      "mode": "emitfail",
+      "producer_receipt": {
+        "attempts": 1,
+        "captured": 0,
+        "data_wire_bytes": 0,
+        "error": 11,
+        "finish_result": -1,
+        "forwards": 2,
+        "nonce": "0102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f20",
+        "schema": "readback-return-producer-finalization-v1",
+        "stream_nbytes": 14,
+        "stream_sha256": "0caa2cf3bc4395366d4282ddb0cfff0e1b59182d93f16a92d5f70b4da84617ce"
+      },
+      "raw": {
+        "nbytes": 14,
+        "path": "output/stage7-readback-return-core/build/emitfail.synthetic.rbr",
+        "sha256": "0caa2cf3bc4395366d4282ddb0cfff0e1b59182d93f16a92d5f70b4da84617ce"
+      },
+      "seconds": 0.07220423896797001,
+      "stats": {
+        "args_ok": 1,
+        "attempts": 1,
+        "captured": 0,
+        "emits": 2,
+        "errno_ok": 1,
+        "error": 11,
+        "finish": -1,
+        "forwards": 2,
+        "native_admitted": false,
+        "new_gl_calls": 0,
+        "original_calls": 2,
+        "source": "SYNTHETIC_CPU_FAKE_ONLY",
+        "source_unchanged": 1,
+        "wire_bytes": 0
+      }
+    },
+    {
+      "asan_ubsan_passed": true,
+      "decoder_accepts_cpu_window": false,
+      "match": null,
+      "mode": "thread",
+      "producer_receipt": {
+        "attempts": 0,
+        "captured": 0,
+        "data_wire_bytes": 0,
+        "error": 3,
+        "finish_result": -1,
+        "forwards": 2,
+        "nonce": "0102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f20",
+        "schema": "readback-return-producer-finalization-v1",
+        "stream_nbytes": 96,
+        "stream_sha256": "7073f22e8160bcf111693ce0a77020b3da13fc1283252204b64277adb50a20fd"
+      },
+      "raw": {
+        "nbytes": 96,
+        "path": "output/stage7-readback-return-core/build/thread.synthetic.rbr",
+        "sha256": "7073f22e8160bcf111693ce0a77020b3da13fc1283252204b64277adb50a20fd"
+      },
+      "seconds": 0.0595493619912304,
+      "stats": {
+        "args_ok": 1,
+        "attempts": 0,
+        "captured": 0,
+        "emits": 1,
+        "errno_ok": 1,
+        "error": 3,
+        "finish": -1,
+        "forwards": 2,
+        "native_admitted": false,
+        "new_gl_calls": 0,
+        "original_calls": 2,
+        "source": "SYNTHETIC_CPU_FAKE_ONLY",
+        "source_unchanged": 1,
+        "wire_bytes": 0
+      }
+    },
+    {
+      "asan_ubsan_passed": true,
+      "decoder_accepts_cpu_window": false,
+      "match": null,
+      "mode": "reentrant",
+      "producer_receipt": {
+        "attempts": 0,
+        "captured": 0,
+        "data_wire_bytes": 0,
+        "error": 4,
+        "finish_result": -1,
+        "forwards": 2,
+        "nonce": "0102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f20",
+        "schema": "readback-return-producer-finalization-v1",
+        "stream_nbytes": 96,
+        "stream_sha256": "5a1f7b88a44fa682f3fbddea47c79b480565ea628545690fe0aaae3ced68d742"
+      },
+      "raw": {
+        "nbytes": 96,
+        "path": "output/stage7-readback-return-core/build/reentrant.synthetic.rbr",
+        "sha256": "5a1f7b88a44fa682f3fbddea47c79b480565ea628545690fe0aaae3ced68d742"
+      },
+      "seconds": 0.060517716978210956,
+      "stats": {
+        "args_ok": 1,
+        "attempts": 0,
+        "captured": 0,
+        "emits": 1,
+        "errno_ok": 1,
+        "error": 4,
+        "finish": -1,
+        "forwards": 2,
+        "native_admitted": false,
+        "new_gl_calls": 0,
+        "original_calls": 2,
+        "source": "SYNTHETIC_CPU_FAKE_ONLY",
+        "source_unchanged": 1,
+        "wire_bytes": 0
+      }
+    },
+    {
+      "asan_ubsan_passed": true,
+      "decoder_accepts_cpu_window": true,
+      "match": {
+        "gpu_write_proven": false,
+        "native_admitted": false,
+        "physical_frame_proven": false,
+        "record_indices": [
+          1
+        ],
+        "status": "unique_cpu_byte_candidate",
+        "unknown_producer_indices": []
+      },
+      "mode": "mutate",
+      "producer_receipt": {
+        "attempts": 2,
+        "captured": 2,
+        "data_wire_bytes": 410,
+        "error": 0,
+        "finish_result": 0,
+        "forwards": 2,
+        "nonce": "0102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f20",
+        "schema": "readback-return-producer-finalization-v1",
+        "stream_nbytes": 506,
+        "stream_sha256": "51fd5a47efcf67150117a09ac52593ce2b7b7b96699ae2b295bfc3d52b607469"
+      },
+      "raw": {
+        "nbytes": 506,
+        "path": "output/stage7-readback-return-core/build/mutate.synthetic.rbr",
+        "sha256": "51fd5a47efcf67150117a09ac52593ce2b7b7b96699ae2b295bfc3d52b607469"
+      },
+      "seconds": 0.04997903999174014,
+      "stats": {
+        "args_ok": 1,
+        "attempts": 2,
+        "captured": 2,
+        "emits": 3,
+        "errno_ok": 1,
+        "error": 0,
+        "finish": 0,
+        "forwards": 2,
+        "native_admitted": false,
+        "new_gl_calls": 0,
+        "original_calls": 2,
+        "source": "SYNTHETIC_CPU_FAKE_ONLY",
+        "source_unchanged": 1,
+        "wire_bytes": 410
+      }
+    },
+    {
+      "asan_ubsan_passed": true,
+      "decoder_accepts_cpu_window": false,
+      "match": null,
+      "mode": "nested",
+      "producer_receipt": {
+        "attempts": 0,
+        "captured": 0,
+        "data_wire_bytes": 0,
+        "error": 2,
+        "finish_result": -1,
+        "forwards": 2,
+        "nonce": "0102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f20",
+        "schema": "readback-return-producer-finalization-v1",
+        "stream_nbytes": 96,
+        "stream_sha256": "5dc18d8778175649d9fdfc53f30069441a3b2312ee4fe5a4af35278d2b2d76f3"
+      },
+      "raw": {
+        "nbytes": 96,
+        "path": "output/stage7-readback-return-core/build/nested.synthetic.rbr",
+        "sha256": "5dc18d8778175649d9fdfc53f30069441a3b2312ee4fe5a4af35278d2b2d76f3"
+      },
+      "seconds": 0.04726432199822739,
+      "stats": {
+        "args_ok": 1,
+        "attempts": 0,
+        "captured": 0,
+        "emits": 1,
+        "errno_ok": 1,
+        "error": 2,
+        "finish": -1,
+        "forwards": 2,
+        "native_admitted": false,
+        "new_gl_calls": 0,
+        "original_calls": 2,
+        "source": "SYNTHETIC_CPU_FAKE_ONLY",
+        "source_unchanged": 1,
+        "wire_bytes": 0
+      }
+    },
+    {
+      "asan_ubsan_passed": true,
+      "decoder_accepts_cpu_window": false,
+      "match": null,
+      "mode": "shortwindow",
+      "producer_receipt": {
+        "attempts": 1,
+        "captured": 1,
+        "data_wire_bytes": 205,
+        "error": 2,
+        "finish_result": -1,
+        "forwards": 1,
+        "nonce": "0102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f20",
+        "schema": "readback-return-producer-finalization-v1",
+        "stream_nbytes": 301,
+        "stream_sha256": "b47429656da5f4e7c641cb52fd3a28f1db9511933dc1233a2902f0eda4c971ce"
+      },
+      "raw": {
+        "nbytes": 301,
+        "path": "output/stage7-readback-return-core/build/shortwindow.synthetic.rbr",
+        "sha256": "b47429656da5f4e7c641cb52fd3a28f1db9511933dc1233a2902f0eda4c971ce"
+      },
+      "seconds": 0.038458850991446525,
+      "stats": {
+        "args_ok": 1,
+        "attempts": 1,
+        "captured": 1,
+        "emits": 2,
+        "errno_ok": 1,
+        "error": 2,
+        "finish": -1,
+        "forwards": 1,
+        "native_admitted": false,
+        "new_gl_calls": 0,
+        "original_calls": 1,
+        "source": "SYNTHETIC_CPU_FAKE_ONLY",
+        "source_unchanged": 1,
+        "wire_bytes": 205
+      }
+    },
+    {
+      "asan_ubsan_passed": true,
+      "decoder_accepts_cpu_window": true,
+      "match": {
+        "gpu_write_proven": false,
+        "native_admitted": false,
+        "physical_frame_proven": false,
+        "record_indices": [],
+        "status": "insufficient_producer_metadata",
+        "unknown_producer_indices": [
+          1
+        ]
+      },
+      "mode": "unknownproducer",
+      "producer_receipt": {
+        "attempts": 2,
+        "captured": 2,
+        "data_wire_bytes": 410,
+        "error": 0,
+        "finish_result": 0,
+        "forwards": 2,
+        "nonce": "0102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f20",
+        "schema": "readback-return-producer-finalization-v1",
+        "stream_nbytes": 506,
+        "stream_sha256": "84155b997d37c4044ef03cd9db41145e26c956f85607869bddea6157c9ae721c"
+      },
+      "raw": {
+        "nbytes": 506,
+        "path": "output/stage7-readback-return-core/build/unknownproducer.synthetic.rbr",
+        "sha256": "84155b997d37c4044ef03cd9db41145e26c956f85607869bddea6157c9ae721c"
+      },
+      "seconds": 0.03629297000588849,
+      "stats": {
+        "args_ok": 1,
+        "attempts": 2,
+        "captured": 2,
+        "emits": 3,
+        "errno_ok": 1,
+        "error": 0,
+        "finish": 0,
+        "forwards": 2,
+        "native_admitted": false,
+        "new_gl_calls": 0,
+        "original_calls": 2,
+        "source": "SYNTHETIC_CPU_FAKE_ONLY",
+        "source_unchanged": 1,
+        "wire_bytes": 410
+      }
+    },
+    {
+      "asan_ubsan_passed": true,
+      "decoder_accepts_cpu_window": true,
+      "match": {
+        "gpu_write_proven": false,
+        "native_admitted": false,
+        "physical_frame_proven": false,
+        "record_indices": [
+          1,
+          2
+        ],
+        "status": "ambiguous_cpu_byte_candidates",
+        "unknown_producer_indices": []
+      },
+      "mode": "ambiguous",
+      "producer_receipt": {
+        "attempts": 2,
+        "captured": 2,
+        "data_wire_bytes": 410,
+        "error": 0,
+        "finish_result": 0,
+        "forwards": 2,
+        "nonce": "0102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f20",
+        "schema": "readback-return-producer-finalization-v1",
+        "stream_nbytes": 506,
+        "stream_sha256": "749dceb645683082f4cef3dabcfd01d7e29e3f4236b3702e1b0daa2a67436acd"
+      },
+      "raw": {
+        "nbytes": 506,
+        "path": "output/stage7-readback-return-core/build/ambiguous.synthetic.rbr",
+        "sha256": "749dceb645683082f4cef3dabcfd01d7e29e3f4236b3702e1b0daa2a67436acd"
+      },
+      "seconds": 0.034513437014538795,
+      "stats": {
+        "args_ok": 1,
+        "attempts": 2,
+        "captured": 2,
+        "emits": 3,
+        "errno_ok": 1,
+        "error": 0,
+        "finish": 0,
+        "forwards": 2,
+        "native_admitted": false,
+        "new_gl_calls": 0,
+        "original_calls": 2,
+        "source": "SYNTHETIC_CPU_FAKE_ONLY",
+        "source_unchanged": 1,
+        "wire_bytes": 410
+      }
+    },
+    {
+      "asan_ubsan_passed": true,
+      "decoder_accepts_cpu_window": true,
+      "match": {
+        "gpu_write_proven": false,
+        "native_admitted": false,
+        "physical_frame_proven": false,
+        "record_indices": [
+          1
+        ],
+        "status": "unique_cpu_byte_candidate",
+        "unknown_producer_indices": []
+      },
+      "mode": "max",
+      "producer_receipt": {
+        "attempts": 24,
+        "captured": 24,
+        "data_wire_bytes": 55900416,
+        "error": 0,
+        "finish_result": 0,
+        "forwards": 24,
+        "nonce": "0102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f20",
+        "schema": "readback-return-producer-finalization-v1",
+        "stream_nbytes": 55900512,
+        "stream_sha256": "0975edb855ddf938f386406a340c496a02b947a4f3d7b391bd527009a5c6b3b8"
+      },
+      "raw": {
+        "nbytes": 55900512,
+        "path": "output/stage7-readback-return-core/build/max.synthetic.rbr",
+        "sha256": "0975edb855ddf938f386406a340c496a02b947a4f3d7b391bd527009a5c6b3b8"
+      },
+      "seconds": 1.507254472002387,
+      "stats": {
+        "args_ok": 1,
+        "attempts": 24,
+        "captured": 24,
+        "emits": 25,
+        "errno_ok": 1,
+        "error": 0,
+        "finish": 0,
+        "forwards": 24,
+        "native_admitted": false,
+        "new_gl_calls": 0,
+        "original_calls": 24,
+        "source": "SYNTHETIC_CPU_FAKE_ONLY",
+        "source_unchanged": 1,
+        "wire_bytes": 55900416
+      }
+    },
+    {
+      "asan_ubsan_passed": true,
+      "decoder_accepts_cpu_window": false,
+      "match": null,
+      "mode": "excess1",
+      "producer_receipt": {
+        "attempts": 1,
+        "captured": 1,
+        "data_wire_bytes": 205,
+        "error": 2,
+        "finish_result": -1,
+        "forwards": 2,
+        "nonce": "0102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f20",
+        "schema": "readback-return-producer-finalization-v1",
+        "stream_nbytes": 301,
+        "stream_sha256": "54f10b06d2f290d629856d89f8a5cd6f5b86c68aece4b32b895aff14b8a13917"
+      },
+      "raw": {
+        "nbytes": 301,
+        "path": "output/stage7-readback-return-core/build/excess1.synthetic.rbr",
+        "sha256": "54f10b06d2f290d629856d89f8a5cd6f5b86c68aece4b32b895aff14b8a13917"
+      },
+      "seconds": 0.0499810460023582,
+      "stats": {
+        "args_ok": 1,
+        "attempts": 1,
+        "captured": 1,
+        "emits": 2,
+        "errno_ok": 1,
+        "error": 2,
+        "finish": -1,
+        "forwards": 2,
+        "native_admitted": false,
+        "new_gl_calls": 0,
+        "original_calls": 2,
+        "source": "SYNTHETIC_CPU_FAKE_ONLY",
+        "source_unchanged": 1,
+        "wire_bytes": 205
+      }
+    },
+    {
+      "asan_ubsan_passed": true,
+      "decoder_accepts_cpu_window": false,
+      "match": null,
+      "mode": "excess2",
+      "producer_receipt": {
+        "attempts": 2,
+        "captured": 2,
+        "data_wire_bytes": 410,
+        "error": 2,
+        "finish_result": -1,
+        "forwards": 3,
+        "nonce": "0102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f20",
+        "schema": "readback-return-producer-finalization-v1",
+        "stream_nbytes": 506,
+        "stream_sha256": "0f6b7677143c15f43d9f9c7561bbf239f316a8772b46d1104c064569a30245a1"
+      },
+      "raw": {
+        "nbytes": 506,
+        "path": "output/stage7-readback-return-core/build/excess2.synthetic.rbr",
+        "sha256": "0f6b7677143c15f43d9f9c7561bbf239f316a8772b46d1104c064569a30245a1"
+      },
+      "seconds": 0.044551985047291964,
+      "stats": {
+        "args_ok": 1,
+        "attempts": 2,
+        "captured": 2,
+        "emits": 3,
+        "errno_ok": 1,
+        "error": 2,
+        "finish": -1,
+        "forwards": 3,
+        "native_admitted": false,
+        "new_gl_calls": 0,
+        "original_calls": 3,
+        "source": "SYNTHETIC_CPU_FAKE_ONLY",
+        "source_unchanged": 1,
+        "wire_bytes": 410
+      }
+    },
+    {
+      "asan_ubsan_passed": true,
+      "decoder_accepts_cpu_window": false,
+      "match": null,
+      "mode": "footerfail",
+      "producer_receipt": {
+        "attempts": 2,
+        "captured": 2,
+        "data_wire_bytes": 410,
+        "error": 11,
+        "finish_result": -1,
+        "forwards": 2,
+        "nonce": "0102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f20",
+        "schema": "readback-return-producer-finalization-v1",
+        "stream_nbytes": 506,
+        "stream_sha256": "51fd5a47efcf67150117a09ac52593ce2b7b7b96699ae2b295bfc3d52b607469"
+      },
+      "raw": {
+        "nbytes": 506,
+        "path": "output/stage7-readback-return-core/build/footerfail.synthetic.rbr",
+        "sha256": "51fd5a47efcf67150117a09ac52593ce2b7b7b96699ae2b295bfc3d52b607469"
+      },
+      "seconds": 0.04170321801211685,
+      "stats": {
+        "args_ok": 1,
+        "attempts": 2,
+        "captured": 2,
+        "emits": 3,
+        "errno_ok": 1,
+        "error": 11,
+        "finish": -1,
+        "forwards": 2,
+        "native_admitted": false,
+        "new_gl_calls": 0,
+        "original_calls": 2,
+        "source": "SYNTHETIC_CPU_FAKE_ONLY",
+        "source_unchanged": 1,
+        "wire_bytes": 410
+      }
+    }
+  ],
+  "schema": "readback-return-synthetic-build-v1",
+  "sources": [
+    {
+      "nbytes": 1998,
+      "path": "native/readback_return_core.h",
+      "sha256": "1a78841638968a7c9d08fe845b1d0b3b7976ab0808edcc22ff6cfd631e0ee58f"
+    },
+    {
+      "nbytes": 7744,
+      "path": "native/readback_return_core.c",
+      "sha256": "b2c02055f54738a21bbef733be46320ffb1c26bba52dc5067281a703a054994a"
+    },
+    {
+      "nbytes": 6136,
+      "path": "tests/fixtures/readback_return_fixture.c",
+      "sha256": "f2098d40837ef3836d4350f2a4aabad510743189500c5b5ac078b6ad8ca1ab5f"
+    },
+    {
+      "nbytes": 7946,
+      "path": "scripts/readback_return_codec.py",
+      "sha256": "cbb3602eea2fd7a0dc67685c0791f48755cfaba1e5ae51017e4e343fac9d599a"
+    },
+    {
+      "nbytes": 7058,
+      "path": "scripts/audit_readback_return_source.py",
+      "sha256": "88f3535ec2db448d480042e82a228beff3d877ebc55f81f6c8dcf7b2559ae685"
+    }
+  ],
+  "wall_seconds": 3.795422939991113
+}
