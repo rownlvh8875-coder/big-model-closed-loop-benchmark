@@ -23,3 +23,11 @@ Task1: RED10/10 failures for absentCcore; GREEN10/10 in0.937s with cc -std=c11 -
 Ruling: Correct the independentfixture payload/stride/offset/capacity tupleindices to22..25 beforecoreimplementation — handcounted160Bwire has noreservedu32 — wrongtestindices would misparse everyrecord.
 Task1: complete; originalforward,args,errno,OFFinvalidpointers,packskips,4formats,stickyextent/PBO/alias/thread/reentrant/emitter/budget/windows covered.
 Task2: RED13/13 for absentcodec; GREEN combined23/23 in1.836s; max24syntheticrecords55,900,512B. Staticaudit/buildreceipt remains.
+
+Task2: sourceaudit RED3/3 (absentaudit)→GREEN3/3 actualzipbytes+pureexistingguard.
+Static pinned wheel/member/installed-manifest/source identities PASS; GLimport+JUMP_SLOT and3GSGrelocs confirmed as data, no ELFload. No RAMsizeexport and no compiledinstructionbinding proof. Oldenvironment baseline accepted/addedpreload rejected, unchanged.
+Synthetic build22scenarios PASS with exact ASan/UBSan stream+stats match; max55,900,512B; compiler/source/binary/ELFreceipt retained. Buildwall3.627116568s excludes tests/review/CI and is not GLoverhead.
+Fullsuite: python -B -m unittest discover -s tests -v →1348tests PASS7skip120.285s; focused26PASS.
+Preservation before review: all2431basefiles actual Gitblob identities match;299sourceSHA256pins match;2traces+4graphs+2originalsealedZIPhashes match; main/oldDraft102/103/104/nativehistory unchanged.
+Task2: complete implementation+pre-review verification. Independentwholebranchreview and exactDraftCI are closeout gates.
+Ruling: Keep actual adapter/runtime admission inactive — static source/ELF identity and CPUmalloc tests cannot validate dispatch/span/producer identity — nextstage must supply new reviewed mechanicalcontract and fresh bounded canary, adding qualification work before realbytes.

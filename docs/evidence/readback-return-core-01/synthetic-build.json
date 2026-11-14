@@ -1,0 +1,835 @@
+{
+  "binaries": [
+    {
+      "nbytes": 21792,
+      "path": "output/stage7-readback-return-core/build/cpu-fixture",
+      "sha256": "5d131a2f8fa6c32a96a49e27d732ba659ede42408d2fab51e205fbf7d51e95be"
+    },
+    {
+      "nbytes": 71552,
+      "path": "output/stage7-readback-return-core/build/cpu-fixture-asan-ubsan",
+      "sha256": "4e32d1fddf832d0d3a2282a1ef0b9aa044a1859bf28679a93e06ba87ae582695"
+    },
+    {
+      "nbytes": 19736,
+      "path": "output/stage7-readback-return-core/build/libreadback_return_core_cpu_build.so",
+      "sha256": "347de9442ec41a0dac1bc79f25e2a2011b9b7154d0928f039cc3d88b09cf5405"
+    }
+  ],
+  "checked_at_kst": "2026-11-14T23:22:59.987987+09:00",
+  "commands": {
+    "fixture": [
+      "/usr/bin/cc",
+      "-std=c11",
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pthread",
+      "-I",
+      "/workspace/big-model-closed-loop-benchmark/native",
+      "/workspace/big-model-closed-loop-benchmark/native/readback_return_core.c",
+      "/workspace/big-model-closed-loop-benchmark/tests/fixtures/readback_return_fixture.c",
+      "-o",
+      "/workspace/big-model-closed-loop-benchmark/output/stage7-readback-return-core/build/cpu-fixture"
+    ],
+    "sanitized_fixture": [
+      "/usr/bin/cc",
+      "-fsanitize=address,undefined",
+      "-fno-sanitize-recover=all",
+      "-fno-omit-frame-pointer",
+      "-no-pie",
+      "-std=c11",
+      "-O1",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pthread",
+      "-I",
+      "/workspace/big-model-closed-loop-benchmark/native",
+      "/workspace/big-model-closed-loop-benchmark/native/readback_return_core.c",
+      "/workspace/big-model-closed-loop-benchmark/tests/fixtures/readback_return_fixture.c",
+      "-o",
+      "/workspace/big-model-closed-loop-benchmark/output/stage7-readback-return-core/build/cpu-fixture-asan-ubsan"
+    ],
+    "shared_core": [
+      "/usr/bin/cc",
+      "-std=c11",
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-fPIC",
+      "-shared",
+      "-pthread",
+      "-I",
+      "native",
+      "native/readback_return_core.c",
+      "-o",
+      "/workspace/big-model-closed-loop-benchmark/output/stage7-readback-return-core/build/libreadback_return_core_cpu_build.so"
+    ]
+  },
+  "compiler": {
+    "executable": "/usr/bin/x86_64-linux-gnu-gcc-14",
+    "sha256": "a23ecab8ff08f09ad8c80602c2c5df7f49e09c25905cb8975902e101bf72635f",
+    "version": "x86_64-linux-gnu-gcc-14 (Debian 14.2.0-19) 14.2.0\nCopyright (C) 2024 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n"
+  },
+  "elf": [
+    {
+      "nbytes": 1287,
+      "path": "output/stage7-readback-return-core/build/core-dynamic.txt",
+      "sha256": "b53667cc204553d3175ac7ba1f27ce8e15a13a183c5346c1ab0fe58a32bdc9f1"
+    },
+    {
+      "nbytes": 3908,
+      "path": "output/stage7-readback-return-core/build/core-symbols.txt",
+      "sha256": "cf644bc5f728bb027019db07f7617c5d5b178dd8134cfde9db1a994dd0996e01"
+    }
+  ],
+  "kind": "SYNTHETIC_CPU_FAKE_ONLY",
+  "limitations": [
+    "Caller-supplied labels/capacity are not authenticated.",
+    "Void return cannot establish GPU write success or freshness.",
+    "Synthetic malloc buffers do not validate a real Panda Texture span.",
+    "Local CPU compiler/shared artifact is not qualified for sealed native image006.",
+    "ASan/UBSan runs do not prove all possible races, adapter ABIs or live performance."
+  ],
+  "native_admitted": false,
+  "new_gl_calls": 0,
+  "new_model_runs": 0,
+  "new_native_runs": 0,
+  "new_official_ort_runs": 0,
+  "new_provider_runs": 0,
+  "no_gl_linkage": true,
+  "original_gpu_bytes_observed": false,
+  "runtime_admission_ready": false,
+  "samples": [
+    {
+      "asan_ubsan_passed": true,
+      "decoder_accepts_cpu_window": true,
+      "match": {
+        "gpu_write_proven": false,
+        "native_admitted": false,
+        "physical_frame_proven": false,
+        "record_indices": [
+          1
+        ],
+        "status": "unique_cpu_byte_candidate",
+        "unknown_producer_indices": []
+      },
+      "mode": "basic",
+      "raw": {
+        "nbytes": 506,
+        "path": "output/stage7-readback-return-core/build/basic.synthetic.rbr",
+        "sha256": "51fd5a47efcf67150117a09ac52593ce2b7b7b96699ae2b295bfc3d52b607469"
+      },
+      "seconds": 0.10203669004840776,
+      "stats": {
+        "args_ok": 1,
+        "attempts": 2,
+        "captured": 2,
+        "emits": 3,
+        "errno_ok": 1,
+        "error": 0,
+        "finish": 0,
+        "forwards": 2,
+        "native_admitted": false,
+        "new_gl_calls": 0,
+        "original_calls": 2,
+        "source": "SYNTHETIC_CPU_FAKE_ONLY",
+        "source_unchanged": 1,
+        "wire_bytes": 410
+      }
+    },
+    {
+      "asan_ubsan_passed": true,
+      "decoder_accepts_cpu_window": true,
+      "match": null,
+      "mode": "off",
+      "raw": {
+        "nbytes": 96,
+        "path": "output/stage7-readback-return-core/build/off.synthetic.rbr",
+        "sha256": "16dfd8210ba820e67f703b25466b1a004bf2907d191cce64f8fecdbde1d0aa70"
+      },
+      "seconds": 0.014673607016447932,
+      "stats": {
+        "args_ok": 1,
+        "attempts": 0,
+        "captured": 0,
+        "emits": 1,
+        "errno_ok": 1,
+        "error": 0,
+        "finish": 0,
+        "forwards": 2,
+        "native_admitted": false,
+        "new_gl_calls": 0,
+        "original_calls": 2,
+        "source": "SYNTHETIC_CPU_FAKE_ONLY",
+        "source_unchanged": 1,
+        "wire_bytes": 0
+      }
+    },
+    {
+      "asan_ubsan_passed": true,
+      "decoder_accepts_cpu_window": true,
+      "match": {
+        "gpu_write_proven": false,
+        "native_admitted": false,
+        "physical_frame_proven": false,
+        "record_indices": [
+          1
+        ],
+        "status": "unique_cpu_byte_candidate",
+        "unknown_producer_indices": []
+      },
+      "mode": "rgb",
+      "raw": {
+        "nbytes": 506,
+        "path": "output/stage7-readback-return-core/build/rgb.synthetic.rbr",
+        "sha256": "a62ab5bae685c7644248cafd5366dfb5bee43264f69004242487b2f0e4107609"
+      },
+      "seconds": 0.05285516200819984,
+      "stats": {
+        "args_ok": 1,
+        "attempts": 2,
+        "captured": 2,
+        "emits": 3,
+        "errno_ok": 1,
+        "error": 0,
+        "finish": 0,
+        "forwards": 2,
+        "native_admitted": false,
+        "new_gl_calls": 0,
+        "original_calls": 2,
+        "source": "SYNTHETIC_CPU_FAKE_ONLY",
+        "source_unchanged": 1,
+        "wire_bytes": 410
+      }
+    },
+    {
+      "asan_ubsan_passed": true,
+      "decoder_accepts_cpu_window": true,
+      "match": {
+        "gpu_write_proven": false,
+        "native_admitted": false,
+        "physical_frame_proven": false,
+        "record_indices": [
+          1
+        ],
+        "status": "unique_cpu_byte_candidate",
+        "unknown_producer_indices": []
+      },
+      "mode": "rgba",
+      "raw": {
+        "nbytes": 536,
+        "path": "output/stage7-readback-return-core/build/rgba.synthetic.rbr",
+        "sha256": "8312b740a3e51bd03664f548b73827cc95d96d7548b601465a471c43efcd9551"
+      },
+      "seconds": 0.03544187900843099,
+      "stats": {
+        "args_ok": 1,
+        "attempts": 2,
+        "captured": 2,
+        "emits": 3,
+        "errno_ok": 1,
+        "error": 0,
+        "finish": 0,
+        "forwards": 2,
+        "native_admitted": false,
+        "new_gl_calls": 0,
+        "original_calls": 2,
+        "source": "SYNTHETIC_CPU_FAKE_ONLY",
+        "source_unchanged": 1,
+        "wire_bytes": 440
+      }
+    },
+    {
+      "asan_ubsan_passed": true,
+      "decoder_accepts_cpu_window": true,
+      "match": {
+        "gpu_write_proven": false,
+        "native_admitted": false,
+        "physical_frame_proven": false,
+        "record_indices": [
+          1
+        ],
+        "status": "unique_cpu_byte_candidate",
+        "unknown_producer_indices": []
+      },
+      "mode": "bgra",
+      "raw": {
+        "nbytes": 536,
+        "path": "output/stage7-readback-return-core/build/bgra.synthetic.rbr",
+        "sha256": "80485aefd191f3a12726b1c38e2bf5744693a82aa283dbca5e3d513f2538f6b0"
+      },
+      "seconds": 0.03193138295318931,
+      "stats": {
+        "args_ok": 1,
+        "attempts": 2,
+        "captured": 2,
+        "emits": 3,
+        "errno_ok": 1,
+        "error": 0,
+        "finish": 0,
+        "forwards": 2,
+        "native_admitted": false,
+        "new_gl_calls": 0,
+        "original_calls": 2,
+        "source": "SYNTHETIC_CPU_FAKE_ONLY",
+        "source_unchanged": 1,
+        "wire_bytes": 440
+      }
+    },
+    {
+      "asan_ubsan_passed": true,
+      "decoder_accepts_cpu_window": true,
+      "match": {
+        "gpu_write_proven": false,
+        "native_admitted": false,
+        "physical_frame_proven": false,
+        "record_indices": [
+          1
+        ],
+        "status": "unique_cpu_byte_candidate",
+        "unknown_producer_indices": []
+      },
+      "mode": "packed",
+      "raw": {
+        "nbytes": 536,
+        "path": "output/stage7-readback-return-core/build/packed.synthetic.rbr",
+        "sha256": "58583a08a3e6e5d018dce9a322a338201765561318d900e2bfed332be4f56053"
+      },
+      "seconds": 0.05545767501462251,
+      "stats": {
+        "args_ok": 1,
+        "attempts": 2,
+        "captured": 2,
+        "emits": 3,
+        "errno_ok": 1,
+        "error": 0,
+        "finish": 0,
+        "forwards": 2,
+        "native_admitted": false,
+        "new_gl_calls": 0,
+        "original_calls": 2,
+        "source": "SYNTHETIC_CPU_FAKE_ONLY",
+        "source_unchanged": 1,
+        "wire_bytes": 440
+      }
+    },
+    {
+      "asan_ubsan_passed": true,
+      "decoder_accepts_cpu_window": false,
+      "match": null,
+      "mode": "unknown",
+      "raw": {
+        "nbytes": 96,
+        "path": "output/stage7-readback-return-core/build/unknown.synthetic.rbr",
+        "sha256": "4c1727b76464607bfd765a11fb1acf497400a08ea3e4c5cc99d8a71fd0dbf7b4"
+      },
+      "seconds": 0.045990653976332396,
+      "stats": {
+        "args_ok": 1,
+        "attempts": 1,
+        "captured": 0,
+        "emits": 1,
+        "errno_ok": 1,
+        "error": 5,
+        "finish": -1,
+        "forwards": 2,
+        "native_admitted": false,
+        "new_gl_calls": 0,
+        "original_calls": 2,
+        "source": "SYNTHETIC_CPU_FAKE_ONLY",
+        "source_unchanged": 1,
+        "wire_bytes": 0
+      }
+    },
+    {
+      "asan_ubsan_passed": true,
+      "decoder_accepts_cpu_window": false,
+      "match": null,
+      "mode": "pbo",
+      "raw": {
+        "nbytes": 96,
+        "path": "output/stage7-readback-return-core/build/pbo.synthetic.rbr",
+        "sha256": "1fa7aedf59336a6566134ff4a286bb37118df2361ea43e016f6d03d1d7bd25f3"
+      },
+      "seconds": 0.012919717002660036,
+      "stats": {
+        "args_ok": 1,
+        "attempts": 1,
+        "captured": 0,
+        "emits": 1,
+        "errno_ok": 1,
+        "error": 6,
+        "finish": -1,
+        "forwards": 2,
+        "native_admitted": false,
+        "new_gl_calls": 0,
+        "original_calls": 2,
+        "source": "SYNTHETIC_CPU_FAKE_ONLY",
+        "source_unchanged": 1,
+        "wire_bytes": 0
+      }
+    },
+    {
+      "asan_ubsan_passed": true,
+      "decoder_accepts_cpu_window": false,
+      "match": null,
+      "mode": "short",
+      "raw": {
+        "nbytes": 96,
+        "path": "output/stage7-readback-return-core/build/short.synthetic.rbr",
+        "sha256": "816b3a0f8d3a932446ebf38ee4cf6a17fbe4c8f750f4e08cab183d6eaabc9b18"
+      },
+      "seconds": 0.04842723399633542,
+      "stats": {
+        "args_ok": 1,
+        "attempts": 1,
+        "captured": 0,
+        "emits": 1,
+        "errno_ok": 1,
+        "error": 8,
+        "finish": -1,
+        "forwards": 2,
+        "native_admitted": false,
+        "new_gl_calls": 0,
+        "original_calls": 2,
+        "source": "SYNTHETIC_CPU_FAKE_ONLY",
+        "source_unchanged": 1,
+        "wire_bytes": 0
+      }
+    },
+    {
+      "asan_ubsan_passed": true,
+      "decoder_accepts_cpu_window": false,
+      "match": null,
+      "mode": "alias",
+      "raw": {
+        "nbytes": 96,
+        "path": "output/stage7-readback-return-core/build/alias.synthetic.rbr",
+        "sha256": "854643d21a11de7ec971683923b5a58344d422ba9b74f39fafbbae0d0bfe44a7"
+      },
+      "seconds": 0.0421853470033966,
+      "stats": {
+        "args_ok": 1,
+        "attempts": 1,
+        "captured": 0,
+        "emits": 1,
+        "errno_ok": 1,
+        "error": 9,
+        "finish": -1,
+        "forwards": 2,
+        "native_admitted": false,
+        "new_gl_calls": 0,
+        "original_calls": 2,
+        "source": "SYNTHETIC_CPU_FAKE_ONLY",
+        "source_unchanged": 1,
+        "wire_bytes": 0
+      }
+    },
+    {
+      "asan_ubsan_passed": true,
+      "decoder_accepts_cpu_window": false,
+      "match": null,
+      "mode": "overlap",
+      "raw": {
+        "nbytes": 96,
+        "path": "output/stage7-readback-return-core/build/overlap.synthetic.rbr",
+        "sha256": "91f3685ce0725f1fd7e5cefce2a7bfc6d4dbc15b6f643e2880ba44d5486fb0fc"
+      },
+      "seconds": 0.043494853016454726,
+      "stats": {
+        "args_ok": 1,
+        "attempts": 1,
+        "captured": 0,
+        "emits": 1,
+        "errno_ok": 1,
+        "error": 7,
+        "finish": -1,
+        "forwards": 2,
+        "native_admitted": false,
+        "new_gl_calls": 0,
+        "original_calls": 2,
+        "source": "SYNTHETIC_CPU_FAKE_ONLY",
+        "source_unchanged": 1,
+        "wire_bytes": 0
+      }
+    },
+    {
+      "asan_ubsan_passed": true,
+      "decoder_accepts_cpu_window": false,
+      "match": null,
+      "mode": "limit",
+      "raw": {
+        "nbytes": 301,
+        "path": "output/stage7-readback-return-core/build/limit.synthetic.rbr",
+        "sha256": "78c4652639c0af22014205a0d26864fbc7028fa5aa642326d25fa67d92b587ca"
+      },
+      "seconds": 0.13121884199790657,
+      "stats": {
+        "args_ok": 1,
+        "attempts": 2,
+        "captured": 1,
+        "emits": 2,
+        "errno_ok": 1,
+        "error": 10,
+        "finish": -1,
+        "forwards": 2,
+        "native_admitted": false,
+        "new_gl_calls": 0,
+        "original_calls": 2,
+        "source": "SYNTHETIC_CPU_FAKE_ONLY",
+        "source_unchanged": 1,
+        "wire_bytes": 205
+      }
+    },
+    {
+      "asan_ubsan_passed": true,
+      "decoder_accepts_cpu_window": false,
+      "match": null,
+      "mode": "bytes",
+      "raw": {
+        "nbytes": 96,
+        "path": "output/stage7-readback-return-core/build/bytes.synthetic.rbr",
+        "sha256": "70ade139bf6da18b143acd57b64a23f2412bf427ecb682cd0a077ce7d86ff2b6"
+      },
+      "seconds": 0.042956035991664976,
+      "stats": {
+        "args_ok": 1,
+        "attempts": 1,
+        "captured": 0,
+        "emits": 1,
+        "errno_ok": 1,
+        "error": 10,
+        "finish": -1,
+        "forwards": 2,
+        "native_admitted": false,
+        "new_gl_calls": 0,
+        "original_calls": 2,
+        "source": "SYNTHETIC_CPU_FAKE_ONLY",
+        "source_unchanged": 1,
+        "wire_bytes": 0
+      }
+    },
+    {
+      "asan_ubsan_passed": true,
+      "decoder_accepts_cpu_window": false,
+      "match": null,
+      "mode": "emitfail",
+      "raw": {
+        "nbytes": 14,
+        "path": "output/stage7-readback-return-core/build/emitfail.synthetic.rbr",
+        "sha256": "0caa2cf3bc4395366d4282ddb0cfff0e1b59182d93f16a92d5f70b4da84617ce"
+      },
+      "seconds": 0.12418776599224657,
+      "stats": {
+        "args_ok": 1,
+        "attempts": 1,
+        "captured": 0,
+        "emits": 2,
+        "errno_ok": 1,
+        "error": 11,
+        "finish": -1,
+        "forwards": 2,
+        "native_admitted": false,
+        "new_gl_calls": 0,
+        "original_calls": 2,
+        "source": "SYNTHETIC_CPU_FAKE_ONLY",
+        "source_unchanged": 1,
+        "wire_bytes": 0
+      }
+    },
+    {
+      "asan_ubsan_passed": true,
+      "decoder_accepts_cpu_window": false,
+      "match": null,
+      "mode": "thread",
+      "raw": {
+        "nbytes": 96,
+        "path": "output/stage7-readback-return-core/build/thread.synthetic.rbr",
+        "sha256": "7073f22e8160bcf111693ce0a77020b3da13fc1283252204b64277adb50a20fd"
+      },
+      "seconds": 0.042327108967583627,
+      "stats": {
+        "args_ok": 1,
+        "attempts": 0,
+        "captured": 0,
+        "emits": 1,
+        "errno_ok": 1,
+        "error": 3,
+        "finish": -1,
+        "forwards": 2,
+        "native_admitted": false,
+        "new_gl_calls": 0,
+        "original_calls": 2,
+        "source": "SYNTHETIC_CPU_FAKE_ONLY",
+        "source_unchanged": 1,
+        "wire_bytes": 0
+      }
+    },
+    {
+      "asan_ubsan_passed": true,
+      "decoder_accepts_cpu_window": false,
+      "match": null,
+      "mode": "reentrant",
+      "raw": {
+        "nbytes": 96,
+        "path": "output/stage7-readback-return-core/build/reentrant.synthetic.rbr",
+        "sha256": "5a1f7b88a44fa682f3fbddea47c79b480565ea628545690fe0aaae3ced68d742"
+      },
+      "seconds": 0.0353890250553377,
+      "stats": {
+        "args_ok": 1,
+        "attempts": 0,
+        "captured": 0,
+        "emits": 1,
+        "errno_ok": 1,
+        "error": 4,
+        "finish": -1,
+        "forwards": 2,
+        "native_admitted": false,
+        "new_gl_calls": 0,
+        "original_calls": 2,
+        "source": "SYNTHETIC_CPU_FAKE_ONLY",
+        "source_unchanged": 1,
+        "wire_bytes": 0
+      }
+    },
+    {
+      "asan_ubsan_passed": true,
+      "decoder_accepts_cpu_window": true,
+      "match": {
+        "gpu_write_proven": false,
+        "native_admitted": false,
+        "physical_frame_proven": false,
+        "record_indices": [
+          1
+        ],
+        "status": "unique_cpu_byte_candidate",
+        "unknown_producer_indices": []
+      },
+      "mode": "mutate",
+      "raw": {
+        "nbytes": 506,
+        "path": "output/stage7-readback-return-core/build/mutate.synthetic.rbr",
+        "sha256": "51fd5a47efcf67150117a09ac52593ce2b7b7b96699ae2b295bfc3d52b607469"
+      },
+      "seconds": 0.036129215033724904,
+      "stats": {
+        "args_ok": 1,
+        "attempts": 2,
+        "captured": 2,
+        "emits": 3,
+        "errno_ok": 1,
+        "error": 0,
+        "finish": 0,
+        "forwards": 2,
+        "native_admitted": false,
+        "new_gl_calls": 0,
+        "original_calls": 2,
+        "source": "SYNTHETIC_CPU_FAKE_ONLY",
+        "source_unchanged": 1,
+        "wire_bytes": 410
+      }
+    },
+    {
+      "asan_ubsan_passed": true,
+      "decoder_accepts_cpu_window": false,
+      "match": null,
+      "mode": "nested",
+      "raw": {
+        "nbytes": 96,
+        "path": "output/stage7-readback-return-core/build/nested.synthetic.rbr",
+        "sha256": "5dc18d8778175649d9fdfc53f30069441a3b2312ee4fe5a4af35278d2b2d76f3"
+      },
+      "seconds": 0.0537201069528237,
+      "stats": {
+        "args_ok": 1,
+        "attempts": 0,
+        "captured": 0,
+        "emits": 1,
+        "errno_ok": 1,
+        "error": 2,
+        "finish": -1,
+        "forwards": 2,
+        "native_admitted": false,
+        "new_gl_calls": 0,
+        "original_calls": 2,
+        "source": "SYNTHETIC_CPU_FAKE_ONLY",
+        "source_unchanged": 1,
+        "wire_bytes": 0
+      }
+    },
+    {
+      "asan_ubsan_passed": true,
+      "decoder_accepts_cpu_window": false,
+      "match": null,
+      "mode": "shortwindow",
+      "raw": {
+        "nbytes": 301,
+        "path": "output/stage7-readback-return-core/build/shortwindow.synthetic.rbr",
+        "sha256": "b47429656da5f4e7c641cb52fd3a28f1db9511933dc1233a2902f0eda4c971ce"
+      },
+      "seconds": 0.02843698696233332,
+      "stats": {
+        "args_ok": 1,
+        "attempts": 1,
+        "captured": 1,
+        "emits": 2,
+        "errno_ok": 1,
+        "error": 2,
+        "finish": -1,
+        "forwards": 1,
+        "native_admitted": false,
+        "new_gl_calls": 0,
+        "original_calls": 1,
+        "source": "SYNTHETIC_CPU_FAKE_ONLY",
+        "source_unchanged": 1,
+        "wire_bytes": 205
+      }
+    },
+    {
+      "asan_ubsan_passed": true,
+      "decoder_accepts_cpu_window": true,
+      "match": {
+        "gpu_write_proven": false,
+        "native_admitted": false,
+        "physical_frame_proven": false,
+        "record_indices": [],
+        "status": "insufficient_producer_metadata",
+        "unknown_producer_indices": [
+          1
+        ]
+      },
+      "mode": "unknownproducer",
+      "raw": {
+        "nbytes": 506,
+        "path": "output/stage7-readback-return-core/build/unknownproducer.synthetic.rbr",
+        "sha256": "84155b997d37c4044ef03cd9db41145e26c956f85607869bddea6157c9ae721c"
+      },
+      "seconds": 0.031068294018041342,
+      "stats": {
+        "args_ok": 1,
+        "attempts": 2,
+        "captured": 2,
+        "emits": 3,
+        "errno_ok": 1,
+        "error": 0,
+        "finish": 0,
+        "forwards": 2,
+        "native_admitted": false,
+        "new_gl_calls": 0,
+        "original_calls": 2,
+        "source": "SYNTHETIC_CPU_FAKE_ONLY",
+        "source_unchanged": 1,
+        "wire_bytes": 410
+      }
+    },
+    {
+      "asan_ubsan_passed": true,
+      "decoder_accepts_cpu_window": true,
+      "match": {
+        "gpu_write_proven": false,
+        "native_admitted": false,
+        "physical_frame_proven": false,
+        "record_indices": [
+          1,
+          2
+        ],
+        "status": "ambiguous_cpu_byte_candidates",
+        "unknown_producer_indices": []
+      },
+      "mode": "ambiguous",
+      "raw": {
+        "nbytes": 506,
+        "path": "output/stage7-readback-return-core/build/ambiguous.synthetic.rbr",
+        "sha256": "749dceb645683082f4cef3dabcfd01d7e29e3f4236b3702e1b0daa2a67436acd"
+      },
+      "seconds": 0.08957439998630434,
+      "stats": {
+        "args_ok": 1,
+        "attempts": 2,
+        "captured": 2,
+        "emits": 3,
+        "errno_ok": 1,
+        "error": 0,
+        "finish": 0,
+        "forwards": 2,
+        "native_admitted": false,
+        "new_gl_calls": 0,
+        "original_calls": 2,
+        "source": "SYNTHETIC_CPU_FAKE_ONLY",
+        "source_unchanged": 1,
+        "wire_bytes": 410
+      }
+    },
+    {
+      "asan_ubsan_passed": true,
+      "decoder_accepts_cpu_window": true,
+      "match": {
+        "gpu_write_proven": false,
+        "native_admitted": false,
+        "physical_frame_proven": false,
+        "record_indices": [
+          1
+        ],
+        "status": "unique_cpu_byte_candidate",
+        "unknown_producer_indices": []
+      },
+      "mode": "max",
+      "raw": {
+        "nbytes": 55900512,
+        "path": "output/stage7-readback-return-core/build/max.synthetic.rbr",
+        "sha256": "0975edb855ddf938f386406a340c496a02b947a4f3d7b391bd527009a5c6b3b8"
+      },
+      "seconds": 1.5377947780070826,
+      "stats": {
+        "args_ok": 1,
+        "attempts": 24,
+        "captured": 24,
+        "emits": 25,
+        "errno_ok": 1,
+        "error": 0,
+        "finish": 0,
+        "forwards": 24,
+        "native_admitted": false,
+        "new_gl_calls": 0,
+        "original_calls": 24,
+        "source": "SYNTHETIC_CPU_FAKE_ONLY",
+        "source_unchanged": 1,
+        "wire_bytes": 55900416
+      }
+    }
+  ],
+  "schema": "readback-return-synthetic-build-v1",
+  "sources": [
+    {
+      "nbytes": 1757,
+      "path": "native/readback_return_core.h",
+      "sha256": "eb71298e483413e49c85e1ee9805cfb9e7edd97f78c7878d3ca80b9f6f7f0cd2"
+    },
+    {
+      "nbytes": 7558,
+      "path": "native/readback_return_core.c",
+      "sha256": "76f6401cacbf3f7551cc3ff203b37eb1f6d1f673df015efbba7c014b41c4ccb0"
+    },
+    {
+      "nbytes": 5919,
+      "path": "tests/fixtures/readback_return_fixture.c",
+      "sha256": "9d02bc13ad865a78c9ba7f572690d59598d8a078598fb9474154ee81c37ac368"
+    },
+    {
+      "nbytes": 6813,
+      "path": "scripts/readback_return_codec.py",
+      "sha256": "acd1e55c9fa12fda323f288aa727ace56b05ea4ded0cf1208194e301aba4752e"
+    },
+    {
+      "nbytes": 7058,
+      "path": "scripts/audit_readback_return_source.py",
+      "sha256": "88f3535ec2db448d480042e82a228beff3d877ebc55f81f6c8dcf7b2559ae685"
+    }
+  ],
+  "wall_seconds": 3.627116567979101
+}
