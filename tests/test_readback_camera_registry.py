@@ -109,5 +109,12 @@ class CameraRegistryTests(unittest.TestCase):
         h.hook=nested
         with self.assertRaises(registry.RegistryError):r.native_binding()
         self.assertEqual(r.descriptor()['guards_returned'],0)
+    def test_interrupted_getter_cannot_leave_a_reusable_binding(self):
+        p=provider();r=registry.CameraRegistry(p,NONCE)
+        def cancel():raise KeyboardInterrupt()
+        p.env.engine.sensors['bigbench_road'].buffer.hook=cancel
+        with self.assertRaises(KeyboardInterrupt):r.guard(1,1)
+        with self.assertRaises(registry.RegistryError):r.native_binding()
+        self.assertEqual((r.descriptor()['getter_attempts'],r.descriptor()['guards_returned']),(3,0))
 
 if __name__=='__main__':unittest.main()

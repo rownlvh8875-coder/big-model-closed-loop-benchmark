@@ -1,0 +1,26 @@
+
+Symbol table '.symtab' contains 23 entries:
+   Num:    Value          Size Type    Bind   Vis      Ndx Name
+     0: 0000000000000000     0 NOTYPE  LOCAL  DEFAULT  UND 
+     1: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS readback_command_state.c
+     2: 0000000000000000     0 SECTION LOCAL  DEFAULT    1 .text
+     3: 0000000000000000   109 FUNC    LOCAL  DEFAULT    1 prepare
+     4: 0000000000000000     0 NOTYPE  LOCAL  DEFAULT    6 .LC1
+     5: 0000000000000000     0 NOTYPE  LOCAL  DEFAULT    5 .LC0
+     6: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND pthread_self
+     7: 0000000000000070     6 FUNC    GLOBAL DEFAULT    1 rc_context_size
+     8: 0000000000000080   197 FUNC    GLOBAL DEFAULT    1 rc_init
+     9: 0000000000000150   296 FUNC    GLOBAL DEFAULT    1 rc_context_new
+    10: 0000000000000280   171 FUNC    GLOBAL DEFAULT    1 rc_context_current
+    11: 0000000000000330   187 FUNC    GLOBAL DEFAULT    1 rc_context_destroy
+    12: 00000000000003f0   147 FUNC    GLOBAL DEFAULT    1 rc_invalidate
+    13: 0000000000000490   389 FUNC    GLOBAL DEFAULT    1 rc_pixel_store
+    14: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND __errno_location
+    15: 0000000000000620   364 FUNC    GLOBAL DEFAULT    1 rc_bind_buffer
+    16: 0000000000000790   441 FUNC    GLOBAL DEFAULT    1 rc_bind_framebuffer
+    17: 0000000000000950   321 FUNC    GLOBAL DEFAULT    1 rc_read_buffer
+    18: 0000000000000aa0   539 FUNC    GLOBAL DEFAULT    1 rc_delete_framebuffers
+    19: 0000000000000cc0   337 FUNC    GLOBAL DEFAULT    1 rc_snapshot
+    20: 0000000000000e20   208 FUNC    GLOBAL DEFAULT    1 rc_observe
+    21: 0000000000000ef0   115 FUNC    GLOBAL DEFAULT    1 rc_finalize
+    22: 0000000000000f70   104 FUNC    GLOBAL DEFAULT    1 rc_get_stats

@@ -24,8 +24,10 @@ class CameraRegistry:
             self._buffer_handles=tuple(self._handle(t) for t in self._buffers)
             if len(set(self._texture_handles))!=2 or len(set(self._buffer_handles))!=2:self._reject()
             self._busy=True;self._gsg_refs,self._gsg=self._read_gsg();self._busy=False
-        except Exception as exc:
-            self._error=type(exc).__name__;raise RegistryError('registry registration failed') from exc
+        except BaseException as exc:
+            self._error=type(exc).__name__
+            if not isinstance(exc,Exception):raise
+            raise RegistryError('registry registration failed') from exc
 
     def _reject(self):
         self._error='RegistryError';raise RegistryError('registry ownership, lifecycle or budget rejected')
@@ -68,8 +70,10 @@ class CameraRegistry:
             refs,gsg=self._read_gsg()
             if gsg!=self._gsg or any(self._handle(g)!=self._gsg for g in self._gsg_refs):self._reject()
             self._gsg_refs=refs;self._calls=host_call;self._guards+=1
-        except Exception as exc:
-            self._error=type(exc).__name__;raise RegistryError('registry guard failed') from exc
+        except BaseException as exc:
+            self._error=type(exc).__name__
+            if not isinstance(exc,Exception):raise
+            raise RegistryError('registry guard failed') from exc
         finally:self._busy=False
 
     def native_binding(self):
@@ -78,8 +82,10 @@ class CameraRegistry:
         try:
             self._owners()
             if self._error is not None or any(self._handle(g)!=self._gsg for g in self._gsg_refs):self._reject()
-        except Exception as exc:
-            self._error=type(exc).__name__;raise RegistryError('registry binding failed') from exc
+        except BaseException as exc:
+            self._error=type(exc).__name__
+            if not isinstance(exc,Exception):raise
+            raise RegistryError('registry binding failed') from exc
         finally:self._busy=False
         return (*self._texture_handles,self._gsg)
 

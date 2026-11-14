@@ -10,3 +10,14 @@ Ruling: Require nonzero readFBO and explicitly observed color selector — defau
 Preflight Task1→Task2: privateTexture/GSG tuple configures cache+bridge; native handles never enter descriptors. CPUfixture supplies clearly fake identities; live ownership/event coverage/driver state are not established by interop.
 
 Task1: RED10/10missingregistry→GREEN10; descriptor-reentry regression RED(ValueErrornotraised)→GREEN; final11PASS0.001s. Init/guards make atmost26boundgetGsg attempts and no RAM/render calls. Private handles vs nonce/count-only descriptors verified. Task1complete;Task2Ccache next.
+
+Correction: Task1final11tests ran0.002s; priorline0.001s was a transcription error; exception name is RegistryError.
+Task2: Ccache RED10missingmodule→9PASS/1testexpectation failure(eventcap);5recorded events include first valid observation, so capturedprefix1, not0. Prefix preserved and completion rejected; no cachelogic change needed.
+Ruling: Retain valid emittedprefix when later eventbudget fails — observation1 was valid before cap5 exhausted — failedcompletion/receipt prevents acceptance, and erasingprefix would discard actual evidence.
+Ruling: rc_finalize folds actualproducer finish and cacheerror (including OFF) — corefooter may report0 while cache failed — external sink/process receipt must still be qualified and combine its own failures.
+Task1additional cancellation regression RED(bindingreusable after KeyboardInterrupt)→GREEN; BaseException poisons registry while cancellation propagates.
+Focused23PASS0.610s before cancellationfix; final24focusedPASS recorded in active log. Initialfull1393PASS7skip90.426s retained; postcancellation fullsuite follows.
+ASan/UBSan41CPUscenarios exactnormal/sanitizedstreams+stats PASS; originalargs/incoming+returnederrno/registers/source preserved. Driverstate/eventdelivery/nativeauthority remainFalse.
+Preservation before review: all2624baseGitblobs/299pins/10originals/main/oldDraft102–106/eightnativehistories unchanged.
+
+Task2complete pre-review:24focusedPASS0.587s; full1394PASS7skip95.025s after cancellationfix;41ASan/UBSan PASS; finalbuild1.502365051s(notnativeoverhead). Onefreshwholebranchreview follows.
