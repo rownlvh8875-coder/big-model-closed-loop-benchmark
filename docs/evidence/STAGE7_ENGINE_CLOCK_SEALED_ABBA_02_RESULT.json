@@ -1,0 +1,515 @@
+{
+  "abba_accepted": false,
+  "abba_artifact": 14098023319,
+  "abba_artifact_bytes": 312967,
+  "abba_artifact_sha256": "b343cf496497b4ea0407717b87907418b3645ebe972898611b33ac2ad738ce4b",
+  "abba_cases_NOT_RUN": 4,
+  "abba_comparisons": null,
+  "abba_comparisons_NOT_RUN": 6,
+  "abba_finished_utc": "2026-11-14T04:27:58.060044+00:00",
+  "abba_head": "2981d89a17b2e1339be378db560960f6a4cc2729",
+  "abba_job": 132331060583,
+  "abba_operation_seconds": 56.17468597,
+  "abba_original_failure_fresh_verified": true,
+  "abba_original_failure_root_verified": true,
+  "abba_original_metadata_provider_bounds": [
+    0,
+    4
+  ],
+  "abba_run": 43556701512,
+  "abba_source_backed_containers": 0,
+  "abba_source_backed_loads": 0,
+  "abba_source_backed_native_starts": 0,
+  "abba_status": "NOT_RUN_TERMINAL_HOST_IDENTITY_REJECTION",
+  "accepted_cpu_flags_count": 119,
+  "accepted_cpu_model": "AMD EPYC 9V45 96-Core Processor",
+  "affinity_ids_equal": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "authority_files": {
+    "engine-clock-sealed-abba-02/abba/acquired.json": {
+      "nbytes": 357,
+      "sha256": "d702d3751f9b0f5bf8d6e7af97a63d1cca1ae04f68030cc3b4c1a2260c6d8235"
+    },
+    "engine-clock-sealed-abba-02/abba/fresh-raw-acceptance.json": {
+      "nbytes": 584,
+      "sha256": "694cc71bac3738caa845625271e46172508627d405976ed8d03a17ea672fa19e"
+    },
+    "engine-clock-sealed-abba-02/abba/fresh-raw-review.md": {
+      "nbytes": 3459,
+      "sha256": "ecf79d0752d7b6e08c528a5437f693f58957b984cf239091a8bd13f4dd2b3a9e"
+    },
+    "engine-clock-sealed-abba-02/abba/original-zip-members.json": {
+      "nbytes": 5892,
+      "sha256": "7f8d38eb3f7f4a6e5e1946e7d237c82f32f67e11aba5032310cf0dc622d152a2"
+    },
+    "engine-clock-sealed-abba-02/abba/registration.json": {
+      "nbytes": 1318,
+      "sha256": "278304cf3510512995d5ea2427f0fb3e61555ab9bdcacac020bae1138386430e"
+    },
+    "engine-clock-sealed-abba-02/abba/root-api/artifacts.json": {
+      "nbytes": 837,
+      "sha256": "05fc9d91b24bf916e4d690f3c5df0c7b5f913aefa6ffa1230c1e85268f9f5fc2"
+    },
+    "engine-clock-sealed-abba-02/abba/root-api/jobs.json": {
+      "nbytes": 2376,
+      "sha256": "c3c7ba8cf4488bc42c3807af8aa1e747d63098b591e9ae6e93fc33c54cf044b9"
+    },
+    "engine-clock-sealed-abba-02/abba/root-api/run.json": {
+      "nbytes": 15206,
+      "sha256": "553f31e4104170f60d611890b01a566bbbdf22778a7bdaf4e464d612d08dd716"
+    },
+    "engine-clock-sealed-abba-02/abba/root-api/unique_runs.json": {
+      "nbytes": 30431,
+      "sha256": "491423b2360a815dbca49c8124440cb08b1b5752da77067273832c0701b44038"
+    },
+    "engine-clock-sealed-abba-02/abba/root-api/workflow.json": {
+      "nbytes": 710,
+      "sha256": "6281edfac7f3ddab96947eb82be8dce781e99232c71148813dd3cdba6c3586c1"
+    },
+    "engine-clock-sealed-abba-02/abba/root-failure-authentication.json": {
+      "nbytes": 18904,
+      "sha256": "818af99c87c498bfa28b898d25cb97e18308a1990b29e39eb4583a6e7fdbb4cd"
+    },
+    "engine-clock-sealed-abba-02/abba/selected/acceptance-identity.json": {
+      "nbytes": 4885,
+      "sha256": "b7b3cd1541153afbfd7524edae724446b895c325d3317bdc17eaa31b41c5401c"
+    },
+    "engine-clock-sealed-abba-02/abba/selected/api/accepted-canary-artifact.json": {
+      "nbytes": 808,
+      "sha256": "1125acbddc02913a1fcf77f839b8717ab9ec1c29cc5d407a95d4255a523c20c1"
+    },
+    "engine-clock-sealed-abba-02/abba/selected/api/accepted-canary-jobs.json": {
+      "nbytes": 2376,
+      "sha256": "91cbc2f81a62830c8fec2fb1fd42b849c5e29f3cee7af3e26313cc2ebd0ec6a6"
+    },
+    "engine-clock-sealed-abba-02/abba/selected/api/accepted-canary-run.json": {
+      "nbytes": 15188,
+      "sha256": "4fc5bacddce92e28b57a429b354a62af30fc6b9aa0d43bee5ede96aca452ddce"
+    },
+    "engine-clock-sealed-abba-02/abba/selected/api/activation-commit.json": {
+      "nbytes": 1307,
+      "sha256": "12740cf3b939ac445c6b9411c05bb19e702b4411d9b37bbc64e71a7cf0bcb43d"
+    },
+    "engine-clock-sealed-abba-02/abba/selected/api/activation-compare.json": {
+      "nbytes": 14699,
+      "sha256": "5a0e50d99fe4ef1789f86b90cf47d19e9ba515e470cde44360e5314b2886b664"
+    },
+    "engine-clock-sealed-abba-02/abba/selected/api/canary-commit.json": {
+      "nbytes": 1298,
+      "sha256": "f3b584cb52a10b4548968478036fc2d6caec8f291f993d153731278e7bd39d2b"
+    },
+    "engine-clock-sealed-abba-02/abba/selected/api/canary-compare.json": {
+      "nbytes": 45186,
+      "sha256": "898b6ecc5cc1c63e52118ae63349915be8109d033c81e34f6659c847685d22bb"
+    },
+    "engine-clock-sealed-abba-02/abba/selected/api/http-events.jsonl": {
+      "nbytes": 9818,
+      "sha256": "b5d5caf3b3393d2e1fa2283af9125d47311428ca8cbd2513095b2bfc5b7b2493"
+    },
+    "engine-clock-sealed-abba-02/abba/selected/api/live-run.json": {
+      "nbytes": 15203,
+      "sha256": "d7fc6848e0f5766a08702143fa651026a300316db20a93782926dc579e663410"
+    },
+    "engine-clock-sealed-abba-02/abba/selected/api/live-unique-00.json": {
+      "nbytes": 30428,
+      "sha256": "6d83565e00241db00b541b81213aedb0c12eabfa791f88adb70e93c953d09a8b"
+    },
+    "engine-clock-sealed-abba-02/abba/selected/api/live-workflow.json": {
+      "nbytes": 700,
+      "sha256": "4e390dcdcb43a4c9755a61368bcdd9c98d3cb9c4b91750886a3bc7542bb87906"
+    },
+    "engine-clock-sealed-abba-02/abba/selected/api/producer-artifacts.json": {
+      "nbytes": 1631,
+      "sha256": "5feda038ecf512c15e9612ee2bee45852d176e901192dc2a012ec3fa438634ec"
+    },
+    "engine-clock-sealed-abba-02/abba/selected/api/producer-commit.json": {
+      "nbytes": 1292,
+      "sha256": "bfafa070f78dc2d96050d8f7cc71aeac94cbf8209a30b42780d8b1cbc85a1d79"
+    },
+    "engine-clock-sealed-abba-02/abba/selected/api/producer-compare.json": {
+      "nbytes": 26215,
+      "sha256": "728483182bf37724cf9d172c37779ac61caea5f84b53b2f2d9c3f6e4adfe7f25"
+    },
+    "engine-clock-sealed-abba-02/abba/selected/api/producer-jobs.json": {
+      "nbytes": 2510,
+      "sha256": "6d01ee1868ef6643efb28aa1e3f30ebb2f3d4531264d1dcc66ece555d2836f38"
+    },
+    "engine-clock-sealed-abba-02/abba/selected/api/producer-request-content.json": {
+      "nbytes": 18748,
+      "sha256": "843e5681ed24fddc2fc2be95376fee7b2e04fecbdd232dc427c4ecd0124de9fd"
+    },
+    "engine-clock-sealed-abba-02/abba/selected/api/producer-run.json": {
+      "nbytes": 15157,
+      "sha256": "fc4cba08938736b12760f0d7cea8936433cad6e0e02e24bdfc02c4e9afacd0a8"
+    },
+    "engine-clock-sealed-abba-02/abba/selected/api/producer-unique_runs.json": {
+      "nbytes": 15193,
+      "sha256": "430049cd71bac45e9afcea7949e095b288692c645fa88f7e17ef9dddb9ae8c3d"
+    },
+    "engine-clock-sealed-abba-02/abba/selected/api/producer-workflow.json": {
+      "nbytes": 676,
+      "sha256": "c5ad9820aed05ae8b3052c6a6a3066c58bb17492a00e5539ec154baeb18ee0ff"
+    },
+    "engine-clock-sealed-abba-02/abba/selected/api/source-pull_request-artifacts.json": {
+      "nbytes": 32,
+      "sha256": "244563f989470892c537c9a4622920af0d228ee4528f7d00c64a06d6cd95856c"
+    },
+    "engine-clock-sealed-abba-02/abba/selected/api/source-pull_request-jobs.json": {
+      "nbytes": 5102,
+      "sha256": "cf6a8e4c4a37b66da050b2cda2e0604affa1e116b3e29f02a5b84be0b450b7db"
+    },
+    "engine-clock-sealed-abba-02/abba/selected/api/source-pull_request-run.json": {
+      "nbytes": 15810,
+      "sha256": "ee6b144adb14d48e4f441ac8da258dbf40cf1682f6679e49c0ed33585498f9ef"
+    },
+    "engine-clock-sealed-abba-02/abba/selected/api/source-push-artifacts.json": {
+      "nbytes": 32,
+      "sha256": "244563f989470892c537c9a4622920af0d228ee4528f7d00c64a06d6cd95856c"
+    },
+    "engine-clock-sealed-abba-02/abba/selected/api/source-push-jobs.json": {
+      "nbytes": 5102,
+      "sha256": "6c3df493fdfba1d9d23b087618dd7045f3e9ed4008c0a5b8b277be3f81244cf9"
+    },
+    "engine-clock-sealed-abba-02/abba/selected/api/source-push-run.json": {
+      "nbytes": 15805,
+      "sha256": "eda3f0103b0cc63c5719c0e3bd0497759e8defacfff89503ad79ec4a07402c35"
+    },
+    "engine-clock-sealed-abba-02/abba/selected/consumed-request.json": {
+      "nbytes": 31040,
+      "sha256": "44a55d47b54fd5a24d7505e18599da9c95e719a8dfcaa1e2cf49f0a047497769"
+    },
+    "engine-clock-sealed-abba-02/abba/selected/docker/command-001/receipt.json": {
+      "nbytes": 722,
+      "sha256": "fbc977a719f28bbd4302807185f3be55df2fe2b3a538f98abd3dff368902d5af"
+    },
+    "engine-clock-sealed-abba-02/abba/selected/docker/command-002/receipt.json": {
+      "nbytes": 723,
+      "sha256": "5dbc17b6170b71220fb7f4877a837636b4b1c64455b8d1189d3ebdc587227359"
+    },
+    "engine-clock-sealed-abba-02/abba/selected/docker/offline-config/config.json": {
+      "nbytes": 26,
+      "sha256": "9fe9f70043516be91f67032f9f9981ba12c007977ba441ceedb31997696ba27e"
+    },
+    "engine-clock-sealed-abba-02/abba/selected/docker/qualification.json": {
+      "nbytes": 2409,
+      "sha256": "0aa3c5db075f69a4b71ab1decfc9d4f579e27a9ab612334d031bcbe1652b359e"
+    },
+    "engine-clock-sealed-abba-02/abba/selected/host-memory.json": {
+      "nbytes": 104,
+      "sha256": "83a7ac6c023fb3400d9c652368acdf86ae2414b45d553f5aae5bedb647df1c1a"
+    },
+    "engine-clock-sealed-abba-02/abba/selected/producer-authentication.json": {
+      "nbytes": 6255,
+      "sha256": "89a873d46136cee47125710587a185230fea9305a5bf73be0129a37146a15188"
+    },
+    "engine-clock-sealed-abba-02/abba/selected/result.json": {
+      "nbytes": 615,
+      "sha256": "25ee21ee6d9597a3b60d31b393c28ede3422f3791dfd69c6f7bae956a3bc8f6b"
+    },
+    "engine-clock-sealed-abba-02/abba/selected/source-authentication.json": {
+      "nbytes": 818,
+      "sha256": "146d94d4d7e1f3a3c3097345c1695c6ae0f374f251a99452b3edf28791173a51"
+    },
+    "engine-clock-sealed-abba-02/canary/acquired.json": {
+      "nbytes": 362,
+      "sha256": "8a0e8df676b830242c5b95fe5e4c3dc06cf2a8bdeb252fba9eed9d8b719a221c"
+    },
+    "engine-clock-sealed-abba-02/canary/fresh-raw-acceptance.json": {
+      "nbytes": 548,
+      "sha256": "54635d80672fb180f2909accc645bc3cb016c8749d72bc451950fc588df1b75b"
+    },
+    "engine-clock-sealed-abba-02/canary/fresh-raw-review.md": {
+      "nbytes": 3289,
+      "sha256": "1b97721aebac22ae59d74133070220c946d54b036922d65ad9caa8940ac63e6d"
+    },
+    "engine-clock-sealed-abba-02/canary/original-zip-members.json": {
+      "nbytes": 16697,
+      "sha256": "f4b22105fed72bda9b1108742b2a1656ef0e740aba34171c7f392b3492ad0dc9"
+    },
+    "engine-clock-sealed-abba-02/canary/registration.json": {
+      "nbytes": 510,
+      "sha256": "98f569bdbeb74c53a34055448d4188787a9737c6e9757bbc2fcfaa4ae16c53c5"
+    },
+    "engine-clock-sealed-abba-02/canary/root-acceptance.json": {
+      "nbytes": 298209,
+      "sha256": "fdb800e4fcc56e9032ccf4acb96411fdb1a5ef945106a7fdc8c30d88a8bee32e"
+    },
+    "engine-clock-sealed-abba-02/canary/root-api/artifacts.json": {
+      "nbytes": 840,
+      "sha256": "89a3eb55e45098ae5794053f796730993a2ac704f380ebc162c4e17c9269dafe"
+    },
+    "engine-clock-sealed-abba-02/canary/root-api/jobs.json": {
+      "nbytes": 2376,
+      "sha256": "91cbc2f81a62830c8fec2fb1fd42b849c5e29f3cee7af3e26313cc2ebd0ec6a6"
+    },
+    "engine-clock-sealed-abba-02/canary/root-api/run.json": {
+      "nbytes": 15188,
+      "sha256": "4fc5bacddce92e28b57a429b354a62af30fc6b9aa0d43bee5ede96aca452ddce"
+    },
+    "engine-clock-sealed-abba-02/canary/root-api/unique_runs.json": {
+      "nbytes": 15224,
+      "sha256": "a0187ad16d2c4dcdba5c98fbcc71674e87dceedba3db9419602be2ae95ec566b"
+    },
+    "engine-clock-sealed-abba-02/canary/root-api/workflow.json": {
+      "nbytes": 710,
+      "sha256": "6281edfac7f3ddab96947eb82be8dce781e99232c71148813dd3cdba6c3586c1"
+    },
+    "engine-clock-sealed-abba-02/canary/selected/api/http-events.jsonl": {
+      "nbytes": 7457,
+      "sha256": "e19723b9a594495576b1a789acf8778c9996321a8e8c1702d70dd81d8b2bf32f"
+    },
+    "engine-clock-sealed-abba-02/canary/selected/binding/binding.json": {
+      "nbytes": 53626,
+      "sha256": "4ed10f7c6f00874a5db052465c7fbaae03dd52103517dd797e5ed801917fb967"
+    },
+    "engine-clock-sealed-abba-02/canary/selected/case_00/case.json": {
+      "nbytes": 89993,
+      "sha256": "ee968e024f4bc4e3a01cee4d84bcdef51e8cd5e42b28deb60be5f1782835445d"
+    },
+    "engine-clock-sealed-abba-02/canary/selected/consumed-request.json": {
+      "nbytes": 30531,
+      "sha256": "f45251052571e350510a2bcfd214dd79519f4e02db940a1962d8fc7d44469b48"
+    },
+    "engine-clock-sealed-abba-02/canary/selected/controller.json": {
+      "nbytes": 11675,
+      "sha256": "062e251e61e5c98b39e60dece4a7490f05212e667ed726dccaf4c826233ac260"
+    },
+    "engine-clock-sealed-abba-02/canary/selected/host-memory.json": {
+      "nbytes": 104,
+      "sha256": "83a7ac6c023fb3400d9c652368acdf86ae2414b45d553f5aae5bedb647df1c1a"
+    },
+    "engine-clock-sealed-abba-02/canary/selected/launch-diagnostics.json": {
+      "nbytes": 2816,
+      "sha256": "3691cf531b3f455b7231b8db95760174a58cc2b9842380af8c5c9b2182c96175"
+    },
+    "engine-clock-sealed-abba-02/canary/selected/launch.json": {
+      "nbytes": 3536,
+      "sha256": "0d6859804dcf290b794becec5642e285a2b109d3a94f7654810f01f1e6c1aec3"
+    },
+    "engine-clock-sealed-abba-02/canary/selected/output/child-00-admission.json": {
+      "nbytes": 26697,
+      "sha256": "a7db83002478f7b9a8bb00becdad316f0fafbdb2a14224b9dadc205cf264bff5"
+    },
+    "engine-clock-sealed-abba-02/canary/selected/output/child-00-host-comparison.json": {
+      "nbytes": 2655,
+      "sha256": "56f07f8ce3d96f1f9938075d6505a4afd0b93d0e0414a5790f58c65771befeb8"
+    },
+    "engine-clock-sealed-abba-02/canary/selected/output/child-00-identity-comparison.json": {
+      "nbytes": 6838,
+      "sha256": "5f8ab229230c592a8a29a8625c908df3f359c6f1c2662a0297038e6d79f0e0bf"
+    },
+    "engine-clock-sealed-abba-02/canary/selected/output/child-00-loaded-files.json": {
+      "nbytes": 223658,
+      "sha256": "e87c0dd4f6a250c45f1c4d710a11a3a1c9478e47d4427f947f86f022ead7b9cc"
+    },
+    "engine-clock-sealed-abba-02/canary/selected/output/child-00-memory-after.json": {
+      "nbytes": 344,
+      "sha256": "6fcfcbbe969844949c0c71f96a25a61136846ab645bbf7c05eba21818d05e629"
+    },
+    "engine-clock-sealed-abba-02/canary/selected/output/parent-admission.json": {
+      "nbytes": 25819,
+      "sha256": "749764e77857adf4104832868a65fbdae9db76b597ccf634bd09ef24951427b6"
+    },
+    "engine-clock-sealed-abba-02/canary/selected/output/parent-host-comparison.json": {
+      "nbytes": 2653,
+      "sha256": "622f4e15a85904ff5cb804f49b168fd5ef3f9dd279cf64140d6d6c22e4c6b11b"
+    },
+    "engine-clock-sealed-abba-02/canary/selected/output/parent-identity-comparison.json": {
+      "nbytes": 6836,
+      "sha256": "d56f40619b4f81d7def08494184f0e9745f2d255575a9b465ef226e85b79232c"
+    },
+    "engine-clock-sealed-abba-02/canary/selected/output/parent-loaded-files.json": {
+      "nbytes": 28398,
+      "sha256": "d9531cbbe34bd66ea16698990fd5dfb28f0fff653be5970280115388be286789"
+    },
+    "engine-clock-sealed-abba-02/canary/selected/output/parent-memory-after.json": {
+      "nbytes": 344,
+      "sha256": "41fa5ea38b6bbb4c7e95cb40f676de03533789ef8f4c300fa14a00f23663b668"
+    },
+    "engine-clock-sealed-abba-02/canary/selected/output/phase.json": {
+      "nbytes": 17039,
+      "sha256": "4e0e980ee7727a756e5e7e0ea768ce6717f425f488cf10a7a098b2265bc1abc8"
+    },
+    "engine-clock-sealed-abba-02/canary/selected/output/post-child-00-maps.json": {
+      "nbytes": 36971,
+      "sha256": "34544738d205b1a8842564fd28161b663c10c731c5b44bbf9dafd46fe8b6e1cf"
+    },
+    "engine-clock-sealed-abba-02/canary/selected/output/post-child-00-modules.json": {
+      "nbytes": 191714,
+      "sha256": "a6c9da6baa1e7f223bd6798e471bb55c29e7f456961e1fdaecb6a81c4e91d80a"
+    },
+    "engine-clock-sealed-abba-02/canary/selected/output/post-parent-maps.json": {
+      "nbytes": 6623,
+      "sha256": "a2389005bb66e6c12a714fc0bc9ce27bf837a165f5db26d12f3abea48f1c46dc"
+    },
+    "engine-clock-sealed-abba-02/canary/selected/output/post-parent-modules.json": {
+      "nbytes": 24538,
+      "sha256": "e6012d5b2994b9e0b53b7c9e856dbfa1a1c37b816bdfcc2dbbc0109dbd4e2de2"
+    },
+    "engine-clock-sealed-abba-02/canary/selected/output/preflight-child-00-maps.json": {
+      "nbytes": 3920,
+      "sha256": "036b865b57f21f979fa433b72385727b837c9c13080a45f6b74dff17cf202f3f"
+    },
+    "engine-clock-sealed-abba-02/canary/selected/output/preflight-parent-maps.json": {
+      "nbytes": 3920,
+      "sha256": "1866185e32d36ef88e4fc614a58932c3b0631f9d45ddd6025744c1c6f66a8eec"
+    },
+    "engine-clock-sealed-abba-02/canary/selected/producer-authentication.json": {
+      "nbytes": 6255,
+      "sha256": "89a873d46136cee47125710587a185230fea9305a5bf73be0129a37146a15188"
+    },
+    "engine-clock-sealed-abba-02/canary/selected/result.json": {
+      "nbytes": 462,
+      "sha256": "5131fed989d4c0cfa02aadaf56a99c11dd6c025c076cda242b16bbf581b1bc2b"
+    },
+    "engine-clock-sealed-abba-02/canary/selected/source-authentication.json": {
+      "nbytes": 820,
+      "sha256": "a5ce0461bc1db0a4686ad53a2558f601147fb0d7370b89749a028d127c75abd8"
+    },
+    "engine-clock-sealed-abba-02/source-qualification/43555577340-artifacts.json": {
+      "nbytes": 32,
+      "sha256": "244563f989470892c537c9a4622920af0d228ee4528f7d00c64a06d6cd95856c"
+    },
+    "engine-clock-sealed-abba-02/source-qualification/43555577340-jobs.json": {
+      "nbytes": 5102,
+      "sha256": "6c3df493fdfba1d9d23b087618dd7045f3e9ed4008c0a5b8b277be3f81244cf9"
+    },
+    "engine-clock-sealed-abba-02/source-qualification/43555577340-run.json": {
+      "nbytes": 15805,
+      "sha256": "eda3f0103b0cc63c5719c0e3bd0497759e8defacfff89503ad79ec4a07402c35"
+    },
+    "engine-clock-sealed-abba-02/source-qualification/43555631622-artifacts.json": {
+      "nbytes": 32,
+      "sha256": "244563f989470892c537c9a4622920af0d228ee4528f7d00c64a06d6cd95856c"
+    },
+    "engine-clock-sealed-abba-02/source-qualification/43555631622-jobs.json": {
+      "nbytes": 5102,
+      "sha256": "cf6a8e4c4a37b66da050b2cda2e0604affa1e116b3e29f02a5b84be0b450b7db"
+    },
+    "engine-clock-sealed-abba-02/source-qualification/43555631622-run.json": {
+      "nbytes": 15810,
+      "sha256": "ee6b144adb14d48e4f441ac8da258dbf40cf1682f6679e49c0ed33585498f9ef"
+    },
+    "engine-clock-sealed-abba-02/source-qualification/qualified.json": {
+      "nbytes": 858,
+      "sha256": "679253c7b60c79e9770d119b048f9dae28b6cd96fc0751f5ac4a195fe487c436"
+    },
+    "engine-clock-sealed-abba-02/source-qualification/runs.json": {
+      "nbytes": 36777,
+      "sha256": "7f0dcb09ddaa96ebae0a6bc02ed1ca881f8938f4bdded9b85a07430d2a50c853"
+    }
+  },
+  "canary_accepted": true,
+  "canary_artifact": 14098196994,
+  "canary_artifact_bytes": 338935214,
+  "canary_artifact_sha256": "af9d1ce0ecadeae8777afc2e2cd3f1401089856ab20ae4c927ad7bb8e747da6b",
+  "canary_cgroup_peak_bytes": 4294967296,
+  "canary_clock_snapshots": 48,
+  "canary_fresh_raw_accepted": true,
+  "canary_head": "adcb489f39d812544155a976eca4895aed26f561",
+  "canary_job": 132328552158,
+  "canary_max_events": 1238,
+  "canary_observer_getters": 144,
+  "canary_oom_events": 0,
+  "canary_oom_kills": 0,
+  "canary_operation_seconds": 179.382479144,
+  "canary_pairs": 6,
+  "canary_peak_is_rss": false,
+  "canary_phase_seconds": 64.10469873600002,
+  "canary_provider_closed": 1,
+  "canary_provider_constructed": 1,
+  "canary_ram_reads": 12,
+  "canary_root_accepted": true,
+  "canary_run": 43555898389,
+  "canary_task_steps": 12,
+  "canary_texture_readings": 24,
+  "cloud_published": false,
+  "copied_archives": 3,
+  "derived_identity_hash_differences": 2,
+  "direct_child_request_only": true,
+  "engine_equal": true,
+  "existing_skips": 7,
+  "expanded": "NOT_RUN",
+  "future_native_or_abba_authorized": false,
+  "gate_relaxed": false,
+  "generated_memory_binary_equality_proven": false,
+  "geometry_optics_full_s": "NOT_VALIDATED",
+  "gpu_freshness_proven": false,
+  "image_equal": true,
+  "independent_host_mismatch_fields": [
+    "cpu_model",
+    "cpu_flags"
+  ],
+  "installed_bytes_each": 1670492280,
+  "installed_manifest_reference": {
+    "nbytes": 8339196,
+    "path": "docs/evidence/engine-clock-sealed-image-06/installed-files.json",
+    "sha256": "f81fa5be38bc9853b6eff1d0ea524be97f3d1e92f5c1f0f9e1449a11b4c4b59f"
+  },
+  "main_merged": false,
+  "memtotal_bytes_equal": 16760344576,
+  "model_graphfeed_observed": false,
+  "native_ort_sessions": 0,
+  "observed_cpu_flags_count": 102,
+  "observed_cpu_model": "AMD EPYC 9V74 80-Core Processor",
+  "observer_neutrality_proven": false,
+  "official_model_calls": 0,
+  "old04_oom_confirmed": false,
+  "old_requests_replayed": false,
+  "original_scientific_strict": "FAIL_0_OF_4",
+  "prefix_bytes_each": 23107322,
+  "previous01_failed_request_consumed": true,
+  "registry_published": false,
+  "remaining_cases_reused": false,
+  "remaining_identity_fields_equal": true,
+  "schema": "sealed-abba-02-final-evidence-v1",
+  "scientific_result_promoted": false,
+  "source_backed_counts_are_os_attestation": false,
+  "source_branch": "fix/engine-clock-sealed-abba-timeout-v2",
+  "source_ci": [
+    {
+      "event": "push",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "id": 132327561654,
+          "name": "synthetic-unit"
+        },
+        {
+          "conclusion": "success",
+          "id": 132327562040,
+          "name": "onnx-interface-test"
+        }
+      ],
+      "run_id": 43555577340
+    },
+    {
+      "event": "pull_request",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "id": 132327727331,
+          "name": "synthetic-unit"
+        },
+        {
+          "conclusion": "success",
+          "id": 132327727545,
+          "name": "onnx-interface-test"
+        }
+      ],
+      "run_id": 43555631622
+    }
+  ],
+  "source_closure_files": 223,
+  "source_pr": 90,
+  "source_review_head": "c849d05823adf169a4ab76d95cefd72cd3b42b9a",
+  "source_sha": "4f667825b2c4b913ed89328937bbccfd7139349f",
+  "source_suite_seconds": 94.807,
+  "source_tests": 1129,
+  "stage7": "INCOMPLETE",
+  "status": "ACCEPTED_NEW_CANARY_AND_AUTHENTIC_TERMINAL_ABBA_HOST_REJECTION"
+}

@@ -1,6 +1,41 @@
 # Stage 7 continuation — verified results, renderer cause still open
 
-## Current checkpoint (2026-11-14 11:53 KST — sealed native camera canary accepted)
+## Current checkpoint (2026-11-14 13:27 KST — new canary accepted, ABBA host gate rejected)
+
+New campaign02 source4f667825b2c4b913ed89328937bbccfd7139349f/Draft90 actually
+completed C43555898389/job132328552158/artifact14098196994 at activation
+adcb489f39d812544155a976eca4895aed26f561. Root+fresh original acceptance verified
+223pins/both inventories+prefix/env/actual host+affinity+memory/6raw→canvas→I420pairs/
+12RAM/12task/24Texture/48clock/144getters/provider1closed1/cleanexit.4GiBaggregate
+peak/OOM0/NOTRSS. Source1129tests/7skipPASS94.807s and4exact CIjobs PASS.
+
+Only after genuine fresh Cacceptance, request-only direct-child A2981d89a17b2e1339be378db560960f6a4cc2729
+ran43556701512/job132331060583/artifact14098023319. WholeAfailed at exact host
+identity before image load/container/native start: Ccpu9V45/119flags vs A9V74/
+102flags. Remaining identity including kernel/engine/image/affinity/MemTotal
+matched. Root+fresh independently authenticated this FAILURE, not an ABBA dataset.
+Original generic bounds[0,4] stay unchanged; source-backed pre-native conclusion
+is not OS forensic attestation. Fourcases/sixcomparisons NOT_RUN; no retry,
+remaining allowance reuse or gate relaxation. Earlier01prestart2100>1800failure
+was preserved and only new02budget narrowed to1800; old215source bytes unchanged.
+
+Details: [actual result](STAGE7_ENGINE_CLOCK_SEALED_ABBA_RESULT.md),
+[final authority](evidence/STAGE7_ENGINE_CLOCK_SEALED_ABBA_02_RESULT.json),
+[initial ledger](STAGE7_ENGINE_CLOCK_SEALED_ABBA_LEDGER.md),
+[timeout/actual-result ledger](STAGE7_ENGINE_CLOCK_SEALED_ABBA_TIMEOUT_LEDGER.md).
+Evidence HEAD is not executed source. All actual source/activation/request/ZIP/API/
+originals/oldreview histories retained; original root-stage freshflagsfalse are
+unchanged, separate final receipts record actual fresh acceptance.
+
+Next priority: new same-host execution lifecycle that can complete C and genuine
+root/fresh original acceptance before A while preserving source/provenance/full
+identity gates. No fleet provisioning, gate relaxation, new native operation or
+old01/02/unusedcase replay is authorized by these consumed requests. Design/test/
+review a distinct protocol/source/budget and then new C/Arequests. Scientific
+strict0/4FAIL, expandedNOT_RUN, geometry/optics/fullSunknown, Stage7INCOMPLETE,
+native officialmodel/ORT0, mainunmerged/Cloudandregistryunpublished remain.
+
+## Previous checkpoint (2026-11-14 11:53 KST — sealed native camera canary accepted)
 
 New sealed image006 actually ran the original MetaDrive camera/engine-clock
 canary. Run43548412476/job132305005643/attempt1 SUCCESS at source

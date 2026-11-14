@@ -57,3 +57,13 @@ Final: fixed SA-I1/I2/I3 — all3owned fixtures RED→GREEN in one pass; full112
 7existing skips PASS102.383s (/tmp/sealed-abba-fixed-full-suite.log), no rereview.
 Task1/Task2 source implementation complete. Runtime outcome remains NOT_RUN until
 exact qualified source/sole Crequest and independent actual raw acceptance.
+
+Actual source17ef2f5/Draft89 exact4CIjobs passed. Sole01Cactivationbc48bdc/
+requestd695cea31547d06b9d51d152f85866636ce27b34ec8febdad562d664c2e4861f
+ran43554149287/wf417996810/job132323069182 and FAILED94.458s before Popen.
+Originalartifact14097905244/322470044B/f91ecf9e.../49safeCRCmembers/source215pins/
+3copiedTARs/launchgate verified. Statecreated. Registered2100start timeout exceeds
+frozen primitive1800max, deterministically reproduced. Original bounds[0,4]
+unchanged; source-backed native-start0 is not OS forensic attestation. No01A.
+Consumed01 preserved; distinct02source lowers only its budget to1800, retains all
+215oldsource bytes. Actual02Caccepted/Ahostgatefailed in timeout ledger/result.
