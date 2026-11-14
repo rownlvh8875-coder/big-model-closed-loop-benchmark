@@ -2,14 +2,15 @@
   "actual_allocation_bound": false,
   "actual_camera_registry_bound": false,
   "actual_gl_state_bound": false,
-  "asan_ubsan_scenarios": 31,
+  "asan_ubsan_scenarios": 34,
   "base_files_preserved": 2515,
   "base_sha": "a0e072e450cf6591b9da686711196d56eb9165a1",
-  "build_wall_seconds": 2.9348816059646197,
+  "build_wall_seconds": 3.4087920250021853,
   "call_va": 405596,
   "consumed_native_allowance_remaining": 0,
   "file_call_abi_bound": true,
   "got_va": 836944,
+  "historical_reviewed_index": "before-fix/relocated-proof-index.json",
   "method_va": 404560,
   "new_gl_calls": 0,
   "new_model_runs": 0,
@@ -25,9 +26,18 @@
   ],
   "old_source_pins_preserved": 299,
   "original_gpu_bytes_observed": false,
+  "original_incoming_errno_preserved": true,
   "original_strict_pass": false,
   "plt_va": 170656,
   "return_va": 405601,
+  "review": {
+    "critical": 0,
+    "fix_passes": 1,
+    "important_fixed": 1,
+    "important_found": 1,
+    "minor": 0,
+    "rereviews": 0
+  },
   "runtime_admission_ready": false,
   "runtime_mapping_bound": false,
   "saved_registers": {
@@ -42,13 +52,13 @@
     "z": 28
   },
   "stage7_complete": false,
-  "status": "CPU_BRIDGE_REVIEW_PENDING",
-  "synthetic_scenarios": 31,
+  "status": "CPU_ABI_BRIDGE_VERIFIED_RUNTIME_INACTIVE",
+  "synthetic_scenarios": 34,
   "tests": {
-    "focused": 18,
-    "seconds": 117.097,
+    "focused": 19,
+    "seconds": 118.438,
     "skipped": 7,
-    "total": 1369
+    "total": 1370
   },
   "view": 0,
   "z": -1

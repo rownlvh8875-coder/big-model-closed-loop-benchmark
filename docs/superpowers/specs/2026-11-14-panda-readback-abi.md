@@ -27,7 +27,8 @@ the existing rb_read exactly once. Outside windows/OFF it reads no pixel/pack st
 active invalid returnPC/registry/GSG/r15/extent/view/z/thread/reentrancy is sticky and
 invalidates finalization while originals still run. Only after exact returnPC and
 registered identity match may it read the two qualified GSG caller stack locals.
-The original return errno survives all observer work.
+The original receives the caller incoming errno even if the pre-call callback
+changes it; original returned errno survives copying/emission and dispatcher work.
 
 Two unique registered Texture identities map explicitly to Road1/Wide2, separately
 from alternating requested camera. A supplied CPU-only cached-state callback gives

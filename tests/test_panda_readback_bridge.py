@@ -40,6 +40,12 @@ class PandaReadbackBridgeTests(unittest.TestCase):
         self.assertEqual((s['original_calls'],s['args_ok'],s['regs_ok'],s['errno_ok'],s['source_ok'],s['finish']),(2,1,1,1,1,0))
         self.assertEqual(rows[0][0][10:14],(-2147483631,2147483624,5,3))
         self.assertEqual(rows[0][0][25],4096);self.assertEqual(s['callbacks'],2)
+    def test_observer_cannot_change_original_incoming_or_unchanged_errno(self):
+        for mode in ('errno_keep','errno_check','offerrno_keep'):
+            raw,s=sample(self.exe,mode)
+            with self.subTest(mode=mode):
+                self.assertEqual((s['incoming_ok'],s['errno_ok'],s['args_ok'],s['regs_ok'],s['finish']),(1,1,1,1,0))
+                self.assertTrue(decode_sample(raw,s,mode)['cpu_window_closed'])
     def test_captured_register_extent_and_registered_producer_replace_callback_claims(self):
         raw,s=sample(self.exe,'basic');r=decode_sample(raw,s)['records']
         self.assertEqual([(x.capacity,x.producer_camera,x.label_basis,x.requested_camera) for x in r],[(4096,1,1,1),(4096,2,1,1)])

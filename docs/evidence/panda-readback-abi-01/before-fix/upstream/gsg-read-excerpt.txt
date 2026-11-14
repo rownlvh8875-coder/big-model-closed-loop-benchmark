@@ -1,0 +1,39 @@
+7457:       break;
+7458:     }
+7459:     GLCAT.spam(false)
+7460:       << ")" << endl;
+7461:   }
+7462: #endif  // NDEBUG
+7463: 
+7464:   unsigned char *image_ptr = tex->modify_ram_image();
+7465:   size_t image_size = tex->get_ram_image_size();
+7466:   if (z >= 0 || view > 0) {
+7467:     image_size = tex->get_expected_ram_page_size();
+7468:     if (z >= 0) {
+7469:       image_ptr += z * image_size;
+7470:     }
+7471:     if (view > 0) {
+7472:       image_ptr += (view * tex->get_z_size()) * image_size;
+7473:       nassertr(view < tex->get_num_views(), false);
+7474:     }
+7475:   }
+7476: 
+7477:   glReadPixels(xo, yo, w, h, external_format,
+7478:                get_component_type(component_type), image_ptr);
+7479: 
+7480:   // We may have to reverse the byte ordering of the image if GL didn't do it
+7481:   // for us.
+7482:   if (external_format == GL_RGBA || external_format == GL_RGB) {
+7483:     PTA_uchar new_image;
+7484:     const unsigned char *result =
+7485:       fix_component_ordering(new_image, image_ptr, image_size,
+7486:                              external_format, tex);
+7487:     if (result != image_ptr) {
+7488:       memcpy(image_ptr, result, image_size);
+7489:     }
+7490:   }
+7491: 
+7492:   report_my_gl_errors();
+7493:   return true;
+7494: }
+7495: 

@@ -19,7 +19,7 @@ static unsigned char *pixels,*snapshot;
 static size_t capacity=4096;
 static void *bridge;
 static const char *mode;
-static unsigned originals,callbacks,emits,args_ok=1,regs_ok=1,errno_ok=1,source_ok=1,depth;
+static unsigned originals,callbacks,emits,args_ok=1,regs_ok=1,errno_ok=1,source_ok=1,incoming_ok=1,depth;
 static uint32_t producer=1;
 
 static int observer(uintptr_t texture,uintptr_t gsg,rb_read_state *out,void *user) {
@@ -41,6 +41,7 @@ static int emitter(const unsigned char *header,size_t n,const unsigned char *pay
   errno=EIO;return strcmp(mode,"footerfail")==0 && n==96?-1:0;
 }
 static void original(int32_t x,int32_t y,int32_t w,int32_t h,uint32_t format,uint32_t type,void *p) {
+  if(strstr(mode,"errno_")!=NULL && errno!=ERANGE)incoming_ok=0;
   originals++;
   if(x!=call.x || y!=call.y || w!=call.w || h!=call.h || format!=call.format || type!=call.type || p!=call.pixels)args_ok=0;
   if(strcmp(mode,"reentrant")==0 && !depth){depth=1;if(!pb_fixture_call(&call))regs_ok=0;depth=0;}
@@ -56,12 +57,13 @@ static void original(int32_t x,int32_t y,int32_t w,int32_t h,uint32_t format,uin
     }
     memcpy(snapshot,pixels,capacity);
   }
-  errno=EDOM;
+  if(strstr(mode,"errno_keep")==NULL)errno=EDOM;
 }
 static void invoke(void){
+  if(strstr(mode,"errno_")!=NULL)errno=ERANGE;
   if(strstr(mode,"wrongreturn")!=NULL)pb_entry(call.x,call.y,call.w,call.h,call.format,call.type,call.pixels);
   else if(!pb_fixture_call(&call))regs_ok=0;
-  if(errno!=EDOM)errno_ok=0;
+  if(errno!=(strstr(mode,"errno_keep")!=NULL?ERANGE:EDOM))errno_ok=0;
   if(memcmp(pixels,snapshot,capacity))source_ok=0;
 }
 static void *worker(void *arg){(void)arg;invoke();return NULL;}
@@ -108,6 +110,6 @@ int main(int argc,char **argv){
   int finish=pb_finish(bridge);
   if(strcmp(mode,"outside")==0)invoke();
   pb_stats stats;pb_get_stats(bridge,&stats);
-  fprintf(stderr,"{\"source\":\"SYNTHETIC_CPU_ABI_CALLER_ONLY\",\"original_calls\":%u,\"callbacks\":%u,\"emits\":%u,\"args_ok\":%u,\"regs_ok\":%u,\"errno_ok\":%u,\"source_ok\":%u,\"error\":%u,\"bridge_error\":%u,\"captured\":%" PRIu64 ",\"attempts\":%" PRIu64 ",\"forwards\":%" PRIu64 ",\"wire_bytes\":%" PRIu64 ",\"finish\":%d,\"new_gl_calls\":0,\"runtime_admission_ready\":false}\n",originals,callbacks,emits,args_ok,regs_ok,errno_ok,source_ok,stats.core.error,stats.bridge_error,stats.core.captured,stats.core.attempts,stats.core.forwards,stats.core.data_wire_bytes,finish);
+  fprintf(stderr,"{\"source\":\"SYNTHETIC_CPU_ABI_CALLER_ONLY\",\"original_calls\":%u,\"callbacks\":%u,\"emits\":%u,\"args_ok\":%u,\"regs_ok\":%u,\"errno_ok\":%u,\"source_ok\":%u,\"incoming_ok\":%u,\"error\":%u,\"bridge_error\":%u,\"captured\":%" PRIu64 ",\"attempts\":%" PRIu64 ",\"forwards\":%" PRIu64 ",\"wire_bytes\":%" PRIu64 ",\"finish\":%d,\"new_gl_calls\":0,\"runtime_admission_ready\":false}\n",originals,callbacks,emits,args_ok,regs_ok,errno_ok,source_ok,incoming_ok,stats.core.error,stats.bridge_error,stats.core.captured,stats.core.attempts,stats.core.forwards,stats.core.data_wire_bytes,finish);
   free(bridge);free(scratch);free(snapshot);free(pixels);return 0;
 }

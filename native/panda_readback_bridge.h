@@ -6,6 +6,8 @@
  * Qualified caller must bind exact mapped code/returnPC and real Texture/GSG
  * identities. observe reads only cached, pre-observed GL state: no GL query/read.
  * Actual mapped ABI/allocation/state/identity/receipt transport remains unqualified.
+ * The original receives the caller's incoming errno; its returned errno survives
+ * both pre-call observation and post-call copying/emission.
  * Install once before invoking pb_entry; no uninstall/rebind, concurrent lifecycle
  * calls or longjmp. Caller-owned context/scratch/config/identities stay alive.
  * Use only pb_begin/end/finish for this embedded core. Final receipt must use

@@ -27,6 +27,10 @@ static int fail(pb_context *c,uint32_t error){
   uint32_t expected=0;(void)atomic_compare_exchange_strong(&c->error,&expected,error);return -1;
 }
 static int owner(pb_context *c){return pthread_equal(c->owner,pthread_self())?1:(fail(c,PB_THREAD),0);}
+static void forward(pb_context *c,const pb_frame *f,const rb_read_state *state,int incoming_errno){
+  errno=incoming_errno;
+  rb_read(c->core,c->binding.original,f->x,f->y,f->w,f->h,f->format,f->type,f->pixels,state);
+}
 static size_t core_offset(void){
   size_t a=_Alignof(max_align_t);return (sizeof(pb_context)+a-1)/a*a;
 }
@@ -55,18 +59,19 @@ int pb_begin(void *ctx,uint32_t call,uint32_t camera){
 }
 /* Hidden C endpoint for the assembly frame; not a public arbitrary-frame API. */
 __attribute__((visibility("hidden"))) void pb_dispatch(const pb_frame *f){
+  int incoming_errno=errno;
   pb_context *c=atomic_load(&installed);
   if(!c)__builtin_trap(); /* Entry-before-install violates the documented ABI. */
   if(!atomic_load(&c->active)){
-    rb_read(c->core,c->binding.original,f->x,f->y,f->w,f->h,f->format,f->type,f->pixels,NULL);return;
+    forward(c,f,NULL,incoming_errno);return;
   }
   uint64_t ordinal=atomic_fetch_add(&c->entries,1)+1;
   if(!owner(c)){
-    rb_read(c->core,c->binding.original,f->x,f->y,f->w,f->h,f->format,f->type,f->pixels,NULL);return;
+    forward(c,f,NULL,incoming_errno);return;
   }
   if(c->busy){
     (void)fail(c,PB_REENTRANT);
-    rb_read(c->core,c->binding.original,f->x,f->y,f->w,f->h,f->format,f->type,f->pixels,NULL);return;
+    forward(c,f,NULL,incoming_errno);return;
   }
   c->busy=1;rb_read_state state={0};unsigned producer=0;
   if(ordinal-c->window_start>c->config.reads_per_window)(void)fail(c,PB_LIMIT);
@@ -95,7 +100,7 @@ __attribute__((visibility("hidden"))) void pb_dispatch(const pb_frame *f){
     if(atomic_load(&c->error))state.known=0;
     state.capacity=f->capacity;state.producer_camera=producer;state.label_basis=1;
   }
-  rb_read(c->core,c->binding.original,f->x,f->y,f->w,f->h,f->format,f->type,f->pixels,&state);
+  forward(c,f,&state,incoming_errno);
   int original_errno=errno;c->busy=0;errno=original_errno;
 }
 int pb_end(void *ctx){

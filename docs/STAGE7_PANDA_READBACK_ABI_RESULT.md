@@ -13,7 +13,7 @@ GLentrySP+28/+48. These are instructions in an exact file, not observed mapped
 runtime code, live allocation validity or actual GPU bytes.
 
 The new inert assembly/C bridge preserves the7original GL-shaped arguments,
-callee-saved registers and original return errno, then uses the existing bounded
+callee-saved registers and caller incoming and original returned errno, then uses the existing bounded
 CPU core. It exposes no GL/loader symbol and installs no interposer. Exact expected
 returnPC/registeredTexture/GSG checks precede reading qualified caller stack slots.
 Wrong identity/extent/view/state/thread/reentrancy fails sticky while originals run.
@@ -36,7 +36,12 @@ checks all6callee-saved registers, and validates signed/scalar/stack arguments.
 31scenarios pass ASan/UBSan with exact normal/sanitized streams/counters, including
 bad callers/identity/span,thread/reentrancy,OFF,pack padding,emitter failures and
 max24record55,900,512B. Build smoke2.934881606s wall excludes tests/review/CI/development
-and measures no live GL overhead. Review/CI closeout is pending.
+and measures no live GL overhead. The sole fresh review found1Important incoming-errno
+leak, noCritical/Minor. One RED→GREEN fix pass restores caller errno immediately
+before every original forward;19focused tests and final whole1370tests PASS7skip
+118.438s.34CPU ASan/UBSan scenarios pass, final build3.408792025s wall. No rereview.
+Reviewed pre-fix proofs remain under before-fix/ with a relocated index. Exact
+Draft/head CI closeout is recorded in the PR body and retained output directory.
 
 All2515base files/299oldsourcepins and10original trace/graph/ZIP artifacts are
 byte-preserved. Main, old Drafts102–105 and native histories are unchanged. No new
@@ -51,3 +56,6 @@ native collection is activated by these file-level and CPU checks.
 See [machine result](evidence/panda-readback-abi-01/result.json),
 [proof index](evidence/panda-readback-abi-01/proof-index.json) and
 [decisions/costs](STAGE7_PANDA_READBACK_ABI_LEDGER.md).
+
+The [original review](evidence/PANDA_READBACK_ABI_01_REVIEW.md) and
+[next execution steps](STAGE7_PANDA_READBACK_ABI_CONTINUATION.md) are retained.

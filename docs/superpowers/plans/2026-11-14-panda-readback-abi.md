@@ -24,15 +24,15 @@ Preserve all2515basefiles at a0e072e450cf6591b9da686711196d56eb9165a1/299oldpins
 **Files:** scripts/panda_readback_abi.py; tests/test_panda_readback_abi.py.
 **Interfaces:** qualify_elf(blob:bytes)->dict; inspect_elf(blob:bytes)->dict for bounded structural checks; pinned contract carries method0x62c50,size4227,call0x6305c,return0x63061,PLT0x29aa0,GOT0xcc550,code/ELF SHA and SysV roles.
 
-- [ ] RED tests: syntheticELF64 has one executable mapping/directcall/PLT+JUMP_SLOT/unique dynsym; malformed/truncated/overlap/nonexec/foreignmachine/calltarget/relocation rejected. Exact real ELF mutation/qualification smoke is separate retained offline data check.
-- [ ] Minimal bounded parser+qualification; focused unittest PASS; commit with source-contract receipt.
+- [x] RED tests: syntheticELF64 has one executable mapping/directcall/PLT+JUMP_SLOT/unique dynsym; malformed/truncated/overlap/nonexec/foreignmachine/calltarget/relocation rejected. Exact real ELF mutation/qualification smoke is separate retained offline data check.
+- [x] Minimal bounded parser+qualification; focused unittest PASS; commit with source-contract receipt.
 
 ### Task2: Assembly entry/C dispatcher and actual compiled CPU caller
 
 **Files:** native/panda_readback_bridge.{h,c,S}; tests/fixtures/panda_readback_caller.S; tests/fixtures/panda_readback_fixture.c; tests/test_panda_readback_bridge.py.
 **Interfaces:** pb_context_size, pb_install(storage,bytes,config,scratch,cap,emitter,user,binding),pb_begin(ctx,host,camera),pb_entry(original7args),pb_end,pb_finish,pb_get_stats. Binding supplies original,expected_return,expected_gsg,texture[2],cached-state callback. No runtime loader. rb_read_state capacity/producer overwritten by captured registers/registry.
 
-- [ ] RED compiled caller independently sets registers/stack locals and checks sentinels. Assertions: unchanged signedargs/stackpointer,errno/source,exact forwards; ON/OFF/outside;wrongreturn/tex/GSG/r15/extent/view/z/state/PBO/thread/reentrancy; Road/Wide/requester separation; strict codec+external receipt rejects bridge/footer failures.
-- [ ] Implement register snapshot and bounded dispatcher; focused PASS; compiled ASan/UBSan, inspect binary imports/no GL linkage; retain25+scenario raw CPU receipts and actual ELF source-binding audit.
+- [x] RED compiled caller independently sets registers/stack locals and checks sentinels. Assertions: unchanged signedargs/stackpointer,errno/source,exact forwards; ON/OFF/outside;wrongreturn/tex/GSG/r15/extent/view/z/state/PBO/thread/reentrancy; Road/Wide/requester separation; strict codec+external receipt rejects bridge/footer failures.
+- [x] Implement register snapshot and bounded dispatcher; focused PASS; compiled ASan/UBSan, inspect binary imports/no GL linkage; retain25+scenario raw CPU receipts and actual ELF source-binding audit.
 - [ ] Full suite PASS; one fresh whole-branch source+static/synthetic review; one Important/Critical RED→GREEN fix pass and green suite, no rereview. Record all rulings/declined items/costs.
 - [ ] Own Draft/exact push+PR sourceCI; final allbasefiles/299pins/originals/main/nativehistory audit. No native activation. Copy progress and delete only this plan's scratch.

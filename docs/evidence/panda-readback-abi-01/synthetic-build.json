@@ -4,14 +4,14 @@
   "actual_gl_state_bound": false,
   "binaries": [
     {
-      "nbytes": 26312,
+      "nbytes": 26344,
       "path": "output/stage7-panda-readback-abi-01/cpu-bridge",
-      "sha256": "c419914401bb059b18ed30b58fbd51a091ca8440e8b2bcc6c2f70f056bee8589"
+      "sha256": "55acada8d6400e55c2a851c308615d2dde61f11ddf0c18ad8acbbbe927d0bb7e"
     },
     {
-      "nbytes": 95040,
+      "nbytes": 95552,
       "path": "output/stage7-panda-readback-abi-01/cpu-bridge-asan-ubsan",
-      "sha256": "b6b261d12f33f8e543ae8f56ccf1c339961b05db17dca7c0d202714468f25cf9"
+      "sha256": "119a50e324f1f8307e35673a5d4bf526fa5f9b469658f697fe83f1f320365eb6"
     }
   ],
   "caveats": [
@@ -21,7 +21,7 @@
     "Receipt uses bridge finish status, core stats and finalized spool identity; no native transport/process attestation.",
     "ASan/UBSan/sentinels verify synthetic behavior, not all native races/schedules, unwind behavior or overhead."
   ],
-  "checked_at_kst": "2026-11-15T00:04:17.203152+09:00",
+  "checked_at_kst": "2026-11-15T00:12:10.779251+09:00",
   "commands": {
     "asan_ubsan": [
       "/usr/bin/cc",
@@ -105,7 +105,7 @@
         "path": "output/stage7-panda-readback-abi-01/basic.synthetic.rbr",
         "sha256": "0cada4dbfee90a5d82ce0966fe25bb5748e073c62ed35fc870cce4dd3bd60703"
       },
-      "seconds": 0.013681874959729612,
+      "seconds": 0.014550231047905982,
       "stats": {
         "args_ok": 1,
         "attempts": 2,
@@ -117,6 +117,7 @@
         "error": 0,
         "finish": 0,
         "forwards": 2,
+        "incoming_ok": 1,
         "new_gl_calls": 0,
         "original_calls": 2,
         "regs_ok": 1,
@@ -147,7 +148,7 @@
         "path": "output/stage7-panda-readback-abi-01/off.synthetic.rbr",
         "sha256": "16dfd8210ba820e67f703b25466b1a004bf2907d191cce64f8fecdbde1d0aa70"
       },
-      "seconds": 0.016299813985824585,
+      "seconds": 0.011689870967529714,
       "stats": {
         "args_ok": 1,
         "attempts": 0,
@@ -159,6 +160,7 @@
         "error": 0,
         "finish": 0,
         "forwards": 2,
+        "incoming_ok": 1,
         "new_gl_calls": 0,
         "original_calls": 2,
         "regs_ok": 1,
@@ -189,7 +191,7 @@
         "path": "output/stage7-panda-readback-abi-01/offwrongreturn.synthetic.rbr",
         "sha256": "16dfd8210ba820e67f703b25466b1a004bf2907d191cce64f8fecdbde1d0aa70"
       },
-      "seconds": 0.012084961053915322,
+      "seconds": 0.014747449022252113,
       "stats": {
         "args_ok": 1,
         "attempts": 0,
@@ -201,6 +203,7 @@
         "error": 0,
         "finish": -1,
         "forwards": 2,
+        "incoming_ok": 1,
         "new_gl_calls": 0,
         "original_calls": 2,
         "regs_ok": 1,
@@ -231,7 +234,7 @@
         "path": "output/stage7-panda-readback-abi-01/outside.synthetic.rbr",
         "sha256": "0cada4dbfee90a5d82ce0966fe25bb5748e073c62ed35fc870cce4dd3bd60703"
       },
-      "seconds": 0.013006131979636848,
+      "seconds": 0.01098722399910912,
       "stats": {
         "args_ok": 1,
         "attempts": 2,
@@ -243,6 +246,7 @@
         "error": 0,
         "finish": 0,
         "forwards": 2,
+        "incoming_ok": 1,
         "new_gl_calls": 0,
         "original_calls": 4,
         "regs_ok": 1,
@@ -273,7 +277,7 @@
         "path": "output/stage7-panda-readback-abi-01/packed.synthetic.rbr",
         "sha256": "2f87715376fafa6d014fbb6cd151dd824d82d9a45965963642873a660b5414f2"
       },
-      "seconds": 0.01029627094976604,
+      "seconds": 0.010465871018823236,
       "stats": {
         "args_ok": 1,
         "attempts": 2,
@@ -285,6 +289,7 @@
         "error": 0,
         "finish": 0,
         "forwards": 2,
+        "incoming_ok": 1,
         "new_gl_calls": 0,
         "original_calls": 2,
         "regs_ok": 1,
@@ -315,7 +320,7 @@
         "path": "output/stage7-panda-readback-abi-01/rgb.synthetic.rbr",
         "sha256": "40c46c48ab6a7adc0e9dd4ca8ef52acd18dbcb7379b0ee4594926b9c25eac2f8"
       },
-      "seconds": 0.012752043956425041,
+      "seconds": 0.011411640967708081,
       "stats": {
         "args_ok": 1,
         "attempts": 2,
@@ -327,6 +332,7 @@
         "error": 0,
         "finish": 0,
         "forwards": 2,
+        "incoming_ok": 1,
         "new_gl_calls": 0,
         "original_calls": 2,
         "regs_ok": 1,
@@ -357,7 +363,7 @@
         "path": "output/stage7-panda-readback-abi-01/rgba.synthetic.rbr",
         "sha256": "036ecf242d49a29ecfaf1016965a4e245df3830875184933ad945f0506c11568"
       },
-      "seconds": 0.014542491000611335,
+      "seconds": 0.011614981049206108,
       "stats": {
         "args_ok": 1,
         "attempts": 2,
@@ -369,6 +375,7 @@
         "error": 0,
         "finish": 0,
         "forwards": 2,
+        "incoming_ok": 1,
         "new_gl_calls": 0,
         "original_calls": 2,
         "regs_ok": 1,
@@ -399,7 +406,7 @@
         "path": "output/stage7-panda-readback-abi-01/wrongreturn.synthetic.rbr",
         "sha256": "4c1727b76464607bfd765a11fb1acf497400a08ea3e4c5cc99d8a71fd0dbf7b4"
       },
-      "seconds": 0.010355170001275837,
+      "seconds": 0.011090502957813442,
       "stats": {
         "args_ok": 1,
         "attempts": 1,
@@ -411,6 +418,7 @@
         "error": 5,
         "finish": -1,
         "forwards": 2,
+        "incoming_ok": 1,
         "new_gl_calls": 0,
         "original_calls": 2,
         "regs_ok": 1,
@@ -441,7 +449,7 @@
         "path": "output/stage7-panda-readback-abi-01/texture.synthetic.rbr",
         "sha256": "4c1727b76464607bfd765a11fb1acf497400a08ea3e4c5cc99d8a71fd0dbf7b4"
       },
-      "seconds": 0.012939259002450854,
+      "seconds": 0.01409202499780804,
       "stats": {
         "args_ok": 1,
         "attempts": 1,
@@ -453,6 +461,7 @@
         "error": 5,
         "finish": -1,
         "forwards": 2,
+        "incoming_ok": 1,
         "new_gl_calls": 0,
         "original_calls": 2,
         "regs_ok": 1,
@@ -483,7 +492,7 @@
         "path": "output/stage7-panda-readback-abi-01/gsg.synthetic.rbr",
         "sha256": "4c1727b76464607bfd765a11fb1acf497400a08ea3e4c5cc99d8a71fd0dbf7b4"
       },
-      "seconds": 0.011039550008717924,
+      "seconds": 0.010354803991504014,
       "stats": {
         "args_ok": 1,
         "attempts": 1,
@@ -495,6 +504,7 @@
         "error": 5,
         "finish": -1,
         "forwards": 2,
+        "incoming_ok": 1,
         "new_gl_calls": 0,
         "original_calls": 2,
         "regs_ok": 1,
@@ -525,7 +535,7 @@
         "path": "output/stage7-panda-readback-abi-01/image.synthetic.rbr",
         "sha256": "4c1727b76464607bfd765a11fb1acf497400a08ea3e4c5cc99d8a71fd0dbf7b4"
       },
-      "seconds": 0.012304056959692389,
+      "seconds": 0.010408481990452856,
       "stats": {
         "args_ok": 1,
         "attempts": 1,
@@ -537,6 +547,7 @@
         "error": 5,
         "finish": -1,
         "forwards": 2,
+        "incoming_ok": 1,
         "new_gl_calls": 0,
         "original_calls": 2,
         "regs_ok": 1,
@@ -567,7 +578,7 @@
         "path": "output/stage7-panda-readback-abi-01/zero.synthetic.rbr",
         "sha256": "4c1727b76464607bfd765a11fb1acf497400a08ea3e4c5cc99d8a71fd0dbf7b4"
       },
-      "seconds": 0.011155184009112418,
+      "seconds": 0.011801790969911963,
       "stats": {
         "args_ok": 1,
         "attempts": 1,
@@ -579,6 +590,7 @@
         "error": 5,
         "finish": -1,
         "forwards": 2,
+        "incoming_ok": 1,
         "new_gl_calls": 0,
         "original_calls": 2,
         "regs_ok": 1,
@@ -609,7 +621,7 @@
         "path": "output/stage7-panda-readback-abi-01/overflow.synthetic.rbr",
         "sha256": "4c1727b76464607bfd765a11fb1acf497400a08ea3e4c5cc99d8a71fd0dbf7b4"
       },
-      "seconds": 0.01078478601993993,
+      "seconds": 0.010560066031757742,
       "stats": {
         "args_ok": 1,
         "attempts": 1,
@@ -621,6 +633,7 @@
         "error": 5,
         "finish": -1,
         "forwards": 2,
+        "incoming_ok": 1,
         "new_gl_calls": 0,
         "original_calls": 2,
         "regs_ok": 1,
@@ -651,7 +664,7 @@
         "path": "output/stage7-panda-readback-abi-01/z.synthetic.rbr",
         "sha256": "4c1727b76464607bfd765a11fb1acf497400a08ea3e4c5cc99d8a71fd0dbf7b4"
       },
-      "seconds": 0.015528085001278669,
+      "seconds": 0.010241329029668123,
       "stats": {
         "args_ok": 1,
         "attempts": 1,
@@ -663,6 +676,7 @@
         "error": 5,
         "finish": -1,
         "forwards": 2,
+        "incoming_ok": 1,
         "new_gl_calls": 0,
         "original_calls": 2,
         "regs_ok": 1,
@@ -693,7 +707,7 @@
         "path": "output/stage7-panda-readback-abi-01/view.synthetic.rbr",
         "sha256": "4c1727b76464607bfd765a11fb1acf497400a08ea3e4c5cc99d8a71fd0dbf7b4"
       },
-      "seconds": 0.017017555015627295,
+      "seconds": 0.00981693499488756,
       "stats": {
         "args_ok": 1,
         "attempts": 1,
@@ -705,6 +719,7 @@
         "error": 5,
         "finish": -1,
         "forwards": 2,
+        "incoming_ok": 1,
         "new_gl_calls": 0,
         "original_calls": 2,
         "regs_ok": 1,
@@ -735,7 +750,7 @@
         "path": "output/stage7-panda-readback-abi-01/thread.synthetic.rbr",
         "sha256": "7073f22e8160bcf111693ce0a77020b3da13fc1283252204b64277adb50a20fd"
       },
-      "seconds": 0.013448313053231686,
+      "seconds": 0.013305186992511153,
       "stats": {
         "args_ok": 1,
         "attempts": 0,
@@ -747,6 +762,7 @@
         "error": 3,
         "finish": -1,
         "forwards": 2,
+        "incoming_ok": 1,
         "new_gl_calls": 0,
         "original_calls": 2,
         "regs_ok": 1,
@@ -777,7 +793,7 @@
         "path": "output/stage7-panda-readback-abi-01/reentrant.synthetic.rbr",
         "sha256": "5a1f7b88a44fa682f3fbddea47c79b480565ea628545690fe0aaae3ced68d742"
       },
-      "seconds": 0.013606166001409292,
+      "seconds": 0.00990599300712347,
       "stats": {
         "args_ok": 1,
         "attempts": 0,
@@ -789,6 +805,7 @@
         "error": 4,
         "finish": -1,
         "forwards": 2,
+        "incoming_ok": 1,
         "new_gl_calls": 0,
         "original_calls": 2,
         "regs_ok": 1,
@@ -819,7 +836,7 @@
         "path": "output/stage7-panda-readback-abi-01/statefail.synthetic.rbr",
         "sha256": "4c1727b76464607bfd765a11fb1acf497400a08ea3e4c5cc99d8a71fd0dbf7b4"
       },
-      "seconds": 0.011687654012348503,
+      "seconds": 0.01773643703199923,
       "stats": {
         "args_ok": 1,
         "attempts": 1,
@@ -831,6 +848,7 @@
         "error": 5,
         "finish": -1,
         "forwards": 2,
+        "incoming_ok": 1,
         "new_gl_calls": 0,
         "original_calls": 2,
         "regs_ok": 1,
@@ -861,7 +879,7 @@
         "path": "output/stage7-panda-readback-abi-01/unknown.synthetic.rbr",
         "sha256": "4c1727b76464607bfd765a11fb1acf497400a08ea3e4c5cc99d8a71fd0dbf7b4"
       },
-      "seconds": 0.010650344018358737,
+      "seconds": 0.011275081022176892,
       "stats": {
         "args_ok": 1,
         "attempts": 1,
@@ -873,6 +891,7 @@
         "error": 5,
         "finish": -1,
         "forwards": 2,
+        "incoming_ok": 1,
         "new_gl_calls": 0,
         "original_calls": 2,
         "regs_ok": 1,
@@ -903,7 +922,7 @@
         "path": "output/stage7-panda-readback-abi-01/pbo.synthetic.rbr",
         "sha256": "1fa7aedf59336a6566134ff4a286bb37118df2361ea43e016f6d03d1d7bd25f3"
       },
-      "seconds": 0.011628490989096463,
+      "seconds": 0.013449411955662072,
       "stats": {
         "args_ok": 1,
         "attempts": 1,
@@ -915,6 +934,7 @@
         "error": 6,
         "finish": -1,
         "forwards": 2,
+        "incoming_ok": 1,
         "new_gl_calls": 0,
         "original_calls": 2,
         "regs_ok": 1,
@@ -945,7 +965,7 @@
         "path": "output/stage7-panda-readback-abi-01/short.synthetic.rbr",
         "sha256": "816b3a0f8d3a932446ebf38ee4cf6a17fbe4c8f750f4e08cab183d6eaabc9b18"
       },
-      "seconds": 0.01289405400166288,
+      "seconds": 0.010235814959742129,
       "stats": {
         "args_ok": 1,
         "attempts": 1,
@@ -957,6 +977,7 @@
         "error": 8,
         "finish": -1,
         "forwards": 2,
+        "incoming_ok": 1,
         "new_gl_calls": 0,
         "original_calls": 2,
         "regs_ok": 1,
@@ -987,7 +1008,7 @@
         "path": "output/stage7-panda-readback-abi-01/limit.synthetic.rbr",
         "sha256": "9569022a81f806d24055d44e31a7e5641f2f45ec88ef5f87e0109b4776a65ff4"
       },
-      "seconds": 0.013894690957386047,
+      "seconds": 0.012479397002607584,
       "stats": {
         "args_ok": 1,
         "attempts": 2,
@@ -999,6 +1020,7 @@
         "error": 10,
         "finish": -1,
         "forwards": 2,
+        "incoming_ok": 1,
         "new_gl_calls": 0,
         "original_calls": 2,
         "regs_ok": 1,
@@ -1029,7 +1051,7 @@
         "path": "output/stage7-panda-readback-abi-01/bytes.synthetic.rbr",
         "sha256": "70ade139bf6da18b143acd57b64a23f2412bf427ecb682cd0a077ce7d86ff2b6"
       },
-      "seconds": 0.011384090990759432,
+      "seconds": 0.019430560991168022,
       "stats": {
         "args_ok": 1,
         "attempts": 1,
@@ -1041,6 +1063,7 @@
         "error": 10,
         "finish": -1,
         "forwards": 2,
+        "incoming_ok": 1,
         "new_gl_calls": 0,
         "original_calls": 2,
         "regs_ok": 1,
@@ -1071,7 +1094,7 @@
         "path": "output/stage7-panda-readback-abi-01/excess.synthetic.rbr",
         "sha256": "1a401b264fafcf6b6f9ac15b15c3ebdc428bc29f0ff35a37ae00b85a80818733"
       },
-      "seconds": 0.01237366400891915,
+      "seconds": 0.012726337008643895,
       "stats": {
         "args_ok": 1,
         "attempts": 2,
@@ -1083,6 +1106,7 @@
         "error": 2,
         "finish": -1,
         "forwards": 3,
+        "incoming_ok": 1,
         "new_gl_calls": 0,
         "original_calls": 3,
         "regs_ok": 1,
@@ -1113,7 +1137,7 @@
         "path": "output/stage7-panda-readback-abi-01/nested.synthetic.rbr",
         "sha256": "4c1727b76464607bfd765a11fb1acf497400a08ea3e4c5cc99d8a71fd0dbf7b4"
       },
-      "seconds": 0.014149305992759764,
+      "seconds": 0.028886728978250176,
       "stats": {
         "args_ok": 1,
         "attempts": 1,
@@ -1125,6 +1149,7 @@
         "error": 5,
         "finish": -1,
         "forwards": 2,
+        "incoming_ok": 1,
         "new_gl_calls": 0,
         "original_calls": 2,
         "regs_ok": 1,
@@ -1155,7 +1180,7 @@
         "path": "output/stage7-panda-readback-abi-01/shortwindow.synthetic.rbr",
         "sha256": "89a5f199af8d7ec53a06586dce42fb1a1847c217ae2bdd6decdde56aaffd03e2"
       },
-      "seconds": 0.010932065022643656,
+      "seconds": 0.024689803016372025,
       "stats": {
         "args_ok": 1,
         "attempts": 1,
@@ -1167,6 +1192,7 @@
         "error": 2,
         "finish": -1,
         "forwards": 1,
+        "incoming_ok": 1,
         "new_gl_calls": 0,
         "original_calls": 1,
         "regs_ok": 1,
@@ -1197,7 +1223,7 @@
         "path": "output/stage7-panda-readback-abi-01/partial.synthetic.rbr",
         "sha256": "0caa2cf3bc4395366d4282ddb0cfff0e1b59182d93f16a92d5f70b4da84617ce"
       },
-      "seconds": 0.010072397999465466,
+      "seconds": 0.03027875698171556,
       "stats": {
         "args_ok": 1,
         "attempts": 1,
@@ -1209,6 +1235,7 @@
         "error": 11,
         "finish": -1,
         "forwards": 2,
+        "incoming_ok": 1,
         "new_gl_calls": 0,
         "original_calls": 2,
         "regs_ok": 1,
@@ -1239,7 +1266,7 @@
         "path": "output/stage7-panda-readback-abi-01/footerfail.synthetic.rbr",
         "sha256": "0cada4dbfee90a5d82ce0966fe25bb5748e073c62ed35fc870cce4dd3bd60703"
       },
-      "seconds": 0.012580674956552684,
+      "seconds": 0.014364483999088407,
       "stats": {
         "args_ok": 1,
         "attempts": 2,
@@ -1251,6 +1278,7 @@
         "error": 11,
         "finish": -1,
         "forwards": 2,
+        "incoming_ok": 1,
         "new_gl_calls": 0,
         "original_calls": 2,
         "regs_ok": 1,
@@ -1281,7 +1309,7 @@
         "path": "output/stage7-panda-readback-abi-01/initbad.synthetic.rbr",
         "sha256": "0cada4dbfee90a5d82ce0966fe25bb5748e073c62ed35fc870cce4dd3bd60703"
       },
-      "seconds": 0.0132701660040766,
+      "seconds": 0.013639057986438274,
       "stats": {
         "args_ok": 1,
         "attempts": 2,
@@ -1293,6 +1321,7 @@
         "error": 0,
         "finish": 0,
         "forwards": 2,
+        "incoming_ok": 1,
         "new_gl_calls": 0,
         "original_calls": 2,
         "regs_ok": 1,
@@ -1323,7 +1352,7 @@
         "path": "output/stage7-panda-readback-abi-01/duplicate.synthetic.rbr",
         "sha256": "0cada4dbfee90a5d82ce0966fe25bb5748e073c62ed35fc870cce4dd3bd60703"
       },
-      "seconds": 0.012407728005200624,
+      "seconds": 0.04140237596584484,
       "stats": {
         "args_ok": 1,
         "attempts": 2,
@@ -1335,6 +1364,7 @@
         "error": 0,
         "finish": 0,
         "forwards": 2,
+        "incoming_ok": 1,
         "new_gl_calls": 0,
         "original_calls": 2,
         "regs_ok": 1,
@@ -1365,7 +1395,7 @@
         "path": "output/stage7-panda-readback-abi-01/max.synthetic.rbr",
         "sha256": "a3fbde842a1fb537ec80f8177d1c914c9827a8c816cef7b51984054dd1bbdf2e"
       },
-      "seconds": 1.4735498980153352,
+      "seconds": 1.876554111018777,
       "stats": {
         "args_ok": 1,
         "attempts": 24,
@@ -1377,6 +1407,7 @@
         "error": 0,
         "finish": 0,
         "forwards": 24,
+        "incoming_ok": 1,
         "new_gl_calls": 0,
         "original_calls": 24,
         "regs_ok": 1,
@@ -1385,19 +1416,148 @@
         "source_ok": 1,
         "wire_bytes": 55900416
       }
+    },
+    {
+      "accepted_cpu_window": true,
+      "asan_ubsan_passed": true,
+      "mode": "errno_keep",
+      "producer_receipt": {
+        "attempts": 2,
+        "captured": 2,
+        "data_wire_bytes": 410,
+        "error": 0,
+        "finish_result": 0,
+        "forwards": 2,
+        "nonce": "0102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f20",
+        "schema": "readback-return-producer-finalization-v1",
+        "stream_nbytes": 506,
+        "stream_sha256": "0cada4dbfee90a5d82ce0966fe25bb5748e073c62ed35fc870cce4dd3bd60703"
+      },
+      "raw": {
+        "nbytes": 506,
+        "path": "output/stage7-panda-readback-abi-01/errno_keep.synthetic.rbr",
+        "sha256": "0cada4dbfee90a5d82ce0966fe25bb5748e073c62ed35fc870cce4dd3bd60703"
+      },
+      "seconds": 0.01859619899187237,
+      "stats": {
+        "args_ok": 1,
+        "attempts": 2,
+        "bridge_error": 0,
+        "callbacks": 2,
+        "captured": 2,
+        "emits": 3,
+        "errno_ok": 1,
+        "error": 0,
+        "finish": 0,
+        "forwards": 2,
+        "incoming_ok": 1,
+        "new_gl_calls": 0,
+        "original_calls": 2,
+        "regs_ok": 1,
+        "runtime_admission_ready": false,
+        "source": "SYNTHETIC_CPU_ABI_CALLER_ONLY",
+        "source_ok": 1,
+        "wire_bytes": 410
+      }
+    },
+    {
+      "accepted_cpu_window": true,
+      "asan_ubsan_passed": true,
+      "mode": "errno_check",
+      "producer_receipt": {
+        "attempts": 2,
+        "captured": 2,
+        "data_wire_bytes": 410,
+        "error": 0,
+        "finish_result": 0,
+        "forwards": 2,
+        "nonce": "0102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f20",
+        "schema": "readback-return-producer-finalization-v1",
+        "stream_nbytes": 506,
+        "stream_sha256": "0cada4dbfee90a5d82ce0966fe25bb5748e073c62ed35fc870cce4dd3bd60703"
+      },
+      "raw": {
+        "nbytes": 506,
+        "path": "output/stage7-panda-readback-abi-01/errno_check.synthetic.rbr",
+        "sha256": "0cada4dbfee90a5d82ce0966fe25bb5748e073c62ed35fc870cce4dd3bd60703"
+      },
+      "seconds": 0.011824182991404086,
+      "stats": {
+        "args_ok": 1,
+        "attempts": 2,
+        "bridge_error": 0,
+        "callbacks": 2,
+        "captured": 2,
+        "emits": 3,
+        "errno_ok": 1,
+        "error": 0,
+        "finish": 0,
+        "forwards": 2,
+        "incoming_ok": 1,
+        "new_gl_calls": 0,
+        "original_calls": 2,
+        "regs_ok": 1,
+        "runtime_admission_ready": false,
+        "source": "SYNTHETIC_CPU_ABI_CALLER_ONLY",
+        "source_ok": 1,
+        "wire_bytes": 410
+      }
+    },
+    {
+      "accepted_cpu_window": true,
+      "asan_ubsan_passed": true,
+      "mode": "offerrno_keep",
+      "producer_receipt": {
+        "attempts": 0,
+        "captured": 0,
+        "data_wire_bytes": 0,
+        "error": 0,
+        "finish_result": 0,
+        "forwards": 2,
+        "nonce": "0102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f20",
+        "schema": "readback-return-producer-finalization-v1",
+        "stream_nbytes": 96,
+        "stream_sha256": "16dfd8210ba820e67f703b25466b1a004bf2907d191cce64f8fecdbde1d0aa70"
+      },
+      "raw": {
+        "nbytes": 96,
+        "path": "output/stage7-panda-readback-abi-01/offerrno_keep.synthetic.rbr",
+        "sha256": "16dfd8210ba820e67f703b25466b1a004bf2907d191cce64f8fecdbde1d0aa70"
+      },
+      "seconds": 0.015808756987098604,
+      "stats": {
+        "args_ok": 1,
+        "attempts": 0,
+        "bridge_error": 0,
+        "callbacks": 0,
+        "captured": 0,
+        "emits": 1,
+        "errno_ok": 1,
+        "error": 0,
+        "finish": 0,
+        "forwards": 2,
+        "incoming_ok": 1,
+        "new_gl_calls": 0,
+        "original_calls": 2,
+        "regs_ok": 1,
+        "runtime_admission_ready": false,
+        "source": "SYNTHETIC_CPU_ABI_CALLER_ONLY",
+        "source_ok": 1,
+        "wire_bytes": 0
+      }
     }
   ],
   "schema": "panda-readback-abi-synthetic-build-v1",
   "sources": [
     {
-      "nbytes": 1586,
+      "nbytes": 1729,
       "path": "native/panda_readback_bridge.h",
-      "sha256": "a54c2bf65c8cdf959b168ca703f8c642a64a6ee827c14425ef50c37ef362197f"
+      "sha256": "9429c53ea08905048b4503456f7c0b36b68d99325024cb2220eea8c2d1bdec1b"
     },
     {
-      "nbytes": 5383,
+      "nbytes": 5403,
       "path": "native/panda_readback_bridge.c",
-      "sha256": "70cf63ff0d5c9a4d2d69174ccd71fe8262de7650aa0893dd8972de3febe1767a"
+      "sha256": "2acbde146ac2f27572bd990760bd3ac3475ada491d5bfc749d44f6c8aa9b1531"
     },
     {
       "nbytes": 693,
@@ -1410,9 +1570,9 @@
       "sha256": "7d46b3bb4f50c448e833fab746bcdd7b1e229f9cd15eb30817a2be76bdbf746d"
     },
     {
-      "nbytes": 6488,
+      "nbytes": 6721,
       "path": "tests/fixtures/panda_readback_fixture.c",
-      "sha256": "1133444bf3b1c83e56f43bcd09f69ffd370612f8d3dc00e0060436af171adc63"
+      "sha256": "3aceea42ba739823415c249edf34c350abd00b0c628095a714d0fce741e6cd24"
     },
     {
       "nbytes": 5407,
@@ -1420,5 +1580,5 @@
       "sha256": "a0129175e1bac26629a0d2832b3f25e3e84126e6a70f3eee753af1bc213241b3"
     }
   ],
-  "wall_seconds": 2.9348816059646197
+  "wall_seconds": 3.4087920250021853
 }
