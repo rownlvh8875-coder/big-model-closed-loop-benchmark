@@ -28,16 +28,16 @@ rd_bind_bridge(...pb_installargs);rd_observe;rd_finish;rd_get_stats;typed rd_* o
 call wrappers and rd_get_proc/arb;rd_read_pixels tail. CPUcaller compiled from prior
 fixture with preprocessor symbol aliases, preserving prior source bytes.
 
-- [ ] RED CPUfixture/independent wire tests for all Review Focus1..3; missingdeliveryFAIL.
-- [ ] Minimal dispatcher/bootstrap/tail, scoped codec interop; focusedPASS,ASan/UBSan originals/stream/counters; commit.
+- [x] RED CPUfixture/independent wire tests for all Review Focus1..3; missingdeliveryFAIL.
+- [x] Minimal dispatcher/bootstrap/tail, scoped codec interop; focusedPASS,ASan/UBSan originals/stream/counters; commit.
 
 ### Task2: Mapped executable code proof
 
 **Files:** scripts/readback_process_mapping.py;tests/test_readback_process_mapping.py.
 **Interfaces:** parse_maps(bytes);elf_ranges(bytes);verify_process_code(pid,path,sha,ranges,reported_addresses)->dict. Reviewed ELF VA/size ranges are external input, no ABI/native claim.
 
-- [ ] RED bounded syntheticmaps/ELF/offset/protection/deleted/hash/byte mutations plus actual compiled heldchild success/rejection; missingcheckerFAIL.
-- [ ] Implement pread/file/dev/inode/load-bias/starttime/stablemap check; focusedPASS. Actual probe uses only ownCPUchild, never renderer.
+- [x] RED bounded syntheticmaps/ELF/offset/protection/deleted/hash/byte mutations plus actual compiled heldchild success/rejection; missingcheckerFAIL.
+- [x] Implement pread/file/dev/inode/load-bias/starttime/stablemap check; focusedPASS. Actual probe uses only ownCPUchild, never renderer.
 
 ### Task3: Credential-bound producer/spool receipt
 
@@ -45,7 +45,7 @@ fixture with preprocessor symbol aliases, preserving prior source bytes.
 CPUfixture controlpacket mode,docs/result/ledger/evidence.
 **Interfaces:** recv_record(socket,expectedpid,uid,gid,nonce);run_cpu_probe(exe,sha,mode,codeprofile,nonce,timeout)->dict; returns metadata/CPUdecoded state, never nativeadmission.
 
-- [ ] RED actualsocket credentials/truncation/rights cleanup/foreignsender, childnonce/status/extra/exit/spool/sink/map failures; missingchannelFAIL.
-- [ ] Implement samechildcode+status+spool+codec binding; focusedPASS and realCPUprocess artifact receipts; fullsuitePASS.
+- [x] RED actualsocket credentials/truncation/rights cleanup/foreignsender, childnonce/status/extra/exit/spool/sink/map failures; missingchannelFAIL.
+- [x] Implement samechildcode+status+spool+codec binding; focusedPASS and realCPUprocess artifact receipts; fullsuitePASS.
 - [ ] Onefreshwholebranchreview,oneImportant/CriticalRED→GREENfixpass+fullsuite,no rereview; ledgerallrulings/costs/declineditems.
 - [ ] OwnDraft/exactpush+PRCI; finalallbase/299pins/original/main/nativehistory audit. Retain concrete nextnativeadmission gates; copy/remove only thisplan scratch.

@@ -1,0 +1,46 @@
+{
+  "variant": "asan-ubsan",
+  "command": [
+    "/usr/bin/cc",
+    "-std=c11",
+    "-O1",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-pthread",
+    "-I",
+    "/workspace/big-model-closed-loop-benchmark/native",
+    "-Dpb_fixture_call=rd_fixture_call",
+    "-Dpb_fixture_return=rd_fixture_return",
+    "-fsanitize=address,undefined",
+    "-fno-sanitize-recover=all",
+    "-fno-omit-frame-pointer",
+    "-no-pie",
+    "/workspace/big-model-closed-loop-benchmark/native/readback_return_core.c",
+    "/workspace/big-model-closed-loop-benchmark/native/panda_readback_bridge.c",
+    "/workspace/big-model-closed-loop-benchmark/native/panda_readback_bridge.S",
+    "/workspace/big-model-closed-loop-benchmark/native/readback_command_state.c",
+    "/workspace/big-model-closed-loop-benchmark/native/readback_call_delivery.c",
+    "/workspace/big-model-closed-loop-benchmark/native/readback_delivery_entry.S",
+    "/workspace/big-model-closed-loop-benchmark/tests/fixtures/readback_delivery_fixture.c",
+    "/workspace/big-model-closed-loop-benchmark/output/stage7-readback-delivery-boundary-01/asan-ubsan/fixture-caller.S",
+    "-o",
+    "/workspace/big-model-closed-loop-benchmark/output/stage7-readback-delivery-boundary-01/asan-ubsan/fixture"
+  ],
+  "build_wall_seconds": 0.8534711120000793,
+  "exe_sha256": "21bdc7dc5cbc5680e13319263acef492094b0a0a9a8bb8d493205cc3d600ab63",
+  "codeprofile": {
+    "rd_fixture_call": {
+      "vaddr": 4284672,
+      "size": 178
+    },
+    "rd_probe_read": {
+      "vaddr": 4271372,
+      "size": 698
+    },
+    "rd_probe_store": {
+      "vaddr": 4272942,
+      "size": 108
+    }
+  }
+}
