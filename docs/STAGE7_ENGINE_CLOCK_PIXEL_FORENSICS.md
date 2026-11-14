@@ -123,3 +123,33 @@ observer ON/OFF 대조와 원래 렌더러 의미 보존 조건이 필요하다.
 geometry·physical optics·determinism·driving performance는 별개 판정이다.
 현재 원래 strict0/4FAIL,Stage7INCOMPLETE와 기존geometry/fullS 제한을 유지한다.
 main병합·Cloud/registry게시·원본/소모 요청 재작성은 없었다.
+
+## 코드·증거 검토 closeout
+
+분석 구현fc2255c 및 결과57ce8b52b1b2ba26e9e6fc5206752c066fd9d3ca를 기준으로
+전체1209시험: 실패0/오류0/기존7skip/111.217초를 확인했다.
+[root수치교차확인](evidence/ENGINE_CLOCK_PIXEL_FORENSICS_03_ROOT_CHECK.json)도 PASS다.
+한 명의 fresh-context gpt-6-astra/medium 검토자는 두 ZIP 전체와261파일,
+30endpoint·16subset·카탈로그·시계 비교를 독립 재계산했다.
+[검토 기록](evidence/ENGINE_CLOCK_PIXEL_FORENSICS_03_REVIEW.md): Critical0/Important0,
+검토시점의 마감 문구 Minor1건(CP-M1)은 해당 historicalHEAD의 제한으로 보존했다.
+소스 수정·추가 검토는 없으며 후속 커밋은 문서·증거만 추가한다.
+
+원격 반영 대상은 evidence/engine-clock-held-abba-03 위의
+analysis/engine-clock-pixel-forensics-03 소유 브랜치 Draft다.
+[해당 Draft 검색](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/pulls?q=is%3Apr+head%3Aanalysis%2Fengine-clock-pixel-forensics-03)의
+본문에 최종 HEAD·정확한 push/PR CI run/job·미병합 판정을 기록한다.
+API원본과 최종 검증 영수증은 로컬
+output/stage7-engine-clock-pixel-forensics-03/closeout에 보존한다.
+이 버전 문서의 계산·시험·검토 권위와 나중 원격CI 권위를 구분한다.
+일반 CI의 생성 SMALL ONNX시험은 공식 MD-V3 모델 호출이 아니다.
+
+재현 명령(현재 CPU 전용 환경에서 fresh --out 필요):
+
+```bash
+/workspace/.cloud-tools/stage7/first-divergence-cpu-replay/bin/python -B \
+  -m scripts.engine_clock_pixel_forensics \
+  --canary-archive output/stage7-held-abba-root/held-abba-20261114-03/canary/engine-clock-held-abba-20261114-03-canary.original.zip \
+  --abba-archive output/stage7-held-abba-root/held-abba-20261114-03/abba/engine-clock-held-abba-20261114-03-abba.original.zip \
+  --out output/stage7-engine-clock-pixel-forensics-03/new-report.json
+```
