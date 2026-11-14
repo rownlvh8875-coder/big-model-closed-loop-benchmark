@@ -255,3 +255,51 @@ preflight carrier data and failed01authority.5new RED→GREEN tests include real
 Docker28carrier shape and secret sentinels; no native/Docker in fixtures. New
 full suite in progress; one fresh whole-source review precedes qualification.
 Existing SN-M1/SN-M2 costs and all five source-review rulings remain retained.
+# N. Native02 parent success / child launch environment / v3
+
+Task1 complete:1091tests/7skip PASS97.266s;4new RED→GREEN PASS0.025s. One fresh
+review f6bedb3..429dff9 Critical0/Important0, no newMinor; reviewer4fixtures
+PASS0.032s. No fix pass/rereview. Full4declined rulings/costs in
+docs/evidence/STAGE7_ENGINE_CLOCK_SEALED_NATIVE_V3_SOURCE_REVIEW.md.
+Final: minor (deferred): SN-M1 failed collector detail lost, cost less precise
+diagnosis/possible separate qualified observation, no provider admission.
+Final: minor (deferred): SN-M2 enclosing watchdog bounds prefix IO, cost delayed
+rejection beyond narrower180s allowance.
+Final: Ruling: actualv3child/camera/maps/cleanup need execution — raw one-use
+acceptance governs — cost if wrong: consumed failed03request/no accepted canary.
+Final: Ruling: oldv2original authenticity not rechecked by source reviewer —
+preserve root-authenticated originals/failed status — cost if wrong: invalid
+upstream diagnosis, no broader guarantee.
+Final: Ruling: remoteexactCI/absence/activation not checked by reviewer — root
+authenticates4named jobs/attempt1/artifacts0 and sole fresh request — cost if
+wrong: invalid unqualified execution, never accepted.
+Final: Ruling: science/future C/A outside source proof — retain0model/ORT,
+strictFAIL/INCOMPLETE — cost if wrong: unsupported scientific conclusions.
+
+V2 source69ed28ef0d61af6e4bf6629dc2cbf0bbbbc85f07/Draft83 qualified all4jobs:
+push43537427386(132269701424/132269701593), PR43537432346(132269719450/132269719657),
+attempt1/artifacts0. Sole fresh activationf6bedb3d8d8da977b283401c7745429928940e2e,
+requestSHA52f36b0c24e1b1aedfb42147bedb2a467dea74d22fd77ac4d1ddd087aeb3eac4,
+171closedfiles/priorbranch absent/runs0. Actualrun43537981048/workflow417905157/
+job132271502357 FAILED81.095272484s. Originalartifact14090408074/322512132B/
+SHAf8c73f702a2025da56dfa474a589929e9b9599a15ecbc22ca6975f1f01aa8854 retained
+with actual API/ZIP/CRCs. GitHub scheduling delayed run creation; root used
+read-only check-suites/run APIs, no push replay or dispatch.
+
+Actual launch diagnostic all predicatesPASS, /tmp HostConfig-only confirmed.
+Parent installed1,670,492,280B/96,862visits verified7.369896922s, prefix matched;
+phase9.863055566s. Parent post-cv2 environment recorded exact addedLD_LIBRARY_PATH
+/opt/venv/lib/python3.11/site-packages/cv2/../../lib64:. Launcher copied mutated
+parent environment; child strict entry rejects it before inventory/provider.
+Childexit1/groupgone/reaped/cleanup[]; owned container stop confirmed. Actual
+MetaDrive/provider/model/ORT0. Bounds in parent ledger remain conservative[0,1];
+root source/actual inherited-environment proof narrows provider attempts to0.
+Full actual records in docs/evidence/STAGE7_ENGINE_CLOCK_SEALED_NATIVE_02_RESULT.json.
+
+New sourcev3/request03 captures validated launch snapshot before imports,
+validates and retains exact actual post-cv2 mutation without modifying it, starts
+child from validated original snapshot. New identity environment hash explicitly
+commits both profiles and snapshot policy; old partial identity is not promoted.
+Image006 and consumed sources/requests01/02 remain frozen. Actual closure179
+includes failed02authority.4new RED→GREEN fixtures PASS0.025s; full suite in
+progress. Fresh whole-source review and exact CI precede one new03request.
