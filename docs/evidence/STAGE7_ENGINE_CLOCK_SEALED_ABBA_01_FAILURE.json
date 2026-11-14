@@ -1,0 +1,72 @@
+{
+  "abba_activated": false,
+  "activation_sha": "bc48bdc0384c6969da44bd7abdc2c2290a5bd047",
+  "artifact_id": 14097905244,
+  "artifact_nbytes": 322470044,
+  "artifact_sha256": "f91ecf9e956780a56deab121e6895e74d7ee2069763a78b569e3f9ef2b58fde5",
+  "copied_checks": [
+    {
+      "archive_nbytes": 57344,
+      "archive_sha256": "9c6c5e54395cb0e0d3cee86eae04c9122e79dc7d21c2b19382d846286bd8761a",
+      "entries": 4,
+      "external_container_origin_authenticated": false,
+      "file_bytes": 51729,
+      "native_admission": false,
+      "payload_extracted": false,
+      "prefix": "stage7",
+      "status": "CLOSED_COPIED_TREE_MATCH"
+    },
+    {
+      "archive_nbytes": 313732608,
+      "archive_sha256": "d7d8cb98b32b9e2354d081ad3fb2cbbb2d596facd02e990647484f3e0017113b",
+      "entries": 10545,
+      "external_container_origin_authenticated": false,
+      "file_bytes": 305721228,
+      "native_admission": false,
+      "payload_extracted": false,
+      "prefix": "python",
+      "status": "CLOSED_COPIED_TREE_MATCH"
+    },
+    {
+      "archive_nbytes": 19456,
+      "archive_sha256": "5f3f262aebd02fb779cac618f9ef71ccb2d179212ae011decd6df6edef354dab",
+      "executable_nbytes": 17744,
+      "executable_sha256": "f85c83d76e58e52cc231fe99afe152ff8030a0c92aa0899af995fce839e2e044",
+      "final_member_regular_file": true,
+      "native_admission": false,
+      "payload_extracted": false,
+      "source_path": "/opt/venv/bin/python",
+      "status": "PRESTART_EXECUTABLE_BYTES_MATCH"
+    }
+  ],
+  "cpu_reproduction_before_popen": true,
+  "created_container_state": {
+    "ExitCode": 0,
+    "OOMKilled": false,
+    "Running": false,
+    "Status": "created"
+  },
+  "finished_utc": "2026-11-14T03:58:13.536495+00:00",
+  "frozen_capture_timeout_maximum": 1800,
+  "job_id": 132323069182,
+  "launch_gate_passed": true,
+  "members": 49,
+  "metadata_provider_bounds_preserved": [
+    0,
+    4
+  ],
+  "native_canary_accepted": false,
+  "no_rerun": true,
+  "observed_timeout_argument": 2100,
+  "official_model_calls": 0,
+  "operation_seconds": 94.45802907,
+  "ort_sessions": 0,
+  "phase_ledger_present": false,
+  "request_sha256": "d695cea31547d06b9d51d152f85866636ce27b34ec8febdad562d664c2e4861f",
+  "run_id": 43554149287,
+  "source_backed_native_starts": 0,
+  "source_files": 215,
+  "source_sha": "17ef2f5ebee214257a8bcdfd73bc48ba5ecc0e88",
+  "status": "AUTHENTICATED_PRE_START_TIMEOUT_CAP_FAILURE",
+  "workflow_id": 417996810
+}
