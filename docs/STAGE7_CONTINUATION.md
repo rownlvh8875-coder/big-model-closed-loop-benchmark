@@ -1,6 +1,34 @@
 # Stage 7 continuation — verified results, renderer cause still open
 
-## Current checkpoint (2026-11-14 18:08 KST — bounded renderer task observer/source preparation)
+## Current checkpoint (2026-11-14 19:51 KST — actual sealed renderer callback C and ABBA accepted)
+
+Source62dc0ab2230339eb0cae9519ba3bb7ab59722e2d/Draft100:280pins/261old+
+reviewedobserverbytes unchanged;15focused/full1252testsPASS7skip112.724s,
+freshsourceC0I0M0 and4exactsourceCIjobsSUCCESS. New C51b5e2f0f6337f44a13ed4278946a2bae28875ff
+soleCrequest then genuineclosedC/successupload/terminalseparateattestor/root+fresh
+raw ACCEPT whilehostheld; livehostrechecked before distinct Acontrol8643b72e114cd1d117630433706d1df3098b0511
+soleArequest. Actualcheckout remainsC. Unique workflow418206888/run43584877011/
+attempt1 andhost132417101877/attestorSUCCESS. FullC/Aidentity/lease match AMD9V45/
+119flags/[0..3]/MemTotal16760332288/image006. C1provider6pairs1824namedgetters;
+A4closedproviders24pairs3936; total5/30/5760spentremaining0. Commonclocks/Texture
+ONeveryarm, callbackOFF0/ON0/ON1/OFF1. C/AoriginalZIPs/root+freshreplayaccepted,
+all30raw→canvas→derivedI420/48+96callbackstates/6comparisons/inventory/permit/
+3TARsperphase/cleanup/OOM0/boundedmembers verified.4GiBpeakNOTRSS/headroom.
+C64.301phase/153.206op; A223.641phase/284.645op/346.163control/630.808fullseconds;
+finish19:34:29.343206KST. OFF0vsothers35raw+canvaspixels, firstwide1/I4201;
+ON0/ON1/OFF1identical. Cvs eachONcall2samefullsampledCPUstate/order/counts/Texture
+butwide(544,352)RGB97/100/61→83/90/26.2comparisonrows/1transition, timesdiffer.
+[Result](STAGE7_RENDERER_TASKS_SEALED_RESULT.md),
+[authority](evidence/STAGE7_RENDERER_TASKS_SEALED_01_RESULT.json),
+[proofindex](evidence/renderer-tasks-sealed-01/proof-index.json),
+[ledger](STAGE7_RENDERER_TASKS_SEALED_LEDGER.md).
+Next: separate CPUshaderinput→GPUshadow/HDR/resolve→RAMassociation investigation,
+newsource/allowance/independentobservercontrols. No justifiedrendererfix/current
+GPUframe/neutrality/uniquecause/model/geometry/optics/fullSproof. Officialmodel/ORT0;
+strict0/4FAIL/Stage7INCOMPLETE; no consumedrequest retry/mainmerge/Cloudpublication.
+FinalevidenceDraft/exactHEADCI authority lives in PRbody and outputcloseout receipt.
+
+## Previous checkpoint (2026-11-14 18:08 KST — bounded renderer task observer/source preparation)
 
 New renderer_task_callbacks + renderer_task_binding preserve261frozen producer
 paths; no native/provider/getter/model/ORT/GL execution or new request/workflow.

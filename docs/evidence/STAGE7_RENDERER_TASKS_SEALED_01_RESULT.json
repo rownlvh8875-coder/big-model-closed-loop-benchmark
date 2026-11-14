@@ -1,0 +1,232 @@
+{
+  "schema": "renderer-tasks-sealed-01-result-v1",
+  "status": "GENUINE_CALLBACK_CAMERA_CANARY_ABBA_ACCEPTED",
+  "source_sha": "62dc0ab2230339eb0cae9519ba3bb7ab59722e2d",
+  "source_paths": 280,
+  "frozen_predecessor_paths_unchanged": 261,
+  "reviewed_observers_unchanged": true,
+  "source_review": {
+    "critical": 0,
+    "important": 0,
+    "minor": 0,
+    "independent_focused_tests": 15
+  },
+  "source_full_tests": 1252,
+  "source_skips": 7,
+  "source_test_seconds": 112.724,
+  "source_ci": [
+    {
+      "event": "push",
+      "run_id": 43584473103,
+      "head_sha": "62dc0ab2230339eb0cae9519ba3bb7ab59722e2d",
+      "attempt": 1,
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 132415913307,
+          "name": "onnx-interface-test",
+          "conclusion": "success"
+        },
+        {
+          "id": 132415913475,
+          "name": "synthetic-unit",
+          "conclusion": "success"
+        }
+      ],
+      "artifacts": 0
+    },
+    {
+      "event": "pull_request",
+      "run_id": 43584527532,
+      "head_sha": "62dc0ab2230339eb0cae9519ba3bb7ab59722e2d",
+      "attempt": 1,
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 132416076292,
+          "name": "synthetic-unit",
+          "conclusion": "success"
+        },
+        {
+          "id": 132416076584,
+          "name": "onnx-interface-test",
+          "conclusion": "success"
+        }
+      ],
+      "artifacts": 0
+    }
+  ],
+  "producer_head_sha": "51b5e2f0f6337f44a13ed4278946a2bae28875ff",
+  "control_head_sha": "8643b72e114cd1d117630433706d1df3098b0511",
+  "canary_request_sha256": "af7813385adefb3a85a09218409f80b6adfe6de59642b660c4a9598076192da0",
+  "abba_request_sha256": "e1352587c41737d71fa550373d923bba7e1b4f9141fcd9ebc79887a45abb394b",
+  "workflow_id": 418206888,
+  "run_id": 43584877011,
+  "attempt": 1,
+  "conclusion": "success",
+  "host_job_id": 132417101877,
+  "artifacts": [
+    {
+      "role": "canary",
+      "artifact_id": 14109786893,
+      "nbytes": 339202562,
+      "sha256": "8a2743b188a43137201affe690e45253de6fcd9b32b557e6f15d17e750998477"
+    },
+    {
+      "role": "abba",
+      "artifact_id": 14110187940,
+      "nbytes": 406089326,
+      "sha256": "b20946a129b647bb450d452ec1bd84d3e7f4828540c0d45c70025f0f43a037e8"
+    },
+    {
+      "role": "canary-attestation",
+      "artifact_id": 14109534917,
+      "nbytes": 1273,
+      "sha256": "1c1e5f710fd2394c15a685392000081930812711ecb6a389ef87f8945d977eaf"
+    }
+  ],
+  "full_identity_sha256": "00dd2466e6d58ab32644186fb9d6a1684897870f8ffcbbf3f8c3cecbec8165d8",
+  "host_lease_sha256": "2fae1d66b79e815811256c2365503ab02a1c9f356de973145dc7eea5e53b0836",
+  "root_accepted": {
+    "canary": true,
+    "abba": true
+  },
+  "fresh_raw_accepted": {
+    "canary": true,
+    "abba": true
+  },
+  "root_original_fresh_flags_preserved_false": true,
+  "canary_acceptance_host_and_workflow_in_progress": true,
+  "campaign_providers": 5,
+  "closed_providers": 5,
+  "capture_pairs": 30,
+  "ram_reads": 60,
+  "task_steps": 60,
+  "texture_readings": 120,
+  "texture_getters": 240,
+  "clock_snapshots": 240,
+  "clock_getters": 480,
+  "callback_snapshots": 144,
+  "callback_named_getters": 5040,
+  "named_observer_getters": 5760,
+  "remaining_allowance": 0,
+  "raw_retained_cpu_bytes": 104806080,
+  "abba_aggregate_pixel_changes": [
+    {
+      "left": "OFF0",
+      "right": "ON0",
+      "changed": 35,
+      "pixels": 8559936
+    },
+    {
+      "left": "OFF0",
+      "right": "ON1",
+      "changed": 35,
+      "pixels": 8559936
+    },
+    {
+      "left": "OFF0",
+      "right": "OFF1",
+      "changed": 35,
+      "pixels": 8559936
+    },
+    {
+      "left": "ON0",
+      "right": "ON1",
+      "changed": 0,
+      "pixels": 8559936
+    },
+    {
+      "left": "ON0",
+      "right": "OFF1",
+      "changed": 0,
+      "pixels": 8559936
+    },
+    {
+      "left": "ON1",
+      "right": "OFF1",
+      "changed": 0,
+      "pixels": 8559936
+    }
+  ],
+  "full_signature_counterexamples": [
+    {
+      "left": "C_ON",
+      "right": "ON0",
+      "calls": [
+        2
+      ]
+    },
+    {
+      "left": "C_ON",
+      "right": "ON1",
+      "calls": [
+        2
+      ]
+    }
+  ],
+  "distinct_counterexample_transition_count": 1,
+  "comparison_row_count": 2,
+  "all_on_processes_actual_pssm_then_chase_ticks": 36,
+  "callback_pose_states_each_on": 2,
+  "callback_mvp_states_each_on": 3,
+  "phase_members": {
+    "canary": {
+      "before_final_phase_ledger": true,
+      "byte_limit": 201326592,
+      "case_content_verified_here": false,
+      "entries": 56,
+      "entry_limit": 256,
+      "file_limit": 129,
+      "files": 49,
+      "mode": "canary",
+      "nbytes_before_final_phase_ledger": 16566864,
+      "status": "BOUNDED_PHASE_MEMBER_SNAPSHOT"
+    },
+    "abba": {
+      "before_final_phase_ledger": true,
+      "byte_limit": 201326592,
+      "case_content_verified_here": false,
+      "entries": 198,
+      "entry_limit": 512,
+      "file_limit": 256,
+      "files": 170,
+      "mode": "abba",
+      "nbytes_before_final_phase_ledger": 65724616,
+      "status": "BOUNDED_PHASE_MEMBER_SNAPSHOT"
+    }
+  },
+  "scientific": {
+    "original_strict_pass": false,
+    "strict_cases_passed": 0,
+    "strict_cases_total": 4,
+    "stage7_complete": false,
+    "official_model_calls": 0,
+    "ort_sessions": 0,
+    "unique_gpu_cause_proven": false,
+    "observer_neutrality_proven": false,
+    "physical_frame_identity_proven": false,
+    "callback_states_atomic": false,
+    "geometry_optics_fullS_proven": false
+  },
+  "costs": {
+    "canary_phase_seconds": 64.30103740000001,
+    "canary_operation_seconds": 153.20563197299998,
+    "abba_phase_seconds": 223.64081328700001,
+    "abba_operation_seconds": 284.644793749,
+    "control_wait_seconds": 346.1631349610001,
+    "abba_total_operation_seconds": 630.80792838,
+    "finish_utc": "2026-11-14T10:34:29.343206+00:00",
+    "cgroup_peak_limit_bytes": 4294967296,
+    "oom": 0,
+    "peak_is_rss": false,
+    "headroom_proven": false,
+    "intervals_are_observer_overhead": false,
+    "intervals_are_end_to_end_campaign_accounting": false
+  },
+  "source_pr": 100,
+  "proof_index": "renderer-tasks-sealed-01/proof-index.json",
+  "proof_files": 297,
+  "original_json_copies": 268,
+  "limitation": "Actual authenticated bounded native camera evidence only. Equal sampled CPU pose/MVP/order/count/Texture is not complete GPU state/shared frame or unique cause. Clocktimes differ. Subset catalogs are root CPU analysis without fresh independent subset recomputation. All model/optics/geometry/driving/fullS gates remain separate; no main merge/Cloud/registry publication."
+}
