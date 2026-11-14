@@ -56,8 +56,9 @@ Unsupported writers,shared contexts,multiple GL threads,incomplete calls and exh
 budgets stop analysis. Possible writes keep earlier dependencies conservatively;
 partial clears,feedback bindings and mipmap generation are not pixel simulation.
 
-Successful whole-stream analysis05 took32.334334439s wall and20.660532352s parentCPU.
-Pertrace wall17.463446647/14.861799933s. ParentCPU excludes decoder childCPU. These
+Post-fix whole-stream analysis06 took45.402455962s wall and28.602519559s parentCPU.
+Pertrace wall26.335314337/19.061084480s; separate source-hash preflight0.057838852s.
+Historical analysis05 took32.334334439s/20.660532352s. ParentCPU excludes decoder childCPU. These
 scopes exclude earlier failed/debug analyses,tests/review/CI and are neither tracing
 overhead nor end-to-end development cost. Four failed offline attempts are retained:
 argument-name mismatch,64MiBcap,256MiBcap and missing verbose metadata. No native retry.
@@ -67,16 +68,25 @@ has no GL trace. Neither untraced equivalence, GPU completion, actual fetch exec
 unique cause nor physical runtime identity follows. Previous sampler/feedback/order
 findings stand; their cohorts were not rerun. The consumed sealed allowance stays0.
 
-Actual full graphs remain under `output/stage7-gl-read-provenance-05/`,12.7MB combined,
-with exact SHA descriptors. [Evidence index](evidence/gl-read-provenance-01/proof-index.json),
-[machine result](evidence/gl-read-provenance-01/result.json),original receipts,
+Current full graphs remain under `output/stage7-gl-read-provenance-06/`,13247714B combined;
+the earlier05graphs remain unchanged. Exact SHA descriptors are in the
+[evidence index](evidence/gl-read-provenance-01/proof-index.json).
+The [current machine result](evidence/gl-read-provenance-01/after-fix/result.json),original receipts,
 per-read/blit records and failed analysis receipts are versioned. All299previous
-source pins are independently byte-verified unchanged. These are retained local
+source pins are byte-verified both independently and by the revised CLI preflight.
+Current and historical reports remain separate. These are retained local
 receipt associations, not newly authenticated remote native artifacts.
 
-Concentrated tests31PASS; full suite1316tests/7skips PASS116.057s. Whole-branch
-and independent saved-route review is pending. See the [ledger](STAGE7_GL_READ_PROVENANCE_LEDGER.md)
-for decisions/costs. No main merge or Cloud/registry publication.
+Fresh whole-branch/saved-route review found fourImportant gaps, noCritical/Minor.
+One fix pass corrected reflection coverage/late integer assignments, default
+FRONT/BACK/NONE selection, complete read/source/FBO/texture lifetime comparisons,
+and actual current-source hashing. All six regressions were RED→GREEN;37focused
+tests PASS. Final whole suite1322tests/7skips PASS125.086s. Both full original streams
+were reanalyzed after fixes; all60paired routes still match. There was no rereview.
+The original review and before/after evidence are preserved;24indexed proofs1642018B.
+See the [ledger](STAGE7_GL_READ_PROVENANCE_LEDGER.md) for all decisions/costs and
+[review](evidence/GL_READ_PROVENANCE_01_REVIEW.md) for the original findings.
+No main merge or Cloud/registry publication.
 
 The remaining observation gap is generated atlas/HDR contents and an explicit
 capture→graphics-command→returned-pixel association in a newly qualified scope.

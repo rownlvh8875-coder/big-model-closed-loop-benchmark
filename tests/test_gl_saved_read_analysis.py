@@ -3,6 +3,7 @@ from copy import deepcopy
 import importlib
 from pathlib import Path
 import tempfile
+from hashlib import sha256
 import unittest
 from tests import test_gl_read_provenance as fixture
 from scripts import gl_read_provenance as reducer
@@ -22,6 +23,13 @@ class SavedReadAnalysisTests(unittest.TestCase):
         x=self.data()
         for mutate in (lambda y:y['reads'][0]['routes'][0].update(samples=8),
                        lambda y:next(n for n in y['nodes'] if n['kind']=='blit_possible_write')['state'].update({'cap:3089':True})):
+            y=deepcopy(x);mutate(y)
+            with self.subTest(mutate=mutate):self.assertFalse(a.compare_reports(x,y)['reads'][0]['same_route_topology'])
+    def test_changed_read_endpoint_or_texture_lifetime_breaks_route_equality(self):
+        x=self.data()
+        for mutate in (lambda y:y['reads'][0].update(read_fbo=99),lambda y:y['reads'][0].update(read_buffer=0x8ce1),
+                       lambda y:y['reads'][0]['source_descriptor'].update(epoch=2),
+                       lambda y:y['reads'][0]['routes'][0].update(texture='c1/texture:1:2')):
             y=deepcopy(x);mutate(y)
             with self.subTest(mutate=mutate):self.assertFalse(a.compare_reports(x,y)['reads'][0]['same_route_topology'])
     def test_two_missing_routes_are_unobserved_not_equal(self):
@@ -45,5 +53,13 @@ class SavedReadAnalysisTests(unittest.TestCase):
             finally:closed.append(True)
         with self.assertRaises(ValueError):a.analyze_events(events())
         self.assertEqual(closed,[True])
+    def test_changed_source_cannot_get_fresh_preservation_assertion(self):
+        self.assertTrue(hasattr(a,'verify_source_snapshot'),'current source hashing required')
+        with tempfile.TemporaryDirectory() as td:
+            root=Path(td);f=root/'legacy.py';f.write_bytes(b'original')
+            expected={'legacy.py':sha256(b'original').hexdigest()}
+            self.assertEqual(a.verify_source_snapshot(root,expected)['source_pins_preserved'],1)
+            f.write_bytes(b'changed')
+            with self.assertRaises(ValueError):a.verify_source_snapshot(root,expected)
 
 if __name__=='__main__':unittest.main()

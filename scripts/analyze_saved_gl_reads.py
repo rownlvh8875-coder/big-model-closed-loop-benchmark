@@ -19,8 +19,9 @@ def _route_key(route,nodes):
     resolved=nodes[route['resolve_call']]
     # Scissor affects blits; masks/depth-test/blending are not simulated.
     scissor={k:v for k,v in resolved['state'].items() if k in ('cap:3089','glScissor','glScissorArrayv')}
-    return dict(rgb_program=route['rgb_program'],texture_name=route['texture_name'],
+    return dict(rgb_program=route['rgb_program'],texture_name=route['texture_name'],texture_lifetime=route['texture'],rgb_draw_fbo_key=route.get('rgb_draw_fbo_key'),
         resolve_read_fbo=route['resolve_read_fbo'],resolve_draw_fbo=route['resolve_draw_fbo'],
+        resolve_read_fbo_key=route.get('resolve_read_fbo_key'),resolve_draw_fbo_key=route.get('resolve_draw_fbo_key'),
         msaa_descriptor=route['msaa_descriptor'],samples=route['samples'],resolve_args=route['resolve_args'],recorded_scissor=scissor)
 
 def compare_reports(left,right):
@@ -29,10 +30,11 @@ def compare_reports(left,right):
     for i,(a,b) in enumerate(zip(left['reads'],right['reads'])):
         markers_equal=a['markers']==b['markers'];same=None
         keys=[[_route_key(r,nodes[j]) for r in read['routes']] for j,read in enumerate((a,b))]
-        if markers_equal and keys[0] and keys[1]:same=keys[0]==keys[1]
+        endpoints=[{k:q.get(k) for k in ('context','read_fbo','read_fbo_key','read_buffer','source','source_descriptor','args')} for q in (a,b)]
+        if markers_equal and keys[0] and keys[1]:same=keys[0]==keys[1] and endpoints[0]==endpoints[1]
         rows.append(dict(read_ordinal=i,calls=[a['call'],b['call']],read_fbos=[a['read_fbo'],b['read_fbo']],
             markers=[a['markers'],b['markers']],marker_names_equal=markers_equal,same_route_topology=same,
-            route_keys=keys,returned_pixels_observed=False))
+            route_keys=keys,read_endpoints=endpoints,returned_pixels_observed=False))
     return dict(schema='gl-read-route-comparison-v1',status='RECORDED_ROUTE_TOPOLOGY_COMPARED',reads=rows,
         pixel_equality_proven=False,sealed_frame_association_proven=False,gpu_completion_proven=False,
         limitation='Only recorded route topology/selected storage and scissor metadata. Equal routes do not imply equal source draws, uniform/raster state, generated pixels or a shared GPU frame.')
@@ -70,10 +72,32 @@ def analyze_events(events):
     try:return provenance.analyze(events)
     finally:events.close()
 
+def verify_source_snapshot(repo_root,expected):
+    root=Path(repo_root).absolute()
+    if type(expected) is not dict or not 1<=len(expected)<=299:raise ValueError('bounded source snapshot required')
+    for name,digest in expected.items():
+        if (type(name) is not str or name.startswith('/') or any(p in ('','.','..') for p in name.split('/')) or
+            type(digest) is not str or len(digest)!=64):raise ValueError('safe source descriptor required')
+        path=reader._regular(root/name,16*1024**2)
+        if reader.file_sha(path)!=digest:raise ValueError('source preservation mismatch: '+name)
+    raw=json.dumps(expected,sort_keys=True,separators=(',',':')).encode()
+    return dict(source_pins_preserved=len(expected),verified_by_this_run=True,source_snapshot_sha256=sha256(raw).hexdigest())
+
+def _current_source_integrity():
+    root=Path(__file__).resolve().parents[1]
+    path=reader._regular(root/'docs/evidence/renderer-pipeline-sealed-01/source/qualified.json',2*1024**2)
+    digest=reader.file_sha(path)
+    if digest!='12528cca734fa2bad3dc76c5c8ab61d0821bdb75c5b53c53404f01ff195b3efb':raise ValueError('predecessor source receipt mismatch')
+    expected=json.loads(path.read_bytes())['request']['source_closure']
+    if len(expected)!=299:raise ValueError('original 299 source pins required')
+    result=verify_source_snapshot(root,expected);result['qualified_receipt_sha256']=digest
+    return result
+
 def run(data_root,tool,deb,out):
     root=Path(data_root).absolute();out=Path(out).absolute()
     if out.exists() or '..' in out.parts or any(p.is_symlink() for p in (out,*out.parents)):
         raise ValueError('fresh nonsymlink output required')
+    source_start=perf_counter();source_integrity=_current_source_integrity();source_wall=perf_counter()-source_start
     native,inputs=_inputs(root);out.mkdir(parents=True);reports=[];proofs=[];files=[];costs=[]
     started=perf_counter();cpu_started=process_time()
     try:
@@ -115,7 +139,8 @@ def run(data_root,tool,deb,out):
             route_topology_unobserved=sum(q['same_route_topology'] is None for q in comparison['reads']),
             primary_fixed_schedule_mapping=primary,costs=costs,total_wall_seconds=perf_counter()-started,
             parent_cpu_seconds=process_time()-cpu_started,parent_cpu_excludes_decoder_children=True,
-            source_pins_preserved=299,new_native_calls=0,new_gl_calls=0,new_providers=0,new_model_calls=0,new_ort_sessions=0,
+            source_pins_preserved=source_integrity['source_pins_preserved'],source_integrity=source_integrity,source_verification_wall_seconds=source_wall,
+            new_native_calls=0,new_gl_calls=0,new_providers=0,new_model_calls=0,new_ort_sessions=0,
             consumed_sealed_allowance_remaining=0,official_model_input_association_proven=False,
             gpu_contents_reconstructed=False,returned_pixel_bytes_observed=False,sealed_frame_association_proven=False,
             untraced_equivalence_proven=False,unique_cause_proven=False,original_strict_pass=False,stage7_complete=False,

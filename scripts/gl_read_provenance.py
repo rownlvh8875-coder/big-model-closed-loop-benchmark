@@ -75,11 +75,11 @@ def analyze(events,*,max_calls=120000,max_nodes=20000,max_reads=256):
         ref=f['attachments'].get(slot)
         if ref is None and slot in (DEPTH,STENCIL):ref=f['attachments'].get(DS)
         return image(c,ref[0],ref[1],aspect) if ref is not None else None
-    def colors(f):return f['draw_buffers'] if f is not None else [0x405]
+    def colors(c,f):return f['draw_buffers'] if f is not None else c['default_draw_buffers']
     def outputs(c,f,aspects=('color','depth','stencil'),index=None):
         keys=[]
         if 'color' in aspects:
-            slots=colors(f)
+            slots=colors(c,f)
             if index is not None:
                 index=integer(index)
                 if index>=len(slots):raise ValueError('clear color buffer index')
@@ -89,7 +89,7 @@ def analyze(events,*,max_calls=120000,max_nodes=20000,max_reads=256):
             if aspect in aspects:keys.append(attachment(c,f,slot,aspect))
         return list(dict.fromkeys(k for k in keys if k is not None))
     def source(c,f,aspect='color'):
-        slot=(f['read_buffer'] if f is not None else 0x405) if aspect=='color' else DEPTH if aspect=='depth' else STENCIL
+        slot=(f['read_buffer'] if f is not None else c['default_read_buffer']) if aspect=='color' else DEPTH if aspect=='depth' else STENCIL
         key=attachment(c,f,slot,aspect) if slot else None
         return dict(resource=key,potential_writer=latest.get(key),descriptor=deepcopy(images.get(key)),aspect=aspect)
     def emit(c,no,fn,kind,a,out,src=(),samplers=()):
@@ -107,6 +107,7 @@ def analyze(events,*,max_calls=120000,max_nodes=20000,max_reads=256):
         node=dict(id=no,function=fn,kind=kind,context=c['id'],outputs=list(out),dependencies=sorted(dependencies),
             sources=deepcopy(list(src)),samplers=deepcopy(list(samplers)),args=norm(a),markers=list(c['markers']),
             draw_fbo=c['draw']['name'] if c['draw'] else 0,read_fbo=c['read']['name'] if c['read'] else 0,
+            draw_fbo_key=c['draw']['key'] if c['draw'] else None,read_fbo_key=c['read']['key'] if c['read'] else None,
             program=c['program'],state=deepcopy(c['state']),potential_feedback=any(s['texture'] in out_textures for s in samplers),contents_reconstructed=False)
         nodes.append(node);byid[no]=node
         for k in out:
@@ -121,11 +122,16 @@ def analyze(events,*,max_calls=120000,max_nodes=20000,max_reads=256):
         if c['program']==0:return []
         program=c['programs'].get(c['program'])
         if not program or not program['linked']:raise ValueError('successful program link evidence required')
+        count=program['active_count']
+        if count is None or set(program['reflected'])!=set(range(count)) or len(program['uniforms'])!=count:
+            raise ValueError('complete active-uniform reflection coverage required')
         result=[]
         for name,u in program['uniforms'].items():
             if u['type'] not in (0x8b5e,0x8b62):continue
             if u['size']!=1 or name not in program['locations']:raise ValueError('supported reflected sampler location required')
-            loc=program['locations'][name];unit=program['units'].get(loc,0);t=c['textures'].get(unit)
+            loc=program['locations'][name];value,assigned_count=program['units'].get(loc,(0,0))
+            if assigned_count not in (0,1):raise ValueError('scalar sampler assignment required')
+            unit=integer(value);t=c['textures'].get(unit)
             result.append(dict(uniform=name,type=u['type'],location=loc,unit=unit,
                 unit_origin='recorded_uniform' if loc in program['units'] else 'successful_link_default_zero',
                 texture=t['key'] if t else None,texture_name=t['name'] if t else 0,
@@ -140,7 +146,9 @@ def analyze(events,*,max_calls=120000,max_nodes=20000,max_reads=256):
             for src in resolve['sources']:
                 if src['aspect']!='color' or src['descriptor'] is None:continue
                 result.append(dict(rgb_draw_call=n['id'],rgb_program=n['program'],texture_name=s['texture_name'],
+                    rgb_draw_fbo_key=n['draw_fbo_key'],
                     texture=s['texture'],resolve_call=resolve['id'],resolve_read_fbo=resolve['read_fbo'],resolve_draw_fbo=resolve['draw_fbo'],
+                    resolve_read_fbo_key=resolve['read_fbo_key'],resolve_draw_fbo_key=resolve['draw_fbo_key'],
                     msaa_source=src['resource'],msaa_descriptor=src['descriptor'],samples=src['descriptor'].get('samples'),
                     source_potential_writer=src['potential_writer'],resolve_args=resolve['args'],contents_reconstructed=False))
         return result
@@ -163,7 +171,7 @@ def analyze(events,*,max_calls=120000,max_nodes=20000,max_reads=256):
                 if cid in contexts:raise ValueError('duplicate context')
                 contexts[cid]=dict(id=len(contexts)+1,objects={k:{} for k in ('texture','renderbuffer','framebuffer')},
                     epochs={k:{} for k in ('texture','renderbuffer','framebuffer')},read=None,draw=None,drawable=None,
-                    textures={},unit=0,rbo=None,program=0,programs={},markers=[],state={},buffers={})
+                    textures={},unit=0,rbo=None,program=0,programs={},markers=[],state={},buffers={},default_draw_buffers=[],default_read_buffer=None)
                 continue
             if fn=='glXMakeCurrent':
                 if not ret:raise ValueError('failed context switch')
@@ -245,35 +253,50 @@ def analyze(events,*,max_calls=120000,max_nodes=20000,max_reads=256):
                     else:c['textures'].pop(first+i,None)
             elif fn in ('glDrawBuffer','glDrawBuffers','glReadBuffer'):
                 f=c['read'] if fn=='glReadBuffer' else c['draw']
-                if f is None:continue
-                if fn=='glReadBuffer':f['read_buffer']=integer(a['mode'])
-                elif fn=='glDrawBuffer':f['draw_buffers']=[integer(a['mode'])]
+                if fn=='glReadBuffer':
+                    selected=integer(a['mode'])
+                    if f is None:
+                        if selected not in (0,0x404,0x405):raise ValueError('unsupported default read selector')
+                        c['default_read_buffer']=selected
+                    else:f['read_buffer']=selected
                 else:
-                    if type(a['bufs']) is not list or len(a['bufs'])!=integer(a['n']):raise ValueError('draw buffers values')
-                    f['draw_buffers']=[integer(v) for v in a['bufs']]
-            elif fn=='glCreateProgram':c['programs'][integer(ret,1)]=dict(linked=False,uniforms={},locations={},units={})
+                    if fn=='glDrawBuffer':selected=[integer(a['mode'])]
+                    else:
+                        if type(a['bufs']) is not list or len(a['bufs'])!=integer(a['n']):raise ValueError('draw buffers values')
+                        selected=[integer(v) for v in a['bufs']]
+                    if f is None:
+                        if any(v not in (0,0x404,0x405) for v in selected):raise ValueError('unsupported default draw selector')
+                        c['default_draw_buffers']=selected
+                    else:f['draw_buffers']=selected
+            elif fn=='glCreateProgram':c['programs'][integer(ret,1)]=dict(linked=False,uniforms={},locations={},units={},active_count=None,reflected={})
             elif fn=='glLinkProgram':
-                c['programs'][a['program']]=dict(linked=False,uniforms={},locations={},units={})
+                c['programs'][a['program']]=dict(linked=False,uniforms={},locations={},units={},active_count=None,reflected={})
             elif fn=='glGetProgramiv':
                 if a['pname']==0x8b82:c['programs'][a['program']]['linked']=a['params']==[1]
+                elif a['pname']==0x8b86:
+                    if type(a['params']) is not list or len(a['params'])!=1:raise ValueError('active uniform count required')
+                    value=integer(a['params'][0])
+                    if value>1024:raise ValueError('active uniform count cap')
+                    c['programs'][a['program']]['active_count']=value
             elif fn=='glGetActiveUniform':
                 typ=integer(a['type'][0]);size=integer(a['size'][0],1);name=a['name']
                 if type(name) is not str or len(a['type'])!=1 or len(a['size'])!=1:raise ValueError('recorded uniform reflection required')
                 if typ not in (0x8b5e,0x8b62) and (0x8b5d<=typ<=0x8b64 or 0x8dc0<=typ<=0x8dd7 or 0x900c<=typ<=0x900f or 0x9108<=typ<=0x910d):raise ValueError('unsupported sampler type')
                 c['programs'][a['program']]['uniforms'][name]=dict(type=typ,size=size)
+                c['programs'][a['program']]['reflected'][integer(a['index'])]=name
             elif fn=='glGetUniformLocation':
                 loc=integer(ret,-1)
                 if loc>=0:c['programs'][a['program']]['locations'][a['name']]=loc
             elif fn=='glUseProgram':c['program']=integer(a['program'])
             elif fn in ('glUniform1i','glUniform1iv'):
                 program=c['programs'][c['program']];loc=integer(a['location'],-1)
-                samplerlocs={program['locations'].get(k) for k,v in program['uniforms'].items() if v['type'] in (0x8b5e,0x8b62)}
-                if loc in samplerlocs:
-                    if fn=='glUniform1i':value=a['v0']
+                if loc>=0:
+                    if not program['linked']:raise ValueError('assignment before successful link')
+                    if fn=='glUniform1i':values=[a['v0']]
                     else:
-                        if a['count']!=1 or type(a['value']) is not list or len(a['value'])!=1:raise ValueError('single sampler assignment required')
-                        value=a['value'][0]
-                    program['units'][loc]=integer(value)
+                        if type(a['value']) is not list or len(a['value'])!=integer(a['count']):raise ValueError('integer uniform assignment values required')
+                        values=a['value']
+                    for offset,value in enumerate(values):program['units'][loc+offset]=(integer(value,-2147483648),len(values))
             elif fn.startswith(('glDrawArrays','glDrawElements','glDrawRangeElements')):
                 emit(c,no,fn,'draw_possible_write',a,outputs(c,c['draw']),samplers=sampler_inputs(c))
             elif fn in ('glClear','glClearBufferfv','glClearBufferfi'):
@@ -289,7 +312,8 @@ def analyze(events,*,max_calls=120000,max_nodes=20000,max_reads=256):
                 if len(reads)>=max_reads:raise ValueError('read budget')
                 if a['format'] not in (0x1907,0x1908,0x80e0,0x80e1):raise ValueError('only recorded color reads supported')
                 src=source(c,c['read']);reads.append(dict(call=no,context=c['id'],read_fbo=c['read']['name'] if c['read'] else 0,
-                    read_buffer=c['read']['read_buffer'] if c['read'] else 0x405,source=src['resource'],source_descriptor=src['descriptor'],
+                    read_fbo_key=c['read']['key'] if c['read'] else None,
+                    read_buffer=c['read']['read_buffer'] if c['read'] else c['default_read_buffer'],source=src['resource'],source_descriptor=src['descriptor'],
                     potential_writer=src['potential_writer'],args=norm({k:v for k,v in a.items() if k!='pixels'}),
                     pixels_observed=False,markers=list(c['markers']),routes=route(src['potential_writer'])))
             elif fn=='glPushGroupMarkerEXT':

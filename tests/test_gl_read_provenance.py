@@ -29,6 +29,7 @@ class Events:
     def shader(self):
         self.add('glCreateProgram',ret=7);self.add('glLinkProgram',program=7)
         self.add('glGetProgramiv',program=7,pname=0x8b82,params=[1])
+        self.add('glGetProgramiv',program=7,pname=0x8b86,params=[1])
         self.add('glGetActiveUniform',program=7,index=0,bufSize=64,length=None,size=[1],type=[0x8b5e],name='tex')
         self.add('glGetUniformLocation',ret=1,program=7,name='tex');self.add('glUseProgram',program=7)
     def clear(self):return self.add('glClearBufferfv',buffer=0x1800,drawbuffer=0,value=[0.,0.,0.,1.])
@@ -76,11 +77,35 @@ class ReadProvenanceTests(unittest.TestCase):
         self.assertNotEqual(a['source'],b['source']);self.assertEqual((a['source_descriptor']['epoch'],b['source_descriptor']['epoch']),(1,2))
     def test_integer_non_sampler_uniform_does_not_create_texture_dependency(self):
         e,_,draw,_=route_fixture();e.rows.pop();e.rows.pop()
+        e.add('glGetProgramiv',program=7,pname=0x8b86,params=[2])
         e.add('glGetActiveUniform',program=7,index=1,bufSize=64,length=None,size=[1],type=[0x8b56],name='enabled')
         e.add('glGetUniformLocation',ret=2,program=7,name='enabled');e.add('glUniform1i',location=2,v0=1)
         draw=e.add('glDrawArrays',mode=4,first=0,count=3);e.read()
         node=next(n for n in p.analyze(e.rows)['nodes'] if n['id']==draw)
         self.assertEqual(len(node['samplers']),1);self.assertEqual(node['samplers'][0]['uniform'],'tex')
+    def test_missing_or_partial_active_reflection_cannot_complete(self):
+        for mode in ('no_count','partial'):
+            e,_,_,_=route_fixture()
+            e.rows=[row for row in e.rows if not (mode=='no_count' and row[1]=='glGetProgramiv' and dict(row[2])['pname']==0x8b86)]
+            if mode=='partial':
+                e.rows=[(no,fn,[(k,[2] if k=='params' else v) for k,v in args],ret,flags) if fn=='glGetProgramiv' and dict(args)['pname']==0x8b86 else (no,fn,args,ret,flags) for no,fn,args,ret,flags in e.rows]
+            with self.subTest(mode=mode),self.assertRaises(ValueError):p.analyze(e.rows)
+    def test_integer_assignment_before_reflection_retains_sampler_unit(self):
+        e=Events();e.texture(1);e.texture(2);e.add('glActiveTexture',texture=0x84c1);e.add('glBindTexture',target=TEX,texture=2)
+        e.add('glActiveTexture',texture=0x84c0);e.add('glBindTexture',target=TEX,texture=1);e.framebuffer(1,texture=1)
+        e.add('glCreateProgram',ret=7);e.add('glLinkProgram',program=7);e.add('glGetProgramiv',program=7,pname=0x8b82,params=[1])
+        e.add('glGetProgramiv',program=7,pname=0x8b86,params=[1]);e.add('glGetUniformLocation',ret=1,program=7,name='tex');e.add('glUseProgram',program=7)
+        e.add('glUniform1i',location=1,v0=1);e.add('glGetActiveUniform',program=7,index=0,bufSize=64,length=None,size=[1],type=[0x8b5e],name='tex')
+        call=e.add('glDrawArrays',mode=4,first=0,count=3);e.read();node=next(n for n in p.analyze(e.rows)['nodes'] if n['id']==call)
+        self.assertEqual((node['samplers'][0]['unit'],node['samplers'][0]['texture_name']),(1,2))
+    def test_default_front_and_back_are_distinct_read_resources(self):
+        e=Events();e.add('glDrawBuffer',mode=0x404);front=e.clear();e.add('glReadBuffer',mode=0x404);e.read()
+        e.add('glDrawBuffer',mode=0x405);back=e.clear();e.add('glReadBuffer',mode=0x405);e.read()
+        a,b=p.analyze(e.rows)['reads'];self.assertEqual((a['potential_writer'],b['potential_writer']),(front,back))
+        self.assertEqual((a['read_buffer'],b['read_buffer']),(0x404,0x405));self.assertNotEqual(a['source'],b['source'])
+    def test_default_none_does_not_acquire_a_color_writer(self):
+        e=Events();e.add('glDrawBuffer',mode=0);e.clear();e.add('glReadBuffer',mode=0);e.read()
+        q=p.analyze(e.rows)['reads'][0];self.assertIsNone(q['source']);self.assertIsNone(q['potential_writer'])
     def test_partial_clear_preserves_previous_possible_producer(self):
         e=Events();e.texture();e.framebuffer(1,texture=1);a=e.clear()
         e.add('glEnable',cap=0xc11);e.add('glScissor',x=0,y=0,width=1,height=1);b=e.clear();e.read();r=p.analyze(e.rows)
