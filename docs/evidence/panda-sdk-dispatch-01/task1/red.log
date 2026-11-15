@@ -1,0 +1,21 @@
+setUpClass (tests.test_panda_sdk_dispatch_probe.ProbeTests) ... ERROR
+
+======================================================================
+ERROR: setUpClass (tests.test_panda_sdk_dispatch_probe.ProbeTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_dispatch_probe.py", line 8, in setUpClass
+    cls.probe=importlib.import_module('scripts.panda_sdk_dispatch_probe');cls.tmp=tempfile.TemporaryDirectory();cls.root=Path(cls.tmp.name);cls.target=cpu_library(cls.root/'cpu');cls.identity=cls.probe.build_probe(cls.root/'probe')
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.cloud-tools/python/cpython-3.11.17-linux-x86_64-gnu/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1140, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'scripts.panda_sdk_dispatch_probe'
+
+----------------------------------------------------------------------
+Ran 0 tests in 0.001s
+
+FAILED (errors=1)

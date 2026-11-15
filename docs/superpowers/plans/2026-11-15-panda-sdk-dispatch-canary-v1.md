@@ -20,8 +20,8 @@ Base1a307f4/6671files/299pins/10originals/main/Drafts102–118/native8/image3/ma
 ### Task1: Typed source-bound dispatch probe and CPU integration
 Files: native/panda_sdk_dispatch_probe.cxx; scripts/panda_sdk_dispatch_probe.py; tests/test_panda_sdk_dispatch_probe.py; tests/panda_sdk_dispatch_support.py.
 Interfaces: build_probe(out)->identity/profile/bytes/commands; validate_probe(report)->True; local CPU target distinct from production SDK.
-- [ ] RED missing probe behavior: actual typed wrappers forward once with args/errno, bootstrap/live/PBOdelete/pendingdestroy/reuse; failed switch preserves state, downstream failure rejects, malformed counters/guards rejected.
-- [ ] Implement bounded probe/build/profile/semantic validation; focused GREEN; commit evidence.
+- [x] RED missing probe behavior: actual typed wrappers forward once with args/errno, bootstrap/live/PBOdelete/pendingdestroy/reuse; failed switch preserves state, downstream failure rejects, malformed counters/guards rejected.
+- [x] Implement bounded probe/build/profile/semantic validation; focused5 GREEN1.058s; commit evidence.
 
 ### Task2: New process/code and authority boundary
 Files: scripts/panda_sdk_dispatch_{profile,policy,child,runtime}.py; tests/test_panda_sdk_dispatch_runtime.py; docs/evidence/panda-sdk-dispatch-01/profile.json.
