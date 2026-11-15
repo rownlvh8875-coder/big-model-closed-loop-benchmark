@@ -32,6 +32,6 @@ Interfaces: profile for SDK exports+full executablePT; runtime.run_window(librar
 ### Task3: Hosted one-use execution and external acceptance
 Files: scripts/run_panda_sdk_dispatch_canary.py;scripts/accept_panda_sdk_dispatch_canary.py;scripts/panda_sdk_dispatch_carrier.py;.github/workflows/panda-sdk-dispatch-canary-v1.yml;tests/test_panda_sdk_dispatch_flow.py;docs/STAGE7_PANDA_SDK_DISPATCH_{RESULT,LEDGER,CONTINUATION}.md.
 Interfaces: closed request+build/runtime/execution proof; independent acceptor authenticates actualsource/activation/CI/run/job/artifact and scopes selected result only.
-- [ ] RED newsourceCI/run/job/carrier/probe bytes/replay/failure-wire/one-start gates; implement and focused/full GREEN/preservation/commit.
+- [x] RED newsourceCI/run/job/carrier/probe bytes/replay/failure-wire/one-start gates; implement and focused/full GREEN/preservation/commit.
 - [ ] ONE fresh wholebranch review, ONE Important TDD fixpass, no rereview/minor polishing; ownDraft/canonical reviewedsourceCI4jobs; new request-only activation once; ONE actual hosted attempt and external acceptance or retained failure, no retry.
 - [ ] Final docs/evidence commit/exact finalheadCI4jobs/attempt1/artifacts0/body/freshpreservation/clean tree/outputreceipt; archive/remove only own scratch. Receipt output/stage7-panda-sdk-dispatch-01/final-verification.json avoids self-reference.

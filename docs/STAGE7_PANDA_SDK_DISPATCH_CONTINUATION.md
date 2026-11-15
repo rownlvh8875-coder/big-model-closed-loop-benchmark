@@ -1,0 +1,7 @@
+# Continue integrated SDK dispatch canary
+
+Read RESULT/LEDGER/spec/plan and evidence/panda-sdk-dispatch-01/profile.json. Base1a307f4/6671files; currentimage4984/configb9/SDK8d3 fixed. Typed source-bound CPU-original probe and new process/authority engines implemented. Actual new dispatch01 NOT_RUN; old mapping01 consumed/pass/run43709001528 must not be replayed. Scientific allowance0/strict0of4FAIL/Stage7INCOMPLETE remain.
+
+Complete sole fresh wholebranch review/oneImportantTDDfixpass/no rereview, exact sourceCI4jobs/artifacts0, ownDraft then fresh request-only dispatch01 activation. ONE actual hosted attempt may load Panda1/SDK1/sourceboundprobe1 and invoke fixed scenario once. Inspect authentic API/carrier/probe/build/process evidence; retain authenticated failure without retries. No local actualSDK/container/GL/model, no image rebuild or old request reuse. Preserve6671basefiles/modes/299pins/10originals/main/Drafts102–118/native8/image3/mapping01 histories and prior evidence. Final docs-onlycommit/exactheadCI/body/freshpreservation/outputreceipt/onlyownscratchcleanup follow.
+
+Even a passed dispatch-only canary qualifies selected installed SDK command/C ABI paths with fake CPU originals, not actual Panda C++ object/Texture/GSG allocation, GLX contexts/GL calls/driver state/freshness, full relocation/interposition, producer/sink delivery, RGB/I420/officialMDV3ONNX/equality/divergence/performance. A new bounded actual-driver/object contract precedes official4condition/8process cohort. No registry/Cloud publication/main/shared-base update or merge.
