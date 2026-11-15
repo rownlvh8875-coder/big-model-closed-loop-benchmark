@@ -1,0 +1,12 @@
+# Continue from the new versioned SDK and local image
+
+Do not repeat completed seven-route implementation/build/classification/image assembly or modify original evidence. Read RESULT, LEDGER, docs/evidence/panda-sdk-routes-02/selection.json and final output receipt. Candidate SDK3e9fa983 and local image9ad3564a now have actual byte membership proof. They remain DATA ONLY/unqualified for native execution. Current allowance0/strict0of4FAIL/Stage7INCOMPLETE; no model/officialORT/Panda/GL/MetaDrive/provider loading, activation/publication, old request replay or cap inflation.
+
+Existing actual selected source/build/CPU/image proofs are retained under output/stage7-panda-sdk-routes-02; original failed build/parser receipt remain unchanged. Image reinspection uses --reinspect and a NEW --out, reads retained tar as DATA only and never invokes Docker. It is not an authenticated producer proof. New image builds require fresh outputs,16GiB free and fixed COPY-only/stopped operations; do not delete shared resources to make space.
+
+Next work must close NEW-image authenticated Actions production/transport plus mapped ABI/dispatch, early install and Texture/GSG/allocation identity/lifetimes, cache handoff, actual environment/driver-read freshness and authenticated process-window-producer-sink receipts. Static computed-name closure is done; runtime resolver origins remain unqualified. Directory metadata/ownership/xattrs were not part of installed-file proof. A fresh bounded native canary requires new mechanical qualification/contract; consumed native requests cannot be replayed. Official original4condition/8process repeatability and first-divergence follow later with original PSSM/Chase/camera/read counts and exact fields unchanged.
+
+Use the committed code/tests to validate CPU/data behavior. Do not infer a date or completion percentage from the number of remaining qualification gates. Final exact source CI is synthetic/generated small ONNX graph only, not official MD-V3 inference.
+
+Final after-fix checkpoint: Final single fix pass:0C2I0M/all2fixed RED→GREEN; PAX/GNU/sparse metadata before allocation + portable pinned CPU child;15focused/full1565/1558PASS7skip128.392s. Actual unchanged SDK/image rechecked,0native/model/starts. Nativeallowance0/strict0of4FAIL/Stage7INCOMPLETE. ExactfinalHEAD Draft/CI/freshpreservation follows.
+Read after-fix/ and selection.json for latest verification; before-review remains unchanged. Nine reviewer-declined rulings/costs are in the ledger. No deferred minors; no rereview.

@@ -1,0 +1,1033 @@
+{
+  "schema": "panda-capture-state-passthrough-profile-v2",
+  "scope": "Exact source-only dispatch passthrough classification for the command-cache tuple; no global GL-state/driver/native authority.",
+  "safe_cap": 256,
+  "safe_names": [
+    {
+      "name": "glActiveStencilFaceEXT",
+      "category": "vertex_draw_raster"
+    },
+    {
+      "name": "glActiveTexture",
+      "category": "texture_sampler_image"
+    },
+    {
+      "name": "glActiveTextureARB",
+      "category": "texture_sampler_image"
+    },
+    {
+      "name": "glAttachShader",
+      "category": "shader_uniform"
+    },
+    {
+      "name": "glBeginQuery",
+      "category": "query_debug"
+    },
+    {
+      "name": "glBeginQueryARB",
+      "category": "query_debug"
+    },
+    {
+      "name": "glBindAttribLocation",
+      "category": "shader_uniform"
+    },
+    {
+      "name": "glBindFragDataLocation",
+      "category": "shader_uniform"
+    },
+    {
+      "name": "glBindFragDataLocationEXT",
+      "category": "shader_uniform"
+    },
+    {
+      "name": "glBindImageTexture",
+      "category": "texture_sampler_image"
+    },
+    {
+      "name": "glBindImageTextureEXT",
+      "category": "texture_sampler_image"
+    },
+    {
+      "name": "glBindImageTextures",
+      "category": "texture_sampler_image"
+    },
+    {
+      "name": "glBindRenderbuffer",
+      "category": "framebuffer_attachment_storage"
+    },
+    {
+      "name": "glBindRenderbufferEXT",
+      "category": "framebuffer_attachment_storage"
+    },
+    {
+      "name": "glBindSampler",
+      "category": "texture_sampler_image"
+    },
+    {
+      "name": "glBindSamplers",
+      "category": "texture_sampler_image"
+    },
+    {
+      "name": "glBindTextures",
+      "category": "texture_sampler_image"
+    },
+    {
+      "name": "glBindVertexArray",
+      "category": "vertex_draw_raster"
+    },
+    {
+      "name": "glBindVertexBuffer",
+      "category": "vertex_draw_raster"
+    },
+    {
+      "name": "glBindVertexBuffers",
+      "category": "vertex_draw_raster"
+    },
+    {
+      "name": "glBlendColor",
+      "category": "vertex_draw_raster"
+    },
+    {
+      "name": "glBlendColorEXT",
+      "category": "vertex_draw_raster"
+    },
+    {
+      "name": "glBlendEquation",
+      "category": "vertex_draw_raster"
+    },
+    {
+      "name": "glBlendEquationEXT",
+      "category": "vertex_draw_raster"
+    },
+    {
+      "name": "glBlendEquationSeparate",
+      "category": "vertex_draw_raster"
+    },
+    {
+      "name": "glBlendEquationSeparateEXT",
+      "category": "vertex_draw_raster"
+    },
+    {
+      "name": "glBlendFuncSeparate",
+      "category": "vertex_draw_raster"
+    },
+    {
+      "name": "glBlendFuncSeparateEXT",
+      "category": "vertex_draw_raster"
+    },
+    {
+      "name": "glBlitFramebuffer",
+      "category": "framebuffer_attachment_storage"
+    },
+    {
+      "name": "glBlitFramebufferEXT",
+      "category": "framebuffer_attachment_storage"
+    },
+    {
+      "name": "glBufferData",
+      "category": "buffer_storage"
+    },
+    {
+      "name": "glBufferDataARB",
+      "category": "buffer_storage"
+    },
+    {
+      "name": "glBufferStorage",
+      "category": "buffer_storage"
+    },
+    {
+      "name": "glBufferSubData",
+      "category": "buffer_storage"
+    },
+    {
+      "name": "glBufferSubDataARB",
+      "category": "buffer_storage"
+    },
+    {
+      "name": "glCheckFramebufferStatus",
+      "category": "framebuffer_attachment_storage"
+    },
+    {
+      "name": "glCheckFramebufferStatusEXT",
+      "category": "framebuffer_attachment_storage"
+    },
+    {
+      "name": "glClearBufferData",
+      "category": "buffer_storage"
+    },
+    {
+      "name": "glClearBufferfi",
+      "category": "vertex_draw_raster"
+    },
+    {
+      "name": "glClearBufferfv",
+      "category": "vertex_draw_raster"
+    },
+    {
+      "name": "glClearBufferiv",
+      "category": "vertex_draw_raster"
+    },
+    {
+      "name": "glClearTexImage",
+      "category": "texture_sampler_image"
+    },
+    {
+      "name": "glClientActiveTexture",
+      "category": "texture_sampler_image"
+    },
+    {
+      "name": "glClientActiveTextureARB",
+      "category": "texture_sampler_image"
+    },
+    {
+      "name": "glClipControl",
+      "category": "vertex_draw_raster"
+    },
+    {
+      "name": "glCompileShader",
+      "category": "shader_uniform"
+    },
+    {
+      "name": "glCompressedTexImage1D",
+      "category": "texture_sampler_image"
+    },
+    {
+      "name": "glCompressedTexImage1DARB",
+      "category": "texture_sampler_image"
+    },
+    {
+      "name": "glCompressedTexImage2D",
+      "category": "texture_sampler_image"
+    },
+    {
+      "name": "glCompressedTexImage2DARB",
+      "category": "texture_sampler_image"
+    },
+    {
+      "name": "glCompressedTexImage3D",
+      "category": "texture_sampler_image"
+    },
+    {
+      "name": "glCompressedTexImage3DARB",
+      "category": "texture_sampler_image"
+    },
+    {
+      "name": "glCompressedTexSubImage1D",
+      "category": "texture_sampler_image"
+    },
+    {
+      "name": "glCompressedTexSubImage1DARB",
+      "category": "texture_sampler_image"
+    },
+    {
+      "name": "glCompressedTexSubImage2D",
+      "category": "texture_sampler_image"
+    },
+    {
+      "name": "glCompressedTexSubImage2DARB",
+      "category": "texture_sampler_image"
+    },
+    {
+      "name": "glCompressedTexSubImage3D",
+      "category": "texture_sampler_image"
+    },
+    {
+      "name": "glCompressedTexSubImage3DARB",
+      "category": "texture_sampler_image"
+    },
+    {
+      "name": "glCopyTexSubImage3D",
+      "category": "texture_sampler_image"
+    },
+    {
+      "name": "glCopyTexSubImage3DEXT",
+      "category": "texture_sampler_image"
+    },
+    {
+      "name": "glCreateProgram",
+      "category": "shader_uniform"
+    },
+    {
+      "name": "glCreateShader",
+      "category": "shader_uniform"
+    },
+    {
+      "name": "glDebugMessageCallback",
+      "category": "query_debug"
+    },
+    {
+      "name": "glDebugMessageCallbackARB",
+      "category": "query_debug"
+    },
+    {
+      "name": "glDebugMessageControl",
+      "category": "query_debug"
+    },
+    {
+      "name": "glDebugMessageControlARB",
+      "category": "query_debug"
+    },
+    {
+      "name": "glDeleteProgram",
+      "category": "shader_uniform"
+    },
+    {
+      "name": "glDeleteQueries",
+      "category": "query_debug"
+    },
+    {
+      "name": "glDeleteQueriesARB",
+      "category": "query_debug"
+    },
+    {
+      "name": "glDeleteRenderbuffers",
+      "category": "framebuffer_attachment_storage"
+    },
+    {
+      "name": "glDeleteRenderbuffersEXT",
+      "category": "framebuffer_attachment_storage"
+    },
+    {
+      "name": "glDeleteSamplers",
+      "category": "texture_sampler_image"
+    },
+    {
+      "name": "glDeleteShader",
+      "category": "shader_uniform"
+    },
+    {
+      "name": "glDeleteVertexArrays",
+      "category": "vertex_draw_raster"
+    },
+    {
+      "name": "glDepthRangeArrayv",
+      "category": "vertex_draw_raster"
+    },
+    {
+      "name": "glDetachShader",
+      "category": "shader_uniform"
+    },
+    {
+      "name": "glDisableVertexAttribArray",
+      "category": "vertex_draw_raster"
+    },
+    {
+      "name": "glDisableVertexAttribArrayARB",
+      "category": "vertex_draw_raster"
+    },
+    {
+      "name": "glDispatchCompute",
+      "category": "vertex_draw_raster"
+    },
+    {
+      "name": "glDrawArraysIndirect",
+      "category": "vertex_draw_raster"
+    },
+    {
+      "name": "glDrawArraysInstanced",
+      "category": "vertex_draw_raster"
+    },
+    {
+      "name": "glDrawArraysInstancedARB",
+      "category": "vertex_draw_raster"
+    },
+    {
+      "name": "glDrawArraysInstancedEXT",
+      "category": "vertex_draw_raster"
+    },
+    {
+      "name": "glDrawBuffers",
+      "category": "framebuffer_attachment_storage"
+    },
+    {
+      "name": "glDrawBuffersARB",
+      "category": "framebuffer_attachment_storage"
+    },
+    {
+      "name": "glDrawElementsIndirect",
+      "category": "vertex_draw_raster"
+    },
+    {
+      "name": "glDrawElementsInstanced",
+      "category": "vertex_draw_raster"
+    },
+    {
+      "name": "glDrawElementsInstancedARB",
+      "category": "vertex_draw_raster"
+    },
+    {
+      "name": "glDrawElementsInstancedEXT",
+      "category": "vertex_draw_raster"
+    },
+    {
+      "name": "glDrawRangeElements",
+      "category": "vertex_draw_raster"
+    },
+    {
+      "name": "glDrawRangeElementsEXT",
+      "category": "vertex_draw_raster"
+    },
+    {
+      "name": "glEnableVertexAttribArray",
+      "category": "vertex_draw_raster"
+    },
+    {
+      "name": "glEnableVertexAttribArrayARB",
+      "category": "vertex_draw_raster"
+    },
+    {
+      "name": "glEndQuery",
+      "category": "query_debug"
+    },
+    {
+      "name": "glEndQueryARB",
+      "category": "query_debug"
+    },
+    {
+      "name": "glFramebufferParameteri",
+      "category": "framebuffer_attachment_storage"
+    },
+    {
+      "name": "glFramebufferRenderbuffer",
+      "category": "framebuffer_attachment_storage"
+    },
+    {
+      "name": "glFramebufferRenderbufferEXT",
+      "category": "framebuffer_attachment_storage"
+    },
+    {
+      "name": "glFramebufferTexture",
+      "category": "framebuffer_attachment_storage"
+    },
+    {
+      "name": "glFramebufferTexture1D",
+      "category": "framebuffer_attachment_storage"
+    },
+    {
+      "name": "glFramebufferTexture1DEXT",
+      "category": "framebuffer_attachment_storage"
+    },
+    {
+      "name": "glFramebufferTexture2D",
+      "category": "framebuffer_attachment_storage"
+    },
+    {
+      "name": "glFramebufferTexture2DEXT",
+      "category": "framebuffer_attachment_storage"
+    },
+    {
+      "name": "glFramebufferTexture3D",
+      "category": "framebuffer_attachment_storage"
+    },
+    {
+      "name": "glFramebufferTexture3DEXT",
+      "category": "framebuffer_attachment_storage"
+    },
+    {
+      "name": "glFramebufferTextureARB",
+      "category": "framebuffer_attachment_storage"
+    },
+    {
+      "name": "glFramebufferTextureLayer",
+      "category": "framebuffer_attachment_storage"
+    },
+    {
+      "name": "glFramebufferTextureLayerEXT",
+      "category": "framebuffer_attachment_storage"
+    },
+    {
+      "name": "glGenBuffers",
+      "category": "buffer_storage"
+    },
+    {
+      "name": "glGenBuffersARB",
+      "category": "buffer_storage"
+    },
+    {
+      "name": "glGenFramebuffers",
+      "category": "framebuffer_attachment_storage"
+    },
+    {
+      "name": "glGenFramebuffersEXT",
+      "category": "framebuffer_attachment_storage"
+    },
+    {
+      "name": "glGenQueries",
+      "category": "query_debug"
+    },
+    {
+      "name": "glGenQueriesARB",
+      "category": "query_debug"
+    },
+    {
+      "name": "glGenRenderbuffers",
+      "category": "framebuffer_attachment_storage"
+    },
+    {
+      "name": "glGenRenderbuffersEXT",
+      "category": "framebuffer_attachment_storage"
+    },
+    {
+      "name": "glGenSamplers",
+      "category": "texture_sampler_image"
+    },
+    {
+      "name": "glGenVertexArrays",
+      "category": "vertex_draw_raster"
+    },
+    {
+      "name": "glGenerateMipmap",
+      "category": "texture_sampler_image"
+    },
+    {
+      "name": "glGenerateMipmapEXT",
+      "category": "texture_sampler_image"
+    },
+    {
+      "name": "glGenerateTextureMipmap",
+      "category": "texture_sampler_image"
+    },
+    {
+      "name": "glGetActiveAttrib",
+      "category": "shader_uniform"
+    },
+    {
+      "name": "glGetActiveUniform",
+      "category": "shader_uniform"
+    },
+    {
+      "name": "glGetActiveUniformBlockName",
+      "category": "shader_uniform"
+    },
+    {
+      "name": "glGetActiveUniformBlockiv",
+      "category": "shader_uniform"
+    },
+    {
+      "name": "glGetActiveUniformsiv",
+      "category": "shader_uniform"
+    },
+    {
+      "name": "glGetAttribLocation",
+      "category": "shader_uniform"
+    },
+    {
+      "name": "glGetBufferSubData",
+      "category": "buffer_storage"
+    },
+    {
+      "name": "glGetBufferSubDataARB",
+      "category": "buffer_storage"
+    },
+    {
+      "name": "glGetCompressedTexImage",
+      "category": "texture_sampler_image"
+    },
+    {
+      "name": "glGetCompressedTexImageARB",
+      "category": "texture_sampler_image"
+    },
+    {
+      "name": "glGetFramebufferAttachmentParameteriv",
+      "category": "framebuffer_attachment_storage"
+    },
+    {
+      "name": "glGetFramebufferAttachmentParameterivEXT",
+      "category": "framebuffer_attachment_storage"
+    },
+    {
+      "name": "glGetInteger64v",
+      "category": "query_debug"
+    },
+    {
+      "name": "glGetInternalformativ",
+      "category": "query_debug"
+    },
+    {
+      "name": "glGetProgramBinary",
+      "category": "shader_uniform"
+    },
+    {
+      "name": "glGetProgramInfoLog",
+      "category": "shader_uniform"
+    },
+    {
+      "name": "glGetProgramInterfaceiv",
+      "category": "shader_uniform"
+    },
+    {
+      "name": "glGetProgramResourceName",
+      "category": "shader_uniform"
+    },
+    {
+      "name": "glGetProgramResourceiv",
+      "category": "shader_uniform"
+    },
+    {
+      "name": "glGetProgramiv",
+      "category": "shader_uniform"
+    },
+    {
+      "name": "glGetQueryObjecti64v",
+      "category": "query_debug"
+    },
+    {
+      "name": "glGetQueryObjectui64v",
+      "category": "query_debug"
+    },
+    {
+      "name": "glGetQueryObjectuiv",
+      "category": "query_debug"
+    },
+    {
+      "name": "glGetQueryObjectuivARB",
+      "category": "query_debug"
+    },
+    {
+      "name": "glGetQueryiv",
+      "category": "query_debug"
+    },
+    {
+      "name": "glGetQueryivARB",
+      "category": "query_debug"
+    },
+    {
+      "name": "glGetRenderbufferParameteriv",
+      "category": "framebuffer_attachment_storage"
+    },
+    {
+      "name": "glGetRenderbufferParameterivEXT",
+      "category": "framebuffer_attachment_storage"
+    },
+    {
+      "name": "glGetShaderInfoLog",
+      "category": "shader_uniform"
+    },
+    {
+      "name": "glGetShaderiv",
+      "category": "shader_uniform"
+    },
+    {
+      "name": "glGetStringi",
+      "category": "query_debug"
+    },
+    {
+      "name": "glGetTextureHandleARB",
+      "category": "texture_sampler_image"
+    },
+    {
+      "name": "glGetTextureSamplerHandleARB",
+      "category": "texture_sampler_image"
+    },
+    {
+      "name": "glGetUniformLocation",
+      "category": "shader_uniform"
+    },
+    {
+      "name": "glIsFramebuffer",
+      "category": "framebuffer_attachment_storage"
+    },
+    {
+      "name": "glIsFramebufferEXT",
+      "category": "framebuffer_attachment_storage"
+    },
+    {
+      "name": "glIsRenderbuffer",
+      "category": "framebuffer_attachment_storage"
+    },
+    {
+      "name": "glIsRenderbufferEXT",
+      "category": "framebuffer_attachment_storage"
+    },
+    {
+      "name": "glLinkProgram",
+      "category": "shader_uniform"
+    },
+    {
+      "name": "glMakeTextureHandleResidentARB",
+      "category": "texture_sampler_image"
+    },
+    {
+      "name": "glMapBuffer",
+      "category": "buffer_storage"
+    },
+    {
+      "name": "glMapBufferARB",
+      "category": "buffer_storage"
+    },
+    {
+      "name": "glMapBufferRange",
+      "category": "buffer_storage"
+    },
+    {
+      "name": "glMemoryBarrier",
+      "category": "query_debug"
+    },
+    {
+      "name": "glMemoryBarrierEXT",
+      "category": "query_debug"
+    },
+    {
+      "name": "glObjectLabel",
+      "category": "query_debug"
+    },
+    {
+      "name": "glPatchParameteri",
+      "category": "vertex_draw_raster"
+    },
+    {
+      "name": "glPointParameterfv",
+      "category": "vertex_draw_raster"
+    },
+    {
+      "name": "glPointParameterfvARB",
+      "category": "vertex_draw_raster"
+    },
+    {
+      "name": "glPopGroupMarkerEXT",
+      "category": "query_debug"
+    },
+    {
+      "name": "glPrimitiveRestartIndex",
+      "category": "vertex_draw_raster"
+    },
+    {
+      "name": "glProgramBinary",
+      "category": "shader_uniform"
+    },
+    {
+      "name": "glProgramParameteri",
+      "category": "shader_uniform"
+    },
+    {
+      "name": "glProgramParameteriARB",
+      "category": "shader_uniform"
+    },
+    {
+      "name": "glProgramParameteriEXT",
+      "category": "shader_uniform"
+    },
+    {
+      "name": "glPushGroupMarkerEXT",
+      "category": "query_debug"
+    },
+    {
+      "name": "glQueryCounter",
+      "category": "query_debug"
+    },
+    {
+      "name": "glRenderbufferStorage",
+      "category": "framebuffer_attachment_storage"
+    },
+    {
+      "name": "glRenderbufferStorageEXT",
+      "category": "framebuffer_attachment_storage"
+    },
+    {
+      "name": "glRenderbufferStorageMultisample",
+      "category": "framebuffer_attachment_storage"
+    },
+    {
+      "name": "glRenderbufferStorageMultisampleCoverageNV",
+      "category": "framebuffer_attachment_storage"
+    },
+    {
+      "name": "glRenderbufferStorageMultisampleEXT",
+      "category": "framebuffer_attachment_storage"
+    },
+    {
+      "name": "glSamplerParameterf",
+      "category": "texture_sampler_image"
+    },
+    {
+      "name": "glSamplerParameterfv",
+      "category": "texture_sampler_image"
+    },
+    {
+      "name": "glSamplerParameteri",
+      "category": "texture_sampler_image"
+    },
+    {
+      "name": "glSamplerParameteriv",
+      "category": "texture_sampler_image"
+    },
+    {
+      "name": "glScissorArrayv",
+      "category": "vertex_draw_raster"
+    },
+    {
+      "name": "glSecondaryColorPointer",
+      "category": "vertex_draw_raster"
+    },
+    {
+      "name": "glSecondaryColorPointerEXT",
+      "category": "vertex_draw_raster"
+    },
+    {
+      "name": "glShaderSource",
+      "category": "shader_uniform"
+    },
+    {
+      "name": "glShaderStorageBlockBinding",
+      "category": "shader_uniform"
+    },
+    {
+      "name": "glTexBuffer",
+      "category": "texture_sampler_image"
+    },
+    {
+      "name": "glTexBufferARB",
+      "category": "texture_sampler_image"
+    },
+    {
+      "name": "glTexImage3D",
+      "category": "texture_sampler_image"
+    },
+    {
+      "name": "glTexImage3DEXT",
+      "category": "texture_sampler_image"
+    },
+    {
+      "name": "glTexStorage1D",
+      "category": "texture_sampler_image"
+    },
+    {
+      "name": "glTexStorage2D",
+      "category": "texture_sampler_image"
+    },
+    {
+      "name": "glTexStorage3D",
+      "category": "texture_sampler_image"
+    },
+    {
+      "name": "glTexSubImage3D",
+      "category": "texture_sampler_image"
+    },
+    {
+      "name": "glTexSubImage3DEXT",
+      "category": "texture_sampler_image"
+    },
+    {
+      "name": "glUniform1fv",
+      "category": "shader_uniform"
+    },
+    {
+      "name": "glUniform1i",
+      "category": "shader_uniform"
+    },
+    {
+      "name": "glUniform1iv",
+      "category": "shader_uniform"
+    },
+    {
+      "name": "glUniform1uiv",
+      "category": "shader_uniform"
+    },
+    {
+      "name": "glUniform1uivEXT",
+      "category": "shader_uniform"
+    },
+    {
+      "name": "glUniform2fv",
+      "category": "shader_uniform"
+    },
+    {
+      "name": "glUniform2iv",
+      "category": "shader_uniform"
+    },
+    {
+      "name": "glUniform2uiv",
+      "category": "shader_uniform"
+    },
+    {
+      "name": "glUniform2uivEXT",
+      "category": "shader_uniform"
+    },
+    {
+      "name": "glUniform3fv",
+      "category": "shader_uniform"
+    },
+    {
+      "name": "glUniform3iv",
+      "category": "shader_uniform"
+    },
+    {
+      "name": "glUniform3uiv",
+      "category": "shader_uniform"
+    },
+    {
+      "name": "glUniform3uivEXT",
+      "category": "shader_uniform"
+    },
+    {
+      "name": "glUniform4f",
+      "category": "shader_uniform"
+    },
+    {
+      "name": "glUniform4fv",
+      "category": "shader_uniform"
+    },
+    {
+      "name": "glUniform4iv",
+      "category": "shader_uniform"
+    },
+    {
+      "name": "glUniform4uiv",
+      "category": "shader_uniform"
+    },
+    {
+      "name": "glUniform4uivEXT",
+      "category": "shader_uniform"
+    },
+    {
+      "name": "glUniformHandleui64ARB",
+      "category": "shader_uniform"
+    },
+    {
+      "name": "glUniformMatrix3fv",
+      "category": "shader_uniform"
+    },
+    {
+      "name": "glUniformMatrix4fv",
+      "category": "shader_uniform"
+    },
+    {
+      "name": "glUnmapBuffer",
+      "category": "buffer_storage"
+    },
+    {
+      "name": "glUnmapBufferARB",
+      "category": "buffer_storage"
+    },
+    {
+      "name": "glUseProgram",
+      "category": "shader_uniform"
+    },
+    {
+      "name": "glValidateProgram",
+      "category": "shader_uniform"
+    },
+    {
+      "name": "glVertexAttrib4dv",
+      "category": "vertex_draw_raster"
+    },
+    {
+      "name": "glVertexAttrib4dvARB",
+      "category": "vertex_draw_raster"
+    },
+    {
+      "name": "glVertexAttrib4fv",
+      "category": "vertex_draw_raster"
+    },
+    {
+      "name": "glVertexAttrib4fvARB",
+      "category": "vertex_draw_raster"
+    },
+    {
+      "name": "glVertexAttribBinding",
+      "category": "vertex_draw_raster"
+    },
+    {
+      "name": "glVertexAttribDivisor",
+      "category": "vertex_draw_raster"
+    },
+    {
+      "name": "glVertexAttribDivisorARB",
+      "category": "vertex_draw_raster"
+    },
+    {
+      "name": "glVertexAttribFormat",
+      "category": "vertex_draw_raster"
+    },
+    {
+      "name": "glVertexAttribI4ui",
+      "category": "vertex_draw_raster"
+    },
+    {
+      "name": "glVertexAttribI4uiEXT",
+      "category": "vertex_draw_raster"
+    },
+    {
+      "name": "glVertexAttribIFormat",
+      "category": "vertex_draw_raster"
+    },
+    {
+      "name": "glVertexAttribIPointer",
+      "category": "vertex_draw_raster"
+    },
+    {
+      "name": "glVertexAttribIPointerEXT",
+      "category": "vertex_draw_raster"
+    },
+    {
+      "name": "glVertexAttribLFormat",
+      "category": "vertex_draw_raster"
+    },
+    {
+      "name": "glVertexAttribLPointer",
+      "category": "vertex_draw_raster"
+    },
+    {
+      "name": "glVertexAttribPointer",
+      "category": "vertex_draw_raster"
+    },
+    {
+      "name": "glVertexAttribPointerARB",
+      "category": "vertex_draw_raster"
+    },
+    {
+      "name": "glVertexBindingDivisor",
+      "category": "vertex_draw_raster"
+    },
+    {
+      "name": "glViewportArrayv",
+      "category": "vertex_draw_raster"
+    },
+    {
+      "name": "glXChooseFBConfig",
+      "category": "glx_config_query_swap"
+    },
+    {
+      "name": "glXChooseFBConfigSGIX",
+      "category": "glx_config_query_swap"
+    },
+    {
+      "name": "glXGetFBConfigAttrib",
+      "category": "glx_config_query_swap"
+    },
+    {
+      "name": "glXGetFBConfigAttribSGIX",
+      "category": "glx_config_query_swap"
+    },
+    {
+      "name": "glXGetVisualFromFBConfig",
+      "category": "glx_config_query_swap"
+    },
+    {
+      "name": "glXGetVisualFromFBConfigSGIX",
+      "category": "glx_config_query_swap"
+    },
+    {
+      "name": "glXSwapIntervalSGI",
+      "category": "glx_config_query_swap"
+    }
+  ],
+  "categories": {
+    "shader_uniform": "Program/shader/uniform object and parameter operations; no cache-tuple binding mutation. Shader effects and callbacks still require driver/runtime qualification.",
+    "texture_sampler_image": "Texture/image/sampler operations and original queries. Texture lifetime, GPU contents, image target selection and read freshness remain external; no observer query or extra read is added.",
+    "buffer_storage": "Storage/mapping/content operations do not change tracked PIXEL_PACK_BUFFER binding. Nonzero PBO observation remains unacceptable to the existing return core; contents/driver errors remain external.",
+    "framebuffer_attachment_storage": "Storage/attachment/draw-buffer operations preserve tracked read/draw FBO object names and read selector. Attachments/GPU writes/actual target identity are not established by this profile.",
+    "vertex_draw_raster": "Vertex/index/draw/raster/compute state is outside the command-cache tuple. Render timing/content/neutrality remain unqualified; originals are unchanged.",
+    "query_debug": "Existing query/sync/debug entry points pass through. Callback/thread/reentry behavior and driver state are not certified; no new query/callback is installed.",
+    "glx_config_query_swap": "Configuration/query/swap interval operations do not create/make/destroy GL contexts or alter tracked pack/FBO tuple. Timing/display/runtime origins remain separate gates."
+  },
+  "computed_source_proof": {
+    "forwarded_name_sites": 3,
+    "finite_loader_names": [
+      "glXGetProcAddress",
+      "glXGetProcAddressARB"
+    ],
+    "runtime_origins_qualified": false
+  },
+  "native_admitted": false
+}

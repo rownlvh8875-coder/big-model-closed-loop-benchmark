@@ -1,0 +1,580 @@
+FFF.FFF.FFFFFFFFFFFFFFFFFFF
+======================================================================
+FAIL: test_current_draw_read_and_failed_switch_destruction_rejects (tests.test_panda_sdk_routes.SevenRouteTests.test_current_draw_read_and_failed_switch_destruction_rejects) (mode='destroy_current_draw')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 32, in test_current_draw_read_and_failed_switch_destruction_rejects
+    r=self.run_case(mode);self.assertEqual((r['source_error'],r['stale']),(5,0));self.assertNotEqual(r['finish'],0)
+      ^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 16, in run_case
+    r=subprocess.run(cmd,capture_output=True,text=True,timeout=10,env=cpu.cpu_environment());self.assertEqual((r.returncode,r.stderr),(0,''));data=json.loads(r.stdout)
+                                                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (2, '') != (0, '')
+
+First differing element 0:
+2
+0
+
+- (2, '')
+?  ^
+
++ (0, '')
+?  ^
+
+
+======================================================================
+FAIL: test_current_draw_read_and_failed_switch_destruction_rejects (tests.test_panda_sdk_routes.SevenRouteTests.test_current_draw_read_and_failed_switch_destruction_rejects) (mode='destroy_current_read')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 32, in test_current_draw_read_and_failed_switch_destruction_rejects
+    r=self.run_case(mode);self.assertEqual((r['source_error'],r['stale']),(5,0));self.assertNotEqual(r['finish'],0)
+      ^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 16, in run_case
+    r=subprocess.run(cmd,capture_output=True,text=True,timeout=10,env=cpu.cpu_environment());self.assertEqual((r.returncode,r.stderr),(0,''));data=json.loads(r.stdout)
+                                                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (2, '') != (0, '')
+
+First differing element 0:
+2
+0
+
+- (2, '')
+?  ^
+
++ (0, '')
+?  ^
+
+
+======================================================================
+FAIL: test_current_draw_read_and_failed_switch_destruction_rejects (tests.test_panda_sdk_routes.SevenRouteTests.test_current_draw_read_and_failed_switch_destruction_rejects) (mode='failed_switch')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 32, in test_current_draw_read_and_failed_switch_destruction_rejects
+    r=self.run_case(mode);self.assertEqual((r['source_error'],r['stale']),(5,0));self.assertNotEqual(r['finish'],0)
+      ^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 16, in run_case
+    r=subprocess.run(cmd,capture_output=True,text=True,timeout=10,env=cpu.cpu_environment());self.assertEqual((r.returncode,r.stderr),(0,''));data=json.loads(r.stdout)
+                                                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (2, '') != (0, '')
+
+First differing element 0:
+2
+0
+
+- (2, '')
+?  ^
+
++ (0, '')
+?  ^
+
+
+======================================================================
+FAIL: test_foreign_display_rejects_after_original_forward (tests.test_panda_sdk_routes.SevenRouteTests.test_foreign_display_rejects_after_original_forward)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 36, in test_foreign_display_rejects_after_original_forward
+    r=self.run_case('wrong_display');self.assertEqual((r['source_error'],r['stale'],r['calls']),(5,0,12));self.assertNotEqual(r['finish'],0)
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 16, in run_case
+    r=subprocess.run(cmd,capture_output=True,text=True,timeout=10,env=cpu.cpu_environment());self.assertEqual((r.returncode,r.stderr),(0,''));data=json.loads(r.stdout)
+                                                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (2, '') != (0, '')
+
+First differing element 0:
+2
+0
+
+- (2, '')
+?  ^
+
++ (0, '')
+?  ^
+
+
+======================================================================
+FAIL: test_invalid_indexed_target_forwards_then_poisoned_snapshot_is_zero (tests.test_panda_sdk_routes.SevenRouteTests.test_invalid_indexed_target_forwards_then_poisoned_snapshot_is_zero)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 28, in test_invalid_indexed_target_forwards_then_poisoned_snapshot_is_zero
+    r=self.run_case('invalid_target');self.assertEqual((r['source_error'],r['forwarded'],r['stale']),(5,3,0));self.assertNotEqual(r['finish'],0);self.assertNotEqual(r['adapter_error'],0)
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 16, in run_case
+    r=subprocess.run(cmd,capture_output=True,text=True,timeout=10,env=cpu.cpu_environment());self.assertEqual((r.returncode,r.stderr),(0,''));data=json.loads(r.stdout)
+                                                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (2, '') != (0, '')
+
+First differing element 0:
+2
+0
+
+- (2, '')
+?  ^
+
++ (0, '')
+?  ^
+
+
+======================================================================
+FAIL: test_null_resolutions_and_bound_slot_null_do_not_call_or_poison (tests.test_panda_sdk_routes.SevenRouteTests.test_null_resolutions_and_bound_slot_null_do_not_call_or_poison)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 25, in test_null_resolutions_and_bound_slot_null_do_not_call_or_poison
+    a=self.run_case('nulls');self.assertEqual((a['finish'],a['calls'],a['forwarded'],a['resolutions']),(0,2,2,7))
+      ^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 16, in run_case
+    r=subprocess.run(cmd,capture_output=True,text=True,timeout=10,env=cpu.cpu_environment());self.assertEqual((r.returncode,r.stderr),(0,''));data=json.loads(r.stdout)
+                                                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (2, '') != (0, '')
+
+First differing element 0:
+2
+0
+
+- (2, '')
+?  ^
+
++ (0, '')
+?  ^
+
+
+======================================================================
+FAIL: test_rebound_original_and_unqualified_alias_stay_rejected (tests.test_panda_sdk_routes.SevenRouteTests.test_rebound_original_and_unqualified_alias_stay_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 38, in test_rebound_original_and_unqualified_alias_stay_rejected
+    a=self.run_case('rebind');self.assertEqual((a['source_error'],a['forwarded'],a['calls']),(7,3,4))
+      ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 16, in run_case
+    r=subprocess.run(cmd,capture_output=True,text=True,timeout=10,env=cpu.cpu_environment());self.assertEqual((r.returncode,r.stderr),(0,''));data=json.loads(r.stdout)
+                                                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (2, '') != (0, '')
+
+First differing element 0:
+2
+0
+
+- (2, '')
+?  ^
+
++ (0, '')
+?  ^
+
+
+======================================================================
+FAIL: test_safe257_configuration_still_rejects (tests.test_panda_sdk_routes.SevenRouteTests.test_safe257_configuration_still_rejects)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 44, in test_safe257_configuration_still_rejects
+    p=self.out/'safe257.txt';p.write_text(''.join('glSafe%d\n'%i for i in range(257)));r=self.run_case('cap257',safe=p);self.assertEqual((r['configure_result'],r['configured'],r['safe_count']),(-1,0,257))
+                                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 16, in run_case
+    r=subprocess.run(cmd,capture_output=True,text=True,timeout=10,env=cpu.cpu_environment());self.assertEqual((r.returncode,r.stderr),(0,''));data=json.loads(r.stdout)
+                                                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (2, '') != (0, '')
+
+First differing element 0:
+2
+0
+
+- (2, '')
+?  ^
+
++ (0, '')
+?  ^
+
+
+======================================================================
+FAIL: test_sanitized_new_routes_and_negative_lifetimes (tests.test_panda_sdk_routes.SevenRouteTests.test_sanitized_new_routes_and_negative_lifetimes) (mode='all')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 53, in test_sanitized_new_routes_and_negative_lifetimes
+    r=self.run_case(mode,p);self.assertEqual(r['finish']==0,mode in ('all','preserve','maxbits','paths','null_after_bound','switch_away'));self.assertEqual(r['source_error'],0 if r['finish']==0 else 5)
+      ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 16, in run_case
+    r=subprocess.run(cmd,capture_output=True,text=True,timeout=10,env=cpu.cpu_environment());self.assertEqual((r.returncode,r.stderr),(0,''));data=json.loads(r.stdout)
+                                                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (2, '') != (0, '')
+
+First differing element 0:
+2
+0
+
+- (2, '')
+?  ^
+
++ (0, '')
+?  ^
+
+
+======================================================================
+FAIL: test_sanitized_new_routes_and_negative_lifetimes (tests.test_panda_sdk_routes.SevenRouteTests.test_sanitized_new_routes_and_negative_lifetimes) (mode='preserve')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 53, in test_sanitized_new_routes_and_negative_lifetimes
+    r=self.run_case(mode,p);self.assertEqual(r['finish']==0,mode in ('all','preserve','maxbits','paths','null_after_bound','switch_away'));self.assertEqual(r['source_error'],0 if r['finish']==0 else 5)
+      ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 16, in run_case
+    r=subprocess.run(cmd,capture_output=True,text=True,timeout=10,env=cpu.cpu_environment());self.assertEqual((r.returncode,r.stderr),(0,''));data=json.loads(r.stdout)
+                                                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (2, '') != (0, '')
+
+First differing element 0:
+2
+0
+
+- (2, '')
+?  ^
+
++ (0, '')
+?  ^
+
+
+======================================================================
+FAIL: test_sanitized_new_routes_and_negative_lifetimes (tests.test_panda_sdk_routes.SevenRouteTests.test_sanitized_new_routes_and_negative_lifetimes) (mode='maxbits')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 53, in test_sanitized_new_routes_and_negative_lifetimes
+    r=self.run_case(mode,p);self.assertEqual(r['finish']==0,mode in ('all','preserve','maxbits','paths','null_after_bound','switch_away'));self.assertEqual(r['source_error'],0 if r['finish']==0 else 5)
+      ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 16, in run_case
+    r=subprocess.run(cmd,capture_output=True,text=True,timeout=10,env=cpu.cpu_environment());self.assertEqual((r.returncode,r.stderr),(0,''));data=json.loads(r.stdout)
+                                                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (2, '') != (0, '')
+
+First differing element 0:
+2
+0
+
+- (2, '')
+?  ^
+
++ (0, '')
+?  ^
+
+
+======================================================================
+FAIL: test_sanitized_new_routes_and_negative_lifetimes (tests.test_panda_sdk_routes.SevenRouteTests.test_sanitized_new_routes_and_negative_lifetimes) (mode='paths')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 53, in test_sanitized_new_routes_and_negative_lifetimes
+    r=self.run_case(mode,p);self.assertEqual(r['finish']==0,mode in ('all','preserve','maxbits','paths','null_after_bound','switch_away'));self.assertEqual(r['source_error'],0 if r['finish']==0 else 5)
+      ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 16, in run_case
+    r=subprocess.run(cmd,capture_output=True,text=True,timeout=10,env=cpu.cpu_environment());self.assertEqual((r.returncode,r.stderr),(0,''));data=json.loads(r.stdout)
+                                                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (2, '') != (0, '')
+
+First differing element 0:
+2
+0
+
+- (2, '')
+?  ^
+
++ (0, '')
+?  ^
+
+
+======================================================================
+FAIL: test_sanitized_new_routes_and_negative_lifetimes (tests.test_panda_sdk_routes.SevenRouteTests.test_sanitized_new_routes_and_negative_lifetimes) (mode='null_after_bound')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 53, in test_sanitized_new_routes_and_negative_lifetimes
+    r=self.run_case(mode,p);self.assertEqual(r['finish']==0,mode in ('all','preserve','maxbits','paths','null_after_bound','switch_away'));self.assertEqual(r['source_error'],0 if r['finish']==0 else 5)
+      ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 16, in run_case
+    r=subprocess.run(cmd,capture_output=True,text=True,timeout=10,env=cpu.cpu_environment());self.assertEqual((r.returncode,r.stderr),(0,''));data=json.loads(r.stdout)
+                                                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (2, '') != (0, '')
+
+First differing element 0:
+2
+0
+
+- (2, '')
+?  ^
+
++ (0, '')
+?  ^
+
+
+======================================================================
+FAIL: test_sanitized_new_routes_and_negative_lifetimes (tests.test_panda_sdk_routes.SevenRouteTests.test_sanitized_new_routes_and_negative_lifetimes) (mode='switch_away')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 53, in test_sanitized_new_routes_and_negative_lifetimes
+    r=self.run_case(mode,p);self.assertEqual(r['finish']==0,mode in ('all','preserve','maxbits','paths','null_after_bound','switch_away'));self.assertEqual(r['source_error'],0 if r['finish']==0 else 5)
+      ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 16, in run_case
+    r=subprocess.run(cmd,capture_output=True,text=True,timeout=10,env=cpu.cpu_environment());self.assertEqual((r.returncode,r.stderr),(0,''));data=json.loads(r.stdout)
+                                                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (2, '') != (0, '')
+
+First differing element 0:
+2
+0
+
+- (2, '')
+?  ^
+
++ (0, '')
+?  ^
+
+
+======================================================================
+FAIL: test_sanitized_new_routes_and_negative_lifetimes (tests.test_panda_sdk_routes.SevenRouteTests.test_sanitized_new_routes_and_negative_lifetimes) (mode='invalid_target')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 53, in test_sanitized_new_routes_and_negative_lifetimes
+    r=self.run_case(mode,p);self.assertEqual(r['finish']==0,mode in ('all','preserve','maxbits','paths','null_after_bound','switch_away'));self.assertEqual(r['source_error'],0 if r['finish']==0 else 5)
+      ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 16, in run_case
+    r=subprocess.run(cmd,capture_output=True,text=True,timeout=10,env=cpu.cpu_environment());self.assertEqual((r.returncode,r.stderr),(0,''));data=json.loads(r.stdout)
+                                                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (2, '') != (0, '')
+
+First differing element 0:
+2
+0
+
+- (2, '')
+?  ^
+
++ (0, '')
+?  ^
+
+
+======================================================================
+FAIL: test_sanitized_new_routes_and_negative_lifetimes (tests.test_panda_sdk_routes.SevenRouteTests.test_sanitized_new_routes_and_negative_lifetimes) (mode='destroy_current_draw')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 53, in test_sanitized_new_routes_and_negative_lifetimes
+    r=self.run_case(mode,p);self.assertEqual(r['finish']==0,mode in ('all','preserve','maxbits','paths','null_after_bound','switch_away'));self.assertEqual(r['source_error'],0 if r['finish']==0 else 5)
+      ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 16, in run_case
+    r=subprocess.run(cmd,capture_output=True,text=True,timeout=10,env=cpu.cpu_environment());self.assertEqual((r.returncode,r.stderr),(0,''));data=json.loads(r.stdout)
+                                                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (2, '') != (0, '')
+
+First differing element 0:
+2
+0
+
+- (2, '')
+?  ^
+
++ (0, '')
+?  ^
+
+
+======================================================================
+FAIL: test_sanitized_new_routes_and_negative_lifetimes (tests.test_panda_sdk_routes.SevenRouteTests.test_sanitized_new_routes_and_negative_lifetimes) (mode='destroy_current_read')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 53, in test_sanitized_new_routes_and_negative_lifetimes
+    r=self.run_case(mode,p);self.assertEqual(r['finish']==0,mode in ('all','preserve','maxbits','paths','null_after_bound','switch_away'));self.assertEqual(r['source_error'],0 if r['finish']==0 else 5)
+      ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 16, in run_case
+    r=subprocess.run(cmd,capture_output=True,text=True,timeout=10,env=cpu.cpu_environment());self.assertEqual((r.returncode,r.stderr),(0,''));data=json.loads(r.stdout)
+                                                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (2, '') != (0, '')
+
+First differing element 0:
+2
+0
+
+- (2, '')
+?  ^
+
++ (0, '')
+?  ^
+
+
+======================================================================
+FAIL: test_sanitized_new_routes_and_negative_lifetimes (tests.test_panda_sdk_routes.SevenRouteTests.test_sanitized_new_routes_and_negative_lifetimes) (mode='failed_switch')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 53, in test_sanitized_new_routes_and_negative_lifetimes
+    r=self.run_case(mode,p);self.assertEqual(r['finish']==0,mode in ('all','preserve','maxbits','paths','null_after_bound','switch_away'));self.assertEqual(r['source_error'],0 if r['finish']==0 else 5)
+      ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 16, in run_case
+    r=subprocess.run(cmd,capture_output=True,text=True,timeout=10,env=cpu.cpu_environment());self.assertEqual((r.returncode,r.stderr),(0,''));data=json.loads(r.stdout)
+                                                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (2, '') != (0, '')
+
+First differing element 0:
+2
+0
+
+- (2, '')
+?  ^
+
++ (0, '')
+?  ^
+
+
+======================================================================
+FAIL: test_sanitized_new_routes_and_negative_lifetimes (tests.test_panda_sdk_routes.SevenRouteTests.test_sanitized_new_routes_and_negative_lifetimes) (mode='wrong_display')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 53, in test_sanitized_new_routes_and_negative_lifetimes
+    r=self.run_case(mode,p);self.assertEqual(r['finish']==0,mode in ('all','preserve','maxbits','paths','null_after_bound','switch_away'));self.assertEqual(r['source_error'],0 if r['finish']==0 else 5)
+      ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 16, in run_case
+    r=subprocess.run(cmd,capture_output=True,text=True,timeout=10,env=cpu.cpu_environment());self.assertEqual((r.returncode,r.stderr),(0,''));data=json.loads(r.stdout)
+                                                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (2, '') != (0, '')
+
+First differing element 0:
+2
+0
+
+- (2, '')
+?  ^
+
++ (0, '')
+?  ^
+
+
+======================================================================
+FAIL: test_seven_signatures_and_unsigned64_returns_preserve_pack_state (tests.test_panda_sdk_routes.SevenRouteTests.test_seven_signatures_and_unsigned64_returns_preserve_pack_state) (mode='all')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 22, in test_seven_signatures_and_unsigned64_returns_preserve_pack_state
+    r=self.run_case(mode);self.assertEqual((r['finish'],r['source_error'],r['adapter_error'],r['snapshot'],r['calls'],r['before_pack'],r['after_pack'],r['forwarded']),(0,0,0,0,12,0,0,12));self.assertEqual(r['resolutions'],7)
+      ^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 16, in run_case
+    r=subprocess.run(cmd,capture_output=True,text=True,timeout=10,env=cpu.cpu_environment());self.assertEqual((r.returncode,r.stderr),(0,''));data=json.loads(r.stdout)
+                                                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (2, '') != (0, '')
+
+First differing element 0:
+2
+0
+
+- (2, '')
+?  ^
+
++ (0, '')
+?  ^
+
+
+======================================================================
+FAIL: test_seven_signatures_and_unsigned64_returns_preserve_pack_state (tests.test_panda_sdk_routes.SevenRouteTests.test_seven_signatures_and_unsigned64_returns_preserve_pack_state) (mode='preserve')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 22, in test_seven_signatures_and_unsigned64_returns_preserve_pack_state
+    r=self.run_case(mode);self.assertEqual((r['finish'],r['source_error'],r['adapter_error'],r['snapshot'],r['calls'],r['before_pack'],r['after_pack'],r['forwarded']),(0,0,0,0,12,0,0,12));self.assertEqual(r['resolutions'],7)
+      ^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 16, in run_case
+    r=subprocess.run(cmd,capture_output=True,text=True,timeout=10,env=cpu.cpu_environment());self.assertEqual((r.returncode,r.stderr),(0,''));data=json.loads(r.stdout)
+                                                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (2, '') != (0, '')
+
+First differing element 0:
+2
+0
+
+- (2, '')
+?  ^
+
++ (0, '')
+?  ^
+
+
+======================================================================
+FAIL: test_seven_signatures_and_unsigned64_returns_preserve_pack_state (tests.test_panda_sdk_routes.SevenRouteTests.test_seven_signatures_and_unsigned64_returns_preserve_pack_state) (mode='compiled_origin')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 22, in test_seven_signatures_and_unsigned64_returns_preserve_pack_state
+    r=self.run_case(mode);self.assertEqual((r['finish'],r['source_error'],r['adapter_error'],r['snapshot'],r['calls'],r['before_pack'],r['after_pack'],r['forwarded']),(0,0,0,0,12,0,0,12));self.assertEqual(r['resolutions'],7)
+      ^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 16, in run_case
+    r=subprocess.run(cmd,capture_output=True,text=True,timeout=10,env=cpu.cpu_environment());self.assertEqual((r.returncode,r.stderr),(0,''));data=json.loads(r.stdout)
+                                                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (2, '') != (0, '')
+
+First differing element 0:
+2
+0
+
+- (2, '')
+?  ^
+
++ (0, '')
+?  ^
+
+
+======================================================================
+FAIL: test_seven_signatures_and_unsigned64_returns_preserve_pack_state (tests.test_panda_sdk_routes.SevenRouteTests.test_seven_signatures_and_unsigned64_returns_preserve_pack_state) (mode='maxbits')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 22, in test_seven_signatures_and_unsigned64_returns_preserve_pack_state
+    r=self.run_case(mode);self.assertEqual((r['finish'],r['source_error'],r['adapter_error'],r['snapshot'],r['calls'],r['before_pack'],r['after_pack'],r['forwarded']),(0,0,0,0,12,0,0,12));self.assertEqual(r['resolutions'],7)
+      ^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 16, in run_case
+    r=subprocess.run(cmd,capture_output=True,text=True,timeout=10,env=cpu.cpu_environment());self.assertEqual((r.returncode,r.stderr),(0,''));data=json.loads(r.stdout)
+                                                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (2, '') != (0, '')
+
+First differing element 0:
+2
+0
+
+- (2, '')
+?  ^
+
++ (0, '')
+?  ^
+
+
+======================================================================
+FAIL: test_seven_signatures_and_unsigned64_returns_preserve_pack_state (tests.test_panda_sdk_routes.SevenRouteTests.test_seven_signatures_and_unsigned64_returns_preserve_pack_state) (mode='paths')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 22, in test_seven_signatures_and_unsigned64_returns_preserve_pack_state
+    r=self.run_case(mode);self.assertEqual((r['finish'],r['source_error'],r['adapter_error'],r['snapshot'],r['calls'],r['before_pack'],r['after_pack'],r['forwarded']),(0,0,0,0,12,0,0,12));self.assertEqual(r['resolutions'],7)
+      ^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 16, in run_case
+    r=subprocess.run(cmd,capture_output=True,text=True,timeout=10,env=cpu.cpu_environment());self.assertEqual((r.returncode,r.stderr),(0,''));data=json.loads(r.stdout)
+                                                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (2, '') != (0, '')
+
+First differing element 0:
+2
+0
+
+- (2, '')
+?  ^
+
++ (0, '')
+?  ^
+
+
+======================================================================
+FAIL: test_successful_switch_away_allows_other_drawable_destruction (tests.test_panda_sdk_routes.SevenRouteTests.test_successful_switch_away_allows_other_drawable_destruction)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 34, in test_successful_switch_away_allows_other_drawable_destruction
+    r=self.run_case('switch_away');self.assertEqual((r['finish'],r['source_error'],r['snapshot']),(0,0,0))
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 16, in run_case
+    r=subprocess.run(cmd,capture_output=True,text=True,timeout=10,env=cpu.cpu_environment());self.assertEqual((r.returncode,r.stderr),(0,''));data=json.loads(r.stdout)
+                                                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (2, '') != (0, '')
+
+First differing element 0:
+2
+0
+
+- (2, '')
+?  ^
+
++ (0, '')
+?  ^
+
+
+----------------------------------------------------------------------
+Ran 11 tests in 2.839s
+
+FAILED (failures=25)

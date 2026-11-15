@@ -1,0 +1,9 @@
+In file included from /workspace/big-model-closed-loop-benchmark/output/stage7-panda-source-dispatch-01/sysroot/usr/include/GL/gl.h:2050,
+                 from panda/src/glgsg/glgsg.h:83,
+                 from panda/src/glgsg/glgsg.cxx:18:
+/workspace/big-model-closed-loop-benchmark/output/stage7-panda-source-dispatch-01/sysroot/usr/include/GL/glext.h:35:9: warning: "GL_GLEXT_VERSION" redefined
+   35 | #define GL_GLEXT_VERSION 20220530
+      |         ^~~~~~~~~~~~~~~~
+panda/src/glgsg/glgsg.h:78:9: note: this is the location of the previous definition
+   78 | #define GL_GLEXT_VERSION 0
+      |         ^~~~~~~~~~~~~~~~

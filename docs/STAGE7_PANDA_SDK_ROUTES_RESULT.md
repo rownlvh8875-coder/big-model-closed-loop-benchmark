@@ -1,0 +1,25 @@
+# Seven typed routes, rebuilt SDK and new local image
+
+The requested preparation is implemented. Actual renderer/official-model closed-loop execution remains incomplete. Branch feature/panda-sdk-routes-v2; base62089536a5a4b94565781d155ef9eed3d81228ba. All work is additive; old4951files/299pins/10originals and old native9/source/SDK/image are preserved. Nativeallowance0/inheritedstrict0of4FAIL/Stage7INCOMPLETE; actual SDK/Panda/GL/MetaDrive/model/officialORT loading0. No main/shared-base merge, Cloud/registry publication or consumed request reuse.
+
+| Area | Actual result |
+|---|---|
+| Typed dispatch | Seven missing functions have exact3/4/5argument create,2argument destroy and indexed-buffer signatures; new events15–19/slots21–27, original NULL/errno/uint64/forward-once behavior, old33APIs and capacities preserved |
+| Fresh SDK |998200bytes/SHA256 3e9fa983023cb1f30b08a2bc650d0803686bef032a2c5d7a5700e1d3ad60553b; compile/link 121.208186529s;7290source/665private/100actual compile commands/4586usedinputs;33APIs/1state/original-read R64/oldABIreject as DATA |
+| Selected name closure |270lookups/18routed/explicit252names/safe256;4computed forwarding sites with finite2private loader names statically closed; runtime origins remain unqualified |
+| CPU fixtures |69scenarios each normal andASan+UBSan=138executions, identical JSON; old50cases/defaultOFF/new16modes/safe252/257 exercised using handwritten CPU originals |
+| New LOCAL image |1,727,684,608bytes/SHA256 9ad3564a4dd11515e9c311043a7d1078e4fff5adbece555b8ce1541d9ee61fe4; config sha256:f124e80b67a7d364c524f12dd4db6ece88a5f79ff260529e34d9d45d729c286a; old10diffIDs plus1SDK-only COPY layer |
+| Installed bytes |44232file/link entries under inherited roots/exclusions match, with only libpandagl.so changed to new SDK; never-started create/export/remove,0container starts |
+
+Exactly3of9versioned native inputs differ; old native files are unchanged. glBindBufferBase accepts only four specified indexed targets and cannot mutate pixel pack state. Successful current switches record per-context draw/read; destroying a current draw/read poisons observation conservatively even where GLX defers physical destruction. Originals always retain exact behavior; this is not complete native lifetime authority. Safe256/slots64/contexts4/events10000 remain fixed.
+
+Compiler closure binds current recorded tools/children/driver queries/link inputs and actual used source/generated/private/host dependency bytes before/after. It does not establish whole-host/runtime or historical old-SDK equivalence, runtime object branch execution, hostile-race containment or image compatibility. The first148.189s compile failed qualification on9UAPI targets; a fresh121.208s build declared/captured that root before compiling. Both are retained. All3actual stage-native/foreign-tree/forged-ready mutations rejected.
+
+Image SDK path is /opt/venv/lib/python3.11/site-packages/panda3d/libpandagl.so mode0755. The first local assembly failed only final save-parser qualification after successful byte export. A new versioned parser rechecked the same immutable image/export in a fresh result, including legacy Docker metadata, full layer structure and SDK-only COPY payload. It did not rebuild or execute the image. Old parser/authority are unchanged. Directory metadata, uid/gid/xattrs are not attested by the inherited installed-file policy. Local provenance is not a fresh authenticated Actions output; old image acceptance does not authenticate this new SDK/image. No actual ABI/driver/runtime qualification is claimed.
+
+Fullsuite 1560tests/1553PASS/7skip/128.790s. Task4ten focused CPU/data tests pass; tests cover wrong file hash/mode/link, missing/extra/duplicate/escaping paths, forward/cyclic hardlinks, largePAX, COPY-only context, forbidden activation/publication verbs, actual CPU child timeout/endpoint filtering and legacy metadata mutation. One fresh whole-branch review and final exact-HEAD Draft/sourceCI closeout follow. Versioned proof/selection and ledger carry details.
+
+Remaining: fresh authenticated production/transport of new image; actual mapped ABI/original dispatch/early install/Texture-GSG-allocation/native lifetimes/cache handoff/environment/driver read freshness/authenticated process-window-producer-sink receipts; then a new bounded canary contract. Official4condition/8process cohort and original scientific equality/first-divergence measurements follow only after qualification. No new RGB/I420/officialONNX equality, GPU freshness or timing-overhead measurement was made.
+
+Final after-fix checkpoint: Final single fix pass:0C2I0M/all2fixed RED→GREEN; PAX/GNU/sparse metadata before allocation + portable pinned CPU child;15focused/full1565/1558PASS7skip128.392s. Actual unchanged SDK/image rechecked,0native/model/starts. Nativeallowance0/strict0of4FAIL/Stage7INCOMPLETE. ExactfinalHEAD Draft/CI/freshpreservation follows.
+Read after-fix/ and selection.json for latest verification; before-review remains unchanged. Nine reviewer-declined rulings/costs are in the ledger. No deferred minors; no rereview.

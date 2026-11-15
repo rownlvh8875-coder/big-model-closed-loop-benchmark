@@ -1,0 +1,13 @@
+F
+======================================================================
+FAIL: test_nonregular_host_header_is_rejected_without_opening (tests.test_panda_sdk_routes_build.RoutesBuildTests.test_nonregular_host_header_is_rejected_without_opening)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes_build.py", line 38, in test_nonregular_host_header_is_rejected_without_opening
+    with self.assertRaisesRegex(ValueError,'regular input'):inputs.capture_host_inputs([r])
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+FAILED (failures=1)

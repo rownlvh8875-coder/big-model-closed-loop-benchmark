@@ -1,0 +1,24 @@
+E
+======================================================================
+ERROR: test_cpu_child_boundary_filters_endpoint_and_bounds_timeout (tests.test_panda_sdk_routes_image.LocalImageBytesTests.test_cpu_child_boundary_filters_endpoint_and_bounds_timeout)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes_image.py", line 69, in test_cpu_child_boundary_filters_endpoint_and_bounds_timeout
+    d=image._Docker(out,time.perf_counter()+5);self.assertEqual(d.call(['version'],1).strip(),'CPU child only')
+                                                                ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/scripts/panda_sdk_routes_image.py", line 102, in call
+    inputs.verify_tool_files(inputs.tool_profile());prefix=self.out/('docker-'+str(len(self.records)));stdout=prefix.with_suffix('.stdout');stderr=prefix.with_suffix('.stderr');command=[DOCKER,ENDPOINT,*args];start=time.perf_counter()
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/scripts/panda_sdk_routes_inputs.py", line 15, in verify_tool_files
+    p=Path(row['path']);need(str(p.resolve())==row['resolved_path'],'tool selected path changed');data=read_input(p.resolve(),64*1024**2);need(len(data)==row['nbytes'] and sha(data)==row['sha256'],'tool input changed')
+                                                                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/scripts/panda_dispatch_coverage.py", line 292, in read_input
+    initial = os.stat(path, follow_symlinks=False)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/tmp/panda-review-absent-managed-docker'
+
+----------------------------------------------------------------------
+Ran 1 test in 0.314s
+
+FAILED (errors=1)
+errors 1 failures 0

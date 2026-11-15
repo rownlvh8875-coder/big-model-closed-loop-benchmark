@@ -1,0 +1,44 @@
+FFFF
+======================================================================
+FAIL: test_save_outer_and_compressed_layer_reject_valid_oversized_pax (tests.test_panda_sdk_routes_image.LocalImageBytesTests.test_save_outer_and_compressed_layer_reject_valid_oversized_pax) (layer=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes_image.py", line 108, in test_save_outer_and_compressed_layer_reject_valid_oversized_pax
+    with self.subTest(layer=layer),self.assertRaises(ValueError):save_archive.inspect_save_archive(f,expected_tag=TAG,deadline=time.perf_counter()+10)
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_save_outer_and_compressed_layer_reject_valid_oversized_pax (tests.test_panda_sdk_routes_image.LocalImageBytesTests.test_save_outer_and_compressed_layer_reject_valid_oversized_pax) (layer=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes_image.py", line 108, in test_save_outer_and_compressed_layer_reject_valid_oversized_pax
+    with self.subTest(layer=layer),self.assertRaises(ValueError):save_archive.inspect_save_archive(f,expected_tag=TAG,deadline=time.perf_counter()+10)
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_save_small_extensions_share_outer_and_layer_aggregate_budget (tests.test_panda_sdk_routes_image.LocalImageBytesTests.test_save_small_extensions_share_outer_and_layer_aggregate_budget)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes_image.py", line 114, in test_save_small_extensions_share_outer_and_layer_aggregate_budget
+    with self.assertRaises(ValueError):save_archive.inspect_save_archive(f,expected_tag=TAG,deadline=time.perf_counter()+10)
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_gnu_extensions_are_bounded_before_internal_parsing (tests.test_panda_sdk_routes_image.LocalImageBytesTests.test_gnu_extensions_are_bounded_before_internal_parsing)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes_image.py", line 123, in test_gnu_extensions_are_bounded_before_internal_parsing
+    self.assertEqual(calls,[])
+AssertionError: Lists differ: [True, True] != []
+
+First list contains 2 additional elements.
+First extra element 0:
+True
+
+- [True, True]
++ []
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.617s
+
+FAILED (failures=4)

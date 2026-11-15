@@ -1,0 +1,16 @@
+{
+  "command": [
+    "/usr/local/bin/docker",
+    "--host=unix:///var/run/docker.sock",
+    "build",
+    "--network=none",
+    "--pull=false",
+    "-t",
+    "stage7-panda-routes-probe:cpu-586d859f2faa",
+    "output/stage7-panda-sdk-routes-02/docker-probe"
+  ],
+  "returncode": 0,
+  "tag": "stage7-panda-routes-probe:cpu-586d859f2faa",
+  "started_containers": 0,
+  "actual_native_runs": 0
+}

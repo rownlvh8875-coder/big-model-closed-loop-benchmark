@@ -1,0 +1,256 @@
+[
+  {
+    "command": [
+      "/usr/local/bin/docker",
+      "--host=unix:///var/run/docker.sock",
+      "version",
+      "--format",
+      "{{json .Server}}"
+    ],
+    "status": "success",
+    "returncode": 0,
+    "wall_seconds": 0.05123212500257068,
+    "stdout_path": "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-routes-02/image-local/docker-0.stdout",
+    "stderr_path": "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-routes-02/image-local/docker-0.stderr"
+  },
+  {
+    "command": [
+      "/usr/local/bin/docker",
+      "--host=unix:///var/run/docker.sock",
+      "image",
+      "inspect",
+      "--format",
+      "{{json .}}",
+      "sha256:2b0854f1cf91e470994637f52f4e8c78c618ed00b1496a40bb05158290e01a37"
+    ],
+    "status": "failed",
+    "returncode": 1,
+    "wall_seconds": 0.05099431400230969,
+    "stdout_path": "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-routes-02/image-local/docker-1.stdout",
+    "stderr_path": "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-routes-02/image-local/docker-1.stderr"
+  },
+  {
+    "command": [
+      "/usr/local/bin/docker",
+      "--host=unix:///var/run/docker.sock",
+      "image",
+      "inspect",
+      "--format",
+      "{{json .}}",
+      "stage7-engine-clock:image-20261114-01"
+    ],
+    "status": "failed",
+    "returncode": 1,
+    "wall_seconds": 0.05092634399989038,
+    "stdout_path": "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-routes-02/image-local/docker-2.stdout",
+    "stderr_path": "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-routes-02/image-local/docker-2.stderr"
+  },
+  {
+    "command": [
+      "/usr/local/bin/docker",
+      "--host=unix:///var/run/docker.sock",
+      "load",
+      "--input",
+      "/workspace/big-model-closed-loop-benchmark/output/stage7-image-root-authentication/image-20261114-06/accepted-carrier/image.tar"
+    ],
+    "status": "success",
+    "returncode": 0,
+    "wall_seconds": 32.47835126800055,
+    "stdout_path": "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-routes-02/image-local/docker-3.stdout",
+    "stderr_path": "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-routes-02/image-local/docker-3.stderr"
+  },
+  {
+    "command": [
+      "/usr/local/bin/docker",
+      "--host=unix:///var/run/docker.sock",
+      "image",
+      "inspect",
+      "--format",
+      "{{json .}}",
+      "sha256:2b0854f1cf91e470994637f52f4e8c78c618ed00b1496a40bb05158290e01a37"
+    ],
+    "status": "success",
+    "returncode": 0,
+    "wall_seconds": 0.0537830950015632,
+    "stdout_path": "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-routes-02/image-local/docker-4.stdout",
+    "stderr_path": "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-routes-02/image-local/docker-4.stderr"
+  },
+  {
+    "command": [
+      "/usr/local/bin/docker",
+      "--host=unix:///var/run/docker.sock",
+      "image",
+      "inspect",
+      "--format",
+      "{{json .}}",
+      "stage7-panda-routes-base:2b0854f1cf91"
+    ],
+    "status": "failed",
+    "returncode": 1,
+    "wall_seconds": 0.05180999400181463,
+    "stdout_path": "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-routes-02/image-local/docker-5.stdout",
+    "stderr_path": "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-routes-02/image-local/docker-5.stderr"
+  },
+  {
+    "command": [
+      "/usr/local/bin/docker",
+      "--host=unix:///var/run/docker.sock",
+      "tag",
+      "sha256:2b0854f1cf91e470994637f52f4e8c78c618ed00b1496a40bb05158290e01a37",
+      "stage7-panda-routes-base:2b0854f1cf91"
+    ],
+    "status": "success",
+    "returncode": 0,
+    "wall_seconds": 0.05689224500019918,
+    "stdout_path": "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-routes-02/image-local/docker-6.stdout",
+    "stderr_path": "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-routes-02/image-local/docker-6.stderr"
+  },
+  {
+    "command": [
+      "/usr/local/bin/docker",
+      "--host=unix:///var/run/docker.sock",
+      "build",
+      "--network=none",
+      "--pull=false",
+      "--no-cache",
+      "--tag",
+      "stage7-panda-routes:sdk-3e9fa983023c-e27ad9d1",
+      "--file",
+      "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-routes-02/image-local/context/Dockerfile",
+      "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-routes-02/image-local/context"
+    ],
+    "status": "success",
+    "returncode": 0,
+    "wall_seconds": 6.585187879998557,
+    "stdout_path": "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-routes-02/image-local/docker-7.stdout",
+    "stderr_path": "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-routes-02/image-local/docker-7.stderr"
+  },
+  {
+    "command": [
+      "/usr/local/bin/docker",
+      "--host=unix:///var/run/docker.sock",
+      "image",
+      "inspect",
+      "--format",
+      "{{json .}}",
+      "stage7-panda-routes:sdk-3e9fa983023c-e27ad9d1"
+    ],
+    "status": "success",
+    "returncode": 0,
+    "wall_seconds": 0.05143937300090329,
+    "stdout_path": "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-routes-02/image-local/docker-8.stdout",
+    "stderr_path": "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-routes-02/image-local/docker-8.stderr"
+  },
+  {
+    "command": [
+      "/usr/local/bin/docker",
+      "--host=unix:///var/run/docker.sock",
+      "create",
+      "--network=none",
+      "--read-only",
+      "--entrypoint",
+      "/bin/false",
+      "--name",
+      "panda-routes-e27ad9d1f033457f999635e86897e6dd",
+      "--label",
+      "stage7.panda.routes=e27ad9d1f033457f999635e86897e6dd",
+      "sha256:f124e80b67a7d364c524f12dd4db6ece88a5f79ff260529e34d9d45d729c286a"
+    ],
+    "status": "success",
+    "returncode": 0,
+    "wall_seconds": 10.140265341000486,
+    "stdout_path": "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-routes-02/image-local/docker-9.stdout",
+    "stderr_path": "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-routes-02/image-local/docker-9.stderr"
+  },
+  {
+    "command": [
+      "/usr/local/bin/docker",
+      "--host=unix:///var/run/docker.sock",
+      "container",
+      "inspect",
+      "--format",
+      "{{json .}}",
+      "cd2b836d327b985d2582e768be910b4237848656adfd59e5651857eb9c1c7d5e"
+    ],
+    "status": "success",
+    "returncode": 0,
+    "wall_seconds": 0.05135962599888444,
+    "stdout_path": "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-routes-02/image-local/docker-10.stdout",
+    "stderr_path": "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-routes-02/image-local/docker-10.stderr"
+  },
+  {
+    "command": [
+      "/usr/local/bin/docker",
+      "--host=unix:///var/run/docker.sock",
+      "export",
+      "--output",
+      "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-routes-02/image-local/rootfs.tar",
+      "cd2b836d327b985d2582e768be910b4237848656adfd59e5651857eb9c1c7d5e"
+    ],
+    "status": "success",
+    "returncode": 0,
+    "wall_seconds": 9.291558537999663,
+    "stdout_path": "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-routes-02/image-local/docker-11.stdout",
+    "stderr_path": "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-routes-02/image-local/docker-11.stderr"
+  },
+  {
+    "command": [
+      "/usr/local/bin/docker",
+      "--host=unix:///var/run/docker.sock",
+      "container",
+      "inspect",
+      "--format",
+      "{{json .}}",
+      "cd2b836d327b985d2582e768be910b4237848656adfd59e5651857eb9c1c7d5e"
+    ],
+    "status": "success",
+    "returncode": 0,
+    "wall_seconds": 0.05225559400059865,
+    "stdout_path": "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-routes-02/image-local/docker-12.stdout",
+    "stderr_path": "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-routes-02/image-local/docker-12.stderr"
+  },
+  {
+    "command": [
+      "/usr/local/bin/docker",
+      "--host=unix:///var/run/docker.sock",
+      "save",
+      "--output",
+      "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-routes-02/image-local/image.tar",
+      "stage7-panda-routes:sdk-3e9fa983023c-e27ad9d1"
+    ],
+    "status": "success",
+    "returncode": 0,
+    "wall_seconds": 13.299822942997707,
+    "stdout_path": "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-routes-02/image-local/docker-13.stdout",
+    "stderr_path": "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-routes-02/image-local/docker-13.stderr"
+  },
+  {
+    "command": [
+      "/usr/local/bin/docker",
+      "--host=unix:///var/run/docker.sock",
+      "container",
+      "inspect",
+      "--format",
+      "{{json .}}",
+      "cd2b836d327b985d2582e768be910b4237848656adfd59e5651857eb9c1c7d5e"
+    ],
+    "status": "success",
+    "returncode": 0,
+    "wall_seconds": 0.05929126699993503,
+    "stdout_path": "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-routes-02/image-local/docker-14.stdout",
+    "stderr_path": "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-routes-02/image-local/docker-14.stderr"
+  },
+  {
+    "command": [
+      "/usr/local/bin/docker",
+      "--host=unix:///var/run/docker.sock",
+      "rm",
+      "cd2b836d327b985d2582e768be910b4237848656adfd59e5651857eb9c1c7d5e"
+    ],
+    "status": "success",
+    "returncode": 0,
+    "wall_seconds": 1.3059150420012884,
+    "stdout_path": "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-routes-02/image-local/docker-15.stdout",
+    "stderr_path": "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-routes-02/image-local/docker-15.stderr"
+  }
+]

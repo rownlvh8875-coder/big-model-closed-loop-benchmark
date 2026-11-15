@@ -1,0 +1,23 @@
+from pathlib import Path
+import sys,tempfile,tarfile,time
+sys.path.insert(0,'/workspace/big-model-closed-loop-benchmark')
+from tests.test_engine_clock_image_archive import make_save,TAG
+from scripts import panda_sdk_routes_archive as a
+with tempfile.TemporaryDirectory(dir='/tmp') as d:
+ p,_,_=make_save(Path(d)); original=p.read_bytes()
+ body=b'comment='+b'x'*(17*1024**2)+b'\n'
+ n=len(body)+2
+ while True:
+  payload=str(n).encode()+b' '+body
+  if len(payload)==n:break
+  n=len(payload)
+ h=tarfile.TarInfo('global-pax');h.type=tarfile.XGLTYPE;h.size=len(payload)
+ p.write_bytes(h.tobuf()+payload+b'\0'*((-len(payload))%512)+original)
+ print('PAX bytes',len(payload),'metadata limit',a.MAX_METADATA_BYTES)
+ r=a.inspect_save_archive(p,expected_tag=TAG,deadline=time.perf_counter()+30)
+ print('result',r['status'])
+from tests.test_engine_clock_image_archive import tarbytes
+with tempfile.TemporaryDirectory(dir='/tmp') as d:
+ layer=h.tobuf()+payload+b'\0'*((-len(payload))%512)+tarbytes([('usr/lib/owned-fixture',b'never execute')])
+ p,_,_=make_save(Path(d),layers=[layer])
+ print('layer result',a.inspect_save_archive(p,expected_tag=TAG,deadline=time.perf_counter()+30)['status'])
