@@ -1,0 +1,501 @@
+{
+  "schema": "panda-sdk-dispatch-actual-observations-v1",
+  "checked_at_kst": "2026-11-15T21:23:15.060272+09:00",
+  "status": "AUTHENTICATED_DISPATCH_ONLY_CANARY_PASSED",
+  "source_sha": "ef748428d1331a2177e78d4fe7937a0df23d18a6",
+  "activation_sha": "39f0fb8bbfb880a5daa30854bc2c9a33835b5a7c",
+  "run_id": 43713169513,
+  "workflow_id": 419117917,
+  "job_id": 132808977626,
+  "artifact_id": 14161591493,
+  "run_attempt": 1,
+  "actions_output_origin_authenticated": true,
+  "source_closure_files": 250,
+  "reviewed_implementation_unchanged": true,
+  "image_sha256": "4984470cd7d732f9f2d1c12710c9433b563b3817ba6d1d419749a9a2b1b46698",
+  "sdk_sha256": "8d302ae2a610b56db4f7feca08fd736004cf6d3d9650fdb9834f19389a0b7342",
+  "probe_sha256": "f5977686c2d77455024335ae1e1e9ae607479f32f1c73f21178b437ba90f385e",
+  "probe_nbytes": 20864,
+  "probe_source_sha256": "1186f71c27a3d95b2e864d8de7b472ae7d68313b11e0b54227e5bfeb29a62598",
+  "probe_compiler": "/usr/bin/x86_64-linux-gnu-g++-13",
+  "probe_build_wall_seconds": 0.15199973699999703,
+  "probe_compiler_and_project_inputs_verified": true,
+  "full_compiler_system_header_closure_qualified": false,
+  "probe_is_image_inventory_member": false,
+  "sdk_code_before": {
+    "schema": "readback-process-code-v1",
+    "process_code_verified": true,
+    "pid": 7,
+    "starttime": 14966,
+    "file_sha256": "8d302ae2a610b56db4f7feca08fd736004cf6d3d9650fdb9834f19389a0b7342",
+    "ranges": {
+      "sdk_text_1": {
+        "vaddr": 159744,
+        "file_offset": 159744,
+        "size": 514981,
+        "sha256": "9d6022ec4449215789cea5ebec066c663b076bbcbd519673f5d44f4dddfd1089"
+      }
+    },
+    "native_admitted": false,
+    "panda_runtime_mapping_verified": false
+  },
+  "sdk_code_after": {
+    "schema": "readback-process-code-v1",
+    "process_code_verified": true,
+    "pid": 7,
+    "starttime": 14966,
+    "file_sha256": "8d302ae2a610b56db4f7feca08fd736004cf6d3d9650fdb9834f19389a0b7342",
+    "ranges": {
+      "sdk_text_1": {
+        "vaddr": 159744,
+        "file_offset": 159744,
+        "size": 514981,
+        "sha256": "9d6022ec4449215789cea5ebec066c663b076bbcbd519673f5d44f4dddfd1089"
+      }
+    },
+    "native_admitted": false,
+    "panda_runtime_mapping_verified": false
+  },
+  "probe_code_before": {
+    "schema": "readback-process-code-v1",
+    "process_code_verified": true,
+    "pid": 7,
+    "starttime": 14966,
+    "file_sha256": "f5977686c2d77455024335ae1e1e9ae607479f32f1c73f21178b437ba90f385e",
+    "ranges": {
+      "text_1": {
+        "vaddr": 4096,
+        "file_offset": 4096,
+        "size": 6305,
+        "sha256": "3cec599742e056de87577687bd5cac07fa1254e230ca88eda2c04d9f32b4420f"
+      }
+    },
+    "native_admitted": false,
+    "panda_runtime_mapping_verified": false
+  },
+  "probe_code_after": {
+    "schema": "readback-process-code-v1",
+    "process_code_verified": true,
+    "pid": 7,
+    "starttime": 14966,
+    "file_sha256": "f5977686c2d77455024335ae1e1e9ae607479f32f1c73f21178b437ba90f385e",
+    "ranges": {
+      "text_1": {
+        "vaddr": 4096,
+        "file_offset": 4096,
+        "size": 6305,
+        "sha256": "3cec599742e056de87577687bd5cac07fa1254e230ca88eda2c04d9f32b4420f"
+      }
+    },
+    "native_admitted": false,
+    "panda_runtime_mapping_verified": false
+  },
+  "panda_preloads": 1,
+  "sdk_loads": 1,
+  "probe_loads": 1,
+  "probe_invocations": 1,
+  "probe_report": {
+    "schema": "panda-sdk-dispatch-probe-v1",
+    "mode": 0,
+    "sizes": [
+      2640344,
+      2320
+    ],
+    "original_calls": 22,
+    "args_ok": 1,
+    "errno_ok": 1,
+    "returns_ok": 1,
+    "guards_ok": 1,
+    "pack_snapshots": [
+      42,
+      0,
+      77,
+      0,
+      0
+    ],
+    "tags": [
+      1,
+      1,
+      2,
+      1,
+      3
+    ],
+    "lifecycle": [
+      2,
+      1,
+      1,
+      0,
+      3,
+      0
+    ],
+    "failed_switch_preserved": 0,
+    "finish": 0,
+    "adapter_error": 0,
+    "source_error": 0,
+    "source_closed": 1,
+    "forwarded": 22,
+    "resolutions": 7,
+    "paths": 28,
+    "events": 57,
+    "bootstrap": 39,
+    "replayed": 39,
+    "applied": 57,
+    "pbo_resets": 1,
+    "live": 0,
+    "pending": 0,
+    "native_admitted": false,
+    "driver_state_qualified": false,
+    "wrappers": [
+      140482989596560,
+      140482989596688,
+      140482989596752,
+      140482989596368,
+      140482989514144,
+      140482989596240,
+      140482989596496
+    ],
+    "originals": [
+      140482982188400,
+      140482982187568,
+      140482982188000,
+      140482982188144,
+      140482982187760,
+      140482982187872,
+      140482982188272
+    ],
+    "trace": [
+      [
+        7,
+        1,
+        2,
+        0,
+        1,
+        34,
+        4369
+      ],
+      [
+        11,
+        1,
+        7,
+        4369,
+        0,
+        34,
+        1
+      ],
+      [
+        3,
+        36160,
+        9,
+        0,
+        0,
+        34,
+        0
+      ],
+      [
+        4,
+        36064,
+        0,
+        0,
+        0,
+        34,
+        0
+      ],
+      [
+        2,
+        35051,
+        42,
+        0,
+        0,
+        34,
+        0
+      ],
+      [
+        6,
+        1,
+        140735776778204,
+        0,
+        0,
+        34,
+        0
+      ],
+      [
+        7,
+        1,
+        2,
+        0,
+        1,
+        34,
+        8738
+      ],
+      [
+        11,
+        1,
+        8,
+        8738,
+        0,
+        34,
+        1
+      ],
+      [
+        3,
+        36160,
+        10,
+        0,
+        0,
+        34,
+        0
+      ],
+      [
+        4,
+        36064,
+        0,
+        0,
+        0,
+        34,
+        0
+      ],
+      [
+        2,
+        35051,
+        77,
+        0,
+        0,
+        34,
+        0
+      ],
+      [
+        11,
+        1,
+        7,
+        4369,
+        0,
+        34,
+        1
+      ],
+      [
+        13,
+        1,
+        4369,
+        0,
+        0,
+        34,
+        0
+      ],
+      [
+        11,
+        1,
+        8,
+        8738,
+        0,
+        34,
+        1
+      ],
+      [
+        13,
+        1,
+        8738,
+        0,
+        0,
+        34,
+        0
+      ],
+      [
+        11,
+        1,
+        0,
+        0,
+        0,
+        34,
+        1
+      ],
+      [
+        7,
+        1,
+        2,
+        0,
+        1,
+        34,
+        4369
+      ],
+      [
+        11,
+        1,
+        9,
+        4369,
+        0,
+        34,
+        1
+      ],
+      [
+        3,
+        36160,
+        11,
+        0,
+        0,
+        34,
+        0
+      ],
+      [
+        4,
+        36064,
+        0,
+        0,
+        0,
+        34,
+        0
+      ],
+      [
+        13,
+        1,
+        4369,
+        0,
+        0,
+        34,
+        0
+      ],
+      [
+        11,
+        1,
+        0,
+        0,
+        0,
+        34,
+        1
+      ]
+    ]
+  },
+  "context": {
+    "pid": 1,
+    "uid": 65534,
+    "gid": 65534,
+    "cap_eff": 0,
+    "cap_bnd": 0,
+    "no_new_privs": 1,
+    "seccomp": 2,
+    "namespaces": {
+      "pid": "pid:[4026532317]",
+      "net": "net:[4026532319]",
+      "mnt": "mnt:[4026532312]"
+    },
+    "mounts": {
+      "/": [
+        "ro",
+        "relatime"
+      ],
+      "/work/repo": [
+        "ro",
+        "relatime"
+      ],
+      "/work/binding": [
+        "ro",
+        "relatime"
+      ],
+      "/tmp": [
+        "rw",
+        "nosuid",
+        "nodev",
+        "noexec",
+        "relatime"
+      ]
+    },
+    "pids_max": 32,
+    "cpu_quota": 100000,
+    "cpu_period": 100000
+  },
+  "memory_before": {
+    "max_bytes": 805306368,
+    "events": {
+      "low": 0,
+      "high": 0,
+      "max": 0,
+      "oom": 0,
+      "oom_kill": 0,
+      "oom_group_kill": 0,
+      "sock_throttled": 0
+    },
+    "peak_bytes": 211959808,
+    "peak_is_rss": false
+  },
+  "memory_after": {
+    "max_bytes": 805306368,
+    "events": {
+      "low": 0,
+      "high": 0,
+      "max": 0,
+      "oom": 0,
+      "oom_kill": 0,
+      "oom_group_kill": 0,
+      "sock_throttled": 0
+    },
+    "peak_bytes": 211959808,
+    "peak_is_rss": false
+  },
+  "mapped_files": {
+    "before_load": {
+      "count": 27,
+      "file_bytes": 35212224,
+      "origins": {
+        "authenticated-image": 27,
+        "source-bound-probe": 0
+      }
+    },
+    "before": {
+      "count": 49,
+      "file_bytes": 87172589,
+      "origins": {
+        "authenticated-image": 48,
+        "source-bound-probe": 1
+      }
+    },
+    "after": {
+      "count": 49,
+      "file_bytes": 87172589,
+      "origins": {
+        "authenticated-image": 48,
+        "source-bound-probe": 1
+      }
+    }
+  },
+  "child_returncode": 0,
+  "child_stdout_nbytes": 0,
+  "child_stderr_nbytes": 0,
+  "container_before": {
+    "Status": "created",
+    "Running": false,
+    "Paused": false,
+    "Restarting": false,
+    "OOMKilled": false,
+    "Dead": false,
+    "Pid": 0,
+    "ExitCode": 0,
+    "Error": "",
+    "StartedAt": "0001-01-01T00:00:00Z",
+    "FinishedAt": "0001-01-01T00:00:00Z"
+  },
+  "container_after": {
+    "Status": "exited",
+    "Running": false,
+    "Paused": false,
+    "Restarting": false,
+    "OOMKilled": false,
+    "Dead": false,
+    "Pid": 0,
+    "ExitCode": 0,
+    "Error": "",
+    "StartedAt": "2026-11-15T12:20:06.727651548Z",
+    "FinishedAt": "2026-11-15T12:20:08.964375457Z"
+  },
+  "owned_container_removed": true,
+  "dispatch_window_consumed": true,
+  "start_attempts": 1,
+  "dispatch_window_remaining": 0,
+  "scientific_native_runs": 0,
+  "real_gl_api_calls": 0,
+  "initializer_gl_free_claimed": false,
+  "full_object_abi_qualified": false,
+  "driver_state_qualified": false,
+  "native_admitted": false,
+  "runtime_admission_ready": false,
+  "stage7_complete": false,
+  "strict_current_result": "0/4 FAIL"
+}
