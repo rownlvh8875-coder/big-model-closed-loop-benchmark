@@ -1,0 +1,10 @@
+# SDD ledger — plan: docs/superpowers/plans/2026-11-15-panda-sdk-dispatch-canary-v1.md
+Task1 in progress; cleanbase1a307f4/6671. Plan/spec written under persisted inline/noquestions preference. NEW dispatch slot unqualified/unspent. Local handwritten CPU components only; old mapping01 consumed. Scientific0/Stage7INCOMPLETE.
+Task1: complete (3d644e2..task1commit; focused5PASS1.058s, real CPU-equivalent shared library only). Task2 runtime/policy in progress; actualnewwindow unqualified/unspent.
+
+Task2: complete (0a935f3; parent fullSDK+probe text and newclosedauthority; fullmatrix1667cases). Task3 implementation: complete (27focused4.909s; fullmatrix1681cases/1674PASS7skip; source250). Actualwindow unqualified/unspent; solefreshreview next.
+
+Solefreshreview0Critical/0Important/1Minor; noImportantfixpass/no rereview; M1diagnostic-onlydeferred. All15declines rulings+7initial=22. Source250unchanged/fullmatrix1681casespassed. SourceCI/ownDraft/activation/actualoneattempt next.
+Reviewedsourceef748428d1331a2177e78d4fe7937a0df23d18a6 ownDraft119/base1a307f4; canonicalpush43712849715/PR43712877460 all4jobs PASS/attempt1/artifacts0/body verified21:18:25KST. Create-only activation39f0fb8bbfb880a5daa30854bc2c9a33835b5a7c requestblob21afc322dbc078505f35a21e02eade0929fea50e. NEW dispatch workflow419117917/run43713169513 attempt1 inprogress; DO NOT reactivate/rerun/retry. Await actual outcome then accept via scripts.accept_panda_sdk_dispatch_canary --source ef748428d1331a2177e78d4fe7937a0df23d18a6 --activation39f0... --run-id43713169513. Source HEAD remains ef748428; final docs/CI/receipt afteractualacceptance; scientific0/Stage7INCOMPLETE.
+
+Task3 actual complete: sourceef748428 CI4PASS; activation39f0fb8/run43713169513 attempt1 authenticatedPASS/actual22CPUoriginals; source250unchanged. Windowconsumed1/remaining0, no replay. Scientific0/strict0of4FAIL/Stage7INCOMPLETE. Docs-only finalcloseout prepared; exactpostcommitHEADCI/body/freshpreservation/outputreceipt remain gates.22rulings/deferredM1 collected.

@@ -1,0 +1,54 @@
+{
+  "schema": "panda-sdk-dispatch-accepted-v1",
+  "status": "AUTHENTICATED_DISPATCH_ONLY_CANARY_PASSED",
+  "actions_output_origin_authenticated": true,
+  "native_admitted": false,
+  "stage7_complete": false,
+  "source_sha": "ef748428d1331a2177e78d4fe7937a0df23d18a6",
+  "activation_sha": "39f0fb8bbfb880a5daa30854bc2c9a33835b5a7c",
+  "run_id": 43713169513,
+  "workflow_id": 419117917,
+  "job_id": 132808977626,
+  "artifact_id": 14161591493,
+  "artifact_zip_sha256": "2b52db416d070888cbdc2eaf954383ed609daa2d9a3b7e90a449d6b3e8a91610",
+  "artifact_zip_nbytes": 353055,
+  "request_sha256": "d69efcf3299e0c8b380a988cc3a7f5e964cba288676e92506052acbac2e8de2f",
+  "carrier": {
+    "status": "CLOSED_BOUNDED_DISPATCH_CARRIER_EXTRACTED",
+    "files": {
+      "canary.json": {
+        "nbytes": 1960,
+        "sha256": "db4cf58ecaae670b1afd027c0bee89fd806e53919f4ee3aca4f014d948fe3033"
+      },
+      "execution.json": {
+        "nbytes": 80278,
+        "sha256": "cab7d7d9b8c75441f7a17981112446d14e2956cccc72a497149d7c58760aca37"
+      },
+      "runtime.json": {
+        "nbytes": 270445,
+        "sha256": "cb9dd0172b4c95c0c89f0eb39f91b770aee67c5566385a52337e2d93880f1304"
+      }
+    },
+    "root_filesystem_extracted": false,
+    "native_admitted": false
+  },
+  "receipt_semantics": {
+    "status": "CANARY_RECEIPT_SEMANTICS_MATCH",
+    "canary_passed": true,
+    "external_origin_authenticated": false,
+    "native_admitted": false,
+    "stage7_complete": false
+  },
+  "dispatch_window_consumed": true,
+  "start_attempts": 1,
+  "canary_passed": true,
+  "sdk_sha256": "8d302ae2a610b56db4f7feca08fd736004cf6d3d9650fdb9834f19389a0b7342",
+  "image_sha256": "4984470cd7d732f9f2d1c12710c9433b563b3817ba6d1d419749a9a2b1b46698",
+  "cpu_original_calls_verified": 22,
+  "source_probe_code_verified": true,
+  "probe_sha256": "f5977686c2d77455024335ae1e1e9ae607479f32f1c73f21178b437ba90f385e",
+  "full_object_abi_qualified": false,
+  "runtime_admission_ready": false,
+  "scientific_native_runs": 0,
+  "strict_current_result": "0/4 FAIL"
+}
