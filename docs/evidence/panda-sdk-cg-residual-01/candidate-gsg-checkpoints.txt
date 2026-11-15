@@ -1,0 +1,250 @@
+
+/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-candidate-01/acceptance/candidate/candidate/build-libpanda.so.data:     file format elf64-x86-64
+
+
+Disassembly of section .init:
+
+Disassembly of section .plt:
+
+Disassembly of section .plt.got:
+
+Disassembly of section .plt.sec:
+
+Disassembly of section .text:
+
+00000000004ad5c0 <_ZN21GraphicsStateGuardian20get_prepared_objectsEv>:
+  4ad5c0:	f3 0f 1e fa          	endbr64
+  4ad5c4:	48 8b 87 58 01 00 00 	mov    0x158(%rdi),%rax
+  4ad5cb:	c3                   	ret
+
+Disassembly of section .fini:
+
+
+/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-candidate-01/acceptance/candidate/candidate/build-libpanda.so.data:     file format elf64-x86-64
+
+
+Disassembly of section .init:
+
+Disassembly of section .plt:
+
+Disassembly of section .plt.got:
+
+Disassembly of section .plt.sec:
+
+Disassembly of section .text:
+
+00000000004af260 <_ZNK21GraphicsStateGuardian10get_engineEv>:
+  4af260:	f3 0f 1e fa          	endbr64
+  4af264:	48 8b 87 18 03 00 00 	mov    0x318(%rdi),%rax
+  4af26b:	48 85 c0             	test   %rax,%rax
+  4af26e:	74 08                	je     4af278 <_ZNK21GraphicsStateGuardian10get_engineEv+0x18>
+  4af270:	c3                   	ret
+  4af271:	0f 1f 80 00 00 00 00 	nopl   0x0(%rax)
+  4af278:	53                   	push   %rbx
+  4af279:	48 89 fb             	mov    %rdi,%rbx
+  4af27c:	e8 8f 95 d7 ff       	call   228810 <_ZN6Notify3ptrEv@plt>
+  4af281:	48 8d 0d a0 c7 34 00 	lea    0x34c7a0(%rip),%rcx        # 7fba28 <_fini+0x1388c>
+  4af288:	ba 3f 01 00 00       	mov    $0x13f,%edx
+  4af28d:	48 8d 35 0c d8 36 00 	lea    0x36d80c(%rip),%rsi        # 81caa0 <_fini+0x34904>
+  4af294:	48 89 c7             	mov    %rax,%rdi
+  4af297:	e8 84 b3 d6 ff       	call   21a620 <_ZN6Notify14assert_failureEPKciS1_@plt>
+  4af29c:	84 c0                	test   %al,%al
+  4af29e:	75 10                	jne    4af2b0 <_ZNK21GraphicsStateGuardian10get_engineEv+0x50>
+  4af2a0:	48 8b 83 18 03 00 00 	mov    0x318(%rbx),%rax
+  4af2a7:	5b                   	pop    %rbx
+  4af2a8:	c3                   	ret
+  4af2a9:	0f 1f 80 00 00 00 00 	nopl   0x0(%rax)
+  4af2b0:	5b                   	pop    %rbx
+  4af2b1:	e9 ea 88 d7 ff       	jmp    227ba0 <_ZN14GraphicsEngine14get_global_ptrEv@plt>
+
+Disassembly of section .fini:
+
+
+/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-candidate-01/acceptance/candidate/candidate/build-libpanda.so.data:     file format elf64-x86-64
+
+
+Disassembly of section .init:
+
+Disassembly of section .plt:
+
+Disassembly of section .plt.got:
+
+Disassembly of section .plt.sec:
+
+Disassembly of section .text:
+
+00000000004af6e0 <_ZNK21GraphicsStateGuardian17get_flash_textureEv>:
+  4af6e0:	f3 0f 1e fa          	endbr64
+  4af6e4:	48 8b 87 00 03 00 00 	mov    0x300(%rdi),%rax
+  4af6eb:	c3                   	ret
+
+Disassembly of section .fini:
+
+
+/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-candidate-01/acceptance/candidate/candidate/build-libpanda.so.data:     file format elf64-x86-64
+
+
+Disassembly of section .init:
+
+Disassembly of section .plt:
+
+Disassembly of section .plt.got:
+
+Disassembly of section .plt.sec:
+
+Disassembly of section .text:
+
+00000000004be350 <_ZNK21GraphicsStateGuardian17get_supports_hlslEv>:
+  4be350:	f3 0f 1e fa          	endbr64
+  4be354:	0f b6 87 6d 02 00 00 	movzbl 0x26d(%rdi),%eax
+  4be35b:	c3                   	ret
+
+Disassembly of section .fini:
+
+
+/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-candidate-01/acceptance/candidate/candidate/build-libpanda.so.data:     file format elf64-x86-64
+
+
+Disassembly of section .init:
+
+Disassembly of section .plt:
+
+Disassembly of section .plt.got:
+
+Disassembly of section .plt.sec:
+
+Disassembly of section .text:
+
+00000000004be2d0 <_ZNK21GraphicsStateGuardian21get_incomplete_renderEv>:
+  4be2d0:	f3 0f 1e fa          	endbr64
+  4be2d4:	0f b6 87 48 01 00 00 	movzbl 0x148(%rdi),%eax
+  4be2db:	c3                   	ret
+
+Disassembly of section .fini:
+
+
+/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-candidate-01/acceptance/candidate/candidate/build-libpanda.so.data:     file format elf64-x86-64
+
+
+Disassembly of section .init:
+
+Disassembly of section .plt:
+
+Disassembly of section .plt.got:
+
+Disassembly of section .plt.sec:
+
+Disassembly of section .text:
+
+00000000004ad580 <_ZNK21GraphicsStateGuardian24get_supports_multisampleEv>:
+  4ad580:	f3 0f 1e fa          	endbr64
+  4ad584:	0f b6 87 61 02 00 00 	movzbl 0x261(%rdi),%eax
+  4ad58b:	c3                   	ret
+
+Disassembly of section .fini:
+
+
+/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-candidate-01/acceptance/candidate/candidate/build-libpanda.so.data:     file format elf64-x86-64
+
+
+Disassembly of section .init:
+
+Disassembly of section .plt:
+
+Disassembly of section .plt.got:
+
+Disassembly of section .plt.sec:
+
+Disassembly of section .text:
+
+00000000004be320 <_ZNK21GraphicsStateGuardian25get_max_texture_dimensionEv>:
+  4be320:	f3 0f 1e fa          	endbr64
+  4be324:	8b 87 70 01 00 00    	mov    0x170(%rdi),%eax
+  4be32a:	c3                   	ret
+
+Disassembly of section .fini:
+
+
+/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-candidate-01/acceptance/candidate/candidate/build-libpanda.so.data:     file format elf64-x86-64
+
+
+Disassembly of section .init:
+
+Disassembly of section .plt:
+
+Disassembly of section .plt.got:
+
+Disassembly of section .plt.sec:
+
+Disassembly of section .text:
+
+00000000004ad590 <_ZNK21GraphicsStateGuardian28get_supported_geom_renderingEv>:
+  4ad590:	f3 0f 1e fa          	endbr64
+  4ad594:	8b 87 80 02 00 00    	mov    0x280(%rdi),%eax
+  4ad59a:	c3                   	ret
+
+Disassembly of section .fini:
+
+
+/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-candidate-01/acceptance/candidate/candidate/build-libpanda.so.data:     file format elf64-x86-64
+
+
+Disassembly of section .init:
+
+Disassembly of section .plt:
+
+Disassembly of section .plt.got:
+
+Disassembly of section .plt.sec:
+
+Disassembly of section .text:
+
+00000000004ad5b0 <_ZNK21GraphicsStateGuardian30get_internal_coordinate_systemEv>:
+  4ad5b0:	f3 0f 1e fa          	endbr64
+  4ad5b4:	8b 87 dc 00 00 00    	mov    0xdc(%rdi),%eax
+  4ad5ba:	c3                   	ret
+
+Disassembly of section .fini:
+
+
+/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-candidate-01/acceptance/candidate/candidate/build-libpanda.so.data:     file format elf64-x86-64
+
+
+Disassembly of section .init:
+
+Disassembly of section .plt:
+
+Disassembly of section .plt.got:
+
+Disassembly of section .plt.sec:
+
+Disassembly of section .text:
+
+00000000004af5e0 <_ZNK21GraphicsStateGuardian9get_gammaEv>:
+  4af5e0:	f3 0f 1e fa          	endbr64
+  4af5e4:	f3 0f 10 87 f0 02 00 	movss  0x2f0(%rdi),%xmm0
+  4af5eb:	00 
+  4af5ec:	c3                   	ret
+
+Disassembly of section .fini:
+
+
+/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-candidate-01/acceptance/candidate/candidate/build-libpanda.so.data:     file format elf64-x86-64
+
+
+Disassembly of section .init:
+
+Disassembly of section .plt:
+
+Disassembly of section .plt.got:
+
+Disassembly of section .plt.sec:
+
+Disassembly of section .text:
+
+00000000004ad5f0 <_ZNK21GraphicsStateGuardian9get_sceneEv>:
+  4ad5f0:	f3 0f 1e fa          	endbr64
+  4ad5f4:	48 8b 47 40          	mov    0x40(%rdi),%rax
+  4ad5f8:	c3                   	ret
+
+Disassembly of section .fini:

@@ -1,0 +1,101 @@
+{
+  "schema": "panda-cg-residual-recheck-v1",
+  "passed_checks": 38,
+  "checks": [
+    "candidate ELF digest",
+    "candidate bounded _ZNK21GraphicsStateGuardian30get_internal_coordinate_systemEv",
+    "candidate complete member load _ZNK21GraphicsStateGuardian30get_internal_coordinate_systemEv",
+    "candidate bounded _ZNK21GraphicsStateGuardian21get_incomplete_renderEv",
+    "candidate complete member load _ZNK21GraphicsStateGuardian21get_incomplete_renderEv",
+    "candidate bounded _ZN21GraphicsStateGuardian20get_prepared_objectsEv",
+    "candidate complete member load _ZN21GraphicsStateGuardian20get_prepared_objectsEv",
+    "candidate bounded _ZN21GraphicsStateGuardian5resetEv",
+    "candidate bounded disassembly reset",
+    "candidate bounded _ZN21GraphicsStateGuardianC2E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe",
+    "candidate bounded disassembly constructor",
+    "wheel ELF digest",
+    "wheel bounded _ZNK21GraphicsStateGuardian30get_internal_coordinate_systemEv",
+    "wheel complete member load _ZNK21GraphicsStateGuardian30get_internal_coordinate_systemEv",
+    "wheel bounded _ZNK21GraphicsStateGuardian21get_incomplete_renderEv",
+    "wheel complete member load _ZNK21GraphicsStateGuardian21get_incomplete_renderEv",
+    "wheel bounded _ZN21GraphicsStateGuardian20get_prepared_objectsEv",
+    "wheel complete member load _ZN21GraphicsStateGuardian20get_prepared_objectsEv",
+    "wheel bounded _ZN21GraphicsStateGuardian5resetEv",
+    "wheel bounded disassembly reset",
+    "wheel bounded _ZN21GraphicsStateGuardianC2E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe",
+    "wheel bounded disassembly constructor",
+    "coordinate checkpoint equal",
+    "incomplete-render differs20",
+    "prepared-objects differs16",
+    "candidate SDK digest",
+    "CET exact prefix _ZN23GLGraphicsStateGuardian24get_driver_version_majorEv",
+    "diagnostic normalized offset _ZN23GLGraphicsStateGuardian24get_driver_version_majorEv",
+    "CET exact prefix _ZN23GLGraphicsStateGuardian24get_driver_version_minorEv",
+    "diagnostic normalized offset _ZN23GLGraphicsStateGuardian24get_driver_version_minorEv",
+    "parent digest",
+    "unique literal source section",
+    "section is exact allocated read-only96B",
+    "no selected relocation",
+    "derived values retained",
+    "inspection tool unchanged /usr/bin/objdump",
+    "inspection tool unchanged /usr/bin/objcopy",
+    "inspection tool unchanged /usr/bin/readelf"
+  ],
+  "checkpoints": {
+    "candidate": {
+      "_ZNK21GraphicsStateGuardian30get_internal_coordinate_systemEv": 220,
+      "_ZNK21GraphicsStateGuardian21get_incomplete_renderEv": 328,
+      "_ZN21GraphicsStateGuardian20get_prepared_objectsEv": 344
+    },
+    "wheel": {
+      "_ZNK21GraphicsStateGuardian30get_internal_coordinate_systemEv": 220,
+      "_ZNK21GraphicsStateGuardian21get_incomplete_renderEv": 348,
+      "_ZN21GraphicsStateGuardian20get_prepared_objectsEv": 360
+    }
+  },
+  "integer_getters_diagnostic_only": {
+    "_ZN23GLGraphicsStateGuardian24get_driver_version_majorEv": {
+      "full_bytes": "f30f1efa8b8778060000c3",
+      "observed_offset": 1656,
+      "admitted": false
+    },
+    "_ZN23GLGraphicsStateGuardian24get_driver_version_minorEv": {
+      "full_bytes": "f30f1efa8b877c060000c3",
+      "observed_offset": 1660,
+      "admitted": false
+    }
+  },
+  "descriptor_words": [
+    5782989451580098353,
+    1,
+    8,
+    0,
+    1,
+    88,
+    104,
+    832,
+    3960,
+    1632,
+    1656,
+    1660
+  ],
+  "inspection_tools": {
+    "/usr/bin/objdump": {
+      "resolved": "/usr/bin/x86_64-linux-gnu-objdump",
+      "sha256": "96afb8521834982d0e711b5d6e9785252bf82129fb0106b93a6bd54d83fae11f"
+    },
+    "/usr/bin/objcopy": {
+      "resolved": "/usr/bin/x86_64-linux-gnu-objcopy",
+      "sha256": "403f90bbd5d26c8ab9a2ad51f56255b812e8858a83aa8740ee71791071ddb580"
+    },
+    "/usr/bin/readelf": {
+      "resolved": "/usr/bin/x86_64-linux-gnu-readelf",
+      "sha256": "4a387d80a70e6e97ef940a666fab59d5c38e7cf19ff907192fa983cb8505a7de"
+    }
+  },
+  "target_compiled": false,
+  "target_loaded": false,
+  "target_executed": false,
+  "static_admission": false,
+  "stage7_complete": false
+}

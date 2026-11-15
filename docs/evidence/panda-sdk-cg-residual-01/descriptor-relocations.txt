@@ -1,0 +1,21 @@
+
+Relocation section '.rela.text' at offset 0x638 contains 4 entries:
+    Offset             Info             Type               Symbol's Value  Symbol's Name + Addend
+000000000000000e  0000001600000004 R_X86_64_PLT32         0000000000000000 _ZN7BitMaskIjLi32EE8lower_onEi - 4
+0000000000000014  0000000300000002 R_X86_64_PC32          0000000000000000 .bss - 4
+000000000000001e  0000001700000004 R_X86_64_PLT32         0000000000000000 _ZN7BitMaskIjLi32EE3bitEi - 4
+0000000000000024  0000000300000002 R_X86_64_PC32          0000000000000000 .bss + 0
+
+Relocation section '.rela.text._ZN17CheckPandaVersionIvE13check_versionEv' at offset 0x698 contains 1 entry:
+    Offset             Info             Type               Symbol's Value  Symbol's Name + Addend
+000000000000000e  0000001300000002 R_X86_64_PC32          0000000000000000 panda_version_1_10 - 4
+
+Relocation section '.rela.init_array' at offset 0x6b0 contains 1 entry:
+    Offset             Info             Type               Symbol's Value  Symbol's Name + Addend
+0000000000000000  0000000200000001 R_X86_64_64            0000000000000000 .text + 2b
+
+Relocation section '.rela.eh_frame' at offset 0x6c8 contains 3 entries:
+    Offset             Info             Type               Symbol's Value  Symbol's Name + Addend
+0000000000000020  0000000400000002 R_X86_64_PC32          0000000000000000 .text._ZN17CheckPandaVersionIvE13check_versionEv + 0
+0000000000000040  0000000200000002 R_X86_64_PC32          0000000000000000 .text + 0
+0000000000000060  0000000200000002 R_X86_64_PC32          0000000000000000 .text + 2b

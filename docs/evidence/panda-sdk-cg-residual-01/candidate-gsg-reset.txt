@@ -1,0 +1,183 @@
+
+/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-candidate-01/acceptance/candidate/candidate/build-libpanda.so.data:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+00000000004b5d00 <_ZN21GraphicsStateGuardian5resetEv>:
+  4b5d00:	f3 0f 1e fa          	endbr64
+  4b5d04:	41 57                	push   %r15
+  4b5d06:	31 d2                	xor    %edx,%edx
+  4b5d08:	41 56                	push   %r14
+  4b5d0a:	41 55                	push   %r13
+  4b5d0c:	41 54                	push   %r12
+  4b5d0e:	55                   	push   %rbp
+  4b5d0f:	53                   	push   %rbx
+  4b5d10:	48 89 fb             	mov    %rdi,%rbx
+  4b5d13:	48 83 ec 18          	sub    $0x18,%rsp
+  4b5d17:	48 8b 05 4a d9 4c 00 	mov    0x4cd94a(%rip),%rax        # 983668 <_ZN11RenderState12_empty_stateE@@Base-0xca80>
+  4b5d1e:	66 89 97 44 01 00 00 	mov    %dx,0x144(%rdi)
+  4b5d25:	48 8b 00             	mov    (%rax),%rax
+  4b5d28:	48 85 c0             	test   %rax,%rax
+  4b5d2b:	0f 84 e7 01 00 00    	je     4b5f18 <_ZN21GraphicsStateGuardian5resetEv+0x218>
+  4b5d31:	f0 48 83 40 20 01    	lock addq $0x1,0x20(%rax)
+  4b5d37:	48 8b 7f 48          	mov    0x48(%rdi),%rdi
+  4b5d3b:	48 39 c7             	cmp    %rax,%rdi
+  4b5d3e:	0f 85 bc 01 00 00    	jne    4b5f00 <_ZN21GraphicsStateGuardian5resetEv+0x200>
+  4b5d44:	e8 d7 92 da ff       	call   25f020 <_Z12unref_deleteI11RenderStateEvPT_>
+  4b5d49:	48 8b 7b 50          	mov    0x50(%rbx),%rdi
+  4b5d4d:	48 85 ff             	test   %rdi,%rdi
+  4b5d50:	74 0d                	je     4b5d5f <_ZN21GraphicsStateGuardian5resetEv+0x5f>
+  4b5d52:	48 c7 43 50 00 00 00 	movq   $0x0,0x50(%rbx)
+  4b5d59:	00 
+  4b5d5a:	e8 c1 92 da ff       	call   25f020 <_Z12unref_deleteI11RenderStateEvPT_>
+  4b5d5f:	48 8b 83 e0 00 00 00 	mov    0xe0(%rbx),%rax
+  4b5d66:	48 8b 7b 60          	mov    0x60(%rbx),%rdi
+  4b5d6a:	c7 43 58 00 00 00 00 	movl   $0x0,0x58(%rbx)
+  4b5d71:	48 39 f8             	cmp    %rdi,%rax
+  4b5d74:	74 19                	je     4b5d8f <_ZN21GraphicsStateGuardian5resetEv+0x8f>
+  4b5d76:	48 89 43 60          	mov    %rax,0x60(%rbx)
+  4b5d7a:	48 85 c0             	test   %rax,%rax
+  4b5d7d:	74 06                	je     4b5d85 <_ZN21GraphicsStateGuardian5resetEv+0x85>
+  4b5d7f:	f0 48 83 40 20 01    	lock addq $0x1,0x20(%rax)
+  4b5d85:	48 85 ff             	test   %rdi,%rdi
+  4b5d88:	74 05                	je     4b5d8f <_ZN21GraphicsStateGuardian5resetEv+0x8f>
+  4b5d8a:	e8 61 a8 da ff       	call   2605f0 <_Z12unref_deleteI14TransformStateEvPT_>
+  4b5d8f:	48 8b 05 72 ae 4c 00 	mov    0x4cae72(%rip),%rax        # 980c08 <memory_hook@Base>
+  4b5d96:	be 90 00 00 00       	mov    $0x90,%esi
+  4b5d9b:	48 8b 38             	mov    (%rax),%rdi
+  4b5d9e:	48 8b 07             	mov    (%rdi),%rax
+  4b5da1:	ff 50 10             	call   *0x10(%rax)
+  4b5da4:	48 89 c7             	mov    %rax,%rdi
+  4b5da7:	49 89 c4             	mov    %rax,%r12
+  4b5daa:	e8 01 90 d6 ff       	call   21edb0 <_ZN10SceneSetupC1Ev@plt>
+  4b5daf:	48 8b 6b 38          	mov    0x38(%rbx),%rbp
+  4b5db3:	49 39 ec             	cmp    %rbp,%r12
+  4b5db6:	0f 84 7c 01 00 00    	je     4b5f38 <_ZN21GraphicsStateGuardian5resetEv+0x238>
+  4b5dbc:	4c 89 63 38          	mov    %r12,0x38(%rbx)
+  4b5dc0:	f0 49 83 44 24 10 01 	lock addq $0x1,0x10(%r12)
+  4b5dc7:	4c 8b 2d ba e0 4c 00 	mov    0x4ce0ba(%rip),%r13        # 983e88 <_ZN11MemoryUsage11_global_ptrE@Base>
+  4b5dce:	49 8b 45 00          	mov    0x0(%r13),%rax
+  4b5dd2:	48 85 c0             	test   %rax,%rax
+  4b5dd5:	0f 84 f5 01 00 00    	je     4b5fd0 <_ZN21GraphicsStateGuardian5resetEv+0x2d0>
+  4b5ddb:	80 b8 98 01 00 00 00 	cmpb   $0x0,0x198(%rax)
+  4b5de2:	74 1d                	je     4b5e01 <_ZN21GraphicsStateGuardian5resetEv+0x101>
+  4b5de4:	4c 8b 2d 45 ab 4c 00 	mov    0x4cab45(%rip),%r13        # 980930 <_ZN10SceneSetup12_type_handleE@@Base-0xf500>
+  4b5deb:	41 8b 75 00          	mov    0x0(%r13),%esi
+  4b5def:	85 f6                	test   %esi,%esi
+  4b5df1:	0f 84 89 01 00 00    	je     4b5f80 <_ZN21GraphicsStateGuardian5resetEv+0x280>
+  4b5df7:	49 8d 7c 24 08       	lea    0x8(%r12),%rdi
+  4b5dfc:	e8 7f 61 da ff       	call   25bf80 <_ZN11MemoryUsage11update_typeEP14ReferenceCount10TypeHandle>
+  4b5e01:	48 85 ed             	test   %rbp,%rbp
+  4b5e04:	74 2e                	je     4b5e34 <_ZN21GraphicsStateGuardian5resetEv+0x134>
+  4b5e06:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  4b5e0a:	48 8d 15 ff c3 d8 ff 	lea    -0x273c01(%rip),%rdx        # 242210 <_ZNK14ReferenceCount5unrefEv>
+  4b5e11:	48 8d 7d 08          	lea    0x8(%rbp),%rdi
+  4b5e15:	48 8b 40 10          	mov    0x10(%rax),%rax
+  4b5e19:	48 39 d0             	cmp    %rdx,%rax
+  4b5e1c:	0f 85 36 01 00 00    	jne    4b5f58 <_ZN21GraphicsStateGuardian5resetEv+0x258>
+  4b5e22:	f0 48 83 6d 10 01    	lock subq $0x1,0x10(%rbp)
+  4b5e28:	75 0a                	jne    4b5e34 <_ZN21GraphicsStateGuardian5resetEv+0x134>
+  4b5e2a:	48 8b 45 00          	mov    0x0(%rbp),%rax
+  4b5e2e:	48 89 ef             	mov    %rbp,%rdi
+  4b5e31:	ff 50 08             	call   *0x8(%rax)
+  4b5e34:	48 8b 6b 38          	mov    0x38(%rbx),%rbp
+  4b5e38:	4c 8b 63 40          	mov    0x40(%rbx),%r12
+  4b5e3c:	4c 39 e5             	cmp    %r12,%rbp
+  4b5e3f:	74 43                	je     4b5e84 <_ZN21GraphicsStateGuardian5resetEv+0x184>
+  4b5e41:	48 89 6b 40          	mov    %rbp,0x40(%rbx)
+  4b5e45:	48 85 ed             	test   %rbp,%rbp
+  4b5e48:	0f 85 fb 00 00 00    	jne    4b5f49 <_ZN21GraphicsStateGuardian5resetEv+0x249>
+  4b5e4e:	4d 85 e4             	test   %r12,%r12
+  4b5e51:	74 31                	je     4b5e84 <_ZN21GraphicsStateGuardian5resetEv+0x184>
+  4b5e53:	49 8b 44 24 08       	mov    0x8(%r12),%rax
+  4b5e58:	48 8d 15 b1 c3 d8 ff 	lea    -0x273c4f(%rip),%rdx        # 242210 <_ZNK14ReferenceCount5unrefEv>
+  4b5e5f:	49 8d 7c 24 08       	lea    0x8(%r12),%rdi
+  4b5e64:	48 8b 40 10          	mov    0x10(%rax),%rax
+  4b5e68:	48 39 d0             	cmp    %rdx,%rax
+  4b5e6b:	0f 85 ff 00 00 00    	jne    4b5f70 <_ZN21GraphicsStateGuardian5resetEv+0x270>
+  4b5e71:	f0 49 83 6c 24 10 01 	lock subq $0x1,0x10(%r12)
+  4b5e78:	75 0a                	jne    4b5e84 <_ZN21GraphicsStateGuardian5resetEv+0x184>
+  4b5e7a:	49 8b 04 24          	mov    (%r12),%rax
+  4b5e7e:	4c 89 e7             	mov    %r12,%rdi
+  4b5e81:	ff 50 08             	call   *0x8(%rax)
+  4b5e84:	48 8b 05 25 27 37 00 	mov    0x372725(%rip),%rax        # 8285b0 <_ZTS7pvectorIN8GeomNode9GeomEntryEE+0xf70>
+  4b5e8b:	f3 0f 10 05 09 1a 37 	movss  0x371a09(%rip),%xmm0        # 82789c <_ZTS7pvectorIN8GeomNode9GeomEntryEE+0x25c>
+  4b5e92:	00 
+  4b5e93:	c7 83 a0 00 00 00 0f 	movl   $0xf,0xa0(%rbx)
+  4b5e9a:	00 00 00 
+  4b5e9d:	48 c7 83 08 03 00 00 	movq   $0x0,0x308(%rbx)
+  4b5ea4:	00 00 00 00 
+  4b5ea8:	48 89 83 00 01 00 00 	mov    %rax,0x100(%rbx)
+  4b5eaf:	31 c0                	xor    %eax,%eax
+  4b5eb1:	0f c6 c0 00          	shufps $0x0,%xmm0,%xmm0
+  4b5eb5:	c6 83 18 01 00 00 00 	movb   $0x0,0x118(%rbx)
+  4b5ebc:	66 89 83 3c 01 00 00 	mov    %ax,0x13c(%rbx)
+  4b5ec3:	c7 83 40 01 00 00 00 	movl   $0x0,0x140(%rbx)
+  4b5eca:	00 00 00 
+  4b5ecd:	c6 83 45 01 00 00 01 	movb   $0x1,0x145(%rbx)
+  4b5ed4:	0f 11 83 f0 00 00 00 	movups %xmm0,0xf0(%rbx)
+  4b5edb:	0f 11 83 08 01 00 00 	movups %xmm0,0x108(%rbx)
+  4b5ee2:	0f 11 83 1c 01 00 00 	movups %xmm0,0x11c(%rbx)
+  4b5ee9:	0f 11 83 2c 01 00 00 	movups %xmm0,0x12c(%rbx)
+  4b5ef0:	48 83 c4 18          	add    $0x18,%rsp
+  4b5ef4:	5b                   	pop    %rbx
+  4b5ef5:	5d                   	pop    %rbp
+  4b5ef6:	41 5c                	pop    %r12
+  4b5ef8:	41 5d                	pop    %r13
+  4b5efa:	41 5e                	pop    %r14
+  4b5efc:	41 5f                	pop    %r15
+  4b5efe:	c3                   	ret
+  4b5eff:	90                   	nop
+  4b5f00:	48 89 43 48          	mov    %rax,0x48(%rbx)
+  4b5f04:	48 85 ff             	test   %rdi,%rdi
+  4b5f07:	0f 84 3c fe ff ff    	je     4b5d49 <_ZN21GraphicsStateGuardian5resetEv+0x49>
+  4b5f0d:	e9 32 fe ff ff       	jmp    4b5d44 <_ZN21GraphicsStateGuardian5resetEv+0x44>
+  4b5f12:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
+  4b5f18:	48 8b 7f 48          	mov    0x48(%rdi),%rdi
+  4b5f1c:	48 85 ff             	test   %rdi,%rdi
+  4b5f1f:	0f 84 24 fe ff ff    	je     4b5d49 <_ZN21GraphicsStateGuardian5resetEv+0x49>
+  4b5f25:	48 c7 43 48 00 00 00 	movq   $0x0,0x48(%rbx)
+  4b5f2c:	00 
+  4b5f2d:	e9 12 fe ff ff       	jmp    4b5d44 <_ZN21GraphicsStateGuardian5resetEv+0x44>
+  4b5f32:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
+  4b5f38:	4c 8b 63 40          	mov    0x40(%rbx),%r12
+  4b5f3c:	49 39 ec             	cmp    %rbp,%r12
+  4b5f3f:	0f 84 3f ff ff ff    	je     4b5e84 <_ZN21GraphicsStateGuardian5resetEv+0x184>
+  4b5f45:	48 89 6b 40          	mov    %rbp,0x40(%rbx)
+  4b5f49:	f0 48 83 45 10 01    	lock addq $0x1,0x10(%rbp)
+  4b5f4f:	e9 fa fe ff ff       	jmp    4b5e4e <_ZN21GraphicsStateGuardian5resetEv+0x14e>
+  4b5f54:	0f 1f 40 00          	nopl   0x0(%rax)
+  4b5f58:	ff d0                	call   *%rax
+  4b5f5a:	84 c0                	test   %al,%al
+  4b5f5c:	0f 85 d2 fe ff ff    	jne    4b5e34 <_ZN21GraphicsStateGuardian5resetEv+0x134>
+  4b5f62:	e9 c3 fe ff ff       	jmp    4b5e2a <_ZN21GraphicsStateGuardian5resetEv+0x12a>
+  4b5f67:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
+  4b5f6e:	00 00 
+  4b5f70:	ff d0                	call   *%rax
+  4b5f72:	84 c0                	test   %al,%al
+  4b5f74:	0f 85 0a ff ff ff    	jne    4b5e84 <_ZN21GraphicsStateGuardian5resetEv+0x184>
+  4b5f7a:	e9 fb fe ff ff       	jmp    4b5e7a <_ZN21GraphicsStateGuardian5resetEv+0x17a>
+  4b5f7f:	90                   	nop
+  4b5f80:	e8 2b 75 d9 ff       	call   24d4b0 <_ZN19TypedReferenceCount9init_typeEv>
+  4b5f85:	4c 8d 74 24 08       	lea    0x8(%rsp),%r14
+  4b5f8a:	48 8b 05 9f de 4c 00 	mov    0x4cde9f(%rip),%rax        # 983e30 <_ZN19TypedReferenceCount12_type_handleE@Base>
+  4b5f91:	48 8d 54 24 07       	lea    0x7(%rsp),%rdx
+  4b5f96:	48 8d 35 ca 13 36 00 	lea    0x3613ca(%rip),%rsi        # 817367 <_fini+0x2f1cb>
+  4b5f9d:	4c 89 f7             	mov    %r14,%rdi
+  4b5fa0:	44 8b 38             	mov    (%rax),%r15d
+  4b5fa3:	e8 e8 3a d7 ff       	call   229a90 <_ZNSsC1EPKcRKSaIcE@plt>
+  4b5fa8:	4c 89 f6             	mov    %r14,%rsi
+  4b5fab:	4c 89 ef             	mov    %r13,%rdi
+  4b5fae:	44 89 fa             	mov    %r15d,%edx
+  4b5fb1:	e8 0a 5f da ff       	call   25bec0 <_Z13register_typeR10TypeHandleRKSsS_>
+  4b5fb6:	4c 89 f7             	mov    %r14,%rdi
+  4b5fb9:	e8 92 fd d5 ff       	call   215d50 <_ZNSsD1Ev@plt>
+  4b5fbe:	41 8b 75 00          	mov    0x0(%r13),%esi
+  4b5fc2:	85 f6                	test   %esi,%esi
+  4b5fc4:	0f 84 37 fe ff ff    	je     4b5e01 <_ZN21GraphicsStateGuardian5resetEv+0x101>
+  4b5fca:	e9 28 fe ff ff       	jmp    4b5df7 <_ZN21GraphicsStateGuardian5resetEv+0xf7>
+  4b5fcf:	90                   	nop
+  4b5fd0:	e8 7b 64 d6 ff       	call   21c450 <_ZN11MemoryUsage17init_memory_usageEv@plt>
+  4b5fd5:	49 8b 45 00          	mov    0x0(%r13),%rax
+  4b5fd9:	e9 fd fd ff ff       	jmp    4b5ddb <_ZN21GraphicsStateGuardian5resetEv+0xdb>

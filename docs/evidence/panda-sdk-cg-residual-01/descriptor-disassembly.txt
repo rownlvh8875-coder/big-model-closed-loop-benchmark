@@ -1,0 +1,43 @@
+
+/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-candidate-01/acceptance/candidate/candidate/layout-contract.o.data:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+0000000000000000 <_Z41__static_initialization_and_destruction_0v>:
+   0:	f3 0f 1e fa          	endbr64
+   4:	55                   	push   %rbp
+   5:	48 89 e5             	mov    %rsp,%rbp
+   8:	bf 14 00 00 00       	mov    $0x14,%edi
+   d:	e8 00 00 00 00       	call   12 <_Z41__static_initialization_and_destruction_0v+0x12>
+			e: R_X86_64_PLT32	_ZN7BitMaskIjLi32EE8lower_onEi-0x4
+  12:	89 05 00 00 00 00    	mov    %eax,0x0(%rip)        # 18 <_Z41__static_initialization_and_destruction_0v+0x18>
+			14: R_X86_64_PC32	.bss-0x4
+  18:	bf 14 00 00 00       	mov    $0x14,%edi
+  1d:	e8 00 00 00 00       	call   22 <_Z41__static_initialization_and_destruction_0v+0x22>
+			1e: R_X86_64_PLT32	_ZN7BitMaskIjLi32EE3bitEi-0x4
+  22:	89 05 00 00 00 00    	mov    %eax,0x0(%rip)        # 28 <_Z41__static_initialization_and_destruction_0v+0x28>
+			24: R_X86_64_PC32	.bss
+  28:	90                   	nop
+  29:	5d                   	pop    %rbp
+  2a:	c3                   	ret
+
+000000000000002b <_GLOBAL__sub_I_panda_cg_layout>:
+  2b:	f3 0f 1e fa          	endbr64
+  2f:	55                   	push   %rbp
+  30:	48 89 e5             	mov    %rsp,%rbp
+  33:	e8 c8 ff ff ff       	call   0 <_Z41__static_initialization_and_destruction_0v>
+  38:	5d                   	pop    %rbp
+  39:	c3                   	ret
+
+Disassembly of section .text._ZN17CheckPandaVersionIvE13check_versionEv:
+
+0000000000000000 <_ZN17CheckPandaVersionIvE13check_versionEv>:
+   0:	f3 0f 1e fa          	endbr64
+   4:	55                   	push   %rbp
+   5:	48 89 e5             	mov    %rsp,%rbp
+   8:	48 89 7d f8          	mov    %rdi,-0x8(%rbp)
+   c:	8b 05 00 00 00 00    	mov    0x0(%rip),%eax        # 12 <_ZN17CheckPandaVersionIvE13check_versionEv+0x12>
+			e: R_X86_64_PC32	panda_version_1_10-0x4
+  12:	5d                   	pop    %rbp
+  13:	c3                   	ret

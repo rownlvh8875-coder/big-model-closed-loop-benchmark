@@ -1,0 +1,106 @@
+{
+  "schema": "panda-cg-residual-alignment-model-v1",
+  "classification": "CONFIRMED_VECTOR_ALIGNMENT_LAYOUT_DIFFERENCE_SOURCE_CONSISTENT_EIGEN_HYPOTHESIS",
+  "field_model": {
+    "candidate": {
+      "_scene_graph_color": 240,
+      "_has_scene_graph_color": 256,
+      "_transform_stale": 257,
+      "_color_blend_involves_color_scale": 258,
+      "_texture_involves_color_scale": 259,
+      "_vertex_colors_enabled": 260,
+      "_lighting_enabled": 261,
+      "_clip_planes_enabled": 262,
+      "_color_scale_enabled": 263,
+      "_current_color_scale": 264,
+      "_has_material_force_color": 280,
+      "_material_force_color": 284,
+      "_light_color_scale": 300,
+      "_has_texture_alpha_scale": 316,
+      "_tex_gen_modifies_mat": 317,
+      "_tex_gen_point_sprite": 318,
+      "_last_max_stage_index": 320,
+      "_needs_reset": 324,
+      "_is_valid": 325,
+      "_closing_gsg": 326,
+      "_active": 327,
+      "_incomplete_render": 328,
+      "_effective_incomplete_render": 329,
+      "_loader": 336,
+      "_prepared_objects": 344
+    },
+    "wheel": {
+      "_scene_graph_color": 240,
+      "_has_scene_graph_color": 256,
+      "_transform_stale": 257,
+      "_color_blend_involves_color_scale": 258,
+      "_texture_involves_color_scale": 259,
+      "_vertex_colors_enabled": 260,
+      "_lighting_enabled": 261,
+      "_clip_planes_enabled": 262,
+      "_color_scale_enabled": 263,
+      "_current_color_scale": 272,
+      "_has_material_force_color": 288,
+      "_material_force_color": 304,
+      "_light_color_scale": 320,
+      "_has_texture_alpha_scale": 336,
+      "_tex_gen_modifies_mat": 337,
+      "_tex_gen_point_sprite": 338,
+      "_last_max_stage_index": 340,
+      "_needs_reset": 344,
+      "_is_valid": 345,
+      "_closing_gsg": 346,
+      "_active": 347,
+      "_incomplete_render": 348,
+      "_effective_incomplete_render": 349,
+      "_loader": 352,
+      "_prepared_objects": 360
+    }
+  },
+  "observed_fields": {
+    "candidate": {
+      "_scene_graph_color": 240,
+      "_current_color_scale": 264,
+      "_material_force_color": 284,
+      "_light_color_scale": 300,
+      "_incomplete_render": 328,
+      "_prepared_objects": 344
+    },
+    "wheel": {
+      "_scene_graph_color": 240,
+      "_current_color_scale": 272,
+      "_material_force_color": 304,
+      "_light_color_scale": 320,
+      "_incomplete_render": 348,
+      "_prepared_objects": 360
+    }
+  },
+  "pre_vector_internal_coordinate_system_offset_equal": 220,
+  "incomplete_render_delta": 20,
+  "prepared_objects_delta": 16,
+  "candidate_generated_have_eigen": false,
+  "candidate_generated_linmath_align": "1",
+  "candidate_effective_linmath_align": false,
+  "effective_undef_source": "dtool/src/dtoolbase/dtoolbase.h:146",
+  "wheel_effective_vector_alignment_inferred": 16,
+  "wheel_original_eigen_version_unknown": true,
+  "wheel_full_configuration_unknown": true,
+  "generated_macro_delta": {
+    "HAVE_CG": {
+      "old": false,
+      "candidate": "1"
+    },
+    "HAVE_CGDX9": {
+      "old": false,
+      "candidate": "1"
+    },
+    "HAVE_CGGL": {
+      "old": false,
+      "candidate": "1"
+    }
+  },
+  "eigen_enable_is_proposed_correction_not_verified_build": true,
+  "new_sdk_compiles": 0,
+  "target_executed": false,
+  "static_admission": false
+}

@@ -1,0 +1,60 @@
+# Residual-forensics / Eigen v2 design review
+
+Base: `912c50b9f47e5b5d3ccc5df495cc1983714ed3e0`  
+Head: `2921fa902dbcce58b01b58545db86559d6e868b6`
+
+This is the single read-only review of the completed DATA/evidence/design phase. It does not review an implemented v2 builder or authorize a new build. The diff adds 36 documentation/evidence files; existing production scripts, tests, workflows, native source and the consumed build01 records are unchanged. No checkout, index, ref, old output or source mutation was performed. Verification used plain Python byte inspection and `objdump` on retained DATA only; no compiler probe, SDK compilation/link/load/execution, Panda/GL/Xvfb/model/ORT/image operation, network operation or repeated full suite was performed.
+
+## Strengths
+
+- **The residual diagnosis has concrete, independently checkable support.** `docs/STAGE7_PANDA_SDK_CG_RESIDUAL_RESULT.md:5` and `docs/evidence/panda-sdk-cg-residual-01/alignment-model.json:60` agree with the raw ELF and source field order. I independently matched the retained candidate/wheel reset, GSG constructor and vector-constructor instruction lines to disassembly of the retained ELF bytes. The four vector stores are candidate `0xf0/0x108/0x11c/0x12c` versus wheel `0xf0/0x110/0x130/0x140`; the field-order calculation reproduces the 20-byte incomplete-render difference and 16-byte prepared-object difference. The earlier coordinate offset agrees at `0xdc`; gamma and engine loads retain the later 16-byte difference. All six source-reference identities also match the authenticated build01 source-tree manifest.
+
+- **Generated and effective alignment are correctly distinguished.** `docs/superpowers/specs/2026-11-16-panda-sdk-cg-eigen-design.md:15` correctly follows the retained `dtoolbase.h` undefinition and matrix-selection source. The generated candidate `LINMATH_ALIGN=1` does not establish effective alignment when `HAVE_EIGEN` is absent. I recomputed the old/candidate generated macro comparison: exactly `HAVE_CG`, `HAVE_CGDX9`, and `HAVE_CGGL` differ. Tasks 1–2 explicitly reject host Eigen origins, changed private inputs and ineffective alignment, and require compile-time vector/memory alignment guards rather than receipt assertions (`docs/superpowers/plans/2026-11-16-panda-sdk-cg-eigen-candidate-v2.md:35`, `:46`, `:49`, `:50`).
+
+- **Eigen is a closed, inspectable new input with accurately limited provenance claims.** The package digest/length, retained Debian metadata paragraph and all 530 selected regular header records match. Independent archive inspection found 627 tar members, 9,175,040 inflated bytes, and 8,669,561 selected header bytes; the 1,058,369-byte `lapacke.h` explains the documented 2 MiB individual-header bound. Copyright matches the archive. The 4 MiB package, 32 MiB inflation and 2,048-member limits accommodate this exact input. The docs explicitly disclaim Release GPG verification and do not infer the wheel's original Eigen version (`docs/superpowers/specs/2026-11-16-panda-sdk-cg-eigen-design.md:29`, `:31`). No package installation or package-script execution is implied by the retained archive.
+
+- **The descriptor change addresses the actual gate problem without changing its history.** The original 3,304-byte parent has its exact 96-byte descriptor at section 9/file offset 192, flags 2; its words and section hash match the retained facts. Its relocation sections target `.text`, the Panda version-check body, `.init_array`, and `.eh_frame`, with none targeting the descriptor. The retained initializer disassembly and collision-mask source support the stated `lower_on(20)`/`bit(20)` explanation. The 592-byte section-only derivative contains the identical literal bytes and still records incompatible offsets. The prospective contract defines 16 words/128 bytes with a new magic/version and explicit effective-Eigen/alignment fields, retains the parent as inert DATA, rejects section aliases/selected relocations/forged associations, and requires independent raw/parent byte equality (`docs/superpowers/specs/2026-11-16-panda-sdk-cg-eigen-design.md:37`, `:39`; plan `:47`, `:50`, `:62`). Nothing requires loading the parent initializer.
+
+- **The CET plan is tied to whole functions and loader associations.** The actual integer getter bodies are exactly ENDBR64 plus `mov disp32`/`ret`, at `0x678` and `0x67c`. The retained 114-byte vendor body loads `0x660`; I independently followed its call to the CET PLT entry at `0x2de20` and the unique type-7/zero-addend relocation at `0xd8218` naming `_ZNSs4_Rep8_M_cloneERKSaIcEm`. The prospective gate requires complete known bodies, exact optional-prefix handling, ordinary file-backed functions, validated copy/clone imports and rejection of IFUNC, ambiguous/W+X symbols, decoy loads, arbitrary calls and suffixes (spec `:41`; plan `:59`, `:62`). These changes cannot repair build01's wrong member offsets.
+
+- **The plan preserves the limited meaning of a static match and the one-use origin boundary.** Tasks 3–4 retain the required offsets, 1,024-byte vtable, 33 exports, one source-state instance, current-image provider identities, strong-import checks and exact three weak exceptions; they explicitly preserve version diagnostics and deny complete ABI, runtime binding, abort repair and installation authority (spec `:43`; plan `:60`). I verified build01's recorded source/activation/workflow/run/job/attempt, successful 170.367948939-second compile, authenticated failed acceptance and consumed slot; the new contract grants no build slot. The future source CI, request-only child, unique run/job/attempt, source closure extension and no-retry requirements are present. The success-carrier count is internally consistent: four DATA files plus 17 reports plus two logs equals 23. Task 4 includes negative retention for failed spawn/compile/extraction/deadline/postcheck/oversized candidates, with structured command evidence, bounded logs and explicit omissions (`:69`–`:77`).
+
+- **The retained evidence identities are coherent.** All 32 entries in the residual proof index, the three old-authority pins, all 282 old source-closure identities and the three recorded inspection-tool identities matched their bytes. The independent-recheck record contains the stated 38 named controls. These checks support the current forensic report; they are not presented as v2 execution results.
+
+## Issues
+
+### Critical (Must Fix)
+
+None found.
+
+### Important (Should Fix)
+
+None found in the completed DATA/evidence/design phase.
+
+### Minor (Nice to Have)
+
+**M1 — Make the future carrier's exact member paths explicit in one place.**
+
+- References: `docs/superpowers/specs/2026-11-16-panda-sdk-cg-eigen-design.md:53`; `docs/superpowers/plans/2026-11-16-panda-sdk-cg-eigen-candidate-v2.md:74`; `docs/evidence/panda-sdk-cg-residual-01/contract.json:94`.
+- The 23-file count and bounds are consistent, but the design names the candidates in shorthand (`libpandagl`, `build-libpanda`, `layout-contract.o`) and lists report stems; the machine contract does not enumerate a `success_carrier` mapping. The next implementer must choose the exact `candidate/...so.data`/`...o.data`, `reports/...json`, and log member paths before writing both producer and consumer. The frozen v1 contract already provides a useful exact-map pattern.
+- This does not invalidate the forensic evidence or grant authority. It is a small handoff ambiguity that could produce needless producer/consumer fixture disagreement. Add a literal path-to-limit map, or explicitly name the new implementation constant that owns it, and have both sides and the exact-23-file test use that definition. Retain independent byte/predicate recomputation; shared naming is not shared trust.
+
+## Recommendations
+
+Proceed with the current docs/evidence handoff and retain M1 as a bounded planning clarification. During future implementation, preserve the explicit distinction between immutable diagnostic recipes and admission parsers, and treat the new builder/gate/carrier behavior as unimplemented until its own tests, review and qualified one-use request complete. No additional forensic build or native experiment is needed to resolve this review.
+
+## Declined to judge
+
+- Whether an Eigen-enabled SDK actually compiles or matches the wheel: no v2 build exists in this phase, and the documented correction remains prospective.
+- Future parser, builder, process-reaping, deadline, carrier and consumer implementation correctness: their requirements/interfaces/negative tests were reviewed; the named v2 modules are intentionally not implemented by this branch.
+- Runtime safety, complete C++ class ABI, allocator/object lifetimes, loader binding behavior, and the previous SIGABRT cause or repair: selected byte-backed static predicates do not establish those behaviors, and no target execution was authorized.
+- The wheel's original Eigen version, full configuration, or complete class sizes: the evidence explicitly marks these unknown; I did not infer them from the offset match model.
+- Debian Release-signature trust or independent historical HTTPS transport attestation: no Release GPG verification is claimed, and this review verifies retained byte/metadata consistency rather than redoing acquisition or contacting network services.
+- Exhaustive historical runtime/image/scientific qualification: those authorities are unchanged, consumed where recorded, and outside this DATA-only diff; scientific allowance remains zero, strict result `0/4 FAIL`, Stage7 incomplete.
+- Final canonical CI, exact-final-HEAD receipt, PR state, and exhaustive external/sibling preservation certification: these are assigned to the owner after the review/fix pass. I checked the additive diff and relevant retained identities without rerunning the 1,755-case suite or querying services.
+
+## Assessment
+
+**Ready to merge? Yes — for the current documentation/evidence/design phase, subject to the owner's final canonical CI and preservation checks.**
+
+The retained bytes support the residual-alignment diagnosis, descriptor/CET explanations and closed Eigen input selection. The future four-task plan carries the necessary alignment, descriptor, accessor, source/run-origin and negative-evidence boundaries without retroactively admitting build01 or claiming native/scientific readiness; the only finding is a nonblocking carrier-path clarification.

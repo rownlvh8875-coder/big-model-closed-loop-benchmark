@@ -1,0 +1,20 @@
+from pathlib import Path
+import io,tarfile,lzma,hashlib,json
+root=Path('/workspace/big-model-closed-loop-benchmark');out=root/'output/stage7-panda-sdk-cg-residual-01';p=out/'libeigen3-dev_3.4.0-4_all.deb.data';raw=p.read_bytes();pin=json.loads((out/'eigen-input.json').read_text());assert len(raw)==pin['nbytes'] and hashlib.sha256(raw).hexdigest()==pin['sha256'] and raw[:8]==b'!<arch>\n';at=8;payload=None
+while at<len(raw):
+ h=raw[at:at+60];assert len(h)==60 and h[-2:]==b'`\n';n=int(h[48:58]);name=h[:16].strip().rstrip(b'/');at+=60;assert at+n<=len(raw)
+ if name==b'data.tar.xz':assert payload is None;payload=raw[at:at+n]
+ at+=n+(n%2)
+assert payload is not None;decoder=lzma.LZMADecompressor();data=decoder.decompress(payload,max_length=32*1024**2+1);assert decoder.eof and len(data)<=32*1024**2
+headers={};license_text=None
+with tarfile.open(fileobj=io.BytesIO(data),mode='r:') as t:
+ count=0
+ for m in t:
+  count+=1;assert count<=2048
+  name=m.name.removeprefix('./');parts=name.split('/');assert name and not name.startswith('/') and '..' not in parts
+  if name=='usr/share/doc/libeigen3-dev/copyright':assert m.isfile() and m.size<=256*1024;license_text=t.extractfile(m).read()
+  if not name.startswith('usr/include/eigen3/') or m.isdir():continue
+  assert m.isfile() and not m.issym() and not m.islnk() and m.size<=2*1024**2;assert name not in headers;body=t.extractfile(m).read();assert len(body)==m.size;headers[name]=dict(nbytes=len(body),sha256=hashlib.sha256(body).hexdigest())
+  if name.endswith('/Eigen/src/Core/util/Macros.h'):macros=body.decode()
+assert license_text is not None and all('#define '+n+' '+v in macros for n,v in [('EIGEN_WORLD_VERSION','3'),('EIGEN_MAJOR_VERSION','4'),('EIGEN_MINOR_VERSION','0')]);assert 'usr/include/eigen3/Eigen/Core' in headers and 'usr/include/eigen3/Eigen/Dense' in headers
+(out/'eigen-copyright.txt').write_bytes(license_text);proof=dict(package_sha256=pin['sha256'],version_macros=dict(world=3,major=4,minor=0),selected_header_files=len(headers),selected_header_nbytes=sum(r['nbytes'] for r in headers.values()),files=headers,selection='usr/include/eigen3 regular headers only; no package installation, CMake/pkgconfig/runtime staging or execution',target_executed=False);(out/'eigen-header-manifest.json').write_text(json.dumps(proof,indent=2)+'\n');print({k:proof[k] for k in ['package_sha256','version_macros','selected_header_files','selected_header_nbytes']})
