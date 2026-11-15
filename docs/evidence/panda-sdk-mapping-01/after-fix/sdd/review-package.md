@@ -1,0 +1,17 @@
+Basecf31ca96d36848368364ffff5e3a9005fe49efee
+Headacc79534ce1f0d568501798bcaf9bc9fe928e92a
+Plan docs/superpowers/plans/2026-11-15-panda-sdk-mapping-canary-v1.md
+Spec docs/superpowers/specs/2026-11-15-panda-sdk-mapping-canary-v1.md
+Ledger docs/STAGE7_PANDA_SDK_MAPPING_LEDGER.md allRulinglines
+Review Focus verbatim:
+1. Fixed current image/SDK/function profiles and closed request/activation/CI/run/job/artifact gates cannot accept old/self-consistent foreign metadata or grant full native/scientific readiness.
+2. Only the newly qualified one-use window can load Panda/SDK or start a container; latch consumes before spawn, no retry, fixed argv/env/mount/uid/caps/network/resource/ownedcleanup boundaries hold.
+3. Parent independently binds actual child PID/start/exe/file/maps/PT offsets/bias/r-xp/codebytes before/after; ABI results/challenges/guards/errno/callsequence cannot substitute forged/foreign process observations.
+4. Loaded file identities stay in the authenticated image, SDKexact8d3; actual glibc binding/constructor side effects are honestly scoped, not inferred from old21policy/105diagnostics.
+5. Failure/timeout/partial carrier/storage/cleanup preserves evidence and consumed state, blocks false success/origin/readiness; CPUfixtures never load actualSDK and old native histories remain untouched.
+
+
+Scope NEWmapping-only max1 AFTER review+exactsourceCI+newrequest-onlyactivation; old8scientific native allowance0 remains unchanged, Stage7incomplete. Latest continuation plus persisted broaddevelopment/noquestions/inline authorizes constructing+qualifying this bounded test; executor interpretation explicitlyledgered. CurrentnewwindowNOTRUN/unqualified. ActualPanda preload1/SDKload1/constructors+finalizers allowedonlynewwindow/five Ccalls; noGL/render/PandaPython/MetaDrive/model/officialORT/cohort/publication/main/sharedbase/oldrequestreplay. Currentimage4984/configb9/SDK8d3/acceptancedef7/manifestd842 pinned.
+New source modules profile/policy/child/runtime/runner/carrier/consumer and3testmodules/workflow. Parent private pipes BOOT/load/ready/calls/report/exit; independent actualchild /proc code prepost, imagefilehashes, cgroup/UID/caps/ns/mount observations; noRW hostoutput. Nativewindow latch before Dockerstart, ownedtimeoutkill+stoppedcleanup. Consumer accepts authenticated failedattempt onlyasfailure.
+Local23focusedPASS3.340s. Fullnormal1651/1644PASS7skip140.999s+separate actualcapacity1shmPASS=all1652cases covered/1645PASS7skip. Localdisk685MiB failsold1GiBcapacitycase; all-escalatedfull also hitinherited globalUID194+zombies/RLIMIT_NPROC64forkEAGAIN (reproduced), normalprotectedforktest passes. No protectedtest/limit edits/no fakefacts/no unrelatedzombiecleanup. Canonical hostedunmodifiedsourceCI requiredbeforeactualactivation. Fresh6499basefiles/299pins/10originals/main/Drafts102–117/native8histories/image3histories unchanged;source240closureexact.
+Read-only,noedits/index/HEAD/branch mutations, no subagents. DO NOT load actualSDK/Panda/provider/GL/model/officialORT, callDocker/ldd/ctypes actualtarget or activateanyworkflow. Handwritten CPUfixtures and genericproc checks permitted. Review code+tests+guards and deliberatelycheck5Focuspoints. Need exhaustive Declined to judge list foreachsetasidebehavior/reason, severitybyactualeffectnot specsilence. ONEfreshreview/oneImportantRED→GREENfixpass/no rereview/minorpolishing. SourceCI/actualonewindow/APIcarrieracceptance/finalCI/receipt explicitlyafterreview.

@@ -1,0 +1,205 @@
+{
+  "schema": "panda-sdk-mapping-actual-observations-v1",
+  "checked_at_kst": "2026-11-15T20:33:15.662309+09:00",
+  "source_sha": "9e1ad10da0a4b57e4dfe4dce081b3f2cca3d8c1e",
+  "activation_sha": "c73da62a457e83c54d63065d2e2f6f773a8e941a",
+  "run_id": 43709001528,
+  "workflow_id": 419084732,
+  "job_id": 132796278688,
+  "artifact_id": 14160030534,
+  "run_attempt": 1,
+  "status": "AUTHENTICATED_MAPPING_ONLY_CANARY_PASSED",
+  "actions_output_origin_authenticated": true,
+  "source_closure_files": 240,
+  "source_closure_matches_reviewed_fix": true,
+  "image_sha256": "4984470cd7d732f9f2d1c12710c9433b563b3817ba6d1d419749a9a2b1b46698",
+  "sdk_sha256": "8d302ae2a610b56db4f7feca08fd736004cf6d3d9650fdb9834f19389a0b7342",
+  "panda_preloads": 1,
+  "sdk_loads": 1,
+  "selected_exports": [
+    "pca_context_size",
+    "rc_context_size",
+    "psd_get_stats",
+    "psd_source_idle"
+  ],
+  "selected_code_before_after_verified": true,
+  "call_observations": [
+    {
+      "name": "stats_before",
+      "errno_before": 7,
+      "stats": {
+        "configured": 0,
+        "closed": 0,
+        "error": 0,
+        "forwarded": 0,
+        "resolutions": 0,
+        "paths": 0,
+        "events": 0
+      },
+      "guard_before": "a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5",
+      "guard_after": "a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5",
+      "returned": 0,
+      "errno_after": 7
+    },
+    {
+      "name": "pca_context_size",
+      "errno_before": 7,
+      "returned": 2640344,
+      "errno_after": 7
+    },
+    {
+      "name": "rc_context_size",
+      "errno_before": 7,
+      "returned": 2320,
+      "errno_after": 7
+    },
+    {
+      "name": "psd_source_idle",
+      "errno_before": 7,
+      "returned": -1,
+      "errno_after": 7
+    },
+    {
+      "name": "stats_after",
+      "errno_before": 7,
+      "stats": {
+        "configured": 0,
+        "closed": 0,
+        "error": 0,
+        "forwarded": 0,
+        "resolutions": 0,
+        "paths": 0,
+        "events": 0
+      },
+      "guard_before": "a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5",
+      "guard_after": "a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5",
+      "returned": 0,
+      "errno_after": 7
+    }
+  ],
+  "context": {
+    "pid": 1,
+    "uid": 65534,
+    "gid": 65534,
+    "cap_eff": 0,
+    "cap_bnd": 0,
+    "no_new_privs": 1,
+    "seccomp": 2,
+    "namespaces": {
+      "pid": "pid:[4026532754]",
+      "net": "net:[4026532756]",
+      "mnt": "mnt:[4026532750]"
+    },
+    "mounts": {
+      "/": [
+        "ro",
+        "relatime"
+      ],
+      "/work/repo": [
+        "ro",
+        "relatime"
+      ],
+      "/work/binding": [
+        "ro",
+        "relatime"
+      ],
+      "/tmp": [
+        "rw",
+        "nosuid",
+        "nodev",
+        "noexec",
+        "relatime"
+      ]
+    },
+    "pids_max": 32,
+    "cpu_quota": 100000,
+    "cpu_period": 100000
+  },
+  "memory_before": {
+    "max_bytes": 805306368,
+    "events": {
+      "low": 0,
+      "high": 0,
+      "max": 0,
+      "oom": 0,
+      "oom_kill": 0,
+      "oom_group_kill": 0,
+      "sock_throttled": 0
+    },
+    "peak_bytes": 204419072,
+    "peak_is_rss": false
+  },
+  "memory_after": {
+    "max_bytes": 805306368,
+    "events": {
+      "low": 0,
+      "high": 0,
+      "max": 0,
+      "oom": 0,
+      "oom_kill": 0,
+      "oom_group_kill": 0,
+      "sock_throttled": 0
+    },
+    "peak_bytes": 204419072,
+    "peak_is_rss": false
+  },
+  "mapped_image_files": {
+    "before_load": {
+      "count": 27,
+      "total_file_bytes": 35212224,
+      "image_membership_verified": true
+    },
+    "before": {
+      "count": 48,
+      "total_file_bytes": 87151725,
+      "image_membership_verified": true
+    },
+    "after": {
+      "count": 48,
+      "total_file_bytes": 87151725,
+      "image_membership_verified": true
+    }
+  },
+  "child_returncode": 0,
+  "child_stdout_nbytes": 0,
+  "child_stderr_nbytes": 0,
+  "container_before": {
+    "Status": "created",
+    "Running": false,
+    "Paused": false,
+    "Restarting": false,
+    "OOMKilled": false,
+    "Dead": false,
+    "Pid": 0,
+    "ExitCode": 0,
+    "Error": "",
+    "StartedAt": "0001-01-01T00:00:00Z",
+    "FinishedAt": "0001-01-01T00:00:00Z"
+  },
+  "container_after": {
+    "Status": "exited",
+    "Running": false,
+    "Paused": false,
+    "Restarting": false,
+    "OOMKilled": false,
+    "Dead": false,
+    "Pid": 0,
+    "ExitCode": 0,
+    "Error": "",
+    "StartedAt": "2026-11-15T11:28:39.02603421Z",
+    "FinishedAt": "2026-11-15T11:28:41.851977706Z"
+  },
+  "owned_container_removed": true,
+  "mapping_window_consumed": true,
+  "start_attempts": 1,
+  "mapping_window_remaining": 0,
+  "scientific_native_runs": 0,
+  "explicit_gl_api_calls": 0,
+  "constructors_gl_free_claimed": false,
+  "full_object_abi_qualified": false,
+  "full_dependency_binding_graph_qualified": false,
+  "native_admitted": false,
+  "runtime_admission_ready": false,
+  "stage7_complete": false,
+  "strict_current_result": "0/4 FAIL"
+}

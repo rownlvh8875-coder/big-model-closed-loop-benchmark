@@ -1,0 +1,65 @@
+test_cpu_fixture_mode_cannot_load_actual_sdk (tests.test_panda_sdk_mapping_runtime.MappingRuntimeTests.test_cpu_fixture_mode_cannot_load_actual_sdk) ... FAIL
+test_forged_nonce_or_process_and_changed_code_proof_reject (tests.test_panda_sdk_mapping_runtime.MappingRuntimeTests.test_forged_nonce_or_process_and_changed_code_proof_reject) ... FAIL
+test_real_owned_process_maps_and_five_typed_calls (tests.test_panda_sdk_mapping_runtime.MappingRuntimeTests.test_real_owned_process_maps_and_five_typed_calls) ... FAIL
+test_timeout_and_unregistered_production_context_are_closed (tests.test_panda_sdk_mapping_runtime.MappingRuntimeTests.test_timeout_and_unregistered_production_context_are_closed) ... FAIL
+test_wrong_file_identity_rejects_before_child_loading (tests.test_panda_sdk_mapping_runtime.MappingRuntimeTests.test_wrong_file_identity_rejects_before_child_loading) ... FAIL
+test_wrong_return_errno_and_guard_writes_reject (tests.test_panda_sdk_mapping_runtime.MappingRuntimeTests.test_wrong_return_errno_and_guard_writes_reject) ... FAIL
+
+======================================================================
+FAIL: test_cpu_fixture_mode_cannot_load_actual_sdk (tests.test_panda_sdk_mapping_runtime.MappingRuntimeTests.test_cpu_fixture_mode_cannot_load_actual_sdk)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_mapping_runtime.py", line 17, in setUp
+    def setUp(self):self.assertIsNotNone(runtime,'owned mapping parent/child required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : owned mapping parent/child required
+
+======================================================================
+FAIL: test_forged_nonce_or_process_and_changed_code_proof_reject (tests.test_panda_sdk_mapping_runtime.MappingRuntimeTests.test_forged_nonce_or_process_and_changed_code_proof_reject)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_mapping_runtime.py", line 17, in setUp
+    def setUp(self):self.assertIsNotNone(runtime,'owned mapping parent/child required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : owned mapping parent/child required
+
+======================================================================
+FAIL: test_real_owned_process_maps_and_five_typed_calls (tests.test_panda_sdk_mapping_runtime.MappingRuntimeTests.test_real_owned_process_maps_and_five_typed_calls)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_mapping_runtime.py", line 17, in setUp
+    def setUp(self):self.assertIsNotNone(runtime,'owned mapping parent/child required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : owned mapping parent/child required
+
+======================================================================
+FAIL: test_timeout_and_unregistered_production_context_are_closed (tests.test_panda_sdk_mapping_runtime.MappingRuntimeTests.test_timeout_and_unregistered_production_context_are_closed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_mapping_runtime.py", line 17, in setUp
+    def setUp(self):self.assertIsNotNone(runtime,'owned mapping parent/child required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : owned mapping parent/child required
+
+======================================================================
+FAIL: test_wrong_file_identity_rejects_before_child_loading (tests.test_panda_sdk_mapping_runtime.MappingRuntimeTests.test_wrong_file_identity_rejects_before_child_loading)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_mapping_runtime.py", line 17, in setUp
+    def setUp(self):self.assertIsNotNone(runtime,'owned mapping parent/child required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : owned mapping parent/child required
+
+======================================================================
+FAIL: test_wrong_return_errno_and_guard_writes_reject (tests.test_panda_sdk_mapping_runtime.MappingRuntimeTests.test_wrong_return_errno_and_guard_writes_reject)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_mapping_runtime.py", line 17, in setUp
+    def setUp(self):self.assertIsNotNone(runtime,'owned mapping parent/child required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : owned mapping parent/child required
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.001s
+
+FAILED (failures=6)

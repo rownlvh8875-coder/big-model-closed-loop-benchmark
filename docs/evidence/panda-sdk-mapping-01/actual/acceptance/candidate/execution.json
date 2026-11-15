@@ -1,0 +1,544 @@
+{
+  "commands": [
+    {
+      "command": [
+        "/usr/bin/docker",
+        "--host=unix:///var/run/docker.sock",
+        "version",
+        "--format",
+        "{{json .Server}}"
+      ],
+      "process": {
+        "schema": "image-owned-process-capture-v1",
+        "status": "EXITED",
+        "returncode": 0,
+        "streams_complete": true,
+        "termination_attempted": false,
+        "cleanup_failed": false,
+        "argv_sha256": "7789d04adc478d58fb0df5277764b7fd76f964a187c42d3fd8e625067923c5e1",
+        "stdout_observed_bytes": 806,
+        "stdout_sha256": "996ea1ed3cdd93044cae6e5a6970ce9cc361d750e219a42e68cd9a6714c840a4",
+        "stdout_saved_bytes": 806,
+        "stdout_redacted": false,
+        "stdout_saved_truncated": false,
+        "stderr_observed_bytes": 0,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_saved_bytes": 0,
+        "stderr_redacted": false,
+        "stderr_saved_truncated": false,
+        "elapsed_seconds": 0.02202812999999537
+      },
+      "stdout": "{\"Platform\":{\"Name\":\"Docker Engine - Community\"},\"Components\":[{\"Name\":\"Engine\",\"Version\":\"28.0.4\",\"Details\":{\"ApiVersion\":\"1.48\",\"Arch\":\"amd64\",\"BuildTime\":\"Tue Mar 25 15:07:16 2025\",\"Experimental\":\"false\",\"GitCommit\":\"6430e49\",\"GoVersion\":\"go1.23.7\",\"KernelVersion\":\"7.0.0-1014-aws\",\"MinAPIVersion\":\"1.24\",\"Os\":\"linux\"}},{\"Name\":\"containerd\",\"Version\":\"v2.4.2\",\"Details\":{\"GitCommit\":\"b7a25261e029d68978bbf290df0a62fc819b3c51\"}},{\"Name\":\"runc\",\"Version\":\"1.5.2\",\"Details\":{\"GitCommit\":\"v1.5.2-0-g29dd3dc2\"}},{\"Name\":\"docker-init\",\"Version\":\"0.19.0\",\"Details\":{\"GitCommit\":\"de40ad0\"}}],\"Version\":\"28.0.4\",\"ApiVersion\":\"1.48\",\"MinAPIVersion\":\"1.24\",\"GitCommit\":\"6430e49\",\"GoVersion\":\"go1.23.7\",\"Os\":\"linux\",\"Arch\":\"amd64\",\"KernelVersion\":\"7.0.0-1014-aws\",\"BuildTime\":\"2025-03-25T15:07:16.000000000+00:00\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/usr/bin/docker",
+        "--host=unix:///var/run/docker.sock",
+        "load",
+        "--input",
+        "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-mapping-01/producer/work/image/image.tar"
+      ],
+      "process": {
+        "schema": "image-owned-process-capture-v1",
+        "status": "EXITED",
+        "returncode": 0,
+        "streams_complete": true,
+        "termination_attempted": false,
+        "cleanup_failed": false,
+        "argv_sha256": "9c78c2ba22144cf3f89f22d75686cee88ef17a636b74ab153efb4cf2b128e028",
+        "stdout_observed_bytes": 51,
+        "stdout_sha256": "d7fb770b7d7cfc29f4a1d4cb177d550b68be7e54d62f7af227d0350399b09691",
+        "stdout_saved_bytes": 51,
+        "stdout_redacted": false,
+        "stdout_saved_truncated": false,
+        "stderr_observed_bytes": 0,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_saved_bytes": 0,
+        "stderr_redacted": false,
+        "stderr_saved_truncated": false,
+        "elapsed_seconds": 12.408247130999996
+      },
+      "stdout": "Loaded image: stage7-panda-sdk:actions-20261115-03\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/usr/bin/docker",
+        "--host=unix:///var/run/docker.sock",
+        "image",
+        "inspect",
+        "--format",
+        "{{json .}}",
+        "sha256:b9d673de93f1857e4dfa5ed6a48330d568ef96fce7f3cc975f0c688877e6e26e"
+      ],
+      "process": {
+        "schema": "image-owned-process-capture-v1",
+        "status": "EXITED",
+        "returncode": 0,
+        "streams_complete": true,
+        "termination_attempted": false,
+        "cleanup_failed": false,
+        "argv_sha256": "866c5f7a1e739be97316eb508661c33d8e56655be886ed9181fcff4db209855f",
+        "stdout_observed_bytes": 3257,
+        "stdout_sha256": "3ec980f6b10ce2968cb77d3c7e381e57d36bac5d4a71cf90b2b65417a3e057ca",
+        "stdout_saved_bytes": 3257,
+        "stdout_redacted": false,
+        "stdout_saved_truncated": false,
+        "stderr_observed_bytes": 0,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_saved_bytes": 0,
+        "stderr_redacted": false,
+        "stderr_saved_truncated": false,
+        "elapsed_seconds": 0.013771951999999033
+      },
+      "stdout": "{\"Id\":\"sha256:b9d673de93f1857e4dfa5ed6a48330d568ef96fce7f3cc975f0c688877e6e26e\",\"RepoTags\":[\"stage7-panda-sdk:actions-20261115-03\"],\"RepoDigests\":[],\"Parent\":\"\",\"Comment\":\"\",\"Created\":\"2026-11-15T09:43:25.983153375Z\",\"DockerVersion\":\"28.0.4\",\"Author\":\"\",\"Config\":{\"Hostname\":\"\",\"Domainname\":\"\",\"User\":\"0:0\",\"AttachStdin\":false,\"AttachStdout\":false,\"AttachStderr\":false,\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":[\"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\",\"LIBGL_ALWAYS_SOFTWARE=1\",\"PYOPENGL_PLATFORM=glx\",\"OMP_NUM_THREADS=2\"],\"Cmd\":[\"-I\",\"-S\",\"-B\",\"/usr/local/libexec/stage7/scripts/engine_clock_image_inventory.py\",\"--candidate\"],\"ArgsEscaped\":true,\"Image\":\"sha256:2b0854f1cf91e470994637f52f4e8c78c618ed00b1496a40bb05158290e01a37\",\"Volumes\":null,\"WorkingDir\":\"/\",\"Entrypoint\":[\"/opt/venv/bin/python\"],\"OnBuild\":null,\"Labels\":{\"org.opencontainers.image.version\":\"24.04\",\"stage7.source\":\"1af17fbe6bcaceb3ff7aa72ce869a0d1e3bae840\"}},\"Architecture\":\"amd64\",\"Os\":\"linux\",\"Size\":1691991291,\"GraphDriver\":{\"Data\":{\"LowerDir\":\"/var/lib/docker/overlay2/b3754319aca4027fce7620829217c6915a6b6b7ea92fbe8aa64aa8f42345fbbd/diff:/var/lib/docker/overlay2/779bc5d217cbfcde116eb855672df9ecb7075d4e84aa3268a9d9de8e7d138bf3/diff:/var/lib/docker/overlay2/a62ec0b7f5d92d405598cd154f8015e167b454b71d38d30a826146716a8f0dd3/diff:/var/lib/docker/overlay2/f9b2f6e05bfc94806358c5366f225dd158f9b7c8850bfb655b2b7c4072e9ddec/diff:/var/lib/docker/overlay2/f184c456436fe0d7da3e1ec55994418831b21e4db75699efe1a9a10450b8affc/diff:/var/lib/docker/overlay2/8c9bab749fa6bc9d8470ca6b0a8b7d78efaa2b83dd5a167f67d9c48d47c8a8c9/diff:/var/lib/docker/overlay2/32ca10f607b4501dd0619cd60e36bce57208c46eb87047305da20c436be449d8/diff:/var/lib/docker/overlay2/82c193f2d9e4ae1d5c8542e6129fa2144cb90a811efd1c59d9d2fbb1f5769914/diff:/var/lib/docker/overlay2/cfbc1b8acf5e071a7984d18e38c0aa5d01581eda76826fde47b824ddff3a6ef2/diff:/var/lib/docker/overlay2/643d211577774dd8add1e70b981e8cfead0fbe4565061743e0d78b248ce076ab/diff\",\"MergedDir\":\"/var/lib/docker/overlay2/a437698c9b4ce3a7130a9843eb604eb40e6cb8596ec29d06b3380bf56c8f042f/merged\",\"UpperDir\":\"/var/lib/docker/overlay2/a437698c9b4ce3a7130a9843eb604eb40e6cb8596ec29d06b3380bf56c8f042f/diff\",\"WorkDir\":\"/var/lib/docker/overlay2/a437698c9b4ce3a7130a9843eb604eb40e6cb8596ec29d06b3380bf56c8f042f/work\"},\"Name\":\"overlay2\"},\"RootFS\":{\"Type\":\"layers\",\"Layers\":[\"sha256:21210938f5a37a9887b2d0a20428917b923a636ca6efe038c3c7d9cd9f1f9b61\",\"sha256:2be112340d71ee43c6819c0259e050c865f12bf7c9837bb4cb8839f196db779c\",\"sha256:f2fca4086c8612de50eccd05fee84655db8d071fd6b0651200f2be6d1ccfc90a\",\"sha256:239e68b48ac29be0254dfad4b0ee14138d26ff2ea91852b7a6ca147e22ea7f61\",\"sha256:ed744a455c23963a1766deeb20a89020917f0d1f33a1d663fdc97f99279e12c6\",\"sha256:a556f0ec831a9814191d64ab66cf3cec89bed47bda59444a61a7c0fe3f45a0ea\",\"sha256:8f86aac91e848162bd1f7b46663b3f2141c522c54e4fcb415dca6f9aeb972f27\",\"sha256:0511464e26b9263af5856802ed4e5479c63560dc2d30d0d535d5c8f6b465a769\",\"sha256:d6799d868d199cfd5482d62aa735e74d9ece7a30489d03b1505a72fa5f123602\",\"sha256:f150c0ec8770d5d98573cd167c2e705822e18eae979adb2a81dc04ee31f48efe\",\"sha256:25c4d798c9d2baa748a21815f63c3fe1b2db95da8d2f39f8c274ac326db92b91\"]},\"Metadata\":{\"LastTagTime\":\"0001-01-01T00:00:00Z\"}}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/usr/bin/docker",
+        "--host=unix:///var/run/docker.sock",
+        "create",
+        "--network=none",
+        "--read-only",
+        "--cap-drop=ALL",
+        "--security-opt=no-new-privileges",
+        "--user",
+        "65534:65534",
+        "--memory",
+        "805306368",
+        "--memory-swap",
+        "805306368",
+        "--pids-limit",
+        "32",
+        "--cpus",
+        "1",
+        "--tmpfs",
+        "/tmp:rw,noexec,nosuid,nodev,size=16777216",
+        "--entrypoint",
+        "/opt/venv/bin/python",
+        "--name",
+        "panda-map-7d7ba25bafd500e6737b068401f34477",
+        "--label",
+        "stage7.mapping=7d7ba25bafd500e6737b068401f34477",
+        "--mount",
+        "type=bind,src=/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark,dst=/work/repo,readonly",
+        "--mount",
+        "type=bind,src=/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-mapping-01/producer/work/binding,dst=/work/binding,readonly",
+        "--workdir",
+        "/work/repo",
+        "--env",
+        "PATH=/usr/bin:/bin",
+        "--env",
+        "LANG=C",
+        "--env",
+        "LC_ALL=C",
+        "--env",
+        "TMPDIR=/tmp",
+        "--env",
+        "PYTHONHASHSEED=0",
+        "--env",
+        "PYTHONDONTWRITEBYTECODE=1",
+        "sha256:b9d673de93f1857e4dfa5ed6a48330d568ef96fce7f3cc975f0c688877e6e26e",
+        "-I",
+        "-S",
+        "-B",
+        "/work/repo/scripts/panda_sdk_mapping_runtime.py",
+        "--binding-sha",
+        "2467222f64e43d46e40a3bd0041286cada1a8dcf3d8171f20a4292dbdfb89a52"
+      ],
+      "process": {
+        "schema": "image-owned-process-capture-v1",
+        "status": "EXITED",
+        "returncode": 0,
+        "streams_complete": true,
+        "termination_attempted": false,
+        "cleanup_failed": false,
+        "argv_sha256": "aedf41b0c5fa548b8c18ce380b2ad855553229b1d5870b8084de0a400ebf8f31",
+        "stdout_observed_bytes": 65,
+        "stdout_sha256": "4086cf88b3169b59c26ed0bc5bf81be5bb163862268e7f83e3723c3b6b22cbe4",
+        "stdout_saved_bytes": 65,
+        "stdout_redacted": false,
+        "stdout_saved_truncated": false,
+        "stderr_observed_bytes": 0,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_saved_bytes": 0,
+        "stderr_redacted": false,
+        "stderr_saved_truncated": false,
+        "elapsed_seconds": 3.444365462999997
+      },
+      "stdout": "d3fffd015403cbf7c51cbf2f35e3ac5ae1b80cef6a766b4df674af5a1359f8cb\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/usr/bin/docker",
+        "--host=unix:///var/run/docker.sock",
+        "container",
+        "inspect",
+        "--format",
+        "{{json .}}",
+        "d3fffd015403cbf7c51cbf2f35e3ac5ae1b80cef6a766b4df674af5a1359f8cb"
+      ],
+      "process": {
+        "schema": "image-owned-process-capture-v1",
+        "status": "EXITED",
+        "returncode": 0,
+        "streams_complete": true,
+        "termination_attempted": false,
+        "cleanup_failed": false,
+        "argv_sha256": "2a16abe8828e098d4ca3789108b084224a918c6c824b3015952f909232b6ef24",
+        "stdout_observed_bytes": 6306,
+        "stdout_sha256": "fac9b760cb4e37f91af017447f3d695dea647c4c50ba947d98f33d0bc0faea90",
+        "stdout_saved_bytes": 6306,
+        "stdout_redacted": false,
+        "stdout_saved_truncated": false,
+        "stderr_observed_bytes": 0,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_saved_bytes": 0,
+        "stderr_redacted": false,
+        "stderr_saved_truncated": false,
+        "elapsed_seconds": 0.01369165200000566
+      },
+      "stdout": "{\"Id\":\"d3fffd015403cbf7c51cbf2f35e3ac5ae1b80cef6a766b4df674af5a1359f8cb\",\"Created\":\"2026-11-15T11:28:35.423801403Z\",\"Path\":\"/opt/venv/bin/python\",\"Args\":[\"-I\",\"-S\",\"-B\",\"/work/repo/scripts/panda_sdk_mapping_runtime.py\",\"--binding-sha\",\"2467222f64e43d46e40a3bd0041286cada1a8dcf3d8171f20a4292dbdfb89a52\"],\"State\":{\"Status\":\"created\",\"Running\":false,\"Paused\":false,\"Restarting\":false,\"OOMKilled\":false,\"Dead\":false,\"Pid\":0,\"ExitCode\":0,\"Error\":\"\",\"StartedAt\":\"0001-01-01T00:00:00Z\",\"FinishedAt\":\"0001-01-01T00:00:00Z\"},\"Image\":\"sha256:b9d673de93f1857e4dfa5ed6a48330d568ef96fce7f3cc975f0c688877e6e26e\",\"ResolvConfPath\":\"\",\"HostnamePath\":\"\",\"HostsPath\":\"\",\"LogPath\":\"\",\"Name\":\"/panda-map-7d7ba25bafd500e6737b068401f34477\",\"RestartCount\":0,\"Driver\":\"overlay2\",\"Platform\":\"linux\",\"MountLabel\":\"\",\"ProcessLabel\":\"\",\"AppArmorProfile\":\"\",\"ExecIDs\":null,\"HostConfig\":{\"Binds\":null,\"ContainerIDFile\":\"\",\"LogConfig\":{\"Type\":\"json-file\",\"Config\":{}},\"NetworkMode\":\"none\",\"PortBindings\":{},\"RestartPolicy\":{\"Name\":\"no\",\"MaximumRetryCount\":0},\"AutoRemove\":false,\"VolumeDriver\":\"\",\"VolumesFrom\":null,\"ConsoleSize\":[0,0],\"CapAdd\":null,\"CapDrop\":[\"ALL\"],\"CgroupnsMode\":\"private\",\"Dns\":[],\"DnsOptions\":[],\"DnsSearch\":[],\"ExtraHosts\":null,\"GroupAdd\":null,\"IpcMode\":\"private\",\"Cgroup\":\"\",\"Links\":null,\"OomScoreAdj\":0,\"PidMode\":\"\",\"Privileged\":false,\"PublishAllPorts\":false,\"ReadonlyRootfs\":true,\"SecurityOpt\":[\"no-new-privileges\"],\"Tmpfs\":{\"/tmp\":\"rw,noexec,nosuid,nodev,size=16777216\"},\"UTSMode\":\"\",\"UsernsMode\":\"\",\"ShmSize\":67108864,\"Runtime\":\"runc\",\"Isolation\":\"\",\"CpuShares\":0,\"Memory\":805306368,\"NanoCpus\":1000000000,\"CgroupParent\":\"\",\"BlkioWeight\":0,\"BlkioWeightDevice\":[],\"BlkioDeviceReadBps\":[],\"BlkioDeviceWriteBps\":[],\"BlkioDeviceReadIOps\":[],\"BlkioDeviceWriteIOps\":[],\"CpuPeriod\":0,\"CpuQuota\":0,\"CpuRealtimePeriod\":0,\"CpuRealtimeRuntime\":0,\"CpusetCpus\":\"\",\"CpusetMems\":\"\",\"Devices\":[],\"DeviceCgroupRules\":null,\"DeviceRequests\":null,\"MemoryReservation\":0,\"MemorySwap\":805306368,\"MemorySwappiness\":null,\"OomKillDisable\":false,\"PidsLimit\":32,\"Ulimits\":[],\"CpuCount\":0,\"CpuPercent\":0,\"IOMaximumIOps\":0,\"IOMaximumBandwidth\":0,\"Mounts\":[{\"Type\":\"bind\",\"Source\":\"/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark\",\"Target\":\"/work/repo\",\"ReadOnly\":true},{\"Type\":\"bind\",\"Source\":\"/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-mapping-01/producer/work/binding\",\"Target\":\"/work/binding\",\"ReadOnly\":true}],\"MaskedPaths\":[\"/proc/asound\",\"/proc/acpi\",\"/proc/interrupts\",\"/proc/kcore\",\"/proc/keys\",\"/proc/latency_stats\",\"/proc/timer_list\",\"/proc/timer_stats\",\"/proc/sched_debug\",\"/proc/scsi\",\"/sys/firmware\",\"/sys/devices/virtual/powercap\"],\"ReadonlyPaths\":[\"/proc/bus\",\"/proc/fs\",\"/proc/irq\",\"/proc/sys\",\"/proc/sysrq-trigger\"]},\"GraphDriver\":{\"Data\":{\"ID\":\"d3fffd015403cbf7c51cbf2f35e3ac5ae1b80cef6a766b4df674af5a1359f8cb\",\"LowerDir\":\"/var/lib/docker/overlay2/650e24132de05d38b910c850631ce39406015af9402f1165b68c22554a9dd40a-init/diff:/var/lib/docker/overlay2/a437698c9b4ce3a7130a9843eb604eb40e6cb8596ec29d06b3380bf56c8f042f/diff:/var/lib/docker/overlay2/b3754319aca4027fce7620829217c6915a6b6b7ea92fbe8aa64aa8f42345fbbd/diff:/var/lib/docker/overlay2/779bc5d217cbfcde116eb855672df9ecb7075d4e84aa3268a9d9de8e7d138bf3/diff:/var/lib/docker/overlay2/a62ec0b7f5d92d405598cd154f8015e167b454b71d38d30a826146716a8f0dd3/diff:/var/lib/docker/overlay2/f9b2f6e05bfc94806358c5366f225dd158f9b7c8850bfb655b2b7c4072e9ddec/diff:/var/lib/docker/overlay2/f184c456436fe0d7da3e1ec55994418831b21e4db75699efe1a9a10450b8affc/diff:/var/lib/docker/overlay2/8c9bab749fa6bc9d8470ca6b0a8b7d78efaa2b83dd5a167f67d9c48d47c8a8c9/diff:/var/lib/docker/overlay2/32ca10f607b4501dd0619cd60e36bce57208c46eb87047305da20c436be449d8/diff:/var/lib/docker/overlay2/82c193f2d9e4ae1d5c8542e6129fa2144cb90a811efd1c59d9d2fbb1f5769914/diff:/var/lib/docker/overlay2/cfbc1b8acf5e071a7984d18e38c0aa5d01581eda76826fde47b824ddff3a6ef2/diff:/var/lib/docker/overlay2/643d211577774dd8add1e70b981e8cfead0fbe4565061743e0d78b248ce076ab/diff\",\"MergedDir\":\"/var/lib/docker/overlay2/650e24132de05d38b910c850631ce39406015af9402f1165b68c22554a9dd40a/merged\",\"UpperDir\":\"/var/lib/docker/overlay2/650e24132de05d38b910c850631ce39406015af9402f1165b68c22554a9dd40a/diff\",\"WorkDir\":\"/var/lib/docker/overlay2/650e24132de05d38b910c850631ce39406015af9402f1165b68c22554a9dd40a/work\"},\"Name\":\"overlay2\"},\"Mounts\":[{\"Type\":\"bind\",\"Source\":\"/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark\",\"Destination\":\"/work/repo\",\"Mode\":\"\",\"RW\":false,\"Propagation\":\"rprivate\"},{\"Type\":\"bind\",\"Source\":\"/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-mapping-01/producer/work/binding\",\"Destination\":\"/work/binding\",\"Mode\":\"\",\"RW\":false,\"Propagation\":\"rprivate\"}],\"Config\":{\"Hostname\":\"d3fffd015403\",\"Domainname\":\"\",\"User\":\"65534:65534\",\"AttachStdin\":false,\"AttachStdout\":true,\"AttachStderr\":true,\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":[\"LC_ALL=C\",\"TMPDIR=/tmp\",\"PYTHONHASHSEED=0\",\"PYTHONDONTWRITEBYTECODE=1\",\"PATH=/usr/bin:/bin\",\"LANG=C\",\"LIBGL_ALWAYS_SOFTWARE=1\",\"PYOPENGL_PLATFORM=glx\",\"OMP_NUM_THREADS=2\"],\"Cmd\":[\"-I\",\"-S\",\"-B\",\"/work/repo/scripts/panda_sdk_mapping_runtime.py\",\"--binding-sha\",\"2467222f64e43d46e40a3bd0041286cada1a8dcf3d8171f20a4292dbdfb89a52\"],\"Image\":\"sha256:b9d673de93f1857e4dfa5ed6a48330d568ef96fce7f3cc975f0c688877e6e26e\",\"Volumes\":null,\"WorkingDir\":\"/work/repo\",\"Entrypoint\":[\"/opt/venv/bin/python\"],\"OnBuild\":null,\"Labels\":{\"org.opencontainers.image.version\":\"24.04\",\"stage7.mapping\":\"7d7ba25bafd500e6737b068401f34477\",\"stage7.source\":\"1af17fbe6bcaceb3ff7aa72ce869a0d1e3bae840\"}},\"NetworkSettings\":{\"Bridge\":\"\",\"SandboxID\":\"\",\"SandboxKey\":\"\",\"Ports\":{},\"HairpinMode\":false,\"LinkLocalIPv6Address\":\"\",\"LinkLocalIPv6PrefixLen\":0,\"SecondaryIPAddresses\":null,\"SecondaryIPv6Addresses\":null,\"EndpointID\":\"\",\"Gateway\":\"\",\"GlobalIPv6Address\":\"\",\"GlobalIPv6PrefixLen\":0,\"IPAddress\":\"\",\"IPPrefixLen\":0,\"IPv6Gateway\":\"\",\"MacAddress\":\"\",\"Networks\":{\"none\":{\"IPAMConfig\":null,\"Links\":null,\"Aliases\":null,\"MacAddress\":\"\",\"DriverOpts\":null,\"GwPriority\":0,\"NetworkID\":\"\",\"EndpointID\":\"\",\"Gateway\":\"\",\"IPAddress\":\"\",\"IPPrefixLen\":0,\"IPv6Gateway\":\"\",\"GlobalIPv6Address\":\"\",\"GlobalIPv6PrefixLen\":0,\"DNSNames\":null}}}}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/usr/bin/docker",
+        "--host=unix:///var/run/docker.sock",
+        "start",
+        "--attach",
+        "d3fffd015403cbf7c51cbf2f35e3ac5ae1b80cef6a766b4df674af5a1359f8cb"
+      ],
+      "process": {
+        "schema": "image-owned-process-capture-v1",
+        "status": "EXITED",
+        "returncode": 0,
+        "streams_complete": true,
+        "termination_attempted": false,
+        "cleanup_failed": false,
+        "argv_sha256": "dd9f8d15be35a8129a21145e2ceec81611fdea75c399e92d52fef45ffe4148b5",
+        "stdout_observed_bytes": 231146,
+        "stdout_sha256": "099b44991499647161ce62d31403401a44f5002f5cdc3875fa3d3a3c24f77738",
+        "stdout_saved_bytes": 231146,
+        "stdout_redacted": false,
+        "stdout_saved_truncated": false,
+        "stderr_observed_bytes": 0,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_saved_bytes": 0,
+        "stderr_redacted": false,
+        "stderr_saved_truncated": false,
+        "elapsed_seconds": 2.8705938599999996
+      },
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/usr/bin/docker",
+        "--host=unix:///var/run/docker.sock",
+        "container",
+        "inspect",
+        "--format",
+        "{{json .}}",
+        "d3fffd015403cbf7c51cbf2f35e3ac5ae1b80cef6a766b4df674af5a1359f8cb"
+      ],
+      "process": {
+        "schema": "image-owned-process-capture-v1",
+        "status": "EXITED",
+        "returncode": 0,
+        "streams_complete": true,
+        "termination_attempted": false,
+        "cleanup_failed": false,
+        "argv_sha256": "2a16abe8828e098d4ca3789108b084224a918c6c824b3015952f909232b6ef24",
+        "stdout_observed_bytes": 6866,
+        "stdout_sha256": "292b1b5864b089167d2f947afa9d61179e1b95043c89748703158763f048a0f9",
+        "stdout_saved_bytes": 6866,
+        "stdout_redacted": false,
+        "stdout_saved_truncated": false,
+        "stderr_observed_bytes": 0,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_saved_bytes": 0,
+        "stderr_redacted": false,
+        "stderr_saved_truncated": false,
+        "elapsed_seconds": 0.014434683000004611
+      },
+      "stdout": "{\"Id\":\"d3fffd015403cbf7c51cbf2f35e3ac5ae1b80cef6a766b4df674af5a1359f8cb\",\"Created\":\"2026-11-15T11:28:35.423801403Z\",\"Path\":\"/opt/venv/bin/python\",\"Args\":[\"-I\",\"-S\",\"-B\",\"/work/repo/scripts/panda_sdk_mapping_runtime.py\",\"--binding-sha\",\"2467222f64e43d46e40a3bd0041286cada1a8dcf3d8171f20a4292dbdfb89a52\"],\"State\":{\"Status\":\"exited\",\"Running\":false,\"Paused\":false,\"Restarting\":false,\"OOMKilled\":false,\"Dead\":false,\"Pid\":0,\"ExitCode\":0,\"Error\":\"\",\"StartedAt\":\"2026-11-15T11:28:39.02603421Z\",\"FinishedAt\":\"2026-11-15T11:28:41.851977706Z\"},\"Image\":\"sha256:b9d673de93f1857e4dfa5ed6a48330d568ef96fce7f3cc975f0c688877e6e26e\",\"ResolvConfPath\":\"/var/lib/docker/containers/d3fffd015403cbf7c51cbf2f35e3ac5ae1b80cef6a766b4df674af5a1359f8cb/resolv.conf\",\"HostnamePath\":\"/var/lib/docker/containers/d3fffd015403cbf7c51cbf2f35e3ac5ae1b80cef6a766b4df674af5a1359f8cb/hostname\",\"HostsPath\":\"/var/lib/docker/containers/d3fffd015403cbf7c51cbf2f35e3ac5ae1b80cef6a766b4df674af5a1359f8cb/hosts\",\"LogPath\":\"/var/lib/docker/containers/d3fffd015403cbf7c51cbf2f35e3ac5ae1b80cef6a766b4df674af5a1359f8cb/d3fffd015403cbf7c51cbf2f35e3ac5ae1b80cef6a766b4df674af5a1359f8cb-json.log\",\"Name\":\"/panda-map-7d7ba25bafd500e6737b068401f34477\",\"RestartCount\":0,\"Driver\":\"overlay2\",\"Platform\":\"linux\",\"MountLabel\":\"\",\"ProcessLabel\":\"\",\"AppArmorProfile\":\"docker-default\",\"ExecIDs\":null,\"HostConfig\":{\"Binds\":null,\"ContainerIDFile\":\"\",\"LogConfig\":{\"Type\":\"json-file\",\"Config\":{}},\"NetworkMode\":\"none\",\"PortBindings\":{},\"RestartPolicy\":{\"Name\":\"no\",\"MaximumRetryCount\":0},\"AutoRemove\":false,\"VolumeDriver\":\"\",\"VolumesFrom\":null,\"ConsoleSize\":[0,0],\"CapAdd\":null,\"CapDrop\":[\"ALL\"],\"CgroupnsMode\":\"private\",\"Dns\":[],\"DnsOptions\":[],\"DnsSearch\":[],\"ExtraHosts\":null,\"GroupAdd\":null,\"IpcMode\":\"private\",\"Cgroup\":\"\",\"Links\":null,\"OomScoreAdj\":0,\"PidMode\":\"\",\"Privileged\":false,\"PublishAllPorts\":false,\"ReadonlyRootfs\":true,\"SecurityOpt\":[\"no-new-privileges\"],\"Tmpfs\":{\"/tmp\":\"rw,noexec,nosuid,nodev,size=16777216\"},\"UTSMode\":\"\",\"UsernsMode\":\"\",\"ShmSize\":67108864,\"Runtime\":\"runc\",\"Isolation\":\"\",\"CpuShares\":0,\"Memory\":805306368,\"NanoCpus\":1000000000,\"CgroupParent\":\"\",\"BlkioWeight\":0,\"BlkioWeightDevice\":[],\"BlkioDeviceReadBps\":[],\"BlkioDeviceWriteBps\":[],\"BlkioDeviceReadIOps\":[],\"BlkioDeviceWriteIOps\":[],\"CpuPeriod\":0,\"CpuQuota\":0,\"CpuRealtimePeriod\":0,\"CpuRealtimeRuntime\":0,\"CpusetCpus\":\"\",\"CpusetMems\":\"\",\"Devices\":[],\"DeviceCgroupRules\":null,\"DeviceRequests\":null,\"MemoryReservation\":0,\"MemorySwap\":805306368,\"MemorySwappiness\":null,\"OomKillDisable\":null,\"PidsLimit\":32,\"Ulimits\":[],\"CpuCount\":0,\"CpuPercent\":0,\"IOMaximumIOps\":0,\"IOMaximumBandwidth\":0,\"Mounts\":[{\"Type\":\"bind\",\"Source\":\"/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark\",\"Target\":\"/work/repo\",\"ReadOnly\":true},{\"Type\":\"bind\",\"Source\":\"/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-mapping-01/producer/work/binding\",\"Target\":\"/work/binding\",\"ReadOnly\":true}],\"MaskedPaths\":[\"/proc/asound\",\"/proc/acpi\",\"/proc/interrupts\",\"/proc/kcore\",\"/proc/keys\",\"/proc/latency_stats\",\"/proc/timer_list\",\"/proc/timer_stats\",\"/proc/sched_debug\",\"/proc/scsi\",\"/sys/firmware\",\"/sys/devices/virtual/powercap\"],\"ReadonlyPaths\":[\"/proc/bus\",\"/proc/fs\",\"/proc/irq\",\"/proc/sys\",\"/proc/sysrq-trigger\"]},\"GraphDriver\":{\"Data\":{\"ID\":\"d3fffd015403cbf7c51cbf2f35e3ac5ae1b80cef6a766b4df674af5a1359f8cb\",\"LowerDir\":\"/var/lib/docker/overlay2/650e24132de05d38b910c850631ce39406015af9402f1165b68c22554a9dd40a-init/diff:/var/lib/docker/overlay2/a437698c9b4ce3a7130a9843eb604eb40e6cb8596ec29d06b3380bf56c8f042f/diff:/var/lib/docker/overlay2/b3754319aca4027fce7620829217c6915a6b6b7ea92fbe8aa64aa8f42345fbbd/diff:/var/lib/docker/overlay2/779bc5d217cbfcde116eb855672df9ecb7075d4e84aa3268a9d9de8e7d138bf3/diff:/var/lib/docker/overlay2/a62ec0b7f5d92d405598cd154f8015e167b454b71d38d30a826146716a8f0dd3/diff:/var/lib/docker/overlay2/f9b2f6e05bfc94806358c5366f225dd158f9b7c8850bfb655b2b7c4072e9ddec/diff:/var/lib/docker/overlay2/f184c456436fe0d7da3e1ec55994418831b21e4db75699efe1a9a10450b8affc/diff:/var/lib/docker/overlay2/8c9bab749fa6bc9d8470ca6b0a8b7d78efaa2b83dd5a167f67d9c48d47c8a8c9/diff:/var/lib/docker/overlay2/32ca10f607b4501dd0619cd60e36bce57208c46eb87047305da20c436be449d8/diff:/var/lib/docker/overlay2/82c193f2d9e4ae1d5c8542e6129fa2144cb90a811efd1c59d9d2fbb1f5769914/diff:/var/lib/docker/overlay2/cfbc1b8acf5e071a7984d18e38c0aa5d01581eda76826fde47b824ddff3a6ef2/diff:/var/lib/docker/overlay2/643d211577774dd8add1e70b981e8cfead0fbe4565061743e0d78b248ce076ab/diff\",\"MergedDir\":\"/var/lib/docker/overlay2/650e24132de05d38b910c850631ce39406015af9402f1165b68c22554a9dd40a/merged\",\"UpperDir\":\"/var/lib/docker/overlay2/650e24132de05d38b910c850631ce39406015af9402f1165b68c22554a9dd40a/diff\",\"WorkDir\":\"/var/lib/docker/overlay2/650e24132de05d38b910c850631ce39406015af9402f1165b68c22554a9dd40a/work\"},\"Name\":\"overlay2\"},\"Mounts\":[{\"Type\":\"bind\",\"Source\":\"/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark\",\"Destination\":\"/work/repo\",\"Mode\":\"\",\"RW\":false,\"Propagation\":\"rprivate\"},{\"Type\":\"bind\",\"Source\":\"/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-mapping-01/producer/work/binding\",\"Destination\":\"/work/binding\",\"Mode\":\"\",\"RW\":false,\"Propagation\":\"rprivate\"}],\"Config\":{\"Hostname\":\"d3fffd015403\",\"Domainname\":\"\",\"User\":\"65534:65534\",\"AttachStdin\":false,\"AttachStdout\":true,\"AttachStderr\":true,\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":[\"LC_ALL=C\",\"TMPDIR=/tmp\",\"PYTHONHASHSEED=0\",\"PYTHONDONTWRITEBYTECODE=1\",\"PATH=/usr/bin:/bin\",\"LANG=C\",\"LIBGL_ALWAYS_SOFTWARE=1\",\"PYOPENGL_PLATFORM=glx\",\"OMP_NUM_THREADS=2\"],\"Cmd\":[\"-I\",\"-S\",\"-B\",\"/work/repo/scripts/panda_sdk_mapping_runtime.py\",\"--binding-sha\",\"2467222f64e43d46e40a3bd0041286cada1a8dcf3d8171f20a4292dbdfb89a52\"],\"Image\":\"sha256:b9d673de93f1857e4dfa5ed6a48330d568ef96fce7f3cc975f0c688877e6e26e\",\"Volumes\":null,\"WorkingDir\":\"/work/repo\",\"Entrypoint\":[\"/opt/venv/bin/python\"],\"OnBuild\":null,\"Labels\":{\"org.opencontainers.image.version\":\"24.04\",\"stage7.mapping\":\"7d7ba25bafd500e6737b068401f34477\",\"stage7.source\":\"1af17fbe6bcaceb3ff7aa72ce869a0d1e3bae840\"}},\"NetworkSettings\":{\"Bridge\":\"\",\"SandboxID\":\"\",\"SandboxKey\":\"\",\"Ports\":{},\"HairpinMode\":false,\"LinkLocalIPv6Address\":\"\",\"LinkLocalIPv6PrefixLen\":0,\"SecondaryIPAddresses\":null,\"SecondaryIPv6Addresses\":null,\"EndpointID\":\"\",\"Gateway\":\"\",\"GlobalIPv6Address\":\"\",\"GlobalIPv6PrefixLen\":0,\"IPAddress\":\"\",\"IPPrefixLen\":0,\"IPv6Gateway\":\"\",\"MacAddress\":\"\",\"Networks\":{\"none\":{\"IPAMConfig\":null,\"Links\":null,\"Aliases\":null,\"MacAddress\":\"\",\"DriverOpts\":null,\"GwPriority\":0,\"NetworkID\":\"14bfcd7e2448aa53bbb80b671af60b7f2d9071d4dff37d0a80f612135af5eca1\",\"EndpointID\":\"\",\"Gateway\":\"\",\"IPAddress\":\"\",\"IPPrefixLen\":0,\"IPv6Gateway\":\"\",\"GlobalIPv6Address\":\"\",\"GlobalIPv6PrefixLen\":0,\"DNSNames\":null}}}}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/usr/bin/docker",
+        "--host=unix:///var/run/docker.sock",
+        "container",
+        "inspect",
+        "--format",
+        "{{json .}}",
+        "d3fffd015403cbf7c51cbf2f35e3ac5ae1b80cef6a766b4df674af5a1359f8cb"
+      ],
+      "process": {
+        "schema": "image-owned-process-capture-v1",
+        "status": "EXITED",
+        "returncode": 0,
+        "streams_complete": true,
+        "termination_attempted": false,
+        "cleanup_failed": false,
+        "argv_sha256": "2a16abe8828e098d4ca3789108b084224a918c6c824b3015952f909232b6ef24",
+        "stdout_observed_bytes": 6866,
+        "stdout_sha256": "292b1b5864b089167d2f947afa9d61179e1b95043c89748703158763f048a0f9",
+        "stdout_saved_bytes": 6866,
+        "stdout_redacted": false,
+        "stdout_saved_truncated": false,
+        "stderr_observed_bytes": 0,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_saved_bytes": 0,
+        "stderr_redacted": false,
+        "stderr_saved_truncated": false,
+        "elapsed_seconds": 0.013127358999994954
+      },
+      "stdout": "{\"Id\":\"d3fffd015403cbf7c51cbf2f35e3ac5ae1b80cef6a766b4df674af5a1359f8cb\",\"Created\":\"2026-11-15T11:28:35.423801403Z\",\"Path\":\"/opt/venv/bin/python\",\"Args\":[\"-I\",\"-S\",\"-B\",\"/work/repo/scripts/panda_sdk_mapping_runtime.py\",\"--binding-sha\",\"2467222f64e43d46e40a3bd0041286cada1a8dcf3d8171f20a4292dbdfb89a52\"],\"State\":{\"Status\":\"exited\",\"Running\":false,\"Paused\":false,\"Restarting\":false,\"OOMKilled\":false,\"Dead\":false,\"Pid\":0,\"ExitCode\":0,\"Error\":\"\",\"StartedAt\":\"2026-11-15T11:28:39.02603421Z\",\"FinishedAt\":\"2026-11-15T11:28:41.851977706Z\"},\"Image\":\"sha256:b9d673de93f1857e4dfa5ed6a48330d568ef96fce7f3cc975f0c688877e6e26e\",\"ResolvConfPath\":\"/var/lib/docker/containers/d3fffd015403cbf7c51cbf2f35e3ac5ae1b80cef6a766b4df674af5a1359f8cb/resolv.conf\",\"HostnamePath\":\"/var/lib/docker/containers/d3fffd015403cbf7c51cbf2f35e3ac5ae1b80cef6a766b4df674af5a1359f8cb/hostname\",\"HostsPath\":\"/var/lib/docker/containers/d3fffd015403cbf7c51cbf2f35e3ac5ae1b80cef6a766b4df674af5a1359f8cb/hosts\",\"LogPath\":\"/var/lib/docker/containers/d3fffd015403cbf7c51cbf2f35e3ac5ae1b80cef6a766b4df674af5a1359f8cb/d3fffd015403cbf7c51cbf2f35e3ac5ae1b80cef6a766b4df674af5a1359f8cb-json.log\",\"Name\":\"/panda-map-7d7ba25bafd500e6737b068401f34477\",\"RestartCount\":0,\"Driver\":\"overlay2\",\"Platform\":\"linux\",\"MountLabel\":\"\",\"ProcessLabel\":\"\",\"AppArmorProfile\":\"docker-default\",\"ExecIDs\":null,\"HostConfig\":{\"Binds\":null,\"ContainerIDFile\":\"\",\"LogConfig\":{\"Type\":\"json-file\",\"Config\":{}},\"NetworkMode\":\"none\",\"PortBindings\":{},\"RestartPolicy\":{\"Name\":\"no\",\"MaximumRetryCount\":0},\"AutoRemove\":false,\"VolumeDriver\":\"\",\"VolumesFrom\":null,\"ConsoleSize\":[0,0],\"CapAdd\":null,\"CapDrop\":[\"ALL\"],\"CgroupnsMode\":\"private\",\"Dns\":[],\"DnsOptions\":[],\"DnsSearch\":[],\"ExtraHosts\":null,\"GroupAdd\":null,\"IpcMode\":\"private\",\"Cgroup\":\"\",\"Links\":null,\"OomScoreAdj\":0,\"PidMode\":\"\",\"Privileged\":false,\"PublishAllPorts\":false,\"ReadonlyRootfs\":true,\"SecurityOpt\":[\"no-new-privileges\"],\"Tmpfs\":{\"/tmp\":\"rw,noexec,nosuid,nodev,size=16777216\"},\"UTSMode\":\"\",\"UsernsMode\":\"\",\"ShmSize\":67108864,\"Runtime\":\"runc\",\"Isolation\":\"\",\"CpuShares\":0,\"Memory\":805306368,\"NanoCpus\":1000000000,\"CgroupParent\":\"\",\"BlkioWeight\":0,\"BlkioWeightDevice\":[],\"BlkioDeviceReadBps\":[],\"BlkioDeviceWriteBps\":[],\"BlkioDeviceReadIOps\":[],\"BlkioDeviceWriteIOps\":[],\"CpuPeriod\":0,\"CpuQuota\":0,\"CpuRealtimePeriod\":0,\"CpuRealtimeRuntime\":0,\"CpusetCpus\":\"\",\"CpusetMems\":\"\",\"Devices\":[],\"DeviceCgroupRules\":null,\"DeviceRequests\":null,\"MemoryReservation\":0,\"MemorySwap\":805306368,\"MemorySwappiness\":null,\"OomKillDisable\":null,\"PidsLimit\":32,\"Ulimits\":[],\"CpuCount\":0,\"CpuPercent\":0,\"IOMaximumIOps\":0,\"IOMaximumBandwidth\":0,\"Mounts\":[{\"Type\":\"bind\",\"Source\":\"/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark\",\"Target\":\"/work/repo\",\"ReadOnly\":true},{\"Type\":\"bind\",\"Source\":\"/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-mapping-01/producer/work/binding\",\"Target\":\"/work/binding\",\"ReadOnly\":true}],\"MaskedPaths\":[\"/proc/asound\",\"/proc/acpi\",\"/proc/interrupts\",\"/proc/kcore\",\"/proc/keys\",\"/proc/latency_stats\",\"/proc/timer_list\",\"/proc/timer_stats\",\"/proc/sched_debug\",\"/proc/scsi\",\"/sys/firmware\",\"/sys/devices/virtual/powercap\"],\"ReadonlyPaths\":[\"/proc/bus\",\"/proc/fs\",\"/proc/irq\",\"/proc/sys\",\"/proc/sysrq-trigger\"]},\"GraphDriver\":{\"Data\":{\"ID\":\"d3fffd015403cbf7c51cbf2f35e3ac5ae1b80cef6a766b4df674af5a1359f8cb\",\"LowerDir\":\"/var/lib/docker/overlay2/650e24132de05d38b910c850631ce39406015af9402f1165b68c22554a9dd40a-init/diff:/var/lib/docker/overlay2/a437698c9b4ce3a7130a9843eb604eb40e6cb8596ec29d06b3380bf56c8f042f/diff:/var/lib/docker/overlay2/b3754319aca4027fce7620829217c6915a6b6b7ea92fbe8aa64aa8f42345fbbd/diff:/var/lib/docker/overlay2/779bc5d217cbfcde116eb855672df9ecb7075d4e84aa3268a9d9de8e7d138bf3/diff:/var/lib/docker/overlay2/a62ec0b7f5d92d405598cd154f8015e167b454b71d38d30a826146716a8f0dd3/diff:/var/lib/docker/overlay2/f9b2f6e05bfc94806358c5366f225dd158f9b7c8850bfb655b2b7c4072e9ddec/diff:/var/lib/docker/overlay2/f184c456436fe0d7da3e1ec55994418831b21e4db75699efe1a9a10450b8affc/diff:/var/lib/docker/overlay2/8c9bab749fa6bc9d8470ca6b0a8b7d78efaa2b83dd5a167f67d9c48d47c8a8c9/diff:/var/lib/docker/overlay2/32ca10f607b4501dd0619cd60e36bce57208c46eb87047305da20c436be449d8/diff:/var/lib/docker/overlay2/82c193f2d9e4ae1d5c8542e6129fa2144cb90a811efd1c59d9d2fbb1f5769914/diff:/var/lib/docker/overlay2/cfbc1b8acf5e071a7984d18e38c0aa5d01581eda76826fde47b824ddff3a6ef2/diff:/var/lib/docker/overlay2/643d211577774dd8add1e70b981e8cfead0fbe4565061743e0d78b248ce076ab/diff\",\"MergedDir\":\"/var/lib/docker/overlay2/650e24132de05d38b910c850631ce39406015af9402f1165b68c22554a9dd40a/merged\",\"UpperDir\":\"/var/lib/docker/overlay2/650e24132de05d38b910c850631ce39406015af9402f1165b68c22554a9dd40a/diff\",\"WorkDir\":\"/var/lib/docker/overlay2/650e24132de05d38b910c850631ce39406015af9402f1165b68c22554a9dd40a/work\"},\"Name\":\"overlay2\"},\"Mounts\":[{\"Type\":\"bind\",\"Source\":\"/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark\",\"Destination\":\"/work/repo\",\"Mode\":\"\",\"RW\":false,\"Propagation\":\"rprivate\"},{\"Type\":\"bind\",\"Source\":\"/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-mapping-01/producer/work/binding\",\"Destination\":\"/work/binding\",\"Mode\":\"\",\"RW\":false,\"Propagation\":\"rprivate\"}],\"Config\":{\"Hostname\":\"d3fffd015403\",\"Domainname\":\"\",\"User\":\"65534:65534\",\"AttachStdin\":false,\"AttachStdout\":true,\"AttachStderr\":true,\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":[\"LC_ALL=C\",\"TMPDIR=/tmp\",\"PYTHONHASHSEED=0\",\"PYTHONDONTWRITEBYTECODE=1\",\"PATH=/usr/bin:/bin\",\"LANG=C\",\"LIBGL_ALWAYS_SOFTWARE=1\",\"PYOPENGL_PLATFORM=glx\",\"OMP_NUM_THREADS=2\"],\"Cmd\":[\"-I\",\"-S\",\"-B\",\"/work/repo/scripts/panda_sdk_mapping_runtime.py\",\"--binding-sha\",\"2467222f64e43d46e40a3bd0041286cada1a8dcf3d8171f20a4292dbdfb89a52\"],\"Image\":\"sha256:b9d673de93f1857e4dfa5ed6a48330d568ef96fce7f3cc975f0c688877e6e26e\",\"Volumes\":null,\"WorkingDir\":\"/work/repo\",\"Entrypoint\":[\"/opt/venv/bin/python\"],\"OnBuild\":null,\"Labels\":{\"org.opencontainers.image.version\":\"24.04\",\"stage7.mapping\":\"7d7ba25bafd500e6737b068401f34477\",\"stage7.source\":\"1af17fbe6bcaceb3ff7aa72ce869a0d1e3bae840\"}},\"NetworkSettings\":{\"Bridge\":\"\",\"SandboxID\":\"\",\"SandboxKey\":\"\",\"Ports\":{},\"HairpinMode\":false,\"LinkLocalIPv6Address\":\"\",\"LinkLocalIPv6PrefixLen\":0,\"SecondaryIPAddresses\":null,\"SecondaryIPv6Addresses\":null,\"EndpointID\":\"\",\"Gateway\":\"\",\"GlobalIPv6Address\":\"\",\"GlobalIPv6PrefixLen\":0,\"IPAddress\":\"\",\"IPPrefixLen\":0,\"IPv6Gateway\":\"\",\"MacAddress\":\"\",\"Networks\":{\"none\":{\"IPAMConfig\":null,\"Links\":null,\"Aliases\":null,\"MacAddress\":\"\",\"DriverOpts\":null,\"GwPriority\":0,\"NetworkID\":\"14bfcd7e2448aa53bbb80b671af60b7f2d9071d4dff37d0a80f612135af5eca1\",\"EndpointID\":\"\",\"Gateway\":\"\",\"IPAddress\":\"\",\"IPPrefixLen\":0,\"IPv6Gateway\":\"\",\"GlobalIPv6Address\":\"\",\"GlobalIPv6PrefixLen\":0,\"DNSNames\":null}}}}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/usr/bin/docker",
+        "--host=unix:///var/run/docker.sock",
+        "rm",
+        "d3fffd015403cbf7c51cbf2f35e3ac5ae1b80cef6a766b4df674af5a1359f8cb"
+      ],
+      "process": {
+        "schema": "image-owned-process-capture-v1",
+        "status": "EXITED",
+        "returncode": 0,
+        "streams_complete": true,
+        "termination_attempted": false,
+        "cleanup_failed": false,
+        "argv_sha256": "869396997f2ba97c5c710fe602f510bb5d3a801539dc085fc95bd9ff4fedd332",
+        "stdout_observed_bytes": 65,
+        "stdout_sha256": "4086cf88b3169b59c26ed0bc5bf81be5bb163862268e7f83e3723c3b6b22cbe4",
+        "stdout_saved_bytes": 65,
+        "stdout_redacted": false,
+        "stdout_saved_truncated": false,
+        "stderr_observed_bytes": 0,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_saved_bytes": 0,
+        "stderr_redacted": false,
+        "stderr_saved_truncated": false,
+        "elapsed_seconds": 0.0143571699999967
+      },
+      "stdout": "d3fffd015403cbf7c51cbf2f35e3ac5ae1b80cef6a766b4df674af5a1359f8cb\n",
+      "stderr": ""
+    }
+  ],
+  "tools_before": {
+    "/usr/bin/docker": {
+      "nbytes": 43134496,
+      "sha256": "6435ff9214bf8e0931078fb0980809728cac0a54a526d4f28a26d3e48132b58d"
+    },
+    "/usr/bin/python3.12": {
+      "nbytes": 8020928,
+      "sha256": "e50d468e8b0adfb05733f5b87b3cff34829c4a8c1aea50c865aa8bdfe4bb150f"
+    }
+  },
+  "tools_after": {
+    "/usr/bin/docker": {
+      "nbytes": 43134496,
+      "sha256": "6435ff9214bf8e0931078fb0980809728cac0a54a526d4f28a26d3e48132b58d"
+    },
+    "/usr/bin/python3.12": {
+      "nbytes": 8020928,
+      "sha256": "e50d468e8b0adfb05733f5b87b3cff34829c4a8c1aea50c865aa8bdfe4bb150f"
+    }
+  },
+  "tools_after_verified": true,
+  "http_events": [
+    {
+      "source_url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/commits/c73da62a457e83c54d63065d2e2f6f773a8e941a",
+      "http_status": 200,
+      "nbytes": 36349,
+      "sha256": "c429ffe1c4d6340fa23f6d93e9bf4c601c19e6cafa4914edef5fac3b8fd4d7cd",
+      "redirects": [],
+      "seconds": 0.26373524799999615,
+      "raw_body_preserved": true,
+      "tls_default_context_verified": true
+    },
+    {
+      "source_url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/compare/9e1ad10da0a4b57e4dfe4dce081b3f2cca3d8c1e...c73da62a457e83c54d63065d2e2f6f773a8e941a",
+      "http_status": 200,
+      "nbytes": 44711,
+      "sha256": "59aec8a2981ff13398dac3c1941014f8d33a43ef4c1b7121df9b8c93bd6bfa14",
+      "redirects": [],
+      "seconds": 0.38350631900000565,
+      "raw_body_preserved": true,
+      "tls_default_context_verified": true
+    },
+    {
+      "source_url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/git/trees/deff14dc2ae3505b09d3cab18e97b983bbf8e8d0",
+      "http_status": 200,
+      "nbytes": 3112,
+      "sha256": "98a4961c05b546ef25a46ae2d520822d6f0e79278ee4cae1c24cad96bc4d18b7",
+      "redirects": [],
+      "seconds": 0.18168941000000416,
+      "raw_body_preserved": true,
+      "tls_default_context_verified": true
+    },
+    {
+      "source_url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/git/trees/14faca66aed7ff007984d4d50dad9e726d3bf959",
+      "http_status": 200,
+      "nbytes": 39488,
+      "sha256": "55753ac8cfa7b6961570f8a4d24cf770226d52a5ff75d820cf329c1e76aa39c9",
+      "redirects": [],
+      "seconds": 0.24814964500000514,
+      "raw_body_preserved": true,
+      "tls_default_context_verified": true
+    },
+    {
+      "source_url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/git/trees/bbce8020b74a7fb2b3c274ac4ec93b105d50c7a7",
+      "http_status": 200,
+      "nbytes": 7014,
+      "sha256": "2fee4534f40c0eda2d249cc34a6d9f138413a32310d460d6b72c790c3efce228",
+      "redirects": [],
+      "seconds": 0.2102043460000047,
+      "raw_body_preserved": true,
+      "tls_default_context_verified": true
+    },
+    {
+      "source_url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43708537563",
+      "http_status": 200,
+      "nbytes": 15793,
+      "sha256": "175c4092d0529d1cb3f5990801afa4eafb5171e970a6e23b091a187b354de67f",
+      "redirects": [],
+      "seconds": 0.2437840179999995,
+      "raw_body_preserved": true,
+      "tls_default_context_verified": true
+    },
+    {
+      "source_url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43708537563/jobs",
+      "http_status": 200,
+      "nbytes": 5094,
+      "sha256": "0ae634cea037ed75f406caf3105ad537f747b8b26080f18e10606aefa8faac26",
+      "redirects": [],
+      "seconds": 0.283253234,
+      "raw_body_preserved": true,
+      "tls_default_context_verified": true
+    },
+    {
+      "source_url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43708537563/artifacts",
+      "http_status": 200,
+      "nbytes": 32,
+      "sha256": "244563f989470892c537c9a4622920af0d228ee4528f7d00c64a06d6cd95856c",
+      "redirects": [],
+      "seconds": 0.16830809900000077,
+      "raw_body_preserved": true,
+      "tls_default_context_verified": true
+    },
+    {
+      "source_url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43708670170",
+      "http_status": 200,
+      "nbytes": 15786,
+      "sha256": "66b45ea5d98f6cbc0eda8bb24c9b8ba03ec22fb699b8e679f7216f83902ebe56",
+      "redirects": [],
+      "seconds": 0.22821640900000517,
+      "raw_body_preserved": true,
+      "tls_default_context_verified": true
+    },
+    {
+      "source_url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43708670170/jobs",
+      "http_status": 200,
+      "nbytes": 5094,
+      "sha256": "c9b169fb6bf7b4bb78c9239026c65e7b9ae2a59daadc92b593ce5e1bf310f29f",
+      "redirects": [],
+      "seconds": 0.25076664000000193,
+      "raw_body_preserved": true,
+      "tls_default_context_verified": true
+    },
+    {
+      "source_url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43708670170/artifacts",
+      "http_status": 200,
+      "nbytes": 32,
+      "sha256": "244563f989470892c537c9a4622920af0d228ee4528f7d00c64a06d6cd95856c",
+      "redirects": [],
+      "seconds": 0.16973533000000174,
+      "raw_body_preserved": true,
+      "tls_default_context_verified": true
+    },
+    {
+      "source_url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43709001528",
+      "http_status": 200,
+      "nbytes": 15136,
+      "sha256": "bfc145188e0a2c4504483e530587845fd146c18407814755e712e3420ba503a2",
+      "redirects": [],
+      "seconds": 0.18678072299999826,
+      "raw_body_preserved": true,
+      "tls_default_context_verified": true
+    },
+    {
+      "source_url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/workflows/419084732",
+      "http_status": 200,
+      "nbytes": 650,
+      "sha256": "ea534631a7901d2a74779448d4e7fef9138d50aca490c392b861fdabfe61906b",
+      "redirects": [],
+      "seconds": 0.17121583800000195,
+      "raw_body_preserved": true,
+      "tls_default_context_verified": true
+    },
+    {
+      "source_url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/workflows/419084732/runs",
+      "http_status": 200,
+      "nbytes": 15172,
+      "sha256": "e9e32da68b0b4765c33dc5eac643c3baec6c797d70f6b0881e6158ac4c2919e2",
+      "redirects": [],
+      "seconds": 0.25958644299999634,
+      "raw_body_preserved": true,
+      "tls_default_context_verified": true
+    },
+    {
+      "source_url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43700449423",
+      "http_status": 200,
+      "nbytes": 15148,
+      "sha256": "6789c44548d90cfa14a6d804977776d5c947bb06f6ccfff9d6c900a2322039c2",
+      "redirects": [],
+      "seconds": 0.17644805699999466,
+      "raw_body_preserved": true,
+      "tls_default_context_verified": true
+    },
+    {
+      "source_url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43700449423/jobs",
+      "http_status": 200,
+      "nbytes": 2541,
+      "sha256": "3cc4396d2a9227c1ab867f06052336434e2932714120a2b6a88f6a675affa191",
+      "redirects": [],
+      "seconds": 0.3870742120000017,
+      "raw_body_preserved": true,
+      "tls_default_context_verified": true
+    },
+    {
+      "source_url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43700449423/artifacts",
+      "http_status": 200,
+      "nbytes": 1615,
+      "sha256": "bd616493b9b9660c2c59c2098c92c468953bffdd41c9079b6e6cf0cfdce23f4b",
+      "redirects": [],
+      "seconds": 0.16776363500000002,
+      "raw_body_preserved": true,
+      "tls_default_context_verified": true
+    },
+    {
+      "source_url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/artifacts/14156262448/zip",
+      "http_status": 200,
+      "nbytes": 1738137175,
+      "sha256": "47711425a5a48fb2ef0cab140da6e394516f9cbb7f04b294c5f6583d7efbc687",
+      "redirects": [
+        {
+          "http_status": 302,
+          "from_host": "api.github.com",
+          "to_host": "productionresultssa10.blob.core.windows.net",
+          "authorization_forwarded": false
+        }
+      ],
+      "seconds": 13.876954728000001,
+      "raw_body_preserved": true,
+      "tls_default_context_verified": true
+    }
+  ]
+}

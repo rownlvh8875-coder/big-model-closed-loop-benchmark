@@ -1,0 +1,27 @@
+# Authenticated SDK mapping and selected C ABI result
+
+The single newly qualified mapping-only canary passed. Independent acceptance returned `AUTHENTICATED_MAPPING_ONLY_CANARY_PASSED`, with GitHub source/activation/run/job/artifact lineage authenticated. The original scientific result remains **strict 0/4 FAIL; Stage7 INCOMPLETE**. Full SDK/object ABI, rendering and scientific runtime admission remain false.
+
+Reviewed and fixed source: `9e1ad10da0a4b57e4dfe4dce081b3f2cca3d8c1e`; request-only activation: `c73da62a457e83c54d63065d2e2f6f773a8e941a`. Source CI runs 43708537563 (push) and 43708670170 (pull_request) passed all four jobs at attempt 1 with zero artifacts. The 240-file implementation closure still matches the reviewed fix. The sole fresh review found 0 Critical / 1 Important / 0 Minor; captured partial-start stdout loss was fixed in one RED→GREEN pass, without rereview.
+
+The actual [mapping run 43709001528](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43709001528), workflow 419084732 / job 132796278688, completed successfully at attempt 1. Its container ran on **2026-11-15 20:28:39–20:28:41 KST**. Artifact 14160030534 is 279,932 bytes, SHA256 `2e5320718f6ae440690c37fc9c71c21505879451fb8998e3ca43d48d5ac46cf5`. The closed carrier contains exactly canary.json, runtime.json and execution.json. API evidence, exact candidate bytes and observations are preserved under [actual/](evidence/panda-sdk-mapping-01/actual/); [selection.json](evidence/panda-sdk-mapping-01/selection.json) identifies the accepted result. The original ZIP remains under output/stage7-panda-sdk-mapping-01/acceptance/proof.zip.
+
+Actual image SHA256 `4984470cd7d732f9f2d1c12710c9433b563b3817ba6d1d419749a9a2b1b46698` and installed SDK SHA256 `8d302ae2a610b56db4f7feca08fd736004cf6d3d9650fdb9834f19389a0b7342` match the authenticated image03 authority. The child performed exactly one absolute Panda preload and one SDK load. The parent independently verified the four selected SDK function ranges against actual child /proc mappings and memory before and after the five calls, including PID/starttime, executable, file identity, PT offsets/load bias, executable nonwritable mappings and exact code bytes. Image membership passed for 27 mapped files before loading and 48 files / 87,151,725 file bytes at both subsequent checkpoints.
+
+| Actual call | Return | Additional observation |
+| --- | ---: | --- |
+| psd_get_stats, before | 0 | All seven fields zero; both 16-byte guards intact |
+| pca_context_size | 2,640,344 | Exact expected scalar size |
+| rc_context_size | 2,320 | Exact expected scalar size |
+| psd_source_idle(NULL, NULL) | -1 | Idle rejection as expected |
+| psd_get_stats, after | 0 | All seven fields still zero; guards intact |
+
+Each call preserved errno 7. Child exit and container exit were 0; child stdout/stderr were empty. The container used UID/GID 65534, effective/bounding capabilities 0, NoNewPrivs 1, Seccomp 2, separate PID/network/mount namespaces, read-only root/source/binding mounts and noexec/nosuid/nodev tmpfs. Observed limits were CPU 1, pids 32 and memory 805,306,368 bytes; cgroup peak was 204,419,072 bytes (not an RSS measurement), with zero OOM events. The verified owned container stopped and was removed. The new mapping window is consumed: **one start, remaining 0, no retry or replay**.
+
+Local validation covered all 1,654 cases: 1,647 passed / 7 skipped, using 1,653 normal-sandbox cases plus the existing capacity case on actual spacious /dev/shm. The normal overlay lacked the protected capacity test's 1 GiB floor; a separate unsandboxed full run also exposed inherited global-UID fork exhaustion. Those failure logs remain unchanged; old tests, limits, files and processes were not altered to hide environment failures. Unmodified hosted source CI subsequently passed. The 25 focused tests include real handwritten CPU shared-library mapping/calls, binary failed-start capture and maximum-size carrier regressions; actual Panda/SDK loading occurred only in the qualified hosted window.
+
+Fresh post-run preservation verifies all 6,499 base files and modes, 299 old source pins, 10 retained originals, main, Drafts 102–117, eight old scientific-native workflow histories and all three consumed image histories unchanged. Mapping workflow history contains exactly this one attempt. No explicit GL/render/context/Panda Python/MetaDrive/model/official ORT/cohort work or registry/Cloud/main/shared-base publication occurred. Initializer/finalizer/IFUNC side effects are not exhaustively observed or certified globally GL-free.
+
+This result qualifies selected mappings and five idle C ABI calls. Complete glibc binding/interposition, full object ABI, original GL dispatch, early installation, Texture/GSG allocation, lifetimes/cache, resolver origins, driver freshness, producer/sink delivery, RGB/I420 equality, official ONNX and performance remain unqualified. The scientific-native allowance remains 0. A fresh contract is required before another bounded native test; this activation cannot be reused.
+
+The docs/evidence closeout is retained on Draft PR 118 against unchanged base cf31ca96d36848368364ffff5e3a9005fe49efee. Final exact-head CI, PR body roundtrip, remote preservation and clean-tree checks are recorded after the closeout commit in **output/stage7-panda-sdk-mapping-01/final-verification.json**, avoiding a self-referential commit receipt. All 20 rulings and their costs are preserved in the ledger; no fresh deferred minor findings.
