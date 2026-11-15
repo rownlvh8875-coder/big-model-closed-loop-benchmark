@@ -22,6 +22,8 @@ MAX_FILE_BYTES=512*1024**2
 MAX_JSON_BYTES=4*1024**2
 MAX_METADATA_BYTES=16*1024**2
 CHUNK=1024**2
+MAX_EXTENSION_BYTES=1024**2
+MAX_EXTENSION_RECORD_BYTES=65536
 RENDER_ENV={'LIBGL_ALWAYS_SOFTWARE':'1','PYOPENGL_PLATFORM':'glx','OMP_NUM_THREADS':'2'}
 IMAGE_ENV={'PATH':'/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin',**RENDER_ENV}
 
@@ -72,6 +74,35 @@ def _link(path,target,hard=False):
 def _signature(s):return (s.st_dev,s.st_ino,s.st_size,s.st_mtime_ns,s.st_ctime_ns,s.st_nlink)
 
 
+def tar_bounds():
+    return dict(metadata=MAX_METADATA_BYTES,extensions=MAX_EXTENSION_BYTES,extension_records=1024,headers=MAX_LAYER_MEMBERS)
+
+
+def bounded_tarinfo(bounds,check,file_limit):
+    """Check raw headers BEFORE stdlib consumes hidden extension payloads.
+
+    The same bounds object covers the outer object and all decoded layers.
+    GNU sparse forms are excluded before their internal parsing as well.
+    """
+    class BoundedTarInfo(tarfile.TarInfo):
+        def _reject_sparse(self,*args):
+            raise ValueError('GNU sparse payload/map parsing is unsupported')
+        _proc_gnusparse_00=_reject_sparse
+        _proc_gnusparse_01=_reject_sparse
+        _proc_gnusparse_10=_reject_sparse
+        def _proc_member(self,container):
+            check();bounds['headers']-=1;_need(bounds['headers']>=0)
+            _need(0<=self.size<=file_limit)
+            if self.type in (tarfile.XHDTYPE,tarfile.XGLTYPE,tarfile.SOLARIS_XHDTYPE,tarfile.GNUTYPE_LONGNAME,tarfile.GNUTYPE_LONGLINK):
+                limit=4097 if self.type in (tarfile.GNUTYPE_LONGNAME,tarfile.GNUTYPE_LONGLINK) else MAX_EXTENSION_RECORD_BYTES
+                _need(self.size<=limit);bounds['metadata']-=self.size;bounds['extensions']-=self.size;bounds['extension_records']-=1
+                _need(bounds['metadata']>=0 and bounds['extensions']>=0 and bounds['extension_records']>=0)
+            else:
+                _need(self.type in (tarfile.REGTYPE,tarfile.AREGTYPE,tarfile.CONTTYPE,tarfile.DIRTYPE,tarfile.SYMTYPE,tarfile.LNKTYPE))
+            return super()._proc_member(container)
+    return BoundedTarInfo
+
+
 class _LayerReader:
     def __init__(self,stream,budget,check):
         self.stream=stream;self.budget=budget;self.check=check;self.pending=stream.read(2);self.gzip=self.pending==b'\x1f\x8b';self.decoder=zlib.decompressobj(31) if self.gzip else None;self.done=False;self.nbytes=0;self.hasher=hashlib.sha256();self.tail=b''
@@ -96,9 +127,9 @@ class _LayerReader:
         _need(len(result)<=self.budget[0]);raw=bytes(result);self.budget[0]-=len(raw);self.nbytes+=len(raw);self.hasher.update(raw);self.tail=(self.tail+raw)[-CHUNK:];return raw
 
 
-def _layer(stream,remaining,member_budget,check):
+def _layer(stream,remaining,member_budget,check,bounds):
     reader=_LayerReader(stream,remaining,check);seen=set();last_end=0;regular=0
-    with tarfile.open(fileobj=reader,mode='r|') as archive:
+    with tarfile.open(fileobj=reader,mode='r|',tarinfo=bounded_tarinfo(bounds,check,MAX_FILE_BYTES)) as archive:
         for member in archive:
             check();_need(member_budget[0]>0);member_budget[0]-=1;name=_path(member.name,True);_need(name not in seen);seen.add(name)
             _need(member.isfile() or member.isdir() or member.issym() or member.islnk());_need(0<=member.size<=MAX_FILE_BYTES)
@@ -161,19 +192,20 @@ def inspect_save_archive(path:Path,*,expected_tag:str,deadline:float,environment
             before=os.fstat(stream.fileno());_need(stat.S_ISREG(before.st_mode) and before.st_nlink==1 and 0<before.st_size<=MAX_ARCHIVE_BYTES and before.st_size%512==0)
             full=hashlib.sha256()
             for block in iter(lambda:stream.read(CHUNK),b''):check();full.update(block)
-            stream.seek(0);files={};metadata={};kinds={};metadata_bytes=0;outer_end=0
-            with tarfile.open(fileobj=stream,mode='r:') as outer:
+            stream.seek(0);files={};metadata={};kinds={};bounds=tar_bounds();outer_end=0
+            with tarfile.open(fileobj=stream,mode='r:',tarinfo=bounded_tarinfo(bounds,check,MAX_ARCHIVE_BYTES)) as outer:
                 for member in outer:
                     check();outer_end=member.offset_data+((member.size+511)//512)*512;name=_path(member.name,True);_need(name not in kinds and len(kinds)<1024 and (member.isfile() or member.isdir()));kinds[name]='directory' if member.isdir() else 'file'
                     if member.isdir():_need(member.size==0);continue
                     _need(0<=member.size<=MAX_ARCHIVE_BYTES);hasher=hashlib.sha256();raw=bytearray();keep=name in ('manifest.json','index.json','oci-layout','repositories') or name.endswith('.json') or (name.startswith('blobs/sha256/') and member.size<=MAX_JSON_BYTES)
+                    _need(not keep or member.size<=MAX_JSON_BYTES)
                     with outer.extractfile(member) as payload:
                         count=0
                         for block in iter(lambda:payload.read(CHUNK),b''):
                             check();count+=len(block);hasher.update(block)
                             if keep:raw.extend(block);_need(len(raw)<=MAX_JSON_BYTES)
                     _need(count==member.size);files[name]={'nbytes':count,'sha256':hasher.hexdigest()}
-                    if keep and (not name.startswith('blobs/sha256/') or raw.startswith(b'{')):metadata_bytes+=len(raw);_need(metadata_bytes<=MAX_METADATA_BYTES);metadata[name]=bytes(raw)
+                    if keep and (not name.startswith('blobs/sha256/') or raw.startswith(b'{')):bounds['metadata']-=len(raw);_need(bounds['metadata']>=0);metadata[name]=bytes(raw)
             tail=before.st_size-outer_end;_need(1024<=tail<=CHUNK);stream.seek(outer_end);_need(not any(stream.read(tail)))
             _need('manifest.json' in metadata or 'index.json' in metadata)
             for name in kinds:
@@ -216,11 +248,13 @@ def inspect_save_archive(path:Path,*,expected_tag:str,deadline:float,environment
                 name,sep,v=value.partition('=');_need(sep and name not in environment);environment[name]=v
             _need(environment_profile in ("renderer","base") and environment==(IMAGE_ENV if environment_profile=="renderer" else {"PATH":IMAGE_ENV["PATH"]}))
             stream.seek(0);remaining=[MAX_LAYER_BYTES];member_budget=[MAX_LAYER_MEMBERS];audits={}
-            with tarfile.open(fileobj=stream,mode='r:') as outer:
+            # The outer bytes are read twice, but count their extension metadata
+            # once against the cross-layer total; also bound the replay itself.
+            with tarfile.open(fileobj=stream,mode='r:',tarinfo=bounded_tarinfo(tar_bounds(),check,MAX_ARCHIVE_BYTES)) as outer:
                 for member in outer:
                     check();name=_path(member.name,True)
                     if name not in layers:continue
-                    with outer.extractfile(member) as payload:audits[name]=_layer(payload,remaining,member_budget,check)
+                    with outer.extractfile(member) as payload:audits[name]=_layer(payload,remaining,member_budget,check,bounds)
             _need([audits[p]['diff_id'] for p in layers]==diffids and _signature(os.fstat(stream.fileno()))==_signature(before))
         return {'schema':'engine-clock-save-archive-check-v1','status':'DOCKER_SAVE_STRUCTURE_VERIFIED','image_tar_sha256':full.hexdigest(),'image_tar_nbytes':before.st_size,'config_digest':'sha256:'+files[cp]['sha256'],'rootfs_diff_ids':diffids,'platform':'linux/amd64','archive_layout':layout,'compatibility_metadata_files':compatibility_files,'compatibility_metadata_authoritative':False,'layers':[{'path':p,**files[p],**audits[p]} for p in layers],'decoded_layer_bytes':MAX_LAYER_BYTES-remaining[0],'layer_member_count':MAX_LAYER_MEMBERS-member_budget[0],'config_environment':environment,'native_admission':False,'installed_runtime_verified':False}
     except Exception:raise ValueError('IMAGE_ARCHIVE_REJECTED') from None

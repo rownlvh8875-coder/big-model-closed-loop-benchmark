@@ -65,7 +65,11 @@ class LocalImageBytesTests(unittest.TestCase):
     def test_cpu_child_boundary_filters_endpoint_and_bounds_timeout(self):
         with tempfile.TemporaryDirectory() as t:
             p=Path(t);fake=p/'handwritten-cpu-docker';fake.write_text('#!/usr/bin/python3\nimport os,sys,time\nassert sys.argv[1]=="--host=unix:///var/run/docker.sock"\nassert "DOCKER_HOST" not in os.environ\nassert os.environ["DOCKER_CONFIG"]=="cpu-config-sentinel"\nprint("CPU child only",flush=True)\nif sys.argv[2]=="info":time.sleep(5)\n');fake.chmod(0o755);out=p/'logs';out.mkdir()
-            with patch.object(image,'DOCKER',str(fake)),patch.dict(os.environ,{'DOCKER_HOST':'bad-endpoint','DOCKER_CONFIG':'cpu-config-sentinel'}):
+            # Pin the real handwritten child and its shebang interpreter here.
+            # CI need not possess any production Cloud compiler/Docker bytes.
+            tools={str(x):dict(path=str(x),resolved_path=str(x.resolve()),nbytes=x.resolve().stat().st_size,sha256=hashlib.sha256(x.resolve().read_bytes()).hexdigest()) for x in (fake,Path('/usr/bin/python3'))}
+            profile=dict(tools=tools,link_inputs={},selection_absent=[])
+            with patch.object(image.inputs,'tool_profile',return_value=profile),patch.object(image,'DOCKER',str(fake)),patch.dict(os.environ,{'DOCKER_HOST':'bad-endpoint','DOCKER_CONFIG':'cpu-config-sentinel'}):
                 d=image._Docker(out,time.perf_counter()+5);self.assertEqual(d.call(['version'],1).strip(),'CPU child only')
                 with self.assertRaises(ValueError):d.call(['info'],1)
                 self.assertIn('CPU child only',(out/'docker-1.stdout').read_text())
@@ -75,6 +79,9 @@ class LocalImageBytesTests(unittest.TestCase):
             p=Path(t);b=p/'build';b.mkdir();c=p/'coverage';c.mkdir();out=p/'fresh';(b/'receipt.json').write_text('{}');(c/'coverage.json').write_text('{}')
             with self.assertRaises(ValueError):image.assemble_image(b,c,out)
             self.assertFalse(out.exists())
+    def test_cpu_boundary_works_without_access_to_cloud_tool_profile(self):
+        with patch.object(image.inputs,'tool_profile',side_effect=AssertionError('managed Cloud profile is unavailable')):
+            self.test_cpu_child_boundary_filters_endpoint_and_bounds_timeout()
     def test_legacy_copy_compatibility_metadata_binds_head_container_config(self):
         from tests.test_engine_clock_image_archive import make_save,rawjson,sha,TAG
         self.assertIsNotNone(save_archive,'separate bounded legacy COPY metadata profile required')
@@ -89,4 +96,46 @@ class LocalImageBytesTests(unittest.TestCase):
                     with self.assertRaises(ValueError):save_archive.inspect_save_archive(f,expected_tag=TAG,deadline=time.perf_counter()+5)
                 else:
                     r=save_archive.inspect_save_archive(f,expected_tag=TAG,deadline=time.perf_counter()+5);self.assertEqual(r['compatibility_metadata_files'],2);self.assertFalse(r['native_admission'])
+    @staticmethod
+    def pax(size):
+        body=b'comment='+b'x'*size+b'\n';n=len(body)+2
+        while True:
+            payload=str(n).encode()+b' '+body
+            if len(payload)==n:break
+            n=len(payload)
+        h=tarfile.TarInfo('global-pax');h.type=tarfile.XGLTYPE;h.size=len(payload)
+        return h.tobuf()+payload+b'\0'*((-len(payload))%512)
+    def test_save_outer_and_compressed_layer_reject_valid_oversized_pax(self):
+        from tests.test_engine_clock_image_archive import make_save,tarbytes,TAG
+        prefix=self.pax(17*1024**2)
+        with tempfile.TemporaryDirectory() as t:
+            for layer in (False,True):
+                f,_,_=make_save(Path(t),layout='oci',**({'layers':[prefix+tarbytes([('usr/owned',b'CPU data')])]} if layer else {}))
+                if not layer:f.write_bytes(prefix+f.read_bytes())
+                with self.subTest(layer=layer),self.assertRaises(ValueError):save_archive.inspect_save_archive(f,expected_tag=TAG,deadline=time.perf_counter()+10)
+    def test_save_small_extensions_share_outer_and_layer_aggregate_budget(self):
+        from tests.test_engine_clock_image_archive import make_save,tarbytes,TAG
+        prefix=self.pax(40000)*14
+        with tempfile.TemporaryDirectory() as t:
+            f,_,_=make_save(Path(t),layout='oci',layers=[prefix+tarbytes([('usr/owned',b'CPU data')])]);f.write_bytes(prefix+f.read_bytes())
+            with self.assertRaises(ValueError):save_archive.inspect_save_archive(f,expected_tag=TAG,deadline=time.perf_counter()+10)
+    def test_gnu_extensions_are_bounded_before_internal_parsing(self):
+        calls=[]
+        def forbidden(*args):calls.append(True);raise ValueError('must reject before GNU extension parsing')
+        with tempfile.TemporaryDirectory() as t:
+            f=Path(t)/'long.tar'
+            for kind in (tarfile.GNUTYPE_LONGNAME,tarfile.GNUTYPE_LONGLINK):
+                h=tarfile.TarInfo('long');h.type=kind;h.size=2*1024**2;f.write_bytes(h.tobuf())
+                with patch.object(tarfile.TarInfo,'_proc_gnulong',forbidden),self.assertRaises(ValueError):save_archive.inspect_save_archive(f,expected_tag='cpu:fixture',deadline=time.perf_counter()+5)
+            self.assertEqual(calls,[])
+    def test_pax_sparse_map_parser_is_not_entered(self):
+        from tests.test_engine_clock_image_archive import make_save,TAG
+        data=io.BytesIO();calls=[]
+        with tarfile.open(fileobj=data,mode='w',format=tarfile.PAX_FORMAT) as t:
+            h=tarfile.TarInfo('usr/owned');h.size=512;h.pax_headers={'GNU.sparse.major':'1','GNU.sparse.minor':'0','GNU.sparse.realsize':'0','GNU.sparse.name':'usr/owned'};t.addfile(h,io.BytesIO(b'0\n'+b'\0'*510))
+        def forbidden(*args):calls.append(True);raise ValueError('sparse map parser entered')
+        with tempfile.TemporaryDirectory() as t:
+            f,_,_=make_save(Path(t),layout='oci',layers=[data.getvalue()])
+            with patch.object(tarfile.TarInfo,'_proc_gnusparse_10',forbidden),self.assertRaises(ValueError):save_archive.inspect_save_archive(f,expected_tag=TAG,deadline=time.perf_counter()+5)
+            self.assertEqual(calls,[])
 if __name__=='__main__':unittest.main()

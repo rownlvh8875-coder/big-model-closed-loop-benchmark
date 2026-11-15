@@ -43,7 +43,7 @@ def inspect_export(path,manifest,deadline):
             full=hashlib.sha256()
             for block in iter(lambda:stream.read(1024**2),b''):_check(deadline);full.update(block)
             stream.seek(0);seen=set();rows={};pending={};total=0
-            with tarfile.open(fileobj=_BoundedReader(stream,deadline),mode='r:') as t:
+            with tarfile.open(fileobj=_BoundedReader(stream,deadline),mode='r:',tarinfo=archive.bounded_tarinfo(archive.tar_bounds(),lambda:_check(deadline),4*GiB)) as t:
                 for member in t:
                     _check(deadline)
                     raw=member.name.rstrip('/') if member.isdir() else member.name

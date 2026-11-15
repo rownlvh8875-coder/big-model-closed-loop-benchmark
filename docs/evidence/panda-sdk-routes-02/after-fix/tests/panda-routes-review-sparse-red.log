@@ -1,0 +1,20 @@
+F
+======================================================================
+FAIL: test_pax_sparse_map_parser_is_not_entered (tests.test_panda_sdk_routes_image.LocalImageBytesTests.test_pax_sparse_map_parser_is_not_entered)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes_image.py", line 140, in test_pax_sparse_map_parser_is_not_entered
+    self.assertEqual(calls,[])
+AssertionError: Lists differ: [True] != []
+
+First list contains 1 additional elements.
+First extra element 0:
+True
+
+- [True]
++ []
+
+----------------------------------------------------------------------
+Ran 1 test in 0.005s
+
+FAILED (failures=1)

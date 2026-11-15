@@ -1,0 +1,10 @@
+import sys,unittest,copy
+from unittest.mock import patch
+sys.path.insert(0,'/workspace/big-model-closed-loop-benchmark')
+from scripts import panda_sdk_routes_image as image
+from tests.test_panda_sdk_routes_image import LocalImageBytesTests
+profile=copy.deepcopy(image.inputs.tool_profile())
+profile['tools']['docker'].update(path='/tmp/panda-review-absent-managed-docker',resolved_path='/tmp/panda-review-absent-managed-docker')
+with patch.object(image.inputs,'tool_profile',return_value=profile):
+ result=unittest.TextTestRunner().run(unittest.TestSuite([LocalImageBytesTests('test_cpu_child_boundary_filters_endpoint_and_bounds_timeout')]))
+ print('errors',len(result.errors),'failures',len(result.failures))

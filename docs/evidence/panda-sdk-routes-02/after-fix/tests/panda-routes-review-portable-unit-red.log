@@ -1,0 +1,27 @@
+F
+======================================================================
+FAIL: test_cpu_boundary_works_without_access_to_cloud_tool_profile (tests.test_panda_sdk_routes_image.LocalImageBytesTests.test_cpu_boundary_works_without_access_to_cloud_tool_profile)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes_image.py", line 80, in test_cpu_boundary_works_without_access_to_cloud_tool_profile
+    self.test_cpu_child_boundary_filters_endpoint_and_bounds_timeout()
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes_image.py", line 69, in test_cpu_child_boundary_filters_endpoint_and_bounds_timeout
+    d=image._Docker(out,time.perf_counter()+5);self.assertEqual(d.call(['version'],1).strip(),'CPU child only')
+                                                                ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/scripts/panda_sdk_routes_image.py", line 102, in call
+    inputs.verify_tool_files(inputs.tool_profile());prefix=self.out/('docker-'+str(len(self.records)));stdout=prefix.with_suffix('.stdout');stderr=prefix.with_suffix('.stderr');command=[DOCKER,ENDPOINT,*args];start=time.perf_counter()
+                             ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.cloud-tools/python/cpython-3.11.17-linux-x86_64-gnu/lib/python3.11/unittest/mock.py", line 1124, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.cloud-tools/python/cpython-3.11.17-linux-x86_64-gnu/lib/python3.11/unittest/mock.py", line 1128, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.cloud-tools/python/cpython-3.11.17-linux-x86_64-gnu/lib/python3.11/unittest/mock.py", line 1183, in _execute_mock_call
+    raise effect
+AssertionError: managed Cloud profile is unavailable
+
+----------------------------------------------------------------------
+Ran 1 test in 0.003s
+
+FAILED (failures=1)
