@@ -1,7 +1,7 @@
 {
   "schema": "panda-sdk-image-auth-selection-v1",
   "base_sha": "16c690c0bfc586acf089ff15cb95431eb1412ca8",
-  "status": "FAILED_REQUEST01_PRESERVED_FRESH_REQUEST02_PENDING",
+  "status": "AUTHENTICATED_NEW_ACTIONS_SDK_IMAGE_NATIVE_BLOCKED",
   "source_closure_count": 222,
   "source_sha256": {
     "scripts/panda_sdk_image_auth.py": "52025889ea0ce8f23c26dbc9beae1d4beeb54f447e45311ea122f8ecf5316e9f",
@@ -22,7 +22,7 @@
     "skipped": 7,
     "seconds": 136.398
   },
-  "production_runs": 1,
+  "production_runs": 2,
   "native_admitted": false,
   "containers_started": 0,
   "stage7_complete": false,
@@ -48,5 +48,28 @@
   "failed_workflow_id": 418960796,
   "failed_activation_sha": "61d5b50e6191d4726053f7301cf2cfd80d849ec2",
   "active_request_id": "panda-sdk-image-20261115-02",
-  "active_workflow": ".github/workflows/panda-sdk-image-production-v2.yml"
+  "active_workflow": ".github/workflows/panda-sdk-image-production-v2.yml",
+  "checked_at_kst": "2026-11-15T17:09:56.756626+09:00",
+  "reviewed_execution_source_sha": "31ca11735c0e285226eea1cd4adc398f1e78400d",
+  "activation_sha": "e6a0e704ddb4e2eb1e69867025faad71128834d2",
+  "producer_run_id": 43692735327,
+  "producer_workflow_id": 418969946,
+  "producer_artifact_id": 14153341034,
+  "producer_artifact_zip_sha256": "dba3c26da5ad6f00b107b0cead1d9070faa51241681c4b64c0881052d316c147",
+  "image_sha256": "02768f675a28da4c993a91350fa3ccd70f5f180b9d599aa3b488115e709f2aa5",
+  "image_nbytes": 1727684608,
+  "image_config_digest": "sha256:6945591ad1c59d6eaae6abda9d1c7ccb7fd0e20aff6482a126d0f1b2f3bf1029",
+  "installed_entries": 44232,
+  "sdk_sha256": "3e9fa983023cb1f30b08a2bc650d0803686bef032a2c5d7a5700e1d3ad60553b",
+  "sdk_nbytes": 998200,
+  "candidate_sdk_installed": true,
+  "actions_output_origin_authenticated": true,
+  "successful_production_runs": 1,
+  "failed_production_runs": 1,
+  "new_native_runs": 0,
+  "official_model_calls": 0,
+  "independent_local_export": false,
+  "inherited_strict_result": "0/4 FAIL",
+  "image_path": "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-image-auth-01/acceptance/candidate/image.tar",
+  "zip_path": "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-image-auth-01/acceptance/image.zip"
 }

@@ -34,7 +34,7 @@ Base16c690c0bfc586acf089ff15cb95431eb1412ca8;5798basefiles/299pins/10originals/m
 ### Task3: Review, actual one-use production and final closeout
 **Create:** docs/STAGE7_PANDA_SDK_IMAGE_AUTH_{RESULT,LEDGER,CONTINUATION}.md;docs/evidence/panda-sdk-image-auth-01/;new activation request on separate branch only.
 - [x] Sole fresh most-capable wholebranch review, regrade,ONE Important/Critical TDDfixpass/fullsuite; ledger all rulings/minors, no rereview.
-- [ ] OwnDraft/sourceCI exact source gates; new request-only activation; actual bounded producer attempt1; external run/artifact download/SDK/layer/inventory acceptance; retain all APIs/bytes/failures,never native.
-- [ ] Commit final evidence/docs; ownDraft exact finalHEAD CI4jobs/attempt1/artifacts0/body/fresh preservation/finalreceipt; cleanup own scratch only. Report actual producer and remaining runtime/scientific gates.
+- [x] OwnDraft/sourceCI exact source gates; new request-only activation; actual bounded producer attempt1; external run/artifact download/SDK/layer/inventory acceptance; retain all APIs/bytes/failures,never native.
+- [x] Commit final evidence/docs; ownDraft exact finalHEAD CI4jobs/attempt1/artifacts0/body/fresh preservation/finalreceipt; cleanup own scratch only. Report actual producer and remaining runtime/scientific gates.
 
 Task3 integration continuation: request01 consumedFAILED on Docker28 docker_version compatibility metadata; add versioned parser and2RED→GREEN metadata regressions,run fullsuite,new sourceCI then freshrequest02/workflowv2. Preserve oldsourceCI/activation/artifacts/firstfailure. Never rerun01 or promote its failed receipt. Runtime/nativelimits unchanged.
