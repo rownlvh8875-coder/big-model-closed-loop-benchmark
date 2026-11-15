@@ -30,8 +30,8 @@ Preserve4951basefiles/299pins/10originals/main/Drafts102–113/8nativehistories.
 
 **Create:** scripts/panda_sdk_routes_stage.py; scripts/build_panda_sdk_routes.py; scripts/panda_sdk_routes_inputs.py;tests/test_panda_sdk_routes_build.py.
 **Interfaces:** stage(upstream,out)->manifest;verify_stage(out)->manifest;build(stage,sysroot,out,threads=4)->receipt;parse_dependencies(bytes)->paths;capture_host_inputs()->map;qualify_dependencies(files,roots,pins)->closure.
-- [ ] RED source/pin/tree drift, dependency escape/missing/mutation, ambient RPM/header injection and existing-output/budget rejection using real CPU fixtures.
-- [ ] Implement fresh stager with old manifest retained/upstream reconstruction; controlled-MD build, compiler child/selection and used header/source/generated/private closure; actual build/static inspection, record/commit.
+- [x] RED source/pin/tree drift, dependency escape/missing/mutation, ambient RPM/header injection and existing-output/budget rejection using real CPU fixtures.
+- [x] Implement fresh stager with old manifest retained/upstream reconstruction; controlled-MD build, compiler child/selection and used header/source/generated/private closure; actual build/static inspection, record/commit.
 
 ### Task3: Explicit name and computed resolver closure
 
