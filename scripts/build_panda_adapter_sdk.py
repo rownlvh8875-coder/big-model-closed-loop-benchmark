@@ -97,7 +97,8 @@ def interface_data(symbols,dynamic):
         f=line.split()
         if len(f)>=8 and f[3]=='FUNC' and f[4]=='GLOBAL' and f[5]=='DEFAULT' and f[6]!='UND' and int(f[2])>0:definitions[f[7]]=dict(value=int(f[1],16),nbytes=int(f[2]))
     need(all(name in definitions for name in API),'required same-image API missing/undefined')
-    states={(int(f[1],16),int(f[2])) for line in symbols.splitlines() if len(f:=line.split())>=8 and f[3]=='OBJECT' and f[6]!='UND' and f[7]=='_ZN12_GLOBAL__N_11SE'}
+    # Toolchains emit either spelling for the same anonymous-namespace S.
+    states={(int(f[1],16),int(f[2])) for line in symbols.splitlines() if len(f:=line.split())>=8 and f[3]=='OBJECT' and f[6]!='UND' and f[7] in ('_ZN12_GLOBAL__N_11SE','_ZN12_GLOBAL__N_1L1SE')}
     objects=[line.strip() for line in symbols.splitlines() if len(f:=line.split())>=8 and f[3]=='OBJECT']
     need(len(states)==1,'exactly one source state object required; observed objects: '+repr(objects))
     return dict(required_exports={name:definitions[name] for name in API},same_image_interfaces_verified=True,source_state_instances=len(states),runtime_binding_qualified=False,native_admitted=False)

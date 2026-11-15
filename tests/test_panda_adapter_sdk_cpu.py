@@ -62,6 +62,16 @@ class AdapterSdkCpuTests(unittest.TestCase):
         bad=self.out/'bad.so';bad.write_bytes(Path(self.profile['library']).read_bytes().replace(b'psd_source_idle\0',b'psd_source_fail\0'))
         dest=self.out/'bad-inspect';dest.mkdir()
         with self.assertRaises(ValueError):sdk.inspect_exports(bad,dest)
+    def test_internal_linkage_spellings_keep_exactly_one_storage_check(self):
+        original=Path(self.profile['library']);legacy='_ZN12_GLOBAL__N_11SE';internal='_ZN12_GLOBAL__N_1L1SE'
+        variant=self.out/'internal-linkage.so'
+        subprocess.run(['/usr/bin/objcopy','--redefine-sym',legacy+'='+internal,str(original),str(variant)],check=True,capture_output=True,timeout=10)
+        dest=self.out/'variant-inspect';dest.mkdir();r=sdk.inspect_exports(variant,dest)
+        self.assertEqual(r['source_state_instances'],1)
+        duplicate=self.out/'duplicate-state.so'
+        subprocess.run(['/usr/bin/objcopy','--add-symbol',internal+'=.bss:0,local,object',str(original),str(duplicate)],check=True,capture_output=True,timeout=10)
+        dest=self.out/'duplicate-inspect';dest.mkdir()
+        with self.assertRaisesRegex(ValueError,'exactly one source state'):sdk.inspect_exports(duplicate,dest)
     def test_old_runtime_without_activity_fails_actual_strict_link(self):
         command=['/usr/bin/g++','-std=c++11','-shared','-fPIC','-pthread','-I',str(ROOT/'native'),str(ROOT/'native/panda_source_dispatch.cxx'),str(ROOT/'native/panda_cache_adapter.cxx'),str(self.out/'normal/cache.o'),'-Wl,-z,defs','-o',str(self.out/'old-runtime.so')]
         p=subprocess.run(command,capture_output=True,text=True,timeout=30,env=cpu.cpu_environment());self.assertNotEqual(p.returncode,0);self.assertIn('psd_source_idle',p.stderr)
