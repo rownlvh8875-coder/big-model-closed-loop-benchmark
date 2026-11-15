@@ -1,0 +1,9 @@
+# SDK integrated dispatch canary ledger
+Base1a307f4/6671files, same connected Cloud/spec1/unrestricted; AGENTS absent at root/workspace/repo. In-place inline/noquestions/ownDraft preferences persist. Mapping01 passed and consumed; scientific0/strict0of4FAIL/Stage7INCOMPLETE.
+Ruling: Choose typed CPU-original callbacks through real installed SDK before real GPU dispatch — isolates integrated SDK source/adapter/cache ABI from driver/window/Panda object uncertainty — cost: real GLX contexts/Texture/GSG/object ABI and GPU delivery remain unqualified.
+Ruling: Permit one exact source/build-bound probe.so in addition to image files — avoids executable anonymous ctypes callback trampolines and global loader interposition — cost: first-party probe is explicitly outside immutable image inventory, compiler/output provenance must be independently retained.
+Ruling: Qualify a NEW dispatch-only windowmax1 after review/sourceCI/newactivation — latest next-step request and broad development authorization support the bounded test; old allowances remain consumed — cost: initializers and selected integrated ABI calls execute; no scientific admission.
+Ruling: Version the previous engines in new files and preserve old bytes — consumed request code remains reviewable and immutable — cost: duplicated boundary logic requires its own tests and wholebranch review.
+Ruling: Continue documented two-context local capacity matrix and canonical hosted fullsuite — preserve large originals rather than alter tests or fake disk facts — cost: local verification has two contexts; hosted unmodified suite is mandatory.
+Pre-flight T1→T2: exact compiled probe bytes/profile plus typed report are consumed by parent fulltext verifier; extra executable is source-bound, never image-origin evidence.
+Pre-flight T2→T3: fresh closed policy/context/process observations must bind actual producer build bytes and API lineage; packet semantics alone cannot grant origin/native admission.
