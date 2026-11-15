@@ -1,0 +1,63 @@
+{
+  "schema": "panda-adapter-sdk-ci-portability-fix-v1",
+  "checked_at_kst": "2026-11-15T13:02:14.185985+09:00",
+  "implementation_commit": "faeadbbc6537826dfdb4bb3bea6132fc6a7e2fa7",
+  "failed_runs": [
+    {
+      "id": 43673439590,
+      "head": "d0210ea6ebda22363e9caf8a6c8260854f8fd0fe",
+      "event": "push",
+      "conclusion": "failure",
+      "attempt": 1,
+      "artifacts": 0
+    },
+    {
+      "id": 43673443536,
+      "head": "d0210ea6ebda22363e9caf8a6c8260854f8fd0fe",
+      "event": "pull_request",
+      "conclusion": "failure",
+      "attempt": 1,
+      "artifacts": 0
+    },
+    {
+      "id": 43674205610,
+      "head": "9f262f660c527239e2790477f509267fa54eeb68",
+      "event": "push",
+      "conclusion": "failure",
+      "attempt": 1,
+      "artifacts": 0
+    },
+    {
+      "id": 43674208974,
+      "head": "9f262f660c527239e2790477f509267fa54eeb68",
+      "event": "pull_request",
+      "conclusion": "failure",
+      "attempt": 1,
+      "artifacts": 0
+    }
+  ],
+  "cause": "Local image uses _ZN12_GLOBAL__N_11SE; CI image uses _ZN12_GLOBAL__N_1L1SE. Both demangle to (anonymous namespace)::S. Hardcoded one spelling rejected otherwise valid CPU image.",
+  "fix": "Accept only these two spellings while retaining exactly one distinct (address,size) storage. Missing activity and two-state variants continue to reject.",
+  "tdd_red": true,
+  "focused": {
+    "total": 18,
+    "passed": 18,
+    "skipped": 0,
+    "seconds": 5.849
+  },
+  "full": {
+    "total": 1503,
+    "passed": 1496,
+    "skipped": 7,
+    "seconds": 122.832
+  },
+  "cpu_executions": 102,
+  "sdk_build_implementation_commit": "326171e5d23e69344462360c3d4da464ad562a87",
+  "candidate_sha256": "aa7e14e71f98b083faa60536ecf6b0a05e3996b4771d38e4a2ccfd43c0903088",
+  "sdk_rebuilt": false,
+  "read_only_static_audit": true,
+  "native_admitted": false,
+  "new_native_runs": 0,
+  "stage7_complete": false,
+  "no_rereview": true
+}

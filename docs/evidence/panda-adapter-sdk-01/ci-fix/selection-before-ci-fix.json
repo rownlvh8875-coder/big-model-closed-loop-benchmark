@@ -1,0 +1,52 @@
+{
+  "schema": "panda-adapter-sdk-final-selection-v1",
+  "checked_at_kst": "2026-11-15T12:39:07.844845+09:00",
+  "implementation_commit": "326171e5d23e69344462360c3d4da464ad562a87",
+  "source_sha256": {
+    "scripts/panda_adapter_sdk_stage.py": "7576ca19420b3c703f61a4a4711460f31224d43e6d60e908e8add5937e680623",
+    "scripts/build_panda_adapter_sdk.py": "1e1ef2f451a7eb94d3779a431b8dddc4eef92db7c022eac14b249c47e5656321",
+    "tests/test_panda_adapter_sdk_stage.py": "8be3187be651d3995875bed37d35533e373f14b027451af149f4a03880f8a5dd",
+    "tests/test_panda_adapter_sdk_build.py": "de212e8b12bc6936c61dd09a08f29fc3eb85382d95853264c69d7336dd492703",
+    "tests/test_panda_adapter_sdk_cpu.py": "416359cdc6195bda420321b6d14c5b90e78f6a94c62735f049172c67a8073abf"
+  },
+  "actual_build_receipt": "docs/evidence/panda-adapter-sdk-01/after-fix/build/receipt.json",
+  "candidate_sha256": "aa7e14e71f98b083faa60536ecf6b0a05e3996b4771d38e4a2ccfd43c0903088",
+  "candidate_nbytes": 996656,
+  "candidate_library": "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-adapter-sdk-01/build-final/sdk/lib/libpandagl.so",
+  "build_wall_seconds": 144.72261554799843,
+  "source_manifest_sha256": "0725f7135392fb7ee26d2262936c7895d91016487b518a65eeeb658fe4bbd913",
+  "source_files": 7289,
+  "sysroot_records": 665,
+  "sdk_output_records": 2680,
+  "same_image_api_count": 33,
+  "source_state_instances": 1,
+  "source_stage": "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-adapter-sdk-01/source",
+  "focused": {
+    "total": 17,
+    "passed": 17,
+    "seconds": 5.591
+  },
+  "full": {
+    "total": 1502,
+    "passed": 1495,
+    "skipped": 7,
+    "seconds": 185.342
+  },
+  "cpu_executions": 102,
+  "review": {
+    "head": "c6ba3c14ced036db4b65d32046b8f57a9087ed63",
+    "critical": 0,
+    "important": 1,
+    "fixed": 1,
+    "minor": 0,
+    "fix_passes": 1,
+    "rereviews": 0,
+    "declined_rulings": 7
+  },
+  "adapter_static_link_verified": true,
+  "runtime_binding_qualified": false,
+  "real_panda_loaded": false,
+  "native_admitted": false,
+  "stage7_complete": false,
+  "new_native_runs": 0
+}

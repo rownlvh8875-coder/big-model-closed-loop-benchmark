@@ -1,0 +1,37 @@
+{
+  "schema": "panda-adapter-sdk-selection-v1",
+  "implementation_commit": "7e094b40d0d1968e8887da97d285b7818f03fdbf",
+  "source_sha256": {
+    "scripts/panda_adapter_sdk_stage.py": "7576ca19420b3c703f61a4a4711460f31224d43e6d60e908e8add5937e680623",
+    "scripts/build_panda_adapter_sdk.py": "9b84d9ebc4bf72268713bc38cb08e572dc46c83b981502c4cd7d3bcce7c0e015",
+    "tests/test_panda_adapter_sdk_stage.py": "8be3187be651d3995875bed37d35533e373f14b027451af149f4a03880f8a5dd",
+    "tests/test_panda_adapter_sdk_build.py": "83136d054935eb0ce8914e0ec5080a329fb8104a32d02cf80a5fbbded1f10cc5",
+    "tests/test_panda_adapter_sdk_cpu.py": "416359cdc6195bda420321b6d14c5b90e78f6a94c62735f049172c67a8073abf"
+  },
+  "candidate_sha256": "66f2f401ff921a965944bde5bdeb719cdc964e95a6889e40971088101b1a8848",
+  "candidate_nbytes": 996656,
+  "build_wall_seconds": 150.72006438099925,
+  "source_files": 7289,
+  "source_manifest_sha256": "0725f7135392fb7ee26d2262936c7895d91016487b518a65eeeb658fe4bbd913",
+  "sdk_output_records": 2680,
+  "private_sysroot_records": 665,
+  "required_exports": 33,
+  "source_state_instances": 1,
+  "cpu_executions": 102,
+  "focused": {
+    "total": 16,
+    "passed": 16,
+    "seconds": 5.711
+  },
+  "full": {
+    "total": 1501,
+    "passed": 1494,
+    "skipped": 7,
+    "seconds": 179.926
+  },
+  "adapter_static_link_verified": true,
+  "real_panda_loaded": false,
+  "runtime_binding_qualified": false,
+  "native_admitted": false,
+  "stage7_complete": false
+}

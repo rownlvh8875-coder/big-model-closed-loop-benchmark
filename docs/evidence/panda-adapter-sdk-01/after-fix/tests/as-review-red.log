@@ -1,0 +1,23 @@
+FF
+======================================================================
+FAIL: test_rpm_flags_cannot_inject_external_header_in_c_or_cxx (tests.test_panda_adapter_sdk_build.AdapterSdkBuildTests.test_rpm_flags_cannot_inject_external_header_in_c_or_cxx) (language='c')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_adapter_sdk_build.py", line 57, in test_rpm_flags_cannot_inject_external_header_in_c_or_cxx
+    with self.subTest(language=suffix):self.assertNotIn('unpinned_external_definition',symbols);self.assertIn('owned_definition',symbols)
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'unpinned_external_definition' unexpectedly found in "\nSymbol table '.symtab' contains 4 entries:\n   Num:    Value          Size Type    Bind   Vis      Ndx Name\n     0: 0000000000000000     0 NOTYPE  LOCAL  DEFAULT  UND \n     1: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS input.c\n     2: 0000000000000000     4 OBJECT  GLOBAL DEFAULT    2 unpinned_external_definition\n     3: 0000000000000004     4 OBJECT  GLOBAL DEFAULT    2 owned_definition\n"
+
+======================================================================
+FAIL: test_rpm_flags_cannot_inject_external_header_in_c_or_cxx (tests.test_panda_adapter_sdk_build.AdapterSdkBuildTests.test_rpm_flags_cannot_inject_external_header_in_c_or_cxx) (language='cxx')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_adapter_sdk_build.py", line 57, in test_rpm_flags_cannot_inject_external_header_in_c_or_cxx
+    with self.subTest(language=suffix):self.assertNotIn('unpinned_external_definition',symbols);self.assertIn('owned_definition',symbols)
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'unpinned_external_definition' unexpectedly found in "\nSymbol table '.symtab' contains 4 entries:\n   Num:    Value          Size Type    Bind   Vis      Ndx Name\n     0: 0000000000000000     0 NOTYPE  LOCAL  DEFAULT  UND \n     1: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS input.cxx\n     2: 0000000000000000     4 OBJECT  GLOBAL DEFAULT    2 unpinned_external_definition\n     3: 0000000000000004     4 OBJECT  GLOBAL DEFAULT    2 owned_definition\n"
+
+----------------------------------------------------------------------
+Ran 1 test in 0.050s
+
+FAILED (failures=2)

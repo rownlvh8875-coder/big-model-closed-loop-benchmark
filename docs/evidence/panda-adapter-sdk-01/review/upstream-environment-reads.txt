@@ -1,0 +1,63 @@
+output/stage7-panda-source-dispatch-01/upstream/makepanda/makepandacore.py:490:        return os.environ.get('CC', TOOLCHAIN_PREFIX + 'clang')
+output/stage7-panda-source-dispatch-01/upstream/makepanda/makepandacore.py:492:        return os.environ.get('CC', TOOLCHAIN_PREFIX + 'gcc')
+output/stage7-panda-source-dispatch-01/upstream/makepanda/makepandacore.py:496:        return os.environ.get('CXX', TOOLCHAIN_PREFIX + 'clang++')
+output/stage7-panda-source-dispatch-01/upstream/makepanda/makepandacore.py:498:        return os.environ.get('CXX', TOOLCHAIN_PREFIX + 'g++')
+output/stage7-panda-source-dispatch-01/upstream/makepanda/makepandacore.py:588:    if "PATH" not in os.environ or os.environ["PATH"] == "":
+output/stage7-panda-source-dispatch-01/upstream/makepanda/makepandacore.py:591:        p = os.environ["PATH"]
+output/stage7-panda-source-dispatch-01/upstream/makepanda/makepandacore.py:1087:    if ("PROGRAMFILES" in os.environ):
+output/stage7-panda-source-dispatch-01/upstream/makepanda/makepandacore.py:1088:        return os.environ["PROGRAMFILES"]
+output/stage7-panda-source-dispatch-01/upstream/makepanda/makepandacore.py:1098:    if ("ProgramFiles(x86)" in os.environ):
+output/stage7-panda-source-dispatch-01/upstream/makepanda/makepandacore.py:1099:        return os.environ["ProgramFiles(x86)"]
+output/stage7-panda-source-dispatch-01/upstream/makepanda/makepandacore.py:1319:    if "MAKEPANDA_THIRDPARTY" in os.environ:
+output/stage7-panda-source-dispatch-01/upstream/makepanda/makepandacore.py:1320:        THIRDPARTYBASE = os.environ["MAKEPANDA_THIRDPARTY"]
+output/stage7-panda-source-dispatch-01/upstream/makepanda/makepandacore.py:1961:    if "MAKEPANDA_SDKS" in os.environ:
+output/stage7-panda-source-dispatch-01/upstream/makepanda/makepandacore.py:1962:        sdkbase = os.environ["MAKEPANDA_SDKS"]
+output/stage7-panda-source-dispatch-01/upstream/makepanda/makepandacore.py:2218:        os.environ["PYTHONHOME"] = SDK["PYTHON"]
+output/stage7-panda-source-dispatch-01/upstream/makepanda/makepandacore.py:2358:    elif "VCINSTALLDIR" in os.environ:
+output/stage7-panda-source-dispatch-01/upstream/makepanda/makepandacore.py:2359:        vcdir = os.environ["VCINSTALLDIR"]
+output/stage7-panda-source-dispatch-01/upstream/makepanda/makepandacore.py:2613:        prefix = os.environ.get("PREFIX", "/data/data/com.termux/files/usr")
+output/stage7-panda-source-dispatch-01/upstream/makepanda/makepandacore.py:2618:    sdk_root = os.environ.get('ANDROID_HOME')
+output/stage7-panda-source-dispatch-01/upstream/makepanda/makepandacore.py:2620:        sdk_root = os.environ.get('ANDROID_SDK_ROOT')
+output/stage7-panda-source-dispatch-01/upstream/makepanda/makepandacore.py:2632:    if os.environ.get('NDK_ROOT') or os.environ.get('ANDROID_NDK_ROOT'):
+output/stage7-panda-source-dispatch-01/upstream/makepanda/makepandacore.py:2634:        ndk_root = os.environ.get('ANDROID_NDK_ROOT')
+output/stage7-panda-source-dispatch-01/upstream/makepanda/makepandacore.py:2636:            ndk_root = os.environ.get('NDK_ROOT')
+output/stage7-panda-source-dispatch-01/upstream/makepanda/makepandacore.py:2723:        jdk_home = os.environ.get("JDK_HOME") or os.environ.get("JAVA_HOME")
+output/stage7-panda-source-dispatch-01/upstream/makepanda/makepandacore.py:2800:    if path in os.environ:
+output/stage7-panda-source-dispatch-01/upstream/makepanda/makepandacore.py:2803:            os.environ[path] = add + ';' + os.environ[path]
+output/stage7-panda-source-dispatch-01/upstream/makepanda/makepandacore.py:2805:            os.environ[path] = add + os.pathsep + os.environ[path]
+output/stage7-panda-source-dispatch-01/upstream/makepanda/makepandacore.py:2807:        os.environ[path] = add
+output/stage7-panda-source-dispatch-01/upstream/makepanda/makepandacore.py:2826:    os.environ["VCINSTALLDIR"] = SDK["VISUALSTUDIO"] + vcdir_suffix
+output/stage7-panda-source-dispatch-01/upstream/makepanda/makepandacore.py:2827:    os.environ["WindowsSdkDir"] = SDK["MSPLATFORM"]
+output/stage7-panda-source-dispatch-01/upstream/makepanda/makepandacore.py:2863:    AddToPathEnv("INCLUDE", os.environ["VCINSTALLDIR"] + "include")
+output/stage7-panda-source-dispatch-01/upstream/makepanda/makepandacore.py:2864:    AddToPathEnv("INCLUDE", os.environ["VCINSTALLDIR"] + "atlmfc\\include")
+output/stage7-panda-source-dispatch-01/upstream/makepanda/makepandacore.py:2865:    AddToPathEnv("LIB",     os.environ["VCINSTALLDIR"] + "lib\\" + libdir)
+output/stage7-panda-source-dispatch-01/upstream/makepanda/makepandacore.py:2866:    AddToPathEnv("LIB",     os.environ["VCINSTALLDIR"] + "atlmfc\\lib\\" + libdir)
+output/stage7-panda-source-dispatch-01/upstream/makepanda/makepandacore.py:3002:    os.environ["LC_ALL"] = "en_US.UTF-8"
+output/stage7-panda-source-dispatch-01/upstream/makepanda/makepandacore.py:3003:    os.environ["LANGUAGE"] = "en"
+output/stage7-panda-source-dispatch-01/upstream/makepanda/makepandacore.py:3014:            os.environ["JAVA_HOME"] = SDK["JDK"]
+output/stage7-panda-source-dispatch-01/upstream/makepanda/makepandacore.py:3151:        ldpath = os.environ.get("LD_LIBRARY_PATH", "").split(os.pathsep)
+output/stage7-panda-source-dispatch-01/upstream/makepanda/makepandacore.py:3153:            dyldpath = os.environ.get("DYLD_LIBRARY_PATH", "").split(os.pathsep)
+output/stage7-panda-source-dispatch-01/upstream/makepanda/makepandacore.py:3169:        os.environ["LD_LIBRARY_PATH"] = os.pathsep.join(ldpath)
+output/stage7-panda-source-dispatch-01/upstream/makepanda/makepandacore.py:3173:            os.environ["DYLD_LIBRARY_PATH"] = os.pathsep.join(dyldpath)
+output/stage7-panda-source-dispatch-01/upstream/makepanda/makepandacore.py:3177:            os.environ["PATH"] = os.path.join(builtdir, 'lib') + ':' + os.environ.get("PATH", "")
+output/stage7-panda-source-dispatch-01/upstream/makepanda/makepandacore.py:3181:            os.environ["LD_LIBRARY_PATH"] += os.pathsep + "/usr/PCBSD/local/lib"
+output/stage7-panda-source-dispatch-01/upstream/makepanda/makepanda.py:78:if "MACOSX_DEPLOYMENT_TARGET" in os.environ:
+output/stage7-panda-source-dispatch-01/upstream/makepanda/makepanda.py:79:    OSXTARGET=os.environ["MACOSX_DEPLOYMENT_TARGET"]
+output/stage7-panda-source-dispatch-01/upstream/makepanda/makepanda.py:392:if ("CFLAGS" in os.environ):
+output/stage7-panda-source-dispatch-01/upstream/makepanda/makepanda.py:393:    CFLAGS = os.environ["CFLAGS"].strip()
+output/stage7-panda-source-dispatch-01/upstream/makepanda/makepanda.py:395:if ("CXXFLAGS" in os.environ):
+output/stage7-panda-source-dispatch-01/upstream/makepanda/makepanda.py:396:    CXXFLAGS = os.environ["CXXFLAGS"].strip()
+output/stage7-panda-source-dispatch-01/upstream/makepanda/makepanda.py:398:if ("RPM_OPT_FLAGS" in os.environ):
+output/stage7-panda-source-dispatch-01/upstream/makepanda/makepanda.py:399:    CFLAGS += " " + os.environ["RPM_OPT_FLAGS"].strip()
+output/stage7-panda-source-dispatch-01/upstream/makepanda/makepanda.py:400:    CXXFLAGS += " " + os.environ["RPM_OPT_FLAGS"].strip()
+output/stage7-panda-source-dispatch-01/upstream/makepanda/makepanda.py:402:if ("LDFLAGS" in os.environ):
+output/stage7-panda-source-dispatch-01/upstream/makepanda/makepanda.py:403:    LDFLAGS = os.environ["LDFLAGS"].strip()
+output/stage7-panda-source-dispatch-01/upstream/makepanda/makepanda.py:405:os.environ["MAKEPANDA"] = os.path.abspath(sys.argv[0])
+output/stage7-panda-source-dispatch-01/upstream/makepanda/makepanda.py:407:    os.environ["MACOSX_DEPLOYMENT_TARGET"] = "%d.%d" % OSXTARGET
+output/stage7-panda-source-dispatch-01/upstream/makepanda/makepanda.py:2333:        os.environ["LINK_PYTHON_STATIC"] = "1"
+output/stage7-panda-source-dispatch-01/upstream/makepanda/makepanda.py:2335:    if ("LINK_PYTHON_STATIC" in os.environ):
+output/stage7-panda-source-dispatch-01/upstream/makepanda/makepanda.py:2336:        del os.environ["LINK_PYTHON_STATIC"]
+output/stage7-panda-source-dispatch-01/upstream/makepanda/makepanda.py:3071:    source_date = os.environ.get("SOURCE_DATE_EPOCH")
+output/stage7-panda-source-dispatch-01/upstream/makepanda/makepanda.py:3164:        elif not os.environ.get('PATH'):
+output/stage7-panda-source-dispatch-01/upstream/makepanda/makepanda.py:3165:            os.environ['PATH'] = bindir
+output/stage7-panda-source-dispatch-01/upstream/makepanda/makepanda.py:3167:            os.environ['PATH'] = bindir + os.pathsep + os.environ['PATH']

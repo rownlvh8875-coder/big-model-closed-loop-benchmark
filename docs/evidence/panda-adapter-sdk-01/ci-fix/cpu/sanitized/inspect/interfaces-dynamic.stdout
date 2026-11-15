@@ -1,0 +1,80 @@
+
+Symbol table '.dynsym' contains 77 entries:
+   Num:    Value          Size Type    Bind   Vis      Ndx Name
+     0: 0000000000000000     0 NOTYPE  LOCAL  DEFAULT  UND 
+     1: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __asan_report_store4
+     2: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __errno_location@GLIBC_2.2.5 (2)
+     3: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __ubsan_handle_type_mismatch_v1_abort
+     4: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND strlen
+     5: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __asan_register_globals
+     6: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __asan_report_load_n
+     7: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __asan_stack_malloc_0
+     8: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __asan_poison_stack_memory
+     9: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __ubsan_handle_nonnull_arg_abort
+    10: 0000000000000000     0 FUNC    WEAK   DEFAULT  UND __cxa_finalize@GLIBC_2.2.5 (2)
+    11: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __asan_report_store16
+    12: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __asan_stack_malloc_1
+    13: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __asan_report_load4
+    14: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND strcmp
+    15: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND memset
+    16: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND pthread_self@GLIBC_2.2.5 (2)
+    17: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND memchr
+    18: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __asan_report_store8
+    19: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __asan_report_load2
+    20: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __asan_unregister_globals
+    21: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __asan_handle_no_return
+    22: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __asan_init
+    23: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __asan_stack_malloc_4
+    24: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __asan_report_load1
+    25: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __asan_report_store1
+    26: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND memcpy
+    27: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __asan_report_load8
+    28: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __asan_stack_malloc_2
+    29: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __gxx_personality_v0@CXXABI_1.3 (3)
+    30: 0000000000000000     0 OBJECT  GLOBAL DEFAULT  UND __asan_option_detect_stack_use_after_return
+    31: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __asan_version_mismatch_check_v8
+    32: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __ubsan_handle_out_of_bounds_abort
+    33: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND strncmp
+    34: 0000000000000000     0 NOTYPE  WEAK   DEFAULT  UND _ITM_deregisterTMCloneTable
+    35: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND _Unwind_Resume@GCC_3.0 (4)
+    36: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __asan_report_store_n
+    37: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __ubsan_handle_add_overflow_abort
+    38: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __asan_stack_malloc_3
+    39: 0000000000000000     0 NOTYPE  WEAK   DEFAULT  UND __gmon_start__
+    40: 0000000000000000     0 NOTYPE  WEAK   DEFAULT  UND _ITM_registerTMCloneTable
+    41: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __ubsan_handle_pointer_overflow_abort
+    42: 00000000000159f8   507 FUNC    GLOBAL DEFAULT   12 psd_lookup_begin
+    43: 0000000000011507  1554 FUNC    GLOBAL DEFAULT   12 rc_observe
+    44: 000000000001cbf9  1605 FUNC    GLOBAL DEFAULT   12 pca_attach
+    45: 000000000001e6a6   178 FUNC    GLOBAL DEFAULT   12 pca_fixture_call
+    46: 000000000000f78b   357 FUNC    GLOBAL DEFAULT   12 rc_context_destroy
+    47: 000000000001dca5  2505 FUNC    GLOBAL DEFAULT   12 pca_get_stats
+    48: 000000000000f648   323 FUNC    GLOBAL DEFAULT   12 rc_context_current
+    49: 000000000000fc87   591 FUNC    GLOBAL DEFAULT   12 rc_bind_buffer
+    50: 00000000000168e5   606 FUNC    GLOBAL DEFAULT   12 psd_path
+    51: 000000000001c7d6     6 FUNC    GLOBAL DEFAULT   12 pca_context_size
+    52: 000000000000f19b  1197 FUNC    GLOBAL DEFAULT   12 rc_context_new
+    53: 000000000000fed6   613 FUNC    GLOBAL DEFAULT   12 rc_bind_framebuffer
+    54: 000000000001d514   748 FUNC    GLOBAL DEFAULT   12 pca_observe
+    55: 000000000001013b   723 FUNC    GLOBAL DEFAULT   12 rc_read_buffer
+    56: 0000000000011b19   328 FUNC    GLOBAL DEFAULT   12 rc_finalize
+    57: 000000000001040e  2380 FUNC    GLOBAL DEFAULT   12 rc_delete_framebuffers
+    58: 0000000000012eaf  3353 FUNC    GLOBAL DEFAULT   12 psd_before
+    59: 000000000001c7dc  1053 FUNC    GLOBAL DEFAULT   12 pca_install
+    60: 000000000001b0f9  5853 FUNC    GLOBAL DEFAULT   12 pca_observer
+    61: 0000000000015bf3  3314 FUNC    GLOBAL DEFAULT   12 psd_resolved
+    62: 0000000000016c46  1150 FUNC    GLOBAL DEFAULT   12 psd_get_stats
+    63: 000000000001e70f     0 NOTYPE  GLOBAL DEFAULT   12 pca_fixture_return
+    64: 000000000000f91f   872 FUNC    GLOBAL DEFAULT   12 rc_pixel_store
+    65: 0000000000013bc8   497 FUNC    GLOBAL DEFAULT   12 psd_after
+    66: 0000000000016b43   259 FUNC    GLOBAL DEFAULT   12 psd_finish
+    67: 00000000000170c4   244 FUNC    GLOBAL DEFAULT   12 psd_source_idle
+    68: 000000000001d23e   726 FUNC    GLOBAL DEFAULT   12 pca_snapshot
+    69: 0000000000011c61   764 FUNC    GLOBAL DEFAULT   12 rc_get_stats
+    70: 0000000000012340   255 FUNC    GLOBAL DEFAULT   12 psd_bind_read
+    71: 000000000001d800  1189 FUNC    GLOBAL DEFAULT   12 pca_finish
+    72: 000000000000f8f0    47 FUNC    GLOBAL DEFAULT   12 rc_invalidate
+    73: 000000000000ee1f   892 FUNC    GLOBAL DEFAULT   12 rc_init
+    74: 0000000000010d5a  1965 FUNC    GLOBAL DEFAULT   12 rc_snapshot
+    75: 000000000000ee19     6 FUNC    GLOBAL DEFAULT   12 rc_context_size
+    76: 000000000001243f  2672 FUNC    GLOBAL DEFAULT   12 psd_configure
