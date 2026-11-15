@@ -1,0 +1,55 @@
+test_bad_header_and_outside_dynamic_metadata_reject (tests.test_panda_sdk_link_elf.LoaderSymbolTests.test_bad_header_and_outside_dynamic_metadata_reject) ... FAIL
+test_hidden_nondefault_export_cannot_satisfy_unversioned_import (tests.test_panda_sdk_link_elf.LoaderSymbolTests.test_hidden_nondefault_export_cannot_satisfy_unversioned_import) ... FAIL
+test_old_and_new_string_abi_mismatch_and_repair (tests.test_panda_sdk_link_elf.LoaderSymbolTests.test_old_and_new_string_abi_mismatch_and_repair) ... FAIL
+test_required_version_and_weak_undefined_are_distinct (tests.test_panda_sdk_link_elf.LoaderSymbolTests.test_required_version_and_weak_undefined_are_distinct) ... FAIL
+test_sectionless_file_has_same_loader_metadata (tests.test_panda_sdk_link_elf.LoaderSymbolTests.test_sectionless_file_has_same_loader_metadata) ... FAIL
+
+======================================================================
+FAIL: test_bad_header_and_outside_dynamic_metadata_reject (tests.test_panda_sdk_link_elf.LoaderSymbolTests.test_bad_header_and_outside_dynamic_metadata_reject)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_link_elf.py", line 22, in setUp
+    def setUp(self):self.assertIsNotNone(elf,'PT-only symbol/version inspector missing')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : PT-only symbol/version inspector missing
+
+======================================================================
+FAIL: test_hidden_nondefault_export_cannot_satisfy_unversioned_import (tests.test_panda_sdk_link_elf.LoaderSymbolTests.test_hidden_nondefault_export_cannot_satisfy_unversioned_import)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_link_elf.py", line 22, in setUp
+    def setUp(self):self.assertIsNotNone(elf,'PT-only symbol/version inspector missing')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : PT-only symbol/version inspector missing
+
+======================================================================
+FAIL: test_old_and_new_string_abi_mismatch_and_repair (tests.test_panda_sdk_link_elf.LoaderSymbolTests.test_old_and_new_string_abi_mismatch_and_repair)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_link_elf.py", line 22, in setUp
+    def setUp(self):self.assertIsNotNone(elf,'PT-only symbol/version inspector missing')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : PT-only symbol/version inspector missing
+
+======================================================================
+FAIL: test_required_version_and_weak_undefined_are_distinct (tests.test_panda_sdk_link_elf.LoaderSymbolTests.test_required_version_and_weak_undefined_are_distinct)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_link_elf.py", line 22, in setUp
+    def setUp(self):self.assertIsNotNone(elf,'PT-only symbol/version inspector missing')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : PT-only symbol/version inspector missing
+
+======================================================================
+FAIL: test_sectionless_file_has_same_loader_metadata (tests.test_panda_sdk_link_elf.LoaderSymbolTests.test_sectionless_file_has_same_loader_metadata)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_link_elf.py", line 22, in setUp
+    def setUp(self):self.assertIsNotNone(elf,'PT-only symbol/version inspector missing')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : PT-only symbol/version inspector missing
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.807s
+
+FAILED (failures=5)

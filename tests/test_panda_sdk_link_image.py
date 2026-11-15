@@ -1,5 +1,6 @@
 """Owned tiny tar/inventory fixtures only; no Docker, host links or ELF loading."""
 import hashlib,io,json,tarfile,tempfile,time,unittest
+from unittest.mock import patch
 from pathlib import Path
 from tests.test_engine_clock_image_archive import make_save,tarbytes,TAG
 from scripts.engine_clock_runtime_inventory import BASE_ROOTS,RUNTIME_EXCLUSIONS
@@ -68,4 +69,22 @@ class SelectedImageTests(unittest.TestCase):
   with tempfile.TemporaryDirectory() as t:
    m=self.inventory();m['entries']=[dict(path='/usr/lib/f'+str(n),kind='file',mode=0o644,nbytes=64*1024**2,sha256='0'*64) for n in range(5)];r=self.reader(Path(t),[tarbytes([('irrelevant',b'x')])],m)
    with self.assertRaisesRegex(ValueError,'total byte budget'):r.collect([r['path'] for r in m['entries']])
+ def test_metadata_output_budget_accounts_for_existing_provider_data(self):
+  from scripts import audit_panda_sdk_link as audit
+  with tempfile.TemporaryDirectory() as t:
+   p=Path(t);(p/'owned.data').write_bytes(b'x'*80)
+   with self.assertRaisesRegex(ValueError,'audit output budget'):audit.write_json(p/'report.json',{'large':'x'*100},p,limit=128)
+   self.assertLessEqual(sum(x.stat().st_size for x in p.iterdir()),128)
+ def test_failed_positive_report_write_cannot_leave_positive_status(self):
+  from scripts import audit_panda_sdk_link as audit
+  from types import SimpleNamespace
+  authority=json.loads((image.ROOT/image.AUTH).read_text());real=audit.write_json;raised=[]
+  def writer(path,value,root,**kw):
+   if value.get('status')=='STATIC_SYMBOLS_AVAILABLE_NOT_RUNTIME' and not raised:raised.append(True);raise ValueError('injected write failure')
+   return real(path,value,root,**kw)
+  with tempfile.TemporaryDirectory() as t:
+   p=Path(t);candidate=p/'candidate.data';candidate.write_bytes(b'CPU DATA')
+   with patch.object(audit.archive,'inspect_save_archive',return_value=authority['archive']),patch.object(image,'SelectedImage',return_value=SimpleNamespace(cache={})),patch.object(image,'provider_graph',return_value=({'root_strong_symbols_available':True},{})),patch.object(audit,'write_json',side_effect=writer):
+    with self.assertRaisesRegex(ValueError,'injected write failure'):audit.audit(p/'unused-image',candidate,p/'out')
+   self.assertEqual(json.loads((p/'out/audit.json').read_text())['status'],'FAILED')
 if __name__=='__main__':unittest.main()

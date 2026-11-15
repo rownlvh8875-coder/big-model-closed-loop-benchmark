@@ -1,0 +1,21 @@
+FF
+======================================================================
+FAIL: test_relocation_target_and_exported_code_must_be_in_mapped_spans (tests.test_panda_sdk_link_elf.LoaderSymbolTests.test_relocation_target_and_exported_code_must_be_in_mapped_spans) (case='relocation')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_link_elf.py", line 51, in test_relocation_target_and_exported_code_must_be_in_mapped_spans
+    with self.subTest(case=case),self.assertRaises(ValueError):elf.inspect_elf(bytes(b))
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_relocation_target_and_exported_code_must_be_in_mapped_spans (tests.test_panda_sdk_link_elf.LoaderSymbolTests.test_relocation_target_and_exported_code_must_be_in_mapped_spans) (case='function')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_link_elf.py", line 51, in test_relocation_target_and_exported_code_must_be_in_mapped_spans
+    with self.subTest(case=case),self.assertRaises(ValueError):elf.inspect_elf(bytes(b))
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 1 test in 0.817s
+
+FAILED (failures=2)

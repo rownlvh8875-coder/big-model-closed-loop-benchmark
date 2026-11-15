@@ -1,0 +1,16 @@
+F
+======================================================================
+FAIL: test_failed_positive_report_write_cannot_leave_positive_status (tests.test_panda_sdk_link_image.SelectedImageTests.test_failed_positive_report_write_cannot_leave_positive_status)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_link_image.py", line 89, in test_failed_positive_report_write_cannot_leave_positive_status
+    self.assertEqual(json.loads((p/'out/audit.json').read_text())['status'],'FAILED')
+AssertionError: 'STATIC_SYMBOLS_AVAILABLE_NOT_RUNTIME' != 'FAILED'
+- STATIC_SYMBOLS_AVAILABLE_NOT_RUNTIME
++ FAILED
+
+
+----------------------------------------------------------------------
+Ran 1 test in 2.040s
+
+FAILED (failures=1)

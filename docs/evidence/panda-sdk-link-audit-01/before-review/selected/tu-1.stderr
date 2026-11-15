@@ -1,0 +1,21 @@
+In file included from /workspace/big-model-closed-loop-benchmark/output/stage7-panda-source-dispatch-01/sysroot/usr/include/GL/gl.h:2050,
+                 from /workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-link-audit-01/build-abi0/sdk/include/glgsg.h:83,
+                 from panda/src/glxdisplay/glxGraphicsPipe.h:20,
+                 from panda/src/glxdisplay/glxGraphicsBuffer.h:19,
+                 from panda/src/glxdisplay/config_glxdisplay.cxx:15,
+                 from panda/src/glxdisplay/p3glxdisplay_composite1.cxx:1:
+/workspace/big-model-closed-loop-benchmark/output/stage7-panda-source-dispatch-01/sysroot/usr/include/GL/glext.h:35:9: warning: "GL_GLEXT_VERSION" redefined
+   35 | #define GL_GLEXT_VERSION 20220530
+      |         ^~~~~~~~~~~~~~~~
+/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-link-audit-01/build-abi0/sdk/include/glgsg.h:78:9: note: this is the location of the previous definition
+   78 | #define GL_GLEXT_VERSION 0
+      |         ^~~~~~~~~~~~~~~~
+In file included from panda/src/glxdisplay/glxGraphicsPipe.h:39:
+panda/src/glxdisplay/panda_glxext.h:39:9: warning: "GLX_GLXEXT_VERSION" redefined
+   39 | #define GLX_GLXEXT_VERSION 20140416
+      |         ^~~~~~~~~~~~~~~~~~
+In file included from /workspace/big-model-closed-loop-benchmark/output/stage7-panda-source-dispatch-01/sysroot/usr/include/GL/glx.h:333,
+                 from panda/src/glxdisplay/glxGraphicsPipe.h:33:
+/workspace/big-model-closed-loop-benchmark/output/stage7-panda-source-dispatch-01/sysroot/usr/include/GL/glxext.h:18:9: note: this is the location of the previous definition
+   18 | #define GLX_GLXEXT_VERSION 20220530
+      |         ^~~~~~~~~~~~~~~~~~

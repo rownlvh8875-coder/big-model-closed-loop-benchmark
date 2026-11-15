@@ -1,0 +1,35 @@
+test_ambient_abi_and_header_flags_cannot_override_fixed_policy (tests.test_panda_sdk_link_build.LinkBuildTests.test_ambient_abi_and_header_flags_cannot_override_fixed_policy) ... FAIL
+test_every_compile_requires_single_literal_abi_and_dependency_flags (tests.test_panda_sdk_link_build.LinkBuildTests.test_every_compile_requires_single_literal_abi_and_dependency_flags) ... FAIL
+test_existing_build_output_is_preserved (tests.test_panda_sdk_link_build.LinkBuildTests.test_existing_build_output_is_preserved) ... FAIL
+
+======================================================================
+FAIL: test_ambient_abi_and_header_flags_cannot_override_fixed_policy (tests.test_panda_sdk_link_build.LinkBuildTests.test_ambient_abi_and_header_flags_cannot_override_fixed_policy)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_link_build.py", line 9, in setUp
+    def setUp(self):self.assertIsNotNone(build,'versioned fixed-ABI replacement builder required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : versioned fixed-ABI replacement builder required
+
+======================================================================
+FAIL: test_every_compile_requires_single_literal_abi_and_dependency_flags (tests.test_panda_sdk_link_build.LinkBuildTests.test_every_compile_requires_single_literal_abi_and_dependency_flags)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_link_build.py", line 9, in setUp
+    def setUp(self):self.assertIsNotNone(build,'versioned fixed-ABI replacement builder required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : versioned fixed-ABI replacement builder required
+
+======================================================================
+FAIL: test_existing_build_output_is_preserved (tests.test_panda_sdk_link_build.LinkBuildTests.test_existing_build_output_is_preserved)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_link_build.py", line 9, in setUp
+    def setUp(self):self.assertIsNotNone(build,'versioned fixed-ABI replacement builder required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : versioned fixed-ABI replacement builder required
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.001s
+
+FAILED (failures=3)

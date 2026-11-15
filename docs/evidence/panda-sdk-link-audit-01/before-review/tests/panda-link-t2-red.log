@@ -1,0 +1,55 @@
+test_final_layer_bytes_are_bound_and_saved_as_nonexecutable_data (tests.test_panda_sdk_link_image.SelectedImageTests.test_final_layer_bytes_are_bound_and_saved_as_nonexecutable_data) ... FAIL
+test_hash_mode_archive_drift_and_existing_output_reject (tests.test_panda_sdk_link_image.SelectedImageTests.test_hash_mode_archive_drift_and_existing_output_reject) ... FAIL
+test_inventory_aliases_resolve_without_host_filesystem_following (tests.test_panda_sdk_link_image.SelectedImageTests.test_inventory_aliases_resolve_without_host_filesystem_following) ... FAIL
+test_same_layer_opaque_marker_does_not_delete_its_new_file (tests.test_panda_sdk_link_image.SelectedImageTests.test_same_layer_opaque_marker_does_not_delete_its_new_file) ... FAIL
+test_whiteout_opaque_and_ancestor_replacement_remove_lower_payload (tests.test_panda_sdk_link_image.SelectedImageTests.test_whiteout_opaque_and_ancestor_replacement_remove_lower_payload) ... FAIL
+
+======================================================================
+FAIL: test_final_layer_bytes_are_bound_and_saved_as_nonexecutable_data (tests.test_panda_sdk_link_image.SelectedImageTests.test_final_layer_bytes_are_bound_and_saved_as_nonexecutable_data)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_link_image.py", line 10, in setUp
+    def setUp(self):self.assertIsNotNone(image,'authenticated selected-provider reader missing')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : authenticated selected-provider reader missing
+
+======================================================================
+FAIL: test_hash_mode_archive_drift_and_existing_output_reject (tests.test_panda_sdk_link_image.SelectedImageTests.test_hash_mode_archive_drift_and_existing_output_reject)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_link_image.py", line 10, in setUp
+    def setUp(self):self.assertIsNotNone(image,'authenticated selected-provider reader missing')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : authenticated selected-provider reader missing
+
+======================================================================
+FAIL: test_inventory_aliases_resolve_without_host_filesystem_following (tests.test_panda_sdk_link_image.SelectedImageTests.test_inventory_aliases_resolve_without_host_filesystem_following)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_link_image.py", line 10, in setUp
+    def setUp(self):self.assertIsNotNone(image,'authenticated selected-provider reader missing')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : authenticated selected-provider reader missing
+
+======================================================================
+FAIL: test_same_layer_opaque_marker_does_not_delete_its_new_file (tests.test_panda_sdk_link_image.SelectedImageTests.test_same_layer_opaque_marker_does_not_delete_its_new_file)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_link_image.py", line 10, in setUp
+    def setUp(self):self.assertIsNotNone(image,'authenticated selected-provider reader missing')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : authenticated selected-provider reader missing
+
+======================================================================
+FAIL: test_whiteout_opaque_and_ancestor_replacement_remove_lower_payload (tests.test_panda_sdk_link_image.SelectedImageTests.test_whiteout_opaque_and_ancestor_replacement_remove_lower_payload)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_link_image.py", line 10, in setUp
+    def setUp(self):self.assertIsNotNone(image,'authenticated selected-provider reader missing')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : authenticated selected-provider reader missing
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.001s
+
+FAILED (failures=5)

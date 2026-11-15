@@ -34,5 +34,5 @@ Basecd919/5950files/299pins/10originals/main/Drafts102–115/8nativehistories/tw
 ### Task3: ABI0 replacement build and complete handoff
 **Create:** scripts/build_panda_sdk_link.py;tests/test_panda_sdk_link_build.py;docs/STAGE7_PANDA_SDK_LINK_{RESULT,LEDGER,CONTINUATION}.md;docs/evidence/panda-sdk-link-audit-01/.
 **Interfaces:** build_env(sysroot)->fixed env;build(stage,sysroot,out)->receipt;new flags-MD;actual audit+hypothesis evidence and handoff payload.
-- [ ] RED wrong/ambient ABI/RPM/header flags and output reuse;minimal fixed builder,actual fresh compile/link/input verification/33API/defaultOFF static/source-name qualification; baseline+repair audit.
+- [x] RED wrong/ambient ABI/RPM/header flags and output reuse;minimal fixed builder,actual fresh compile/link/input verification/33API/defaultOFF static/source-name qualification; baseline+repair audit.
 - [ ] Fullsuite/preservation/one fresh review/one Important TDDfixpass;actual final static reports/handoffSDKdata,no runtime/image promotion;ownDraft/finalHEAD CI4jobs/attempt1/artifacts0/body/freshpreservation/finalreceipt;clean only own scratch.
