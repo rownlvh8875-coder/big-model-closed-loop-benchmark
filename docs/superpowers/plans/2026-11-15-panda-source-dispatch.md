@@ -24,22 +24,22 @@ Preserve3207basefiles/299pins/10originals/main/Drafts102–109/8nativehistories.
 **Create:** native/panda_source_dispatch.h;native/panda_source_dispatch.cxx;tests/fixtures/panda_source_dispatch_fixture.cxx;tests/test_panda_source_dispatch.py.
 **Interfaces:** psd_configure(observer,user,safe,count,cap);psd_finish;psd_stats;psd_bind_read(original);psd_before/after;psd_lookup_begin/resolved/path;psd::call<Kind>(typedoriginal,normalizedargs);psd_read_pixels tail. psd_event fixed kind/origin/seq/args[5]/actualreturned/name[64]/deletecount/names[32]. POD global state, no custom constructors or GL linkage.
 
-- [ ] RED compiled CPU scenarios for Focus1–3, including inactive/active/closed, aliases/NULL/mismatch/name mutation, normalized conversions/errno, context failure/delete snapshot, thread/reentry/callback/budget/unsafe/finish and 7arg/register tail.
-- [ ] Implement runtime; focusedPASS and normal/ASan/UBSan CPU evidence, no native library load; commit.
+- [x] RED compiled CPU scenarios for Focus1–3, including inactive/active/closed, aliases/NULL/mismatch/name mutation, normalized conversions/errno, context failure/delete snapshot, thread/reentry/callback/budget/unsafe/finish and 7arg/register tail.
+- [x] Implement runtime; focusedPASS and normal/ASan/UBSan CPU evidence, no native library load; commit.
 
 ### Task2: Exact pinned source integration
 
 **Create:** scripts/panda_source_dispatch.py;tests/test_panda_source_dispatch_patch.py.
 **Interfaces:** transform_sources(sources:dict)->(changed:dict,manifest:dict);stage(upstream:Path,dest:Path)->manifest. Consumes runtime files, prior four SOURCE_PINS and exact Gitcommit; produces changed files + runtime in glstuff, patch manifest with counts/old/new hashes and readinessFalse. CLI --upstream --out.
 
-- [ ] RED actual pinned source transformations, direct legacy/state/readtail tokens, compiled+runtime extension snapshots, GLX/POSIX original expressions exactly once; mutation/alreadypatched/foreignGit/existingoutput rejection. Compile representative transformed CPU methods, never load Panda.
-- [ ] Implement lexical outside-comment/string edits and isolated clean source stage; focusedPASS, actual full source stage/manifest; commit.
+- [x] RED actual pinned source transformations, direct legacy/state/readtail tokens, compiled+runtime extension snapshots, GLX/POSIX original expressions exactly once; mutation/alreadypatched/foreignGit/existingoutput rejection. Compile representative transformed CPU methods, never load Panda.
+- [x] Implement lexical outside-comment/string edits and isolated clean source stage; focusedPASS, actual full source stage/manifest; commit.
 
 ### Task3: Actual candidate build and closeout
 
 **Create:** scripts/build_panda_source_dispatch.py;tests/test_panda_source_dispatch_build.py;RESULT/LEDGER/CONTINUATION and indexed evidence.
 **Interfaces:** build(stage:Path,sysroot:Path,out:Path,threads:int=4)->dict. Fixed makepanda command and recorded env/tool/source/dependency pins, validated fresh paths; actual ELF hash/symbols/import/oldABI-reject/readtail data inspection. Never runs built Panda/GL/PView/tests/installer/wheel.
 
-- [ ] RED bad manifest/path/flags/overwrite/partial-success admission tests; implement constrained runner.
-- [ ] Extract exact dev packages to private sysroot, actual makepanda compile/link; inspect resulting candidate without loading, retain partial/failure facts as needed. New method/runtime qualification staysFalse.
+- [x] RED bad manifest/path/flags/overwrite/partial-success admission tests; implement constrained runner.
+- [x] Extract exact dev packages to private sysroot, actual makepanda compile/link; inspect resulting candidate without loading, retain partial/failure facts as needed. New method/runtime qualification staysFalse.
 - [ ] Fullsuite, onefreshwholebranchreview,oneImportant-CriticalRED→GREENfixpass+suite; exhaustive rulings/declined costs, no rereview. OwnDraft/exactHEADCI, final3207/299/10/oldrefs/histories audit; copy/remove only ownplan scratch.

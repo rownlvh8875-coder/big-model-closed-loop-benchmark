@@ -1,0 +1,41 @@
+FFFF
+======================================================================
+FAIL: test_existing_output_and_invalid_parallelism_preserve_evidence (tests.test_panda_source_dispatch_build.SourceBuildTests.test_existing_output_and_invalid_parallelism_preserve_evidence)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_source_dispatch_build.py", line 11, in setUp
+    def setUp(self):self.assertIsNotNone(builder,'constrained compile-only source builder required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : constrained compile-only source builder required
+
+======================================================================
+FAIL: test_foreign_or_missing_manifest_rejects_before_build_output (tests.test_panda_source_dispatch_build.SourceBuildTests.test_foreign_or_missing_manifest_rejects_before_build_output)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_source_dispatch_build.py", line 11, in setUp
+    def setUp(self):self.assertIsNotNone(builder,'constrained compile-only source builder required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : constrained compile-only source builder required
+
+======================================================================
+FAIL: test_forged_ready_flags_do_not_authorize_partial_source (tests.test_panda_source_dispatch_build.SourceBuildTests.test_forged_ready_flags_do_not_authorize_partial_source)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_source_dispatch_build.py", line 11, in setUp
+    def setUp(self):self.assertIsNotNone(builder,'constrained compile-only source builder required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : constrained compile-only source builder required
+
+======================================================================
+FAIL: test_shell_metacharacter_path_rejects_without_command_execution (tests.test_panda_source_dispatch_build.SourceBuildTests.test_shell_metacharacter_path_rejects_without_command_execution)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_source_dispatch_build.py", line 11, in setUp
+    def setUp(self):self.assertIsNotNone(builder,'constrained compile-only source builder required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : constrained compile-only source builder required
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.001s
+
+FAILED (failures=4)

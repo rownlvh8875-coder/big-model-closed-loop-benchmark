@@ -1,0 +1,13 @@
+F
+======================================================================
+FAIL: test_original_read_relocation_and_bare_tail_are_checked_as_data (tests.test_panda_source_dispatch_build.SourceBuildTests.test_original_read_relocation_and_bare_tail_are_checked_as_data)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_source_dispatch_build.py", line 47, in test_original_read_relocation_and_bare_tail_are_checked_as_data
+    self.assertTrue(hasattr(builder,'inspect_candidate'),'R_X86_64_64 original-read binding inspection required')
+AssertionError: False is not true : R_X86_64_64 original-read binding inspection required
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+FAILED (failures=1)

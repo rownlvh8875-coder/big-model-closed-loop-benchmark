@@ -1,0 +1,15 @@
+F
+======================================================================
+FAIL: test_invalid_event_shape_rejects_before_reading_delete_arguments (tests.test_panda_source_dispatch.PandaSourceDispatchTests.test_invalid_event_shape_rejects_before_reading_delete_arguments)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_source_dispatch.py", line 64, in test_invalid_event_shape_rejects_before_reading_delete_arguments
+    self.assertEqual(p.returncode,0,p.stderr);self.assertEqual(p.stderr,'')
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 1 != 0 : /workspace/big-model-closed-loop-benchmark/native/panda_source_dispatch.cxx:63:33: runtime error: load of null pointer of type 'const uint64_t'
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.874s
+
+FAILED (failures=1)

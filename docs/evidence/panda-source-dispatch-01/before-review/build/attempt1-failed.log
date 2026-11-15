@@ -1,0 +1,41 @@
+Version: 1.10.13
+Platform: linux-x86_64
+Target OS: linux
+Target arch: x86_64
+Generating dependencies...
+[T1] Building C++ object /workspace/big-model-closed-loop-benchmark/output/stage7-panda-source-dispatch-01/build/sdk/tmp/p3dtoolbase_composite1.o
+[T3] Building C object /workspace/big-model-closed-loop-benchmark/output/stage7-panda-source-dispatch-01/build/sdk/tmp/p3dtoolbase_lookup3.o
+[T2] Building C++ object /workspace/big-model-closed-loop-benchmark/output/stage7-panda-source-dispatch-01/build/sdk/tmp/p3dtoolbase_composite2.o
+[T4] Building C++ object /workspace/big-model-closed-loop-benchmark/output/stage7-panda-source-dispatch-01/build/sdk/tmp/p3dtoolbase_indent.o
+[T3] Building C++ object /workspace/big-model-closed-loop-benchmark/output/stage7-panda-source-dispatch-01/build/sdk/tmp/p3dtoolutil_composite1.o
+[T4] Building C++ object /workspace/big-model-closed-loop-benchmark/output/stage7-panda-source-dispatch-01/build/sdk/tmp/p3dtoolutil_composite2.o
+In file included from dtool/src/dtoolbase/p3dtoolbase_composite1.cxx:9:
+dtool/src/dtoolbase/memoryHook.cxx: In member function ‘virtual void* MemoryHook::heap_realloc_array(void*, size_t)’:
+dtool/src/dtoolbase/memoryHook.cxx:415:26: warning: pointer ‘root’ may be used after ‘void* realloc(void*, size_t)’ [-Wuse-after-free]
+  415 |     alloc1 = call_realloc(alloc1, inflated_size);
+      |                          ^
+dtool/src/dtoolbase/memoryHook.cxx:401:24: note: call to ‘void* realloc(void*, size_t)’ here
+  401 |   alloc1 = call_realloc(alloc1, inflated_size);
+      |                        ^
+[T1] Building C++ object /workspace/big-model-closed-loop-benchmark/output/stage7-panda-source-dispatch-01/build/sdk/tmp/p3dtool_dtool.o
+[T1] Building Bison object /workspace/big-model-closed-loop-benchmark/output/stage7-panda-source-dispatch-01/build/sdk/tmp/p3cppParser_cppBison.o
+built/tmp/cppBison.yxx.c:296:10: fatal error: cppBison.yxx.h: No such file or directory
+compilation terminated.
+The following command returned a non-zero value: /usr/bin/g++ -std=gnu++11 -ftemplate-depth-70 -fPIC -c -o /workspace/big-model-closed-loop-benchmark/output/stage7-panda-source-dispatch-01/build/sdk/tmp/p3cppParser_cppBison.o -I/workspace/big-model-closed-loop-benchmark/output/stage7-panda-source-dispatch-01/build/sdk/tmp -I/workspace/big-model-closed-loop-benchmark/output/stage7-panda-source-dispatch-01/build/sdk/include -Idtool/src/cppparser -fvisibility=hidden -pthread -fno-exceptions -fno-strict-aliasing -ffast-math -fno-stack-protector -fno-finite-math-only -fno-unsafe-math-optimizations -O2 -Wall -Wno-unused-function -Wno-reorder /workspace/big-model-closed-loop-benchmark/output/stage7-panda-source-dispatch-01/build/sdk/tmp/cppBison.yxx.cxx
+Storing dependency cache.
+Elapsed Time: 1 sec
+Build process aborting.
+Build terminated.
+In file included from dtool/src/dtoolutil/p3dtoolutil_composite2.cxx:5:
+dtool/src/dtoolutil/pfstreamBuf.cxx: In member function ‘bool PipeStreamBuf::eof_pipe() const’:
+dtool/src/dtoolutil/pfstreamBuf.cxx:186:36: warning: argument 1 null where non-null expected [-Wnonnull]
+  186 |   return (_pipe == nullptr) && feof(_pipe);
+      |                                ~~~~^~~~~~~
+In file included from /usr/include/malloc.h:25,
+                 from /workspace/big-model-closed-loop-benchmark/output/stage7-panda-source-dispatch-01/build/sdk/include/dtoolbase.h:172,
+                 from dtool/src/dtoolutil/pandaFileStream.h:17,
+                 from dtool/src/dtoolutil/pandaFileStream.cxx:14,
+                 from dtool/src/dtoolutil/p3dtoolutil_composite2.cxx:1:
+/usr/include/stdio.h:852:12: note: in a call to function ‘int feof(FILE*)’ declared ‘nonnull’
+  852 | extern int feof (FILE *__stream) __THROW __wur __nonnull ((1));
+      |            ^~~~

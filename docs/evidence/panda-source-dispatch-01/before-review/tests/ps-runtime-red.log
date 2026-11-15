@@ -1,0 +1,59 @@
+FFFFFF
+======================================================================
+FAIL: test_default_off_and_closed_forward_without_observation (tests.test_panda_source_dispatch.PandaSourceDispatchTests.test_default_off_and_closed_forward_without_observation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_source_dispatch.py", line 33, in setUp
+    def setUp(self):self.assertIsNotNone(self.exe,'source-integrated dispatch runtime required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : source-integrated dispatch runtime required
+
+======================================================================
+FAIL: test_failures_poison_metadata_while_originals_and_tail_continue (tests.test_panda_source_dispatch.PandaSourceDispatchTests.test_failures_poison_metadata_while_originals_and_tail_continue)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_source_dispatch.py", line 33, in setUp
+    def setUp(self):self.assertIsNotNone(self.exe,'source-integrated dispatch runtime required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : source-integrated dispatch runtime required
+
+======================================================================
+FAIL: test_known_state_restoration_is_not_a_safe_configuration (tests.test_panda_source_dispatch.PandaSourceDispatchTests.test_known_state_restoration_is_not_a_safe_configuration)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_source_dispatch.py", line 33, in setUp
+    def setUp(self):self.assertIsNotNone(self.exe,'source-integrated dispatch runtime required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : source-integrated dispatch runtime required
+
+======================================================================
+FAIL: test_normalized_arguments_actual_returns_and_errno_are_preserved (tests.test_panda_source_dispatch.PandaSourceDispatchTests.test_normalized_arguments_actual_returns_and_errno_are_preserved)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_source_dispatch.py", line 33, in setUp
+    def setUp(self):self.assertIsNotNone(self.exe,'source-integrated dispatch runtime required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : source-integrated dispatch runtime required
+
+======================================================================
+FAIL: test_read_tail_keeps_original_stack_arguments_and_callee_saved_registers (tests.test_panda_source_dispatch.PandaSourceDispatchTests.test_read_tail_keeps_original_stack_arguments_and_callee_saved_registers)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_source_dispatch.py", line 33, in setUp
+    def setUp(self):self.assertIsNotNone(self.exe,'source-integrated dispatch runtime required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : source-integrated dispatch runtime required
+
+======================================================================
+FAIL: test_resolver_alias_null_name_snapshot_and_safe_paths_preserve_capabilities (tests.test_panda_source_dispatch.PandaSourceDispatchTests.test_resolver_alias_null_name_snapshot_and_safe_paths_preserve_capabilities)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_source_dispatch.py", line 33, in setUp
+    def setUp(self):self.assertIsNotNone(self.exe,'source-integrated dispatch runtime required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : source-integrated dispatch runtime required
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.001s
+
+FAILED (failures=6)

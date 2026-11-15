@@ -1,0 +1,53 @@
+FFFFFF
+======================================================================
+FAIL: test_actual_sources_transform_once_and_manifest_keeps_native_blocked (tests.test_panda_source_dispatch_patch.PandaSourcePatchTests.test_actual_sources_transform_once_and_manifest_keeps_native_blocked)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_source_dispatch_patch.py", line 18, in setUp
+    self.assertIsNotNone(patcher,'exact pinned source integration required')
+AssertionError: unexpectedly None : exact pinned source integration required
+
+======================================================================
+FAIL: test_existing_output_survives_stage_rejection (tests.test_panda_source_dispatch_patch.PandaSourcePatchTests.test_existing_output_survives_stage_rejection)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_source_dispatch_patch.py", line 18, in setUp
+    self.assertIsNotNone(patcher,'exact pinned source integration required')
+AssertionError: unexpectedly None : exact pinned source integration required
+
+======================================================================
+FAIL: test_foreign_upstream_cli_rejects_without_creating_tree (tests.test_panda_source_dispatch_patch.PandaSourcePatchTests.test_foreign_upstream_cli_rejects_without_creating_tree)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_source_dispatch_patch.py", line 18, in setUp
+    self.assertIsNotNone(patcher,'exact pinned source integration required')
+AssertionError: unexpectedly None : exact pinned source integration required
+
+======================================================================
+FAIL: test_lexical_call_edits_preserve_comments_literals_and_execute_original_once (tests.test_panda_source_dispatch_patch.PandaSourcePatchTests.test_lexical_call_edits_preserve_comments_literals_and_execute_original_once)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_source_dispatch_patch.py", line 18, in setUp
+    self.assertIsNotNone(patcher,'exact pinned source integration required')
+AssertionError: unexpectedly None : exact pinned source integration required
+
+======================================================================
+FAIL: test_mutated_and_already_patched_sources_reject (tests.test_panda_source_dispatch_patch.PandaSourcePatchTests.test_mutated_and_already_patched_sources_reject)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_source_dispatch_patch.py", line 18, in setUp
+    self.assertIsNotNone(patcher,'exact pinned source integration required')
+AssertionError: unexpectedly None : exact pinned source integration required
+
+======================================================================
+FAIL: test_transformed_real_unified_method_covers_compiled_and_runtime_paths (tests.test_panda_source_dispatch_patch.PandaSourcePatchTests.test_transformed_real_unified_method_covers_compiled_and_runtime_paths)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_source_dispatch_patch.py", line 18, in setUp
+    self.assertIsNotNone(patcher,'exact pinned source integration required')
+AssertionError: unexpectedly None : exact pinned source integration required
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.001s
+
+FAILED (failures=6)

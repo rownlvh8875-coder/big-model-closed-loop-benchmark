@@ -1,0 +1,373 @@
+--- a/panda/src/glstuff/glGraphicsStateGuardian_src.cxx
++++ b/panda/src/glstuff/glGraphicsStateGuardian_src.cxx
+@@ -15,6 +15,7 @@
+  */
+ 
+ #include "config_putil.h"
++#include "panda_source_dispatch.h"
+ #include "displayRegion.h"
+ #include "renderBuffer.h"
+ #include "geom.h"
+@@ -3643,7 +3644,7 @@
+   // been submitted, we will read a single pixel from the frame.  That will
+   // force the graphics card to finish drawing before it is called
+   char data[4];
+-  glReadPixels(0,0,1,1,GL_RGBA,GL_UNSIGNED_BYTE,&data);
++  psd_read_pixels(0,0,1,1,GL_RGBA,GL_UNSIGNED_BYTE,&data);
+   // glFinish();
+ }
+ 
+@@ -4283,7 +4284,7 @@
+       _last_error_check = current;
+       PStatTimer timer(_check_error_pcollector);
+ 
+-      GLenum error_code = glGetError();
++      GLenum error_code = psd::call<PSD_GET_ERROR>(glGetError);
+       if (error_code != GL_NO_ERROR) {
+         int error_count = 0;
+ 
+@@ -4292,7 +4293,7 @@
+           GLCAT.error()
+             << "GL error 0x" << hex << error_code << dec << " : "
+             << get_error_string(error_code) << "\n";
+-          error_code = glGetError();
++          error_code = psd::call<PSD_GET_ERROR>(glGetError);
+         } while (error_code != GL_NO_ERROR);
+ 
+         if (error_count == 1) {
+@@ -7179,7 +7180,7 @@
+                         const DisplayRegion *dr, const RenderBuffer &rb) {
+   nassertr(tex != nullptr && dr != nullptr, false);
+   set_read_buffer(rb._buffer_type);
+-  glPixelStorei(GL_PACK_ALIGNMENT, 1);
++  psd::call<PSD_PIXEL_STORE>(glPixelStorei, GL_PACK_ALIGNMENT, 1);
+   clear_color_write_mask();
+ 
+   // Bug fix for RE, RE2, and VTX - need to disable texturing in order for
+@@ -7474,7 +7475,7 @@
+     }
+   }
+ 
+-  glReadPixels(xo, yo, w, h, external_format,
++  psd_read_pixels(xo, yo, w, h, external_format,
+                get_component_type(component_type), image_ptr);
+ 
+   // We may have to reverse the byte ordering of the image if GL didn't do it
+@@ -8578,7 +8579,7 @@
+ gl_get_error() const {
+   if (_check_errors) {
+     PStatTimer timer(_check_error_pcollector);
+-    return glGetError();
++    return psd::call<PSD_GET_ERROR>(glGetError);
+   } else {
+     return GL_NO_ERROR;
+   }
+@@ -8598,7 +8599,7 @@
+       << "at " << line << " of " << source_file << " : "
+       << get_error_string(error_code) << "\n";
+ 
+-    error_code = glGetError();
++    error_code = psd::call<PSD_GET_ERROR>(glGetError);
+     error_count++;
+   }
+ 
+@@ -8687,7 +8688,7 @@
+       glGetIntegerv(GL_MAJOR_VERSION, &_gl_version_major);
+       glGetIntegerv(GL_MINOR_VERSION, &_gl_version_minor);
+ 
+-      if (glGetError() == GL_INVALID_ENUM) {
++      if (psd::call<PSD_GET_ERROR>(glGetError) == GL_INVALID_ENUM) {
+         _gl_version_major = 1;
+         _gl_version_minor = 2;
+         GLCAT.warning()
+@@ -8873,6 +8874,7 @@
+  */
+ void *CLP(GraphicsStateGuardian)::
+ get_extension_func(const char *name) {
++  psd_lookup psd_request(name);
+   // First, look in the static-compiled namespace.  If we were compiled to
+   // expect at least a certain minimum runtime version of OpenGL, then we can
+   // expect those extension functions to be available at compile time.
+@@ -8938,14 +8940,14 @@
+   int i = 0;
+   while (compiled_function_table[i].name != nullptr) {
+     if (strcmp(compiled_function_table[i].name, name) == 0) {
+-      return compiled_function_table[i].fptr;
++      return psd_resolved(&psd_request, compiled_function_table[i].fptr, PSD_SOURCE_COMPILED);
+     }
+     ++i;
+   }
+ 
+   // If the extension function wasn't compiled in, then go get it from the
+   // runtime.  There's a different interface for each API.
+-  return do_get_extension_func(name);
++  return psd_resolved(&psd_request, do_get_extension_func(name), PSD_SOURCE_RUNTIME);
+ }
+ 
+ /**
+@@ -9096,42 +9098,42 @@
+ #ifdef OPENGLES
+     _glReadBuffer(buffer);
+ #else
+-    glReadBuffer(buffer);
++    psd::call<PSD_READ_BUFFER>(glReadBuffer, buffer);
+ #endif
+ 
+   } else {
+ #ifndef OPENGLES
+     switch (rbtype & RenderBuffer::T_color) {
+     case RenderBuffer::T_front:
+-      glReadBuffer(GL_FRONT);
++      psd::call<PSD_READ_BUFFER>(glReadBuffer, GL_FRONT);
+       break;
+ 
+     case RenderBuffer::T_back:
+-      glReadBuffer(GL_BACK);
++      psd::call<PSD_READ_BUFFER>(glReadBuffer, GL_BACK);
+       break;
+ 
+     case RenderBuffer::T_right:
+-      glReadBuffer(GL_RIGHT);
++      psd::call<PSD_READ_BUFFER>(glReadBuffer, GL_RIGHT);
+       break;
+ 
+     case RenderBuffer::T_left:
+-      glReadBuffer(GL_LEFT);
++      psd::call<PSD_READ_BUFFER>(glReadBuffer, GL_LEFT);
+       break;
+ 
+     case RenderBuffer::T_front_right:
+-      glReadBuffer(GL_FRONT_RIGHT);
++      psd::call<PSD_READ_BUFFER>(glReadBuffer, GL_FRONT_RIGHT);
+       break;
+ 
+     case RenderBuffer::T_front_left:
+-      glReadBuffer(GL_FRONT_LEFT);
++      psd::call<PSD_READ_BUFFER>(glReadBuffer, GL_FRONT_LEFT);
+       break;
+ 
+     case RenderBuffer::T_back_right:
+-      glReadBuffer(GL_BACK_RIGHT);
++      psd::call<PSD_READ_BUFFER>(glReadBuffer, GL_BACK_RIGHT);
+       break;
+ 
+     case RenderBuffer::T_back_left:
+-      glReadBuffer(GL_BACK_LEFT);
++      psd::call<PSD_READ_BUFFER>(glReadBuffer, GL_BACK_LEFT);
+       break;
+ 
+     default:
+@@ -13053,7 +13055,7 @@
+ #endif
+   }
+ 
+-  glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
++  psd::call<PSD_PIXEL_STORE>(glPixelStorei, GL_UNPACK_ALIGNMENT, 1);
+ 
+   GLenum target = get_texture_target(texture_type);
+   uses_mipmaps = (uses_mipmaps && !gl_ignore_mipmaps) || gl_force_mipmaps;
+@@ -14733,7 +14735,7 @@
+ 
+   // Make sure the GL driver does not align textures, otherwise we get corrupt
+   // memory, since we don't take alignment into account.
+-  glPixelStorei(GL_PACK_ALIGNMENT, 1);
++  psd::call<PSD_PIXEL_STORE>(glPixelStorei, GL_PACK_ALIGNMENT, 1);
+ 
+   if (target == GL_TEXTURE_CUBE_MAP) {
+     // A cube map, compressed or uncompressed.  This we must extract one page
+@@ -15108,3 +15110,8 @@
+     }
+   }
+ }
++
++// Source-dispatch candidate: one implementation, original-only read tail.
++#define PSD_PANDA_BUILD 1
++#define PSD_ORIGINAL_READ glReadPixels
++#include "panda_source_dispatch.cxx"
+--- a/panda/src/glstuff/glGraphicsBuffer_src.cxx
++++ b/panda/src/glstuff/glGraphicsBuffer_src.cxx
+@@ -12,6 +12,7 @@
+  */
+ 
+ #include "depthWriteAttrib.h"
++#include "panda_source_dispatch.h"
+ 
+ using std::max;
+ using std::min;
+@@ -687,10 +688,10 @@
+ #ifndef OPENGLES
+   if (_have_any_color) {
+     glDrawBuffer(GL_COLOR_ATTACHMENT0_EXT);
+-    glReadBuffer(GL_COLOR_ATTACHMENT0_EXT);
++    psd::call<PSD_READ_BUFFER>(glReadBuffer, GL_COLOR_ATTACHMENT0_EXT);
+   } else {
+     glDrawBuffer(GL_NONE);
+-    glReadBuffer(GL_NONE);
++    psd::call<PSD_READ_BUFFER>(glReadBuffer, GL_NONE);
+   }
+ #endif
+ 
+@@ -1910,7 +1911,7 @@
+ void CLP(GraphicsBuffer)::
+ report_my_errors(int line, const char *file) {
+   if (_gsg == 0) {
+-    GLenum error_code = glGetError();
++    GLenum error_code = psd::call<PSD_GET_ERROR>(glGetError);
+     if (error_code != GL_NO_ERROR) {
+       GLCAT.error() << file << ", line " << line << ": GL error " << (int)error_code << "\n";
+     }
+@@ -2010,10 +2011,10 @@
+ #ifndef OPENGLES
+   if (_have_any_color) {
+     glDrawBuffer(GL_COLOR_ATTACHMENT0_EXT);
+-    glReadBuffer(GL_COLOR_ATTACHMENT0_EXT);
++    psd::call<PSD_READ_BUFFER>(glReadBuffer, GL_COLOR_ATTACHMENT0_EXT);
+   } else {
+     glDrawBuffer(GL_NONE);
+-    glReadBuffer(GL_NONE);
++    psd::call<PSD_READ_BUFFER>(glReadBuffer, GL_NONE);
+   }
+ #endif
+ 
+@@ -2031,28 +2032,28 @@
+ #ifndef OPENGLES
+   int next = GL_COLOR_ATTACHMENT1_EXT;
+   if (_fb_properties.is_stereo()) {
+-    glReadBuffer(next);
++    psd::call<PSD_READ_BUFFER>(glReadBuffer, next);
+     glDrawBuffer(next);
+     glgsg->_glBlitFramebuffer(0, 0, _rb_size_x, _rb_size_y, 0, 0, _rb_size_x, _rb_size_y,
+                               GL_COLOR_BUFFER_BIT, GL_NEAREST);
+     next += 1;
+   }
+   for (int i = 0; i < _fb_properties.get_aux_rgba(); ++i) {
+-    glReadBuffer(next);
++    psd::call<PSD_READ_BUFFER>(glReadBuffer, next);
+     glDrawBuffer(next);
+     glgsg->_glBlitFramebuffer(0, 0, _rb_size_x, _rb_size_y, 0, 0, _rb_size_x, _rb_size_y,
+                               GL_COLOR_BUFFER_BIT, GL_NEAREST);
+     next += 1;
+   }
+   for (int i = 0; i < _fb_properties.get_aux_hrgba(); ++i) {
+-    glReadBuffer(next);
++    psd::call<PSD_READ_BUFFER>(glReadBuffer, next);
+     glDrawBuffer(next);
+     glgsg->_glBlitFramebuffer(0, 0, _rb_size_x, _rb_size_y, 0, 0, _rb_size_x, _rb_size_y,
+                               GL_COLOR_BUFFER_BIT, GL_NEAREST);
+     next += 1;
+   }
+   for (int i = 0; i < _fb_properties.get_aux_float(); ++i) {
+-    glReadBuffer(next);
++    psd::call<PSD_READ_BUFFER>(glReadBuffer, next);
+     glDrawBuffer(next);
+     glgsg->_glBlitFramebuffer(0, 0, _rb_size_x, _rb_size_y, 0, 0, _rb_size_x, _rb_size_y,
+                               GL_COLOR_BUFFER_BIT, GL_NEAREST);
+@@ -2067,10 +2068,10 @@
+ #ifndef OPENGLES
+   if (_have_any_color) {
+     glDrawBuffer(GL_COLOR_ATTACHMENT0_EXT);
+-    glReadBuffer(GL_COLOR_ATTACHMENT0_EXT);
++    psd::call<PSD_READ_BUFFER>(glReadBuffer, GL_COLOR_ATTACHMENT0_EXT);
+   } else {
+     glDrawBuffer(GL_NONE);
+-    glReadBuffer(GL_NONE);
++    psd::call<PSD_READ_BUFFER>(glReadBuffer, GL_NONE);
+   }
+ #endif
+   report_my_gl_errors();
+--- a/panda/src/glxdisplay/glxGraphicsStateGuardian.cxx
++++ b/panda/src/glxdisplay/glxGraphicsStateGuardian.cxx
+@@ -12,6 +12,7 @@
+  */
+ 
+ #include "glxGraphicsStateGuardian.h"
++#include "panda_source_dispatch.h"
+ #include "config_glxdisplay.h"
+ #include "config_glgsg.h"
+ #include "lightReMutexHolder.h"
+@@ -72,7 +73,7 @@
+     XFree(_visuals);
+   }
+   if (_context != (GLXContext)nullptr) {
+-    glXDestroyContext(_display, _context);
++    psd::call<PSD_DESTROY_CONTEXT>(glXDestroyContext, _display, _context);
+     _context = (GLXContext)nullptr;
+   }
+ }
+@@ -524,12 +525,12 @@
+       // directly.  This is more reliable than trying to determine its address
+       // dynamically, but it may make libpandagl.so fail to load if the symbol
+       // isn't in the runtime library.
+-    return (void *)glXGetProcAddress((const GLubyte *)name);
++    return psd_path(PSD_PATH_GLX_CORE, (void *)glXGetProcAddress((const GLubyte *)name));
+ 
+ #elif defined(LINK_IN_GLXGETPROCADDRESS) && defined(HAVE_GLXGETPROCADDRESSARB)
+     // The ARB extension version is OK too.  Sometimes the prototype isn't
+     // supplied for some reason.
+-    return (void *)glXGetProcAddressARB((const GLubyte *)name);
++    return psd_path(PSD_PATH_GLX_ARB, (void *)glXGetProcAddressARB((const GLubyte *)name));
+ 
+ #else
+     // Otherwise, we have to fiddle around with the dynamic runtime.
+@@ -558,7 +559,7 @@
+ 
+     // Use glxGetProcAddress() if we've got it; it should be more robust.
+     if (_glXGetProcAddress != nullptr) {
+-      return (void *)_glXGetProcAddress((const GLubyte *)name);
++      return psd_path(PSD_PATH_GLX_PRIVATE, (void *)_glXGetProcAddress((const GLubyte *)name));
+     }
+ #endif // HAVE_GLXGETPROCADDRESS
+   }
+@@ -781,7 +782,7 @@
+ 
+   if (best_quality > 0) {
+     _visual = _visuals + best_result;
+-    _temp_context = glXCreateContext(_display, _visual, None, GL_TRUE);
++    _temp_context = psd::call<PSD_CREATE_LEGACY>(glXCreateContext, _display, _visual, None, GL_TRUE);
+     if (_temp_context) {
+       _fbprops = best_props;
+       return;
+@@ -822,7 +823,7 @@
+   }
+ 
+   // Now use it to query the available GLX features.
+-  glXMakeCurrent(_display, _temp_xwindow, _temp_context);
++  psd::call<PSD_MAKE_CURRENT>(glXMakeCurrent, _display, _temp_xwindow, _temp_context);
+   query_gl_version();
+   get_extra_extensions();
+   query_glx_extensions();
+@@ -833,7 +834,7 @@
+  */
+ void glxGraphicsStateGuardian::
+ destroy_temp_xwindow() {
+-  glXMakeCurrent(_display, None, nullptr);
++  psd::call<PSD_MAKE_CURRENT>(glXMakeCurrent, _display, None, nullptr);
+ 
+   if (_temp_colormap != (Colormap)nullptr) {
+     XFreeColormap(_display, _temp_colormap);
+@@ -845,7 +846,7 @@
+   }
+ 
+   if (_temp_context != (GLXContext)nullptr) {
+-    glXDestroyContext(_display, _temp_context);
++    psd::call<PSD_DESTROY_CONTEXT>(glXDestroyContext, _display, _temp_context);
+     _temp_context = (GLXContext)nullptr;
+   }
+ }
+--- a/panda/src/glxdisplay/posixGraphicsStateGuardian.cxx
++++ b/panda/src/glxdisplay/posixGraphicsStateGuardian.cxx
+@@ -12,6 +12,7 @@
+  */
+ 
+ #include "posixGraphicsStateGuardian.h"
++#include "panda_source_dispatch.h"
+ #include "config_glxdisplay.h"
+ #include <dlfcn.h>
+ 
+@@ -81,5 +82,5 @@
+     }
+   }
+ 
+-  return dlsym(_libgl_handle, name);
++  return psd_path(PSD_PATH_POSIX, dlsym(_libgl_handle, name));
+ }
