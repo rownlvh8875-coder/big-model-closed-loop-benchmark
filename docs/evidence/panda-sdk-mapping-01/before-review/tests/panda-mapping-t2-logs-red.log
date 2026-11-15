@@ -1,0 +1,15 @@
+test_failed_abi_validation_retains_child_logs_and_exit_status (tests.test_panda_sdk_mapping_runtime.MappingRuntimeTests.test_failed_abi_validation_retains_child_logs_and_exit_status) ... ERROR
+
+======================================================================
+ERROR: test_failed_abi_validation_retains_child_logs_and_exit_status (tests.test_panda_sdk_mapping_runtime.MappingRuntimeTests.test_failed_abi_validation_retains_child_logs_and_exit_status)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_mapping_runtime.py", line 55, in test_failed_abi_validation_retains_child_logs_and_exit_status
+    r=caught.exception.receipt;self.assertEqual(r['status'],'FAILED');self.assertIn('CPU-owned',r['stderr']['text']);self.assertIsInstance(r['child_returncode'],int);self.assertFalse(r['native_admitted'])
+                                                                                                ~^^^^^^^^^^
+KeyError: 'stderr'
+
+----------------------------------------------------------------------
+Ran 1 test in 0.170s
+
+FAILED (errors=1)

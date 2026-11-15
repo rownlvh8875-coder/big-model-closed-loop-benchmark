@@ -1,0 +1,15 @@
+test_runtime_namespace_caps_mount_and_cgroup_contract (tests.test_panda_sdk_mapping_runtime.MappingRuntimeTests.test_runtime_namespace_caps_mount_and_cgroup_contract) ... ERROR
+
+======================================================================
+ERROR: test_runtime_namespace_caps_mount_and_cgroup_contract (tests.test_panda_sdk_mapping_runtime.MappingRuntimeTests.test_runtime_namespace_caps_mount_and_cgroup_contract)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_mapping_runtime.py", line 57, in test_runtime_namespace_caps_mount_and_cgroup_contract
+    host={k:k+':[1]' for k in ['pid','net','mnt']};f=dict(pid=1,uid=65534,gid=65534,cap_eff=0,cap_bnd=0,no_new_privs=1,seccomp=2,namespaces={k:k+':[2]' for k in host},mounts={p:['ro'] for p in ['/','/work/repo','/work/binding']},pids_max=32,cpu_quota=100000,cpu_period=100000);f['mounts']['/tmp']=['rw','nosuid','nodev','noexec'];runtime.check_context(f,host)
+                                                                                                                                                                                                                                                                                                                                          ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'scripts.panda_sdk_mapping_runtime' has no attribute 'check_context'
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (errors=1)

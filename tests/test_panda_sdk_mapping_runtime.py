@@ -53,4 +53,8 @@ class MappingRuntimeTests(unittest.TestCase):
    lib,p=self.fixture(Path(t),2640345)
    with self.assertRaises(runtime.WindowFailure) as caught:runtime.run_window(lib,p,fixture=True)
    r=caught.exception.receipt;self.assertEqual(r['status'],'FAILED');self.assertIn('CPU-owned',r['stderr']['text']);self.assertIsInstance(r['child_returncode'],int);self.assertFalse(r['native_admitted'])
+ def test_runtime_namespace_caps_mount_and_cgroup_contract(self):
+  host={k:k+':[1]' for k in ['pid','net','mnt']};f=dict(pid=1,uid=65534,gid=65534,cap_eff=0,cap_bnd=0,no_new_privs=1,seccomp=2,namespaces={k:k+':[2]' for k in host},mounts={p:['ro'] for p in ['/','/work/repo','/work/binding']},pids_max=32,cpu_quota=100000,cpu_period=100000);f['mounts']['/tmp']=['rw','nosuid','nodev','noexec'];runtime.check_context(f,host)
+  for name,value in [('uid',0),('cap_eff',1),('no_new_privs',0),('pids_max',99),('cpu_quota',200000),('namespaces',host),('mounts',{'/':['rw']})]:
+   with self.assertRaises(ValueError):runtime.check_context(dict(f,**{name:value}),host)
 if __name__=='__main__':unittest.main()

@@ -1,0 +1,7 @@
+# Continue the SDK mapping-only canary
+
+Read RESULT/LEDGER/spec/plan/current image authority def7 and fixed profile.json. Current mapping01 is NOT_RUN until fresh review/sourceCI/request-only activation qualify ONE new bounded window. Existing scientific allowance0 is never reused. Target currentimage4984/configb9/SDK8d3, not oldSDK3e9/image0276. Preserve6499basefiles/299pins/10originals/main/Drafts102–117/8oldnativehistories/image01/02/03; no activation replay, image rebuild, main/shared-base merge/registry/Cloud publication.
+
+Complete ONE fresh wholebranch review/oneImportantTDDfixpass/canonical sourceCI; newmapping01activation once; actual hosted parent/child loader +selected4code/5ABI calls under limits; authenticate actual proof or retain failed attempt without retries. Local CPUfixtures only; actual SDK loads occur only in qualified hosted image. On timeout consumewindow and kill only verified owned running container then stopped cleanup. Final exact ownDraft/headCI/body/preservation/outputreceipt and ownscratchcleanup follow.
+
+A passed scoped canary is not fullobjectABI or native/scientific admission. Actual originaldispatch/earlyinstall/Texture-GSG-allocation/lifetimes/cache/runtimeorigins/driverfreshness/authenticatedproducer/sink and originalofficial4condition/8process cohort remain. No scientific/equality/divergence/performance result is inferred from loader/scalar ABI checks.

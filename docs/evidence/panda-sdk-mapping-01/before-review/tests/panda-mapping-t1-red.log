@@ -1,0 +1,65 @@
+test_closed_request_new_window_cannot_expand_or_replay (tests.test_panda_sdk_mapping_profile.MappingProfileTests.test_closed_request_new_window_cannot_expand_or_replay) ... FAIL
+test_current_image_and_new_source_manifest_are_pinned (tests.test_panda_sdk_mapping_profile.MappingProfileTests.test_current_image_and_new_source_manifest_are_pinned) ... FAIL
+test_foreign_sdk_and_scalar_opcode_cannot_define_profile (tests.test_panda_sdk_mapping_profile.MappingProfileTests.test_foreign_sdk_and_scalar_opcode_cannot_define_profile) ... FAIL
+test_four_export_code_ranges_scalar_sizes_and_stats_layout (tests.test_panda_sdk_mapping_profile.MappingProfileTests.test_four_export_code_ranges_scalar_sizes_and_stats_layout) ... FAIL
+test_loader_profile_does_not_use_section_headers (tests.test_panda_sdk_mapping_profile.MappingProfileTests.test_loader_profile_does_not_use_section_headers) ... FAIL
+test_workflow_is_new_one_use_push_and_no_model_dispatch (tests.test_panda_sdk_mapping_profile.MappingProfileTests.test_workflow_is_new_one_use_push_and_no_model_dispatch) ... FAIL
+
+======================================================================
+FAIL: test_closed_request_new_window_cannot_expand_or_replay (tests.test_panda_sdk_mapping_profile.MappingProfileTests.test_closed_request_new_window_cannot_expand_or_replay)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_mapping_profile.py", line 9, in setUp
+    def setUp(self):self.assertIsNotNone(profile,'new image-bound mapping profile required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : new image-bound mapping profile required
+
+======================================================================
+FAIL: test_current_image_and_new_source_manifest_are_pinned (tests.test_panda_sdk_mapping_profile.MappingProfileTests.test_current_image_and_new_source_manifest_are_pinned)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_mapping_profile.py", line 9, in setUp
+    def setUp(self):self.assertIsNotNone(profile,'new image-bound mapping profile required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : new image-bound mapping profile required
+
+======================================================================
+FAIL: test_foreign_sdk_and_scalar_opcode_cannot_define_profile (tests.test_panda_sdk_mapping_profile.MappingProfileTests.test_foreign_sdk_and_scalar_opcode_cannot_define_profile)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_mapping_profile.py", line 9, in setUp
+    def setUp(self):self.assertIsNotNone(profile,'new image-bound mapping profile required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : new image-bound mapping profile required
+
+======================================================================
+FAIL: test_four_export_code_ranges_scalar_sizes_and_stats_layout (tests.test_panda_sdk_mapping_profile.MappingProfileTests.test_four_export_code_ranges_scalar_sizes_and_stats_layout)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_mapping_profile.py", line 9, in setUp
+    def setUp(self):self.assertIsNotNone(profile,'new image-bound mapping profile required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : new image-bound mapping profile required
+
+======================================================================
+FAIL: test_loader_profile_does_not_use_section_headers (tests.test_panda_sdk_mapping_profile.MappingProfileTests.test_loader_profile_does_not_use_section_headers)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_mapping_profile.py", line 9, in setUp
+    def setUp(self):self.assertIsNotNone(profile,'new image-bound mapping profile required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : new image-bound mapping profile required
+
+======================================================================
+FAIL: test_workflow_is_new_one_use_push_and_no_model_dispatch (tests.test_panda_sdk_mapping_profile.MappingProfileTests.test_workflow_is_new_one_use_push_and_no_model_dispatch)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_mapping_profile.py", line 9, in setUp
+    def setUp(self):self.assertIsNotNone(profile,'new image-bound mapping profile required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : new image-bound mapping profile required
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.001s
+
+FAILED (failures=6)

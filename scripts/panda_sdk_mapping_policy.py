@@ -18,7 +18,7 @@ PROFILE='docs/evidence/panda-sdk-mapping-01/profile.json'
 PANDA='/opt/venv/lib/python3.11/site-packages/panda3d';PRELOAD=PANDA+'/libpanda.so.1.10'
 SDK_PATH=PANDA+'/libpandagl.so';IMAGE_SHA='4984470cd7d732f9f2d1c12710c9433b563b3817ba6d1d419749a9a2b1b46698';IMAGE_SIZE=1727678464;CONFIG='sha256:b9d673de93f1857e4dfa5ed6a48330d568ef96fce7f3cc975f0c688877e6e26e'
 IMAGE_ARTIFACT=dict(id=14156262448,run_id=43700449423,head_sha='7cf0f0157f8100f0aa0e05b01a815d7395c3383f',name='panda-sdk-image-20261115-03',size_in_bytes=1738137175,sha256='47711425a5a48fb2ef0cab140da6e394516f9cbb7f04b294c5f6583d7efbc687')
-BUDGET=dict(total_seconds=1800,minimum_free=16*1024**3,mapping_windows=1,container_starts=1,panda_preloads=1,sdk_loads=1,abi_calls=5,memory_bytes=768*1024**2,pids=32,cpu=1,tmpfs_bytes=16*1024**2,container_seconds=90,protocol_seconds=60,phase_seconds=15,output_bytes=16*1024**2,log_bytes=2*1024**2,mapped_files=64,mapped_bytes=256*1024**2)
+BUDGET=dict(total_seconds=1800,minimum_free=16*1024**3,mapping_windows=1,container_starts=1,panda_preloads=1,sdk_loads=1,abi_calls=5,memory_bytes=768*1024**2,pids=32,cpu=1,tmpfs_bytes=16*1024**2,container_seconds=90,protocol_seconds=60,phase_seconds=15,output_bytes=16*1024**2,runtime_bytes=8*1024**2,execution_bytes=4*1024**2,log_bytes=2*1024**2,mapped_files=64,mapped_bytes=256*1024**2)
 PERMISSIONS=dict(sdk_mapping_canary=True,dependency_initializers=True,read_process_memory=True,scientific_native=False,native_admission=False,explicit_gl_calls=False,render=False,model=False,registry_publish=False,cloud_publish=False,main_merge=False)
 def need(ok,message='SDK_IMAGE_POLICY_REJECTED'):
  if not ok:raise ValueError(message)
@@ -59,7 +59,7 @@ def validate_run(r,ctx,run,workflow,listing,completed=False):
  need(ctx['repository']==REPO and ctx['event']=='push' and type(ctx['attempt']) is int and ctx['attempt']==1 and positive(ctx['run_id']) and hexstr(ctx['head_sha'],40) and ctx['actor']==OWNER,'run context')
  need(run['id']==ctx['run_id'] and run['head_sha']==ctx['head_sha'] and run['head_branch']==BRANCH and run['event']=='push' and type(run['run_attempt']) is int and run['run_attempt']==1 and run['path']==WORKFLOW and run['actor']['login']==OWNER,'run identity')
  need(all(run[k]['full_name']==REPO and run[k]['id']==REPO_ID for k in ('repository','head_repository')),'run repository')
- need(run['status']==('completed' if completed else 'in_progress') and run['conclusion']==('success' if completed else None),'run outcome')
+ need(run['status']==('completed' if completed else 'in_progress') and (run['conclusion'] in ('success','failure') if completed else run['conclusion'] is None),'run outcome')
  need(workflow['id']==run['workflow_id'] and workflow['path']==WORKFLOW and workflow['state']=='active','workflow identity')
  need(type(listing['total_count']) is int and listing['total_count']==len(listing['workflow_runs'])==1 and listing['workflow_runs'][0]['id']==run['id'],'one-use run uniqueness')
 def validate_artifacts(run,listing):
@@ -77,4 +77,4 @@ def mapping_profile(root):
 
 def validate_production_job(run,jobs):
  need(type(jobs) is dict and type(jobs.get('total_count')) is int and jobs['total_count']==1 and type(jobs.get('jobs')) is list and len(jobs['jobs'])==1,'exact one production job')
- row=jobs['jobs'][0];need(positive(row.get('id')) and row.get('name')=='canary' and row.get('run_id')==run['id'] and type(row.get('run_attempt')) is int and row['run_attempt']==1 and row.get('head_sha')==run['head_sha'] and row.get('head_branch')==BRANCH and row.get('status')=='completed' and row.get('conclusion')=='success','production job identity/outcome');return row['id']
+ row=jobs['jobs'][0];need(positive(row.get('id')) and row.get('name')=='canary' and row.get('run_id')==run['id'] and type(row.get('run_attempt')) is int and row['run_attempt']==1 and row.get('head_sha')==run['head_sha'] and row.get('head_branch')==BRANCH and row.get('status')=='completed' and row.get('conclusion')==run['conclusion'] and run['conclusion'] in ('success','failure'),'production job identity/outcome');return row['id']

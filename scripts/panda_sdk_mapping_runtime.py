@@ -1,5 +1,5 @@
 """Owned parent: bounded private pipes and independent child /proc snapshots."""
-import base64,hashlib,json,os,resource,secrets,select,signal,stat,subprocess,sys,tempfile,time
+import base64,hashlib,json,os,re,resource,secrets,select,signal,stat,subprocess,sys,tempfile,time
 from pathlib import Path
 if __name__=='__main__':sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 from scripts import panda_sdk_mapping_profile as profile
@@ -33,10 +33,14 @@ def image_snapshot(pid,manifest,fixture=False):
  return dict(raw_maps=raw.decode(),file_mappings=[m for m in rows if m['path'].startswith('/')],files=files,image_membership_verified=not fixture)
 def checkpoint(pid,library,p,addresses,manifest,fixture):
  code=mapping.verify_process_code(pid,library,p['sdk_sha256'],{n:dict(vaddr=r['vaddr'],size=r['size']) for n,r in p['functions'].items()},addresses)
- return dict(code=code,maps=image_snapshot(pid,manifest,fixture),exe_realpath=os.readlink('/proc/'+str(pid)+'/exe'))
+ return dict(code=code,addresses=dict(addresses),maps=image_snapshot(pid,manifest,fixture),exe_realpath=os.readlink('/proc/'+str(pid)+'/exe'))
 def validate_window(p,r):
  need(r['status']=='SELECTED_MAPPING_ABI_OBSERVED' and r['child']['nonce']==r['nonce'],'window status/challenge');a,b=r['before']['code'],r['after']['code'];need(a['pid']==b['pid']==r['child']['pid'] and a['starttime']==b['starttime']==r['child']['starttime'] and a['process_code_verified'] is True and b['process_code_verified'] is True,'window process identity')
  need(r['before']['exe_realpath']==r['after']['exe_realpath'] and r['before']['maps']['file_mappings']==r['after']['maps']['file_mappings'],'window mapping/exe changed')
+ need(r['before']['addresses']==r['after']['addresses']==r['ready']['addresses'] and set(r['ready']['addresses'])==set(p['functions']),'window selected addresses')
+ for stage in ['boot','ready']:
+  need(r[stage]['nonce']==r['nonce'] and r[stage]['pid']==a['pid'] and r[stage]['starttime']==a['starttime'],'window boot/loader identity')
+ need(r['ready']['sdk_loads']==1 and r['ready']['panda_preloads']==(0 if r['fixture'] else 1),'exact target load requests')
  for evidence in [a,b]:
   need(evidence['file_sha256']==p['sdk_sha256'] and set(evidence['ranges'])==set(p['functions']),'window SDK profile')
   for n,v in p['functions'].items():need(all(evidence['ranges'][n][k]==v[k] for k in ['vaddr','size','file_offset','sha256']),'window code profile')
@@ -49,6 +53,16 @@ class WindowFailure(ValueError):
  def __init__(self,message,receipt):super().__init__(message);self.receipt=receipt
 def memory_snapshot():
  root=Path('/sys/fs/cgroup');maximum=(root/'memory.max').read_text().strip();need(maximum==str(policy.BUDGET['memory_bytes']),'memory cgroup limit');events=dict(line.split() for line in (root/'memory.events').read_text().splitlines());need(int(events['oom'])==int(events['oom_kill'])==0,'cgroup OOM');return dict(max_bytes=int(maximum),events={k:int(v) for k,v in events.items()},peak_bytes=int((root/'memory.peak').read_text()),peak_is_rss=False)
+def check_context(f,host):
+ need(f['pid']==1 and f['uid']==f['gid']==65534 and f['cap_eff']==f['cap_bnd']==0 and f['no_new_privs']==1 and f['seccomp']==2,'runtime privilege context')
+ need(set(host)==set(f['namespaces'])=={'pid','net','mnt'} and all(re.fullmatch(k+r':\[[0-9]{1,20}\]',f['namespaces'][k]) and f['namespaces'][k]!=host[k] for k in host),'isolated runtime namespaces')
+ need(all('ro' in f['mounts'].get(p,[]) for p in ['/','/work/repo','/work/binding']) and {'rw','nosuid','nodev','noexec'}<=set(f['mounts'].get('/tmp',[])),'readonly runtime mounts')
+ need(f['pids_max']==32 and type(f['cpu_quota']) is int and 0<f['cpu_quota']==f['cpu_period'],'runtime PID/CPU cgroup');return True
+def collect_context(host):
+ status=dict(line.split(':',1) for line in Path('/proc/self/status').read_text().splitlines() if ':' in line);mounts={}
+ for line in Path('/proc/self/mountinfo').read_text().splitlines():
+  fields=line.split();mounts[fields[4]]=fields[5].split(',')
+ quota,period=Path('/sys/fs/cgroup/cpu.max').read_text().split();f=dict(pid=os.getpid(),uid=os.geteuid(),gid=os.getegid(),cap_eff=int(status['CapEff'].strip(),16),cap_bnd=int(status['CapBnd'].strip(),16),no_new_privs=int(status['NoNewPrivs'].strip()),seccomp=int(status['Seccomp'].strip()),namespaces={k:os.readlink('/proc/self/ns/'+k) for k in ['pid','net','mnt']},mounts={k:mounts.get(k,[]) for k in ['/','/work/repo','/work/binding','/tmp']},pids_max=int(Path('/sys/fs/cgroup/pids.max').read_text()),cpu_quota=int(quota),cpu_period=int(period));check_context(f,host);return f
 def run_window(library,p,*,fixture=False,timeout=60,manifest=None,nonce=None):
  library=Path(library).absolute();need(type(fixture) is bool and type(timeout) in (int,float) and 0<timeout<=60,'runtime scope/budget');need(profile.sha(read_input(library,64*1024**2))==p['sdk_sha256'],'runtime target identity')
  if fixture:need(p['sdk_sha256']!=profile.SDK_SHA and library.name=='libmapping_fixture.so','CPU fixture cannot load actual SDK')
@@ -64,7 +78,7 @@ def run_window(library,p,*,fixture=False,timeout=60,manifest=None,nonce=None):
      child=subprocess.Popen([sys.executable,'-I','-S','-B',str(Path(__file__).with_name('panda_sdk_mapping_child.py')),'--owned-child','--wire-in',str(cmd_r),'--wire-out',str(reply_w)],stdin=subprocess.DEVNULL,stdout=stdout,stderr=stderr,env=CLEAN_ENV,pass_fds=(cmd_r,reply_w),close_fds=True,start_new_session=True,preexec_fn=limits)
      os.close(cmd_r);fds.remove(cmd_r);os.close(reply_w);fds.remove(reply_w)
      write_frame(cmd_w,dict(fixture=fixture,profile=p,library=str(library),nonce=nonce,parent_pid=os.getpid(),parent_starttime=mapping._starttime(os.getpid())),stop);boot=read_frame(reply_r,stop);need(boot.get('stage')=='BOOT' and boot['nonce']==nonce and boot['pid']==child.pid and boot['starttime']==mapping._starttime(child.pid),'owned child boot');r['boot']=boot;r['before_load']=image_snapshot(child.pid,manifest,fixture)
-     need(not any(x['path']==policy.SDK_PATH for x in r['before_load']['file_mappings']),'SDK already mapped');write_frame(cmd_w,dict(stage='LOAD',nonce=nonce),stop);ready=read_frame(reply_r,stop);r['ready']=ready;need(ready.get('stage')=='READY' and ready['nonce']==nonce and ready['pid']==child.pid,'SDK loader readiness')
+     need(not any(x['path'] in (policy.SDK_PATH,policy.PRELOAD) for x in r['before_load']['file_mappings']),'SDK/Panda already mapped');write_frame(cmd_w,dict(stage='LOAD',nonce=nonce),stop);ready=read_frame(reply_r,stop);r['ready']=ready;need(ready.get('stage')=='READY' and ready['nonce']==nonce and ready['pid']==child.pid,'SDK loader readiness')
      r['before']=checkpoint(child.pid,library,p,ready['addresses'],manifest,fixture);write_frame(cmd_w,dict(stage='CALLS',nonce=nonce),stop);report=read_frame(reply_r,stop);r['child']=report;need(report.get('stage')=='REPORT','ABI report');r['after']=checkpoint(child.pid,library,p,ready['addresses'],manifest,fixture);r['status']='SELECTED_MAPPING_ABI_OBSERVED';validate_window(p,r);write_frame(cmd_w,dict(stage='EXIT',nonce=nonce),stop);child.wait(timeout=max(.001,stop-time.monotonic()));need(child.returncode==0,'child exit')
    finally:
     if child:
@@ -90,7 +104,7 @@ def main():
  import argparse
  q=argparse.ArgumentParser();q.add_argument('--binding-sha',required=True);args=q.parse_args();r=dict(status='FAILED',native_admitted=False,external_origin_authenticated=False)
  try:
-  raw=read_input(Path('/work/binding/binding.json'),1024**2);need(profile.sha(raw)==args.binding_sha,'binding identity');b=policy.parse(raw);request=policy.validate_request(b['request'],policy.ROOT);need(b['window_max']==1 and b['nonce'] and b['image_sha256']==policy.IMAGE_SHA,'qualified binding');r=run_window(policy.SDK_PATH,policy.mapping_profile(policy.ROOT),manifest=policy.expected_inventory(policy.ROOT),nonce=b['nonce']);r['binding_sha256']=args.binding_sha;print(json.dumps(r,separators=(',',':')));return 0
+  raw=read_input(Path('/work/binding/binding.json'),1024**2);need(profile.sha(raw)==args.binding_sha,'binding identity');b=policy.parse(raw);request=policy.validate_request(b['request'],policy.ROOT);need(b['window_max']==1 and b['nonce'] and b['image_sha256']==policy.IMAGE_SHA,'qualified binding');context=collect_context(b['host_namespaces']);r=run_window(policy.SDK_PATH,policy.mapping_profile(policy.ROOT),manifest=policy.expected_inventory(policy.ROOT),nonce=b['nonce']);r['binding_sha256']=args.binding_sha;r['context']=context;print(json.dumps(r,separators=(',',':')));return 0
  except BaseException as e:
   r=getattr(e,'receipt',r);r.update(status='FAILED',failure=type(e).__name__+': '+str(e));print(json.dumps(r,separators=(',',':')));return 2
 if __name__=='__main__':raise SystemExit(main())
