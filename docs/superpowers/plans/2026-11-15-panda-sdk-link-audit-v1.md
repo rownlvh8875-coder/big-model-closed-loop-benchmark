@@ -22,8 +22,8 @@ Basecd919/5950files/299pins/10originals/main/Drafts102–115/8nativehistories/tw
 ### Task1: Bounded loader symbols and versions
 **Create:** scripts/panda_sdk_link_elf.py;tests/test_panda_sdk_link_elf.py.
 **Interfaces:** inspect_elf(bytes)->metadata;available_imports(root,providers)->report. Uses PT metadata only;no execution.
-- [ ] RED compiled CPU old/new stringABI mismatch/default+nondefault versions/weak/symbol metadata corruptions/sectionless fixtures.
-- [ ] Implement bounded parser and availability,run focused CPU-data tests,record/commit.
+- [x] RED compiled CPU old/new stringABI mismatch/default+nondefault versions/weak/symbol metadata corruptions/sectionless fixtures.
+- [x] Implement bounded parser and availability,run focused CPU-data tests,record/commit.
 
 ### Task2: Authenticated provider extraction and graph audit
 **Create:** scripts/panda_sdk_link_image.py;scripts/audit_panda_sdk_link.py;tests/test_panda_sdk_link_image.py.
