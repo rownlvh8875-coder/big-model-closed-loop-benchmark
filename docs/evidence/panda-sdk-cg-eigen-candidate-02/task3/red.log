@@ -1,0 +1,21 @@
+test_panda_sdk_cg_eigen_gate (unittest.loader._FailedTest.test_panda_sdk_cg_eigen_gate) ... ERROR
+
+======================================================================
+ERROR: test_panda_sdk_cg_eigen_gate (unittest.loader._FailedTest.test_panda_sdk_cg_eigen_gate)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_panda_sdk_cg_eigen_gate
+Traceback (most recent call last):
+  File "/workspace/.cloud-tools/python/cpython-3.11.17-linux-x86_64-gnu/lib/python3.11/unittest/loader.py", line 419, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.cloud-tools/python/cpython-3.11.17-linux-x86_64-gnu/lib/python3.11/unittest/loader.py", line 362, in _get_module_from_name
+    __import__(name)
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_cg_eigen_gate.py", line 3, in <module>
+    from scripts import panda_sdk_cg_eigen_gate as g
+ImportError: cannot import name 'panda_sdk_cg_eigen_gate' from 'scripts' (/workspace/big-model-closed-loop-benchmark/scripts/__init__.py)
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (errors=1)
