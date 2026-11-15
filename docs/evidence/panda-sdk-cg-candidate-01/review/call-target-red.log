@@ -1,0 +1,23 @@
+test_complete_pinned_old_string_copy_stays_negative (test_panda_sdk_cg_static_gate.CompleteVendorTests.test_complete_pinned_old_string_copy_stays_negative) ... ok
+test_decoy_load_and_unknown_suffix_reject (test_panda_sdk_cg_static_gate.CompleteVendorTests.test_decoy_load_and_unknown_suffix_reject) ... ok
+test_string_copy_shape_cannot_call_an_unrelated_function (test_panda_sdk_cg_static_gate.CompleteVendorTests.test_string_copy_shape_cannot_call_an_unrelated_function) ... FAIL
+test_changed_provider_and_weak_exception_reject (test_panda_sdk_cg_static_gate.GateTests.test_changed_provider_and_weak_exception_reject) ... ok
+test_descriptor_code_initializers_magic_and_bounds_reject (test_panda_sdk_cg_static_gate.GateTests.test_descriptor_code_initializers_magic_and_bounds_reject) ... ok
+test_getter_ifunc_rejected (test_panda_sdk_cg_static_gate.GateTests.test_getter_ifunc_rejected) ... ok
+test_no_runtime_promotion (test_panda_sdk_cg_static_gate.GateTests.test_no_runtime_promotion) ... ok
+test_old_and_forged_offsets_reject (test_panda_sdk_cg_static_gate.GateTests.test_old_and_forged_offsets_reject) ... ok
+test_unknown_instruction_and_truncated_elf_reject (test_panda_sdk_cg_static_gate.GateTests.test_unknown_instruction_and_truncated_elf_reject) ... ok
+test_vendor_known_prefix_and_old_offset_bytes (test_panda_sdk_cg_static_gate.GateTests.test_vendor_known_prefix_and_old_offset_bytes) ... ok
+
+======================================================================
+FAIL: test_string_copy_shape_cannot_call_an_unrelated_function (test_panda_sdk_cg_static_gate.CompleteVendorTests.test_string_copy_shape_cannot_call_an_unrelated_function)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_cg_static_gate.py", line 61, in test_string_copy_shape_cannot_call_an_unrelated_function
+    with self.assertRaises(ValueError):g.candidate_offsets(bytes(raw))
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.157s
+
+FAILED (failures=1)

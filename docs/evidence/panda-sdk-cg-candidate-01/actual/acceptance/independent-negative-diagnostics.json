@@ -1,0 +1,171 @@
+{
+  "schema": "panda-sdk-cg-negative-independent-v1",
+  "recomputed_gate": {
+    "schema": "panda-sdk-cg-static-gate-v1",
+    "status": "STATIC_CG_CANDIDATE_REJECTED",
+    "reasons": [
+      "ValueError: unknown integer getter instruction"
+    ],
+    "native_admitted": false,
+    "full_object_abi_qualified": false,
+    "previous_abort_fixed": false,
+    "candidate_installed": false,
+    "runtime_mapping_qualified": false,
+    "stage7_complete": false,
+    "external_build_origin_authenticated": false
+  },
+  "gate_matches_authenticated_carrier": true,
+  "literal_descriptor_strict_rejection": "layout object must contain only literal DATA, no executable/init/relocation code",
+  "unqualified_descriptor_words_diagnostic_only": [
+    5782989451580098353,
+    1,
+    8,
+    0,
+    1,
+    88,
+    104,
+    832,
+    3960,
+    1632,
+    1656,
+    1660
+  ],
+  "object_sections": [
+    {
+      "name": "",
+      "kind": 0,
+      "flags": 0,
+      "nbytes": 0
+    },
+    {
+      "name": ".group",
+      "kind": 17,
+      "flags": 0,
+      "nbytes": 12
+    },
+    {
+      "name": ".text",
+      "kind": 1,
+      "flags": 6,
+      "nbytes": 58
+    },
+    {
+      "name": ".rela.text",
+      "kind": 4,
+      "flags": 64,
+      "nbytes": 96
+    },
+    {
+      "name": ".data",
+      "kind": 1,
+      "flags": 3,
+      "nbytes": 0
+    },
+    {
+      "name": ".bss",
+      "kind": 8,
+      "flags": 3,
+      "nbytes": 8
+    },
+    {
+      "name": ".text._ZN17CheckPandaVersionIvE13check_versionEv",
+      "kind": 1,
+      "flags": 518,
+      "nbytes": 20
+    },
+    {
+      "name": ".rela.text._ZN17CheckPandaVersionIvE13check_versionEv",
+      "kind": 4,
+      "flags": 576,
+      "nbytes": 24
+    },
+    {
+      "name": ".rodata",
+      "kind": 1,
+      "flags": 2,
+      "nbytes": 28
+    },
+    {
+      "name": ".panda_cg_layout",
+      "kind": 1,
+      "flags": 2,
+      "nbytes": 96
+    },
+    {
+      "name": ".init_array",
+      "kind": 14,
+      "flags": 3,
+      "nbytes": 8
+    },
+    {
+      "name": ".rela.init_array",
+      "kind": 4,
+      "flags": 64,
+      "nbytes": 24
+    },
+    {
+      "name": ".comment",
+      "kind": 1,
+      "flags": 48,
+      "nbytes": 46
+    },
+    {
+      "name": ".note.GNU-stack",
+      "kind": 1,
+      "flags": 0,
+      "nbytes": 0
+    },
+    {
+      "name": ".note.gnu.property",
+      "kind": 7,
+      "flags": 2,
+      "nbytes": 32
+    },
+    {
+      "name": ".eh_frame",
+      "kind": 1,
+      "flags": 2,
+      "nbytes": 120
+    },
+    {
+      "name": ".rela.eh_frame",
+      "kind": 4,
+      "flags": 64,
+      "nbytes": 72
+    },
+    {
+      "name": ".symtab",
+      "kind": 2,
+      "flags": 0,
+      "nbytes": 576
+    },
+    {
+      "name": ".strtab",
+      "kind": 3,
+      "flags": 0,
+      "nbytes": 515
+    },
+    {
+      "name": ".shstrtab",
+      "kind": 3,
+      "flags": 0,
+      "nbytes": 211
+    }
+  ],
+  "candidate_sha256": "5f466f01b7eb11345658910e6108f073b1bd68b7f04ebdf791e3df90b223269e",
+  "candidate_nbytes": 1056664,
+  "observed_instructions_offsets_diagnostic_only": {
+    "major": 1656,
+    "minor": 1660,
+    "vendor": 1632
+  },
+  "required_offsets": {
+    "major": 1672,
+    "minor": 1676,
+    "vendor": 1648
+  },
+  "residual_offset_difference_bytes": -16,
+  "target_execution": false,
+  "static_admission": false,
+  "diagnostic_only": true
+}

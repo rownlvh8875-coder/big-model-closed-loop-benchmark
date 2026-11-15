@@ -1,0 +1,38 @@
+name: One-use measured Cg SDK compile-only candidate v1
+on:
+  push:
+    branches: ['prepare/panda-sdk-cg-build-20261115-01']
+    paths: ['docs/requests/panda-sdk-cg-build-20261115-01.json']
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: panda-sdk-cg-build-20261115-01
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - name: Reject repeated attempts
+        env:
+          ATTEMPT: ${{ github.run_attempt }}
+        run: test "$ATTEMPT" = 1
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          fetch-depth: 1
+          persist-credentials: false
+      - name: Compile one source-bound Cg SDK, never execute target code
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: /usr/bin/python3 -I -S -B scripts/produce_panda_sdk_cg.py --run
+      - name: Preserve candidate or available negative evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: panda-sdk-cg-build-20261115-01
+          path: output/stage7-panda-sdk-cg-candidate-01/producer/bundle/
+          compression-level: 0
+          retention-days: 30
+          if-no-files-found: warn
+          include-hidden-files: true

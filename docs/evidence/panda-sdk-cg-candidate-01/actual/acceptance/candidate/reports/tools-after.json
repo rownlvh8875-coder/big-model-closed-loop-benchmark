@@ -1,0 +1,397 @@
+{
+  "schema": "panda-sdk-cg-tools-v1",
+  "status": "VERIFIED",
+  "tools": {
+    "cc": "/usr/bin/gcc-13",
+    "cxx": "/usr/bin/g++-13",
+    "readelf": "/usr/bin/readelf",
+    "objdump": "/usr/bin/objdump",
+    "ld": "/usr/bin/ld",
+    "as": "/usr/bin/as",
+    "ar": "/usr/bin/ar",
+    "ranlib": "/usr/bin/ranlib",
+    "bison": "/usr/bin/bison",
+    "flex": "/usr/bin/flex",
+    "m4": "/usr/bin/m4",
+    "pkg-config": "/usr/bin/pkg-config",
+    "python": "/usr/bin/python3",
+    "git": "/usr/bin/git"
+  },
+  "files": {
+    "/usr/bin/gcc-13": {
+      "resolved_path": "/usr/bin/x86_64-linux-gnu-gcc-13",
+      "nbytes": 1023032,
+      "sha256": "1b99826121ae6682a634e5efe09bd3e3df58ce58e0b28f849114ab5b89139c26"
+    },
+    "/usr/bin/g++-13": {
+      "resolved_path": "/usr/bin/x86_64-linux-gnu-g++-13",
+      "nbytes": 1027128,
+      "sha256": "1353e9bdd29a7295c7226bf6c63abccce056d8cac31f112e5cdbecc3f28c2769"
+    },
+    "/usr/bin/readelf": {
+      "resolved_path": "/usr/bin/x86_64-linux-gnu-readelf",
+      "nbytes": 789280,
+      "sha256": "64c58e15274bbbb5153f31078e455e9e77ee5f51489e709bba5bb788ce9df2b0"
+    },
+    "/usr/bin/objdump": {
+      "resolved_path": "/usr/bin/x86_64-linux-gnu-objdump",
+      "nbytes": 390848,
+      "sha256": "325c4205a4c658a9d1e1ebc469ae55975a2b897a3d3c1e79d9b158612d37f745"
+    },
+    "/usr/bin/ld": {
+      "resolved_path": "/usr/bin/x86_64-linux-gnu-ld.bfd",
+      "nbytes": 1359128,
+      "sha256": "e9ceb054c12207970f2726dfc07e9a66b411602748628baf27399f02a9bbb31b"
+    },
+    "/usr/bin/as": {
+      "resolved_path": "/usr/bin/x86_64-linux-gnu-as",
+      "nbytes": 745768,
+      "sha256": "21aff249b692b5c31a44007491f922dcb49f41323e362c57d2ada3f52eddb7f0"
+    },
+    "/usr/bin/ar": {
+      "resolved_path": "/usr/bin/x86_64-linux-gnu-ar",
+      "nbytes": 55792,
+      "sha256": "6452af2eea333b8c65e1adb92964fc8f97863ab003fa13f9d12bff5345cd7dbe"
+    },
+    "/usr/bin/ranlib": {
+      "resolved_path": "/usr/bin/x86_64-linux-gnu-ranlib",
+      "nbytes": 55792,
+      "sha256": "60254978b8ee2c1b21b41d16a18a621dbbcc72e43eb2fa9f916818256c77e9ee"
+    },
+    "/usr/bin/bison": {
+      "resolved_path": "/usr/bin/bison",
+      "nbytes": 504656,
+      "sha256": "b67826f519b3bc9c6cc4fb50d03bf6c362ba3f202b32a553c7256a801f4c985e"
+    },
+    "/usr/bin/flex": {
+      "resolved_path": "/usr/bin/flex",
+      "nbytes": 423096,
+      "sha256": "6b70611fd650c8216b5c8c1a54a69ed470cd82c63ec0dc095dd4d9782bc3efbb"
+    },
+    "/usr/bin/m4": {
+      "resolved_path": "/usr/bin/m4",
+      "nbytes": 244088,
+      "sha256": "426fbab900b6c676038cf71da51c3ae45a6d546c9580fff9372bc5b1bb81d576"
+    },
+    "/usr/bin/pkg-config": {
+      "resolved_path": "/usr/bin/pkgconf",
+      "nbytes": 45168,
+      "sha256": "7e8152db1b0c7e49d47b4b82a70dc9997b557951c5d4d938b0e7f208ce9eb10b"
+    },
+    "/usr/bin/python3": {
+      "resolved_path": "/usr/bin/python3.12",
+      "nbytes": 8020928,
+      "sha256": "e50d468e8b0adfb05733f5b87b3cff34829c4a8c1aea50c865aa8bdfe4bb150f"
+    },
+    "/usr/bin/git": {
+      "resolved_path": "/usr/bin/git",
+      "nbytes": 4640384,
+      "sha256": "08ca4d2ee4d8915e86f1faaa52603752507c57af1d16d451dec9992bc9b6d801"
+    },
+    "/usr/libexec/gcc/x86_64-linux-gnu/13/cc1": {
+      "resolved_path": "/usr/libexec/gcc/x86_64-linux-gnu/13/cc1",
+      "nbytes": 30487984,
+      "sha256": "5d1679131184e2de4435b426eb264bf13472fe026db8e5c6bc97445814e8e2f4"
+    },
+    "/usr/libexec/gcc/x86_64-linux-gnu/13/collect2": {
+      "resolved_path": "/usr/libexec/gcc/x86_64-linux-gnu/13/collect2",
+      "nbytes": 336056,
+      "sha256": "4d1f341ae5b763b513258ee2812422a45e063c30a2f1924a0cf63d3699f3a158"
+    },
+    "/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o": {
+      "resolved_path": "/usr/lib/x86_64-linux-gnu/crti.o",
+      "nbytes": 1192,
+      "sha256": "077ccb6c68db1794da3ee262c4a16a3c6f8e902845dd0829110ad4b7065e5aa3"
+    },
+    "/usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o": {
+      "resolved_path": "/usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o",
+      "nbytes": 2752,
+      "sha256": "667ff5f1edc931d44d1f2bb44d313907aa274bcc207c0beff71a398335f0d29f"
+    },
+    "/usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o": {
+      "resolved_path": "/usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o",
+      "nbytes": 1168,
+      "sha256": "9c8b2caad195193301ef072895dc89bea1d23371d4c19accd821debe27773063"
+    },
+    "/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o": {
+      "resolved_path": "/usr/lib/x86_64-linux-gnu/crtn.o",
+      "nbytes": 760,
+      "sha256": "a2266079f95b84ccc2162ebbf279bcd78858a748aa1882e0bdb912316c76a58f"
+    },
+    "/usr/lib/gcc/x86_64-linux-gnu/13/libgcc.a": {
+      "resolved_path": "/usr/lib/gcc/x86_64-linux-gnu/13/libgcc.a",
+      "nbytes": 3093656,
+      "sha256": "d9376c55f97863a4e5fbb6c6beca2591b319bf786f3a7ca56da8964c5662171f"
+    },
+    "/usr/lib/gcc/x86_64-linux-gnu/13/libgcc_s.so": {
+      "resolved_path": "/usr/lib/gcc/x86_64-linux-gnu/13/libgcc_s.so",
+      "nbytes": 132,
+      "sha256": "69a56a9993b7729b29b274e65016031c81f2397f176ed5ad44d59bd50425e0bd"
+    },
+    "/usr/lib/gcc/x86_64-linux-gnu/13/libstdc++.so": {
+      "resolved_path": "/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33",
+      "nbytes": 2592224,
+      "sha256": "1fd75fe70354a416d75aef22bcae68c47bd25d20e2d0568c30b1a9838cf62f11"
+    },
+    "/usr/libexec/gcc/x86_64-linux-gnu/13/cc1plus": {
+      "resolved_path": "/usr/libexec/gcc/x86_64-linux-gnu/13/cc1plus",
+      "nbytes": 32675168,
+      "sha256": "840b332fb62ec6f694ac77d91fe69ef7f80b0d69512ed89374af0ee7a506255d"
+    }
+  },
+  "queries": [
+    {
+      "argv": [
+        "/usr/bin/gcc-13",
+        "-dumpfullversion"
+      ],
+      "stdout": "13.3.0\n"
+    },
+    {
+      "argv": [
+        "/usr/bin/gcc-13",
+        "-shared",
+        "-fPIC",
+        "-print-prog-name=cc1"
+      ],
+      "stdout": "/usr/libexec/gcc/x86_64-linux-gnu/13/cc1\n",
+      "selected_path": "/usr/libexec/gcc/x86_64-linux-gnu/13/cc1"
+    },
+    {
+      "argv": [
+        "/usr/bin/gcc-13",
+        "-shared",
+        "-fPIC",
+        "-print-prog-name=collect2"
+      ],
+      "stdout": "/usr/libexec/gcc/x86_64-linux-gnu/13/collect2\n",
+      "selected_path": "/usr/libexec/gcc/x86_64-linux-gnu/13/collect2"
+    },
+    {
+      "argv": [
+        "/usr/bin/gcc-13",
+        "-shared",
+        "-fPIC",
+        "-print-prog-name=as"
+      ],
+      "stdout": "as\n",
+      "selected_path": "/usr/bin/as"
+    },
+    {
+      "argv": [
+        "/usr/bin/gcc-13",
+        "-shared",
+        "-fPIC",
+        "-print-prog-name=ld"
+      ],
+      "stdout": "ld\n",
+      "selected_path": "/usr/bin/ld"
+    },
+    {
+      "argv": [
+        "/usr/bin/gcc-13",
+        "-shared",
+        "-fPIC",
+        "-print-file-name=crti.o"
+      ],
+      "stdout": "/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o\n",
+      "selected_path": "/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o"
+    },
+    {
+      "argv": [
+        "/usr/bin/gcc-13",
+        "-shared",
+        "-fPIC",
+        "-print-file-name=crtbeginS.o"
+      ],
+      "stdout": "/usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o\n",
+      "selected_path": "/usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o"
+    },
+    {
+      "argv": [
+        "/usr/bin/gcc-13",
+        "-shared",
+        "-fPIC",
+        "-print-file-name=crtendS.o"
+      ],
+      "stdout": "/usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o\n",
+      "selected_path": "/usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o"
+    },
+    {
+      "argv": [
+        "/usr/bin/gcc-13",
+        "-shared",
+        "-fPIC",
+        "-print-file-name=crtn.o"
+      ],
+      "stdout": "/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o\n",
+      "selected_path": "/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o"
+    },
+    {
+      "argv": [
+        "/usr/bin/gcc-13",
+        "-shared",
+        "-fPIC",
+        "-print-file-name=libgcc.a"
+      ],
+      "stdout": "/usr/lib/gcc/x86_64-linux-gnu/13/libgcc.a\n",
+      "selected_path": "/usr/lib/gcc/x86_64-linux-gnu/13/libgcc.a"
+    },
+    {
+      "argv": [
+        "/usr/bin/gcc-13",
+        "-shared",
+        "-fPIC",
+        "-print-file-name=libgcc_s.so"
+      ],
+      "stdout": "/usr/lib/gcc/x86_64-linux-gnu/13/libgcc_s.so\n",
+      "selected_path": "/usr/lib/gcc/x86_64-linux-gnu/13/libgcc_s.so"
+    },
+    {
+      "argv": [
+        "/usr/bin/gcc-13",
+        "-shared",
+        "-fPIC",
+        "-print-file-name=libstdc++.so"
+      ],
+      "stdout": "/usr/lib/gcc/x86_64-linux-gnu/13/libstdc++.so\n",
+      "selected_path": "/usr/lib/gcc/x86_64-linux-gnu/13/libstdc++.so"
+    },
+    {
+      "argv": [
+        "/usr/bin/gcc-13",
+        "-shared",
+        "-fPIC",
+        "-print-search-dirs"
+      ],
+      "stdout": "install: /usr/lib/gcc/x86_64-linux-gnu/13/\nprograms: =/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/bin/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/bin/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/bin/\nlibraries: =/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/lib/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/lib/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib/:/lib/x86_64-linux-gnu/13/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/13/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../:/lib/:/usr/lib/\n"
+    },
+    {
+      "argv": [
+        "/usr/bin/g++-13",
+        "-dumpfullversion"
+      ],
+      "stdout": "13.3.0\n"
+    },
+    {
+      "argv": [
+        "/usr/bin/g++-13",
+        "-shared",
+        "-fPIC",
+        "-print-prog-name=cc1plus"
+      ],
+      "stdout": "/usr/libexec/gcc/x86_64-linux-gnu/13/cc1plus\n",
+      "selected_path": "/usr/libexec/gcc/x86_64-linux-gnu/13/cc1plus"
+    },
+    {
+      "argv": [
+        "/usr/bin/g++-13",
+        "-shared",
+        "-fPIC",
+        "-print-prog-name=collect2"
+      ],
+      "stdout": "/usr/libexec/gcc/x86_64-linux-gnu/13/collect2\n",
+      "selected_path": "/usr/libexec/gcc/x86_64-linux-gnu/13/collect2"
+    },
+    {
+      "argv": [
+        "/usr/bin/g++-13",
+        "-shared",
+        "-fPIC",
+        "-print-prog-name=as"
+      ],
+      "stdout": "as\n",
+      "selected_path": "/usr/bin/as"
+    },
+    {
+      "argv": [
+        "/usr/bin/g++-13",
+        "-shared",
+        "-fPIC",
+        "-print-prog-name=ld"
+      ],
+      "stdout": "ld\n",
+      "selected_path": "/usr/bin/ld"
+    },
+    {
+      "argv": [
+        "/usr/bin/g++-13",
+        "-shared",
+        "-fPIC",
+        "-print-file-name=crti.o"
+      ],
+      "stdout": "/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o\n",
+      "selected_path": "/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o"
+    },
+    {
+      "argv": [
+        "/usr/bin/g++-13",
+        "-shared",
+        "-fPIC",
+        "-print-file-name=crtbeginS.o"
+      ],
+      "stdout": "/usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o\n",
+      "selected_path": "/usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o"
+    },
+    {
+      "argv": [
+        "/usr/bin/g++-13",
+        "-shared",
+        "-fPIC",
+        "-print-file-name=crtendS.o"
+      ],
+      "stdout": "/usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o\n",
+      "selected_path": "/usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o"
+    },
+    {
+      "argv": [
+        "/usr/bin/g++-13",
+        "-shared",
+        "-fPIC",
+        "-print-file-name=crtn.o"
+      ],
+      "stdout": "/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o\n",
+      "selected_path": "/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o"
+    },
+    {
+      "argv": [
+        "/usr/bin/g++-13",
+        "-shared",
+        "-fPIC",
+        "-print-file-name=libgcc.a"
+      ],
+      "stdout": "/usr/lib/gcc/x86_64-linux-gnu/13/libgcc.a\n",
+      "selected_path": "/usr/lib/gcc/x86_64-linux-gnu/13/libgcc.a"
+    },
+    {
+      "argv": [
+        "/usr/bin/g++-13",
+        "-shared",
+        "-fPIC",
+        "-print-file-name=libgcc_s.so"
+      ],
+      "stdout": "/usr/lib/gcc/x86_64-linux-gnu/13/libgcc_s.so\n",
+      "selected_path": "/usr/lib/gcc/x86_64-linux-gnu/13/libgcc_s.so"
+    },
+    {
+      "argv": [
+        "/usr/bin/g++-13",
+        "-shared",
+        "-fPIC",
+        "-print-file-name=libstdc++.so"
+      ],
+      "stdout": "/usr/lib/gcc/x86_64-linux-gnu/13/libstdc++.so\n",
+      "selected_path": "/usr/lib/gcc/x86_64-linux-gnu/13/libstdc++.so"
+    },
+    {
+      "argv": [
+        "/usr/bin/g++-13",
+        "-shared",
+        "-fPIC",
+        "-print-search-dirs"
+      ],
+      "stdout": "install: /usr/lib/gcc/x86_64-linux-gnu/13/\nprograms: =/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/bin/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/bin/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/bin/\nlibraries: =/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/lib/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/lib/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib/:/lib/x86_64-linux-gnu/13/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/13/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../:/lib/:/usr/lib/\n"
+    }
+  ],
+  "compiler_major": 13
+}

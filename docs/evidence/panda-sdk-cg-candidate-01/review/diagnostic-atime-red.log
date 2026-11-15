@@ -1,0 +1,24 @@
+test_reading_diagnostic_atime_is_not_mistaken_for_byte_drift (test_panda_sdk_cg_build_flow.DurableFailureDiagnosticsTests.test_reading_diagnostic_atime_is_not_mistaken_for_byte_drift) ... ERROR
+
+======================================================================
+ERROR: test_reading_diagnostic_atime_is_not_mistaken_for_byte_drift (test_panda_sdk_cg_build_flow.DurableFailureDiagnosticsTests.test_reading_diagnostic_atime_is_not_mistaken_for_byte_drift)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_cg_build_flow.py", line 116, in test_reading_diagnostic_atime_is_not_mistaken_for_byte_drift
+    producer.collect_diagnostics(root,r,build);self.assertIn(b'compiler stderr',(root/'bundle/logs/host.log').read_bytes());self.assertFalse(r['diagnostics']['truncated'])
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/scripts/produce_panda_sdk_cg.py", line 95, in collect_diagnostics
+    make=build_out/'makepanda/stdout.log';(logs/'makepanda.log').write_bytes(prefix(make,16*1024**2) if make.is_file() else b'');left=32*1024**2-(logs/'makepanda.log').stat().st_size
+                                                                             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/scripts/produce_panda_sdk_cg.py", line 93, in prefix
+    saved=b''.join(chunks);a.need(os.fstat(fd)==st,'diagnostic changed');meta['streams'].append(dict(path=str(path.relative_to(out)),observed_nbytes=st.st_size,saved_nbytes=len(saved),truncated=len(saved)<st.st_size));meta['truncated']|=len(saved)<st.st_size;return saved
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/scripts/panda_sdk_cg_inputs.py", line 11, in need
+    if not ok:raise ValueError(message)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: diagnostic changed
+
+----------------------------------------------------------------------
+Ran 1 test in 0.002s
+
+FAILED (errors=1)

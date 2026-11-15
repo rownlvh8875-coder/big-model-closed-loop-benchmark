@@ -1,0 +1,48 @@
+{
+  "schema": "panda-sdk-cg-inputs-v1",
+  "status": "CURRENT_IMAGE_CG_INPUTS_QUALIFIED_DATA_ONLY",
+  "root": "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-candidate-01/inputs",
+  "contract_sha256": "b11e85da328bd4f68627fdd957b14f1aa4e2f0c898282404402405dd1f4d3630",
+  "archive_sha256": "e8ff01e6cc38d1b3fd56a083f5860737dbd2f319a39037528fb1a74a89ae9878",
+  "image_authority_sha256": "def7de2aef68ae4c8fff6925dc5514aaae18362fe8a8f78481b535e3b39aa531",
+  "inventory_sha256": "d84221127e69dec818a01762ff4c53b7570144caa4f91708b5009cf63058d7bc",
+  "files": {
+    "usr/include/Cg/cg.h": {
+      "nbytes": 64961,
+      "sha256": "fdcfeba9b8507437baad347d75c8c2b2599a845b515861bcc535d7af9941c6ed",
+      "origin": "pinned-nvidia-header"
+    },
+    "usr/include/Cg/cgGL.h": {
+      "nbytes": 13653,
+      "sha256": "10711fe206ba4ede0a8949d2d91c2a828a85c5e6f60550bae1a8f16c9f102d5a",
+      "origin": "pinned-nvidia-header"
+    },
+    "usr/lib/x86_64-linux-gnu/libCg.so": {
+      "nbytes": 20398129,
+      "sha256": "942f33fe1e0935445d88e0595089fda99d20335ef089b5205d61cd6ade054018",
+      "origin": "authenticated-current-image",
+      "image_path": "/opt/venv/lib/python3.11/site-packages/panda3d/libCg.so"
+    },
+    "usr/lib/x86_64-linux-gnu/libCgGL.so": {
+      "nbytes": 545121,
+      "sha256": "034f5ac079da5d56dcfe621c3ea9b6aaff553fc44ecfb630c167c91c68abe0df",
+      "origin": "authenticated-current-image",
+      "image_path": "/opt/venv/lib/python3.11/site-packages/panda3d/libCgGL.so"
+    }
+  },
+  "providers": {
+    "libCg.so": {
+      "nbytes": 20398129,
+      "sha256": "942f33fe1e0935445d88e0595089fda99d20335ef089b5205d61cd6ade054018",
+      "source_path": "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-link-audit-01/after-fix/replacement/providers/942f33fe1e0935445d88e0595089fda99d20335ef089b5205d61cd6ade054018.elf.data"
+    },
+    "libCgGL.so": {
+      "nbytes": 545121,
+      "sha256": "034f5ac079da5d56dcfe621c3ea9b6aaff553fc44ecfb630c167c91c68abe0df",
+      "source_path": "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-candidate-01/input-data/libCgGL.so.data"
+    }
+  },
+  "target_execution": false,
+  "native_admitted": false,
+  "external_build_origin_authenticated": false
+}
