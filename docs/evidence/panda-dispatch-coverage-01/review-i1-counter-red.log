@@ -1,0 +1,13 @@
+F
+======================================================================
+FAIL: test_actual_cpu_elf_imports_include_address_taken_function (tests.test_readback_elf_imports.ElfImportTests.test_actual_cpu_elf_imports_include_address_taken_function)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_readback_elf_imports.py", line 70, in test_actual_cpu_elf_imports_include_address_taken_function
+    self.assertEqual(result['loader_relocations'],sum('R_X86_64_' in line for line in output.splitlines()))
+AssertionError: 12 != 19
+
+----------------------------------------------------------------------
+Ran 1 test in 0.043s
+
+FAILED (failures=1)

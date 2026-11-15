@@ -1,0 +1,21 @@
+{
+  "name": "symlink-image",
+  "argv": [
+    "/workspace/.cloud-tools/stage7/first-divergence-cpu-replay/bin/python",
+    "-B",
+    "-m",
+    "scripts.panda_dispatch_coverage",
+    "--image",
+    "/tmp/pc-mutation-iaxct7gv/linked.so",
+    "--source-dir",
+    "/workspace/big-model-closed-loop-benchmark/docs/evidence/panda-dispatch-coverage-01/source",
+    "--out",
+    "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-dispatch-coverage-01/after-review-fix/symlink-image"
+  ],
+  "exit_code": 2,
+  "stdout": "",
+  "stderr": "dispatch coverage rejected: canonical nonsymlink input required\n",
+  "audit_completed": false,
+  "native_admitted": false,
+  "runtime_admission_ready": false
+}

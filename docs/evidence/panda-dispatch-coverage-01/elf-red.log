@@ -1,0 +1,45 @@
+FFFFF
+======================================================================
+FAIL: test_actual_cpu_elf_imports_include_address_taken_function (tests.test_readback_elf_imports.ElfImportTests.test_actual_cpu_elf_imports_include_address_taken_function)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_readback_elf_imports.py", line 55, in setUp
+    self.assertIsNotNone(inspect_imports, 'loader-backed ELF import reader required')
+AssertionError: unexpectedly None : loader-backed ELF import reader required
+
+======================================================================
+FAIL: test_duplicate_and_unterminated_dynamic_entries_reject (tests.test_readback_elf_imports.ElfImportTests.test_duplicate_and_unterminated_dynamic_entries_reject)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_readback_elf_imports.py", line 55, in setUp
+    self.assertIsNotNone(inspect_imports, 'loader-backed ELF import reader required')
+AssertionError: unexpectedly None : loader-backed ELF import reader required
+
+======================================================================
+FAIL: test_foreign_truncated_and_corrupt_loader_inputs_reject (tests.test_readback_elf_imports.ElfImportTests.test_foreign_truncated_and_corrupt_loader_inputs_reject)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_readback_elf_imports.py", line 55, in setUp
+    self.assertIsNotNone(inspect_imports, 'loader-backed ELF import reader required')
+AssertionError: unexpectedly None : loader-backed ELF import reader required
+
+======================================================================
+FAIL: test_loader_table_overlap_and_unmapped_slot_reject (tests.test_readback_elf_imports.ElfImportTests.test_loader_table_overlap_and_unmapped_slot_reject)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_readback_elf_imports.py", line 55, in setUp
+    self.assertIsNotNone(inspect_imports, 'loader-backed ELF import reader required')
+AssertionError: unexpectedly None : loader-backed ELF import reader required
+
+======================================================================
+FAIL: test_loader_tables_work_without_any_section_headers (tests.test_readback_elf_imports.ElfImportTests.test_loader_tables_work_without_any_section_headers)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_readback_elf_imports.py", line 55, in setUp
+    self.assertIsNotNone(inspect_imports, 'loader-backed ELF import reader required')
+AssertionError: unexpectedly None : loader-backed ELF import reader required
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.039s
+
+FAILED (failures=5)

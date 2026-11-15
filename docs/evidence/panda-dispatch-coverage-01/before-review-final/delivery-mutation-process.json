@@ -1,0 +1,23 @@
+{
+  "name": "delivery-mutation",
+  "argv": [
+    "/workspace/.cloud-tools/stage7/first-divergence-cpu-replay/bin/python",
+    "-B",
+    "-m",
+    "scripts.panda_dispatch_coverage",
+    "--image",
+    "/workspace/big-model-closed-loop-benchmark/output/stage7-readback-return-core/source-audit/libpandagl.so",
+    "--source-dir",
+    "/workspace/big-model-closed-loop-benchmark/docs/evidence/panda-dispatch-coverage-01/source",
+    "--delivery",
+    "/tmp/pc-mutation-u93qtj7d/delivery.c",
+    "--out",
+    "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-dispatch-coverage-01/before-review-final/delivery-mutation"
+  ],
+  "exit_code": 2,
+  "stdout": "",
+  "stderr": "dispatch coverage rejected: pinned existing delivery source identity\n",
+  "audit_completed": false,
+  "native_admitted": false,
+  "runtime_admission_ready": false
+}

@@ -1,0 +1,23 @@
+{
+  "name": "source-integrated",
+  "argv": [
+    "/workspace/.cloud-tools/stage7/first-divergence-cpu-replay/bin/python",
+    "-B",
+    "-m",
+    "scripts.panda_dispatch_coverage",
+    "--image",
+    "/workspace/big-model-closed-loop-benchmark/output/stage7-readback-return-core/source-audit/libpandagl.so",
+    "--source-dir",
+    "/workspace/big-model-closed-loop-benchmark/docs/evidence/panda-dispatch-coverage-01/source",
+    "--mechanism",
+    "source-integrated",
+    "--out",
+    "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-dispatch-coverage-01/before-review-final/source-integrated"
+  ],
+  "exit_code": 0,
+  "stdout": "{\"out\": \"/workspace/big-model-closed-loop-benchmark/output/stage7-panda-dispatch-coverage-01/before-review-final/source-integrated\", \"static_image_identity_matched\": true, \"potential_names\": 445, \"missing_routes\": [\"glBindBufferBase\", \"glBindFramebufferOES\", \"glDeleteBuffers\", \"glDeleteBuffersARB\", \"glDeleteFramebuffersOES\", \"glReadBufferNV\", \"glXCreateContext\", \"glXCreateContextWithConfigSGIX\", \"glXCreateGLXPbufferSGIX\", \"glXCreateGLXPixmap\", \"glXCreateGLXPixmapWithConfigSGIX\", \"glXCreatePbuffer\", \"glXCreatePixmap\", \"glXDestroyGLXPbufferSGIX\", \"glXDestroyGLXPixmap\", \"glXDestroyPbuffer\"], \"runtime_admission_ready\": false}\n",
+  "stderr": "",
+  "audit_completed": true,
+  "native_admitted": false,
+  "runtime_admission_ready": false
+}

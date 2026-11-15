@@ -1,0 +1,31 @@
+F
+======================================================================
+FAIL: test_cli_fifo_input_rejects_promptly_without_waiting_for_a_writer (tests.test_panda_dispatch_coverage.DispatchCoverageTests.test_cli_fifo_input_rejects_promptly_without_waiting_for_a_writer)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_dispatch_coverage.py", line 191, in test_cli_fifo_input_rejects_promptly_without_waiting_for_a_writer
+    p=subprocess.run([os.sys.executable,'-B','-m','scripts.panda_dispatch_coverage',
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.cloud-tools/python/cpython-3.11.17-linux-x86_64-gnu/lib/python3.11/subprocess.py", line 550, in run
+    stdout, stderr = process.communicate(input, timeout=timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.cloud-tools/python/cpython-3.11.17-linux-x86_64-gnu/lib/python3.11/subprocess.py", line 1209, in communicate
+    stdout, stderr = self._communicate(input, endtime, timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.cloud-tools/python/cpython-3.11.17-linux-x86_64-gnu/lib/python3.11/subprocess.py", line 2116, in _communicate
+    self._check_timeout(endtime, orig_timeout, stdout, stderr)
+  File "/workspace/.cloud-tools/python/cpython-3.11.17-linux-x86_64-gnu/lib/python3.11/subprocess.py", line 1253, in _check_timeout
+    raise TimeoutExpired(
+subprocess.TimeoutExpired: Command '['/workspace/.cloud-tools/stage7/first-divergence-cpu-replay/bin/python', '-B', '-m', 'scripts.panda_dispatch_coverage', '--image', '/tmp/pc-fifo-7tl_ncgv/image.fifo', '--source-dir', '/workspace/big-model-closed-loop-benchmark/docs/evidence/panda-dispatch-coverage-01/source', '--out', '/tmp/pc-fifo-7tl_ncgv/result']' timed out after 2 seconds
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_dispatch_coverage.py", line 195, in test_cli_fifo_input_rejects_promptly_without_waiting_for_a_writer
+    self.fail('nonregular input blocked before regular-file rejection')
+AssertionError: nonregular input blocked before regular-file rejection
+
+----------------------------------------------------------------------
+Ran 1 test in 2.042s
+
+FAILED (failures=1)

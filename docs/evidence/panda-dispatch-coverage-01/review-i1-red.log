@@ -1,0 +1,21 @@
+FF
+======================================================================
+FAIL: test_symbol_table_alias_and_reference_beyond_real_symbol_count_reject (tests.test_readback_elf_imports.ElfImportTests.test_symbol_table_alias_and_reference_beyond_real_symbol_count_reject) (name='aliased symbol strings')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_readback_elf_imports.py", line 129, in test_symbol_table_alias_and_reference_beyond_real_symbol_count_reject
+    with self.subTest(name=name),self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_symbol_table_alias_and_reference_beyond_real_symbol_count_reject (tests.test_readback_elf_imports.ElfImportTests.test_symbol_table_alias_and_reference_beyond_real_symbol_count_reject) (name='outside real dynsym')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_readback_elf_imports.py", line 129, in test_symbol_table_alias_and_reference_beyond_real_symbol_count_reject
+    with self.subTest(name=name),self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 1 test in 0.067s
+
+FAILED (failures=2)
