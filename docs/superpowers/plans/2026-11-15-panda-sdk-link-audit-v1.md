@@ -35,4 +35,6 @@ Basecd919/5950files/299pins/10originals/main/Drafts102–115/8nativehistories/tw
 **Create:** scripts/build_panda_sdk_link.py;tests/test_panda_sdk_link_build.py;docs/STAGE7_PANDA_SDK_LINK_{RESULT,LEDGER,CONTINUATION}.md;docs/evidence/panda-sdk-link-audit-01/.
 **Interfaces:** build_env(sysroot)->fixed env;build(stage,sysroot,out)->receipt;new flags-MD;actual audit+hypothesis evidence and handoff payload.
 - [x] RED wrong/ambient ABI/RPM/header flags and output reuse;minimal fixed builder,actual fresh compile/link/input verification/33API/defaultOFF static/source-name qualification; baseline+repair audit.
-- [ ] Fullsuite/preservation/one fresh review/one Important TDDfixpass;actual final static reports/handoffSDKdata,no runtime/image promotion;ownDraft/finalHEAD CI4jobs/attempt1/artifacts0/body/freshpreservation/finalreceipt;clean only own scratch.
+- [x] Fullsuite/preservation/one fresh review/one Important TDDfixpass;actual final static reports/handoffSDKdata,no runtime/image promotion;clean only own scratch after evidence copy.
+
+**Post-commit closeout:** ownDraft/finalHEAD CI4jobs/attempt1/artifacts0/body/freshpreservation/finalreceipt. Its authoritative result is output/stage7-panda-sdk-link-audit-01/final-verification.json so the final commit identity can be checked without a self-referential tracked receipt.
