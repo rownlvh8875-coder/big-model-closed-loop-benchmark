@@ -1,0 +1,8 @@
+# SDK integration assessment ledger
+
+Base45df9244b4e212af3c5f18628ba7639608a0b4cd;branchfeature/panda-sdk-integration-v1;4824basefiles. User asks all3 work areas in one continuous run; prior inline/no repeated questions preference persists. Connected Cloud spec1 verified; no AGENTS. PreviousSDK/CPU/CI completion remains immutable.
+Ruling: Reproduce actual compiler-selected source rather than reuse445conservative union — actual270literal lookups/11routed/259remaining and7prefix-prohibited names were observed — exact cap256 remains, unsupported routes require a new runtime/SDK generation rather than pretending aa7e qualifies; cost is another reviewed candidate and its full requalification.
+Ruling: All3 assessments run together, but native activation depends on real mechanical gates — current source/CPU success is not early install/mapped ABI/driver/receipt evidence — actual launch remains blocked if prerequisites fail; cost is unfinished native/scientific work, never fabricated pass.
+Ruling: Preserve two-TU preprocessor warning GL_GLEXT_VERSION redefinition — preprocessing returned0 and upstream actual build retained the same warning — retain stderr as raw evidence, no suppression or renderer meaning.
+Preflight1→2: coverage candidate identity is exactaa7e; image comparison must compare actual installed bytes to that same hash, not old accepted image readiness. No interface conflict.
+Preflight1+2→3: coverage and image are static assessments only; joint result must bind both and retain all missing live qualifications. Native budget0/model execution0 cannot be upgraded by caller-supplied ready flags. No interface conflict.
