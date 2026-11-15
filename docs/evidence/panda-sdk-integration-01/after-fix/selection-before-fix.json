@@ -1,0 +1,62 @@
+{
+  "schema": "panda-sdk-integration-local-selection-v1",
+  "checked_at_kst": "2026-11-15T13:48:13.003591+09:00",
+  "implementation_commit": "f1060bd8fb495f91bf53eb6f9d18376616763d42",
+  "base_sha": "45df9244b4e212af3c5f18628ba7639608a0b4cd",
+  "source_sha256": {
+    "scripts/panda_sdk_coverage.py": "c43db789f0c642545ffea0e23781bb1ce11d30d7ecd426dd752a1def46b81bd5",
+    "scripts/panda_sdk_image_binding.py": "4495e72421ecd453cd36aa339dd47e2679e059f060cfbb8fc7d4bc051aff9762",
+    "scripts/panda_sdk_integration.py": "335505d51436e460610da7dc0cbb2617c2928860a397aa0e5c2f28845ad415f1",
+    "tests/test_panda_sdk_coverage.py": "3517165123384266e70432ad426845bc6809414a9f19787b250432c0a8efac44",
+    "tests/test_panda_sdk_image_binding.py": "ae69f12e561336638774d1e29f43620bf3e6fb9510457a078bd419354bb3fac4",
+    "tests/test_panda_sdk_integration.py": "fb0b27b985b6fe5ed6d8b52debf45b3ebaef366bcbadaed1b370c083475d2ef4"
+  },
+  "candidate_sha256": "aa7e14e71f98b083faa60536ecf6b0a05e3996b4771d38e4a2ccfd43c0903088",
+  "lookup_count": 270,
+  "required_safe_count": 259,
+  "safe_cap": 256,
+  "unsupported_prefix_names": [
+    "glBindBufferBase",
+    "glXCreateGLXPbufferSGIX",
+    "glXCreateGLXPixmapWithConfigSGIX",
+    "glXCreatePbuffer",
+    "glXCreatePixmap",
+    "glXDestroyGLXPbufferSGIX",
+    "glXDestroyPbuffer"
+  ],
+  "computed_lookup_count": 4,
+  "compiled_table_names": [],
+  "selected_resolver_paths": [
+    "PSD_PATH_GLX_PRIVATE",
+    "PSD_PATH_POSIX"
+  ],
+  "image_tar_sha256": "f69b8ece51bcc6911aaf118d5ea091ba4d6ace8418b480e408be5b9fd8cb2921",
+  "image_tar_nbytes": 1726678016,
+  "image_config_digest": "sha256:2b0854f1cf91e470994637f52f4e8c78c618ed00b1496a40bb05158290e01a37",
+  "installed_entries": 44232,
+  "installed_panda_gl": [
+    {
+      "path": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandagl.so",
+      "sha256": "f38e0734a5344eda9a11e3024695febf2cea0177aa80985b67ceef5837a088d7"
+    }
+  ],
+  "candidate_sdk_installed": false,
+  "archive_wall_seconds": 16.25162781399922,
+  "focused": {
+    "total": 19,
+    "passed": 19,
+    "seconds": 0.027
+  },
+  "full": {
+    "total": 1522,
+    "passed": 1515,
+    "skipped": 7,
+    "seconds": 120.652
+  },
+  "new_native_runs": 0,
+  "official_model_calls": 0,
+  "native_admitted": false,
+  "new_official_result": "NOT_RUN",
+  "inherited_strict_result": "0/4 FAIL",
+  "stage7_complete": false
+}

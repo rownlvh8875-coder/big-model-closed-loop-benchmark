@@ -39,5 +39,5 @@ Base45df9244b4e212af3c5f18628ba7639608a0b4cd/4824files; preserve299pins/10origin
 **Interfaces:** assess_execution(coverage:dict,image:dict)->dict;main(--out)->int. Bind actual reports by SHA256, enumerate missing qualifications and original official cohort/model identity, native allowance0/no launch. A completed assessment exits0 even when scientific/runtime status is BLOCKED; report must make this explicit.
 - [x] RED missing/mismatched candidate or forged ready flags cannot produce execution authority; exact cohort/model retained; dependent failures remain visible.
 - [x] Implement joint command, execute all available assessments, focused/full suite, actual proof/preservation.
-- [ ] Sole fresh whole-branch review and one Important/Critical TDDfixpass if necessary.
-- [ ] Commit/Draft/exactHEAD push+PR CI4jobs/attempt1/artifacts0/body roundtrip/fresh preservation/final receipt. Preserve failed and previous snapshots; no native replay/publication/main update.
+- [x] Sole fresh whole-branch review and one Important/Critical TDDfixpass if necessary.
+- Postcommit operation (recorded in own PR body/final external receipt): commit/Draft/exactHEAD push+PR CI4jobs/attempt1/artifacts0/body roundtrip/fresh preservation/final receipt. Preserve failed and previous snapshots; no native replay/publication/main update.

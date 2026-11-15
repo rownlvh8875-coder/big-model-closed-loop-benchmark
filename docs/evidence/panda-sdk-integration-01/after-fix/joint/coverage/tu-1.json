@@ -1,0 +1,33 @@
+{
+  "command": [
+    "/usr/bin/g++",
+    "-std=gnu++11",
+    "-ftemplate-depth-70",
+    "-fPIC",
+    "-I/workspace/big-model-closed-loop-benchmark/output/stage7-panda-source-dispatch-01/sysroot/usr/include",
+    "-I/workspace/big-model-closed-loop-benchmark/output/stage7-panda-adapter-sdk-01/build-final/sdk/tmp",
+    "-I/workspace/big-model-closed-loop-benchmark/output/stage7-panda-adapter-sdk-01/build-final/sdk/include",
+    "-DHAVE_GLX=",
+    "-Ipanda/src/glxdisplay",
+    "-fvisibility=hidden",
+    "-pthread",
+    "-fno-exceptions",
+    "-fno-strict-aliasing",
+    "-ffast-math",
+    "-fno-stack-protector",
+    "-fno-finite-math-only",
+    "-fno-unsafe-math-optimizations",
+    "-O2",
+    "-Wall",
+    "-Wno-unused-function",
+    "-Wno-reorder",
+    "-DBUILDING_PANDAGL",
+    "panda/src/glxdisplay/p3glxdisplay_composite1.cxx",
+    "-E"
+  ],
+  "returncode": 0,
+  "wall_seconds": 0.5024569240013079,
+  "limit_failure": null,
+  "stdout_nbytes": 5380086,
+  "stderr_nbytes": 1701
+}

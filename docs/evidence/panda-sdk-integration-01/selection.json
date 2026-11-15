@@ -1,13 +1,13 @@
 {
   "schema": "panda-sdk-integration-local-selection-v1",
-  "checked_at_kst": "2026-11-15T13:48:13.003591+09:00",
-  "implementation_commit": "f1060bd8fb495f91bf53eb6f9d18376616763d42",
+  "checked_at_kst": "2026-11-15T13:59:45.866671+09:00",
+  "implementation_commit": "f038a6d68dbf703a82203f6eda2e88a40b47b43f",
   "base_sha": "45df9244b4e212af3c5f18628ba7639608a0b4cd",
   "source_sha256": {
-    "scripts/panda_sdk_coverage.py": "c43db789f0c642545ffea0e23781bb1ce11d30d7ecd426dd752a1def46b81bd5",
+    "scripts/panda_sdk_coverage.py": "7e88ce715456a4468fbefbbbc939f42651f0b73c2d553585d4c5f296aa486791",
     "scripts/panda_sdk_image_binding.py": "4495e72421ecd453cd36aa339dd47e2679e059f060cfbb8fc7d4bc051aff9762",
     "scripts/panda_sdk_integration.py": "335505d51436e460610da7dc0cbb2617c2928860a397aa0e5c2f28845ad415f1",
-    "tests/test_panda_sdk_coverage.py": "3517165123384266e70432ad426845bc6809414a9f19787b250432c0a8efac44",
+    "tests/test_panda_sdk_coverage.py": "61473c302a793aef10aa9b07e01340ea064339d240bea6104b9d2c852ae4d17d",
     "tests/test_panda_sdk_image_binding.py": "ae69f12e561336638774d1e29f43620bf3e6fb9510457a078bd419354bb3fac4",
     "tests/test_panda_sdk_integration.py": "fb0b27b985b6fe5ed6d8b52debf45b3ebaef366bcbadaed1b370c083475d2ef4"
   },
@@ -41,22 +41,35 @@
     }
   ],
   "candidate_sdk_installed": false,
-  "archive_wall_seconds": 16.25162781399922,
+  "archive_wall_seconds": 17.28014537999843,
   "focused": {
-    "total": 19,
-    "passed": 19,
-    "seconds": 0.027
+    "total": 23,
+    "passed": 23,
+    "seconds": 0.022
   },
   "full": {
-    "total": 1522,
-    "passed": 1515,
+    "total": 1526,
+    "passed": 1519,
     "skipped": 7,
-    "seconds": 120.652
+    "seconds": 118.442
   },
   "new_native_runs": 0,
   "official_model_calls": 0,
   "native_admitted": false,
   "new_official_result": "NOT_RUN",
   "inherited_strict_result": "0/4 FAIL",
-  "stage7_complete": false
+  "stage7_complete": false,
+  "preprocessor_profile_sha256": "de9913e26f5e465bbc8153596f5639827761ab68094e112c8290f09e90e87c6c",
+  "review": {
+    "head": "4d1b404c0c12dbd79f5422206bab2cdde2b50235",
+    "critical": 0,
+    "important": 3,
+    "fixed": 3,
+    "minor": 0,
+    "fix_passes": 1,
+    "rereviews": 0,
+    "declined_rulings": 5,
+    "summary": "Sole whole-branch review: 0 Critical / 3 Important / 0 Minor; all three input-authentication findings reproduced RED\u2192GREEN and fixed in one pass. Current cc1plus/selection config and original log are bound before/after; malformed marker forms reject. No rereview/minor polishing."
+  },
+  "final_joint_result": "docs/evidence/panda-sdk-integration-01/after-fix/joint/result.json"
 }
