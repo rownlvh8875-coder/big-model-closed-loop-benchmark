@@ -1,0 +1,36 @@
+test_carrier_unlisted_duplicate_link_and_truncation_reject (tests.test_panda_sdk_cg_build_flow.FlowTests.test_carrier_unlisted_duplicate_link_and_truncation_reject) ... ok
+test_closed_build_only_authority (tests.test_panda_sdk_cg_build_flow.FlowTests.test_closed_build_only_authority) ... ok
+test_closed_carrier_keeps_negative_missing_files (tests.test_panda_sdk_cg_build_flow.FlowTests.test_closed_carrier_keeps_negative_missing_files) ... ok
+test_exact_build_run_no_retry (tests.test_panda_sdk_cg_build_flow.FlowTests.test_exact_build_run_no_retry) ... ok
+test_negative_semantics_never_asserts_observed_defaultoff (tests.test_panda_sdk_cg_build_flow.FlowTests.test_negative_semantics_never_asserts_observed_defaultoff) ... ok
+test_producer_local_entry_never_compiles (tests.test_panda_sdk_cg_build_flow.FlowTests.test_producer_local_entry_never_compiles) ... ok
+test_request_only_activation (tests.test_panda_sdk_cg_build_flow.FlowTests.test_request_only_activation) ... ok
+test_single_build_reservation (tests.test_panda_sdk_cg_build_flow.FlowTests.test_single_build_reservation) ... ok
+test_source_ci_exact_four_jobs_and_attempt_one (tests.test_panda_sdk_cg_build_flow.FlowTests.test_source_ci_exact_four_jobs_and_attempt_one) ... ok
+test_success_claim_requires_complete_actual_candidate_carrier (tests.test_panda_sdk_cg_build_flow.FlowTests.test_success_claim_requires_complete_actual_candidate_carrier) ... ok
+test_pinned_debian_headers_without_runtime_binaries (tests.test_panda_sdk_cg_build_flow.PackagingFailureTests.test_pinned_debian_headers_without_runtime_binaries) ... ok
+test_post_gate_failure_downgrades_success (tests.test_panda_sdk_cg_build_flow.PackagingFailureTests.test_post_gate_failure_downgrades_success) ... ERROR
+test_seal_partial_failure_preserves_closed_negative_receipt (tests.test_panda_sdk_cg_build_flow.PackagingFailureTests.test_seal_partial_failure_preserves_closed_negative_receipt) ... ERROR
+
+======================================================================
+ERROR: test_post_gate_failure_downgrades_success (tests.test_panda_sdk_cg_build_flow.PackagingFailureTests.test_post_gate_failure_downgrades_success)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_cg_build_flow.py", line 84, in test_post_gate_failure_downgrades_success
+    r=dict(status='CG_CANDIDATE_SELECTED_LAYOUT_MATCH_NOT_RUNTIME',build_start_attempts=1);producer.record_failure(r,ValueError('post-validation failed'));self.assertEqual(r['status'],'FAILED')
+                                                                                           ^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'scripts.produce_panda_sdk_cg' has no attribute 'record_failure'
+
+======================================================================
+ERROR: test_seal_partial_failure_preserves_closed_negative_receipt (tests.test_panda_sdk_cg_build_flow.PackagingFailureTests.test_seal_partial_failure_preserves_closed_negative_receipt)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_cg_build_flow.py", line 82, in test_seal_partial_failure_preserves_closed_negative_receipt
+    producer.seal_failure_bundle(root,r);saved=json.loads((bundle/'reports/receipt.json').read_text());files={'reports/receipt.json':{},'reports/configuration.json':saved['files']['reports/configuration.json']};self.assertFalse(acceptor.validate_receipt(saved,files,'1'*40,'2'*40,55,'3'*64)['static_passed'])
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'scripts.produce_panda_sdk_cg' has no attribute 'seal_failure_bundle'
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.587s
+
+FAILED (errors=2)

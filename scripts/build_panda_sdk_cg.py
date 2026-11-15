@@ -6,7 +6,7 @@ from scripts import panda_sdk_routes_stage as source
 from scripts import panda_sdk_routes_inputs as dep
 need=inputs.need;read=inputs.read;sha=inputs.sha;ROOT=inputs.ROOT
 FLAGS='-D_GLIBCXX_USE_CXX11_ABI=0 -MD'
-TOOLS={'cc':'/usr/bin/gcc-13','cxx':'/usr/bin/g++-13','readelf':'/usr/bin/readelf','objdump':'/usr/bin/objdump','ld':'/usr/bin/ld','as':'/usr/bin/as','ar':'/usr/bin/ar','ranlib':'/usr/bin/ranlib','bison':'/usr/bin/bison','m4':'/usr/bin/m4','pkg-config':'/usr/bin/pkg-config','python':'/usr/bin/python3','git':'/usr/bin/git'}
+TOOLS={'cc':'/usr/bin/gcc-13','cxx':'/usr/bin/g++-13','readelf':'/usr/bin/readelf','objdump':'/usr/bin/objdump','ld':'/usr/bin/ld','as':'/usr/bin/as','ar':'/usr/bin/ar','ranlib':'/usr/bin/ranlib','bison':'/usr/bin/bison','flex':'/usr/bin/flex','m4':'/usr/bin/m4','pkg-config':'/usr/bin/pkg-config','python':'/usr/bin/python3','git':'/usr/bin/git'}
 def write(p,v):Path(p).write_text(json.dumps(v,indent=2)+'\n')
 def record(p):
  p=Path(p)
@@ -70,18 +70,23 @@ def layout_command(include,private,out,cxx):
 def action_context():
  need(os.environ.get('GITHUB_ACTIONS')=='true' and os.environ.get('GITHUB_REPOSITORY')=='rownlvh8875-coder/big-model-closed-loop-benchmark' and os.environ.get('GITHUB_REF_NAME')=='prepare/panda-sdk-cg-build-20261115-01' and os.environ.get('GITHUB_RUN_ATTEMPT')=='1' and str(ROOT).startswith('/home/runner/work/'),'qualified build-only Actions context')
 
-def measure_tools(paths=None):
+def measure_tools(paths=None,out=None):
  selected=dict(TOOLS if paths is None else paths);rows={};queries=[]
+ profile=dict(schema='panda-sdk-cg-tools-v1',status='PREFLIGHT',tools=selected,files=rows,queries=queries,compiler_major=13)
+ def save():
+  if out is not None:write(out,profile)
+ save()
  try:
-  for name,path in selected.items():rows[path]=record(path)
+  for name,path in selected.items():rows[path]=record(path);save()
   need(set(selected)==set(TOOLS),'complete tool set')
   env={'PATH':'/usr/bin:/bin','LANG':'C','LC_ALL':'C'}
   for name in ('cc','cxx'):
    raw=subprocess.check_output([selected[name],'-dumpfullversion'],env=env,timeout=5);need(len(raw)<=4096 and raw.decode().strip().split('.')[0]=='13','compiler major13 required');queries.append(dict(argv=[selected[name],'-dumpfullversion'],stdout=raw.decode()))
    for arg in ['-print-prog-name=cc1plus' if name=='cxx' else '-print-prog-name=cc1','-print-prog-name=collect2','-print-file-name=crtbeginS.o','-print-file-name=libgcc.a','-print-file-name=libstdc++.so']:
     raw=subprocess.check_output([selected[name],arg],env=env,timeout=5);need(len(raw)<=4096,'bounded tool query');value=raw.decode().strip();need(Path(value).is_absolute(),'absolute selected compiler input');rows[value]=record(value);queries.append(dict(argv=[selected[name],arg],stdout=raw.decode()))
-  verify_records(rows);return dict(schema='panda-sdk-cg-tools-v1',tools=selected,files=rows,queries=queries,compiler_major=13)
- except (OSError,subprocess.SubprocessError) as e:raise ValueError('missing/unqualified build tool: '+str(e)) from e
+  verify_records(rows);profile['status']='VERIFIED';save();return profile
+ except (OSError,subprocess.SubprocessError,ValueError) as e:
+  profile.update(status='FAILED',failure=type(e).__name__+': '+str(e));save();raise ValueError('missing/unqualified build tool: '+str(e)) from e
 
 def capture_headers(roots):
  result={};total=0
@@ -105,7 +110,7 @@ def private_tree(root):
 
 def validate_declared_headers(rows):
  for row in rows:
-  if row['origin']=='host':need(not any(row['path'].startswith('/usr/include/'+n+'/') for n in ('GL','Cg','X11')),'unregistered host graphics header')
+  if row['origin']=='host':need(not (row['path'].startswith('/usr/include/') and any('/'+n+'/' in row['path'] for n in ('GL','Cg','X11'))),'unregistered host graphics header')
 
 def compile_layout(sdk_include,qualified_inputs,out,tool_profile):
  action_context();out=Path(out);out.mkdir(exist_ok=False);verify_records(tool_profile['files']);obj=out/'layout-contract.o';cmd=layout_command(sdk_include,qualified_inputs['root'],obj,tool_profile['tools']['cxx']);r=run_owned(cmd,ROOT,build_environment(qualified_inputs['root']),out/'compile',60);need(r['status']=='EXITED' and r['returncode']==0 and r['streams_complete'] and r['owned_group_reaped'],'layout compilation failed');verify_records(tool_profile['files']);return dict(object=str(obj),object_sha256=sha(read(obj,1024**2)),command=r,target_execution=False)
@@ -117,7 +122,8 @@ def build(stage,qualified_inputs,out,tool_profile):
   for name,row in qualified_inputs['files'].items():need(sha(read(private/name,64*1024**2))==row['sha256'],'private Cg drift')
   header_roots=[Path('/usr/include'),Path('/usr/lib/gcc/x86_64-linux-gnu/13/include'),Path('/usr/share/bison')];host=capture_headers(header_roots);write(out/'host-before.json',host);write(out/'tools-before.json',tool_profile);write(out/'source-manifest.json',manifest)
   before_private=private_tree(private);write(out/'private-before.json',before_private)
-  cmd=build_command(stage,private,out,TOOLS['python']);r.update(status='BUILDING',build_start_attempts=1,argv=cmd,source_manifest_sha256=sha(read(stage/source.MANIFEST,16*1024**2)),contract_sha256=inputs.CONTRACT_SHA);write(out/'receipt.json',r)
+  cmd=build_command(stage,private,out,TOOLS['python']);from scripts.panda_sdk_cg_build_policy import reserve_build
+  reserve_build(out.parent/'cg-build-start.json');r.update(status='BUILDING',build_start_attempts=1,argv=cmd,source_manifest_sha256=sha(read(stage/source.MANIFEST,16*1024**2)),contract_sha256=inputs.CONTRACT_SHA);write(out/'receipt.json',r)
   process=run_owned(cmd,stage,build_environment(private),out/'makepanda',1200,disk_root=out);r['command']=process;write(out/'receipt.json',r);need(process['status']=='EXITED' and process['returncode']==0 and process['streams_complete'] and process['owned_group_reaped'],'makepanda build failed')
   commands=[];log=(out/'makepanda/stdout.log').read_text()
   for line in log.splitlines():

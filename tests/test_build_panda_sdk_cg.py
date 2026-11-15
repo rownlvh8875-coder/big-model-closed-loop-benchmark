@@ -37,7 +37,7 @@ class InputClosureTests(unittest.TestCase):
    root=Path(d);(root/'real').write_text('kept');(root/'alias').symlink_to('real');before=b.private_tree(root);(root/'alias').unlink();(root/'alias').symlink_to('/usr/include/stdio.h')
    with self.assertRaises(ValueError):b.private_tree(root)
    self.assertIn('alias',before)
-  for name in ['/usr/include/GL/gl.h','/usr/include/Cg/cg.h','/usr/include/X11/Xlib.h']:
+  for name in ['/usr/include/GL/gl.h','/usr/include/Cg/cg.h','/usr/include/X11/Xlib.h','/usr/include/x86_64-linux-gnu/X11/XlibConf.h']:
    with self.assertRaises(ValueError):b.validate_declared_headers([dict(path=name,origin='host')])
   b.validate_declared_headers([dict(path='/private/usr/include/GL/gl.h',origin='private'),dict(path='/usr/include/stdio.h',origin='host')])
 
@@ -49,3 +49,10 @@ class CompileOnlyCpuTests(unittest.TestCase):
   with tempfile.TemporaryDirectory() as d:
    root=Path(d);src=root/'layout.cxx';obj=root/'layout.o';src.write_text('struct Toy { private: int value; };\nextern "C" __attribute__((used,section(".panda_cg_layout"))) const unsigned long long toy_layout[]={sizeof(Toy),__builtin_offsetof(Toy,value)};\n')
    cmd=[compiler,'-fno-access-control','-Wno-invalid-'+'offsetof','-c',str(src),'-o',str(obj)];r=b.run_owned(cmd,root,{'PATH':'/usr/bin:/bin'},root/'compile',15);self.assertEqual(r['returncode'],0);self.assertEqual(struct.unpack_from('<H',obj.read_bytes(),16)[0],1);self.assertIn(b'.panda_cg_layout',obj.read_bytes());self.assertFalse((root/'a.out').exists())
+
+class FailedToolProfileTests(unittest.TestCase):
+ def test_failed_tool_preflight_retains_partial_identity_record(self):
+  with tempfile.TemporaryDirectory() as d:
+   p=Path(d)/'profile.json'
+   with self.assertRaises(ValueError):b.measure_tools({'cc':'/missing/compiler'},out=p)
+   r=json.loads(p.read_text());self.assertEqual(r['status'],'FAILED');self.assertEqual(r['tools']['cc'],'/missing/compiler');self.assertIn('failure',r)

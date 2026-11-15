@@ -1,0 +1,14 @@
+test_private_alias_and_unregistered_gl_header_reject (tests.test_build_panda_sdk_cg.InputClosureTests.test_private_alias_and_unregistered_gl_header_reject) ... FAIL
+
+======================================================================
+FAIL: test_private_alias_and_unregistered_gl_header_reject (tests.test_build_panda_sdk_cg.InputClosureTests.test_private_alias_and_unregistered_gl_header_reject)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_build_panda_sdk_cg.py", line 41, in test_private_alias_and_unregistered_gl_header_reject
+    with self.assertRaises(ValueError):b.validate_declared_headers([dict(path=name,origin='host')])
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+FAILED (failures=1)

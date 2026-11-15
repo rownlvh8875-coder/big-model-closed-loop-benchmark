@@ -1,0 +1,14 @@
+test_unrecognized_observer_or_native_promotion_rejected (tests.test_panda_sdk_cg_build_flow.ClosedMetadataTests.test_unrecognized_observer_or_native_promotion_rejected) ... FAIL
+
+======================================================================
+FAIL: test_unrecognized_observer_or_native_promotion_rejected (tests.test_panda_sdk_cg_build_flow.ClosedMetadataTests.test_unrecognized_observer_or_native_promotion_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_cg_build_flow.py", line 89, in test_unrecognized_observer_or_native_promotion_rejected
+    with self.assertRaises(ValueError):acceptor.validate_receipt(r,{'reports/receipt.json':{}},'1'*40,'2'*40,55,'3'*64)
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (failures=1)
