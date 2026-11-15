@@ -1,0 +1,55 @@
+"""Recheck immutable build01/wheel DATA; no target compile, load, or execution."""
+import argparse,hashlib,json,struct,subprocess,sys
+from pathlib import Path
+ROOT=Path(__file__).resolve().parents[3]
+sys.path.insert(0,str(ROOT))
+from scripts import panda_sdk_cg_static_gate as gate
+from scripts import panda_sdk_link_elf as elf
+from scripts.readback_process_mapping import elf_ranges
+
+def digest(raw):return hashlib.sha256(raw).hexdigest()
+def run(out):
+ out=Path(out);out.mkdir(parents=True,exist_ok=False);ev=ROOT/'docs/evidence/panda-sdk-cg-residual-01';contract=json.loads((ev/'contract.json').read_text());cases=[]
+ def check(name,value):
+  if not value:raise ValueError(name)
+  cases.append(name)
+ base=ROOT/'output/stage7-panda-sdk-cg-candidate-01/acceptance/candidate/candidate'
+ pins={'candidate':(base/'build-libpanda.so.data','75a41064d57ba05f1c7766ee776a6113caed5927cc4ddf98180c777ccf2e98e1'),'wheel':(ROOT/'output/stage7-panda-sdk-link-audit-01/recon/libpanda.so.1.10.data','2750e15c1f171536fabaeb07e283b866930ba16dd51aa442f819d84240f1cd5f')}
+ checkpoints={};tools={}
+ for name in ['/usr/bin/objdump','/usr/bin/objcopy','/usr/bin/readelf']:
+  p=Path(name).resolve();tools[name]=dict(resolved=str(p),sha256=digest(p.read_bytes()))
+ for tag,(path,pin) in pins.items():
+  raw=path.read_bytes();check(tag+' ELF digest',digest(raw)==pin);meta=elf.inspect_elf(raw);loads=elf_ranges(raw);selected={r['name']:r for r in meta['exports']}
+  def body(name):
+   r=selected[name];matches=[p for p in loads if p['flags']&1 and not p['flags']&2 and p['vaddr']<=r['value'] and r['value']+r['nbytes']<=p['vaddr']+p['filesz']];check(tag+' bounded '+name,r['symbol_type']==2 and 0<r['nbytes']<=4096 and len(matches)==1);p=matches[0];at=p['offset']+r['value']-p['vaddr'];return r,raw[at:at+r['nbytes']]
+  offsets={}
+  for name in ['_ZNK21GraphicsStateGuardian30get_internal_coordinate_systemEv','_ZNK21GraphicsStateGuardian21get_incomplete_renderEv','_ZN21GraphicsStateGuardian20get_prepared_objectsEv']:
+   row,b=body(name);b=b[4:] if b.startswith(bytes.fromhex('f30f1efa')) else b
+   op=next((p for p in [bytes.fromhex('488b87'),bytes.fromhex('0fb687'),bytes.fromhex('8b87')] if b.startswith(p)),None);check(tag+' complete member load '+name,op is not None and len(b)==len(op)+5 and b[-1:]==b'\xc3');offsets[name]=struct.unpack('<I',b[len(op):-1])[0]
+  checkpoints[tag]=offsets
+  for label,name in [('reset','_ZN21GraphicsStateGuardian5resetEv'),('constructor','_ZN21GraphicsStateGuardianC2E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe')]:
+   row,b=body(name);p=subprocess.run(['/usr/bin/objdump','-d','--start-address='+hex(row['value']),'--stop-address='+hex(row['value']+row['nbytes']),str(path)],capture_output=True,timeout=10,check=True);check(tag+' bounded disassembly '+label,len(p.stdout)<=1024**2);(out/(tag+'-'+label+'.txt')).write_bytes(p.stdout)
+ check('coordinate checkpoint equal',checkpoints['candidate']['_ZNK21GraphicsStateGuardian30get_internal_coordinate_systemEv']==checkpoints['wheel']['_ZNK21GraphicsStateGuardian30get_internal_coordinate_systemEv']==0xdc)
+ check('incomplete-render differs20',checkpoints['wheel']['_ZNK21GraphicsStateGuardian21get_incomplete_renderEv']-checkpoints['candidate']['_ZNK21GraphicsStateGuardian21get_incomplete_renderEv']==20)
+ check('prepared-objects differs16',checkpoints['wheel']['_ZN21GraphicsStateGuardian20get_prepared_objectsEv']-checkpoints['candidate']['_ZN21GraphicsStateGuardian20get_prepared_objectsEv']==16)
+ sdk=base/'libpandagl.so.data';raw=sdk.read_bytes();check('candidate SDK digest',digest(raw)=='5f466f01b7eb11345658910e6108f073b1bd68b7f04ebdf791e3df90b223269e');meta=elf.inspect_elf(raw);loads=elf_ranges(raw);integer={}
+ for name,want in [(gate.MAJOR,0x678),(gate.MINOR,0x67c)]:
+  r=next(r for r in meta['exports'] if r['name']==name);p=next(p for p in loads if p['vaddr']<=r['value'] and r['value']+r['nbytes']<=p['vaddr']+p['filesz']);at=p['offset']+r['value']-p['vaddr'];b=raw[at:at+r['nbytes']];check('CET exact prefix '+name,b.startswith(bytes.fromhex('f30f1efa')) and len(b)==11)
+  try:gate.decode_int_getter(b)
+  except ValueError:pass
+  else:raise ValueError('consumed decoder unexpectedly changed')
+  value=gate.decode_int_getter(b[4:]);check('diagnostic normalized offset '+name,value==want);integer[name]=dict(full_bytes=b.hex(),observed_offset=value,admitted=False)
+ parent=base/'layout-contract.o.data';praw=parent.read_bytes();check('parent digest',digest(praw)=='68fd3c5628ebfca0dbd1fd4ad2f38e7a3d7ffff61e18c1f805027fd8e2b57690')
+ try:gate.layout_from_object(praw)
+ except ValueError:pass
+ else:raise ValueError('consumed parent verdict changed')
+ h=struct.unpack_from('<16sHHIQQQIHHHHHH',praw);sections=[struct.unpack_from('<IIQQQQIIQQ',praw,h[6]+64*i) for i in range(h[12])];ns=sections[h[13]];names=praw[ns[4]:ns[4]+ns[5]];ids=[i for i,s in enumerate(sections) if names[s[0]:names.find(b'\0',s[0])]==b'.panda_cg_layout'];check('unique literal source section',len(ids)==1);index=ids[0];s=sections[index];check('section is exact allocated read-only96B',s[1]==1 and s[2]==2 and s[5]==96);check('no selected relocation',not any(r[1] in (4,9) and r[7]==index and r[5] for r in sections));literal=praw[s[4]:s[4]+96]
+ derivative=out/'literal-section.o.data';subprocess.run(['/usr/bin/objcopy','--only-section=.panda_cg_layout',str(parent),str(derivative)],capture_output=True,check=True,timeout=10);layout=gate.layout_from_object(derivative.read_bytes());check('derived values retained',layout['offsets']==dict(vendor=0x660,major=0x678,minor=0x67c))
+ try:gate.check_layout(dict(offsets=layout['offsets']),layout)
+ except ValueError:pass
+ else:raise ValueError('incompatible layout admitted')
+ for name,row in tools.items():check('inspection tool unchanged '+name,digest(Path(row['resolved']).read_bytes())==row['sha256'])
+ result=dict(schema='panda-cg-residual-recheck-v1',passed_checks=len(cases),checks=cases,checkpoints=checkpoints,integer_getters_diagnostic_only=integer,descriptor_words=list(struct.unpack('<12Q',literal)),inspection_tools=tools,target_compiled=False,target_loaded=False,target_executed=False,static_admission=False,stage7_complete=False)
+ (out/'recheck.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps({k:result[k] for k in ['passed_checks','target_compiled','target_loaded','target_executed','static_admission']}))
+if __name__=='__main__':
+ p=argparse.ArgumentParser();p.add_argument('--out',required=True);run(p.parse_args().out)

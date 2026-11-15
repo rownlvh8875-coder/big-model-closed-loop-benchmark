@@ -1,0 +1,16 @@
+from pathlib import Path
+import urllib.request,lzma,hashlib,json,time
+root=Path('/workspace/big-model-closed-loop-benchmark');out=root/'output/stage7-panda-sdk-cg-residual-01';url='https://deb.debian.org/debian/dists/bookworm/main/binary-amd64/Packages.xz'
+with urllib.request.urlopen(url,timeout=45) as response:
+ assert response.geturl()==url;compressed=response.read(16*1024**2+1)
+assert len(compressed)<=16*1024**2;decoder=lzma.LZMADecompressor();plain=decoder.decompress(compressed,max_length=128*1024**2+1);assert decoder.eof and not decoder.unused_data and len(plain)<=128*1024**2
+paragraphs=[p for p in plain.split(b'\n\n') if p.startswith(b'Package: libeigen3-dev\n')];assert len(paragraphs)==1;paragraph=paragraphs[0];fields={}
+for line in paragraph.decode().splitlines():
+ if line and not line[0].isspace():k,v=line.split(':',1);fields[k]=v.strip()
+assert fields['Version']=='3.4.0-4' and fields['Architecture']=='all' and fields['Filename']=='pool/main/e/eigen3/libeigen3-dev_3.4.0-4_all.deb'
+package_url='https://deb.debian.org/debian/'+fields['Filename']
+with urllib.request.urlopen(package_url,timeout=30) as response:
+ assert response.geturl()==package_url;data=response.read(4*1024**2+1)
+assert len(data)==int(fields['Size']) and hashlib.sha256(data).hexdigest()==fields['SHA256'];(out/'libeigen3-dev_3.4.0-4_all.deb.data').write_bytes(data);(out/'debian-eigen-package-paragraph.txt').write_bytes(paragraph+b'\n')
+proof=dict(schema='eigen-header-input-v1',package='libeigen3-dev',version=fields['Version'],architecture='all',url=package_url,nbytes=len(data),sha256=fields['SHA256'],metadata_url=url,metadata_xz_nbytes=len(compressed),metadata_xz_sha256=hashlib.sha256(compressed).hexdigest(),package_paragraph_sha256=hashlib.sha256(paragraph+b'\n').hexdigest(),transport='HTTPS default CA validated; exact metadata and package digests observed',release_gpg_verified=False,installed=False,executed=False)
+(out/'eigen-input.json').write_text(json.dumps(proof,indent=2)+'\n');print(json.dumps(proof))

@@ -1,0 +1,27 @@
+from pathlib import Path
+import json,re,struct,hashlib
+root=Path('/workspace/big-model-closed-loop-benchmark');out=root/'output/stage7-panda-sdk-cg-residual-01';source=root/'output/stage7-panda-sdk-routes-02/source'
+fields=[('_scene_graph_color',16,'vector'),('_has_scene_graph_color',1,1),('_transform_stale',1,1),('_color_blend_involves_color_scale',1,1),('_texture_involves_color_scale',1,1),('_vertex_colors_enabled',1,1),('_lighting_enabled',1,1),('_clip_planes_enabled',1,1),('_color_scale_enabled',1,1),('_current_color_scale',16,'vector'),('_has_material_force_color',1,1),('_material_force_color',16,'vector'),('_light_color_scale',16,'vector'),('_has_texture_alpha_scale',1,1),('_tex_gen_modifies_mat',1,1),('_tex_gen_point_sprite',1,1),('_last_max_stage_index',4,4),('_needs_reset',1,1),('_is_valid',1,1),('_closing_gsg',1,1),('_active',1,1),('_incomplete_render',1,1),('_effective_incomplete_render',1,1),('_loader',8,8),('_prepared_objects',8,8)]
+text=(source/'panda/src/display/graphicsStateGuardian.h').read_text();block=text[text.index('  LColor _scene_graph_color;'):text.index('  bool _is_hardware;')];assert re.findall(r'\b(_[A-Za-z0-9_]+)\s*;',block)==[r[0] for r in fields]
+def model(align):
+ pos=0xf0;rows={}
+ for name,n,a in fields:
+  a=align if a=='vector' else a;pos=(pos+a-1)//a*a;rows[name]=pos;pos+=n
+ return rows
+models={tag:model(a) for tag,a in [('candidate',4),('wheel',16)]};required={'candidate':{'_scene_graph_color':0xf0,'_current_color_scale':0x108,'_material_force_color':0x11c,'_light_color_scale':0x12c,'_incomplete_render':0x148,'_prepared_objects':0x158},'wheel':{'_scene_graph_color':0xf0,'_current_color_scale':0x110,'_material_force_color':0x130,'_light_color_scale':0x140,'_incomplete_render':0x15c,'_prepared_objects':0x168}}
+for tag in models:
+ for name,value in required[tag].items():assert models[tag][name]==value
+ reset=(out/(tag+'-gsg-reset.txt')).read_text();checkpoints=(out/(tag+'-gsg-checkpoints.txt')).read_text()
+ for name in ['_incomplete_render','_prepared_objects']:assert hex(required[tag][name])+'(' in checkpoints
+ if tag=='candidate':
+  for name in ['_scene_graph_color','_current_color_scale','_material_force_color','_light_color_scale']:assert re.search(r'movups .*,'+hex(required[tag][name])+r'\(',reset)
+ else:
+  for name in ['_scene_graph_color','_current_color_scale','_material_force_color','_light_color_scale']:
+   for delta in (0,8):assert re.search(r'mov\s+%rax,'+hex(required[tag][name]+delta)+r'\(',reset)
+old={}
+for line in (root/'output/stage7-panda-sdk-link-audit-01/build-abi0/sdk/include/dtool_config.h').read_text().splitlines():
+ f=line.split()
+ if len(f)>1 and f[0] in ('#define','#undef'):old[f[1]]=False if f[0]=='#undef' else ' '.join(f[2:]) or True
+new=json.loads((root/'docs/evidence/panda-sdk-cg-candidate-01/actual/acceptance/candidate/reports/configuration.json').read_text());delta={k:dict(old=old.get(k),candidate=new.get(k)) for k in sorted(set(old)|set(new)) if old.get(k)!=new.get(k)};assert set(delta)=={'HAVE_CG','HAVE_CGDX9','HAVE_CGGL'}
+proof=dict(schema='panda-cg-residual-alignment-model-v1',classification='CONFIRMED_VECTOR_ALIGNMENT_LAYOUT_DIFFERENCE_SOURCE_CONSISTENT_EIGEN_HYPOTHESIS',field_model=models,observed_fields=required,pre_vector_internal_coordinate_system_offset_equal=0xdc,incomplete_render_delta=20,prepared_objects_delta=16,candidate_generated_have_eigen=False,candidate_generated_linmath_align='1',candidate_effective_linmath_align=False,effective_undef_source='dtool/src/dtoolbase/dtoolbase.h:146',wheel_effective_vector_alignment_inferred=16,wheel_original_eigen_version_unknown=True,wheel_full_configuration_unknown=True,generated_macro_delta=delta,eigen_enable_is_proposed_correction_not_verified_build=True,new_sdk_compiles=0,target_executed=False,static_admission=False)
+(out/'alignment-model.json').write_text(json.dumps(proof,indent=2)+'\n');print(json.dumps({k:proof[k] for k in ['classification','incomplete_render_delta','prepared_objects_delta','generated_macro_delta','candidate_effective_linmath_align','wheel_effective_vector_alignment_inferred']}))

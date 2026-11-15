@@ -1,0 +1,643 @@
+
+/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-candidate-01/acceptance/candidate/candidate/build-libpanda.so.data:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+000000000025c300 <_ZN10LVecBase4fC1ERK19UnalignedLVecBase4f>:
+  25c300:	f3 0f 1e fa          	endbr64
+  25c304:	0f 10 06             	movups (%rsi),%xmm0
+  25c307:	0f 11 07             	movups %xmm0,(%rdi)
+  25c30a:	c3                   	ret
+
+
+/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-candidate-01/acceptance/candidate/candidate/build-libpanda.so.data:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+00000000004b6150 <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe>:
+  4b6150:	f3 0f 1e fa          	endbr64
+  4b6154:	41 57                	push   %r15
+  4b6156:	41 56                	push   %r14
+  4b6158:	4c 8d 77 18          	lea    0x18(%rdi),%r14
+  4b615c:	41 55                	push   %r13
+  4b615e:	49 89 d5             	mov    %rdx,%r13
+  4b6161:	41 54                	push   %r12
+  4b6163:	49 89 fc             	mov    %rdi,%r12
+  4b6166:	55                   	push   %rbp
+  4b6167:	48 89 cd             	mov    %rcx,%rbp
+  4b616a:	53                   	push   %rbx
+  4b616b:	89 f3                	mov    %esi,%ebx
+  4b616d:	48 83 ec 28          	sub    $0x28,%rsp
+  4b6171:	48 8b 05 90 bb 4c 00 	mov    0x4cbb90(%rip),%rax        # 981d08 <_ZTV13TypedWritable@@Base+0x54d8>
+  4b6178:	48 c7 47 08 00 00 00 	movq   $0x0,0x8(%rdi)
+  4b617f:	00 
+  4b6180:	48 c7 47 10 00 00 00 	movq   $0x0,0x10(%rdi)
+  4b6187:	00 
+  4b6188:	48 83 c0 10          	add    $0x10,%rax
+  4b618c:	48 c7 47 28 00 00 00 	movq   $0x0,0x28(%rdi)
+  4b6193:	00 
+  4b6194:	48 89 07             	mov    %rax,(%rdi)
+  4b6197:	48 8d 05 f2 61 4a 00 	lea    0x4a61f2(%rip),%rax        # 95c390 <_ZTV14ReferenceCount+0x10>
+  4b619e:	48 89 47 18          	mov    %rax,0x18(%rdi)
+  4b61a2:	48 8b 05 df dc 4c 00 	mov    0x4cdcdf(%rip),%rax        # 983e88 <_ZN11MemoryUsage11_global_ptrE@Base>
+  4b61a9:	48 c7 47 20 00 00 00 	movq   $0x0,0x20(%rdi)
+  4b61b0:	00 
+  4b61b1:	48 8b 38             	mov    (%rax),%rdi
+  4b61b4:	48 85 ff             	test   %rdi,%rdi
+  4b61b7:	0f 84 eb 08 00 00    	je     4b6aa8 <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0x958>
+  4b61bd:	4c 89 f6             	mov    %r14,%rsi
+  4b61c0:	e8 9b 1c d7 ff       	call   227e60 <_ZN11MemoryUsage17ns_record_pointerEP14ReferenceCount@plt>
+  4b61c5:	48 8b 05 d4 b3 4c 00 	mov    0x4cb3d4(%rip),%rax        # 9815a0 <_ZTV27TypedWritableReferenceCount@@Base+0x4d08>
+  4b61cc:	48 8d 50 10          	lea    0x10(%rax),%rdx
+  4b61d0:	48 83 c0 78          	add    $0x78,%rax
+  4b61d4:	49 89 44 24 18       	mov    %rax,0x18(%r12)
+  4b61d9:	48 8b 05 a8 dc 4c 00 	mov    0x4cdca8(%rip),%rax        # 983e88 <_ZN11MemoryUsage11_global_ptrE@Base>
+  4b61e0:	49 89 14 24          	mov    %rdx,(%r12)
+  4b61e4:	48 8b 38             	mov    (%rax),%rdi
+  4b61e7:	48 85 ff             	test   %rdi,%rdi
+  4b61ea:	0f 84 a0 08 00 00    	je     4b6a90 <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0x940>
+  4b61f0:	4c 89 f6             	mov    %r14,%rsi
+  4b61f3:	4c 89 e2             	mov    %r12,%rdx
+  4b61f6:	e8 e5 28 d6 ff       	call   218ae0 <_ZN11MemoryUsage14ns_update_typeEPvP11TypedObject@plt>
+  4b61fb:	48 8b 05 ee a7 4c 00 	mov    0x4ca7ee(%rip),%rax        # 9809f0 <_ZTV21GraphicsStateGuardian@@Base+0x12d50>
+  4b6202:	66 0f ef c0          	pxor   %xmm0,%xmm0
+  4b6206:	41 89 9c 24 dc 00 00 	mov    %ebx,0xdc(%r12)
+  4b620d:	00 
+  4b620e:	41 0f 11 44 24 38    	movups %xmm0,0x38(%r12)
+  4b6214:	48 8d 5c 24 18       	lea    0x18(%rsp),%rbx
+  4b6219:	be 40 00 00 00       	mov    $0x40,%esi
+  4b621e:	48 8d 50 10          	lea    0x10(%rax),%rdx
+  4b6222:	48 05 c0 03 00 00    	add    $0x3c0,%rax
+  4b6228:	48 89 df             	mov    %rbx,%rdi
+  4b622b:	41 0f 11 44 24 48    	movups %xmm0,0x48(%r12)
+  4b6231:	49 89 44 24 18       	mov    %rax,0x18(%r12)
+  4b6236:	48 8b 05 3b b6 4c 00 	mov    0x4cb63b(%rip),%rax        # 981878 <pvector_type_handle@Base>
+  4b623d:	41 0f 11 44 24 60    	movups %xmm0,0x60(%r12)
+  4b6243:	8b 00                	mov    (%rax),%eax
+  4b6245:	41 0f 11 44 24 70    	movups %xmm0,0x70(%r12)
+  4b624b:	41 0f 11 84 24 80 00 	movups %xmm0,0x80(%r12)
+  4b6252:	00 00 
+  4b6254:	41 89 84 24 c0 01 00 	mov    %eax,0x1c0(%r12)
+  4b625b:	00 
+  4b625c:	41 89 84 24 e0 01 00 	mov    %eax,0x1e0(%r12)
+  4b6263:	00 
+  4b6264:	48 8b 05 75 a5 4c 00 	mov    0x4ca575(%rip),%rax        # 9807e0 <pdeque_type_handle@Base>
+  4b626b:	41 0f 11 84 24 b8 00 	movups %xmm0,0xb8(%r12)
+  4b6272:	00 00 
+  4b6274:	8b 00                	mov    (%rax),%eax
+  4b6276:	49 89 14 24          	mov    %rdx,(%r12)
+  4b627a:	41 0f 11 84 24 e0 00 	movups %xmm0,0xe0(%r12)
+  4b6281:	00 00 
+  4b6283:	41 0f 11 84 24 50 01 	movups %xmm0,0x150(%r12)
+  4b628a:	00 00 
+  4b628c:	41 0f 11 84 24 c8 01 	movups %xmm0,0x1c8(%r12)
+  4b6293:	00 00 
+  4b6295:	41 0f 11 84 24 e8 01 	movups %xmm0,0x1e8(%r12)
+  4b629c:	00 00 
+  4b629e:	41 0f 11 84 24 20 02 	movups %xmm0,0x220(%r12)
+  4b62a5:	00 00 
+  4b62a7:	41 0f 11 84 24 30 02 	movups %xmm0,0x230(%r12)
+  4b62ae:	00 00 
+  4b62b0:	41 89 84 24 08 02 00 	mov    %eax,0x208(%r12)
+  4b62b7:	00 
+  4b62b8:	49 c7 44 24 58 00 00 	movq   $0x0,0x58(%r12)
+  4b62bf:	00 00 
+  4b62c1:	49 c7 84 24 90 00 00 	movq   $0x0,0x90(%r12)
+  4b62c8:	00 00 00 00 00 
+  4b62cd:	49 c7 84 24 a8 00 00 	movq   $0x0,0xa8(%r12)
+  4b62d4:	00 00 00 00 00 
+  4b62d9:	49 c7 84 24 c8 00 00 	movq   $0x0,0xc8(%r12)
+  4b62e0:	00 00 00 00 00 
+  4b62e5:	41 c7 84 24 90 01 00 	movl   $0x0,0x190(%r12)
+  4b62ec:	00 00 00 00 00 
+  4b62f1:	49 c7 84 24 a8 01 00 	movq   $0x0,0x1a8(%r12)
+  4b62f8:	00 00 00 00 00 
+  4b62fd:	49 c7 84 24 d8 01 00 	movq   $0x0,0x1d8(%r12)
+  4b6304:	00 00 00 00 00 
+  4b6309:	49 c7 84 24 f8 01 00 	movq   $0x0,0x1f8(%r12)
+  4b6310:	00 00 00 00 00 
+  4b6315:	49 c7 84 24 10 02 00 	movq   $0x0,0x210(%r12)
+  4b631c:	00 00 00 00 00 
+  4b6321:	41 0f 11 84 24 40 02 	movups %xmm0,0x240(%r12)
+  4b6328:	00 00 
+  4b632a:	49 c7 84 24 18 02 00 	movq   $0x8,0x218(%r12)
+  4b6331:	00 08 00 00 00 
+  4b6336:	41 0f 11 84 24 50 02 	movups %xmm0,0x250(%r12)
+  4b633d:	00 00 
+  4b633f:	89 44 24 18          	mov    %eax,0x18(%rsp)
+  4b6343:	e8 a8 af d6 ff       	call   2212f0 <_ZN10TypeHandle14allocate_arrayEm@plt>
+  4b6348:	49 8b 94 24 18 02 00 	mov    0x218(%r12),%rdx
+  4b634f:	00 
+  4b6350:	be 00 02 00 00       	mov    $0x200,%esi
+  4b6355:	49 8d bc 24 08 02 00 	lea    0x208(%r12),%rdi
+  4b635c:	00 
+  4b635d:	49 89 84 24 10 02 00 	mov    %rax,0x210(%r12)
+  4b6364:	00 
+  4b6365:	48 8d 14 95 fc ff ff 	lea    -0x4(,%rdx,4),%rdx
+  4b636c:	ff 
+  4b636d:	48 83 e2 f8          	and    $0xfffffffffffffff8,%rdx
+  4b6371:	4c 8d 34 10          	lea    (%rax,%rdx,1),%r14
+  4b6375:	e8 76 af d6 ff       	call   2212f0 <_ZN10TypeHandle14allocate_arrayEm@plt>
+  4b637a:	49 8d bc 24 98 02 00 	lea    0x298(%r12),%rdi
+  4b6381:	00 
+  4b6382:	49 89 06             	mov    %rax,(%r14)
+  4b6385:	4d 89 b4 24 38 02 00 	mov    %r14,0x238(%r12)
+  4b638c:	00 
+  4b638d:	49 8b 16             	mov    (%r14),%rdx
+  4b6390:	4d 89 b4 24 58 02 00 	mov    %r14,0x258(%r12)
+  4b6397:	00 
+  4b6398:	48 8d 82 00 02 00 00 	lea    0x200(%rdx),%rax
+  4b639f:	49 89 94 24 28 02 00 	mov    %rdx,0x228(%r12)
+  4b63a6:	00 
+  4b63a7:	49 89 84 24 30 02 00 	mov    %rax,0x230(%r12)
+  4b63ae:	00 
+  4b63af:	49 8b 06             	mov    (%r14),%rax
+  4b63b2:	49 89 94 24 20 02 00 	mov    %rdx,0x220(%r12)
+  4b63b9:	00 
+  4b63ba:	48 8d 88 00 02 00 00 	lea    0x200(%rax),%rcx
+  4b63c1:	66 48 0f 6e c8       	movq   %rax,%xmm1
+  4b63c6:	48 8b 05 43 c5 4c 00 	mov    0x4cc543(%rip),%rax        # 982910 <pset_type_handle@Base>
+  4b63cd:	41 c7 84 24 c8 02 00 	movl   $0x0,0x2c8(%r12)
+  4b63d4:	00 00 00 00 00 
+  4b63d9:	49 89 8c 24 50 02 00 	mov    %rcx,0x250(%r12)
+  4b63e0:	00 
+  4b63e1:	66 0f 6c c9          	punpcklqdq %xmm1,%xmm1
+  4b63e5:	49 c7 84 24 d0 02 00 	movq   $0x0,0x2d0(%r12)
+  4b63ec:	00 00 00 00 00 
+  4b63f1:	8b 00                	mov    (%rax),%eax
+  4b63f3:	49 c7 84 24 e8 02 00 	movq   $0x0,0x2e8(%r12)
+  4b63fa:	00 00 00 00 00 
+  4b63ff:	41 89 84 24 c0 02 00 	mov    %eax,0x2c0(%r12)
+  4b6406:	00 
+  4b6407:	49 8d 84 24 c8 02 00 	lea    0x2c8(%r12),%rax
+  4b640e:	00 
+  4b640f:	49 89 84 24 d8 02 00 	mov    %rax,0x2d8(%r12)
+  4b6416:	00 
+  4b6417:	49 89 84 24 e0 02 00 	mov    %rax,0x2e0(%r12)
+  4b641e:	00 
+  4b641f:	41 0f 11 8c 24 40 02 	movups %xmm1,0x240(%r12)
+  4b6426:	00 00 
+  4b6428:	e8 a3 2a d7 ff       	call   228ed0 <_ZN6Shader10ShaderCaps5clearEv@plt>
+  4b642d:	66 0f ef c0          	pxor   %xmm0,%xmm0
+  4b6431:	49 89 ac 24 10 03 00 	mov    %rbp,0x310(%r12)
+  4b6438:	00 
+  4b6439:	41 0f 11 84 24 f8 02 	movups %xmm0,0x2f8(%r12)
+  4b6440:	00 00 
+  4b6442:	48 85 ed             	test   %rbp,%rbp
+  4b6445:	74 26                	je     4b646d <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0x31d>
+  4b6447:	f0 48 83 45 10 01    	lock addq $0x1,0x10(%rbp)
+  4b644d:	48 8b 05 34 da 4c 00 	mov    0x4cda34(%rip),%rax        # 983e88 <_ZN11MemoryUsage11_global_ptrE@Base>
+  4b6454:	48 8b 00             	mov    (%rax),%rax
+  4b6457:	48 85 c0             	test   %rax,%rax
+  4b645a:	0f 84 e8 05 00 00    	je     4b6a48 <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0x8f8>
+  4b6460:	80 b8 98 01 00 00 00 	cmpb   $0x0,0x198(%rax)
+  4b6467:	0f 85 d3 04 00 00    	jne    4b6940 <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0x7f0>
+  4b646d:	48 8b 05 dc 9d 4c 00 	mov    0x4c9ddc(%rip),%rax        # 980250 <_ZNSs4_Rep20_S_empty_rep_storageE@GLIBCXX_3.4>
+  4b6474:	4d 89 ac 24 18 03 00 	mov    %r13,0x318(%r12)
+  4b647b:	00 
+  4b647c:	48 89 de             	mov    %rbx,%rsi
+  4b647f:	49 8d bc 24 20 03 00 	lea    0x320(%r12),%rdi
+  4b6486:	00 
+  4b6487:	48 83 c0 18          	add    $0x18,%rax
+  4b648b:	48 89 44 24 18       	mov    %rax,0x18(%rsp)
+  4b6490:	e8 eb 38 d7 ff       	call   229d80 <_ZN22GraphicsThreadingModelC1ERKSs@plt>
+  4b6495:	48 89 df             	mov    %rbx,%rdi
+  4b6498:	e8 b3 f8 d5 ff       	call   215d50 <_ZNSsD1Ev@plt>
+  4b649d:	48 89 df             	mov    %rbx,%rdi
+  4b64a0:	41 c7 84 24 d8 00 00 	movl   $0x5,0xd8(%r12)
+  4b64a7:	00 05 00 00 00 
+  4b64ac:	e8 df 1f d6 ff       	call   218490 <_ZN14TransformState13make_identityEv@plt>
+  4b64b1:	48 8b 44 24 18       	mov    0x18(%rsp),%rax
+  4b64b6:	49 8b 7c 24 60       	mov    0x60(%r12),%rdi
+  4b64bb:	48 39 f8             	cmp    %rdi,%rax
+  4b64be:	74 1d                	je     4b64dd <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0x38d>
+  4b64c0:	49 89 44 24 60       	mov    %rax,0x60(%r12)
+  4b64c5:	48 c7 44 24 18 00 00 	movq   $0x0,0x18(%rsp)
+  4b64cc:	00 00 
+  4b64ce:	48 85 ff             	test   %rdi,%rdi
+  4b64d1:	74 14                	je     4b64e7 <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0x397>
+  4b64d3:	e8 18 a1 da ff       	call   2605f0 <_Z12unref_deleteI14TransformStateEvPT_>
+  4b64d8:	48 8b 7c 24 18       	mov    0x18(%rsp),%rdi
+  4b64dd:	48 85 ff             	test   %rdi,%rdi
+  4b64e0:	74 05                	je     4b64e7 <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0x397>
+  4b64e2:	e8 09 a1 da ff       	call   2605f0 <_Z12unref_deleteI14TransformStateEvPT_>
+  4b64e7:	41 8b b4 24 dc 00 00 	mov    0xdc(%r12),%esi
+  4b64ee:	00 
+  4b64ef:	85 f6                	test   %esi,%esi
+  4b64f1:	0f 84 69 04 00 00    	je     4b6960 <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0x810>
+  4b64f7:	e8 e4 82 d6 ff       	call   21e7e0 <_Z29get_default_coordinate_systemv@plt>
+  4b64fc:	4c 89 e7             	mov    %r12,%rdi
+  4b64ff:	89 c6                	mov    %eax,%esi
+  4b6501:	e8 1a bc d6 ff       	call   222120 <_ZN21GraphicsStateGuardian21set_coordinate_systemE16CoordinateSystem@plt>
+  4b6506:	49 8b ac 24 a8 00 00 	mov    0xa8(%r12),%rbp
+  4b650d:	00 
+  4b650e:	49 c7 84 24 98 00 00 	movq   $0x0,0x98(%r12)
+  4b6515:	00 00 00 00 00 
+  4b651a:	48 85 ed             	test   %rbp,%rbp
+  4b651d:	74 34                	je     4b6553 <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0x403>
+  4b651f:	49 c7 84 24 a8 00 00 	movq   $0x0,0xa8(%r12)
+  4b6526:	00 00 00 00 00 
+  4b652b:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  4b652f:	48 8d 15 da bc d8 ff 	lea    -0x274326(%rip),%rdx        # 242210 <_ZNK14ReferenceCount5unrefEv>
+  4b6536:	48 8d 7d 08          	lea    0x8(%rbp),%rdi
+  4b653a:	48 8b 40 10          	mov    0x10(%rax),%rax
+  4b653e:	48 39 d0             	cmp    %rdx,%rax
+  4b6541:	0f 85 79 04 00 00    	jne    4b69c0 <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0x870>
+  4b6547:	f0 48 83 6d 10 01    	lock subq $0x1,0x10(%rbp)
+  4b654d:	0f 84 7d 04 00 00    	je     4b69d0 <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0x880>
+  4b6553:	49 8b ac 24 b8 00 00 	mov    0xb8(%r12),%rbp
+  4b655a:	00 
+  4b655b:	49 c7 84 24 b0 00 00 	movq   $0x0,0xb0(%r12)
+  4b6562:	00 00 00 00 00 
+  4b6567:	48 85 ed             	test   %rbp,%rbp
+  4b656a:	74 34                	je     4b65a0 <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0x450>
+  4b656c:	49 c7 84 24 b8 00 00 	movq   $0x0,0xb8(%r12)
+  4b6573:	00 00 00 00 00 
+  4b6578:	48 8b 45 18          	mov    0x18(%rbp),%rax
+  4b657c:	48 8d 15 8d bc d8 ff 	lea    -0x274373(%rip),%rdx        # 242210 <_ZNK14ReferenceCount5unrefEv>
+  4b6583:	48 8d 7d 18          	lea    0x18(%rbp),%rdi
+  4b6587:	48 8b 40 10          	mov    0x10(%rax),%rax
+  4b658b:	48 39 d0             	cmp    %rdx,%rax
+  4b658e:	0f 85 0c 04 00 00    	jne    4b69a0 <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0x850>
+  4b6594:	f0 48 83 6d 20 01    	lock subq $0x1,0x20(%rbp)
+  4b659a:	0f 84 10 04 00 00    	je     4b69b0 <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0x860>
+  4b65a0:	48 89 df             	mov    %rbx,%rdi
+  4b65a3:	e8 e8 1e d6 ff       	call   218490 <_ZN14TransformState13make_identityEv@plt>
+  4b65a8:	48 8b 44 24 18       	mov    0x18(%rsp),%rax
+  4b65ad:	49 8b bc 24 c0 00 00 	mov    0xc0(%r12),%rdi
+  4b65b4:	00 
+  4b65b5:	48 39 f8             	cmp    %rdi,%rax
+  4b65b8:	74 20                	je     4b65da <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0x48a>
+  4b65ba:	49 89 84 24 c0 00 00 	mov    %rax,0xc0(%r12)
+  4b65c1:	00 
+  4b65c2:	48 c7 44 24 18 00 00 	movq   $0x0,0x18(%rsp)
+  4b65c9:	00 00 
+  4b65cb:	48 85 ff             	test   %rdi,%rdi
+  4b65ce:	74 14                	je     4b65e4 <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0x494>
+  4b65d0:	e8 1b a0 da ff       	call   2605f0 <_Z12unref_deleteI14TransformStateEvPT_>
+  4b65d5:	48 8b 7c 24 18       	mov    0x18(%rsp),%rdi
+  4b65da:	48 85 ff             	test   %rdi,%rdi
+  4b65dd:	74 05                	je     4b65e4 <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0x494>
+  4b65df:	e8 0c a0 da ff       	call   2605f0 <_Z12unref_deleteI14TransformStateEvPT_>
+  4b65e4:	48 89 df             	mov    %rbx,%rdi
+  4b65e7:	e8 a4 1e d6 ff       	call   218490 <_ZN14TransformState13make_identityEv@plt>
+  4b65ec:	48 8b 44 24 18       	mov    0x18(%rsp),%rax
+  4b65f1:	49 8b bc 24 c8 00 00 	mov    0xc8(%r12),%rdi
+  4b65f8:	00 
+  4b65f9:	48 39 f8             	cmp    %rdi,%rax
+  4b65fc:	74 20                	je     4b661e <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0x4ce>
+  4b65fe:	49 89 84 24 c8 00 00 	mov    %rax,0xc8(%r12)
+  4b6605:	00 
+  4b6606:	48 c7 44 24 18 00 00 	movq   $0x0,0x18(%rsp)
+  4b660d:	00 00 
+  4b660f:	48 85 ff             	test   %rdi,%rdi
+  4b6612:	74 14                	je     4b6628 <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0x4d8>
+  4b6614:	e8 d7 9f da ff       	call   2605f0 <_Z12unref_deleteI14TransformStateEvPT_>
+  4b6619:	48 8b 7c 24 18       	mov    0x18(%rsp),%rdi
+  4b661e:	48 85 ff             	test   %rdi,%rdi
+  4b6621:	74 05                	je     4b6628 <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0x4d8>
+  4b6623:	e8 c8 9f da ff       	call   2605f0 <_Z12unref_deleteI14TransformStateEvPT_>
+  4b6628:	48 8b 05 d9 a5 4c 00 	mov    0x4ca5d9(%rip),%rax        # 980c08 <memory_hook@Base>
+  4b662f:	be 90 0c 00 00       	mov    $0xc90,%esi
+  4b6634:	49 c7 84 24 d0 00 00 	movq   $0x0,0xd0(%r12)
+  4b663b:	00 00 00 00 00 
+  4b6640:	41 c7 84 24 44 01 00 	movl   $0x1000001,0x144(%r12)
+  4b6647:	00 01 00 00 01 
+  4b664c:	48 8b 38             	mov    (%rax),%rdi
+  4b664f:	48 8b 07             	mov    (%rdi),%rax
+  4b6652:	ff 50 10             	call   *0x10(%rax)
+  4b6655:	48 89 c7             	mov    %rax,%rdi
+  4b6658:	48 89 c5             	mov    %rax,%rbp
+  4b665b:	e8 50 37 d6 ff       	call   219db0 <_ZN23PreparedGraphicsObjectsC1Ev@plt>
+  4b6660:	4d 8b ac 24 58 01 00 	mov    0x158(%r12),%r13
+  4b6667:	00 
+  4b6668:	4c 39 ed             	cmp    %r13,%rbp
+  4b666b:	74 73                	je     4b66e0 <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0x590>
+  4b666d:	49 89 ac 24 58 01 00 	mov    %rbp,0x158(%r12)
+  4b6674:	00 
+  4b6675:	f0 48 83 45 08 01    	lock addq $0x1,0x8(%rbp)
+  4b667b:	48 8b 05 06 d8 4c 00 	mov    0x4cd806(%rip),%rax        # 983e88 <_ZN11MemoryUsage11_global_ptrE@Base>
+  4b6682:	48 8b 00             	mov    (%rax),%rax
+  4b6685:	48 85 c0             	test   %rax,%rax
+  4b6688:	0f 84 37 05 00 00    	je     4b6bc5 <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0xa75>
+  4b668e:	80 b8 98 01 00 00 00 	cmpb   $0x0,0x198(%rax)
+  4b6695:	74 1a                	je     4b66b1 <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0x561>
+  4b6697:	4c 8b 35 c2 d5 4c 00 	mov    0x4cd5c2(%rip),%r14        # 983c60 <_ZN14ReferenceCount12_type_handleE@Base>
+  4b669e:	41 8b 36             	mov    (%r14),%esi
+  4b66a1:	85 f6                	test   %esi,%esi
+  4b66a3:	0f 84 22 04 00 00    	je     4b6acb <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0x97b>
+  4b66a9:	48 89 ef             	mov    %rbp,%rdi
+  4b66ac:	e8 cf 58 da ff       	call   25bf80 <_ZN11MemoryUsage11update_typeEP14ReferenceCount10TypeHandle>
+  4b66b1:	4d 85 ed             	test   %r13,%r13
+  4b66b4:	74 2a                	je     4b66e0 <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0x590>
+  4b66b6:	49 8b 45 00          	mov    0x0(%r13),%rax
+  4b66ba:	48 8d 15 4f bb d8 ff 	lea    -0x2744b1(%rip),%rdx        # 242210 <_ZNK14ReferenceCount5unrefEv>
+  4b66c1:	48 8b 40 10          	mov    0x10(%rax),%rax
+  4b66c5:	48 39 d0             	cmp    %rdx,%rax
+  4b66c8:	0f 85 11 03 00 00    	jne    4b69df <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0x88f>
+  4b66ce:	f0 49 83 6d 08 01    	lock subq $0x1,0x8(%r13)
+  4b66d4:	0f 84 16 03 00 00    	je     4b69f0 <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0x8a0>
+  4b66da:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
+  4b66e0:	48 8b 2d 89 c9 4c 00 	mov    0x4cc989(%rip),%rbp        # 983070 <_ZN11ConfigFlags16_global_modifiedE@Base>
+  4b66e7:	4c 8b 2d 82 be 4c 00 	mov    0x4cbe82(%rip),%r13        # 982570 <allow_incomplete_render@@Base-0x10fc0>
+  4b66ee:	41 c7 84 24 88 02 00 	movl   $0xffffffff,0x288(%r12)
+  4b66f5:	00 ff ff ff ff 
+  4b66fa:	48 8b 45 00          	mov    0x0(%rbp),%rax
+  4b66fe:	49 39 45 08          	cmp    %rax,0x8(%r13)
+  4b6702:	74 08                	je     4b670c <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0x5bc>
+  4b6704:	4c 89 ef             	mov    %r13,%rdi
+  4b6707:	e8 44 07 d6 ff       	call   216e50 <_ZNK18ConfigVariableBool12reload_valueEv@plt>
+  4b670c:	41 c6 84 24 49 01 00 	movb   $0x0,0x149(%r12)
+  4b6713:	00 00 
+  4b6715:	41 0f b6 45 10       	movzbl 0x10(%r13),%eax
+  4b671a:	4c 8b 2d 07 b2 4c 00 	mov    0x4cb207(%rip),%r13        # 981928 <_ZN6Loader11_global_ptrE@@Base-0xe0a8>
+  4b6721:	41 88 84 24 48 01 00 	mov    %al,0x148(%r12)
+  4b6728:	00 
+  4b6729:	4d 8b 7d 00          	mov    0x0(%r13),%r15
+  4b672d:	4d 85 ff             	test   %r15,%r15
+  4b6730:	0f 84 2a 03 00 00    	je     4b6a60 <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0x910>
+  4b6736:	4d 8b ac 24 50 01 00 	mov    0x150(%r12),%r13
+  4b673d:	00 
+  4b673e:	4d 39 ef             	cmp    %r13,%r15
+  4b6741:	0f 85 89 01 00 00    	jne    4b68d0 <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0x780>
+  4b6747:	66 0f 6f 05 c1 15 37 	movdqa 0x3715c1(%rip),%xmm0        # 827d10 <_ZTS7pvectorIN8GeomNode9GeomEntryEE+0x6d0>
+  4b674e:	00 
+  4b674f:	31 c0                	xor    %eax,%eax
+  4b6751:	31 d2                	xor    %edx,%edx
+  4b6753:	31 c9                	xor    %ecx,%ecx
+  4b6755:	66 41 89 84 24 60 01 	mov    %ax,0x160(%r12)
+  4b675c:	00 00 
+  4b675e:	48 8b 1d fb d3 4c 00 	mov    0x4cd3fb(%rip),%rbx        # 983b60 <color_scale_via_lighting@@Base-0xfa10>
+  4b6765:	41 0f 11 84 24 64 01 	movups %xmm0,0x164(%r12)
+  4b676c:	00 00 
+  4b676e:	66 0f ef c0          	pxor   %xmm0,%xmm0
+  4b6772:	48 8b 05 3f 1e 37 00 	mov    0x371e3f(%rip),%rax        # 8285b8 <_ZTS7pvectorIN8GeomNode9GeomEntryEE+0xf78>
+  4b6779:	41 0f 11 84 24 74 01 	movups %xmm0,0x174(%r12)
+  4b6780:	00 00 
+  4b6782:	66 0f 6f 05 96 15 37 	movdqa 0x371596(%rip),%xmm0        # 827d20 <_ZTS7pvectorIN8GeomNode9GeomEntryEE+0x6e0>
+  4b6789:	00 
+  4b678a:	49 89 84 24 60 02 00 	mov    %rax,0x260(%r12)
+  4b6791:	00 
+  4b6792:	48 8b 45 00          	mov    0x0(%rbp),%rax
+  4b6796:	49 c7 84 24 84 01 00 	movq   $0x0,0x184(%r12)
+  4b679d:	00 00 00 00 00 
+  4b67a2:	66 41 89 94 24 8c 01 	mov    %dx,0x18c(%r12)
+  4b67a9:	00 00 
+  4b67ab:	41 c6 84 24 8e 01 00 	movb   $0x0,0x18e(%r12)
+  4b67b2:	00 00 
+  4b67b4:	41 c7 84 24 90 01 00 	movl   $0x2,0x190(%r12)
+  4b67bb:	00 02 00 00 00 
+  4b67c0:	41 c6 84 24 a4 01 00 	movb   $0x0,0x1a4(%r12)
+  4b67c7:	00 00 
+  4b67c9:	41 c6 84 24 b0 01 00 	movb   $0x0,0x1b0(%r12)
+  4b67d0:	00 00 
+  4b67d2:	41 c6 84 24 b8 01 00 	movb   $0x0,0x1b8(%r12)
+  4b67d9:	00 00 
+  4b67db:	49 c7 84 24 00 02 00 	movq   $0x0,0x200(%r12)
+  4b67e2:	00 00 00 00 00 
+  4b67e7:	41 c7 84 24 b4 01 00 	movl   $0xffffffff,0x1b4(%r12)
+  4b67ee:	00 ff ff ff ff 
+  4b67f3:	41 c7 84 24 68 02 00 	movl   $0x0,0x268(%r12)
+  4b67fa:	00 00 00 00 00 
+  4b67ff:	66 41 89 8c 24 6c 02 	mov    %cx,0x26c(%r12)
+  4b6806:	00 00 
+  4b6808:	41 c7 84 24 70 02 00 	movl   $0x0,0x270(%r12)
+  4b680f:	00 00 00 00 00 
+  4b6814:	41 c6 84 24 74 02 00 	movb   $0x0,0x274(%r12)
+  4b681b:	00 00 
+  4b681d:	41 c7 84 24 78 02 00 	movl   $0x1,0x278(%r12)
+  4b6824:	00 01 00 00 00 
+  4b6829:	41 c6 84 24 7c 02 00 	movb   $0x0,0x27c(%r12)
+  4b6830:	00 00 
+  4b6832:	41 c7 84 24 80 02 00 	movl   $0x0,0x280(%r12)
+  4b6839:	00 00 00 00 00 
+  4b683e:	41 0f 11 84 24 94 01 	movups %xmm0,0x194(%r12)
+  4b6845:	00 00 
+  4b6847:	48 39 43 08          	cmp    %rax,0x8(%rbx)
+  4b684b:	74 08                	je     4b6855 <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0x705>
+  4b684d:	48 89 df             	mov    %rbx,%rdi
+  4b6850:	e8 fb 05 d6 ff       	call   216e50 <_ZNK18ConfigVariableBool12reload_valueEv@plt>
+  4b6855:	0f b6 43 10          	movzbl 0x10(%rbx),%eax
+  4b6859:	48 8b 1d 28 a7 4c 00 	mov    0x4ca728(%rip),%rbx        # 980f88 <alpha_scale_via_texture@@Base-0x125c8>
+  4b6860:	41 88 84 24 84 02 00 	mov    %al,0x284(%r12)
+  4b6867:	00 
+  4b6868:	48 8b 45 00          	mov    0x0(%rbp),%rax
+  4b686c:	48 39 43 08          	cmp    %rax,0x8(%rbx)
+  4b6870:	74 08                	je     4b687a <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0x72a>
+  4b6872:	48 89 df             	mov    %rbx,%rdi
+  4b6875:	e8 d6 05 d6 ff       	call   216e50 <_ZNK18ConfigVariableBool12reload_valueEv@plt>
+  4b687a:	41 c6 84 24 86 02 00 	movb   $0x0,0x286(%r12)
+  4b6881:	00 00 
+  4b6883:	0f b6 43 10          	movzbl 0x10(%rbx),%eax
+  4b6887:	49 c7 84 24 8c 02 00 	movq   $0x0,0x28c(%r12)
+  4b688e:	00 00 00 00 00 
+  4b6893:	41 88 84 24 85 02 00 	mov    %al,0x285(%r12)
+  4b689a:	00 
+  4b689b:	48 8b 05 8e bf 4d 00 	mov    0x4dbf8e(%rip),%rax        # 992830 <_ZZN21GraphicsStateGuardianC4E16CoordinateSystemP14GraphicsEngineP12GraphicsPipeE10next_index>
+  4b68a2:	49 c7 84 24 f0 02 00 	movq   $0x3f800000,0x2f0(%r12)
+  4b68a9:	00 00 00 80 3f 
+  4b68ae:	48 8d 50 01          	lea    0x1(%rax),%rdx
+  4b68b2:	49 89 44 24 30       	mov    %rax,0x30(%r12)
+  4b68b7:	48 89 15 72 bf 4d 00 	mov    %rdx,0x4dbf72(%rip)        # 992830 <_ZZN21GraphicsStateGuardianC4E16CoordinateSystemP14GraphicsEngineP12GraphicsPipeE10next_index>
+  4b68be:	48 83 c4 28          	add    $0x28,%rsp
+  4b68c2:	5b                   	pop    %rbx
+  4b68c3:	5d                   	pop    %rbp
+  4b68c4:	41 5c                	pop    %r12
+  4b68c6:	41 5d                	pop    %r13
+  4b68c8:	41 5e                	pop    %r14
+  4b68ca:	41 5f                	pop    %r15
+  4b68cc:	c3                   	ret
+  4b68cd:	0f 1f 00             	nopl   (%rax)
+  4b68d0:	4d 89 bc 24 50 01 00 	mov    %r15,0x150(%r12)
+  4b68d7:	00 
+  4b68d8:	f0 49 83 47 10 01    	lock addq $0x1,0x10(%r15)
+  4b68de:	48 8b 05 a3 d5 4c 00 	mov    0x4cd5a3(%rip),%rax        # 983e88 <_ZN11MemoryUsage11_global_ptrE@Base>
+  4b68e5:	48 8b 00             	mov    (%rax),%rax
+  4b68e8:	48 85 c0             	test   %rax,%rax
+  4b68eb:	0f 84 e8 02 00 00    	je     4b6bd9 <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0xa89>
+  4b68f1:	80 b8 98 01 00 00 00 	cmpb   $0x0,0x198(%rax)
+  4b68f8:	75 7e                	jne    4b6978 <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0x828>
+  4b68fa:	4d 85 ed             	test   %r13,%r13
+  4b68fd:	0f 84 44 fe ff ff    	je     4b6747 <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0x5f7>
+  4b6903:	49 8b 45 08          	mov    0x8(%r13),%rax
+  4b6907:	48 8d 15 02 b9 d8 ff 	lea    -0x2746fe(%rip),%rdx        # 242210 <_ZNK14ReferenceCount5unrefEv>
+  4b690e:	49 8d 7d 08          	lea    0x8(%r13),%rdi
+  4b6912:	48 8b 40 10          	mov    0x10(%rax),%rax
+  4b6916:	48 39 d0             	cmp    %rdx,%rax
+  4b6919:	0f 85 9d 01 00 00    	jne    4b6abc <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0x96c>
+  4b691f:	f0 49 83 6d 10 01    	lock subq $0x1,0x10(%r13)
+  4b6925:	0f 85 1c fe ff ff    	jne    4b6747 <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0x5f7>
+  4b692b:	49 8b 45 00          	mov    0x0(%r13),%rax
+  4b692f:	4c 89 ef             	mov    %r13,%rdi
+  4b6932:	ff 50 08             	call   *0x8(%rax)
+  4b6935:	e9 0d fe ff ff       	jmp    4b6747 <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0x5f7>
+  4b693a:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
+  4b6940:	4c 8b 35 19 cf 4c 00 	mov    0x4ccf19(%rip),%r14        # 983860 <_ZN12GraphicsPipe12_type_handleE@@Base-0xf000>
+  4b6947:	41 8b 36             	mov    (%r14),%esi
+  4b694a:	85 f6                	test   %esi,%esi
+  4b694c:	0f 84 ad 00 00 00    	je     4b69ff <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0x8af>
+  4b6952:	48 8d 7d 08          	lea    0x8(%rbp),%rdi
+  4b6956:	e8 25 56 da ff       	call   25bf80 <_ZN11MemoryUsage11update_typeEP14ReferenceCount10TypeHandle>
+  4b695b:	e9 0d fb ff ff       	jmp    4b646d <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0x31d>
+  4b6960:	e8 7b 7e d6 ff       	call   21e7e0 <_Z29get_default_coordinate_systemv@plt>
+  4b6965:	41 89 84 24 dc 00 00 	mov    %eax,0xdc(%r12)
+  4b696c:	00 
+  4b696d:	e9 85 fb ff ff       	jmp    4b64f7 <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0x3a7>
+  4b6972:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
+  4b6978:	48 8b 05 01 94 4c 00 	mov    0x4c9401(%rip),%rax        # 97fd80 <_ZN6Loader12_type_handleE@@Base-0xfc48>
+  4b697f:	8b 30                	mov    (%rax),%esi
+  4b6981:	85 f6                	test   %esi,%esi
+  4b6983:	0f 84 57 01 00 00    	je     4b6ae0 <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0x990>
+  4b6989:	49 8d 7f 08          	lea    0x8(%r15),%rdi
+  4b698d:	e8 ee 55 da ff       	call   25bf80 <_ZN11MemoryUsage11update_typeEP14ReferenceCount10TypeHandle>
+  4b6992:	e9 63 ff ff ff       	jmp    4b68fa <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0x7aa>
+  4b6997:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
+  4b699e:	00 00 
+  4b69a0:	ff d0                	call   *%rax
+  4b69a2:	84 c0                	test   %al,%al
+  4b69a4:	0f 85 f6 fb ff ff    	jne    4b65a0 <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0x450>
+  4b69aa:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
+  4b69b0:	48 8b 45 00          	mov    0x0(%rbp),%rax
+  4b69b4:	48 89 ef             	mov    %rbp,%rdi
+  4b69b7:	ff 50 08             	call   *0x8(%rax)
+  4b69ba:	e9 e1 fb ff ff       	jmp    4b65a0 <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0x450>
+  4b69bf:	90                   	nop
+  4b69c0:	ff d0                	call   *%rax
+  4b69c2:	84 c0                	test   %al,%al
+  4b69c4:	0f 85 89 fb ff ff    	jne    4b6553 <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0x403>
+  4b69ca:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
+  4b69d0:	48 8b 45 00          	mov    0x0(%rbp),%rax
+  4b69d4:	48 89 ef             	mov    %rbp,%rdi
+  4b69d7:	ff 50 08             	call   *0x8(%rax)
+  4b69da:	e9 74 fb ff ff       	jmp    4b6553 <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0x403>
+  4b69df:	4c 89 ef             	mov    %r13,%rdi
+  4b69e2:	ff d0                	call   *%rax
+  4b69e4:	84 c0                	test   %al,%al
+  4b69e6:	0f 85 f4 fc ff ff    	jne    4b66e0 <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0x590>
+  4b69ec:	0f 1f 40 00          	nopl   0x0(%rax)
+  4b69f0:	49 8b 45 00          	mov    0x0(%r13),%rax
+  4b69f4:	4c 89 ef             	mov    %r13,%rdi
+  4b69f7:	ff 50 08             	call   *0x8(%rax)
+  4b69fa:	e9 e1 fc ff ff       	jmp    4b66e0 <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0x590>
+  4b69ff:	e8 ac 6a d9 ff       	call   24d4b0 <_ZN19TypedReferenceCount9init_typeEv>
+  4b6a04:	48 8b 05 25 d4 4c 00 	mov    0x4cd425(%rip),%rax        # 983e30 <_ZN19TypedReferenceCount12_type_handleE@Base>
+  4b6a0b:	48 8d 54 24 17       	lea    0x17(%rsp),%rdx
+  4b6a10:	48 89 df             	mov    %rbx,%rdi
+  4b6a13:	48 8d 35 22 65 36 00 	lea    0x366522(%rip),%rsi        # 81cf3c <_fini+0x34da0>
+  4b6a1a:	44 8b 38             	mov    (%rax),%r15d
+  4b6a1d:	e8 6e 30 d7 ff       	call   229a90 <_ZNSsC1EPKcRKSaIcE@plt>
+  4b6a22:	48 89 de             	mov    %rbx,%rsi
+  4b6a25:	4c 89 f7             	mov    %r14,%rdi
+  4b6a28:	44 89 fa             	mov    %r15d,%edx
+  4b6a2b:	e8 90 54 da ff       	call   25bec0 <_Z13register_typeR10TypeHandleRKSsS_>
+  4b6a30:	48 89 df             	mov    %rbx,%rdi
+  4b6a33:	e8 18 f3 d5 ff       	call   215d50 <_ZNSsD1Ev@plt>
+  4b6a38:	41 8b 36             	mov    (%r14),%esi
+  4b6a3b:	85 f6                	test   %esi,%esi
+  4b6a3d:	0f 84 2a fa ff ff    	je     4b646d <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0x31d>
+  4b6a43:	e9 0a ff ff ff       	jmp    4b6952 <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0x802>
+  4b6a48:	e8 03 5a d6 ff       	call   21c450 <_ZN11MemoryUsage17init_memory_usageEv@plt>
+  4b6a4d:	48 8b 05 34 d4 4c 00 	mov    0x4cd434(%rip),%rax        # 983e88 <_ZN11MemoryUsage11_global_ptrE@Base>
+  4b6a54:	48 8b 00             	mov    (%rax),%rax
+  4b6a57:	e9 04 fa ff ff       	jmp    4b6460 <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0x310>
+  4b6a5c:	0f 1f 40 00          	nopl   0x0(%rax)
+  4b6a60:	e8 9b 0d d7 ff       	call   227800 <_ZN6Loader15make_global_ptrEv@plt>
+  4b6a65:	4d 8b 7d 00          	mov    0x0(%r13),%r15
+  4b6a69:	4d 8b ac 24 50 01 00 	mov    0x150(%r12),%r13
+  4b6a70:	00 
+  4b6a71:	4d 39 ef             	cmp    %r13,%r15
+  4b6a74:	0f 84 cd fc ff ff    	je     4b6747 <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0x5f7>
+  4b6a7a:	4d 89 bc 24 50 01 00 	mov    %r15,0x150(%r12)
+  4b6a81:	00 
+  4b6a82:	4d 85 ff             	test   %r15,%r15
+  4b6a85:	0f 84 6f fe ff ff    	je     4b68fa <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0x7aa>
+  4b6a8b:	e9 48 fe ff ff       	jmp    4b68d8 <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0x788>
+  4b6a90:	e8 bb 59 d6 ff       	call   21c450 <_ZN11MemoryUsage17init_memory_usageEv@plt>
+  4b6a95:	48 8b 05 ec d3 4c 00 	mov    0x4cd3ec(%rip),%rax        # 983e88 <_ZN11MemoryUsage11_global_ptrE@Base>
+  4b6a9c:	48 8b 38             	mov    (%rax),%rdi
+  4b6a9f:	e9 4c f7 ff ff       	jmp    4b61f0 <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0xa0>
+  4b6aa4:	0f 1f 40 00          	nopl   0x0(%rax)
+  4b6aa8:	e8 a3 59 d6 ff       	call   21c450 <_ZN11MemoryUsage17init_memory_usageEv@plt>
+  4b6aad:	48 8b 05 d4 d3 4c 00 	mov    0x4cd3d4(%rip),%rax        # 983e88 <_ZN11MemoryUsage11_global_ptrE@Base>
+  4b6ab4:	48 8b 38             	mov    (%rax),%rdi
+  4b6ab7:	e9 01 f7 ff ff       	jmp    4b61bd <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0x6d>
+  4b6abc:	ff d0                	call   *%rax
+  4b6abe:	84 c0                	test   %al,%al
+  4b6ac0:	0f 84 65 fe ff ff    	je     4b692b <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0x7db>
+  4b6ac6:	e9 7c fc ff ff       	jmp    4b6747 <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0x5f7>
+  4b6acb:	e8 d0 55 da ff       	call   25c0a0 <_ZN14ReferenceCount9init_typeEv>
+  4b6ad0:	41 8b 36             	mov    (%r14),%esi
+  4b6ad3:	85 f6                	test   %esi,%esi
+  4b6ad5:	0f 84 d6 fb ff ff    	je     4b66b1 <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0x561>
+  4b6adb:	e9 c9 fb ff ff       	jmp    4b66a9 <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0x559>
+  4b6ae0:	e8 cb 69 d9 ff       	call   24d4b0 <_ZN19TypedReferenceCount9init_typeEv>
+  4b6ae5:	4c 8d 74 24 17       	lea    0x17(%rsp),%r14
+  4b6aea:	48 89 df             	mov    %rbx,%rdi
+  4b6aed:	48 8d 35 35 e3 35 00 	lea    0x35e335(%rip),%rsi        # 814e29 <_fini+0x2cc8d>
+  4b6af4:	4c 89 f2             	mov    %r14,%rdx
+  4b6af7:	e8 94 2f d7 ff       	call   229a90 <_ZNSsC1EPKcRKSaIcE@plt>
+  4b6afc:	48 8b 05 4d ad 4c 00 	mov    0x4cad4d(%rip),%rax        # 981850 <_ZN12TypeRegistry15_global_pointerE@Base>
+  4b6b03:	48 8b 38             	mov    (%rax),%rdi
+  4b6b06:	48 85 ff             	test   %rdi,%rdi
+  4b6b09:	0f 84 f2 00 00 00    	je     4b6c01 <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0xab1>
+  4b6b0f:	48 8b 35 2a 97 4c 00 	mov    0x4c972a(%rip),%rsi        # 980240 <_ZN7Namable12_type_handleE@Base>
+  4b6b16:	48 89 da             	mov    %rbx,%rdx
+  4b6b19:	e8 e2 34 d6 ff       	call   21a000 <_ZN12TypeRegistry13register_typeER10TypeHandleRKSs@plt>
+  4b6b1e:	48 89 df             	mov    %rbx,%rdi
+  4b6b21:	e8 2a f2 d5 ff       	call   215d50 <_ZNSsD1Ev@plt>
+  4b6b26:	48 8b 05 13 97 4c 00 	mov    0x4c9713(%rip),%rax        # 980240 <_ZN7Namable12_type_handleE@Base>
+  4b6b2d:	4c 89 f2             	mov    %r14,%rdx
+  4b6b30:	48 89 df             	mov    %rbx,%rdi
+  4b6b33:	48 8d 35 cb 06 36 00 	lea    0x3606cb(%rip),%rsi        # 817205 <_fini+0x2f069>
+  4b6b3a:	8b 00                	mov    (%rax),%eax
+  4b6b3c:	89 44 24 08          	mov    %eax,0x8(%rsp)
+  4b6b40:	48 8b 05 e9 d2 4c 00 	mov    0x4cd2e9(%rip),%rax        # 983e30 <_ZN19TypedReferenceCount12_type_handleE@Base>
+  4b6b47:	8b 00                	mov    (%rax),%eax
+  4b6b49:	89 44 24 0c          	mov    %eax,0xc(%rsp)
+  4b6b4d:	e8 3e 2f d7 ff       	call   229a90 <_ZNSsC1EPKcRKSaIcE@plt>
+  4b6b52:	48 8b 05 f7 ac 4c 00 	mov    0x4cacf7(%rip),%rax        # 981850 <_ZN12TypeRegistry15_global_pointerE@Base>
+  4b6b59:	4c 8b 30             	mov    (%rax),%r14
+  4b6b5c:	4d 85 f6             	test   %r14,%r14
+  4b6b5f:	0f 84 88 00 00 00    	je     4b6bed <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0xa9d>
+  4b6b65:	48 8b 35 14 92 4c 00 	mov    0x4c9214(%rip),%rsi        # 97fd80 <_ZN6Loader12_type_handleE@@Base-0xfc48>
+  4b6b6c:	48 89 da             	mov    %rbx,%rdx
+  4b6b6f:	4c 89 f7             	mov    %r14,%rdi
+  4b6b72:	e8 89 34 d6 ff       	call   21a000 <_ZN12TypeRegistry13register_typeER10TypeHandleRKSs@plt>
+  4b6b77:	84 c0                	test   %al,%al
+  4b6b79:	75 1e                	jne    4b6b99 <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0xa49>
+  4b6b7b:	48 89 df             	mov    %rbx,%rdi
+  4b6b7e:	e8 cd f1 d5 ff       	call   215d50 <_ZNSsD1Ev@plt>
+  4b6b83:	48 8b 05 f6 91 4c 00 	mov    0x4c91f6(%rip),%rax        # 97fd80 <_ZN6Loader12_type_handleE@@Base-0xfc48>
+  4b6b8a:	8b 30                	mov    (%rax),%esi
+  4b6b8c:	85 f6                	test   %esi,%esi
+  4b6b8e:	0f 84 66 fd ff ff    	je     4b68fa <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0x7aa>
+  4b6b94:	e9 f0 fd ff ff       	jmp    4b6989 <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0x839>
+  4b6b99:	48 8b 05 e0 91 4c 00 	mov    0x4c91e0(%rip),%rax        # 97fd80 <_ZN6Loader12_type_handleE@@Base-0xfc48>
+  4b6ba0:	8b 54 24 0c          	mov    0xc(%rsp),%edx
+  4b6ba4:	4c 89 f7             	mov    %r14,%rdi
+  4b6ba7:	8b 30                	mov    (%rax),%esi
+  4b6ba9:	e8 12 f2 d6 ff       	call   225dc0 <_ZN12TypeRegistry17record_derivationE10TypeHandleS0_@plt>
+  4b6bae:	48 8b 05 cb 91 4c 00 	mov    0x4c91cb(%rip),%rax        # 97fd80 <_ZN6Loader12_type_handleE@@Base-0xfc48>
+  4b6bb5:	8b 54 24 08          	mov    0x8(%rsp),%edx
+  4b6bb9:	4c 89 f7             	mov    %r14,%rdi
+  4b6bbc:	8b 30                	mov    (%rax),%esi
+  4b6bbe:	e8 fd f1 d6 ff       	call   225dc0 <_ZN12TypeRegistry17record_derivationE10TypeHandleS0_@plt>
+  4b6bc3:	eb b6                	jmp    4b6b7b <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0xa2b>
+  4b6bc5:	e8 86 58 d6 ff       	call   21c450 <_ZN11MemoryUsage17init_memory_usageEv@plt>
+  4b6bca:	48 8b 05 b7 d2 4c 00 	mov    0x4cd2b7(%rip),%rax        # 983e88 <_ZN11MemoryUsage11_global_ptrE@Base>
+  4b6bd1:	48 8b 00             	mov    (%rax),%rax
+  4b6bd4:	e9 b5 fa ff ff       	jmp    4b668e <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0x53e>
+  4b6bd9:	e8 72 58 d6 ff       	call   21c450 <_ZN11MemoryUsage17init_memory_usageEv@plt>
+  4b6bde:	48 8b 05 a3 d2 4c 00 	mov    0x4cd2a3(%rip),%rax        # 983e88 <_ZN11MemoryUsage11_global_ptrE@Base>
+  4b6be5:	48 8b 00             	mov    (%rax),%rax
+  4b6be8:	e9 04 fd ff ff       	jmp    4b68f1 <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0x7a1>
+  4b6bed:	e8 be aa d6 ff       	call   2216b0 <_ZN12TypeRegistry19init_global_pointerEv@plt>
+  4b6bf2:	48 8b 05 57 ac 4c 00 	mov    0x4cac57(%rip),%rax        # 981850 <_ZN12TypeRegistry15_global_pointerE@Base>
+  4b6bf9:	4c 8b 30             	mov    (%rax),%r14
+  4b6bfc:	e9 64 ff ff ff       	jmp    4b6b65 <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0xa15>
+  4b6c01:	e8 aa aa d6 ff       	call   2216b0 <_ZN12TypeRegistry19init_global_pointerEv@plt>
+  4b6c06:	48 8b 05 43 ac 4c 00 	mov    0x4cac43(%rip),%rax        # 981850 <_ZN12TypeRegistry15_global_pointerE@Base>
+  4b6c0d:	48 8b 38             	mov    (%rax),%rdi
+  4b6c10:	e9 fa fe ff ff       	jmp    4b6b0f <_ZN21GraphicsStateGuardianC1E16CoordinateSystemP14GraphicsEngineP12GraphicsPipe+0x9bf>

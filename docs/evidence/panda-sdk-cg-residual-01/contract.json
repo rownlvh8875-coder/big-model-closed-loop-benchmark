@@ -1,0 +1,169 @@
+{
+  "schema": "panda-sdk-cg-eigen-design-v2",
+  "status": "DESIGN_AND_PINNED_INPUTS_ONLY_NO_V2_BUILD",
+  "checked_at_kst": "2026-11-16T07:13:58.720263+09:00",
+  "base_sha": "912c50b9f47e5b5d3ccc5df495cc1983714ed3e0",
+  "base_files": 7325,
+  "old_build_acceptance_path": "docs/evidence/panda-sdk-cg-candidate-01/actual/acceptance/acceptance.json",
+  "old_build_acceptance_sha256": "c17faf662a4710d1baadb6e53bb0cc724964ad8dae6201a37403bc1d1ab4b033",
+  "old_source_closure_path": "docs/evidence/panda-sdk-cg-candidate-01/review/source-closure.json",
+  "old_source_closure_sha256": "2448766e317df62ad4afd288ebd743a650da47359781ea0c02dee0a74c5e0b5d",
+  "old_source_files": 282,
+  "cg_contract_path": "docs/evidence/panda-sdk-cg-design-01/contract.json",
+  "cg_contract_sha256": "b11e85da328bd4f68627fdd957b14f1aa4e2f0c898282404402405dd1f4d3630",
+  "eigen_package_path": "docs/evidence/panda-sdk-cg-residual-01/libeigen3-dev_3.4.0-4_all.deb.data",
+  "eigen": {
+    "schema": "eigen-header-input-v1",
+    "package": "libeigen3-dev",
+    "version": "3.4.0-4",
+    "architecture": "all",
+    "url": "https://deb.debian.org/debian/pool/main/e/eigen3/libeigen3-dev_3.4.0-4_all.deb",
+    "nbytes": 1040780,
+    "sha256": "1a167bb381acb90c1d8450a8f3e66a09d216dbc64b33ac8a082a0912513ef939",
+    "metadata_url": "https://deb.debian.org/debian/dists/bookworm/main/binary-amd64/Packages.xz",
+    "metadata_xz_nbytes": 8790396,
+    "metadata_xz_sha256": "9e0b5aabb2465b3d2e7a7fe27f9913846277833f7a2826e7767acccff5b588c5",
+    "package_paragraph_sha256": "da31e5529e8179febe8e8c825914fddc9e31b8a7c6d0d59510a9d123f4090e6e",
+    "transport": "HTTPS default CA validated; exact metadata and package digests observed",
+    "release_gpg_verified": false,
+    "installed": false,
+    "executed": false
+  },
+  "eigen_headers_path": "docs/evidence/panda-sdk-cg-residual-01/eigen-header-manifest.json",
+  "eigen_headers_sha256": "c5ec4bfd28504cba22b8b92aa312d4e1549fb6354d4379bbf6a8b32342ec814d",
+  "eigen_header_files": 530,
+  "eigen_header_nbytes": 8669561,
+  "eigen_bounds": {
+    "package_bytes": 4194304,
+    "inflated_bytes": 33554432,
+    "tar_members": 2048,
+    "selected_header_bytes": 2097152
+  },
+  "source_references": {
+    "output/stage7-panda-sdk-routes-02/source/dtool/src/dtoolbase/dtoolbase.h": {
+      "nbytes": 16711,
+      "sha256": "3a04e5ab33bfbc3dad55bb537874941e4fc153b9d0c6d077ec6edce3d694522b",
+      "authenticated_source_tree_path": "dtool/src/dtoolbase/dtoolbase.h"
+    },
+    "output/stage7-panda-sdk-routes-02/source/panda/src/linmath/lsimpleMatrix.h": {
+      "nbytes": 2129,
+      "sha256": "530a64e99ec7934c151f532f99cd5982c7e817758c95c0fa438126063e3cab66",
+      "authenticated_source_tree_path": "panda/src/linmath/lsimpleMatrix.h"
+    },
+    "output/stage7-panda-sdk-routes-02/source/panda/src/linmath/lvecBase4_src.h": {
+      "nbytes": 10067,
+      "sha256": "389c7c5013cb34768ed37dbc720b154d7616033779e32a0adb446cfaec1edd95",
+      "authenticated_source_tree_path": "panda/src/linmath/lvecBase4_src.h"
+    },
+    "output/stage7-panda-sdk-routes-02/source/panda/src/display/graphicsStateGuardian.h": {
+      "nbytes": 29908,
+      "sha256": "f694cf457f331ba261039f807fcd971e5226df5eca471bb2b5365b58194b328f",
+      "authenticated_source_tree_path": "panda/src/display/graphicsStateGuardian.h"
+    },
+    "output/stage7-panda-sdk-routes-02/source/panda/src/display/graphicsStateGuardian.cxx": {
+      "nbytes": 127869,
+      "sha256": "7bb401e2b15d37de836038415f6dd30f0916cf5b277d1aaef9016a7504e8a29c",
+      "authenticated_source_tree_path": "panda/src/display/graphicsStateGuardian.cxx"
+    },
+    "output/stage7-panda-sdk-routes-02/source/panda/src/putil/collideMask.h": {
+      "nbytes": 2005,
+      "sha256": "431e228f0bf7a1ed41a105e8dc7d015737e4d7f6c3ae541a9e2e75c068af5bae",
+      "authenticated_source_tree_path": "panda/src/putil/collideMask.h"
+    }
+  },
+  "observed_candidate_offsets": {
+    "major": 1656,
+    "minor": 1660,
+    "vendor": 1632
+  },
+  "required_offsets": {
+    "major": 1672,
+    "minor": 1676,
+    "vendor": 1648
+  },
+  "required_effective": {
+    "HAVE_CG": true,
+    "HAVE_EIGEN": true,
+    "HAVE_X11": true,
+    "HAVE_PYTHON": false,
+    "STDFLOAT_DOUBLE": false,
+    "LINMATH_ALIGN": true,
+    "vector_alignment": 16,
+    "memory_alignment": 16
+  },
+  "descriptor": {
+    "magic": "0x50414e4441434732",
+    "version": 2,
+    "words": 16,
+    "nbytes": 128,
+    "parent_elf_max_bytes": 1048576,
+    "parent_max_sections": 256,
+    "section": ".panda_cg_layout_v2",
+    "section_flags": 2,
+    "selected_target_relocations": 0,
+    "parent_initializer_execution_allowed": false
+  },
+  "candidate_limits": {
+    "build_attempts": 1,
+    "compiler_workers": 2,
+    "compile_seconds": 1200,
+    "total_seconds": 2400,
+    "minimum_free_bytes": 17179869184,
+    "build_output_bytes": 8589934592,
+    "total_workspace_bytes": 12884901888,
+    "build_log_bytes": 33554432,
+    "carrier_zip_bytes": 268435456,
+    "host_header_nodes": 65536,
+    "host_header_bytes": 1073741824
+  },
+  "future_candidate_permissions": {
+    "compile": true,
+    "host_build_tool_execution": true,
+    "compile_only_layout_object": true,
+    "target_probe_execution": false,
+    "sdk_load": false,
+    "panda_python_import": false,
+    "gl_calls": false,
+    "xvfb": false,
+    "docker_load": false,
+    "image_transform": false,
+    "registry_publish": false,
+    "cloud_publish": false,
+    "main_shared_base_merge": false
+  },
+  "future_source_branch": "feature/panda-sdk-cg-eigen-candidate-v2",
+  "future_branch": "prepare/panda-sdk-cg-eigen-build-20261116-02",
+  "future_request_path": "docs/requests/panda-sdk-cg-eigen-build-20261116-02.json",
+  "future_workflow_path": ".github/workflows/panda-sdk-cg-eigen-build-v2.yml",
+  "future_artifact": "panda-sdk-cg-eigen-build-20261116-02",
+  "success_status": "CG_EIGEN_CANDIDATE_SELECTED_LAYOUT_MATCH_NOT_RUNTIME",
+  "candidate_build_executed": false,
+  "new_build_slot_granted": false,
+  "new_native_slot_granted": false,
+  "new_workflow_activations": 0,
+  "new_sdk_compiles": 0,
+  "target_execution": false,
+  "full_object_abi_qualified": false,
+  "previous_abort_fixed": false,
+  "candidate_installed": false,
+  "scientific_allowance_remaining": 0,
+  "strict_result": "0/4 FAIL",
+  "stage7_complete": false,
+  "inspection_tools": {
+    "/usr/bin/objdump": {
+      "nbytes": 396336,
+      "sha256": "96afb8521834982d0e711b5d6e9785252bf82129fb0106b93a6bd54d83fae11f",
+      "resolved_path": "/usr/bin/x86_64-linux-gnu-objdump"
+    },
+    "/usr/bin/objcopy": {
+      "nbytes": 159568,
+      "sha256": "403f90bbd5d26c8ab9a2ad51f56255b812e8858a83aa8740ee71791071ddb580",
+      "resolved_path": "/usr/bin/x86_64-linux-gnu-objcopy"
+    },
+    "/usr/bin/readelf": {
+      "nbytes": 777864,
+      "sha256": "4a387d80a70e6e97ef940a666fab59d5c38e7cf19ff907192fa983cb8505a7de",
+      "resolved_path": "/usr/bin/x86_64-linux-gnu-readelf"
+    }
+  }
+}

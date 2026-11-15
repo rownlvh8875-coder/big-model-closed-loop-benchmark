@@ -1,0 +1,19 @@
+from pathlib import Path
+import hashlib,json,struct,subprocess,sys
+root=Path('/workspace/big-model-closed-loop-benchmark');sys.path.insert(0,str(root))
+from scripts import panda_sdk_link_elf as elf
+from scripts.readback_process_mapping import elf_ranges
+out=root/'output/stage7-panda-sdk-cg-residual-01';rows={}
+paths={'candidate':root/'output/stage7-panda-sdk-cg-candidate-01/acceptance/candidate/candidate/build-libpanda.so.data','wheel':root/'output/stage7-panda-sdk-link-audit-01/recon/libpanda.so.1.10.data'}
+for tag,path in paths.items():
+ raw=path.read_bytes();meta=elf.inspect_elf(raw);loads=elf_ranges(raw);functions=[]
+ for row in meta['exports']:
+  name=row['name']
+  if 'GraphicsStateGuardian' not in name or not ('get_' in name or 'GraphicsStateGuardianC2' in name):continue
+  if any(x in name for x in ['get_prepared_objects','get_internal_coordinate_system','get_engine','get_flash_texture','get_gamma','get_supports_hlsl','get_max_texture_dimension','get_supports_multisample','get_scene','get_incomplete_render','get_supported_geom_rendering']):functions.append(row)
+ names=sorted(set(r['name'] for r in functions));pieces=[]
+ for name in names:
+  result=subprocess.run(['/usr/bin/objdump','-d','--disassemble='+name,str(path)],capture_output=True,text=True,check=True);pieces.append(result.stdout)
+ (out/(tag+'-gsg-checkpoints.txt')).write_text('\n'.join(pieces));rows[tag]=dict(path=str(path.relative_to(root)),sha256=hashlib.sha256(raw).hexdigest(),nbytes=len(raw),functions=functions,eigen_symbols=[r['name'] for r in meta['exports'] if '5Eigen' in r['name']][:20])
+(out/'gsg-checkpoints.json').write_text(json.dumps(rows,indent=2)+'\n')
+for tag in rows:print(tag,[(r['name'],r['nbytes']) for r in rows[tag]['functions']])
