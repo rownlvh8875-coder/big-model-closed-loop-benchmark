@@ -34,4 +34,9 @@ class SelectedCoverageTests(unittest.TestCase):
         raw=b'void *get_extension_func(const char *name) { static struct { const char *name; void *p; } compiled_function_table[] = { {"glTable",(void *)&glTable}, {nullptr,nullptr} }; return do_get_extension_func(name); }\nget_extension_func("glLiteral");'
         a=coverage.assess_selected({'x.cxx':raw},(ROOT/'native/panda_source_dispatch.cxx').read_bytes())
         self.assertEqual(a['compiled_table_names'],['glTable']);self.assertEqual(a['lookup_names'],['glLiteral']);self.assertFalse(a['runtime_paths_observed'])
+    def test_compile_output_binding_ignores_link_input_but_rejects_changed_flags(self):
+        cmd=['/usr/bin/g++','-c','-o','/tmp/a.o','-O2','a.cxx']
+        log='/usr/bin/g++ -c -o /tmp/a.o -O2 a.cxx\n/usr/bin/g++ -shared -o /tmp/liba.so /tmp/a.o\n'
+        coverage.verify_commands(log,[cmd])
+        with self.assertRaisesRegex(ValueError,'compile command'):coverage.verify_commands(log.replace('-O2','-O0'),[cmd])
 if __name__=='__main__':unittest.main()

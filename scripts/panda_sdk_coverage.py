@@ -63,6 +63,13 @@ def commands_for(source,build,sysroot):
     flags=['-fvisibility=hidden','-pthread','-fno-exceptions','-fno-strict-aliasing','-ffast-math','-fno-stack-protector','-fno-finite-math-only','-fno-unsafe-math-optimizations','-O2','-Wall','-Wno-unused-function','-Wno-reorder','-DBUILDING_PANDAGL']
     return [common+[str(build/'sdk/tmp/p3glgsg_glgsg.o'),*includes,'-Ipanda/src/glgsg','-Ipanda/src/glstuff',*flags,'panda/src/glgsg/glgsg.cxx'],common+[str(build/'sdk/tmp/p3glxdisplay_composite1.o'),*includes,'-DHAVE_GLX=','-Ipanda/src/glxdisplay',*flags,'panda/src/glxdisplay/p3glxdisplay_composite1.cxx']]
 
+def verify_commands(log,commands):
+    logged=[shlex.split(line) for line in log.splitlines() if line.startswith('/usr/bin/g++ ')]
+    for cmd in commands:
+        target=cmd[cmd.index('-o')+1]
+        matching=[line for line in logged if '-o' in line and line.index('-o')+1<len(line) and line[line.index('-o')+1]==target]
+        need(matching==[cmd],'exact original compile command required')
+
 def preprocess(command,cwd,env,prefix):
     cmd=list(command);i=cmd.index('-o');del cmd[i:i+2];cmd.remove('-c');cmd.append('-E')
     stdout=Path(str(prefix)+'.ii');stderr=Path(str(prefix)+'.stderr');start=time.perf_counter();reason=None;p=None
@@ -92,9 +99,7 @@ def audit_sdk(out):
             if row['kind']=='symlink':need(p.is_symlink() and str(p.readlink())==row['target'],'SDK output link changed')
             else:need(not p.is_symlink() and p.stat().st_size==row['nbytes'] and digest(p.read_bytes())==row['sha256'],'SDK output changed')
         image=inventory.read_input(Path(selected['candidate_library']),64*1024**2);need(digest(image)==CANDIDATE,'candidate image changed');return manifest
-    manifest=verify();commands=commands_for(source,build,sysroot);log=inventory.read_input(build/'makepanda.log',32*1024**2).decode();logged=[shlex.split(line) for line in log.splitlines() if line.startswith('/usr/bin/g++ ')]
-    for cmd in commands:
-        matching=[line for line in logged if cmd[cmd.index('-o')+1] in line];need(matching==[cmd],'exact original compile command required')
+    manifest=verify();commands=commands_for(source,build,sysroot);log=inventory.read_input(build/'makepanda.log',32*1024**2).decode();verify_commands(log,commands)
     sources={};records=[]
     groups=[{n:MEMBERS[n] for n in ('glGraphicsStateGuardian_src.cxx','glGraphicsBuffer_src.cxx')},{n:MEMBERS[n] for n in ('glxGraphicsStateGuardian.cxx','posixGraphicsStateGuardian.cxx')}]
     for index,(command,group) in enumerate(zip(commands,groups)):
