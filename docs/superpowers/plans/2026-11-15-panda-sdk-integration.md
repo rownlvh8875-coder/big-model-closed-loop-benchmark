@@ -23,20 +23,21 @@ Base45df9244b4e212af3c5f18628ba7639608a0b4cd/4824files; preserve299pins/10origin
 
 **Create:** scripts/panda_sdk_coverage.py;tests/test_panda_sdk_coverage.py.
 **Interfaces:** select_sources(preprocessed:bytes,members:dict)->dict;assess_selected(sources:dict,runtime:bytes)->dict;audit_sdk(out:Path)->dict. Fixed aa7e candidate/source/tool/flags, source marker selection and bounded preprocessing; no native code.
-- [ ] RED conditional branch selection with real CPU preprocessing; wrong-origin/duplicate-basename/malformed marker rejection; cap boundary256/257 and unsafe/computed names remain blocked; exact route source mutation rejects.
-- [ ] Implement parser/coverage/command binding; run focused tests and actual two-TU audit; retain exact warnings/results, commit with ledger rulings.
+- [x] RED conditional branch selection with real CPU preprocessing; wrong-origin/duplicate-basename/malformed marker rejection; cap boundary256/257 and unsafe/computed names remain blocked; exact route source mutation rejects.
+- [x] Implement parser/coverage/command binding; run focused tests and actual two-TU audit; retain exact warnings/results, commit with ledger rulings.
 
 ### Task2: Complete retained image versus new SDK
 
 **Create:** scripts/panda_sdk_image_binding.py;tests/test_panda_sdk_image_binding.py.
 **Interfaces:** compare_installed(entries:list,candidate_sha:str)->dict;inspect_retained_image(out:Path)->dict. Consume authenticated image06 archive/config/rootfs/closed installed-file manifest and Task1 candidate identity; produce actual static image result, never runtime readiness.
-- [ ] RED old-SDK/multiple-new-SDK/wrong-path inventory rejection; missing Python/MetaDrive and incomplete/mismatched image identities remain unqualified.
-- [ ] Implement fixed authority/input hashes with bounded existing archive checker; actual retained archive inspection and SDK membership comparison, focused tests, commit.
+- [x] RED old-SDK/multiple-new-SDK/wrong-path inventory rejection; missing Python/MetaDrive and incomplete/mismatched image identities remain unqualified.
+- [x] Implement fixed authority/input hashes with bounded existing archive checker; actual retained archive inspection and SDK membership comparison, focused tests, commit.
 
 ### Task3: Joint execution assessment and closeout
 
 **Create:** scripts/panda_sdk_integration.py;tests/test_panda_sdk_integration.py;docs/STAGE7_PANDA_SDK_INTEGRATION_{RESULT,LEDGER,CONTINUATION}.md;docs/evidence/panda-sdk-integration-01/.
 **Interfaces:** assess_execution(coverage:dict,image:dict)->dict;main(--out)->int. Bind actual reports by SHA256, enumerate missing qualifications and original official cohort/model identity, native allowance0/no launch. A completed assessment exits0 even when scientific/runtime status is BLOCKED; report must make this explicit.
-- [ ] RED missing/mismatched candidate or forged ready flags cannot produce execution authority; exact cohort/model retained; dependent failures remain visible.
-- [ ] Implement joint command, execute all available assessments, focused/full suite, actual proof/preservation, sole fresh review and one TDD fixpass if necessary.
+- [x] RED missing/mismatched candidate or forged ready flags cannot produce execution authority; exact cohort/model retained; dependent failures remain visible.
+- [x] Implement joint command, execute all available assessments, focused/full suite, actual proof/preservation.
+- [ ] Sole fresh whole-branch review and one Important/Critical TDDfixpass if necessary.
 - [ ] Commit/Draft/exactHEAD push+PR CI4jobs/attempt1/artifacts0/body roundtrip/fresh preservation/final receipt. Preserve failed and previous snapshots; no native replay/publication/main update.

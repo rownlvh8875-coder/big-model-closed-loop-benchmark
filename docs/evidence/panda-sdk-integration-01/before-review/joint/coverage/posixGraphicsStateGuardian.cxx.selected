@@ -1,0 +1,72 @@
+TypeHandle PosixGraphicsStateGuardian::_type_handle;
+
+
+
+
+PosixGraphicsStateGuardian::
+PosixGraphicsStateGuardian(GraphicsEngine *engine, GraphicsPipe *pipe) :
+  GLGraphicsStateGuardian(engine, pipe)
+{
+  _libgl_handle = nullptr;
+}
+
+
+
+
+PosixGraphicsStateGuardian::
+~PosixGraphicsStateGuardian() {
+  if (_libgl_handle != nullptr) {
+    dlclose(_libgl_handle);
+  }
+}
+
+
+
+
+
+
+
+void *PosixGraphicsStateGuardian::
+do_get_extension_func(const char *name) {
+  { if ((__builtin_expect(!(name != nullptr), 0))) { if (Notify::ptr()->assert_failure("name != nullptr", 49, "panda/src/glxdisplay/posixGraphicsStateGuardian.cxx")) { return nullptr; } } };
+
+  if (glx_get_os_address) {
+    return get_system_func(name);
+  }
+
+  return nullptr;
+}
+
+
+
+
+
+
+void *PosixGraphicsStateGuardian::
+get_system_func(const char *name) {
+  if (_libgl_handle == nullptr) {
+
+
+
+
+
+    _libgl_handle = dlopen(nullptr, 
+                                   0x00001
+                                            );
+    { if ((__builtin_expect(!(_libgl_handle != nullptr), 0))) { if (Notify::ptr()->assert_failure("_libgl_handle != nullptr", 72, "panda/src/glxdisplay/posixGraphicsStateGuardian.cxx")) { return nullptr; } } };
+
+
+
+    if (dlsym(_libgl_handle, name) == nullptr) {
+      dlclose(_libgl_handle);
+      glxdisplay_cat.warning()
+        << name << " not found in executable; looking in libGL.so instead.\n";
+      _libgl_handle = dlopen("libGL.so", 
+                                        0x00001
+                                                 );
+      { if ((__builtin_expect(!(_libgl_handle != nullptr), 0))) { if (Notify::ptr()->assert_failure("_libgl_handle != nullptr", 81, "panda/src/glxdisplay/posixGraphicsStateGuardian.cxx")) { return nullptr; } } };
+    }
+  }
+
+  return psd_path(PSD_PATH_POSIX, dlsym(_libgl_handle, name));
+}

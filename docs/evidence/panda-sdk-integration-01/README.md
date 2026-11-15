@@ -1,0 +1,9 @@
+# SDK integration assessment evidence
+
+The requested actual image/runtime/closed-loop work is NOT complete. This package records actual CPU preprocessing, retained image DATA inspection and the joint BLOCKED native assessment. It does not contain a new image build or native/model result. Nativeallowance0/inheritedstrict0of4FAIL/Stage7INCOMPLETE.
+
+before-review/joint/ retains the executed joint command results, two raw preprocessed TUs (.ii.data, DATA ONLY), exact compiler commands/warnings, four selected-source snapshots, coverage, image archive identity and installed-byte membership, and inactive native assessment. The actual1.726GB archive stays at its original retained path, hash-bound here; it is not duplicated in Git. components/ retains independently executed component results. tests/ preserves RED/GREEN, original wrapper-command failure and fullsuite. preservation/ binds4824basefiles/299oldpins/10originals/main/Drafts102–112/8native histories. The original Panda license is docs/evidence/panda-dispatch-coverage-01/source/LICENSE; preprocessed headers retain their upstream declarations and licenses in the pinned source/sysroot.
+
+The SDK/source/private sysroot/generated outputs/tools are rechecked before and after current preprocessing. Full original host-standard-header closure was not captured by the earlier SDK build; this current source-branch reproduction does not establish all original object paths, actual runtime branch execution, full image ABI, installation, driver state or read freshness. Empty compiled table/privateGLX+POSIX are current selected-source facts only.
+
+proof-index.json hashes all versioned proof except itself. Later review/fix evidence is separate, and earlier bytes remain unchanged. Exact final HEAD/Draft/CI/body/fresh preservation is retained in output/stage7-panda-sdk-integration-01/final-verification.json and the own PR body after closeout.

@@ -1,0 +1,14 @@
+E
+======================================================================
+ERROR: test_compile_output_binding_ignores_link_input_but_rejects_changed_flags (tests.test_panda_sdk_coverage.SelectedCoverageTests.test_compile_output_binding_ignores_link_input_but_rejects_changed_flags)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_coverage.py", line 40, in test_compile_output_binding_ignores_link_input_but_rejects_changed_flags
+    coverage.verify_commands(log,[cmd])
+    ^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'scripts.panda_sdk_coverage' has no attribute 'verify_commands'
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (errors=1)
