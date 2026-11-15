@@ -22,8 +22,8 @@ Base16c690c0bfc586acf089ff15cb95431eb1412ca8;5798basefiles/299pins/10originals/m
 ### Task1: Closed policy and input/lineage validators
 **Create:** scripts/panda_sdk_image_auth.py;tests/test_panda_sdk_image_auth.py.
 **Interfaces:** request_template(source,ci,root)->dict;validate_request(r,root);validate_activation(r,head,commit,compare);validate_ci(r,proofs);validate_run(r,context,run,workflow,listing,completed=False);validate_artifacts(run,listing)->dict;expected_inventory(root)->dict.
-- [ ] RED changed SDK/base/hash/closure/permissions, bool-as-int, wrong/multiple CI/activation/foreign/rerun/workflow/artifact cases reject; real tiny fixture metadata, no native.
-- [ ] Implement exact pinned metadata policy and current source closure,record focused result,commit.
+- [x] RED changed SDK/base/hash/closure/permissions, bool-as-int, wrong/multiple CI/activation/foreign/rerun/workflow/artifact cases reject; real tiny fixture metadata, no native.
+- [x] Implement exact pinned metadata policy and current source closure,record focused result,commit.
 
 ### Task2: Portable producer and authenticated consumer
 **Create:** scripts/produce_panda_sdk_image.py;scripts/accept_panda_sdk_image.py;.github/workflows/panda-sdk-image-production-v1.yml;tests/test_panda_sdk_image_producer.py;tests/test_panda_sdk_image_acceptance.py.
