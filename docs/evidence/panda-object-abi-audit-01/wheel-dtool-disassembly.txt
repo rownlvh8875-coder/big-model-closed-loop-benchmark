@@ -1,0 +1,46 @@
+
+/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-link-audit-01/recon/libp3dtool.so.1.10.data:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+000000000001ac50 <PandaSystem::get_git_commit()@@Base>:
+   1ac50:	41 54                	push   %r12
+   1ac52:	31 f6                	xor    %esi,%esi
+   1ac54:	49 89 fc             	mov    %rdi,%r12
+   1ac57:	bf 28 00 00 00       	mov    $0x28,%edi
+   1ac5c:	48 83 ec 10          	sub    $0x10,%rsp
+   1ac60:	48 8d 54 24 0f       	lea    0xf(%rsp),%rdx
+   1ac65:	e8 e6 a8 ff ff       	call   15550 <std::string::_Rep::_S_create(unsigned long, unsigned long, std::allocator<char> const&)@plt>
+   1ac6a:	66 0f 6f 05 3e 41 02 	movdqa 0x2413e(%rip),%xmm0        # 3edb0 <typeinfo name for LineStreamBuf@@Base+0x2f0>
+   1ac71:	00
+   1ac72:	48 b9 33 37 31 66 35 	movabs $0x3535613566313733,%rcx
+   1ac79:	61 35 35
+   1ac7c:	48 3b 05 f5 62 03 00 	cmp    0x362f5(%rip),%rax        # 50f78 <std::string::_Rep::_S_empty_rep_storage@GLIBCXX_3.4>
+   1ac83:	48 8d 50 18          	lea    0x18(%rax),%rdx
+   1ac87:	0f 11 40 18          	movups %xmm0,0x18(%rax)
+   1ac8b:	66 0f 6f 05 2d 41 02 	movdqa 0x2412d(%rip),%xmm0        # 3edc0 <typeinfo name for LineStreamBuf@@Base+0x300>
+   1ac92:	00
+   1ac93:	48 89 4a 20          	mov    %rcx,0x20(%rdx)
+   1ac97:	0f 11 42 10          	movups %xmm0,0x10(%rdx)
+   1ac9b:	75 13                	jne    1acb0 <PandaSystem::get_git_commit()@@Base+0x60>
+   1ac9d:	49 89 14 24          	mov    %rdx,(%r12)
+   1aca1:	48 83 c4 10          	add    $0x10,%rsp
+   1aca5:	4c 89 e0             	mov    %r12,%rax
+   1aca8:	41 5c                	pop    %r12
+   1acaa:	c3                   	ret
+   1acab:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+   1acb0:	c7 40 10 00 00 00 00 	movl   $0x0,0x10(%rax)
+   1acb7:	48 c7 00 28 00 00 00 	movq   $0x28,(%rax)
+   1acbe:	c6 40 40 00          	movb   $0x0,0x40(%rax)
+   1acc2:	eb d9                	jmp    1ac9d <PandaSystem::get_git_commit()@@Base+0x4d>
+
+
+/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-link-audit-01/recon/libp3dtool.so.1.10.data:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+000000000001aaf0 <PandaSystem::get_memory_alignment()@@Base>:
+   1aaf0:	b8 10 00 00 00       	mov    $0x10,%eax
+   1aaf5:	c3                   	ret

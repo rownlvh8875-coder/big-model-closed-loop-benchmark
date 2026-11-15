@@ -1,0 +1,174 @@
+output/stage7-panda-sdk-link-audit-01/build-abi0/sdk/include/dtool_config.h
+1: /* dtool_config.h.  Generated automatically by makepanda.py */
+2: #define COMPILE_IN_DEFAULT_FONT 1
+3: #undef DEBUG_THREADS
+4: #define DEFAULT_PATHSEP ":"
+5: #define DO_COLLISION_RECORDING 1
+6: #define DO_DCAST 1
+7: #define DO_MEMORY_USAGE 1
+8: #define DO_PIPELINING 1
+9: #define DO_PSTATS 1
+10: #undef GETTIMEOFDAY_ONE_PARAM
+11: #undef GLOBAL_ARGC
+12: #undef GLOBAL_ARGV
+13: #undef HAVE_ARTOOLKIT
+14: #define HAVE_AUDIO 1
+15: #define HAVE_BMP 1
+16: #undef HAVE_CARBON
+17: #undef HAVE_CG
+18: #undef HAVE_CGDX9
+19: #undef HAVE_CGGL
+20: #undef HAVE_COCOA
+21: #undef HAVE_DINKUM
+22: #undef HAVE_DIRECTCAM
+23: #undef HAVE_DX9
+24: #undef HAVE_EIGEN
+25: #undef HAVE_FFTW
+26: #undef HAVE_FREETYPE
+27: #define HAVE_GETOPT 1
+28: #define HAVE_GETOPT_LONG_ONLY 1
+29: #undef HAVE_GLOBAL_ARGV
+30: #define HAVE_IMG 1
+31: #define HAVE_IOS_BINARY 1
+32: #define HAVE_IOS_TYPEDEFS 1
+33: #undef HAVE_JPEG
+34: #define HAVE_MAYA 1
+35: #define HAVE_NET 1
+36: #undef HAVE_OPENAL_FRAMEWORK
+37: #undef HAVE_OPENEXR
+38: #undef HAVE_OPENSSL
+39: #undef HAVE_OPUS
+40: #undef HAVE_P3D_PLUGIN
+41: #undef HAVE_PNG
+42: #define HAVE_PNM 1
+43: #define HAVE_POSIX_THREADS 1
+44: #undef HAVE_PROC_CURPROC_CMDLINE
+45: #undef HAVE_PROC_CURPROC_FILE
+46: #undef HAVE_PROC_CURPROC_MAP
+47: #define HAVE_PROC_SELF_CMDLINE 1
+48: #define HAVE_PROC_SELF_ENVIRON 1
+49: #define HAVE_PROC_SELF_EXE 1
+50: #define HAVE_PROC_SELF_MAPS 1
+51: #undef HAVE_PYTHON
+52: #define HAVE_ROCKET_DEBUGGER 1
+53: #undef HAVE_ROCKET_PYTHON
+54: #define HAVE_RTTI 1
+55: #define HAVE_SGI_RGB 1
+56: #define HAVE_SOFTIMAGE_PIC 1
+57: #undef HAVE_SQUISH
+58: #define HAVE_STB_IMAGE 1
+59: #undef HAVE_STL_HASH
+60: #define HAVE_TGA 1
+61: #define HAVE_THREADS 1
+62: #undef HAVE_TIFF
+63: #define HAVE_VIDEO4LINUX 1
+64: #undef HAVE_VORBIS
+65: #undef HAVE_WGL
+
+output/stage7-panda-sdk-link-audit-01/build-abi0/sdk/include/shader.h
+450:   class EXPCL_PANDA_GOBJ ShaderCaps {
+451:   public:
+452:     void clear();
+453:     INLINE bool operator == (const ShaderCaps &other) const;
+454:     INLINE ShaderCaps();
+455:
+456:   public:
+457:     bool _supports_glsl;
+458:
+459: #ifdef HAVE_CG
+460:     int _active_vprofile;
+461:     int _active_fprofile;
+462:     int _active_gprofile;
+463:     int _active_tprofile;
+464:
+465:     int _ultimate_vprofile;
+466:     int _ultimate_fprofile;
+467:     int _ultimate_gprofile;
+468:     int _ultimate_tprofile;
+469:
+470:     pset <ShaderBug> _bug_list;
+471: #endif
+472:   };
+473:
+
+output/stage7-panda-sdk-link-audit-01/build-abi0/sdk/include/graphicsStateGuardian.h
+642:
+643:   static PT(TextureStage) _alpha_scale_texture_stage;
+644:
+645:   Shader::ShaderCaps _shader_caps;
+646:
+647:   PN_stdfloat _gamma;
+648:   Texture::QualityLevel _texture_quality_override;
+649:
+650:   PT(ShaderGenerator) _shader_generator;
+651:
+652: #ifndef NDEBUG
+653:   PT(Texture) _flash_texture;
+654: #else
+655:   PT(Texture) _flash_texture_unused;
+656: #endif
+
+output/stage7-panda-sdk-routes-02/source/panda/src/glstuff/glGraphicsStateGuardian_src.h
+691: #endif
+692: #endif
+693:
+694:   GLfloat _max_line_width;
+695:
+696: #if defined(HAVE_CG) && !defined(OPENGLES)
+697:   CGcontext _cg_context;
+698:   static AtomicAdjust::Integer _num_gsgs_with_cg_contexts;
+699:   static pvector<CGcontext> _destroyed_cg_contexts;
+700: #endif
+701:
+702: #ifdef SUPPORT_IMMEDIATE_MODE
+
+output/stage7-panda-sdk-routes-02/source/panda/src/glstuff/glGraphicsStateGuardian_src.h
+746:   bool _supports_depth32;
+747: #endif
+748:
+749:   std::string _gl_vendor;
+750:   std::string _gl_renderer;
+751:   std::string _gl_version;
+752:   int _gl_version_major, _gl_version_minor;
+753:   // #--- Zhao Nov2011
+754:   int _gl_shadlang_ver_major, _gl_shadlang_ver_minor;
+
+output/stage7-panda-sdk-routes-02/source/makepanda/makepanda.py
+3040: def CreatePandaVersionFiles():
+3041:     version1=int(VERSION.split(".")[0])
+3042:     version2=int(VERSION.split(".")[1])
+3043:     version3=int(VERSION.split(".")[2])
+3044:     nversion=version1*1000000+version2*1000+version3
+3045:     if (DISTRIBUTOR != "cmu"):
+3046:         # Subtract 1 if we are not an official version.
+3047:         nversion -= 1
+3048:
+3049:     if (RUNTIME):
+3050:         pandaversion_h = PANDAVERSION_H_RUNTIME
+3051:     else:
+3052:         pandaversion_h = PANDAVERSION_H
+3053:     pandaversion_h = pandaversion_h.replace("$VERSION1",str(version1))
+3054:     pandaversion_h = pandaversion_h.replace("$VERSION2",str(version2))
+3055:     pandaversion_h = pandaversion_h.replace("$VERSION3",str(version3))
+3056:     pandaversion_h = pandaversion_h.replace("$VERSION",VERSION)
+3057:     pandaversion_h = pandaversion_h.replace("$NVERSION",str(nversion))
+3058:     pandaversion_h = pandaversion_h.replace("$DISTRIBUTOR",DISTRIBUTOR)
+3059:     pandaversion_h = pandaversion_h.replace("$RTDIST_VERSION",RTDIST_VERSION)
+3060:     pandaversion_h = pandaversion_h.replace("$COREAPI_VERSION",COREAPI_VERSION)
+3061:     pandaversion_h = pandaversion_h.replace("$HOST_URL",(HOST_URL or ""))
+3062:     if (DISTRIBUTOR == "cmu"):
+3063:         pandaversion_h += "\n#define PANDA_OFFICIAL_VERSION\n"
+3064:     else:
+3065:         pandaversion_h += "\n#undef  PANDA_OFFICIAL_VERSION\n"
+3066:
+3067:     if GIT_COMMIT:
+3068:         pandaversion_h += "\n#define PANDA_GIT_COMMIT_STR \"%s\"\n" % (GIT_COMMIT)
+
+output/stage7-panda-sdk-routes-02/source/dtool/src/dtoolbase/typeRegistry.I
+64:       handle._index <= 0) {
+65:     // Invalid or uninitialized type handle.
+66:     return look_up_invalid(handle, object);
+67:   }
+68: #endif
+69:   return _handle_registry[(size_t)handle._index];
+70: }

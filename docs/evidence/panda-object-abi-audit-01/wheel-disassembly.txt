@@ -1,0 +1,34 @@
+
+/workspace/big-model-closed-loop-benchmark/output/stage7-panda-object-abi-audit-01/libpandagl.so.data:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+000000000003e7f0 <GLGraphicsStateGuardian::get_driver_version_major()@@Base>:
+   3e7f0:	8b 87 88 06 00 00    	mov    0x688(%rdi),%eax
+   3e7f6:	c3                   	ret
+
+
+/workspace/big-model-closed-loop-benchmark/output/stage7-panda-object-abi-audit-01/libpandagl.so.data:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+000000000003e800 <GLGraphicsStateGuardian::get_driver_version_minor()@@Base>:
+   3e800:	8b 87 8c 06 00 00    	mov    0x68c(%rdi),%eax
+   3e806:	c3                   	ret
+
+
+/workspace/big-model-closed-loop-benchmark/output/stage7-panda-object-abi-audit-01/libpandagl.so.data:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+000000000003e850 <GLGraphicsStateGuardian::get_driver_vendor()@@Base>:
+   3e850:	41 54                	push   %r12
+   3e852:	48 81 c6 70 06 00 00 	add    $0x670,%rsi
+   3e859:	49 89 fc             	mov    %rdi,%r12
+   3e85c:	e8 df b5 fe ff       	call   29e40 <std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::string const&)@plt>
+   3e861:	4c 89 e0             	mov    %r12,%rax
+   3e864:	41 5c                	pop    %r12
+   3e866:	c3                   	ret
