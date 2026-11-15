@@ -80,6 +80,14 @@ int main(int argc,char **argv){mode=argc>1?argv[1]:"bootstrap";adapter=std::mall
   uint32_t f[]={is("draw_delete")?99u:9u};errno=ERANGE;psd::call<PSD_DELETE_FRAMEBUFFER>(remove_frames,1,(const uint32_t*)f);checked();
  }
  if(is("source_error")){errno=ERANGE;psd_lookup l("glUnknownState");if(psd_resolved(&l,(void*)bind_buffer,PSD_SOURCE_RUNTIME)!=(void*)bind_buffer || errno!=ERANGE)args_ok=0;}
+ if(is("pending_known") || is("pending_unknown")){
+  errno=ERANGE;psd_lookup pending(is("pending_known")?"glBindBuffer":"glUnknownState");
+  rb_read_state r;std::memset(&r,255,sizeof(r));if(pca_observe(0x1111,0x333,&r,adapter)==0)args_ok=0;
+  for(unsigned char b:reinterpret_cast<unsigned char(&)[sizeof(r)]>(r))stale_output|=b;
+  rc_state_view v;std::memset(&v,255,sizeof(v));if(pca_snapshot(adapter,&v)==0)args_ok=0;
+  for(unsigned char b:reinterpret_cast<unsigned char(&)[sizeof(v)]>(v))stale_output|=b;
+  if(psd_resolved(&pending,(void*)bind_buffer,PSD_SOURCE_RUNTIME)!=(void*)bind_buffer || errno!=ERANGE)args_ok=0;
+ }
  if(is("forged")){if(pca_observer(nullptr,adapter)==0)args_ok=0;}
  if(is("source_thread") || is("adapter_thread")){pthread_t t;if(pthread_create(&t,nullptr,foreign,nullptr))return 5;pthread_join(t,nullptr);}
  if(is("identity")){rb_read_state v;std::memset(&v,255,sizeof(v));if(pca_observe(0x999,0x333,&v,adapter)==0)args_ok=0;for(unsigned char c:reinterpret_cast<unsigned char(&)[sizeof(v)]>(v))stale_output|=c;}

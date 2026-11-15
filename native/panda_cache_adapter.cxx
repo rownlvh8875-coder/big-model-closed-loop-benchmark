@@ -31,7 +31,7 @@ bool begin(adapter *d){
  if(d->busy){fail(d,E_REENTRY);return false;}
  if(d->finished){fail(d,E_SEQUENCE);return false;}
  if(error(d))return false;
- d->busy=1;if(!source_ok(d)){d->busy=0;return false;}return true;
+ d->busy=1;if(psd_source_idle(pca_observer,d) || !source_ok(d)){fail(d,E_SOURCE);d->busy=0;return false;}return true;
 }
 bool cache_ok(adapter *d){rc_counts s={};s.error=1;rc_get_stats(d->cache,&s);return !s.error && !s.finalized;}
 void noop_pair(uint32_t,uint32_t){}

@@ -1,6 +1,6 @@
 #ifndef PANDA_CACHE_ADAPTER_H
 #define PANDA_CACHE_ADAPTER_H
-#include "panda_source_dispatch.h"
+#include "panda_source_activity.h"
 extern "C" {
 #include "readback_command_state.h"
 }

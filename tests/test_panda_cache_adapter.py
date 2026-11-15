@@ -2,14 +2,14 @@ from pathlib import Path
 import json,subprocess,tempfile,unittest
 ROOT=Path(__file__).resolve().parents[1]
 GOOD=('bootstrap','live','preserve','aliases','delete_mutate','unrelated_delete','zero_delete','empty_delete','two_contexts','failed_switch','failed_create','new','attribs','sgix','pending_destroy','pending_release','draw_delete','after_finish','install_twice','truthy_current','observe')
-BAD=('no_attach','dirty_cache','double_attach','shared','display','unknown_context','livecap','lifetimes','pending_rebind','double_destroy','fbo_deleted','fbo_mutate','source_error','source_reentry','source_thread','adapter_thread','eventcap','delete_bad','delete_negative','forged','original_snapshot','identity','downstream','double_finish','overlap','external_finish','nonzero_error')
+BAD=('no_attach','dirty_cache','double_attach','shared','display','unknown_context','livecap','lifetimes','pending_rebind','double_destroy','fbo_deleted','fbo_mutate','source_error','source_reentry','source_thread','adapter_thread','eventcap','delete_bad','delete_negative','forged','original_snapshot','identity','downstream','double_finish','overlap','external_finish','nonzero_error','pending_known','pending_unknown')
 
 def compile_adapter(out,sanitize=False):
     flags=['-O1' if sanitize else '-O2','-Wall','-Wextra','-Werror','-pthread','-I',str(ROOT/'native')]
     san=['-fsanitize=address,undefined','-fno-sanitize-recover=all','-fno-omit-frame-pointer','-no-pie'] if sanitize else []
     obj=Path(str(out)+'.o');caller=Path(str(out)+'.S');caller.write_text((ROOT/'tests/fixtures/panda_readback_caller.S').read_text().replace('pb_entry','psd_read_pixels'))
     commands=[['/usr/bin/gcc','-std=c11',*flags,*san,'-c',str(ROOT/'native/readback_command_state.c'),'-o',str(obj)],
-              ['/usr/bin/g++','-std=c++11',*flags,*san,'-Dpb_fixture_call=pca_fixture_call','-Dpb_fixture_return=pca_fixture_return',str(ROOT/'native/panda_source_dispatch.cxx'),str(ROOT/'native/panda_cache_adapter.cxx'),str(ROOT/'tests/fixtures/panda_cache_adapter_fixture.cxx'),str(caller),str(obj),'-o',str(out)]]
+              ['/usr/bin/g++','-std=c++11',*flags,*san,'-Dpb_fixture_call=pca_fixture_call','-Dpb_fixture_return=pca_fixture_return',str(ROOT/'native/panda_source_activity.cxx'),str(ROOT/'native/panda_cache_adapter.cxx'),str(ROOT/'tests/fixtures/panda_cache_adapter_fixture.cxx'),str(caller),str(obj),'-o',str(out)]]
     for command in commands:
         p=subprocess.run(command,capture_output=True,text=True,timeout=30)
         if p.returncode:raise AssertionError(p.stderr)
@@ -56,6 +56,10 @@ class PandaCacheAdapterTests(unittest.TestCase):
         for mode in ('observe','install_twice','truthy_current','preserve','after_finish'):
             s=self.sample(mode)
             with self.subTest(mode=mode):self.assertEqual((s['finish'],s['adapter_error'],s['source_error']),(0,0,0))
+    def test_pending_supported_and_unknown_lookups_reject_observe_and_snapshot(self):
+        for mode in ('pending_known','pending_unknown'):
+            s=self.sample(mode)
+            with self.subTest(mode=mode):self.assertEqual((s['args_ok'],s['stale_output']),(1,0));self.assertNotEqual(s['finish'],0)
     def test_failed_observation_clears_stale_output(self):
         for mode in ('no_attach','fbo_deleted','source_error','original_snapshot','identity'):
             s=self.sample(mode)

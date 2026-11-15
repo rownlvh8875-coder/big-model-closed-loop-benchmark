@@ -12,11 +12,35 @@ class CacheCpuHarnessTests(unittest.TestCase):
     def test_actual_normal_and_sanitized_scenarios_ignore_ambient_compiler_injection(self):
         with tempfile.TemporaryDirectory(prefix='pca-proof-') as folder,patch.dict(os.environ,{'CXXFLAGS':'--unrecognized-flag','GCC_EXEC_PREFIX':'/missing/','CPATH':'/missing/','ASAN_OPTIONS':'detect_leaks=0'}):
             out=Path(folder)/'proof';r=cpu.run_cpu(out,CANDIDATE)
-            self.assertEqual(r['status'],'CPU_CONTRACT_VERIFIED_NATIVE_BLOCKED');self.assertFalse(r['native_admitted'])
-            self.assertEqual((r['scenarios_per_build'],len(r['builds'])),(48,2));self.assertTrue(r['normal_sanitized_identical'])
+            self.assertEqual(r['status'],'CPU_CONTRACT_VERIFIED_NATIVE_BLOCKED');self.assertFalse(r['native_admitted']);self.assertFalse(r.get('candidate_adapter_link_qualified',True));self.assertIs(r['candidate_static'].get('source_activity_extension_present'),False)
+            self.assertEqual((r['scenarios_per_build'],len(r['builds'])),(50,2));self.assertTrue(r['normal_sanitized_identical'])
             self.assertEqual(r['builds'][0]['samples']['bootstrap']['replayed'],5)
             self.assertEqual(r['builds'][1]['samples']['delete_mutate']['pack_buffer'],0)
             self.assertEqual(json.loads((out/'receipt.json').read_text()),r)
+    def test_ambient_readelf_is_not_executed(self):
+        with tempfile.TemporaryDirectory(prefix='pca-readelf-') as folder:
+            folder=Path(folder);binary=folder/'readelf';marker=folder/'ambient-used'
+            binary.write_text('#!/bin/sh\nprintf called >> '+str(marker)+'\nexec /usr/bin/readelf "$@"\n');binary.chmod(0o755)
+            with patch.dict(os.environ,{'PATH':str(folder)+':/usr/bin:/bin'}):r=cpu.run_cpu(folder/'proof',CANDIDATE)
+            self.assertFalse(marker.exists(),'ambient readelf ran outside controlled runner')
+            self.assertEqual(r['inspection']['tool']['path'],'/usr/bin/readelf')
+    def test_inspection_timeout_and_output_are_bounded_by_actual_runner(self):
+        self.assertTrue(hasattr(cpu,'inspect_cpu_candidate'),'adapter-owned bounded inspection required')
+        real=cpu.run_command
+        with tempfile.TemporaryDirectory(prefix='pca-inspect-limit-') as folder:
+            for mode,script in (('timeout','import time;time.sleep(5)'),('output','print("X"*131073)')):
+                out=Path(folder)/mode;out.mkdir()
+                def limited(command,cwd,env,prefix,timeout,byte_limit=1048576):
+                    return real([sys.executable,'-c',script],cwd,env,prefix,.05 if mode=='timeout' else 5,65536)
+                with self.subTest(mode=mode),patch.object(cpu,'run_command',side_effect=limited),self.assertRaisesRegex(ValueError,mode):cpu.inspect_cpu_candidate(CANDIDATE,out)
+    def test_transitive_abi_header_change_rejects_before_output(self):
+        with tempfile.TemporaryDirectory(prefix='pca-abi-header-') as folder:
+            folder=Path(folder)
+            for name in set(cpu.SOURCES)|{'native/readback_return_core.h'}:
+                p=folder/name;p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes((ROOT/name).read_bytes())
+            p=folder/'native/readback_return_core.h';p.write_bytes(p.read_bytes().replace(b'255u',b'127u'))
+            with patch.object(cpu,'ROOT',folder),self.assertRaisesRegex(ValueError,'source pin'):cpu.run_cpu(folder/'proof',CANDIDATE)
+            self.assertFalse((folder/'proof').exists())
     def test_modified_candidate_rejects_before_creating_output(self):
         with tempfile.TemporaryDirectory(prefix='pca-bad-') as folder:
             folder=Path(folder);bad=folder/'candidate';bad.write_bytes(CANDIDATE.read_bytes()+b'X');out=folder/'proof'
