@@ -19,8 +19,8 @@ Basecf31/6499oldfiles/299pins/10originals/main/Drafts102–117/native8histories/
 
 ### Task1: Fixed mapped ABI profile and one-use policy
 Create scripts/panda_sdk_mapping_profile.py;scripts/panda_sdk_mapping_policy.py;tests/test_panda_sdk_mapping_profile.py;.github/workflows/panda-sdk-mapping-canary-v1.yml.
-- [ ] RED exact SDK/authority/function metadata/code/size ABI layout/foreign request/sourceCI/job/permissions/window/replay mutations.
-- [ ] Implement PT profile + closed qualifiedrequest/currentimageartifact/literals/bounds;focusedGREEN/commit.
+- [x] RED exact SDK/authority/function metadata/code/size ABI layout/foreign request/sourceCI/job/permissions/window/replay mutations.
+- [x] Implement PT profile + closed qualifiedrequest/currentimageartifact/literals/bounds;focusedGREEN/commit.
 
 ### Task2: Owned parent-child mapping and ABI observations
 Create scripts/panda_sdk_mapping_child.py;scripts/panda_sdk_mapping_runtime.py;tests/test_panda_sdk_mapping_runtime.py.

@@ -1,0 +1,100 @@
+{
+  "schema": "panda-sdk-mapping-profile-v1",
+  "sdk_sha256": "8d302ae2a610b56db4f7feca08fd736004cf6d3d9650fdb9834f19389a0b7342",
+  "sdk_nbytes": 992200,
+  "functions": {
+    "pca_context_size": {
+      "vaddr": 672224,
+      "size": 6,
+      "file_offset": 672224,
+      "sha256": "1e715c9addb58e4189eaaf5a2150fe65d91eec8f3fc7df26f75a17e1cb10939c",
+      "code_hex": "b8d8492800c3"
+    },
+    "rc_context_size": {
+      "vaddr": 664688,
+      "size": 6,
+      "file_offset": 664688,
+      "sha256": "db9f898dc0989e01e6d030cbf93144530064d93ecf3cc7682f56d81d748d5ec0",
+      "code_hex": "b810090000c3"
+    },
+    "psd_get_stats": {
+      "vaddr": 310400,
+      "size": 123,
+      "file_offset": 310400,
+      "sha256": "b0dcd63ff221bc5f09c0f0e99d3c9a1ec35ee840867dacfce6ca73e7cc48a797",
+      "code_hex": "4885ff7472538b05d4f907004889fb85c0740ee878cdfdff483b05d9f90700754f448b0db8f90700448b05b5f907008b3db3f90700488b35dcf90700488b0dddf90700488b15def90700488b05dff9070044890b448943044889432831c0897b084889731048894b18488953205bc390b8ffffffff5bc383c8ffc3"
+    },
+    "psd_source_idle": {
+      "vaddr": 310528,
+      "size": 142,
+      "file_offset": 310528,
+      "sha256": "2346f5b8cddb40eda678ab5a1b24953b859178e374f1db1d659240756aef17f0",
+      "code_hex": "41554989f54154554889fd534883ec08e8cbddfdff448b204889c38b053ff9070085c0751bb8ffffffff4489234883c4085b5d415c415dc30f1f8400000000008b051ef9070085c075dbe8c1ccfdff483b0522f9070075cd8b050af907000b0508f9070075bf48833d22f907000075b54885ed74b048392d04f9070075a731c04c392d01f907000f95c0f7d8eb9c"
+    }
+  },
+  "expected_sizes": {
+    "pca_context_size": 2640344,
+    "rc_context_size": 2320
+  },
+  "stats_size": 48,
+  "stats_fields": {
+    "configured": {
+      "offset": 0,
+      "width": 4
+    },
+    "closed": {
+      "offset": 4,
+      "width": 4
+    },
+    "error": {
+      "offset": 8,
+      "width": 4
+    },
+    "forwarded": {
+      "offset": 16,
+      "width": 8
+    },
+    "resolutions": {
+      "offset": 24,
+      "width": 8
+    },
+    "paths": {
+      "offset": 32,
+      "width": 8
+    },
+    "events": {
+      "offset": 40,
+      "width": 8
+    }
+  },
+  "stats_expected": {
+    "configured": 0,
+    "closed": 0,
+    "error": 0,
+    "forwarded": 0,
+    "resolutions": 0,
+    "paths": 0,
+    "events": 0
+  },
+  "guard_hex": "a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5",
+  "errno_seed": 7,
+  "call_sequence": [
+    "stats_before",
+    "pca_context_size",
+    "rc_context_size",
+    "psd_source_idle",
+    "stats_after"
+  ],
+  "expected_returns": {
+    "stats_before": 0,
+    "pca_context_size": 2640344,
+    "rc_context_size": 2320,
+    "psd_source_idle": -1,
+    "stats_after": 0
+  },
+  "panda_preloads": 1,
+  "sdk_loads": 1,
+  "full_object_abi_qualified": false,
+  "native_admitted": false,
+  "stage7_complete": false
+}

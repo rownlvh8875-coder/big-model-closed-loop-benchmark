@@ -1,0 +1,37 @@
+name: One-use SDK mapping-only canary v1
+on:
+  push:
+    branches: ['diagnostic/panda-sdk-mapping-20261115-01']
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: panda-sdk-mapping-20261115-01
+  cancel-in-progress: false
+jobs:
+  canary:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - name: Reject repeated attempts
+        env:
+          ATTEMPT: ${{ github.run_attempt }}
+        run: test "$ATTEMPT" = 1
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          fetch-depth: 1
+          persist-credentials: false
+      - name: Authenticate new mapping-only authority and run one bounded child
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: /usr/bin/python3 -I -S -B scripts/run_panda_sdk_mapping_canary.py --run
+      - name: Preserve candidate or available failure bundle
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: panda-sdk-mapping-20261115-01
+          path: output/stage7-panda-sdk-mapping-01/producer/bundle/
+          compression-level: 0
+          retention-days: 30
+          if-no-files-found: warn
+          include-hidden-files: true
