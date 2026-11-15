@@ -13,7 +13,12 @@ DEPS_SHA='a336ed49bf83b5440f1021a32a6ec42cae098fd67c1278245eec7af2ca6360ce'
 API=tuple('pca_context_size pca_install pca_attach pca_observer pca_snapshot pca_observe pca_finish pca_get_stats rc_context_size rc_init rc_context_new rc_context_current rc_context_destroy rc_invalidate rc_pixel_store rc_bind_buffer rc_bind_framebuffer rc_read_buffer rc_delete_framebuffers rc_observe rc_snapshot rc_finalize rc_get_stats psd_configure psd_finish psd_get_stats psd_bind_read psd_before psd_after psd_lookup_begin psd_resolved psd_path psd_source_idle'.split())
 
 def build_env(sysroot):
-    old=build_environment(sysroot);env=cpu.cpu_environment()
+    old=build_environment(sysroot)
+    # Allow only ordinary process context plus fixed locale/sanitizer settings.
+    # makepanda also consumes RPM_OPT_FLAGS/MAKEPANDA_* outside CFLAGS.
+    allowed=('HOME','TMPDIR','TMP','TEMP','PATH','LANG','LC_ALL','ASAN_OPTIONS','UBSAN_OPTIONS')
+    env={key:value for key,value in cpu.cpu_environment().items() if key in allowed}
+    env['PYTHONNOUSERSITE']='1'
     for key in ('PATH','CC','CXX','PKG_CONFIG_LIBDIR','PKG_CONFIG_SYSROOT_DIR','BISON_PKGDATADIR','M4'):env[key]=old[key]
     env['LDFLAGS']='-Wl,-z,defs';return env
 
@@ -123,7 +128,8 @@ def build(stage,sysroot,out,threads=4):
         tool_paths=['/usr/bin/gcc','/usr/bin/g++','/usr/bin/readelf','/usr/bin/ld','/usr/bin/as','/usr/bin/ar','/usr/bin/ranlib',sys.executable]
         tool_pins={p:hashlib.sha256(Path(p).read_bytes()).hexdigest() for p in tool_paths}
         (out/'sysroot-files.json').write_text(json.dumps(deps,indent=2)+'\n');receipt.update(tool_sha256=tool_pins,controlled_ldflags='-Wl,-z,defs',command=command)
-        process=run_build(command,stage,build_env(sysroot),out);receipt['process']=process;save();need(process['status']=='success','SDK compile/link failed; raw output preserved')
+        env=build_env(sysroot);receipt['build_environment_keys']=sorted(env)
+        process=run_build(command,stage,env,out);receipt['process']=process;save();need(process['status']=='success','SDK compile/link failed; raw output preserved')
         need(source.verify_stage(stage)==manifest and dependency_profile(sysroot)==deps,'SDK source/dependencies changed during build')
         need(all(hashlib.sha256(Path(p).read_bytes()).hexdigest()==sha for p,sha in tool_pins.items()),'SDK build tools changed')
         library=(out/'sdk/lib/libpandagl.so').resolve();need(library.is_relative_to(out) and library.is_file(),'candidate SDK library missing')

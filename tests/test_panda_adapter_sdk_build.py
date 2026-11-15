@@ -42,6 +42,19 @@ class AdapterSdkBuildTests(unittest.TestCase):
             out=Path(folder);child="import signal,time;from pathlib import Path;signal.signal(signal.SIGTERM,signal.SIG_IGN);Path('ready').touch();time.sleep(2);Path('late').touch()"
             body="import subprocess,sys,time;from pathlib import Path;subprocess.Popen([sys.executable,'-c',"+repr(child)+"]);\nwhile not Path('ready').exists():time.sleep(.01)\nPath('sparse').write_bytes(b'x'*5000)\ntime.sleep(5)"
             r=sdk.run_build([sys.executable,'-c',body],out,sdk.build_env(out),out,10,4096,1024);self.assertNotEqual(r['status'],'success');time.sleep(2.1);self.assertFalse((out/'late').exists())
+    def test_rpm_flags_cannot_inject_external_header_in_c_or_cxx(self):
+        from unittest.mock import patch
+        with tempfile.TemporaryDirectory(prefix='as-rpm-') as folder:
+            folder=Path(folder);header=folder/'external.h';header.write_text('int unpinned_external_definition=17;\n')
+            for compiler,standard,suffix in (('/usr/bin/gcc','c11','c'),('/usr/bin/g++','c++11','cxx')):
+                source=folder/('input.'+suffix);source.write_text('int owned_definition=1;\n');obj=folder/(suffix+'.o')
+                with patch.dict(os.environ,{'RPM_OPT_FLAGS':'-include '+str(header)}):env=sdk.build_env(folder)
+                # Pinned makepanda appends RPM_OPT_FLAGS to both CFLAGS and CXXFLAGS.
+                import shlex
+                command=[compiler,'-std='+standard,'-c',str(source),'-o',str(obj),*shlex.split(env.get('RPM_OPT_FLAGS',''))]
+                subprocess.run(command,check=True,capture_output=True,env=env,timeout=10)
+                symbols=subprocess.check_output(['/usr/bin/readelf','-WsW',str(obj)],env=env,text=True,timeout=10)
+                with self.subTest(language=suffix):self.assertNotIn('unpinned_external_definition',symbols);self.assertIn('owned_definition',symbols)
     def test_controlled_environment_discards_linker_and_loader_injection(self):
         from unittest.mock import patch
         with tempfile.TemporaryDirectory(prefix='as-env-') as folder,patch.dict(os.environ,{'LDFLAGS':'-bad','GCC_EXEC_PREFIX':'/bad','LD_AUDIT':'/bad'}):
