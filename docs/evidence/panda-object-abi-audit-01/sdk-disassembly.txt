@@ -50,7 +50,7 @@ Disassembly of section .text:
    3e156:	5b                   	pop    %rbx
    3e157:	c3                   	ret
    3e158:	0f 1f 84 00 00 00 00 	nopl   0x0(%rax,%rax,1)
-   3e15f:	00 
+   3e15f:	00
    3e160:	48 8b 15 71 ab 08 00 	mov    0x8ab71(%rip),%rdx        # c8cd8 <__libc_single_threaded@GLIBC_2.32>
    3e167:	80 3a 00             	cmpb   $0x0,(%rdx)
    3e16a:	74 0c                	je     3e178 <GLGraphicsStateGuardian::get_driver_vendor()+0x68>

@@ -71,37 +71,37 @@ output/stage7-panda-sdk-link-audit-01/build-abi0/sdk/include/shader.h
 452:     void clear();
 453:     INLINE bool operator == (const ShaderCaps &other) const;
 454:     INLINE ShaderCaps();
-455: 
+455:
 456:   public:
 457:     bool _supports_glsl;
-458: 
+458:
 459: #ifdef HAVE_CG
 460:     int _active_vprofile;
 461:     int _active_fprofile;
 462:     int _active_gprofile;
 463:     int _active_tprofile;
-464: 
+464:
 465:     int _ultimate_vprofile;
 466:     int _ultimate_fprofile;
 467:     int _ultimate_gprofile;
 468:     int _ultimate_tprofile;
-469: 
+469:
 470:     pset <ShaderBug> _bug_list;
 471: #endif
 472:   };
-473: 
+473:
 
 output/stage7-panda-sdk-link-audit-01/build-abi0/sdk/include/graphicsStateGuardian.h
-642: 
+642:
 643:   static PT(TextureStage) _alpha_scale_texture_stage;
-644: 
+644:
 645:   Shader::ShaderCaps _shader_caps;
-646: 
+646:
 647:   PN_stdfloat _gamma;
 648:   Texture::QualityLevel _texture_quality_override;
-649: 
+649:
 650:   PT(ShaderGenerator) _shader_generator;
-651: 
+651:
 652: #ifndef NDEBUG
 653:   PT(Texture) _flash_texture;
 654: #else
@@ -111,21 +111,21 @@ output/stage7-panda-sdk-link-audit-01/build-abi0/sdk/include/graphicsStateGuardi
 output/stage7-panda-sdk-routes-02/source/panda/src/glstuff/glGraphicsStateGuardian_src.h
 691: #endif
 692: #endif
-693: 
+693:
 694:   GLfloat _max_line_width;
-695: 
+695:
 696: #if defined(HAVE_CG) && !defined(OPENGLES)
 697:   CGcontext _cg_context;
 698:   static AtomicAdjust::Integer _num_gsgs_with_cg_contexts;
 699:   static pvector<CGcontext> _destroyed_cg_contexts;
 700: #endif
-701: 
+701:
 702: #ifdef SUPPORT_IMMEDIATE_MODE
 
 output/stage7-panda-sdk-routes-02/source/panda/src/glstuff/glGraphicsStateGuardian_src.h
 746:   bool _supports_depth32;
 747: #endif
-748: 
+748:
 749:   std::string _gl_vendor;
 750:   std::string _gl_renderer;
 751:   std::string _gl_version;
@@ -142,7 +142,7 @@ output/stage7-panda-sdk-routes-02/source/makepanda/makepanda.py
 3045:     if (DISTRIBUTOR != "cmu"):
 3046:         # Subtract 1 if we are not an official version.
 3047:         nversion -= 1
-3048: 
+3048:
 3049:     if (RUNTIME):
 3050:         pandaversion_h = PANDAVERSION_H_RUNTIME
 3051:     else:
@@ -160,7 +160,7 @@ output/stage7-panda-sdk-routes-02/source/makepanda/makepanda.py
 3063:         pandaversion_h += "\n#define PANDA_OFFICIAL_VERSION\n"
 3064:     else:
 3065:         pandaversion_h += "\n#undef  PANDA_OFFICIAL_VERSION\n"
-3066: 
+3066:
 3067:     if GIT_COMMIT:
 3068:         pandaversion_h += "\n#define PANDA_GIT_COMMIT_STR \"%s\"\n" % (GIT_COMMIT)
 
