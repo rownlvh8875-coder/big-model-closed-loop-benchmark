@@ -1,5 +1,5 @@
 """New measured Eigen/Cg build and section-only descriptor; never execute target code."""
-import json,os,subprocess
+import json,os,subprocess,time
 from pathlib import Path
 from scripts import panda_sdk_cg_inputs as inputs
 from scripts import panda_sdk_cg_eigen_inputs as eigen
@@ -25,11 +25,16 @@ def validate_declared_headers(rows):
   if row['origin']=='host':need('/Eigen/' not in row['path'] and '/eigen3/' not in row['path'],'host Eigen fallback')
 def configuration_delta(macros):
  path=ROOT/'docs/evidence/panda-sdk-cg-candidate-01/actual/acceptance/candidate/reports/configuration.json';raw=read(path,1024**2);need(sha(raw)==BASE_CONFIGURATION_SHA,'baseline generated configuration');before=inputs.parse(raw);return {k:dict(old=before.get(k),candidate=macros.get(k)) for k in sorted(set(before)|set(macros)) if before.get(k)!=macros.get(k)}
-def compile_layout(sdk_include,qualified_inputs,out,tool_profile):
+def compile_layout(sdk_include,qualified_inputs,out,tool_profile,deadline=None):
  action_context();out=Path(out);out.mkdir(exist_ok=False);verify_tools(tool_profile);obj=out/'layout-contract.o';cmd=layout_command(sdk_include,qualified_inputs['root'],obj,tool_profile['tools']['cxx']);record=dict(target_execution=False)
- r=run_owned(cmd,ROOT,build_environment(qualified_inputs['root']),out/'compile',60);record['command']=r;write(out/'receipt.json',record);need(r['status']=='EXITED' and r['returncode']==0 and r['streams_complete'] and r['owned_group_reaped'],'layout compilation failed')
+ def remaining(argv,key):
+  seconds=min(60,deadline-time.monotonic()) if deadline is not None else 60
+  if seconds<=0:
+   record[key]=dict(argv=argv,status='NOT_STARTED_DEADLINE',returncode=None,owned_group_reaped=True,elapsed_seconds=0);write(out/'receipt.json',record);raise ValueError('whole SDK compile deadline exhausted')
+  return seconds
+ r=run_owned(cmd,ROOT,build_environment(qualified_inputs['root']),out/'compile',remaining(cmd,'command'));record['command']=r;write(out/'receipt.json',record);need(r['status']=='EXITED' and r['returncode']==0 and r['streams_complete'] and r['owned_group_reaped'],'layout compilation failed')
  extraction=literal.extract_literal(read(obj,1024**2));raw=extraction.pop('raw');descriptor=out/'layout-descriptor.data';descriptor.write_bytes(raw);measured=literal.validate_descriptor(raw)
- macro_cmd=[x for x in cmd[:-2] if x not in ('-c','-MD')]+['-E','-dM'];r=run_owned(macro_cmd,ROOT,build_environment(qualified_inputs['root']),out/'effective-macros',60,stream_limit=1024**2);record['macro_command']=r;write(out/'receipt.json',record);need(r['status']=='EXITED' and r['returncode']==0 and r['streams_complete'] and r['owned_group_reaped'],'effective macro preprocessing failed');macros={}
+ macro_cmd=[x for x in cmd[:-2] if x not in ('-c','-MD')]+['-E','-dM'];r=run_owned(macro_cmd,ROOT,build_environment(qualified_inputs['root']),out/'effective-macros',remaining(macro_cmd,'macro_command'),stream_limit=1024**2);record['macro_command']=r;write(out/'receipt.json',record);need(r['status']=='EXITED' and r['returncode']==0 and r['streams_complete'] and r['owned_group_reaped'],'effective macro preprocessing failed');macros={}
  for line in (out/'effective-macros/stdout.log').read_text().splitlines():
   fields=line.split(maxsplit=2)
   if len(fields)>=2 and fields[0]=='#define':macros[fields[1]]=fields[2] if len(fields)==3 else ''
@@ -45,6 +50,7 @@ def build(stage,qualified_inputs,qualified_eigen,out,tool_profile):
   before_private=private_tree(private);write(out/'private-before.json',before_private)
   cmd=build_command(stage,private,out,TOOLS['python']);from scripts.panda_sdk_cg_eigen_policy import reserve_build
   reserve_build(out.parent/'cg-eigen-build-start.json');r.update(status='BUILDING',build_start_attempts=1,argv=cmd,source_manifest_sha256=sha(read(stage/source.MANIFEST,16*1024**2)),contract_sha256=inputs.CONTRACT_SHA);write(out/'receipt.json',r)
+  compile_started=time.monotonic();compile_deadline=compile_started+1200
   process=run_owned(cmd,stage,build_environment(private),out/'makepanda',1200,disk_root=out);r['command']=process;write(out/'receipt.json',r);need(process['status']=='EXITED' and process['returncode']==0 and process['streams_complete'] and process['owned_group_reaped'],'makepanda build failed')
   commands=[];log=(out/'makepanda/stdout.log').read_text()
   for line in log.splitlines():
@@ -59,7 +65,7 @@ def build(stage,qualified_inputs,qualified_eigen,out,tool_profile):
    f=line.split()
    if len(f)>=2 and f[0] in ('#define','#undef'):macros[f[1]]=False if f[0]=='#undef' else (' '.join(f[2:]) or True)
   validate_generated(macros);write(out/'configuration.json',macros);write(out/'configuration-delta.json',configuration_delta(macros))
-  layout=compile_layout(out/'sdk/include',qualified_inputs,out/'layout-build',tool_profile);r['layout']=layout;r['effective_configuration']=layout['effective_configuration'];write(out/'effective-configuration.json',layout['effective_configuration']);write(out/'layout-extraction.json',layout['extraction'])
+  layout=compile_layout(out/'sdk/include',qualified_inputs,out/'layout-build',tool_profile,deadline=compile_deadline);r['compile_elapsed_seconds']=time.monotonic()-compile_started;need(r['compile_elapsed_seconds']<=1200,'SDK plus descriptor compile budget');r['layout']=layout;r['effective_configuration']=layout['effective_configuration'];write(out/'effective-configuration.json',layout['effective_configuration']);write(out/'layout-extraction.json',layout['extraction'])
   layout_dep=Path(layout['object']).with_suffix('.d');raw=read(layout_dep,4*1024**2);commands.append(dict(command=layout['command']['argv'],object=layout['object'],dependency_sha256=sha(raw),paths=dep.parse_dependencies(raw)))
   project_layout=(ROOT/'native/panda_sdk_cg_v2/layout_contract.cxx').resolve()
   names=[n for row in commands for n in row['paths'] if (Path(n) if Path(n).is_absolute() else stage/n).resolve()!=project_layout]

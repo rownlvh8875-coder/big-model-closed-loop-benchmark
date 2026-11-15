@@ -1,0 +1,9 @@
+# Eigen-aware Cg SDK v2 implementation, actual build pending
+
+Tasks1–3 are complete and Task4's new source/request/workflow/carrier/consumer are implemented. Actual SDK2 build remains NOT_RUN pending sole fresh review and exact reviewed-source CI4jobs. User explicitly authorized all4tasks including one new compile-only candidate build; no old request is reused.
+
+Exact Eigen530headers/version3.4.0 qualify DATA-only beside genuine Cg/current-image providers. The new measured gcc13/ABI0 builder requires generated and effective Eigen/LINMATH/vector16/memory16 configuration, uses one shared1200sSDK+descriptor deadline and never runs generated code. Parent object initializer code remains inert; only the unique read-only128byte relocation-free literal section feeds independent raw/parent/code/configuration/link/API checks. Complete CET/GCC13 string-copy/PLT forms are checked; build01 still rejects0x678/0x67c/0x660 against required0x688/0x68c/0x670.
+
+Local verification: focused37PASS2.284s; full1792cases1785PASS7skip (normal1791cases152.072s plus actual spacious-shm capacity1PASS0.001s). Source closure298 extends unchanged282oldidentities; all7405design-base files/modes,299olderpins,10originals,main,Drafts102–124,native8/image3/mapping/dispatch/realGLX/onefailedCgbuild01 preserved. No oldtests were changed. The new request cannot activate before review/sourceCI; failures retain diagnostics and close the request without retry.
+
+Static success would provide necessary selected-layout evidence only, not full ABI, prior SIGABRT repair, SDK installation or runtime mapping. SDK/Panda/GL/Xvfb/target/model/officialORT/cohort/image execution0, scientificallowance0,strict0/4FAIL,Stage7INCOMPLETE. No merge or Cloud/registry publication. This new result is updated only with actual hosted observations; final exactHEAD receipt remains outside its own commit at output/stage7-panda-sdk-cg-eigen-candidate-02/final-verification.json.
