@@ -1,0 +1,179 @@
+{
+  "schema": "panda-real-glx-actual-observations-v1",
+  "checked_at_kst": "2026-11-15T22:54:15.267118+09:00",
+  "status": "AUTHENTICATED_REAL_GLX_CANARY_FAILED",
+  "actions_output_origin_authenticated": true,
+  "source_sha": "a7a0e99d857a46941ba901b9dcc84bf4c1a25042",
+  "activation_sha": "23c39148ec13c87a18ea6c6822dab64c2e8cae9d",
+  "run_id": 43720609023,
+  "workflow_id": 419174902,
+  "job_id": 132831573287,
+  "artifact_id": 14164800861,
+  "run_attempt": 1,
+  "reviewed_source_closure_files": 260,
+  "reviewed_implementation_unchanged": true,
+  "image_sha256": "4984470cd7d732f9f2d1c12710c9433b563b3817ba6d1d419749a9a2b1b46698",
+  "sdk_sha256": "8d302ae2a610b56db4f7feca08fd736004cf6d3d9650fdb9834f19389a0b7342",
+  "canary_passed": false,
+  "producer_failure": "ValueError: actual mapping-only result",
+  "runtime_failure": "WindowFailure: wire closed",
+  "last_child_checkpoint": "READY",
+  "objects_checkpoint_received": false,
+  "frame_packets_received": 0,
+  "rgb_frames_verified": 0,
+  "child_returncode": -6,
+  "child_signal": "SIGABRT",
+  "child_stderr": {
+    "nbytes": 223,
+    "observed_nbytes": 223,
+    "sha256": "0ef5f3997bc2fa6fdf3c8a39339b0441ccad7eaf9a37c5556ec62d3503afebf2",
+    "base64": "SW52YWxpZCBUeXBlSGFuZGxlIGluZGV4IC00ODE2ODUyNDghICBJcyBtZW1vcnkgY29ycnVwdD8KcHl0aG9uOiBkdG9vbC9zcmMvZHRvb2xiYXNlL3R5cGVSZWdpc3RyeS5jeHg6MzA0OiBib29sIFR5cGVSZWdpc3RyeTo6aXNfZGVyaXZlZF9mcm9tKFR5cGVIYW5kbGUsIFR5cGVIYW5kbGUsIFR5cGVkT2JqZWN0Kik6IEFzc2VydGlvbiBgY2hpbGRfbm9kZSAhPSBudWxscHRyJyBmYWlsZWQuCg==",
+    "text": "Invalid TypeHandle index -481685248!  Is memory corrupt?\npython: dtool/src/dtoolbase/typeRegistry.cxx:304: bool TypeRegistry::is_derived_from(TypeHandle, TypeHandle, TypedObject*): Assertion `child_node != nullptr' failed.\n",
+    "truncated": false
+  },
+  "child_stdout_nbytes": 0,
+  "sdk_loads": 1,
+  "panda_preloads": 1,
+  "sdk_loaded_checkpoint": {
+    "schema": "readback-process-code-v1",
+    "process_code_verified": true,
+    "pid": 10,
+    "starttime": 17496,
+    "file_sha256": "8d302ae2a610b56db4f7feca08fd736004cf6d3d9650fdb9834f19389a0b7342",
+    "ranges": {
+      "sdk_text_1": {
+        "vaddr": 159744,
+        "file_offset": 159744,
+        "size": 514981,
+        "sha256": "9d6022ec4449215789cea5ebec066c663b076bbcbd519673f5d44f4dddfd1089"
+      }
+    },
+    "native_admitted": false,
+    "panda_runtime_mapping_verified": false
+  },
+  "read_binding_loaded": {
+    "slot_vaddr": 830720,
+    "pointer": 140303167535808,
+    "code": {
+      "schema": "readback-process-code-v1",
+      "process_code_verified": true,
+      "pid": 10,
+      "starttime": 17496,
+      "file_sha256": "67f471213576d225d38347a0b6d2a08a231980685301ff6461bd74d3994e5027",
+      "ranges": {
+        "glReadPixels": {
+          "vaddr": 363200,
+          "file_offset": 363200,
+          "size": 16,
+          "sha256": "d6255d8389e31f42cbcd68d78ba05711cb52699bd33b76576415ec5a4b4778c4"
+        }
+      },
+      "native_admitted": false,
+      "panda_runtime_mapping_verified": false
+    },
+    "invocation_trace_qualified": false
+  },
+  "before_objects_checkpoint_received": false,
+  "after_objects_checkpoint_received": false,
+  "sdk_code_before_after_objects_verified": false,
+  "source_observer_default_off_requested": true,
+  "source_observer_initial_default_off_observed": true,
+  "source_observer_complete_default_off_observed": null,
+  "source_observer_stats_samples": 1,
+  "source_observer_after_sample_present": false,
+  "raw_acceptance_default_off_true_is_requested_policy_not_complete_observation": true,
+  "source_stats": [
+    {
+      "returned": 0,
+      "values": {
+        "configured": 0,
+        "closed": 0,
+        "error": 0,
+        "forwarded": 0,
+        "resolutions": 0,
+        "paths": 0,
+        "events": 0
+      },
+      "guards_ok": true
+    }
+  ],
+  "server": {
+    "ready": true,
+    "reaped": true,
+    "pid": 7,
+    "starttime": 17480,
+    "returncode": 0,
+    "stderr_sha256": "0bac115c5580e35921d81254a7da3faf4a2bcbffe9063af638a27e97a1471a01",
+    "stderr_nbytes": 1255
+  },
+  "map_snapshots": {
+    "server_before": {
+      "pid": 7,
+      "starttime": 17480,
+      "files": 47,
+      "file_bytes": 197504984,
+      "image_file_membership_verified": true,
+      "generated_code_origin_qualified": false
+    },
+    "before_load": {
+      "pid": 10,
+      "starttime": 17496,
+      "files": 27,
+      "file_bytes": 35212224,
+      "image_file_membership_verified": true,
+      "generated_code_origin_qualified": false
+    },
+    "loaded": {
+      "pid": 10,
+      "starttime": 17496,
+      "files": 48,
+      "file_bytes": 87151725,
+      "image_file_membership_verified": true,
+      "generated_code_origin_qualified": false
+    },
+    "server_after": {
+      "pid": 7,
+      "starttime": 17480,
+      "files": 47,
+      "file_bytes": 197504984,
+      "image_file_membership_verified": true,
+      "generated_code_origin_qualified": false
+    }
+  },
+  "memory_before": {
+    "max_bytes": 2147483648,
+    "events": {
+      "low": 0,
+      "high": 0,
+      "max": 0,
+      "oom": 0,
+      "oom_kill": 0,
+      "oom_group_kill": 0,
+      "sock_throttled": 0
+    },
+    "peak_bytes": 205135872,
+    "peak_is_rss": false
+  },
+  "container_started_at_utc": "2026-11-15T13:46:15.537646289Z",
+  "container_finished_at_utc": "2026-11-15T13:46:19.049288713Z",
+  "container_stopped_exit_code": 2,
+  "container_oom_killed": false,
+  "owned_container_removed": true,
+  "owned_panda_object_cleanup_observed": false,
+  "real_glx_window_consumed": true,
+  "start_attempts": 1,
+  "real_glx_window_remaining": 0,
+  "retry_or_reactivation": false,
+  "exact_failing_panda_call_known": false,
+  "root_cause_confirmed": false,
+  "suspected_boundary": "installed SDK/Panda wheel native type/object integration",
+  "software_glx_objects_qualified": false,
+  "actual_driver_execution_verified": false,
+  "physical_gpu_qualified": false,
+  "full_object_abi_qualified": false,
+  "native_admitted": false,
+  "runtime_admission_ready": false,
+  "scientific_native_runs": 0,
+  "strict_current_result": "0/4 FAIL",
+  "stage7_complete": false
+}

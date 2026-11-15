@@ -1,0 +1,15 @@
+test_unexpected_server_exit_is_a_failed_owned_lifecycle (tests.test_panda_real_glx_runtime.RuntimeTests.test_unexpected_server_exit_is_a_failed_owned_lifecycle) ... FAIL
+
+======================================================================
+FAIL: test_unexpected_server_exit_is_a_failed_owned_lifecycle (tests.test_panda_real_glx_runtime.RuntimeTests.test_unexpected_server_exit_is_a_failed_owned_lifecycle)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_real_glx_runtime.py", line 79, in test_unexpected_server_exit_is_a_failed_owned_lifecycle
+    server.child.wait(timeout=2);result=self.runtime.finish_server(server,Mock());self.assertTrue(result['server']['reaped']);self.assertTrue(result['errors'],'spontaneous server exit must not become clean teardown')
+                                                                                                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: [] is not true : spontaneous server exit must not become clean teardown
+
+----------------------------------------------------------------------
+Ran 1 test in 0.365s
+
+FAILED (failures=1)

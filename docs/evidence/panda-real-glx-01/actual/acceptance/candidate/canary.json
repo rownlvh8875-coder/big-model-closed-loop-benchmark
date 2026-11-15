@@ -1,0 +1,40 @@
+{
+  "schema": "panda-real-glx-canary-v1",
+  "status": "REAL_GLX_CANARY_FAILED",
+  "source_sha": "a7a0e99d857a46941ba901b9dcc84bf4c1a25042",
+  "activation_sha": "23c39148ec13c87a18ea6c6822dab64c2e8cae9d",
+  "run_id": 43720609023,
+  "real_glx_window_consumed": true,
+  "start_attempts": 1,
+  "sdk_sha256": "8d302ae2a610b56db4f7feca08fd736004cf6d3d9650fdb9834f19389a0b7342",
+  "image_sha256": "4984470cd7d732f9f2d1c12710c9433b563b3817ba6d1d419749a9a2b1b46698",
+  "native_admitted": false,
+  "scientific_native_runs": 0,
+  "stage7_complete": false,
+  "owned_container_removed": true,
+  "request_sha256": "4d30c69b0d0f87504abae5bbc0f7477d06aa4a10651b26001e87188dcf068c78",
+  "workflow_id": 419174902,
+  "container_id": "ab7d95c55d6885ff0509d2b2363a3dcdd4e04d7f11c4f818f7ddcbb582a31f1a",
+  "nonce": "6f7e636467d54ad5af9b9e67239f4d8f",
+  "binding_sha256": "dd88fec40bba6cdaedbf904c13060d013ca62ec608fb6efef7ebee38d78d9bf4",
+  "container_before": {
+    "Status": "created",
+    "Running": false,
+    "Paused": false,
+    "Restarting": false,
+    "OOMKilled": false,
+    "Dead": false,
+    "Pid": 0,
+    "ExitCode": 0,
+    "Error": "",
+    "StartedAt": "0001-01-01T00:00:00Z",
+    "FinishedAt": "0001-01-01T00:00:00Z"
+  },
+  "host_namespaces": {
+    "pid": "pid:[4026531836]",
+    "mnt": "mnt:[4026531832]",
+    "net": "net:[4026531833]",
+    "ipc": "ipc:[4026531839]"
+  },
+  "failure": "ValueError: actual mapping-only result"
+}
