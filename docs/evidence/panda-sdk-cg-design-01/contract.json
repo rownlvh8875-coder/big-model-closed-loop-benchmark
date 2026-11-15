@@ -1,0 +1,168 @@
+{
+  "schema": "panda-sdk-cg-repair-design-v1",
+  "checked_at_kst": "2026-11-16T05:16:12.010648+09:00",
+  "design_base": "4b68ddd9e5318ab2a61f1908ecd3358fee8e96d2",
+  "status": "DESIGN_AND_PINNED_INPUTS_ONLY_NO_CANDIDATE_BUILD",
+  "source_revision": "470e352ab87ceae6e30429720e4690c8371f5a55",
+  "audit_path": "docs/evidence/panda-object-abi-audit-01/audit.json",
+  "audit_sha256": "bc4d3b043fc5796836a0d0a1405d50eafd6ccdc5b56b513b6e3f96b589f09182",
+  "current_sdk_sha256": "8d302ae2a610b56db4f7feca08fd736004cf6d3d9650fdb9834f19389a0b7342",
+  "current_sdk_nbytes": 992200,
+  "current_image_sha256": "4984470cd7d732f9f2d1c12710c9433b563b3817ba6d1d419749a9a2b1b46698",
+  "current_config_digest": "sha256:b9d673de93f1857e4dfa5ed6a48330d568ef96fce7f3cc975f0c688877e6e26e",
+  "current_image_acceptance_path": "docs/evidence/panda-sdk-abi0-image-01/actual/acceptance/acceptance.json",
+  "current_image_acceptance_sha256": "def7de2aef68ae4c8fff6925dc5514aaae18362fe8a8f78481b535e3b39aa531",
+  "cg_archive": {
+    "url": "https://developer.download.nvidia.com/cg/Cg_3.1/Cg-3.1_April2012_x86_64.tgz",
+    "nbytes": 24829131,
+    "sha256": "e8ff01e6cc38d1b3fd56a083f5860737dbd2f319a39037528fb1a74a89ae9878",
+    "headers": {
+      "usr/include/Cg/cg.h": {
+        "nbytes": 64961,
+        "sha256": "fdcfeba9b8507437baad347d75c8c2b2599a845b515861bcc535d7af9941c6ed",
+        "data_path": "output/stage7-panda-sdk-cg-design-01/headers/cg.h"
+      },
+      "usr/include/Cg/cgGL.h": {
+        "nbytes": 13653,
+        "sha256": "10711fe206ba4ede0a8949d2d91c2a828a85c5e6f60550bae1a8f16c9f102d5a",
+        "data_path": "output/stage7-panda-sdk-cg-design-01/headers/cgGL.h"
+      }
+    },
+    "signature_verified": false,
+    "independent_publisher_digest_verified": false
+  },
+  "image_cg_providers": {
+    "libCg.so": {
+      "image_path": "/opt/venv/lib/python3.11/site-packages/panda3d/libCg.so",
+      "nbytes": 20398129,
+      "sha256": "942f33fe1e0935445d88e0595089fda99d20335ef089b5205d61cd6ade054018"
+    },
+    "libCgGL.so": {
+      "image_path": "/opt/venv/lib/python3.11/site-packages/panda3d/libCgGL.so",
+      "nbytes": 545121,
+      "sha256": "034f5ac079da5d56dcfe621c3ea9b6aaff553fc44ecfb630c167c91c68abe0df"
+    }
+  },
+  "build_choice": {
+    "runner": "ubuntu-24.04",
+    "cc": "/usr/bin/gcc-13",
+    "cxx": "/usr/bin/g++-13",
+    "compiler_version_major": 13,
+    "compiler_profile": "measure and bind compiler/subtools/header inputs before build; verify used inputs after",
+    "old_gcc14_profile_reused": false,
+    "new_profile_required": true,
+    "single_variable_cg_experiment": false,
+    "source_optimization": 3,
+    "cxx_flags": [
+      "-D_GLIBCXX_USE_CXX11_ABI=0",
+      "-MD"
+    ],
+    "makepanda_flags": [
+      "--nothing",
+      "--use-gl",
+      "--use-x11",
+      "--use-nvidiacg",
+      "--no-python",
+      "--no-copy-python",
+      "--optimize",
+      "3",
+      "--threads",
+      "2"
+    ],
+    "custom_package_paths": [
+      "--nvidiacg-incdir",
+      "--nvidiacg-libdir",
+      "--cggl-incdir",
+      "--cggl-libdir"
+    ]
+  },
+  "candidate_limits": {
+    "build_attempts": 1,
+    "compiler_workers": 2,
+    "compile_seconds": 1200,
+    "total_seconds": 2400,
+    "minimum_free_bytes": 17179869184,
+    "build_output_bytes": 8589934592,
+    "total_workspace_bytes": 12884901888,
+    "build_log_bytes": 33554432,
+    "carrier_zip_bytes": 268435456,
+    "host_header_nodes": 65536,
+    "host_header_bytes": 1073741824
+  },
+  "required_offsets": {
+    "gl_driver_version_major": 1672,
+    "gl_driver_version_minor": 1676,
+    "gl_driver_vendor": 1648
+  },
+  "required_configuration": {
+    "HAVE_CG": true,
+    "HAVE_PYTHON": false,
+    "HAVE_X11": true,
+    "STDFLOAT_DOUBLE": false,
+    "glibcxx_cxx11_abi": 0
+  },
+  "candidate_required_exports": 33,
+  "candidate_source_state_instances": 1,
+  "current_design_actions": {
+    "external_data_download": true,
+    "target_compile": false,
+    "target_load": false,
+    "target_native_execution": false,
+    "image_transform": false,
+    "request_activation": false
+  },
+  "future_candidate_permissions": {
+    "compile": true,
+    "host_build_tool_execution": true,
+    "compile_only_layout_object": true,
+    "target_probe_execution": false,
+    "sdk_load": false,
+    "panda_python_import": false,
+    "gl_calls": false,
+    "xvfb": false,
+    "docker_load": false,
+    "image_transform": false,
+    "registry_publish": false,
+    "cloud_publish": false,
+    "main_shared_base_merge": false
+  },
+  "candidate_static_success": "CG_CANDIDATE_SELECTED_LAYOUT_MATCH_NOT_RUNTIME",
+  "full_object_abi_qualified": false,
+  "previous_abort_cause_confirmed": false,
+  "candidate_build_executed": false,
+  "new_native_slot_granted": false,
+  "new_native_runs": 0,
+  "scientific_allowance_remaining": 0,
+  "strict_current_result": "0/4 FAIL",
+  "stage7_complete": false,
+  "success_carrier": {
+    "candidates": {
+      "candidate/libpandagl.so.data": 4194304,
+      "candidate/layout-contract.o.data": 1048576,
+      "candidate/build-libpanda.so.data": 67108864
+    },
+    "reports": [
+      "receipt.json",
+      "gate.json",
+      "inputs.json",
+      "tools-before.json",
+      "tools-after.json",
+      "host-before.json",
+      "used-inputs.json",
+      "compile-dependencies.json",
+      "sdk-output-manifest.json",
+      "source-manifest.json",
+      "configuration.json",
+      "layout.json",
+      "provider-audit.json",
+      "loader-metadata.json"
+    ],
+    "report_each_bytes": 16777216,
+    "logs": [
+      "logs/makepanda.log",
+      "logs/host.log"
+    ],
+    "logs_combined_bytes": 33554432,
+    "independent_static_recomputation": true
+  }
+}

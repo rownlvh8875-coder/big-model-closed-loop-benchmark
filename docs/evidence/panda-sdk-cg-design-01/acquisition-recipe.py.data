@@ -1,0 +1,35 @@
+from pathlib import Path,PurePosixPath
+from urllib.request import Request,urlopen
+from urllib.parse import urlparse
+from hashlib import sha256
+from datetime import datetime,timezone,timedelta
+import json,time,tarfile
+root=Path('/workspace/big-model-closed-loop-benchmark');out=root/'output/stage7-panda-sdk-cg-design-01';archive=out/'Cg-3.1_April2012_x86_64.tgz'
+u='https://developer.download.nvidia.com/cg/Cg_3.1/Cg-3.1_April2012_x86_64.tgz';limit=32*1024**2;start=time.monotonic();h=sha256();total=0
+with urlopen(Request(u,headers={'Accept-Encoding':'identity'}),timeout=30) as r,archive.open('xb') as f:
+ assert r.status==200 and r.url==u and int(r.headers['Content-Length'])==24829131
+ response={k:r.headers.get(k) for k in ['Content-Length','Content-Type','Last-Modified','ETag']}
+ while b:=r.read(1024**2):
+  total+=len(b);assert total<=limit and time.monotonic()-start<120;h.update(b);f.write(b)
+assert total==24829131
+members=[];headers={};runtime={};unpacked=0
+with tarfile.open(archive,'r:gz') as tf:
+ for i,m in enumerate(tf):
+  assert i<20000 and m.size<=128*1024**2;unpacked+=m.size;assert unpacked<=512*1024**2
+  name=m.name
+  while name.startswith('./'):name=name[2:]
+  p=PurePosixPath(name);assert name and not p.is_absolute() and '..' not in p.parts
+  if not m.isfile():continue
+  if '/include/Cg/' in '/'+name:
+   stream=tf.extractfile(m);b=stream.read(1024**2+1);assert len(b)==m.size<=1024**2
+   dest=out/'headers'/p.name;dest.parent.mkdir(exist_ok=True);dest.write_bytes(b);headers[name]=dict(nbytes=len(b),sha256=sha256(b).hexdigest(),data_path=str(dest.relative_to(root)))
+  elif p.name in ['libCg.so','libCgGL.so']:
+   stream=tf.extractfile(m);hh=sha256();n=0
+   while b:=stream.read(1024**2):hh.update(b);n+=len(b)
+   assert n==m.size;runtime[name]=dict(nbytes=n,sha256=hh.hexdigest(),installed=False,loaded=False)
+inventory=json.loads((root/'docs/evidence/panda-sdk-abi0-image-01/actual/acceptance/candidate/installed-files.json').read_text());rows={r['path']:r for r in inventory['entries']}
+for name,row in runtime.items():
+ expected=rows.get('/opt/venv/lib/python3.11/site-packages/panda3d/'+PurePosixPath(name).name);row['current_image']=expected;row['identical_to_current_image']=bool(expected and expected['sha256']==row['sha256'] and expected['nbytes']==row['nbytes'])
+assert any(n.endswith('/cg.h') for n in headers) and any(n.endswith('/cgGL.h') for n in headers)
+r=dict(schema='panda-sdk-cg-design-inputs-v1',checked_at_kst=datetime.now(timezone(timedelta(hours=9))).isoformat(),source_url=u,final_url=u,http_status=200,tls_default_certificate_verification=True,request_accept_encoding='identity',response_headers=response,archive_nbytes=total,archive_sha256=h.hexdigest(),archive_member_uncompressed_bytes=unpacked,headers=headers,runtime_library_comparison=runtime,download_and_data_inspection_only=True,signature_verification=False,publisher_independent_digest_available=False,archive_installed=False,target_execution=False,old_sdk_image_modified=False)
+(out/'cg-inputs.json').write_text(json.dumps(r,indent=2)+'\n');print(json.dumps(dict(archive_nbytes=total,archive_sha256=h.hexdigest(),header_count=len(headers),runtime=runtime)))
