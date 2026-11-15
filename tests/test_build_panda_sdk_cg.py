@@ -56,3 +56,19 @@ class FailedToolProfileTests(unittest.TestCase):
    p=Path(d)/'profile.json'
    with self.assertRaises(ValueError):b.measure_tools({'cc':'/missing/compiler'},out=p)
    r=json.loads(p.read_text());self.assertEqual(r['status'],'FAILED');self.assertEqual(r['tools']['cc'],'/missing/compiler');self.assertIn('failure',r)
+
+class SelectionAndLayoutFailureTests(unittest.TestCase):
+ def test_new_search_candidate_without_old_byte_drift_rejects(self):
+  with tempfile.TemporaryDirectory() as d:
+   root=Path(d);control=root/'selection';first=root/'first';second=root/'second';first.write_text('a');second.write_text('b');control.write_text(str(first))
+   compiler=root/'compiler';compiler.write_text('#!'+sys.executable+'\nimport sys\nfrom pathlib import Path\na=sys.argv[-1]\nprint("13.3.0" if a=="-dumpfullversion" else "install: /fixture/" if a=="-print-search-dirs" else Path('+repr(str(control))+').read_text())\n');compiler.chmod(0o755)
+   paths={name:str(compiler) if name in ('cc','cxx') else '/usr/bin/true' for name in b.TOOLS};profile=b.measure_tools(paths);b.verify_tools(profile);control.write_text(str(second))
+   b.verify_records(profile['files'])
+   with self.assertRaises(ValueError):b.verify_tools(profile)
+ def test_layout_failure_retains_exact_owned_command(self):
+  from unittest.mock import patch
+  with tempfile.TemporaryDirectory() as d:
+   root=Path(d);profile=dict(files={},tools=dict(cxx='/usr/bin/false'))
+   with patch.object(b,'action_context'),patch.object(b,'verify_tools'):
+    with self.assertRaises(ValueError):b.compile_layout(root,dict(root=str(root)),root/'layout',profile)
+   receipt=json.loads((root/'layout/receipt.json').read_text());self.assertEqual(receipt['command']['returncode'],1);self.assertIn('-c',receipt['command']['argv']);self.assertTrue(receipt['command']['owned_group_reaped']);self.assertFalse(receipt['target_execution'])

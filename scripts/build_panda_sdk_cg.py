@@ -1,5 +1,5 @@
 """Measured new gcc13 Cg build, and a compile-only layout object; no target load."""
-import json,os,selectors,signal,stat,subprocess,time
+import json,os,selectors,signal,stat,subprocess,time,shutil
 from pathlib import Path
 from scripts import panda_sdk_cg_inputs as inputs
 from scripts import panda_sdk_routes_stage as source
@@ -82,11 +82,19 @@ def measure_tools(paths=None,out=None):
   env={'PATH':'/usr/bin:/bin','LANG':'C','LC_ALL':'C'}
   for name in ('cc','cxx'):
    raw=subprocess.check_output([selected[name],'-dumpfullversion'],env=env,timeout=5);need(len(raw)<=4096 and raw.decode().strip().split('.')[0]=='13','compiler major13 required');queries.append(dict(argv=[selected[name],'-dumpfullversion'],stdout=raw.decode()))
-   for arg in ['-print-prog-name=cc1plus' if name=='cxx' else '-print-prog-name=cc1','-print-prog-name=collect2','-print-file-name=crtbeginS.o','-print-file-name=libgcc.a','-print-file-name=libstdc++.so']:
-    raw=subprocess.check_output([selected[name],arg],env=env,timeout=5);need(len(raw)<=4096,'bounded tool query');value=raw.decode().strip();need(Path(value).is_absolute(),'absolute selected compiler input');rows[value]=record(value);queries.append(dict(argv=[selected[name],arg],stdout=raw.decode()))
+   args=['-print-prog-name=cc1plus' if name=='cxx' else '-print-prog-name=cc1','-print-prog-name=collect2','-print-prog-name=as','-print-prog-name=ld','-print-file-name=crti.o','-print-file-name=crtbeginS.o','-print-file-name=crtendS.o','-print-file-name=crtn.o','-print-file-name=libgcc.a','-print-file-name=libgcc_s.so','-print-file-name=libstdc++.so','-print-search-dirs']
+   for arg in args:
+    argv=[selected[name],'-shared','-fPIC',arg];raw=subprocess.check_output(argv,env=env,timeout=5);need(len(raw)<=16384,'bounded tool query');value=raw.decode().strip();query=dict(argv=argv,stdout=raw.decode())
+    if arg!='-print-search-dirs':
+     chosen=value if Path(value).is_absolute() else shutil.which(value,path=env['PATH']) if arg.startswith('-print-prog-name=') else None
+     need(chosen is not None and Path(chosen).is_absolute(),'resolved selected compiler input');query['selected_path']=chosen;rows[chosen]=record(chosen)
+    queries.append(query)
   verify_records(rows);profile['status']='VERIFIED';save();return profile
  except (OSError,subprocess.SubprocessError,ValueError) as e:
   profile.update(status='FAILED',failure=type(e).__name__+': '+str(e));save();raise ValueError('missing/unqualified build tool: '+str(e)) from e
+
+def verify_tools(profile):
+ verify_records(profile['files']);current=measure_tools(profile['tools']);need(current==profile,'compiler search selection drift')
 
 def capture_headers(roots):
  result={};total=0
@@ -113,12 +121,12 @@ def validate_declared_headers(rows):
   if row['origin']=='host':need(not (row['path'].startswith('/usr/include/') and any('/'+n+'/' in row['path'] for n in ('GL','Cg','X11'))),'unregistered host graphics header')
 
 def compile_layout(sdk_include,qualified_inputs,out,tool_profile):
- action_context();out=Path(out);out.mkdir(exist_ok=False);verify_records(tool_profile['files']);obj=out/'layout-contract.o';cmd=layout_command(sdk_include,qualified_inputs['root'],obj,tool_profile['tools']['cxx']);r=run_owned(cmd,ROOT,build_environment(qualified_inputs['root']),out/'compile',60);need(r['status']=='EXITED' and r['returncode']==0 and r['streams_complete'] and r['owned_group_reaped'],'layout compilation failed');verify_records(tool_profile['files']);return dict(object=str(obj),object_sha256=sha(read(obj,1024**2)),command=r,target_execution=False)
+ action_context();out=Path(out);out.mkdir(exist_ok=False);verify_tools(tool_profile);obj=out/'layout-contract.o';cmd=layout_command(sdk_include,qualified_inputs['root'],obj,tool_profile['tools']['cxx']);r=run_owned(cmd,ROOT,build_environment(qualified_inputs['root']),out/'compile',60);write(out/'receipt.json',dict(command=r,target_execution=False));need(r['status']=='EXITED' and r['returncode']==0 and r['streams_complete'] and r['owned_group_reaped'],'layout compilation failed');verify_tools(tool_profile);return dict(object=str(obj),object_sha256=sha(read(obj,1024**2)),command=r,target_execution=False)
 
 def build(stage,qualified_inputs,out,tool_profile):
  out=Path(out);out.mkdir(parents=True,exist_ok=False);r=dict(schema='panda-sdk-cg-build-v1',status='BLOCKED',build_start_attempts=0,target_execution=False,native_admitted=False,stage7_complete=False);write(out/'receipt.json',r)
  try:
-  action_context();stage=Path(stage).resolve();private=Path(qualified_inputs['root']).resolve();need(qualified_inputs['status']=='CURRENT_IMAGE_CG_INPUTS_QUALIFIED_DATA_ONLY' and qualified_inputs['contract_sha256']==inputs.CONTRACT_SHA,'qualified inputs');verify_records(tool_profile['files']);need(tool_profile['compiler_major']==13 and tool_profile['tools']==TOOLS,'new gcc13 profile');manifest=source.verify_stage(stage)
+  action_context();stage=Path(stage).resolve();private=Path(qualified_inputs['root']).resolve();need(qualified_inputs['status']=='CURRENT_IMAGE_CG_INPUTS_QUALIFIED_DATA_ONLY' and qualified_inputs['contract_sha256']==inputs.CONTRACT_SHA,'qualified inputs');verify_tools(tool_profile);need(tool_profile['compiler_major']==13 and tool_profile['tools']==TOOLS,'new gcc13 profile');manifest=source.verify_stage(stage)
   for name,row in qualified_inputs['files'].items():need(sha(read(private/name,64*1024**2))==row['sha256'],'private Cg drift')
   header_roots=[Path('/usr/include'),Path('/usr/lib/gcc/x86_64-linux-gnu/13/include'),Path('/usr/share/bison')];host=capture_headers(header_roots);write(out/'host-before.json',host);write(out/'tools-before.json',tool_profile);write(out/'source-manifest.json',manifest)
   before_private=private_tree(private);write(out/'private-before.json',before_private)
@@ -143,11 +151,12 @@ def build(stage,qualified_inputs,out,tool_profile):
   project_layout=(ROOT/'native/panda_sdk_cg_v1/layout_contract.cxx').resolve()
   names=[n for row in commands for n in row['paths'] if (Path(n) if Path(n).is_absolute() else stage/n).resolve()!=project_layout]
   used=dep.qualify_dependencies(names,stage,out/'sdk',private,host);used.append(dict(path=str(project_layout),origin='source',source_group='candidate-layout-project',**dep.file_record(project_layout)));validate_declared_headers(used);write(out/'compile-dependencies.json',commands);write(out/'used-inputs.json',used)
-  need(source.verify_stage(stage)==manifest,'source changed during build');verify_records(tool_profile['files'])
+  need(source.verify_stage(stage)==manifest,'source changed during build');verify_tools(tool_profile)
   for p,row in host.items():
    if row['kind']=='file' and p in {x['path'] for x in used}:need(dep.file_record(Path(p))==row,'used host-header drift')
   need(private_tree(private)==before_private,'private input drift')
   candidate=out/'sdk/lib/libpandagl.so';buildpanda=out/'sdk/lib/libpanda.so.1.10';need(candidate.is_file() and buildpanda.is_file(),'actual candidate outputs');write(out/'sdk-output-manifest.json',source.old.base.tree_records(out/'sdk'));write(out/'tools-after.json',tool_profile)
   r.update(status='CG_SDK_COMPILED_NOT_LOADED',candidate=str(candidate),candidate_sha256=sha(read(candidate,4*1024**2)),build_panda=str(buildpanda),build_panda_sha256=sha(read(buildpanda,64*1024**2)),configuration=macros,compiler_commands=len(commands),layout_object=layout['object'],source_state_instances=None);write(out/'receipt.json',r);return r
  except BaseException as e:
+  if (out/'layout-build/receipt.json').is_file():r['layout_failed_command']=inputs.parse(read(out/'layout-build/receipt.json',1024**2))
   r.update(status='BLOCKED' if r['build_start_attempts']==0 else 'FAILED',failure=type(e).__name__+': '+str(e));write(out/'receipt.json',r);raise

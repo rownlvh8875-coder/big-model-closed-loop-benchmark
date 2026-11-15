@@ -79,7 +79,7 @@ class PackagingFailureTests(unittest.TestCase):
  def test_seal_partial_failure_preserves_closed_negative_receipt(self):
   with tempfile.TemporaryDirectory() as d:
    root=Path(d);bundle=root/'bundle';(bundle/'reports').mkdir(parents=True);(bundle/'reports/configuration.json').write_text('{}');r=dict(schema='panda-sdk-cg-production-v1',status='FAILED',source_sha='1'*40,activation_sha='2'*40,run_id=55,request_sha256='3'*64,build_start_attempts=0,native_admitted=False,stage7_complete=False,target_execution=False)
-   producer.seal_failure_bundle(root,r);saved=json.loads((bundle/'reports/receipt.json').read_text());files={'reports/receipt.json':{},'reports/configuration.json':saved['files']['reports/configuration.json']};self.assertFalse(acceptor.validate_receipt(saved,files,'1'*40,'2'*40,55,'3'*64)['static_passed'])
+   producer.seal_failure_bundle(root,r);saved=json.loads((bundle/'reports/receipt.json').read_text());files={'reports/receipt.json':{},**saved['files']};self.assertFalse(acceptor.validate_receipt(saved,files,'1'*40,'2'*40,55,'3'*64)['static_passed'])
  def test_post_gate_failure_downgrades_success(self):
   r=dict(status='CG_CANDIDATE_SELECTED_LAYOUT_MATCH_NOT_RUNTIME',build_start_attempts=1);producer.record_failure(r,ValueError('post-validation failed'));self.assertEqual(r['status'],'FAILED')
 
@@ -87,3 +87,30 @@ class ClosedMetadataTests(unittest.TestCase):
  def test_unrecognized_observer_or_native_promotion_rejected(self):
   r=dict(schema='panda-sdk-cg-production-v1',status='BLOCKED',source_sha='1'*40,activation_sha='2'*40,run_id=55,request_sha256='3'*64,build_start_attempts=0,native_admitted=False,stage7_complete=False,target_execution=False,files={},omissions=sorted(carrier.FILES-{'reports/receipt.json'}),source_observer_default_off_observed=True)
   with self.assertRaises(ValueError):acceptor.validate_receipt(r,{'reports/receipt.json':{}},'1'*40,'2'*40,55,'3'*64)
+
+class DurableFailureDiagnosticsTests(unittest.TestCase):
+ def fixture(self,root):
+  build=root/'work/build';(build/'makepanda').mkdir(parents=True);(build/'makepanda/stdout.log').write_bytes(b'compiler stdout');(build/'makepanda/stderr.log').write_bytes(b'compiler stderr');(build/'makepanda/command.json').write_text('{"argv":["compiler"],"returncode":3}')
+  return build,dict(status='FAILED',build_start_attempts=1)
+ def test_oversized_partial_candidate_keeps_both_logs_and_command(self):
+  with tempfile.TemporaryDirectory() as d:
+   root=Path(d);build,r=self.fixture(root);p=build/'sdk/lib/libpandagl.so';p.parent.mkdir(parents=True)
+   with p.open('wb') as f:f.truncate(4*1024**2+1)
+   try:producer.finalize_bundle(root,r,build,None,None,None)
+   except BaseException:producer.seal_failure_bundle(root,r)
+   self.assertEqual((root/'bundle/logs/makepanda.log').read_bytes(),b'compiler stdout');host=(root/'bundle/logs/host.log').read_bytes();self.assertIn(b'compiler stderr',host);self.assertIn(b'"returncode":3',host);self.assertIn('candidate/libpandagl.so.data',r['omissions']);self.assertTrue(r['diagnostics']['omitted_members'])
+ def test_combined_overflow_is_bounded_and_explicit(self):
+  with tempfile.TemporaryDirectory() as d:
+   root=Path(d);build,r=self.fixture(root)
+   for name in ['stdout','stderr']:
+    with (build/'makepanda'/str(name+'.log')).open('wb') as f:f.truncate(16*1024**2)
+   try:producer.finalize_bundle(root,r,build,None,None,None)
+   except BaseException:producer.seal_failure_bundle(root,r)
+   self.assertTrue((root/'bundle/logs/host.log').is_file());self.assertLessEqual(sum(p.stat().st_size for p in (root/'bundle/logs').iterdir()),32*1024**2);self.assertTrue(r['diagnostics']['truncated']);self.assertEqual(r['status'],'FAILED')
+
+ def test_reading_diagnostic_atime_is_not_mistaken_for_byte_drift(self):
+  import os
+  with tempfile.TemporaryDirectory() as d:
+   root=Path(d);build,r=self.fixture(root)
+   for p in (build/'makepanda').iterdir():os.utime(p,(946684800,946684800))
+   producer.collect_diagnostics(root,r,build);self.assertIn(b'compiler stderr',(root/'bundle/logs/host.log').read_bytes());self.assertFalse(r['diagnostics']['truncated'])

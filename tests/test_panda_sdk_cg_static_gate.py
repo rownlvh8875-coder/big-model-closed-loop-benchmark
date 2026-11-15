@@ -37,11 +37,25 @@ class GateTests(unittest.TestCase):
   result=g.audit_candidate(self.root/'new.so',self.root/'layout.o',{},self.root/'absent',{})
   self.assertEqual(result['status'],'STATIC_CG_CANDIDATE_REJECTED');self.assertFalse(result['native_admitted']);self.assertFalse(result['full_object_abi_qualified']);self.assertFalse(result['previous_abort_fixed']);self.assertFalse(result['candidate_installed']);self.assertTrue(result['reasons'])
  def test_vendor_known_prefix_and_old_offset_bytes(self):
-  self.assertEqual(g.decode_vendor_getter(bytes.fromhex('534889fb4883ec10488b86')+struct.pack('<I',0x670)+b'\xc3'),0x670)
-  self.assertEqual(g.decode_vendor_getter(bytes.fromhex('41544881c6')+struct.pack('<I',0x670)+b'\xc3'),0x670)
+  self.assertEqual(g.decode_vendor_getter(bytes.fromhex('488b86')+struct.pack('<I',0x670)+b'\xc3'),0x670)
+  self.assertEqual(g.decode_vendor_getter(bytes.fromhex('41544881c6')+struct.pack('<I',0x670)+bytes.fromhex('4989fce8000000004c89e0415cc3')),0x670)
  def test_changed_provider_and_weak_exception_reject(self):
   with self.assertRaises(ValueError):g.check_symbol_availability(dict(root_strong_symbols_available=True,missing=[],unsupported_features=[],weak_unresolved=[dict(name='unlisted')]))
   g.check_symbol_availability(dict(root_strong_symbols_available=True,missing=[],unsupported_features=[],weak_unresolved=[dict(name=n) for n in g.WEAK]))
  def test_getter_ifunc_rejected(self):
   with self.assertRaises(ValueError):g.candidate_offsets((self.root/'ifunc.so').read_bytes())
 if __name__=='__main__':unittest.main()
+
+class CompleteVendorTests(unittest.TestCase):
+ def test_decoy_load_and_unknown_suffix_reject(self):
+  good=bytes.fromhex('488b86')+struct.pack('<I',0x670)
+  for raw in [good+bytes.fromhex('488b86')+struct.pack('<I',0x600)+b'\xc3',good+b'\x90\xc3',good+b'\xc3\x90']:
+   with self.assertRaises(ValueError):g.decode_vendor_getter(raw)
+  self.assertEqual(g.decode_vendor_getter(good+b'\xc3'),0x670)
+
+ def test_complete_pinned_old_string_copy_stays_negative(self):
+  raw=(g.ROOT/'docs/evidence/panda-sdk-link-audit-01/before-review/build/candidate-libpandagl.so.data').read_bytes();code=g.candidate_offsets(raw);self.assertEqual(code['offsets'],dict(major=0x618,minor=0x61c,vendor=0x600))
+
+ def test_string_copy_shape_cannot_call_an_unrelated_function(self):
+  raw=bytearray((g.ROOT/'docs/evidence/panda-sdk-link-audit-01/before-review/build/candidate-libpandagl.so.data').read_bytes());meta=g.elf.inspect_elf(bytes(raw));loads=g.elf_ranges(bytes(raw));vendor=next(r for r in meta['exports'] if r['name']==g.VENDOR);other=next(r for r in meta['exports'] if r['name']==g.MAJOR);segment=next(p for p in loads if p['vaddr']<=vendor['value']<p['vaddr']+p['filesz']);start=segment['offset']+vendor['value']-segment['vaddr'];struct.pack_into('<i',raw,start+56,other['value']-(vendor['value']+60))
+  with self.assertRaises(ValueError):g.candidate_offsets(bytes(raw))

@@ -1,5 +1,5 @@
 """One new source-bound compile-only Cg SDK job. Never load/run target code."""
-import argparse,base64,io,json,os,shutil,sys,tarfile,time
+import argparse,base64,io,json,os,shutil,stat,sys,tarfile,time
 from pathlib import Path
 if __name__=='__main__':sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 from scripts import panda_sdk_cg_build_policy as a
@@ -82,8 +82,28 @@ def stage_provider_links(private,paths,inventory):
 
 def _copy(source,destination,limit):
  raw=a.read(source,limit);Path(destination).parent.mkdir(parents=True,exist_ok=True);Path(destination).write_bytes(raw);Path(destination).chmod(0o600)
+def collect_diagnostics(out,receipt,build_out):
+ bundle=out/'bundle';logs=bundle/'logs';logs.mkdir(parents=True,exist_ok=True);meta=receipt.setdefault('diagnostics',{});meta.update(streams=[],truncated=False);meta.setdefault('omitted_members',[])
+ def prefix(path,limit):
+  fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW)
+  try:
+   st=os.fstat(fd);a.need(stat.S_ISREG(st.st_mode),'regular owned diagnostic');chunks=[];left=min(st.st_size,limit)
+   while left:
+    block=os.read(fd,min(65536,left));a.need(block,'stable diagnostic prefix');chunks.append(block);left-=len(block)
+   saved=b''.join(chunks);after=os.fstat(fd);a.need(all(getattr(after,k)==getattr(st,k) for k in ('st_dev','st_ino','st_mode','st_size','st_mtime_ns','st_ctime_ns')),'diagnostic changed');meta['streams'].append(dict(path=str(path.relative_to(out)),observed_nbytes=st.st_size,saved_nbytes=len(saved),truncated=len(saved)<st.st_size));meta['truncated']|=len(saved)<st.st_size;return saved
+  finally:os.close(fd)
+ make=build_out/'makepanda/stdout.log';(logs/'makepanda.log').write_bytes(prefix(make,16*1024**2) if make.is_file() else b'');left=32*1024**2-(logs/'makepanda.log').stat().st_size
+ # Command JSON precedes streams so argv/return/timing/cleanup survives overflow.
+ paths=sorted((out/'work').rglob('command.json'))+sorted((out/'work').rglob('*.log'))
+ with (logs/'host.log').open('wb') as sink:
+  for path in paths:
+   if path==make or path.is_symlink():continue
+   header=str(path.relative_to(out)).encode()+b'\n';kept=header[:left];sink.write(kept);left-=len(kept);data=prefix(path,left);sink.write(data);left-=len(data)
+ if meta['truncated']:receipt.update(status='FAILED',bundle_failure='diagnostic bytes truncated at closed carrier bound')
+
 def finalize_bundle(out,receipt,build_out,qualified,tools,gate_result):
  bundle=out/'bundle';reports=bundle/'reports';reports.mkdir(parents=True,exist_ok=True);(bundle/'logs').mkdir(exist_ok=True);build_out=Path(build_out)
+ collect_diagnostics(out,receipt,build_out)
  mapping={'host-before':'host-before.json','used-inputs':'used-inputs.json','compile-dependencies':'compile-dependencies.json','sdk-output-manifest':'sdk-output-manifest.json','source-manifest':'source-manifest.json','configuration':'configuration.json','tools-before':'tools-before.json','tools-after':'tools-after.json'}
  for dst,src in mapping.items():
   if (build_out/src).is_file():_copy(build_out/src,reports/(dst+'.json'),16*1024**2)
@@ -99,14 +119,10 @@ def finalize_bundle(out,receipt,build_out,qualified,tools,gate_result):
   if 'loader_metadata' in gate_result:a.write(reports/'loader-metadata.json',gate_result['loader_metadata'])
  candidates={'candidate/libpandagl.so.data':build_out/'sdk/lib/libpandagl.so','candidate/build-libpanda.so.data':build_out/'sdk/lib/libpanda.so.1.10','candidate/layout-contract.o.data':build_out/'layout-build/layout-contract.o'}
  for name,path in candidates.items():
-  if path.is_file():_copy(path,bundle/name,carrier.FILE_LIMITS[name])
- # Keep exact selected compiler output; other owned command diagnostics in host log.
- make=build_out/'makepanda/stdout.log';_copy(make,bundle/'logs/makepanda.log',16*1024**2) if make.is_file() else (bundle/'logs/makepanda.log').write_bytes(b'')
- collected=[]
- for p in sorted((out/'work').rglob('*.log')):
-  if p==make or p.is_symlink():continue
-  data=a.read(p,16*1024**2);collected.append(str(p.relative_to(out)).encode()+b'\n'+data+b'\n')
- host=b''.join(collected);a.need(len(host)+(bundle/'logs/makepanda.log').stat().st_size<=32*1024**2,'combined build logs');(bundle/'logs/host.log').write_bytes(host)
+  if path.is_file():
+   try:_copy(path,bundle/name,carrier.FILE_LIMITS[name])
+   except (ValueError,OSError) as e:
+    receipt['diagnostics']['omitted_members'].append(dict(name=name,reason=type(e).__name__+': '+str(e)));receipt.update(status='FAILED',bundle_failure='candidate member outside closed carrier')
  regular={str(p.relative_to(bundle)):dict(nbytes=p.stat().st_size,sha256=a.sha(a.read(p,carrier.FILE_LIMITS[str(p.relative_to(bundle))]))) for p in bundle.rglob('*') if p.is_file() and str(p.relative_to(bundle))!='reports/receipt.json'}
  receipt['files']=regular;receipt['omissions']=sorted(carrier.FILES-set(regular)-{'reports/receipt.json'});a.need(sum(x['nbytes'] for x in regular.values())<=240*1024**2,'carrier total bytes')
  if receipt['status']=='CG_CANDIDATE_SELECTED_LAYOUT_MATCH_NOT_RUNTIME' and receipt['omissions']:receipt.update(status='FAILED',failure='incomplete success carrier')
@@ -117,6 +133,7 @@ def record_failure(receipt,error):
 
 def seal_failure_bundle(out,receipt):
  out=Path(out);bundle=out/'bundle';(bundle/'reports').mkdir(parents=True,exist_ok=True);quarantine=out/'work/rejected-bundle';regular={};total=0
+ if not (bundle/'logs/host.log').exists():collect_diagnostics(out,receipt,out/'work/build')
  for p in sorted(bundle.rglob('*')):
   if not p.is_file():continue
   name=str(p.relative_to(bundle))

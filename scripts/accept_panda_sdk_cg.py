@@ -12,7 +12,7 @@ from scripts import panda_sdk_link_image as image
 
 def validate_receipt(r,files,source,activation,run_id,request_sha):
  required={'schema','status','source_sha','activation_sha','run_id','request_sha256','build_start_attempts','native_admitted','stage7_complete','target_execution','files','omissions'}
- optional={'scientific_native_runs','contract_sha256','image_sha256','staging','workflow_id','host_resources','compiler_build','failure','bundle_failure'}
+ optional={'scientific_native_runs','contract_sha256','image_sha256','staging','workflow_id','host_resources','compiler_build','failure','bundle_failure','diagnostics'}
  a.need(required<=set(r)<=required|optional,'closed production receipt fields')
  for k,v in dict(schema='panda-sdk-cg-production-v1',source_sha=source,activation_sha=activation,run_id=run_id,request_sha256=request_sha).items():a.need(r.get(k)==v,'production identity: '+k)
  a.need(r['native_admitted'] is False and r['stage7_complete'] is False and r['target_execution'] is False and type(r['build_start_attempts']) is int and r['build_start_attempts'] in (0,1),'compile-only flags/start bound');a.need(r.get('scientific_native_runs',0)==0 and type(r.get('scientific_native_runs',0)) is int,'scientific allowance remains zero')
