@@ -17,6 +17,9 @@ class LoaderSymbolTests(unittest.TestCase):
   for v in (1,2):
    (p/'version.map').write_text('ABI_'+str(v)+' { global: value; local: *; };\n');run(['/usr/bin/gcc','-shared','-fPIC','version.c','-Wl,--version-script=version.map','-Wl,-soname,libversion.so','-o','v'+str(v)+'.so'])
   (p/'libversion.so').write_bytes((p/'v1.so').read_bytes());run(['/usr/bin/gcc','-shared','-fPIC','use.c','-L.','-lversion','-o','use.so'])
+  (p/'copy-provider.c').write_text('int value = 7;\n');(p/'copy-root.c').write_text('extern int value; int entry(void) { return value; }\n')
+  run(['/usr/bin/gcc','-nostdlib','-shared','-fPIC','copy-provider.c','-Wl,-soname,libcopy.so','-o','libcopy.so'])
+  run(['/usr/bin/gcc','-nostdlib','-fno-pic','-no-pie','copy-root.c','-L.','-lcopy','-Wl,-e,entry','-o','copy-root'])
  @classmethod
  def tearDownClass(cls):cls.tmp.cleanup()
  def setUp(self):self.assertIsNotNone(elf,'PT-only symbol/version inspector missing')
@@ -63,4 +66,8 @@ class LoaderSymbolTests(unittest.TestCase):
   with self.assertRaisesRegex(ValueError,'relocation table extent'):elf.inspect_elf(bytes(b))
  def test_all_matching_candidates_are_reported_without_binding_authority(self):
   root=self.read('use.so');a=self.read('v1.so');b=copy.deepcopy(a);a['path']='one';b['path']='two';r=elf.available_imports(root,[a,b]);hit=next(x for x in r['resolved'] if x['name']=='value');self.assertEqual(hit['provider_candidates'],['one','two']);self.assertFalse(r['runtime_mapping_qualified'])
+ def test_copy_relocation_cannot_pass_from_its_defined_receiving_symbol(self):
+  root=self.read('copy-root');self.assertIn(5,root['relocation_kinds'])
+  for providers in ([],[root],[root,self.read('libcopy.so')]):
+   r=elf.available_imports(root,providers);self.assertFalse(r['root_strong_symbols_available']);self.assertIn('COPY_RELOCATIONS',r['unsupported_features'])
 if __name__=='__main__':unittest.main()

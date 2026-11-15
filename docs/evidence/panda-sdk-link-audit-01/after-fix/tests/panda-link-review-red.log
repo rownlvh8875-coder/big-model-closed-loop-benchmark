@@ -1,0 +1,70 @@
+test_copy_relocation_cannot_pass_from_its_defined_receiving_symbol (tests.test_panda_sdk_link_elf.LoaderSymbolTests.test_copy_relocation_cannot_pass_from_its_defined_receiving_symbol) ... FAIL
+test_same_layer_nondirectory_ancestor_and_descendant_reject_in_both_orders (tests.test_panda_sdk_link_image.SelectedImageTests.test_same_layer_nondirectory_ancestor_and_descendant_reject_in_both_orders) ... 
+  test_same_layer_nondirectory_ancestor_and_descendant_reject_in_both_orders (tests.test_panda_sdk_link_image.SelectedImageTests.test_same_layer_nondirectory_ancestor_and_descendant_reject_in_both_orders) (kind='symlink', reverse=False) ... FAIL
+  test_same_layer_nondirectory_ancestor_and_descendant_reject_in_both_orders (tests.test_panda_sdk_link_image.SelectedImageTests.test_same_layer_nondirectory_ancestor_and_descendant_reject_in_both_orders) (kind='symlink', reverse=True) ... FAIL
+  test_same_layer_nondirectory_ancestor_and_descendant_reject_in_both_orders (tests.test_panda_sdk_link_image.SelectedImageTests.test_same_layer_nondirectory_ancestor_and_descendant_reject_in_both_orders) (kind='file', reverse=False) ... FAIL
+  test_same_layer_nondirectory_ancestor_and_descendant_reject_in_both_orders (tests.test_panda_sdk_link_image.SelectedImageTests.test_same_layer_nondirectory_ancestor_and_descendant_reject_in_both_orders) (kind='file', reverse=True) ... FAIL
+  test_same_layer_nondirectory_ancestor_and_descendant_reject_in_both_orders (tests.test_panda_sdk_link_image.SelectedImageTests.test_same_layer_nondirectory_ancestor_and_descendant_reject_in_both_orders) (kind='hardlink', reverse=False) ... FAIL
+  test_same_layer_nondirectory_ancestor_and_descendant_reject_in_both_orders (tests.test_panda_sdk_link_image.SelectedImageTests.test_same_layer_nondirectory_ancestor_and_descendant_reject_in_both_orders) (kind='hardlink', reverse=True) ... FAIL
+
+======================================================================
+FAIL: test_copy_relocation_cannot_pass_from_its_defined_receiving_symbol (tests.test_panda_sdk_link_elf.LoaderSymbolTests.test_copy_relocation_cannot_pass_from_its_defined_receiving_symbol)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_link_elf.py", line 72, in test_copy_relocation_cannot_pass_from_its_defined_receiving_symbol
+    r=elf.available_imports(root,providers);self.assertFalse(r['root_strong_symbols_available']);self.assertIn('COPY_RELOCATIONS',r['unsupported_features'])
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: True is not false
+
+======================================================================
+FAIL: test_same_layer_nondirectory_ancestor_and_descendant_reject_in_both_orders (tests.test_panda_sdk_link_image.SelectedImageTests.test_same_layer_nondirectory_ancestor_and_descendant_reject_in_both_orders) (kind='symlink', reverse=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_link_image.py", line 48, in test_same_layer_nondirectory_ancestor_and_descendant_reject_in_both_orders
+    with self.assertRaisesRegex(ValueError,'same-layer ancestor'):r.collect(['/usr/lib/target'])
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_same_layer_nondirectory_ancestor_and_descendant_reject_in_both_orders (tests.test_panda_sdk_link_image.SelectedImageTests.test_same_layer_nondirectory_ancestor_and_descendant_reject_in_both_orders) (kind='symlink', reverse=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_link_image.py", line 48, in test_same_layer_nondirectory_ancestor_and_descendant_reject_in_both_orders
+    with self.assertRaisesRegex(ValueError,'same-layer ancestor'):r.collect(['/usr/lib/target'])
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_same_layer_nondirectory_ancestor_and_descendant_reject_in_both_orders (tests.test_panda_sdk_link_image.SelectedImageTests.test_same_layer_nondirectory_ancestor_and_descendant_reject_in_both_orders) (kind='file', reverse=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_link_image.py", line 48, in test_same_layer_nondirectory_ancestor_and_descendant_reject_in_both_orders
+    with self.assertRaisesRegex(ValueError,'same-layer ancestor'):r.collect(['/usr/lib/target'])
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_same_layer_nondirectory_ancestor_and_descendant_reject_in_both_orders (tests.test_panda_sdk_link_image.SelectedImageTests.test_same_layer_nondirectory_ancestor_and_descendant_reject_in_both_orders) (kind='file', reverse=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_link_image.py", line 48, in test_same_layer_nondirectory_ancestor_and_descendant_reject_in_both_orders
+    with self.assertRaisesRegex(ValueError,'same-layer ancestor'):r.collect(['/usr/lib/target'])
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_same_layer_nondirectory_ancestor_and_descendant_reject_in_both_orders (tests.test_panda_sdk_link_image.SelectedImageTests.test_same_layer_nondirectory_ancestor_and_descendant_reject_in_both_orders) (kind='hardlink', reverse=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_link_image.py", line 48, in test_same_layer_nondirectory_ancestor_and_descendant_reject_in_both_orders
+    with self.assertRaisesRegex(ValueError,'same-layer ancestor'):r.collect(['/usr/lib/target'])
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_same_layer_nondirectory_ancestor_and_descendant_reject_in_both_orders (tests.test_panda_sdk_link_image.SelectedImageTests.test_same_layer_nondirectory_ancestor_and_descendant_reject_in_both_orders) (kind='hardlink', reverse=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_link_image.py", line 48, in test_same_layer_nondirectory_ancestor_and_descendant_reject_in_both_orders
+    with self.assertRaisesRegex(ValueError,'same-layer ancestor'):r.collect(['/usr/lib/target'])
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.928s
+
+FAILED (failures=7)

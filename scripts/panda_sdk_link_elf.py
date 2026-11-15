@@ -221,6 +221,9 @@ def inspect_elf(blob):
     unsupported=[]
     for tag,name in [(0x7ffffffd,'DT_AUXILIARY'),(0x7fffffff,'DT_FILTER'),(0x6ffffefc,'DT_AUDIT'),(0x6ffffefb,'DT_DEPAUDIT')]:
         if tag in tags:unsupported.append(name)
+    # COPY looks up an external source although its receiving symbol is defined.
+    # This SDK profile does not model that lookup or its object-size semantics.
+    if 5 in relocation_kinds:unsupported.append('COPY_RELOCATIONS')
     if relocation_kinds-{1,5,6,7,16,17,18,36}:unsupported.append('OTHER_SYMBOL_RELOCATIONS')
     return dict(schema='panda-sdk-link-loader-metadata-v1',elf_sha256=hashlib.sha256(blob).hexdigest(),nbytes=len(blob),soname=name_at(tags[14]) if 14 in tags else None,needed=libraries,rpath=name_at(tags[15]) if 15 in tags else None,runpath=name_at(tags[29]) if 29 in tags else None,imports=imports,exports=exports,dynamic_symbol_count=symbol_count,relocation_count=relocation_count,relocation_kinds=sorted(relocation_kinds),version_needs=versions_need,version_definitions=versions_def,init_present=bool(tags.get(12) or tags.get(25)),ifunc_exports=sum(x['symbol_type']==10 for x in exports),unsupported_features=unsupported,section_headers_used=False,native_admitted=False,runtime_mapping_qualified=False)
 

@@ -40,6 +40,15 @@ class SelectedImageTests(unittest.TestCase):
  def test_same_layer_opaque_marker_does_not_delete_its_new_file(self):
   with tempfile.TemporaryDirectory() as t:
    r=self.reader(Path(t),[tarbytes([('usr/lib/target',b'old')]),self.layer([('usr/lib/target','file',b'new'),('usr/lib/.wh..wh..opq','file',b'')])]);self.assertEqual(Path(r.collect(['/usr/lib/target'])['/usr/lib/target']['data_path']).read_bytes(),b'new')
+ def test_same_layer_nondirectory_ancestor_and_descendant_reject_in_both_orders(self):
+  for kind,data in [('symlink','elsewhere'),('file',b'ancestor'),('hardlink','usr/elsewhere')]:
+   for reverse in (False,True):
+    with self.subTest(kind=kind,reverse=reverse),tempfile.TemporaryDirectory() as t:
+     rows=[('usr/lib/target','file',b'new'),('usr/lib',kind,data)];rows=rows[::-1] if reverse else rows;r=self.reader(Path(t),[self.layer(rows)])
+     with self.assertRaisesRegex(ValueError,'same-layer ancestor'):r.collect(['/usr/lib/target'])
+ def test_opaque_before_new_file_and_sibling_prefix_remain_valid(self):
+  with tempfile.TemporaryDirectory() as t:
+   rows=[('usr/lib/.wh..wh..opq','file',b''),('usr/lib-other','file',b'sibling'),('usr/lib/target','file',b'new')];r=self.reader(Path(t),[self.layer(rows)]);self.assertEqual(Path(r.collect(['/usr/lib/target'])['/usr/lib/target']['data_path']).read_bytes(),b'new')
  def test_hash_mode_archive_drift_and_existing_output_reject(self):
   with tempfile.TemporaryDirectory() as t:
    p=Path(t);r=self.reader(p,[tarbytes([('usr/lib/target',b'bad')])])

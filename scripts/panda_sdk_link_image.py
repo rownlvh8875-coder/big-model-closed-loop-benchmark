@@ -1,5 +1,5 @@
 """Image-bound selected ELF payloads as nonexecutable DATA, not a rootfs extract."""
-import hashlib,json,os,posixpath,stat,tarfile,time
+import bisect,hashlib,json,os,posixpath,stat,tarfile,time
 from pathlib import Path
 from scripts import panda_sdk_image_archive as archive
 from scripts.engine_clock_runtime_inventory import validate_inventory
@@ -64,17 +64,19 @@ class SelectedImage:
   with os.fdopen(fd,'rb') as source,tarfile.open(fileobj=source,mode='r:',tarinfo=archive.bounded_tarinfo(bounds,check,2*1024**3)) as outer:
    need(archive._signature(os.fstat(source.fileno()))==self.key,'opened archive drift')
    for layer in self.check['layers']:
-    changes={};deleted=set();seen=set()
+    changes={};deleted=set();seen=set();ordinary=[];nondirectories=[]
     with outer.extractfile(layer['path']) as raw:
      reader=archive._LayerReader(raw,remaining,check)
      with tarfile.open(fileobj=reader,mode='r|',tarinfo=archive.bounded_tarinfo(bounds,check,512*1024**2)) as t:
       for member in t:
        check();name=archive._path(member.name,True);need(name not in seen,'duplicate layer path');seen.add(name)
        if name=='.':continue
-       name='/'+name;parent,leaf=posixpath.split(name)
+       relative=name;name='/'+name;parent,leaf=posixpath.split(name)
        if leaf=='.wh..wh..opq':deleted.update(p for p in wanted if p.startswith(parent+'/'));continue
        if leaf.startswith('.wh.'):
         target=parent+'/'+leaf[4:];deleted.update(p for p in wanted if p==target or p.startswith(target+'/'));continue
+       ordinary.append(relative)
+       if not member.isdir():nondirectories.append(relative)
        if not member.isdir():deleted.update(p for p in wanted if p==name or p.startswith(name+'/'))
        elif name in wanted:deleted.add(name)
        if name not in wanted:continue
@@ -83,6 +85,12 @@ class SelectedImage:
        for block in iter(lambda:payload.read(1024**2),b''):check();data.extend(block);need(len(data)<=member.size,'selected file extent')
        need(len(data)==member.size and sum(len(x[0]) for x in changes.values() if x is not None)+len(data)<=256*1024**2,'selected layer bytes');changes[name]=(bytes(data),member.mode)
      while reader.read(1024**2):check()
+    # A non-directory ancestor cannot coexist with a descendant in one layer,
+    # regardless of tar order. Whiteouts/opaque markers were excluded above.
+    # Sorted prefix queries avoid a quadratic scan over up to100000 headers.
+    ordinary.sort()
+    for name in nondirectories:
+     check();prefix=name+'/';at=bisect.bisect_left(ordinary,prefix);need(at==len(ordinary) or not ordinary[at].startswith(prefix),'contradictory same-layer ancestor')
     for p in deleted:found.pop(p,None)
     for p,value in changes.items():
      if value is None:found.pop(p,None)
