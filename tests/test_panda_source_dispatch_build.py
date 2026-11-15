@@ -4,7 +4,11 @@ import tempfile
 import subprocess
 import shutil
 import struct
+import os
+import signal
+import time
 import unittest
+from unittest.mock import patch
 try:
     from scripts import build_panda_source_dispatch as builder
 except ImportError:
@@ -58,7 +62,70 @@ class SourceBuildTests(unittest.TestCase):
             raw=library.read_bytes();bad=folder/'bad.so'
             bad.write_bytes(raw.replace(b'glReadPixels\0',b'glFailPixels\0'))
             with self.assertRaises(ValueError):builder.inspect_candidate(bad)
+
             changed=bytearray(raw);changed[result['read_tail_file_offset']]=0x90;bad.write_bytes(changed)
             with self.assertRaises(ValueError):builder.inspect_candidate(bad)
+
+    def run_cpu_build_failure(self,mode):
+        # Only source qualification is replaced: process launch, sparse-size
+        # accounting, termination and failed receipt are the production builder.
+        # Real source qualification/build is covered separately by pinned evidence.
+        with tempfile.TemporaryDirectory(prefix='psd-children-') as folder:
+            folder=Path(folder);stage=folder/'source';stage.mkdir();out=folder/'build';sysroot=folder/'sysroot'
+            (stage/'source-dispatch-manifest.json').write_text('{}')
+            for relative in ('usr/include/GL/gl.h','usr/include/GL/glx.h','usr/include/X11/Xlib.h','usr/lib/x86_64-linux-gnu/libGL.so','usr/lib/x86_64-linux-gnu/libX11.so'):
+                p=sysroot/relative;p.parent.mkdir(parents=True,exist_ok=True);p.touch()
+            driver=stage/'makepanda/makepanda.py';driver.parent.mkdir()
+            driver.write_text('''import os,sys,time,subprocess
+from pathlib import Path
+out=Path(sys.argv[sys.argv.index('--outputdir')+1]).parent
+(out/'parent.pid').write_text(str(os.getpid()))
+mode='''+repr(mode)+'''
+if mode!='final_size':
+    child="""import os,signal,time
+from pathlib import Path
+signal.signal(signal.SIGTERM,signal.SIG_IGN)
+out=Path("""+repr(str(out))+""")
+(out/'child.pid').write_text(str(os.getpid()))
+time.sleep(2)
+(out/'late-marker').write_text('child still writes')
+"""
+    subprocess.Popen([sys.executable,'-c',child])
+    while not (out/'child.pid').exists():time.sleep(.01)
+if mode!='interrupt':
+    with (out/'sparse').open('wb') as stream:stream.truncate(8589934593)
+if mode!='final_size':time.sleep(20)
+''')
+            real_sleep=time.sleep;interrupted=False
+            def interrupt_once(seconds):
+                nonlocal interrupted
+                if interrupted:return real_sleep(min(seconds,.01))
+                deadline=time.monotonic()+3
+                while not (out/'child.pid').exists() and time.monotonic()<deadline:real_sleep(.01)
+                interrupted=True;raise KeyboardInterrupt()
+            try:
+                with patch.object(builder,'verify_stage',return_value={'source_tree':[]}):
+                    if mode=='interrupt':
+                        with patch.object(builder.time,'sleep',side_effect=interrupt_once),self.assertRaises(KeyboardInterrupt):builder.build(stage,sysroot,out)
+                    elif mode=='final_size':
+                        with self.assertRaisesRegex(ValueError,'disk limit'):builder.build(stage,sysroot,out)
+                    else:
+                        with self.assertRaises(ValueError):builder.build(stage,sysroot,out)
+                self.assertTrue((out/'build-receipt.json').is_file(),'interrupted build lost its failed receipt')
+                receipt=json.loads((out/'build-receipt.json').read_text())
+                self.assertEqual(receipt['status'],'failed');self.assertFalse(receipt['native_admitted'])
+                if mode=='final_size':self.assertEqual(receipt['returncode'],0)
+                else:
+                    real_sleep(2.1)
+                    self.assertFalse((out/'late-marker').exists(),'build descendant wrote after failed receipt')
+            finally:
+                for name in ('parent.pid','child.pid'):
+                    p=out/name
+                    if p.exists():
+                        try:os.kill(int(p.read_text()),signal.SIGKILL)
+                        except ProcessLookupError:pass
+    def test_disk_limit_stops_signal_ignoring_build_descendants(self):self.run_cpu_build_failure('active')
+    def test_final_disk_size_is_checked_even_after_fast_success_exit(self):self.run_cpu_build_failure('final_size')
+    def test_interrupted_build_stops_descendants_before_failed_receipt(self):self.run_cpu_build_failure('interrupt')
 
 if __name__=='__main__':unittest.main()

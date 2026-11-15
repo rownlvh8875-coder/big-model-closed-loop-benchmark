@@ -4,6 +4,7 @@ from datetime import datetime,timezone,timedelta
 import hashlib
 import json
 import os
+import signal
 from pathlib import Path
 import stat
 import struct
@@ -132,6 +133,22 @@ def build_environment(sysroot):
                BISON_PKGDATADIR=str(sysroot/'usr/share/bison'),M4=str(sysroot/'usr/bin/m4'))
     return env
 
+def stop_build_group(process):
+    # makepanda launches shells and compilers. The session leader may already
+    # have exited; its descendants still need both signals before any receipt.
+    try:os.killpg(process.pid,signal.SIGTERM)
+    except ProcessLookupError:pass
+    try:
+        try:process.wait(timeout=.5)
+        except subprocess.TimeoutExpired:pass
+    finally:
+        try:os.killpg(process.pid,signal.SIGKILL)
+        except ProcessLookupError:pass
+        process.wait(timeout=15)
+
+def build_bytes(out):
+    return sum(p.stat().st_size for p in out.rglob('*') if p.is_file())
+
 def build(stage,sysroot,out,threads=4,resume=False):
     need(type(threads) is int and 1<=threads<=4,'threads must be1..4')
     stage,sysroot,out=canonical(stage),canonical(sysroot),canonical(out)
@@ -151,20 +168,31 @@ def build(stage,sysroot,out,threads=4,resume=False):
              '--x11-incdir',str(sysroot/'usr/include'),'--x11-libdir',str(sysroot/'usr/lib/x86_64-linux-gnu'),'--nocolor']
     env=build_environment(sysroot)
     log=out/f'makepanda-{attempt}.log';start=time.perf_counter()
-    with log.open('xb') as stream:
-        process=subprocess.Popen(command,cwd=stage,env=env,stdout=stream,stderr=subprocess.STDOUT)
-        while process.poll() is None:
-            if sum(p.stat().st_size for p in out.rglob('*') if p.is_file())>8*1024**3:
-                process.terminate();process.wait(timeout=15);break
-            time.sleep(1)
+    process=None;failure=None;disk_limit_exceeded=False
+    try:
+        with log.open('xb') as stream:
+            process=subprocess.Popen(command,cwd=stage,env=env,stdout=stream,stderr=subprocess.STDOUT,start_new_session=True)
+            while process.poll() is None:
+                if build_bytes(out)>8*1024**3:
+                    disk_limit_exceeded=True;break
+                time.sleep(1)
+    except BaseException as exc:failure=exc
+    finally:
+        if process is not None:stop_build_group(process)
+    final_output_bytes=build_bytes(out)
+    disk_limit_exceeded=disk_limit_exceeded or final_output_bytes>8*1024**3
     elapsed=time.perf_counter()-start
     receipt=dict(schema='panda-source-dispatch-build-v1',checked_at_kst=datetime.now(timezone(timedelta(hours=9))).isoformat(),
                  stage=str(stage),upstream_revision=REVISION,upstream_tree=UPSTREAM_TREE,source_manifest_sha256=hashlib.sha256((stage/'source-dispatch-manifest.json').read_bytes()).hexdigest(),
-                 command=command,attempt=attempt,returncode=process.returncode,build_wall_seconds=elapsed,log=log.name,
+                 command=command,attempt=attempt,returncode=process.returncode if process else None,build_wall_seconds=elapsed,log=log.name,
+                 final_output_bytes=final_output_bytes,disk_limit_exceeded=disk_limit_exceeded,
+                 failure_reason=type(failure).__name__ if failure else ('disk_limit' if disk_limit_exceeded else None),
                  build_scope='minimal GL/X11/noPython compile/link only; no renderer, driver query, model or library loading',
                  status='failed',runtime_admission_ready=False,native_admitted=False,candidate_panda_abi_qualified=False,
                  old_image_replaced=False,new_native_runs=0,new_gl_calls=0,new_provider_runs=0,new_model_runs=0,new_official_ort_runs=0)
     (out/'build-receipt.json').write_text(json.dumps(receipt,indent=2)+'\n')
+    if failure is not None:raise failure
+    need(not disk_limit_exceeded,'candidate build disk limit exceeded; group stopped and failed output preserved')
     need(process.returncode==0,'candidate build failed; raw log/partial outputs preserved')
     need(verify_stage(stage)==manifest,'staged source manifest changed during build')
     library=(out/'sdk/lib/libpandagl.so').resolve()

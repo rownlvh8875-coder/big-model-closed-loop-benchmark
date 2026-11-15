@@ -7,8 +7,10 @@ import unittest
 
 ROOT=Path(__file__).resolve().parents[1]
 MODES=('off','basic','closed','createfail','normalize','preserve','aliases','null','mismatch','unknown','safe',
-       'mutate_name','paths','delete','delete_bad','glerror','thread','reentry','callback_reentry','callbackfail','cap')
-FAIL={'mismatch','unknown','delete_bad','glerror','thread','reentry','callback_reentry','callbackfail','cap'}
+       'mutate_name','paths','delete','delete_bad','glerror','thread','reentry','callback_reentry','callbackfail','cap',
+       'resolver_reentry','resolver_state','resolver_finish')
+FAIL={'mismatch','unknown','delete_bad','glerror','thread','reentry','callback_reentry','callbackfail','cap',
+      'resolver_reentry','resolver_state','resolver_finish'}
 
 def compile_source_dispatch(path,sanitize=False):
     caller=Path(str(path)+'-caller.S')
@@ -57,6 +59,14 @@ class PandaSourceDispatchTests(unittest.TestCase):
     def test_known_state_restoration_is_not_a_safe_configuration(self):
         p=subprocess.run([str(self.exe),'unsafe_config'],capture_output=True,timeout=10)
         self.assertEqual((p.returncode,p.stdout,p.stderr),(3,b'',b''))
+    def test_resolver_lifetime_rejects_nested_lookup_state_and_finish(self):
+        for mode in ('resolver_reentry','resolver_state','resolver_finish'):
+            s=self.sample(mode)
+            with self.subTest(mode=mode):
+                self.assertNotEqual(s['finish'],0);self.assertNotEqual(s['error'],0)
+                self.assertEqual((s['args_ok'],s['errno_ok'],s['reads'],s['regs_ok']),(1,1,1,1))
+                self.assertEqual(s['observer_calls'],2)
+        s=self.sample('paths');self.assertEqual((s['finish'],s['paths'],s['args_ok'],s['errno_ok']),(0,4,1,1))
     def test_invalid_event_shape_rejects_before_reading_delete_arguments(self):
         with tempfile.TemporaryDirectory(prefix='psd-invalid-') as folder:
             exe=Path(folder)/'fixture';compile_source_dispatch(exe,sanitize=True)

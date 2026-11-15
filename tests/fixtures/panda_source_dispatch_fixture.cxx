@@ -33,6 +33,14 @@ static int observer(const psd_event *event,void *user){
 }
 static void *resolver(char *name){++lookups;if(errno!=ERANGE)args_ok=0;void *p=(void *)frame;
  if(!std::strcmp(name,"glBindFramebufferEXT"))p=!std::strcmp(mode,"null")?nullptr:(void *)frame_ext;
+ if(!std::strcmp(mode,"resolver_reentry") && !depth){
+  depth=1;char nested_name[]="glBindFramebufferEXT";psd_lookup nested(nested_name);
+  void *raw=resolver(nested_name);void *nested_result=psd_resolved(&nested,raw,PSD_SOURCE_RUNTIME);
+  if(nested_result!=raw)args_ok=0;
+  checked();depth=0;
+ }
+ if(!std::strcmp(mode,"resolver_state")){errno=ERANGE;psd::call<PSD_PIXEL_STORE>(store,0xd05u,1);checked();}
+ if(!std::strcmp(mode,"resolver_finish") && psd_finish()==0)args_ok=0;
  if(!std::strcmp(mode,"mutate_name"))std::strcpy(name,"glNotKnown");
  check_out();return p;
 }
@@ -51,13 +59,17 @@ int main(int argc,char **argv){
  checked();
  if(!std::strcmp(mode,"badshape")){psd_token bad;psd_before(PSD_DELETE_BUFFER,nullptr,0,&bad);psd_after(&bad,0);}
  if(!std::strcmp(mode,"aliases") || !std::strcmp(mode,"null") || !std::strcmp(mode,"mismatch") ||
-    !std::strcmp(mode,"unknown") || !std::strcmp(mode,"safe") || !std::strcmp(mode,"mutate_name") || !std::strcmp(mode,"paths")){
+    !std::strcmp(mode,"unknown") || !std::strcmp(mode,"safe") || !std::strcmp(mode,"mutate_name") || !std::strcmp(mode,"paths") ||
+    !std::strcmp(mode,"resolver_reentry") || !std::strcmp(mode,"resolver_state") || !std::strcmp(mode,"resolver_finish")){
    char name[64];std::strcpy(name,!std::strcmp(mode,"unknown")?"glNotKnown":!std::strcmp(mode,"safe")?"glDrawArrays":"glBindFramebufferEXT");
    errno=ERANGE;psd_lookup request(name);void *p=resolver(name);
-   if(!std::strcmp(mode,"paths"))p=psd_path(PSD_PATH_GLX_PRIVATE,p);
+   if(!std::strcmp(mode,"paths"))for(unsigned origin=PSD_PATH_GLX_CORE;origin<=PSD_PATH_POSIX;++origin)p=psd_path(origin,p);
    void *wrapped=psd_resolved(&request,p,PSD_SOURCE_RUNTIME);checked();
    if(!std::strcmp(mode,"null")){if(wrapped)args_ok=0;}
-   else if(!std::strcmp(mode,"unknown") || !std::strcmp(mode,"safe")){if(wrapped!=p)args_ok=0;}
+   else if(!std::strcmp(mode,"unknown") || !std::strcmp(mode,"safe") || !std::strncmp(mode,"resolver_",9)){
+    if(wrapped!=p)args_ok=0;
+    if(!std::strncmp(mode,"resolver_",9)){errno=ERANGE;((void(*)(uint32_t,uint32_t))wrapped)(0x8d40,7);checked();}
+   }
    else {if(wrapped==p)args_ok=0;errno=ERANGE;((void(*)(uint32_t,uint32_t))wrapped)(0x8d40,7);checked();}
    if(!std::strcmp(mode,"aliases")){
      std::strcpy(name,"glBindFramebuffer");errno=ERANGE;psd_lookup core(name);p=resolver(name);wrapped=psd_resolved(&core,p,PSD_SOURCE_COMPILED);checked();

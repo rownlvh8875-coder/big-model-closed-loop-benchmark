@@ -8,7 +8,7 @@
 static_assert(sizeof(void *)==8 && sizeof(unsigned long)==8 && sizeof(int)==4,"Linux amd64 ABI");
 namespace {
 struct state {
- uint32_t configured,closed,error,busy,cap,safe_count;pthread_t owner;psd_observer observer;void *user;
+ uint32_t configured,closed,error,busy,cap,safe_count;pthread_t owner;psd_observer observer;void *user;const psd_lookup *lookup;
  uint64_t forwarded,resolutions,paths,events;char safe[256][64];void *slots[64];
 };
 state S={};
@@ -58,7 +58,7 @@ extern "C" void psd_before(uint32_t kind,const uint64_t *args,size_t argc,psd_to
  else if(kind==PSD_RESOLVER_PATH)__atomic_fetch_add(&S.paths,1u,__ATOMIC_RELAXED);
  else {fail(E_INPUT);errno=saved_errno;return;}
  if(!owner()){fail(E_THREAD);errno=saved_errno;return;}
- if(S.busy){fail(E_REENTRY);errno=saved_errno;return;}
+ if(S.busy || (S.lookup && kind!=PSD_RESOLVER_PATH)){fail(E_REENTRY);errno=saved_errno;return;}
  if(load(&S.error)){errno=saved_errno;return;}
  if(argc>5 || (argc && !args)){fail(E_INPUT);errno=saved_errno;return;}
  const unsigned arities[]={0,2,2,2,1,2,2,4,5,5,5,3,4,2,0};
@@ -88,8 +88,8 @@ extern "C" void psd_lookup_begin(const char *name,psd_lookup *request){
  int saved_errno=errno;std::memset(request->name,0,sizeof(request->name));request->active=0;
  if(active()){
   if(!owner())fail(E_THREAD);
-  else if(S.busy)fail(E_REENTRY);
-  else if(!load(&S.error)){if(name_copy(name,request->name))request->active=1;else fail(E_INPUT);}
+  else if(S.busy || S.lookup)fail(E_REENTRY);
+  else if(!load(&S.error)){if(name_copy(name,request->name)){request->active=1;S.lookup=request;}else fail(E_INPUT);}
  }
  errno=saved_errno;
 }
@@ -128,6 +128,9 @@ struct entry {const char *name;unsigned slot;void *wrapper;};
 extern "C" void *psd_resolved(const psd_lookup *request,void *value,uint32_t origin){
  int saved_errno=errno;
  if(!request->active || !active()){errno=saved_errno;return value;}
+ if(!owner()){fail(E_THREAD);errno=saved_errno;return value;}
+ if(S.lookup!=request){fail(E_REENTRY);errno=saved_errno;return value;}
+ S.lookup=nullptr;
  psd_token token;psd_before(PSD_LOOKUP,nullptr,0,&token);token.event.origin=origin;
  if(token.active)std::memcpy(token.event.name,request->name,64);
  psd_after(&token,(uintptr_t)value);
@@ -167,7 +170,7 @@ extern "C" void *psd_path(uint32_t origin,void *value){
 extern "C" int psd_finish(void){
  if(!load(&S.configured))return 0;
  if(!owner()){fail(E_THREAD);return -1;}
- if(S.busy){fail(E_REENTRY);return -1;}
+ if(S.busy || S.lookup){fail(E_REENTRY);return -1;}
  if(load(&S.closed)){fail(E_CLOSED);return -1;}
  __atomic_store_n(&S.closed,1u,__ATOMIC_RELEASE);return load(&S.error)?-1:0;
 }
