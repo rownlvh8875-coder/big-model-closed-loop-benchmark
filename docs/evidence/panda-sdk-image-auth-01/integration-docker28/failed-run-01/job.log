@@ -1,0 +1,393 @@
+﻿2026-11-15T07:45:36.0485321Z Current runner version: '2.338.2'
+2026-11-15T07:45:36.0506215Z ##[group]Runner Image Provisioner
+2026-11-15T07:45:36.0506818Z Hosted Compute Agent
+2026-11-15T07:45:36.0507239Z Version: 20261103.629
+2026-11-15T07:45:36.0507635Z Commit: 15dbd9ccb5dbf34fae002b6ed1a2670f52df37bc
+2026-11-15T07:45:36.0508336Z Build Date: 2026-11-03T17:26:59Z
+2026-11-15T07:45:36.0508876Z Worker ID: {b95df1a9-6cec-4b1b-beaa-cded97706393}
+2026-11-15T07:45:36.0509337Z Region: eastus2
+2026-11-15T07:45:36.0509784Z Cloud: Azure
+2026-11-15T07:45:36.0510142Z ##[endgroup]
+2026-11-15T07:45:36.0511049Z ##[group]Operating System
+2026-11-15T07:45:36.0511518Z Ubuntu
+2026-11-15T07:45:36.0511841Z 24.04.5
+2026-11-15T07:45:36.0512496Z LTS
+2026-11-15T07:45:36.0512886Z ##[endgroup]
+2026-11-15T07:45:36.0513257Z ##[group]Runner Image
+2026-11-15T07:45:36.0513657Z Image: ubuntu-24.04
+2026-11-15T07:45:36.0514011Z Version: 20261111.370.1
+2026-11-15T07:45:36.0514893Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261111.370/images/ubuntu/Ubuntu2404-Readme.md
+2026-11-15T07:45:36.0515837Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261111.370
+2026-11-15T07:45:36.0516449Z ##[endgroup]
+2026-11-15T07:45:36.0517204Z ##[group]GITHUB_TOKEN Permissions
+2026-11-15T07:45:36.0518937Z Actions: read
+2026-11-15T07:45:36.0519367Z Contents: read
+2026-11-15T07:45:36.0519759Z Metadata: read
+2026-11-15T07:45:36.0520134Z ##[endgroup]
+2026-11-15T07:45:36.0521704Z Secret source: Actions
+2026-11-15T07:45:36.0522310Z Cache mode: write
+2026-11-15T07:45:36.0522848Z Prepare workflow directory
+2026-11-15T07:45:36.0767595Z Prepare all required actions
+2026-11-15T07:45:36.0804158Z Getting action download info
+2026-11-15T07:45:36.2839054Z Download action repository 'actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683' (SHA:11bd71901bbe5b1630ceea73d27597364c9af683)
+2026-11-15T07:45:36.4742277Z Download action repository 'actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-11-15T07:45:36.6754723Z Complete job name: produce
+2026-11-15T07:45:36.7290411Z ##[group]Run test "$ATTEMPT" = 1
+2026-11-15T07:45:36.7290809Z [36;1mtest "$ATTEMPT" = 1[0m
+2026-11-15T07:45:36.7309784Z shell: /usr/bin/bash -e {0}
+2026-11-15T07:45:36.7310280Z env:
+2026-11-15T07:45:36.7310516Z   ATTEMPT: 1
+2026-11-15T07:45:36.7310752Z ##[endgroup]
+2026-11-15T07:45:36.7542815Z ##[group]Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+2026-11-15T07:45:36.7543238Z with:
+2026-11-15T07:45:36.7543468Z   fetch-depth: 1
+2026-11-15T07:45:36.7543722Z   persist-credentials: false
+2026-11-15T07:45:36.7544076Z   repository: rownlvh8875-coder/big-model-closed-loop-benchmark
+2026-11-15T07:45:36.7546338Z   token: ***
+2026-11-15T07:45:36.7546572Z   ssh-strict: true
+2026-11-15T07:45:36.7546808Z   ssh-user: git
+2026-11-15T07:45:36.7547033Z   clean: true
+2026-11-15T07:45:36.7547277Z   sparse-checkout-cone-mode: true
+2026-11-15T07:45:36.7547563Z   fetch-tags: false
+2026-11-15T07:45:36.7547804Z   show-progress: true
+2026-11-15T07:45:36.7548294Z   lfs: false
+2026-11-15T07:45:36.7548519Z   submodules: false
+2026-11-15T07:45:36.7548764Z   set-safe-directory: true
+2026-11-15T07:45:36.7549024Z ##[endgroup]
+2026-11-15T07:45:36.9343233Z Syncing repository: rownlvh8875-coder/big-model-closed-loop-benchmark
+2026-11-15T07:45:36.9344512Z ##[group]Getting Git version info
+2026-11-15T07:45:36.9345141Z Working directory is '/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark'
+2026-11-15T07:45:36.9345850Z [command]/usr/bin/git version
+2026-11-15T07:45:36.9415775Z git version 2.56.1
+2026-11-15T07:45:36.9432548Z ##[endgroup]
+2026-11-15T07:45:36.9444926Z Temporarily overriding HOME='/home/runner/work/_temp/1c5d24d3-c926-4ff4-8527-c79317addb3a' before making global git config changes
+2026-11-15T07:45:36.9446047Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-15T07:45:36.9449820Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark
+2026-11-15T07:45:36.9510397Z Deleting the contents of '/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark'
+2026-11-15T07:45:36.9513524Z ##[group]Initializing the repository
+2026-11-15T07:45:36.9518477Z [command]/usr/bin/git init /home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark
+2026-11-15T07:45:36.9604581Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-15T07:45:36.9605806Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-15T07:45:36.9606810Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-15T07:45:36.9607613Z hint: call:
+2026-11-15T07:45:36.9608278Z hint:
+2026-11-15T07:45:36.9608871Z hint: 	git config --global init.defaultBranch <name>
+2026-11-15T07:45:36.9609567Z hint:
+2026-11-15T07:45:36.9610223Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-15T07:45:36.9611215Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-15T07:45:36.9612007Z hint:
+2026-11-15T07:45:36.9612537Z hint: 	git branch -m <name>
+2026-11-15T07:45:36.9613148Z hint:
+2026-11-15T07:45:36.9613899Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-15T07:45:36.9615416Z Initialized empty Git repository in /home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/.git/
+2026-11-15T07:45:36.9621229Z [command]/usr/bin/git remote add origin https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark
+2026-11-15T07:45:36.9701350Z ##[endgroup]
+2026-11-15T07:45:36.9702241Z ##[group]Disabling automatic garbage collection
+2026-11-15T07:45:36.9705613Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-15T07:45:36.9744126Z ##[endgroup]
+2026-11-15T07:45:36.9744991Z ##[group]Setting up auth
+2026-11-15T07:45:36.9750887Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-15T07:45:36.9795966Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-15T07:45:37.0157057Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-15T07:45:37.0201545Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-15T07:45:37.0428798Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-15T07:45:37.0480019Z ##[endgroup]
+2026-11-15T07:45:37.0509280Z ##[group]Fetching the repository
+2026-11-15T07:45:37.0510792Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +61d5b50e6191d4726053f7301cf2cfd80d849ec2:refs/remotes/origin/prepare/panda-sdk-image-20261115-01
+2026-11-15T07:45:39.4843588Z From https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark
+2026-11-15T07:45:39.4844772Z  * [new ref]         61d5b50e6191d4726053f7301cf2cfd80d849ec2 -> origin/prepare/panda-sdk-image-20261115-01
+2026-11-15T07:45:39.4847325Z ##[endgroup]
+2026-11-15T07:45:39.4848298Z ##[group]Determining the checkout info
+2026-11-15T07:45:39.4849853Z ##[endgroup]
+2026-11-15T07:45:39.4855919Z [command]/usr/bin/git sparse-checkout disable
+2026-11-15T07:45:39.4926335Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-11-15T07:45:39.4972740Z ##[group]Checking out the ref
+2026-11-15T07:45:39.4976417Z [command]/usr/bin/git checkout --progress --force -B prepare/panda-sdk-image-20261115-01 refs/remotes/origin/prepare/panda-sdk-image-20261115-01
+2026-11-15T07:45:39.9334887Z Switched to a new branch 'prepare/panda-sdk-image-20261115-01'
+2026-11-15T07:45:39.9336837Z branch 'prepare/panda-sdk-image-20261115-01' set up to track 'origin/prepare/panda-sdk-image-20261115-01'.
+2026-11-15T07:45:39.9400311Z ##[endgroup]
+2026-11-15T07:45:39.9465502Z [command]/usr/bin/git log -1 --format=%H
+2026-11-15T07:45:39.9504089Z 61d5b50e6191d4726053f7301cf2cfd80d849ec2
+2026-11-15T07:45:39.9512701Z ##[group]Removing auth
+2026-11-15T07:45:39.9515932Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-15T07:45:39.9558513Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-15T07:45:39.9774181Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-15T07:45:39.9810258Z http.https://github.com/.extraheader
+2026-11-15T07:45:39.9817607Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-11-15T07:45:39.9862902Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-15T07:45:40.0076773Z ##[endgroup]
+2026-11-15T07:45:40.0202901Z ##[group]Run /usr/bin/python3 -I -S -B scripts/produce_panda_sdk_image.py --run
+2026-11-15T07:45:40.0203346Z [36;1m/usr/bin/python3 -I -S -B scripts/produce_panda_sdk_image.py --run[0m
+2026-11-15T07:45:40.0219979Z shell: /usr/bin/bash -e {0}
+2026-11-15T07:45:40.0220160Z env:
+2026-11-15T07:45:40.0221995Z   GH_TOKEN: ***
+2026-11-15T07:45:40.0222152Z ##[endgroup]
+2026-11-15T07:47:15.7026235Z SDK image production rejected: ValueError: IMAGE_ARCHIVE_REJECTED
+2026-11-15T07:47:15.7375996Z ##[error]Process completed with exit code 2.
+2026-11-15T07:47:15.7432357Z ##[group]Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+2026-11-15T07:47:15.7432602Z with:
+2026-11-15T07:47:15.7432729Z   name: panda-sdk-image-20261115-01
+2026-11-15T07:47:15.7432924Z   path: output/stage7-panda-sdk-image-auth-01/producer/bundle/
+2026-11-15T07:47:15.7433128Z   compression-level: 0
+2026-11-15T07:47:15.7433251Z   retention-days: 30
+2026-11-15T07:47:15.7433374Z   if-no-files-found: warn
+2026-11-15T07:47:15.7433508Z   include-hidden-files: true
+2026-11-15T07:47:15.7433638Z   overwrite: false
+2026-11-15T07:47:15.7433754Z ##[endgroup]
+2026-11-15T07:47:15.8587178Z (node:2334) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-15T07:47:15.8587617Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-15T07:47:15.8629447Z With the provided path, there will be 3 files uploaded
+2026-11-15T07:47:15.8633382Z Artifact name is valid!
+2026-11-15T07:47:15.8633766Z Root directory input is valid!
+2026-11-15T07:47:16.0967282Z Beginning upload of artifact content to blob storage
+2026-11-15T07:47:16.1359258Z (node:2334) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-15T07:47:16.3345306Z Uploaded bytes 8388608
+2026-11-15T07:47:16.3426586Z Uploaded bytes 16777216
+2026-11-15T07:47:16.3625452Z Uploaded bytes 25165824
+2026-11-15T07:47:16.4096330Z Uploaded bytes 33554432
+2026-11-15T07:47:16.4677576Z Uploaded bytes 41943040
+2026-11-15T07:47:16.5419042Z Uploaded bytes 50331648
+2026-11-15T07:47:16.5499625Z Uploaded bytes 58720256
+2026-11-15T07:47:16.5562585Z Uploaded bytes 67108864
+2026-11-15T07:47:16.6004692Z Uploaded bytes 75497472
+2026-11-15T07:47:16.6662453Z Uploaded bytes 83886080
+2026-11-15T07:47:16.6971084Z Uploaded bytes 92274688
+2026-11-15T07:47:16.7269032Z Uploaded bytes 100663296
+2026-11-15T07:47:16.7839522Z Uploaded bytes 109051904
+2026-11-15T07:47:16.7973599Z Uploaded bytes 117440512
+2026-11-15T07:47:16.8383129Z Uploaded bytes 125829120
+2026-11-15T07:47:16.9182846Z Uploaded bytes 134217728
+2026-11-15T07:47:16.9269554Z Uploaded bytes 142606336
+2026-11-15T07:47:16.9444783Z Uploaded bytes 150994944
+2026-11-15T07:47:16.9826356Z Uploaded bytes 159383552
+2026-11-15T07:47:17.0573846Z Uploaded bytes 167772160
+2026-11-15T07:47:17.0636198Z Uploaded bytes 176160768
+2026-11-15T07:47:17.0871266Z Uploaded bytes 184549376
+2026-11-15T07:47:17.1138497Z Uploaded bytes 192937984
+2026-11-15T07:47:17.1879270Z Uploaded bytes 201326592
+2026-11-15T07:47:17.2049082Z Uploaded bytes 209715200
+2026-11-15T07:47:17.2265169Z Uploaded bytes 218103808
+2026-11-15T07:47:17.2338288Z Uploaded bytes 226492416
+2026-11-15T07:47:17.2718171Z Uploaded bytes 234881024
+2026-11-15T07:47:17.3223590Z Uploaded bytes 243269632
+2026-11-15T07:47:17.3845926Z Uploaded bytes 251658240
+2026-11-15T07:47:17.4805205Z Uploaded bytes 260046848
+2026-11-15T07:47:17.4959053Z Uploaded bytes 268435456
+2026-11-15T07:47:17.5752305Z Uploaded bytes 276824064
+2026-11-15T07:47:17.5816029Z Uploaded bytes 285212672
+2026-11-15T07:47:17.5929106Z Uploaded bytes 293601280
+2026-11-15T07:47:17.6198095Z Uploaded bytes 301989888
+2026-11-15T07:47:17.7192454Z Uploaded bytes 310378496
+2026-11-15T07:47:17.7599289Z Uploaded bytes 318767104
+2026-11-15T07:47:17.7722380Z Uploaded bytes 327155712
+2026-11-15T07:47:17.8021501Z Uploaded bytes 335544320
+2026-11-15T07:47:17.8680345Z Uploaded bytes 343932928
+2026-11-15T07:47:17.9380422Z Uploaded bytes 352321536
+2026-11-15T07:47:17.9441665Z Uploaded bytes 360710144
+2026-11-15T07:47:17.9553989Z Uploaded bytes 369098752
+2026-11-15T07:47:18.0309499Z Uploaded bytes 377487360
+2026-11-15T07:47:18.0369860Z Uploaded bytes 385875968
+2026-11-15T07:47:18.0427202Z Uploaded bytes 394264576
+2026-11-15T07:47:18.1332086Z Uploaded bytes 402653184
+2026-11-15T07:47:18.1418548Z Uploaded bytes 411041792
+2026-11-15T07:47:18.1594989Z Uploaded bytes 419430400
+2026-11-15T07:47:18.1967509Z Uploaded bytes 427819008
+2026-11-15T07:47:18.2403108Z Uploaded bytes 436207616
+2026-11-15T07:47:18.2713447Z Uploaded bytes 444596224
+2026-11-15T07:47:18.2948416Z Uploaded bytes 452984832
+2026-11-15T07:47:18.3733613Z Uploaded bytes 461373440
+2026-11-15T07:47:18.4686973Z Uploaded bytes 469762048
+2026-11-15T07:47:18.4746981Z Uploaded bytes 478150656
+2026-11-15T07:47:18.4801411Z Uploaded bytes 486539264
+2026-11-15T07:47:18.5384466Z Uploaded bytes 494927872
+2026-11-15T07:47:18.5972667Z Uploaded bytes 503316480
+2026-11-15T07:47:18.6248116Z Uploaded bytes 511705088
+2026-11-15T07:47:18.6575504Z Uploaded bytes 520093696
+2026-11-15T07:47:18.7089935Z Uploaded bytes 528482304
+2026-11-15T07:47:18.7181033Z Uploaded bytes 536870912
+2026-11-15T07:47:18.7365703Z Uploaded bytes 545259520
+2026-11-15T07:47:18.7848120Z Uploaded bytes 553648128
+2026-11-15T07:47:18.8436090Z Uploaded bytes 562036736
+2026-11-15T07:47:18.8607772Z Uploaded bytes 570425344
+2026-11-15T07:47:18.9217432Z Uploaded bytes 578813952
+2026-11-15T07:47:18.9761635Z Uploaded bytes 587202560
+2026-11-15T07:47:18.9883153Z Uploaded bytes 595591168
+2026-11-15T07:47:18.9997229Z Uploaded bytes 603979776
+2026-11-15T07:47:19.0682745Z Uploaded bytes 612368384
+2026-11-15T07:47:19.0838623Z Uploaded bytes 620756992
+2026-11-15T07:47:19.1024833Z Uploaded bytes 629145600
+2026-11-15T07:47:19.1268467Z Uploaded bytes 637534208
+2026-11-15T07:47:19.1757636Z Uploaded bytes 645922816
+2026-11-15T07:47:19.1921356Z Uploaded bytes 654311424
+2026-11-15T07:47:19.2020949Z Uploaded bytes 662700032
+2026-11-15T07:47:19.2620493Z Uploaded bytes 671088640
+2026-11-15T07:47:19.2984710Z Uploaded bytes 679477248
+2026-11-15T07:47:19.3360427Z Uploaded bytes 687865856
+2026-11-15T07:47:19.3792235Z Uploaded bytes 696254464
+2026-11-15T07:47:19.4046246Z Uploaded bytes 704643072
+2026-11-15T07:47:19.4108151Z Uploaded bytes 713031680
+2026-11-15T07:47:19.5118653Z Uploaded bytes 721420288
+2026-11-15T07:47:19.5198937Z Uploaded bytes 729808896
+2026-11-15T07:47:19.5248877Z Uploaded bytes 738197504
+2026-11-15T07:47:19.5327427Z Uploaded bytes 746586112
+2026-11-15T07:47:19.6585352Z Uploaded bytes 754974720
+2026-11-15T07:47:19.6709311Z Uploaded bytes 763363328
+2026-11-15T07:47:19.7211519Z Uploaded bytes 771751936
+2026-11-15T07:47:19.7594866Z Uploaded bytes 780140544
+2026-11-15T07:47:19.8317376Z Uploaded bytes 788529152
+2026-11-15T07:47:19.8408886Z Uploaded bytes 796917760
+2026-11-15T07:47:19.9702369Z Uploaded bytes 805306368
+2026-11-15T07:47:19.9844457Z Uploaded bytes 813694976
+2026-11-15T07:47:20.0514273Z Uploaded bytes 822083584
+2026-11-15T07:47:20.0665610Z Uploaded bytes 830472192
+2026-11-15T07:47:20.1328744Z Uploaded bytes 838860800
+2026-11-15T07:47:20.1823408Z Uploaded bytes 847249408
+2026-11-15T07:47:20.1984497Z Uploaded bytes 855638016
+2026-11-15T07:47:20.2354215Z Uploaded bytes 864026624
+2026-11-15T07:47:20.2491306Z Uploaded bytes 872415232
+2026-11-15T07:47:20.3511146Z Uploaded bytes 880803840
+2026-11-15T07:47:20.3568921Z Uploaded bytes 889192448
+2026-11-15T07:47:20.3714295Z Uploaded bytes 897581056
+2026-11-15T07:47:20.3839017Z Uploaded bytes 905969664
+2026-11-15T07:47:20.5187804Z Uploaded bytes 914358272
+2026-11-15T07:47:20.5264964Z Uploaded bytes 922746880
+2026-11-15T07:47:20.5343473Z Uploaded bytes 931135488
+2026-11-15T07:47:20.5799504Z Uploaded bytes 939524096
+2026-11-15T07:47:20.6912791Z Uploaded bytes 947912704
+2026-11-15T07:47:20.7002341Z Uploaded bytes 956301312
+2026-11-15T07:47:20.7853046Z Uploaded bytes 964689920
+2026-11-15T07:47:20.8033894Z Uploaded bytes 973078528
+2026-11-15T07:47:20.8617771Z Uploaded bytes 981467136
+2026-11-15T07:47:20.8698954Z Uploaded bytes 989855744
+2026-11-15T07:47:20.9561841Z Uploaded bytes 998244352
+2026-11-15T07:47:20.9957310Z Uploaded bytes 1006632960
+2026-11-15T07:47:21.0433317Z Uploaded bytes 1015021568
+2026-11-15T07:47:21.0625243Z Uploaded bytes 1023410176
+2026-11-15T07:47:21.0683819Z Uploaded bytes 1031798784
+2026-11-15T07:47:21.1446981Z Uploaded bytes 1040187392
+2026-11-15T07:47:21.2020010Z Uploaded bytes 1048576000
+2026-11-15T07:47:21.2129219Z Uploaded bytes 1056964608
+2026-11-15T07:47:21.2259125Z Uploaded bytes 1065353216
+2026-11-15T07:47:21.3412701Z Uploaded bytes 1073741824
+2026-11-15T07:47:21.3710610Z Uploaded bytes 1082130432
+2026-11-15T07:47:21.4069790Z Uploaded bytes 1090519040
+2026-11-15T07:47:21.4254162Z Uploaded bytes 1098907648
+2026-11-15T07:47:21.5416923Z Uploaded bytes 1107296256
+2026-11-15T07:47:21.5581619Z Uploaded bytes 1115684864
+2026-11-15T07:47:21.5682222Z Uploaded bytes 1124073472
+2026-11-15T07:47:21.5994795Z Uploaded bytes 1132462080
+2026-11-15T07:47:21.6446647Z Uploaded bytes 1140850688
+2026-11-15T07:47:21.7333185Z Uploaded bytes 1149239296
+2026-11-15T07:47:21.7455040Z Uploaded bytes 1157627904
+2026-11-15T07:47:21.7764940Z Uploaded bytes 1166016512
+2026-11-15T07:47:21.8062554Z Uploaded bytes 1174405120
+2026-11-15T07:47:21.8688565Z Uploaded bytes 1182793728
+2026-11-15T07:47:21.8920058Z Uploaded bytes 1191182336
+2026-11-15T07:47:21.9232770Z Uploaded bytes 1199570944
+2026-11-15T07:47:21.9867211Z Uploaded bytes 1207959552
+2026-11-15T07:47:21.9983777Z Uploaded bytes 1216348160
+2026-11-15T07:47:22.0657991Z Uploaded bytes 1224736768
+2026-11-15T07:47:22.1407753Z Uploaded bytes 1233125376
+2026-11-15T07:47:22.1910547Z Uploaded bytes 1241513984
+2026-11-15T07:47:22.2044831Z Uploaded bytes 1249902592
+2026-11-15T07:47:22.2146826Z Uploaded bytes 1258291200
+2026-11-15T07:47:22.3090624Z Uploaded bytes 1266679808
+2026-11-15T07:47:22.3813898Z Uploaded bytes 1275068416
+2026-11-15T07:47:22.3925723Z Uploaded bytes 1283457024
+2026-11-15T07:47:22.4014343Z Uploaded bytes 1291845632
+2026-11-15T07:47:22.4849579Z Uploaded bytes 1300234240
+2026-11-15T07:47:22.5020500Z Uploaded bytes 1308622848
+2026-11-15T07:47:22.5388350Z Uploaded bytes 1317011456
+2026-11-15T07:47:22.5479317Z Uploaded bytes 1325400064
+2026-11-15T07:47:22.6462064Z Uploaded bytes 1333788672
+2026-11-15T07:47:22.6650492Z Uploaded bytes 1342177280
+2026-11-15T07:47:22.6780792Z Uploaded bytes 1350565888
+2026-11-15T07:47:22.6831389Z Uploaded bytes 1358954496
+2026-11-15T07:47:22.7788173Z Uploaded bytes 1367343104
+2026-11-15T07:47:22.7943157Z Uploaded bytes 1375731712
+2026-11-15T07:47:22.8010709Z Uploaded bytes 1384120320
+2026-11-15T07:47:22.8365906Z Uploaded bytes 1392508928
+2026-11-15T07:47:22.9295972Z Uploaded bytes 1400897536
+2026-11-15T07:47:22.9355756Z Uploaded bytes 1409286144
+2026-11-15T07:47:22.9562777Z Uploaded bytes 1417674752
+2026-11-15T07:47:22.9649440Z Uploaded bytes 1426063360
+2026-11-15T07:47:23.0366843Z Uploaded bytes 1434451968
+2026-11-15T07:47:23.0861529Z Uploaded bytes 1442840576
+2026-11-15T07:47:23.1104735Z Uploaded bytes 1451229184
+2026-11-15T07:47:23.1463651Z Uploaded bytes 1459617792
+2026-11-15T07:47:23.2552710Z Uploaded bytes 1468006400
+2026-11-15T07:47:23.2668949Z Uploaded bytes 1476395008
+2026-11-15T07:47:23.2823893Z Uploaded bytes 1484783616
+2026-11-15T07:47:23.3022880Z Uploaded bytes 1493172224
+2026-11-15T07:47:23.3854410Z Uploaded bytes 1501560832
+2026-11-15T07:47:23.3971520Z Uploaded bytes 1509949440
+2026-11-15T07:47:23.4029010Z Uploaded bytes 1518338048
+2026-11-15T07:47:23.4503510Z Uploaded bytes 1526726656
+2026-11-15T07:47:23.4853698Z Uploaded bytes 1535115264
+2026-11-15T07:47:23.5582494Z Uploaded bytes 1543503872
+2026-11-15T07:47:23.6097685Z Uploaded bytes 1551892480
+2026-11-15T07:47:23.6156704Z Uploaded bytes 1560281088
+2026-11-15T07:47:23.6273913Z Uploaded bytes 1568669696
+2026-11-15T07:47:23.7278409Z Uploaded bytes 1577058304
+2026-11-15T07:47:23.7369098Z Uploaded bytes 1585446912
+2026-11-15T07:47:23.7470306Z Uploaded bytes 1593835520
+2026-11-15T07:47:23.7586601Z Uploaded bytes 1602224128
+2026-11-15T07:47:23.8664853Z Uploaded bytes 1610612736
+2026-11-15T07:47:23.8857649Z Uploaded bytes 1619001344
+2026-11-15T07:47:23.9694832Z Uploaded bytes 1627389952
+2026-11-15T07:47:23.9946585Z Uploaded bytes 1635778560
+2026-11-15T07:47:24.0109379Z Uploaded bytes 1644167168
+2026-11-15T07:47:24.0244583Z Uploaded bytes 1652555776
+2026-11-15T07:47:24.1698147Z Uploaded bytes 1660944384
+2026-11-15T07:47:24.1816096Z Uploaded bytes 1669332992
+2026-11-15T07:47:24.1958074Z Uploaded bytes 1677721600
+2026-11-15T07:47:24.2037003Z Uploaded bytes 1686110208
+2026-11-15T07:47:24.3147438Z Uploaded bytes 1694498816
+2026-11-15T07:47:24.3184692Z Uploaded bytes 1702887424
+2026-11-15T07:47:24.3475949Z Uploaded bytes 1711276032
+2026-11-15T07:47:24.3943373Z Uploaded bytes 1719664640
+2026-11-15T07:47:24.4174078Z Uploaded bytes 1728053248
+2026-11-15T07:47:24.4604428Z Uploaded bytes 1736441856
+2026-11-15T07:47:24.4947740Z Uploaded bytes 1738136601
+2026-11-15T07:47:24.5112125Z Finished uploading artifact content to blob storage!
+2026-11-15T07:47:24.5113952Z SHA256 digest of uploaded artifact zip is dd3665fc2569fecf8e518f7938dcecb4e8a7c4c2d3208101e78040ee97e0b010
+2026-11-15T07:47:24.5115499Z Finalizing artifact upload
+2026-11-15T07:47:24.8891603Z Artifact panda-sdk-image-20261115-01.zip successfully finalized. Artifact ID 14152936284
+2026-11-15T07:47:24.8892229Z Artifact panda-sdk-image-20261115-01 has been successfully uploaded! Final size is 1738136601 bytes. Artifact ID is 14152936284
+2026-11-15T07:47:24.8897981Z Artifact download URL: https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43691363761/artifacts/14152936284
+2026-11-15T07:47:24.9195691Z ##[group]Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+2026-11-15T07:47:24.9196056Z with:
+2026-11-15T07:47:24.9196282Z   name: panda-sdk-image-20261115-01-execution
+2026-11-15T07:47:24.9196631Z   path: output/stage7-panda-sdk-image-auth-01/producer/execution/
+2026-11-15T07:47:24.9196960Z   compression-level: 0
+2026-11-15T07:47:24.9197164Z   retention-days: 30
+2026-11-15T07:47:24.9197368Z   if-no-files-found: warn
+2026-11-15T07:47:24.9197589Z   include-hidden-files: true
+2026-11-15T07:47:24.9197805Z   overwrite: false
+2026-11-15T07:47:24.9198121Z ##[endgroup]
+2026-11-15T07:47:25.0510480Z (node:2347) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-15T07:47:25.0511201Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-15T07:47:25.0727297Z With the provided path, there will be 66 files uploaded
+2026-11-15T07:47:25.0738410Z Artifact name is valid!
+2026-11-15T07:47:25.0739045Z Root directory input is valid!
+2026-11-15T07:47:25.2721968Z Beginning upload of artifact content to blob storage
+2026-11-15T07:47:25.3248459Z (node:2347) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-15T07:47:25.3560010Z Uploaded bytes 264419
+2026-11-15T07:47:25.3697246Z Finished uploading artifact content to blob storage!
+2026-11-15T07:47:25.3698318Z SHA256 digest of uploaded artifact zip is d3b74296b187e0f921fc043ab3c2ed0af8a284f059785fec70125fd870294f7d
+2026-11-15T07:47:25.3698969Z Finalizing artifact upload
+2026-11-15T07:47:25.6842129Z Artifact panda-sdk-image-20261115-01-execution.zip successfully finalized. Artifact ID 14152712074
+2026-11-15T07:47:25.6842906Z Artifact panda-sdk-image-20261115-01-execution has been successfully uploaded! Final size is 264419 bytes. Artifact ID is 14152712074
+2026-11-15T07:47:25.6847089Z Artifact download URL: https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43691363761/artifacts/14152712074
+2026-11-15T07:47:25.7040768Z Post job cleanup.
+2026-11-15T07:47:25.7685802Z [command]/usr/bin/git version
+2026-11-15T07:47:25.7728310Z git version 2.56.1
+2026-11-15T07:47:25.7759312Z Temporarily overriding HOME='/home/runner/work/_temp/c897c76c-be91-4414-9eb2-b55380dd41c7' before making global git config changes
+2026-11-15T07:47:25.7760248Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-15T07:47:25.7765656Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark
+2026-11-15T07:47:25.7817349Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-15T07:47:25.7859779Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-15T07:47:25.8200175Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-15T07:47:25.8253799Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-15T07:47:25.8665176Z Cleaning up orphan processes
+2026-11-15T07:47:25.8944754Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683, actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

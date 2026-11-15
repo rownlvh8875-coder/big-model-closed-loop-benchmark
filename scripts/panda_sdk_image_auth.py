@@ -6,11 +6,11 @@ from scripts.engine_clock_runtime_inventory import validate_inventory
 from scripts import panda_sdk_image_binding as base
 ROOT=Path(__file__).resolve().parents[1]
 REPO='rownlvh8875-coder/big-model-closed-loop-benchmark';REPO_ID=1447652055;OWNER=REPO.split('/')[0]
-SOURCE_BRANCH='feature/panda-sdk-image-auth-v1';BRANCH='prepare/panda-sdk-image-20261115-01';ID='panda-sdk-image-20261115-01'
-WORKFLOW='.github/workflows/panda-sdk-image-production-v1.yml';REQUEST='docs/requests/'+ID+'.json';ARTIFACT=ID
+SOURCE_BRANCH='feature/panda-sdk-image-auth-v1';BRANCH='prepare/panda-sdk-image-20261115-02';ID='panda-sdk-image-20261115-02'
+WORKFLOW='.github/workflows/panda-sdk-image-production-v2.yml';REQUEST='docs/requests/'+ID+'.json';ARTIFACT=ID
 SDK='docs/evidence/panda-sdk-routes-02/before-review/build/candidate-libpandagl.so.data';SDK_SHA='3e9fa983023cb1f30b08a2bc650d0803686bef032a2c5d7a5700e1d3ad60553b';SDK_SIZE=998200
 SDK_PATH='/opt/venv/lib/python3.11/site-packages/panda3d/libpandagl.so'
-INVENTORY='docs/evidence/engine-clock-sealed-image-06/installed-files.json';TAG='stage7-panda-sdk:actions-20261115-01'
+INVENTORY='docs/evidence/engine-clock-sealed-image-06/installed-files.json';TAG='stage7-panda-sdk:actions-20261115-02'
 BASE_ARTIFACT=dict(id=14078483374,run_id=43512140336,head_sha='382b2ad201c12836b0adcc54cb2719a47b0cdcb4',name='engine-clock-image-20261114-06',size_in_bytes=1735029078,sha256='62e09e31d565890a82b4965bafe855ad382e9a22794d12310fe0f06e695e920a')
 BUDGET=dict(total_seconds=1800,transfer_seconds=300,docker_seconds=180,cleanup_seconds=12,http_gets=96,producer_payload=2*1024**3,consumer_payload=4*1024**3,producer_output=10*1024**3,minimum_free=16*1024**3,log_bytes=1024**2)
 PERMISSIONS=dict(docker_load=True,docker_copy_build=True,stopped_export=True,container_start=False,native=False,model=False,registry_publish=False,cloud_publish=False,main_merge=False)

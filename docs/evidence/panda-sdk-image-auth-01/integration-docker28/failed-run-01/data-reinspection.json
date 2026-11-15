@@ -1,0 +1,158 @@
+{
+  "status": "FAILED_PRODUCER_ARCHIVE_BYTES_NOW_PARSE_NATIVE_BLOCKED",
+  "archive": {
+    "schema": "engine-clock-save-archive-check-v1",
+    "status": "DOCKER_SAVE_STRUCTURE_VERIFIED",
+    "image_tar_sha256": "9d66049f177052ff71ad262a8e9a14d909105fa8c48be02e53380ef4ac5aaa16",
+    "image_tar_nbytes": 1727684608,
+    "config_digest": "sha256:22fd39aa5ea3396d890190d19150943ef06f0352d4a7fa7998ca77c3fd475870",
+    "rootfs_diff_ids": [
+      "sha256:21210938f5a37a9887b2d0a20428917b923a636ca6efe038c3c7d9cd9f1f9b61",
+      "sha256:2be112340d71ee43c6819c0259e050c865f12bf7c9837bb4cb8839f196db779c",
+      "sha256:f2fca4086c8612de50eccd05fee84655db8d071fd6b0651200f2be6d1ccfc90a",
+      "sha256:239e68b48ac29be0254dfad4b0ee14138d26ff2ea91852b7a6ca147e22ea7f61",
+      "sha256:ed744a455c23963a1766deeb20a89020917f0d1f33a1d663fdc97f99279e12c6",
+      "sha256:a556f0ec831a9814191d64ab66cf3cec89bed47bda59444a61a7c0fe3f45a0ea",
+      "sha256:8f86aac91e848162bd1f7b46663b3f2141c522c54e4fcb415dca6f9aeb972f27",
+      "sha256:0511464e26b9263af5856802ed4e5479c63560dc2d30d0d535d5c8f6b465a769",
+      "sha256:d6799d868d199cfd5482d62aa735e74d9ece7a30489d03b1505a72fa5f123602",
+      "sha256:f150c0ec8770d5d98573cd167c2e705822e18eae979adb2a81dc04ee31f48efe",
+      "sha256:1f21eb7f8cef1992297fb882cefec233996870b8a31a22dd5fd1bc24c1e71eb8"
+    ],
+    "platform": "linux/amd64",
+    "archive_layout": "docker-save-oci-layout",
+    "compatibility_metadata_files": 11,
+    "compatibility_metadata_authoritative": false,
+    "layers": [
+      {
+        "path": "blobs/sha256/21210938f5a37a9887b2d0a20428917b923a636ca6efe038c3c7d9cd9f1f9b61",
+        "nbytes": 80715776,
+        "sha256": "21210938f5a37a9887b2d0a20428917b923a636ca6efe038c3c7d9cd9f1f9b61",
+        "diff_id": "sha256:21210938f5a37a9887b2d0a20428917b923a636ca6efe038c3c7d9cd9f1f9b61",
+        "decoded_bytes": 80715776,
+        "members": 3442,
+        "regular_bytes": 78201136,
+        "gzip": false
+      },
+      {
+        "path": "blobs/sha256/2be112340d71ee43c6819c0259e050c865f12bf7c9837bb4cb8839f196db779c",
+        "nbytes": 348270592,
+        "sha256": "2be112340d71ee43c6819c0259e050c865f12bf7c9837bb4cb8839f196db779c",
+        "diff_id": "sha256:2be112340d71ee43c6819c0259e050c865f12bf7c9837bb4cb8839f196db779c",
+        "decoded_bytes": 348270592,
+        "members": 16468,
+        "regular_bytes": 337751294,
+        "gzip": false
+      },
+      {
+        "path": "blobs/sha256/f2fca4086c8612de50eccd05fee84655db8d071fd6b0651200f2be6d1ccfc90a",
+        "nbytes": 139264,
+        "sha256": "f2fca4086c8612de50eccd05fee84655db8d071fd6b0651200f2be6d1ccfc90a",
+        "diff_id": "sha256:f2fca4086c8612de50eccd05fee84655db8d071fd6b0651200f2be6d1ccfc90a",
+        "decoded_bytes": 139264,
+        "members": 99,
+        "regular_bytes": 79048,
+        "gzip": false
+      },
+      {
+        "path": "blobs/sha256/239e68b48ac29be0254dfad4b0ee14138d26ff2ea91852b7a6ca147e22ea7f61",
+        "nbytes": 6586880,
+        "sha256": "239e68b48ac29be0254dfad4b0ee14138d26ff2ea91852b7a6ca147e22ea7f61",
+        "diff_id": "sha256:239e68b48ac29be0254dfad4b0ee14138d26ff2ea91852b7a6ca147e22ea7f61",
+        "decoded_bytes": 6586880,
+        "members": 789,
+        "regular_bytes": 5938727,
+        "gzip": false
+      },
+      {
+        "path": "blobs/sha256/ed744a455c23963a1766deeb20a89020917f0d1f33a1d663fdc97f99279e12c6",
+        "nbytes": 1290746880,
+        "sha256": "ed744a455c23963a1766deeb20a89020917f0d1f33a1d663fdc97f99279e12c6",
+        "diff_id": "sha256:ed744a455c23963a1766deeb20a89020917f0d1f33a1d663fdc97f99279e12c6",
+        "decoded_bytes": 1290746880,
+        "members": 29300,
+        "regular_bytes": 1268725173,
+        "gzip": false
+      },
+      {
+        "path": "blobs/sha256/a556f0ec831a9814191d64ab66cf3cec89bed47bda59444a61a7c0fe3f45a0ea",
+        "nbytes": 58880,
+        "sha256": "a556f0ec831a9814191d64ab66cf3cec89bed47bda59444a61a7c0fe3f45a0ea",
+        "diff_id": "sha256:a556f0ec831a9814191d64ab66cf3cec89bed47bda59444a61a7c0fe3f45a0ea",
+        "decoded_bytes": 58880,
+        "members": 9,
+        "regular_bytes": 51729,
+        "gzip": false
+      },
+      {
+        "path": "blobs/sha256/8f86aac91e848162bd1f7b46663b3f2141c522c54e4fcb415dca6f9aeb972f27",
+        "nbytes": 4608,
+        "sha256": "8f86aac91e848162bd1f7b46663b3f2141c522c54e4fcb415dca6f9aeb972f27",
+        "diff_id": "sha256:8f86aac91e848162bd1f7b46663b3f2141c522c54e4fcb415dca6f9aeb972f27",
+        "decoded_bytes": 4608,
+        "members": 5,
+        "regular_bytes": 958,
+        "gzip": false
+      },
+      {
+        "path": "blobs/sha256/0511464e26b9263af5856802ed4e5479c63560dc2d30d0d535d5c8f6b465a769",
+        "nbytes": 104960,
+        "sha256": "0511464e26b9263af5856802ed4e5479c63560dc2d30d0d535d5c8f6b465a769",
+        "diff_id": "sha256:0511464e26b9263af5856802ed4e5479c63560dc2d30d0d535d5c8f6b465a769",
+        "decoded_bytes": 104960,
+        "members": 5,
+        "regular_bytes": 100899,
+        "gzip": false
+      },
+      {
+        "path": "blobs/sha256/d6799d868d199cfd5482d62aa735e74d9ece7a30489d03b1505a72fa5f123602",
+        "nbytes": 5632,
+        "sha256": "d6799d868d199cfd5482d62aa735e74d9ece7a30489d03b1505a72fa5f123602",
+        "diff_id": "sha256:d6799d868d199cfd5482d62aa735e74d9ece7a30489d03b1505a72fa5f123602",
+        "decoded_bytes": 5632,
+        "members": 5,
+        "regular_bytes": 1796,
+        "gzip": false
+      },
+      {
+        "path": "blobs/sha256/f150c0ec8770d5d98573cd167c2e705822e18eae979adb2a81dc04ee31f48efe",
+        "nbytes": 11264,
+        "sha256": "f150c0ec8770d5d98573cd167c2e705822e18eae979adb2a81dc04ee31f48efe",
+        "diff_id": "sha256:f150c0ec8770d5d98573cd167c2e705822e18eae979adb2a81dc04ee31f48efe",
+        "decoded_bytes": 11264,
+        "members": 5,
+        "regular_bytes": 7235,
+        "gzip": false
+      },
+      {
+        "path": "blobs/sha256/1f21eb7f8cef1992297fb882cefec233996870b8a31a22dd5fd1bc24c1e71eb8",
+        "nbytes": 1003008,
+        "sha256": "1f21eb7f8cef1992297fb882cefec233996870b8a31a22dd5fd1bc24c1e71eb8",
+        "diff_id": "sha256:1f21eb7f8cef1992297fb882cefec233996870b8a31a22dd5fd1bc24c1e71eb8",
+        "decoded_bytes": 1003008,
+        "members": 7,
+        "regular_bytes": 998200,
+        "gzip": false
+      }
+    ],
+    "decoded_layer_bytes": 1727647744,
+    "layer_member_count": 50134,
+    "config_environment": {
+      "PATH": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+      "LIBGL_ALWAYS_SOFTWARE": "1",
+      "PYOPENGL_PLATFORM": "glx",
+      "OMP_NUM_THREADS": "2"
+    },
+    "native_admission": false,
+    "installed_runtime_verified": false
+  },
+  "copy_layer": {
+    "files": [
+      "/opt/venv/lib/python3.11/site-packages/panda3d/libpandagl.so"
+    ],
+    "directory_metadata_attested": false
+  },
+  "original_producer_outcome": "failure",
+  "actions_successful_production_authenticated": false,
+  "native_admitted": false
+}

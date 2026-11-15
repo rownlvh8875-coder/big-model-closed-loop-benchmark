@@ -4,7 +4,7 @@ from pathlib import Path
 if __name__=='__main__':sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 from scripts import panda_sdk_image_auth as a
 from scripts import panda_sdk_routes_image as image
-from scripts import panda_sdk_routes_archive as archive
+from scripts import panda_sdk_image_archive as archive
 from scripts import panda_sdk_image_carrier as carrier
 from scripts import engine_clock_image_process as process
 from scripts.engine_clock_image_transport import Client
