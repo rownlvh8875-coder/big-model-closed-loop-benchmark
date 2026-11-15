@@ -24,8 +24,8 @@ Create scripts/panda_sdk_mapping_profile.py;scripts/panda_sdk_mapping_policy.py;
 
 ### Task2: Owned parent-child mapping and ABI observations
 Create scripts/panda_sdk_mapping_child.py;scripts/panda_sdk_mapping_runtime.py;tests/test_panda_sdk_mapping_runtime.py.
-- [ ] RED handwritten CPUlibrary real parent/child mapping/sizes/stats/errno/guards/nonce/badaddress/hash/protocol timeout and metadata-only authority rejection.
-- [ ] Minimal fixed child calls and independent pre/post parentproc verification/image mapping checks/environment/cgroup/time/output guards;focused/fullGREEN/commit. No actualSDK before Task3 gates.
+- [x] RED handwritten CPUlibrary real parent/child mapping/sizes/stats/errno/guards/nonce/badaddress/hash/protocol timeout and metadata-only authority rejection.
+- [x] Minimal fixed child calls and independent pre/post parentproc verification/image mapping checks/environment/cgroup/time/output guards;focused/fullGREEN/commit. No actualSDK before Task3 gates.
 
 ### Task3: Hosted one-use run, independent acceptance and full closeout
 Create scripts/run_panda_sdk_mapping_canary.py;scripts/accept_panda_sdk_mapping_canary.py;tests/test_panda_sdk_mapping_flow.py;docs/STAGE7_PANDA_SDK_MAPPING_{RESULT,LEDGER,CONTINUATION}.md;docs/evidence/panda-sdk-mapping-01/.
