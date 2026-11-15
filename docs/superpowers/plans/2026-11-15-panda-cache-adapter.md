@@ -24,9 +24,9 @@ Preserve3329basefiles/299pins/10originals/main/Drafts102–110/8nativehistories.
 **Create:** native/panda_cache_adapter.h;native/panda_cache_adapter.cxx;tests/fixtures/panda_cache_adapter_fixture.cxx;tests/test_panda_cache_adapter.py.
 **Interfaces:** exact pca APIs in spec consume immutable psd_event/psd_counts and rc public state APIs; produce command-derived snapshots/stats/combined finish result. No-op signatures exactly match cache commands; C cache compiled separately.
 
-- [ ] RED tests for missing adapter, bootstrap/live equivalence and no repeated originals, copied buffer/FBO deletion and context isolation, all context creation forms/failure/current switching/pending-destroy/reuse, counter/shape/thread/reentry/cap/attach/identity/finish failures, unchanged/overwritten errno and original-only7arg/register read tail.
-- [ ] Implement minimal adapter and CPU fixture; run focused tests including malformed spans with ASan/UBSan. Expected: PASS, originals/errno preserved, unhealthy metadata rejected, no native authority.
-- [ ] Record results/rulings, commit tested implementation.
+- [x] RED tests for missing adapter, bootstrap/live equivalence and no repeated originals, copied buffer/FBO deletion and context isolation, all context creation forms/failure/current switching/pending-destroy/reuse, counter/shape/thread/reentry/cap/attach/identity/finish failures, unchanged/overwritten errno and original-only7arg/register read tail.
+- [x] Implement minimal adapter and CPU fixture; run focused tests including malformed spans with ASan/UBSan. Expected: PASS, originals/errno preserved, unhealthy metadata rejected, no native authority.
+- [x] Record results/rulings, commit tested implementation.
 
 ### Task2: Bounded CPU evidence harness and closeout
 
