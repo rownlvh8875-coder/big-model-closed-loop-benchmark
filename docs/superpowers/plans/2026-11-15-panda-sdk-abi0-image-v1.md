@@ -26,8 +26,8 @@ Interfaces prerequisite(root),source_paths/closure/request_template/validate_req
 ### Task2: Versioned producer, consumer and installed-root audit
 Create scripts/produce_panda_sdk_abi0_image.py;scripts/accept_panda_sdk_abi0_image.py;tests/test_panda_sdk_abi0_image_flow.py.
 Interfaces run_production exactActionsgate,DockerData boundary,accept_image(source,activation,run,out),audit_installed_root(image,check,manifest,out).
-- [ ] RED exact context/forbiddenDocker/env/oldreceipt/nativepromotion/producerjob-before-download/diskfree/existingoutput/rootproviderhash mismatch and full CPU memory-opener reaches download without evidence collisions.
-- [ ] Minimal versioned modules; actual installedSDK DATA audit with prior21profile,0strong/3weak/105conservative diagnostic/fullclosurefalse;focused/fulltests/commit. No actual production until reviewed sourceCI.
+- [x] RED exact context/forbiddenDocker/env/oldreceipt/nativepromotion/producerjob-before-download/diskfree/existingoutput/rootproviderhash mismatch and full CPU memory-opener reaches download without evidence collisions.
+- [x] Minimal versioned modules; actual installedSDK DATA audit with prior21profile,0strong/3weak/105conservative diagnostic/fullclosurefalse;focused/fulltests/commit. No actual production until reviewed sourceCI.
 
 ### Task3: One review, actual production and complete acceptance
 Create docs/STAGE7_PANDA_SDK_ABI0_IMAGE_{RESULT,LEDGER,CONTINUATION}.md;docs/evidence/panda-sdk-abi0-image-01/.
