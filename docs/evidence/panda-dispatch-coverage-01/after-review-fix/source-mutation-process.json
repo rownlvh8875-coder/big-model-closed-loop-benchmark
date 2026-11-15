@@ -1,0 +1,21 @@
+{
+  "name": "source-mutation",
+  "argv": [
+    "/workspace/.cloud-tools/stage7/first-divergence-cpu-replay/bin/python",
+    "-B",
+    "-m",
+    "scripts.panda_dispatch_coverage",
+    "--image",
+    "/workspace/big-model-closed-loop-benchmark/output/stage7-readback-return-core/source-audit/libpandagl.so",
+    "--source-dir",
+    "/tmp/pc-mutation-iaxct7gv/source",
+    "--out",
+    "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-dispatch-coverage-01/after-review-fix/source-mutation"
+  ],
+  "exit_code": 2,
+  "stdout": "",
+  "stderr": "dispatch coverage rejected: pinned source identity: glxGraphicsStateGuardian.cxx\n",
+  "audit_completed": false,
+  "native_admitted": false,
+  "runtime_admission_ready": false
+}

@@ -36,14 +36,28 @@ or qualified by this audit. Camera/native lifetimes, runtime ABI, driver state,
 GPU write freshness, new image/environment/transport and fresh ON/OFF contract
 remain separate gates. Existing environment guard still rejects ambient preload.
 
-Pre-review verification:21focusedPASS0.393s;1436fulltests/1429PASS/7skip92.646s;
+Final verification:26focusedPASS0.573s;1441fulltests/1434PASS/7skip95.257s;
 12actual CPUCLI scenarios pass/reject as expected, preserving existing output on
 reuse and rejecting image/source/delivery/symlink/allowlist mutations. CPUfixture
-is compiled but never loaded/executed. Compile/link0.037094127s excludes tests,
+is compiled but never loaded/executed. Compile/link0.032046540s excludes tests,
 review,CI,development and native instrumentation overhead. Evidence retains the
 independent comparison's initial OBJECT-variable prefix error and its raw inputs;
 the production parser did not change. Rawregex335versuslexical334 is explained by
 an upstream block-commented glDepthRangedNV lookup, not a lost active lexical call.
+
+The sole fresh whole-branch review at1c3077021f4fe05764a2a78ae14f681ca7158ab7 found
+0Critical/4Important/0Minor. One TDDfixpass addressed invalid symbol extents/table
+aliasing (loader SysV/GNU hash counts, nullsymbol, nonoverlap, index bounds),
+LF/CRLF phase-two splice loss (before comments/tokens, physical lines preserved),
+server/client attribute restore/reset names admitted as safe (now prohibited),
+and FIFO inputs blocking before validation (regular-file/nonblocking guards).
+GNU/SysV/both CPUhash profiles match independent symbol counts; strings/chars do
+not alter parenthesis nesting. The reader is a structural undefined-function-
+import profile, not a complete loader or R_X86_64_64/full-call-path inspector.
+Reviewed pre-fix raw evidence remains under before-review-final/ and its GitHEAD.
+All8reviewer-declined behaviors have executor rulings; no rereview/minor polishing.
+Final immutable-source Draft/CI/head receipts are in the PR body and retained
+output/stage7-panda-dispatch-coverage-01/final-verification.json after commit.
 
 All3083basefiles/299oldpins/10originals/main/Drafts102–108/eightnativehistories are
 preserved. No Cloud/registry publication, main/sharedbase push/merge, consumed

@@ -12,6 +12,11 @@ installation planning gate; CLI with bounded canonical inputs/new output only.
 Panda ELF is only read as data. New CPU inspection.so has unresolved GL-shaped
 names and must NEVER be loaded or called. No native admission is produced.
 
+Final1441tests/1434PASS/7skip95.257s;26focusedPASS0.573s;12CLIcases. One fresh
+review0C/4I/0M; all4Important fixed with RED→GREEN tests in onepass, no rereview.
+Hash-bound symbol extents, physical-line splicing, unsafe restores and FIFO handling
+are covered; the fixed gate still grants no native authority.
+
 Reproduce CPU unit checks:
 
 ```sh

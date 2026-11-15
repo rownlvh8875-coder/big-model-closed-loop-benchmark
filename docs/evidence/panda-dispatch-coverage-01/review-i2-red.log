@@ -1,0 +1,78 @@
+FFFFE
+======================================================================
+ERROR: test_lf_crlf_and_comment_splices_preserve_physical_call_locations (tests.test_panda_dispatch_coverage.DispatchCoverageTests.test_lf_crlf_and_comment_splices_preserve_physical_call_locations) (source=b'get_extension_func("glDele\\\r\nteBuffers");')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_dispatch_coverage.py", line 91, in test_lf_crlf_and_comment_splices_preserve_physical_call_locations
+    result=coverage.scan_source(source,'cpu.cxx')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/scripts/panda_dispatch_coverage.py", line 157, in scan_source
+    tokens = _tokens(data)
+             ^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/scripts/panda_dispatch_coverage.py", line 75, in _tokens
+    _need(text[i] != '\n', 'newline in ordinary source literal')
+  File "/workspace/big-model-closed-loop-benchmark/scripts/panda_dispatch_coverage.py", line 38, in _need
+    raise ValueError(message)
+ValueError: newline in ordinary source literal
+
+======================================================================
+FAIL: test_lf_crlf_and_comment_splices_preserve_physical_call_locations (tests.test_panda_dispatch_coverage.DispatchCoverageTests.test_lf_crlf_and_comment_splices_preserve_physical_call_locations) (source=b'get_\\\nextension_func("glDeleteBuffers");')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_dispatch_coverage.py", line 92, in test_lf_crlf_and_comment_splices_preserve_physical_call_locations
+    self.assertEqual([(r['name'],r['line']) for r in result[field]],want)
+AssertionError: Lists differ: [] != [('glDeleteBuffers', 1)]
+
+Second list contains 1 additional elements.
+First extra element 0:
+('glDeleteBuffers', 1)
+
+- []
++ [('glDeleteBuffers', 1)]
+
+======================================================================
+FAIL: test_lf_crlf_and_comment_splices_preserve_physical_call_locations (tests.test_panda_dispatch_coverage.DispatchCoverageTests.test_lf_crlf_and_comment_splices_preserve_physical_call_locations) (source=b'glDeleteBuffers\\\r\n(1,buffers);')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_dispatch_coverage.py", line 92, in test_lf_crlf_and_comment_splices_preserve_physical_call_locations
+    self.assertEqual([(r['name'],r['line']) for r in result[field]],want)
+AssertionError: Lists differ: [] != [('glDeleteBuffers', 1)]
+
+Second list contains 1 additional elements.
+First extra element 0:
+('glDeleteBuffers', 1)
+
+- []
++ [('glDeleteBuffers', 1)]
+
+======================================================================
+FAIL: test_lf_crlf_and_comment_splices_preserve_physical_call_locations (tests.test_panda_dispatch_coverage.DispatchCoverageTests.test_lf_crlf_and_comment_splices_preserve_physical_call_locations) (source=b'//comment\\\n glReadPixels();\nglReadBuffer(0);')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_dispatch_coverage.py", line 92, in test_lf_crlf_and_comment_splices_preserve_physical_call_locations
+    self.assertEqual([(r['name'],r['line']) for r in result[field]],want)
+AssertionError: Lists differ: [('glReadPixels', 2), ('glReadBuffer', 3)] != [('glReadBuffer', 3)]
+
+First differing element 0:
+('glReadPixels', 2)
+('glReadBuffer', 3)
+
+First list contains 1 additional elements.
+First extra element 1:
+('glReadBuffer', 3)
+
+- [('glReadPixels', 2), ('glReadBuffer', 3)]
++ [('glReadBuffer', 3)]
+
+======================================================================
+FAIL: test_lf_crlf_and_comment_splices_preserve_physical_call_locations (tests.test_panda_dispatch_coverage.DispatchCoverageTests.test_lf_crlf_and_comment_splices_preserve_physical_call_locations) (source=b'/\\\n* glReadPixels(); */\nget_extension_func("glBindBuffer");')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_dispatch_coverage.py", line 93, in test_lf_crlf_and_comment_splices_preserve_physical_call_locations
+    self.assertEqual(sum(len(result[k]) for k in ('literal_lookups','computed_lookups','direct_calls','member_calls')),len(want))
+AssertionError: 2 != 1
+
+----------------------------------------------------------------------
+Ran 1 test in 0.056s
+
+FAILED (failures=4, errors=1)

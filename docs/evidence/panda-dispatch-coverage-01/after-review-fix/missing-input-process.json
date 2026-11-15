@@ -1,0 +1,21 @@
+{
+  "name": "missing-input",
+  "argv": [
+    "/workspace/.cloud-tools/stage7/first-divergence-cpu-replay/bin/python",
+    "-B",
+    "-m",
+    "scripts.panda_dispatch_coverage",
+    "--image",
+    "/tmp/pc-mutation-iaxct7gv/missing.so",
+    "--source-dir",
+    "/workspace/big-model-closed-loop-benchmark/docs/evidence/panda-dispatch-coverage-01/source",
+    "--out",
+    "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-dispatch-coverage-01/after-review-fix/missing-input"
+  ],
+  "exit_code": 2,
+  "stdout": "",
+  "stderr": "dispatch coverage rejected: [Errno 2] No such file or directory: '/tmp/pc-mutation-iaxct7gv/missing.so'\n",
+  "audit_completed": false,
+  "native_admitted": false,
+  "runtime_admission_ready": false
+}

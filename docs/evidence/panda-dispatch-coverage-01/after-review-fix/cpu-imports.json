@@ -1,0 +1,78 @@
+{
+  "schema": "readback-loader-imports-v1",
+  "elf_sha256": "7b4363e66079d1fb530f8fc7f6a2626de57a09baabf6d8cc891894f560dce966",
+  "imports": [
+    {
+      "name": "_ITM_deregisterTMCloneTable",
+      "symbol_index": 1,
+      "symbol_type": 0,
+      "binding": 2,
+      "slot_vaddr": 16344,
+      "relocation_type": 6
+    },
+    {
+      "name": "_ITM_registerTMCloneTable",
+      "symbol_index": 7,
+      "symbol_type": 0,
+      "binding": 2,
+      "slot_vaddr": 16368,
+      "relocation_type": 6
+    },
+    {
+      "name": "__cxa_finalize",
+      "symbol_index": 8,
+      "symbol_type": 2,
+      "binding": 2,
+      "slot_vaddr": 16376,
+      "relocation_type": 6
+    },
+    {
+      "name": "__gmon_start__",
+      "symbol_index": 4,
+      "symbol_type": 0,
+      "binding": 2,
+      "slot_vaddr": 16360,
+      "relocation_type": 6
+    },
+    {
+      "name": "glPixelStorei",
+      "symbol_index": 3,
+      "symbol_type": 0,
+      "binding": 1,
+      "slot_vaddr": 16352,
+      "relocation_type": 6
+    },
+    {
+      "name": "glReadPixels",
+      "symbol_index": 5,
+      "symbol_type": 0,
+      "binding": 1,
+      "slot_vaddr": 16328,
+      "relocation_type": 7
+    },
+    {
+      "name": "glXCreateContext",
+      "symbol_index": 6,
+      "symbol_type": 0,
+      "binding": 1,
+      "slot_vaddr": 16336,
+      "relocation_type": 7
+    },
+    {
+      "name": "puts",
+      "symbol_index": 2,
+      "symbol_type": 2,
+      "binding": 1,
+      "slot_vaddr": 16320,
+      "relocation_type": 7
+    }
+  ],
+  "needed_libraries": [
+    "libc.so.6"
+  ],
+  "loader_relocations": 19,
+  "section_headers_used": false,
+  "dynamic_symbol_count": 12,
+  "runtime_admission_ready": false,
+  "native_admitted": false
+}

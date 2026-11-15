@@ -1,0 +1,44 @@
+FFFF
+======================================================================
+FAIL: test_server_attribute_restore_and_client_default_require_state_adapters (tests.test_panda_dispatch_coverage.DispatchCoverageTests.test_server_attribute_restore_and_client_default_require_state_adapters) (name='glPushAttrib')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_dispatch_coverage.py", line 124, in test_server_attribute_restore_and_client_default_require_state_adapters
+    with self.subTest(name=name),self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_server_attribute_restore_and_client_default_require_state_adapters (tests.test_panda_dispatch_coverage.DispatchCoverageTests.test_server_attribute_restore_and_client_default_require_state_adapters) (name='glPopAttrib')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_dispatch_coverage.py", line 124, in test_server_attribute_restore_and_client_default_require_state_adapters
+    with self.subTest(name=name),self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_server_attribute_restore_and_client_default_require_state_adapters (tests.test_panda_dispatch_coverage.DispatchCoverageTests.test_server_attribute_restore_and_client_default_require_state_adapters) (name='glClientAttribDefaultEXT')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_dispatch_coverage.py", line 124, in test_server_attribute_restore_and_client_default_require_state_adapters
+    with self.subTest(name=name),self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_server_attribute_restore_and_client_default_require_state_adapters (tests.test_panda_dispatch_coverage.DispatchCoverageTests.test_server_attribute_restore_and_client_default_require_state_adapters)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_dispatch_coverage.py", line 128, in test_server_attribute_restore_and_client_default_require_state_adapters
+    self.assertEqual(result['missing_required_routes'],['glClientAttribDefaultEXT','glPopAttrib','glPushAttrib'])
+AssertionError: Lists differ: [] != ['glClientAttribDefaultEXT', 'glPopAttrib', 'glPushAttrib']
+
+Second list contains 3 additional elements.
+First extra element 0:
+'glClientAttribDefaultEXT'
+
+- []
++ ['glClientAttribDefaultEXT', 'glPopAttrib', 'glPushAttrib']
+
+----------------------------------------------------------------------
+Ran 1 test in 0.042s
+
+FAILED (failures=4)
