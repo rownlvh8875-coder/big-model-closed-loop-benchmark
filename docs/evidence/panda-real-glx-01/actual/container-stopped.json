@@ -1,0 +1,265 @@
+{
+  "Id": "ab7d95c55d6885ff0509d2b2363a3dcdd4e04d7f11c4f818f7ddcbb582a31f1a",
+  "Created": "2026-11-15T13:46:11.703584111Z",
+  "Path": "/opt/venv/bin/python",
+  "Args": [
+    "-I",
+    "-S",
+    "-B",
+    "/work/repo/scripts/panda_real_glx_runtime.py",
+    "--binding-sha",
+    "dd88fec40bba6cdaedbf904c13060d013ca62ec608fb6efef7ebee38d78d9bf4"
+  ],
+  "State": {
+    "Status": "exited",
+    "Running": false,
+    "Paused": false,
+    "Restarting": false,
+    "OOMKilled": false,
+    "Dead": false,
+    "Pid": 0,
+    "ExitCode": 2,
+    "Error": "",
+    "StartedAt": "2026-11-15T13:46:15.537646289Z",
+    "FinishedAt": "2026-11-15T13:46:19.049288713Z"
+  },
+  "Image": "sha256:b9d673de93f1857e4dfa5ed6a48330d568ef96fce7f3cc975f0c688877e6e26e",
+  "ResolvConfPath": "/var/lib/docker/containers/ab7d95c55d6885ff0509d2b2363a3dcdd4e04d7f11c4f818f7ddcbb582a31f1a/resolv.conf",
+  "HostnamePath": "/var/lib/docker/containers/ab7d95c55d6885ff0509d2b2363a3dcdd4e04d7f11c4f818f7ddcbb582a31f1a/hostname",
+  "HostsPath": "/var/lib/docker/containers/ab7d95c55d6885ff0509d2b2363a3dcdd4e04d7f11c4f818f7ddcbb582a31f1a/hosts",
+  "LogPath": "/var/lib/docker/containers/ab7d95c55d6885ff0509d2b2363a3dcdd4e04d7f11c4f818f7ddcbb582a31f1a/ab7d95c55d6885ff0509d2b2363a3dcdd4e04d7f11c4f818f7ddcbb582a31f1a-json.log",
+  "Name": "/panda-real-glx-6f7e636467d54ad5af9b9e67239f4d8f",
+  "RestartCount": 0,
+  "Driver": "overlay2",
+  "Platform": "linux",
+  "MountLabel": "",
+  "ProcessLabel": "",
+  "AppArmorProfile": "docker-default",
+  "ExecIDs": null,
+  "HostConfig": {
+    "Binds": null,
+    "ContainerIDFile": "",
+    "LogConfig": {
+      "Type": "json-file",
+      "Config": {}
+    },
+    "NetworkMode": "none",
+    "PortBindings": {},
+    "RestartPolicy": {
+      "Name": "no",
+      "MaximumRetryCount": 0
+    },
+    "AutoRemove": false,
+    "VolumeDriver": "",
+    "VolumesFrom": null,
+    "ConsoleSize": [
+      0,
+      0
+    ],
+    "CapAdd": null,
+    "CapDrop": [
+      "ALL"
+    ],
+    "CgroupnsMode": "private",
+    "Dns": [],
+    "DnsOptions": [],
+    "DnsSearch": [],
+    "ExtraHosts": null,
+    "GroupAdd": null,
+    "IpcMode": "private",
+    "Cgroup": "",
+    "Links": null,
+    "OomScoreAdj": 0,
+    "PidMode": "",
+    "Privileged": false,
+    "PublishAllPorts": false,
+    "ReadonlyRootfs": true,
+    "SecurityOpt": [
+      "no-new-privileges"
+    ],
+    "Tmpfs": {
+      "/tmp": "rw,noexec,nosuid,nodev,size=67108864"
+    },
+    "UTSMode": "",
+    "UsernsMode": "",
+    "ShmSize": 67108864,
+    "Runtime": "runc",
+    "Isolation": "",
+    "CpuShares": 0,
+    "Memory": 2147483648,
+    "NanoCpus": 1000000000,
+    "CgroupParent": "",
+    "BlkioWeight": 0,
+    "BlkioWeightDevice": [],
+    "BlkioDeviceReadBps": [],
+    "BlkioDeviceWriteBps": [],
+    "BlkioDeviceReadIOps": [],
+    "BlkioDeviceWriteIOps": [],
+    "CpuPeriod": 0,
+    "CpuQuota": 0,
+    "CpuRealtimePeriod": 0,
+    "CpuRealtimeRuntime": 0,
+    "CpusetCpus": "",
+    "CpusetMems": "",
+    "Devices": [],
+    "DeviceCgroupRules": null,
+    "DeviceRequests": null,
+    "MemoryReservation": 0,
+    "MemorySwap": 2147483648,
+    "MemorySwappiness": null,
+    "OomKillDisable": null,
+    "PidsLimit": 64,
+    "Ulimits": [],
+    "CpuCount": 0,
+    "CpuPercent": 0,
+    "IOMaximumIOps": 0,
+    "IOMaximumBandwidth": 0,
+    "Mounts": [
+      {
+        "Type": "bind",
+        "Source": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark",
+        "Target": "/work/repo",
+        "ReadOnly": true
+      },
+      {
+        "Type": "bind",
+        "Source": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-real-glx-01/producer/work/binding",
+        "Target": "/work/binding",
+        "ReadOnly": true
+      }
+    ],
+    "MaskedPaths": [
+      "/proc/asound",
+      "/proc/acpi",
+      "/proc/interrupts",
+      "/proc/kcore",
+      "/proc/keys",
+      "/proc/latency_stats",
+      "/proc/timer_list",
+      "/proc/timer_stats",
+      "/proc/sched_debug",
+      "/proc/scsi",
+      "/sys/firmware",
+      "/sys/devices/virtual/powercap"
+    ],
+    "ReadonlyPaths": [
+      "/proc/bus",
+      "/proc/fs",
+      "/proc/irq",
+      "/proc/sys",
+      "/proc/sysrq-trigger"
+    ]
+  },
+  "GraphDriver": {
+    "Data": {
+      "ID": "ab7d95c55d6885ff0509d2b2363a3dcdd4e04d7f11c4f818f7ddcbb582a31f1a",
+      "LowerDir": "/var/lib/docker/overlay2/491861df68991614e5ab50e81d7fea5654ae2eda5b7fb9c4added5e4e4fffc96-init/diff:/var/lib/docker/overlay2/53cf572a8cf668d4ff0f4689dd6d5fa6a57a2603f788ca61aa46490a6998083a/diff:/var/lib/docker/overlay2/54148f02f6820366c4455937b834d93030ad190ed1303d90f9045f7badbc752f/diff:/var/lib/docker/overlay2/af7f22f291f7219a491bb48a8082ac54b20146a009833899de2597decc18bf13/diff:/var/lib/docker/overlay2/7aa39d7aad793aa2002c4072bf29bd7663d7021ae853afd77136df976d4896a6/diff:/var/lib/docker/overlay2/a5e012e6925d070822fe11183e620e4b5ea0891637a79f59c5435352d8b45fbf/diff:/var/lib/docker/overlay2/09bf5b2c65f9b0d0f9cff43c527170e2bf42ef8b0bfb0a50fb187dcda04098a9/diff:/var/lib/docker/overlay2/fb7f24f8b129f70c6721a07b0c952221c334c20e5fcfccb4b9a9a5114ef4f4e1/diff:/var/lib/docker/overlay2/b0b57719273d81f12b28730fc3733b79603d995eba30abab12c5e07de8f0cd77/diff:/var/lib/docker/overlay2/2935b50ebf4317f6aadd62f36f715c847a9b32e77d8b3704a7bec6003655156d/diff:/var/lib/docker/overlay2/4eb3b05987e972b35716562b80cd1d230d17b38d33644d6ebd0d514df298a69c/diff:/var/lib/docker/overlay2/5ea4b0c73e1569e8ce5e07553cd7709d5d8d19739fd081d8213681e1bebe7d94/diff",
+      "MergedDir": "/var/lib/docker/overlay2/491861df68991614e5ab50e81d7fea5654ae2eda5b7fb9c4added5e4e4fffc96/merged",
+      "UpperDir": "/var/lib/docker/overlay2/491861df68991614e5ab50e81d7fea5654ae2eda5b7fb9c4added5e4e4fffc96/diff",
+      "WorkDir": "/var/lib/docker/overlay2/491861df68991614e5ab50e81d7fea5654ae2eda5b7fb9c4added5e4e4fffc96/work"
+    },
+    "Name": "overlay2"
+  },
+  "Mounts": [
+    {
+      "Type": "bind",
+      "Source": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark",
+      "Destination": "/work/repo",
+      "Mode": "",
+      "RW": false,
+      "Propagation": "rprivate"
+    },
+    {
+      "Type": "bind",
+      "Source": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-real-glx-01/producer/work/binding",
+      "Destination": "/work/binding",
+      "Mode": "",
+      "RW": false,
+      "Propagation": "rprivate"
+    }
+  ],
+  "Config": {
+    "Hostname": "ab7d95c55d68",
+    "Domainname": "",
+    "User": "65534:65534",
+    "AttachStdin": false,
+    "AttachStdout": true,
+    "AttachStderr": true,
+    "Tty": false,
+    "OpenStdin": false,
+    "StdinOnce": false,
+    "Env": [
+      "PATH=/usr/bin:/bin",
+      "LC_ALL=C",
+      "TMPDIR=/tmp",
+      "PYTHONHASHSEED=0",
+      "PYTHONDONTWRITEBYTECODE=1",
+      "LIBGL_ALWAYS_SOFTWARE=1",
+      "GALLIUM_DRIVER=softpipe",
+      "OMP_NUM_THREADS=1",
+      "MESA_SHADER_CACHE_DISABLE=true",
+      "LANG=C",
+      "DISPLAY=:99",
+      "LP_NUM_THREADS=1",
+      "PYOPENGL_PLATFORM=glx"
+    ],
+    "Cmd": [
+      "-I",
+      "-S",
+      "-B",
+      "/work/repo/scripts/panda_real_glx_runtime.py",
+      "--binding-sha",
+      "dd88fec40bba6cdaedbf904c13060d013ca62ec608fb6efef7ebee38d78d9bf4"
+    ],
+    "Image": "sha256:b9d673de93f1857e4dfa5ed6a48330d568ef96fce7f3cc975f0c688877e6e26e",
+    "Volumes": null,
+    "WorkingDir": "/work/repo",
+    "Entrypoint": [
+      "/opt/venv/bin/python"
+    ],
+    "OnBuild": null,
+    "Labels": {
+      "org.opencontainers.image.version": "24.04",
+      "stage7.real_glx": "6f7e636467d54ad5af9b9e67239f4d8f",
+      "stage7.source": "1af17fbe6bcaceb3ff7aa72ce869a0d1e3bae840"
+    }
+  },
+  "NetworkSettings": {
+    "Bridge": "",
+    "SandboxID": "",
+    "SandboxKey": "",
+    "Ports": {},
+    "HairpinMode": false,
+    "LinkLocalIPv6Address": "",
+    "LinkLocalIPv6PrefixLen": 0,
+    "SecondaryIPAddresses": null,
+    "SecondaryIPv6Addresses": null,
+    "EndpointID": "",
+    "Gateway": "",
+    "GlobalIPv6Address": "",
+    "GlobalIPv6PrefixLen": 0,
+    "IPAddress": "",
+    "IPPrefixLen": 0,
+    "IPv6Gateway": "",
+    "MacAddress": "",
+    "Networks": {
+      "none": {
+        "IPAMConfig": null,
+        "Links": null,
+        "Aliases": null,
+        "MacAddress": "",
+        "DriverOpts": null,
+        "GwPriority": 0,
+        "NetworkID": "14bfcd7e2448aa53bbb80b671af60b7f2d9071d4dff37d0a80f612135af5eca1",
+        "EndpointID": "",
+        "Gateway": "",
+        "IPAddress": "",
+        "IPPrefixLen": 0,
+        "IPv6Gateway": "",
+        "GlobalIPv6Address": "",
+        "GlobalIPv6PrefixLen": 0,
+        "DNSNames": null
+      }
+    }
+  }
+}

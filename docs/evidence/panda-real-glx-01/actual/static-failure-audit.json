@@ -1,0 +1,104 @@
+{
+  "schema": "panda-real-glx-static-failure-audit-v1",
+  "checked_at_kst": "2026-11-15T22:54:15.267118+09:00",
+  "analysis_mode": "DATA_ONLY_NO_NATIVE_LOAD_OR_REEXECUTION",
+  "evidence": {
+    "scripts/build_panda_sdk_link.py": {
+      "nbytes": 6270,
+      "sha256": "9abad88f413bb4c22509a5df0901e6eaf42245b3c6dfb1da3db671c591713c0f"
+    },
+    "scripts/panda_real_glx_child.py": {
+      "nbytes": 5162,
+      "sha256": "419edd2bad87a5bf31cb009cb7106af44c4804cb8d495a07e6c7f6de32aebce0"
+    },
+    "scripts/panda_real_glx_objects.py": {
+      "nbytes": 4508,
+      "sha256": "051a4d421a24a95738f26c95ade1708d59bec0b85d2a412d070ad584398c9473"
+    },
+    "output/stage7-panda-sdk-link-audit-01/build-abi0/sdk/include/dtool_config.h": {
+      "nbytes": 2778,
+      "sha256": "f36d0556838f4bddfe58270f4ec7faf78560e4646ae01effc15b281daa04a432"
+    },
+    "output/stage7-panda-sdk-link-audit-01/build-abi0/sdk/include/typeHandle.h": {
+      "nbytes": 5862,
+      "sha256": "47204c2d985b60eaca9fc7e11f7f680a78b267ad15bb11882dc71a94072aab91"
+    },
+    "output/stage7-panda-sdk-link-audit-01/build-abi0/sdk/include/typedObject.h": {
+      "nbytes": 4686,
+      "sha256": "57713db3f16b80856f0fada4c41257ac7b30b7fdc7692fb45760827a78ea14b7"
+    },
+    "output/stage7-panda-sdk-link-audit-01/build-abi0/sdk/include/referenceCount.h": {
+      "nbytes": 4492,
+      "sha256": "3aba0466e391946bd623bd86ae8203929cad76ef7d0582813a333eb288c764a8"
+    },
+    "output/stage7-panda-sdk-link-audit-01/build-abi0/sdk/include/typedReferenceCount.h": {
+      "nbytes": 1757,
+      "sha256": "95eaec4d59071821a5a68f4ad8d6891ac3bfbde566453a663cc3858418eb876a"
+    },
+    "output/stage7-panda-sdk-link-audit-01/build-abi0/sdk/include/graphicsPipe.h": {
+      "nbytes": 5435,
+      "sha256": "2d467e4050a2c85192060541248cf036a0552665caaffed18d5705e3bd05ec70"
+    },
+    "output/stage7-panda-sdk-link-audit-01/build-abi0/sdk/include/graphicsOutput.h": {
+      "nbytes": 15298,
+      "sha256": "ffd3f19ee85a78c12ae2ac42a050a04184dfe6d2b145c4fd34bff5007d8f6a50"
+    }
+  },
+  "observed_error": "TypeRegistry::is_derived_from assertion child_node != nullptr; invalid TypeHandle index -481685248",
+  "failure_boundary": "after READY/loaded parent checkpoint, before OBJECTS report",
+  "unresolved_substeps": [
+    "panda3d.core import",
+    "PandaSystem version query",
+    "PRC setup",
+    "GraphicsEngine construction",
+    "pandagl pipe factory",
+    "output/GSG allocation",
+    "remaining object setup and identity report"
+  ],
+  "static_build_facts": {
+    "source_revision": "470e352ab87ceae6e30429720e4690c8371f5a55",
+    "minimal_flags": [
+      "--nothing",
+      "--use-gl",
+      "--use-x11",
+      "--no-python",
+      "--no-copy-python",
+      "--optimize",
+      "3"
+    ],
+    "sdk_HavePython": false,
+    "sdk_HaveThreads": true,
+    "sdk_SimpleThreads": false,
+    "sdk_DoPipelining": true,
+    "sdk_DoPstats": true,
+    "sdk_DoMemoryUsage": true
+  },
+  "static_header_facts": [
+    "TypeHandle contains a native type index and registry-based ancestry query",
+    "TypedObject uses virtual get_type/force_init_type",
+    "GraphicsPipe derives from TypedReferenceCount and exposes virtual interfaces"
+  ],
+  "hypothesis": "A native type/object ABI or initialization integration incompatibility between the separately built SDK and installed Panda Python wheel may corrupt/misinterpret TypeHandle. This is not confirmed.",
+  "not_established": [
+    "exact aborting call",
+    "specific incompatible build flag or layout",
+    "Panda wheel configuration/layout equality",
+    "causal role of --no-python",
+    "repeatability",
+    "actual GLX/GSG driver reached",
+    "absence of all possible memory corruption causes"
+  ],
+  "excluded_misinterpretations": [
+    "Xvfb readiness succeeded and server was reaped; nonfatal xkbcomp warnings do not establish the TypeHandle cause",
+    "successful SDK load/code/slot binding and prior typed CPU dispatch do not establish Panda C++ object ABI",
+    "producer generic actual mapping-only result is an outcome guard, not a root-cause diagnosis"
+  ],
+  "next_data_only_checks": [
+    "Recover pinned Panda wheel build flags and compare config/layout-sensitive headers to SDK",
+    "Inspect TypeRegistry/type handle/virtual interface symbol and relocation relationships without loading binaries",
+    "Design per-substep boundary checkpoints before any separately qualified future attempt"
+  ],
+  "new_native_execution": false,
+  "image_or_sdk_rebuilt": false,
+  "root_cause_confirmed": false
+}

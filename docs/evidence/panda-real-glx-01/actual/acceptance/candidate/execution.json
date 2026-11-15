@@ -1,0 +1,524 @@
+{
+  "commands": [
+    {
+      "command": [
+        "/usr/bin/docker",
+        "--host=unix:///var/run/docker.sock",
+        "version",
+        "--format",
+        "{{json .Server}}"
+      ],
+      "process": {
+        "schema": "image-owned-process-capture-v1",
+        "status": "EXITED",
+        "returncode": 0,
+        "streams_complete": true,
+        "termination_attempted": false,
+        "cleanup_failed": false,
+        "argv_sha256": "7789d04adc478d58fb0df5277764b7fd76f964a187c42d3fd8e625067923c5e1",
+        "stdout_observed_bytes": 806,
+        "stdout_sha256": "996ea1ed3cdd93044cae6e5a6970ce9cc361d750e219a42e68cd9a6714c840a4",
+        "stdout_saved_bytes": 806,
+        "stdout_redacted": false,
+        "stdout_saved_truncated": false,
+        "stderr_observed_bytes": 0,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_saved_bytes": 0,
+        "stderr_redacted": false,
+        "stderr_saved_truncated": false,
+        "elapsed_seconds": 0.02108007900000075
+      },
+      "stdout": "{\"Platform\":{\"Name\":\"Docker Engine - Community\"},\"Components\":[{\"Name\":\"Engine\",\"Version\":\"28.0.4\",\"Details\":{\"ApiVersion\":\"1.48\",\"Arch\":\"amd64\",\"BuildTime\":\"Tue Mar 25 15:07:16 2025\",\"Experimental\":\"false\",\"GitCommit\":\"6430e49\",\"GoVersion\":\"go1.23.7\",\"KernelVersion\":\"7.0.0-1014-aws\",\"MinAPIVersion\":\"1.24\",\"Os\":\"linux\"}},{\"Name\":\"containerd\",\"Version\":\"v2.4.2\",\"Details\":{\"GitCommit\":\"b7a25261e029d68978bbf290df0a62fc819b3c51\"}},{\"Name\":\"runc\",\"Version\":\"1.5.2\",\"Details\":{\"GitCommit\":\"v1.5.2-0-g29dd3dc2\"}},{\"Name\":\"docker-init\",\"Version\":\"0.19.0\",\"Details\":{\"GitCommit\":\"de40ad0\"}}],\"Version\":\"28.0.4\",\"ApiVersion\":\"1.48\",\"MinAPIVersion\":\"1.24\",\"GitCommit\":\"6430e49\",\"GoVersion\":\"go1.23.7\",\"Os\":\"linux\",\"Arch\":\"amd64\",\"KernelVersion\":\"7.0.0-1014-aws\",\"BuildTime\":\"2025-03-25T15:07:16.000000000+00:00\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/usr/bin/docker",
+        "--host=unix:///var/run/docker.sock",
+        "load",
+        "--input",
+        "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-real-glx-01/producer/work/image/image.tar"
+      ],
+      "process": {
+        "schema": "image-owned-process-capture-v1",
+        "status": "EXITED",
+        "returncode": 0,
+        "streams_complete": true,
+        "termination_attempted": false,
+        "cleanup_failed": false,
+        "argv_sha256": "f15d00cc3dfd376c22e1540b2af1116195510246fb7212ca3c9fc4f825e6f62b",
+        "stdout_observed_bytes": 51,
+        "stdout_sha256": "d7fb770b7d7cfc29f4a1d4cb177d550b68be7e54d62f7af227d0350399b09691",
+        "stdout_saved_bytes": 51,
+        "stdout_redacted": false,
+        "stdout_saved_truncated": false,
+        "stderr_observed_bytes": 0,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_saved_bytes": 0,
+        "stderr_redacted": false,
+        "stderr_saved_truncated": false,
+        "elapsed_seconds": 12.761708442000014
+      },
+      "stdout": "Loaded image: stage7-panda-sdk:actions-20261115-03\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/usr/bin/docker",
+        "--host=unix:///var/run/docker.sock",
+        "image",
+        "inspect",
+        "--format",
+        "{{json .}}",
+        "sha256:b9d673de93f1857e4dfa5ed6a48330d568ef96fce7f3cc975f0c688877e6e26e"
+      ],
+      "process": {
+        "schema": "image-owned-process-capture-v1",
+        "status": "EXITED",
+        "returncode": 0,
+        "streams_complete": true,
+        "termination_attempted": false,
+        "cleanup_failed": false,
+        "argv_sha256": "866c5f7a1e739be97316eb508661c33d8e56655be886ed9181fcff4db209855f",
+        "stdout_observed_bytes": 3257,
+        "stdout_sha256": "f6865482e8340ab313f755929764d7ba4dc1b0ec030b360be26668af30c5b51d",
+        "stdout_saved_bytes": 3257,
+        "stdout_redacted": false,
+        "stdout_saved_truncated": false,
+        "stderr_observed_bytes": 0,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_saved_bytes": 0,
+        "stderr_redacted": false,
+        "stderr_saved_truncated": false,
+        "elapsed_seconds": 0.013467273000003388
+      },
+      "stdout": "{\"Id\":\"sha256:b9d673de93f1857e4dfa5ed6a48330d568ef96fce7f3cc975f0c688877e6e26e\",\"RepoTags\":[\"stage7-panda-sdk:actions-20261115-03\"],\"RepoDigests\":[],\"Parent\":\"\",\"Comment\":\"\",\"Created\":\"2026-11-15T09:43:25.983153375Z\",\"DockerVersion\":\"28.0.4\",\"Author\":\"\",\"Config\":{\"Hostname\":\"\",\"Domainname\":\"\",\"User\":\"0:0\",\"AttachStdin\":false,\"AttachStdout\":false,\"AttachStderr\":false,\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":[\"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\",\"LIBGL_ALWAYS_SOFTWARE=1\",\"PYOPENGL_PLATFORM=glx\",\"OMP_NUM_THREADS=2\"],\"Cmd\":[\"-I\",\"-S\",\"-B\",\"/usr/local/libexec/stage7/scripts/engine_clock_image_inventory.py\",\"--candidate\"],\"ArgsEscaped\":true,\"Image\":\"sha256:2b0854f1cf91e470994637f52f4e8c78c618ed00b1496a40bb05158290e01a37\",\"Volumes\":null,\"WorkingDir\":\"/\",\"Entrypoint\":[\"/opt/venv/bin/python\"],\"OnBuild\":null,\"Labels\":{\"org.opencontainers.image.version\":\"24.04\",\"stage7.source\":\"1af17fbe6bcaceb3ff7aa72ce869a0d1e3bae840\"}},\"Architecture\":\"amd64\",\"Os\":\"linux\",\"Size\":1691991291,\"GraphDriver\":{\"Data\":{\"LowerDir\":\"/var/lib/docker/overlay2/54148f02f6820366c4455937b834d93030ad190ed1303d90f9045f7badbc752f/diff:/var/lib/docker/overlay2/af7f22f291f7219a491bb48a8082ac54b20146a009833899de2597decc18bf13/diff:/var/lib/docker/overlay2/7aa39d7aad793aa2002c4072bf29bd7663d7021ae853afd77136df976d4896a6/diff:/var/lib/docker/overlay2/a5e012e6925d070822fe11183e620e4b5ea0891637a79f59c5435352d8b45fbf/diff:/var/lib/docker/overlay2/09bf5b2c65f9b0d0f9cff43c527170e2bf42ef8b0bfb0a50fb187dcda04098a9/diff:/var/lib/docker/overlay2/fb7f24f8b129f70c6721a07b0c952221c334c20e5fcfccb4b9a9a5114ef4f4e1/diff:/var/lib/docker/overlay2/b0b57719273d81f12b28730fc3733b79603d995eba30abab12c5e07de8f0cd77/diff:/var/lib/docker/overlay2/2935b50ebf4317f6aadd62f36f715c847a9b32e77d8b3704a7bec6003655156d/diff:/var/lib/docker/overlay2/4eb3b05987e972b35716562b80cd1d230d17b38d33644d6ebd0d514df298a69c/diff:/var/lib/docker/overlay2/5ea4b0c73e1569e8ce5e07553cd7709d5d8d19739fd081d8213681e1bebe7d94/diff\",\"MergedDir\":\"/var/lib/docker/overlay2/53cf572a8cf668d4ff0f4689dd6d5fa6a57a2603f788ca61aa46490a6998083a/merged\",\"UpperDir\":\"/var/lib/docker/overlay2/53cf572a8cf668d4ff0f4689dd6d5fa6a57a2603f788ca61aa46490a6998083a/diff\",\"WorkDir\":\"/var/lib/docker/overlay2/53cf572a8cf668d4ff0f4689dd6d5fa6a57a2603f788ca61aa46490a6998083a/work\"},\"Name\":\"overlay2\"},\"RootFS\":{\"Type\":\"layers\",\"Layers\":[\"sha256:21210938f5a37a9887b2d0a20428917b923a636ca6efe038c3c7d9cd9f1f9b61\",\"sha256:2be112340d71ee43c6819c0259e050c865f12bf7c9837bb4cb8839f196db779c\",\"sha256:f2fca4086c8612de50eccd05fee84655db8d071fd6b0651200f2be6d1ccfc90a\",\"sha256:239e68b48ac29be0254dfad4b0ee14138d26ff2ea91852b7a6ca147e22ea7f61\",\"sha256:ed744a455c23963a1766deeb20a89020917f0d1f33a1d663fdc97f99279e12c6\",\"sha256:a556f0ec831a9814191d64ab66cf3cec89bed47bda59444a61a7c0fe3f45a0ea\",\"sha256:8f86aac91e848162bd1f7b46663b3f2141c522c54e4fcb415dca6f9aeb972f27\",\"sha256:0511464e26b9263af5856802ed4e5479c63560dc2d30d0d535d5c8f6b465a769\",\"sha256:d6799d868d199cfd5482d62aa735e74d9ece7a30489d03b1505a72fa5f123602\",\"sha256:f150c0ec8770d5d98573cd167c2e705822e18eae979adb2a81dc04ee31f48efe\",\"sha256:25c4d798c9d2baa748a21815f63c3fe1b2db95da8d2f39f8c274ac326db92b91\"]},\"Metadata\":{\"LastTagTime\":\"0001-01-01T00:00:00Z\"}}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/usr/bin/docker",
+        "--host=unix:///var/run/docker.sock",
+        "create",
+        "--network=none",
+        "--ipc=private",
+        "--read-only",
+        "--cap-drop=ALL",
+        "--security-opt=no-new-privileges",
+        "--user",
+        "65534:65534",
+        "--memory",
+        "2147483648",
+        "--memory-swap",
+        "2147483648",
+        "--pids-limit",
+        "64",
+        "--cpus",
+        "1",
+        "--tmpfs",
+        "/tmp:rw,noexec,nosuid,nodev,size=67108864",
+        "--entrypoint",
+        "/opt/venv/bin/python",
+        "--name",
+        "panda-real-glx-6f7e636467d54ad5af9b9e67239f4d8f",
+        "--label",
+        "stage7.real_glx=6f7e636467d54ad5af9b9e67239f4d8f",
+        "--mount",
+        "type=bind,src=/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark,dst=/work/repo,readonly",
+        "--mount",
+        "type=bind,src=/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-real-glx-01/producer/work/binding,dst=/work/binding,readonly",
+        "--workdir",
+        "/work/repo",
+        "--env",
+        "PATH=/usr/bin:/bin",
+        "--env",
+        "LANG=C",
+        "--env",
+        "LC_ALL=C",
+        "--env",
+        "TMPDIR=/tmp",
+        "--env",
+        "PYTHONHASHSEED=0",
+        "--env",
+        "PYTHONDONTWRITEBYTECODE=1",
+        "--env",
+        "DISPLAY=:99",
+        "--env",
+        "LIBGL_ALWAYS_SOFTWARE=1",
+        "--env",
+        "GALLIUM_DRIVER=softpipe",
+        "--env",
+        "LP_NUM_THREADS=1",
+        "--env",
+        "OMP_NUM_THREADS=1",
+        "--env",
+        "MESA_SHADER_CACHE_DISABLE=true",
+        "sha256:b9d673de93f1857e4dfa5ed6a48330d568ef96fce7f3cc975f0c688877e6e26e",
+        "-I",
+        "-S",
+        "-B",
+        "/work/repo/scripts/panda_real_glx_runtime.py",
+        "--binding-sha",
+        "dd88fec40bba6cdaedbf904c13060d013ca62ec608fb6efef7ebee38d78d9bf4"
+      ],
+      "process": {
+        "schema": "image-owned-process-capture-v1",
+        "status": "EXITED",
+        "returncode": 0,
+        "streams_complete": true,
+        "termination_attempted": false,
+        "cleanup_failed": false,
+        "argv_sha256": "d290ae9d31f71ea32a419a5e61a61b540215acd8032c3de83b6ed844b323b75e",
+        "stdout_observed_bytes": 65,
+        "stdout_sha256": "fb34d03b66be7cee45ad3f44f6e8e47f967b35766d5bbf9dabc79032ae19a8c9",
+        "stdout_saved_bytes": 65,
+        "stdout_redacted": false,
+        "stdout_saved_truncated": false,
+        "stderr_observed_bytes": 0,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_saved_bytes": 0,
+        "stderr_redacted": false,
+        "stderr_saved_truncated": false,
+        "elapsed_seconds": 3.678137848999995
+      },
+      "stdout": "ab7d95c55d6885ff0509d2b2363a3dcdd4e04d7f11c4f818f7ddcbb582a31f1a\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/usr/bin/docker",
+        "--host=unix:///var/run/docker.sock",
+        "container",
+        "inspect",
+        "--format",
+        "{{json .}}",
+        "ab7d95c55d6885ff0509d2b2363a3dcdd4e04d7f11c4f818f7ddcbb582a31f1a"
+      ],
+      "process": {
+        "schema": "image-owned-process-capture-v1",
+        "status": "EXITED",
+        "returncode": 0,
+        "streams_complete": true,
+        "termination_attempted": false,
+        "cleanup_failed": false,
+        "argv_sha256": "6a3eba0512c4abee6a2d33970bcc5ce865f635dd20d79f3e1090ea61cdf2373f",
+        "stdout_observed_bytes": 6394,
+        "stdout_sha256": "bc44f38e13472101320b2c908f89690d7d9cefd0314cbc4eaad5be899ca29b57",
+        "stdout_saved_bytes": 6394,
+        "stdout_redacted": false,
+        "stdout_saved_truncated": false,
+        "stderr_observed_bytes": 0,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_saved_bytes": 0,
+        "stderr_redacted": false,
+        "stderr_saved_truncated": false,
+        "elapsed_seconds": 0.013787992999994003
+      },
+      "stdout": "{\"Id\":\"ab7d95c55d6885ff0509d2b2363a3dcdd4e04d7f11c4f818f7ddcbb582a31f1a\",\"Created\":\"2026-11-15T13:46:11.703584111Z\",\"Path\":\"/opt/venv/bin/python\",\"Args\":[\"-I\",\"-S\",\"-B\",\"/work/repo/scripts/panda_real_glx_runtime.py\",\"--binding-sha\",\"dd88fec40bba6cdaedbf904c13060d013ca62ec608fb6efef7ebee38d78d9bf4\"],\"State\":{\"Status\":\"created\",\"Running\":false,\"Paused\":false,\"Restarting\":false,\"OOMKilled\":false,\"Dead\":false,\"Pid\":0,\"ExitCode\":0,\"Error\":\"\",\"StartedAt\":\"0001-01-01T00:00:00Z\",\"FinishedAt\":\"0001-01-01T00:00:00Z\"},\"Image\":\"sha256:b9d673de93f1857e4dfa5ed6a48330d568ef96fce7f3cc975f0c688877e6e26e\",\"ResolvConfPath\":\"\",\"HostnamePath\":\"\",\"HostsPath\":\"\",\"LogPath\":\"\",\"Name\":\"/panda-real-glx-6f7e636467d54ad5af9b9e67239f4d8f\",\"RestartCount\":0,\"Driver\":\"overlay2\",\"Platform\":\"linux\",\"MountLabel\":\"\",\"ProcessLabel\":\"\",\"AppArmorProfile\":\"\",\"ExecIDs\":null,\"HostConfig\":{\"Binds\":null,\"ContainerIDFile\":\"\",\"LogConfig\":{\"Type\":\"json-file\",\"Config\":{}},\"NetworkMode\":\"none\",\"PortBindings\":{},\"RestartPolicy\":{\"Name\":\"no\",\"MaximumRetryCount\":0},\"AutoRemove\":false,\"VolumeDriver\":\"\",\"VolumesFrom\":null,\"ConsoleSize\":[0,0],\"CapAdd\":null,\"CapDrop\":[\"ALL\"],\"CgroupnsMode\":\"private\",\"Dns\":[],\"DnsOptions\":[],\"DnsSearch\":[],\"ExtraHosts\":null,\"GroupAdd\":null,\"IpcMode\":\"private\",\"Cgroup\":\"\",\"Links\":null,\"OomScoreAdj\":0,\"PidMode\":\"\",\"Privileged\":false,\"PublishAllPorts\":false,\"ReadonlyRootfs\":true,\"SecurityOpt\":[\"no-new-privileges\"],\"Tmpfs\":{\"/tmp\":\"rw,noexec,nosuid,nodev,size=67108864\"},\"UTSMode\":\"\",\"UsernsMode\":\"\",\"ShmSize\":67108864,\"Runtime\":\"runc\",\"Isolation\":\"\",\"CpuShares\":0,\"Memory\":2147483648,\"NanoCpus\":1000000000,\"CgroupParent\":\"\",\"BlkioWeight\":0,\"BlkioWeightDevice\":[],\"BlkioDeviceReadBps\":[],\"BlkioDeviceWriteBps\":[],\"BlkioDeviceReadIOps\":[],\"BlkioDeviceWriteIOps\":[],\"CpuPeriod\":0,\"CpuQuota\":0,\"CpuRealtimePeriod\":0,\"CpuRealtimeRuntime\":0,\"CpusetCpus\":\"\",\"CpusetMems\":\"\",\"Devices\":[],\"DeviceCgroupRules\":null,\"DeviceRequests\":null,\"MemoryReservation\":0,\"MemorySwap\":2147483648,\"MemorySwappiness\":null,\"OomKillDisable\":false,\"PidsLimit\":64,\"Ulimits\":[],\"CpuCount\":0,\"CpuPercent\":0,\"IOMaximumIOps\":0,\"IOMaximumBandwidth\":0,\"Mounts\":[{\"Type\":\"bind\",\"Source\":\"/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark\",\"Target\":\"/work/repo\",\"ReadOnly\":true},{\"Type\":\"bind\",\"Source\":\"/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-real-glx-01/producer/work/binding\",\"Target\":\"/work/binding\",\"ReadOnly\":true}],\"MaskedPaths\":[\"/proc/asound\",\"/proc/acpi\",\"/proc/interrupts\",\"/proc/kcore\",\"/proc/keys\",\"/proc/latency_stats\",\"/proc/timer_list\",\"/proc/timer_stats\",\"/proc/sched_debug\",\"/proc/scsi\",\"/sys/firmware\",\"/sys/devices/virtual/powercap\"],\"ReadonlyPaths\":[\"/proc/bus\",\"/proc/fs\",\"/proc/irq\",\"/proc/sys\",\"/proc/sysrq-trigger\"]},\"GraphDriver\":{\"Data\":{\"ID\":\"ab7d95c55d6885ff0509d2b2363a3dcdd4e04d7f11c4f818f7ddcbb582a31f1a\",\"LowerDir\":\"/var/lib/docker/overlay2/491861df68991614e5ab50e81d7fea5654ae2eda5b7fb9c4added5e4e4fffc96-init/diff:/var/lib/docker/overlay2/53cf572a8cf668d4ff0f4689dd6d5fa6a57a2603f788ca61aa46490a6998083a/diff:/var/lib/docker/overlay2/54148f02f6820366c4455937b834d93030ad190ed1303d90f9045f7badbc752f/diff:/var/lib/docker/overlay2/af7f22f291f7219a491bb48a8082ac54b20146a009833899de2597decc18bf13/diff:/var/lib/docker/overlay2/7aa39d7aad793aa2002c4072bf29bd7663d7021ae853afd77136df976d4896a6/diff:/var/lib/docker/overlay2/a5e012e6925d070822fe11183e620e4b5ea0891637a79f59c5435352d8b45fbf/diff:/var/lib/docker/overlay2/09bf5b2c65f9b0d0f9cff43c527170e2bf42ef8b0bfb0a50fb187dcda04098a9/diff:/var/lib/docker/overlay2/fb7f24f8b129f70c6721a07b0c952221c334c20e5fcfccb4b9a9a5114ef4f4e1/diff:/var/lib/docker/overlay2/b0b57719273d81f12b28730fc3733b79603d995eba30abab12c5e07de8f0cd77/diff:/var/lib/docker/overlay2/2935b50ebf4317f6aadd62f36f715c847a9b32e77d8b3704a7bec6003655156d/diff:/var/lib/docker/overlay2/4eb3b05987e972b35716562b80cd1d230d17b38d33644d6ebd0d514df298a69c/diff:/var/lib/docker/overlay2/5ea4b0c73e1569e8ce5e07553cd7709d5d8d19739fd081d8213681e1bebe7d94/diff\",\"MergedDir\":\"/var/lib/docker/overlay2/491861df68991614e5ab50e81d7fea5654ae2eda5b7fb9c4added5e4e4fffc96/merged\",\"UpperDir\":\"/var/lib/docker/overlay2/491861df68991614e5ab50e81d7fea5654ae2eda5b7fb9c4added5e4e4fffc96/diff\",\"WorkDir\":\"/var/lib/docker/overlay2/491861df68991614e5ab50e81d7fea5654ae2eda5b7fb9c4added5e4e4fffc96/work\"},\"Name\":\"overlay2\"},\"Mounts\":[{\"Type\":\"bind\",\"Source\":\"/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark\",\"Destination\":\"/work/repo\",\"Mode\":\"\",\"RW\":false,\"Propagation\":\"rprivate\"},{\"Type\":\"bind\",\"Source\":\"/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-real-glx-01/producer/work/binding\",\"Destination\":\"/work/binding\",\"Mode\":\"\",\"RW\":false,\"Propagation\":\"rprivate\"}],\"Config\":{\"Hostname\":\"ab7d95c55d68\",\"Domainname\":\"\",\"User\":\"65534:65534\",\"AttachStdin\":false,\"AttachStdout\":true,\"AttachStderr\":true,\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":[\"PATH=/usr/bin:/bin\",\"LC_ALL=C\",\"TMPDIR=/tmp\",\"PYTHONHASHSEED=0\",\"PYTHONDONTWRITEBYTECODE=1\",\"LIBGL_ALWAYS_SOFTWARE=1\",\"GALLIUM_DRIVER=softpipe\",\"OMP_NUM_THREADS=1\",\"MESA_SHADER_CACHE_DISABLE=true\",\"LANG=C\",\"DISPLAY=:99\",\"LP_NUM_THREADS=1\",\"PYOPENGL_PLATFORM=glx\"],\"Cmd\":[\"-I\",\"-S\",\"-B\",\"/work/repo/scripts/panda_real_glx_runtime.py\",\"--binding-sha\",\"dd88fec40bba6cdaedbf904c13060d013ca62ec608fb6efef7ebee38d78d9bf4\"],\"Image\":\"sha256:b9d673de93f1857e4dfa5ed6a48330d568ef96fce7f3cc975f0c688877e6e26e\",\"Volumes\":null,\"WorkingDir\":\"/work/repo\",\"Entrypoint\":[\"/opt/venv/bin/python\"],\"OnBuild\":null,\"Labels\":{\"org.opencontainers.image.version\":\"24.04\",\"stage7.real_glx\":\"6f7e636467d54ad5af9b9e67239f4d8f\",\"stage7.source\":\"1af17fbe6bcaceb3ff7aa72ce869a0d1e3bae840\"}},\"NetworkSettings\":{\"Bridge\":\"\",\"SandboxID\":\"\",\"SandboxKey\":\"\",\"Ports\":{},\"HairpinMode\":false,\"LinkLocalIPv6Address\":\"\",\"LinkLocalIPv6PrefixLen\":0,\"SecondaryIPAddresses\":null,\"SecondaryIPv6Addresses\":null,\"EndpointID\":\"\",\"Gateway\":\"\",\"GlobalIPv6Address\":\"\",\"GlobalIPv6PrefixLen\":0,\"IPAddress\":\"\",\"IPPrefixLen\":0,\"IPv6Gateway\":\"\",\"MacAddress\":\"\",\"Networks\":{\"none\":{\"IPAMConfig\":null,\"Links\":null,\"Aliases\":null,\"MacAddress\":\"\",\"DriverOpts\":null,\"GwPriority\":0,\"NetworkID\":\"\",\"EndpointID\":\"\",\"Gateway\":\"\",\"IPAddress\":\"\",\"IPPrefixLen\":0,\"IPv6Gateway\":\"\",\"GlobalIPv6Address\":\"\",\"GlobalIPv6PrefixLen\":0,\"DNSNames\":null}}}}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/usr/bin/docker",
+        "--host=unix:///var/run/docker.sock",
+        "start",
+        "--attach",
+        "ab7d95c55d6885ff0509d2b2363a3dcdd4e04d7f11c4f818f7ddcbb582a31f1a"
+      ],
+      "process": {
+        "schema": "image-owned-process-capture-v1",
+        "status": "EXITED",
+        "returncode": 2,
+        "streams_complete": true,
+        "termination_attempted": false,
+        "cleanup_failed": false,
+        "argv_sha256": "e7a938ef033de2f0264e9914aa231a6d18972a18a6b607550abcbb8de8b8ac1a",
+        "stdout_observed_bytes": 303729,
+        "stdout_sha256": "71cba5c2554558a20ef219c9b608219ab0027733bfdfdd1b182a2983b5a6ae07",
+        "stdout_saved_bytes": 303729,
+        "stdout_redacted": false,
+        "stdout_saved_truncated": false,
+        "stderr_observed_bytes": 0,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_saved_bytes": 0,
+        "stderr_redacted": false,
+        "stderr_saved_truncated": false,
+        "elapsed_seconds": 3.5551261940000245
+      },
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/usr/bin/docker",
+        "--host=unix:///var/run/docker.sock",
+        "container",
+        "inspect",
+        "--format",
+        "{{json .}}",
+        "ab7d95c55d6885ff0509d2b2363a3dcdd4e04d7f11c4f818f7ddcbb582a31f1a"
+      ],
+      "process": {
+        "schema": "image-owned-process-capture-v1",
+        "status": "EXITED",
+        "returncode": 0,
+        "streams_complete": true,
+        "termination_attempted": false,
+        "cleanup_failed": false,
+        "argv_sha256": "6a3eba0512c4abee6a2d33970bcc5ce865f635dd20d79f3e1090ea61cdf2373f",
+        "stdout_observed_bytes": 6955,
+        "stdout_sha256": "fd933e77efde23288c57053c6571101b5d5b8de0c443a7f6edf295915e56b5b3",
+        "stdout_saved_bytes": 6955,
+        "stdout_redacted": false,
+        "stdout_saved_truncated": false,
+        "stderr_observed_bytes": 0,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_saved_bytes": 0,
+        "stderr_redacted": false,
+        "stderr_saved_truncated": false,
+        "elapsed_seconds": 0.013560411000014483
+      },
+      "stdout": "{\"Id\":\"ab7d95c55d6885ff0509d2b2363a3dcdd4e04d7f11c4f818f7ddcbb582a31f1a\",\"Created\":\"2026-11-15T13:46:11.703584111Z\",\"Path\":\"/opt/venv/bin/python\",\"Args\":[\"-I\",\"-S\",\"-B\",\"/work/repo/scripts/panda_real_glx_runtime.py\",\"--binding-sha\",\"dd88fec40bba6cdaedbf904c13060d013ca62ec608fb6efef7ebee38d78d9bf4\"],\"State\":{\"Status\":\"exited\",\"Running\":false,\"Paused\":false,\"Restarting\":false,\"OOMKilled\":false,\"Dead\":false,\"Pid\":0,\"ExitCode\":2,\"Error\":\"\",\"StartedAt\":\"2026-11-15T13:46:15.537646289Z\",\"FinishedAt\":\"2026-11-15T13:46:19.049288713Z\"},\"Image\":\"sha256:b9d673de93f1857e4dfa5ed6a48330d568ef96fce7f3cc975f0c688877e6e26e\",\"ResolvConfPath\":\"/var/lib/docker/containers/ab7d95c55d6885ff0509d2b2363a3dcdd4e04d7f11c4f818f7ddcbb582a31f1a/resolv.conf\",\"HostnamePath\":\"/var/lib/docker/containers/ab7d95c55d6885ff0509d2b2363a3dcdd4e04d7f11c4f818f7ddcbb582a31f1a/hostname\",\"HostsPath\":\"/var/lib/docker/containers/ab7d95c55d6885ff0509d2b2363a3dcdd4e04d7f11c4f818f7ddcbb582a31f1a/hosts\",\"LogPath\":\"/var/lib/docker/containers/ab7d95c55d6885ff0509d2b2363a3dcdd4e04d7f11c4f818f7ddcbb582a31f1a/ab7d95c55d6885ff0509d2b2363a3dcdd4e04d7f11c4f818f7ddcbb582a31f1a-json.log\",\"Name\":\"/panda-real-glx-6f7e636467d54ad5af9b9e67239f4d8f\",\"RestartCount\":0,\"Driver\":\"overlay2\",\"Platform\":\"linux\",\"MountLabel\":\"\",\"ProcessLabel\":\"\",\"AppArmorProfile\":\"docker-default\",\"ExecIDs\":null,\"HostConfig\":{\"Binds\":null,\"ContainerIDFile\":\"\",\"LogConfig\":{\"Type\":\"json-file\",\"Config\":{}},\"NetworkMode\":\"none\",\"PortBindings\":{},\"RestartPolicy\":{\"Name\":\"no\",\"MaximumRetryCount\":0},\"AutoRemove\":false,\"VolumeDriver\":\"\",\"VolumesFrom\":null,\"ConsoleSize\":[0,0],\"CapAdd\":null,\"CapDrop\":[\"ALL\"],\"CgroupnsMode\":\"private\",\"Dns\":[],\"DnsOptions\":[],\"DnsSearch\":[],\"ExtraHosts\":null,\"GroupAdd\":null,\"IpcMode\":\"private\",\"Cgroup\":\"\",\"Links\":null,\"OomScoreAdj\":0,\"PidMode\":\"\",\"Privileged\":false,\"PublishAllPorts\":false,\"ReadonlyRootfs\":true,\"SecurityOpt\":[\"no-new-privileges\"],\"Tmpfs\":{\"/tmp\":\"rw,noexec,nosuid,nodev,size=67108864\"},\"UTSMode\":\"\",\"UsernsMode\":\"\",\"ShmSize\":67108864,\"Runtime\":\"runc\",\"Isolation\":\"\",\"CpuShares\":0,\"Memory\":2147483648,\"NanoCpus\":1000000000,\"CgroupParent\":\"\",\"BlkioWeight\":0,\"BlkioWeightDevice\":[],\"BlkioDeviceReadBps\":[],\"BlkioDeviceWriteBps\":[],\"BlkioDeviceReadIOps\":[],\"BlkioDeviceWriteIOps\":[],\"CpuPeriod\":0,\"CpuQuota\":0,\"CpuRealtimePeriod\":0,\"CpuRealtimeRuntime\":0,\"CpusetCpus\":\"\",\"CpusetMems\":\"\",\"Devices\":[],\"DeviceCgroupRules\":null,\"DeviceRequests\":null,\"MemoryReservation\":0,\"MemorySwap\":2147483648,\"MemorySwappiness\":null,\"OomKillDisable\":null,\"PidsLimit\":64,\"Ulimits\":[],\"CpuCount\":0,\"CpuPercent\":0,\"IOMaximumIOps\":0,\"IOMaximumBandwidth\":0,\"Mounts\":[{\"Type\":\"bind\",\"Source\":\"/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark\",\"Target\":\"/work/repo\",\"ReadOnly\":true},{\"Type\":\"bind\",\"Source\":\"/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-real-glx-01/producer/work/binding\",\"Target\":\"/work/binding\",\"ReadOnly\":true}],\"MaskedPaths\":[\"/proc/asound\",\"/proc/acpi\",\"/proc/interrupts\",\"/proc/kcore\",\"/proc/keys\",\"/proc/latency_stats\",\"/proc/timer_list\",\"/proc/timer_stats\",\"/proc/sched_debug\",\"/proc/scsi\",\"/sys/firmware\",\"/sys/devices/virtual/powercap\"],\"ReadonlyPaths\":[\"/proc/bus\",\"/proc/fs\",\"/proc/irq\",\"/proc/sys\",\"/proc/sysrq-trigger\"]},\"GraphDriver\":{\"Data\":{\"ID\":\"ab7d95c55d6885ff0509d2b2363a3dcdd4e04d7f11c4f818f7ddcbb582a31f1a\",\"LowerDir\":\"/var/lib/docker/overlay2/491861df68991614e5ab50e81d7fea5654ae2eda5b7fb9c4added5e4e4fffc96-init/diff:/var/lib/docker/overlay2/53cf572a8cf668d4ff0f4689dd6d5fa6a57a2603f788ca61aa46490a6998083a/diff:/var/lib/docker/overlay2/54148f02f6820366c4455937b834d93030ad190ed1303d90f9045f7badbc752f/diff:/var/lib/docker/overlay2/af7f22f291f7219a491bb48a8082ac54b20146a009833899de2597decc18bf13/diff:/var/lib/docker/overlay2/7aa39d7aad793aa2002c4072bf29bd7663d7021ae853afd77136df976d4896a6/diff:/var/lib/docker/overlay2/a5e012e6925d070822fe11183e620e4b5ea0891637a79f59c5435352d8b45fbf/diff:/var/lib/docker/overlay2/09bf5b2c65f9b0d0f9cff43c527170e2bf42ef8b0bfb0a50fb187dcda04098a9/diff:/var/lib/docker/overlay2/fb7f24f8b129f70c6721a07b0c952221c334c20e5fcfccb4b9a9a5114ef4f4e1/diff:/var/lib/docker/overlay2/b0b57719273d81f12b28730fc3733b79603d995eba30abab12c5e07de8f0cd77/diff:/var/lib/docker/overlay2/2935b50ebf4317f6aadd62f36f715c847a9b32e77d8b3704a7bec6003655156d/diff:/var/lib/docker/overlay2/4eb3b05987e972b35716562b80cd1d230d17b38d33644d6ebd0d514df298a69c/diff:/var/lib/docker/overlay2/5ea4b0c73e1569e8ce5e07553cd7709d5d8d19739fd081d8213681e1bebe7d94/diff\",\"MergedDir\":\"/var/lib/docker/overlay2/491861df68991614e5ab50e81d7fea5654ae2eda5b7fb9c4added5e4e4fffc96/merged\",\"UpperDir\":\"/var/lib/docker/overlay2/491861df68991614e5ab50e81d7fea5654ae2eda5b7fb9c4added5e4e4fffc96/diff\",\"WorkDir\":\"/var/lib/docker/overlay2/491861df68991614e5ab50e81d7fea5654ae2eda5b7fb9c4added5e4e4fffc96/work\"},\"Name\":\"overlay2\"},\"Mounts\":[{\"Type\":\"bind\",\"Source\":\"/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark\",\"Destination\":\"/work/repo\",\"Mode\":\"\",\"RW\":false,\"Propagation\":\"rprivate\"},{\"Type\":\"bind\",\"Source\":\"/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-real-glx-01/producer/work/binding\",\"Destination\":\"/work/binding\",\"Mode\":\"\",\"RW\":false,\"Propagation\":\"rprivate\"}],\"Config\":{\"Hostname\":\"ab7d95c55d68\",\"Domainname\":\"\",\"User\":\"65534:65534\",\"AttachStdin\":false,\"AttachStdout\":true,\"AttachStderr\":true,\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":[\"PATH=/usr/bin:/bin\",\"LC_ALL=C\",\"TMPDIR=/tmp\",\"PYTHONHASHSEED=0\",\"PYTHONDONTWRITEBYTECODE=1\",\"LIBGL_ALWAYS_SOFTWARE=1\",\"GALLIUM_DRIVER=softpipe\",\"OMP_NUM_THREADS=1\",\"MESA_SHADER_CACHE_DISABLE=true\",\"LANG=C\",\"DISPLAY=:99\",\"LP_NUM_THREADS=1\",\"PYOPENGL_PLATFORM=glx\"],\"Cmd\":[\"-I\",\"-S\",\"-B\",\"/work/repo/scripts/panda_real_glx_runtime.py\",\"--binding-sha\",\"dd88fec40bba6cdaedbf904c13060d013ca62ec608fb6efef7ebee38d78d9bf4\"],\"Image\":\"sha256:b9d673de93f1857e4dfa5ed6a48330d568ef96fce7f3cc975f0c688877e6e26e\",\"Volumes\":null,\"WorkingDir\":\"/work/repo\",\"Entrypoint\":[\"/opt/venv/bin/python\"],\"OnBuild\":null,\"Labels\":{\"org.opencontainers.image.version\":\"24.04\",\"stage7.real_glx\":\"6f7e636467d54ad5af9b9e67239f4d8f\",\"stage7.source\":\"1af17fbe6bcaceb3ff7aa72ce869a0d1e3bae840\"}},\"NetworkSettings\":{\"Bridge\":\"\",\"SandboxID\":\"\",\"SandboxKey\":\"\",\"Ports\":{},\"HairpinMode\":false,\"LinkLocalIPv6Address\":\"\",\"LinkLocalIPv6PrefixLen\":0,\"SecondaryIPAddresses\":null,\"SecondaryIPv6Addresses\":null,\"EndpointID\":\"\",\"Gateway\":\"\",\"GlobalIPv6Address\":\"\",\"GlobalIPv6PrefixLen\":0,\"IPAddress\":\"\",\"IPPrefixLen\":0,\"IPv6Gateway\":\"\",\"MacAddress\":\"\",\"Networks\":{\"none\":{\"IPAMConfig\":null,\"Links\":null,\"Aliases\":null,\"MacAddress\":\"\",\"DriverOpts\":null,\"GwPriority\":0,\"NetworkID\":\"14bfcd7e2448aa53bbb80b671af60b7f2d9071d4dff37d0a80f612135af5eca1\",\"EndpointID\":\"\",\"Gateway\":\"\",\"IPAddress\":\"\",\"IPPrefixLen\":0,\"IPv6Gateway\":\"\",\"GlobalIPv6Address\":\"\",\"GlobalIPv6PrefixLen\":0,\"DNSNames\":null}}}}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/usr/bin/docker",
+        "--host=unix:///var/run/docker.sock",
+        "rm",
+        "ab7d95c55d6885ff0509d2b2363a3dcdd4e04d7f11c4f818f7ddcbb582a31f1a"
+      ],
+      "process": {
+        "schema": "image-owned-process-capture-v1",
+        "status": "EXITED",
+        "returncode": 0,
+        "streams_complete": true,
+        "termination_attempted": false,
+        "cleanup_failed": false,
+        "argv_sha256": "216c0ae86250ad32ef59b4a39ac050661ca552f4da2909a0acdbe58b8e9af420",
+        "stdout_observed_bytes": 65,
+        "stdout_sha256": "fb34d03b66be7cee45ad3f44f6e8e47f967b35766d5bbf9dabc79032ae19a8c9",
+        "stdout_saved_bytes": 65,
+        "stdout_redacted": false,
+        "stdout_saved_truncated": false,
+        "stderr_observed_bytes": 0,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_saved_bytes": 0,
+        "stderr_redacted": false,
+        "stderr_saved_truncated": false,
+        "elapsed_seconds": 0.014113903000009032
+      },
+      "stdout": "ab7d95c55d6885ff0509d2b2363a3dcdd4e04d7f11c4f818f7ddcbb582a31f1a\n",
+      "stderr": ""
+    }
+  ],
+  "tools_before": {
+    "/usr/bin/docker": {
+      "nbytes": 43134496,
+      "sha256": "6435ff9214bf8e0931078fb0980809728cac0a54a526d4f28a26d3e48132b58d"
+    },
+    "/usr/bin/python3.12": {
+      "nbytes": 8020928,
+      "sha256": "e50d468e8b0adfb05733f5b87b3cff34829c4a8c1aea50c865aa8bdfe4bb150f"
+    }
+  },
+  "tools_after": {
+    "/usr/bin/docker": {
+      "nbytes": 43134496,
+      "sha256": "6435ff9214bf8e0931078fb0980809728cac0a54a526d4f28a26d3e48132b58d"
+    },
+    "/usr/bin/python3.12": {
+      "nbytes": 8020928,
+      "sha256": "e50d468e8b0adfb05733f5b87b3cff34829c4a8c1aea50c865aa8bdfe4bb150f"
+    }
+  },
+  "tools_after_verified": true,
+  "http_events": [
+    {
+      "source_url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/commits/23c39148ec13c87a18ea6c6822dab64c2e8cae9d",
+      "http_status": 200,
+      "nbytes": 39496,
+      "sha256": "9c73511db4d479f47aad2a9eabbac25b2403359f2d853dbebf1d895f813ec293",
+      "redirects": [],
+      "seconds": 0.28776546500000677,
+      "raw_body_preserved": true,
+      "tls_default_context_verified": true
+    },
+    {
+      "source_url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/compare/a7a0e99d857a46941ba901b9dcc84bf4c1a25042...23c39148ec13c87a18ea6c6822dab64c2e8cae9d",
+      "http_status": 200,
+      "nbytes": 47854,
+      "sha256": "731f50bf3cd167e67b8fc8e7938171b24da09a10817c3ce4b5105d29920a57ad",
+      "redirects": [],
+      "seconds": 0.4002130859999937,
+      "raw_body_preserved": true,
+      "tls_default_context_verified": true
+    },
+    {
+      "source_url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/git/trees/6c9bd37349ebb4a0d7d6029001dfe4801b55d407",
+      "http_status": 200,
+      "nbytes": 3112,
+      "sha256": "ea2a6a0e6a9186d9a6ac5e69a253fd9a98ee62624b38b3114d3bd841d6cf9dae",
+      "redirects": [],
+      "seconds": 0.2101159720000112,
+      "raw_body_preserved": true,
+      "tls_default_context_verified": true
+    },
+    {
+      "source_url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/git/trees/df48c5b911be7506eed3411d0d405284f7d70656",
+      "http_status": 200,
+      "nbytes": 41146,
+      "sha256": "a93c6b637eab67432021b123d44353380a539edda9fa47210ed7673173c8e6fb",
+      "redirects": [],
+      "seconds": 0.22967247699999405,
+      "raw_body_preserved": true,
+      "tls_default_context_verified": true
+    },
+    {
+      "source_url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/git/trees/3f9832cb81a138729fd89b0209488c95b0cbc5bd",
+      "http_status": 200,
+      "nbytes": 7011,
+      "sha256": "6521ca421800bfac439e21426d00e1ba0c7a0145f3b6878cf5dd7b1cd151e89b",
+      "redirects": [],
+      "seconds": 0.20755686300000775,
+      "raw_body_preserved": true,
+      "tls_default_context_verified": true
+    },
+    {
+      "source_url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43720177463",
+      "http_status": 200,
+      "nbytes": 15790,
+      "sha256": "7a453bc217bf22a61b334e3cf947c5c5550397135653e22f86ca8143d26c86ff",
+      "redirects": [],
+      "seconds": 0.24270679900000403,
+      "raw_body_preserved": true,
+      "tls_default_context_verified": true
+    },
+    {
+      "source_url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43720177463/jobs",
+      "http_status": 200,
+      "nbytes": 5088,
+      "sha256": "77341cc81635b7b71fc841fb6ef70d8ab9abb79ff42a5c3419bfb4e95e89d56f",
+      "redirects": [],
+      "seconds": 0.3105756319999955,
+      "raw_body_preserved": true,
+      "tls_default_context_verified": true
+    },
+    {
+      "source_url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43720177463/artifacts",
+      "http_status": 200,
+      "nbytes": 32,
+      "sha256": "244563f989470892c537c9a4622920af0d228ee4528f7d00c64a06d6cd95856c",
+      "redirects": [],
+      "seconds": 0.20644665499999348,
+      "raw_body_preserved": true,
+      "tls_default_context_verified": true
+    },
+    {
+      "source_url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43720288504",
+      "http_status": 200,
+      "nbytes": 15789,
+      "sha256": "24ddc2ce207d7908c91a533d6b5520641bac40e5eec2791a445a331f54cec927",
+      "redirects": [],
+      "seconds": 0.24207843399999263,
+      "raw_body_preserved": true,
+      "tls_default_context_verified": true
+    },
+    {
+      "source_url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43720288504/jobs",
+      "http_status": 200,
+      "nbytes": 5088,
+      "sha256": "33eb1e98d888cabed17b355bcfc62123cd166ffb26507360f377cd6b4384ddf6",
+      "redirects": [],
+      "seconds": 0.29738528400000064,
+      "raw_body_preserved": true,
+      "tls_default_context_verified": true
+    },
+    {
+      "source_url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43720288504/artifacts",
+      "http_status": 200,
+      "nbytes": 32,
+      "sha256": "244563f989470892c537c9a4622920af0d228ee4528f7d00c64a06d6cd95856c",
+      "redirects": [],
+      "seconds": 0.20733170500000142,
+      "raw_body_preserved": true,
+      "tls_default_context_verified": true
+    },
+    {
+      "source_url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43720609023",
+      "http_status": 200,
+      "nbytes": 15134,
+      "sha256": "4c84c02d091c0aafb93db1884636b8cb58078ce4309f063228850c9e7f5c604a",
+      "redirects": [],
+      "seconds": 0.21807417600000178,
+      "raw_body_preserved": true,
+      "tls_default_context_verified": true
+    },
+    {
+      "source_url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/workflows/419174902",
+      "http_status": 200,
+      "nbytes": 652,
+      "sha256": "10c35c5955134f71105d62d9960ee28d807db7e36bd63b3eb770cb945ccf2aae",
+      "redirects": [],
+      "seconds": 0.1577644880000122,
+      "raw_body_preserved": true,
+      "tls_default_context_verified": true
+    },
+    {
+      "source_url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/workflows/419174902/runs",
+      "http_status": 200,
+      "nbytes": 15170,
+      "sha256": "34983abcf5d72a984cfcde9ef439e603f1eb08b38b245a97dc1063f87a25303f",
+      "redirects": [],
+      "seconds": 0.2737413260000068,
+      "raw_body_preserved": true,
+      "tls_default_context_verified": true
+    },
+    {
+      "source_url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43700449423",
+      "http_status": 200,
+      "nbytes": 15148,
+      "sha256": "6789c44548d90cfa14a6d804977776d5c947bb06f6ccfff9d6c900a2322039c2",
+      "redirects": [],
+      "seconds": 0.2518408480000005,
+      "raw_body_preserved": true,
+      "tls_default_context_verified": true
+    },
+    {
+      "source_url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43700449423/jobs",
+      "http_status": 200,
+      "nbytes": 2541,
+      "sha256": "3cc4396d2a9227c1ab867f06052336434e2932714120a2b6a88f6a675affa191",
+      "redirects": [],
+      "seconds": 0.3490608970000011,
+      "raw_body_preserved": true,
+      "tls_default_context_verified": true
+    },
+    {
+      "source_url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43700449423/artifacts",
+      "http_status": 200,
+      "nbytes": 1615,
+      "sha256": "bd616493b9b9660c2c59c2098c92c468953bffdd41c9079b6e6cf0cfdce23f4b",
+      "redirects": [],
+      "seconds": 0.17177192999999136,
+      "raw_body_preserved": true,
+      "tls_default_context_verified": true
+    },
+    {
+      "source_url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/artifacts/14156262448/zip",
+      "http_status": 200,
+      "nbytes": 1738137175,
+      "sha256": "47711425a5a48fb2ef0cab140da6e394516f9cbb7f04b294c5f6583d7efbc687",
+      "redirects": [
+        {
+          "http_status": 302,
+          "from_host": "api.github.com",
+          "to_host": "productionresultssa10.blob.core.windows.net",
+          "authorization_forwarded": false
+        }
+      ],
+      "seconds": 15.598897513999987,
+      "raw_body_preserved": true,
+      "tls_default_context_verified": true
+    }
+  ]
+}
