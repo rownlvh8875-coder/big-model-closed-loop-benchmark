@@ -1,0 +1,23 @@
+test_measured_head_version_field_matches_actual_config (tests.test_panda_sdk_image_docker28.Docker28VersionMetadataTests.test_measured_head_version_field_matches_actual_config) ... FAIL
+test_mismatched_missing_foreign_version_or_other_extra_reject (tests.test_panda_sdk_image_docker28.Docker28VersionMetadataTests.test_mismatched_missing_foreign_version_or_other_extra_reject) ... FAIL
+
+======================================================================
+FAIL: test_measured_head_version_field_matches_actual_config (tests.test_panda_sdk_image_docker28.Docker28VersionMetadataTests.test_measured_head_version_field_matches_actual_config)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_image_docker28.py", line 15, in test_measured_head_version_field_matches_actual_config
+    self.assertIsNotNone(a,'versioned Docker28 metadata parser missing')
+AssertionError: unexpectedly None : versioned Docker28 metadata parser missing
+
+======================================================================
+FAIL: test_mismatched_missing_foreign_version_or_other_extra_reject (tests.test_panda_sdk_image_docker28.Docker28VersionMetadataTests.test_mismatched_missing_foreign_version_or_other_extra_reject)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_image_docker28.py", line 19, in test_mismatched_missing_foreign_version_or_other_extra_reject
+    self.assertIsNotNone(a)
+AssertionError: unexpectedly None
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.001s
+
+FAILED (failures=2)

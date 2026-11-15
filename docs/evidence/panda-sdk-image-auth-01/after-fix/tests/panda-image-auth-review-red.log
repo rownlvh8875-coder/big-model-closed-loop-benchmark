@@ -1,0 +1,108 @@
+test_bad_metadata_and_unsupported_decoder_reject_before_zip_parse (tests.test_panda_sdk_image_acceptance.ReviewRegressionTests.test_bad_metadata_and_unsupported_decoder_reject_before_zip_parse) ... 
+  test_bad_metadata_and_unsupported_decoder_reject_before_zip_parse (tests.test_panda_sdk_image_acceptance.ReviewRegressionTests.test_bad_metadata_and_unsupported_decoder_reject_before_zip_parse) (case='extra') ... FAIL
+  test_bad_metadata_and_unsupported_decoder_reject_before_zip_parse (tests.test_panda_sdk_image_acceptance.ReviewRegressionTests.test_bad_metadata_and_unsupported_decoder_reject_before_zip_parse) (case='comment') ... FAIL
+  test_bad_metadata_and_unsupported_decoder_reject_before_zip_parse (tests.test_panda_sdk_image_acceptance.ReviewRegressionTests.test_bad_metadata_and_unsupported_decoder_reject_before_zip_parse) (case='bzip2') ... FAIL
+test_extraction_absolute_deadline_interrupts_parser (tests.test_panda_sdk_image_acceptance.ReviewRegressionTests.test_extraction_absolute_deadline_interrupts_parser) ... ERROR
+test_full_offline_consumer_reaches_download_with_distinct_evidence (tests.test_panda_sdk_image_acceptance.ReviewRegressionTests.test_full_offline_consumer_reaches_download_with_distinct_evidence) ... ERROR
+test_many_zip_entries_reject_before_stdlib_directory_allocation (tests.test_panda_sdk_image_acceptance.ReviewRegressionTests.test_many_zip_entries_reject_before_stdlib_directory_allocation) ... FAIL
+test_valid_zip64_and_crc_rejection (tests.test_panda_sdk_image_acceptance.ReviewRegressionTests.test_valid_zip64_and_crc_rejection) ... ok
+test_extra_credentials_are_excluded_but_proxy_and_config_survive (tests.test_panda_sdk_image_producer.ProducerBoundaryTests.test_extra_credentials_are_excluded_but_proxy_and_config_survive) ... ERROR
+
+======================================================================
+ERROR: test_extraction_absolute_deadline_interrupts_parser (tests.test_panda_sdk_image_acceptance.ReviewRegressionTests.test_extraction_absolute_deadline_interrupts_parser)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_image_acceptance.py", line 100, in test_extraction_absolute_deadline_interrupts_parser
+    with patch.object(zipfile.ZipFile,'_RealGetContents',side_effect=lambda _:time.sleep(1)),self.assertRaises(ValueError):c.extract_carrier(z,root/'late',deadline=time.monotonic()+.05)
+                                                                                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: extract_carrier() got an unexpected keyword argument 'deadline'
+
+======================================================================
+ERROR: test_full_offline_consumer_reaches_download_with_distinct_evidence (tests.test_panda_sdk_image_acceptance.ReviewRegressionTests.test_full_offline_consumer_reaches_download_with_distinct_evidence)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_image_acceptance.py", line 65, in test_full_offline_consumer_reaches_download_with_distinct_evidence
+    with self.assertRaises(DownloadGate):c.accept_image('a'*40,'b'*40,201,out)
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/scripts/accept_panda_sdk_image.py", line 26, in accept_image
+    commit=client.get_json('commits/'+activation_sha,'request-commit.json');entry=producer.tree_request_mode(client,commit);blob=client.get_json('git/blobs/'+entry['sha'],'request-blob.json');a.need(blob['encoding']=='base64' and a.positive(blob['size'],4*1024**2),'request blob');raw=base64.b64decode(blob['content'],validate=False);a.need(len(raw)==blob['size'],'request bytes');r=a.parse(raw);a.need(r.get('source_sha')==source_sha,'caller reviewed source binding');ctx=dict(repository=a.REPO,head_sha=activation_sha,run_id=run_id,attempt=1,event='push',actor=a.OWNER);run=producer.authenticate_context(client,r,ctx,raw,completed=True);listing=client.get_json('actions/runs/'+str(run_id)+'/artifacts','output-artifacts.json');artifacts=a.validate_artifacts(run,listing);meta=artifacts[a.ARTIFACT];client.download('https://api.github.com/repos/'+a.REPO+'/actions/artifacts/'+str(meta['id'])+'/zip',out/'image.zip',nbytes=meta['size_in_bytes'],sha256=meta['digest'][7:],kind='artifact');carrier=extract_carrier(out/'image.zip',out/'candidate');bundle=out/'candidate';expected=a.expected_inventory(a.ROOT);manifest_raw=read_input(bundle/'installed-files.json',16*1024**2);a.need(a.parse(manifest_raw)==expected,'expected installed inventory');receipt_raw=read_input(bundle/'preparation.json',4*1024**2);receipt=a.parse(receipt_raw);result['receipt_semantics']=validate_receipt(receipt,source_sha,activation_sha,run_id,a.sha(raw),a.sha(manifest_raw));check=archive.inspect_save_archive(bundle/'image.tar',expected_tag=a.TAG,deadline=producer.inspection_deadline(stop));auth=a.authority(a.ROOT);a.need(check['rootfs_diff_ids'][:-1]==auth['rootfs_diff_ids'] and len(check['rootfs_diff_ids'])==11,'base plus SDK layer');a.need(all(check[k]==receipt['archive'][k] for k in ('image_tar_sha256','image_tar_nbytes','config_digest','rootfs_diff_ids')),'producer/archive bytes');layer=image._copy_layer(bundle/'image.tar',check,a.SDK_SHA,a.SDK_SIZE,producer.inspection_deadline(stop));a.need(layer==receipt['copy_layer'],'SDK payload proof');a.need(receipt['container_before']==receipt['container_after']==dict(Status='created',Running=False,Pid=0),'producer stopped snapshots')
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/scripts/produce_panda_sdk_image.py", line 52, in authenticate_context
+    a.validate_request(r,a.ROOT);head=ctx['head_sha'];commit=client.get_json('commits/'+head,'activation-commit.json');delta=client.get_json('compare/'+r['source_sha']+'...'+head,'activation-compare.json');entry=tree_request_mode(client,commit)
+                                                                                                                                                                                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/scripts/produce_panda_sdk_image.py", line 42, in tree_request_mode
+    row=client.get_json('git/trees/'+tree,'activation-tree-'+str(index)+'.json');hits=[x for x in row['tree'] if x['path']==name];a.need(len(hits)==1,'activation tree path');entry=hits[0]
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/scripts/engine_clock_image_transport.py", line 121, in get_json
+    return self._json_url('https://api.github.com/repos/'+self.repository+'/'+endpoint,name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/scripts/engine_clock_image_transport.py", line 54, in wrapped
+    except Exception:raise ValueError('IMAGE_TRANSPORT_REJECTED') from None
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: IMAGE_TRANSPORT_REJECTED
+
+======================================================================
+ERROR: test_extra_credentials_are_excluded_but_proxy_and_config_survive (tests.test_panda_sdk_image_producer.ProducerBoundaryTests.test_extra_credentials_are_excluded_but_proxy_and_config_survive)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_image_producer.py", line 30, in test_extra_credentials_are_excluded_but_proxy_and_config_survive
+    self.assertEqual(d.call(['version']).strip(),'CPU only')
+                     ^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/scripts/produce_panda_sdk_image.py", line 35, in call
+    a.need(r['returncode']==0,'Docker command failed; outputs preserved');return stdout
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/scripts/panda_sdk_image_auth.py", line 18, in need
+    if not ok:raise ValueError(message)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Docker command failed; outputs preserved
+
+======================================================================
+FAIL: test_bad_metadata_and_unsupported_decoder_reject_before_zip_parse (tests.test_panda_sdk_image_acceptance.ReviewRegressionTests.test_bad_metadata_and_unsupported_decoder_reject_before_zip_parse) (case='extra')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_image_acceptance.py", line 91, in test_bad_metadata_and_unsupported_decoder_reject_before_zip_parse
+    self.assertEqual(calls,[])
+AssertionError: Lists differ: [True] != []
+
+First list contains 1 additional elements.
+First extra element 0:
+True
+
+- [True]
++ []
+
+======================================================================
+FAIL: test_bad_metadata_and_unsupported_decoder_reject_before_zip_parse (tests.test_panda_sdk_image_acceptance.ReviewRegressionTests.test_bad_metadata_and_unsupported_decoder_reject_before_zip_parse) (case='comment')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_image_acceptance.py", line 90, in test_bad_metadata_and_unsupported_decoder_reject_before_zip_parse
+    with patch.object(zipfile.ZipFile,'_RealGetContents',counted),self.assertRaises(ValueError):c.extract_carrier(z,root/'out')
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_bad_metadata_and_unsupported_decoder_reject_before_zip_parse (tests.test_panda_sdk_image_acceptance.ReviewRegressionTests.test_bad_metadata_and_unsupported_decoder_reject_before_zip_parse) (case='bzip2')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_image_acceptance.py", line 90, in test_bad_metadata_and_unsupported_decoder_reject_before_zip_parse
+    with patch.object(zipfile.ZipFile,'_RealGetContents',counted),self.assertRaises(ValueError):c.extract_carrier(z,root/'out')
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_many_zip_entries_reject_before_stdlib_directory_allocation (tests.test_panda_sdk_image_acceptance.ReviewRegressionTests.test_many_zip_entries_reject_before_stdlib_directory_allocation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_image_acceptance.py", line 76, in test_many_zip_entries_reject_before_stdlib_directory_allocation
+    self.assertEqual(calls,[])
+AssertionError: Lists differ: [True] != []
+
+First list contains 1 additional elements.
+First extra element 0:
+True
+
+- [True]
++ []
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.367s
+
+FAILED (failures=4, errors=3)

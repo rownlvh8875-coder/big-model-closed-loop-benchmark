@@ -1,0 +1,97 @@
+{
+  "total_count": 1,
+  "jobs": [
+    {
+      "id": 132746585038,
+      "run_id": 43692735327,
+      "workflow_name": "One-use SDK image COPY-only production v2",
+      "head_branch": "prepare/panda-sdk-image-20261115-02",
+      "run_url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43692735327",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOVklq188AAAAe6FAjzg",
+      "head_sha": "e6a0e704ddb4e2eb1e69867025faad71128834d2",
+      "url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/jobs/132746585038",
+      "html_url": "https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43692735327/job/132746585038",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-11-15T08:03:46Z",
+      "started_at": "2026-11-15T08:03:48Z",
+      "completed_at": "2026-11-15T08:06:42Z",
+      "name": "produce",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-15T08:03:48Z",
+          "completed_at": "2026-11-15T08:03:49Z"
+        },
+        {
+          "name": "Reject repeated attempts",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-15T08:03:49Z",
+          "completed_at": "2026-11-15T08:03:49Z"
+        },
+        {
+          "name": "Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-15T08:03:49Z",
+          "completed_at": "2026-11-15T08:03:53Z"
+        },
+        {
+          "name": "Source-bound COPY-only image production, never start container",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-15T08:03:53Z",
+          "completed_at": "2026-11-15T08:06:27Z"
+        },
+        {
+          "name": "Preserve candidate or available failure bundle",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-11-15T08:06:27Z",
+          "completed_at": "2026-11-15T08:06:39Z"
+        },
+        {
+          "name": "Preserve bounded execution evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-11-15T08:06:39Z",
+          "completed_at": "2026-11-15T08:06:40Z"
+        },
+        {
+          "name": "Post Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-11-15T08:06:40Z",
+          "completed_at": "2026-11-15T08:06:41Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-11-15T08:06:41Z",
+          "completed_at": "2026-11-15T08:06:41Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/check-runs/132746585038",
+      "labels": [
+        "ubuntu-24.04"
+      ],
+      "runner_id": 1000006588,
+      "runner_name": "GitHub Actions 1000006588",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    }
+  ]
+}
