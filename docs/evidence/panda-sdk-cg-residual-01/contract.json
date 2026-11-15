@@ -165,5 +165,39 @@
       "sha256": "4a387d80a70e6e97ef940a666fab59d5c38e7cf19ff907192fa983cb8505a7de",
       "resolved_path": "/usr/bin/x86_64-linux-gnu-readelf"
     }
-  }
+  },
+  "success_carrier_file_limits": {
+    "candidate/libpandagl.so.data": 4194304,
+    "candidate/build-libpanda.so.data": 67108864,
+    "candidate/layout-contract.o.data": 1048576,
+    "candidate/layout-descriptor.data": 128,
+    "reports/receipt.json": 16777216,
+    "reports/gate.json": 16777216,
+    "reports/inputs.json": 16777216,
+    "reports/tools-before.json": 16777216,
+    "reports/tools-after.json": 16777216,
+    "reports/host-before.json": 16777216,
+    "reports/used-inputs.json": 16777216,
+    "reports/compile-dependencies.json": 16777216,
+    "reports/sdk-output-manifest.json": 16777216,
+    "reports/source-manifest.json": 16777216,
+    "reports/configuration.json": 16777216,
+    "reports/effective-configuration.json": 16777216,
+    "reports/configuration-delta.json": 16777216,
+    "reports/layout-extraction.json": 16777216,
+    "reports/layout.json": 16777216,
+    "reports/provider-audit.json": 16777216,
+    "reports/loader-metadata.json": 16777216,
+    "logs/makepanda.log": 16777216,
+    "logs/host.log": 16777216
+  },
+  "success_carrier_files": 23,
+  "carrier_optional_directories": [
+    "candidate/",
+    "reports/",
+    "logs/"
+  ],
+  "carrier_max_entries": 26,
+  "carrier_max_central_directory_bytes": 65536,
+  "carrier_logs_combined_max_bytes": 33554432
 }
