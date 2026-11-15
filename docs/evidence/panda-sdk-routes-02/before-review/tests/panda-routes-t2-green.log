@@ -1,0 +1,22 @@
+.....E
+======================================================================
+ERROR: test_unregistered_and_missing_dependencies_reject (tests.test_panda_sdk_routes_build.RoutesBuildTests.test_unregistered_and_missing_dependencies_reject) (deps=['/tmp/tmpph8gxnhi/source/missing.h'])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes_build.py", line 34, in test_unregistered_and_missing_dependencies_reject
+    with self.subTest(deps=deps),self.assertRaises(ValueError):inputs.qualify_dependencies(deps,p['source'],p['sdk'],p['sysroot'],before)
+                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/scripts/panda_sdk_routes_inputs.py", line 43, in qualify_dependencies
+    p=Path(name);p=(p if p.is_absolute() else Path(source)/p).resolve(strict=True);need(p.is_file(),'dependency file missing');record=file_record(p)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.cloud-tools/python/cpython-3.11.17-linux-x86_64-gnu/lib/python3.11/pathlib.py", line 993, in resolve
+    s = os.path.realpath(self, strict=strict)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen posixpath>", line 413, in realpath
+  File "<frozen posixpath>", line 457, in _joinrealpath
+FileNotFoundError: [Errno 2] No such file or directory: '/tmp/tmpph8gxnhi/source/missing.h'
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.077s
+
+FAILED (errors=1)

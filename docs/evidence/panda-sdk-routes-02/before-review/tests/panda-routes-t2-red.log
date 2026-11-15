@@ -1,0 +1,59 @@
+FFFFFF
+======================================================================
+FAIL: test_actual_dependency_file_binds_header_before_after (tests.test_panda_sdk_routes_build.RoutesBuildTests.test_actual_dependency_file_binds_header_before_after)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes_build.py", line 11, in setUp
+    def setUp(self):self.assertIsNotNone(inputs,'new SDK source/dependency build required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : new SDK source/dependency build required
+
+======================================================================
+FAIL: test_changed_versioned_native_rejects_before_stage_creation (tests.test_panda_sdk_routes_build.RoutesBuildTests.test_changed_versioned_native_rejects_before_stage_creation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes_build.py", line 11, in setUp
+    def setUp(self):self.assertIsNotNone(inputs,'new SDK source/dependency build required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : new SDK source/dependency build required
+
+======================================================================
+FAIL: test_existing_stage_and_build_evidence_preserved (tests.test_panda_sdk_routes_build.RoutesBuildTests.test_existing_stage_and_build_evidence_preserved)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes_build.py", line 11, in setUp
+    def setUp(self):self.assertIsNotNone(inputs,'new SDK source/dependency build required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : new SDK source/dependency build required
+
+======================================================================
+FAIL: test_fixed_dependency_flags_drop_ambient_header_injection_in_c_and_cxx (tests.test_panda_sdk_routes_build.RoutesBuildTests.test_fixed_dependency_flags_drop_ambient_header_injection_in_c_and_cxx)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes_build.py", line 11, in setUp
+    def setUp(self):self.assertIsNotNone(inputs,'new SDK source/dependency build required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : new SDK source/dependency build required
+
+======================================================================
+FAIL: test_gnu_dependency_continuations_and_escaped_spaces (tests.test_panda_sdk_routes_build.RoutesBuildTests.test_gnu_dependency_continuations_and_escaped_spaces)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes_build.py", line 11, in setUp
+    def setUp(self):self.assertIsNotNone(inputs,'new SDK source/dependency build required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : new SDK source/dependency build required
+
+======================================================================
+FAIL: test_unregistered_and_missing_dependencies_reject (tests.test_panda_sdk_routes_build.RoutesBuildTests.test_unregistered_and_missing_dependencies_reject)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes_build.py", line 11, in setUp
+    def setUp(self):self.assertIsNotNone(inputs,'new SDK source/dependency build required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : new SDK source/dependency build required
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.001s
+
+FAILED (failures=6)

@@ -1,0 +1,360 @@
+FFF.FFF.F.FFFFFFFFFFFFFFFFF
+======================================================================
+FAIL: test_current_draw_read_and_failed_switch_destruction_rejects (tests.test_panda_sdk_routes.SevenRouteTests.test_current_draw_read_and_failed_switch_destruction_rejects) (mode='destroy_current_draw')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 32, in test_current_draw_read_and_failed_switch_destruction_rejects
+    r=self.run_case(mode);self.assertEqual((r['source_error'],r['stale']),(5,0));self.assertNotEqual(r['finish'],0)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (7, 0) != (5, 0)
+
+First differing element 0:
+7
+5
+
+- (7, 0)
+?  ^
+
++ (5, 0)
+?  ^
+
+
+======================================================================
+FAIL: test_current_draw_read_and_failed_switch_destruction_rejects (tests.test_panda_sdk_routes.SevenRouteTests.test_current_draw_read_and_failed_switch_destruction_rejects) (mode='destroy_current_read')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 32, in test_current_draw_read_and_failed_switch_destruction_rejects
+    r=self.run_case(mode);self.assertEqual((r['source_error'],r['stale']),(5,0));self.assertNotEqual(r['finish'],0)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (7, 0) != (5, 0)
+
+First differing element 0:
+7
+5
+
+- (7, 0)
+?  ^
+
++ (5, 0)
+?  ^
+
+
+======================================================================
+FAIL: test_current_draw_read_and_failed_switch_destruction_rejects (tests.test_panda_sdk_routes.SevenRouteTests.test_current_draw_read_and_failed_switch_destruction_rejects) (mode='failed_switch')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 32, in test_current_draw_read_and_failed_switch_destruction_rejects
+    r=self.run_case(mode);self.assertEqual((r['source_error'],r['stale']),(5,0));self.assertNotEqual(r['finish'],0)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (7, 0) != (5, 0)
+
+First differing element 0:
+7
+5
+
+- (7, 0)
+?  ^
+
++ (5, 0)
+?  ^
+
+
+======================================================================
+FAIL: test_foreign_display_rejects_after_original_forward (tests.test_panda_sdk_routes.SevenRouteTests.test_foreign_display_rejects_after_original_forward)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 36, in test_foreign_display_rejects_after_original_forward
+    r=self.run_case('wrong_display');self.assertEqual((r['source_error'],r['stale'],r['calls']),(5,0,14));self.assertNotEqual(r['finish'],0)
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (7, 0, 14) != (5, 0, 14)
+
+First differing element 0:
+7
+5
+
+- (7, 0, 14)
+?  ^
+
++ (5, 0, 14)
+?  ^
+
+
+======================================================================
+FAIL: test_invalid_indexed_target_forwards_then_poisoned_snapshot_is_zero (tests.test_panda_sdk_routes.SevenRouteTests.test_invalid_indexed_target_forwards_then_poisoned_snapshot_is_zero)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 28, in test_invalid_indexed_target_forwards_then_poisoned_snapshot_is_zero
+    r=self.run_case('invalid_target');self.assertEqual((r['source_error'],r['forwarded'],r['stale']),(5,5,0));self.assertNotEqual(r['finish'],0);self.assertNotEqual(r['adapter_error'],0)
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (7, 4, 0) != (5, 5, 0)
+
+First differing element 0:
+7
+5
+
+- (7, 4, 0)
+?  ^  ^
+
++ (5, 5, 0)
+?  ^  ^
+
+
+======================================================================
+FAIL: test_null_resolutions_and_bound_slot_null_do_not_call_or_poison (tests.test_panda_sdk_routes.SevenRouteTests.test_null_resolutions_and_bound_slot_null_do_not_call_or_poison)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 25, in test_null_resolutions_and_bound_slot_null_do_not_call_or_poison
+    a=self.run_case('nulls');self.assertEqual((a['finish'],a['calls'],a['forwarded'],a['resolutions']),(0,4,4,7))
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (-1, 4, 4, 1) != (0, 4, 4, 7)
+
+First differing element 0:
+-1
+0
+
+- (-1, 4, 4, 1)
+?  ^^        ^
+
++ (0, 4, 4, 7)
+?  ^        ^
+
+
+======================================================================
+FAIL: test_rebound_original_and_unqualified_alias_stay_rejected (tests.test_panda_sdk_routes.SevenRouteTests.test_rebound_original_and_unqualified_alias_stay_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 38, in test_rebound_original_and_unqualified_alias_stay_rejected
+    a=self.run_case('rebind');self.assertEqual((a['source_error'],a['forwarded'],a['calls']),(7,5,6))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (7, 4, 6) != (7, 5, 6)
+
+First differing element 1:
+4
+5
+
+- (7, 4, 6)
+?     ^
+
++ (7, 5, 6)
+?     ^
+
+
+======================================================================
+FAIL: test_sanitized_new_routes_and_negative_lifetimes (tests.test_panda_sdk_routes.SevenRouteTests.test_sanitized_new_routes_and_negative_lifetimes) (mode='all')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 53, in test_sanitized_new_routes_and_negative_lifetimes
+    r=self.run_case(mode,p);self.assertEqual(r['finish']==0,mode in ('all','preserve','maxbits','paths','null_after_bound','switch_away'));self.assertEqual(r['source_error'],0 if r['finish']==0 else 5)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False != True
+
+======================================================================
+FAIL: test_sanitized_new_routes_and_negative_lifetimes (tests.test_panda_sdk_routes.SevenRouteTests.test_sanitized_new_routes_and_negative_lifetimes) (mode='preserve')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 53, in test_sanitized_new_routes_and_negative_lifetimes
+    r=self.run_case(mode,p);self.assertEqual(r['finish']==0,mode in ('all','preserve','maxbits','paths','null_after_bound','switch_away'));self.assertEqual(r['source_error'],0 if r['finish']==0 else 5)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False != True
+
+======================================================================
+FAIL: test_sanitized_new_routes_and_negative_lifetimes (tests.test_panda_sdk_routes.SevenRouteTests.test_sanitized_new_routes_and_negative_lifetimes) (mode='maxbits')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 53, in test_sanitized_new_routes_and_negative_lifetimes
+    r=self.run_case(mode,p);self.assertEqual(r['finish']==0,mode in ('all','preserve','maxbits','paths','null_after_bound','switch_away'));self.assertEqual(r['source_error'],0 if r['finish']==0 else 5)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False != True
+
+======================================================================
+FAIL: test_sanitized_new_routes_and_negative_lifetimes (tests.test_panda_sdk_routes.SevenRouteTests.test_sanitized_new_routes_and_negative_lifetimes) (mode='paths')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 53, in test_sanitized_new_routes_and_negative_lifetimes
+    r=self.run_case(mode,p);self.assertEqual(r['finish']==0,mode in ('all','preserve','maxbits','paths','null_after_bound','switch_away'));self.assertEqual(r['source_error'],0 if r['finish']==0 else 5)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False != True
+
+======================================================================
+FAIL: test_sanitized_new_routes_and_negative_lifetimes (tests.test_panda_sdk_routes.SevenRouteTests.test_sanitized_new_routes_and_negative_lifetimes) (mode='null_after_bound')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 53, in test_sanitized_new_routes_and_negative_lifetimes
+    r=self.run_case(mode,p);self.assertEqual(r['finish']==0,mode in ('all','preserve','maxbits','paths','null_after_bound','switch_away'));self.assertEqual(r['source_error'],0 if r['finish']==0 else 5)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False != True
+
+======================================================================
+FAIL: test_sanitized_new_routes_and_negative_lifetimes (tests.test_panda_sdk_routes.SevenRouteTests.test_sanitized_new_routes_and_negative_lifetimes) (mode='switch_away')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 53, in test_sanitized_new_routes_and_negative_lifetimes
+    r=self.run_case(mode,p);self.assertEqual(r['finish']==0,mode in ('all','preserve','maxbits','paths','null_after_bound','switch_away'));self.assertEqual(r['source_error'],0 if r['finish']==0 else 5)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False != True
+
+======================================================================
+FAIL: test_sanitized_new_routes_and_negative_lifetimes (tests.test_panda_sdk_routes.SevenRouteTests.test_sanitized_new_routes_and_negative_lifetimes) (mode='invalid_target')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 53, in test_sanitized_new_routes_and_negative_lifetimes
+    r=self.run_case(mode,p);self.assertEqual(r['finish']==0,mode in ('all','preserve','maxbits','paths','null_after_bound','switch_away'));self.assertEqual(r['source_error'],0 if r['finish']==0 else 5)
+                                                                                                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 7 != 5
+
+======================================================================
+FAIL: test_sanitized_new_routes_and_negative_lifetimes (tests.test_panda_sdk_routes.SevenRouteTests.test_sanitized_new_routes_and_negative_lifetimes) (mode='destroy_current_draw')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 53, in test_sanitized_new_routes_and_negative_lifetimes
+    r=self.run_case(mode,p);self.assertEqual(r['finish']==0,mode in ('all','preserve','maxbits','paths','null_after_bound','switch_away'));self.assertEqual(r['source_error'],0 if r['finish']==0 else 5)
+                                                                                                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 7 != 5
+
+======================================================================
+FAIL: test_sanitized_new_routes_and_negative_lifetimes (tests.test_panda_sdk_routes.SevenRouteTests.test_sanitized_new_routes_and_negative_lifetimes) (mode='destroy_current_read')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 53, in test_sanitized_new_routes_and_negative_lifetimes
+    r=self.run_case(mode,p);self.assertEqual(r['finish']==0,mode in ('all','preserve','maxbits','paths','null_after_bound','switch_away'));self.assertEqual(r['source_error'],0 if r['finish']==0 else 5)
+                                                                                                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 7 != 5
+
+======================================================================
+FAIL: test_sanitized_new_routes_and_negative_lifetimes (tests.test_panda_sdk_routes.SevenRouteTests.test_sanitized_new_routes_and_negative_lifetimes) (mode='failed_switch')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 53, in test_sanitized_new_routes_and_negative_lifetimes
+    r=self.run_case(mode,p);self.assertEqual(r['finish']==0,mode in ('all','preserve','maxbits','paths','null_after_bound','switch_away'));self.assertEqual(r['source_error'],0 if r['finish']==0 else 5)
+                                                                                                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 7 != 5
+
+======================================================================
+FAIL: test_sanitized_new_routes_and_negative_lifetimes (tests.test_panda_sdk_routes.SevenRouteTests.test_sanitized_new_routes_and_negative_lifetimes) (mode='wrong_display')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 53, in test_sanitized_new_routes_and_negative_lifetimes
+    r=self.run_case(mode,p);self.assertEqual(r['finish']==0,mode in ('all','preserve','maxbits','paths','null_after_bound','switch_away'));self.assertEqual(r['source_error'],0 if r['finish']==0 else 5)
+                                                                                                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 7 != 5
+
+======================================================================
+FAIL: test_seven_signatures_and_unsigned64_returns_preserve_pack_state (tests.test_panda_sdk_routes.SevenRouteTests.test_seven_signatures_and_unsigned64_returns_preserve_pack_state) (mode='all')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 22, in test_seven_signatures_and_unsigned64_returns_preserve_pack_state
+    r=self.run_case(mode);self.assertEqual((r['finish'],r['source_error'],r['adapter_error'],r['snapshot'],r['calls'],r['before_pack'],r['after_pack'],r['forwarded']),(0,0,0,0,14,0,0,14));self.assertEqual(r['resolutions'],7)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (-1, 7, 4, -1, 14, 0, 0, 4) != (0, 0, 0, 0, 14, 0, 0, 14)
+
+First differing element 0:
+-1
+0
+
+- (-1, 7, 4, -1, 14, 0, 0, 4)
+?  ^^  ^  ^  ^^
+
++ (0, 0, 0, 0, 14, 0, 0, 14)
+?  ^  ^  ^  ^            +
+
+
+======================================================================
+FAIL: test_seven_signatures_and_unsigned64_returns_preserve_pack_state (tests.test_panda_sdk_routes.SevenRouteTests.test_seven_signatures_and_unsigned64_returns_preserve_pack_state) (mode='preserve')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 22, in test_seven_signatures_and_unsigned64_returns_preserve_pack_state
+    r=self.run_case(mode);self.assertEqual((r['finish'],r['source_error'],r['adapter_error'],r['snapshot'],r['calls'],r['before_pack'],r['after_pack'],r['forwarded']),(0,0,0,0,14,0,0,14));self.assertEqual(r['resolutions'],7)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (-1, 7, 4, -1, 14, 0, 0, 4) != (0, 0, 0, 0, 14, 0, 0, 14)
+
+First differing element 0:
+-1
+0
+
+- (-1, 7, 4, -1, 14, 0, 0, 4)
+?  ^^  ^  ^  ^^
+
++ (0, 0, 0, 0, 14, 0, 0, 14)
+?  ^  ^  ^  ^            +
+
+
+======================================================================
+FAIL: test_seven_signatures_and_unsigned64_returns_preserve_pack_state (tests.test_panda_sdk_routes.SevenRouteTests.test_seven_signatures_and_unsigned64_returns_preserve_pack_state) (mode='compiled_origin')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 22, in test_seven_signatures_and_unsigned64_returns_preserve_pack_state
+    r=self.run_case(mode);self.assertEqual((r['finish'],r['source_error'],r['adapter_error'],r['snapshot'],r['calls'],r['before_pack'],r['after_pack'],r['forwarded']),(0,0,0,0,14,0,0,14));self.assertEqual(r['resolutions'],7)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (-1, 7, 4, -1, 14, 0, 0, 4) != (0, 0, 0, 0, 14, 0, 0, 14)
+
+First differing element 0:
+-1
+0
+
+- (-1, 7, 4, -1, 14, 0, 0, 4)
+?  ^^  ^  ^  ^^
+
++ (0, 0, 0, 0, 14, 0, 0, 14)
+?  ^  ^  ^  ^            +
+
+
+======================================================================
+FAIL: test_seven_signatures_and_unsigned64_returns_preserve_pack_state (tests.test_panda_sdk_routes.SevenRouteTests.test_seven_signatures_and_unsigned64_returns_preserve_pack_state) (mode='maxbits')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 22, in test_seven_signatures_and_unsigned64_returns_preserve_pack_state
+    r=self.run_case(mode);self.assertEqual((r['finish'],r['source_error'],r['adapter_error'],r['snapshot'],r['calls'],r['before_pack'],r['after_pack'],r['forwarded']),(0,0,0,0,14,0,0,14));self.assertEqual(r['resolutions'],7)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (-1, 7, 4, -1, 14, 0, 0, 4) != (0, 0, 0, 0, 14, 0, 0, 14)
+
+First differing element 0:
+-1
+0
+
+- (-1, 7, 4, -1, 14, 0, 0, 4)
+?  ^^  ^  ^  ^^
+
++ (0, 0, 0, 0, 14, 0, 0, 14)
+?  ^  ^  ^  ^            +
+
+
+======================================================================
+FAIL: test_seven_signatures_and_unsigned64_returns_preserve_pack_state (tests.test_panda_sdk_routes.SevenRouteTests.test_seven_signatures_and_unsigned64_returns_preserve_pack_state) (mode='paths')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 22, in test_seven_signatures_and_unsigned64_returns_preserve_pack_state
+    r=self.run_case(mode);self.assertEqual((r['finish'],r['source_error'],r['adapter_error'],r['snapshot'],r['calls'],r['before_pack'],r['after_pack'],r['forwarded']),(0,0,0,0,14,0,0,14));self.assertEqual(r['resolutions'],7)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (-1, 7, 4, -1, 14, 0, 0, 4) != (0, 0, 0, 0, 14, 0, 0, 14)
+
+First differing element 0:
+-1
+0
+
+- (-1, 7, 4, -1, 14, 0, 0, 4)
+?  ^^  ^  ^  ^^
+
++ (0, 0, 0, 0, 14, 0, 0, 14)
+?  ^  ^  ^  ^            +
+
+
+======================================================================
+FAIL: test_successful_switch_away_allows_other_drawable_destruction (tests.test_panda_sdk_routes.SevenRouteTests.test_successful_switch_away_allows_other_drawable_destruction)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes.py", line 34, in test_successful_switch_away_allows_other_drawable_destruction
+    r=self.run_case('switch_away');self.assertEqual((r['finish'],r['source_error'],r['snapshot']),(0,0,0))
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (-1, 7, -1) != (0, 0, 0)
+
+First differing element 0:
+-1
+0
+
+- (-1, 7, -1)
++ (0, 0, 0)
+
+----------------------------------------------------------------------
+Ran 11 tests in 2.843s
+
+FAILED (failures=24)

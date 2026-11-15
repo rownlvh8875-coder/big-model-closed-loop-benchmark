@@ -44,6 +44,6 @@ Preserve4951basefiles/299pins/10originals/main/Drafts102–113/8nativehistories.
 
 **Create:** scripts/panda_sdk_routes_image.py;tests/test_panda_sdk_routes_image.py;docs/STAGE7_PANDA_SDK_ROUTES_{RESULT,LEDGER,CONTINUATION}.md;docs/evidence/panda-sdk-routes-02/.
 **Interfaces:** inspect_export(tar,expected_manifest,deadline)->inventory;assemble_image(sdk_receipt,coverage,out)->receipt. Original authenticated base archive/manifest, newSDK data and COPY-only recipe produce local image/archive/rootfs/installed-byte evidence. Never start image or grant native authority.
-- [ ] RED extra/missing/wrong-mode/hash/link/escape rootfs entries, changed other image files, invalid SDK/coverage or existing outputs reject; fake Docker process boundary verifies output behavior and no activation.
+- [x] RED extra/missing/wrong-mode/hash/link/escape rootfs entries, changed other image files, invalid SDK/coverage or existing outputs reject; fake Docker process boundary verifies output behavior and no activation.
 - [ ] Actual bounded base load/COPY build/stopped create/export/byte inspection/save/check; full tests/preservation/proof, one fresh wholebranch review and one Important/Critical TDDfixpass if needed, no rereview/minor polishing.
 - Postcommit: ownDraft/exactHEAD push+PR CI4jobs/attempt1/artifacts0/body/fresh preservation/final receipt. No main/Cloud/registry update. Actual native/official/scientific work remains unqualified.

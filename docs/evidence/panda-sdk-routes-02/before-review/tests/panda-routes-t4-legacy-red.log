@@ -1,0 +1,13 @@
+F
+======================================================================
+FAIL: test_legacy_copy_compatibility_metadata_binds_head_container_config (tests.test_panda_sdk_routes_image.LocalImageBytesTests.test_legacy_copy_compatibility_metadata_binds_head_container_config)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes_image.py", line 80, in test_legacy_copy_compatibility_metadata_binds_head_container_config
+    self.assertIsNotNone(save_archive,'separate bounded legacy COPY metadata profile required')
+AssertionError: unexpectedly None : separate bounded legacy COPY metadata profile required
+
+----------------------------------------------------------------------
+Ran 1 test in 0.002s
+
+FAILED (failures=1)

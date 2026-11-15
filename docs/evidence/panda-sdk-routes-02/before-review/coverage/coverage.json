@@ -1,0 +1,1493 @@
+{
+  "lookup_names": [
+    "glActiveStencilFaceEXT",
+    "glActiveTexture",
+    "glActiveTextureARB",
+    "glAttachShader",
+    "glBeginQuery",
+    "glBeginQueryARB",
+    "glBindAttribLocation",
+    "glBindBuffer",
+    "glBindBufferARB",
+    "glBindBufferBase",
+    "glBindFragDataLocation",
+    "glBindFragDataLocationEXT",
+    "glBindFramebuffer",
+    "glBindFramebufferEXT",
+    "glBindImageTexture",
+    "glBindImageTextureEXT",
+    "glBindImageTextures",
+    "glBindRenderbuffer",
+    "glBindRenderbufferEXT",
+    "glBindSampler",
+    "glBindSamplers",
+    "glBindTextures",
+    "glBindVertexArray",
+    "glBindVertexBuffer",
+    "glBindVertexBuffers",
+    "glBlendColor",
+    "glBlendColorEXT",
+    "glBlendEquation",
+    "glBlendEquationEXT",
+    "glBlendEquationSeparate",
+    "glBlendEquationSeparateEXT",
+    "glBlendFuncSeparate",
+    "glBlendFuncSeparateEXT",
+    "glBlitFramebuffer",
+    "glBlitFramebufferEXT",
+    "glBufferData",
+    "glBufferDataARB",
+    "glBufferStorage",
+    "glBufferSubData",
+    "glBufferSubDataARB",
+    "glCheckFramebufferStatus",
+    "glCheckFramebufferStatusEXT",
+    "glClearBufferData",
+    "glClearBufferfi",
+    "glClearBufferfv",
+    "glClearBufferiv",
+    "glClearTexImage",
+    "glClientActiveTexture",
+    "glClientActiveTextureARB",
+    "glClipControl",
+    "glCompileShader",
+    "glCompressedTexImage1D",
+    "glCompressedTexImage1DARB",
+    "glCompressedTexImage2D",
+    "glCompressedTexImage2DARB",
+    "glCompressedTexImage3D",
+    "glCompressedTexImage3DARB",
+    "glCompressedTexSubImage1D",
+    "glCompressedTexSubImage1DARB",
+    "glCompressedTexSubImage2D",
+    "glCompressedTexSubImage2DARB",
+    "glCompressedTexSubImage3D",
+    "glCompressedTexSubImage3DARB",
+    "glCopyTexSubImage3D",
+    "glCopyTexSubImage3DEXT",
+    "glCreateProgram",
+    "glCreateShader",
+    "glDebugMessageCallback",
+    "glDebugMessageCallbackARB",
+    "glDebugMessageControl",
+    "glDebugMessageControlARB",
+    "glDeleteBuffers",
+    "glDeleteBuffersARB",
+    "glDeleteFramebuffers",
+    "glDeleteFramebuffersEXT",
+    "glDeleteProgram",
+    "glDeleteQueries",
+    "glDeleteQueriesARB",
+    "glDeleteRenderbuffers",
+    "glDeleteRenderbuffersEXT",
+    "glDeleteSamplers",
+    "glDeleteShader",
+    "glDeleteVertexArrays",
+    "glDepthRangeArrayv",
+    "glDetachShader",
+    "glDisableVertexAttribArray",
+    "glDisableVertexAttribArrayARB",
+    "glDispatchCompute",
+    "glDrawArraysIndirect",
+    "glDrawArraysInstanced",
+    "glDrawArraysInstancedARB",
+    "glDrawArraysInstancedEXT",
+    "glDrawBuffers",
+    "glDrawBuffersARB",
+    "glDrawElementsIndirect",
+    "glDrawElementsInstanced",
+    "glDrawElementsInstancedARB",
+    "glDrawElementsInstancedEXT",
+    "glDrawRangeElements",
+    "glDrawRangeElementsEXT",
+    "glEnableVertexAttribArray",
+    "glEnableVertexAttribArrayARB",
+    "glEndQuery",
+    "glEndQueryARB",
+    "glFramebufferParameteri",
+    "glFramebufferRenderbuffer",
+    "glFramebufferRenderbufferEXT",
+    "glFramebufferTexture",
+    "glFramebufferTexture1D",
+    "glFramebufferTexture1DEXT",
+    "glFramebufferTexture2D",
+    "glFramebufferTexture2DEXT",
+    "glFramebufferTexture3D",
+    "glFramebufferTexture3DEXT",
+    "glFramebufferTextureARB",
+    "glFramebufferTextureLayer",
+    "glFramebufferTextureLayerEXT",
+    "glGenBuffers",
+    "glGenBuffersARB",
+    "glGenFramebuffers",
+    "glGenFramebuffersEXT",
+    "glGenQueries",
+    "glGenQueriesARB",
+    "glGenRenderbuffers",
+    "glGenRenderbuffersEXT",
+    "glGenSamplers",
+    "glGenVertexArrays",
+    "glGenerateMipmap",
+    "glGenerateMipmapEXT",
+    "glGenerateTextureMipmap",
+    "glGetActiveAttrib",
+    "glGetActiveUniform",
+    "glGetActiveUniformBlockName",
+    "glGetActiveUniformBlockiv",
+    "glGetActiveUniformsiv",
+    "glGetAttribLocation",
+    "glGetBufferSubData",
+    "glGetBufferSubDataARB",
+    "glGetCompressedTexImage",
+    "glGetCompressedTexImageARB",
+    "glGetFramebufferAttachmentParameteriv",
+    "glGetFramebufferAttachmentParameterivEXT",
+    "glGetInteger64v",
+    "glGetInternalformativ",
+    "glGetProgramBinary",
+    "glGetProgramInfoLog",
+    "glGetProgramInterfaceiv",
+    "glGetProgramResourceName",
+    "glGetProgramResourceiv",
+    "glGetProgramiv",
+    "glGetQueryObjecti64v",
+    "glGetQueryObjectui64v",
+    "glGetQueryObjectuiv",
+    "glGetQueryObjectuivARB",
+    "glGetQueryiv",
+    "glGetQueryivARB",
+    "glGetRenderbufferParameteriv",
+    "glGetRenderbufferParameterivEXT",
+    "glGetShaderInfoLog",
+    "glGetShaderiv",
+    "glGetStringi",
+    "glGetTextureHandleARB",
+    "glGetTextureSamplerHandleARB",
+    "glGetUniformLocation",
+    "glIsFramebuffer",
+    "glIsFramebufferEXT",
+    "glIsRenderbuffer",
+    "glIsRenderbufferEXT",
+    "glLinkProgram",
+    "glMakeTextureHandleResidentARB",
+    "glMapBuffer",
+    "glMapBufferARB",
+    "glMapBufferRange",
+    "glMemoryBarrier",
+    "glMemoryBarrierEXT",
+    "glObjectLabel",
+    "glPatchParameteri",
+    "glPointParameterfv",
+    "glPointParameterfvARB",
+    "glPopGroupMarkerEXT",
+    "glPrimitiveRestartIndex",
+    "glProgramBinary",
+    "glProgramParameteri",
+    "glProgramParameteriARB",
+    "glProgramParameteriEXT",
+    "glPushGroupMarkerEXT",
+    "glQueryCounter",
+    "glRenderbufferStorage",
+    "glRenderbufferStorageEXT",
+    "glRenderbufferStorageMultisample",
+    "glRenderbufferStorageMultisampleCoverageNV",
+    "glRenderbufferStorageMultisampleEXT",
+    "glSamplerParameterf",
+    "glSamplerParameterfv",
+    "glSamplerParameteri",
+    "glSamplerParameteriv",
+    "glScissorArrayv",
+    "glSecondaryColorPointer",
+    "glSecondaryColorPointerEXT",
+    "glShaderSource",
+    "glShaderStorageBlockBinding",
+    "glTexBuffer",
+    "glTexBufferARB",
+    "glTexImage3D",
+    "glTexImage3DEXT",
+    "glTexStorage1D",
+    "glTexStorage2D",
+    "glTexStorage3D",
+    "glTexSubImage3D",
+    "glTexSubImage3DEXT",
+    "glUniform1fv",
+    "glUniform1i",
+    "glUniform1iv",
+    "glUniform1uiv",
+    "glUniform1uivEXT",
+    "glUniform2fv",
+    "glUniform2iv",
+    "glUniform2uiv",
+    "glUniform2uivEXT",
+    "glUniform3fv",
+    "glUniform3iv",
+    "glUniform3uiv",
+    "glUniform3uivEXT",
+    "glUniform4f",
+    "glUniform4fv",
+    "glUniform4iv",
+    "glUniform4uiv",
+    "glUniform4uivEXT",
+    "glUniformHandleui64ARB",
+    "glUniformMatrix3fv",
+    "glUniformMatrix4fv",
+    "glUnmapBuffer",
+    "glUnmapBufferARB",
+    "glUseProgram",
+    "glValidateProgram",
+    "glVertexAttrib4dv",
+    "glVertexAttrib4dvARB",
+    "glVertexAttrib4fv",
+    "glVertexAttrib4fvARB",
+    "glVertexAttribBinding",
+    "glVertexAttribDivisor",
+    "glVertexAttribDivisorARB",
+    "glVertexAttribFormat",
+    "glVertexAttribI4ui",
+    "glVertexAttribI4uiEXT",
+    "glVertexAttribIFormat",
+    "glVertexAttribIPointer",
+    "glVertexAttribIPointerEXT",
+    "glVertexAttribLFormat",
+    "glVertexAttribLPointer",
+    "glVertexAttribPointer",
+    "glVertexAttribPointerARB",
+    "glVertexBindingDivisor",
+    "glViewportArrayv",
+    "glXChooseFBConfig",
+    "glXChooseFBConfigSGIX",
+    "glXCreateContextAttribsARB",
+    "glXCreateContextWithConfigSGIX",
+    "glXCreateGLXPbufferSGIX",
+    "glXCreateGLXPixmapWithConfigSGIX",
+    "glXCreateNewContext",
+    "glXCreatePbuffer",
+    "glXCreatePixmap",
+    "glXDestroyGLXPbufferSGIX",
+    "glXDestroyPbuffer",
+    "glXGetFBConfigAttrib",
+    "glXGetFBConfigAttribSGIX",
+    "glXGetVisualFromFBConfig",
+    "glXGetVisualFromFBConfigSGIX",
+    "glXSwapIntervalSGI"
+  ],
+  "lookup_count": 270,
+  "routed_lookup_names": [
+    "glBindBuffer",
+    "glBindBufferARB",
+    "glBindBufferBase",
+    "glBindFramebuffer",
+    "glBindFramebufferEXT",
+    "glDeleteBuffers",
+    "glDeleteBuffersARB",
+    "glDeleteFramebuffers",
+    "glDeleteFramebuffersEXT",
+    "glXCreateContextAttribsARB",
+    "glXCreateContextWithConfigSGIX",
+    "glXCreateGLXPbufferSGIX",
+    "glXCreateGLXPixmapWithConfigSGIX",
+    "glXCreateNewContext",
+    "glXCreatePbuffer",
+    "glXCreatePixmap",
+    "glXDestroyGLXPbufferSGIX",
+    "glXDestroyPbuffer"
+  ],
+  "safe_names": [
+    "glActiveStencilFaceEXT",
+    "glActiveTexture",
+    "glActiveTextureARB",
+    "glAttachShader",
+    "glBeginQuery",
+    "glBeginQueryARB",
+    "glBindAttribLocation",
+    "glBindFragDataLocation",
+    "glBindFragDataLocationEXT",
+    "glBindImageTexture",
+    "glBindImageTextureEXT",
+    "glBindImageTextures",
+    "glBindRenderbuffer",
+    "glBindRenderbufferEXT",
+    "glBindSampler",
+    "glBindSamplers",
+    "glBindTextures",
+    "glBindVertexArray",
+    "glBindVertexBuffer",
+    "glBindVertexBuffers",
+    "glBlendColor",
+    "glBlendColorEXT",
+    "glBlendEquation",
+    "glBlendEquationEXT",
+    "glBlendEquationSeparate",
+    "glBlendEquationSeparateEXT",
+    "glBlendFuncSeparate",
+    "glBlendFuncSeparateEXT",
+    "glBlitFramebuffer",
+    "glBlitFramebufferEXT",
+    "glBufferData",
+    "glBufferDataARB",
+    "glBufferStorage",
+    "glBufferSubData",
+    "glBufferSubDataARB",
+    "glCheckFramebufferStatus",
+    "glCheckFramebufferStatusEXT",
+    "glClearBufferData",
+    "glClearBufferfi",
+    "glClearBufferfv",
+    "glClearBufferiv",
+    "glClearTexImage",
+    "glClientActiveTexture",
+    "glClientActiveTextureARB",
+    "glClipControl",
+    "glCompileShader",
+    "glCompressedTexImage1D",
+    "glCompressedTexImage1DARB",
+    "glCompressedTexImage2D",
+    "glCompressedTexImage2DARB",
+    "glCompressedTexImage3D",
+    "glCompressedTexImage3DARB",
+    "glCompressedTexSubImage1D",
+    "glCompressedTexSubImage1DARB",
+    "glCompressedTexSubImage2D",
+    "glCompressedTexSubImage2DARB",
+    "glCompressedTexSubImage3D",
+    "glCompressedTexSubImage3DARB",
+    "glCopyTexSubImage3D",
+    "glCopyTexSubImage3DEXT",
+    "glCreateProgram",
+    "glCreateShader",
+    "glDebugMessageCallback",
+    "glDebugMessageCallbackARB",
+    "glDebugMessageControl",
+    "glDebugMessageControlARB",
+    "glDeleteProgram",
+    "glDeleteQueries",
+    "glDeleteQueriesARB",
+    "glDeleteRenderbuffers",
+    "glDeleteRenderbuffersEXT",
+    "glDeleteSamplers",
+    "glDeleteShader",
+    "glDeleteVertexArrays",
+    "glDepthRangeArrayv",
+    "glDetachShader",
+    "glDisableVertexAttribArray",
+    "glDisableVertexAttribArrayARB",
+    "glDispatchCompute",
+    "glDrawArraysIndirect",
+    "glDrawArraysInstanced",
+    "glDrawArraysInstancedARB",
+    "glDrawArraysInstancedEXT",
+    "glDrawBuffers",
+    "glDrawBuffersARB",
+    "glDrawElementsIndirect",
+    "glDrawElementsInstanced",
+    "glDrawElementsInstancedARB",
+    "glDrawElementsInstancedEXT",
+    "glDrawRangeElements",
+    "glDrawRangeElementsEXT",
+    "glEnableVertexAttribArray",
+    "glEnableVertexAttribArrayARB",
+    "glEndQuery",
+    "glEndQueryARB",
+    "glFramebufferParameteri",
+    "glFramebufferRenderbuffer",
+    "glFramebufferRenderbufferEXT",
+    "glFramebufferTexture",
+    "glFramebufferTexture1D",
+    "glFramebufferTexture1DEXT",
+    "glFramebufferTexture2D",
+    "glFramebufferTexture2DEXT",
+    "glFramebufferTexture3D",
+    "glFramebufferTexture3DEXT",
+    "glFramebufferTextureARB",
+    "glFramebufferTextureLayer",
+    "glFramebufferTextureLayerEXT",
+    "glGenBuffers",
+    "glGenBuffersARB",
+    "glGenFramebuffers",
+    "glGenFramebuffersEXT",
+    "glGenQueries",
+    "glGenQueriesARB",
+    "glGenRenderbuffers",
+    "glGenRenderbuffersEXT",
+    "glGenSamplers",
+    "glGenVertexArrays",
+    "glGenerateMipmap",
+    "glGenerateMipmapEXT",
+    "glGenerateTextureMipmap",
+    "glGetActiveAttrib",
+    "glGetActiveUniform",
+    "glGetActiveUniformBlockName",
+    "glGetActiveUniformBlockiv",
+    "glGetActiveUniformsiv",
+    "glGetAttribLocation",
+    "glGetBufferSubData",
+    "glGetBufferSubDataARB",
+    "glGetCompressedTexImage",
+    "glGetCompressedTexImageARB",
+    "glGetFramebufferAttachmentParameteriv",
+    "glGetFramebufferAttachmentParameterivEXT",
+    "glGetInteger64v",
+    "glGetInternalformativ",
+    "glGetProgramBinary",
+    "glGetProgramInfoLog",
+    "glGetProgramInterfaceiv",
+    "glGetProgramResourceName",
+    "glGetProgramResourceiv",
+    "glGetProgramiv",
+    "glGetQueryObjecti64v",
+    "glGetQueryObjectui64v",
+    "glGetQueryObjectuiv",
+    "glGetQueryObjectuivARB",
+    "glGetQueryiv",
+    "glGetQueryivARB",
+    "glGetRenderbufferParameteriv",
+    "glGetRenderbufferParameterivEXT",
+    "glGetShaderInfoLog",
+    "glGetShaderiv",
+    "glGetStringi",
+    "glGetTextureHandleARB",
+    "glGetTextureSamplerHandleARB",
+    "glGetUniformLocation",
+    "glIsFramebuffer",
+    "glIsFramebufferEXT",
+    "glIsRenderbuffer",
+    "glIsRenderbufferEXT",
+    "glLinkProgram",
+    "glMakeTextureHandleResidentARB",
+    "glMapBuffer",
+    "glMapBufferARB",
+    "glMapBufferRange",
+    "glMemoryBarrier",
+    "glMemoryBarrierEXT",
+    "glObjectLabel",
+    "glPatchParameteri",
+    "glPointParameterfv",
+    "glPointParameterfvARB",
+    "glPopGroupMarkerEXT",
+    "glPrimitiveRestartIndex",
+    "glProgramBinary",
+    "glProgramParameteri",
+    "glProgramParameteriARB",
+    "glProgramParameteriEXT",
+    "glPushGroupMarkerEXT",
+    "glQueryCounter",
+    "glRenderbufferStorage",
+    "glRenderbufferStorageEXT",
+    "glRenderbufferStorageMultisample",
+    "glRenderbufferStorageMultisampleCoverageNV",
+    "glRenderbufferStorageMultisampleEXT",
+    "glSamplerParameterf",
+    "glSamplerParameterfv",
+    "glSamplerParameteri",
+    "glSamplerParameteriv",
+    "glScissorArrayv",
+    "glSecondaryColorPointer",
+    "glSecondaryColorPointerEXT",
+    "glShaderSource",
+    "glShaderStorageBlockBinding",
+    "glTexBuffer",
+    "glTexBufferARB",
+    "glTexImage3D",
+    "glTexImage3DEXT",
+    "glTexStorage1D",
+    "glTexStorage2D",
+    "glTexStorage3D",
+    "glTexSubImage3D",
+    "glTexSubImage3DEXT",
+    "glUniform1fv",
+    "glUniform1i",
+    "glUniform1iv",
+    "glUniform1uiv",
+    "glUniform1uivEXT",
+    "glUniform2fv",
+    "glUniform2iv",
+    "glUniform2uiv",
+    "glUniform2uivEXT",
+    "glUniform3fv",
+    "glUniform3iv",
+    "glUniform3uiv",
+    "glUniform3uivEXT",
+    "glUniform4f",
+    "glUniform4fv",
+    "glUniform4iv",
+    "glUniform4uiv",
+    "glUniform4uivEXT",
+    "glUniformHandleui64ARB",
+    "glUniformMatrix3fv",
+    "glUniformMatrix4fv",
+    "glUnmapBuffer",
+    "glUnmapBufferARB",
+    "glUseProgram",
+    "glValidateProgram",
+    "glVertexAttrib4dv",
+    "glVertexAttrib4dvARB",
+    "glVertexAttrib4fv",
+    "glVertexAttrib4fvARB",
+    "glVertexAttribBinding",
+    "glVertexAttribDivisor",
+    "glVertexAttribDivisorARB",
+    "glVertexAttribFormat",
+    "glVertexAttribI4ui",
+    "glVertexAttribI4uiEXT",
+    "glVertexAttribIFormat",
+    "glVertexAttribIPointer",
+    "glVertexAttribIPointerEXT",
+    "glVertexAttribLFormat",
+    "glVertexAttribLPointer",
+    "glVertexAttribPointer",
+    "glVertexAttribPointerARB",
+    "glVertexBindingDivisor",
+    "glViewportArrayv",
+    "glXChooseFBConfig",
+    "glXChooseFBConfigSGIX",
+    "glXGetFBConfigAttrib",
+    "glXGetFBConfigAttribSGIX",
+    "glXGetVisualFromFBConfig",
+    "glXGetVisualFromFBConfigSGIX",
+    "glXSwapIntervalSGI"
+  ],
+  "safe_name_count": 252,
+  "safe_cap": 256,
+  "unclassified_names": [],
+  "unused_profile_names": [],
+  "all_selected_names_classified": true,
+  "native_admitted": false,
+  "schema": "panda-sdk-routes-selected-coverage-v2",
+  "source_sha256": {
+    "glGraphicsBuffer_src.cxx": "972b69599873c470879b9c8fbbe03c2e0297178e24f283fd5f812c37387b6ac6",
+    "glGraphicsStateGuardian_src.cxx": "1aa249251d6b002917b785c5284bc3048c2584d10fc6515491ff7eaeaa678cec",
+    "glxGraphicsStateGuardian.cxx": "8038c1763e9a577e3f313a9a2d2d3ad5ae39438bd027ae0ba931ac81cefe701c",
+    "posixGraphicsStateGuardian.cxx": "375ab78cc107c032058b3d42abe2554b822b6fc6371ca0486ca0c0d4ac40bbc1"
+  },
+  "typed_route_count": 28,
+  "available_route_names": [
+    "glBindBuffer",
+    "glBindBufferARB",
+    "glBindBufferBase",
+    "glBindFramebuffer",
+    "glBindFramebufferEXT",
+    "glBindFramebufferOES",
+    "glDeleteBuffers",
+    "glDeleteBuffersARB",
+    "glDeleteFramebuffers",
+    "glDeleteFramebuffersEXT",
+    "glDeleteFramebuffersOES",
+    "glGetError",
+    "glPixelStorei",
+    "glReadBuffer",
+    "glReadBufferNV",
+    "glReadPixels",
+    "glXCreateContext",
+    "glXCreateContextAttribsARB",
+    "glXCreateContextWithConfigSGIX",
+    "glXCreateGLXPbufferSGIX",
+    "glXCreateGLXPixmapWithConfigSGIX",
+    "glXCreateNewContext",
+    "glXCreatePbuffer",
+    "glXCreatePixmap",
+    "glXDestroyContext",
+    "glXDestroyGLXPbufferSGIX",
+    "glXDestroyPbuffer",
+    "glXMakeContextCurrent",
+    "glXMakeCurrent"
+  ],
+  "computed_lookups": [
+    {
+      "file": "glGraphicsStateGuardian_src.cxx",
+      "callee": "do_get_extension_func",
+      "line": 7546
+    },
+    {
+      "file": "glxGraphicsStateGuardian.cxx",
+      "callee": "get_system_func",
+      "line": 513
+    },
+    {
+      "file": "glxGraphicsStateGuardian.cxx",
+      "callee": "do_get_extension_func",
+      "line": 532
+    },
+    {
+      "file": "posixGraphicsStateGuardian.cxx",
+      "callee": "get_system_func",
+      "line": 34
+    }
+  ],
+  "computed_names_statically_closed": true,
+  "finite_loader_names": [
+    "glXGetProcAddress",
+    "glXGetProcAddressARB"
+  ],
+  "compiled_table_names": [],
+  "selected_resolver_paths": [
+    "PSD_PATH_GLX_PRIVATE",
+    "PSD_PATH_POSIX"
+  ],
+  "coverage_scope": "four exact selected source files; no other caller/runtime/driver authority",
+  "runtime_resolver_origins_qualified": false,
+  "runtime_binding_qualified": false,
+  "stage7_complete": false,
+  "candidate_sha256": "3e9fa983023cb1f30b08a2bc650d0803686bef032a2c5d7a5700e1d3ad60553b",
+  "candidate_library": "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-routes-02/build-with-uapi/sdk/lib/libpandagl.so",
+  "build_receipt_sha256": "12577069243b1582bc311d263d35f36206d3171d42b51d6b39158ea6839d1baf",
+  "source_manifest_sha256": "42267657cd34308adea07449115791065fb7bf722d4a74644ef1d2a7089208b7",
+  "profile_sha256": "1cc65667486ddbaa4461e0c55141e1258600aa2bc1fa98da56fc3cc1746f99e7",
+  "compile_commands": [
+    {
+      "command": [
+        "/usr/bin/g++",
+        "-std=gnu++11",
+        "-ftemplate-depth-70",
+        "-fPIC",
+        "-I/workspace/big-model-closed-loop-benchmark/output/stage7-panda-source-dispatch-01/sysroot/usr/include",
+        "-I/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-routes-02/build-with-uapi/sdk/tmp",
+        "-I/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-routes-02/build-with-uapi/sdk/include",
+        "-Ipanda/src/glgsg",
+        "-Ipanda/src/glstuff",
+        "-fvisibility=hidden",
+        "-pthread",
+        "-fno-exceptions",
+        "-fno-strict-aliasing",
+        "-ffast-math",
+        "-fno-stack-protector",
+        "-fno-finite-math-only",
+        "-fno-unsafe-math-optimizations",
+        "-O2",
+        "-Wall",
+        "-Wno-unused-function",
+        "-Wno-reorder",
+        "-DBUILDING_PANDAGL",
+        "panda/src/glgsg/glgsg.cxx",
+        "-E"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.45185777400183724,
+      "limit_failure": null,
+      "stdout_nbytes": 5945068,
+      "stderr_nbytes": 624,
+      "original_compile_command": [
+        "/usr/bin/g++",
+        "-std=gnu++11",
+        "-ftemplate-depth-70",
+        "-fPIC",
+        "-c",
+        "-o",
+        "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-routes-02/build-with-uapi/sdk/tmp/p3glgsg_glgsg.o",
+        "-I/workspace/big-model-closed-loop-benchmark/output/stage7-panda-source-dispatch-01/sysroot/usr/include",
+        "-I/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-routes-02/build-with-uapi/sdk/tmp",
+        "-I/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-routes-02/build-with-uapi/sdk/include",
+        "-Ipanda/src/glgsg",
+        "-Ipanda/src/glstuff",
+        "-fvisibility=hidden",
+        "-pthread",
+        "-fno-exceptions",
+        "-fno-strict-aliasing",
+        "-ffast-math",
+        "-fno-stack-protector",
+        "-fno-finite-math-only",
+        "-fno-unsafe-math-optimizations",
+        "-O2",
+        "-Wall",
+        "-Wno-unused-function",
+        "-Wno-reorder",
+        "-MD",
+        "-DBUILDING_PANDAGL",
+        "panda/src/glgsg/glgsg.cxx"
+      ]
+    },
+    {
+      "command": [
+        "/usr/bin/g++",
+        "-std=gnu++11",
+        "-ftemplate-depth-70",
+        "-fPIC",
+        "-I/workspace/big-model-closed-loop-benchmark/output/stage7-panda-source-dispatch-01/sysroot/usr/include",
+        "-I/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-routes-02/build-with-uapi/sdk/tmp",
+        "-I/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-routes-02/build-with-uapi/sdk/include",
+        "-DHAVE_GLX=",
+        "-Ipanda/src/glxdisplay",
+        "-fvisibility=hidden",
+        "-pthread",
+        "-fno-exceptions",
+        "-fno-strict-aliasing",
+        "-ffast-math",
+        "-fno-stack-protector",
+        "-fno-finite-math-only",
+        "-fno-unsafe-math-optimizations",
+        "-O2",
+        "-Wall",
+        "-Wno-unused-function",
+        "-Wno-reorder",
+        "-DBUILDING_PANDAGL",
+        "panda/src/glxdisplay/p3glxdisplay_composite1.cxx",
+        "-E"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.3015521049965173,
+      "limit_failure": null,
+      "stdout_nbytes": 5394154,
+      "stderr_nbytes": 1707,
+      "original_compile_command": [
+        "/usr/bin/g++",
+        "-std=gnu++11",
+        "-ftemplate-depth-70",
+        "-fPIC",
+        "-c",
+        "-o",
+        "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-routes-02/build-with-uapi/sdk/tmp/p3glxdisplay_composite1.o",
+        "-I/workspace/big-model-closed-loop-benchmark/output/stage7-panda-source-dispatch-01/sysroot/usr/include",
+        "-I/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-routes-02/build-with-uapi/sdk/tmp",
+        "-I/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-routes-02/build-with-uapi/sdk/include",
+        "-DHAVE_GLX=",
+        "-Ipanda/src/glxdisplay",
+        "-fvisibility=hidden",
+        "-pthread",
+        "-fno-exceptions",
+        "-fno-strict-aliasing",
+        "-ffast-math",
+        "-fno-stack-protector",
+        "-fno-finite-math-only",
+        "-fno-unsafe-math-optimizations",
+        "-O2",
+        "-Wall",
+        "-Wno-unused-function",
+        "-Wno-reorder",
+        "-MD",
+        "-DBUILDING_PANDAGL",
+        "panda/src/glxdisplay/p3glxdisplay_composite1.cxx"
+      ]
+    }
+  ],
+  "tools_before": {
+    "profile_sha256": "b6b3c42f8a882eb38fce83218e1fb173efde6aaa6d1b17263068e29d9414d1e4",
+    "queries": [
+      {
+        "command": [
+          "/usr/bin/gcc",
+          "-print-prog-name=cc1"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.010614711998641724,
+        "stdout": "/usr/libexec/gcc/x86_64-linux-gnu/14/cc1\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/gcc",
+          "-print-prog-name=cc1plus"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.01064360100281192,
+        "stdout": "/usr/libexec/gcc/x86_64-linux-gnu/14/cc1plus\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/gcc",
+          "-print-prog-name=collect2"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.010425978998682695,
+        "stdout": "/usr/libexec/gcc/x86_64-linux-gnu/14/collect2\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/gcc",
+          "-print-prog-name=as"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.010409624999738298,
+        "stdout": "as\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/gcc",
+          "-print-prog-name=ld"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.010626145001879195,
+        "stdout": "ld\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/gcc",
+          "-print-file-name=specs"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.010390071001893375,
+        "stdout": "specs\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/gcc",
+          "-print-search-dirs"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.010589540001092246,
+        "stdout": "install: /usr/lib/gcc/x86_64-linux-gnu/14/\nprograms: =/usr/libexec/gcc/x86_64-linux-gnu/14/:/usr/libexec/gcc/x86_64-linux-gnu/14/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/14/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/14/../../../../x86_64-linux-gnu/bin/x86_64-linux-gnu/14/:/usr/lib/gcc/x86_64-linux-gnu/14/../../../../x86_64-linux-gnu/bin/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/14/../../../../x86_64-linux-gnu/bin/\nlibraries: =/usr/lib/gcc/x86_64-linux-gnu/14/:/usr/lib/gcc/x86_64-linux-gnu/14/../../../../x86_64-linux-gnu/lib/x86_64-linux-gnu/14/:/usr/lib/gcc/x86_64-linux-gnu/14/../../../../x86_64-linux-gnu/lib/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/14/../../../../x86_64-linux-gnu/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/14/:/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib/:/lib/x86_64-linux-gnu/14/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/14/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/14/../../../../x86_64-linux-gnu/lib/:/usr/lib/gcc/x86_64-linux-gnu/14/../../../:/lib/:/usr/lib/\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/gcc",
+          "-dumpspecs"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.010392339998361422,
+        "stdout": "*asm:\n%{m16|m32:--32}  %{m16|m32|mx32:;:--64}  %{mx32:--x32}  %{msse2avx:%{!mavx:-msse2avx}}\n\n*asm_debug:\n%{g*:%{%:debug-level-gt(0):}} %{ffile-prefix-map=*:--debug-prefix-map %*} %{fdebug-prefix-map=*:--debug-prefix-map %*}\n\n*asm_debug_option:\n%{g*:%{%:debug-level-gt(0):%{%:dwarf-version-gt(4):--gdwarf-5 ;%:dwarf-version-gt(3):--gdwarf-4 ;%:dwarf-version-gt(2):--gdwarf-3 ;:--gdwarf2 }}}\n\n*asm_final:\n%{gsplit-dwarf: \n       objcopy --extract-dwo \t %{c:%{o*:%*}%{!o*:%w%b%O}}%{!c:%U%O} \t %b.dwo \n       objcopy --strip-dwo \t %{c:%{o*:%*}%{!o*:%w%b%O}}%{!c:%U%O}     }\n\n*asm_options:\n%{-target-help:%:print-asm-header()} %{v} %{w:-W} %{I*} %(asm_debug_option) %{gz|gz=zlib:--compress-debug-sections=zlib} %{gz=none:--compress-debug-sections=none} %{gz=zstd:--compress-debug-sections=zstd} %{gz=zlib-gnu:}%a %Y %{c:%W{o*}%{!o*:-o %w%b%O}}%{!c:-o %d%w%u%O}\n\n*invoke_as:\n%{!fwpa*:   %{fcompare-debug=*|fdump-final-insns=*:%:compare-debug-dump-opt()}   %{!S:-o %|.s |\n as %(asm_options) %m.s %A }  }\n\n*cpp:\n%{posix:-D_POSIX_SOURCE} %{pthread:-D_REENTRANT}\n\n*cpp_options:\n%(cpp_unique_options) %1 %{m*} %{std*&ansi&trigraphs} %{W*&pedantic*} %{w} %{f*} %{g*:%{%:debug-level-gt(0):%{g*} %{!fno-working-directory:-fworking-directory}}} %{O*} %{undef} %{save-temps*:-fpch-preprocess} %(distro_defaults_cpp) %(distro_defaults)\n\n*cpp_debug_options:\n%<dumpdir %<dumpbase %<dumpbase-ext %{d*} %:dumps()\n\n*cpp_unique_options:\n%{!Q:-quiet} %{nostdinc*} %{C} %{CC} %{v} %@{I*&F*} %{P} %I %{MD:-MD %{!o:%b.d}%{o*:%.d%*}} %{MMD:-MMD %{!o:%b.d}%{o*:%.d%*}} %{M} %{MM} %{MF*} %{MG} %{MP} %{MQ*} %{MT*} %{Mmodules} %{Mno-modules} %{!E:%{!M:%{!MM:%{!MT:%{!MQ:%{MD|MMD:%{o*:-MQ %*}}}}}}} %{remap} %{%:debug-level-gt(2):-dD} %{!iplugindir*:%{fplugin*:%:find-plugindir()}} %{H} %C %{D*&U*&A*} %{i*} %Z %i %{E|M|MM:%W{o*}} %{fdeps-format=*:%{!fdeps-file=*:-fdeps-file=%:join(%{!o:%b.ddi}%{o*:%.ddi%*})}} %{fdeps-format=*:%{!fdeps-target=*:-fdeps-target=%:join(%{!o:%b.o}%{o*:%.o%*})}}\n\n*trad_capable_cpp:\ncc1 -E %{traditional|traditional-cpp:-traditional-cpp}\n\n*cc1:\n%{!mandroid|tno-android-cc:%(cc1_cpu) %{profile:-p};:%(cc1_cpu) %{profile:-p} %{!mglibc:%{!muclibc:%{!mbionic: -mbionic}}} %{!fno-pic:%{!fno-PIC:%{!fpic:%{!fPIC: -fPIC}}}}}\n\n*cc1_options:\n%{pg:%{fomit-frame-pointer:%e-pg and -fomit-frame-pointer are incompatible}} %{!iplugindir*:%{fplugin*:%:find-plugindir()}} %1 %{!Q:-quiet} %(cpp_debug_options) %{m*} %{aux-info*} %{g*} %{O*} %{W*&pedantic*} %{w} %{std*&ansi&trigraphs} %{v:-version} %{pg:-p} %{p} %{f*} %{undef} %{Qn:-fno-ident} %{Qy:} %{-help:--help} %{-target-help:--target-help} %{-version:--version} %{-help=*:--help=%*} %{!fsyntax-only:%{S:%W{o*}%{!o*:-o %w%b.s}}} %{fsyntax-only:-o %j} %{-param*} %{coverage:-fprofile-arcs -ftest-coverage} %{fprofile-arcs|fcondition-coverage|fprofile-generate*|coverage:   %{!fprofile-update=single:     %{pthread:-fprofile-update=prefer-atomic}}}\n\n*cc1plus:\n\n\n*link_gcc_c_sequence:\n%{static|static-pie:--start-group} %G %{!nolibc:%L}    %{static|static-pie:--end-group}%{!static:%{!static-pie:%G}}\n\n*distro_defaults:\n%{!fno-asynchronous-unwind-tables:-fasynchronous-unwind-tables}\n\n*distro_defaults_cpp:\n\n\n*link_ssp:\n%{fstack-protector|fstack-protector-all|fstack-protector-strong|fstack-protector-explicit:}\n\n*endfile:\n%{!mandroid|tno-android-ld:%{mdaz-ftz:crtfastmath.o%s;Ofast|ffast-math|funsafe-math-optimizations:%{!shared:%{!mno-daz-ftz:crtfastmath.o%s}}}    %{mpc32:crtprec32.o%s}    %{mpc64:crtprec64.o%s}    %{mpc80:crtprec80.o%s} %{!static:%{fvtable-verify=none:%s;      fvtable-verify=preinit:vtv_end_preinit.o%s;      fvtable-verify=std:vtv_end.o%s}}    %{static:crtend.o%s;      shared|static-pie|!no-pie:crtendS.o%s;      :crtend.o%s} crtn.o%s %{fopenacc|fopenmp:crtoffloadend%O%s};:%{mdaz-ftz:crtfastmath.o%s;Ofast|ffast-math|funsafe-math-optimizations:%{!shared:%{!mno-daz-ftz:crtfastmath.o%s}}}    %{mpc32:crtprec32.o%s}    %{mpc64:crtprec64.o%s}    %{mpc80:crtprec80.o%s} %{shared: crtend_so%O%s;: crtend_android%O%s}}\n\n*link:\n%{!r:--build-id} %{!static|static-pie:--eh-frame-hdr} %{!mandroid|tno-android-ld:%{m16|m32|mx32:;:-m elf_x86_64}                    %{m16|m32:-m elf_i386}                    %{mx32:-m elf32_x86_64}   --hash-style=gnu   %{!fsanitize=*:--as-needed}   %{shared:-shared}   %{!shared:     %{!static:       %{!static-pie: \t%{rdynamic:-export-dynamic} \t%{m16|m32:-dynamic-linker %{muclibc:/lib/ld-uClibc.so.0;:%{mbionic:/system/bin/linker;:%{mmusl:/lib/ld-musl-i386.so.1;:/lib/ld-linux.so.2}}}} \t%{m16|m32|mx32:;:-dynamic-linker %{muclibc:/lib/ld64-uClibc.so.0;:%{mbionic:/system/bin/linker64;:%{mmusl:/lib/ld-musl-x86_64.so.1;:/lib64/ld-linux-x86-64.so.2}}}} \t%{mx32:-dynamic-linker %{muclibc:/lib/ldx32-uClibc.so.0;:%{mbionic:/system/bin/linkerx32;:%{mmusl:/lib/ld-musl-x32.so.1;:/libx32/ld-linux-x32.so.2}}}}}}     %{static:-static} %{static-pie:-static -pie --no-dynamic-linker -z text}};:%{m16|m32|mx32:;:-m elf_x86_64}                    %{m16|m32:-m elf_i386}                    %{mx32:-m elf32_x86_64}   --hash-style=gnu   %{!fsanitize=*:--as-needed}   %{shared:-shared}   %{!shared:     %{!static:       %{!static-pie: \t%{rdynamic:-export-dynamic} \t%{m16|m32:-dynamic-linker %{muclibc:/lib/ld-uClibc.so.0;:%{mbionic:/system/bin/linker;:%{mmusl:/lib/ld-musl-i386.so.1;:/lib/ld-linux.so.2}}}} \t%{m16|m32|mx32:;:-dynamic-linker %{muclibc:/lib/ld64-uClibc.so.0;:%{mbionic:/system/bin/linker64;:%{mmusl:/lib/ld-musl-x86_64.so.1;:/lib64/ld-linux-x86-64.so.2}}}} \t%{mx32:-dynamic-linker %{muclibc:/lib/ldx32-uClibc.so.0;:%{mbionic:/system/bin/linkerx32;:%{mmusl:/lib/ld-musl-x32.so.1;:/libx32/ld-linux-x32.so.2}}}}}}     %{static:-static} %{static-pie:-static -pie --no-dynamic-linker -z text}} %{shared: -Bsymbolic}}\n\n*lib:\n%{!mandroid|tno-android-ld:%{pthread:-lpthread} %{shared:-lc}    %{!shared:%{profile:-lc_p}%{!profile:-lc}};:%{shared:-lc}    %{!shared:%{profile:-lc_p}%{!profile:-lc}} %{!static: -ldl}}\n\n*link_gomp:\n\n\n*libgcc:\n%{static|static-libgcc|static-pie:-lgcc -lgcc_eh}%{!static:%{!static-libgcc:%{!static-pie:%{!shared-libgcc:-lgcc --push-state --as-needed -lgcc_s --pop-state}%{shared-libgcc:-lgcc_s%{!shared: -lgcc}}}}}\n\n*startfile:\n%{!mandroid|tno-android-ld:%{shared:;      pg|p|profile:%{static-pie:grcrt1.o%s;:gcrt1.o%s};      static:crt1.o%s;      static-pie:rcrt1.o%s;      !no-pie:Scrt1.o%s;      :crt1.o%s} crti.o%s    %{static:crtbeginT.o%s;      shared|static-pie|!no-pie:crtbeginS.o%s;      :crtbegin.o%s}    %{fvtable-verify=none:%s;      fvtable-verify=preinit:vtv_start_preinit.o%s;      fvtable-verify=std:vtv_start.o%s} %{fopenacc|fopenmp:crtoffloadbegin%O%s};:%{shared: crtbegin_so%O%s;:  %{static: crtbegin_static%O%s;: crtbegin_dynamic%O%s}}}\n\n*cross_compile:\n0\n\n*version:\n14.2.0\n\n*multilib:\n. !m32 !m64 !mx32;32:../lib32:i386-linux-gnu m32 !m64 !mx32;64:../lib:x86_64-linux-gnu !m32 m64 !mx32;x32:../libx32:x86_64-linux-gnux32 !m32 !m64 mx32;\n\n*multilib_defaults:\nm64\n\n*multilib_extra:\n\n\n*multilib_matches:\nm32 m32;m64 m64;mx32 mx32;\n\n*multilib_exclusions:\n\n\n*multilib_options:\nm32/m64/mx32\n\n*multilib_reuse:\n\n\n*linker:\ncollect2\n\n*linker_plugin_file:\n\n\n*lto_wrapper:\n\n\n*lto_gcc:\n\n\n*post_link:\n\n\n*link_libgcc:\n%D\n\n*md_exec_prefix:\n\n\n*md_startfile_prefix:\n\n\n*md_startfile_prefix_1:\n\n\n*startfile_prefix_spec:\n\n\n*sysroot_spec:\n--sysroot=%R\n\n*sysroot_suffix_spec:\n\n\n*sysroot_hdrs_suffix_spec:\n\n\n*self_spec:\n\n\n*cc1_cpu:\n%{march=native:%>march=native %:local_cpu_detect(arch %{!m32:64;:32})   %{!mtune=*:%>mtune=native %:local_cpu_detect(tune %{!m32:64;:32})}} %{mtune=native:%>mtune=native %:local_cpu_detect(tune %{!m32:64;:32})}\n\n*link_command:\n%{!fsyntax-only:%{!c:%{!M:%{!MM:%{!E:%{!S:    %(linker) %{!fno-use-linker-plugin:%{!fno-lto:     -plugin %(linker_plugin_file)     -plugin-opt=%(lto_wrapper)     -plugin-opt=-fresolution=%u.res         %{flinker-output=*:-plugin-opt=-linker-output-known}     %{!nostdlib:%{!nodefaultlibs:%:pass-through-libs(%(link_gcc_c_sequence))}}     }}%{flto|flto=*:%<fcompare-debug*}     %{flto} %{fno-lto} %{flto=*} %l %{static|shared|r:;!no-pie:-pie} %{fuse-ld=*:-fuse-ld=%*}  %{gz|gz=zlib:--compress-debug-sections=zlib} %{gz=none:--compress-debug-sections=none} %{gz=zstd:--compress-debug-sections=zstd} %{gz=zlib-gnu:}%X %{o*} %{e*} %{N} %{n} %{r}    %{s} %{t} %{u*} %{z} %{Z} %{!nostdlib:%{!r:%{!nostartfiles:%S}}}     %{static|no-pie|static-pie:} %@{L*} %(link_libgcc) %{fvtable-verify=none:} %{fvtable-verify=std:   %e-fvtable-verify=std is not supported in this configuration} %{fvtable-verify=preinit:   %e-fvtable-verify=preinit is not supported in this configuration} %{!nostdlib:%{!r:%{!nodefaultlibs:%{%:sanitize(address):%{!shared:libasan_preinit%O%s} %{static-libasan:%{!shared:-Bstatic --whole-archive -lasan --no-whole-archive -Bdynamic}}%{!static-libasan:--push-state --no-as-needed -lasan --pop-state}}     %{%:sanitize(hwaddress):%{!shared:libhwasan_preinit%O%s} %{static-libhwasan:%{!shared:-Bstatic --whole-archive -lhwasan --no-whole-archive -Bdynamic}}%{!static-libhwasan:--push-state --no-as-needed -lhwasan --pop-state}}     %{%:sanitize(thread):%{!shared:libtsan_preinit%O%s} %{static-libtsan:%{!shared:-Bstatic --whole-archive -ltsan --no-whole-archive -Bdynamic}}%{!static-libtsan:--push-state --no-as-needed -ltsan --pop-state}}     %{%:sanitize(leak):%{!shared:liblsan_preinit%O%s} %{static-liblsan:%{!shared:-Bstatic --whole-archive -llsan --no-whole-archive -Bdynamic}}%{!static-liblsan:--push-state --no-as-needed -llsan --pop-state}}}}} %o      %{fopenacc|fopenmp|%:gt(%{ftree-parallelize-loops=*:%*} 1):\t%:include(libgomp.spec)%(link_gomp)}    %{fgnu-tm:%:include(libitm.spec)%(link_itm)}     %{fsplit-stack: --wrap=pthread_create}    %{fprofile-arcs|fcondition-coverage|fprofile-generate*|coverage:-lgcov} %{!nostdlib:%{!r:%{!nodefaultlibs:%{%:sanitize(address): %{static-libasan|static:%:include(libsanitizer.spec)%(link_libasan)}    %{static:%ecannot specify -static with -fsanitize=address}}    %{%:sanitize(hwaddress): %{static-libhwasan|static:%:include(libsanitizer.spec)%(link_libhwasan)}\t%{static:%ecannot specify -static with -fsanitize=hwaddress}}    %{%:sanitize(thread): %{static-libtsan|static:%:include(libsanitizer.spec)%(link_libtsan)}    %{static:%ecannot specify -static with -fsanitize=thread}}    %{%:sanitize(undefined):%{static-libubsan:-Bstatic} %{!static-libubsan:--push-state --no-as-needed} -lubsan  %{static-libubsan:-Bdynamic} %{!static-libubsan:--pop-state} %{static-libubsan|static:%:include(libsanitizer.spec)%(link_libubsan)}}    %{%:sanitize(leak): %{static-liblsan|static:%:include(libsanitizer.spec)%(link_liblsan)}}}}}     %{!nostdlib:%{!r:%{!nodefaultlibs:%(link_ssp) %(link_gcc_c_sequence)}}}    %{!nostdlib:%{!r:%{!nostartfiles:%E}}} %{T*}  \n%(post_link) }}}}}}\n\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/gcc",
+          "-print-file-name=liblto_plugin.so"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.010436093998578144,
+        "stdout": "/usr/lib/gcc/x86_64-linux-gnu/14/liblto_plugin.so\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/gcc",
+          "-print-file-name=crtbeginS.o"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.010542562002228806,
+        "stdout": "/usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/gcc",
+          "-print-file-name=crtendS.o"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.01056607599821291,
+        "stdout": "/usr/lib/gcc/x86_64-linux-gnu/14/crtendS.o\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/gcc",
+          "-print-file-name=crti.o"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.010509170999284834,
+        "stdout": "/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/gcc",
+          "-print-file-name=crtn.o"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.010380132000136655,
+        "stdout": "/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crtn.o\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/gcc",
+          "-print-file-name=libgcc.a"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.010405719000118552,
+        "stdout": "/usr/lib/gcc/x86_64-linux-gnu/14/libgcc.a\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/gcc",
+          "-print-file-name=libgcc_s.so"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.010482688001502538,
+        "stdout": "/usr/lib/gcc/x86_64-linux-gnu/14/libgcc_s.so\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/gcc",
+          "-print-file-name=libstdc++.so"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.01076149399887072,
+        "stdout": "/usr/lib/gcc/x86_64-linux-gnu/14/libstdc++.so\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/gcc",
+          "-print-file-name=libm.so"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.004756725000333972,
+        "stdout": "/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/libm.so\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/gcc",
+          "-print-file-name=libc.so"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.010457976000907365,
+        "stdout": "/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/libc.so\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/g++",
+          "-print-prog-name=cc1"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.010434431002067868,
+        "stdout": "/usr/libexec/gcc/x86_64-linux-gnu/14/cc1\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/g++",
+          "-print-prog-name=cc1plus"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.010483523998118471,
+        "stdout": "/usr/libexec/gcc/x86_64-linux-gnu/14/cc1plus\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/g++",
+          "-print-prog-name=collect2"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.01041642500058515,
+        "stdout": "/usr/libexec/gcc/x86_64-linux-gnu/14/collect2\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/g++",
+          "-print-prog-name=as"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.010448962999362266,
+        "stdout": "as\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/g++",
+          "-print-prog-name=ld"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.010684660999686457,
+        "stdout": "ld\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/g++",
+          "-print-file-name=specs"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.0035921189992222935,
+        "stdout": "specs\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/g++",
+          "-print-search-dirs"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.010387942998931976,
+        "stdout": "install: /usr/lib/gcc/x86_64-linux-gnu/14/\nprograms: =/usr/libexec/gcc/x86_64-linux-gnu/14/:/usr/libexec/gcc/x86_64-linux-gnu/14/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/14/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/14/../../../../x86_64-linux-gnu/bin/x86_64-linux-gnu/14/:/usr/lib/gcc/x86_64-linux-gnu/14/../../../../x86_64-linux-gnu/bin/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/14/../../../../x86_64-linux-gnu/bin/\nlibraries: =/usr/lib/gcc/x86_64-linux-gnu/14/:/usr/lib/gcc/x86_64-linux-gnu/14/../../../../x86_64-linux-gnu/lib/x86_64-linux-gnu/14/:/usr/lib/gcc/x86_64-linux-gnu/14/../../../../x86_64-linux-gnu/lib/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/14/../../../../x86_64-linux-gnu/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/14/:/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib/:/lib/x86_64-linux-gnu/14/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/14/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/14/../../../../x86_64-linux-gnu/lib/:/usr/lib/gcc/x86_64-linux-gnu/14/../../../:/lib/:/usr/lib/\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/g++",
+          "-dumpspecs"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.01043495200065081,
+        "stdout": "*asm:\n%{m16|m32:--32}  %{m16|m32|mx32:;:--64}  %{mx32:--x32}  %{msse2avx:%{!mavx:-msse2avx}}\n\n*asm_debug:\n%{g*:%{%:debug-level-gt(0):}} %{ffile-prefix-map=*:--debug-prefix-map %*} %{fdebug-prefix-map=*:--debug-prefix-map %*}\n\n*asm_debug_option:\n%{g*:%{%:debug-level-gt(0):%{%:dwarf-version-gt(4):--gdwarf-5 ;%:dwarf-version-gt(3):--gdwarf-4 ;%:dwarf-version-gt(2):--gdwarf-3 ;:--gdwarf2 }}}\n\n*asm_final:\n%{gsplit-dwarf: \n       objcopy --extract-dwo \t %{c:%{o*:%*}%{!o*:%w%b%O}}%{!c:%U%O} \t %b.dwo \n       objcopy --strip-dwo \t %{c:%{o*:%*}%{!o*:%w%b%O}}%{!c:%U%O}     }\n\n*asm_options:\n%{-target-help:%:print-asm-header()} %{v} %{w:-W} %{I*} %(asm_debug_option) %{gz|gz=zlib:--compress-debug-sections=zlib} %{gz=none:--compress-debug-sections=none} %{gz=zstd:--compress-debug-sections=zstd} %{gz=zlib-gnu:}%a %Y %{c:%W{o*}%{!o*:-o %w%b%O}}%{!c:-o %d%w%u%O}\n\n*invoke_as:\n%{!fwpa*:   %{fcompare-debug=*|fdump-final-insns=*:%:compare-debug-dump-opt()}   %{!S:-o %|.s |\n as %(asm_options) %m.s %A }  }\n\n*cpp:\n%{posix:-D_POSIX_SOURCE} %{pthread:-D_REENTRANT}\n\n*cpp_options:\n%(cpp_unique_options) %1 %{m*} %{std*&ansi&trigraphs} %{W*&pedantic*} %{w} %{f*} %{g*:%{%:debug-level-gt(0):%{g*} %{!fno-working-directory:-fworking-directory}}} %{O*} %{undef} %{save-temps*:-fpch-preprocess} %(distro_defaults_cpp) %(distro_defaults)\n\n*cpp_debug_options:\n%<dumpdir %<dumpbase %<dumpbase-ext %{d*} %:dumps()\n\n*cpp_unique_options:\n%{!Q:-quiet} %{nostdinc*} %{C} %{CC} %{v} %@{I*&F*} %{P} %I %{MD:-MD %{!o:%b.d}%{o*:%.d%*}} %{MMD:-MMD %{!o:%b.d}%{o*:%.d%*}} %{M} %{MM} %{MF*} %{MG} %{MP} %{MQ*} %{MT*} %{Mmodules} %{Mno-modules} %{!E:%{!M:%{!MM:%{!MT:%{!MQ:%{MD|MMD:%{o*:-MQ %*}}}}}}} %{remap} %{%:debug-level-gt(2):-dD} %{!iplugindir*:%{fplugin*:%:find-plugindir()}} %{H} %C %{D*&U*&A*} %{i*} %Z %i %{E|M|MM:%W{o*}} %{fdeps-format=*:%{!fdeps-file=*:-fdeps-file=%:join(%{!o:%b.ddi}%{o*:%.ddi%*})}} %{fdeps-format=*:%{!fdeps-target=*:-fdeps-target=%:join(%{!o:%b.o}%{o*:%.o%*})}}\n\n*trad_capable_cpp:\ncc1 -E %{traditional|traditional-cpp:-traditional-cpp}\n\n*cc1:\n%{!mandroid|tno-android-cc:%(cc1_cpu) %{profile:-p};:%(cc1_cpu) %{profile:-p} %{!mglibc:%{!muclibc:%{!mbionic: -mbionic}}} %{!fno-pic:%{!fno-PIC:%{!fpic:%{!fPIC: -fPIC}}}}}\n\n*cc1_options:\n%{pg:%{fomit-frame-pointer:%e-pg and -fomit-frame-pointer are incompatible}} %{!iplugindir*:%{fplugin*:%:find-plugindir()}} %1 %{!Q:-quiet} %(cpp_debug_options) %{m*} %{aux-info*} %{g*} %{O*} %{W*&pedantic*} %{w} %{std*&ansi&trigraphs} %{v:-version} %{pg:-p} %{p} %{f*} %{undef} %{Qn:-fno-ident} %{Qy:} %{-help:--help} %{-target-help:--target-help} %{-version:--version} %{-help=*:--help=%*} %{!fsyntax-only:%{S:%W{o*}%{!o*:-o %w%b.s}}} %{fsyntax-only:-o %j} %{-param*} %{coverage:-fprofile-arcs -ftest-coverage} %{fprofile-arcs|fcondition-coverage|fprofile-generate*|coverage:   %{!fprofile-update=single:     %{pthread:-fprofile-update=prefer-atomic}}}\n\n*cc1plus:\n\n\n*link_gcc_c_sequence:\n%{static|static-pie:--start-group} %G %{!nolibc:%L}    %{static|static-pie:--end-group}%{!static:%{!static-pie:%G}}\n\n*distro_defaults:\n%{!fno-asynchronous-unwind-tables:-fasynchronous-unwind-tables}\n\n*distro_defaults_cpp:\n\n\n*link_ssp:\n%{fstack-protector|fstack-protector-all|fstack-protector-strong|fstack-protector-explicit:}\n\n*endfile:\n%{!mandroid|tno-android-ld:%{mdaz-ftz:crtfastmath.o%s;Ofast|ffast-math|funsafe-math-optimizations:%{!shared:%{!mno-daz-ftz:crtfastmath.o%s}}}    %{mpc32:crtprec32.o%s}    %{mpc64:crtprec64.o%s}    %{mpc80:crtprec80.o%s} %{!static:%{fvtable-verify=none:%s;      fvtable-verify=preinit:vtv_end_preinit.o%s;      fvtable-verify=std:vtv_end.o%s}}    %{static:crtend.o%s;      shared|static-pie|!no-pie:crtendS.o%s;      :crtend.o%s} crtn.o%s %{fopenacc|fopenmp:crtoffloadend%O%s};:%{mdaz-ftz:crtfastmath.o%s;Ofast|ffast-math|funsafe-math-optimizations:%{!shared:%{!mno-daz-ftz:crtfastmath.o%s}}}    %{mpc32:crtprec32.o%s}    %{mpc64:crtprec64.o%s}    %{mpc80:crtprec80.o%s} %{shared: crtend_so%O%s;: crtend_android%O%s}}\n\n*link:\n%{!r:--build-id} %{!static|static-pie:--eh-frame-hdr} %{!mandroid|tno-android-ld:%{m16|m32|mx32:;:-m elf_x86_64}                    %{m16|m32:-m elf_i386}                    %{mx32:-m elf32_x86_64}   --hash-style=gnu   %{!fsanitize=*:--as-needed}   %{shared:-shared}   %{!shared:     %{!static:       %{!static-pie: \t%{rdynamic:-export-dynamic} \t%{m16|m32:-dynamic-linker %{muclibc:/lib/ld-uClibc.so.0;:%{mbionic:/system/bin/linker;:%{mmusl:/lib/ld-musl-i386.so.1;:/lib/ld-linux.so.2}}}} \t%{m16|m32|mx32:;:-dynamic-linker %{muclibc:/lib/ld64-uClibc.so.0;:%{mbionic:/system/bin/linker64;:%{mmusl:/lib/ld-musl-x86_64.so.1;:/lib64/ld-linux-x86-64.so.2}}}} \t%{mx32:-dynamic-linker %{muclibc:/lib/ldx32-uClibc.so.0;:%{mbionic:/system/bin/linkerx32;:%{mmusl:/lib/ld-musl-x32.so.1;:/libx32/ld-linux-x32.so.2}}}}}}     %{static:-static} %{static-pie:-static -pie --no-dynamic-linker -z text}};:%{m16|m32|mx32:;:-m elf_x86_64}                    %{m16|m32:-m elf_i386}                    %{mx32:-m elf32_x86_64}   --hash-style=gnu   %{!fsanitize=*:--as-needed}   %{shared:-shared}   %{!shared:     %{!static:       %{!static-pie: \t%{rdynamic:-export-dynamic} \t%{m16|m32:-dynamic-linker %{muclibc:/lib/ld-uClibc.so.0;:%{mbionic:/system/bin/linker;:%{mmusl:/lib/ld-musl-i386.so.1;:/lib/ld-linux.so.2}}}} \t%{m16|m32|mx32:;:-dynamic-linker %{muclibc:/lib/ld64-uClibc.so.0;:%{mbionic:/system/bin/linker64;:%{mmusl:/lib/ld-musl-x86_64.so.1;:/lib64/ld-linux-x86-64.so.2}}}} \t%{mx32:-dynamic-linker %{muclibc:/lib/ldx32-uClibc.so.0;:%{mbionic:/system/bin/linkerx32;:%{mmusl:/lib/ld-musl-x32.so.1;:/libx32/ld-linux-x32.so.2}}}}}}     %{static:-static} %{static-pie:-static -pie --no-dynamic-linker -z text}} %{shared: -Bsymbolic}}\n\n*lib:\n%{!mandroid|tno-android-ld:%{pthread:-lpthread} %{shared:-lc}    %{!shared:%{profile:-lc_p}%{!profile:-lc}};:%{shared:-lc}    %{!shared:%{profile:-lc_p}%{!profile:-lc}} %{!static: -ldl}}\n\n*link_gomp:\n\n\n*libgcc:\n%{static|static-libgcc|static-pie:-lgcc -lgcc_eh}%{!static:%{!static-libgcc:%{!static-pie:%{!shared-libgcc:-lgcc --push-state --as-needed -lgcc_s --pop-state}%{shared-libgcc:-lgcc_s%{!shared: -lgcc}}}}}\n\n*startfile:\n%{!mandroid|tno-android-ld:%{shared:;      pg|p|profile:%{static-pie:grcrt1.o%s;:gcrt1.o%s};      static:crt1.o%s;      static-pie:rcrt1.o%s;      !no-pie:Scrt1.o%s;      :crt1.o%s} crti.o%s    %{static:crtbeginT.o%s;      shared|static-pie|!no-pie:crtbeginS.o%s;      :crtbegin.o%s}    %{fvtable-verify=none:%s;      fvtable-verify=preinit:vtv_start_preinit.o%s;      fvtable-verify=std:vtv_start.o%s} %{fopenacc|fopenmp:crtoffloadbegin%O%s};:%{shared: crtbegin_so%O%s;:  %{static: crtbegin_static%O%s;: crtbegin_dynamic%O%s}}}\n\n*cross_compile:\n0\n\n*version:\n14.2.0\n\n*multilib:\n. !m32 !m64 !mx32;32:../lib32:i386-linux-gnu m32 !m64 !mx32;64:../lib:x86_64-linux-gnu !m32 m64 !mx32;x32:../libx32:x86_64-linux-gnux32 !m32 !m64 mx32;\n\n*multilib_defaults:\nm64\n\n*multilib_extra:\n\n\n*multilib_matches:\nm32 m32;m64 m64;mx32 mx32;\n\n*multilib_exclusions:\n\n\n*multilib_options:\nm32/m64/mx32\n\n*multilib_reuse:\n\n\n*linker:\ncollect2\n\n*linker_plugin_file:\n\n\n*lto_wrapper:\n\n\n*lto_gcc:\n\n\n*post_link:\n\n\n*link_libgcc:\n%D\n\n*md_exec_prefix:\n\n\n*md_startfile_prefix:\n\n\n*md_startfile_prefix_1:\n\n\n*startfile_prefix_spec:\n\n\n*sysroot_spec:\n--sysroot=%R\n\n*sysroot_suffix_spec:\n\n\n*sysroot_hdrs_suffix_spec:\n\n\n*self_spec:\n\n\n*cc1_cpu:\n%{march=native:%>march=native %:local_cpu_detect(arch %{!m32:64;:32})   %{!mtune=*:%>mtune=native %:local_cpu_detect(tune %{!m32:64;:32})}} %{mtune=native:%>mtune=native %:local_cpu_detect(tune %{!m32:64;:32})}\n\n*link_command:\n%{!fsyntax-only:%{!c:%{!M:%{!MM:%{!E:%{!S:    %(linker) %{!fno-use-linker-plugin:%{!fno-lto:     -plugin %(linker_plugin_file)     -plugin-opt=%(lto_wrapper)     -plugin-opt=-fresolution=%u.res         %{flinker-output=*:-plugin-opt=-linker-output-known}     %{!nostdlib:%{!nodefaultlibs:%:pass-through-libs(%(link_gcc_c_sequence))}}     }}%{flto|flto=*:%<fcompare-debug*}     %{flto} %{fno-lto} %{flto=*} %l %{static|shared|r:;!no-pie:-pie} %{fuse-ld=*:-fuse-ld=%*}  %{gz|gz=zlib:--compress-debug-sections=zlib} %{gz=none:--compress-debug-sections=none} %{gz=zstd:--compress-debug-sections=zstd} %{gz=zlib-gnu:}%X %{o*} %{e*} %{N} %{n} %{r}    %{s} %{t} %{u*} %{z} %{Z} %{!nostdlib:%{!r:%{!nostartfiles:%S}}}     %{static|no-pie|static-pie:} %@{L*} %(link_libgcc) %{fvtable-verify=none:} %{fvtable-verify=std:   %e-fvtable-verify=std is not supported in this configuration} %{fvtable-verify=preinit:   %e-fvtable-verify=preinit is not supported in this configuration} %{!nostdlib:%{!r:%{!nodefaultlibs:%{%:sanitize(address):%{!shared:libasan_preinit%O%s} %{static-libasan:%{!shared:-Bstatic --whole-archive -lasan --no-whole-archive -Bdynamic}}%{!static-libasan:--push-state --no-as-needed -lasan --pop-state}}     %{%:sanitize(hwaddress):%{!shared:libhwasan_preinit%O%s} %{static-libhwasan:%{!shared:-Bstatic --whole-archive -lhwasan --no-whole-archive -Bdynamic}}%{!static-libhwasan:--push-state --no-as-needed -lhwasan --pop-state}}     %{%:sanitize(thread):%{!shared:libtsan_preinit%O%s} %{static-libtsan:%{!shared:-Bstatic --whole-archive -ltsan --no-whole-archive -Bdynamic}}%{!static-libtsan:--push-state --no-as-needed -ltsan --pop-state}}     %{%:sanitize(leak):%{!shared:liblsan_preinit%O%s} %{static-liblsan:%{!shared:-Bstatic --whole-archive -llsan --no-whole-archive -Bdynamic}}%{!static-liblsan:--push-state --no-as-needed -llsan --pop-state}}}}} %o      %{fopenacc|fopenmp|%:gt(%{ftree-parallelize-loops=*:%*} 1):\t%:include(libgomp.spec)%(link_gomp)}    %{fgnu-tm:%:include(libitm.spec)%(link_itm)}     %{fsplit-stack: --wrap=pthread_create}    %{fprofile-arcs|fcondition-coverage|fprofile-generate*|coverage:-lgcov} %{!nostdlib:%{!r:%{!nodefaultlibs:%{%:sanitize(address): %{static-libasan|static:%:include(libsanitizer.spec)%(link_libasan)}    %{static:%ecannot specify -static with -fsanitize=address}}    %{%:sanitize(hwaddress): %{static-libhwasan|static:%:include(libsanitizer.spec)%(link_libhwasan)}\t%{static:%ecannot specify -static with -fsanitize=hwaddress}}    %{%:sanitize(thread): %{static-libtsan|static:%:include(libsanitizer.spec)%(link_libtsan)}    %{static:%ecannot specify -static with -fsanitize=thread}}    %{%:sanitize(undefined):%{static-libubsan:-Bstatic} %{!static-libubsan:--push-state --no-as-needed} -lubsan  %{static-libubsan:-Bdynamic} %{!static-libubsan:--pop-state} %{static-libubsan|static:%:include(libsanitizer.spec)%(link_libubsan)}}    %{%:sanitize(leak): %{static-liblsan|static:%:include(libsanitizer.spec)%(link_liblsan)}}}}}     %{!nostdlib:%{!r:%{!nodefaultlibs:%(link_ssp) %(link_gcc_c_sequence)}}}    %{!nostdlib:%{!r:%{!nostartfiles:%E}}} %{T*}  \n%(post_link) }}}}}}\n\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/g++",
+          "-print-file-name=liblto_plugin.so"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.010526276997552486,
+        "stdout": "/usr/lib/gcc/x86_64-linux-gnu/14/liblto_plugin.so\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/g++",
+          "-print-file-name=crtbeginS.o"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.014103654000791721,
+        "stdout": "/usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/g++",
+          "-print-file-name=crtendS.o"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.010342836001655087,
+        "stdout": "/usr/lib/gcc/x86_64-linux-gnu/14/crtendS.o\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/g++",
+          "-print-file-name=crti.o"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.013282750998769188,
+        "stdout": "/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/g++",
+          "-print-file-name=crtn.o"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.011957923001318704,
+        "stdout": "/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crtn.o\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/g++",
+          "-print-file-name=libgcc.a"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.011734101997717516,
+        "stdout": "/usr/lib/gcc/x86_64-linux-gnu/14/libgcc.a\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/g++",
+          "-print-file-name=libgcc_s.so"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.011852297000586987,
+        "stdout": "/usr/lib/gcc/x86_64-linux-gnu/14/libgcc_s.so\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/g++",
+          "-print-file-name=libstdc++.so"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.01209084899892332,
+        "stdout": "/usr/lib/gcc/x86_64-linux-gnu/14/libstdc++.so\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/g++",
+          "-print-file-name=libm.so"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.0009839330014074221,
+        "stdout": "/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/libm.so\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/g++",
+          "-print-file-name=libc.so"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.012440095997590106,
+        "stdout": "/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/libc.so\n",
+        "stderr": ""
+      }
+    ]
+  },
+  "tools_after": {
+    "profile_sha256": "b6b3c42f8a882eb38fce83218e1fb173efde6aaa6d1b17263068e29d9414d1e4",
+    "queries": [
+      {
+        "command": [
+          "/usr/bin/gcc",
+          "-print-prog-name=cc1"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.010558506000961643,
+        "stdout": "/usr/libexec/gcc/x86_64-linux-gnu/14/cc1\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/gcc",
+          "-print-prog-name=cc1plus"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.010430335998535156,
+        "stdout": "/usr/libexec/gcc/x86_64-linux-gnu/14/cc1plus\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/gcc",
+          "-print-prog-name=collect2"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.010372479999205098,
+        "stdout": "/usr/libexec/gcc/x86_64-linux-gnu/14/collect2\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/gcc",
+          "-print-prog-name=as"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.01036977600233513,
+        "stdout": "as\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/gcc",
+          "-print-prog-name=ld"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.01036968600237742,
+        "stdout": "ld\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/gcc",
+          "-print-file-name=specs"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.010352600998885464,
+        "stdout": "specs\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/gcc",
+          "-print-search-dirs"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.010345912000047974,
+        "stdout": "install: /usr/lib/gcc/x86_64-linux-gnu/14/\nprograms: =/usr/libexec/gcc/x86_64-linux-gnu/14/:/usr/libexec/gcc/x86_64-linux-gnu/14/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/14/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/14/../../../../x86_64-linux-gnu/bin/x86_64-linux-gnu/14/:/usr/lib/gcc/x86_64-linux-gnu/14/../../../../x86_64-linux-gnu/bin/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/14/../../../../x86_64-linux-gnu/bin/\nlibraries: =/usr/lib/gcc/x86_64-linux-gnu/14/:/usr/lib/gcc/x86_64-linux-gnu/14/../../../../x86_64-linux-gnu/lib/x86_64-linux-gnu/14/:/usr/lib/gcc/x86_64-linux-gnu/14/../../../../x86_64-linux-gnu/lib/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/14/../../../../x86_64-linux-gnu/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/14/:/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib/:/lib/x86_64-linux-gnu/14/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/14/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/14/../../../../x86_64-linux-gnu/lib/:/usr/lib/gcc/x86_64-linux-gnu/14/../../../:/lib/:/usr/lib/\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/gcc",
+          "-dumpspecs"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.01056435400096234,
+        "stdout": "*asm:\n%{m16|m32:--32}  %{m16|m32|mx32:;:--64}  %{mx32:--x32}  %{msse2avx:%{!mavx:-msse2avx}}\n\n*asm_debug:\n%{g*:%{%:debug-level-gt(0):}} %{ffile-prefix-map=*:--debug-prefix-map %*} %{fdebug-prefix-map=*:--debug-prefix-map %*}\n\n*asm_debug_option:\n%{g*:%{%:debug-level-gt(0):%{%:dwarf-version-gt(4):--gdwarf-5 ;%:dwarf-version-gt(3):--gdwarf-4 ;%:dwarf-version-gt(2):--gdwarf-3 ;:--gdwarf2 }}}\n\n*asm_final:\n%{gsplit-dwarf: \n       objcopy --extract-dwo \t %{c:%{o*:%*}%{!o*:%w%b%O}}%{!c:%U%O} \t %b.dwo \n       objcopy --strip-dwo \t %{c:%{o*:%*}%{!o*:%w%b%O}}%{!c:%U%O}     }\n\n*asm_options:\n%{-target-help:%:print-asm-header()} %{v} %{w:-W} %{I*} %(asm_debug_option) %{gz|gz=zlib:--compress-debug-sections=zlib} %{gz=none:--compress-debug-sections=none} %{gz=zstd:--compress-debug-sections=zstd} %{gz=zlib-gnu:}%a %Y %{c:%W{o*}%{!o*:-o %w%b%O}}%{!c:-o %d%w%u%O}\n\n*invoke_as:\n%{!fwpa*:   %{fcompare-debug=*|fdump-final-insns=*:%:compare-debug-dump-opt()}   %{!S:-o %|.s |\n as %(asm_options) %m.s %A }  }\n\n*cpp:\n%{posix:-D_POSIX_SOURCE} %{pthread:-D_REENTRANT}\n\n*cpp_options:\n%(cpp_unique_options) %1 %{m*} %{std*&ansi&trigraphs} %{W*&pedantic*} %{w} %{f*} %{g*:%{%:debug-level-gt(0):%{g*} %{!fno-working-directory:-fworking-directory}}} %{O*} %{undef} %{save-temps*:-fpch-preprocess} %(distro_defaults_cpp) %(distro_defaults)\n\n*cpp_debug_options:\n%<dumpdir %<dumpbase %<dumpbase-ext %{d*} %:dumps()\n\n*cpp_unique_options:\n%{!Q:-quiet} %{nostdinc*} %{C} %{CC} %{v} %@{I*&F*} %{P} %I %{MD:-MD %{!o:%b.d}%{o*:%.d%*}} %{MMD:-MMD %{!o:%b.d}%{o*:%.d%*}} %{M} %{MM} %{MF*} %{MG} %{MP} %{MQ*} %{MT*} %{Mmodules} %{Mno-modules} %{!E:%{!M:%{!MM:%{!MT:%{!MQ:%{MD|MMD:%{o*:-MQ %*}}}}}}} %{remap} %{%:debug-level-gt(2):-dD} %{!iplugindir*:%{fplugin*:%:find-plugindir()}} %{H} %C %{D*&U*&A*} %{i*} %Z %i %{E|M|MM:%W{o*}} %{fdeps-format=*:%{!fdeps-file=*:-fdeps-file=%:join(%{!o:%b.ddi}%{o*:%.ddi%*})}} %{fdeps-format=*:%{!fdeps-target=*:-fdeps-target=%:join(%{!o:%b.o}%{o*:%.o%*})}}\n\n*trad_capable_cpp:\ncc1 -E %{traditional|traditional-cpp:-traditional-cpp}\n\n*cc1:\n%{!mandroid|tno-android-cc:%(cc1_cpu) %{profile:-p};:%(cc1_cpu) %{profile:-p} %{!mglibc:%{!muclibc:%{!mbionic: -mbionic}}} %{!fno-pic:%{!fno-PIC:%{!fpic:%{!fPIC: -fPIC}}}}}\n\n*cc1_options:\n%{pg:%{fomit-frame-pointer:%e-pg and -fomit-frame-pointer are incompatible}} %{!iplugindir*:%{fplugin*:%:find-plugindir()}} %1 %{!Q:-quiet} %(cpp_debug_options) %{m*} %{aux-info*} %{g*} %{O*} %{W*&pedantic*} %{w} %{std*&ansi&trigraphs} %{v:-version} %{pg:-p} %{p} %{f*} %{undef} %{Qn:-fno-ident} %{Qy:} %{-help:--help} %{-target-help:--target-help} %{-version:--version} %{-help=*:--help=%*} %{!fsyntax-only:%{S:%W{o*}%{!o*:-o %w%b.s}}} %{fsyntax-only:-o %j} %{-param*} %{coverage:-fprofile-arcs -ftest-coverage} %{fprofile-arcs|fcondition-coverage|fprofile-generate*|coverage:   %{!fprofile-update=single:     %{pthread:-fprofile-update=prefer-atomic}}}\n\n*cc1plus:\n\n\n*link_gcc_c_sequence:\n%{static|static-pie:--start-group} %G %{!nolibc:%L}    %{static|static-pie:--end-group}%{!static:%{!static-pie:%G}}\n\n*distro_defaults:\n%{!fno-asynchronous-unwind-tables:-fasynchronous-unwind-tables}\n\n*distro_defaults_cpp:\n\n\n*link_ssp:\n%{fstack-protector|fstack-protector-all|fstack-protector-strong|fstack-protector-explicit:}\n\n*endfile:\n%{!mandroid|tno-android-ld:%{mdaz-ftz:crtfastmath.o%s;Ofast|ffast-math|funsafe-math-optimizations:%{!shared:%{!mno-daz-ftz:crtfastmath.o%s}}}    %{mpc32:crtprec32.o%s}    %{mpc64:crtprec64.o%s}    %{mpc80:crtprec80.o%s} %{!static:%{fvtable-verify=none:%s;      fvtable-verify=preinit:vtv_end_preinit.o%s;      fvtable-verify=std:vtv_end.o%s}}    %{static:crtend.o%s;      shared|static-pie|!no-pie:crtendS.o%s;      :crtend.o%s} crtn.o%s %{fopenacc|fopenmp:crtoffloadend%O%s};:%{mdaz-ftz:crtfastmath.o%s;Ofast|ffast-math|funsafe-math-optimizations:%{!shared:%{!mno-daz-ftz:crtfastmath.o%s}}}    %{mpc32:crtprec32.o%s}    %{mpc64:crtprec64.o%s}    %{mpc80:crtprec80.o%s} %{shared: crtend_so%O%s;: crtend_android%O%s}}\n\n*link:\n%{!r:--build-id} %{!static|static-pie:--eh-frame-hdr} %{!mandroid|tno-android-ld:%{m16|m32|mx32:;:-m elf_x86_64}                    %{m16|m32:-m elf_i386}                    %{mx32:-m elf32_x86_64}   --hash-style=gnu   %{!fsanitize=*:--as-needed}   %{shared:-shared}   %{!shared:     %{!static:       %{!static-pie: \t%{rdynamic:-export-dynamic} \t%{m16|m32:-dynamic-linker %{muclibc:/lib/ld-uClibc.so.0;:%{mbionic:/system/bin/linker;:%{mmusl:/lib/ld-musl-i386.so.1;:/lib/ld-linux.so.2}}}} \t%{m16|m32|mx32:;:-dynamic-linker %{muclibc:/lib/ld64-uClibc.so.0;:%{mbionic:/system/bin/linker64;:%{mmusl:/lib/ld-musl-x86_64.so.1;:/lib64/ld-linux-x86-64.so.2}}}} \t%{mx32:-dynamic-linker %{muclibc:/lib/ldx32-uClibc.so.0;:%{mbionic:/system/bin/linkerx32;:%{mmusl:/lib/ld-musl-x32.so.1;:/libx32/ld-linux-x32.so.2}}}}}}     %{static:-static} %{static-pie:-static -pie --no-dynamic-linker -z text}};:%{m16|m32|mx32:;:-m elf_x86_64}                    %{m16|m32:-m elf_i386}                    %{mx32:-m elf32_x86_64}   --hash-style=gnu   %{!fsanitize=*:--as-needed}   %{shared:-shared}   %{!shared:     %{!static:       %{!static-pie: \t%{rdynamic:-export-dynamic} \t%{m16|m32:-dynamic-linker %{muclibc:/lib/ld-uClibc.so.0;:%{mbionic:/system/bin/linker;:%{mmusl:/lib/ld-musl-i386.so.1;:/lib/ld-linux.so.2}}}} \t%{m16|m32|mx32:;:-dynamic-linker %{muclibc:/lib/ld64-uClibc.so.0;:%{mbionic:/system/bin/linker64;:%{mmusl:/lib/ld-musl-x86_64.so.1;:/lib64/ld-linux-x86-64.so.2}}}} \t%{mx32:-dynamic-linker %{muclibc:/lib/ldx32-uClibc.so.0;:%{mbionic:/system/bin/linkerx32;:%{mmusl:/lib/ld-musl-x32.so.1;:/libx32/ld-linux-x32.so.2}}}}}}     %{static:-static} %{static-pie:-static -pie --no-dynamic-linker -z text}} %{shared: -Bsymbolic}}\n\n*lib:\n%{!mandroid|tno-android-ld:%{pthread:-lpthread} %{shared:-lc}    %{!shared:%{profile:-lc_p}%{!profile:-lc}};:%{shared:-lc}    %{!shared:%{profile:-lc_p}%{!profile:-lc}} %{!static: -ldl}}\n\n*link_gomp:\n\n\n*libgcc:\n%{static|static-libgcc|static-pie:-lgcc -lgcc_eh}%{!static:%{!static-libgcc:%{!static-pie:%{!shared-libgcc:-lgcc --push-state --as-needed -lgcc_s --pop-state}%{shared-libgcc:-lgcc_s%{!shared: -lgcc}}}}}\n\n*startfile:\n%{!mandroid|tno-android-ld:%{shared:;      pg|p|profile:%{static-pie:grcrt1.o%s;:gcrt1.o%s};      static:crt1.o%s;      static-pie:rcrt1.o%s;      !no-pie:Scrt1.o%s;      :crt1.o%s} crti.o%s    %{static:crtbeginT.o%s;      shared|static-pie|!no-pie:crtbeginS.o%s;      :crtbegin.o%s}    %{fvtable-verify=none:%s;      fvtable-verify=preinit:vtv_start_preinit.o%s;      fvtable-verify=std:vtv_start.o%s} %{fopenacc|fopenmp:crtoffloadbegin%O%s};:%{shared: crtbegin_so%O%s;:  %{static: crtbegin_static%O%s;: crtbegin_dynamic%O%s}}}\n\n*cross_compile:\n0\n\n*version:\n14.2.0\n\n*multilib:\n. !m32 !m64 !mx32;32:../lib32:i386-linux-gnu m32 !m64 !mx32;64:../lib:x86_64-linux-gnu !m32 m64 !mx32;x32:../libx32:x86_64-linux-gnux32 !m32 !m64 mx32;\n\n*multilib_defaults:\nm64\n\n*multilib_extra:\n\n\n*multilib_matches:\nm32 m32;m64 m64;mx32 mx32;\n\n*multilib_exclusions:\n\n\n*multilib_options:\nm32/m64/mx32\n\n*multilib_reuse:\n\n\n*linker:\ncollect2\n\n*linker_plugin_file:\n\n\n*lto_wrapper:\n\n\n*lto_gcc:\n\n\n*post_link:\n\n\n*link_libgcc:\n%D\n\n*md_exec_prefix:\n\n\n*md_startfile_prefix:\n\n\n*md_startfile_prefix_1:\n\n\n*startfile_prefix_spec:\n\n\n*sysroot_spec:\n--sysroot=%R\n\n*sysroot_suffix_spec:\n\n\n*sysroot_hdrs_suffix_spec:\n\n\n*self_spec:\n\n\n*cc1_cpu:\n%{march=native:%>march=native %:local_cpu_detect(arch %{!m32:64;:32})   %{!mtune=*:%>mtune=native %:local_cpu_detect(tune %{!m32:64;:32})}} %{mtune=native:%>mtune=native %:local_cpu_detect(tune %{!m32:64;:32})}\n\n*link_command:\n%{!fsyntax-only:%{!c:%{!M:%{!MM:%{!E:%{!S:    %(linker) %{!fno-use-linker-plugin:%{!fno-lto:     -plugin %(linker_plugin_file)     -plugin-opt=%(lto_wrapper)     -plugin-opt=-fresolution=%u.res         %{flinker-output=*:-plugin-opt=-linker-output-known}     %{!nostdlib:%{!nodefaultlibs:%:pass-through-libs(%(link_gcc_c_sequence))}}     }}%{flto|flto=*:%<fcompare-debug*}     %{flto} %{fno-lto} %{flto=*} %l %{static|shared|r:;!no-pie:-pie} %{fuse-ld=*:-fuse-ld=%*}  %{gz|gz=zlib:--compress-debug-sections=zlib} %{gz=none:--compress-debug-sections=none} %{gz=zstd:--compress-debug-sections=zstd} %{gz=zlib-gnu:}%X %{o*} %{e*} %{N} %{n} %{r}    %{s} %{t} %{u*} %{z} %{Z} %{!nostdlib:%{!r:%{!nostartfiles:%S}}}     %{static|no-pie|static-pie:} %@{L*} %(link_libgcc) %{fvtable-verify=none:} %{fvtable-verify=std:   %e-fvtable-verify=std is not supported in this configuration} %{fvtable-verify=preinit:   %e-fvtable-verify=preinit is not supported in this configuration} %{!nostdlib:%{!r:%{!nodefaultlibs:%{%:sanitize(address):%{!shared:libasan_preinit%O%s} %{static-libasan:%{!shared:-Bstatic --whole-archive -lasan --no-whole-archive -Bdynamic}}%{!static-libasan:--push-state --no-as-needed -lasan --pop-state}}     %{%:sanitize(hwaddress):%{!shared:libhwasan_preinit%O%s} %{static-libhwasan:%{!shared:-Bstatic --whole-archive -lhwasan --no-whole-archive -Bdynamic}}%{!static-libhwasan:--push-state --no-as-needed -lhwasan --pop-state}}     %{%:sanitize(thread):%{!shared:libtsan_preinit%O%s} %{static-libtsan:%{!shared:-Bstatic --whole-archive -ltsan --no-whole-archive -Bdynamic}}%{!static-libtsan:--push-state --no-as-needed -ltsan --pop-state}}     %{%:sanitize(leak):%{!shared:liblsan_preinit%O%s} %{static-liblsan:%{!shared:-Bstatic --whole-archive -llsan --no-whole-archive -Bdynamic}}%{!static-liblsan:--push-state --no-as-needed -llsan --pop-state}}}}} %o      %{fopenacc|fopenmp|%:gt(%{ftree-parallelize-loops=*:%*} 1):\t%:include(libgomp.spec)%(link_gomp)}    %{fgnu-tm:%:include(libitm.spec)%(link_itm)}     %{fsplit-stack: --wrap=pthread_create}    %{fprofile-arcs|fcondition-coverage|fprofile-generate*|coverage:-lgcov} %{!nostdlib:%{!r:%{!nodefaultlibs:%{%:sanitize(address): %{static-libasan|static:%:include(libsanitizer.spec)%(link_libasan)}    %{static:%ecannot specify -static with -fsanitize=address}}    %{%:sanitize(hwaddress): %{static-libhwasan|static:%:include(libsanitizer.spec)%(link_libhwasan)}\t%{static:%ecannot specify -static with -fsanitize=hwaddress}}    %{%:sanitize(thread): %{static-libtsan|static:%:include(libsanitizer.spec)%(link_libtsan)}    %{static:%ecannot specify -static with -fsanitize=thread}}    %{%:sanitize(undefined):%{static-libubsan:-Bstatic} %{!static-libubsan:--push-state --no-as-needed} -lubsan  %{static-libubsan:-Bdynamic} %{!static-libubsan:--pop-state} %{static-libubsan|static:%:include(libsanitizer.spec)%(link_libubsan)}}    %{%:sanitize(leak): %{static-liblsan|static:%:include(libsanitizer.spec)%(link_liblsan)}}}}}     %{!nostdlib:%{!r:%{!nodefaultlibs:%(link_ssp) %(link_gcc_c_sequence)}}}    %{!nostdlib:%{!r:%{!nostartfiles:%E}}} %{T*}  \n%(post_link) }}}}}}\n\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/gcc",
+          "-print-file-name=liblto_plugin.so"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.010445648000313668,
+        "stdout": "/usr/lib/gcc/x86_64-linux-gnu/14/liblto_plugin.so\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/gcc",
+          "-print-file-name=crtbeginS.o"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.010370107000198914,
+        "stdout": "/usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/gcc",
+          "-print-file-name=crtendS.o"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.010398948998044943,
+        "stdout": "/usr/lib/gcc/x86_64-linux-gnu/14/crtendS.o\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/gcc",
+          "-print-file-name=crti.o"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.010360733002016786,
+        "stdout": "/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/gcc",
+          "-print-file-name=crtn.o"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.010387272999651032,
+        "stdout": "/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crtn.o\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/gcc",
+          "-print-file-name=libgcc.a"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.010392790998594137,
+        "stdout": "/usr/lib/gcc/x86_64-linux-gnu/14/libgcc.a\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/gcc",
+          "-print-file-name=libgcc_s.so"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.010386351001216099,
+        "stdout": "/usr/lib/gcc/x86_64-linux-gnu/14/libgcc_s.so\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/gcc",
+          "-print-file-name=libstdc++.so"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.010372871001891326,
+        "stdout": "/usr/lib/gcc/x86_64-linux-gnu/14/libstdc++.so\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/gcc",
+          "-print-file-name=libm.so"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.010342926998418989,
+        "stdout": "/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/libm.so\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/gcc",
+          "-print-file-name=libc.so"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.010408628000732278,
+        "stdout": "/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/libc.so\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/g++",
+          "-print-prog-name=cc1"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.010530058996664593,
+        "stdout": "/usr/libexec/gcc/x86_64-linux-gnu/14/cc1\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/g++",
+          "-print-prog-name=cc1plus"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.010346011000365252,
+        "stdout": "/usr/libexec/gcc/x86_64-linux-gnu/14/cc1plus\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/g++",
+          "-print-prog-name=collect2"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.010477446001459612,
+        "stdout": "/usr/libexec/gcc/x86_64-linux-gnu/14/collect2\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/g++",
+          "-print-prog-name=as"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.010553668998909416,
+        "stdout": "as\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/g++",
+          "-print-prog-name=ld"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.010412318999442505,
+        "stdout": "ld\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/g++",
+          "-print-file-name=specs"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.010391238000011072,
+        "stdout": "specs\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/g++",
+          "-print-search-dirs"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.010355635997257195,
+        "stdout": "install: /usr/lib/gcc/x86_64-linux-gnu/14/\nprograms: =/usr/libexec/gcc/x86_64-linux-gnu/14/:/usr/libexec/gcc/x86_64-linux-gnu/14/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/14/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/14/../../../../x86_64-linux-gnu/bin/x86_64-linux-gnu/14/:/usr/lib/gcc/x86_64-linux-gnu/14/../../../../x86_64-linux-gnu/bin/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/14/../../../../x86_64-linux-gnu/bin/\nlibraries: =/usr/lib/gcc/x86_64-linux-gnu/14/:/usr/lib/gcc/x86_64-linux-gnu/14/../../../../x86_64-linux-gnu/lib/x86_64-linux-gnu/14/:/usr/lib/gcc/x86_64-linux-gnu/14/../../../../x86_64-linux-gnu/lib/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/14/../../../../x86_64-linux-gnu/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/14/:/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib/:/lib/x86_64-linux-gnu/14/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/14/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/14/../../../../x86_64-linux-gnu/lib/:/usr/lib/gcc/x86_64-linux-gnu/14/../../../:/lib/:/usr/lib/\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/g++",
+          "-dumpspecs"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.010395333996711997,
+        "stdout": "*asm:\n%{m16|m32:--32}  %{m16|m32|mx32:;:--64}  %{mx32:--x32}  %{msse2avx:%{!mavx:-msse2avx}}\n\n*asm_debug:\n%{g*:%{%:debug-level-gt(0):}} %{ffile-prefix-map=*:--debug-prefix-map %*} %{fdebug-prefix-map=*:--debug-prefix-map %*}\n\n*asm_debug_option:\n%{g*:%{%:debug-level-gt(0):%{%:dwarf-version-gt(4):--gdwarf-5 ;%:dwarf-version-gt(3):--gdwarf-4 ;%:dwarf-version-gt(2):--gdwarf-3 ;:--gdwarf2 }}}\n\n*asm_final:\n%{gsplit-dwarf: \n       objcopy --extract-dwo \t %{c:%{o*:%*}%{!o*:%w%b%O}}%{!c:%U%O} \t %b.dwo \n       objcopy --strip-dwo \t %{c:%{o*:%*}%{!o*:%w%b%O}}%{!c:%U%O}     }\n\n*asm_options:\n%{-target-help:%:print-asm-header()} %{v} %{w:-W} %{I*} %(asm_debug_option) %{gz|gz=zlib:--compress-debug-sections=zlib} %{gz=none:--compress-debug-sections=none} %{gz=zstd:--compress-debug-sections=zstd} %{gz=zlib-gnu:}%a %Y %{c:%W{o*}%{!o*:-o %w%b%O}}%{!c:-o %d%w%u%O}\n\n*invoke_as:\n%{!fwpa*:   %{fcompare-debug=*|fdump-final-insns=*:%:compare-debug-dump-opt()}   %{!S:-o %|.s |\n as %(asm_options) %m.s %A }  }\n\n*cpp:\n%{posix:-D_POSIX_SOURCE} %{pthread:-D_REENTRANT}\n\n*cpp_options:\n%(cpp_unique_options) %1 %{m*} %{std*&ansi&trigraphs} %{W*&pedantic*} %{w} %{f*} %{g*:%{%:debug-level-gt(0):%{g*} %{!fno-working-directory:-fworking-directory}}} %{O*} %{undef} %{save-temps*:-fpch-preprocess} %(distro_defaults_cpp) %(distro_defaults)\n\n*cpp_debug_options:\n%<dumpdir %<dumpbase %<dumpbase-ext %{d*} %:dumps()\n\n*cpp_unique_options:\n%{!Q:-quiet} %{nostdinc*} %{C} %{CC} %{v} %@{I*&F*} %{P} %I %{MD:-MD %{!o:%b.d}%{o*:%.d%*}} %{MMD:-MMD %{!o:%b.d}%{o*:%.d%*}} %{M} %{MM} %{MF*} %{MG} %{MP} %{MQ*} %{MT*} %{Mmodules} %{Mno-modules} %{!E:%{!M:%{!MM:%{!MT:%{!MQ:%{MD|MMD:%{o*:-MQ %*}}}}}}} %{remap} %{%:debug-level-gt(2):-dD} %{!iplugindir*:%{fplugin*:%:find-plugindir()}} %{H} %C %{D*&U*&A*} %{i*} %Z %i %{E|M|MM:%W{o*}} %{fdeps-format=*:%{!fdeps-file=*:-fdeps-file=%:join(%{!o:%b.ddi}%{o*:%.ddi%*})}} %{fdeps-format=*:%{!fdeps-target=*:-fdeps-target=%:join(%{!o:%b.o}%{o*:%.o%*})}}\n\n*trad_capable_cpp:\ncc1 -E %{traditional|traditional-cpp:-traditional-cpp}\n\n*cc1:\n%{!mandroid|tno-android-cc:%(cc1_cpu) %{profile:-p};:%(cc1_cpu) %{profile:-p} %{!mglibc:%{!muclibc:%{!mbionic: -mbionic}}} %{!fno-pic:%{!fno-PIC:%{!fpic:%{!fPIC: -fPIC}}}}}\n\n*cc1_options:\n%{pg:%{fomit-frame-pointer:%e-pg and -fomit-frame-pointer are incompatible}} %{!iplugindir*:%{fplugin*:%:find-plugindir()}} %1 %{!Q:-quiet} %(cpp_debug_options) %{m*} %{aux-info*} %{g*} %{O*} %{W*&pedantic*} %{w} %{std*&ansi&trigraphs} %{v:-version} %{pg:-p} %{p} %{f*} %{undef} %{Qn:-fno-ident} %{Qy:} %{-help:--help} %{-target-help:--target-help} %{-version:--version} %{-help=*:--help=%*} %{!fsyntax-only:%{S:%W{o*}%{!o*:-o %w%b.s}}} %{fsyntax-only:-o %j} %{-param*} %{coverage:-fprofile-arcs -ftest-coverage} %{fprofile-arcs|fcondition-coverage|fprofile-generate*|coverage:   %{!fprofile-update=single:     %{pthread:-fprofile-update=prefer-atomic}}}\n\n*cc1plus:\n\n\n*link_gcc_c_sequence:\n%{static|static-pie:--start-group} %G %{!nolibc:%L}    %{static|static-pie:--end-group}%{!static:%{!static-pie:%G}}\n\n*distro_defaults:\n%{!fno-asynchronous-unwind-tables:-fasynchronous-unwind-tables}\n\n*distro_defaults_cpp:\n\n\n*link_ssp:\n%{fstack-protector|fstack-protector-all|fstack-protector-strong|fstack-protector-explicit:}\n\n*endfile:\n%{!mandroid|tno-android-ld:%{mdaz-ftz:crtfastmath.o%s;Ofast|ffast-math|funsafe-math-optimizations:%{!shared:%{!mno-daz-ftz:crtfastmath.o%s}}}    %{mpc32:crtprec32.o%s}    %{mpc64:crtprec64.o%s}    %{mpc80:crtprec80.o%s} %{!static:%{fvtable-verify=none:%s;      fvtable-verify=preinit:vtv_end_preinit.o%s;      fvtable-verify=std:vtv_end.o%s}}    %{static:crtend.o%s;      shared|static-pie|!no-pie:crtendS.o%s;      :crtend.o%s} crtn.o%s %{fopenacc|fopenmp:crtoffloadend%O%s};:%{mdaz-ftz:crtfastmath.o%s;Ofast|ffast-math|funsafe-math-optimizations:%{!shared:%{!mno-daz-ftz:crtfastmath.o%s}}}    %{mpc32:crtprec32.o%s}    %{mpc64:crtprec64.o%s}    %{mpc80:crtprec80.o%s} %{shared: crtend_so%O%s;: crtend_android%O%s}}\n\n*link:\n%{!r:--build-id} %{!static|static-pie:--eh-frame-hdr} %{!mandroid|tno-android-ld:%{m16|m32|mx32:;:-m elf_x86_64}                    %{m16|m32:-m elf_i386}                    %{mx32:-m elf32_x86_64}   --hash-style=gnu   %{!fsanitize=*:--as-needed}   %{shared:-shared}   %{!shared:     %{!static:       %{!static-pie: \t%{rdynamic:-export-dynamic} \t%{m16|m32:-dynamic-linker %{muclibc:/lib/ld-uClibc.so.0;:%{mbionic:/system/bin/linker;:%{mmusl:/lib/ld-musl-i386.so.1;:/lib/ld-linux.so.2}}}} \t%{m16|m32|mx32:;:-dynamic-linker %{muclibc:/lib/ld64-uClibc.so.0;:%{mbionic:/system/bin/linker64;:%{mmusl:/lib/ld-musl-x86_64.so.1;:/lib64/ld-linux-x86-64.so.2}}}} \t%{mx32:-dynamic-linker %{muclibc:/lib/ldx32-uClibc.so.0;:%{mbionic:/system/bin/linkerx32;:%{mmusl:/lib/ld-musl-x32.so.1;:/libx32/ld-linux-x32.so.2}}}}}}     %{static:-static} %{static-pie:-static -pie --no-dynamic-linker -z text}};:%{m16|m32|mx32:;:-m elf_x86_64}                    %{m16|m32:-m elf_i386}                    %{mx32:-m elf32_x86_64}   --hash-style=gnu   %{!fsanitize=*:--as-needed}   %{shared:-shared}   %{!shared:     %{!static:       %{!static-pie: \t%{rdynamic:-export-dynamic} \t%{m16|m32:-dynamic-linker %{muclibc:/lib/ld-uClibc.so.0;:%{mbionic:/system/bin/linker;:%{mmusl:/lib/ld-musl-i386.so.1;:/lib/ld-linux.so.2}}}} \t%{m16|m32|mx32:;:-dynamic-linker %{muclibc:/lib/ld64-uClibc.so.0;:%{mbionic:/system/bin/linker64;:%{mmusl:/lib/ld-musl-x86_64.so.1;:/lib64/ld-linux-x86-64.so.2}}}} \t%{mx32:-dynamic-linker %{muclibc:/lib/ldx32-uClibc.so.0;:%{mbionic:/system/bin/linkerx32;:%{mmusl:/lib/ld-musl-x32.so.1;:/libx32/ld-linux-x32.so.2}}}}}}     %{static:-static} %{static-pie:-static -pie --no-dynamic-linker -z text}} %{shared: -Bsymbolic}}\n\n*lib:\n%{!mandroid|tno-android-ld:%{pthread:-lpthread} %{shared:-lc}    %{!shared:%{profile:-lc_p}%{!profile:-lc}};:%{shared:-lc}    %{!shared:%{profile:-lc_p}%{!profile:-lc}} %{!static: -ldl}}\n\n*link_gomp:\n\n\n*libgcc:\n%{static|static-libgcc|static-pie:-lgcc -lgcc_eh}%{!static:%{!static-libgcc:%{!static-pie:%{!shared-libgcc:-lgcc --push-state --as-needed -lgcc_s --pop-state}%{shared-libgcc:-lgcc_s%{!shared: -lgcc}}}}}\n\n*startfile:\n%{!mandroid|tno-android-ld:%{shared:;      pg|p|profile:%{static-pie:grcrt1.o%s;:gcrt1.o%s};      static:crt1.o%s;      static-pie:rcrt1.o%s;      !no-pie:Scrt1.o%s;      :crt1.o%s} crti.o%s    %{static:crtbeginT.o%s;      shared|static-pie|!no-pie:crtbeginS.o%s;      :crtbegin.o%s}    %{fvtable-verify=none:%s;      fvtable-verify=preinit:vtv_start_preinit.o%s;      fvtable-verify=std:vtv_start.o%s} %{fopenacc|fopenmp:crtoffloadbegin%O%s};:%{shared: crtbegin_so%O%s;:  %{static: crtbegin_static%O%s;: crtbegin_dynamic%O%s}}}\n\n*cross_compile:\n0\n\n*version:\n14.2.0\n\n*multilib:\n. !m32 !m64 !mx32;32:../lib32:i386-linux-gnu m32 !m64 !mx32;64:../lib:x86_64-linux-gnu !m32 m64 !mx32;x32:../libx32:x86_64-linux-gnux32 !m32 !m64 mx32;\n\n*multilib_defaults:\nm64\n\n*multilib_extra:\n\n\n*multilib_matches:\nm32 m32;m64 m64;mx32 mx32;\n\n*multilib_exclusions:\n\n\n*multilib_options:\nm32/m64/mx32\n\n*multilib_reuse:\n\n\n*linker:\ncollect2\n\n*linker_plugin_file:\n\n\n*lto_wrapper:\n\n\n*lto_gcc:\n\n\n*post_link:\n\n\n*link_libgcc:\n%D\n\n*md_exec_prefix:\n\n\n*md_startfile_prefix:\n\n\n*md_startfile_prefix_1:\n\n\n*startfile_prefix_spec:\n\n\n*sysroot_spec:\n--sysroot=%R\n\n*sysroot_suffix_spec:\n\n\n*sysroot_hdrs_suffix_spec:\n\n\n*self_spec:\n\n\n*cc1_cpu:\n%{march=native:%>march=native %:local_cpu_detect(arch %{!m32:64;:32})   %{!mtune=*:%>mtune=native %:local_cpu_detect(tune %{!m32:64;:32})}} %{mtune=native:%>mtune=native %:local_cpu_detect(tune %{!m32:64;:32})}\n\n*link_command:\n%{!fsyntax-only:%{!c:%{!M:%{!MM:%{!E:%{!S:    %(linker) %{!fno-use-linker-plugin:%{!fno-lto:     -plugin %(linker_plugin_file)     -plugin-opt=%(lto_wrapper)     -plugin-opt=-fresolution=%u.res         %{flinker-output=*:-plugin-opt=-linker-output-known}     %{!nostdlib:%{!nodefaultlibs:%:pass-through-libs(%(link_gcc_c_sequence))}}     }}%{flto|flto=*:%<fcompare-debug*}     %{flto} %{fno-lto} %{flto=*} %l %{static|shared|r:;!no-pie:-pie} %{fuse-ld=*:-fuse-ld=%*}  %{gz|gz=zlib:--compress-debug-sections=zlib} %{gz=none:--compress-debug-sections=none} %{gz=zstd:--compress-debug-sections=zstd} %{gz=zlib-gnu:}%X %{o*} %{e*} %{N} %{n} %{r}    %{s} %{t} %{u*} %{z} %{Z} %{!nostdlib:%{!r:%{!nostartfiles:%S}}}     %{static|no-pie|static-pie:} %@{L*} %(link_libgcc) %{fvtable-verify=none:} %{fvtable-verify=std:   %e-fvtable-verify=std is not supported in this configuration} %{fvtable-verify=preinit:   %e-fvtable-verify=preinit is not supported in this configuration} %{!nostdlib:%{!r:%{!nodefaultlibs:%{%:sanitize(address):%{!shared:libasan_preinit%O%s} %{static-libasan:%{!shared:-Bstatic --whole-archive -lasan --no-whole-archive -Bdynamic}}%{!static-libasan:--push-state --no-as-needed -lasan --pop-state}}     %{%:sanitize(hwaddress):%{!shared:libhwasan_preinit%O%s} %{static-libhwasan:%{!shared:-Bstatic --whole-archive -lhwasan --no-whole-archive -Bdynamic}}%{!static-libhwasan:--push-state --no-as-needed -lhwasan --pop-state}}     %{%:sanitize(thread):%{!shared:libtsan_preinit%O%s} %{static-libtsan:%{!shared:-Bstatic --whole-archive -ltsan --no-whole-archive -Bdynamic}}%{!static-libtsan:--push-state --no-as-needed -ltsan --pop-state}}     %{%:sanitize(leak):%{!shared:liblsan_preinit%O%s} %{static-liblsan:%{!shared:-Bstatic --whole-archive -llsan --no-whole-archive -Bdynamic}}%{!static-liblsan:--push-state --no-as-needed -llsan --pop-state}}}}} %o      %{fopenacc|fopenmp|%:gt(%{ftree-parallelize-loops=*:%*} 1):\t%:include(libgomp.spec)%(link_gomp)}    %{fgnu-tm:%:include(libitm.spec)%(link_itm)}     %{fsplit-stack: --wrap=pthread_create}    %{fprofile-arcs|fcondition-coverage|fprofile-generate*|coverage:-lgcov} %{!nostdlib:%{!r:%{!nodefaultlibs:%{%:sanitize(address): %{static-libasan|static:%:include(libsanitizer.spec)%(link_libasan)}    %{static:%ecannot specify -static with -fsanitize=address}}    %{%:sanitize(hwaddress): %{static-libhwasan|static:%:include(libsanitizer.spec)%(link_libhwasan)}\t%{static:%ecannot specify -static with -fsanitize=hwaddress}}    %{%:sanitize(thread): %{static-libtsan|static:%:include(libsanitizer.spec)%(link_libtsan)}    %{static:%ecannot specify -static with -fsanitize=thread}}    %{%:sanitize(undefined):%{static-libubsan:-Bstatic} %{!static-libubsan:--push-state --no-as-needed} -lubsan  %{static-libubsan:-Bdynamic} %{!static-libubsan:--pop-state} %{static-libubsan|static:%:include(libsanitizer.spec)%(link_libubsan)}}    %{%:sanitize(leak): %{static-liblsan|static:%:include(libsanitizer.spec)%(link_liblsan)}}}}}     %{!nostdlib:%{!r:%{!nodefaultlibs:%(link_ssp) %(link_gcc_c_sequence)}}}    %{!nostdlib:%{!r:%{!nostartfiles:%E}}} %{T*}  \n%(post_link) }}}}}}\n\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/g++",
+          "-print-file-name=liblto_plugin.so"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.010613465998176252,
+        "stdout": "/usr/lib/gcc/x86_64-linux-gnu/14/liblto_plugin.so\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/g++",
+          "-print-file-name=crtbeginS.o"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.010404007000033744,
+        "stdout": "/usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/g++",
+          "-print-file-name=crtendS.o"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.010369595998781733,
+        "stdout": "/usr/lib/gcc/x86_64-linux-gnu/14/crtendS.o\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/g++",
+          "-print-file-name=crti.o"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.010426960998302093,
+        "stdout": "/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/g++",
+          "-print-file-name=crtn.o"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.010988771999109304,
+        "stdout": "/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crtn.o\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/g++",
+          "-print-file-name=libgcc.a"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.011619754001003457,
+        "stdout": "/usr/lib/gcc/x86_64-linux-gnu/14/libgcc.a\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/g++",
+          "-print-file-name=libgcc_s.so"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.01790152799731004,
+        "stdout": "/usr/lib/gcc/x86_64-linux-gnu/14/libgcc_s.so\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/g++",
+          "-print-file-name=libstdc++.so"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.013976858001115033,
+        "stdout": "/usr/lib/gcc/x86_64-linux-gnu/14/libstdc++.so\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/g++",
+          "-print-file-name=libm.so"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.010821624000527663,
+        "stdout": "/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/libm.so\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/usr/bin/g++",
+          "-print-file-name=libc.so"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.010839770002348814,
+        "stdout": "/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/libc.so\n",
+        "stderr": ""
+      }
+    ]
+  },
+  "new_native_runs": 0,
+  "official_model_calls": 0
+}

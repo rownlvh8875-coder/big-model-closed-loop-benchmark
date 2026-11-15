@@ -1,0 +1,68 @@
+FFFFFFF
+======================================================================
+FAIL: test_activation_and_publication_docker_verbs_are_rejected (tests.test_panda_sdk_routes_image.LocalImageBytesTests.test_activation_and_publication_docker_verbs_are_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes_image.py", line 8, in setUp
+    def setUp(self):self.assertIsNotNone(image,'byte-only local image builder required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : byte-only local image builder required
+
+======================================================================
+FAIL: test_context_cannot_add_run_extra_files_or_symlinked_sdk (tests.test_panda_sdk_routes_image.LocalImageBytesTests.test_context_cannot_add_run_extra_files_or_symlinked_sdk)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes_image.py", line 8, in setUp
+    def setUp(self):self.assertIsNotNone(image,'byte-only local image builder required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : byte-only local image builder required
+
+======================================================================
+FAIL: test_existing_output_and_expired_inspection_preserve_inputs (tests.test_panda_sdk_routes_image.LocalImageBytesTests.test_existing_output_and_expired_inspection_preserve_inputs)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes_image.py", line 8, in setUp
+    def setUp(self):self.assertIsNotNone(image,'byte-only local image builder required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : byte-only local image builder required
+
+======================================================================
+FAIL: test_forward_hardlinks_are_data_only_and_cycles_reject (tests.test_panda_sdk_routes_image.LocalImageBytesTests.test_forward_hardlinks_are_data_only_and_cycles_reject)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes_image.py", line 8, in setUp
+    def setUp(self):self.assertIsNotNone(image,'byte-only local image builder required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : byte-only local image builder required
+
+======================================================================
+FAIL: test_other_file_changes_missing_extra_mode_and_escape_reject (tests.test_panda_sdk_routes_image.LocalImageBytesTests.test_other_file_changes_missing_extra_mode_and_escape_reject)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes_image.py", line 8, in setUp
+    def setUp(self):self.assertIsNotNone(image,'byte-only local image builder required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : byte-only local image builder required
+
+======================================================================
+FAIL: test_oversized_pax_metadata_rejects_before_large_allocation (tests.test_panda_sdk_routes_image.LocalImageBytesTests.test_oversized_pax_metadata_rejects_before_large_allocation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes_image.py", line 8, in setUp
+    def setUp(self):self.assertIsNotNone(image,'byte-only local image builder required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : byte-only local image builder required
+
+======================================================================
+FAIL: test_stopped_export_file_modes_links_and_hashes_match (tests.test_panda_sdk_routes_image.LocalImageBytesTests.test_stopped_export_file_modes_links_and_hashes_match)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_routes_image.py", line 8, in setUp
+    def setUp(self):self.assertIsNotNone(image,'byte-only local image builder required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : byte-only local image builder required
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.001s
+
+FAILED (failures=7)
