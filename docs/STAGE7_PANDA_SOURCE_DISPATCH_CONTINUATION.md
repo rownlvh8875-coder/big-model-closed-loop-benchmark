@@ -4,6 +4,8 @@ Branchfeature/panda-source-dispatch-v1;base5aefbd5ca54557de79d00c67282c086e8a6bc
 
 Implemented: inert C++ source hook runtime, exact4source transformation, full clean pinned source stage, constrained builder and actual minimal GL/X11/noPython SDK. Default OFF; no capture arming, loader or GL query. Candidate library and unresolved inspection ELF are DATA ONLY and must not be loaded. Existing old Panda wheel, cache/core/bridge and ABI profile remain unchanged. Actual build result is not native admission or full image parity.
 
+Final selected implementation0071da8a47aa7648d95a02b2c93a1df960ce6b1d; SDK SHA228b2d88e91fa9c5ded10cfe8e93f9b9519de881a37765a0e8681af6e36cf96b,135.320271794s actual compile/link.23focusedPASS;1464fulltests/1457PASS/7skip140.648s;50normal/sanitizedCPU scenarios. One review0C2I1M;2Important fixed in onepass, Minor automatic receipt numbering deferred, no rereview. On a failed-build resume, copy build-receipt.json before retry: the runner retains numbered logs but overwrites that latest summary. Read selected-candidate.json for final source/build pins; before-review outputs intentionally bind the earlier source snapshot.
+
 CPU checks:
 
 ```sh

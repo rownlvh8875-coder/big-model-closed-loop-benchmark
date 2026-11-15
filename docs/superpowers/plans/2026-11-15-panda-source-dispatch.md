@@ -42,4 +42,5 @@ Preserve3207basefiles/299pins/10originals/main/Drafts102–109/8nativehistories.
 
 - [x] RED bad manifest/path/flags/overwrite/partial-success admission tests; implement constrained runner.
 - [x] Extract exact dev packages to private sysroot, actual makepanda compile/link; inspect resulting candidate without loading, retain partial/failure facts as needed. New method/runtime qualification staysFalse.
-- [ ] Fullsuite, onefreshwholebranchreview,oneImportant-CriticalRED→GREENfixpass+suite; exhaustive rulings/declined costs, no rereview. OwnDraft/exactHEADCI, final3207/299/10/oldrefs/histories audit; copy/remove only ownplan scratch.
+- [x] Fullsuite, onefreshwholebranchreview,oneImportant-CriticalRED→GREENfixpass+suite; exhaustive rulings/declined costs, no rereview. Post-fix3207/299/10/oldrefs/histories audit; copy/remove only ownplan scratch.
+- Final immutable-head operation after this commit: ownDraft/exactHEADCI and fresh preservation. Its authoritative completion receipt is the PR body plus output/stage7-panda-source-dispatch-01/final-verification.json, avoiding a self-referential GitSHA in this plan.

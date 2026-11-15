@@ -1,0 +1,45 @@
+F.F../workspace/.cloud-tools/python/cpython-3.11.17-linux-x86_64-gnu/lib/python3.11/subprocess.py:1127: ResourceWarning: subprocess 33773 is still running
+  _warn("subprocess %s is still running" % self.pid,
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+F...
+======================================================================
+FAIL: test_disk_limit_stops_signal_ignoring_build_descendants (tests.test_panda_source_dispatch_build.SourceBuildTests.test_disk_limit_stops_signal_ignoring_build_descendants)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_source_dispatch_build.py", line 127, in test_disk_limit_stops_signal_ignoring_build_descendants
+    def test_disk_limit_stops_signal_ignoring_build_descendants(self):self.run_cpu_build_failure('active')
+                                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_source_dispatch_build.py", line 120, in run_cpu_build_failure
+    self.assertFalse((out/'late-marker').exists(),'build descendant wrote after failed receipt')
+AssertionError: True is not false : build descendant wrote after failed receipt
+
+======================================================================
+FAIL: test_final_disk_size_is_checked_even_after_fast_success_exit (tests.test_panda_source_dispatch_build.SourceBuildTests.test_final_disk_size_is_checked_even_after_fast_success_exit)
+----------------------------------------------------------------------
+ValueError: candidate libpandagl missing
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_source_dispatch_build.py", line 128, in test_final_disk_size_is_checked_even_after_fast_success_exit
+    def test_final_disk_size_is_checked_even_after_fast_success_exit(self):self.run_cpu_build_failure('final_size')
+                                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_source_dispatch_build.py", line 111, in run_cpu_build_failure
+    with self.assertRaisesRegex(ValueError,'disk limit'):builder.build(stage,sysroot,out)
+AssertionError: "disk limit" does not match "candidate libpandagl missing"
+
+======================================================================
+FAIL: test_interrupted_build_stops_descendants_before_failed_receipt (tests.test_panda_source_dispatch_build.SourceBuildTests.test_interrupted_build_stops_descendants_before_failed_receipt)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_source_dispatch_build.py", line 129, in test_interrupted_build_stops_descendants_before_failed_receipt
+    def test_interrupted_build_stops_descendants_before_failed_receipt(self):self.run_cpu_build_failure('interrupt')
+                                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_source_dispatch_build.py", line 114, in run_cpu_build_failure
+    self.assertTrue((out/'build-receipt.json').is_file(),'interrupted build lost its failed receipt')
+AssertionError: False is not true : interrupted build lost its failed receipt
+
+----------------------------------------------------------------------
+Ran 9 tests in 4.469s
+
+FAILED (failures=3)
