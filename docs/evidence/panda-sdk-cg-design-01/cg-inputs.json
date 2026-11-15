@@ -1,0 +1,94 @@
+{
+  "schema": "panda-sdk-cg-design-inputs-v1",
+  "checked_at_kst": "2026-11-16T05:05:03.674662+09:00",
+  "source_url": "https://developer.download.nvidia.com/cg/Cg_3.1/Cg-3.1_April2012_x86_64.tgz",
+  "final_url": "https://developer.download.nvidia.com/cg/Cg_3.1/Cg-3.1_April2012_x86_64.tgz",
+  "http_status": 200,
+  "tls_default_certificate_verification": true,
+  "request_accept_encoding": "identity",
+  "response_headers": {
+    "Content-Length": "24829131",
+    "Content-Type": "application/x-compressed",
+    "Last-Modified": "Sat, 06 Jun 2026 05:45:55 GMT",
+    "ETag": "\"861baac84d02f4931ca40531675d043e-3\""
+  },
+  "archive_nbytes": 24829131,
+  "archive_sha256": "e8ff01e6cc38d1b3fd56a083f5860737dbd2f319a39037528fb1a74a89ae9878",
+  "archive_member_uncompressed_bytes": 97388045,
+  "headers": {
+    "usr/include/Cg/cg.h": {
+      "nbytes": 64961,
+      "sha256": "fdcfeba9b8507437baad347d75c8c2b2599a845b515861bcc535d7af9941c6ed",
+      "data_path": "output/stage7-panda-sdk-cg-design-01/headers/cg.h"
+    },
+    "usr/include/Cg/cgGL.h": {
+      "nbytes": 13653,
+      "sha256": "10711fe206ba4ede0a8949d2d91c2a828a85c5e6f60550bae1a8f16c9f102d5a",
+      "data_path": "output/stage7-panda-sdk-cg-design-01/headers/cgGL.h"
+    }
+  },
+  "runtime_library_comparison": {
+    "usr/lib64/libCgGL.so": {
+      "nbytes": 539240,
+      "sha256": "771bca6f047ab0bda93c0b1837ac8eefb1fca60168a19caa61c29d6ef6fb0948",
+      "installed": false,
+      "loaded": false,
+      "current_image": {
+        "kind": "file",
+        "mode": 493,
+        "nbytes": 545121,
+        "path": "/opt/venv/lib/python3.11/site-packages/panda3d/libCgGL.so",
+        "sha256": "034f5ac079da5d56dcfe621c3ea9b6aaff553fc44ecfb630c167c91c68abe0df"
+      },
+      "identical_to_current_image": false
+    },
+    "usr/lib64/libCg.so": {
+      "nbytes": 20383600,
+      "sha256": "01c8bbbd3c373cb5f337ab0fd7a252b9d01212d35ffc1e2ea2ea8de9d1e557d3",
+      "installed": false,
+      "loaded": false,
+      "current_image": {
+        "kind": "file",
+        "mode": 493,
+        "nbytes": 20398129,
+        "path": "/opt/venv/lib/python3.11/site-packages/panda3d/libCg.so",
+        "sha256": "942f33fe1e0935445d88e0595089fda99d20335ef089b5205d61cd6ade054018"
+      },
+      "identical_to_current_image": false
+    },
+    "usr/local/Cg/examples/Trace/libCg.so": {
+      "nbytes": 239896,
+      "sha256": "c2bc519f975ee408388ca470bd93f0c4b097e6a7bf17a176ce9d8fdc7734168a",
+      "installed": false,
+      "loaded": false,
+      "current_image": {
+        "kind": "file",
+        "mode": 493,
+        "nbytes": 20398129,
+        "path": "/opt/venv/lib/python3.11/site-packages/panda3d/libCg.so",
+        "sha256": "942f33fe1e0935445d88e0595089fda99d20335ef089b5205d61cd6ade054018"
+      },
+      "identical_to_current_image": false
+    },
+    "usr/local/Cg/examples/Trace/libCgGL.so": {
+      "nbytes": 64992,
+      "sha256": "03f72901971ce310e11f98c9b548e372d96ebe0060c81557f0af5c0ff18d2594",
+      "installed": false,
+      "loaded": false,
+      "current_image": {
+        "kind": "file",
+        "mode": 493,
+        "nbytes": 545121,
+        "path": "/opt/venv/lib/python3.11/site-packages/panda3d/libCgGL.so",
+        "sha256": "034f5ac079da5d56dcfe621c3ea9b6aaff553fc44ecfb630c167c91c68abe0df"
+      },
+      "identical_to_current_image": false
+    }
+  },
+  "download_and_data_inspection_only": true,
+  "signature_verification": false,
+  "publisher_independent_digest_available": false,
+  "archive_installed": false,
+  "target_execution": false,
+  "old_sdk_image_modified": false
+}
