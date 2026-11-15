@@ -1,0 +1,11 @@
+# Source-integrated Panda dispatch candidate evidence
+
+Every Panda/GL ELF here is DATA ONLY. Never load/import/call the candidate or the unresolved unit-test inspection ELF. Fully defined CPU fake-original executables were run separately; the .data files preserve their bytes without granting native authority.
+
+before-review/ retains actual source stage, three build attempts (including failure), minimal SDK hashes, normal/sanitized CPU results, static ELF checks and preservation. The SDK uses pinned upstream470e352 and private12Debian packages. Bison/Flex/M4 and pinned CPU build-time generators execute only during build. The final minimal GL/X11/noPython candidate lacks Python/MetaDrive image parity. Its source manifest and every retained SDK output are hashed. Full source/SDK/debs remain at output/stage7-panda-source-dispatch-01/; no old SDK/image was replaced.
+
+The final build receipt predates the separate R_X86_64_64 static checker. candidate-static-check.json and static-verification.json are the later actual data inspection, not a claim that an earlier runner invoked it. The current builder invokes this checker for future builds. The generic653-import inventory handles relocation types6/7; the read tail's type1 binding is validated separately. No custom constructor appears in the runtime object; upstream Panda still has its own constructors.
+
+No native renderer/GL/provider/model/officialORT replay was performed. Remaining native allowance0; inherited strict0/4FAIL; Stage7INCOMPLETE. Future bootstrap/cache deletion adapter, full image, mapped ABI/camera/lifetime/environment and fresh ON/OFF contract remain gates. proof-index.json hashes all versioned proof files except itself. Later review/fix receipts retain this earlier evidence unchanged.
+
+Final selection is in selected-candidate.json and after-fix/. One whole review found0Critical/2Important/1Minor; both Important items were fixed in one TDDpass and actual SDK rebuilt135.320271794s. The current runner itself invokes the static binding check. Final1464tests/1457PASS/7skip;23focused;50normal/sanitizedCPU scenarios. Minor automatic attempt-receipt numbering is deferred: callers must copy the latest failed receipt before resume. Earlier before-review sources/proofs deliberately remain pinned to their earlier implementation. No rereview or native activation.

@@ -1,0 +1,53 @@
+{
+  "schema": "panda-source-dispatch-selected-candidate-v1",
+  "checked_at_kst": "2026-11-15T10:43:07.750012+09:00",
+  "implementation_commit": "0071da8a47aa7648d95a02b2c93a1df960ce6b1d",
+  "source_closure": {
+    "native/panda_source_dispatch.h": "f2e869a8c7a2719d6a7eb7fbc1a350873793265fb1c1a7a32aa0e43e00eca7e9",
+    "native/panda_source_dispatch.cxx": "50bb0428619654444f050d2c9f88b4a81d6d3411748050335d2c4ca59be7a8d7",
+    "scripts/panda_source_dispatch.py": "e04876adbac9c102d2eed4f4f73ffbb53690f6421ab28c76da290c1ca56b2f1c",
+    "scripts/build_panda_source_dispatch.py": "dfcf9dc81bfcacd604210854f750c357889dcfd0031fb1d07ad9ba47731f0a3c",
+    "tests/fixtures/panda_source_dispatch_fixture.cxx": "dc31774c0bb6df133885d011f1fcdf47be2cd8347f4813b09edb96e6cb51b7fa",
+    "tests/test_panda_source_dispatch.py": "590fb47992187ab44d2cb79756c0a9c514e8eaff0dc8f3722658aad5e6665479",
+    "tests/test_panda_source_dispatch_patch.py": "7cc2419df5ed00ffa1c2c8960203ed6dc43a9cf850433af00b7c2f36fb78f428",
+    "tests/test_panda_source_dispatch_build.py": "555071315d3f9ff4ebf71f3a6a7c44a9fdfb99143120b4860f83749fce8418b6"
+  },
+  "actual_build_receipt": "docs/evidence/panda-source-dispatch-01/after-fix/build/receipt.json",
+  "candidate_sha256": "228b2d88e91fa9c5ded10cfe8e93f9b9519de881a37765a0e8681af6e36cf96b",
+  "candidate_nbytes": 974432,
+  "build_wall_seconds": 135.3202717940003,
+  "stage": "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-source-dispatch-01/candidate-source-review-fixed",
+  "candidate_library": "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-source-dispatch-01/build-review-fixed/sdk/lib/libpandagl.so",
+  "source_manifest_sha256": "da0c27f1a5a9aaa390312883320761d8ee1e084f41ffcba6d9f519848676bf55",
+  "source_files": 7281,
+  "sdk_output_records": 2674,
+  "focused_tests": {
+    "total": 23,
+    "passed": 23,
+    "seconds": 9.358
+  },
+  "full_tests": {
+    "total": 1464,
+    "passed": 1457,
+    "skipped": 7,
+    "seconds": 140.648
+  },
+  "cpu_scenarios_per_build": 25,
+  "cpu_normal_sanitized_scenarios": 50,
+  "unsafe_config_rejections": 2,
+  "review": {
+    "head": "af583a8b5bc19fa596601301e2648a8d7268e852",
+    "critical": 0,
+    "important": 2,
+    "minor": 1,
+    "important_fixed": 2,
+    "minor_deferred": 1,
+    "fix_passes": 1,
+    "rereviews": 0,
+    "declined_behaviors_ruled": 9
+  },
+  "runtime_admission_ready": false,
+  "native_admitted": false,
+  "stage7_complete": false,
+  "new_native_runs": 0
+}

@@ -1,0 +1,102 @@
+.FFF.....FFF
+======================================================================
+FAIL: test_failures_poison_metadata_while_originals_and_tail_continue (tests.test_panda_source_dispatch.PandaSourceDispatchTests.test_failures_poison_metadata_while_originals_and_tail_continue) (mode='resolver_state')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_source_dispatch.py", line 54, in test_failures_poison_metadata_while_originals_and_tail_continue
+    with self.subTest(mode=mode):self.assertEqual((s['args_ok'],s['errno_ok'],s['reads'],s['regs_ok']),(1,1,1,1));self.assertNotEqual(s['finish'],0)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (0, 1, 1, 1) != (1, 1, 1, 1)
+
+First differing element 0:
+0
+1
+
+- (0, 1, 1, 1)
+?  ---
+
++ (1, 1, 1, 1)
+?        +++
+
+
+======================================================================
+FAIL: test_failures_poison_metadata_while_originals_and_tail_continue (tests.test_panda_source_dispatch.PandaSourceDispatchTests.test_failures_poison_metadata_while_originals_and_tail_continue) (mode='resolver_reentry')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_source_dispatch.py", line 54, in test_failures_poison_metadata_while_originals_and_tail_continue
+    with self.subTest(mode=mode):self.assertEqual((s['args_ok'],s['errno_ok'],s['reads'],s['regs_ok']),(1,1,1,1));self.assertNotEqual(s['finish'],0)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (0, 1, 1, 1) != (1, 1, 1, 1)
+
+First differing element 0:
+0
+1
+
+- (0, 1, 1, 1)
+?  ---
+
++ (1, 1, 1, 1)
+?        +++
+
+
+======================================================================
+FAIL: test_failures_poison_metadata_while_originals_and_tail_continue (tests.test_panda_source_dispatch.PandaSourceDispatchTests.test_failures_poison_metadata_while_originals_and_tail_continue) (mode='resolver_finish')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_source_dispatch.py", line 54, in test_failures_poison_metadata_while_originals_and_tail_continue
+    with self.subTest(mode=mode):self.assertEqual((s['args_ok'],s['errno_ok'],s['reads'],s['regs_ok']),(1,1,1,1));self.assertNotEqual(s['finish'],0)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (0, 1, 1, 1) != (1, 1, 1, 1)
+
+First differing element 0:
+0
+1
+
+- (0, 1, 1, 1)
+?  ---
+
++ (1, 1, 1, 1)
+?        +++
+
+
+======================================================================
+FAIL: test_resolver_lifetime_rejects_nested_lookup_state_and_finish (tests.test_panda_source_dispatch.PandaSourceDispatchTests.test_resolver_lifetime_rejects_nested_lookup_state_and_finish) (mode='resolver_reentry')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_source_dispatch.py", line 66, in test_resolver_lifetime_rejects_nested_lookup_state_and_finish
+    self.assertNotEqual(s['finish'],0);self.assertNotEqual(s['error'],0)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0 == 0
+
+======================================================================
+FAIL: test_resolver_lifetime_rejects_nested_lookup_state_and_finish (tests.test_panda_source_dispatch.PandaSourceDispatchTests.test_resolver_lifetime_rejects_nested_lookup_state_and_finish) (mode='resolver_state')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_source_dispatch.py", line 66, in test_resolver_lifetime_rejects_nested_lookup_state_and_finish
+    self.assertNotEqual(s['finish'],0);self.assertNotEqual(s['error'],0)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0 == 0
+
+======================================================================
+FAIL: test_resolver_lifetime_rejects_nested_lookup_state_and_finish (tests.test_panda_source_dispatch.PandaSourceDispatchTests.test_resolver_lifetime_rejects_nested_lookup_state_and_finish) (mode='resolver_finish')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_source_dispatch.py", line 67, in test_resolver_lifetime_rejects_nested_lookup_state_and_finish
+    self.assertEqual((s['args_ok'],s['errno_ok'],s['reads'],s['regs_ok']),(1,1,1,1))
+AssertionError: Tuples differ: (0, 1, 1, 1) != (1, 1, 1, 1)
+
+First differing element 0:
+0
+1
+
+- (0, 1, 1, 1)
+?  ---
+
++ (1, 1, 1, 1)
+?        +++
+
+
+----------------------------------------------------------------------
+Ran 8 tests in 1.014s
+
+FAILED (failures=6)

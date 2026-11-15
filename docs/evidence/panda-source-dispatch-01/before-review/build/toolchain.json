@@ -1,0 +1,83 @@
+{
+  "checked_at_kst": "2026-11-15T10:29:30.026936+09:00",
+  "tools": [
+    {
+      "name": "gcc",
+      "path": "/usr/bin/gcc",
+      "resolved": "/usr/bin/x86_64-linux-gnu-gcc-14",
+      "sha256": "a23ecab8ff08f09ad8c80602c2c5df7f49e09c25905cb8975902e101bf72635f",
+      "version_output": "gcc (Debian 14.2.0-19) 14.2.0\nCopyright (C) 2024 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+      "p_returncode": 0
+    },
+    {
+      "name": "g++",
+      "path": "/usr/bin/g++",
+      "resolved": "/usr/bin/x86_64-linux-gnu-g++-14",
+      "sha256": "6b3696e4dcb85e1c949c732a02befa50e3983ecf94ce7e8e58d9d503b954b79d",
+      "version_output": "g++ (Debian 14.2.0-19) 14.2.0\nCopyright (C) 2024 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+      "p_returncode": 0
+    },
+    {
+      "name": "python",
+      "path": "/workspace/.cloud-tools/stage7/first-divergence-cpu-replay/bin/python",
+      "resolved": "/workspace/.cloud-tools/python/cpython-3.11.17-linux-x86_64-gnu/bin/python3.11",
+      "sha256": "ff9b2ac4362b81c68622ffb1730f7138eb269177d9846399c521a44c5daffb0e",
+      "version_output": "Python 3.11.17\n",
+      "p_returncode": 0
+    },
+    {
+      "name": "make",
+      "path": "/usr/bin/make",
+      "resolved": "/usr/bin/make",
+      "sha256": "8a229baf64671988cfb5af43ba3070c6ce7214cf32bcf96155115559d1466fa7",
+      "version_output": "GNU Make 4.4.1\nBuilt for x86_64-pc-linux-gnu\nCopyright (C) 1988-2023 Free Software Foundation, Inc.\nLicense GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>\nThis is free software: you are free to change and redistribute it.\nThere is NO WARRANTY, to the extent permitted by law.\n",
+      "p_returncode": 0
+    },
+    {
+      "name": "readelf",
+      "path": "/usr/bin/readelf",
+      "resolved": "/usr/bin/x86_64-linux-gnu-readelf",
+      "sha256": "4a387d80a70e6e97ef940a666fab59d5c38e7cf19ff907192fa983cb8505a7de",
+      "version_output": "GNU readelf (GNU Binutils for Debian) 2.44\nCopyright (C) 2025 Free Software Foundation, Inc.\nThis program is free software; you may redistribute it under the terms of\nthe GNU General Public License version 3 or (at your option) any later version.\nThis program has absolutely no warranty.\n",
+      "p_returncode": 0
+    },
+    {
+      "name": "bison",
+      "path": "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-source-dispatch-01/sysroot/usr/bin/bison",
+      "resolved": "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-source-dispatch-01/sysroot/usr/bin/bison",
+      "sha256": "39fc36c38e29481dc3be2d08652e0564b9ea9aa297e38ed21ff0da0ff36967e8",
+      "version_output": "bison (GNU Bison) 3.8.2\nWritten by Robert Corbett and Richard Stallman.\n\nCopyright (C) 2021 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n",
+      "p_returncode": 0
+    },
+    {
+      "name": "flex",
+      "path": "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-source-dispatch-01/sysroot/usr/bin/flex",
+      "resolved": "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-source-dispatch-01/sysroot/usr/bin/flex",
+      "sha256": "2f756d9099e5e926d938e916b342b36f11e209a413e2bbedee059fa4a87560bf",
+      "version_output": "flex 2.6.4\n",
+      "p_returncode": 0
+    },
+    {
+      "name": "m4",
+      "path": "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-source-dispatch-01/sysroot/usr/bin/m4",
+      "resolved": "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-source-dispatch-01/sysroot/usr/bin/m4",
+      "sha256": "24066e3ebc4b7a0eeb33b3d50e108afcfd384f1f01dd1797fa0423d5494cce16",
+      "version_output": "m4 (GNU M4) 1.4.19\nCopyright (C) 2021 Free Software Foundation, Inc.\nLicense GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>.\nThis is free software: you are free to change and redistribute it.\nThere is NO WARRANTY, to the extent permitted by law.\n\nWritten by Ren\u00e9 Seindal.\n",
+      "p_returncode": 0
+    }
+  ],
+  "source": "current tool binaries after actual compile/link; no Panda library loaded",
+  "injected_flags_removed": [
+    "CFLAGS",
+    "CXXFLAGS",
+    "CPPFLAGS",
+    "LDFLAGS",
+    "CPATH",
+    "C_INCLUDE_PATH",
+    "CPLUS_INCLUDE_PATH",
+    "LIBRARY_PATH",
+    "LD_PRELOAD",
+    "LD_LIBRARY_PATH",
+    "PYTHONPATH"
+  ]
+}

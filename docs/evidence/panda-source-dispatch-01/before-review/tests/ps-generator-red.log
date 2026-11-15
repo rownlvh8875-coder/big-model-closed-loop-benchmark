@@ -1,0 +1,13 @@
+F
+======================================================================
+FAIL: test_private_parser_generator_receives_its_private_data_directory (tests.test_panda_source_dispatch_build.SourceBuildTests.test_private_parser_generator_receives_its_private_data_directory)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_source_dispatch_build.py", line 40, in test_private_parser_generator_receives_its_private_data_directory
+    self.assertTrue(hasattr(builder,'build_environment'),'private parser generator environment required')
+AssertionError: False is not true : private parser generator environment required
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+FAILED (failures=1)

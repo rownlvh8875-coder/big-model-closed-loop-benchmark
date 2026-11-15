@@ -1,0 +1,36 @@
+{
+  "checked_at_kst": "2026-11-15T10:41:40.449438+09:00",
+  "candidate": {
+    "schema": "panda-source-dispatch-static-candidate-v1",
+    "sha256": "228b2d88e91fa9c5ded10cfe8e93f9b9519de881a37765a0e8681af6e36cf96b",
+    "nbytes": 974432,
+    "read_tail_va": 250240,
+    "read_target_va": 809880,
+    "read_tail_file_offset": 250240,
+    "read_tail_original_binding": true,
+    "read_relocation_type": "R_X86_64_64",
+    "old_abi_profile_rejected": true,
+    "loader_function_imports_supported_6_7": 653,
+    "runtime_admission_ready": false,
+    "candidate_panda_abi_qualified": false,
+    "native_admitted": false
+  },
+  "source_files": 7281,
+  "runtime_object_command": [
+    "/usr/bin/g++",
+    "-std=c++11",
+    "-O2",
+    "-fPIC",
+    "-fno-exceptions",
+    "-DPSD_PANDA_BUILD",
+    "-I/workspace/big-model-closed-loop-benchmark/output/stage7-panda-source-dispatch-01/sysroot/usr/include",
+    "-I/workspace/big-model-closed-loop-benchmark/native",
+    "-c",
+    "/workspace/big-model-closed-loop-benchmark/native/panda_source_dispatch.cxx",
+    "-o",
+    "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-source-dispatch-01/runtime-glx-types-review-fixed.o"
+  ],
+  "runtime_object_sha256": "4d036a079d5594590ea2b2d531ab7966862d1f71085a8adfd8f4e6c5bb2042c2",
+  "runtime_object_no_custom_constructor": true,
+  "candidate_not_loaded": true
+}

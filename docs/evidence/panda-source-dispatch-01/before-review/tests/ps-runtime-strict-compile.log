@@ -1,0 +1,8 @@
+native/panda_source_dispatch.cxx: In function ‘int psd_bind_read(psd_read_fn)’:
+native/panda_source_dispatch.cxx:40:2: error: this ‘if’ clause does not guard... [-Werror=misleading-indentation]
+   40 |  if(!original)return -1;psd_read_fn empty=nullptr;
+      |  ^~
+native/panda_source_dispatch.cxx:40:25: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+   40 |  if(!original)return -1;psd_read_fn empty=nullptr;
+      |                         ^~~~~~~~~~~
+cc1plus: all warnings being treated as errors
