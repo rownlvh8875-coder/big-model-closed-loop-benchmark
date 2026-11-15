@@ -23,8 +23,8 @@ Preserve4951basefiles/299pins/10originals/main/Drafts102–113/8nativehistories.
 
 **Create:** native/panda_sdk_routes_v2/{panda_source_dispatch.h,panda_source_dispatch.cxx,panda_source_activity.h,panda_source_activity.cxx,panda_cache_adapter.h,panda_cache_adapter.cxx,readback_command_state.h,readback_command_state.c,readback_return_core.h};tests/fixtures/panda_sdk_routes_fixture.cxx;tests/panda_sdk_routes_cpu_support.py;tests/test_panda_sdk_routes.py.
 **Interfaces:** existing33psd/pca/rcC APIs unchanged; events15–19 and slots21–27; private per-context draw/read pair, new storage magic. compile_cpu(out,native_dir,sanitize=False)->profile.
-- [ ] RED actual old runtime fails positive seven-route fixture while originals still forward; wrong target/display/current draw/read destroy, failed switches, NULL/rebind/defaultOFF preserve outcomes.
-- [ ] Implement only versioned native copies, exact PFN aliases/new arities/counters and adapter rules; normal/sanitized new cases plus old50/defaultOFF; record/commit.
+- [x] RED actual old runtime fails positive seven-route fixture while originals still forward; wrong target/display/current draw/read destroy, failed switches, NULL/rebind/defaultOFF preserve outcomes.
+- [x] Implement only versioned native copies, exact PFN aliases/new arities/counters and adapter rules; normal/sanitized new cases plus old50/defaultOFF; record/commit.
 
 ### Task2: Fresh source/SDK with actual input closure
 
