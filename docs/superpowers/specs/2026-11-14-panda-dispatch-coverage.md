@@ -31,14 +31,19 @@ targets. Reject malformed, overlapping, duplicate, truncated or foreign inputs.
 Report each relocation-backed function name, symbol index, slot VA/type and needed
 libraries. No ELF loading, memory writes, resolver calls or native ABI assertion.
 Caps: ELF64MiB;64programheaders;65536dynamic symbols;262144relocations;4MiBdynstr;
-512Bsymbolnames;1MiBdynamic table; relocation-backed imports are not all call paths.
+512Bsymbolnames;1MiBdynamic table. Symbol extents require SysV/GNU loader hash
+counts, bounded buckets/chains and nonoverlapping metadata; null symbol/index bounds
+are checked. These structural checks do not implement a complete ELF loader.
+Relocation-backed undefined function imports are not all possible call paths.
 
 Source scanner is a bounded lexical inventory, not a compiler/preprocessor. Retain
 both conditional branches conservatively. Distinguish literal extension lookups,
 computed lookups, direct gl* calls and _gl* member calls, preserving source lines.
 Ignore comments and unrelated strings; reject unsupported malformed/ambiguous
 lexical forms instead of silently discarding possible routes. Concatenated ordinary
-lookup strings combine. Function definitions/declarations are not executed calls.
+lookup strings combine. LF/CRLF phase-two splices are removed before comments and
+tokens, preserving physical source lines; CR-only endings reject as unsupported.
+Function definitions/declarations are not executed calls.
 Each source<=1MiB, four files<=4MiB,<=500000tokens,<=20000observations. Source-version
 identity and spelling presence in ELF do not bind active compiled control flow.
 

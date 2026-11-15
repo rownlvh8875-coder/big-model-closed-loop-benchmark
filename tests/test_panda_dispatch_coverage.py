@@ -75,10 +75,22 @@ class DispatchCoverageTests(unittest.TestCase):
 
     def test_malformed_and_unbounded_source_is_rejected(self):
         for source in (b'/* no close', b'"no close', b'get_extension_func("glReadPixels";',
-                       b'get_ext\\\nension_func("glReadPixels");', b'R"(glReadPixels())"',
+                       b'R"(glReadPixels())"',
                        b'x'*(1024*1024+1)):
             with self.subTest(size=len(source)), self.assertRaises(ValueError):
                 coverage.scan_source(source, 'cpu.cxx')
+
+    def test_lf_crlf_and_comment_splices_preserve_physical_call_locations(self):
+        cases=((b'get_\\\nextension_func("glDeleteBuffers");','literal_lookups',[('glDeleteBuffers',1)]),
+               (b'glDeleteBuffers\\\r\n(1,buffers);','direct_calls',[('glDeleteBuffers',1)]),
+               (b'//comment\\\n glReadPixels();\nglReadBuffer(0);','direct_calls',[('glReadBuffer',3)]),
+               (b'/\\\n* glReadPixels(); */\nget_extension_func("glBindBuffer");','literal_lookups',[('glBindBuffer',3)]),
+               (b'get_extension_func("glDele\\\r\nteBuffers");','literal_lookups',[('glDeleteBuffers',1)]))
+        for source,field,want in cases:
+            with self.subTest(source=source):
+                result=coverage.scan_source(source,'cpu.cxx')
+                self.assertEqual([(r['name'],r['line']) for r in result[field]],want)
+                self.assertEqual(sum(len(result[k]) for k in ('literal_lookups','computed_lookups','direct_calls','member_calls')),len(want))
 
     def test_missing_legacy_context_and_buffer_delete_are_actionable_blockers(self):
         result = self.assess('get_extension_func("glDeleteBuffers");', routes=('glReadPixels', 'glPixelStorei'))
@@ -106,6 +118,15 @@ class DispatchCoverageTests(unittest.TestCase):
                      ('gl'+'A'*62,), ('not_gl',)):
             with self.subTest(safe_count=len(safe)), self.assertRaises(ValueError):
                 self.assess(safe_names=safe)
+
+    def test_server_attribute_restore_and_client_default_require_state_adapters(self):
+        for name in ('glPushAttrib','glPopAttrib','glClientAttribDefaultEXT','glPushClientAttribDefaultEXT'):
+            with self.subTest(name=name),self.assertRaises(ValueError):
+                self.assess(safe_names=(name,))
+        result=self.assess('glPushAttrib(1); glPopAttrib(); glClientAttribDefaultEXT(1);',
+                           routes=('glReadPixels','glXCreateContext','glPixelStorei'))
+        self.assertEqual(result['missing_required_routes'],['glClientAttribDefaultEXT','glPopAttrib','glPushAttrib'])
+        self.assertFalse(result['name_classification_complete'])
 
     def test_safe_ordinary_name_classifies_only_that_explicit_name(self):
         result = self.assess('get_extension_func("glDrawArrays"); get_extension_func("glDrawElements");',
@@ -162,6 +183,19 @@ class DispatchCoverageTests(unittest.TestCase):
                 self.assertEqual(p.returncode,2)
                 self.assertFalse(output.exists())
                 self.assertEqual(p.stdout,'')
+
+    def test_cli_fifo_input_rejects_promptly_without_waiting_for_a_writer(self):
+        with tempfile.TemporaryDirectory(prefix='pc-fifo-') as folder:
+            folder=Path(folder);fifo=folder/'image.fifo';os.mkfifo(fifo);output=folder/'result'
+            try:
+                p=subprocess.run([os.sys.executable,'-B','-m','scripts.panda_dispatch_coverage',
+                                  '--image',str(fifo),'--source-dir',str(SOURCE),'--out',str(output)],
+                                 cwd=ROOT,capture_output=True,text=True,timeout=2)
+            except subprocess.TimeoutExpired:
+                self.fail('nonregular input blocked before regular-file rejection')
+            self.assertEqual(p.returncode,2)
+            self.assertEqual(p.stdout,'')
+            self.assertFalse(output.exists())
 
 
 if __name__ == '__main__':

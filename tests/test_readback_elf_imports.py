@@ -1,6 +1,7 @@
 import hashlib
 from pathlib import Path
 import shutil
+import re
 import struct
 import subprocess
 import tempfile
@@ -14,8 +15,8 @@ except ImportError:
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def compile_import_fixture(path):
-    command = [shutil.which('cc'), '-shared', '-fPIC', '-O2', '-Wl,-z,now',
+def compile_import_fixture(path, hash_style='gnu'):
+    command = [shutil.which('cc'), '-shared', '-fPIC', '-O2', '-Wl,-z,now', '-Wl,--hash-style='+hash_style,
                str(ROOT/'tests/fixtures/readback_import_fixture.c'), '-o', str(path)]
     subprocess.run(command, check=True, capture_output=True, timeout=20)
     return command
@@ -66,6 +67,7 @@ class ElfImportTests(unittest.TestCase):
         self.assertFalse(result['runtime_admission_ready'])
         # Independent binutils output must name the same literal imports at those slots.
         output = subprocess.check_output(['readelf', '-rW', str(self.path)], text=True)
+        self.assertEqual(result['loader_relocations'],sum('R_X86_64_' in line for line in output.splitlines()))
         for name, row in gl.items():
             lines = [line for line in output.splitlines() if name in line]
             self.assertEqual(len(lines), 1)
@@ -114,6 +116,30 @@ class ElfImportTests(unittest.TestCase):
         for blob in (overlap, bytes(bad_slot)):
             with self.assertRaises(ValueError):
                 inspect_imports(blob)
+
+    def test_symbol_table_alias_and_reference_beyond_real_symbol_count_reject(self):
+        tags={tag:value for _,tag,value in dynamic_locations(self.blob) if tag}
+        aliases=changed_tag(self.blob,6,tags[5])
+        # Derive the boundary independently with binutils, not the reader under test.
+        output=subprocess.check_output(['readelf','--dyn-syms','-W',str(self.path)],text=True)
+        count=max(int(m[1]) for line in output.splitlines() if (m:=re.match(r'\s*(\d+):',line)))+1
+        escaped=bytearray(self.blob)
+        _,info,_=struct.unpack_from('<QQq',escaped,tags[23])
+        struct.pack_into('<Q',escaped,tags[23]+8,(count<<32)|(info&0xffffffff))
+        for name,blob in (('aliased symbol strings',aliases),('outside real dynsym',bytes(escaped))):
+            with self.subTest(name=name),self.assertRaises(ValueError):
+                inspect_imports(blob)
+
+    def test_sysv_gnu_and_combined_hashes_bound_the_same_actual_symbol_extent(self):
+        for style in ('sysv','gnu','both'):
+            path=Path(self.temp.name)/(style+'.so');compile_import_fixture(path,style)
+            result=inspect_imports(path.read_bytes())
+            output=subprocess.check_output(['readelf','--dyn-syms','-W',str(path)],text=True)
+            count=max(int(m[1]) for line in output.splitlines() if (m:=re.match(r'\s*(\d+):',line)))+1
+            with self.subTest(style=style):
+                self.assertEqual(result['dynamic_symbol_count'],count)
+                self.assertEqual({r['name'] for r in result['imports'] if r['name'].startswith('gl')},
+                                 {'glReadPixels','glXCreateContext','glPixelStorei'})
 
 
 if __name__ == '__main__':

@@ -5,6 +5,7 @@ slots and matching spellings do not establish compiled paths or runtime coverage
 No renderer loading, lookup, patching, driver query or native admission occurs.
 """
 import argparse
+from bisect import bisect_left, bisect_right
 import hashlib
 import json
 import os
@@ -30,7 +31,8 @@ _IDENT = re.compile(r'[A-Za-z_][A-Za-z_0-9]*')
 _LOOKUPS = {'get_extension_func', 'do_get_extension_func', 'get_system_func'}
 _UNSAFE = ('glPixelStore', 'glBindBuffer', 'glDeleteBuffers', 'glBindFramebuffer', 'glDeleteFramebuffers',
            'glReadBuffer', 'glNamedFramebufferReadBuffer', 'glFramebufferReadBuffer', 'glPushClientAttrib',
-           'glPopClientAttrib', 'glXCreate', 'glXMake', 'glXDestroy', 'glXCopyContext', 'glReadPixels', 'glGetError')
+           'glPopClientAttrib', 'glPushAttrib', 'glPopAttrib', 'glClientAttribDefault',
+           'glXCreate', 'glXMake', 'glXDestroy', 'glXCopyContext', 'glReadPixels', 'glGetError')
 
 
 def _need(ok, message):
@@ -41,14 +43,33 @@ def _need(ok, message):
 def _tokens(data):
     _need(type(data) is bytes and len(data) <= 1024*1024, 'source byte budget')
     try:
-        text = data.decode('utf-8')
+        physical = data.decode('utf-8')
     except UnicodeError as exc:
         raise ValueError('source UTF8 required') from exc
-    result, i, line = [], 0, 1
+    _need(not re.search(r'\r(?!\n)', physical), 'unsupported source line ending')
+    # C/C++ phase two precedes comments and tokens. Preserve physical locations
+    # with one entry per splice/newline, rather than a per-character mapping.
+    parts, splices, removed_totals = [], [], []
+    cursor = logical_size = removed = 0
+    for match in re.finditer(r'\\(?:\r\n|\n)', physical):
+        part = physical[cursor:match.start()]
+        parts.append(part)
+        logical_size += len(part)
+        removed += len(match[0])
+        splices.append(logical_size)
+        removed_totals.append(removed)
+        cursor = match.end()
+    parts.append(physical[cursor:])
+    text = ''.join(parts)
+    newlines = [m.start() for m in re.finditer('\n', physical)]
+    def physical_line(position):
+        index = bisect_right(splices, position)
+        original = position+(removed_totals[index-1] if index else 0)
+        return 1+bisect_left(newlines, original)
+    result, i = [], 0
     while i < len(text):
         ch = text[i]
         if ch.isspace():
-            line += ch == '\n'
             i += 1
             continue
         if text.startswith('//', i):
@@ -58,24 +79,16 @@ def _tokens(data):
         if text.startswith('/*', i):
             end = text.find('*/', i+2)
             _need(end >= 0, 'unterminated source comment')
-            line += text.count('\n', i, end+2)
             i = end+2
-            continue
-        if text.startswith('\\\n', i):
-            # Do not silently miss an identifier manufactured by phase-two splicing.
-            _need(not (i and text[i-1].isalnum() and i+2 < len(text) and text[i+2].isalnum()), 'spliced source token unsupported')
-            line += 1
-            i += 2
             continue
         _need(not text.startswith('R"', i), 'raw source strings unsupported')
         if ch in ('"', "'"):
-            quote, start, startline = ch, i+1, line
+            quote, start, startline = ch, i+1, physical_line(i)
             i += 1
             while i < len(text) and text[i] != quote:
                 _need(text[i] != '\n', 'newline in ordinary source literal')
                 if text[i] == '\\':
                     _need(i+1 < len(text), 'unterminated source escape')
-                    line += text[i+1] == '\n'
                     i += 2
                 else:
                     i += 1
@@ -85,11 +98,11 @@ def _tokens(data):
         else:
             match = _IDENT.match(text, i)
             if match:
-                result.append(('id', match[0], line))
+                result.append(('id', match[0], physical_line(i)))
                 i = match.end()
             else:
                 punctuation = text[i:i+2] if text[i:i+2] in ('::', '->') else ch
-                result.append(('punct', punctuation, line))
+                result.append(('punct', punctuation, physical_line(i)))
                 i += len(punctuation)
         _need(len(result) <= 500000, 'source token budget')
     return result
@@ -275,13 +288,16 @@ def qualify(image, sources, delivery, safe_names=(), mechanism='got-only'):
 def read_input(path, limit):
     path = os.path.abspath(os.fspath(path))
     _need(os.path.realpath(path) == path, 'canonical nonsymlink input required')
-    fd = os.open(path, os.O_RDONLY | os.O_NOFOLLOW | os.O_CLOEXEC)
+    key = lambda s: (s.st_dev, s.st_ino, s.st_size, s.st_mtime_ns, s.st_ctime_ns)
+    initial = os.stat(path, follow_symlinks=False)
+    _need(stat.S_ISREG(initial.st_mode) and 0 < initial.st_size <= limit, 'bounded regular input required')
+    # Nonblocking open also covers a pathname swapped to a FIFO after the stat.
+    fd = os.open(path, os.O_RDONLY | os.O_NOFOLLOW | os.O_CLOEXEC | os.O_NONBLOCK)
     try:
         before = os.fstat(fd)
-        _need(stat.S_ISREG(before.st_mode) and 0 < before.st_size <= limit, 'bounded regular input required')
+        _need(stat.S_ISREG(before.st_mode) and 0 < before.st_size <= limit and key(initial) == key(before), 'bounded unchanged regular input required')
         data = os.pread(fd, before.st_size, 0)
         after = os.fstat(fd)
-        key = lambda s: (s.st_dev, s.st_ino, s.st_size, s.st_mtime_ns, s.st_ctime_ns)
         _need(len(data) == before.st_size and key(before) == key(after) == key(os.stat(path, follow_symlinks=False)), 'input changed or short read')
         return data
     finally:

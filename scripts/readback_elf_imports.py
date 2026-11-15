@@ -79,17 +79,63 @@ def inspect_imports(blob):
         _need(all(tag in tags for tag in (23, 2, 20)) and tags[20] == 7, 'RELA PLT metadata')
         tables.append((tags[23], tags[2]))
     _need(not tags.get(17, 0) and not tags.get(18, 0), 'REL imports unsupported in amd64 profile')
-    count = 0
+    relocation_count = 0
     spans = []
     for address, nbytes in tables:
         _need(nbytes % 24 == 0 and nbytes // 24 <= 262144, 'relocation table extent')
-        count += nbytes // 24
-        _need(count <= 262144, 'relocation count budget')
+        relocation_count += nbytes // 24
+        _need(relocation_count <= 262144, 'relocation count budget')
         if nbytes:
             location(address, nbytes)
             for previous, old_size in spans:
                 _need(max(previous, address) >= min(previous+old_size, address+nbytes), 'overlapping loader relocation tables')
             spans.append((address, nbytes))
+    # A bounded load is not a symbol-table bound. Derive the actual extent from
+    # loader hash metadata before interpreting/filtering any relocation symbol.
+    counts, hash_spans = [], []
+    if 4 in tags:  # DT_HASH: nbucket, nchain, buckets, chains
+        buckets, chains = struct.unpack('<II', virtual(tags[4], 8))
+        _need(1 <= buckets <= 65536 and 1 <= chains <= 65536, 'SysV hash budget')
+        size = 8+4*(buckets+chains)
+        raw = virtual(tags[4], size)
+        links = struct.unpack_from(f'<{buckets+chains}I', raw, 8)
+        _need(all(link < chains for link in links), 'SysV hash symbol index')
+        counts.append(chains)
+        hash_spans.append((tags[4], size))
+    if 0x6ffffef5 in tags:  # DT_GNU_HASH: header, bloom, buckets, terminal chains
+        address = tags[0x6ffffef5]
+        buckets, first, bloom, shift = struct.unpack('<IIII', virtual(address, 16))
+        _need(1 <= buckets <= 65536 and 1 <= first <= 65536 and 1 <= bloom <= 65536 and
+              bloom & (bloom-1) == 0 and shift < 64, 'GNU hash budget')
+        prefix = 16+8*bloom+4*buckets
+        raw = virtual(address, prefix)
+        bucket_values = struct.unpack_from(f'<{buckets}I', raw, 16+8*bloom)
+        starts = [index for index in bucket_values if index]
+        _need(all(first <= index < 65536 for index in starts) and len(set(starts)) == len(starts), 'GNU hash bucket index')
+        count = first
+        if starts:
+            index = max(starts)
+            while True:
+                _need(index < 65536, 'GNU hash chain budget')
+                value = struct.unpack('<I', virtual(address+prefix+4*(index-first), 4))[0]
+                index += 1
+                if value & 1:
+                    break
+            count = index
+            chains = struct.unpack(f'<{count-first}I', virtual(address+prefix, 4*(count-first)))
+            groups = {first} | {first+i+1 for i, value in enumerate(chains[:-1]) if value & 1}
+            _need(groups == set(starts), 'GNU hash chain/bucket association')
+        counts.append(count)
+        hash_spans.append((address, prefix+4*(count-first)))
+    _need(counts and len(set(counts)) == 1, 'loader-backed dynamic symbol extent required')
+    symbol_count = counts[0]
+    _need(tags[6] % 8 == 0 and virtual(tags[6], 24) == b'\0'*24, 'dynamic null symbol')
+    metadata = [(dynamic[3], dynamic[5]), (tags[5], tags[10]), (tags[6], 24*symbol_count), *spans, *hash_spans]
+    metadata.sort()
+    for address, extent in metadata:
+        location(address, extent)
+    for (a, an), (b, _) in zip(metadata, metadata[1:]):
+        _need(a+an <= b, 'overlapping loader metadata tables')
     imports, targets = [], set()
     for address, nbytes in tables:
         raw = virtual(address, nbytes) if nbytes else b''
@@ -98,7 +144,7 @@ def inspect_imports(blob):
             kind, index = info & 0xffffffff, info >> 32
             if kind not in (6, 7):
                 continue
-            _need(index < 65536, 'dynamic symbol budget')
+            _need(index < symbol_count, 'relocation index outside dynamic symbol table')
             symbol = struct.unpack('<IBBHQQ', virtual(tags[6]+24*index, 24))
             string_index, attributes, visibility, section, _, _ = symbol
             symbol_type, binding = attributes & 15, attributes >> 4
@@ -114,5 +160,6 @@ def inspect_imports(blob):
                                 binding=binding, slot_vaddr=target, relocation_type=kind))
     return dict(schema='readback-loader-imports-v1', elf_sha256=hashlib.sha256(blob).hexdigest(),
                 imports=sorted(imports, key=lambda r: (r['name'], r['slot_vaddr'])),
-                needed_libraries=libraries, loader_relocations=count, section_headers_used=False,
+                needed_libraries=libraries, loader_relocations=relocation_count, section_headers_used=False,
+                dynamic_symbol_count=symbol_count,
                 runtime_admission_ready=False, native_admitted=False)
