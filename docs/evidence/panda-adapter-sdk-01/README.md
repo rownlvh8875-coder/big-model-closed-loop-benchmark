@@ -1,0 +1,9 @@
+# Activity/cache single-image SDK evidence
+
+The actual Panda libpandagl.so.data is DATA ONLY. NEVER load/import/execute it, its SDK apps, or unresolved inspection fixtures. CPU evidence loads only libpca_sdk_cpu.so: handwritten runtime/activity/adapter/Ccache/caller assembly, with fully defined fake originals in its executable. No real Panda/GL/X11/ONNX dependency exists in that CPU DSO. Normal/sanitized51cases each include default-OFF and all50previous adapter cases. No real renderer/provider/model/officialORT ran.
+
+before-review/ retains actual minimal SDK compile/link command/raw log, source manifests,665private sysroot records, actual ELF/interface/readtail checks, all SDK output hashes, CPU commands/binaries/results, test RED/GREEN and preservation. source/makepanda.py.data is the exact upstream325141byte build-script input, not an executed repository fixture. Original Panda license remains docs/evidence/panda-dispatch-coverage-01/source/LICENSE.
+
+One image defines33psd/pca/rc APIs and one private source S; LDFLAGS=-Wl,-z,defs was used. Added C/C++ objects have no custom constructors. Read tail stays original glReadPixels; old Panda ABI rejects new image. Import-count change is memchr, a file fact rather than executed GL evidence. The SDK is minimal GLX/X11/noPython, lacks full image parity and is never auto-installed/armed. Static link verification is not runtime/mapped/image/coverage/native admission. Nativeallowance0, inheritedstrict0/4FAIL/Stage7INCOMPLETE.
+
+Full source/SDK/deb inputs/raw logs remain output/stage7-panda-adapter-sdk-01/. proof-index.json hashes all versioned proof except itself. Before-review remains immutable; subsequent sole-review/fix/final receipts are separate. Full image/branch/name/safe256profile/mappedABI/camera/lifetime/environment/driver/receipt and fresh ON/OFF contract remain gates.

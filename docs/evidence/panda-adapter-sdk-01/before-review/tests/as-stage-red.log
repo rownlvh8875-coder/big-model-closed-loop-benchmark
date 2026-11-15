@@ -1,0 +1,45 @@
+FFFFF
+======================================================================
+FAIL: test_changed_source_build_graph_or_already_patched_inputs_reject (tests.test_panda_adapter_sdk_stage.AdapterSdkStageTests.test_changed_source_build_graph_or_already_patched_inputs_reject)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_adapter_sdk_stage.py", line 10, in setUp
+    self.assertIsNotNone(sdk,'exact activity/cache SDK source stage required')
+AssertionError: unexpectedly None : exact activity/cache SDK source stage required
+
+======================================================================
+FAIL: test_foreign_upstream_and_existing_output_are_preserved (tests.test_panda_adapter_sdk_stage.AdapterSdkStageTests.test_foreign_upstream_and_existing_output_are_preserved)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_adapter_sdk_stage.py", line 10, in setUp
+    self.assertIsNotNone(sdk,'exact activity/cache SDK source stage required')
+AssertionError: unexpectedly None : exact activity/cache SDK source stage required
+
+======================================================================
+FAIL: test_native_source_bytes_are_pinned_including_transitive_abi (tests.test_panda_adapter_sdk_stage.AdapterSdkStageTests.test_native_source_bytes_are_pinned_including_transitive_abi)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_adapter_sdk_stage.py", line 10, in setUp
+    self.assertIsNotNone(sdk,'exact activity/cache SDK source stage required')
+AssertionError: unexpectedly None : exact activity/cache SDK source stage required
+
+======================================================================
+FAIL: test_partial_ready_manifest_does_not_authorize_source (tests.test_panda_adapter_sdk_stage.AdapterSdkStageTests.test_partial_ready_manifest_does_not_authorize_source)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_adapter_sdk_stage.py", line 10, in setUp
+    self.assertIsNotNone(sdk,'exact activity/cache SDK source stage required')
+AssertionError: unexpectedly None : exact activity/cache SDK source stage required
+
+======================================================================
+FAIL: test_pinned_graph_compiles_cache_as_c_adapter_as_cxx_and_links_once (tests.test_panda_adapter_sdk_stage.AdapterSdkStageTests.test_pinned_graph_compiles_cache_as_c_adapter_as_cxx_and_links_once)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_adapter_sdk_stage.py", line 10, in setUp
+    self.assertIsNotNone(sdk,'exact activity/cache SDK source stage required')
+AssertionError: unexpectedly None : exact activity/cache SDK source stage required
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.001s
+
+FAILED (failures=5)

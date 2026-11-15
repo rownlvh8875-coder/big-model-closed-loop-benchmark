@@ -1,0 +1,50 @@
+FFFFF
+======================================================================
+FAIL: test_all_fifty_shared_image_cases_preserve_expected_acceptance (tests.test_panda_adapter_sdk_cpu.AdapterSdkCpuTests.test_all_fifty_shared_image_cases_preserve_expected_acceptance)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_adapter_sdk_cpu.py", line 49, in setUp
+    def setUp(self):self.assertIsNotNone(self.profile,'single-image SDK CPU/link inspector required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : single-image SDK CPU/link inspector required
+
+======================================================================
+FAIL: test_default_off_shared_source_preserves_original_tail (tests.test_panda_adapter_sdk_cpu.AdapterSdkCpuTests.test_default_off_shared_source_preserves_original_tail)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_adapter_sdk_cpu.py", line 49, in setUp
+    def setUp(self):self.assertIsNotNone(self.profile,'single-image SDK CPU/link inspector required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : single-image SDK CPU/link inspector required
+
+======================================================================
+FAIL: test_old_runtime_without_activity_fails_actual_strict_link (tests.test_panda_adapter_sdk_cpu.AdapterSdkCpuTests.test_old_runtime_without_activity_fails_actual_strict_link)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_adapter_sdk_cpu.py", line 49, in setUp
+    def setUp(self):self.assertIsNotNone(self.profile,'single-image SDK CPU/link inspector required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : single-image SDK CPU/link inspector required
+
+======================================================================
+FAIL: test_sanitized_shared_sdk_pending_lookup_and_deletion (tests.test_panda_adapter_sdk_cpu.AdapterSdkCpuTests.test_sanitized_shared_sdk_pending_lookup_and_deletion)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_adapter_sdk_cpu.py", line 49, in setUp
+    def setUp(self):self.assertIsNotNone(self.profile,'single-image SDK CPU/link inspector required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : single-image SDK CPU/link inspector required
+
+======================================================================
+FAIL: test_shared_sdk_exports_controls_and_mutated_activity_symbol_rejects (tests.test_panda_adapter_sdk_cpu.AdapterSdkCpuTests.test_shared_sdk_exports_controls_and_mutated_activity_symbol_rejects)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_adapter_sdk_cpu.py", line 49, in setUp
+    def setUp(self):self.assertIsNotNone(self.profile,'single-image SDK CPU/link inspector required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : single-image SDK CPU/link inspector required
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.001s
+
+FAILED (failures=5)

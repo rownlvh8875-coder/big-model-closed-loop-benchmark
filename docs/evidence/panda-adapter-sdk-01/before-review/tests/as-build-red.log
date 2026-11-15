@@ -1,0 +1,59 @@
+FFFFFF
+======================================================================
+FAIL: test_controlled_environment_discards_linker_and_loader_injection (tests.test_panda_adapter_sdk_build.AdapterSdkBuildTests.test_controlled_environment_discards_linker_and_loader_injection)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_adapter_sdk_build.py", line 8, in setUp
+    def setUp(self):self.assertIsNotNone(sdk,'bounded activity/cache SDK builder required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : bounded activity/cache SDK builder required
+
+======================================================================
+FAIL: test_disk_failure_stops_descendants_before_receipt (tests.test_panda_adapter_sdk_build.AdapterSdkBuildTests.test_disk_failure_stops_descendants_before_receipt)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_adapter_sdk_build.py", line 8, in setUp
+    def setUp(self):self.assertIsNotNone(sdk,'bounded activity/cache SDK builder required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : bounded activity/cache SDK builder required
+
+======================================================================
+FAIL: test_existing_build_evidence_is_never_overwritten (tests.test_panda_adapter_sdk_build.AdapterSdkBuildTests.test_existing_build_evidence_is_never_overwritten)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_adapter_sdk_build.py", line 8, in setUp
+    def setUp(self):self.assertIsNotNone(sdk,'bounded activity/cache SDK builder required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : bounded activity/cache SDK builder required
+
+======================================================================
+FAIL: test_extracted_sysroot_must_match_pinned_archive_and_no_extra_inputs (tests.test_panda_adapter_sdk_build.AdapterSdkBuildTests.test_extracted_sysroot_must_match_pinned_archive_and_no_extra_inputs)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_adapter_sdk_build.py", line 8, in setUp
+    def setUp(self):self.assertIsNotNone(sdk,'bounded activity/cache SDK builder required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : bounded activity/cache SDK builder required
+
+======================================================================
+FAIL: test_fast_final_output_and_timeout_are_rejected (tests.test_panda_adapter_sdk_build.AdapterSdkBuildTests.test_fast_final_output_and_timeout_are_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_adapter_sdk_build.py", line 8, in setUp
+    def setUp(self):self.assertIsNotNone(sdk,'bounded activity/cache SDK builder required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : bounded activity/cache SDK builder required
+
+======================================================================
+FAIL: test_partial_source_and_invalid_parallelism_do_not_create_output (tests.test_panda_adapter_sdk_build.AdapterSdkBuildTests.test_partial_source_and_invalid_parallelism_do_not_create_output)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_adapter_sdk_build.py", line 8, in setUp
+    def setUp(self):self.assertIsNotNone(sdk,'bounded activity/cache SDK builder required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : bounded activity/cache SDK builder required
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.001s
+
+FAILED (failures=6)
