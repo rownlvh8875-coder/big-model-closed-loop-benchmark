@@ -1,0 +1,15 @@
+test_short_stdout_full_stderr_keeps_commands_and_bounded_prefix (test_panda_sdk_cg_eigen_flow.ReviewDiagnosticTests.test_short_stdout_full_stderr_keeps_commands_and_bounded_prefix) ... FAIL
+
+======================================================================
+FAIL: test_short_stdout_full_stderr_keeps_commands_and_bounded_prefix (test_panda_sdk_cg_eigen_flow.ReviewDiagnosticTests.test_short_stdout_full_stderr_keeps_commands_and_bounded_prefix)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_cg_eigen_flow.py", line 136, in test_short_stdout_full_stderr_keeps_commands_and_bounded_prefix
+    host=root/'bundle/logs/host.log';self.assertTrue(host.exists());self.assertLessEqual(host.stat().st_size,16*1024**2);self.assertIn(b'"returncode":3',host.read_bytes()[:4096]);self.assertTrue(r['diagnostics']['truncated']);self.assertNotIn('logs/host.log',r['omissions'])
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+----------------------------------------------------------------------
+Ran 1 test in 0.162s
+
+FAILED (failures=1)

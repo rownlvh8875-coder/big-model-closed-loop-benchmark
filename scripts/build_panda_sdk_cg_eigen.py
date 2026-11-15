@@ -1,5 +1,5 @@
 """New measured Eigen/Cg build and section-only descriptor; never execute target code."""
-import json,os,subprocess,time
+import json,os,subprocess,time,shutil
 from pathlib import Path
 from scripts import panda_sdk_cg_inputs as inputs
 from scripts import panda_sdk_cg_eigen_inputs as eigen
@@ -8,7 +8,51 @@ from scripts import build_panda_sdk_cg as old
 from scripts import panda_sdk_routes_stage as source
 from scripts import panda_sdk_routes_inputs as dep
 ROOT=inputs.ROOT;need=inputs.need;read=inputs.read;sha=inputs.sha
-TOOLS=old.TOOLS;FLAGS=old.FLAGS;write=old.write;run_owned=old.run_owned;verify_tools=old.verify_tools;verify_records=old.verify_records;measure_tools=old.measure_tools;capture_headers=old.capture_headers;private_tree=old.private_tree;verify_compile=old.verify_compile;build_environment=old.build_environment
+TOOLS=old.TOOLS;FLAGS=old.FLAGS;write=old.write;run_owned=old.run_owned;verify_records=old.verify_records;capture_headers=old.capture_headers;private_tree=old.private_tree;verify_compile=old.verify_compile;build_environment=old.build_environment
+def query_commands(tools):
+ commands=[]
+ for name in ('cc','cxx'):
+  commands.append([tools[name],'-dumpfullversion'])
+  for arg in ['-print-prog-name=cc1plus' if name=='cxx' else '-print-prog-name=cc1','-print-prog-name=collect2','-print-prog-name=as','-print-prog-name=ld','-print-file-name=crti.o','-print-file-name=crtbeginS.o','-print-file-name=crtendS.o','-print-file-name=crtn.o','-print-file-name=libgcc.a','-print-file-name=libgcc_s.so','-print-file-name=libstdc++.so','-print-search-dirs']:commands.append([tools[name],'-shared','-fPIC',arg])
+ return commands
+
+def measure_tools(paths=None,out=None,query_seconds=5):
+ need(out is not None and 0<query_seconds<=5,'owned tool measurement output/deadline');out=Path(out);need(not out.exists() and not out.is_symlink(),'fresh tool profile');out.parent.mkdir(parents=True,exist_ok=True);selected=dict(TOOLS if paths is None else paths);rows={};queries=[];profile=dict(schema='panda-cg-eigen-tools-v2',status='PREFLIGHT',tools=selected,files=rows,queries=queries,compiler_major=13,evidence_path=str(out.absolute()));write(out,profile)
+ try:
+  need(set(selected)==set(TOOLS),'complete selected host tool set')
+  for path in selected.values():rows[path]=old.record(path);write(out,profile)
+  env=dict(PATH='/usr/bin:/bin',LANG='C',LC_ALL='C')
+  for index,argv in enumerate(query_commands(selected)):
+   folder=out.parent/(out.stem+'-queries')/str(index);r=run_owned(argv,ROOT,env,folder,query_seconds,stream_limit=65536);q=dict(argv=argv,result=r,stdout_path=str(folder/'stdout.log'),stderr_path=str(folder/'stderr.log'),stdout=read(folder/'stdout.log',65536).decode('utf-8',errors='replace'),stderr=read(folder/'stderr.log',65536).decode('utf-8',errors='replace'));queries.append(q);write(out,profile);need(r['status']=='EXITED' and r['returncode']==0 and r['owned_group_reaped'] and r['streams_complete'],'owned compiler-selection query failed');value=q['stdout'].strip();arg=argv[-1]
+   if arg=='-dumpfullversion':need(len(q['stdout'])<=4096 and value.split('.')[0]=='13','compiler major13 required')
+   elif arg!='-print-search-dirs':
+    chosen=value if Path(value).is_absolute() else shutil.which(value,path=env['PATH']) if arg.startswith('-print-prog-name=') else None;need(chosen is not None,'selected compiler input');chosen=os.path.abspath(chosen);q['selected_path']=chosen;rows[chosen]=old.record(chosen)
+   need(len(q['stdout'])<=16384,'bounded compiler selection output');write(out,profile)
+  verify_records(rows);profile['status']='VERIFIED';write(out,profile);return profile
+ except (ValueError,OSError,UnicodeError) as error:
+  profile.update(status='FAILED',failure=type(error).__name__+': '+str(error));write(out,profile);raise ValueError('Eigen tool measurement failed: '+str(error)) from error
+
+def tool_facts(profile):
+ need(profile['schema']=='panda-cg-eigen-tools-v2' and profile['status']=='VERIFIED' and type(profile['compiler_major']) is int and profile['compiler_major']==13 and set(profile['tools'])==set(TOOLS),'verified measured profile');need([q['argv'] for q in profile['queries']]==query_commands(profile['tools']),'closed tool-selection queries');need(set(profile['tools'].values())<=set(profile['files']),'all selected tool bytes recorded');facts=[]
+ for q in profile['queries']:
+  r=q['result'];need(r['argv']==q['argv'] and r['status']=='EXITED' and r['returncode']==0 and r['owned_group_reaped'] is True and r['streams_complete'] is True and 0<=r['elapsed_seconds']<=10,'owned successful tool query')
+  for stream in ('stdout','stderr'):
+   data=q[stream].encode();x=r['streams'][stream];need(len(data)==x['observed_nbytes']==x['saved_nbytes']<=65536 and sha(data)==x['sha256'],'tool query diagnostic binding')
+  if q['argv'][-1]=='-dumpfullversion':need(q['stdout'].strip().split('.')[0]=='13','measured compiler version')
+  elif q['argv'][-1]!='-print-search-dirs':need(q['selected_path'] in profile['files'],'selected subtool/link input bytes')
+  facts.append({k:q[k] for k in ['argv','stdout','stderr']+(['selected_path'] if 'selected_path' in q else [])})
+ return dict(tools=profile['tools'],files=profile['files'],queries=facts,compiler_major=13)
+
+def verify_tools(profile):
+ root=Path(profile['evidence_path']).parent/'tool-rechecks';root.mkdir(exist_ok=True);folder=None
+ for index in range(16):
+  try:folder=root/str(index);folder.mkdir();break
+  except FileExistsError:continue
+ else:raise ValueError('tool recheck count bound')
+ out=folder/'profile.json'
+ try:verify_records(profile['files'])
+ except (ValueError,OSError) as error:write(out,dict(schema='panda-cg-eigen-tools-v2',status='FAILED',failure='pre-query drift: '+str(error),queries=[],target_execution=False));raise
+ measured=measure_tools(profile['tools'],out=out);need(tool_facts(measured)==tool_facts(profile),'compiler byte/search selection drift');return measured
 BRANCH='prepare/panda-sdk-cg-eigen-build-20261116-02'
 def action_context():
  need(os.environ.get('GITHUB_ACTIONS')=='true' and os.environ.get('GITHUB_REPOSITORY')=='rownlvh8875-coder/big-model-closed-loop-benchmark' and os.environ.get('GITHUB_REF_NAME')==BRANCH and os.environ.get('GITHUB_RUN_ATTEMPT')=='1' and str(ROOT).startswith('/home/runner/work/'),'qualified Eigen build-only Actions context')
@@ -70,11 +114,11 @@ def build(stage,qualified_inputs,qualified_eigen,out,tool_profile):
   project_layout=(ROOT/'native/panda_sdk_cg_v2/layout_contract.cxx').resolve()
   names=[n for row in commands for n in row['paths'] if (Path(n) if Path(n).is_absolute() else stage/n).resolve()!=project_layout]
   used=dep.qualify_dependencies(names,stage,out/'sdk',private,host);used.append(dict(path=str(project_layout),origin='source',source_group='candidate-layout-project',**dep.file_record(project_layout)));validate_declared_headers(used);write(out/'compile-dependencies.json',commands);write(out/'used-inputs.json',used)
-  need(source.verify_stage(stage)==manifest,'source changed during build');verify_tools(tool_profile)
+  need(source.verify_stage(stage)==manifest,'source changed during build');after_tools=verify_tools(tool_profile)
   for p,row in host.items():
    if row['kind']=='file' and p in {x['path'] for x in used}:need(dep.file_record(Path(p))==row,'used host-header drift')
   need(private_tree(private)==before_private,'private input drift')
-  candidate=out/'sdk/lib/libpandagl.so';buildpanda=out/'sdk/lib/libpanda.so.1.10';need(candidate.is_file() and buildpanda.is_file(),'actual candidate outputs');write(out/'sdk-output-manifest.json',source.old.base.tree_records(out/'sdk'));write(out/'tools-after.json',tool_profile)
+  candidate=out/'sdk/lib/libpandagl.so';buildpanda=out/'sdk/lib/libpanda.so.1.10';need(candidate.is_file() and buildpanda.is_file(),'actual candidate outputs');write(out/'sdk-output-manifest.json',source.old.base.tree_records(out/'sdk'));write(out/'tools-after.json',after_tools)
   r.update(status='CG_EIGEN_SDK_COMPILED_NOT_LOADED',candidate=str(candidate),candidate_sha256=sha(read(candidate,4*1024**2)),build_panda=str(buildpanda),build_panda_sha256=sha(read(buildpanda,64*1024**2)),configuration=macros,compiler_commands=len(commands),layout_object=layout['object'],layout_descriptor=layout['descriptor'],source_state_instances=None);write(out/'receipt.json',r);return r
  except BaseException as e:
   if (out/'layout-build/receipt.json').is_file():r['layout_failed_command']=inputs.parse(read(out/'layout-build/receipt.json',1024**2))

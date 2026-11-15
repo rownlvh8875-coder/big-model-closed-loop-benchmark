@@ -126,3 +126,11 @@ class EigenCarrierTests(unittest.TestCase):
   self.assertEqual(a.BRANCH,'prepare/panda-sdk-cg-eigen-build-20261116-02');self.assertEqual(a.SOURCE_BRANCH,'feature/panda-sdk-cg-eigen-candidate-v2')
   r=a.request_template('1'*40,[dict(event='push',run_id=11),dict(event='pull_request',run_id=12)],a.ROOT);self.assertEqual(r['contract_sha256'],a.eigen.CONTRACT_SHA)
   for name in ['scripts/panda_sdk_cg_eigen_gate.py','native/panda_sdk_cg_v2/layout_contract.cxx',a.eigen.CONTRACT]:self.assertIn(name,r['source_closure'])
+
+class ReviewDiagnosticTests(unittest.TestCase):
+ def test_short_stdout_full_stderr_keeps_commands_and_bounded_prefix(self):
+  with tempfile.TemporaryDirectory() as d:
+   root=Path(d);build=root/'work/build';(build/'makepanda').mkdir(parents=True);(build/'makepanda/stdout.log').write_bytes(b'short stdout');(build/'makepanda/command.json').write_text('{"argv":["compiler"],"returncode":3}');(build/'makepanda/stderr.log').write_bytes(b'e'*(16*1024**2));r=dict(status='FAILED',build_start_attempts=1)
+   try:producer.finalize_bundle(root,r,build,None,None,None)
+   except BaseException:producer.seal_failure_bundle(root,r)
+   host=root/'bundle/logs/host.log';self.assertTrue(host.exists());self.assertLessEqual(host.stat().st_size,16*1024**2);self.assertIn(b'"returncode":3',host.read_bytes()[:4096]);self.assertTrue(r['diagnostics']['truncated']);self.assertNotIn('logs/host.log',r['omissions'])

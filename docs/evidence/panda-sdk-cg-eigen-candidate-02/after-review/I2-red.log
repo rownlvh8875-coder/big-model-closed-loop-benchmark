@@ -1,0 +1,15 @@
+test_nonzero_and_timeout_queries_survive_in_failure_carrier (test_build_panda_sdk_cg_eigen.OwnedToolQueryTests.test_nonzero_and_timeout_queries_survive_in_failure_carrier) ... ERROR
+
+======================================================================
+ERROR: test_nonzero_and_timeout_queries_survive_in_failure_carrier (test_build_panda_sdk_cg_eigen.OwnedToolQueryTests.test_nonzero_and_timeout_queries_survive_in_failure_carrier)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_build_panda_sdk_cg_eigen.py", line 59, in test_nonzero_and_timeout_queries_survive_in_failure_carrier
+    with self.assertRaises(ValueError):b.measure_tools(paths,out=work/'tool-profile.json',query_seconds=.15)
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: measure_tools() got an unexpected keyword argument 'query_seconds'
+
+----------------------------------------------------------------------
+Ran 1 test in 0.048s
+
+FAILED (errors=1)

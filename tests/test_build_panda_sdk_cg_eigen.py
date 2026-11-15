@@ -48,3 +48,21 @@ class WholeCompileDeadlineTests(unittest.TestCase):
    with patch.object(b,'action_context'),patch.object(b,'verify_tools'),patch.object(b,'run_owned',side_effect=AssertionError('must not spawn')):
     with self.assertRaises(ValueError):b.compile_layout(root,dict(root=str(root)),root/'layout',dict(tools=dict(cxx='/usr/bin/false')),deadline=time.monotonic()-1)
    r=json.loads((root/'layout/receipt.json').read_text());self.assertEqual(r['command']['status'],'NOT_STARTED_DEADLINE');self.assertIsNone(r['command']['returncode']);self.assertFalse(r['target_execution'])
+
+class OwnedToolQueryTests(unittest.TestCase):
+ def test_nonzero_and_timeout_queries_survive_in_failure_carrier(self):
+  import sys
+  from scripts import produce_panda_sdk_cg_eigen as producer
+  for mode in ['nonzero','timeout']:
+   with tempfile.TemporaryDirectory() as d:
+    root=Path(d);work=root/'work';work.mkdir();compiler=root/'compiler';tail='sys.exit(9)' if mode=='nonzero' else 'time.sleep(10)';compiler.write_text('#!'+sys.executable+'\nimport sys,time\nprint("partial version",flush=True)\nprint("tool failed detail",file=sys.stderr,flush=True)\n'+tail+'\n');compiler.chmod(0o755);paths={k:str(compiler) if k in ('cc','cxx') else '/usr/bin/true' for k in b.TOOLS}
+    with self.assertRaises(ValueError):b.measure_tools(paths,out=work/'tool-profile.json',query_seconds=.15)
+    profile=json.loads((work/'tool-profile.json').read_text());self.assertEqual(profile['status'],'FAILED');self.assertEqual(len(profile['queries']),1);command=profile['queries'][0]['result'];self.assertEqual(command['status'],'EXITED' if mode=='nonzero' else 'TIMEOUT');self.assertTrue(command['owned_group_reaped']);self.assertIn('elapsed_seconds',command)
+    r=dict(status='BLOCKED',build_start_attempts=0);producer.finalize_bundle(root,r,work/'build',None,None,None);host=(root/'bundle/logs/host.log').read_bytes();self.assertIn(b'partial version',host);self.assertIn(b'tool failed detail',host);self.assertIn(b'"owned_group_reaped": true',host)
+
+class OwnedToolSelectionTests(unittest.TestCase):
+ def test_successful_owned_queries_recheck_selection_without_byte_drift(self):
+  import sys
+  with tempfile.TemporaryDirectory() as d:
+   root=Path(d);control=root/'control';control.write_text('/usr/bin/true');compiler=root/'compiler';compiler.write_text('#!'+sys.executable+'\nimport sys\nfrom pathlib import Path\na=sys.argv[-1]\nprint("13.3.0" if a=="-dumpfullversion" else "install: /fixture/" if a=="-print-search-dirs" else Path('+repr(str(control))+').read_text())\n');compiler.chmod(0o755);paths={k:str(compiler) if k in ('cc','cxx') else '/usr/bin/true' for k in b.TOOLS};profile=b.measure_tools(paths,out=root/'profile.json');self.assertEqual(len(profile['queries']),26);self.assertEqual(b.tool_facts(profile),b.tool_facts(b.verify_tools(profile)));control.write_text('/usr/bin/false');b.verify_records(profile['files'])
+   with self.assertRaises(ValueError):b.verify_tools(profile)

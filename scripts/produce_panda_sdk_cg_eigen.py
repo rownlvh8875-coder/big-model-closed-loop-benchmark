@@ -93,9 +93,10 @@ def collect_diagnostics(out,receipt,build_out):
     block=os.read(fd,min(65536,left));a.need(block,'stable diagnostic prefix');chunks.append(block);left-=len(block)
    saved=b''.join(chunks);after=os.fstat(fd);a.need(all(getattr(after,k)==getattr(st,k) for k in ('st_dev','st_ino','st_mode','st_size','st_mtime_ns','st_ctime_ns')),'diagnostic changed');meta['streams'].append(dict(path=str(path.relative_to(out)),observed_nbytes=st.st_size,saved_nbytes=len(saved),truncated=len(saved)<st.st_size));meta['truncated']|=len(saved)<st.st_size;return saved
   finally:os.close(fd)
- make=build_out/'makepanda/stdout.log';(logs/'makepanda.log').write_bytes(prefix(make,16*1024**2) if make.is_file() else b'');left=32*1024**2-(logs/'makepanda.log').stat().st_size
+ make=build_out/'makepanda/stdout.log';(logs/'makepanda.log').write_bytes(prefix(make,16*1024**2) if make.is_file() else b'');left=min(carrier.FILE_LIMITS['logs/host.log'],32*1024**2-(logs/'makepanda.log').stat().st_size)
  # Command JSON precedes streams so argv/return/timing/cleanup survives overflow.
- paths=sorted((out/'work').rglob('command.json'))+sorted((out/'work').rglob('*.log'))
+ profiles=([out/'work/tool-profile.json'] if (out/'work/tool-profile.json').is_file() else [])+sorted((out/'work/tool-rechecks').rglob('profile.json'))
+ paths=sorted((out/'work').rglob('command.json'))+profiles+sorted((out/'work').rglob('*.log'))
  with (logs/'host.log').open('wb') as sink:
   for path in paths:
    if path==make or path.is_symlink():continue
@@ -157,7 +158,11 @@ def run_production(out=None):
  finally:
   if (build_out/'receipt.json').is_file():receipt['compiler_build']=a.parse(a.read(build_out/'receipt.json',16*1024**2));receipt['build_start_attempts']=receipt['compiler_build']['build_start_attempts']
   if receipt['status']=='BLOCKED' and receipt['build_start_attempts']:receipt['status']='FAILED'
-  try:finalize_bundle(out,receipt,build_out,qualified,tools,result)
+  try:
+   finalize_bundle(out,receipt,build_out,qualified,tools,result)
+   if receipt['status']=='CG_EIGEN_CANDIDATE_SELECTED_LAYOUT_MATCH_NOT_RUNTIME':
+    from scripts import panda_sdk_cg_eigen_evidence
+    panda_sdk_cg_eigen_evidence.validate_build_evidence(receipt,out/'bundle')
   except BaseException as e:
    receipt.update(status='FAILED',bundle_failure=type(e).__name__+': '+str(e));seal_failure_bundle(out,receipt)
  return receipt
