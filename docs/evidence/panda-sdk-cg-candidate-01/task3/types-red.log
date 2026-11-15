@@ -1,0 +1,42 @@
+test_changed_provider_and_weak_exception_reject (tests.test_panda_sdk_cg_static_gate.ExportKindTests.test_changed_provider_and_weak_exception_reject) ... ok
+test_descriptor_code_initializers_magic_and_bounds_reject (tests.test_panda_sdk_cg_static_gate.ExportKindTests.test_descriptor_code_initializers_magic_and_bounds_reject) ... FAIL
+test_getter_ifunc_rejected (tests.test_panda_sdk_cg_static_gate.ExportKindTests.test_getter_ifunc_rejected) ... FAIL
+test_no_runtime_promotion (tests.test_panda_sdk_cg_static_gate.ExportKindTests.test_no_runtime_promotion) ... ok
+test_old_and_forged_offsets_reject (tests.test_panda_sdk_cg_static_gate.ExportKindTests.test_old_and_forged_offsets_reject) ... ok
+test_unknown_instruction_and_truncated_elf_reject (tests.test_panda_sdk_cg_static_gate.ExportKindTests.test_unknown_instruction_and_truncated_elf_reject) ... ok
+test_vendor_known_prefix_and_old_offset_bytes (tests.test_panda_sdk_cg_static_gate.ExportKindTests.test_vendor_known_prefix_and_old_offset_bytes) ... ok
+test_changed_provider_and_weak_exception_reject (tests.test_panda_sdk_cg_static_gate.GateTests.test_changed_provider_and_weak_exception_reject) ... ok
+test_descriptor_code_initializers_magic_and_bounds_reject (tests.test_panda_sdk_cg_static_gate.GateTests.test_descriptor_code_initializers_magic_and_bounds_reject) ... FAIL
+test_no_runtime_promotion (tests.test_panda_sdk_cg_static_gate.GateTests.test_no_runtime_promotion) ... ok
+test_old_and_forged_offsets_reject (tests.test_panda_sdk_cg_static_gate.GateTests.test_old_and_forged_offsets_reject) ... ok
+test_unknown_instruction_and_truncated_elf_reject (tests.test_panda_sdk_cg_static_gate.GateTests.test_unknown_instruction_and_truncated_elf_reject) ... ok
+test_vendor_known_prefix_and_old_offset_bytes (tests.test_panda_sdk_cg_static_gate.GateTests.test_vendor_known_prefix_and_old_offset_bytes) ... ok
+
+======================================================================
+FAIL: test_descriptor_code_initializers_magic_and_bounds_reject (tests.test_panda_sdk_cg_static_gate.ExportKindTests.test_descriptor_code_initializers_magic_and_bounds_reject)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_cg_static_gate.py", line 32, in test_descriptor_code_initializers_magic_and_bounds_reject
+    with self.assertRaises(ValueError):g.layout_from_object((self.root/(name+'.o')).read_bytes())
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_getter_ifunc_rejected (tests.test_panda_sdk_cg_static_gate.ExportKindTests.test_getter_ifunc_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_cg_static_gate.py", line 49, in test_getter_ifunc_rejected
+    with self.assertRaises(ValueError):g.candidate_offsets((self.root/'ifunc.so').read_bytes())
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_descriptor_code_initializers_magic_and_bounds_reject (tests.test_panda_sdk_cg_static_gate.GateTests.test_descriptor_code_initializers_magic_and_bounds_reject)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_cg_static_gate.py", line 32, in test_descriptor_code_initializers_magic_and_bounds_reject
+    with self.assertRaises(ValueError):g.layout_from_object((self.root/(name+'.o')).read_bytes())
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.185s
+
+FAILED (failures=3)
