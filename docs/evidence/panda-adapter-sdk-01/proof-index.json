@@ -3,8 +3,8 @@
   "proofs": [
     {
       "path": "docs/evidence/panda-adapter-sdk-01/README.md",
-      "nbytes": 2286,
-      "sha256": "d3a12775f0b42c728a03d1613f393ea9bdfd2311f3d3a59b4aa91568088130b4"
+      "nbytes": 2825,
+      "sha256": "45076bf5a96f15052f3a8e54a27b06940fc4ffa3fd30134ad11347163076fd92"
     },
     {
       "path": "docs/evidence/panda-adapter-sdk-01/after-fix/build/inspection.json",
@@ -3072,6 +3072,1591 @@
       "sha256": "702343ddcd55c3921792a353a4ef2a0bd11d4f945f10b4b98eceb71e985d7dba"
     },
     {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/evidence-reproducer.py",
+      "nbytes": 3043,
+      "sha256": "6ed6ab80bb9064fc14111b8c8a8f37739d62a8ed48fdd21fd6c9ca9371a06e0e"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/activity.o.data",
+      "nbytes": 25272,
+      "sha256": "dd65b3eee1bb1703c7fef3152120e1e9a34e96a05aa053530e6f17c16ce925d6"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/adapter.o.data",
+      "nbytes": 15248,
+      "sha256": "1eed5c731f9ec6efae048a5293ef25554b5a1353e847d3d2fb71288b93f571a0"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/cache.o.data",
+      "nbytes": 7728,
+      "sha256": "c7d01e53ed5fbcfdd3d7b70fe079b7287e9ce3d957a130878b5d932d868d1b16"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/caller.S",
+      "nbytes": 1155,
+      "sha256": "90de2544de9d76b6f38299cf7358da30ea4e215c872a5b54fc89431d7ac4ef06"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/caller.o.data",
+      "nbytes": 1072,
+      "sha256": "f7503160a9b9ee78aec3a6171be06ffeadd9de38b4dff11e5df0c673c1456c53"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-adapter_thread.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-adapter_thread.stdout",
+      "nbytes": 353,
+      "sha256": "8f752d61138f3768de920273c0af2149b8d36e07db69eceb3b088c1415f0316d"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-after_finish.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-after_finish.stdout",
+      "nbytes": 352,
+      "sha256": "a0dcfa9a8eb0f084c8f139f4831e906c70d8865740ae5dceb516f056d23cd327"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-aliases.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-aliases.stdout",
+      "nbytes": 355,
+      "sha256": "6fcc936e10f0a678d7c3fc3962ba825dbbdeac0c126c88d2711f322f89bdf9cc"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-attribs.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-attribs.stdout",
+      "nbytes": 352,
+      "sha256": "db39bbb48dca914fd3ed9f417b2f3f98b277fb934a66fcbbef134dea92c39ece"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-bootstrap.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-bootstrap.stdout",
+      "nbytes": 352,
+      "sha256": "db39bbb48dca914fd3ed9f417b2f3f98b277fb934a66fcbbef134dea92c39ece"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-delete_bad.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-delete_bad.stdout",
+      "nbytes": 353,
+      "sha256": "4f1746819be618c108d9c4e34f3a4e2016e143663b0a8a59f3ca0029e8a8b521"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-delete_mutate.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-delete_mutate.stdout",
+      "nbytes": 352,
+      "sha256": "db39bbb48dca914fd3ed9f417b2f3f98b277fb934a66fcbbef134dea92c39ece"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-delete_negative.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-delete_negative.stdout",
+      "nbytes": 353,
+      "sha256": "4f1746819be618c108d9c4e34f3a4e2016e143663b0a8a59f3ca0029e8a8b521"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-dirty_cache.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-dirty_cache.stdout",
+      "nbytes": 353,
+      "sha256": "8a3a6ef62098931174032a6f88a8091dafc8107cc2abb6e088abe0ce37c4afd9"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-display.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-display.stdout",
+      "nbytes": 353,
+      "sha256": "3a96fbd3862630a82ae51409c374166dbffbc8344ac9006ed8b1962fc3034e9b"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-double_attach.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-double_attach.stdout",
+      "nbytes": 353,
+      "sha256": "3f665b22b9674e43d40f4c28317e4c5c845fa2733bc5c77f91bd784b7dcc3a50"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-double_destroy.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-double_destroy.stdout",
+      "nbytes": 354,
+      "sha256": "a191bbfe8117e7887fb0b8389db8bfa8a7cff958bc2894d9b19ba00cb8dcd5ce"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-double_finish.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-double_finish.stdout",
+      "nbytes": 353,
+      "sha256": "1988231404970be8b8258299f990e9a33fe8c12a645282d3eb2417f787334831"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-downstream.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-downstream.stdout",
+      "nbytes": 353,
+      "sha256": "dc3971c9e856ab9e30bf810c7a7ad896f7979fd8d4be89e9be0b24121a870988"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-draw_delete.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-draw_delete.stdout",
+      "nbytes": 355,
+      "sha256": "584a34b58559f8dcd69da1fdbcd2ce7e9a5edf6e228b4852891d3da22e757cdc"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-empty_delete.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-empty_delete.stdout",
+      "nbytes": 352,
+      "sha256": "a408d5b33ff70d6d4bdba88629e42d4b8975b1d83622544033f6fce9a92d276c"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-eventcap.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-eventcap.stdout",
+      "nbytes": 353,
+      "sha256": "e6d7133923085e7c313ec2cba288d062a45d4c2f0e366a9f58f90c46de45734c"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-external_finish.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-external_finish.stdout",
+      "nbytes": 353,
+      "sha256": "c29bddfc6176d0e666656ebf59118fffe249c27a13b41131f0a1b5ba595de72d"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-failed_create.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-failed_create.stdout",
+      "nbytes": 352,
+      "sha256": "d9e521189d18fbe338d0e98456a21b66acd14000bf94c550cff7f4ae6d5a1621"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-failed_switch.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-failed_switch.stdout",
+      "nbytes": 355,
+      "sha256": "8d26c140479658acb15cb6183b7102528956a1d253ef30793b4ae563b68155ed"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-fbo_deleted.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-fbo_deleted.stdout",
+      "nbytes": 353,
+      "sha256": "b175628bffbddaefab307b6ee36573427fddbfbc8ae78cc56cfc8a2008ac7722"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-fbo_mutate.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-fbo_mutate.stdout",
+      "nbytes": 353,
+      "sha256": "b175628bffbddaefab307b6ee36573427fddbfbc8ae78cc56cfc8a2008ac7722"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-forged.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-forged.stdout",
+      "nbytes": 353,
+      "sha256": "1a9c55434fd55d0d561e61957620f4b18d831f8992d0eb5caf3ed68eb027a4fe"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-identity.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-identity.stdout",
+      "nbytes": 353,
+      "sha256": "be478eb53eca8c043db785cacfb4e984b3a22164b77b7086aa537011e74cb9df"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-install_twice.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-install_twice.stdout",
+      "nbytes": 352,
+      "sha256": "db39bbb48dca914fd3ed9f417b2f3f98b277fb934a66fcbbef134dea92c39ece"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-lifetimes.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-lifetimes.stdout",
+      "nbytes": 357,
+      "sha256": "a1e59169f34a7b3b77518a08dc045134542f0b2738179d78960682a35a164f04"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-live.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-live.stdout",
+      "nbytes": 352,
+      "sha256": "a9c7b1a13d58e0504ffd3d732b243c3666fd4b1bf362997e847343c87f8abd9b"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-livecap.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-livecap.stdout",
+      "nbytes": 354,
+      "sha256": "97b3e75e7277c5120e138302457ee44e0b75b040cdf47d206ed7e5ba75cbc48c"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-new.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-new.stdout",
+      "nbytes": 352,
+      "sha256": "db39bbb48dca914fd3ed9f417b2f3f98b277fb934a66fcbbef134dea92c39ece"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-no_attach.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-no_attach.stdout",
+      "nbytes": 353,
+      "sha256": "1bf45a9c2953264ed3ce159dfe6025199d6fc69ce42ed0708c2a8898e14412a8"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-nonzero_error.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-nonzero_error.stdout",
+      "nbytes": 353,
+      "sha256": "38eb6751724b21e2b6a6ad590cfcd0eeb0e7350527ca32003ecc35cd924bdde3"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-observe.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-observe.stdout",
+      "nbytes": 352,
+      "sha256": "9717f0a6f571cb94ff58c026f5001577a81fce3e7fa6f941df3254c721f36d95"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-original_snapshot.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-original_snapshot.stdout",
+      "nbytes": 353,
+      "sha256": "2f3666d93cff108e740629f6697b5f02614e751273e719564dd6c1ca1d7ed2c5"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-overlap.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-overlap.stdout",
+      "nbytes": 353,
+      "sha256": "97b0b7f7eca596980ee25c0af1c70241048107b24323a24d9ed8cc789ca016ab"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-pending_destroy.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-pending_destroy.stdout",
+      "nbytes": 352,
+      "sha256": "21eb01b9c688eb48649934ece4838e3e137be7362465c3930118fd0465c79752"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-pending_known.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-pending_known.stdout",
+      "nbytes": 353,
+      "sha256": "ea37bd690614879da7f4619d93bf7385bd066c2d2574528aff11aa40a4e1eac1"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-pending_rebind.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-pending_rebind.stdout",
+      "nbytes": 354,
+      "sha256": "a191bbfe8117e7887fb0b8389db8bfa8a7cff958bc2894d9b19ba00cb8dcd5ce"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-pending_release.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-pending_release.stdout",
+      "nbytes": 356,
+      "sha256": "d0e087d2f7ab8518ad9e6d293467a27240b0702f5b3a6d954a486a799ba03939"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-pending_unknown.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-pending_unknown.stdout",
+      "nbytes": 353,
+      "sha256": "ea37bd690614879da7f4619d93bf7385bd066c2d2574528aff11aa40a4e1eac1"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-preserve.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-preserve.stdout",
+      "nbytes": 352,
+      "sha256": "db39bbb48dca914fd3ed9f417b2f3f98b277fb934a66fcbbef134dea92c39ece"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-sgix.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-sgix.stdout",
+      "nbytes": 352,
+      "sha256": "db39bbb48dca914fd3ed9f417b2f3f98b277fb934a66fcbbef134dea92c39ece"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-shared.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-shared.stdout",
+      "nbytes": 353,
+      "sha256": "e20dbec13b89eb6b02c4403dce5b496347b2ca092fd7994e0073281e0a6c04d5"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-source_error.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-source_error.stdout",
+      "nbytes": 353,
+      "sha256": "74ffa7997e899989fd672c421b30b2009dff63c3f5b8461b7bd18bad9eb9c076"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-source_reentry.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-source_reentry.stdout",
+      "nbytes": 353,
+      "sha256": "98b9bb95c543d815f70b7202bc1082acfa4e2c15d47de20ee1b552ccce086247"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-source_thread.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-source_thread.stdout",
+      "nbytes": 353,
+      "sha256": "77716559fba1eca266c2caa0fc9b72719031766c1605fae6b87c8ced97dc92cb"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-truthy_current.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-truthy_current.stdout",
+      "nbytes": 352,
+      "sha256": "db39bbb48dca914fd3ed9f417b2f3f98b277fb934a66fcbbef134dea92c39ece"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-two_contexts.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-two_contexts.stdout",
+      "nbytes": 356,
+      "sha256": "1f12b0045f6913e151b4ca0501486a22d3d54b81ffd3e9d0cfa40d04f77a1dde"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-unknown_context.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-unknown_context.stdout",
+      "nbytes": 353,
+      "sha256": "67ed251972534fdd4aa32c8d1ee9863c4203da3f1cc5d1a387e1a44ebcae69a0"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-unrelated_delete.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-unrelated_delete.stdout",
+      "nbytes": 352,
+      "sha256": "a408d5b33ff70d6d4bdba88629e42d4b8975b1d83622544033f6fce9a92d276c"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-zero_delete.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/case-zero_delete.stdout",
+      "nbytes": 352,
+      "sha256": "a408d5b33ff70d6d4bdba88629e42d4b8975b1d83622544033f6fce9a92d276c"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/compile-activity.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/compile-activity.stdout",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/compile-adapter.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/compile-adapter.stdout",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/compile-cache.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/compile-cache.stdout",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/compile-caller.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/compile-caller.stdout",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/default-off.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/default-off.stdout",
+      "nbytes": 30,
+      "sha256": "8eb50513f4de7299017d0d20fcec6050618bafa27f7d75460431b1dee7b92450"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/fixture.data",
+      "nbytes": 31768,
+      "sha256": "6aab2176354ea4f4deb6413124127b51f9c2a9a6f9b65a101fa02309f2b33d4a"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/inspect/interfaces-dynamic.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/inspect/interfaces-dynamic.stdout",
+      "nbytes": 3837,
+      "sha256": "f27db73a2d5cca3ea012f483338a69e7a3cd7086baa8207f7ba5c344c9a3d8dd"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/inspect/interfaces-symbols.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/inspect/interfaces-symbols.stdout",
+      "nbytes": 15605,
+      "sha256": "830341bc928320b9b46dba209c923fd47f62381db7cac43fff40999ff2668b90"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/libpca_sdk_cpu.so.data",
+      "nbytes": 47104,
+      "sha256": "81d6d668db6c39d2fabc415c65156f6e3d4bc09f256e95d2f627d0e01d1351c3"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/link-fixture.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/link-fixture.stdout",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/link-off.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/link-off.stdout",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/link-sdk.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/link-sdk.stdout",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/needed.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/needed.stdout",
+      "nbytes": 1515,
+      "sha256": "56d336e7da6914d41230ce5ebffc3a09ad9f0379af8ab16863091fbab8646004"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/off.cxx",
+      "nbytes": 858,
+      "sha256": "fbff6b62e85bb08ed302dbd28367857172a8cc162e5d7f25ec723b1ded4742c2"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/normal/off.data",
+      "nbytes": 16352,
+      "sha256": "6659dbfc3676992d893b34101b1a705b979f1bf93071287893736fcf2a361f07"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/receipt.json",
+      "nbytes": 214281,
+      "sha256": "a9bdefef68d04954c6900b3e04d7e4fb8ea8978a5321ed95341db23c5a8cfc83"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/activity.o.data",
+      "nbytes": 96264,
+      "sha256": "929e1c27b232023051105df86bdd54cab730541a67f5dc0af574ca46c591b030"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/adapter.o.data",
+      "nbytes": 89128,
+      "sha256": "e2bfca0207547739001a93f8061661a7787ad96a06aa92e2b268137dc42f07eb"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/cache.o.data",
+      "nbytes": 70720,
+      "sha256": "7b91d9b7b0b78e64a566481ebebf656cc2c93290474617c855b3ced150a2de4d"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/caller.S",
+      "nbytes": 1155,
+      "sha256": "90de2544de9d76b6f38299cf7358da30ea4e215c872a5b54fc89431d7ac4ef06"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/caller.o.data",
+      "nbytes": 1072,
+      "sha256": "f7503160a9b9ee78aec3a6171be06ffeadd9de38b4dff11e5df0c673c1456c53"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-adapter_thread.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-adapter_thread.stdout",
+      "nbytes": 353,
+      "sha256": "8f752d61138f3768de920273c0af2149b8d36e07db69eceb3b088c1415f0316d"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-after_finish.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-after_finish.stdout",
+      "nbytes": 352,
+      "sha256": "a0dcfa9a8eb0f084c8f139f4831e906c70d8865740ae5dceb516f056d23cd327"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-aliases.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-aliases.stdout",
+      "nbytes": 355,
+      "sha256": "6fcc936e10f0a678d7c3fc3962ba825dbbdeac0c126c88d2711f322f89bdf9cc"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-attribs.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-attribs.stdout",
+      "nbytes": 352,
+      "sha256": "db39bbb48dca914fd3ed9f417b2f3f98b277fb934a66fcbbef134dea92c39ece"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-bootstrap.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-bootstrap.stdout",
+      "nbytes": 352,
+      "sha256": "db39bbb48dca914fd3ed9f417b2f3f98b277fb934a66fcbbef134dea92c39ece"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-delete_bad.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-delete_bad.stdout",
+      "nbytes": 353,
+      "sha256": "4f1746819be618c108d9c4e34f3a4e2016e143663b0a8a59f3ca0029e8a8b521"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-delete_mutate.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-delete_mutate.stdout",
+      "nbytes": 352,
+      "sha256": "db39bbb48dca914fd3ed9f417b2f3f98b277fb934a66fcbbef134dea92c39ece"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-delete_negative.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-delete_negative.stdout",
+      "nbytes": 353,
+      "sha256": "4f1746819be618c108d9c4e34f3a4e2016e143663b0a8a59f3ca0029e8a8b521"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-dirty_cache.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-dirty_cache.stdout",
+      "nbytes": 353,
+      "sha256": "8a3a6ef62098931174032a6f88a8091dafc8107cc2abb6e088abe0ce37c4afd9"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-display.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-display.stdout",
+      "nbytes": 353,
+      "sha256": "3a96fbd3862630a82ae51409c374166dbffbc8344ac9006ed8b1962fc3034e9b"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-double_attach.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-double_attach.stdout",
+      "nbytes": 353,
+      "sha256": "3f665b22b9674e43d40f4c28317e4c5c845fa2733bc5c77f91bd784b7dcc3a50"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-double_destroy.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-double_destroy.stdout",
+      "nbytes": 354,
+      "sha256": "a191bbfe8117e7887fb0b8389db8bfa8a7cff958bc2894d9b19ba00cb8dcd5ce"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-double_finish.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-double_finish.stdout",
+      "nbytes": 353,
+      "sha256": "1988231404970be8b8258299f990e9a33fe8c12a645282d3eb2417f787334831"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-downstream.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-downstream.stdout",
+      "nbytes": 353,
+      "sha256": "dc3971c9e856ab9e30bf810c7a7ad896f7979fd8d4be89e9be0b24121a870988"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-draw_delete.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-draw_delete.stdout",
+      "nbytes": 355,
+      "sha256": "584a34b58559f8dcd69da1fdbcd2ce7e9a5edf6e228b4852891d3da22e757cdc"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-empty_delete.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-empty_delete.stdout",
+      "nbytes": 352,
+      "sha256": "a408d5b33ff70d6d4bdba88629e42d4b8975b1d83622544033f6fce9a92d276c"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-eventcap.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-eventcap.stdout",
+      "nbytes": 353,
+      "sha256": "e6d7133923085e7c313ec2cba288d062a45d4c2f0e366a9f58f90c46de45734c"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-external_finish.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-external_finish.stdout",
+      "nbytes": 353,
+      "sha256": "c29bddfc6176d0e666656ebf59118fffe249c27a13b41131f0a1b5ba595de72d"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-failed_create.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-failed_create.stdout",
+      "nbytes": 352,
+      "sha256": "d9e521189d18fbe338d0e98456a21b66acd14000bf94c550cff7f4ae6d5a1621"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-failed_switch.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-failed_switch.stdout",
+      "nbytes": 355,
+      "sha256": "8d26c140479658acb15cb6183b7102528956a1d253ef30793b4ae563b68155ed"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-fbo_deleted.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-fbo_deleted.stdout",
+      "nbytes": 353,
+      "sha256": "b175628bffbddaefab307b6ee36573427fddbfbc8ae78cc56cfc8a2008ac7722"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-fbo_mutate.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-fbo_mutate.stdout",
+      "nbytes": 353,
+      "sha256": "b175628bffbddaefab307b6ee36573427fddbfbc8ae78cc56cfc8a2008ac7722"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-forged.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-forged.stdout",
+      "nbytes": 353,
+      "sha256": "1a9c55434fd55d0d561e61957620f4b18d831f8992d0eb5caf3ed68eb027a4fe"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-identity.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-identity.stdout",
+      "nbytes": 353,
+      "sha256": "be478eb53eca8c043db785cacfb4e984b3a22164b77b7086aa537011e74cb9df"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-install_twice.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-install_twice.stdout",
+      "nbytes": 352,
+      "sha256": "db39bbb48dca914fd3ed9f417b2f3f98b277fb934a66fcbbef134dea92c39ece"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-lifetimes.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-lifetimes.stdout",
+      "nbytes": 357,
+      "sha256": "a1e59169f34a7b3b77518a08dc045134542f0b2738179d78960682a35a164f04"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-live.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-live.stdout",
+      "nbytes": 352,
+      "sha256": "a9c7b1a13d58e0504ffd3d732b243c3666fd4b1bf362997e847343c87f8abd9b"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-livecap.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-livecap.stdout",
+      "nbytes": 354,
+      "sha256": "97b3e75e7277c5120e138302457ee44e0b75b040cdf47d206ed7e5ba75cbc48c"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-new.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-new.stdout",
+      "nbytes": 352,
+      "sha256": "db39bbb48dca914fd3ed9f417b2f3f98b277fb934a66fcbbef134dea92c39ece"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-no_attach.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-no_attach.stdout",
+      "nbytes": 353,
+      "sha256": "1bf45a9c2953264ed3ce159dfe6025199d6fc69ce42ed0708c2a8898e14412a8"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-nonzero_error.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-nonzero_error.stdout",
+      "nbytes": 353,
+      "sha256": "38eb6751724b21e2b6a6ad590cfcd0eeb0e7350527ca32003ecc35cd924bdde3"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-observe.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-observe.stdout",
+      "nbytes": 352,
+      "sha256": "9717f0a6f571cb94ff58c026f5001577a81fce3e7fa6f941df3254c721f36d95"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-original_snapshot.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-original_snapshot.stdout",
+      "nbytes": 353,
+      "sha256": "2f3666d93cff108e740629f6697b5f02614e751273e719564dd6c1ca1d7ed2c5"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-overlap.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-overlap.stdout",
+      "nbytes": 353,
+      "sha256": "97b0b7f7eca596980ee25c0af1c70241048107b24323a24d9ed8cc789ca016ab"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-pending_destroy.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-pending_destroy.stdout",
+      "nbytes": 352,
+      "sha256": "21eb01b9c688eb48649934ece4838e3e137be7362465c3930118fd0465c79752"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-pending_known.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-pending_known.stdout",
+      "nbytes": 353,
+      "sha256": "ea37bd690614879da7f4619d93bf7385bd066c2d2574528aff11aa40a4e1eac1"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-pending_rebind.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-pending_rebind.stdout",
+      "nbytes": 354,
+      "sha256": "a191bbfe8117e7887fb0b8389db8bfa8a7cff958bc2894d9b19ba00cb8dcd5ce"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-pending_release.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-pending_release.stdout",
+      "nbytes": 356,
+      "sha256": "d0e087d2f7ab8518ad9e6d293467a27240b0702f5b3a6d954a486a799ba03939"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-pending_unknown.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-pending_unknown.stdout",
+      "nbytes": 353,
+      "sha256": "ea37bd690614879da7f4619d93bf7385bd066c2d2574528aff11aa40a4e1eac1"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-preserve.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-preserve.stdout",
+      "nbytes": 352,
+      "sha256": "db39bbb48dca914fd3ed9f417b2f3f98b277fb934a66fcbbef134dea92c39ece"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-sgix.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-sgix.stdout",
+      "nbytes": 352,
+      "sha256": "db39bbb48dca914fd3ed9f417b2f3f98b277fb934a66fcbbef134dea92c39ece"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-shared.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-shared.stdout",
+      "nbytes": 353,
+      "sha256": "e20dbec13b89eb6b02c4403dce5b496347b2ca092fd7994e0073281e0a6c04d5"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-source_error.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-source_error.stdout",
+      "nbytes": 353,
+      "sha256": "74ffa7997e899989fd672c421b30b2009dff63c3f5b8461b7bd18bad9eb9c076"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-source_reentry.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-source_reentry.stdout",
+      "nbytes": 353,
+      "sha256": "98b9bb95c543d815f70b7202bc1082acfa4e2c15d47de20ee1b552ccce086247"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-source_thread.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-source_thread.stdout",
+      "nbytes": 353,
+      "sha256": "77716559fba1eca266c2caa0fc9b72719031766c1605fae6b87c8ced97dc92cb"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-truthy_current.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-truthy_current.stdout",
+      "nbytes": 352,
+      "sha256": "db39bbb48dca914fd3ed9f417b2f3f98b277fb934a66fcbbef134dea92c39ece"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-two_contexts.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-two_contexts.stdout",
+      "nbytes": 356,
+      "sha256": "1f12b0045f6913e151b4ca0501486a22d3d54b81ffd3e9d0cfa40d04f77a1dde"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-unknown_context.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-unknown_context.stdout",
+      "nbytes": 353,
+      "sha256": "67ed251972534fdd4aa32c8d1ee9863c4203da3f1cc5d1a387e1a44ebcae69a0"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-unrelated_delete.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-unrelated_delete.stdout",
+      "nbytes": 352,
+      "sha256": "a408d5b33ff70d6d4bdba88629e42d4b8975b1d83622544033f6fce9a92d276c"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-zero_delete.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/case-zero_delete.stdout",
+      "nbytes": 352,
+      "sha256": "a408d5b33ff70d6d4bdba88629e42d4b8975b1d83622544033f6fce9a92d276c"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/compile-activity.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/compile-activity.stdout",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/compile-adapter.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/compile-adapter.stdout",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/compile-cache.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/compile-cache.stdout",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/compile-caller.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/compile-caller.stdout",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/default-off.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/default-off.stdout",
+      "nbytes": 30,
+      "sha256": "8eb50513f4de7299017d0d20fcec6050618bafa27f7d75460431b1dee7b92450"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/fixture.data",
+      "nbytes": 79304,
+      "sha256": "12f103e77e85e4364e20b9643f8c0dc8f26935d4a3ade5fbf2fccbc3382ee000"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/inspect/interfaces-dynamic.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/inspect/interfaces-dynamic.stdout",
+      "nbytes": 6102,
+      "sha256": "dee3d78c43ef4c3bd7445aa23222d4c8ae1c1c2f74018ebd0a8d95e409ea95f7"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/inspect/interfaces-symbols.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/inspect/interfaces-symbols.stdout",
+      "nbytes": 21710,
+      "sha256": "20f8dbc93ab83441ddda73adecf7b4c92dd777fecee87f6e604e08d87e961413"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/libpca_sdk_cpu.so.data",
+      "nbytes": 213368,
+      "sha256": "248222b2ad7e2ac823a31bfb14c93f917e16bea04a84a6f4b6aba7994b81738a"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/link-fixture.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/link-fixture.stdout",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/link-off.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/link-off.stdout",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/link-sdk.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/link-sdk.stdout",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/needed.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/needed.stdout",
+      "nbytes": 1744,
+      "sha256": "8f34e35cb64f0f41eb0625bb803c9f00a1f841a2ea412f2510db9acbab6b5aec"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/off.cxx",
+      "nbytes": 858,
+      "sha256": "fbff6b62e85bb08ed302dbd28367857172a8cc162e5d7f25ec723b1ded4742c2"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/cpu/sanitized/off.data",
+      "nbytes": 26920,
+      "sha256": "a8bd3cb8083e485d7b793567d5539227567e81e69b77a30fdf8de56ea3b89727"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/diagnostic/43673439590.json",
+      "nbytes": 25353,
+      "sha256": "9ca860861033fce92362528b2e305bc5a22bbbd74865cd97fed34ea61ecfd7a9"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/diagnostic/43673443536.json",
+      "nbytes": 25352,
+      "sha256": "e6fe21ab88c61b7d339454eeb73808b717d0f6e521a98124ccd53b48ea1e7d4c"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/diagnostic/43674205610.json",
+      "nbytes": 25347,
+      "sha256": "d868f296d0653a848893ae180b24d2e9c5a025b3d382a050924a9b1a3aa6ec6a"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/diagnostic/43674208974.json",
+      "nbytes": 25349,
+      "sha256": "96f243da5c826ceae24bc82c00e334ef31aa2edfb7bc73cd5a5d170cd4782595"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/diagnostic/demangled.txt",
+      "nbytes": 50,
+      "sha256": "b9fb43d09d5a80b198cd6f2367dee74c0d0ab5bf570181987ac58a298766fad6"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/diagnostic/failed-runs.json",
+      "nbytes": 719,
+      "sha256": "4b96273e4d8fd263dd4e6908500f498d3731b4100869db39208f2c017022b432"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/diagnostic/gcc13-activity-symbols.txt",
+      "nbytes": 8548,
+      "sha256": "b17900fcd2a3eb549285a828344ea170b91cbec5b4bfb71849d39896c1130d28"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/diagnostic/gcc13-activity.o.data",
+      "nbytes": 25272,
+      "sha256": "dd65b3eee1bb1703c7fef3152120e1e9a34e96a05aa053530e6f17c16ce925d6"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/diagnostic/gcc13-mangle.o.data",
+      "nbytes": 1288,
+      "sha256": "792bd12e63b677acb64c765b549ec813c89cb6c4705196f33a9babd9d026bfad"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/diagnostic/gcc14-mangle.o.data",
+      "nbytes": 1288,
+      "sha256": "792bd12e63b677acb64c765b549ec813c89cb6c4705196f33a9babd9d026bfad"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/diagnostic/mangle.cxx",
+      "nbytes": 91,
+      "sha256": "db7f5ee0ff0ba3b8b8fc8ac5b6fd934a74d3da82165856b6268bdcc089d8c26f"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/diagnostic/package-inputs.json",
+      "nbytes": 368,
+      "sha256": "6d4a6f5388ee17f7492ec996d3170b9ae36dfd171c2206982dcaa66de14f70f4"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/preservation/main.json",
+      "nbytes": 435,
+      "sha256": "2b689e71f54d9858f0e2757b20868ca1ae1869b409ace9c273b6df68276a7f7c"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/preservation/native-416199727.json",
+      "nbytes": 36746,
+      "sha256": "e4049398995ed4f0eefaf10e97ab66a660b5d7666ca6aee41d6138f704756815"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/preservation/native-417996810.json",
+      "nbytes": 17477,
+      "sha256": "112e93d8bc68840bc475907f6343b14e2b913d02403c65b48720f2c817045e45"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/preservation/native-418007872.json",
+      "nbytes": 34930,
+      "sha256": "3f16fb943d7bb61902b869ae5aac137aec9e1af6a71351c2dfbf6c4f6abf19c6"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/preservation/native-418051491.json",
+      "nbytes": 17473,
+      "sha256": "4d4de2816ad88632dafa4a49d63499ec3502b76bbac6286078c63a1cb0085f5f"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/preservation/native-418069748.json",
+      "nbytes": 17480,
+      "sha256": "4c71990f8cb030caf527c80b47087f69ae53b48c38ec2186d8fde540896452cf"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/preservation/native-418107188.json",
+      "nbytes": 17481,
+      "sha256": "6efe0cd81b3b66ca22a1917a0935e6d7f9a43266231fad154d2445c863077199"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/preservation/native-418206888.json",
+      "nbytes": 17460,
+      "sha256": "3cf6c8643819aaff7880f8b69ff9b8511658469cc42642dd12b5cd834e4c7235"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/preservation/native-418257705.json",
+      "nbytes": 17479,
+      "sha256": "6d4ee6463a33da5f0f88e87eaf738bb2217aad9ac0e004ad5a19a33d10a3e5d1"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/preservation/preservation.json",
+      "nbytes": 720581,
+      "sha256": "3918a5a5108030a0109b99318b2235686b80948c15354c93dc4c95c4238e25c6"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/preservation/prior-pr102.json",
+      "nbytes": 33187,
+      "sha256": "e7f27dfed1eb044c618e1aa58b99f0202f51e8c4c2dfd00de8352c0f7ae0d8fd"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/preservation/prior-pr103.json",
+      "nbytes": 39015,
+      "sha256": "39942a8c5ec0566fa2a7ba751719590fe15480f9a99e9fd2777f0f5a680c1f5e"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/preservation/prior-pr104.json",
+      "nbytes": 37151,
+      "sha256": "996a3120915dfe728cc02dc09e21d56c9581c6baa395afc84149d60dc8a61d3b"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/preservation/prior-pr105.json",
+      "nbytes": 27899,
+      "sha256": "0b94160424f88cf259b47aefc24e4cb0200da8a28bbbaaec4b50a913fd23cec9"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/preservation/prior-pr106.json",
+      "nbytes": 28531,
+      "sha256": "c566954f1db7652fa7a6cc60c63e13ce57eaf32e810cc6a5df817f4660d8a753"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/preservation/prior-pr107.json",
+      "nbytes": 29131,
+      "sha256": "7192215788de3a83fee1ead40521fcfe53f2690fda31971aab6a60875edb0784"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/preservation/prior-pr108.json",
+      "nbytes": 31303,
+      "sha256": "b88be7cb23cc5b9d1781828352d2f995b397f3ca61144b591797f3a4c6394e23"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/preservation/prior-pr109.json",
+      "nbytes": 31949,
+      "sha256": "7972dcfbcfc92581b80087839bbcd124a32f609c442a9c16d29ae83d4bb35bb6"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/preservation/prior-pr110.json",
+      "nbytes": 26464,
+      "sha256": "8f77cc0f4aa288d57ab7f3793aacce801828cb8103a626014b488260286d0330"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/preservation/prior-pr111.json",
+      "nbytes": 26277,
+      "sha256": "2582236aed375338177022dd96f6331ceda9eeeaaec200e02036d0558191fdfb"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/receipt.json",
+      "nbytes": 1912,
+      "sha256": "e9619327c87a8b11704ff931ca4b4e6f87941c3ecee57ae126de9e98dfc801d2"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/selection-before-ci-fix.json",
+      "nbytes": 2101,
+      "sha256": "e37539ad34204bfc6893bf4587c5aa30530c9b66656f5e840485e80ecb0cac4f"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/static-audit/candidate-dynamic.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/static-audit/candidate-dynamic.stdout",
+      "nbytes": 1849,
+      "sha256": "e66a26174615834bebf31ad46ea6914e522541f654ffaad85cd6236f1aa0f0bc"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/static-audit/candidate-relocations.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/static-audit/candidate-relocations.stdout",
+      "nbytes": 259734,
+      "sha256": "123c3376c4f57ce81fbca181027f6e2dc10c17215933bb562a5b9a3cb71345dd"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/static-audit/inspect-dynamic-symbols.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/static-audit/inspect-dynamic-symbols.stdout",
+      "nbytes": 154312,
+      "sha256": "724143acb5d001aecf29659bc2fdeac7b8eca76e2e6cae09ab838627616faed8"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/static-audit/inspect-symbols.stderr",
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/static-audit/inspect-symbols.stdout",
+      "nbytes": 401422,
+      "sha256": "83c82df263820918dc76dbfe07fdb1176dd6be78a41984105c0a07208e7baea7"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/static-audit/inspection.json",
+      "nbytes": 829969,
+      "sha256": "f103495f1cb7986cf8c478ebc7674be26bae038fc58869aa1c534f563726ad17"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/tests/as-ci-capture.log",
+      "nbytes": 597,
+      "sha256": "c3304e0e74c238ed6341b4ebbb2dd5fada9a3b66b38a96a74fe41b6e24d22486"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/tests/as-ci-cpu.log",
+      "nbytes": 120,
+      "sha256": "c743d3845dcac99d8a21ee914f02cd380a0f84804e9b021161cf373661f2e237"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/tests/as-ci-diagnostic-failed.log",
+      "nbytes": 455050,
+      "sha256": "1de3821b4aa62c723e82003f3369bee1c99564feaf4ac809b10f4d2393ad43b6"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/tests/as-ci-fullsuite.log",
+      "nbytes": 11961,
+      "sha256": "596d161d9657a823ee3a62789c0f25a68513554e7c69c53e8ac71abdb05be2e0"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/tests/as-ci-portability-green.log",
+      "nbytes": 117,
+      "sha256": "0f699125a2bd6e742d4aec5bac736cef184bf2573c14801063e3aa12586f13b1"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/tests/as-ci-portability-red.log",
+      "nbytes": 2514,
+      "sha256": "2e9c08ac5b3fb09f931d9924d759ea4770d9bc54884416835138745650115c5b"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/tests/as-ci-pr-failed.log",
+      "nbytes": 454140,
+      "sha256": "8f906eeb3f4ee26193c0bf05b14fe00d7a528194a3e2fffc6af2cdaab9447268"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/tests/as-ci-push-failed.log",
+      "nbytes": 454140,
+      "sha256": "1532ef9c166235dc9fae45e2901ba253f1d6fcc35fd0202f5371378f0ee8c165"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/tests/as-gcc13-download.log",
+      "nbytes": 138,
+      "sha256": "8f952e435ff4fe59d819caaf5e848b42267c739fd8fa6d35266b88884a9317ad"
+    },
+    {
+      "path": "docs/evidence/panda-adapter-sdk-01/ci-fix/tests/as-preservation-ci-fix.log",
+      "nbytes": 157,
+      "sha256": "815fc686daca84a17ee3a0c8a78d66ef2caa013935e29351f9b0d7fc03c62ad0"
+    },
+    {
       "path": "docs/evidence/panda-adapter-sdk-01/review/upstream-environment-reads.txt",
       "nbytes": 8348,
       "sha256": "bab48c534bcb48bf33dacb734bd58d57e7999af1d89e91ee3a3dd7199482447d"
@@ -3083,8 +4668,8 @@
     },
     {
       "path": "docs/evidence/panda-adapter-sdk-01/selected-sdk.json",
-      "nbytes": 2101,
-      "sha256": "e37539ad34204bfc6893bf4587c5aa30530c9b66656f5e840485e80ecb0cac4f"
+      "nbytes": 2602,
+      "sha256": "a459629ab59d297da402cf1c37dd2c5242ba4edeaf10303daa66be42629ad9e1"
     },
     {
       "path": "docs/evidence/panda-adapter-sdk-01/source/makepanda.py.data",

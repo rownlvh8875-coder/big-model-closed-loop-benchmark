@@ -1,0 +1,22 @@
+E
+======================================================================
+ERROR: test_internal_linkage_spellings_keep_exactly_one_storage_check (tests.test_panda_adapter_sdk_cpu.AdapterSdkCpuTests.test_internal_linkage_spellings_keep_exactly_one_storage_check)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_adapter_sdk_cpu.py", line 69, in test_internal_linkage_spellings_keep_exactly_one_storage_check
+    dest=self.out/'variant-inspect';dest.mkdir();r=sdk.inspect_exports(variant,dest)
+                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/scripts/build_panda_adapter_sdk.py", line 110, in inspect_exports
+    result=interface_data(results[0]['stdout'],results[1]['stdout']);result['commands']=results;result['sha256']=hashlib.sha256(read_input(image,64*1024*1024)).hexdigest();return result
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/scripts/build_panda_adapter_sdk.py", line 102, in interface_data
+    need(len(states)==1,'exactly one source state object required; observed objects: '+repr(objects))
+  File "/workspace/big-model-closed-loop-benchmark/scripts/panda_source_dispatch.py", line 34, in need
+    if not ok:raise ValueError(message)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: exactly one source state object required; observed objects: ['21: 000000000000a300     1 OBJECT  LOCAL  DEFAULT   25 completed.0', '22: 0000000000009d80     0 OBJECT  LOCAL  DEFAULT   19 __do_global_dtors_aux_fini_array_entry', '24: 0000000000009d78     0 OBJECT  LOCAL  DEFAULT   18 __frame_dummy_init_array_entry', '28: 000000000000a340 16984 OBJECT  LOCAL  DEFAULT   25 _ZN12_GLOBAL__N_1L1SE', '58: 0000000000008684     0 OBJECT  LOCAL  DEFAULT   16 __FRAME_END__', '62: 000000000000a0e0     0 OBJECT  LOCAL  DEFAULT   24 __dso_handle', '63: 000000000000a2f8     8 OBJECT  LOCAL  DEFAULT   24 DW.ref.__gxx_personality_v0', '69: 0000000000009dd0     0 OBJECT  LOCAL  DEFAULT   21 _DYNAMIC', '70: 000000000000a300     0 OBJECT  LOCAL  DEFAULT   24 __TMC_END__', '74: 000000000000a320     8 OBJECT  LOCAL  DEFAULT   25 psd_read_target', '76: 0000000000009fe8     0 OBJECT  LOCAL  DEFAULT   23 _GLOBAL_OFFSET_TABLE_']
+
+----------------------------------------------------------------------
+Ran 1 test in 1.147s
+
+FAILED (errors=1)
