@@ -1,0 +1,50 @@
+FFFFF
+======================================================================
+FAIL: test_both_upstream_failures_and_missing_live_gates_are_reported (tests.test_panda_sdk_integration.JointAssessmentTests.test_both_upstream_failures_and_missing_live_gates_are_reported)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_integration.py", line 7, in setUp
+    def setUp(self):self.assertIsNotNone(joint,'joint execution assessment required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : joint execution assessment required
+
+======================================================================
+FAIL: test_claim_of_native_execution_is_rejected (tests.test_panda_sdk_integration.JointAssessmentTests.test_claim_of_native_execution_is_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_integration.py", line 7, in setUp
+    def setUp(self):self.assertIsNotNone(joint,'joint execution assessment required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : joint execution assessment required
+
+======================================================================
+FAIL: test_mismatched_or_missing_candidate_rejects (tests.test_panda_sdk_integration.JointAssessmentTests.test_mismatched_or_missing_candidate_rejects)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_integration.py", line 7, in setUp
+    def setUp(self):self.assertIsNotNone(joint,'joint execution assessment required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : joint execution assessment required
+
+======================================================================
+FAIL: test_original_official_cohort_and_model_identity_are_retained (tests.test_panda_sdk_integration.JointAssessmentTests.test_original_official_cohort_and_model_identity_are_retained)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_integration.py", line 7, in setUp
+    def setUp(self):self.assertIsNotNone(joint,'joint execution assessment required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : joint execution assessment required
+
+======================================================================
+FAIL: test_supplied_readiness_cannot_authorize_native (tests.test_panda_sdk_integration.JointAssessmentTests.test_supplied_readiness_cannot_authorize_native)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_integration.py", line 7, in setUp
+    def setUp(self):self.assertIsNotNone(joint,'joint execution assessment required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : joint execution assessment required
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.001s
+
+FAILED (failures=5)

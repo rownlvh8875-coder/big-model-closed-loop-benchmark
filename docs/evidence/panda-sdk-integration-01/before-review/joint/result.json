@@ -1,0 +1,55 @@
+{
+  "schema": "panda-sdk-joint-assessment-v1",
+  "checked_at_kst": "2026-11-15T13:44:17.740881+09:00",
+  "status": "ASSESSMENTS_COMPLETE_CANDIDATE_BLOCKED_NATIVE_NOT_RUN",
+  "candidate_sha256": "aa7e14e71f98b083faa60536ecf6b0a05e3996b4771d38e4a2ccfd43c0903088",
+  "native_admitted": false,
+  "new_native_runs": 0,
+  "stage7_complete": false,
+  "assessments": {
+    "coverage/coverage.json": {
+      "path": "coverage/coverage.json",
+      "sha256": "2518210f02a1ae0bb7abf9b25a838e5973bc806fae904a635d0b391c98ed03d8",
+      "nbytes": 112313
+    },
+    "image/image-binding.json": {
+      "path": "image/image-binding.json",
+      "sha256": "1ed4cb5865fcdc287a3b134249e6c989e252e930c8495e2001078cc4897bf214",
+      "nbytes": 7697
+    },
+    "native-assessment.json": {
+      "path": "native-assessment.json",
+      "sha256": "49db63f3aff53cc21a2114028849838ffa1ae980bdcc8e50de3a71fb2e196a05",
+      "nbytes": 1746
+    }
+  },
+  "coverage_blockers": [
+    "SAFE_NAME_CAP_EXCEEDED",
+    "UNSUPPORTED_PREFIX_PROHIBITED_LOOKUPS",
+    "COMPUTED_LOOKUP_REQUIRES_BINDING"
+  ],
+  "image_blockers": [
+    "CANDIDATE_SDK_NOT_INSTALLED",
+    "NEW_SDK_MAPPED_ABI_AND_DISPATCH_NOT_QUALIFIED",
+    "EARLY_INSTALL_AND_IDENTITY_HANDOFF_NOT_QUALIFIED"
+  ],
+  "execution_blockers": [
+    "coverage:SAFE_NAME_CAP_EXCEEDED",
+    "coverage:UNSUPPORTED_PREFIX_PROHIBITED_LOOKUPS",
+    "coverage:COMPUTED_LOOKUP_REQUIRES_BINDING",
+    "image:CANDIDATE_SDK_NOT_INSTALLED",
+    "image:NEW_SDK_MAPPED_ABI_AND_DISPATCH_NOT_QUALIFIED",
+    "image:EARLY_INSTALL_AND_IDENTITY_HANDOFF_NOT_QUALIFIED",
+    "MAPPED_NEW_ABI_NOT_QUALIFIED",
+    "EARLY_INSTALL_BEFORE_FIRST_CONTEXT_NOT_QUALIFIED",
+    "TEXTURE_GSG_ALLOCATION_LIFETIMES_NOT_QUALIFIED",
+    "FRESH_CACHE_IDENTITY_HANDOFF_NOT_QUALIFIED",
+    "DRIVER_AND_GPU_WRITE_READ_FRESHNESS_NOT_QUALIFIED",
+    "AUTHENTICATED_PROCESS_WINDOW_SINK_RECEIPTS_MISSING",
+    "FRESH_REVIEWED_BOUNDED_CANARY_CONTRACT_MISSING"
+  ],
+  "actual_native_processes": 0,
+  "official_model_calls": 0,
+  "inherited_strict_result": "0/4 FAIL",
+  "new_official_result": "NOT_RUN"
+}

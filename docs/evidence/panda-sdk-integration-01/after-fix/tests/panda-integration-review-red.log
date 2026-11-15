@@ -1,0 +1,64 @@
+...E....E.FFFFE
+======================================================================
+ERROR: test_child_tool_mutation_rejects_while_driver_is_unchanged (tests.test_panda_sdk_coverage.SelectedCoverageTests.test_child_tool_mutation_rejects_while_driver_is_unchanged)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_coverage.py", line 51, in test_child_tool_mutation_rejects_while_driver_is_unchanged
+    profile=self.tool_profile(Path(t));coverage.verify_preprocessor_inputs(profile)
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'scripts.panda_sdk_coverage' has no attribute 'verify_preprocessor_inputs'
+
+======================================================================
+ERROR: test_new_compiler_selection_specs_reject_before_driver_query (tests.test_panda_sdk_coverage.SelectedCoverageTests.test_new_compiler_selection_specs_reject_before_driver_query)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_coverage.py", line 57, in test_new_compiler_selection_specs_reject_before_driver_query
+    with self.assertRaisesRegex(ValueError,'compiler selection'):coverage.verify_preprocessor_inputs(profile)
+                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'scripts.panda_sdk_coverage' has no attribute 'verify_preprocessor_inputs'
+
+======================================================================
+ERROR: test_unrelated_log_mutation_rejects_with_expected_commands_intact (tests.test_panda_sdk_coverage.SelectedCoverageTests.test_unrelated_log_mutation_rejects_with_expected_commands_intact)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_coverage.py", line 62, in test_unrelated_log_mutation_rejects_with_expected_commands_intact
+    coverage.verify_build_log(p,sha,len(raw))
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'scripts.panda_sdk_coverage' has no attribute 'verify_build_log'
+
+======================================================================
+FAIL: test_tab_and_indented_markers_cannot_contaminate_selected_source (tests.test_panda_sdk_coverage.SelectedCoverageTests.test_tab_and_indented_markers_cannot_contaminate_selected_source) (marker='#\t1 "foreign/x.cxx"')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_coverage.py", line 45, in test_tab_and_indented_markers_cannot_contaminate_selected_source
+    with self.subTest(marker=marker),self.assertRaises(ValueError):coverage.select_sources(raw,{'x.cxx':'source/x.cxx'})
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_tab_and_indented_markers_cannot_contaminate_selected_source (tests.test_panda_sdk_coverage.SelectedCoverageTests.test_tab_and_indented_markers_cannot_contaminate_selected_source) (marker=' # 1 "foreign/x.cxx"')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_coverage.py", line 45, in test_tab_and_indented_markers_cannot_contaminate_selected_source
+    with self.subTest(marker=marker),self.assertRaises(ValueError):coverage.select_sources(raw,{'x.cxx':'source/x.cxx'})
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_tab_and_indented_markers_cannot_contaminate_selected_source (tests.test_panda_sdk_coverage.SelectedCoverageTests.test_tab_and_indented_markers_cannot_contaminate_selected_source) (marker='#1 "foreign/x.cxx"')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_coverage.py", line 45, in test_tab_and_indented_markers_cannot_contaminate_selected_source
+    with self.subTest(marker=marker),self.assertRaises(ValueError):coverage.select_sources(raw,{'x.cxx':'source/x.cxx'})
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_tab_and_indented_markers_cannot_contaminate_selected_source (tests.test_panda_sdk_coverage.SelectedCoverageTests.test_tab_and_indented_markers_cannot_contaminate_selected_source) (marker='\t# 1 "foreign/x.cxx"')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_coverage.py", line 45, in test_tab_and_indented_markers_cannot_contaminate_selected_source
+    with self.subTest(marker=marker),self.assertRaises(ValueError):coverage.select_sources(raw,{'x.cxx':'source/x.cxx'})
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.032s
+
+FAILED (failures=4, errors=3)

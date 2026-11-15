@@ -1,0 +1,59 @@
+FFFFFF
+======================================================================
+FAIL: test_bad_digest_or_noncanonical_inventory_path_rejects (tests.test_panda_sdk_image_binding.ImageBindingTests.test_bad_digest_or_noncanonical_inventory_path_rejects)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_image_binding.py", line 8, in setUp
+    def setUp(self):self.assertIsNotNone(image,'new SDK image membership check required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : new SDK image membership check required
+
+======================================================================
+FAIL: test_candidate_membership_is_not_runtime_qualification (tests.test_panda_sdk_image_binding.ImageBindingTests.test_candidate_membership_is_not_runtime_qualification)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_image_binding.py", line 8, in setUp
+    def setUp(self):self.assertIsNotNone(image,'new SDK image membership check required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : new SDK image membership check required
+
+======================================================================
+FAIL: test_duplicate_paths_and_multiple_panda_candidates_reject (tests.test_panda_sdk_image_binding.ImageBindingTests.test_duplicate_paths_and_multiple_panda_candidates_reject)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_image_binding.py", line 8, in setUp
+    def setUp(self):self.assertIsNotNone(image,'new SDK image membership check required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : new SDK image membership check required
+
+======================================================================
+FAIL: test_missing_python_or_metadrive_stays_blocked (tests.test_panda_sdk_image_binding.ImageBindingTests.test_missing_python_or_metadrive_stays_blocked)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_image_binding.py", line 8, in setUp
+    def setUp(self):self.assertIsNotNone(image,'new SDK image membership check required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : new SDK image membership check required
+
+======================================================================
+FAIL: test_old_accepted_image_is_not_new_sdk_image (tests.test_panda_sdk_image_binding.ImageBindingTests.test_old_accepted_image_is_not_new_sdk_image)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_image_binding.py", line 8, in setUp
+    def setUp(self):self.assertIsNotNone(image,'new SDK image membership check required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : new SDK image membership check required
+
+======================================================================
+FAIL: test_unrelated_copy_cannot_replace_panda_library (tests.test_panda_sdk_image_binding.ImageBindingTests.test_unrelated_copy_cannot_replace_panda_library)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_image_binding.py", line 8, in setUp
+    def setUp(self):self.assertIsNotNone(image,'new SDK image membership check required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : new SDK image membership check required
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.001s
+
+FAILED (failures=6)

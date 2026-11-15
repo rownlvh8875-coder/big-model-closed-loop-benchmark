@@ -1,0 +1,18 @@
+# Whole branch read-only review
+
+Base45df9244b4e212af3c5f18628ba7639608a0b4cd; HEAD is the current committed feature/panda-sdk-integration-v1 tip. Review ALL additions in that range, not HEAD~1. No actual Panda/GL/provider/MetaDrive/SDK/model/officialORT execution, no ldd/ctypes/Docker load/run/build, no network mutation, no subagents, no checkout/index/HEAD changes. Focused unit command is safe: only CPU preprocessing of handwritten tokens; no Panda loading.
+
+User asked to progress all3remaining areas in one continuous run. The current work attempts exact SDK coverage, independently inspects the actual full retained image and generates a joint blocked native assessment. It DOES NOT finish the requested full image/runtime/closed-loop goal; docs and final report must state that. Runtime routing gaps/259vs256/name classification and actual image SDK mismatch were discovered. No scope limitation may be misrepresented as scientific completion or permission to launch. Native/model calls remain0; strict0of4FAIL/Stage7INCOMPLETE.
+
+Spec docs/superpowers/specs/2026-11-15-panda-sdk-integration.md and plan docs/superpowers/plans/2026-11-15-panda-sdk-integration.md are authoritative for implementation. Ledger docs/STAGE7_PANDA_SDK_INTEGRATION_LEDGER.md contains every Ruling and cost, including incomplete original host-standard-header closure/current preprocessing limit. Result/continuation and53indexedproofs/13,442,261bytes at docs/evidence/panda-sdk-integration-01/ are available. ActualSDK and image are DATA ONLY. Original1.726GB image stays output/stage7-image-root-authentication/... accepted-carrier/image.tar, with pinned identity and original authority. Do not rerun heavy actual audits: the retained results plus source code/data inspection suffice. You may run19focused tests and verify proof hashes/base additions.
+
+Observed: 270literal lookups,11routed,259remaining vs256,7prefix-prohibited,4computed resolver calls, empty selected compiled table/privateGLX+POSIX. NewSDKaa7e absent from old full image; Python/MetaDrive/oldPandaf38e present,44232installed entries; actual archive/config/rootfs/authority checks pass. Joint native assessment BLOCKED_NOT_EXECUTED retains original cohort/model identity and missing live qualifications.19focusedPASS0.027s/full1522tests1515PASS7skip120.652s. All4824basefiles/299pins/10originals/main/Drafts102–112/8nativehistories preserved. Initial command-binding wrapper bug and failing logs are retained and corrected; no relabeling failed audits.
+
+Review Focus verbatim:
+1. Header or duplicate-basename preprocessor markers must not masquerade as selected source; malformed/non-UTF8/oversized input rejects.
+2. Compiler flags/source/objects/log/tool mutation must reject before executable tool invocation; no inherited compiler injection.
+3. Safe-name cap applies after real routed lookup subtraction; unsafe/computed names cannot be silently marked harmless or removed because a driver might skip them.
+4. Authenticated old image bytes must not qualify a new SDK; tar/config/rootfs/inventory mismatches reject, source/static results do not prove runtime binding.
+5. Inactive native assessment must retain every missing qualification, exact original cohort/model identity, no synthetic runtime authority or actual launch.
+
+Use requesting-code-review/code-reviewer.md format. Output Strengths, Critical/Important/Minor issues with file:line/reproduction/effect/fix, recommendations, every behavior Declined to judge with reason, and verdict. Judge unmentioned reasonable-user expectations by effect; no minor polishing. This is the sole fresh whole-branch review. Return review only; do not change files or spawn agents.

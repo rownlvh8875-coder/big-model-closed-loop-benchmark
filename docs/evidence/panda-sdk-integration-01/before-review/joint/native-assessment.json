@@ -1,0 +1,52 @@
+{
+  "schema": "panda-sdk-native-execution-assessment-v1",
+  "status": "BLOCKED_NOT_EXECUTED",
+  "candidate_sha256": "aa7e14e71f98b083faa60536ecf6b0a05e3996b4771d38e4a2ccfd43c0903088",
+  "blockers": [
+    "coverage:SAFE_NAME_CAP_EXCEEDED",
+    "coverage:UNSUPPORTED_PREFIX_PROHIBITED_LOOKUPS",
+    "coverage:COMPUTED_LOOKUP_REQUIRES_BINDING",
+    "image:CANDIDATE_SDK_NOT_INSTALLED",
+    "image:NEW_SDK_MAPPED_ABI_AND_DISPATCH_NOT_QUALIFIED",
+    "image:EARLY_INSTALL_AND_IDENTITY_HANDOFF_NOT_QUALIFIED",
+    "MAPPED_NEW_ABI_NOT_QUALIFIED",
+    "EARLY_INSTALL_BEFORE_FIRST_CONTEXT_NOT_QUALIFIED",
+    "TEXTURE_GSG_ALLOCATION_LIFETIMES_NOT_QUALIFIED",
+    "FRESH_CACHE_IDENTITY_HANDOFF_NOT_QUALIFIED",
+    "DRIVER_AND_GPU_WRITE_READ_FRESHNESS_NOT_QUALIFIED",
+    "AUTHENTICATED_PROCESS_WINDOW_SINK_RECEIPTS_MISSING",
+    "FRESH_REVIEWED_BOUNDED_CANARY_CONTRACT_MISSING"
+  ],
+  "execution_request_active": false,
+  "native_allowance": 0,
+  "actual_native_processes": 0,
+  "new_native_runs": 0,
+  "official_model_calls": 0,
+  "official_ort_sessions": 0,
+  "new_gl_calls": 0,
+  "planned_official_cohort": {
+    "seeds": [
+      20261109,
+      20261110
+    ],
+    "scenes": [
+      "s_curve_left_right",
+      "s_curve_right_left"
+    ],
+    "steps": 12,
+    "hz": 20,
+    "speed_mps": 8,
+    "independent_runs_per_condition": 2,
+    "conditions": 4,
+    "independent_processes": 8
+  },
+  "official_model": {
+    "id": "1365126a-e71e-4778-be00-8ab92dc82c09/12864/big_driving_supercombo.onnx",
+    "sha256": "35976b11be3904eb78e32f7dc55a6abf8e9433ac5aa391a1998f1e9ce001b199"
+  },
+  "inherited_strict_result": "0/4 FAIL",
+  "new_official_result": "NOT_RUN",
+  "runtime_binding_qualified": false,
+  "native_admitted": false,
+  "stage7_complete": false
+}

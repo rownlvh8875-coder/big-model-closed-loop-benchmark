@@ -1,0 +1,5221 @@
+{
+  "schema": "panda-selected-sdk-coverage-v1",
+  "lookup_names": [
+    "glActiveStencilFaceEXT",
+    "glActiveTexture",
+    "glActiveTextureARB",
+    "glAttachShader",
+    "glBeginQuery",
+    "glBeginQueryARB",
+    "glBindAttribLocation",
+    "glBindBuffer",
+    "glBindBufferARB",
+    "glBindBufferBase",
+    "glBindFragDataLocation",
+    "glBindFragDataLocationEXT",
+    "glBindFramebuffer",
+    "glBindFramebufferEXT",
+    "glBindImageTexture",
+    "glBindImageTextureEXT",
+    "glBindImageTextures",
+    "glBindRenderbuffer",
+    "glBindRenderbufferEXT",
+    "glBindSampler",
+    "glBindSamplers",
+    "glBindTextures",
+    "glBindVertexArray",
+    "glBindVertexBuffer",
+    "glBindVertexBuffers",
+    "glBlendColor",
+    "glBlendColorEXT",
+    "glBlendEquation",
+    "glBlendEquationEXT",
+    "glBlendEquationSeparate",
+    "glBlendEquationSeparateEXT",
+    "glBlendFuncSeparate",
+    "glBlendFuncSeparateEXT",
+    "glBlitFramebuffer",
+    "glBlitFramebufferEXT",
+    "glBufferData",
+    "glBufferDataARB",
+    "glBufferStorage",
+    "glBufferSubData",
+    "glBufferSubDataARB",
+    "glCheckFramebufferStatus",
+    "glCheckFramebufferStatusEXT",
+    "glClearBufferData",
+    "glClearBufferfi",
+    "glClearBufferfv",
+    "glClearBufferiv",
+    "glClearTexImage",
+    "glClientActiveTexture",
+    "glClientActiveTextureARB",
+    "glClipControl",
+    "glCompileShader",
+    "glCompressedTexImage1D",
+    "glCompressedTexImage1DARB",
+    "glCompressedTexImage2D",
+    "glCompressedTexImage2DARB",
+    "glCompressedTexImage3D",
+    "glCompressedTexImage3DARB",
+    "glCompressedTexSubImage1D",
+    "glCompressedTexSubImage1DARB",
+    "glCompressedTexSubImage2D",
+    "glCompressedTexSubImage2DARB",
+    "glCompressedTexSubImage3D",
+    "glCompressedTexSubImage3DARB",
+    "glCopyTexSubImage3D",
+    "glCopyTexSubImage3DEXT",
+    "glCreateProgram",
+    "glCreateShader",
+    "glDebugMessageCallback",
+    "glDebugMessageCallbackARB",
+    "glDebugMessageControl",
+    "glDebugMessageControlARB",
+    "glDeleteBuffers",
+    "glDeleteBuffersARB",
+    "glDeleteFramebuffers",
+    "glDeleteFramebuffersEXT",
+    "glDeleteProgram",
+    "glDeleteQueries",
+    "glDeleteQueriesARB",
+    "glDeleteRenderbuffers",
+    "glDeleteRenderbuffersEXT",
+    "glDeleteSamplers",
+    "glDeleteShader",
+    "glDeleteVertexArrays",
+    "glDepthRangeArrayv",
+    "glDetachShader",
+    "glDisableVertexAttribArray",
+    "glDisableVertexAttribArrayARB",
+    "glDispatchCompute",
+    "glDrawArraysIndirect",
+    "glDrawArraysInstanced",
+    "glDrawArraysInstancedARB",
+    "glDrawArraysInstancedEXT",
+    "glDrawBuffers",
+    "glDrawBuffersARB",
+    "glDrawElementsIndirect",
+    "glDrawElementsInstanced",
+    "glDrawElementsInstancedARB",
+    "glDrawElementsInstancedEXT",
+    "glDrawRangeElements",
+    "glDrawRangeElementsEXT",
+    "glEnableVertexAttribArray",
+    "glEnableVertexAttribArrayARB",
+    "glEndQuery",
+    "glEndQueryARB",
+    "glFramebufferParameteri",
+    "glFramebufferRenderbuffer",
+    "glFramebufferRenderbufferEXT",
+    "glFramebufferTexture",
+    "glFramebufferTexture1D",
+    "glFramebufferTexture1DEXT",
+    "glFramebufferTexture2D",
+    "glFramebufferTexture2DEXT",
+    "glFramebufferTexture3D",
+    "glFramebufferTexture3DEXT",
+    "glFramebufferTextureARB",
+    "glFramebufferTextureLayer",
+    "glFramebufferTextureLayerEXT",
+    "glGenBuffers",
+    "glGenBuffersARB",
+    "glGenFramebuffers",
+    "glGenFramebuffersEXT",
+    "glGenQueries",
+    "glGenQueriesARB",
+    "glGenRenderbuffers",
+    "glGenRenderbuffersEXT",
+    "glGenSamplers",
+    "glGenVertexArrays",
+    "glGenerateMipmap",
+    "glGenerateMipmapEXT",
+    "glGenerateTextureMipmap",
+    "glGetActiveAttrib",
+    "glGetActiveUniform",
+    "glGetActiveUniformBlockName",
+    "glGetActiveUniformBlockiv",
+    "glGetActiveUniformsiv",
+    "glGetAttribLocation",
+    "glGetBufferSubData",
+    "glGetBufferSubDataARB",
+    "glGetCompressedTexImage",
+    "glGetCompressedTexImageARB",
+    "glGetFramebufferAttachmentParameteriv",
+    "glGetFramebufferAttachmentParameterivEXT",
+    "glGetInteger64v",
+    "glGetInternalformativ",
+    "glGetProgramBinary",
+    "glGetProgramInfoLog",
+    "glGetProgramInterfaceiv",
+    "glGetProgramResourceName",
+    "glGetProgramResourceiv",
+    "glGetProgramiv",
+    "glGetQueryObjecti64v",
+    "glGetQueryObjectui64v",
+    "glGetQueryObjectuiv",
+    "glGetQueryObjectuivARB",
+    "glGetQueryiv",
+    "glGetQueryivARB",
+    "glGetRenderbufferParameteriv",
+    "glGetRenderbufferParameterivEXT",
+    "glGetShaderInfoLog",
+    "glGetShaderiv",
+    "glGetStringi",
+    "glGetTextureHandleARB",
+    "glGetTextureSamplerHandleARB",
+    "glGetUniformLocation",
+    "glIsFramebuffer",
+    "glIsFramebufferEXT",
+    "glIsRenderbuffer",
+    "glIsRenderbufferEXT",
+    "glLinkProgram",
+    "glMakeTextureHandleResidentARB",
+    "glMapBuffer",
+    "glMapBufferARB",
+    "glMapBufferRange",
+    "glMemoryBarrier",
+    "glMemoryBarrierEXT",
+    "glObjectLabel",
+    "glPatchParameteri",
+    "glPointParameterfv",
+    "glPointParameterfvARB",
+    "glPopGroupMarkerEXT",
+    "glPrimitiveRestartIndex",
+    "glProgramBinary",
+    "glProgramParameteri",
+    "glProgramParameteriARB",
+    "glProgramParameteriEXT",
+    "glPushGroupMarkerEXT",
+    "glQueryCounter",
+    "glRenderbufferStorage",
+    "glRenderbufferStorageEXT",
+    "glRenderbufferStorageMultisample",
+    "glRenderbufferStorageMultisampleCoverageNV",
+    "glRenderbufferStorageMultisampleEXT",
+    "glSamplerParameterf",
+    "glSamplerParameterfv",
+    "glSamplerParameteri",
+    "glSamplerParameteriv",
+    "glScissorArrayv",
+    "glSecondaryColorPointer",
+    "glSecondaryColorPointerEXT",
+    "glShaderSource",
+    "glShaderStorageBlockBinding",
+    "glTexBuffer",
+    "glTexBufferARB",
+    "glTexImage3D",
+    "glTexImage3DEXT",
+    "glTexStorage1D",
+    "glTexStorage2D",
+    "glTexStorage3D",
+    "glTexSubImage3D",
+    "glTexSubImage3DEXT",
+    "glUniform1fv",
+    "glUniform1i",
+    "glUniform1iv",
+    "glUniform1uiv",
+    "glUniform1uivEXT",
+    "glUniform2fv",
+    "glUniform2iv",
+    "glUniform2uiv",
+    "glUniform2uivEXT",
+    "glUniform3fv",
+    "glUniform3iv",
+    "glUniform3uiv",
+    "glUniform3uivEXT",
+    "glUniform4f",
+    "glUniform4fv",
+    "glUniform4iv",
+    "glUniform4uiv",
+    "glUniform4uivEXT",
+    "glUniformHandleui64ARB",
+    "glUniformMatrix3fv",
+    "glUniformMatrix4fv",
+    "glUnmapBuffer",
+    "glUnmapBufferARB",
+    "glUseProgram",
+    "glValidateProgram",
+    "glVertexAttrib4dv",
+    "glVertexAttrib4dvARB",
+    "glVertexAttrib4fv",
+    "glVertexAttrib4fvARB",
+    "glVertexAttribBinding",
+    "glVertexAttribDivisor",
+    "glVertexAttribDivisorARB",
+    "glVertexAttribFormat",
+    "glVertexAttribI4ui",
+    "glVertexAttribI4uiEXT",
+    "glVertexAttribIFormat",
+    "glVertexAttribIPointer",
+    "glVertexAttribIPointerEXT",
+    "glVertexAttribLFormat",
+    "glVertexAttribLPointer",
+    "glVertexAttribPointer",
+    "glVertexAttribPointerARB",
+    "glVertexBindingDivisor",
+    "glViewportArrayv",
+    "glXChooseFBConfig",
+    "glXChooseFBConfigSGIX",
+    "glXCreateContextAttribsARB",
+    "glXCreateContextWithConfigSGIX",
+    "glXCreateGLXPbufferSGIX",
+    "glXCreateGLXPixmapWithConfigSGIX",
+    "glXCreateNewContext",
+    "glXCreatePbuffer",
+    "glXCreatePixmap",
+    "glXDestroyGLXPbufferSGIX",
+    "glXDestroyPbuffer",
+    "glXGetFBConfigAttrib",
+    "glXGetFBConfigAttribSGIX",
+    "glXGetVisualFromFBConfig",
+    "glXGetVisualFromFBConfigSGIX",
+    "glXSwapIntervalSGI"
+  ],
+  "lookup_count": 270,
+  "routed_lookup_names": [
+    "glBindBuffer",
+    "glBindBufferARB",
+    "glBindFramebuffer",
+    "glBindFramebufferEXT",
+    "glDeleteBuffers",
+    "glDeleteBuffersARB",
+    "glDeleteFramebuffers",
+    "glDeleteFramebuffersEXT",
+    "glXCreateContextAttribsARB",
+    "glXCreateContextWithConfigSGIX",
+    "glXCreateNewContext"
+  ],
+  "routes": [
+    "glBindBuffer",
+    "glBindBufferARB",
+    "glBindFramebuffer",
+    "glBindFramebufferEXT",
+    "glBindFramebufferOES",
+    "glDeleteBuffers",
+    "glDeleteBuffersARB",
+    "glDeleteFramebuffers",
+    "glDeleteFramebuffersEXT",
+    "glDeleteFramebuffersOES",
+    "glGetError",
+    "glPixelStorei",
+    "glReadBuffer",
+    "glReadBufferNV",
+    "glReadPixels",
+    "glXCreateContext",
+    "glXCreateContextAttribsARB",
+    "glXCreateContextWithConfigSGIX",
+    "glXCreateNewContext",
+    "glXDestroyContext",
+    "glXMakeContextCurrent",
+    "glXMakeCurrent"
+  ],
+  "required_safe_names": [
+    "glActiveStencilFaceEXT",
+    "glActiveTexture",
+    "glActiveTextureARB",
+    "glAttachShader",
+    "glBeginQuery",
+    "glBeginQueryARB",
+    "glBindAttribLocation",
+    "glBindBufferBase",
+    "glBindFragDataLocation",
+    "glBindFragDataLocationEXT",
+    "glBindImageTexture",
+    "glBindImageTextureEXT",
+    "glBindImageTextures",
+    "glBindRenderbuffer",
+    "glBindRenderbufferEXT",
+    "glBindSampler",
+    "glBindSamplers",
+    "glBindTextures",
+    "glBindVertexArray",
+    "glBindVertexBuffer",
+    "glBindVertexBuffers",
+    "glBlendColor",
+    "glBlendColorEXT",
+    "glBlendEquation",
+    "glBlendEquationEXT",
+    "glBlendEquationSeparate",
+    "glBlendEquationSeparateEXT",
+    "glBlendFuncSeparate",
+    "glBlendFuncSeparateEXT",
+    "glBlitFramebuffer",
+    "glBlitFramebufferEXT",
+    "glBufferData",
+    "glBufferDataARB",
+    "glBufferStorage",
+    "glBufferSubData",
+    "glBufferSubDataARB",
+    "glCheckFramebufferStatus",
+    "glCheckFramebufferStatusEXT",
+    "glClearBufferData",
+    "glClearBufferfi",
+    "glClearBufferfv",
+    "glClearBufferiv",
+    "glClearTexImage",
+    "glClientActiveTexture",
+    "glClientActiveTextureARB",
+    "glClipControl",
+    "glCompileShader",
+    "glCompressedTexImage1D",
+    "glCompressedTexImage1DARB",
+    "glCompressedTexImage2D",
+    "glCompressedTexImage2DARB",
+    "glCompressedTexImage3D",
+    "glCompressedTexImage3DARB",
+    "glCompressedTexSubImage1D",
+    "glCompressedTexSubImage1DARB",
+    "glCompressedTexSubImage2D",
+    "glCompressedTexSubImage2DARB",
+    "glCompressedTexSubImage3D",
+    "glCompressedTexSubImage3DARB",
+    "glCopyTexSubImage3D",
+    "glCopyTexSubImage3DEXT",
+    "glCreateProgram",
+    "glCreateShader",
+    "glDebugMessageCallback",
+    "glDebugMessageCallbackARB",
+    "glDebugMessageControl",
+    "glDebugMessageControlARB",
+    "glDeleteProgram",
+    "glDeleteQueries",
+    "glDeleteQueriesARB",
+    "glDeleteRenderbuffers",
+    "glDeleteRenderbuffersEXT",
+    "glDeleteSamplers",
+    "glDeleteShader",
+    "glDeleteVertexArrays",
+    "glDepthRangeArrayv",
+    "glDetachShader",
+    "glDisableVertexAttribArray",
+    "glDisableVertexAttribArrayARB",
+    "glDispatchCompute",
+    "glDrawArraysIndirect",
+    "glDrawArraysInstanced",
+    "glDrawArraysInstancedARB",
+    "glDrawArraysInstancedEXT",
+    "glDrawBuffers",
+    "glDrawBuffersARB",
+    "glDrawElementsIndirect",
+    "glDrawElementsInstanced",
+    "glDrawElementsInstancedARB",
+    "glDrawElementsInstancedEXT",
+    "glDrawRangeElements",
+    "glDrawRangeElementsEXT",
+    "glEnableVertexAttribArray",
+    "glEnableVertexAttribArrayARB",
+    "glEndQuery",
+    "glEndQueryARB",
+    "glFramebufferParameteri",
+    "glFramebufferRenderbuffer",
+    "glFramebufferRenderbufferEXT",
+    "glFramebufferTexture",
+    "glFramebufferTexture1D",
+    "glFramebufferTexture1DEXT",
+    "glFramebufferTexture2D",
+    "glFramebufferTexture2DEXT",
+    "glFramebufferTexture3D",
+    "glFramebufferTexture3DEXT",
+    "glFramebufferTextureARB",
+    "glFramebufferTextureLayer",
+    "glFramebufferTextureLayerEXT",
+    "glGenBuffers",
+    "glGenBuffersARB",
+    "glGenFramebuffers",
+    "glGenFramebuffersEXT",
+    "glGenQueries",
+    "glGenQueriesARB",
+    "glGenRenderbuffers",
+    "glGenRenderbuffersEXT",
+    "glGenSamplers",
+    "glGenVertexArrays",
+    "glGenerateMipmap",
+    "glGenerateMipmapEXT",
+    "glGenerateTextureMipmap",
+    "glGetActiveAttrib",
+    "glGetActiveUniform",
+    "glGetActiveUniformBlockName",
+    "glGetActiveUniformBlockiv",
+    "glGetActiveUniformsiv",
+    "glGetAttribLocation",
+    "glGetBufferSubData",
+    "glGetBufferSubDataARB",
+    "glGetCompressedTexImage",
+    "glGetCompressedTexImageARB",
+    "glGetFramebufferAttachmentParameteriv",
+    "glGetFramebufferAttachmentParameterivEXT",
+    "glGetInteger64v",
+    "glGetInternalformativ",
+    "glGetProgramBinary",
+    "glGetProgramInfoLog",
+    "glGetProgramInterfaceiv",
+    "glGetProgramResourceName",
+    "glGetProgramResourceiv",
+    "glGetProgramiv",
+    "glGetQueryObjecti64v",
+    "glGetQueryObjectui64v",
+    "glGetQueryObjectuiv",
+    "glGetQueryObjectuivARB",
+    "glGetQueryiv",
+    "glGetQueryivARB",
+    "glGetRenderbufferParameteriv",
+    "glGetRenderbufferParameterivEXT",
+    "glGetShaderInfoLog",
+    "glGetShaderiv",
+    "glGetStringi",
+    "glGetTextureHandleARB",
+    "glGetTextureSamplerHandleARB",
+    "glGetUniformLocation",
+    "glIsFramebuffer",
+    "glIsFramebufferEXT",
+    "glIsRenderbuffer",
+    "glIsRenderbufferEXT",
+    "glLinkProgram",
+    "glMakeTextureHandleResidentARB",
+    "glMapBuffer",
+    "glMapBufferARB",
+    "glMapBufferRange",
+    "glMemoryBarrier",
+    "glMemoryBarrierEXT",
+    "glObjectLabel",
+    "glPatchParameteri",
+    "glPointParameterfv",
+    "glPointParameterfvARB",
+    "glPopGroupMarkerEXT",
+    "glPrimitiveRestartIndex",
+    "glProgramBinary",
+    "glProgramParameteri",
+    "glProgramParameteriARB",
+    "glProgramParameteriEXT",
+    "glPushGroupMarkerEXT",
+    "glQueryCounter",
+    "glRenderbufferStorage",
+    "glRenderbufferStorageEXT",
+    "glRenderbufferStorageMultisample",
+    "glRenderbufferStorageMultisampleCoverageNV",
+    "glRenderbufferStorageMultisampleEXT",
+    "glSamplerParameterf",
+    "glSamplerParameterfv",
+    "glSamplerParameteri",
+    "glSamplerParameteriv",
+    "glScissorArrayv",
+    "glSecondaryColorPointer",
+    "glSecondaryColorPointerEXT",
+    "glShaderSource",
+    "glShaderStorageBlockBinding",
+    "glTexBuffer",
+    "glTexBufferARB",
+    "glTexImage3D",
+    "glTexImage3DEXT",
+    "glTexStorage1D",
+    "glTexStorage2D",
+    "glTexStorage3D",
+    "glTexSubImage3D",
+    "glTexSubImage3DEXT",
+    "glUniform1fv",
+    "glUniform1i",
+    "glUniform1iv",
+    "glUniform1uiv",
+    "glUniform1uivEXT",
+    "glUniform2fv",
+    "glUniform2iv",
+    "glUniform2uiv",
+    "glUniform2uivEXT",
+    "glUniform3fv",
+    "glUniform3iv",
+    "glUniform3uiv",
+    "glUniform3uivEXT",
+    "glUniform4f",
+    "glUniform4fv",
+    "glUniform4iv",
+    "glUniform4uiv",
+    "glUniform4uivEXT",
+    "glUniformHandleui64ARB",
+    "glUniformMatrix3fv",
+    "glUniformMatrix4fv",
+    "glUnmapBuffer",
+    "glUnmapBufferARB",
+    "glUseProgram",
+    "glValidateProgram",
+    "glVertexAttrib4dv",
+    "glVertexAttrib4dvARB",
+    "glVertexAttrib4fv",
+    "glVertexAttrib4fvARB",
+    "glVertexAttribBinding",
+    "glVertexAttribDivisor",
+    "glVertexAttribDivisorARB",
+    "glVertexAttribFormat",
+    "glVertexAttribI4ui",
+    "glVertexAttribI4uiEXT",
+    "glVertexAttribIFormat",
+    "glVertexAttribIPointer",
+    "glVertexAttribIPointerEXT",
+    "glVertexAttribLFormat",
+    "glVertexAttribLPointer",
+    "glVertexAttribPointer",
+    "glVertexAttribPointerARB",
+    "glVertexBindingDivisor",
+    "glViewportArrayv",
+    "glXChooseFBConfig",
+    "glXChooseFBConfigSGIX",
+    "glXCreateGLXPbufferSGIX",
+    "glXCreateGLXPixmapWithConfigSGIX",
+    "glXCreatePbuffer",
+    "glXCreatePixmap",
+    "glXDestroyGLXPbufferSGIX",
+    "glXDestroyPbuffer",
+    "glXGetFBConfigAttrib",
+    "glXGetFBConfigAttribSGIX",
+    "glXGetVisualFromFBConfig",
+    "glXGetVisualFromFBConfigSGIX",
+    "glXSwapIntervalSGI"
+  ],
+  "required_safe_count": 259,
+  "safe_cap": 256,
+  "unsupported_prefix_names": [
+    "glBindBufferBase",
+    "glXCreateGLXPbufferSGIX",
+    "glXCreateGLXPixmapWithConfigSGIX",
+    "glXCreatePbuffer",
+    "glXCreatePixmap",
+    "glXDestroyGLXPbufferSGIX",
+    "glXDestroyPbuffer"
+  ],
+  "computed_lookups": [
+    {
+      "file": "glGraphicsStateGuardian_src.cxx",
+      "callee": "do_get_extension_func",
+      "line": 7546
+    },
+    {
+      "file": "glxGraphicsStateGuardian.cxx",
+      "callee": "get_system_func",
+      "line": 513
+    },
+    {
+      "file": "glxGraphicsStateGuardian.cxx",
+      "callee": "do_get_extension_func",
+      "line": 532
+    },
+    {
+      "file": "posixGraphicsStateGuardian.cxx",
+      "callee": "get_system_func",
+      "line": 34
+    }
+  ],
+  "compiled_table_names": [],
+  "selected_resolver_paths": [
+    "PSD_PATH_GLX_PRIVATE",
+    "PSD_PATH_POSIX"
+  ],
+  "sources": [
+    {
+      "file": "glGraphicsBuffer_src.cxx",
+      "sha256": "972b69599873c470879b9c8fbbe03c2e0297178e24f283fd5f812c37387b6ac6",
+      "nbytes": 51617,
+      "literal_lookups": [],
+      "computed_lookups": [],
+      "direct_calls": [
+        {
+          "name": "glDisable",
+          "line": 94
+        },
+        {
+          "name": "glDepthMask",
+          "line": 154
+        },
+        {
+          "name": "glStencilMask",
+          "line": 158
+        },
+        {
+          "name": "glEnable",
+          "line": 266
+        },
+        {
+          "name": "glClearColor",
+          "line": 584
+        },
+        {
+          "name": "glClear",
+          "line": 585
+        },
+        {
+          "name": "glEnable",
+          "line": 631
+        },
+        {
+          "name": "glClearColor",
+          "line": 634
+        },
+        {
+          "name": "glClear",
+          "line": 635
+        },
+        {
+          "name": "glDisable",
+          "line": 642
+        },
+        {
+          "name": "glDrawBuffer",
+          "line": 658
+        },
+        {
+          "name": "glDrawBuffer",
+          "line": 661
+        },
+        {
+          "name": "glGetTexLevelParameteriv",
+          "line": 771
+        },
+        {
+          "name": "glGetTexLevelParameteriv",
+          "line": 784
+        },
+        {
+          "name": "glGetTexLevelParameteriv",
+          "line": 799
+        },
+        {
+          "name": "glGetTexLevelParameteriv",
+          "line": 800
+        },
+        {
+          "name": "glGetTexLevelParameteriv",
+          "line": 801
+        },
+        {
+          "name": "glGetTexLevelParameteriv",
+          "line": 802
+        },
+        {
+          "name": "glPrioritizeTextures",
+          "line": 1220
+        },
+        {
+          "name": "glDrawBuffer",
+          "line": 1846
+        },
+        {
+          "name": "glDrawBuffer",
+          "line": 1849
+        },
+        {
+          "name": "glDrawBuffer",
+          "line": 1869
+        },
+        {
+          "name": "glDrawBuffer",
+          "line": 1876
+        },
+        {
+          "name": "glDrawBuffer",
+          "line": 1883
+        },
+        {
+          "name": "glDrawBuffer",
+          "line": 1890
+        },
+        {
+          "name": "glDrawBuffer",
+          "line": 1903
+        },
+        {
+          "name": "glDrawBuffer",
+          "line": 1906
+        }
+      ],
+      "member_calls": [
+        {
+          "name": "_glClearBufferfv",
+          "line": 116
+        },
+        {
+          "name": "_glClearBufferfv",
+          "line": 117
+        },
+        {
+          "name": "_glClearBufferfv",
+          "line": 123
+        },
+        {
+          "name": "_glClearBufferfv",
+          "line": 132
+        },
+        {
+          "name": "_glClearBufferfv",
+          "line": 140
+        },
+        {
+          "name": "_glClearBufferfv",
+          "line": 148
+        },
+        {
+          "name": "_glClearBufferfi",
+          "line": 159
+        },
+        {
+          "name": "_glClearBufferfv",
+          "line": 162
+        },
+        {
+          "name": "_glClearBufferiv",
+          "line": 166
+        },
+        {
+          "name": "_glCheckFramebufferStatus",
+          "line": 283
+        },
+        {
+          "name": "_glGenFramebuffers",
+          "line": 513
+        },
+        {
+          "name": "_glObjectLabel",
+          "line": 530
+        },
+        {
+          "name": "_glObjectLabel",
+          "line": 532
+        },
+        {
+          "name": "_glFramebufferParameteri",
+          "line": 591
+        },
+        {
+          "name": "_glFramebufferParameteri",
+          "line": 592
+        },
+        {
+          "name": "_glGenFramebuffers",
+          "line": 605
+        },
+        {
+          "name": "_glDeleteRenderbuffers",
+          "line": 763
+        },
+        {
+          "name": "_glDeleteRenderbuffers",
+          "line": 811
+        },
+        {
+          "name": "_glGenRenderbuffers",
+          "line": 952
+        },
+        {
+          "name": "_glBindRenderbuffer",
+          "line": 956
+        },
+        {
+          "name": "_glRenderbufferStorage",
+          "line": 964
+        },
+        {
+          "name": "_glGetRenderbufferParameteriv",
+          "line": 965
+        },
+        {
+          "name": "_glGetRenderbufferParameteriv",
+          "line": 966
+        },
+        {
+          "name": "_glBindRenderbuffer",
+          "line": 971
+        },
+        {
+          "name": "_glFramebufferRenderbuffer",
+          "line": 978
+        },
+        {
+          "name": "_glFramebufferRenderbuffer",
+          "line": 981
+        },
+        {
+          "name": "_glRenderbufferStorage",
+          "line": 992
+        },
+        {
+          "name": "_glGetRenderbufferParameteriv",
+          "line": 993
+        },
+        {
+          "name": "_glRenderbufferStorage",
+          "line": 1004
+        },
+        {
+          "name": "_glGetRenderbufferParameteriv",
+          "line": 1005
+        },
+        {
+          "name": "_glBindRenderbuffer",
+          "line": 1014
+        },
+        {
+          "name": "_glFramebufferRenderbuffer",
+          "line": 1021
+        },
+        {
+          "name": "_glRenderbufferStorage",
+          "line": 1030
+        },
+        {
+          "name": "_glGetRenderbufferParameteriv",
+          "line": 1033
+        },
+        {
+          "name": "_glGetRenderbufferParameteriv",
+          "line": 1034
+        },
+        {
+          "name": "_glGetRenderbufferParameteriv",
+          "line": 1035
+        },
+        {
+          "name": "_glGetRenderbufferParameteriv",
+          "line": 1036
+        },
+        {
+          "name": "_glBindRenderbuffer",
+          "line": 1043
+        },
+        {
+          "name": "_glFramebufferRenderbuffer",
+          "line": 1044
+        },
+        {
+          "name": "_glDeleteRenderbuffers",
+          "line": 1064
+        },
+        {
+          "name": "_glBindFramebuffer",
+          "line": 1067
+        },
+        {
+          "name": "_glGenRenderbuffers",
+          "line": 1068
+        },
+        {
+          "name": "_glBindRenderbuffer",
+          "line": 1075
+        },
+        {
+          "name": "_glRenderbufferStorageMultisampleCoverage",
+          "line": 1077
+        },
+        {
+          "name": "_glRenderbufferStorageMultisample",
+          "line": 1081
+        },
+        {
+          "name": "_glGetRenderbufferParameteriv",
+          "line": 1086
+        },
+        {
+          "name": "_glBindRenderbuffer",
+          "line": 1088
+        },
+        {
+          "name": "_glFramebufferRenderbuffer",
+          "line": 1089
+        },
+        {
+          "name": "_glFramebufferRenderbuffer",
+          "line": 1091
+        },
+        {
+          "name": "_glBindRenderbuffer",
+          "line": 1095
+        },
+        {
+          "name": "_glRenderbufferStorageMultisampleCoverage",
+          "line": 1122
+        },
+        {
+          "name": "_glRenderbufferStorageMultisample",
+          "line": 1126
+        },
+        {
+          "name": "_glGetRenderbufferParameteriv",
+          "line": 1133
+        },
+        {
+          "name": "_glBindRenderbuffer",
+          "line": 1135
+        },
+        {
+          "name": "_glFramebufferRenderbuffer",
+          "line": 1136
+        },
+        {
+          "name": "_glBindRenderbuffer",
+          "line": 1174
+        },
+        {
+          "name": "_glRenderbufferStorageMultisampleCoverage",
+          "line": 1176
+        },
+        {
+          "name": "_glRenderbufferStorageMultisample",
+          "line": 1179
+        },
+        {
+          "name": "_glGetRenderbufferParameteriv",
+          "line": 1184
+        },
+        {
+          "name": "_glBindRenderbuffer",
+          "line": 1186
+        },
+        {
+          "name": "_glFramebufferRenderbuffer",
+          "line": 1187
+        },
+        {
+          "name": "_glFramebufferTexture",
+          "line": 1228
+        },
+        {
+          "name": "_glFramebufferTexture3D",
+          "line": 1242
+        },
+        {
+          "name": "_glFramebufferTextureLayer",
+          "line": 1246
+        },
+        {
+          "name": "_glFramebufferTexture2D",
+          "line": 1251
+        },
+        {
+          "name": "_glDeleteRenderbuffers",
+          "line": 1595
+        },
+        {
+          "name": "_glDeleteRenderbuffers",
+          "line": 1602
+        },
+        {
+          "name": "_glDeleteFramebuffers",
+          "line": 1613
+        },
+        {
+          "name": "_glDeleteFramebuffers",
+          "line": 1618
+        },
+        {
+          "name": "_glBindFramebuffer",
+          "line": 1811
+        },
+        {
+          "name": "_glBindFramebuffer",
+          "line": 1812
+        },
+        {
+          "name": "_glBlitFramebuffer",
+          "line": 1855
+        },
+        {
+          "name": "_glBlitFramebuffer",
+          "line": 1860
+        },
+        {
+          "name": "_glBlitFramebuffer",
+          "line": 1870
+        },
+        {
+          "name": "_glBlitFramebuffer",
+          "line": 1877
+        },
+        {
+          "name": "_glBlitFramebuffer",
+          "line": 1884
+        },
+        {
+          "name": "_glBlitFramebuffer",
+          "line": 1891
+        },
+        {
+          "name": "_glBindFramebuffer",
+          "line": 1899
+        }
+      ],
+      "active_compiled_paths_proven": false,
+      "preprocessor_branches_selected": false
+    },
+    {
+      "file": "glGraphicsStateGuardian_src.cxx",
+      "sha256": "1aa249251d6b002917b785c5284bc3048c2584d10fc6515491ff7eaeaa678cec",
+      "nbytes": 360714,
+      "literal_lookups": [
+        {
+          "name": "glGetStringi",
+          "line": 546
+        },
+        {
+          "name": "glPushGroupMarkerEXT",
+          "line": 618
+        },
+        {
+          "name": "glPopGroupMarkerEXT",
+          "line": 620
+        },
+        {
+          "name": "glDebugMessageCallback",
+          "line": 639
+        },
+        {
+          "name": "glDebugMessageControl",
+          "line": 641
+        },
+        {
+          "name": "glObjectLabel",
+          "line": 643
+        },
+        {
+          "name": "glDebugMessageCallbackARB",
+          "line": 652
+        },
+        {
+          "name": "glDebugMessageControlARB",
+          "line": 654
+        },
+        {
+          "name": "glPointParameterfv",
+          "line": 718
+        },
+        {
+          "name": "glPointParameterfvARB",
+          "line": 723
+        },
+        {
+          "name": "glPrimitiveRestartIndex",
+          "line": 789
+        },
+        {
+          "name": "glSecondaryColorPointer",
+          "line": 798
+        },
+        {
+          "name": "glSecondaryColorPointerEXT",
+          "line": 802
+        },
+        {
+          "name": "glDrawRangeElements",
+          "line": 817
+        },
+        {
+          "name": "glDrawRangeElementsEXT",
+          "line": 821
+        },
+        {
+          "name": "glTexImage3D",
+          "line": 838
+        },
+        {
+          "name": "glTexSubImage3D",
+          "line": 840
+        },
+        {
+          "name": "glCopyTexSubImage3D",
+          "line": 842
+        },
+        {
+          "name": "glTexImage3DEXT",
+          "line": 849
+        },
+        {
+          "name": "glTexSubImage3DEXT",
+          "line": 851
+        },
+        {
+          "name": "glCopyTexSubImage3DEXT",
+          "line": 856
+        },
+        {
+          "name": "glTexStorage1D",
+          "line": 880
+        },
+        {
+          "name": "glTexStorage2D",
+          "line": 883
+        },
+        {
+          "name": "glTexStorage3D",
+          "line": 885
+        },
+        {
+          "name": "glClearTexImage",
+          "line": 903
+        },
+        {
+          "name": "glClearBufferData",
+          "line": 916
+        },
+        {
+          "name": "glFramebufferTextureLayer",
+          "line": 933
+        },
+        {
+          "name": "glFramebufferTextureLayerEXT",
+          "line": 940
+        },
+        {
+          "name": "glTexBuffer",
+          "line": 974
+        },
+        {
+          "name": "glTexBufferARB",
+          "line": 978
+        },
+        {
+          "name": "glCompressedTexImage1D",
+          "line": 993
+        },
+        {
+          "name": "glCompressedTexImage2D",
+          "line": 995
+        },
+        {
+          "name": "glCompressedTexImage3D",
+          "line": 997
+        },
+        {
+          "name": "glCompressedTexSubImage1D",
+          "line": 999
+        },
+        {
+          "name": "glCompressedTexSubImage2D",
+          "line": 1001
+        },
+        {
+          "name": "glCompressedTexSubImage3D",
+          "line": 1003
+        },
+        {
+          "name": "glGetCompressedTexImage",
+          "line": 1005
+        },
+        {
+          "name": "glCompressedTexImage1DARB",
+          "line": 1011
+        },
+        {
+          "name": "glCompressedTexImage2DARB",
+          "line": 1013
+        },
+        {
+          "name": "glCompressedTexImage3DARB",
+          "line": 1015
+        },
+        {
+          "name": "glCompressedTexSubImage1DARB",
+          "line": 1017
+        },
+        {
+          "name": "glCompressedTexSubImage2DARB",
+          "line": 1019
+        },
+        {
+          "name": "glCompressedTexSubImage3DARB",
+          "line": 1021
+        },
+        {
+          "name": "glGetCompressedTexImageARB",
+          "line": 1023
+        },
+        {
+          "name": "glActiveTexture",
+          "line": 1196
+        },
+        {
+          "name": "glClientActiveTexture",
+          "line": 1201
+        },
+        {
+          "name": "glActiveTextureARB",
+          "line": 1207
+        },
+        {
+          "name": "glClientActiveTextureARB",
+          "line": 1212
+        },
+        {
+          "name": "glGenBuffers",
+          "line": 1286
+        },
+        {
+          "name": "glBindBuffer",
+          "line": 1288
+        },
+        {
+          "name": "glBufferData",
+          "line": 1290
+        },
+        {
+          "name": "glBufferSubData",
+          "line": 1292
+        },
+        {
+          "name": "glDeleteBuffers",
+          "line": 1294
+        },
+        {
+          "name": "glMapBuffer",
+          "line": 1298
+        },
+        {
+          "name": "glUnmapBuffer",
+          "line": 1300
+        },
+        {
+          "name": "glGetBufferSubData",
+          "line": 1302
+        },
+        {
+          "name": "glGenBuffersARB",
+          "line": 1310
+        },
+        {
+          "name": "glBindBufferARB",
+          "line": 1312
+        },
+        {
+          "name": "glBufferDataARB",
+          "line": 1314
+        },
+        {
+          "name": "glBufferSubDataARB",
+          "line": 1316
+        },
+        {
+          "name": "glDeleteBuffersARB",
+          "line": 1318
+        },
+        {
+          "name": "glMapBufferARB",
+          "line": 1320
+        },
+        {
+          "name": "glUnmapBufferARB",
+          "line": 1322
+        },
+        {
+          "name": "glGetBufferSubDataARB",
+          "line": 1324
+        },
+        {
+          "name": "glMapBufferRange",
+          "line": 1339
+        },
+        {
+          "name": "glBufferStorage",
+          "line": 1346
+        },
+        {
+          "name": "glBindVertexArray",
+          "line": 1370
+        },
+        {
+          "name": "glDeleteVertexArrays",
+          "line": 1372
+        },
+        {
+          "name": "glGenVertexArrays",
+          "line": 1374
+        },
+        {
+          "name": "glFramebufferTexture",
+          "line": 1391
+        },
+        {
+          "name": "glFramebufferTextureARB",
+          "line": 1396
+        },
+        {
+          "name": "glProgramParameteriARB",
+          "line": 1398
+        },
+        {
+          "name": "glProgramParameteriEXT",
+          "line": 1404
+        },
+        {
+          "name": "glDispatchCompute",
+          "line": 1427
+        },
+        {
+          "name": "glAttachShader",
+          "line": 1438
+        },
+        {
+          "name": "glBindAttribLocation",
+          "line": 1440
+        },
+        {
+          "name": "glCompileShader",
+          "line": 1442
+        },
+        {
+          "name": "glCreateProgram",
+          "line": 1444
+        },
+        {
+          "name": "glCreateShader",
+          "line": 1446
+        },
+        {
+          "name": "glDeleteProgram",
+          "line": 1448
+        },
+        {
+          "name": "glDeleteShader",
+          "line": 1450
+        },
+        {
+          "name": "glDetachShader",
+          "line": 1452
+        },
+        {
+          "name": "glDisableVertexAttribArray",
+          "line": 1454
+        },
+        {
+          "name": "glEnableVertexAttribArray",
+          "line": 1456
+        },
+        {
+          "name": "glGetActiveAttrib",
+          "line": 1458
+        },
+        {
+          "name": "glGetActiveUniform",
+          "line": 1460
+        },
+        {
+          "name": "glGetAttribLocation",
+          "line": 1462
+        },
+        {
+          "name": "glGetProgramiv",
+          "line": 1464
+        },
+        {
+          "name": "glGetProgramInfoLog",
+          "line": 1466
+        },
+        {
+          "name": "glGetShaderiv",
+          "line": 1468
+        },
+        {
+          "name": "glGetShaderInfoLog",
+          "line": 1470
+        },
+        {
+          "name": "glGetUniformLocation",
+          "line": 1472
+        },
+        {
+          "name": "glLinkProgram",
+          "line": 1474
+        },
+        {
+          "name": "glShaderSource",
+          "line": 1476
+        },
+        {
+          "name": "glUseProgram",
+          "line": 1478
+        },
+        {
+          "name": "glUniform4f",
+          "line": 1480
+        },
+        {
+          "name": "glUniform1i",
+          "line": 1482
+        },
+        {
+          "name": "glUniform1fv",
+          "line": 1484
+        },
+        {
+          "name": "glUniform2fv",
+          "line": 1486
+        },
+        {
+          "name": "glUniform3fv",
+          "line": 1488
+        },
+        {
+          "name": "glUniform4fv",
+          "line": 1490
+        },
+        {
+          "name": "glUniform1iv",
+          "line": 1492
+        },
+        {
+          "name": "glUniform2iv",
+          "line": 1494
+        },
+        {
+          "name": "glUniform3iv",
+          "line": 1496
+        },
+        {
+          "name": "glUniform4iv",
+          "line": 1498
+        },
+        {
+          "name": "glUniformMatrix3fv",
+          "line": 1500
+        },
+        {
+          "name": "glUniformMatrix4fv",
+          "line": 1502
+        },
+        {
+          "name": "glValidateProgram",
+          "line": 1504
+        },
+        {
+          "name": "glVertexAttrib4fv",
+          "line": 1506
+        },
+        {
+          "name": "glVertexAttrib4dv",
+          "line": 1508
+        },
+        {
+          "name": "glVertexAttribPointer",
+          "line": 1510
+        },
+        {
+          "name": "glBindFragDataLocation",
+          "line": 1514
+        },
+        {
+          "name": "glVertexAttribIPointer",
+          "line": 1516
+        },
+        {
+          "name": "glUniform1uiv",
+          "line": 1518
+        },
+        {
+          "name": "glUniform2uiv",
+          "line": 1520
+        },
+        {
+          "name": "glUniform3uiv",
+          "line": 1522
+        },
+        {
+          "name": "glUniform4uiv",
+          "line": 1524
+        },
+        {
+          "name": "glVertexAttribI4ui",
+          "line": 1526
+        },
+        {
+          "name": "glBindFragDataLocationEXT",
+          "line": 1530
+        },
+        {
+          "name": "glVertexAttribIPointerEXT",
+          "line": 1532
+        },
+        {
+          "name": "glUniform1uivEXT",
+          "line": 1534
+        },
+        {
+          "name": "glUniform2uivEXT",
+          "line": 1536
+        },
+        {
+          "name": "glUniform3uivEXT",
+          "line": 1538
+        },
+        {
+          "name": "glUniform4uivEXT",
+          "line": 1540
+        },
+        {
+          "name": "glVertexAttribI4uiEXT",
+          "line": 1542
+        },
+        {
+          "name": "glVertexAttribLPointer",
+          "line": 1552
+        },
+        {
+          "name": "glPatchParameteri",
+          "line": 1559
+        },
+        {
+          "name": "glDisableVertexAttribArrayARB",
+          "line": 1564
+        },
+        {
+          "name": "glEnableVertexAttribArrayARB",
+          "line": 1566
+        },
+        {
+          "name": "glVertexAttrib4fvARB",
+          "line": 1569
+        },
+        {
+          "name": "glVertexAttrib4dvARB",
+          "line": 1571
+        },
+        {
+          "name": "glVertexAttribPointerARB",
+          "line": 1573
+        },
+        {
+          "name": "glBindVertexBuffer",
+          "line": 1589
+        },
+        {
+          "name": "glVertexAttribFormat",
+          "line": 1591
+        },
+        {
+          "name": "glVertexAttribIFormat",
+          "line": 1593
+        },
+        {
+          "name": "glVertexAttribBinding",
+          "line": 1595
+        },
+        {
+          "name": "glVertexBindingDivisor",
+          "line": 1597
+        },
+        {
+          "name": "glVertexAttribLFormat",
+          "line": 1601
+        },
+        {
+          "name": "glGetActiveUniformsiv",
+          "line": 1638
+        },
+        {
+          "name": "glGetActiveUniformBlockiv",
+          "line": 1640
+        },
+        {
+          "name": "glGetActiveUniformBlockName",
+          "line": 1642
+        },
+        {
+          "name": "glGetProgramInterfaceiv",
+          "line": 1652
+        },
+        {
+          "name": "glGetProgramResourceName",
+          "line": 1654
+        },
+        {
+          "name": "glGetProgramResourceiv",
+          "line": 1656
+        },
+        {
+          "name": "glShaderStorageBlockBinding",
+          "line": 1658
+        },
+        {
+          "name": "glBindBufferBase",
+          "line": 1667
+        },
+        {
+          "name": "glVertexAttribDivisor",
+          "line": 1672
+        },
+        {
+          "name": "glVertexAttribDivisorARB",
+          "line": 1677
+        },
+        {
+          "name": "glDrawArraysInstanced",
+          "line": 1687
+        },
+        {
+          "name": "glDrawElementsInstanced",
+          "line": 1689
+        },
+        {
+          "name": "glDrawArraysInstancedARB",
+          "line": 1694
+        },
+        {
+          "name": "glDrawElementsInstancedARB",
+          "line": 1696
+        },
+        {
+          "name": "glDrawArraysInstancedEXT",
+          "line": 1701
+        },
+        {
+          "name": "glDrawElementsInstancedEXT",
+          "line": 1703
+        },
+        {
+          "name": "glDrawArraysIndirect",
+          "line": 1740
+        },
+        {
+          "name": "glDrawElementsIndirect",
+          "line": 1742
+        },
+        {
+          "name": "glIsRenderbuffer",
+          "line": 1757
+        },
+        {
+          "name": "glBindRenderbuffer",
+          "line": 1759
+        },
+        {
+          "name": "glDeleteRenderbuffers",
+          "line": 1761
+        },
+        {
+          "name": "glGenRenderbuffers",
+          "line": 1763
+        },
+        {
+          "name": "glRenderbufferStorage",
+          "line": 1765
+        },
+        {
+          "name": "glGetRenderbufferParameteriv",
+          "line": 1767
+        },
+        {
+          "name": "glIsFramebuffer",
+          "line": 1769
+        },
+        {
+          "name": "glBindFramebuffer",
+          "line": 1771
+        },
+        {
+          "name": "glDeleteFramebuffers",
+          "line": 1773
+        },
+        {
+          "name": "glGenFramebuffers",
+          "line": 1775
+        },
+        {
+          "name": "glCheckFramebufferStatus",
+          "line": 1777
+        },
+        {
+          "name": "glFramebufferTexture1D",
+          "line": 1779
+        },
+        {
+          "name": "glFramebufferTexture2D",
+          "line": 1781
+        },
+        {
+          "name": "glFramebufferTexture3D",
+          "line": 1783
+        },
+        {
+          "name": "glFramebufferRenderbuffer",
+          "line": 1785
+        },
+        {
+          "name": "glGetFramebufferAttachmentParameteriv",
+          "line": 1787
+        },
+        {
+          "name": "glGenerateMipmap",
+          "line": 1789
+        },
+        {
+          "name": "glRenderbufferStorageMultisample",
+          "line": 1791
+        },
+        {
+          "name": "glBlitFramebuffer",
+          "line": 1793
+        },
+        {
+          "name": "glIsRenderbufferEXT",
+          "line": 1798
+        },
+        {
+          "name": "glBindRenderbufferEXT",
+          "line": 1800
+        },
+        {
+          "name": "glDeleteRenderbuffersEXT",
+          "line": 1802
+        },
+        {
+          "name": "glGenRenderbuffersEXT",
+          "line": 1804
+        },
+        {
+          "name": "glRenderbufferStorageEXT",
+          "line": 1806
+        },
+        {
+          "name": "glGetRenderbufferParameterivEXT",
+          "line": 1808
+        },
+        {
+          "name": "glIsFramebufferEXT",
+          "line": 1810
+        },
+        {
+          "name": "glBindFramebufferEXT",
+          "line": 1812
+        },
+        {
+          "name": "glDeleteFramebuffersEXT",
+          "line": 1814
+        },
+        {
+          "name": "glGenFramebuffersEXT",
+          "line": 1816
+        },
+        {
+          "name": "glCheckFramebufferStatusEXT",
+          "line": 1818
+        },
+        {
+          "name": "glFramebufferTexture1DEXT",
+          "line": 1820
+        },
+        {
+          "name": "glFramebufferTexture2DEXT",
+          "line": 1822
+        },
+        {
+          "name": "glFramebufferTexture3DEXT",
+          "line": 1824
+        },
+        {
+          "name": "glFramebufferRenderbufferEXT",
+          "line": 1826
+        },
+        {
+          "name": "glGetFramebufferAttachmentParameterivEXT",
+          "line": 1828
+        },
+        {
+          "name": "glGenerateMipmapEXT",
+          "line": 1830
+        },
+        {
+          "name": "glRenderbufferStorageMultisampleEXT",
+          "line": 1835
+        },
+        {
+          "name": "glBlitFramebufferEXT",
+          "line": 1842
+        },
+        {
+          "name": "glGenerateTextureMipmap",
+          "line": 1858
+        },
+        {
+          "name": "glFramebufferParameteri",
+          "line": 1874
+        },
+        {
+          "name": "glRenderbufferStorageMultisampleCoverageNV",
+          "line": 1887
+        },
+        {
+          "name": "glDrawBuffers",
+          "line": 1891
+        },
+        {
+          "name": "glDrawBuffersARB",
+          "line": 1895
+        },
+        {
+          "name": "glClearBufferfv",
+          "line": 1911
+        },
+        {
+          "name": "glClearBufferiv",
+          "line": 1913
+        },
+        {
+          "name": "glClearBufferfi",
+          "line": 1915
+        },
+        {
+          "name": "glViewportArrayv",
+          "line": 1929
+        },
+        {
+          "name": "glScissorArrayv",
+          "line": 1931
+        },
+        {
+          "name": "glDepthRangeArrayv",
+          "line": 1933
+        },
+        {
+          "name": "glGenQueries",
+          "line": 1958
+        },
+        {
+          "name": "glBeginQuery",
+          "line": 1960
+        },
+        {
+          "name": "glEndQuery",
+          "line": 1962
+        },
+        {
+          "name": "glDeleteQueries",
+          "line": 1964
+        },
+        {
+          "name": "glGetQueryiv",
+          "line": 1966
+        },
+        {
+          "name": "glGetQueryObjectuiv",
+          "line": 1968
+        },
+        {
+          "name": "glGenQueriesARB",
+          "line": 1973
+        },
+        {
+          "name": "glBeginQueryARB",
+          "line": 1975
+        },
+        {
+          "name": "glEndQueryARB",
+          "line": 1977
+        },
+        {
+          "name": "glDeleteQueriesARB",
+          "line": 1979
+        },
+        {
+          "name": "glGetQueryivARB",
+          "line": 1981
+        },
+        {
+          "name": "glGetQueryObjectuivARB",
+          "line": 1983
+        },
+        {
+          "name": "glQueryCounter",
+          "line": 2014
+        },
+        {
+          "name": "glGetQueryObjecti64v",
+          "line": 2016
+        },
+        {
+          "name": "glGetQueryObjectui64v",
+          "line": 2018
+        },
+        {
+          "name": "glGetInteger64v",
+          "line": 2021
+        },
+        {
+          "name": "glBlendEquation",
+          "line": 2027
+        },
+        {
+          "name": "glBlendEquationEXT",
+          "line": 2031
+        },
+        {
+          "name": "glBlendEquationSeparate",
+          "line": 2047
+        },
+        {
+          "name": "glBlendEquationSeparateEXT",
+          "line": 2052
+        },
+        {
+          "name": "glBlendFuncSeparate",
+          "line": 2068
+        },
+        {
+          "name": "glBlendFuncSeparateEXT",
+          "line": 2072
+        },
+        {
+          "name": "glBlendColor",
+          "line": 2092
+        },
+        {
+          "name": "glBlendColorEXT",
+          "line": 2096
+        },
+        {
+          "name": "glBindImageTexture",
+          "line": 2329
+        },
+        {
+          "name": "glMemoryBarrier",
+          "line": 2331
+        },
+        {
+          "name": "glBindImageTextureEXT",
+          "line": 2338
+        },
+        {
+          "name": "glMemoryBarrierEXT",
+          "line": 2340
+        },
+        {
+          "name": "glGenSamplers",
+          "line": 2360
+        },
+        {
+          "name": "glDeleteSamplers",
+          "line": 2361
+        },
+        {
+          "name": "glBindSampler",
+          "line": 2362
+        },
+        {
+          "name": "glSamplerParameteri",
+          "line": 2363
+        },
+        {
+          "name": "glSamplerParameteriv",
+          "line": 2364
+        },
+        {
+          "name": "glSamplerParameterf",
+          "line": 2365
+        },
+        {
+          "name": "glSamplerParameterfv",
+          "line": 2366
+        },
+        {
+          "name": "glBindTextures",
+          "line": 2385
+        },
+        {
+          "name": "glBindImageTextures",
+          "line": 2387
+        },
+        {
+          "name": "glBindSamplers",
+          "line": 2391
+        },
+        {
+          "name": "glBindVertexBuffers",
+          "line": 2396
+        },
+        {
+          "name": "glGetInternalformativ",
+          "line": 2415
+        },
+        {
+          "name": "glGetTextureHandleARB",
+          "line": 2428
+        },
+        {
+          "name": "glGetTextureSamplerHandleARB",
+          "line": 2430
+        },
+        {
+          "name": "glMakeTextureHandleResidentARB",
+          "line": 2432
+        },
+        {
+          "name": "glUniformHandleui64ARB",
+          "line": 2434
+        },
+        {
+          "name": "glGetProgramBinary",
+          "line": 2456
+        },
+        {
+          "name": "glProgramBinary",
+          "line": 2458
+        },
+        {
+          "name": "glProgramParameteri",
+          "line": 2460
+        },
+        {
+          "name": "glActiveStencilFaceEXT",
+          "line": 2514
+        },
+        {
+          "name": "glClipControl",
+          "line": 2553
+        }
+      ],
+      "computed_lookups": [
+        {
+          "callee": "do_get_extension_func",
+          "line": 7546
+        }
+      ],
+      "direct_calls": [
+        {
+          "name": "glDrawElements",
+          "line": 53
+        },
+        {
+          "name": "glBlendFunc",
+          "line": 74
+        },
+        {
+          "name": "glGetIntegerv",
+          "line": 550
+        },
+        {
+          "name": "glGetString",
+          "line": 557
+        },
+        {
+          "name": "glGetString",
+          "line": 562
+        },
+        {
+          "name": "glGetIntegerv",
+          "line": 578
+        },
+        {
+          "name": "glGetIntegerv",
+          "line": 590
+        },
+        {
+          "name": "glEnable",
+          "line": 645
+        },
+        {
+          "name": "glEnable",
+          "line": 675
+        },
+        {
+          "name": "glGetFloatv",
+          "line": 751
+        },
+        {
+          "name": "glGetFloatv",
+          "line": 759
+        },
+        {
+          "name": "glGetFloatv",
+          "line": 764
+        },
+        {
+          "name": "glEnable",
+          "line": 780
+        },
+        {
+          "name": "glEnable",
+          "line": 962
+        },
+        {
+          "name": "glGetIntegerv",
+          "line": 1050
+        },
+        {
+          "name": "glGetIntegerv",
+          "line": 1056
+        },
+        {
+          "name": "glGetIntegerv",
+          "line": 1903
+        },
+        {
+          "name": "glGetIntegerv",
+          "line": 1947
+        },
+        {
+          "name": "glGetIntegerv",
+          "line": 2182
+        },
+        {
+          "name": "glGetIntegerv",
+          "line": 2198
+        },
+        {
+          "name": "glGetIntegerv",
+          "line": 2203
+        },
+        {
+          "name": "glGetIntegerv",
+          "line": 2211
+        },
+        {
+          "name": "glGetIntegerv",
+          "line": 2216
+        },
+        {
+          "name": "glGetIntegerv",
+          "line": 2225
+        },
+        {
+          "name": "glGetIntegerv",
+          "line": 2235
+        },
+        {
+          "name": "glGetIntegerv",
+          "line": 2236
+        },
+        {
+          "name": "glGetIntegerv",
+          "line": 2276
+        },
+        {
+          "name": "glGetIntegerv",
+          "line": 2289
+        },
+        {
+          "name": "glGetFloatv",
+          "line": 2315
+        },
+        {
+          "name": "glGetIntegerv",
+          "line": 2333
+        },
+        {
+          "name": "glGetIntegerv",
+          "line": 2342
+        },
+        {
+          "name": "glGetIntegerv",
+          "line": 2466
+        },
+        {
+          "name": "glGetIntegerv",
+          "line": 2477
+        },
+        {
+          "name": "glGetIntegerv",
+          "line": 2495
+        },
+        {
+          "name": "glFrontFace",
+          "line": 2525
+        },
+        {
+          "name": "glDisable",
+          "line": 2527
+        },
+        {
+          "name": "glDisable",
+          "line": 2531
+        },
+        {
+          "name": "glDisable",
+          "line": 2535
+        },
+        {
+          "name": "glDisable",
+          "line": 2540
+        },
+        {
+          "name": "glDisable",
+          "line": 2601
+        },
+        {
+          "name": "glGetIntegerv",
+          "line": 2618
+        },
+        {
+          "name": "glGetIntegerv",
+          "line": 2633
+        },
+        {
+          "name": "glGetIntegerv",
+          "line": 2647
+        },
+        {
+          "name": "glHint",
+          "line": 2682
+        },
+        {
+          "name": "glHint",
+          "line": 2686
+        },
+        {
+          "name": "glGetIntegerv",
+          "line": 2693
+        },
+        {
+          "name": "glEnable",
+          "line": 2695
+        },
+        {
+          "name": "glClearColor",
+          "line": 2892
+        },
+        {
+          "name": "glClear",
+          "line": 2894
+        },
+        {
+          "name": "glClearColor",
+          "line": 2902
+        },
+        {
+          "name": "glClear",
+          "line": 2904
+        },
+        {
+          "name": "glClearColor",
+          "line": 2912
+        },
+        {
+          "name": "glClear",
+          "line": 2914
+        },
+        {
+          "name": "glClearColor",
+          "line": 2923
+        },
+        {
+          "name": "glClearDepth",
+          "line": 2935
+        },
+        {
+          "name": "glDepthMask",
+          "line": 2941
+        },
+        {
+          "name": "glStencilMask",
+          "line": 2947
+        },
+        {
+          "name": "glClearStencil",
+          "line": 2948
+        },
+        {
+          "name": "glClear",
+          "line": 2953
+        },
+        {
+          "name": "glEnable",
+          "line": 3008
+        },
+        {
+          "name": "glDisable",
+          "line": 3016
+        },
+        {
+          "name": "glViewport",
+          "line": 3073
+        },
+        {
+          "name": "glScissor",
+          "line": 3075
+        },
+        {
+          "name": "glMatrixMode",
+          "line": 3184
+        },
+        {
+          "name": "glDeleteTextures",
+          "line": 3228
+        },
+        {
+          "name": "glEnable",
+          "line": 3236
+        },
+        {
+          "name": "glDisable",
+          "line": 3272
+        },
+        {
+          "name": "glDeleteLists",
+          "line": 3338
+        },
+        {
+          "name": "glMatrixMode",
+          "line": 3486
+        },
+        {
+          "name": "glPushMatrix",
+          "line": 3487
+        },
+        {
+          "name": "glLoadIdentity",
+          "line": 3488
+        },
+        {
+          "name": "glMatrixMode",
+          "line": 3489
+        },
+        {
+          "name": "glPushMatrix",
+          "line": 3490
+        },
+        {
+          "name": "glLoadIdentity",
+          "line": 3491
+        },
+        {
+          "name": "glCallList",
+          "line": 3520
+        },
+        {
+          "name": "glNewList",
+          "line": 3544
+        },
+        {
+          "name": "glNewList",
+          "line": 3546
+        },
+        {
+          "name": "glNormalPointer",
+          "line": 3640
+        },
+        {
+          "name": "glEnableClientState",
+          "line": 3642
+        },
+        {
+          "name": "glDisableClientState",
+          "line": 3644
+        },
+        {
+          "name": "glDisableClientState",
+          "line": 3651
+        },
+        {
+          "name": "glColor4f",
+          "line": 3652
+        },
+        {
+          "name": "glColorPointer",
+          "line": 3662
+        },
+        {
+          "name": "glColorPointer",
+          "line": 3665
+        },
+        {
+          "name": "glEnableClientState",
+          "line": 3668
+        },
+        {
+          "name": "glDisableClientState",
+          "line": 3670
+        },
+        {
+          "name": "glColor4f",
+          "line": 3674
+        },
+        {
+          "name": "glColor4f",
+          "line": 3678
+        },
+        {
+          "name": "glTexCoordPointer",
+          "line": 3700
+        },
+        {
+          "name": "glEnableClientState",
+          "line": 3702
+        },
+        {
+          "name": "glDisableClientState",
+          "line": 3707
+        },
+        {
+          "name": "glDisableClientState",
+          "line": 3711
+        },
+        {
+          "name": "glDisableClientState",
+          "line": 3720
+        },
+        {
+          "name": "glVertexPointer",
+          "line": 3731
+        },
+        {
+          "name": "glEnableClientState",
+          "line": 3733
+        },
+        {
+          "name": "glDisableClientState",
+          "line": 3788
+        },
+        {
+          "name": "glDisableClientState",
+          "line": 3789
+        },
+        {
+          "name": "glColor4f",
+          "line": 3790
+        },
+        {
+          "name": "glDisableClientState",
+          "line": 3794
+        },
+        {
+          "name": "glDisableClientState",
+          "line": 3798
+        },
+        {
+          "name": "glDrawArrays",
+          "line": 3922
+        },
+        {
+          "name": "glDrawArrays",
+          "line": 3975
+        },
+        {
+          "name": "glDrawArrays",
+          "line": 4037
+        },
+        {
+          "name": "glDrawArrays",
+          "line": 4092
+        },
+        {
+          "name": "glEnable",
+          "line": 4125
+        },
+        {
+          "name": "glDrawArrays",
+          "line": 4154
+        },
+        {
+          "name": "glDisable",
+          "line": 4160
+        },
+        {
+          "name": "glDrawArrays",
+          "line": 4205
+        },
+        {
+          "name": "glDrawArrays",
+          "line": 4286
+        },
+        {
+          "name": "glDrawArrays",
+          "line": 4361
+        },
+        {
+          "name": "glDrawArrays",
+          "line": 4427
+        },
+        {
+          "name": "glDrawArrays",
+          "line": 4486
+        },
+        {
+          "name": "glEnable",
+          "line": 4518
+        },
+        {
+          "name": "glDisable",
+          "line": 4549
+        },
+        {
+          "name": "glDrawArrays",
+          "line": 4600
+        },
+        {
+          "name": "glEnable",
+          "line": 4632
+        },
+        {
+          "name": "glDisable",
+          "line": 4658
+        },
+        {
+          "name": "glDrawArrays",
+          "line": 4702
+        },
+        {
+          "name": "glDrawArrays",
+          "line": 4768
+        },
+        {
+          "name": "glEndList",
+          "line": 4786
+        },
+        {
+          "name": "glCallList",
+          "line": 4790
+        },
+        {
+          "name": "glMatrixMode",
+          "line": 4799
+        },
+        {
+          "name": "glMatrixMode",
+          "line": 4805
+        },
+        {
+          "name": "glPopMatrix",
+          "line": 4806
+        },
+        {
+          "name": "glMatrixMode",
+          "line": 4807
+        },
+        {
+          "name": "glPopMatrix",
+          "line": 4808
+        },
+        {
+          "name": "glDeleteTextures",
+          "line": 4988
+        },
+        {
+          "name": "glTexParameteri",
+          "line": 5870
+        },
+        {
+          "name": "glTexParameteri",
+          "line": 5875
+        },
+        {
+          "name": "glBindTexture",
+          "line": 5907
+        },
+        {
+          "name": "glCopyTexImage2D",
+          "line": 5939
+        },
+        {
+          "name": "glCopyTexSubImage2D",
+          "line": 5942
+        },
+        {
+          "name": "glEnable",
+          "line": 5947
+        },
+        {
+          "name": "glDisable",
+          "line": 5949
+        },
+        {
+          "name": "glFogf",
+          "line": 6295
+        },
+        {
+          "name": "glFogf",
+          "line": 6300
+        },
+        {
+          "name": "glFogf",
+          "line": 6301
+        },
+        {
+          "name": "glFogf",
+          "line": 6305
+        },
+        {
+          "name": "glMatrixMode",
+          "line": 6324
+        },
+        {
+          "name": "glShadeModel",
+          "line": 6344
+        },
+        {
+          "name": "glShadeModel",
+          "line": 6349
+        },
+        {
+          "name": "glEnable",
+          "line": 6422
+        },
+        {
+          "name": "glDisable",
+          "line": 6424
+        },
+        {
+          "name": "glPolygonMode",
+          "line": 6451
+        },
+        {
+          "name": "glPolygonMode",
+          "line": 6455
+        },
+        {
+          "name": "glPolygonMode",
+          "line": 6459
+        },
+        {
+          "name": "glLineWidth",
+          "line": 6474
+        },
+        {
+          "name": "glPointSize",
+          "line": 6476
+        },
+        {
+          "name": "glHint",
+          "line": 6539
+        },
+        {
+          "name": "glHint",
+          "line": 6542
+        },
+        {
+          "name": "glHint",
+          "line": 6546
+        },
+        {
+          "name": "glDisable",
+          "line": 6569
+        },
+        {
+          "name": "glDisable",
+          "line": 6571
+        },
+        {
+          "name": "glEnable",
+          "line": 6577
+        },
+        {
+          "name": "glDisable",
+          "line": 6578
+        },
+        {
+          "name": "glEnable",
+          "line": 6580
+        },
+        {
+          "name": "glEnable",
+          "line": 6585
+        },
+        {
+          "name": "glDisable",
+          "line": 6587
+        },
+        {
+          "name": "glDepthFunc",
+          "line": 6607
+        },
+        {
+          "name": "glAlphaFunc",
+          "line": 6632
+        },
+        {
+          "name": "glDepthMask",
+          "line": 6653
+        },
+        {
+          "name": "glDepthMask",
+          "line": 6659
+        },
+        {
+          "name": "glDisable",
+          "line": 6676
+        },
+        {
+          "name": "glEnable",
+          "line": 6679
+        },
+        {
+          "name": "glCullFace",
+          "line": 6680
+        },
+        {
+          "name": "glEnable",
+          "line": 6683
+        },
+        {
+          "name": "glCullFace",
+          "line": 6684
+        },
+        {
+          "name": "glPolygonOffset",
+          "line": 6728
+        },
+        {
+          "name": "glDepthRange",
+          "line": 6738
+        },
+        {
+          "name": "glMaterialf",
+          "line": 6788
+        },
+        {
+          "name": "glDisable",
+          "line": 6793
+        },
+        {
+          "name": "glDisable",
+          "line": 6801
+        },
+        {
+          "name": "glColorMaterial",
+          "line": 6805
+        },
+        {
+          "name": "glEnable",
+          "line": 6807
+        },
+        {
+          "name": "glDisable",
+          "line": 6815
+        },
+        {
+          "name": "glColorMaterial",
+          "line": 6819
+        },
+        {
+          "name": "glEnable",
+          "line": 6821
+        },
+        {
+          "name": "glDisable",
+          "line": 6829
+        },
+        {
+          "name": "glColorMaterial",
+          "line": 6834
+        },
+        {
+          "name": "glEnable",
+          "line": 6836
+        },
+        {
+          "name": "glLightModeli",
+          "line": 6841
+        },
+        {
+          "name": "glLightModeli",
+          "line": 6842
+        },
+        {
+          "name": "glLightModeli",
+          "line": 6845
+        },
+        {
+          "name": "glLightModeli",
+          "line": 6847
+        },
+        {
+          "name": "glEnable",
+          "line": 6865
+        },
+        {
+          "name": "glLogicOp",
+          "line": 6866
+        },
+        {
+          "name": "glDisable",
+          "line": 6873
+        },
+        {
+          "name": "glLogicOp",
+          "line": 6874
+        },
+        {
+          "name": "glBlendFunc",
+          "line": 6912
+        },
+        {
+          "name": "glBlendFunc",
+          "line": 6998
+        },
+        {
+          "name": "glBlendFunc",
+          "line": 7018
+        },
+        {
+          "name": "glBlendFunc",
+          "line": 7052
+        },
+        {
+          "name": "glLightf",
+          "line": 7097
+        },
+        {
+          "name": "glLightf",
+          "line": 7100
+        },
+        {
+          "name": "glLightf",
+          "line": 7103
+        },
+        {
+          "name": "glLightf",
+          "line": 7104
+        },
+        {
+          "name": "glLightf",
+          "line": 7105
+        },
+        {
+          "name": "glLightf",
+          "line": 7141
+        },
+        {
+          "name": "glLightf",
+          "line": 7144
+        },
+        {
+          "name": "glLightf",
+          "line": 7148
+        },
+        {
+          "name": "glLightf",
+          "line": 7149
+        },
+        {
+          "name": "glLightf",
+          "line": 7150
+        },
+        {
+          "name": "glLightf",
+          "line": 7183
+        },
+        {
+          "name": "glLightf",
+          "line": 7184
+        },
+        {
+          "name": "glLightf",
+          "line": 7187
+        },
+        {
+          "name": "glLightf",
+          "line": 7188
+        },
+        {
+          "name": "glLightf",
+          "line": 7189
+        },
+        {
+          "name": "glFlush",
+          "line": 7231
+        },
+        {
+          "name": "glGetString",
+          "line": 7312
+        },
+        {
+          "name": "glGetIntegerv",
+          "line": 7347
+        },
+        {
+          "name": "glGetIntegerv",
+          "line": 7348
+        },
+        {
+          "name": "glGetIntegerv",
+          "line": 7369
+        },
+        {
+          "name": "glGetIntegerv",
+          "line": 7370
+        },
+        {
+          "name": "glDrawBuffer",
+          "line": 7607
+        },
+        {
+          "name": "glDrawBuffer",
+          "line": 7611
+        },
+        {
+          "name": "glDrawBuffer",
+          "line": 7615
+        },
+        {
+          "name": "glDrawBuffer",
+          "line": 7619
+        },
+        {
+          "name": "glDrawBuffer",
+          "line": 7624
+        },
+        {
+          "name": "glDrawBuffer",
+          "line": 7629
+        },
+        {
+          "name": "glDrawBuffer",
+          "line": 7634
+        },
+        {
+          "name": "glDrawBuffer",
+          "line": 7639
+        },
+        {
+          "name": "glColorMask",
+          "line": 9651
+        },
+        {
+          "name": "glEnable",
+          "line": 9654
+        },
+        {
+          "name": "glDisable",
+          "line": 9656
+        },
+        {
+          "name": "glEnable",
+          "line": 9659
+        },
+        {
+          "name": "glDisable",
+          "line": 9661
+        },
+        {
+          "name": "glEnable",
+          "line": 9664
+        },
+        {
+          "name": "glDisable",
+          "line": 9666
+        },
+        {
+          "name": "glEnable",
+          "line": 9669
+        },
+        {
+          "name": "glDisable",
+          "line": 9671
+        },
+        {
+          "name": "glEnable",
+          "line": 9676
+        },
+        {
+          "name": "glDisable",
+          "line": 9678
+        },
+        {
+          "name": "glDisable",
+          "line": 9679
+        },
+        {
+          "name": "glDisable",
+          "line": 9680
+        },
+        {
+          "name": "glEnable",
+          "line": 9683
+        },
+        {
+          "name": "glDisable",
+          "line": 9685
+        },
+        {
+          "name": "glEnable",
+          "line": 9691
+        },
+        {
+          "name": "glDisable",
+          "line": 9693
+        },
+        {
+          "name": "glEnable",
+          "line": 9700
+        },
+        {
+          "name": "glDisable",
+          "line": 9702
+        },
+        {
+          "name": "glEnable",
+          "line": 9705
+        },
+        {
+          "name": "glDisable",
+          "line": 9707
+        },
+        {
+          "name": "glEnable",
+          "line": 9729
+        },
+        {
+          "name": "glDisable",
+          "line": 9731
+        },
+        {
+          "name": "glEnable",
+          "line": 9759
+        },
+        {
+          "name": "glDisable",
+          "line": 9761
+        },
+        {
+          "name": "glMatrixMode",
+          "line": 9770
+        },
+        {
+          "name": "glPushMatrix",
+          "line": 9771
+        },
+        {
+          "name": "glMatrixMode",
+          "line": 9782
+        },
+        {
+          "name": "glPopMatrix",
+          "line": 9783
+        },
+        {
+          "name": "glEnable",
+          "line": 9790
+        },
+        {
+          "name": "glDisable",
+          "line": 9792
+        },
+        {
+          "name": "glMatrixMode",
+          "line": 9801
+        },
+        {
+          "name": "glPushMatrix",
+          "line": 9802
+        },
+        {
+          "name": "glClipPlane",
+          "line": 9823
+        },
+        {
+          "name": "glMatrixMode",
+          "line": 9832
+        },
+        {
+          "name": "glPopMatrix",
+          "line": 9833
+        },
+        {
+          "name": "glDisable",
+          "line": 10240
+        },
+        {
+          "name": "glDisable",
+          "line": 10242
+        },
+        {
+          "name": "glDisable",
+          "line": 10246
+        },
+        {
+          "name": "glDisable",
+          "line": 10248
+        },
+        {
+          "name": "glEnable",
+          "line": 10271
+        },
+        {
+          "name": "glDisable",
+          "line": 10274
+        },
+        {
+          "name": "glTexEnvi",
+          "line": 10299
+        },
+        {
+          "name": "glTexEnvi",
+          "line": 10300
+        },
+        {
+          "name": "glTexEnvi",
+          "line": 10301
+        },
+        {
+          "name": "glTexEnvi",
+          "line": 10302
+        },
+        {
+          "name": "glTexEnvi",
+          "line": 10303
+        },
+        {
+          "name": "glTexEnvi",
+          "line": 10304
+        },
+        {
+          "name": "glTexEnvi",
+          "line": 10305
+        },
+        {
+          "name": "glTexEnvi",
+          "line": 10306
+        },
+        {
+          "name": "glTexEnvi",
+          "line": 10307
+        },
+        {
+          "name": "glTexEnvi",
+          "line": 10308
+        },
+        {
+          "name": "glTexEnvi",
+          "line": 10312
+        },
+        {
+          "name": "glTexEnvi",
+          "line": 10319
+        },
+        {
+          "name": "glTexEnvi",
+          "line": 10321
+        },
+        {
+          "name": "glTexEnvi",
+          "line": 10322
+        },
+        {
+          "name": "glTexEnvi",
+          "line": 10323
+        },
+        {
+          "name": "glTexEnvi",
+          "line": 10324
+        },
+        {
+          "name": "glTexEnvi",
+          "line": 10325
+        },
+        {
+          "name": "glTexEnvi",
+          "line": 10330
+        },
+        {
+          "name": "glTexEnvi",
+          "line": 10333
+        },
+        {
+          "name": "glTexEnvi",
+          "line": 10338
+        },
+        {
+          "name": "glTexEnvi",
+          "line": 10341
+        },
+        {
+          "name": "glTexEnvi",
+          "line": 10346
+        },
+        {
+          "name": "glTexEnvi",
+          "line": 10349
+        },
+        {
+          "name": "glTexEnvi",
+          "line": 10356
+        },
+        {
+          "name": "glTexEnvi",
+          "line": 10361
+        },
+        {
+          "name": "glTexEnvi",
+          "line": 10364
+        },
+        {
+          "name": "glTexEnvi",
+          "line": 10369
+        },
+        {
+          "name": "glTexEnvi",
+          "line": 10372
+        },
+        {
+          "name": "glTexEnvi",
+          "line": 10377
+        },
+        {
+          "name": "glTexEnvi",
+          "line": 10380
+        },
+        {
+          "name": "glTexEnvi",
+          "line": 10390
+        },
+        {
+          "name": "glDisable",
+          "line": 10406
+        },
+        {
+          "name": "glDisable",
+          "line": 10408
+        },
+        {
+          "name": "glDisable",
+          "line": 10411
+        },
+        {
+          "name": "glDisable",
+          "line": 10413
+        },
+        {
+          "name": "glBindTexture",
+          "line": 10432
+        },
+        {
+          "name": "glGenTextures",
+          "line": 10450
+        },
+        {
+          "name": "glBindTexture",
+          "line": 10451
+        },
+        {
+          "name": "glTexParameteri",
+          "line": 10452
+        },
+        {
+          "name": "glTexParameteri",
+          "line": 10453
+        },
+        {
+          "name": "glTexParameteri",
+          "line": 10454
+        },
+        {
+          "name": "glTexParameteri",
+          "line": 10455
+        },
+        {
+          "name": "glTexImage2D",
+          "line": 10458
+        },
+        {
+          "name": "glDisable",
+          "line": 10496
+        },
+        {
+          "name": "glDisable",
+          "line": 10498
+        },
+        {
+          "name": "glDisable",
+          "line": 10501
+        },
+        {
+          "name": "glDisable",
+          "line": 10505
+        },
+        {
+          "name": "glEnable",
+          "line": 10530
+        },
+        {
+          "name": "glGenTextures",
+          "line": 10539
+        },
+        {
+          "name": "glBindTexture",
+          "line": 10540
+        },
+        {
+          "name": "glBindTexture",
+          "line": 10549
+        },
+        {
+          "name": "glTexParameteri",
+          "line": 10571
+        },
+        {
+          "name": "glTexParameteri",
+          "line": 10572
+        },
+        {
+          "name": "glTexParameteri",
+          "line": 10573
+        },
+        {
+          "name": "glTexParameteri",
+          "line": 10574
+        },
+        {
+          "name": "glTexImage2D",
+          "line": 10616
+        },
+        {
+          "name": "glDisable",
+          "line": 10642
+        },
+        {
+          "name": "glDisable",
+          "line": 10644
+        },
+        {
+          "name": "glDisable",
+          "line": 10647
+        },
+        {
+          "name": "glDisable",
+          "line": 10651
+        },
+        {
+          "name": "glMatrixMode",
+          "line": 10673
+        },
+        {
+          "name": "glLoadIdentity",
+          "line": 10681
+        },
+        {
+          "name": "glTexEnvi",
+          "line": 10722
+        },
+        {
+          "name": "glDisable",
+          "line": 10727
+        },
+        {
+          "name": "glDisable",
+          "line": 10728
+        },
+        {
+          "name": "glDisable",
+          "line": 10729
+        },
+        {
+          "name": "glDisable",
+          "line": 10730
+        },
+        {
+          "name": "glTexGeni",
+          "line": 10740
+        },
+        {
+          "name": "glTexGeni",
+          "line": 10741
+        },
+        {
+          "name": "glEnable",
+          "line": 10742
+        },
+        {
+          "name": "glEnable",
+          "line": 10743
+        },
+        {
+          "name": "glMatrixMode",
+          "line": 10753
+        },
+        {
+          "name": "glMultMatrixf",
+          "line": 10754
+        },
+        {
+          "name": "glTexGeni",
+          "line": 10760
+        },
+        {
+          "name": "glTexGeni",
+          "line": 10761
+        },
+        {
+          "name": "glTexGeni",
+          "line": 10762
+        },
+        {
+          "name": "glEnable",
+          "line": 10763
+        },
+        {
+          "name": "glEnable",
+          "line": 10764
+        },
+        {
+          "name": "glEnable",
+          "line": 10765
+        },
+        {
+          "name": "glMatrixMode",
+          "line": 10780
+        },
+        {
+          "name": "glMultMatrixf",
+          "line": 10781
+        },
+        {
+          "name": "glTexGeni",
+          "line": 10787
+        },
+        {
+          "name": "glTexGeni",
+          "line": 10788
+        },
+        {
+          "name": "glTexGeni",
+          "line": 10789
+        },
+        {
+          "name": "glEnable",
+          "line": 10790
+        },
+        {
+          "name": "glEnable",
+          "line": 10791
+        },
+        {
+          "name": "glEnable",
+          "line": 10792
+        },
+        {
+          "name": "glMatrixMode",
+          "line": 10803
+        },
+        {
+          "name": "glMultMatrixf",
+          "line": 10804
+        },
+        {
+          "name": "glTexGeni",
+          "line": 10810
+        },
+        {
+          "name": "glTexGeni",
+          "line": 10811
+        },
+        {
+          "name": "glTexGeni",
+          "line": 10812
+        },
+        {
+          "name": "glEnable",
+          "line": 10813
+        },
+        {
+          "name": "glEnable",
+          "line": 10814
+        },
+        {
+          "name": "glEnable",
+          "line": 10815
+        },
+        {
+          "name": "glMatrixMode",
+          "line": 10830
+        },
+        {
+          "name": "glMultMatrixf",
+          "line": 10831
+        },
+        {
+          "name": "glTexGeni",
+          "line": 10837
+        },
+        {
+          "name": "glTexGeni",
+          "line": 10838
+        },
+        {
+          "name": "glTexGeni",
+          "line": 10839
+        },
+        {
+          "name": "glEnable",
+          "line": 10840
+        },
+        {
+          "name": "glEnable",
+          "line": 10841
+        },
+        {
+          "name": "glEnable",
+          "line": 10842
+        },
+        {
+          "name": "glMatrixMode",
+          "line": 10849
+        },
+        {
+          "name": "glPushMatrix",
+          "line": 10850
+        },
+        {
+          "name": "glTexGeni",
+          "line": 10853
+        },
+        {
+          "name": "glTexGeni",
+          "line": 10854
+        },
+        {
+          "name": "glTexGeni",
+          "line": 10855
+        },
+        {
+          "name": "glTexGeni",
+          "line": 10856
+        },
+        {
+          "name": "glTexGenfv",
+          "line": 10858
+        },
+        {
+          "name": "glTexGenfv",
+          "line": 10859
+        },
+        {
+          "name": "glTexGenfv",
+          "line": 10860
+        },
+        {
+          "name": "glTexGenfv",
+          "line": 10861
+        },
+        {
+          "name": "glEnable",
+          "line": 10863
+        },
+        {
+          "name": "glEnable",
+          "line": 10864
+        },
+        {
+          "name": "glEnable",
+          "line": 10865
+        },
+        {
+          "name": "glEnable",
+          "line": 10866
+        },
+        {
+          "name": "glMatrixMode",
+          "line": 10868
+        },
+        {
+          "name": "glPopMatrix",
+          "line": 10869
+        },
+        {
+          "name": "glMatrixMode",
+          "line": 10877
+        },
+        {
+          "name": "glPushMatrix",
+          "line": 10878
+        },
+        {
+          "name": "glTexGeni",
+          "line": 10881
+        },
+        {
+          "name": "glTexGeni",
+          "line": 10882
+        },
+        {
+          "name": "glTexGeni",
+          "line": 10883
+        },
+        {
+          "name": "glTexGeni",
+          "line": 10884
+        },
+        {
+          "name": "glTexGenfv",
+          "line": 10886
+        },
+        {
+          "name": "glTexGenfv",
+          "line": 10887
+        },
+        {
+          "name": "glTexGenfv",
+          "line": 10888
+        },
+        {
+          "name": "glTexGenfv",
+          "line": 10889
+        },
+        {
+          "name": "glEnable",
+          "line": 10891
+        },
+        {
+          "name": "glEnable",
+          "line": 10892
+        },
+        {
+          "name": "glEnable",
+          "line": 10893
+        },
+        {
+          "name": "glEnable",
+          "line": 10894
+        },
+        {
+          "name": "glMatrixMode",
+          "line": 10896
+        },
+        {
+          "name": "glPopMatrix",
+          "line": 10897
+        },
+        {
+          "name": "glTexEnvi",
+          "line": 10906
+        },
+        {
+          "name": "glTexGeni",
+          "line": 10918
+        },
+        {
+          "name": "glTexGeni",
+          "line": 10919
+        },
+        {
+          "name": "glTexGeni",
+          "line": 10920
+        },
+        {
+          "name": "glTexGeni",
+          "line": 10921
+        },
+        {
+          "name": "glTexGenfv",
+          "line": 10927
+        },
+        {
+          "name": "glTexGenfv",
+          "line": 10928
+        },
+        {
+          "name": "glTexGenfv",
+          "line": 10929
+        },
+        {
+          "name": "glTexGenfv",
+          "line": 10930
+        },
+        {
+          "name": "glEnable",
+          "line": 10932
+        },
+        {
+          "name": "glEnable",
+          "line": 10933
+        },
+        {
+          "name": "glEnable",
+          "line": 10934
+        },
+        {
+          "name": "glEnable",
+          "line": 10935
+        },
+        {
+          "name": "glEnable",
+          "line": 10958
+        },
+        {
+          "name": "glDisable",
+          "line": 10960
+        },
+        {
+          "name": "glTexParameteri",
+          "line": 10997
+        },
+        {
+          "name": "glTexParameteri",
+          "line": 11003
+        },
+        {
+          "name": "glTexParameteri",
+          "line": 11008
+        },
+        {
+          "name": "glTexParameteri",
+          "line": 11045
+        },
+        {
+          "name": "glTexParameteri",
+          "line": 11048
+        },
+        {
+          "name": "glTexParameteri",
+          "line": 11050
+        },
+        {
+          "name": "glTexParameteri",
+          "line": 11052
+        },
+        {
+          "name": "glTexParameterf",
+          "line": 11061
+        },
+        {
+          "name": "glTexParameteri",
+          "line": 11072
+        },
+        {
+          "name": "glTexParameteri",
+          "line": 11078
+        },
+        {
+          "name": "glTexParameteri",
+          "line": 11079
+        },
+        {
+          "name": "glTexParameteri",
+          "line": 11081
+        },
+        {
+          "name": "glTexParameteri",
+          "line": 11082
+        },
+        {
+          "name": "glTexParameterf",
+          "line": 11090
+        },
+        {
+          "name": "glTexParameterf",
+          "line": 11091
+        },
+        {
+          "name": "glTexParameterf",
+          "line": 11097
+        },
+        {
+          "name": "glBindTexture",
+          "line": 11131
+        },
+        {
+          "name": "glHint",
+          "line": 11364
+        },
+        {
+          "name": "glHint",
+          "line": 11369
+        },
+        {
+          "name": "glHint",
+          "line": 11373
+        },
+        {
+          "name": "glBindTexture",
+          "line": 11410
+        },
+        {
+          "name": "glTexParameteri",
+          "line": 11455
+        },
+        {
+          "name": "glTexParameteri",
+          "line": 11483
+        },
+        {
+          "name": "glTexParameteri",
+          "line": 11494
+        },
+        {
+          "name": "glTexParameteri",
+          "line": 11500
+        },
+        {
+          "name": "glTexParameteri",
+          "line": 11510
+        },
+        {
+          "name": "glTexParameteri",
+          "line": 11511
+        },
+        {
+          "name": "glTexParameteri",
+          "line": 11512
+        },
+        {
+          "name": "glTexParameteri",
+          "line": 11513
+        },
+        {
+          "name": "glTexParameteri",
+          "line": 11517
+        },
+        {
+          "name": "glTexParameteri",
+          "line": 11518
+        },
+        {
+          "name": "glTexParameteri",
+          "line": 11519
+        },
+        {
+          "name": "glTexParameteri",
+          "line": 11520
+        },
+        {
+          "name": "glTexParameteri",
+          "line": 11524
+        },
+        {
+          "name": "glTexParameteri",
+          "line": 11525
+        },
+        {
+          "name": "glTexParameteri",
+          "line": 11526
+        },
+        {
+          "name": "glTexParameteri",
+          "line": 11527
+        },
+        {
+          "name": "glTexSubImage1D",
+          "line": 11888
+        },
+        {
+          "name": "glTexSubImage2D",
+          "line": 11933
+        },
+        {
+          "name": "glTexParameteri",
+          "line": 11998
+        },
+        {
+          "name": "glTexParameteri",
+          "line": 12013
+        },
+        {
+          "name": "glTexImage1D",
+          "line": 12053
+        },
+        {
+          "name": "glTexImage2D",
+          "line": 12116
+        },
+        {
+          "name": "glBindTexture",
+          "line": 12161
+        },
+        {
+          "name": "glTexParameteri",
+          "line": 12216
+        },
+        {
+          "name": "glTexImage2D",
+          "line": 12226
+        },
+        {
+          "name": "glGetTexLevelParameteriv",
+          "line": 12262
+        },
+        {
+          "name": "glGetTexLevelParameteriv",
+          "line": 12267
+        },
+        {
+          "name": "glGetTexLevelParameteriv",
+          "line": 12286
+        },
+        {
+          "name": "glGetTexLevelParameteriv",
+          "line": 12288
+        },
+        {
+          "name": "glGetTexLevelParameteriv",
+          "line": 12290
+        },
+        {
+          "name": "glGetTexLevelParameteriv",
+          "line": 12292
+        },
+        {
+          "name": "glGetTexLevelParameteriv",
+          "line": 12295
+        },
+        {
+          "name": "glGetTexLevelParameteriv",
+          "line": 12297
+        },
+        {
+          "name": "glGetTexLevelParameteriv",
+          "line": 12301
+        },
+        {
+          "name": "glGetTexLevelParameteriv",
+          "line": 12306
+        },
+        {
+          "name": "glGetTexLevelParameteriv",
+          "line": 12307
+        },
+        {
+          "name": "glGetTexLevelParameteriv",
+          "line": 12309
+        },
+        {
+          "name": "glAreTexturesResident",
+          "line": 12363
+        },
+        {
+          "name": "glBindTexture",
+          "line": 12400
+        },
+        {
+          "name": "glGetTexParameteriv",
+          "line": 12424
+        },
+        {
+          "name": "glGetTexParameteriv",
+          "line": 12425
+        },
+        {
+          "name": "glGetTexParameteriv",
+          "line": 12429
+        },
+        {
+          "name": "glGetTexParameteriv",
+          "line": 12432
+        },
+        {
+          "name": "glGetTexParameteriv",
+          "line": 12433
+        },
+        {
+          "name": "glGetTexParameterfv",
+          "line": 12436
+        },
+        {
+          "name": "glGetTexLevelParameteriv",
+          "line": 12448
+        },
+        {
+          "name": "glGetTexLevelParameteriv",
+          "line": 12450
+        },
+        {
+          "name": "glGetTexLevelParameteriv",
+          "line": 12454
+        },
+        {
+          "name": "glGetTexLevelParameteriv",
+          "line": 12456
+        },
+        {
+          "name": "glGetTexLevelParameteriv",
+          "line": 12471
+        },
+        {
+          "name": "glGetTexParameteriv",
+          "line": 12975
+        },
+        {
+          "name": "glGetTexLevelParameteriv",
+          "line": 13020
+        },
+        {
+          "name": "glGetTexImage",
+          "line": 13032
+        },
+        {
+          "name": "glGetTexImage",
+          "line": 13051
+        },
+        {
+          "name": "glGetTexLevelParameteriv",
+          "line": 13056
+        },
+        {
+          "name": "glEnable",
+          "line": 13241
+        },
+        {
+          "name": "glStencilFunc",
+          "line": 13244
+        },
+        {
+          "name": "glStencilOp",
+          "line": 13249
+        },
+        {
+          "name": "glStencilMask",
+          "line": 13254
+        },
+        {
+          "name": "glDisable",
+          "line": 13256
+        },
+        {
+          "name": "glEnable",
+          "line": 13267
+        },
+        {
+          "name": "glStencilFunc",
+          "line": 13269
+        },
+        {
+          "name": "glStencilOp",
+          "line": 13274
+        },
+        {
+          "name": "glStencilMask",
+          "line": 13279
+        },
+        {
+          "name": "glDisable",
+          "line": 13281
+        },
+        {
+          "name": "glClearStencil",
+          "line": 13286
+        },
+        {
+          "name": "glClear",
+          "line": 13287
+        },
+        {
+          "name": "glDisable",
+          "line": 13290
+        },
+        {
+          "name": "glDisable",
+          "line": 13293
+        },
+        {
+          "name": "glEnable",
+          "line": 13315
+        },
+        {
+          "name": "glScissor",
+          "line": 13330
+        },
+        {
+          "name": "glScissor",
+          "line": 13347
+        },
+        {
+          "name": "glDisable",
+          "line": 13356
+        }
+      ],
+      "member_calls": [
+        {
+          "name": "_glGetStringi",
+          "line": 552
+        },
+        {
+          "name": "_glDebugMessageControl",
+          "line": 663
+        },
+        {
+          "name": "_glDebugMessageControl",
+          "line": 665
+        },
+        {
+          "name": "_glDebugMessageControl",
+          "line": 667
+        },
+        {
+          "name": "_glDebugMessageControl",
+          "line": 669
+        },
+        {
+          "name": "_glDebugMessageCallback",
+          "line": 673
+        },
+        {
+          "name": "_glGetQueryiv",
+          "line": 1996
+        },
+        {
+          "name": "_glGetInteger64v",
+          "line": 2023
+        },
+        {
+          "name": "_glGenVertexArrays",
+          "line": 2797
+        },
+        {
+          "name": "_glBindVertexArray",
+          "line": 2798
+        },
+        {
+          "name": "_glClearBufferfv",
+          "line": 2847
+        },
+        {
+          "name": "_glClearBufferfv",
+          "line": 2848
+        },
+        {
+          "name": "_glClearBufferfv",
+          "line": 2854
+        },
+        {
+          "name": "_glClearBufferfv",
+          "line": 2863
+        },
+        {
+          "name": "_glClearBufferfv",
+          "line": 2871
+        },
+        {
+          "name": "_glClearBufferfv",
+          "line": 2879
+        },
+        {
+          "name": "_glViewportArrayv",
+          "line": 3046
+        },
+        {
+          "name": "_glScissorArrayv",
+          "line": 3048
+        },
+        {
+          "name": "_glClientActiveTexture",
+          "line": 3120
+        },
+        {
+          "name": "_glBindSampler",
+          "line": 3131
+        },
+        {
+          "name": "_glDeleteQueries",
+          "line": 3359
+        },
+        {
+          "name": "_glClientActiveTexture",
+          "line": 3687
+        },
+        {
+          "name": "_glClientActiveTexture",
+          "line": 3719
+        },
+        {
+          "name": "_glBindBuffer",
+          "line": 3751
+        },
+        {
+          "name": "_glBindBuffer",
+          "line": 3759
+        },
+        {
+          "name": "_glBindVertexBuffers",
+          "line": 3765
+        },
+        {
+          "name": "_glBindVertexBuffer",
+          "line": 3769
+        },
+        {
+          "name": "_glClientActiveTexture",
+          "line": 3793
+        },
+        {
+          "name": "_glVertexAttribIFormat",
+          "line": 3855
+        },
+        {
+          "name": "_glVertexAttribFormat",
+          "line": 3857
+        },
+        {
+          "name": "_glVertexAttribBinding",
+          "line": 3859
+        },
+        {
+          "name": "_glVertexBindingDivisor",
+          "line": 3868
+        },
+        {
+          "name": "_glDrawElementsInstanced",
+          "line": 3900
+        },
+        {
+          "name": "_glDrawRangeElements",
+          "line": 3906
+        },
+        {
+          "name": "_glDrawArraysInstanced",
+          "line": 3916
+        },
+        {
+          "name": "_glDrawElementsInstanced",
+          "line": 3958
+        },
+        {
+          "name": "_glDrawRangeElements",
+          "line": 3962
+        },
+        {
+          "name": "_glDrawArraysInstanced",
+          "line": 3971
+        },
+        {
+          "name": "_glDrawElementsInstanced",
+          "line": 4015
+        },
+        {
+          "name": "_glDrawRangeElements",
+          "line": 4021
+        },
+        {
+          "name": "_glDrawArraysInstanced",
+          "line": 4031
+        },
+        {
+          "name": "_glDrawElementsInstanced",
+          "line": 4065
+        },
+        {
+          "name": "_glDrawRangeElements",
+          "line": 4072
+        },
+        {
+          "name": "_glDrawArraysInstanced",
+          "line": 4087
+        },
+        {
+          "name": "_glPrimitiveRestartIndex",
+          "line": 4126
+        },
+        {
+          "name": "_glDrawElementsInstanced",
+          "line": 4137
+        },
+        {
+          "name": "_glDrawRangeElements",
+          "line": 4141
+        },
+        {
+          "name": "_glDrawArraysInstanced",
+          "line": 4150
+        },
+        {
+          "name": "_glDrawElementsInstanced",
+          "line": 4183
+        },
+        {
+          "name": "_glDrawRangeElements",
+          "line": 4188
+        },
+        {
+          "name": "_glDrawArraysInstanced",
+          "line": 4202
+        },
+        {
+          "name": "_glDrawElementsInstanced",
+          "line": 4260
+        },
+        {
+          "name": "_glDrawRangeElements",
+          "line": 4267
+        },
+        {
+          "name": "_glDrawArraysInstanced",
+          "line": 4281
+        },
+        {
+          "name": "_glPatchParameteri",
+          "line": 4318
+        },
+        {
+          "name": "_glDrawElementsInstanced",
+          "line": 4339
+        },
+        {
+          "name": "_glDrawRangeElements",
+          "line": 4345
+        },
+        {
+          "name": "_glDrawArraysInstanced",
+          "line": 4355
+        },
+        {
+          "name": "_glDrawElementsInstanced",
+          "line": 4405
+        },
+        {
+          "name": "_glDrawRangeElements",
+          "line": 4411
+        },
+        {
+          "name": "_glDrawArraysInstanced",
+          "line": 4421
+        },
+        {
+          "name": "_glDrawElementsInstanced",
+          "line": 4469
+        },
+        {
+          "name": "_glDrawRangeElements",
+          "line": 4473
+        },
+        {
+          "name": "_glDrawArraysInstanced",
+          "line": 4482
+        },
+        {
+          "name": "_glPrimitiveRestartIndex",
+          "line": 4519
+        },
+        {
+          "name": "_glDrawElementsInstanced",
+          "line": 4533
+        },
+        {
+          "name": "_glDrawRangeElements",
+          "line": 4539
+        },
+        {
+          "name": "_glDrawElementsInstanced",
+          "line": 4573
+        },
+        {
+          "name": "_glDrawRangeElements",
+          "line": 4580
+        },
+        {
+          "name": "_glDrawArraysInstanced",
+          "line": 4595
+        },
+        {
+          "name": "_glPrimitiveRestartIndex",
+          "line": 4633
+        },
+        {
+          "name": "_glDrawElementsInstanced",
+          "line": 4645
+        },
+        {
+          "name": "_glDrawRangeElements",
+          "line": 4649
+        },
+        {
+          "name": "_glDrawElementsInstanced",
+          "line": 4680
+        },
+        {
+          "name": "_glDrawRangeElements",
+          "line": 4685
+        },
+        {
+          "name": "_glDrawArraysInstanced",
+          "line": 4699
+        },
+        {
+          "name": "_glDrawElementsInstanced",
+          "line": 4746
+        },
+        {
+          "name": "_glDrawRangeElements",
+          "line": 4752
+        },
+        {
+          "name": "_glDrawArraysInstanced",
+          "line": 4762
+        },
+        {
+          "name": "_glMemoryBarrier",
+          "line": 4834
+        },
+        {
+          "name": "_glDeleteBuffers",
+          "line": 4991
+        },
+        {
+          "name": "_glSamplerParameteri",
+          "line": 5025
+        },
+        {
+          "name": "_glSamplerParameteri",
+          "line": 5027
+        },
+        {
+          "name": "_glSamplerParameteri",
+          "line": 5029
+        },
+        {
+          "name": "_glSamplerParameterfv",
+          "line": 5037
+        },
+        {
+          "name": "_glSamplerParameteri",
+          "line": 5054
+        },
+        {
+          "name": "_glSamplerParameteri",
+          "line": 5056
+        },
+        {
+          "name": "_glSamplerParameterf",
+          "line": 5064
+        },
+        {
+          "name": "_glSamplerParameteri",
+          "line": 5070
+        },
+        {
+          "name": "_glSamplerParameteri",
+          "line": 5071
+        },
+        {
+          "name": "_glSamplerParameteri",
+          "line": 5073
+        },
+        {
+          "name": "_glSamplerParameteri",
+          "line": 5074
+        },
+        {
+          "name": "_glSamplerParameterf",
+          "line": 5079
+        },
+        {
+          "name": "_glSamplerParameterf",
+          "line": 5080
+        },
+        {
+          "name": "_glSamplerParameterf",
+          "line": 5085
+        },
+        {
+          "name": "_glDeleteSamplers",
+          "line": 5106
+        },
+        {
+          "name": "_glGenBuffers",
+          "line": 5211
+        },
+        {
+          "name": "_glBindBuffer",
+          "line": 5262
+        },
+        {
+          "name": "_glBufferData",
+          "line": 5267
+        },
+        {
+          "name": "_glBufferSubData",
+          "line": 5271
+        },
+        {
+          "name": "_glBindBuffer",
+          "line": 5309
+        },
+        {
+          "name": "_glDeleteBuffers",
+          "line": 5313
+        },
+        {
+          "name": "_glBindBuffer",
+          "line": 5338
+        },
+        {
+          "name": "_glBindBuffer",
+          "line": 5359
+        },
+        {
+          "name": "_glGenBuffers",
+          "line": 5373
+        },
+        {
+          "name": "_glBindBuffer",
+          "line": 5412
+        },
+        {
+          "name": "_glBufferData",
+          "line": 5432
+        },
+        {
+          "name": "_glBufferSubData",
+          "line": 5436
+        },
+        {
+          "name": "_glBindBuffer",
+          "line": 5474
+        },
+        {
+          "name": "_glDeleteBuffers",
+          "line": 5478
+        },
+        {
+          "name": "_glBindBuffer",
+          "line": 5503
+        },
+        {
+          "name": "_glGenBuffers",
+          "line": 5527
+        },
+        {
+          "name": "_glBindBuffer",
+          "line": 5533
+        },
+        {
+          "name": "_glObjectLabel",
+          "line": 5538
+        },
+        {
+          "name": "_glBufferStorage",
+          "line": 5544
+        },
+        {
+          "name": "_glBufferData",
+          "line": 5546
+        },
+        {
+          "name": "_glBindBufferBase",
+          "line": 5583
+        },
+        {
+          "name": "_glBindBuffer",
+          "line": 5615
+        },
+        {
+          "name": "_glDeleteBuffers",
+          "line": 5619
+        },
+        {
+          "name": "_glGenQueries",
+          "line": 5632
+        },
+        {
+          "name": "_glBeginQuery",
+          "line": 5639
+        },
+        {
+          "name": "_glEndQuery",
+          "line": 5657
+        },
+        {
+          "name": "_glGetQueryObjectuiv",
+          "line": 5668
+        },
+        {
+          "name": "_glGenQueries",
+          "line": 5702
+        },
+        {
+          "name": "_glQueryCounter",
+          "line": 5711
+        },
+        {
+          "name": "_glObjectLabel",
+          "line": 5717
+        },
+        {
+          "name": "_glDispatchCompute",
+          "line": 5741
+        },
+        {
+          "name": "_glTexImage3D",
+          "line": 5929
+        },
+        {
+          "name": "_glCopyTexSubImage3D",
+          "line": 5932
+        },
+        {
+          "name": "_glGenerateMipmap",
+          "line": 5948
+        },
+        {
+          "name": "_glDepthRangedNV",
+          "line": 6742
+        },
+        {
+          "name": "_glBlendEquation",
+          "line": 6911
+        },
+        {
+          "name": "_glBlendEquationSeparate",
+          "line": 6943
+        },
+        {
+          "name": "_glBlendEquation",
+          "line": 6946
+        },
+        {
+          "name": "_glBlendFuncSeparate",
+          "line": 6948
+        },
+        {
+          "name": "_glBlendColor",
+          "line": 6962
+        },
+        {
+          "name": "_glBlendEquation",
+          "line": 6995
+        },
+        {
+          "name": "_glBlendFuncSeparate",
+          "line": 7000
+        },
+        {
+          "name": "_glBlendEquation",
+          "line": 7017
+        },
+        {
+          "name": "_glBlendEquation",
+          "line": 7051
+        },
+        {
+          "name": "_glDrawBuffers",
+          "line": 7602
+        },
+        {
+          "name": "_glBindBuffer",
+          "line": 9635
+        },
+        {
+          "name": "_glBindBuffer",
+          "line": 9636
+        },
+        {
+          "name": "_glDisableVertexAttribArray",
+          "line": 9642
+        },
+        {
+          "name": "_glDisableVertexAttribArray",
+          "line": 9643
+        },
+        {
+          "name": "_glBindSampler",
+          "line": 10438
+        },
+        {
+          "name": "_glBindSampler",
+          "line": 11152
+        },
+        {
+          "name": "_glObjectLabel",
+          "line": 11403
+        },
+        {
+          "name": "_glGenBuffers",
+          "line": 11425
+        },
+        {
+          "name": "_glBindBuffer",
+          "line": 11426
+        },
+        {
+          "name": "_glTexBuffer",
+          "line": 11427
+        },
+        {
+          "name": "_glBindBuffer",
+          "line": 11430
+        },
+        {
+          "name": "_glTexBuffer",
+          "line": 11432
+        },
+        {
+          "name": "_glTexStorage1D",
+          "line": 11554
+        },
+        {
+          "name": "_glTexStorage2D",
+          "line": 11560
+        },
+        {
+          "name": "_glTexStorage3D",
+          "line": 11565
+        },
+        {
+          "name": "_glGenerateMipmap",
+          "line": 11659
+        },
+        {
+          "name": "_glClearTexImage",
+          "line": 11810
+        },
+        {
+          "name": "_glClearBufferData",
+          "line": 11820
+        },
+        {
+          "name": "_glTexSubImage3D",
+          "line": 11872
+        },
+        {
+          "name": "_glCompressedTexSubImage3D",
+          "line": 11875
+        },
+        {
+          "name": "_glCompressedTexSubImage1D",
+          "line": 11891
+        },
+        {
+          "name": "_glTexSubImage3D",
+          "line": 11902
+        },
+        {
+          "name": "_glCompressedTexSubImage3D",
+          "line": 11905
+        },
+        {
+          "name": "_glBufferSubData",
+          "line": 11918
+        },
+        {
+          "name": "_glCompressedTexSubImage2D",
+          "line": 11936
+        },
+        {
+          "name": "_glCompressedTexImage1D",
+          "line": 12057
+        },
+        {
+          "name": "_glTexImage3D",
+          "line": 12067
+        },
+        {
+          "name": "_glCompressedTexImage3D",
+          "line": 12071
+        },
+        {
+          "name": "_glTexImage3D",
+          "line": 12087
+        },
+        {
+          "name": "_glCompressedTexImage3D",
+          "line": 12091
+        },
+        {
+          "name": "_glBufferData",
+          "line": 12105
+        },
+        {
+          "name": "_glCompressedTexImage2D",
+          "line": 12120
+        },
+        {
+          "name": "_glGenerateTextureMipmap",
+          "line": 12151
+        },
+        {
+          "name": "_glGenerateMipmap",
+          "line": 12160
+        },
+        {
+          "name": "_glBindBuffer",
+          "line": 12408
+        },
+        {
+          "name": "_glGetCompressedTexImage",
+          "line": 13035
+        },
+        {
+          "name": "_glGetBufferSubData",
+          "line": 13043
+        },
+        {
+          "name": "_glGetCompressedTexImage",
+          "line": 13077
+        },
+        {
+          "name": "_glGetCompressedTexImage",
+          "line": 13097
+        },
+        {
+          "name": "_glPointParameterfv",
+          "line": 13125
+        },
+        {
+          "name": "_glPointParameterfv",
+          "line": 13141
+        },
+        {
+          "name": "_glPointParameterfv",
+          "line": 13146
+        },
+        {
+          "name": "_glBindFramebuffer",
+          "line": 13181
+        },
+        {
+          "name": "_glActiveStencilFaceEXT",
+          "line": 13242
+        },
+        {
+          "name": "_glActiveStencilFaceEXT",
+          "line": 13259
+        },
+        {
+          "name": "_glScissorArrayv",
+          "line": 13342
+        }
+      ],
+      "active_compiled_paths_proven": false,
+      "preprocessor_branches_selected": false
+    },
+    {
+      "file": "glxGraphicsStateGuardian.cxx",
+      "sha256": "8038c1763e9a577e3f313a9a2d2d3ad5ae39438bd027ae0ba931ac81cefe701c",
+      "nbytes": 22126,
+      "literal_lookups": [
+        {
+          "name": "glXSwapIntervalSGI",
+          "line": 544
+        },
+        {
+          "name": "glXChooseFBConfig",
+          "line": 564
+        },
+        {
+          "name": "glXCreateNewContext",
+          "line": 566
+        },
+        {
+          "name": "glXGetVisualFromFBConfig",
+          "line": 568
+        },
+        {
+          "name": "glXGetFBConfigAttrib",
+          "line": 570
+        },
+        {
+          "name": "glXCreatePixmap",
+          "line": 572
+        },
+        {
+          "name": "glXChooseFBConfigSGIX",
+          "line": 590
+        },
+        {
+          "name": "glXCreateContextWithConfigSGIX",
+          "line": 592
+        },
+        {
+          "name": "glXGetVisualFromFBConfigSGIX",
+          "line": 594
+        },
+        {
+          "name": "glXGetFBConfigAttribSGIX",
+          "line": 596
+        },
+        {
+          "name": "glXCreateGLXPixmapWithConfigSGIX",
+          "line": 598
+        },
+        {
+          "name": "glXCreatePbuffer",
+          "line": 617
+        },
+        {
+          "name": "glXDestroyPbuffer",
+          "line": 620
+        },
+        {
+          "name": "glXCreateGLXPbufferSGIX",
+          "line": 637
+        },
+        {
+          "name": "glXDestroyGLXPbufferSGIX",
+          "line": 639
+        },
+        {
+          "name": "glXCreateContextAttribsARB",
+          "line": 650
+        }
+      ],
+      "computed_lookups": [
+        {
+          "callee": "get_system_func",
+          "line": 513
+        },
+        {
+          "callee": "do_get_extension_func",
+          "line": 532
+        }
+      ],
+      "direct_calls": [
+        {
+          "name": "glXGetConfig",
+          "line": 75
+        },
+        {
+          "name": "glXGetConfig",
+          "line": 76
+        },
+        {
+          "name": "glXGetConfig",
+          "line": 77
+        },
+        {
+          "name": "glXGetConfig",
+          "line": 78
+        },
+        {
+          "name": "glXGetConfig",
+          "line": 79
+        },
+        {
+          "name": "glXGetConfig",
+          "line": 80
+        },
+        {
+          "name": "glXGetConfig",
+          "line": 81
+        },
+        {
+          "name": "glXGetConfig",
+          "line": 82
+        },
+        {
+          "name": "glXGetConfig",
+          "line": 83
+        },
+        {
+          "name": "glXGetConfig",
+          "line": 84
+        },
+        {
+          "name": "glXGetConfig",
+          "line": 85
+        },
+        {
+          "name": "glXGetConfig",
+          "line": 86
+        },
+        {
+          "name": "glXGetConfig",
+          "line": 87
+        },
+        {
+          "name": "glXGetConfig",
+          "line": 88
+        },
+        {
+          "name": "glXIsDirect",
+          "line": 254
+        },
+        {
+          "name": "glXIsDirect",
+          "line": 410
+        },
+        {
+          "name": "glXQueryVersion",
+          "line": 467
+        },
+        {
+          "name": "glXQueryExtensionsString",
+          "line": 487
+        },
+        {
+          "name": "glXGetClientString",
+          "line": 685
+        },
+        {
+          "name": "glXQueryServerString",
+          "line": 702
+        }
+      ],
+      "member_calls": [
+        {
+          "name": "_glXGetFBConfigAttrib",
+          "line": 136
+        },
+        {
+          "name": "_glXGetFBConfigAttrib",
+          "line": 137
+        },
+        {
+          "name": "_glXGetFBConfigAttrib",
+          "line": 138
+        },
+        {
+          "name": "_glXGetFBConfigAttrib",
+          "line": 139
+        },
+        {
+          "name": "_glXGetFBConfigAttrib",
+          "line": 140
+        },
+        {
+          "name": "_glXGetFBConfigAttrib",
+          "line": 141
+        },
+        {
+          "name": "_glXGetFBConfigAttrib",
+          "line": 142
+        },
+        {
+          "name": "_glXGetFBConfigAttrib",
+          "line": 143
+        },
+        {
+          "name": "_glXGetFBConfigAttrib",
+          "line": 144
+        },
+        {
+          "name": "_glXGetFBConfigAttrib",
+          "line": 145
+        },
+        {
+          "name": "_glXGetFBConfigAttrib",
+          "line": 146
+        },
+        {
+          "name": "_glXGetFBConfigAttrib",
+          "line": 147
+        },
+        {
+          "name": "_glXGetFBConfigAttrib",
+          "line": 148
+        },
+        {
+          "name": "_glXGetFBConfigAttrib",
+          "line": 149
+        },
+        {
+          "name": "_glXGetFBConfigAttrib",
+          "line": 150
+        },
+        {
+          "name": "_glXGetFBConfigAttrib",
+          "line": 151
+        },
+        {
+          "name": "_glXGetFBConfigAttrib",
+          "line": 152
+        },
+        {
+          "name": "_glXChooseFBConfig",
+          "line": 288
+        },
+        {
+          "name": "_glXCreateContextAttribs",
+          "line": 355
+        },
+        {
+          "name": "_glXCreateNewContext",
+          "line": 359
+        },
+        {
+          "name": "_glXGetVisualFromFBConfig",
+          "line": 370
+        },
+        {
+          "name": "_glXGetProcAddress",
+          "line": 526
+        },
+        {
+          "name": "_glXSwapIntervalSGI",
+          "line": 555
+        }
+      ],
+      "active_compiled_paths_proven": false,
+      "preprocessor_branches_selected": false
+    },
+    {
+      "file": "posixGraphicsStateGuardian.cxx",
+      "sha256": "375ab78cc107c032058b3d42abe2554b822b6fc6371ca0486ca0c0d4ac40bbc1",
+      "nbytes": 1803,
+      "literal_lookups": [],
+      "computed_lookups": [
+        {
+          "callee": "get_system_func",
+          "line": 34
+        }
+      ],
+      "direct_calls": [],
+      "member_calls": [],
+      "active_compiled_paths_proven": false,
+      "preprocessor_branches_selected": false
+    }
+  ],
+  "blockers": [
+    "SAFE_NAME_CAP_EXCEEDED",
+    "UNSUPPORTED_PREFIX_PROHIBITED_LOOKUPS",
+    "COMPUTED_LOOKUP_REQUIRES_BINDING"
+  ],
+  "name_capacity_satisfied": false,
+  "all_selected_lookups_routable": false,
+  "preprocessor_branches_selected": true,
+  "runtime_paths_observed": false,
+  "runtime_binding_qualified": false,
+  "native_admitted": false,
+  "kind": "ACTUAL_PINNED_COMPILER_PREPROCESSING_DATA_ONLY",
+  "candidate_sha256": "aa7e14e71f98b083faa60536ecf6b0a05e3996b4771d38e4a2ccfd43c0903088",
+  "source_manifest_sha256": "0725f7135392fb7ee26d2262936c7895d91016487b518a65eeeb658fe4bbd913",
+  "compiler_commands": [
+    {
+      "command": [
+        "/usr/bin/g++",
+        "-std=gnu++11",
+        "-ftemplate-depth-70",
+        "-fPIC",
+        "-I/workspace/big-model-closed-loop-benchmark/output/stage7-panda-source-dispatch-01/sysroot/usr/include",
+        "-I/workspace/big-model-closed-loop-benchmark/output/stage7-panda-adapter-sdk-01/build-final/sdk/tmp",
+        "-I/workspace/big-model-closed-loop-benchmark/output/stage7-panda-adapter-sdk-01/build-final/sdk/include",
+        "-Ipanda/src/glgsg",
+        "-Ipanda/src/glstuff",
+        "-fvisibility=hidden",
+        "-pthread",
+        "-fno-exceptions",
+        "-fno-strict-aliasing",
+        "-ffast-math",
+        "-fno-stack-protector",
+        "-fno-finite-math-only",
+        "-fno-unsafe-math-optimizations",
+        "-O2",
+        "-Wall",
+        "-Wno-unused-function",
+        "-Wno-reorder",
+        "-DBUILDING_PANDAGL",
+        "panda/src/glgsg/glgsg.cxx",
+        "-E"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.5563355830017827,
+      "limit_failure": null,
+      "stdout_nbytes": 5929716,
+      "stderr_nbytes": 624
+    },
+    {
+      "command": [
+        "/usr/bin/g++",
+        "-std=gnu++11",
+        "-ftemplate-depth-70",
+        "-fPIC",
+        "-I/workspace/big-model-closed-loop-benchmark/output/stage7-panda-source-dispatch-01/sysroot/usr/include",
+        "-I/workspace/big-model-closed-loop-benchmark/output/stage7-panda-adapter-sdk-01/build-final/sdk/tmp",
+        "-I/workspace/big-model-closed-loop-benchmark/output/stage7-panda-adapter-sdk-01/build-final/sdk/include",
+        "-DHAVE_GLX=",
+        "-Ipanda/src/glxdisplay",
+        "-fvisibility=hidden",
+        "-pthread",
+        "-fno-exceptions",
+        "-fno-strict-aliasing",
+        "-ffast-math",
+        "-fno-stack-protector",
+        "-fno-finite-math-only",
+        "-fno-unsafe-math-optimizations",
+        "-O2",
+        "-Wall",
+        "-Wno-unused-function",
+        "-Wno-reorder",
+        "-DBUILDING_PANDAGL",
+        "panda/src/glxdisplay/p3glxdisplay_composite1.cxx",
+        "-E"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.5077112340004533,
+      "limit_failure": null,
+      "stdout_nbytes": 5380086,
+      "stderr_nbytes": 1701
+    }
+  ],
+  "source_files": 7289,
+  "sysroot_records": 665,
+  "sdk_output_records": 2680,
+  "new_native_runs": 0,
+  "new_gl_calls": 0,
+  "stage7_complete": false
+}
