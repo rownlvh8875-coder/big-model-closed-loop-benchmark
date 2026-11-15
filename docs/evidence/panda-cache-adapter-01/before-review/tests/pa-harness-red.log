@@ -1,0 +1,59 @@
+FFFFFF
+======================================================================
+FAIL: test_actual_command_timeout_and_fast_output_overrun_reject (tests.test_panda_cache_adapter_cpu.CacheCpuHarnessTests.test_actual_command_timeout_and_fast_output_overrun_reject)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_cache_adapter_cpu.py", line 11, in setUp
+    def setUp(self):self.assertIsNotNone(cpu,'bounded CPU adapter evidence harness required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : bounded CPU adapter evidence harness required
+
+======================================================================
+FAIL: test_actual_normal_and_sanitized_scenarios_ignore_ambient_compiler_injection (tests.test_panda_cache_adapter_cpu.CacheCpuHarnessTests.test_actual_normal_and_sanitized_scenarios_ignore_ambient_compiler_injection)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_cache_adapter_cpu.py", line 11, in setUp
+    def setUp(self):self.assertIsNotNone(cpu,'bounded CPU adapter evidence harness required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : bounded CPU adapter evidence harness required
+
+======================================================================
+FAIL: test_cli_bad_candidate_returns_failure_without_native_claim (tests.test_panda_cache_adapter_cpu.CacheCpuHarnessTests.test_cli_bad_candidate_returns_failure_without_native_claim)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_cache_adapter_cpu.py", line 11, in setUp
+    def setUp(self):self.assertIsNotNone(cpu,'bounded CPU adapter evidence harness required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : bounded CPU adapter evidence harness required
+
+======================================================================
+FAIL: test_existing_evidence_is_preserved (tests.test_panda_cache_adapter_cpu.CacheCpuHarnessTests.test_existing_evidence_is_preserved)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_cache_adapter_cpu.py", line 11, in setUp
+    def setUp(self):self.assertIsNotNone(cpu,'bounded CPU adapter evidence harness required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : bounded CPU adapter evidence harness required
+
+======================================================================
+FAIL: test_modified_candidate_rejects_before_creating_output (tests.test_panda_cache_adapter_cpu.CacheCpuHarnessTests.test_modified_candidate_rejects_before_creating_output)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_cache_adapter_cpu.py", line 11, in setUp
+    def setUp(self):self.assertIsNotNone(cpu,'bounded CPU adapter evidence harness required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : bounded CPU adapter evidence harness required
+
+======================================================================
+FAIL: test_symlink_fifo_and_metacharacter_paths_reject (tests.test_panda_cache_adapter_cpu.CacheCpuHarnessTests.test_symlink_fifo_and_metacharacter_paths_reject)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_cache_adapter_cpu.py", line 11, in setUp
+    def setUp(self):self.assertIsNotNone(cpu,'bounded CPU adapter evidence harness required')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : bounded CPU adapter evidence harness required
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.001s
+
+FAILED (failures=6)

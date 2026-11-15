@@ -33,7 +33,7 @@ Preserve3329basefiles/299pins/10originals/main/Drafts102–110/8nativehistories.
 **Create:** scripts/panda_cache_adapter_cpu.py;tests/test_panda_cache_adapter_cpu.py;RESULT/LEDGER/CONTINUATION and indexed proof.
 **Interfaces:** compile_fixture(out:Path,sanitize:bool)->commands;run_cpu(out:Path,candidate:Path)->dict. Uses immutable candidate SHA/static checker as data, exact source hashes, normal+ASan/UBSan CPU scenarios; returns CPU-contract status with runtime/nativeFalse.
 
-- [ ] RED CLI candidate/source/path/overwrite/time/output/ambient flag and actual-case receipt tests. Expected: reject foreign/unsafe inputs before product execution, preserve existing output.
-- [ ] Implement fixed compiler/scenario commands and source/candidate/output pins, run all normal/sanitized scenarios; focusedPASS then whole unittest discover suite, actual preservation3329/299/10/oldrefs/histories.
+- [x] RED CLI candidate/source/path/overwrite/time/output/ambient flag and actual-case receipt tests. Expected: reject foreign/unsafe inputs before product execution, preserve existing output.
+- [x] Implement fixed compiler/scenario commands and source/candidate/output pins, run all normal/sanitized scenarios; focusedPASS then whole unittest discover suite, actual preservation3329/299/10/oldrefs/histories.
 - [ ] One fresh whole-branch review, rule on every finding/declined behavior; one Important/Critical TDDfixpass+fullsuite, no rereview/minorpolish; retain before/final proofs and copy/remove only own scratch; commit.
 - Final immutable-head operation: ownDraft against55ab312 branch, exactHEAD workflow411705464 push+pull_request each2jobs/attempt1/success/artifacts0, fresh preservation/body roundtrip and retained final receipt. No main/shared-base merge/push/Cloud publication.
