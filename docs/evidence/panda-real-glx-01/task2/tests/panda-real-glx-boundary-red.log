@@ -1,0 +1,52 @@
+test_missing_object_or_defaultoff_fields_cannot_validate (tests.test_panda_real_glx_runtime.RuntimeTests.test_missing_object_or_defaultoff_fields_cannot_validate) ... 
+  test_missing_object_or_defaultoff_fields_cannot_validate (tests.test_panda_real_glx_runtime.RuntimeTests.test_missing_object_or_defaultoff_fields_cannot_validate) (kind='objects') ... FAIL
+  test_missing_object_or_defaultoff_fields_cannot_validate (tests.test_panda_real_glx_runtime.RuntimeTests.test_missing_object_or_defaultoff_fields_cannot_validate) (kind='stats') ... FAIL
+  test_missing_object_or_defaultoff_fields_cannot_validate (tests.test_panda_real_glx_runtime.RuntimeTests.test_missing_object_or_defaultoff_fields_cannot_validate) (kind='bool') ... FAIL
+  test_missing_object_or_defaultoff_fields_cannot_validate (tests.test_panda_real_glx_runtime.RuntimeTests.test_missing_object_or_defaultoff_fields_cannot_validate) (kind='exe') ... FAIL
+test_server_snapshot_failure_still_reaps_and_preserves_logs (tests.test_panda_real_glx_runtime.RuntimeTests.test_server_snapshot_failure_still_reaps_and_preserves_logs) ... ERROR
+
+======================================================================
+ERROR: test_server_snapshot_failure_still_reaps_and_preserves_logs (tests.test_panda_real_glx_runtime.RuntimeTests.test_server_snapshot_failure_still_reaps_and_preserves_logs)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_real_glx_runtime.py", line 73, in test_server_snapshot_failure_still_reaps_and_preserves_logs
+    audit=Mock();audit.snapshot.side_effect=ValueError('CPU map failure');result=self.runtime.finish_server(server,audit);self.assertTrue(result['server']['reaped']);self.assertIn('CPU-finish-server',result['server']['stderr']['text']);self.assertIn('CPU map failure',result['errors'][0])
+                                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'scripts.panda_real_glx_runtime' has no attribute 'finish_server'
+
+======================================================================
+FAIL: test_missing_object_or_defaultoff_fields_cannot_validate (tests.test_panda_real_glx_runtime.RuntimeTests.test_missing_object_or_defaultoff_fields_cannot_validate) (kind='objects')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_real_glx_runtime.py", line 67, in test_missing_object_or_defaultoff_fields_cannot_validate
+    with self.subTest(kind=kind),self.assertRaises(ValueError):self.runtime.validate_window(self.p,q)
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_missing_object_or_defaultoff_fields_cannot_validate (tests.test_panda_real_glx_runtime.RuntimeTests.test_missing_object_or_defaultoff_fields_cannot_validate) (kind='stats')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_real_glx_runtime.py", line 67, in test_missing_object_or_defaultoff_fields_cannot_validate
+    with self.subTest(kind=kind),self.assertRaises(ValueError):self.runtime.validate_window(self.p,q)
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_missing_object_or_defaultoff_fields_cannot_validate (tests.test_panda_real_glx_runtime.RuntimeTests.test_missing_object_or_defaultoff_fields_cannot_validate) (kind='bool')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_real_glx_runtime.py", line 67, in test_missing_object_or_defaultoff_fields_cannot_validate
+    with self.subTest(kind=kind),self.assertRaises(ValueError):self.runtime.validate_window(self.p,q)
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_missing_object_or_defaultoff_fields_cannot_validate (tests.test_panda_real_glx_runtime.RuntimeTests.test_missing_object_or_defaultoff_fields_cannot_validate) (kind='exe')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_real_glx_runtime.py", line 67, in test_missing_object_or_defaultoff_fields_cannot_validate
+    with self.subTest(kind=kind),self.assertRaises(ValueError):self.runtime.validate_window(self.p,q)
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.291s
+
+FAILED (failures=4, errors=1)

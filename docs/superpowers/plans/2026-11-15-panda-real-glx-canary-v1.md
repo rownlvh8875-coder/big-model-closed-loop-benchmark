@@ -20,14 +20,14 @@ Base01ac0ee/6844files/299pins/10originals/main/Drafts102–119/native8/image3/ma
 ### Task1: Frame/object contract and fixed image profile
 Create scripts/panda_real_glx_frames.py,objects.py,profile.py (full prefix each);tests/test_panda_real_glx_objects.py;tests/fixtures/panda_real_glx_cpu.py;docs/evidence/panda-real-glx-01/{profile.json,libGL.so.data,preflight.json}.
 Interfaces: challenges(nonce,index)->RGB; validate_frame(frame,nonce,index); Renderer(core).setup/render/close; make_profile(SDKdata,GLdata,fixture=False).
-- [ ] RED stale/foreign/channels/count/hash/size/sequence frames, actual object API requestedpipe/config/rendercounts/cleanup/failure; DATA-only SDK/libGL code/slot profile.
-- [ ] Implement minimal contract/profile and fake CPU backend; focused GREEN; full suite/capacity evidence; commit.
+- [x] RED stale/foreign/channels/count/hash/size/sequence frames, actual object API requestedpipe/config/rendercounts/cleanup/failure; DATA-only SDK/libGL code/slot profile.
+- [x] Implement minimal contract/profile and fake CPU backend; focused GREEN; full suite/capacity evidence; commit.
 
 ### Task2: Owned process/server/driver and code observations
 Create scripts/panda_real_glx_{policy,runtime,child}.py;tests/test_panda_real_glx_runtime.py;newworkflow scaffold consumed by policy.
 Interfaces: runtime.run_window(library,profile,fixture=False)->owned observations; private phases/2frames; new closed request/source/pins/budgets.
-- [ ] RED real CPU child protocol/code/nonce/stale frames/logretention/localactual rejection; streamed image identity/changed files/generatedexec limits; owned sparse server readiness/cleanup without real Xvfb.
-- [ ] Implement separate new runtime/policy; actual branch only registeredimage; Xvfbownedonce/image maps/SDK+readtargetcode/parentchallenges/cleanup; focused/full GREEN/preservation; commit.
+- [x] RED real CPU child protocol/code/nonce/stale frames/logretention/localactual rejection; streamed image identity/changed files/generatedexec limits; owned sparse server readiness/cleanup without real Xvfb.
+- [x] Implement separate new runtime/policy; actual branch only registeredimage; Xvfbownedonce/image maps/SDK+readtargetcode/parentchallenges/cleanup; focused/full GREEN/preservation; commit.
 
 ### Task3: Hosted authority, one actual attempt and closeout
 Create scripts/run_panda_real_glx_canary.py,accept_panda_real_glx_canary.py,panda_real_glx_carrier.py;.github/workflows/panda-real-glx-canary-v1.yml;tests/test_panda_real_glx_flow.py;RESULT/LEDGER/CONTINUATION docs.

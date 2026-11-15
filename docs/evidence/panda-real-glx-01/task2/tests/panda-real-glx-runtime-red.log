@@ -1,0 +1,21 @@
+setUpClass (tests.test_panda_real_glx_runtime.RuntimeTests) ... ERROR
+
+======================================================================
+ERROR: setUpClass (tests.test_panda_real_glx_runtime.RuntimeTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_real_glx_runtime.py", line 6, in setUpClass
+    cls.runtime=importlib.import_module('scripts.panda_real_glx_runtime');cls.profile=importlib.import_module('scripts.panda_real_glx_profile');cls.policy=importlib.import_module('scripts.panda_real_glx_policy');cls.tmp=tempfile.TemporaryDirectory();cls.root=Path(cls.tmp.name);src=cls.root/'cpu.c';src.write_text('''#include <stdint.h>
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.cloud-tools/python/cpython-3.11.17-linux-x86_64-gnu/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1140, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'scripts.panda_real_glx_runtime'
+
+----------------------------------------------------------------------
+Ran 0 tests in 0.002s
+
+FAILED (errors=1)
