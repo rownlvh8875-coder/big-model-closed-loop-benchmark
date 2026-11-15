@@ -1,0 +1,14 @@
+F
+======================================================================
+FAIL: test_actual_normal_and_sanitized_scenarios_ignore_ambient_compiler_injection (tests.test_panda_cache_adapter_cpu.CacheCpuHarnessTests.test_actual_normal_and_sanitized_scenarios_ignore_ambient_compiler_injection)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_cache_adapter_cpu.py", line 15, in test_actual_normal_and_sanitized_scenarios_ignore_ambient_compiler_injection
+    self.assertEqual(r['status'],'CPU_CONTRACT_VERIFIED_NATIVE_BLOCKED');self.assertFalse(r['native_admitted']);self.assertFalse(r.get('candidate_adapter_link_qualified',True));self.assertIs(r['candidate_static'].get('source_activity_extension_present'),False)
+                                                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: True is not false
+
+----------------------------------------------------------------------
+Ran 1 test in 3.362s
+
+FAILED (failures=1)

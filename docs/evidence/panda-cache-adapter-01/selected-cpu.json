@@ -1,0 +1,69 @@
+{
+  "schema": "panda-cache-adapter-selected-cpu-v1",
+  "checked_at_kst": "2026-11-15T11:34:00.929504+09:00",
+  "implementation_commit": "67e371fbdbca98922b2b1d92294fe35403f1a49d",
+  "source_sha256": {
+    "native/panda_source_dispatch.h": "f2e869a8c7a2719d6a7eb7fbc1a350873793265fb1c1a7a32aa0e43e00eca7e9",
+    "native/panda_source_dispatch.cxx": "50bb0428619654444f050d2c9f88b4a81d6d3411748050335d2c4ca59be7a8d7",
+    "native/readback_command_state.h": "4c64a2059cd722fa9a35d6e4ed81ac80bd4c89bdd8bac8ff73b00213b81db2b8",
+    "native/readback_command_state.c": "49e986eca295519f180e6b96477ab1752f6bd0996bdf9f9f535bcfc5c17e3bc2",
+    "tests/fixtures/panda_readback_caller.S": "7d46b3bb4f50c448e833fab746bcdd7b1e229f9cd15eb30817a2be76bdbf746d",
+    "native/readback_return_core.h": "1a78841638968a7c9d08fe845b1d0b3b7976ab0808edcc22ff6cfd631e0ee58f",
+    "scripts/build_panda_source_dispatch.py": "dfcf9dc81bfcacd604210854f750c357889dcfd0031fb1d07ad9ba47731f0a3c",
+    "scripts/panda_source_dispatch.py": "e04876adbac9c102d2eed4f4f73ffbb53690f6421ab28c76da290c1ca56b2f1c",
+    "scripts/panda_dispatch_coverage.py": "e3806fcb46852fc417c370e66b7afc47a6f73c0986aaa0376fc82a3f75f4d9ba",
+    "scripts/readback_elf_imports.py": "63c8d06ed9ba8fa7a6ae69253e77271802457ef77aaf7b0087ae79f11e9ece96",
+    "scripts/readback_process_mapping.py": "de7992f3251fbd9300f8b5054a9d949bb95cc57e1d1a10d8b1e9420815d5e4f7",
+    "scripts/panda_readback_abi.py": "a0129175e1bac26629a0d2832b3f25e3e84126e6a70f3eee753af1bc213241b3",
+    "native/panda_source_activity.h": "dc9a35ebacf684e022b28ef5a7b5bf565a8e57d309708d97b96fab614590a962",
+    "native/panda_source_activity.cxx": "fb6a4445386cfc950e475d7dc7b93f208f1abb58e6febf70ac39451dbc5ff9f6",
+    "native/panda_cache_adapter.h": "ad598c1edecdcaaf2b0663091d9560b2e64f9d739a902c5ca5cec2c2eae8e3bc",
+    "native/panda_cache_adapter.cxx": "a36415a418cba4f3dedbbe45a9f7ce8c15a0fd02411ff21f715c26d179bf9db6",
+    "tests/fixtures/panda_cache_adapter_fixture.cxx": "f04d1c1c2d352a8c65b25e1a2dcbabb90ca2cc21ef748e96da70b2ebbc177412",
+    "scripts/panda_cache_adapter_cpu.py": "72fbac10ae4e117540523ebc7776731c1b2af321ac7e4b2c9548d0562d1641d4"
+  },
+  "cpu_receipt": "docs/evidence/panda-cache-adapter-01/after-fix/cpu/receipt.json",
+  "source_activity_extension_required": true,
+  "candidate_activity_present": false,
+  "candidate_adapter_link_qualified": false,
+  "candidate_sha256": "228b2d88e91fa9c5ded10cfe8e93f9b9519de881a37765a0e8681af6e36cf96b",
+  "focused": {
+    "tests": 21,
+    "passed": 21,
+    "seconds": 9.006
+  },
+  "full": {
+    "tests": 1485,
+    "passed": 1478,
+    "skipped": 7,
+    "seconds": 112.947
+  },
+  "cpu_cases_per_build": 50,
+  "cpu_executions": 100,
+  "compiler_project_dependencies": [
+    "native/panda_cache_adapter.cxx",
+    "native/panda_cache_adapter.h",
+    "native/panda_source_activity.cxx",
+    "native/panda_source_activity.h",
+    "native/panda_source_dispatch.cxx",
+    "native/panda_source_dispatch.h",
+    "native/readback_command_state.c",
+    "native/readback_command_state.h",
+    "native/readback_return_core.h",
+    "tests/fixtures/panda_cache_adapter_fixture.cxx"
+  ],
+  "review": {
+    "head": "27d073a2724286c17541b459aa43827e550cca3f",
+    "critical": 0,
+    "important": 3,
+    "fixed": 3,
+    "minor": 0,
+    "fix_passes": 1,
+    "rereviews": 0,
+    "declined_rulings": 8
+  },
+  "native_admitted": false,
+  "runtime_admission_ready": false,
+  "stage7_complete": false,
+  "new_native_runs": 0
+}

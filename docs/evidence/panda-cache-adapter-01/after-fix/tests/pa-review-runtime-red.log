@@ -1,0 +1,86 @@
+....F..FFFF.
+======================================================================
+FAIL: test_fail_closed_shapes_contexts_threads_limits_identity_and_finish (tests.test_panda_cache_adapter.PandaCacheAdapterTests.test_fail_closed_shapes_contexts_threads_limits_identity_and_finish) (mode='pending_known')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_cache_adapter.py", line 50, in test_fail_closed_shapes_contexts_threads_limits_identity_and_finish
+    with self.subTest(mode=mode):self.assertNotEqual(s['finish'],0);self.assertNotEqual(s['adapter_error'],0)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0 == 0
+
+======================================================================
+FAIL: test_originals_errno_and_read_tail_survive_every_rejection (tests.test_panda_cache_adapter.PandaCacheAdapterTests.test_originals_errno_and_read_tail_survive_every_rejection) (mode='pending_known')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_cache_adapter.py", line 54, in test_originals_errno_and_read_tail_survive_every_rejection
+    with self.subTest(mode=mode):self.assertEqual((s['args_ok'],s['errno_ok'],s['reads'],s['regs_ok']),(1,1,1,1));self.assertFalse(s['native_admitted'])
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (0, 1, 1, 1) != (1, 1, 1, 1)
+
+First differing element 0:
+0
+1
+
+- (0, 1, 1, 1)
+?  ---
+
++ (1, 1, 1, 1)
+?        +++
+
+
+======================================================================
+FAIL: test_originals_errno_and_read_tail_survive_every_rejection (tests.test_panda_cache_adapter.PandaCacheAdapterTests.test_originals_errno_and_read_tail_survive_every_rejection) (mode='pending_unknown')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_cache_adapter.py", line 54, in test_originals_errno_and_read_tail_survive_every_rejection
+    with self.subTest(mode=mode):self.assertEqual((s['args_ok'],s['errno_ok'],s['reads'],s['regs_ok']),(1,1,1,1));self.assertFalse(s['native_admitted'])
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (0, 1, 1, 1) != (1, 1, 1, 1)
+
+First differing element 0:
+0
+1
+
+- (0, 1, 1, 1)
+?  ---
+
++ (1, 1, 1, 1)
+?        +++
+
+
+======================================================================
+FAIL: test_pending_supported_and_unknown_lookups_reject_observe_and_snapshot (tests.test_panda_cache_adapter.PandaCacheAdapterTests.test_pending_supported_and_unknown_lookups_reject_observe_and_snapshot) (mode='pending_known')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_cache_adapter.py", line 62, in test_pending_supported_and_unknown_lookups_reject_observe_and_snapshot
+    with self.subTest(mode=mode):self.assertEqual((s['args_ok'],s['stale_output']),(1,0));self.assertNotEqual(s['finish'],0)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (0, 255) != (1, 0)
+
+First differing element 0:
+0
+1
+
+- (0, 255)
++ (1, 0)
+
+======================================================================
+FAIL: test_pending_supported_and_unknown_lookups_reject_observe_and_snapshot (tests.test_panda_cache_adapter.PandaCacheAdapterTests.test_pending_supported_and_unknown_lookups_reject_observe_and_snapshot) (mode='pending_unknown')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_cache_adapter.py", line 62, in test_pending_supported_and_unknown_lookups_reject_observe_and_snapshot
+    with self.subTest(mode=mode):self.assertEqual((s['args_ok'],s['stale_output']),(1,0));self.assertNotEqual(s['finish'],0)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (0, 255) != (1, 0)
+
+First differing element 0:
+0
+1
+
+- (0, 255)
++ (1, 0)
+
+----------------------------------------------------------------------
+Ran 10 tests in 2.225s
+
+FAILED (failures=5)
