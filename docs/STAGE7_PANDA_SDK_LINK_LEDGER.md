@@ -1,0 +1,9 @@
+# SDK static link repair ledger
+
+Basecd919590a18d77d07018518a277a9ffa7ab05db1/5950files. Cloud spec1 connected,no AGENTS. Prior inline/noquestions/ownDraft scope persists. Plan/spec authority;oldSDK3e9/image0276/APIhistories immutable. Nativeallowance0/strict0of4FAIL/Stage7INCOMPLETE.
+Ruling: Repair static dependency/symbol compatibility before mapped execution — actual SDK/image ABI prerequisite can be checked without forbidden loader calls — this phase does not qualify actual mapping/early install/native lifetimes/driver/sink or install new candidate.
+Ruling: Use declared inventory provider search rather than claim glibc loader emulation — real global namespaces/cache/preloads/interposition are unavailable — a static PASS only proves availability in selected bytes; actual dispatch can still differ.
+Ruling: Preserve current authenticated image and produce replacement SDK handoff —39reconunversionedPandaC++ imports use new stringABI while installed providers export old equivalents — costs one fresh controlled ABI0 SDK build and later new-image installation/authentication; no old output replacement.
+Preflight1→2: PT-only symbol/version/needed metadata consumes digest-bound final image payloads; missing/unsupported data fails closed,no section/readelf-name authority.
+Preflight2→3: baselineactual misses motivate only fixedABI0 flag; same provider bytes must check new output,build input closure/preprocessing must rebind. Staticfix cannot promote native readiness or old image membership.
+Recon:4actual Panda provider DATA files copied from authenticated image with exact inventory hash checks;readelfDATA inspection showed39unversionedmissingPanda imports,all__cxx11/B5cxx11,while oldABI exports exist. Reconheuristic also listed22stdlibsymbols outside that limitedprovider set; do not report61asactualPanda misses. Production auditor must independently count actualrelocation/version/provider closure;no SDK/library loaded.
