@@ -1,0 +1,1911 @@
+
+using std::max;
+using std::min;
+
+TypeHandle GLGraphicsBuffer::_type_handle;
+
+
+
+
+GLGraphicsBuffer::
+GLGraphicsBuffer(GraphicsEngine *engine, GraphicsPipe *pipe,
+                    const std::string &name,
+                    const FrameBufferProperties &fb_prop,
+                    const WindowProperties &win_prop,
+                    int flags,
+                    GraphicsStateGuardian *gsg,
+                    GraphicsOutput *host) :
+  GraphicsBuffer(engine, pipe, name, fb_prop, win_prop, flags, gsg, host),
+  _bind_texture_pcollector(_draw_window_pcollector, "Bind textures"),
+  _generate_mipmap_pcollector(_draw_window_pcollector, "Generate mipmaps"),
+  _resolve_multisample_pcollector(_draw_window_pcollector, "Resolve multisamples"),
+  _requested_multisamples(0),
+  _requested_coverage_samples(0),
+  _rb_context(nullptr)
+{
+
+  _draw_buffer_type = RenderBuffer::T_front;
+  _screenshot_buffer_type = RenderBuffer::T_front;
+
+
+  _fbo_multisample = 0;
+  _initial_clear = true;
+  _needs_rebuild = true;
+
+  _rb_size_x = 0;
+  _rb_size_y = 0;
+  _rb_size_z = 0;
+  for (int i = 0; i < RTP_COUNT; ++i) {
+    _rb[i] = 0;
+    _rbm[i] = 0;
+  }
+  _rb_data_size_bytes = 0;
+
+  _shared_depth_buffer = 0;
+  _bound_tex_page = -1;
+}
+
+
+
+
+GLGraphicsBuffer::
+~GLGraphicsBuffer() {
+
+  this->unshare_depth_buffer();
+
+
+  {
+    GLGraphicsBuffer *graphics_buffer;
+    std::list <GLGraphicsBuffer *>::iterator graphics_buffer_iterator;
+
+    graphics_buffer_iterator = _shared_depth_buffer_list.begin();
+    while (graphics_buffer_iterator != _shared_depth_buffer_list.end()) {
+      graphics_buffer = (*graphics_buffer_iterator);
+      if (graphics_buffer) {
+
+        graphics_buffer->unshare_depth_buffer();
+      }
+      graphics_buffer_iterator = _shared_depth_buffer_list.begin();
+    }
+  }
+}
+void GLGraphicsBuffer::
+clear(Thread *current_thread) {
+  if (!is_any_clear_active()) {
+    return;
+  }
+
+  GLGraphicsStateGuardian *glgsg = (GLGraphicsStateGuardian *)_gsg.p();
+
+  if (glgsg->_glClearBufferfv == nullptr) {
+
+
+    GraphicsOutput::clear(current_thread);
+    return;
+  }
+
+  if (display_cat.is_spam()) {
+    display_cat.spam()
+      << "clear(): " << get_type() << " "
+      << get_name() << " " << (void *)this << "\n";
+  }
+
+
+  glDisable(0x0C11);
+  glgsg->_scissor_enabled = false;
+  glgsg->_scissor_array.clear();
+  glgsg->_scissor_attrib_active = false;
+
+  if (glgsg_cat.is_spam()) {
+    glgsg_cat.spam()
+      << "glDisable(GL_SCISSOR_TEST)\n";
+  }
+
+
+  int draw_buffer_type = _draw_buffer_type & _fb_properties.get_buffer_mask();
+  draw_buffer_type |= _fb_properties.get_aux_mask();
+  glgsg->_color_write_mask = ColorWriteAttrib::C_all;
+  glgsg->set_draw_buffer(draw_buffer_type);
+
+  int index = 0;
+  if (_fb_properties.get_color_bits() > 0) {
+    if (_fb_properties.is_stereo()) {
+
+      if (get_clear_active(RTP_color)) {
+        LColorf v = lcast_to((float *)0, get_clear_value(RTP_color));
+        glgsg->_glClearBufferfv(0x1800, index, v.get_data());
+        glgsg->_glClearBufferfv(0x1800, index + 1, v.get_data());
+      }
+      index += 2;
+    } else {
+      if (get_clear_active(RTP_color)) {
+        LColorf v = lcast_to((float *)0, get_clear_value(RTP_color));
+        glgsg->_glClearBufferfv(0x1800, index, v.get_data());
+      }
+      ++index;
+    }
+  }
+  for (int i = 0; i < _fb_properties.get_aux_rgba(); ++i) {
+    int layerid = RTP_aux_rgba_0 + i;
+    if (get_clear_active(layerid)) {
+      LColorf v = lcast_to((float *)0, get_clear_value(layerid));
+      glgsg->_glClearBufferfv(0x1800, index, v.get_data());
+    }
+    ++index;
+  }
+  for (int i = 0; i < _fb_properties.get_aux_hrgba(); ++i) {
+    int layerid = RTP_aux_hrgba_0 + i;
+    if (get_clear_active(layerid)) {
+      LColorf v = lcast_to((float *)0, get_clear_value(layerid));
+      glgsg->_glClearBufferfv(0x1800, index, v.get_data());
+    }
+    ++index;
+  }
+  for (int i = 0; i < _fb_properties.get_aux_float(); ++i) {
+    int layerid = RTP_aux_float_0 + i;
+    if (get_clear_active(layerid)) {
+      LColorf v = lcast_to((float *)0, get_clear_value(layerid));
+      glgsg->_glClearBufferfv(0x1800, index, v.get_data());
+    }
+    ++index;
+  }
+
+  if (get_clear_depth_active()) {
+    glDepthMask(1);
+    glgsg->_state_mask.clear_bit(DepthWriteAttrib::get_class_slot());
+
+    if (get_clear_stencil_active()) {
+      glStencilMask(~0);
+      glgsg->_glClearBufferfi(0x84F9, 0, get_clear_depth(), get_clear_stencil());
+    } else {
+      GLfloat depth = get_clear_depth();
+      glgsg->_glClearBufferfv(0x1801, 0, &depth);
+    }
+  } else if (get_clear_stencil_active()) {
+    GLint stencil = get_clear_stencil();
+    glgsg->_glClearBufferiv(0x1802, 0, &stencil);
+  }
+
+  report_my_errors(193, "panda/src/glstuff/glGraphicsBuffer_src.cxx");
+}
+bool GLGraphicsBuffer::
+begin_frame(FrameMode mode, Thread *current_thread) {
+  begin_frame_spam(mode);
+
+  check_host_valid();
+  _bound_tex_page = -1;
+
+  if (!_is_valid) {
+    if (glgsg_cat.is_debug()) {
+      glgsg_cat.debug()
+        << get_name() << " is not valid\n";
+    }
+    return false;
+  }
+
+  if (_host != nullptr) {
+    if (!_host->begin_frame(FM_parasite, current_thread)) {
+      if (glgsg_cat.is_debug()) {
+        glgsg_cat.debug()
+          << get_name() << "'s host is not ready\n";
+      }
+      return false;
+    }
+  } else {
+
+    _gsg->set_current_properties(&get_fb_properties());
+    if (!_gsg->begin_frame(current_thread)) {
+      return false;
+    }
+  }
+
+  GLGraphicsStateGuardian *glgsg = (GLGraphicsStateGuardian *)_gsg.p();
+  glgsg->push_group_marker(std::string("GL" "GraphicsBuffer ") + get_name());
+
+
+  if (mode == FM_render) {
+    clear_cube_map_selection();
+
+    {
+
+
+      CDReader cdata(_cycler);
+      if (cdata->_textures_seq != _last_textures_seq) {
+        _last_textures_seq = cdata->_textures_seq;
+        _needs_rebuild = true;
+      }
+    }
+    if (_creation_flags & GraphicsPipe::BF_size_track_host) {
+      if (_host != nullptr && _host->get_size() != _size) {
+
+        _needs_rebuild = true;
+      }
+    }
+
+    rebuild_bitplanes();
+
+    if (_needs_rebuild) {
+
+
+      glgsg->pop_group_marker();
+      return false;
+    }
+
+
+
+
+    if (gl_enable_memory_barriers && _fbo_multisample == 0) {
+      GLGraphicsStateGuardian *glgsg = (GLGraphicsStateGuardian *)_gsg.p();
+
+      TextureContexts::iterator it;
+      for (it = _texture_contexts.begin(); it != _texture_contexts.end(); ++it) {
+        GLTextureContext *gtc = *it;
+
+        if (gtc != nullptr && gtc->needs_barrier(0x00000400)) {
+          glgsg->issue_memory_barrier(0x00000400);
+
+          break;
+        }
+      }
+    }
+
+  } else if (mode == FM_refresh) {
+
+    rebuild_bitplanes();
+
+
+
+    if (_fbo_multisample != 0 && !_fbo.empty()) {
+      glgsg->bind_fbo(_fbo[0]);
+    }
+  }
+
+
+
+  if (get_fb_properties().get_srgb_color()) {
+    glEnable(0x8DB9);
+  }
+
+
+  _gsg->set_current_properties(&get_fb_properties());
+  report_my_errors(303, "panda/src/glstuff/glGraphicsBuffer_src.cxx");
+  return true;
+}
+
+
+
+
+
+bool GLGraphicsBuffer::
+check_fbo() {
+  GLGraphicsStateGuardian *glgsg = (GLGraphicsStateGuardian *)_gsg.p();
+
+  GLenum status = glgsg->_glCheckFramebufferStatus(0x8D40);
+  if (status != 0x8CD5) {
+    glgsg_cat.error() << "EXT_framebuffer_object reports non-framebuffer-completeness:\n";
+    switch(status) {
+    case 0x8CDD:
+      glgsg_cat.error() << "FRAMEBUFFER_UNSUPPORTED"; break;
+    case 0x8CD6:
+      glgsg_cat.error() << "FRAMEBUFFER_INCOMPLETE_ATTACHMENT"; break;
+    case 0x8CD7:
+      glgsg_cat.error() << "FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT"; break;
+    case 0x8CD9:
+      glgsg_cat.error() << "FRAMEBUFFER_INCOMPLETE_DIMENSIONS"; break;
+
+    case 0x8CDA:
+      glgsg_cat.error() << "FRAMEBUFFER_INCOMPLETE_FORMATS"; break;
+
+
+    case 0x8CDB:
+      glgsg_cat.error() << "FRAMEBUFFER_INCOMPLETE_DRAW_BUFFER"; break;
+    case 0x8CDC:
+      glgsg_cat.error() << "FRAMEBUFFER_INCOMPLETE_READ_BUFFER"; break;
+    case 0x8D56:
+      glgsg_cat.error() << "FRAMEBUFFER_INCOMPLETE_MULTISAMPLE"; break;
+    case 0x8DA8:
+      glgsg_cat.error() << "FRAMEBUFFER_INCOMPLETE_LAYER_TARGETS"; break;
+    case 0x8DA9:
+      glgsg_cat.error() << "FRAMEBUFFER_INCOMPLETE_LAYER_COUNT"; break;
+
+    default:
+      glgsg_cat.error() << "UNKNOWN PROBLEM " << (int)status; break;
+    }
+    glgsg_cat.error(false) << " for " << get_name() << "\n";
+
+    glgsg->bind_fbo(0);
+    report_my_errors(349, "panda/src/glstuff/glGraphicsBuffer_src.cxx");
+    return false;
+  }
+  report_my_errors(352, "panda/src/glstuff/glGraphicsBuffer_src.cxx");
+  return true;
+}
+
+
+
+
+
+
+void GLGraphicsBuffer::
+rebuild_bitplanes() {
+  check_host_valid();
+  if (_gsg == 0) {
+    return;
+  }
+
+  GLGraphicsStateGuardian *glgsg = (GLGraphicsStateGuardian *)_gsg.p();
+
+  if (!_needs_rebuild) {
+    if (_fbo_multisample != 0) {
+      glgsg->bind_fbo(_fbo_multisample);
+    } else if (_fbo.size() > 0) {
+      glgsg->bind_fbo(_fbo[0]);
+    } else {
+      glgsg->bind_fbo(0);
+    }
+    _rb_context->set_active(true);
+    return;
+  }
+
+  PStatGPUTimer timer(glgsg, _bind_texture_pcollector);
+
+
+  if (_creation_flags & GraphicsPipe::BF_size_track_host) {
+    if (_host != nullptr && _host->get_size() != _size) {
+      set_size_and_recalc(_host->get_x_size(),
+                          _host->get_y_size());
+    }
+  }
+
+  int bitplane_x = get_x_size();
+  int bitplane_y = get_y_size();
+  if (Texture::get_textures_power_2() != ATS_none) {
+    bitplane_x = Texture::up_to_power_2(bitplane_x);
+    bitplane_y = Texture::up_to_power_2(bitplane_y);
+  }
+  bool rb_resize = false;
+  if ((bitplane_x != _rb_size_x)||
+      (bitplane_y != _rb_size_y)) {
+    _rb_size_x = bitplane_x;
+    _rb_size_y = bitplane_y;
+    rb_resize = true;
+  }
+  _rb_size_z = 1;
+  _rb_data_size_bytes = 0;
+
+  size_t num_fbos = 1;
+
+
+  Texture *attach[RTP_COUNT];
+  memset(attach, 0, sizeof(Texture *) * RTP_COUNT);
+  _texture_contexts.clear();
+
+
+  {
+    CDReader cdata(_cycler);
+
+
+
+    for (size_t i = 0; i != cdata->_textures.size(); ++i) {
+      const RenderTexture &rt = cdata->_textures[i];
+      RenderTextureMode rtm_mode = rt._rtm_mode;
+      Texture *tex = rt._texture;
+
+      if (rtm_mode == RTM_bind_layered) {
+        _rb_size_z = max(_rb_size_z, tex->get_z_size());
+      }
+    }
+
+    for (size_t i = 0; i != cdata->_textures.size(); ++i) {
+      const RenderTexture &rt = cdata->_textures[i];
+      RenderTextureMode rtm_mode = rt._rtm_mode;
+      RenderTexturePlane plane = rt._plane;
+      Texture *tex = rt._texture;
+
+      if (rtm_mode == RTM_bind_layered && glgsg->_supports_geometry_shaders) {
+        if (tex->get_z_size() != _rb_size_z) {
+          glgsg_cat.warning()
+           << "All textures attached to layered FBO should have the same layer count!\n";
+        }
+
+
+        attach[plane] = tex;
+        continue;
+      }
+
+      if (rtm_mode != RTM_bind_or_copy) {
+        continue;
+      }
+
+
+      if ((tex->get_texture_type() != Texture::TT_2d_texture) &&
+          (tex->get_texture_type() != Texture::TT_3d_texture) &&
+          (tex->get_texture_type() != Texture::TT_2d_texture_array) &&
+          (tex->get_texture_type() != Texture::TT_cube_map)) {
+        ((CData *)cdata.p())->_textures[i]._rtm_mode = RTM_copy_texture;
+        continue;
+      }
+
+      if (_rb_size_z > 1 && tex->get_texture_type() == Texture::TT_2d_texture) {
+
+
+
+        ((CData *)cdata.p())->_textures[i]._rtm_mode = RTM_copy_texture;
+        continue;
+      }
+
+
+
+      if (attach[plane]) {
+        ((CData *)cdata.p())->_textures[i]._rtm_mode = RTM_copy_texture;
+        continue;
+      }
+
+      if (tex->get_z_size() > 1) {
+        num_fbos = max(num_fbos, (size_t)tex->get_z_size());
+      }
+
+
+      attach[plane] = tex;
+    }
+  }
+
+
+
+
+  _use_depth_stencil = false;
+  if (_gsg->get_supports_depth_stencil()) {
+    if (attach[RTP_depth_stencil]) {
+
+      _use_depth_stencil = true;
+
+    } else if (attach[RTP_depth]) {
+
+
+      _use_depth_stencil = false;
+
+    } else if (_fb_properties.get_stencil_bits() > 0) {
+
+      _use_depth_stencil = true;
+
+    } else if (_fb_properties.get_depth_bits() > 24 ||
+               _fb_properties.get_float_depth()) {
+
+
+      _use_depth_stencil = false;
+
+    } else if (_fb_properties.get_depth_bits() > 0) {
+
+
+      _use_depth_stencil = true;
+    }
+  } else if (attach[RTP_depth_stencil] != nullptr && attach[RTP_depth] == nullptr) {
+
+
+    std::swap(attach[RTP_depth], attach[RTP_depth_stencil]);
+  }
+
+
+
+  if (_use_depth_stencil) {
+    _fb_properties.set_stencil_bits(8);
+  } else {
+    _fb_properties.set_stencil_bits(0);
+  }
+
+
+
+
+  if (_use_depth_stencil && attach[RTP_depth] && attach[RTP_depth_stencil]) {
+    attach[RTP_depth] = nullptr;
+    glgsg_cat.warning() << "Attempt to bind both RTP_depth and RTP_depth_stencil bitplanes.\n";
+  }
+
+
+  _have_any_color = false;
+  bool have_any_depth = false;
+
+  if (num_fbos > _fbo.size()) {
+
+    size_t start = _fbo.size();
+    GLuint zero = 0;
+    _fbo.resize(num_fbos, zero);
+    glgsg->_glGenFramebuffers(num_fbos - start, &_fbo[start]);
+  }
+
+  for (int layer = 0; layer < (int)num_fbos; ++layer) {
+
+    if (_fbo[layer] == 0) {
+      report_my_errors(551, "panda/src/glstuff/glGraphicsBuffer_src.cxx");
+      return;
+    }
+    glgsg->bind_fbo(_fbo[layer]);
+
+    if (glgsg->_use_object_labels) {
+
+      if (num_fbos > 1) {
+        std::ostringstream strm;
+        strm << _name << '[' << layer << ']';
+        std::string name = strm.str();
+        glgsg->_glObjectLabel(0x8D40, _fbo[layer], name.size(), name.data());
+      } else {
+        glgsg->_glObjectLabel(0x8D40, _fbo[layer], _name.size(), _name.data());
+      }
+    }
+
+
+    if (_use_depth_stencil) {
+      bind_slot(layer, rb_resize, attach, RTP_depth_stencil, 0x8D00);
+      have_any_depth = true;
+    } else if (attach[RTP_depth] || _fb_properties.get_depth_bits() > 0) {
+      bind_slot(layer, rb_resize, attach, RTP_depth, 0x8D00);
+      have_any_depth = true;
+    }
+
+    int next = 0x8CE0;
+    if (attach[RTP_color] || _fb_properties.get_color_bits() > 0) {
+      bind_slot(layer, rb_resize, attach, RTP_color, next++);
+
+      if (_fb_properties.is_stereo()) {
+
+
+        if (attach[RTP_color] != nullptr) {
+          attach_tex(layer, 1, attach[RTP_color], next++);
+        } else {
+
+
+
+
+          bind_slot(layer, rb_resize, attach, RTP_stencil, next++);
+        }
+      }
+      _have_any_color = true;
+    }
+
+
+    for (int i=0; i<_fb_properties.get_aux_rgba(); i++) {
+      bind_slot(layer, rb_resize, attach, (RenderTexturePlane)(RTP_aux_rgba_0+i), next++);
+      _have_any_color = true;
+    }
+    for (int i=0; i<_fb_properties.get_aux_hrgba(); i++) {
+      bind_slot(layer, rb_resize, attach, (RenderTexturePlane)(RTP_aux_hrgba_0+i), next++);
+      _have_any_color = true;
+    }
+    for (int i=0; i<_fb_properties.get_aux_float(); i++) {
+      bind_slot(layer, rb_resize, attach, (RenderTexturePlane)(RTP_aux_float_0+i), next++);
+      _have_any_color = true;
+    }
+
+
+    if (_have_any_color || have_any_depth) {
+
+
+      if (_initial_clear) {
+        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+        glClear(0x00004000 | 0x00000100 | 0x00000400);
+      }
+
+    } else if (glgsg->_supports_empty_framebuffer) {
+
+
+      glgsg->_glFramebufferParameteri(0x8D40, 0x9310, _rb_size_x);
+      glgsg->_glFramebufferParameteri(0x8D40, 0x9311, _rb_size_y);
+
+    } else {
+
+      bind_slot(layer, rb_resize, attach, RTP_color, next++);
+    }
+  }
+
+
+
+
+  if (_requested_multisamples && _rb_size_z == 1) {
+    if (_fbo_multisample == 0) {
+      glgsg->_glGenFramebuffers(1, &_fbo_multisample);
+    }
+    glgsg->bind_fbo(_fbo_multisample);
+
+    if (_use_depth_stencil || attach[RTP_depth] || _fb_properties.get_depth_bits() > 0) {
+      bind_slot_multisample(rb_resize, attach, RTP_depth, 0x8D00);
+    }
+
+    int next = 0x8CE0;
+    if (attach[RTP_color] || _fb_properties.get_color_bits() > 0) {
+      bind_slot_multisample(rb_resize, attach, RTP_color, next++);
+      if (_fb_properties.is_stereo()) {
+
+
+      }
+    }
+
+    for (int i=0; i<_fb_properties.get_aux_rgba(); i++) {
+      bind_slot_multisample(rb_resize, attach, (RenderTexturePlane)(RTP_aux_rgba_0+i), next++);
+    }
+    for (int i=0; i<_fb_properties.get_aux_hrgba(); i++) {
+      bind_slot_multisample(rb_resize, attach, (RenderTexturePlane)(RTP_aux_hrgba_0+i), next++);
+    }
+    for (int i=0; i<_fb_properties.get_aux_float(); i++) {
+      bind_slot_multisample(rb_resize, attach, (RenderTexturePlane)(RTP_aux_float_0+i), next++);
+    }
+    glEnable(0x809D);
+
+    if (_initial_clear) {
+      glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+      glClear(0x00004000 | 0x00000100 | 0x00000400);
+    }
+
+
+
+    glgsg->_supports_multisample = true;
+  } else {
+    glDisable(0x809D);
+  }
+
+
+  if (!_have_any_color) {
+    _fb_properties.set_rgba_bits(0, 0, 0, 0);
+  }
+
+  _rb_context->set_active(true);
+  _rb_context->update_data_size_bytes(_rb_data_size_bytes);
+
+  _initial_clear = false;
+  report_my_errors(686, "panda/src/glstuff/glGraphicsBuffer_src.cxx");
+
+
+  if (_have_any_color) {
+    glDrawBuffer(0x8CE0);
+    psd::call<PSD_READ_BUFFER>(glReadBuffer, 0x8CE0);
+  } else {
+    glDrawBuffer(0);
+    psd::call<PSD_READ_BUFFER>(glReadBuffer, 0);
+  }
+
+
+  _needs_rebuild = false;
+  report_my_errors(699, "panda/src/glstuff/glGraphicsBuffer_src.cxx");
+
+  if (!check_fbo()) {
+    if (glgsg_cat.is_debug()) {
+      glgsg_cat.debug()
+        << get_name() << " check_fbo() returns false\n";
+    }
+    return;
+  }
+}
+
+
+
+
+void GLGraphicsBuffer::
+bind_slot(int layer, bool rb_resize, Texture **attach, RenderTexturePlane slot, GLenum attachpoint) {
+  GLGraphicsStateGuardian *glgsg = (GLGraphicsStateGuardian *)_gsg.p();
+
+  Texture *tex = attach[slot];
+
+  if (tex && layer >= tex->get_z_size()) {
+
+
+    tex = nullptr;
+  }
+
+  if (!tex && _rb_size_z > 1) {
+
+
+
+    tex = new Texture();
+
+    if (_rb_size_z > 1) {
+
+
+
+      tex->setup_2d_texture_array(_rb_size_z);
+    } else {
+      tex->setup_2d_texture();
+    }
+  }
+
+  if (tex) {
+
+    tex->set_x_size(_rb_size_x);
+    tex->set_y_size(_rb_size_y);
+    if (tex->get_texture_type() != Texture::TT_cube_map && _rb_size_z > 1) {
+      tex->set_z_size(_rb_size_z);
+    }
+    tex->set_pad_size(_rb_size_x - get_x_size(), _rb_size_y - get_y_size());
+
+
+    switch (slot) {
+    case RTP_depth:
+      _fb_properties.setup_depth_texture(tex);
+      break;
+    case RTP_depth_stencil:
+      tex->set_format(Texture::F_depth_stencil);
+
+      if (_fb_properties.get_float_depth()) {
+        tex->set_component_type(Texture::T_float);
+      } else {
+        tex->set_component_type(Texture::T_unsigned_int_24_8);
+      }
+      break;
+    case RTP_aux_hrgba_0:
+    case RTP_aux_hrgba_1:
+    case RTP_aux_hrgba_2:
+    case RTP_aux_hrgba_3:
+      tex->set_format(Texture::F_rgba16);
+      tex->set_component_type(Texture::T_float);
+      break;
+    case RTP_aux_float_0:
+    case RTP_aux_float_1:
+    case RTP_aux_float_2:
+    case RTP_aux_float_3:
+      tex->set_format(Texture::F_rgba32);
+      tex->set_component_type(Texture::T_float);
+      break;
+    default:
+      _fb_properties.setup_color_texture(tex);
+    }
+
+    GLenum target = glgsg->get_texture_target(tex->get_texture_type());
+    if (target == 0x8513) {
+      target = 0x8515 + layer;
+    }
+
+    if (attachpoint == 0x8D00) {
+      if (glgsg_cat.is_debug()) {
+        glgsg_cat.debug() << "Binding texture " << *tex << " to depth attachment.\n";
+      }
+
+      if (slot != RTP_depth_stencil && _rb[RTP_depth_stencil] != 0) {
+
+
+        glgsg->_glDeleteRenderbuffers(1, &(_rb[RTP_depth_stencil]));
+        _rb[RTP_depth_stencil] = 0;
+      }
+
+      attach_tex(layer, 0, tex, 0x8D00);
+
+
+      GLint depth_size = 0;
+      glGetTexLevelParameteriv(target, 0, 0x884A, &depth_size);
+      _fb_properties.set_depth_bits(depth_size);
+
+
+      if (slot == RTP_depth_stencil) {
+        if (glgsg_cat.is_debug()) {
+          glgsg_cat.debug() << "Binding texture " << *tex << " to stencil attachment.\n";
+        }
+
+        attach_tex(layer, 0, tex, 0x8D20);
+
+
+        GLint stencil_size = 0;
+        glGetTexLevelParameteriv(target, 0, 0x88F1, &stencil_size);
+        _fb_properties.set_stencil_bits(stencil_size);
+
+      }
+
+    } else {
+      if (glgsg_cat.is_debug()) {
+        glgsg_cat.debug() << "Binding texture " << *tex << " to color attachment.\n";
+      }
+
+      attach_tex(layer, 0, tex, attachpoint);
+
+
+      if (attachpoint == 0x8CE0) {
+        GLint red_size = 0, green_size = 0, blue_size = 0, alpha_size = 0;
+        glGetTexLevelParameteriv(target, 0, 0x805C, &red_size);
+        glGetTexLevelParameteriv(target, 0, 0x805D, &green_size);
+        glGetTexLevelParameteriv(target, 0, 0x805E, &blue_size);
+        glGetTexLevelParameteriv(target, 0, 0x805F, &alpha_size);
+
+        _fb_properties.set_rgba_bits(red_size, green_size, blue_size, alpha_size);
+      }
+
+    }
+
+
+    if (_rb[slot] != 0) {
+      glgsg->_glDeleteRenderbuffers(1, &(_rb[slot]));
+      _rb[slot] = 0;
+    }
+
+    report_my_errors(847, "panda/src/glstuff/glGraphicsBuffer_src.cxx");
+
+  } else {
+    GLuint gl_format = 0x1908;
+    switch (slot) {
+      case RTP_depth_stencil:
+        if (_fb_properties.get_depth_bits() > 24 ||
+            _fb_properties.get_float_depth()) {
+          if (!glgsg->_use_remapped_depth_range) {
+            gl_format = 0x8CAD;
+          } else {
+            gl_format = 0x8DAC;
+          }
+        } else {
+          gl_format = 0x88F0;
+        }
+        break;
+      case RTP_depth:
+        if (_fb_properties.get_float_depth()) {
+          if (!glgsg->_use_remapped_depth_range) {
+            gl_format = 0x8CAC;
+          } else {
+            gl_format = 0x8DAB;
+          }
+        } else if (_fb_properties.get_depth_bits() > 24) {
+          gl_format = 0x81A7;
+        } else if (_fb_properties.get_depth_bits() > 16) {
+          gl_format = 0x81A6;
+        } else if (_fb_properties.get_depth_bits() > 1) {
+          gl_format = 0x81A5;
+        } else {
+          gl_format = 0x1902;
+        }
+        break;
+      case RTP_aux_rgba_0:
+      case RTP_aux_rgba_1:
+      case RTP_aux_rgba_2:
+      case RTP_aux_rgba_3:
+        gl_format = 0x1908;
+        break;
+      case RTP_aux_hrgba_0:
+      case RTP_aux_hrgba_1:
+      case RTP_aux_hrgba_2:
+      case RTP_aux_hrgba_3:
+        gl_format = 0x881A;
+        break;
+      case RTP_aux_float_0:
+      case RTP_aux_float_1:
+      case RTP_aux_float_2:
+      case RTP_aux_float_3:
+        gl_format = 0x8814;
+        break;
+      default:
+        if (_fb_properties.get_alpha_bits() == 0) {
+          if (_fb_properties.get_srgb_color()) {
+            gl_format = 0x8C41;
+          } else if (_fb_properties.get_color_bits() > 16 * 3 ||
+                     _fb_properties.get_red_bits() > 16 ||
+                     _fb_properties.get_green_bits() > 16 ||
+                     _fb_properties.get_blue_bits() > 16) {
+
+            if (_fb_properties.get_blue_bits() > 0 ||
+                _fb_properties.get_color_bits() == 1 ||
+                _fb_properties.get_color_bits() > 32 * 2) {
+              gl_format = 0x8815;
+            } else if (_fb_properties.get_green_bits() > 0 ||
+                       _fb_properties.get_color_bits() > 32) {
+              gl_format = 0x8230;
+            } else {
+              gl_format = 0x822E;
+            }
+          } else if (_fb_properties.get_float_color()) {
+
+            if (_fb_properties.get_blue_bits() > 10 ||
+                _fb_properties.get_color_bits() == 1 ||
+                _fb_properties.get_color_bits() > 32) {
+              gl_format = 0x881B;
+            } else if (_fb_properties.get_blue_bits() > 0) {
+              if (_fb_properties.get_red_bits() > 11 ||
+                  _fb_properties.get_green_bits() > 11) {
+                gl_format = 0x881B;
+              } else {
+                gl_format = 0x8C3A;
+              }
+            } else if (_fb_properties.get_green_bits() > 0 ||
+                       _fb_properties.get_color_bits() > 16) {
+              gl_format = 0x822F;
+            } else {
+              gl_format = 0x822D;
+            }
+          } else if (_fb_properties.get_color_bits() > 10 * 3 ||
+                     _fb_properties.get_red_bits() > 10 ||
+                     _fb_properties.get_green_bits() > 10 ||
+                     _fb_properties.get_blue_bits() > 10) {
+
+            if (_fb_properties.get_blue_bits() > 0 ||
+                _fb_properties.get_color_bits() == 1 ||
+                _fb_properties.get_color_bits() > 16 * 2) {
+              gl_format = 0x805B;
+            } else if (_fb_properties.get_green_bits() > 0 ||
+                       _fb_properties.get_color_bits() > 16) {
+              gl_format = 0x822C;
+            } else {
+              gl_format = 0x822A;
+            }
+          } else if (_fb_properties.get_color_bits() > 8 * 3 ||
+                     _fb_properties.get_red_bits() > 8 ||
+                     _fb_properties.get_green_bits() > 8 ||
+                     _fb_properties.get_blue_bits() > 8) {
+            gl_format = 0x8059;
+          } else {
+            gl_format = 0x1907;
+          }
+        } else {
+          if (_fb_properties.get_srgb_color()) {
+            gl_format = 0x8C43;
+          } else if (_fb_properties.get_float_color()) {
+            if (_fb_properties.get_color_bits() > 16 * 3) {
+              gl_format = 0x8814;
+            } else {
+              gl_format = 0x881A;
+            }
+          } else {
+            if (_fb_properties.get_color_bits() > 16 * 3) {
+              gl_format = 0x8814;
+            } else if (_fb_properties.get_color_bits() > 8 * 3) {
+              gl_format = 0x805B;
+            } else {
+              gl_format = 0x1908;
+            }
+          }
+        }
+    };
+
+
+
+    if (_rb[slot] == 0) {
+      glgsg->_glGenRenderbuffers(1, &(_rb[slot]));
+    }
+
+
+    glgsg->_glBindRenderbuffer(0x8D41, _rb[slot]);
+
+    if (slot == RTP_depth_stencil) {
+      if (glgsg_cat.is_debug()) {
+        glgsg_cat.debug() << "Creating depth stencil renderbuffer.\n";
+      }
+
+      GLint depth_size = 0, stencil_size = 0;
+      glgsg->_glRenderbufferStorage(0x8D41, gl_format, _rb_size_x, _rb_size_y);
+      glgsg->_glGetRenderbufferParameteriv(0x8D41, 0x8D54, &depth_size);
+      glgsg->_glGetRenderbufferParameteriv(0x8D41, 0x8D55, &stencil_size);
+      _fb_properties.set_depth_bits(depth_size);
+      _fb_properties.set_stencil_bits(stencil_size);
+      _rb_data_size_bytes += _rb_size_x * _rb_size_y * ((depth_size + stencil_size) / 8);
+
+      glgsg->_glBindRenderbuffer(0x8D41, 0);
+
+      GLuint rb = _rb[slot];
+      if (_shared_depth_buffer) {
+        rb = _shared_depth_buffer->_rb[slot];
+      }
+
+      glgsg->_glFramebufferRenderbuffer(0x8D40, 0x8D00,
+                                        0x8D41, rb);
+
+      glgsg->_glFramebufferRenderbuffer(0x8D40, 0x8D20,
+                                        0x8D41, rb);
+
+      report_my_errors(1137, "panda/src/glstuff/glGraphicsBuffer_src.cxx");
+
+    } else if (slot == RTP_depth) {
+      if (glgsg_cat.is_debug()) {
+        glgsg_cat.debug() << "Creating depth renderbuffer.\n";
+      }
+
+      GLint depth_size = 0;
+      glgsg->_glRenderbufferStorage(0x8D41, gl_format, _rb_size_x, _rb_size_y);
+      glgsg->_glGetRenderbufferParameteriv(0x8D41, 0x8D54, &depth_size);
+
+
+
+
+      if (gl_format == 0x81A7 && depth_size < 32) {
+        if (!glgsg->_use_remapped_depth_range) {
+          gl_format = 0x8CAC;
+        } else {
+          gl_format = 0x8DAB;
+        }
+        glgsg->_glRenderbufferStorage(0x8D41, gl_format, _rb_size_x, _rb_size_y);
+        glgsg->_glGetRenderbufferParameteriv(0x8D41, 0x8D54, &depth_size);
+
+        _fb_properties.set_float_depth(true);
+      }
+
+
+      _fb_properties.set_depth_bits(depth_size);
+      _rb_data_size_bytes += _rb_size_x * _rb_size_y * (depth_size / 8);
+
+      glgsg->_glBindRenderbuffer(0x8D41, 0);
+
+      GLuint rb = _rb[slot];
+      if (_shared_depth_buffer) {
+        rb = _shared_depth_buffer->_rb[slot];
+      }
+
+      glgsg->_glFramebufferRenderbuffer(0x8D40, 0x8D00,
+                                        0x8D41, rb);
+
+      report_my_errors(1177, "panda/src/glstuff/glGraphicsBuffer_src.cxx");
+
+    } else {
+      if (glgsg_cat.is_debug()) {
+        glgsg_cat.debug() << "Creating color renderbuffer.\n";
+      }
+      glgsg->_glRenderbufferStorage(0x8D41, gl_format, _rb_size_x, _rb_size_y);
+
+      GLint red_size = 0, green_size = 0, blue_size = 0, alpha_size = 0;
+      glgsg->_glGetRenderbufferParameteriv(0x8D41, 0x8D50, &red_size);
+      glgsg->_glGetRenderbufferParameteriv(0x8D41, 0x8D51, &green_size);
+      glgsg->_glGetRenderbufferParameteriv(0x8D41, 0x8D52, &blue_size);
+      glgsg->_glGetRenderbufferParameteriv(0x8D41, 0x8D53, &alpha_size);
+
+      if (attachpoint == 0x8CE0) {
+        _fb_properties.set_rgba_bits(red_size, green_size, blue_size, alpha_size);
+      }
+      _rb_data_size_bytes += _rb_size_x * _rb_size_y * ((red_size + green_size + blue_size + alpha_size) / 8);
+
+      glgsg->_glBindRenderbuffer(0x8D41, 0);
+      glgsg->_glFramebufferRenderbuffer(0x8D40, attachpoint,
+                                        0x8D41, _rb[slot]);
+
+      report_my_errors(1200, "panda/src/glstuff/glGraphicsBuffer_src.cxx");
+    }
+  }
+}
+
+
+
+
+
+void GLGraphicsBuffer::
+bind_slot_multisample(bool rb_resize, Texture **attach, RenderTexturePlane slot, GLenum attachpoint) {
+  GLGraphicsStateGuardian *glgsg = (GLGraphicsStateGuardian *)_gsg.p();
+
+  if ((_rbm[slot] != 0)&&(!rb_resize)) {
+    return;
+  }
+  if (_rbm[slot] != 0) {
+    glgsg->_glDeleteRenderbuffers(1, &(_rbm[slot]));
+    _rbm[slot] = 0;
+  }
+  glgsg->_glBindFramebuffer(0x8D40, _fbo_multisample);
+  glgsg->_glGenRenderbuffers(1, &(_rbm[slot]));
+
+  Texture *tex = attach[slot];
+
+  if (attachpoint == 0x8D00) {
+
+    if (_use_depth_stencil) {
+      glgsg->_glBindRenderbuffer(0x8D41, _rbm[slot]);
+      if (_requested_coverage_samples) {
+        glgsg->_glRenderbufferStorageMultisampleCoverage(0x8D41, _requested_coverage_samples,
+                                                         _requested_multisamples, 0x84F9,
+                                                         _rb_size_x, _rb_size_y);
+      } else {
+        glgsg->_glRenderbufferStorageMultisample(0x8D41, _requested_multisamples, 0x84F9,
+                                                 _rb_size_x, _rb_size_y);
+      }
+
+      GLint givenSamples = -1;
+      glgsg->_glGetRenderbufferParameteriv(0x8D41, 0x8CAB, &givenSamples);
+
+      glgsg->_glBindRenderbuffer(0x8D41, 0);
+      glgsg->_glFramebufferRenderbuffer(0x8CA9, 0x8D00,
+                                        0x8D41, _rbm[slot]);
+      glgsg->_glFramebufferRenderbuffer(0x8CA9, 0x8D20,
+                                        0x8D41, _rbm[slot]);
+    } else {
+
+      glgsg->_glBindRenderbuffer(0x8D41, _rbm[slot]);
+      GLuint format = 0x1902;
+
+      if (_fb_properties.get_float_depth()) {
+        if (!glgsg->_use_remapped_depth_range) {
+          format = 0x8CAC;
+        } else {
+          format = 0x8DAB;
+        }
+      } else
+
+      if (tex) {
+        switch (tex->get_format()) {
+          case Texture::F_depth_component16:
+            format = 0x81A5;
+            break;
+          case Texture::F_depth_component24:
+            format = 0x81A6;
+            break;
+          case Texture::F_depth_component32:
+            format = 0x81A7;
+            break;
+          default:
+            break;
+        }
+      }
+      if (_requested_coverage_samples) {
+        glgsg->_glRenderbufferStorageMultisampleCoverage(0x8D41, _requested_coverage_samples,
+                                                         _requested_multisamples, format,
+                                                         _rb_size_x, _rb_size_y);
+      } else {
+        glgsg->_glRenderbufferStorageMultisample(0x8D41, _requested_multisamples, format,
+                                                 _rb_size_x, _rb_size_y);
+
+      }
+
+
+      GLint givenSamples = -1;
+      glgsg->_glGetRenderbufferParameteriv(0x8D41, 0x8CAB, &givenSamples);
+
+      glgsg->_glBindRenderbuffer(0x8D41, 0);
+      glgsg->_glFramebufferRenderbuffer(0x8CA9, 0x8D00,
+                                        0x8D41, _rbm[slot]);
+    }
+  } else {
+    GLuint gl_format = 0x1908;
+
+    switch (slot) {
+      case RTP_aux_hrgba_0:
+      case RTP_aux_hrgba_1:
+      case RTP_aux_hrgba_2:
+      case RTP_aux_hrgba_3:
+        gl_format = 0x881A;
+        break;
+      case RTP_aux_float_0:
+      case RTP_aux_float_1:
+      case RTP_aux_float_2:
+      case RTP_aux_float_3:
+        gl_format = 0x8814;
+        break;
+      case RTP_aux_rgba_0:
+      case RTP_aux_rgba_1:
+      case RTP_aux_rgba_2:
+      case RTP_aux_rgba_3:
+      default:
+        if (_fb_properties.get_srgb_color()) {
+          gl_format = 0x8C43;
+        } else if (_fb_properties.get_float_color()) {
+          if (_fb_properties.get_color_bits() > 16 * 3) {
+            gl_format = 0x8814;
+          } else {
+            gl_format = 0x881A;
+          }
+        } else {
+          gl_format = 0x1908;
+        }
+        break;
+    }
+
+    glgsg->_glBindRenderbuffer(0x8D41, _rbm[slot]);
+    if (_requested_coverage_samples) {
+      glgsg->_glRenderbufferStorageMultisampleCoverage(0x8D41, _requested_coverage_samples,
+                                    _requested_multisamples, gl_format, _rb_size_x, _rb_size_y);
+    } else {
+      glgsg->_glRenderbufferStorageMultisample(0x8D41, _requested_multisamples, gl_format,
+                                               _rb_size_x, _rb_size_y);
+    }
+
+    GLint givenSamples = -1;
+    glgsg->_glGetRenderbufferParameteriv(0x8D41, 0x8CAB, &givenSamples);
+
+    glgsg->_glBindRenderbuffer(0x8D41, 0);
+    glgsg->_glFramebufferRenderbuffer(0x8CA9, attachpoint,
+                                      0x8D41, _rbm[slot]);
+  }
+  glgsg->report_my_errors(1343, "panda/src/glstuff/glGraphicsBuffer_src.cxx");
+}
+
+
+
+
+void GLGraphicsBuffer::
+attach_tex(int layer, int view, Texture *attach, GLenum attachpoint) {
+  GLGraphicsStateGuardian *glgsg = (GLGraphicsStateGuardian *)_gsg.p();
+
+  if (view >= attach->get_num_views()) {
+    attach->set_num_views(view + 1);
+  }
+
+
+  TextureContext *tc = attach->prepare_now(view, glgsg->get_prepared_objects(), glgsg);
+  { if ((__builtin_expect(!(tc != nullptr), 0))) { if (Notify::ptr()->assert_failure("tc != nullptr", 1359, "panda/src/glstuff/glGraphicsBuffer_src.cxx")) { return; } } };
+  GLTextureContext *gtc = _dcast((GLTextureContext*)0, tc);
+
+  glgsg->update_texture(gtc, true);
+  gtc->set_active(true);
+  _texture_contexts.push_back(gtc);
+
+
+
+  glgsg->apply_texture(gtc);
+
+
+  if (glgsg->has_fixed_function_pipeline()) {
+    GLclampf priority = 1.0f;
+    glPrioritizeTextures(1, &gtc->_index, &priority);
+  }
+
+
+
+  if (_rb_size_z != 1) {
+
+    { if ((__builtin_expect(!(glgsg->_glFramebufferTexture != nullptr), 0))) { if (Notify::ptr()->assert_failure("glgsg->_glFramebufferTexture != nullptr", 1380, "panda/src/glstuff/glGraphicsBuffer_src.cxx")) { return; } } };
+    glgsg->_glFramebufferTexture(0x8D40, attachpoint,
+                                 gtc->_index, 0);
+    return;
+  }
+
+
+  GLenum target = glgsg->get_texture_target(attach->get_texture_type());
+  if (target == 0x8513) {
+    target = 0x8515 + layer;
+  }
+
+  switch (target) {
+
+  case 0x806F:
+    glgsg->_glFramebufferTexture3D(0x8D40, attachpoint,
+                                   target, gtc->_index, 0, layer);
+    break;
+  case 0x8C1A:
+    glgsg->_glFramebufferTextureLayer(0x8D40, attachpoint,
+                                      gtc->_index, 0, layer);
+    break;
+
+  default:
+    glgsg->_glFramebufferTexture2D(0x8D40, attachpoint,
+                                   target, gtc->_index, 0);
+  }
+}
+
+
+
+
+
+
+
+void GLGraphicsBuffer::
+generate_mipmaps() {
+  if (gl_ignore_mipmaps && !gl_force_mipmaps) {
+    return;
+  }
+
+  GLGraphicsStateGuardian *glgsg = (GLGraphicsStateGuardian *)_gsg.p();
+
+
+
+  pvector<GLTextureContext*>::iterator it;
+  for (it = _texture_contexts.begin(); it != _texture_contexts.end(); ++it) {
+    GLTextureContext *gtc = *it;
+
+    if (gtc->_generate_mipmaps) {
+      glgsg->generate_mipmaps(gtc);
+    }
+  }
+
+  report_my_errors(1434, "panda/src/glstuff/glGraphicsBuffer_src.cxx");
+}
+
+
+
+
+
+
+void GLGraphicsBuffer::
+end_frame(FrameMode mode, Thread *current_thread) {
+  end_frame_spam(mode);
+  { if ((__builtin_expect(!(_gsg != nullptr), 0))) { if (Notify::ptr()->assert_failure("_gsg != nullptr", 1445, "panda/src/glstuff/glGraphicsBuffer_src.cxx")) { return; } } };
+
+
+  if (_requested_multisamples && _fbo_multisample && mode != FM_refresh) {
+    resolve_multisamples();
+  }
+
+  if (mode == FM_render) {
+
+    copy_to_textures();
+  }
+
+
+
+  GLGraphicsStateGuardian *glgsg = (GLGraphicsStateGuardian *)_gsg.p();
+  glgsg->bind_fbo(0);
+  _bound_tex_page = -1;
+
+  if (mode == FM_render) {
+    generate_mipmaps();
+  }
+
+  if (_host != nullptr) {
+    _host->end_frame(FM_parasite, current_thread);
+  } else {
+    glgsg->end_frame(current_thread);
+  }
+
+  if (mode == FM_render) {
+    trigger_flip();
+    clear_cube_map_selection();
+  }
+  report_my_errors(1477, "panda/src/glstuff/glGraphicsBuffer_src.cxx");
+
+  glgsg->pop_group_marker();
+}
+
+
+
+
+void GLGraphicsBuffer::
+set_size(int x, int y) {
+  if (_size.get_x() != x || _size.get_y() != y) {
+    _needs_rebuild = true;
+  }
+
+  set_size_and_recalc(x, y);
+}
+
+
+
+
+
+
+
+void GLGraphicsBuffer::
+select_target_tex_page(int page) {
+  { if ((__builtin_expect(!(page >= 0 && (size_t)page < _fbo.size()), 0))) { if (Notify::ptr()->assert_failure("page >= 0 && (size_t)page < _fbo.size()", 1502, "panda/src/glstuff/glGraphicsBuffer_src.cxx")) { return; } } };
+
+  GLGraphicsStateGuardian *glgsg = (GLGraphicsStateGuardian *)_gsg.p();
+
+  bool switched_page = (_bound_tex_page != page);
+
+  if (switched_page) {
+    if (_bound_tex_page != -1) {
+
+      if (_requested_multisamples && _fbo_multisample) {
+        resolve_multisamples();
+      }
+    }
+
+    if (_fbo_multisample != 0) {
+
+    } else {
+      glgsg->bind_fbo(_fbo[page]);
+    }
+    _bound_tex_page = page;
+  }
+
+  report_my_errors(1524, "panda/src/glstuff/glGraphicsBuffer_src.cxx");
+}
+
+
+
+
+
+bool GLGraphicsBuffer::
+open_buffer() {
+  report_my_errors(1533, "panda/src/glstuff/glGraphicsBuffer_src.cxx");
+
+
+  { if ((__builtin_expect(!(_gsg != nullptr), 0))) { if (Notify::ptr()->assert_failure("_gsg != nullptr", 1536, "panda/src/glstuff/glGraphicsBuffer_src.cxx")) { return false; } } };
+  if (!_gsg->is_valid()) {
+    return false;
+  }
+
+
+  int totalcolor =
+   (_fb_properties.get_stereo() ? 2 : 1) +
+    _fb_properties.get_aux_rgba() +
+    _fb_properties.get_aux_hrgba() +
+    _fb_properties.get_aux_float();
+
+
+  GLGraphicsStateGuardian *glgsg;
+  { (glgsg) = _dcast_ref(glgsg, _gsg); { if ((__builtin_expect(!((void *)(glgsg) != nullptr), 0))) { if (Notify::ptr()->assert_failure("(void *)(glgsg) != nullptr", 1550, "panda/src/glstuff/glGraphicsBuffer_src.cxx")) { return false; } } }; };
+  if (!glgsg->_supports_framebuffer_object) {
+    return false;
+  }
+
+  if (_rb_context == nullptr) {
+    _rb_context = new BufferContext(&(glgsg->_renderbuffer_residency), nullptr);
+  }
+  if (_fb_properties.get_color_bits() == 0 &&
+      _fb_properties.get_rgb_color()) {
+    _fb_properties.set_color_bits(1);
+    _fb_properties.set_red_bits(1);
+    _fb_properties.set_green_bits(1);
+    _fb_properties.set_blue_bits(1);
+  }
+
+
+
+  if (gl_force_fbo_color && _fb_properties.get_color_bits() == 0) {
+    _fb_properties.set_color_bits(1);
+  }
+
+  if (_fb_properties.get_depth_bits() > 24) {
+    _fb_properties.set_depth_bits(32);
+  } else if (_fb_properties.get_depth_bits() > 16) {
+    _fb_properties.set_depth_bits(24);
+  } else if (_fb_properties.get_depth_bits() > 0) {
+    _fb_properties.set_depth_bits(16);
+  } else {
+    _fb_properties.set_depth_bits(0);
+  }
+
+
+
+  if (_fb_properties.get_color_bits() > 96) {
+    _fb_properties.set_color_bits(96);
+  }
+  if (_fb_properties.get_red_bits() > 32) {
+    _fb_properties.set_red_bits(32);
+  }
+  if (_fb_properties.get_green_bits() > 32) {
+    _fb_properties.set_green_bits(32);
+  }
+  if (_fb_properties.get_blue_bits() > 32) {
+    _fb_properties.set_blue_bits(32);
+  }
+  if (_fb_properties.get_alpha_bits() > 32) {
+    _fb_properties.set_alpha_bits(32);
+  }
+
+  if (_fb_properties.get_float_depth()) {
+
+    _fb_properties.set_depth_bits(32);
+  }
+
+
+  if (_fb_properties.get_color_bits() > 16 * 3) {
+    _fb_properties.set_float_color(true);
+  }
+
+  if (_fb_properties.get_srgb_color()) {
+
+    _fb_properties.set_rgba_bits(8, 8, 8,
+      (_fb_properties.get_alpha_bits() > 0) ? 8 : 0);
+    _fb_properties.set_float_color(false);
+  }
+
+  if (!_gsg->get_supports_depth_stencil()) {
+
+    _fb_properties.set_stencil_bits(0);
+
+  } else if (_fb_properties.get_stencil_bits() > 0) {
+
+    _fb_properties.set_stencil_bits(8);
+    if (_fb_properties.get_depth_bits() < 24) {
+      _fb_properties.set_depth_bits(24);
+    }
+  }
+
+
+  _fb_properties.set_accum_bits(0);
+
+  if (glgsg->get_supports_framebuffer_multisample() && glgsg->get_supports_framebuffer_blit()) {
+    _requested_multisamples = _fb_properties.get_multisamples();
+  } else {
+    _requested_multisamples = 0;
+  }
+
+
+  if (glgsg->get_supports_framebuffer_multisample_coverage_nv() && glgsg->get_supports_framebuffer_blit()) {
+    _requested_coverage_samples = _fb_properties.get_coverage_samples();
+
+
+    if ((_requested_coverage_samples <= 8) && (_requested_coverage_samples > 0)) {
+      _requested_multisamples = 4;
+      _requested_coverage_samples = 8;
+    } else if (_requested_coverage_samples > 8) {
+      if (_requested_multisamples < 8) {
+        _requested_multisamples = 4;
+      } else {
+        _requested_multisamples = 8;
+      }
+      _requested_coverage_samples = 16;
+    }
+
+  } else {
+    _requested_coverage_samples = 0;
+  }
+
+
+  if (_requested_multisamples > glgsg->_max_fb_samples) {
+    _requested_multisamples = glgsg->_max_fb_samples;
+  }
+  _fb_properties.set_multisamples(_requested_multisamples);
+  _fb_properties.set_coverage_samples(_requested_coverage_samples);
+
+
+
+  int availcolor = glgsg->_max_color_targets;
+
+  if (totalcolor > availcolor) {
+    int aux_rgba = _fb_properties.get_aux_rgba();
+    int aux_hrgba = _fb_properties.get_aux_hrgba();
+    int aux_float = _fb_properties.get_aux_float();
+
+    if (_fb_properties.get_color_bits() > 0 && availcolor > 0) {
+      --availcolor;
+      if (_fb_properties.is_stereo()) {
+        if (availcolor > 0) {
+          --availcolor;
+        } else {
+          _fb_properties.set_stereo(0);
+        }
+      }
+    }
+    aux_rgba = min(aux_rgba, availcolor);
+    availcolor -= aux_rgba;
+    aux_hrgba = min(aux_hrgba, availcolor);
+    availcolor -= aux_hrgba;
+    aux_float = min(aux_float, availcolor);
+    availcolor -= aux_float;
+
+    _fb_properties.set_aux_rgba(aux_rgba);
+    _fb_properties.set_aux_hrgba(aux_hrgba);
+    _fb_properties.set_aux_float(aux_float);
+  }
+
+  _fb_properties.set_back_buffers(0);
+  _fb_properties.set_indexed_color(0);
+  _fb_properties.set_rgb_color(1);
+  if (_host != nullptr) {
+    _fb_properties.set_force_hardware(_host->get_fb_properties().get_force_hardware());
+    _fb_properties.set_force_software(_host->get_fb_properties().get_force_software());
+  }
+
+  _is_valid = true;
+  _needs_rebuild = true;
+  report_my_errors(1721, "panda/src/glstuff/glGraphicsBuffer_src.cxx");
+
+  return true;
+}
+
+
+
+
+
+
+GraphicsOutput *GLGraphicsBuffer::
+get_host() {
+  return (_host != nullptr) ? _host : this;
+}
+
+
+
+
+void GLGraphicsBuffer::
+close_buffer() {
+  _rb_data_size_bytes = 0;
+  if (_rb_context != nullptr) {
+    _rb_context->update_data_size_bytes(0);
+    delete _rb_context;
+    _rb_context = nullptr;
+  }
+
+  check_host_valid();
+
+  if (_gsg == 0) {
+    return;
+  }
+
+
+  GLGraphicsStateGuardian *glgsg;
+  { (glgsg) = _dcast_ref(glgsg, _gsg); { if ((__builtin_expect(!((void *)(glgsg) != nullptr), 0))) { if (Notify::ptr()->assert_failure("(void *)(glgsg) != nullptr", 1756, "panda/src/glstuff/glGraphicsBuffer_src.cxx")) { return; } } }; };
+
+  report_my_errors(1758, "panda/src/glstuff/glGraphicsBuffer_src.cxx");
+
+  for (int i=0; i<RTP_COUNT; i++) {
+    if (_rb[i] != 0) {
+      glgsg->_glDeleteRenderbuffers(1, &(_rb[i]));
+      _rb[i] = 0;
+    }
+  }
+
+  for (int i=0; i<RTP_COUNT; i++) {
+    if (_rbm[i] != 0) {
+      glgsg->_glDeleteRenderbuffers(1, &(_rbm[i]));
+      _rb[i] = 0;
+    }
+  }
+
+  _rb_size_x = 0;
+  _rb_size_y = 0;
+  report_my_errors(1776, "panda/src/glstuff/glGraphicsBuffer_src.cxx");
+
+
+  if (!_fbo.empty()) {
+    glgsg->_glDeleteFramebuffers(_fbo.size(), _fbo.data());
+    _fbo.clear();
+  }
+
+  if (_fbo_multisample != 0) {
+    glgsg->_glDeleteFramebuffers(1, &_fbo_multisample);
+    _fbo_multisample = 0;
+  }
+
+  report_my_errors(1789, "panda/src/glstuff/glGraphicsBuffer_src.cxx");
+
+
+  _gsg.clear();
+
+  _is_valid = false;
+}
+
+
+
+
+
+bool GLGraphicsBuffer::
+share_depth_buffer(GraphicsOutput *graphics_output) {
+
+  bool state;
+  GLGraphicsBuffer *input_graphics_output;
+
+  state = false;
+  input_graphics_output = _dcast((GLGraphicsBuffer*)0, graphics_output);
+  if (this != input_graphics_output && input_graphics_output) {
+
+    state = true;
+    this->unshare_depth_buffer();
+
+
+    if (!input_graphics_output->is_of_type(GLGraphicsBuffer::get_class_type())) {
+      glgsg_cat.error() << "share_depth_buffer: non-matching type\n";
+      state = false;
+    }
+
+
+    if (this->get_x_size() != input_graphics_output->get_x_size()) {
+      glgsg_cat.error() << "share_depth_buffer: non-matching width\n";
+      state = false;
+    }
+
+    if (this->get_y_size() != input_graphics_output->get_y_size()) {
+      glgsg_cat.error() << "share_depth_buffer: non-matching height\n";
+      state = false;
+    }
+
+
+    if (this->get_multisample_count() != input_graphics_output->get_multisample_count()) {
+      glgsg_cat.error() << "share_depth_buffer: non-matching multisamples\n";
+      state = false;
+    }
+
+    if (this->get_coverage_sample_count() != input_graphics_output->get_coverage_sample_count()) {
+      glgsg_cat.error() << "share_depth_buffer: non-matching coverage samples\n";
+      state = false;
+    }
+
+    if (state) {
+
+
+      input_graphics_output->register_shared_depth_buffer(this);
+      _shared_depth_buffer = input_graphics_output;
+      state = true;
+    }
+    _needs_rebuild = true;
+  }
+  report_my_errors(1851, "panda/src/glstuff/glGraphicsBuffer_src.cxx");
+  return state;
+}
+
+
+
+
+void GLGraphicsBuffer::
+unshare_depth_buffer() {
+  if (_shared_depth_buffer) {
+
+
+    _shared_depth_buffer->unregister_shared_depth_buffer(this);
+    _shared_depth_buffer = 0;
+    _needs_rebuild = true;
+  }
+}
+
+
+
+
+
+
+bool GLGraphicsBuffer::
+get_supports_render_texture() const {
+
+  return true;
+}
+
+
+
+
+void GLGraphicsBuffer::
+register_shared_depth_buffer(GraphicsOutput *graphics_output) {
+  GLGraphicsBuffer *input_graphics_output;
+
+  input_graphics_output = _dcast((GLGraphicsBuffer*)0, graphics_output);
+  if (input_graphics_output) {
+
+    _shared_depth_buffer_list.push_back(input_graphics_output);
+  }
+}
+
+
+
+
+void GLGraphicsBuffer::
+unregister_shared_depth_buffer(GraphicsOutput *graphics_output) {
+  GLGraphicsBuffer *input_graphics_output;
+
+  input_graphics_output = _dcast((GLGraphicsBuffer*)0, graphics_output);
+  if (input_graphics_output) {
+
+    _shared_depth_buffer_list.remove(input_graphics_output);
+  }
+}
+
+
+
+
+void GLGraphicsBuffer::
+report_my_errors(int line, const char *file) {
+  if (_gsg == 0) {
+    GLenum error_code = psd::call<PSD_GET_ERROR>(glGetError);
+    if (error_code != 0) {
+      glgsg_cat.error() << file << ", line " << line << ": GL error " << (int)error_code << "\n";
+    }
+  } else {
+    GLGraphicsStateGuardian *glgsg = (GLGraphicsStateGuardian *)_gsg.p();
+    glgsg->report_my_errors(line, file);
+  }
+}
+
+
+
+
+void GLGraphicsBuffer::
+check_host_valid() {
+  if (_host != nullptr && !_host->is_valid()) {
+    _rb_data_size_bytes = 0;
+    if (_rb_context != nullptr) {
+
+
+      _rb_context->update_data_size_bytes(0);
+      delete _rb_context;
+      _rb_context = nullptr;
+    }
+    _is_valid = false;
+    _gsg.clear();
+    _host.clear();
+  }
+}
+
+
+
+
+
+void GLGraphicsBuffer::
+resolve_multisamples() {
+  { if ((__builtin_expect(!(_fbo.size() > 0), 0))) { if (Notify::ptr()->assert_failure("_fbo.size() > 0", 1950, "panda/src/glstuff/glGraphicsBuffer_src.cxx")) { return; } } };
+
+  GLGraphicsStateGuardian *glgsg = (GLGraphicsStateGuardian *)_gsg.p();
+
+  PStatGPUTimer timer(glgsg, _resolve_multisample_pcollector);
+
+
+  if (gl_enable_memory_barriers) {
+
+
+    pvector<GLTextureContext*>::iterator it;
+    for (it = _texture_contexts.begin(); it != _texture_contexts.end(); ++it) {
+      GLTextureContext *gtc = *it;
+
+      if (gtc != nullptr && gtc->needs_barrier(0x00000400)) {
+        glgsg->issue_memory_barrier(0x00000400);
+
+        break;
+      }
+    }
+  }
+
+
+  glgsg->report_my_errors(1973, "panda/src/glstuff/glGraphicsBuffer_src.cxx");
+  GLuint fbo = _fbo[0];
+  if (_bound_tex_page != -1) {
+    fbo = _fbo[_bound_tex_page];
+  }
+  glgsg->_glBindFramebuffer(0x8CA9, fbo);
+  glgsg->_glBindFramebuffer(0x8CA8, _fbo_multisample);
+  glgsg->_current_fbo = fbo;
+
+
+  bool do_depth_blit = false;
+  if (_rbm[RTP_depth_stencil] != 0 || _rbm[RTP_depth] != 0) {
+    if (_shared_depth_buffer) {
+      GLGraphicsBuffer *graphics_buffer = nullptr;
+
+      std::list <GLGraphicsBuffer *>::iterator graphics_buffer_iterator;
+
+      int max_sort_order = 0;
+      for (graphics_buffer_iterator = _shared_depth_buffer_list.begin();
+           graphics_buffer_iterator != _shared_depth_buffer_list.end();
+           graphics_buffer_iterator++) {
+        graphics_buffer = (*graphics_buffer_iterator);
+        if (graphics_buffer) {
+
+          if (graphics_buffer->get_sort() >= max_sort_order) {
+            max_sort_order = graphics_buffer->get_sort();
+
+          }
+        }
+      }
+      if (max_sort_order == this->get_sort()) {
+        do_depth_blit = true;
+      }
+    } else {
+      do_depth_blit = true;
+    }
+  }
+
+
+  if (_have_any_color) {
+    glDrawBuffer(0x8CE0);
+    psd::call<PSD_READ_BUFFER>(glReadBuffer, 0x8CE0);
+  } else {
+    glDrawBuffer(0);
+    psd::call<PSD_READ_BUFFER>(glReadBuffer, 0);
+  }
+
+
+  if (do_depth_blit) {
+    glgsg->_glBlitFramebuffer(0, 0, _rb_size_x, _rb_size_y, 0, 0, _rb_size_x, _rb_size_y,
+                              0x00004000 | 0x00000100 | 0x00000400,
+                              0x2600);
+  }
+  else if (_have_any_color) {
+    glgsg->_glBlitFramebuffer(0, 0, _rb_size_x, _rb_size_y, 0, 0, _rb_size_x, _rb_size_y,
+                              0x00004000,
+                              0x2600);
+  }
+
+
+  int next = 0x8CE1;
+  if (_fb_properties.is_stereo()) {
+    psd::call<PSD_READ_BUFFER>(glReadBuffer, next);
+    glDrawBuffer(next);
+    glgsg->_glBlitFramebuffer(0, 0, _rb_size_x, _rb_size_y, 0, 0, _rb_size_x, _rb_size_y,
+                              0x00004000, 0x2600);
+    next += 1;
+  }
+  for (int i = 0; i < _fb_properties.get_aux_rgba(); ++i) {
+    psd::call<PSD_READ_BUFFER>(glReadBuffer, next);
+    glDrawBuffer(next);
+    glgsg->_glBlitFramebuffer(0, 0, _rb_size_x, _rb_size_y, 0, 0, _rb_size_x, _rb_size_y,
+                              0x00004000, 0x2600);
+    next += 1;
+  }
+  for (int i = 0; i < _fb_properties.get_aux_hrgba(); ++i) {
+    psd::call<PSD_READ_BUFFER>(glReadBuffer, next);
+    glDrawBuffer(next);
+    glgsg->_glBlitFramebuffer(0, 0, _rb_size_x, _rb_size_y, 0, 0, _rb_size_x, _rb_size_y,
+                              0x00004000, 0x2600);
+    next += 1;
+  }
+  for (int i = 0; i < _fb_properties.get_aux_float(); ++i) {
+    psd::call<PSD_READ_BUFFER>(glReadBuffer, next);
+    glDrawBuffer(next);
+    glgsg->_glBlitFramebuffer(0, 0, _rb_size_x, _rb_size_y, 0, 0, _rb_size_x, _rb_size_y,
+                              0x00004000, 0x2600);
+    next += 1;
+  }
+
+  report_my_errors(2063, "panda/src/glstuff/glGraphicsBuffer_src.cxx");
+
+
+  glgsg->_glBindFramebuffer(0x8CA8, fbo);
+
+
+  if (_have_any_color) {
+    glDrawBuffer(0x8CE0);
+    psd::call<PSD_READ_BUFFER>(glReadBuffer, 0x8CE0);
+  } else {
+    glDrawBuffer(0);
+    psd::call<PSD_READ_BUFFER>(glReadBuffer, 0);
+  }
+
+  report_my_errors(2077, "panda/src/glstuff/glGraphicsBuffer_src.cxx");
+}

@@ -1,0 +1,18 @@
+E
+======================================================================
+ERROR: test_large_but_bounded_relative_table_and_over_budget_reject (tests.test_panda_sdk_link_elf.LoaderSymbolTests.test_large_but_bounded_relative_table_and_over_budget_reject)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_link_elf.py", line 61, in test_large_but_bounded_relative_table_and_over_budget_reject
+    self.assertGreaterEqual(elf.inspect_elf(bytes(b))['relocation_count'],count)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/scripts/panda_sdk_link_elf.py", line 85, in inspect_elf
+    _need(nbytes % 24 == 0 and nbytes // 24 <= 262144, 'relocation table extent')
+  File "/workspace/big-model-closed-loop-benchmark/scripts/panda_sdk_link_elf.py", line 14, in _need
+    raise ValueError(message)
+ValueError: relocation table extent
+
+----------------------------------------------------------------------
+Ran 1 test in 0.924s
+
+FAILED (errors=1)

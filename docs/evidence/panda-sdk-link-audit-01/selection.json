@@ -1,0 +1,166 @@
+{
+  "schema": "panda-sdk-link-handoff-v1",
+  "checked_at_kst": "2026-11-15T17:53:20.647992+09:00",
+  "status": "REPLACEMENT_SDK_ROOT_SYMBOL_AVAILABILITY_VERIFIED_NOT_INSTALLED_OR_MAPPED",
+  "base_sha": "cd919590a18d77d07018518a277a9ffa7ab05db1",
+  "image_sha256": "02768f675a28da4c993a91350fa3ccd70f5f180b9d599aa3b488115e709f2aa5",
+  "old_installed_sdk_sha256": "3e9fa983023cb1f30b08a2bc650d0803686bef032a2c5d7a5700e1d3ad60553b",
+  "replacement_sdk_sha256": "8d302ae2a610b56db4f7feca08fd736004cf6d3d9650fdb9834f19389a0b7342",
+  "replacement_sdk_nbytes": 992200,
+  "replacement_sdk_data": "docs/evidence/panda-sdk-link-audit-01/before-review/build/candidate-libpandagl.so.data",
+  "fixed_rpm_opt_flags": "-D_GLIBCXX_USE_CXX11_ABI=0 -MD",
+  "baseline_missing_strong": 39,
+  "replacement_missing_strong": 0,
+  "weak_unresolved": 3,
+  "same_provider_payloads": {
+    "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtool.so.1.10": [
+      "e246e463a2c9f69479af3eac66ec8d62b0f42fac03f50589a094c4769c41c773",
+      380009,
+      493
+    ],
+    "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10": [
+      "1b2d0711019fc7ef1b53414031a97cc976900bd1336b0c1236465647bd8378c9",
+      1617185,
+      493
+    ],
+    "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10": [
+      "2750e15c1f171536fabaeb07e283b866930ba16dd51aa442f819d84240f1cd5f",
+      18747689,
+      493
+    ],
+    "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10": [
+      "15905464668bb651f15dbb52b770d0c5fd435b66f2dc12e4bc276262a056d97e",
+      3284649,
+      493
+    ],
+    "/usr/lib/x86_64-linux-gnu/libGL.so.1.7.0": [
+      "67f471213576d225d38347a0b6d2a08a231980685301ff6461bd74d3994e5027",
+      547136,
+      420
+    ],
+    "/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0": [
+      "edd2ddf6e00a81c40b8645f7dbb6d6603c6a0a78d583bdbe7491d8a84de6e3b6",
+      1302184,
+      420
+    ],
+    "/usr/lib/x86_64-linux-gnu/libc.so.6": [
+      "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+      2129424,
+      493
+    ],
+    "/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33": [
+      "1fd75fe70354a416d75aef22bcae68c47bd25d20e2d0568c30b1a9838cf62f11",
+      2592224,
+      420
+    ],
+    "/opt/venv/lib/python3.11/site-packages/panda3d/libCg.so": [
+      "942f33fe1e0935445d88e0595089fda99d20335ef089b5205d61cd6ade054018",
+      20398129,
+      493
+    ],
+    "/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2": [
+      "5fc0940888e9d2e1a00e66d6b1a559c36364ee867683652e1074fa576952cc3f",
+      236616,
+      493
+    ],
+    "/usr/lib/x86_64-linux-gnu/libGLX.so.0.0.0": [
+      "16fc8a37eea9210dc83c57eeff5aedc10ab4c6673f2f97e8bb6ee103df657b40",
+      137792,
+      420
+    ],
+    "/usr/lib/x86_64-linux-gnu/libGLdispatch.so.0.0.0": [
+      "ca01a91104c8887b3d8e59499b58cbb8f604cc285666b50d9ec888eb0c915182",
+      719304,
+      420
+    ],
+    "/usr/lib/x86_64-linux-gnu/libdl.so.2": [
+      "4dbcca3c01ca84d092b5b7b2610f5835b55fc70a0288dd9d766b40ac9386e2d9",
+      14408,
+      420
+    ],
+    "/usr/lib/x86_64-linux-gnu/libgcc_s.so.1": [
+      "d93224d2b0dab4247598be683adca02f5cf00586f99c187579cd7e92058fb7cb",
+      183024,
+      420
+    ],
+    "/usr/lib/x86_64-linux-gnu/libm.so.6": [
+      "5dcc4d25466e29ca390ed6fabb371c69b65dff6fa4e91c34561057a020d6994a",
+      952616,
+      420
+    ],
+    "/usr/lib/x86_64-linux-gnu/libpthread.so.0": [
+      "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+      14408,
+      420
+    ],
+    "/usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0": [
+      "7958a0136b121bdc4c708968569ad152a9ed208ab026e2537b1005dde64ca440",
+      162392,
+      420
+    ],
+    "/usr/lib/x86_64-linux-gnu/libXau.so.6.0.0": [
+      "8040da3f8516c1acfe39f04ff022480cdb273705ba5e7a4ca70bbdb1527cd67a",
+      18696,
+      420
+    ],
+    "/usr/lib/x86_64-linux-gnu/libXdmcp.so.6.0.0": [
+      "667d97d6da16016400ab10de9f83ef4ab209ceb6adf68ff9650225ec13e723b0",
+      26776,
+      420
+    ],
+    "/usr/lib/x86_64-linux-gnu/libbsd.so.0.12.1": [
+      "e86cd4f0019f42c2ba5e60602e0edc8694d2948377d98c3654d0f6bddb5254bb",
+      80888,
+      420
+    ],
+    "/usr/lib/x86_64-linux-gnu/libmd.so.0.1.0": [
+      "423e18586b6ea740f4465afd64f7a9a4cb7264ed979c8e7256f9085af5345fef",
+      55536,
+      420
+    ]
+  },
+  "provider_strict_version_library_misses": 105,
+  "provider_miss_scope": "conservative version-library matching rejects old pthread/dl requirements now exported by libc; glibc compatibility alias/lookup semantics not modeled or qualified",
+  "lookup_count": 270,
+  "routed_count": 18,
+  "safe_name_count": 252,
+  "safe_cap": 256,
+  "same_image_api_count": 33,
+  "source_state_instances": 1,
+  "actual_compile_commands": 100,
+  "actual_used_input_count": 4587,
+  "candidate_installed": false,
+  "runtime_mapping_qualified": false,
+  "full_dependency_closure_qualified": false,
+  "actual_object_layout_abi_qualified": false,
+  "native_admitted": false,
+  "new_native_runs": 0,
+  "container_starts": 0,
+  "official_model_calls": 0,
+  "consumed_native_allowance_remaining": 0,
+  "strict_current_result": "0/4 FAIL",
+  "stage7_complete": false,
+  "next_required": [
+    "new reviewed image replacement and independent byte/manifest authentication; consumed requests01/02 cannot be replayed",
+    "actual mapped ABI/original dispatch and early install contract",
+    "Texture/GSG/allocation native lifetimes/cache handoff/runtime resolver origins",
+    "driver freshness and authenticated process-window-producer-sink receipts",
+    "NEW bounded canary authorization contract before original official4condition/8process cohort"
+  ],
+  "final_baseline_audit": "docs/evidence/panda-sdk-link-audit-01/after-fix/baseline/audit.json",
+  "final_replacement_audit": "docs/evidence/panda-sdk-link-audit-01/after-fix/replacement/audit.json",
+  "final_source_closure_sha256": "37b49b55214bbb042ba452c53b088ba34fc4e56f2c3c1c061143a338073afb4b",
+  "wholebranch_review": {
+    "critical": 0,
+    "important": 2,
+    "minor": 0,
+    "important_fixed_in_one_tdd_pass": true,
+    "rereviewed": false
+  },
+  "last_verified_at_kst": "2026-11-15T18:04:12.430611+09:00",
+  "focused_tests": 25,
+  "full_tests": 1612,
+  "full_pass": 1605,
+  "full_skip": 7,
+  "full_wall_seconds": 141.709
+}

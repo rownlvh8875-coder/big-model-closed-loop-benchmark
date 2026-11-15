@@ -1,0 +1,14 @@
+E
+======================================================================
+ERROR: test_metadata_output_budget_accounts_for_existing_provider_data (tests.test_panda_sdk_link_image.SelectedImageTests.test_metadata_output_budget_accounts_for_existing_provider_data)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_link_image.py", line 75, in test_metadata_output_budget_accounts_for_existing_provider_data
+    with self.assertRaisesRegex(ValueError,'audit output budget'):audit.write_json(p/'report.json',{'large':'x'*100},p,limit=128)
+                                                                  ^^^^^^^^^^^^^^^^
+AttributeError: module 'scripts.audit_panda_sdk_link' has no attribute 'write_json'
+
+----------------------------------------------------------------------
+Ran 1 test in 0.002s
+
+FAILED (errors=1)

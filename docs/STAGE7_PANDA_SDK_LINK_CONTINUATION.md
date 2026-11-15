@@ -1,0 +1,7 @@
+# Continue after SDK root static symbol repair
+
+Read RESULT,LEDGER and docs/evidence/panda-sdk-link-audit-01/selection.json. Do not repeat source routing implementation or overwrite SDK3e9/image0276. Replacement SDK8d302ae2/992200bytes is DATA-only and uninstalled. Root strongmiss39→0/3weak on the same21selected providers is static availability only. Retain105conservative transitive version-library diagnostics; glibc aliases/actual dependency closure/object ABI/mapping remain unqualified.
+
+Next concrete milestone is a newly reviewed SDK8d302ae2 image replacement with independent archive/installed-manifest/authenticated-output checks. Do not replay consumed image requests01/02. Preserve5950basefiles/299pins/10originals/main/Drafts102–115/8nativehistories and all original/failed image/build/static artifacts. No main/shared-base merge/registry/Cloud publication. Nativeallowance0/containerstarts0/strict0of4FAIL/Stage7INCOMPLETE persists.
+
+Actual mapped ABI/original dispatch/early install/Texture-GSG-allocation identity/native lifetimes/cache handoff/runtime resolver origins/driver freshness/authenticated process-window-producer-sink receipts remain prerequisites. A NEW bounded canary contract must precede original official4condition/8process cohort. This phase neither authorizes actual SDK/native/model/officialORT loading nor supplies scientific success. Final ownDraft/HEAD/sourceCI/body/fresh preservation receipt remains output/stage7-panda-sdk-link-audit-01/final-verification.json.
