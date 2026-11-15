@@ -23,6 +23,11 @@ class ProducerBoundaryTests(unittest.TestCase):
    f.write_text('changed pinned bytes')
    with self.assertRaises(ValueError):d.call(['version'])
    self.assertFalse(any((root/'logs').glob('command-*')))
+ def test_extra_credentials_are_excluded_but_proxy_and_config_survive(self):
+  with tempfile.TemporaryDirectory() as t:
+   root=Path(t);f=self.child(root);f.write_text(f.read_text().replace('print("CPU only",flush=True)', 'assert not any(k in os.environ for k in ("GH_ENTERPRISE_TOKEN","AWS_SECRET_ACCESS_KEY","ARBITRARY_PRIVATE_VALUE"))\nassert os.environ["HTTPS_PROXY"]=="http://cpu-proxy:80"\nprint("CPU only",flush=True)'))
+   with patch.dict(os.environ,{'GH_ENTERPRISE_TOKEN':'CPU','AWS_SECRET_ACCESS_KEY':'CPU','ARBITRARY_PRIVATE_VALUE':'CPU','HTTPS_PROXY':'http://cpu-proxy:80','DOCKER_CONFIG':'cpu-config'}):d=p.DockerData(f,root/'logs',time.monotonic()+5)
+   self.assertEqual(d.call(['version']).strip(),'CPU only')
  def test_entry_cannot_execute_outside_exact_github_context(self):
   with patch.dict(os.environ,{},clear=True),self.assertRaises(ValueError):p.run_production()
  def test_workflow_is_push_filtered_pinned_and_has_no_payload_start(self):

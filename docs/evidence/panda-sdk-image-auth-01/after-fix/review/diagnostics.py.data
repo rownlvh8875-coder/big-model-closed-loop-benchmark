@@ -1,0 +1,34 @@
+import sys,io,json,time,tempfile,zipfile,os
+from pathlib import Path
+from unittest.mock import patch
+sys.path.insert(0,'/workspace/big-model-closed-loop-benchmark')
+from scripts import produce_panda_sdk_image as p
+from scripts import accept_panda_sdk_image as c
+from scripts.engine_clock_image_transport import Client
+class Response(io.BytesIO):
+ status=200
+class Opener:
+ def __init__(self):self.calls=0
+ def open(self,req,timeout):
+  self.calls+=1
+  idx=(self.calls-1)%3
+  return Response(json.dumps({'tree':[{'path':p.a.REQUEST.split('/')[idx],'type':'blob' if idx==2 else 'tree','mode':'100644' if idx==2 else '040000','sha':str(idx+1)*40}]}).encode())
+with tempfile.TemporaryDirectory() as t:
+ root=Path(t);o=Opener();client=Client(root/'api',repository=p.a.REPO,token='cpu',deadline=time.monotonic()+10,opener=o)
+ commit={'commit':{'tree':{'sha':'a'*40}}}
+ p.tree_request_mode(client,commit)
+ try:p.tree_request_mode(client,commit)
+ except ValueError as e:print('duplicate_tree_call:',str(e),'HTTP calls:',o.calls,'preserved files:',len(list((root/'api').glob('activation-tree-*'))))
+ z=root/'many.zip'
+ with zipfile.ZipFile(z,'w') as f:
+  for i in range(10000):f.writestr(str(i),b'')
+ Original=zipfile.ZipFile
+ class Probe(Original):
+  def _RealGetContents(self):
+   super()._RealGetContents();print('ZIP parsed entries before policy rejection:',len(self.filelist),'ZIP bytes:',z.stat().st_size)
+ with patch('zipfile.ZipFile',Probe):
+  try:c.extract_carrier(z,root/'expanded')
+  except ValueError as e:print('ZIP eventual result:',e)
+ child=root/'cpu-child';child.write_text('#!/usr/bin/python3\nimport os\nprint("extra_token_inherited="+str("GH_ENTERPRISE_TOKEN" in os.environ))\n');child.chmod(0o755)
+ with patch.dict(os.environ,{'GH_ENTERPRISE_TOKEN':'synthetic-secret'}):d=p.DockerData(child,root/'logs',time.monotonic()+10)
+ print(d.call(['version']).strip())

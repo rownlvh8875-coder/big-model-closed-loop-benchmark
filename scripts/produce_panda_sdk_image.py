@@ -5,7 +5,7 @@ if __name__=='__main__':sys.path.insert(0,str(Path(__file__).resolve().parents[1
 from scripts import panda_sdk_image_auth as a
 from scripts import panda_sdk_routes_image as image
 from scripts import panda_sdk_routes_archive as archive
-from scripts import engine_clock_image_archive_v2 as carrier
+from scripts import panda_sdk_image_carrier as carrier
 from scripts import engine_clock_image_process as process
 from scripts.engine_clock_image_transport import Client
 from scripts.panda_dispatch_coverage import read_input
@@ -20,7 +20,8 @@ def file_hash(path,limit,stop):
 class DockerData:
  def __init__(self,tool,out,stop):
   self.tool=Path(tool).resolve();self.out=Path(out);self.out.mkdir(parents=True,exist_ok=False);self.stop=stop;self.index=0;self.log_bytes=0;self.records=[]
-  self.env=os.environ.copy()
+  allowed={'PATH','HOME','USER','LANG','LC_ALL','LC_CTYPE','TMPDIR','XDG_RUNTIME_DIR','XDG_CONFIG_HOME','DOCKER_CONFIG','SSL_CERT_FILE','SSL_CERT_DIR','HTTP_PROXY','HTTPS_PROXY','ALL_PROXY','NO_PROXY','http_proxy','https_proxy','all_proxy','no_proxy'}
+  self.env={k:v for k,v in os.environ.items() if k in allowed}
   for k in ('GH_TOKEN','GITHUB_TOKEN','ACTIONS_RUNTIME_TOKEN','ACTIONS_ID_TOKEN_REQUEST_TOKEN','LD_PRELOAD','LD_AUDIT','LD_LIBRARY_PATH','DOCKER_HOST','DOCKER_CONTEXT','DOCKER_TLS','DOCKER_TLS_VERIFY','DOCKER_CERT_PATH'):self.env.pop(k,None)
   self.env['DOCKER_BUILDKIT']='0';self.profile={str(p):file_hash(p,64*1024**2,stop) for p in (self.tool,Path(sys.executable).resolve())};a.write(self.out/'tools-before.json',self.profile)
  def verify(self,stop):
@@ -36,10 +37,10 @@ class DockerData:
  def inspect(self,kind,value,missing=False,cleanup=False):
   raw=self.call([kind,'inspect','--format','{{json .}}',value],timeout=12 if cleanup else 30,missing=missing,cleanup=cleanup);return None if raw is None else a.parse(raw)
 
-def tree_request_mode(client,commit):
+def tree_request_mode(client,commit,prefix='activation'):
  tree=commit['commit']['tree']['sha']
  for index,name in enumerate(a.REQUEST.split('/')):
-  row=client.get_json('git/trees/'+tree,'activation-tree-'+str(index)+'.json');hits=[x for x in row['tree'] if x['path']==name];a.need(len(hits)==1,'activation tree path');entry=hits[0]
+  row=client.get_json('git/trees/'+tree,prefix+'-tree-'+str(index)+'.json');hits=[x for x in row['tree'] if x['path']==name];a.need(len(hits)==1,'activation tree path');entry=hits[0]
   if index==len(a.REQUEST.split('/'))-1:return entry
   a.need(entry['type']=='tree','activation tree directory');tree=entry['sha']
 def unique_runs(client,wid):
@@ -70,7 +71,7 @@ def run_production():
  save()
  try:
   run=authenticate_context(client,r,ctx,raw);result['workflow_id']=run['workflow_id'];save();meta=client.get_json('actions/artifacts/'+str(a.BASE_ARTIFACT['id']),'base-artifact.json');check_base_artifact(meta)
-  client.download('https://api.github.com/repos/'+a.REPO+'/actions/artifacts/'+str(meta['id'])+'/zip',work/'base.zip',nbytes=meta['size_in_bytes'],sha256=meta['digest'][7:],kind='artifact');extracted=carrier.extract_image_bundle(work/'base.zip',work/'base');auth=a.authority(a.ROOT)
+  client.download('https://api.github.com/repos/'+a.REPO+'/actions/artifacts/'+str(meta['id'])+'/zip',work/'base.zip',nbytes=meta['size_in_bytes'],sha256=meta['digest'][7:],kind='artifact');extracted=carrier.extract_carrier(work/'base.zip',work/'base',deadline=stop);auth=a.authority(a.ROOT)
   for name,key in [('image.tar','image_tar_sha256'),('installed-files.json','installed_files_sha256')]:a.need(extracted['files'][name]['sha256']==auth[key],'base carrier bytes')
   a.need(extracted['files']['preparation.json']['sha256']==auth['authority_files']['preparation.json']['sha256'],'base preparation bytes');base_check=archive.inspect_save_archive(work/'base/image.tar',expected_tag=a.base.TAG,deadline=inspection_deadline(stop));a.need(all(base_check[k]==auth[k] for k in ('config_digest','rootfs_diff_ids','image_tar_sha256','image_tar_nbytes')),'base image bytes');result['base_archive']=base_check;save()
   tool=shutil.which('docker',path='/usr/bin:/usr/local/bin:/bin');a.need(tool,'Docker client missing');docker=DockerData(tool,execution/'docker',stop);result['docker_server']=a.parse(docker.call(['version','--format','{{json .Server}}'],30));save()
