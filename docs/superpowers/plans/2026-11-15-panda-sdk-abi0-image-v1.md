@@ -20,8 +20,8 @@ Baseb147/6379files/299pins/10originals/main/Drafts102–116/8nativehistories/con
 ### Task1: New exact request policy and workflow
 Create scripts/panda_sdk_abi0_image_policy.py;tests/test_panda_sdk_abi0_image_policy.py;.github/workflows/panda-sdk-image-production-v3.yml.
 Interfaces prerequisite(root),source_paths/closure/request_template/validate_request,validate_production_job(run,jobs),expected_inventory(root). Exact SDK8d3/992200,handoffSHAeac57e35,staticSHA777f907c and new identity literals.
-- [ ] RED wrongoldSDK/oldrequest/replay/closure/permissions/types/productionjob/sourceCI and real44232manifest single replacement.
-- [ ] Minimal versioned policy/workflow,focusedGREEN/commit.
+- [x] RED wrongoldSDK/oldrequest/replay/closure/permissions/types/productionjob/sourceCI and real44232manifest single replacement.
+- [x] Minimal versioned policy/workflow,focusedGREEN/commit.
 
 ### Task2: Versioned producer, consumer and installed-root audit
 Create scripts/produce_panda_sdk_abi0_image.py;scripts/accept_panda_sdk_abi0_image.py;tests/test_panda_sdk_abi0_image_flow.py.
