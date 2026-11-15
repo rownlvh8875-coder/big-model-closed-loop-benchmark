@@ -31,6 +31,6 @@ Interfaces: runtime.run_window(library,profile,fixture=False)->owned observation
 
 ### Task3: Hosted authority, one actual attempt and closeout
 Create scripts/run_panda_real_glx_canary.py,accept_panda_real_glx_canary.py,panda_real_glx_carrier.py;.github/workflows/panda-real-glx-canary-v1.yml;tests/test_panda_real_glx_flow.py;RESULT/LEDGER/CONTINUATION docs.
-- [ ] RED closed newscope/one-start/CI/run/job/carrier/failedwire/producer-consumer image/code/frame proofs; implement/focused/full GREEN/preservation/commit.
+- [x] RED closed newscope/one-start/CI/run/job/carrier/failedwire/producer-consumer image/code/frame proofs; implement/focused/full GREEN/preservation/commit.
 - [ ] ONE fresh wholebranch review, ONE Important TDDfixpass ifneeded, no rereview/minor polishing; ownDraft/canonical sourceCI4jobs success; NEWrequest-onlyactivation; ONE hosted attempt; external acceptance or retained failed attempt, no retry.
 - [ ] Final actual docs/evidence commit/exactHEADCI4jobs/attempt1/artifacts0/body/freshpreservation/clean tree/outputreceipt and onlyownscratchcleanup. Receipt output/stage7-panda-real-glx-01/final-verification.json stays outside its own commit.
