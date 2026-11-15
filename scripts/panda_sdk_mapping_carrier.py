@@ -5,7 +5,7 @@ from scripts import panda_sdk_mapping_policy as a
 from scripts.engine_clock_image_transport import _absolute_deadline
 MAX_ZIP=16*1024**2;MAX_DIRECTORY=65536
 NAMES={'canary.json','runtime.json','execution.json'}
-FILE_LIMITS={'canary.json':1024**2,'runtime.json':8*1024**2,'execution.json':4*1024**2}
+FILE_LIMITS={'canary.json':1024**2,'runtime.json':12*1024**2,'execution.json':4*1024**2}
 def signature(s):return s.st_dev,s.st_ino,s.st_mode,s.st_size,s.st_mtime_ns,s.st_ctime_ns,s.st_nlink
 def _preflight(f,size):
  f.seek(max(0,size-65557));tail=f.read(65557);at=tail.rfind(b'PK\x05\x06');a.need(at>=0 and len(tail)-at>=22,'ZIP end record');e=struct.unpack_from('<4s4H2LH',tail,at);end=size-len(tail)+at

@@ -1,0 +1,15 @@
+test_timed_out_start_exports_binary_partial_stdout_without_success (tests.test_panda_sdk_mapping_flow.MappingFlowTests.test_timed_out_start_exports_binary_partial_stdout_without_success) ... ERROR
+
+======================================================================
+ERROR: test_timed_out_start_exports_binary_partial_stdout_without_success (tests.test_panda_sdk_mapping_flow.MappingFlowTests.test_timed_out_start_exports_binary_partial_stdout_without_success)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_mapping_flow.py", line 83, in test_timed_out_start_exports_binary_partial_stdout_without_success
+    host.preserve_failed_start(d,bundle);r=json.loads((bundle/'runtime.json').read_text());raw=base64.b64decode(r['captured_stdout']['base64']);self.assertEqual(raw,b'PARTIAL_RUNTIME_EVIDENCE\xff\n');self.assertEqual(r['captured_stdout']['sha256'],hashlib.sha256(raw).hexdigest());self.assertEqual(r['capture']['status'],'TIMEOUT');self.assertTrue(d.consumed);self.assertFalse(r['runtime_semantics_validated']);self.assertFalse(r['native_admitted'])
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'scripts.run_panda_sdk_mapping_canary' has no attribute 'preserve_failed_start'
+
+----------------------------------------------------------------------
+Ran 1 test in 0.185s
+
+FAILED (errors=1)

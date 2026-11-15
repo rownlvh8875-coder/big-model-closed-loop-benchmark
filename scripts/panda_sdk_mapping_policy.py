@@ -18,7 +18,7 @@ PROFILE='docs/evidence/panda-sdk-mapping-01/profile.json'
 PANDA='/opt/venv/lib/python3.11/site-packages/panda3d';PRELOAD=PANDA+'/libpanda.so.1.10'
 SDK_PATH=PANDA+'/libpandagl.so';IMAGE_SHA='4984470cd7d732f9f2d1c12710c9433b563b3817ba6d1d419749a9a2b1b46698';IMAGE_SIZE=1727678464;CONFIG='sha256:b9d673de93f1857e4dfa5ed6a48330d568ef96fce7f3cc975f0c688877e6e26e'
 IMAGE_ARTIFACT=dict(id=14156262448,run_id=43700449423,head_sha='7cf0f0157f8100f0aa0e05b01a815d7395c3383f',name='panda-sdk-image-20261115-03',size_in_bytes=1738137175,sha256='47711425a5a48fb2ef0cab140da6e394516f9cbb7f04b294c5f6583d7efbc687')
-BUDGET=dict(total_seconds=1800,minimum_free=16*1024**3,mapping_windows=1,container_starts=1,panda_preloads=1,sdk_loads=1,abi_calls=5,memory_bytes=768*1024**2,pids=32,cpu=1,tmpfs_bytes=16*1024**2,container_seconds=90,protocol_seconds=60,phase_seconds=15,output_bytes=16*1024**2,runtime_bytes=8*1024**2,execution_bytes=4*1024**2,log_bytes=2*1024**2,mapped_files=64,mapped_bytes=256*1024**2)
+BUDGET=dict(total_seconds=1800,minimum_free=16*1024**3,mapping_windows=1,container_starts=1,panda_preloads=1,sdk_loads=1,abi_calls=5,memory_bytes=768*1024**2,pids=32,cpu=1,tmpfs_bytes=16*1024**2,container_seconds=90,protocol_seconds=60,phase_seconds=15,output_bytes=16*1024**2,runtime_bytes=8*1024**2,runtime_proof_bytes=12*1024**2,execution_bytes=4*1024**2,log_bytes=2*1024**2,mapped_files=64,mapped_bytes=256*1024**2)
 PERMISSIONS=dict(sdk_mapping_canary=True,dependency_initializers=True,read_process_memory=True,scientific_native=False,native_admission=False,explicit_gl_calls=False,render=False,model=False,registry_publish=False,cloud_publish=False,main_merge=False)
 def need(ok,message='SDK_IMAGE_POLICY_REJECTED'):
  if not ok:raise ValueError(message)

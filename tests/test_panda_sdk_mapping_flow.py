@@ -76,4 +76,20 @@ class MappingFlowTests(unittest.TestCase):
     out=Path(t)/'new'
     with self.assertRaises(DownloadGate if valid else ValueError):consumer.accept_canary('a'*40,'b'*40,201,out)
     self.assertIn('actions/runs/201/jobs',visited);self.assertEqual(len(downloads),1 if valid else 0);self.assertFalse(json.loads((out/'acceptance.json').read_text())['actions_output_origin_authenticated'])
+ def test_timed_out_start_exports_binary_partial_stdout_without_success(self):
+  with tempfile.TemporaryDirectory() as t:
+   root=Path(t);tool=root/'cpu-docker';tool.write_text('#!/usr/bin/python3\nimport os,time\nos.write(1,b"PARTIAL_RUNTIME_EVIDENCE\\xff\\n")\ntime.sleep(5)\n');tool.chmod(0o755);d=host.MappingDocker(tool,root/'docker',time.monotonic()+10,root/'binding','a'*64,'b'*32,root/'image.tar');d.bind('c'*64);bundle=root/'bundle';bundle.mkdir()
+   with self.assertRaises(ValueError):d.call(['start','--attach','c'*64],timeout=.15)
+   host.preserve_failed_start(d,bundle);r=json.loads((bundle/'runtime.json').read_text());raw=base64.b64decode(r['captured_stdout']['base64']);self.assertEqual(raw,b'PARTIAL_RUNTIME_EVIDENCE\xff\n');self.assertEqual(r['captured_stdout']['sha256'],hashlib.sha256(raw).hexdigest());self.assertEqual(r['capture']['status'],'TIMEOUT');self.assertTrue(d.consumed);self.assertFalse(r['runtime_semantics_validated']);self.assertFalse(r['native_admitted'])
+   z=root/'proof.zip'
+   with zipfile.ZipFile(z,'w') as f:
+    f.write(bundle/'runtime.json','runtime.json');f.writestr('canary.json',b'{"status":"MAPPING_ONLY_CANARY_FAILED"}');f.writestr('execution.json',b'{}')
+   carrier.extract_carrier(z,root/'exported');self.assertEqual(json.loads((root/'exported/runtime.json').read_text())['captured_stdout'],r['captured_stdout'])
+ def test_maximum_failed_stdout_and_stderr_fit_closed_carrier_limits(self):
+  from types import SimpleNamespace
+  with tempfile.TemporaryDirectory() as t:
+   root=Path(t);prefix=root/'capture';prefix.mkdir();raw=b'\0\xff'*(4*1024**2);(prefix/'stdout.bin').write_bytes(raw);(prefix/'stderr.bin').write_bytes(b'e'*(128*1024));bundle=root/'bundle';bundle.mkdir();fake=SimpleNamespace(last_start_capture=dict(prefix=str(prefix),process=dict(status='OUTPUT_LIMIT',streams_complete=False)));host.preserve_failed_start(fake,bundle);self.assertLess((bundle/'runtime.json').stat().st_size,12*1024**2);z=root/'max.zip'
+   with zipfile.ZipFile(z,'w') as f:
+    f.write(bundle/'runtime.json','runtime.json');f.writestr('canary.json',b'{}');f.writestr('execution.json',b'{}')
+   carrier.extract_carrier(z,root/'received');r=json.loads((root/'received/runtime.json').read_text());self.assertEqual(hashlib.sha256(base64.b64decode(r['captured_stdout']['base64'])).hexdigest(),hashlib.sha256(raw).hexdigest());self.assertFalse(r['runtime_semantics_validated'])
 if __name__=='__main__':unittest.main()

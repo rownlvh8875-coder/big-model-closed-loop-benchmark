@@ -1,5 +1,5 @@
 """Fresh qualified one-use Actions mapping canary; no scientific campaign."""
-import argparse,hashlib,json,os,secrets,shutil,stat,sys,time
+import argparse,base64,hashlib,json,os,secrets,shutil,stat,sys,time
 from pathlib import Path
 if __name__=='__main__':sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 from scripts import panda_sdk_mapping_policy as a
@@ -15,6 +15,14 @@ from scripts.panda_dispatch_coverage import read_input
 OUT='output/stage7-panda-sdk-mapping-01/producer'
 def save_json(path,value,limit):
  raw=(json.dumps(value,indent=2,allow_nan=False)+'\n').encode();a.need(len(raw)<=limit,'bounded proof JSON');Path(path).write_bytes(raw)
+def preserve_failed_start(docker,bundle):
+ """Retain captured bytes even when attach/verification never returns a wire."""
+ capture=getattr(docker,'last_start_capture',None)
+ if capture is None:return
+ def payload(name,limit):
+  p=Path(capture['prefix'])/(name+'.bin');a.need(p.stat().st_size<=limit,'failed start output budget');raw=p.read_bytes();return dict(nbytes=len(raw),sha256=a.sha(raw),base64=base64.b64encode(raw).decode())
+ envelope=dict(schema='panda-sdk-failed-start-capture-v1',status='UNVALIDATED_FAILED_START_OUTPUT',capture=capture['process'],captured_stdout=payload('stdout',a.BUDGET['runtime_bytes']),captured_stderr=payload('stderr',128*1024),runtime_semantics_validated=False,native_admitted=False,external_origin_authenticated=False,stage7_complete=False)
+ save_json(Path(bundle)/'runtime.json',envelope,a.BUDGET['runtime_proof_bytes'])
 class MappingDocker(old.DockerData):
  def __init__(self,tool,out,stop,binding,binding_sha,nonce,cache_image):
   super().__init__(tool,out,stop);self.binding=Path(binding).absolute();self.binding_sha=binding_sha;self.nonce=nonce;self.cache_image=Path(cache_image).absolute();self.cid=None;self.consumed=False;self.on_consume=lambda:None
@@ -34,7 +42,10 @@ class MappingDocker(old.DockerData):
    a.need(not self.consumed,'one start only');marker=self.out.parent/'mapping-window-consumed.json'
    with marker.open('xb') as f:f.write(b'{"mapping_window_consumed":true}\n')
    self.consumed=True;self.on_consume()
-  remaining=a.BUDGET['log_bytes']-self.log_bytes;a.need(remaining>0,'Docker log budget');prefix=self.out/('command-'+str(self.index));self.index+=1;command=[str(self.tool),'--host=unix:///var/run/docker.sock',*args];r=process.capture(command,prefix,timeout=max(.001,stop-time.monotonic()),stdout_limit=a.BUDGET['runtime_bytes'] if start else min(128*1024,remaining//2),stderr_limit=min(128*1024,remaining//2),env=self.env,file_size_limit=2*1024**3);self.log_bytes+=r['stderr_saved_bytes']+(0 if start else r['stdout_saved_bytes']);self.records.append(dict(command=command,process=process.public_receipt(r)));a.write(self.out/'commands.json',self.records);self.verify(time.monotonic()+12 if cleanup else stop)
+  remaining=a.BUDGET['log_bytes']-self.log_bytes;a.need(remaining>0,'Docker log budget');prefix=self.out/('command-'+str(self.index));self.index+=1;command=[str(self.tool),'--host=unix:///var/run/docker.sock',*args];r=process.capture(command,prefix,timeout=max(.001,stop-time.monotonic()),stdout_limit=a.BUDGET['runtime_bytes'] if start else min(128*1024,remaining//2),stderr_limit=min(128*1024,remaining//2),env=self.env,file_size_limit=2*1024**3)
+  if start:self.last_start_capture=dict(prefix=str(prefix),process=process.public_receipt(r))
+  self.log_bytes+=r['stderr_saved_bytes']+(0 if start else r['stdout_saved_bytes']);self.records.append(dict(command=command,process=process.public_receipt(r)));a.write(self.out/'commands.json',self.records)
+  self.verify(time.monotonic()+12 if cleanup else stop)
   stdout=(prefix/'stdout.bin').read_text();stderr=(prefix/'stderr.bin').read_text();a.need(r['status']=='EXITED' and r['streams_complete'] and not r['cleanup_failed'],'Docker boundary failure')
   if missing and r['returncode']==1 and args[0]=='image' and 'No such image:' in stderr:return None
   a.need(start or r['returncode']==0,'Docker command failed');return stdout
@@ -58,14 +69,14 @@ def image_input(client,work,stop):
  for k in ['image_tar_sha256','image_tar_nbytes','config_digest','rootfs_diff_ids']:a.need(check[k]==auth['archive'][k],'current saved image identity')
  a.need(a.parse(read_input(work/'image/installed-files.json',16*1024**2))==a.expected_inventory(a.ROOT),'current image manifest');image._copy_layer(path,check,a.SDK_SHA,a.SDK_SIZE,old.inspection_deadline(stop));return path,check
 def run_canary():
- a.need(os.environ.get('GITHUB_ACTIONS')=='true' and os.environ.get('GITHUB_REPOSITORY')==a.REPO and os.environ.get('GITHUB_REF_NAME')==a.BRANCH and os.environ.get('GITHUB_EVENT_NAME')=='push' and os.environ.get('GITHUB_RUN_ATTEMPT')=='1','exact registered Actions context');out=a.ROOT/OUT;a.need(not out.exists(),'old canary output preserved');out.mkdir(parents=True);bundle=out/'bundle';bundle.mkdir();execution=out/'execution';execution.mkdir();work=out/'work';work.mkdir();r=dict(schema='panda-sdk-mapping-canary-v1',status='MAPPING_ONLY_CANARY_FAILED',source_sha=None,activation_sha=os.environ['GITHUB_SHA'],run_id=int(os.environ['GITHUB_RUN_ID']),mapping_window_consumed=False,start_attempts=0,sdk_sha256=a.SDK_SHA,image_sha256=a.IMAGE_SHA,native_admitted=False,scientific_native_runs=0,stage7_complete=False,owned_container_removed=False);runtime_raw=b'{"status":"NOT_STARTED","native_admitted":false}\n';docker=None;stop=time.monotonic()+1800
+ a.need(os.environ.get('GITHUB_ACTIONS')=='true' and os.environ.get('GITHUB_REPOSITORY')==a.REPO and os.environ.get('GITHUB_REF_NAME')==a.BRANCH and os.environ.get('GITHUB_EVENT_NAME')=='push' and os.environ.get('GITHUB_RUN_ATTEMPT')=='1','exact registered Actions context');out=a.ROOT/OUT;a.need(not out.exists(),'old canary output preserved');out.mkdir(parents=True);bundle=out/'bundle';bundle.mkdir();execution=out/'execution';execution.mkdir();work=out/'work';work.mkdir();r=dict(schema='panda-sdk-mapping-canary-v1',status='MAPPING_ONLY_CANARY_FAILED',source_sha=None,activation_sha=os.environ['GITHUB_SHA'],run_id=int(os.environ['GITHUB_RUN_ID']),mapping_window_consumed=False,start_attempts=0,sdk_sha256=a.SDK_SHA,image_sha256=a.IMAGE_SHA,native_admitted=False,scientific_native_runs=0,stage7_complete=False,owned_container_removed=False);runtime_raw=b'{"status":"NOT_STARTED","native_admitted":false}\n';docker=None;runtime_written=False;stop=time.monotonic()+1800
  def save():save_json(bundle/'canary.json',r,1024**2)
  save();(bundle/'runtime.json').write_bytes(runtime_raw);save_json(bundle/'execution.json',{},4*1024**2)
  try:
   a.need(shutil.disk_usage(out).free>=a.BUDGET['minimum_free'],'16GiB runner free required');raw=read_input(a.ROOT/a.REQUEST,1024**2);request=a.parse(raw);a.validate_request(request,a.ROOT);ctx=dict(repository=a.REPO,head_sha=os.environ['GITHUB_SHA'],run_id=r['run_id'],attempt=1,event='push',actor=os.environ['GITHUB_ACTOR']);client=Client(execution/'api',repository=a.REPO,token=os.environ['GH_TOKEN'],deadline=stop,max_requests=96,max_payload_bytes=2*1024**3);run=authenticate_context(client,request,ctx,raw);r.update(source_sha=request['source_sha'],request_sha256=a.sha(raw),workflow_id=run['workflow_id']);save();path,check=image_input(client,work,stop);nonce=secrets.token_hex(16);binding=work/'binding';binding.mkdir();binding.chmod(0o755);b=dict(request=request,nonce=nonce,window_max=1,image_sha256=a.IMAGE_SHA,host_namespaces={k:os.readlink('/proc/self/ns/'+k) for k in ['pid','mnt','net']});a.write(binding/'binding.json',b);(binding/'binding.json').chmod(0o644);binding_sha=a.sha(read_input(binding/'binding.json',1024**2));tool=shutil.which('docker',path='/usr/bin:/usr/local/bin:/bin');a.need(tool,'Docker client');docker=MappingDocker(tool,execution/'docker',stop,binding,binding_sha,nonce,path)
   docker.call(['version','--format','{{json .Server}}']);docker.call(['load','--input',str(path)]);loaded=docker.inspect('image',a.CONFIG);a.need(loaded['RootFS']['Layers']==check['rootfs_diff_ids'],'loaded immutable image');cid=docker.call(docker.create_argv(),90).strip();docker.bind(cid);before=owned(docker);a.need(before['State']['Status']=='created' and before['State']['Pid']==0 and before['State']['Running'] is False,'fresh stopped container');r.update(container_id=cid,nonce=nonce,binding_sha256=binding_sha,container_before=before['State'],host_namespaces=b['host_namespaces']);save()
   def consume():r.update(mapping_window_consumed=True,start_attempts=1);save()
-  docker.on_consume=consume;runtime_raw=docker.call(['start','--attach',cid],90).encode();a.need(len(runtime_raw)<=8*1024**2,'runtime wire budget');(bundle/'runtime.json').write_bytes(runtime_raw);result=a.parse(runtime_raw);a.need(result['status']=='SELECTED_MAPPING_ABI_OBSERVED' and result['fixture'] is False and result['image_membership_verified'] is True and result['binding_sha256']==binding_sha and result['nonce']==nonce,'actual mapping-only result');runtime.validate_window(a.mapping_profile(a.ROOT),result);after=owned(docker);r['container_after']=after['State'];a.need(after['State']['Status']=='exited' and after['State']['Running'] is False and after['State']['Pid']==0 and after['State']['ExitCode']==0 and not after['State']['OOMKilled'],'clean bounded exit');r.update(status='MAPPING_ONLY_CANARY_PASSED',selected_sdk_code_mapping_verified=True,selected_c_abi_calls_verified=5);save()
+  docker.on_consume=consume;runtime_raw=docker.call(['start','--attach',cid],90).encode();a.need(len(runtime_raw)<=8*1024**2,'runtime wire budget');(bundle/'runtime.json').write_bytes(runtime_raw);runtime_written=True;result=a.parse(runtime_raw);a.need(result['status']=='SELECTED_MAPPING_ABI_OBSERVED' and result['fixture'] is False and result['image_membership_verified'] is True and result['binding_sha256']==binding_sha and result['nonce']==nonce,'actual mapping-only result');runtime.validate_window(a.mapping_profile(a.ROOT),result);after=owned(docker);r['container_after']=after['State'];a.need(after['State']['Status']=='exited' and after['State']['Running'] is False and after['State']['Pid']==0 and after['State']['ExitCode']==0 and not after['State']['OOMKilled'],'clean bounded exit');r.update(status='MAPPING_ONLY_CANARY_PASSED',selected_sdk_code_mapping_verified=True,selected_c_abi_calls_verified=5);save()
  except BaseException as e:r.update(status='MAPPING_ONLY_CANARY_FAILED',failure=type(e).__name__+': '+str(e));save()
  finally:
   if docker:
@@ -75,6 +86,7 @@ def run_canary():
      if c['State']['Running']:docker.call(['kill',docker.cid],12,cleanup=True);c=owned(docker,cleanup=True)
      a.need(c['State']['Running'] is False and c['State']['Pid']==0,'owned stopped cleanup');docker.call(['rm',docker.cid],12,cleanup=True);r['owned_container_removed']=True
     except BaseException as e:r.update(status='MAPPING_ONLY_CANARY_FAILED',cleanup_failure=type(e).__name__+': '+str(e))
+   if not runtime_written:preserve_failed_start(docker,bundle)
    logs=[]
    for i,record in enumerate(docker.records):
     row=dict(record)
