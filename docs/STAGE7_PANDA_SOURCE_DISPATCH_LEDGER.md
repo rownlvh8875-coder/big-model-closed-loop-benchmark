@@ -1,0 +1,10 @@
+# Panda source dispatch candidate ledger
+
+Base5aefbd5ca54557de79d00c67282c086e8a6bca61;branchfeature/panda-source-dispatch-v1;3207basefiles. Prior full1441/1434PASS/7skip95.257s; exactDraft109push43657467464/PR43657514118 all4jobsSUCCESS/attempt1/artifacts0; freshly checked Draft109 unmerged/head unchanged. Same connected environment/spec1, clean checkout. Source dependency checkout at470e352ab87ceae6e30429720e4690c8371f5a55, read only before staging.
+Ruling: Continue inline/samecheckout/noquestions via brainstorming/writing-plans/executing-plans/TDD — user chose continuous next-step work — CPU/development/build cost, no native allowance.
+Ruling: Build source-site hooks rather than GOT-only/ambient interposition — prior audit found private/OS resolver and early legacy context gaps — requires a new compiled candidate and later runtime/ABI/image qualification.
+Ruling: Keep candidate default unconfigured with a read tail forwarding only to original; provide no capture arming — rebuild changes Panda layout and invalidates old register/callsite pin — no GPU data captured or native readiness gained.
+Ruling: Record buffer/FBO deletion snapshots and lifecycle returns now; defer actual bootstrap/cache adapter to the next integration stage — prior cache API lacks buffer-delete delivery and native profile is still incomplete — raw command events do not prove cache/driver state.
+Ruling: Build a minimal GL/X11/noPython SDK in ignored staging, using private extracted dev headers and recorded host runtime links — available builder lacks dev headers and system install helper — no global/oldimage changes, but full MetaDrive feature parity remains future cost.
+Ruling: Keep callbacks normally returning/no GL/no throw/longjmp — Panda builds with exceptions disabled — arbitrary callback execution/lifetime violations remain caller preconditions, not handled native faults.
+Preflight1→2→3: runtime headers/call tags consumed by exactsource transformer; staged manifest plus exact upstream tree drives fixed builder. Built ELF must remain separate and unqualified, and original3207files remain unchanged. No interface conflicts.
