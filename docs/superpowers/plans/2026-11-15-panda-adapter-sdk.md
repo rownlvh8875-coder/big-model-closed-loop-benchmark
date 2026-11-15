@@ -32,7 +32,7 @@ Preserve3878basefiles/299pins/10originals/main/Drafts102–111/8nativehistories.
 **Create:** scripts/build_panda_adapter_sdk.py;tests/test_panda_adapter_sdk_build.py;tests/test_panda_adapter_sdk_cpu.py.
 **Interfaces:** build(stage,sysroot,out,threads=4)->dict;inspect_sdk(image,out)->dict;required_exports()/elf data parsers. Fixed compile/link/inspect commands with real receipts, no renderer.
 
-- [ ] RED bad/partial/ready inputs/output/limits; required same-image symbol absence and actual old-runtime-without-activity strong-link rejection; CPU-only shared SDK bootstrap/lifetime/deletes/pending/errno/tail cases.
-- [ ] Implement builder/ELF controls; actual fresh makepanda build with strict unresolved-symbol rejection and source/dependency/tool checks; preserve failures. CPU normal/sanitized50cases each; focused then fullsuite.
+- [x] RED bad/partial/ready inputs/output/limits; required same-image symbol absence and actual old-runtime-without-activity strong-link rejection; CPU-only shared SDK bootstrap/lifetime/deletes/pending/errno/tail cases.
+- [x] Implement builder/ELF controls; actual fresh makepanda build with strict unresolved-symbol rejection and source/dependency/tool checks; preserve failures. CPU normal/sanitized50cases each; focused then fullsuite.
 - [ ] One fresh whole-branch review; all rulings/declined costs, one Important/Critical TDDfixpass+fullsuite/no rereview; source/output/proof preservation and own scratch copy/removal; commit.
 - Final immutable-head operation: ownDraft, exactHEAD workflow411705464 push+pull_request4jobs/attempt1/SUCCESS/artifacts0, fresh3878/299/10/oldrefs/histories/body roundtrip and retained final receipt. No main/sharedbase merge/publication.
