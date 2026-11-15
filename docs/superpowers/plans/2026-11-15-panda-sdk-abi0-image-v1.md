@@ -31,6 +31,8 @@ Interfaces run_production exactActionsgate,DockerData boundary,accept_image(sour
 
 ### Task3: One review, actual production and complete acceptance
 Create docs/STAGE7_PANDA_SDK_ABI0_IMAGE_{RESULT,LEDGER,CONTINUATION}.md;docs/evidence/panda-sdk-abi0-image-01/.
-- [ ] Onefreshwholebranchreview/oneImportant TDDfixpass/fullsuite/preservation; ownDraft + exact reviewedsourceCI4jobs/attempt1/artifacts0.
-- [ ] NEW request03-only activation, one actual Actions production attempt; independent API+archive+manifest+installedSDKroot audit; preserve success/failure evidence and oldhistories; no payload runs/publication.
-- [ ] Evidence/finaldocsonly commit, exactfinalHEADCI4jobs/attempt1/artifacts0/body/freshpreservation/final outputreceipt;copy/remove only own scratch. Final remote receipt stays output/stage7-panda-sdk-abi0-image-01/final-verification.json to avoid self-reference.
+- [x] Onefreshwholebranchreview/oneImportant TDDfixpass/fullsuite/preservation; ownDraft + exact reviewedsourceCI4jobs/attempt1/artifacts0.
+- [x] NEW request03-only activation, one actual Actions production attempt; independent API+archive+manifest+installedSDKroot audit; preserve success/failure evidence and oldhistories; no payload runs/publication.
+- [x] Actual evidence/finaldocsonly commit preparation with production-source232files unchanged;copy/remove only own scratch after evidence copy.
+
+**Post-commit closeout:** exactfinalHEADCI4jobs/attempt1/artifacts0/body/freshpreservation/final outputreceipt. Authoritative remote result stays output/stage7-panda-sdk-abi0-image-01/final-verification.json to avoid a self-referential commit identity.
