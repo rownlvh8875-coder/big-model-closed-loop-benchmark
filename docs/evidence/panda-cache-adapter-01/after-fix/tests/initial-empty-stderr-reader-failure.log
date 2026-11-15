@@ -1,0 +1,24 @@
+.E....
+======================================================================
+ERROR: test_actual_normal_and_sanitized_scenarios_ignore_ambient_compiler_injection (tests.test_panda_cache_adapter_cpu.CacheCpuHarnessTests.test_actual_normal_and_sanitized_scenarios_ignore_ambient_compiler_injection)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_cache_adapter_cpu.py", line 14, in test_actual_normal_and_sanitized_scenarios_ignore_ambient_compiler_injection
+    out=Path(folder)/'proof';r=cpu.run_cpu(out,CANDIDATE)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/scripts/panda_cache_adapter_cpu.py", line 81, in run_cpu
+    path=Path('/usr/bin')/name;r=run_command([str(path),'--version'],ROOT,cpu_environment(),out/('tool-'+name.replace('+','p')),10)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/scripts/panda_cache_adapter_cpu.py", line 43, in run_command
+    stdout=read_input(stdout,byte_limit).decode(),stderr=read_input(stderr,byte_limit).decode())
+                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/scripts/panda_dispatch_coverage.py", line 293, in read_input
+    _need(stat.S_ISREG(initial.st_mode) and 0 < initial.st_size <= limit, 'bounded regular input required')
+  File "/workspace/big-model-closed-loop-benchmark/scripts/panda_dispatch_coverage.py", line 40, in _need
+    raise ValueError(message)
+ValueError: bounded regular input required
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.192s
+
+FAILED (errors=1)

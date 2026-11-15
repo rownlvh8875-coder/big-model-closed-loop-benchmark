@@ -1,0 +1,72 @@
+There are 63 section headers, starting at offset 0x5d98:
+
+Section Headers:
+  [Nr] Name              Type            Address          Off    Size   ES Flg Lk Inf Al
+  [ 0]                   NULL            0000000000000000 000000 000000 00      0   0  0
+  [ 1] .group            GROUP           0000000000000000 000040 00000c 04     60  76  4
+  [ 2] .group            GROUP           0000000000000000 00004c 00000c 04     60  77  4
+  [ 3] .group            GROUP           0000000000000000 000058 00000c 04     60  78  4
+  [ 4] .group            GROUP           0000000000000000 000064 00000c 04     60  79  4
+  [ 5] .group            GROUP           0000000000000000 000070 00000c 04     60  80  4
+  [ 6] .group            GROUP           0000000000000000 00007c 00000c 04     60  81  4
+  [ 7] .group            GROUP           0000000000000000 000088 00000c 04     60  82  4
+  [ 8] .group            GROUP           0000000000000000 000094 00000c 04     60  83  4
+  [ 9] .group            GROUP           0000000000000000 0000a0 00000c 04     60  84  4
+  [10] .group            GROUP           0000000000000000 0000ac 00000c 04     60  85  4
+  [11] .group            GROUP           0000000000000000 0000b8 00000c 04     60  86  4
+  [12] .group            GROUP           0000000000000000 0000c4 00000c 04     60  87  4
+  [13] .group            GROUP           0000000000000000 0000d0 00000c 04     60  88  4
+  [14] .group            GROUP           0000000000000000 0000dc 00000c 04     60  89  4
+  [15] .text             PROGBITS        0000000000000000 0000e8 000f1c 00  AX  0   0 32
+  [16] .rela.text        RELA            0000000000000000 0039b0 0010e0 18   I 60  15  8
+  [17] .data             PROGBITS        0000000000000000 001008 0001f8 00  WA  0   0 32
+  [18] .rela.data        RELA            0000000000000000 004a90 0003f0 18   I 60  17  8
+  [19] .bss              NOBITS          0000000000000000 001200 004258 00  WA  0   0 32
+  [20] .note.GNU-stack   PROGBITS        0000000000000000 001200 000000 00      0   0  1
+  [21] .rodata.str1.1    PROGBITS        0000000000000000 001200 00023c 01 AMS  0   0  1
+  [22] .rodata.str1.8    PROGBITS        0000000000000000 001440 00001f 01 AMS  0   0  8
+  [23] .text._ZN3psd4callILj1EvJjiEEET0_PFS1_DpT1_EDpNS_8identityIS2_E4typeE PROGBITS        0000000000000000 001460 000080 00 AXG  0   0 16
+  [24] .rela.text._ZN3psd4callILj1EvJjiEEET0_PFS1_DpT1_EDpNS_8identityIS2_E4typeE RELA            0000000000000000 004e80 000048 18  IG 60  23  8
+  [25] .text._ZN3psd4callILj2EvJjjEEET0_PFS1_DpT1_EDpNS_8identityIS2_E4typeE PROGBITS        0000000000000000 0014e0 00008b 00 AXG  0   0 16
+  [26] .rela.text._ZN3psd4callILj2EvJjjEEET0_PFS1_DpT1_EDpNS_8identityIS2_E4typeE RELA            0000000000000000 004ec8 000048 18  IG 60  25  8
+  [27] .text._ZN3psd4callILj3EvJjjEEET0_PFS1_DpT1_EDpNS_8identityIS2_E4typeE PROGBITS        0000000000000000 001570 00008b 00 AXG  0   0 16
+  [28] .rela.text._ZN3psd4callILj3EvJjjEEET0_PFS1_DpT1_EDpNS_8identityIS2_E4typeE RELA            0000000000000000 004f10 000048 18  IG 60  27  8
+  [29] .text._ZN3psd4callILj4EvJjEEET0_PFS1_DpT1_EDpNS_8identityIS2_E4typeE PROGBITS        0000000000000000 001600 00006e 00 AXG  0   0 16
+  [30] .rela.text._ZN3psd4callILj4EvJjEEET0_PFS1_DpT1_EDpNS_8identityIS2_E4typeE RELA            0000000000000000 004f58 000048 18  IG 60  29  8
+  [31] .text._ZN3psd4callILj5EvJiPKjEEET0_PFS3_DpT1_EDpNS_8identityIS4_E4typeE PROGBITS        0000000000000000 001670 00007e 00 AXG  0   0 16
+  [32] .rela.text._ZN3psd4callILj5EvJiPKjEEET0_PFS3_DpT1_EDpNS_8identityIS4_E4typeE RELA            0000000000000000 004fa0 000048 18  IG 60  31  8
+  [33] .text._ZN3psd4callILj6EvJiPKjEEET0_PFS3_DpT1_EDpNS_8identityIS4_E4typeE PROGBITS        0000000000000000 0016f0 00007e 00 AXG  0   0 16
+  [34] .rela.text._ZN3psd4callILj6EvJiPKjEEET0_PFS3_DpT1_EDpNS_8identityIS4_E4typeE RELA            0000000000000000 004fe8 000048 18  IG 60  33  8
+  [35] .text._ZN3psd4callILj7EP15__GLXcontextRecJP9_XDisplayP11XVisualInfoS2_iEEET0_PFS7_DpT1_EDpNS_8identityIS8_E4typeE PROGBITS        0000000000000000 001770 0000ad 00 AXG  0   0 16
+  [36] .rela.text._ZN3psd4callILj7EP15__GLXcontextRecJP9_XDisplayP11XVisualInfoS2_iEEET0_PFS7_DpT1_EDpNS_8identityIS8_E4typeE RELA            0000000000000000 005030 000048 18  IG 60  35  8
+  [37] .text._ZN3psd4callILj8EP15__GLXcontextRecJP9_XDisplayP16__GLXFBConfigReciS2_iEEET0_PFS7_DpT1_EDpNS_8identityIS8_E4typeE PROGBITS        0000000000000000 001820 0000c4 00 AXG  0   0 16
+  [38] .rela.text._ZN3psd4callILj8EP15__GLXcontextRecJP9_XDisplayP16__GLXFBConfigReciS2_iEEET0_PFS7_DpT1_EDpNS_8identityIS8_E4typeE RELA            0000000000000000 005078 000048 18  IG 60  37  8
+  [39] .text._ZN3psd4callILj9EP15__GLXcontextRecJP9_XDisplayP16__GLXFBConfigRecS2_iPKiEEET0_PFS9_DpT1_EDpNS_8identityISA_E4typeE PROGBITS        0000000000000000 0018e8 0000c1 00 AXG  0   0 16
+  [40] .rela.text._ZN3psd4callILj9EP15__GLXcontextRecJP9_XDisplayP16__GLXFBConfigRecS2_iPKiEEET0_PFS9_DpT1_EDpNS_8identityISA_E4typeE RELA            0000000000000000 0050c0 000048 18  IG 60  39  8
+  [41] .text._ZN3psd4callILj10EP15__GLXcontextRecJP9_XDisplayP16__GLXFBConfigReciS2_iEEET0_PFS7_DpT1_EDpNS_8identityIS8_E4typeE PROGBITS        0000000000000000 0019b0 0000c4 00 AXG  0   0 16
+  [42] .rela.text._ZN3psd4callILj10EP15__GLXcontextRecJP9_XDisplayP16__GLXFBConfigReciS2_iEEET0_PFS7_DpT1_EDpNS_8identityIS8_E4typeE RELA            0000000000000000 005108 000048 18  IG 60  41  8
+  [43] .text._ZN3psd4callILj11EiJP9_XDisplaymP15__GLXcontextRecEEET0_PFS5_DpT1_EDpNS_8identityIS6_E4typeE PROGBITS        0000000000000000 001a78 000099 00 AXG  0   0 16
+  [44] .rela.text._ZN3psd4callILj11EiJP9_XDisplaymP15__GLXcontextRecEEET0_PFS5_DpT1_EDpNS_8identityIS6_E4typeE RELA            0000000000000000 005150 000048 18  IG 60  43  8
+  [45] .text._ZN3psd4callILj12EiJP9_XDisplaymmP15__GLXcontextRecEEET0_PFS5_DpT1_EDpNS_8identityIS6_E4typeE PROGBITS        0000000000000000 001b18 0000a9 00 AXG  0   0 16
+  [46] .rela.text._ZN3psd4callILj12EiJP9_XDisplaymmP15__GLXcontextRecEEET0_PFS5_DpT1_EDpNS_8identityIS6_E4typeE RELA            0000000000000000 005198 000048 18  IG 60  45  8
+  [47] .text._ZN3psd4callILj13EvJP9_XDisplayP15__GLXcontextRecEEET0_PFS5_DpT1_EDpNS_8identityIS6_E4typeE PROGBITS        0000000000000000 001bc8 00007d 00 AXG  0   0 16
+  [48] .rela.text._ZN3psd4callILj13EvJP9_XDisplayP15__GLXcontextRecEEET0_PFS5_DpT1_EDpNS_8identityIS6_E4typeE RELA            0000000000000000 0051e0 000048 18  IG 60  47  8
+  [49] .text._ZN3psd4callILj14EjJEEET0_PFS1_DpT1_EDpNS_8identityIS2_E4typeE PROGBITS        0000000000000000 001c48 000065 00 AXG  0   0 16
+  [50] .rela.text._ZN3psd4callILj14EjJEEET0_PFS1_DpT1_EDpNS_8identityIS2_E4typeE RELA            0000000000000000 005228 000048 18  IG 60  49  8
+  [51] .data.rel         PROGBITS        0000000000000000 001cb0 000008 00  WA  0   0  8
+  [52] .rela.data.rel    RELA            0000000000000000 005270 000018 18   I 60  51  8
+  [53] .data.rel.ro.local PROGBITS        0000000000000000 001cb8 000048 00  WA  0   0  8
+  [54] .rela.data.rel.ro.local RELA            0000000000000000 005288 0000d8 18   I 60  53  8
+  [55] .rodata.cst16     PROGBITS        0000000000000000 001d00 000030 10  AM  0   0 16
+  [56] .rodata.cst8      PROGBITS        0000000000000000 001d30 000008 08  AM  0   0  8
+  [57] .comment          PROGBITS        0000000000000000 001d38 000020 01  MS  0   0  1
+  [58] .eh_frame         PROGBITS        0000000000000000 001d58 000830 00   A  0   0  8
+  [59] .rela.eh_frame    RELA            0000000000000000 005360 000438 18   I 60  58  8
+  [60] .symtab           SYMTAB          0000000000000000 002588 000888 18     61  58  8
+  [61] .strtab           STRTAB          0000000000000000 002e10 000b9b 00      0   0  1
+  [62] .shstrtab         STRTAB          0000000000000000 005798 0005fd 00      0   0  1
+Key to Flags:
+  W (write), A (alloc), X (execute), M (merge), S (strings), I (info),
+  L (link order), O (extra OS processing required), G (group), T (TLS),
+  C (compressed), x (unknown), o (OS specific), E (exclude),
+  D (mbind), l (large), p (processor specific)

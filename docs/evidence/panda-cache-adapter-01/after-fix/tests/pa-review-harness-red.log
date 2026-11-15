@@ -1,0 +1,45 @@
+.F.F...F..F
+======================================================================
+FAIL: test_actual_normal_and_sanitized_scenarios_ignore_ambient_compiler_injection (tests.test_panda_cache_adapter_cpu.CacheCpuHarnessTests.test_actual_normal_and_sanitized_scenarios_ignore_ambient_compiler_injection)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_cache_adapter_cpu.py", line 16, in test_actual_normal_and_sanitized_scenarios_ignore_ambient_compiler_injection
+    self.assertEqual((r['scenarios_per_build'],len(r['builds'])),(50,2));self.assertTrue(r['normal_sanitized_identical'])
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (48, 2) != (50, 2)
+
+First differing element 0:
+48
+50
+
+- (48, 2)
++ (50, 2)
+
+======================================================================
+FAIL: test_ambient_readelf_is_not_executed (tests.test_panda_cache_adapter_cpu.CacheCpuHarnessTests.test_ambient_readelf_is_not_executed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_cache_adapter_cpu.py", line 25, in test_ambient_readelf_is_not_executed
+    self.assertFalse(marker.exists(),'ambient readelf ran outside controlled runner')
+AssertionError: True is not false : ambient readelf ran outside controlled runner
+
+======================================================================
+FAIL: test_inspection_timeout_and_output_are_bounded_by_actual_runner (tests.test_panda_cache_adapter_cpu.CacheCpuHarnessTests.test_inspection_timeout_and_output_are_bounded_by_actual_runner)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_cache_adapter_cpu.py", line 28, in test_inspection_timeout_and_output_are_bounded_by_actual_runner
+    self.assertTrue(hasattr(cpu,'inspect_cpu_candidate'),'adapter-owned bounded inspection required')
+AssertionError: False is not true : adapter-owned bounded inspection required
+
+======================================================================
+FAIL: test_transitive_abi_header_change_rejects_before_output (tests.test_panda_cache_adapter_cpu.CacheCpuHarnessTests.test_transitive_abi_header_change_rejects_before_output)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_cache_adapter_cpu.py", line 42, in test_transitive_abi_header_change_rejects_before_output
+    with patch.object(cpu,'ROOT',folder),self.assertRaisesRegex(ValueError,'source pin'):cpu.run_cpu(folder/'proof',CANDIDATE)
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 11 tests in 9.392s
+
+FAILED (failures=4)
