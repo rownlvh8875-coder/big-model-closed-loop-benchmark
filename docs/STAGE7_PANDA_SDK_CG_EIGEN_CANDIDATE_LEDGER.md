@@ -1,0 +1,9 @@
+# SDD ledger — plan: docs/superpowers/plans/2026-11-16-panda-sdk-cg-eigen-candidate-v2.md
+Base67ecf8a4e391fc26ebed825c129ac16a417e084c/Draft124,7405files. User explicitly requested all4implementation tasks including one newly qualified compile-only build. Old design status remains immutable; new implementation/request provides its separate authority after review/sourceCI. No SDK/Panda/GL/Xvfb/target/model/ORT/cohort/image runtime or publication/merge.
+Ruling: Work inline in existing checkout on own feature/panda-sdk-cg-eigen-candidate-v2 branch — persisted user preference and low disk — cost: strict7405base/mode/reference preservation required.
+Ruling: Use equivalent manual task briefs/completion ledger because cloud task-start/task-done helper resources were unavailable in the prior setup — retain spec/plan identity, RED/GREEN commands and commit ranges — cost: helper-generated formatting is unavailable.
+Pre-flight1→2: Eigen qualifier extends a fresh Cg private root with530exact headers; builder checks both manifests and private tree identity before/after. Existing Cg/Eigen roots must not be modified.
+Pre-flight2→3: parentET_REL/raw128B/effectiveconfiguration/buildfacts feed independent byte-backed gate. Init code outside the literal section remains DATA, never executed; no JSON-only admission.
+Pre-flight3→4: new static status binds to separate source/CI/request/run/job/carrier; source282old identities remain exact and closure extends. No consumed gate/window replay.
+Task1 in_progress; actual SDK2 compile0/request0. GenuineEigenqualification DATA-only, parser negatives use synthetic fixtures that cannot grant archive/provider authority.
+Task1: complete — base67ecf8a→Task1commit; tests4RED missingmodule→GREEN1.344s, exact genuine archive530headers8669561B/version3.4.0 staged in newDATA-only root; bounds/link/duplicate/path/pin/host-alias/reuse negatives pass; actualSDK2compile0.
