@@ -1,0 +1,47 @@
+name: One-use SDK image COPY-only ABI0 production v3
+on:
+  push:
+    branches: ['prepare/panda-sdk-image-20261115-03']
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: panda-sdk-image-20261115-03
+  cancel-in-progress: false
+jobs:
+  produce:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - name: Reject repeated attempts
+        env:
+          ATTEMPT: ${{ github.run_attempt }}
+        run: test "$ATTEMPT" = 1
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          fetch-depth: 1
+          persist-credentials: false
+      - name: Source-bound COPY-only image production, never start container
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: /usr/bin/python3 -I -S -B scripts/produce_panda_sdk_abi0_image.py --run
+      - name: Preserve candidate or available failure bundle
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: panda-sdk-image-20261115-03
+          path: output/stage7-panda-sdk-abi0-image-01/producer/bundle/
+          compression-level: 0
+          retention-days: 30
+          if-no-files-found: warn
+          include-hidden-files: true
+      - name: Preserve bounded execution evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: panda-sdk-image-20261115-03-execution
+          path: output/stage7-panda-sdk-abi0-image-01/producer/execution/
+          compression-level: 0
+          retention-days: 30
+          if-no-files-found: warn
+          include-hidden-files: true

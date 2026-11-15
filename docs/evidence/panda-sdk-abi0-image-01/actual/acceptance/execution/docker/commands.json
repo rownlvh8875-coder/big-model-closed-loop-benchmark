@@ -1,0 +1,496 @@
+[
+  {
+    "command": [
+      "/usr/bin/docker",
+      "--host=unix:///var/run/docker.sock",
+      "version",
+      "--format",
+      "{{json .Server}}"
+    ],
+    "process": {
+      "schema": "image-owned-process-capture-v1",
+      "status": "EXITED",
+      "returncode": 0,
+      "streams_complete": true,
+      "termination_attempted": false,
+      "cleanup_failed": false,
+      "argv_sha256": "7789d04adc478d58fb0df5277764b7fd76f964a187c42d3fd8e625067923c5e1",
+      "stdout_observed_bytes": 810,
+      "stdout_sha256": "79b585fa9dc788d645c7c11506cd0e2b0c3dc62b50bc876d172662dceb7f619d",
+      "stdout_saved_bytes": 810,
+      "stdout_redacted": false,
+      "stdout_saved_truncated": false,
+      "stderr_observed_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_saved_bytes": 0,
+      "stderr_redacted": false,
+      "stderr_saved_truncated": false,
+      "elapsed_seconds": 0.02046776400000283
+    }
+  },
+  {
+    "command": [
+      "/usr/bin/docker",
+      "--host=unix:///var/run/docker.sock",
+      "image",
+      "inspect",
+      "--format",
+      "{{json .}}",
+      "stage7-engine-clock:image-20261114-01"
+    ],
+    "process": {
+      "schema": "image-owned-process-capture-v1",
+      "status": "EXITED",
+      "returncode": 1,
+      "streams_complete": true,
+      "termination_attempted": false,
+      "cleanup_failed": false,
+      "argv_sha256": "977e89b494a88589ecb7f1da3dfc618b0a3e8fbb7d645c286c42d754a7b9f950",
+      "stdout_observed_bytes": 1,
+      "stdout_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "stdout_saved_bytes": 1,
+      "stdout_redacted": false,
+      "stdout_saved_truncated": false,
+      "stderr_observed_bytes": 81,
+      "stderr_sha256": "9ae34e5a529ca68549f8875c698462a96ef2e48b7a764461122cb261933db1a7",
+      "stderr_saved_bytes": 81,
+      "stderr_redacted": false,
+      "stderr_saved_truncated": false,
+      "elapsed_seconds": 0.013985040000008553
+    }
+  },
+  {
+    "command": [
+      "/usr/bin/docker",
+      "--host=unix:///var/run/docker.sock",
+      "load",
+      "--input",
+      "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-abi0-image-01/producer/work/base/image.tar"
+    ],
+    "process": {
+      "schema": "image-owned-process-capture-v1",
+      "status": "EXITED",
+      "returncode": 0,
+      "streams_complete": true,
+      "termination_attempted": false,
+      "cleanup_failed": false,
+      "argv_sha256": "1f6cf445f1796ab3bb500f63a1463482083301c0160b5a0c8ec300ab72491d12",
+      "stdout_observed_bytes": 52,
+      "stdout_sha256": "9685555a5c41f7e4f0d5196eebd3cc9c2c6f6efa5e07f293a7f2c3018d1d9c68",
+      "stdout_saved_bytes": 52,
+      "stdout_redacted": false,
+      "stdout_saved_truncated": false,
+      "stderr_observed_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_saved_bytes": 0,
+      "stderr_redacted": false,
+      "stderr_saved_truncated": false,
+      "elapsed_seconds": 34.287295885999995
+    }
+  },
+  {
+    "command": [
+      "/usr/bin/docker",
+      "--host=unix:///var/run/docker.sock",
+      "image",
+      "inspect",
+      "--format",
+      "{{json .}}",
+      "sha256:2b0854f1cf91e470994637f52f4e8c78c618ed00b1496a40bb05158290e01a37"
+    ],
+    "process": {
+      "schema": "image-owned-process-capture-v1",
+      "status": "EXITED",
+      "returncode": 0,
+      "streams_complete": true,
+      "termination_attempted": false,
+      "cleanup_failed": false,
+      "argv_sha256": "ed9d496a3636d5b8a4987af0e339e545d85f0c37e4a3bd70ad4234610237453a",
+      "stdout_observed_bytes": 3034,
+      "stdout_sha256": "212086c9263e9558d9e7321b9b73ca7e2801b466dc32950f3b5c342c33d1971a",
+      "stdout_saved_bytes": 3034,
+      "stdout_redacted": false,
+      "stdout_saved_truncated": false,
+      "stderr_observed_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_saved_bytes": 0,
+      "stderr_redacted": false,
+      "stderr_saved_truncated": false,
+      "elapsed_seconds": 0.01515935800000534
+    }
+  },
+  {
+    "command": [
+      "/usr/bin/docker",
+      "--host=unix:///var/run/docker.sock",
+      "image",
+      "inspect",
+      "--format",
+      "{{json .}}",
+      "stage7-panda-sdk-base:2b0854f1cf91"
+    ],
+    "process": {
+      "schema": "image-owned-process-capture-v1",
+      "status": "EXITED",
+      "returncode": 1,
+      "streams_complete": true,
+      "termination_attempted": false,
+      "cleanup_failed": false,
+      "argv_sha256": "dc39349f2d7bd6ac3e648f0b529dfe2468564ace30b240dacc5be28bccdd3fa7",
+      "stdout_observed_bytes": 1,
+      "stdout_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "stdout_saved_bytes": 1,
+      "stdout_redacted": false,
+      "stdout_saved_truncated": false,
+      "stderr_observed_bytes": 78,
+      "stderr_sha256": "a8ba5b36c41d8a7e818ff7f2cd0af30d40602153cc7ab1905b5c7e4ed3e4eeea",
+      "stderr_saved_bytes": 78,
+      "stderr_redacted": false,
+      "stderr_saved_truncated": false,
+      "elapsed_seconds": 0.013946962999995094
+    }
+  },
+  {
+    "command": [
+      "/usr/bin/docker",
+      "--host=unix:///var/run/docker.sock",
+      "image",
+      "inspect",
+      "--format",
+      "{{json .}}",
+      "stage7-panda-sdk:actions-20261115-03"
+    ],
+    "process": {
+      "schema": "image-owned-process-capture-v1",
+      "status": "EXITED",
+      "returncode": 1,
+      "streams_complete": true,
+      "termination_attempted": false,
+      "cleanup_failed": false,
+      "argv_sha256": "48ce140c0034d45cdc4b618e05d84e040cad2daf5f8b7c8fdf99dbfab1f5280d",
+      "stdout_observed_bytes": 1,
+      "stdout_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "stdout_saved_bytes": 1,
+      "stdout_redacted": false,
+      "stdout_saved_truncated": false,
+      "stderr_observed_bytes": 80,
+      "stderr_sha256": "0a0c82e9a8ab5d67d20bfadbcc2d8aba553a97063969ae0ad06a8576b4d7a761",
+      "stderr_saved_bytes": 80,
+      "stderr_redacted": false,
+      "stderr_saved_truncated": false,
+      "elapsed_seconds": 0.014071650999994745
+    }
+  },
+  {
+    "command": [
+      "/usr/bin/docker",
+      "--host=unix:///var/run/docker.sock",
+      "tag",
+      "sha256:2b0854f1cf91e470994637f52f4e8c78c618ed00b1496a40bb05158290e01a37",
+      "stage7-panda-sdk-base:2b0854f1cf91"
+    ],
+    "process": {
+      "schema": "image-owned-process-capture-v1",
+      "status": "EXITED",
+      "returncode": 0,
+      "streams_complete": true,
+      "termination_attempted": false,
+      "cleanup_failed": false,
+      "argv_sha256": "a55b588ae5c8efb296d8bf544d808651993ceda4d3f667d323e84c80585b4852",
+      "stdout_observed_bytes": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_saved_bytes": 0,
+      "stdout_redacted": false,
+      "stdout_saved_truncated": false,
+      "stderr_observed_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_saved_bytes": 0,
+      "stderr_redacted": false,
+      "stderr_saved_truncated": false,
+      "elapsed_seconds": 0.01521910700000717
+    }
+  },
+  {
+    "command": [
+      "/usr/bin/docker",
+      "--host=unix:///var/run/docker.sock",
+      "build",
+      "--network=none",
+      "--pull=false",
+      "--no-cache",
+      "--tag",
+      "stage7-panda-sdk:actions-20261115-03",
+      "--file",
+      "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-abi0-image-01/producer/work/context/Dockerfile",
+      "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-abi0-image-01/producer/work/context"
+    ],
+    "process": {
+      "schema": "image-owned-process-capture-v1",
+      "status": "EXITED",
+      "returncode": 0,
+      "streams_complete": true,
+      "termination_attempted": false,
+      "cleanup_failed": false,
+      "argv_sha256": "29fb2643a7cfe8141114ba60de5bdd831515b4b7fea3330c65abc9692b7397f3",
+      "stdout_observed_bytes": 319,
+      "stdout_sha256": "fa339e9a9d050d0389a969426d5bb94bd8dbd8b88a2e1cc1d79f9552a270be9f",
+      "stdout_saved_bytes": 319,
+      "stdout_redacted": false,
+      "stdout_saved_truncated": false,
+      "stderr_observed_bytes": 209,
+      "stderr_sha256": "ec34a09e033b515c85951f12dbaa17dc3090601dd78ed912c6b4548ce882034a",
+      "stderr_saved_bytes": 209,
+      "stderr_redacted": false,
+      "stderr_saved_truncated": false,
+      "elapsed_seconds": 1.7304268999999977
+    }
+  },
+  {
+    "command": [
+      "/usr/bin/docker",
+      "--host=unix:///var/run/docker.sock",
+      "image",
+      "inspect",
+      "--format",
+      "{{json .}}",
+      "stage7-panda-sdk:actions-20261115-03"
+    ],
+    "process": {
+      "schema": "image-owned-process-capture-v1",
+      "status": "EXITED",
+      "returncode": 0,
+      "streams_complete": true,
+      "termination_attempted": false,
+      "cleanup_failed": false,
+      "argv_sha256": "48ce140c0034d45cdc4b618e05d84e040cad2daf5f8b7c8fdf99dbfab1f5280d",
+      "stdout_observed_bytes": 3338,
+      "stdout_sha256": "95ef341ee26f5e2346872a96abc18c648c25f2718ce16b95444c8c78e7bb8f11",
+      "stdout_saved_bytes": 3338,
+      "stdout_redacted": false,
+      "stdout_saved_truncated": false,
+      "stderr_observed_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_saved_bytes": 0,
+      "stderr_redacted": false,
+      "stderr_saved_truncated": false,
+      "elapsed_seconds": 0.014502187999994476
+    }
+  },
+  {
+    "command": [
+      "/usr/bin/docker",
+      "--host=unix:///var/run/docker.sock",
+      "create",
+      "--network=none",
+      "--read-only",
+      "--entrypoint",
+      "/bin/false",
+      "--name",
+      "panda-sdk-9709596e23674ae09e1b9a667e8479a4",
+      "--label",
+      "stage7.sdk.image=9709596e23674ae09e1b9a667e8479a4",
+      "sha256:b9d673de93f1857e4dfa5ed6a48330d568ef96fce7f3cc975f0c688877e6e26e"
+    ],
+    "process": {
+      "schema": "image-owned-process-capture-v1",
+      "status": "EXITED",
+      "returncode": 0,
+      "streams_complete": true,
+      "termination_attempted": false,
+      "cleanup_failed": false,
+      "argv_sha256": "732858c4677fbd3716acfe2fd2c2e8c7819233693118496a1cc55b4668c9b762",
+      "stdout_observed_bytes": 65,
+      "stdout_sha256": "fc3d87bba2a7566d9152277bbf1110ee5ef3740feaf0c3126b30c63b4637727e",
+      "stdout_saved_bytes": 65,
+      "stdout_redacted": false,
+      "stdout_saved_truncated": false,
+      "stderr_observed_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_saved_bytes": 0,
+      "stderr_redacted": false,
+      "stderr_saved_truncated": false,
+      "elapsed_seconds": 0.03006345900001861
+    }
+  },
+  {
+    "command": [
+      "/usr/bin/docker",
+      "--host=unix:///var/run/docker.sock",
+      "container",
+      "inspect",
+      "--format",
+      "{{json .}}",
+      "69421f5c08642c6b7ff7b1f12082ca0b9e11170c71e15a6948fc699a03d0c9cb"
+    ],
+    "process": {
+      "schema": "image-owned-process-capture-v1",
+      "status": "EXITED",
+      "returncode": 0,
+      "streams_complete": true,
+      "termination_attempted": false,
+      "cleanup_failed": false,
+      "argv_sha256": "b21b6fc16530b1c105396dc68a8323a2a2629e9f8e9b4a6b467d42a6e78ed474",
+      "stdout_observed_bytes": 5058,
+      "stdout_sha256": "08dd315702f54cc6932761a1c4dffbbfa6859418119bd3444ba7bd188e91fe64",
+      "stdout_saved_bytes": 5058,
+      "stdout_redacted": false,
+      "stdout_saved_truncated": false,
+      "stderr_observed_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_saved_bytes": 0,
+      "stderr_redacted": false,
+      "stderr_saved_truncated": false,
+      "elapsed_seconds": 0.014384651000000304
+    }
+  },
+  {
+    "command": [
+      "/usr/bin/docker",
+      "--host=unix:///var/run/docker.sock",
+      "export",
+      "--output",
+      "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-abi0-image-01/producer/work/rootfs.tar",
+      "69421f5c08642c6b7ff7b1f12082ca0b9e11170c71e15a6948fc699a03d0c9cb"
+    ],
+    "process": {
+      "schema": "image-owned-process-capture-v1",
+      "status": "EXITED",
+      "returncode": 0,
+      "streams_complete": true,
+      "termination_attempted": false,
+      "cleanup_failed": false,
+      "argv_sha256": "0adde769dd206583ebc0625266be5b544f9bf4ab2fb2f724de49fc90115d12a1",
+      "stdout_observed_bytes": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_saved_bytes": 0,
+      "stdout_redacted": false,
+      "stdout_saved_truncated": false,
+      "stderr_observed_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_saved_bytes": 0,
+      "stderr_redacted": false,
+      "stderr_saved_truncated": false,
+      "elapsed_seconds": 14.499338496999997
+    }
+  },
+  {
+    "command": [
+      "/usr/bin/docker",
+      "--host=unix:///var/run/docker.sock",
+      "container",
+      "inspect",
+      "--format",
+      "{{json .}}",
+      "69421f5c08642c6b7ff7b1f12082ca0b9e11170c71e15a6948fc699a03d0c9cb"
+    ],
+    "process": {
+      "schema": "image-owned-process-capture-v1",
+      "status": "EXITED",
+      "returncode": 0,
+      "streams_complete": true,
+      "termination_attempted": false,
+      "cleanup_failed": false,
+      "argv_sha256": "b21b6fc16530b1c105396dc68a8323a2a2629e9f8e9b4a6b467d42a6e78ed474",
+      "stdout_observed_bytes": 5058,
+      "stdout_sha256": "08dd315702f54cc6932761a1c4dffbbfa6859418119bd3444ba7bd188e91fe64",
+      "stdout_saved_bytes": 5058,
+      "stdout_redacted": false,
+      "stdout_saved_truncated": false,
+      "stderr_observed_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_saved_bytes": 0,
+      "stderr_redacted": false,
+      "stderr_saved_truncated": false,
+      "elapsed_seconds": 0.014102372999985846
+    }
+  },
+  {
+    "command": [
+      "/usr/bin/docker",
+      "--host=unix:///var/run/docker.sock",
+      "save",
+      "--output",
+      "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-abi0-image-01/producer/bundle/image.tar",
+      "stage7-panda-sdk:actions-20261115-03"
+    ],
+    "process": {
+      "schema": "image-owned-process-capture-v1",
+      "status": "EXITED",
+      "returncode": 0,
+      "streams_complete": true,
+      "termination_attempted": false,
+      "cleanup_failed": false,
+      "argv_sha256": "8a896696f8f496e6ad22b9778efb3e53eeb0657f813c1924cea451e63d972708",
+      "stdout_observed_bytes": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_saved_bytes": 0,
+      "stdout_redacted": false,
+      "stdout_saved_truncated": false,
+      "stderr_observed_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_saved_bytes": 0,
+      "stderr_redacted": false,
+      "stderr_saved_truncated": false,
+      "elapsed_seconds": 10.150588148000026
+    }
+  },
+  {
+    "command": [
+      "/usr/bin/docker",
+      "--host=unix:///var/run/docker.sock",
+      "container",
+      "inspect",
+      "--format",
+      "{{json .}}",
+      "69421f5c08642c6b7ff7b1f12082ca0b9e11170c71e15a6948fc699a03d0c9cb"
+    ],
+    "process": {
+      "schema": "image-owned-process-capture-v1",
+      "status": "EXITED",
+      "returncode": 0,
+      "streams_complete": true,
+      "termination_attempted": false,
+      "cleanup_failed": false,
+      "argv_sha256": "b21b6fc16530b1c105396dc68a8323a2a2629e9f8e9b4a6b467d42a6e78ed474",
+      "stdout_observed_bytes": 5058,
+      "stdout_sha256": "08dd315702f54cc6932761a1c4dffbbfa6859418119bd3444ba7bd188e91fe64",
+      "stdout_saved_bytes": 5058,
+      "stdout_redacted": false,
+      "stdout_saved_truncated": false,
+      "stderr_observed_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_saved_bytes": 0,
+      "stderr_redacted": false,
+      "stderr_saved_truncated": false,
+      "elapsed_seconds": 0.018643100000019786
+    }
+  },
+  {
+    "command": [
+      "/usr/bin/docker",
+      "--host=unix:///var/run/docker.sock",
+      "rm",
+      "69421f5c08642c6b7ff7b1f12082ca0b9e11170c71e15a6948fc699a03d0c9cb"
+    ],
+    "process": {
+      "schema": "image-owned-process-capture-v1",
+      "status": "EXITED",
+      "returncode": 0,
+      "streams_complete": true,
+      "termination_attempted": false,
+      "cleanup_failed": false,
+      "argv_sha256": "d114a30d1db5f8262b898819787df8f714fbd68288b6b61cb067575b5c8f190c",
+      "stdout_observed_bytes": 65,
+      "stdout_sha256": "fc3d87bba2a7566d9152277bbf1110ee5ef3740feaf0c3126b30c63b4637727e",
+      "stdout_saved_bytes": 65,
+      "stdout_redacted": false,
+      "stdout_saved_truncated": false,
+      "stderr_observed_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_saved_bytes": 0,
+      "stderr_redacted": false,
+      "stderr_saved_truncated": false,
+      "elapsed_seconds": 0.019799298999998882
+    }
+  }
+]
