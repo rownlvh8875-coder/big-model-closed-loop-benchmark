@@ -1,0 +1,3 @@
+# New SDK Actions image evidence
+
+Before-review checkpoint: code/tests only; new production/acceptance NOT_RUN. Pure metadata fixtures and handwritten CPU child tests grant no external origin. Existing SDK3e9fa983/localimage9ad3564a remain unchanged. before-review preserves RED/GREEN/full1579 tests and5798basefile/299pin/10original/main/Drafts102–114/8native history preservation. Later sourceCI,request-only activation,actual Actions/TLS artifact acceptance and final exactHEAD proof are separate; do not relabel this checkpoint as actual production. Native/starts/model/officialORT0,strict0of4FAIL,Stage7INCOMPLETE. Source closure covers all Python scripts/native9/fixedworkflow/SDK/authority inputs; huge prior data is referenced, not copied.

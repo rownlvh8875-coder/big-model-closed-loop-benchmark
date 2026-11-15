@@ -28,8 +28,8 @@ Base16c690c0bfc586acf089ff15cb95431eb1412ca8;5798basefiles/299pins/10originals/m
 ### Task2: Portable producer and authenticated consumer
 **Create:** scripts/produce_panda_sdk_image.py;scripts/accept_panda_sdk_image.py;.github/workflows/panda-sdk-image-production-v1.yml;tests/test_panda_sdk_image_producer.py;tests/test_panda_sdk_image_acceptance.py.
 **Interfaces:** production --run;accept(source_sha,activation_sha,run_id,out)->receipt;DockerData.run(args)->bounded record. Uses Task1 live validators and existing Client/guarded archive/export/SDK layer helpers.
-- [ ] RED CPU child/pinned tool/env/timeout/forbidden verbs, closed3carrier ZIP + mismatched image/manifest/receipt/authority and failure preservation; real synthetic tar/ZIP fixtures.
-- [ ] Implement only declared read/COPY/STOPPED actions, source-bound workflow/artifact upload, independent API acceptance; focused/fullsuite/static checks and preservation,commit.
+- [x] RED CPU child/pinned tool/env/timeout/forbidden verbs, closed3carrier ZIP + mismatched image/manifest/receipt/authority and failure preservation; real synthetic tar/ZIP fixtures.
+- [x] Implement only declared read/COPY/STOPPED actions, source-bound workflow/artifact upload, independent API acceptance; focused/fullsuite/static checks and preservation,commit.
 
 ### Task3: Review, actual one-use production and final closeout
 **Create:** docs/STAGE7_PANDA_SDK_IMAGE_AUTH_{RESULT,LEDGER,CONTINUATION}.md;docs/evidence/panda-sdk-image-auth-01/;new activation request on separate branch only.

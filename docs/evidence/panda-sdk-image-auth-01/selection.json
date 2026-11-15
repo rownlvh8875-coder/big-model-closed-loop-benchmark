@@ -1,0 +1,25 @@
+{
+  "schema": "panda-sdk-image-auth-selection-v1",
+  "base_sha": "16c690c0bfc586acf089ff15cb95431eb1412ca8",
+  "status": "IMPLEMENTATION_VERIFIED_PRODUCTION_NOT_RUN",
+  "source_closure_count": 221,
+  "source_sha256": {
+    "scripts/panda_sdk_image_auth.py": "4e3cd7f86607c21598cef79f56d6ca900848ee060e777c3bf6fa4978fd56c444",
+    "scripts/produce_panda_sdk_image.py": "eab6b62e198e4fb61b3c3b186d294099fd90df4ca8277a53fc5c88461ff61218",
+    "scripts/accept_panda_sdk_image.py": "193182633dcb49d7e9c5b61c047e967a37a432ea028682bb67d945966dcc72cd",
+    ".github/workflows/panda-sdk-image-production-v1.yml": "f14bd64358a0a74cccd354fabb64a9488ebddf15d97fde059589e3bcaca780c5",
+    "tests/test_panda_sdk_image_auth.py": "b64b3fcea78d3be074a5825a9810e0fec7dd5192324f23211e7f6bf0978dbd56",
+    "tests/test_panda_sdk_image_producer.py": "d690d4f0886ab0ee785e8ceb5606774e8db201092df311aa1fe8af4a27fc3e52",
+    "tests/test_panda_sdk_image_acceptance.py": "ec4bd6b6eec86d84a2248b64a1ee8f1685cdaef28c9afc67ad6447af08a8895a"
+  },
+  "full": {
+    "total": 1579,
+    "passed": 1572,
+    "skipped": 7,
+    "seconds": 131.076
+  },
+  "production_runs": 0,
+  "native_admitted": false,
+  "containers_started": 0,
+  "stage7_complete": false
+}

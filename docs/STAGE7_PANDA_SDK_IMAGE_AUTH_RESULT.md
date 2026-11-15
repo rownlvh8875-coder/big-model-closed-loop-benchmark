@@ -1,0 +1,5 @@
+# New SDK Actions image result
+
+Current implementation checkpoint: full1579tests/1572PASS7skip131.076s;14newfocused PASS. Production/acceptance are pending the sole independent review and sourceCI gate. No new image origin claim or native/driver/scientific authority. Preserve old5798files/299pins/10originals/main/Drafts102–114/8native histories. No SDK/Panda/GL/MetaDrive/model/officialORT loading or container start/publication/request reuse.
+
+Next: review code,fix Important once by TDD,source branch push+Draft/sourceCI; create exact request-only activation on prepare/panda-sdk-image-20261115-01,execute one production attempt,authenticate actual output through caller-bound source/activation/run and TLS API metadata/digests,parse new image bytes/layers/installed inventory,then final docs/evidence/ownDraft/exactHEAD sourceCI/preservation. Actual mapped ABI/dispatch/early install/native lifetimes/cache handoff/driver freshness/process-window-sink authentication/canary/cohort remain later gates.
