@@ -37,8 +37,8 @@ Preserve4951basefiles/299pins/10originals/main/Drafts102–113/8nativehistories.
 
 **Create:** docs/evidence/panda-sdk-routes-02/name-profile.json;scripts/panda_sdk_routes_coverage.py;tests/test_panda_sdk_routes_coverage.py.
 **Interfaces:** qualify_selected(selected_sources,runtime,profile)->report;audit_build(build_receipt,out)->report. Consume Task2 actual candidate/source/commands/dependency/tool records, produce selected-name/static-only qualification and CPU safe252 acceptance evidence.
-- [ ] RED unclassified/unsafe/257names, changed explicit profile/runtime/forwarding/computed source and mismatched candidate/flags reject; allsevenroutes remove genuine blockers without cap change.
-- [ ] Implement explicit semantic252profile and exact forwarding/finite resolver proof, actual new SDK preprocessing and CPU normal/sanitized evidence; record/commit.
+- [x] RED unclassified/unsafe/257names, changed explicit profile/runtime/forwarding/computed source and mismatched candidate/flags reject; allsevenroutes remove genuine blockers without cap change.
+- [x] Implement explicit semantic252profile and exact forwarding/finite resolver proof, actual new SDK preprocessing and CPU normal/sanitized evidence; record/commit.
 
 ### Task4: New full LOCAL image containing SDK bytes and closeout
 
