@@ -28,8 +28,8 @@ Basecd919/5950files/299pins/10originals/main/Drafts102–115/8nativehistories/tw
 ### Task2: Authenticated provider extraction and graph audit
 **Create:** scripts/panda_sdk_link_image.py;scripts/audit_panda_sdk_link.py;tests/test_panda_sdk_link_image.py.
 **Interfaces:** Inventory.resolve(path),SelectedImage.collect(paths)->DATArecords;qualify_image(image,inventory,root_candidate,out)->report.
-- [ ] RED final-layer replacement/whiteouts/escape/aliases/cycles/hash drift/ambiguous providers/existing-output/budget rejection with real tiny tar fixtures.
-- [ ] Verify actual image0276 and provider closure,independently audit baseline3e9,retain exact missing symbols/versions and raw byte identities;focusedtests/commit.
+- [x] RED final-layer replacement/whiteouts/escape/aliases/cycles/hash drift/ambiguous providers/existing-output/budget rejection with real tiny tar fixtures.
+- [x] Verify actual image0276 and provider closure,independently audit baseline3e9,retain exact missing symbols/versions and raw byte identities;focusedtests/commit.
 
 ### Task3: ABI0 replacement build and complete handoff
 **Create:** scripts/build_panda_sdk_link.py;tests/test_panda_sdk_link_build.py;docs/STAGE7_PANDA_SDK_LINK_{RESULT,LEDGER,CONTINUATION}.md;docs/evidence/panda-sdk-link-audit-01/.

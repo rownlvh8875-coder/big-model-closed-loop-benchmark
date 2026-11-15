@@ -52,4 +52,15 @@ class LoaderSymbolTests(unittest.TestCase):
  def test_hidden_nondefault_export_cannot_satisfy_unversioned_import(self):
   root=dict(imports=[dict(name='x',version=None,version_library=None,binding=1,symbol_type=2)],unsupported_features=[]);provider=dict(path='CPU',soname='libx.so',exports=[dict(name='x',version='ABI_1',default_version=False,symbol_type=2)])
   r=elf.available_imports(root,[provider]);self.assertEqual(len(r['missing']),1);provider['exports'][0]['default_version']=True;self.assertFalse(elf.available_imports(root,[provider])['missing'])
+ def test_large_but_bounded_relative_table_and_over_budget_reject(self):
+  b=bytearray((self.root/'use.so').read_bytes());h=struct.unpack_from('<16sHHIQQQIHHHHHH',b);ph=[(h[5]+56*i,struct.unpack_from('<IIQQQQQQ',b,h[5]+56*i)) for i in range(h[10])];dyn=next(p for _,p in ph if p[0]==2);slot,p=max((r for r in ph if r[1][0]==1),key=lambda r:r[1][3]);start=(len(b)+7)&~7;va=p[3]+start-p[2];count=345403;b.extend(b'\0'*(start-len(b)));b.extend(struct.pack('<QQq',p[3],8,0)*count);extent=len(b)-p[2];struct.pack_into('<QQ',b,slot+32,extent,extent)
+  for at in range(dyn[2],dyn[2]+dyn[5],16):
+   tag,_=struct.unpack_from('<qQ',b,at)
+   if tag==7:struct.pack_into('<Q',b,at+8,va)
+   if tag==8:size_slot=at+8;struct.pack_into('<Q',b,size_slot,count*24)
+  self.assertGreaterEqual(elf.inspect_elf(bytes(b))['relocation_count'],count)
+  struct.pack_into('<Q',b,size_slot,(524288+1)*24)
+  with self.assertRaisesRegex(ValueError,'relocation table extent'):elf.inspect_elf(bytes(b))
+ def test_all_matching_candidates_are_reported_without_binding_authority(self):
+  root=self.read('use.so');a=self.read('v1.so');b=copy.deepcopy(a);a['path']='one';b['path']='two';r=elf.available_imports(root,[a,b]);hit=next(x for x in r['resolved'] if x['name']=='value');self.assertEqual(hit['provider_candidates'],['one','two']);self.assertFalse(r['runtime_mapping_qualified'])
 if __name__=='__main__':unittest.main()

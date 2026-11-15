@@ -82,9 +82,9 @@ def inspect_elf(blob):
     relocation_count = 0
     spans = []
     for address, nbytes in tables:
-        _need(nbytes % 24 == 0 and nbytes // 24 <= 262144, 'relocation table extent')
+        _need(nbytes % 24 == 0 and nbytes // 24 <= 524288, 'relocation table extent')
         relocation_count += nbytes // 24
-        _need(relocation_count <= 262144, 'relocation count budget')
+        _need(relocation_count <= 524288, 'relocation count budget')
         if nbytes:
             location(address, nbytes)
             for previous, old_size in spans:
