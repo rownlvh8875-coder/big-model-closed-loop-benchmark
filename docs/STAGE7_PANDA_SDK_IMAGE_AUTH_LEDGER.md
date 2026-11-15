@@ -1,0 +1,8 @@
+# New SDK authenticated image ledger
+
+Base16c690c0bfc586acf089ff15cb95431eb1412ca8/5798files. Cloud spec1 connected; no AGENTS. User authorizes next step, prior inline/noquestions/ownDraft preference persists. Plan/spec are current authority. Currentnativeallowance0/strict0of4FAIL/Stage7INCOMPLETE.
+Ruling: Fresh push-filtered producer and request-only activation on owned branches — avoids main changes/consumed requests while authenticating actual API output lineage — costs a new producer run/download and versioned protocol; no Sigstore or native authority.
+Ruling: Reuse authenticated old full image bytes and COPY committed new SDK — old artifact is unexpired and exact pins verified via API, SDK already built and qualified asDATA — current runner is a new host; mapped ABI/driver/runtime equivalence still needs separate qualification.
+Ruling: Consumer checks authenticated producer export plus independently parsed image/layers/inventory without local Docker replay — local12GiB free is below preserved16GiB production minimum, and byte transport need not start or reload payloads — no independent runtime/export or directory/ownership/xattr qualification is claimed.
+Preflight1→2: policy pins/request/activation/CI/run/artifact fields feed actual producer and consumer; both must obtain external evidence via live TLS client. No forged in-memory readiness promotion.
+Preflight2→3: complete code/review/sourceCI precedes request-only activation; final result docs may follow, but runtime code cannot drift from reviewed source. New output identity is not local9ad and cannot inherit old image authentication.
