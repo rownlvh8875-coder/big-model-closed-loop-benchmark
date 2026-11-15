@@ -1,0 +1,52 @@
+{
+  "schema": "panda-sdk-mapping-accepted-v1",
+  "status": "AUTHENTICATED_MAPPING_ONLY_CANARY_PASSED",
+  "actions_output_origin_authenticated": true,
+  "native_admitted": false,
+  "stage7_complete": false,
+  "source_sha": "9e1ad10da0a4b57e4dfe4dce081b3f2cca3d8c1e",
+  "activation_sha": "c73da62a457e83c54d63065d2e2f6f773a8e941a",
+  "run_id": 43709001528,
+  "workflow_id": 419084732,
+  "job_id": 132796278688,
+  "artifact_id": 14160030534,
+  "artifact_zip_sha256": "2e5320718f6ae440690c37fc9c71c21505879451fb8998e3ca43d48d5ac46cf5",
+  "artifact_zip_nbytes": 279932,
+  "request_sha256": "a02bcdcf8f5a02cf5ef6f01dfc876b5b1f5f4114cab17870162e25f07887ab5f",
+  "carrier": {
+    "status": "CLOSED_BOUNDED_MAPPING_CARRIER_EXTRACTED",
+    "files": {
+      "execution.json": {
+        "nbytes": 46675,
+        "sha256": "5c18726704617dd2d6114ab39c2982aa9d96c22a24b12fd4805db923bcba6f26"
+      },
+      "canary.json": {
+        "nbytes": 1739,
+        "sha256": "283b03a75c1d319698e9b8d53af27593ae911a0af38a1b150817dd7aef525b6e"
+      },
+      "runtime.json": {
+        "nbytes": 231146,
+        "sha256": "099b44991499647161ce62d31403401a44f5002f5cdc3875fa3d3a3c24f77738"
+      }
+    },
+    "root_filesystem_extracted": false,
+    "native_admitted": false
+  },
+  "receipt_semantics": {
+    "status": "CANARY_RECEIPT_SEMANTICS_MATCH",
+    "canary_passed": true,
+    "external_origin_authenticated": false,
+    "native_admitted": false,
+    "stage7_complete": false
+  },
+  "mapping_window_consumed": true,
+  "start_attempts": 1,
+  "canary_passed": true,
+  "sdk_sha256": "8d302ae2a610b56db4f7feca08fd736004cf6d3d9650fdb9834f19389a0b7342",
+  "image_sha256": "4984470cd7d732f9f2d1c12710c9433b563b3817ba6d1d419749a9a2b1b46698",
+  "selected_c_abi_calls_verified": 5,
+  "full_object_abi_qualified": false,
+  "runtime_admission_ready": false,
+  "scientific_native_runs": 0,
+  "strict_current_result": "0/4 FAIL"
+}

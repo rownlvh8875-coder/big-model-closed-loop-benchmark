@@ -30,5 +30,9 @@ Create scripts/panda_sdk_mapping_child.py;scripts/panda_sdk_mapping_runtime.py;t
 ### Task3: Hosted one-use run, independent acceptance and full closeout
 Create scripts/run_panda_sdk_mapping_canary.py;scripts/accept_panda_sdk_mapping_canary.py;tests/test_panda_sdk_mapping_flow.py;docs/STAGE7_PANDA_SDK_MAPPING_{RESULT,LEDGER,CONTINUATION}.md;docs/evidence/panda-sdk-mapping-01/.
 - [x] RED exactActionsgate/one-start latch/forbiddenargs/credentials/oldimage/foreignsourcejob/run/artifact/carrier/output/failure/namespace/memory boundaries;minimal new runner/consumer;fullsuite/preservation.
-- [ ] ONE fresh wholebranch review/oneImportantTDDfixpass/no rereview;ownDraft/reviewedsourceCI;NEWmapping01request-only activation;ONE actual hosted attempt;external API/proof inspection;failure retained/no rerun.
-- [ ] Final evidence/docsonlycommit/exactfinalHEADCI4jobs/attempt1/artifacts0/body/freshpreservation/finalreceipt/onlyowned scratch cleanup. Final remote receipt output/stage7-panda-sdk-mapping-01/final-verification.json avoids self-reference.
+- [x] ONE fresh wholebranch review/oneImportantTDDfixpass/no rereview; ownDraft118; reviewed source9e1ad10 CI4jobs passed; NEWmapping01 activationc73da62; ONE hosted run43709001528/attempt1 PASSED; externalAPI/closed proof authenticated; no rerun.
+- [x] Prepare final evidence/docs-only closeout, preserve reviewed implementation and record post-run preservation; archive/remove only this plan's scratch directory. Final remote verification is a postcommit gate below.
+
+## Required postcommit completion gate
+
+Verify the exact docs-only final head's four hosted CI jobs, attempt1/artifacts0, Draft118/body roundtrip, unchanged base, fresh remote preservation and clean local tree. Record actual results in output/stage7-panda-sdk-mapping-01/final-verification.json; that external receipt is authoritative for completion and avoids a self-referential commit. No additional mapping/native execution is allowed by this plan.

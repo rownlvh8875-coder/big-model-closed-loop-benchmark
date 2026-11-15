@@ -1,0 +1,161 @@
+canary	Set up job	﻿2026-11-15T11:27:25.9469811Z Current runner version: '2.338.2'
+canary	Set up job	2026-11-15T11:27:25.9496926Z ##[group]Runner Image Provisioner
+canary	Set up job	2026-11-15T11:27:25.9497894Z Hosted Compute Agent
+canary	Set up job	2026-11-15T11:27:25.9498436Z Version: 20261103.629
+canary	Set up job	2026-11-15T11:27:25.9499125Z Commit: 15dbd9ccb5dbf34fae002b6ed1a2670f52df37bc
+canary	Set up job	2026-11-15T11:27:25.9499849Z Build Date: 2026-11-03T17:26:59Z
+canary	Set up job	2026-11-15T11:27:25.9500517Z Worker ID: {ad36d210-2c12-4e60-a3b7-21e861bcf89f}
+canary	Set up job	2026-11-15T11:27:25.9501229Z Region: us-east-1
+canary	Set up job	2026-11-15T11:27:25.9501744Z Cloud: AWS
+canary	Set up job	2026-11-15T11:27:25.9502293Z ##[endgroup]
+canary	Set up job	2026-11-15T11:27:25.9503890Z ##[group]Operating System
+canary	Set up job	2026-11-15T11:27:25.9504863Z Ubuntu
+canary	Set up job	2026-11-15T11:27:25.9505378Z 24.04.5
+canary	Set up job	2026-11-15T11:27:25.9505901Z LTS
+canary	Set up job	2026-11-15T11:27:25.9506636Z ##[endgroup]
+canary	Set up job	2026-11-15T11:27:25.9507213Z ##[group]Runner Image
+canary	Set up job	2026-11-15T11:27:25.9507796Z Image: ubuntu-24.04
+canary	Set up job	2026-11-15T11:27:25.9508384Z Version: 20261111.127.1
+canary	Set up job	2026-11-15T11:27:25.9509520Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261111.127/images/ubuntu/Ubuntu2404-Readme.md
+canary	Set up job	2026-11-15T11:27:25.9511310Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261111.127
+canary	Set up job	2026-11-15T11:27:25.9512280Z ##[endgroup]
+canary	Set up job	2026-11-15T11:27:25.9513529Z ##[group]GITHUB_TOKEN Permissions
+canary	Set up job	2026-11-15T11:27:25.9516135Z Actions: read
+canary	Set up job	2026-11-15T11:27:25.9516988Z Contents: read
+canary	Set up job	2026-11-15T11:27:25.9517592Z Metadata: read
+canary	Set up job	2026-11-15T11:27:25.9518133Z ##[endgroup]
+canary	Set up job	2026-11-15T11:27:25.9520489Z Secret source: Actions
+canary	Set up job	2026-11-15T11:27:25.9521427Z Cache mode: write
+canary	Set up job	2026-11-15T11:27:25.9522288Z Prepare workflow directory
+canary	Set up job	2026-11-15T11:27:25.9854007Z Prepare all required actions
+canary	Set up job	2026-11-15T11:27:25.9906600Z Getting action download info
+canary	Set up job	2026-11-15T11:27:26.1514063Z Download action repository 'actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683' (SHA:11bd71901bbe5b1630ceea73d27597364c9af683)
+canary	Set up job	2026-11-15T11:27:28.0964324Z Download action repository 'actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+canary	Set up job	2026-11-15T11:27:28.4199569Z Complete job name: canary
+canary	Reject repeated attempts	﻿2026-11-15T11:27:28.4774928Z ##[group]Run test "$ATTEMPT" = 1
+canary	Reject repeated attempts	2026-11-15T11:27:28.4775723Z [36;1mtest "$ATTEMPT" = 1[0m
+canary	Reject repeated attempts	2026-11-15T11:27:28.8328091Z shell: /usr/bin/bash -e {0}
+canary	Reject repeated attempts	2026-11-15T11:27:28.8329533Z env:
+canary	Reject repeated attempts	2026-11-15T11:27:28.8330184Z   ATTEMPT: 1
+canary	Reject repeated attempts	2026-11-15T11:27:28.8330867Z ##[endgroup]
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	﻿2026-11-15T11:27:28.8708992Z ##[group]Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:28.8710542Z with:
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:28.8711322Z   fetch-depth: 1
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:28.8712175Z   persist-credentials: false
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:28.8713385Z   repository: rownlvh8875-coder/big-model-closed-loop-benchmark
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:28.8721238Z   token: ***
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:28.8722065Z   ssh-strict: true
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:28.8722915Z   ssh-user: git
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:28.8723722Z   clean: true
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:28.8724557Z   sparse-checkout-cone-mode: true
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:28.8725533Z   fetch-tags: false
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:28.8726469Z   show-progress: true
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:28.8727350Z   lfs: false
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:28.8728133Z   submodules: false
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:28.8728988Z   set-safe-directory: true
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:28.8729887Z ##[endgroup]
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:31.8408040Z Syncing repository: rownlvh8875-coder/big-model-closed-loop-benchmark
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:31.8409640Z ##[group]Getting Git version info
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:31.8410234Z Working directory is '/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark'
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:31.8411134Z [command]/usr/bin/git version
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:32.1468079Z git version 2.56.1
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:32.1485736Z ##[endgroup]
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:32.1496261Z Temporarily overriding HOME='/home/runner/work/_temp/5f62f3db-1c14-47ba-bd11-4c7de51ef075' before making global git config changes
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:32.1498347Z Adding repository directory to the temporary git global config as a safe directory
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:32.1501360Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:32.1546948Z Deleting the contents of '/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark'
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:32.1549726Z ##[group]Initializing the repository
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:32.1553291Z [command]/usr/bin/git init /home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:32.2448737Z hint: Using 'master' as the name for the initial branch. This default branch name
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:32.2449781Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:32.2450394Z hint: to use in all of your new repositories, which will suppress this warning,
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:32.2450863Z hint: call:
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:32.2451120Z hint:
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:32.2451657Z hint: 	git config --global init.defaultBranch <name>
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:32.2452002Z hint:
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:32.2452326Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:32.2452909Z hint: 'development'. The just-created branch can be renamed via this command:
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:32.2453376Z hint:
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:32.2453712Z hint: 	git branch -m <name>
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:32.2454097Z hint:
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:32.2454535Z hint: Disable this message with "git config set advice.defaultBranchName false"
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:32.2455463Z Initialized empty Git repository in /home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/.git/
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:32.2465170Z [command]/usr/bin/git remote add origin https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:32.2513865Z ##[endgroup]
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:32.2514688Z ##[group]Disabling automatic garbage collection
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:32.2516646Z [command]/usr/bin/git config --local gc.auto 0
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:32.2541475Z ##[endgroup]
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:32.2542136Z ##[group]Setting up auth
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:32.2546860Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:32.2575428Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:32.6472832Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:32.6497321Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:32.6658452Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:32.6679799Z ##[endgroup]
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:32.6680408Z ##[group]Fetching the repository
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:32.6694803Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +c73da62a457e83c54d63065d2e2f6f773a8e941a:refs/remotes/origin/diagnostic/panda-sdk-mapping-20261115-01
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:36.3463227Z From https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:36.3464197Z  * [new ref]         c73da62a457e83c54d63065d2e2f6f773a8e941a -> origin/diagnostic/panda-sdk-mapping-20261115-01
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:36.3472429Z ##[endgroup]
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:36.3473077Z ##[group]Determining the checkout info
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:36.3473811Z ##[endgroup]
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:36.3474681Z [command]/usr/bin/git sparse-checkout disable
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:36.3534285Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:36.3557178Z ##[group]Checking out the ref
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:36.3560062Z [command]/usr/bin/git checkout --progress --force -B diagnostic/panda-sdk-mapping-20261115-01 refs/remotes/origin/diagnostic/panda-sdk-mapping-20261115-01
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:36.9018207Z Switched to a new branch 'diagnostic/panda-sdk-mapping-20261115-01'
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:36.9024565Z branch 'diagnostic/panda-sdk-mapping-20261115-01' set up to track 'origin/diagnostic/panda-sdk-mapping-20261115-01'.
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:36.9048701Z ##[endgroup]
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:36.9090904Z [command]/usr/bin/git log -1 --format=%H
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:36.9120835Z c73da62a457e83c54d63065d2e2f6f773a8e941a
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:36.9138326Z ##[group]Removing auth
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:36.9138841Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:36.9154553Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:36.9317498Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:36.9344011Z http.https://github.com/.extraheader
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:36.9350114Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:36.9373243Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+canary	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:27:36.9532076Z ##[endgroup]
+canary	Authenticate new mapping-only authority and run one bounded child	﻿2026-11-15T11:27:36.9652752Z ##[group]Run /usr/bin/python3 -I -S -B scripts/run_panda_sdk_mapping_canary.py --run
+canary	Authenticate new mapping-only authority and run one bounded child	2026-11-15T11:27:36.9653338Z [36;1m/usr/bin/python3 -I -S -B scripts/run_panda_sdk_mapping_canary.py --run[0m
+canary	Authenticate new mapping-only authority and run one bounded child	2026-11-15T11:27:36.9679587Z shell: /usr/bin/bash -e {0}
+canary	Authenticate new mapping-only authority and run one bounded child	2026-11-15T11:27:36.9679916Z env:
+canary	Authenticate new mapping-only authority and run one bounded child	2026-11-15T11:27:36.9681821Z   GH_TOKEN: ***
+canary	Authenticate new mapping-only authority and run one bounded child	2026-11-15T11:27:36.9682065Z ##[endgroup]
+canary	Authenticate new mapping-only authority and run one bounded child	2026-11-15T11:28:42.2077962Z {"status": "MAPPING_ONLY_CANARY_PASSED", "mapping_window_consumed": true, "native_admitted": false}
+canary	Preserve candidate or available failure bundle	﻿2026-11-15T11:28:42.2286265Z ##[group]Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+canary	Preserve candidate or available failure bundle	2026-11-15T11:28:42.2286870Z with:
+canary	Preserve candidate or available failure bundle	2026-11-15T11:28:42.2287123Z   name: panda-sdk-mapping-20261115-01
+canary	Preserve candidate or available failure bundle	2026-11-15T11:28:42.2287461Z   path: output/stage7-panda-sdk-mapping-01/producer/bundle/
+canary	Preserve candidate or available failure bundle	2026-11-15T11:28:42.2287854Z   compression-level: 0
+canary	Preserve candidate or available failure bundle	2026-11-15T11:28:42.2288126Z   retention-days: 30
+canary	Preserve candidate or available failure bundle	2026-11-15T11:28:42.2288425Z   if-no-files-found: warn
+canary	Preserve candidate or available failure bundle	2026-11-15T11:28:42.2288688Z   include-hidden-files: true
+canary	Preserve candidate or available failure bundle	2026-11-15T11:28:42.2288979Z   overwrite: false
+canary	Preserve candidate or available failure bundle	2026-11-15T11:28:42.2289261Z ##[endgroup]
+canary	Preserve candidate or available failure bundle	2026-11-15T11:28:42.3592565Z (node:2348) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+canary	Preserve candidate or available failure bundle	2026-11-15T11:28:42.3593267Z (Use `node --trace-deprecation ...` to show where the warning was created)
+canary	Preserve candidate or available failure bundle	2026-11-15T11:28:42.3674352Z With the provided path, there will be 3 files uploaded
+canary	Preserve candidate or available failure bundle	2026-11-15T11:28:42.3675024Z Artifact name is valid!
+canary	Preserve candidate or available failure bundle	2026-11-15T11:28:42.3675323Z Root directory input is valid!
+canary	Preserve candidate or available failure bundle	2026-11-15T11:28:42.7355720Z Beginning upload of artifact content to blob storage
+canary	Preserve candidate or available failure bundle	2026-11-15T11:28:42.8447357Z (node:2348) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+canary	Preserve candidate or available failure bundle	2026-11-15T11:28:42.9208342Z Uploaded bytes 279932
+canary	Preserve candidate or available failure bundle	2026-11-15T11:28:42.9391338Z Finished uploading artifact content to blob storage!
+canary	Preserve candidate or available failure bundle	2026-11-15T11:28:42.9392079Z SHA256 digest of uploaded artifact zip is 2e5320718f6ae440690c37fc9c71c21505879451fb8998e3ca43d48d5ac46cf5
+canary	Preserve candidate or available failure bundle	2026-11-15T11:28:42.9393113Z Finalizing artifact upload
+canary	Preserve candidate or available failure bundle	2026-11-15T11:28:43.2921462Z Artifact panda-sdk-mapping-20261115-01.zip successfully finalized. Artifact ID 14160030534
+canary	Preserve candidate or available failure bundle	2026-11-15T11:28:43.2922384Z Artifact panda-sdk-mapping-20261115-01 has been successfully uploaded! Final size is 279932 bytes. Artifact ID is 14160030534
+canary	Preserve candidate or available failure bundle	2026-11-15T11:28:43.2927124Z Artifact download URL: https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43709001528/artifacts/14160030534
+canary	Post Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	﻿2026-11-15T11:28:43.3085850Z Post job cleanup.
+canary	Post Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:28:43.3742431Z [command]/usr/bin/git version
+canary	Post Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:28:43.3780600Z git version 2.56.1
+canary	Post Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:28:43.3812847Z Temporarily overriding HOME='/home/runner/work/_temp/9da711c1-141c-468e-8418-3f1a4140ea2e' before making global git config changes
+canary	Post Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:28:43.3813522Z Adding repository directory to the temporary git global config as a safe directory
+canary	Post Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:28:43.3817883Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark
+canary	Post Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:28:43.3850978Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+canary	Post Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:28:43.3877545Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+canary	Post Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:28:43.4044571Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+canary	Post Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T11:28:43.4068857Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+canary	Complete job	﻿2026-11-15T11:28:43.4374312Z Cleaning up orphan processes
+canary	Complete job	2026-11-15T11:28:43.4634732Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683, actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
