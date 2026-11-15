@@ -1,0 +1,15 @@
+test_complete_nonjson_runtime_is_retained_as_failed_wire (tests.test_panda_real_glx_flow.RealGLXFlowTests.test_complete_nonjson_runtime_is_retained_as_failed_wire) ... ERROR
+
+======================================================================
+ERROR: test_complete_nonjson_runtime_is_retained_as_failed_wire (tests.test_panda_real_glx_flow.RealGLXFlowTests.test_complete_nonjson_runtime_is_retained_as_failed_wire)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_real_glx_flow.py", line 98, in test_complete_nonjson_runtime_is_retained_as_failed_wire
+    with self.assertRaises(ValueError):host.save_runtime_wire(d,bundle,raw)
+                                       ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'scripts.run_panda_real_glx_canary' has no attribute 'save_runtime_wire'
+
+----------------------------------------------------------------------
+Ran 1 test in 0.070s
+
+FAILED (errors=1)
