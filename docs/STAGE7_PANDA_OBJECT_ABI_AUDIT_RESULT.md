@@ -1,0 +1,30 @@
+# Panda SDK/wheel object ABI audit: confirmed member-layout incompatibility
+
+DATA-only analysis found a concrete ABI blocker between frozen SDK8d302ae2 and the installed Panda1.10.13 wheel: **the same GLGraphicsStateGuardian members have different compiled offsets**. This is stronger evidence than the prior general ABI hypothesis. It does **not** establish the exact cause or call site of the consumed realGLX01 SIGABRT, which may have occurred before GSG construction.
+
+| Member/accessor | SDK offset | Original wheel offset | Difference |
+|---|---:|---:|---:|
+| get_driver_version_major | 0x618 | 0x688 | 112 bytes |
+| get_driver_version_minor | 0x61c | 0x68c | 112 bytes |
+| get_driver_vendor | 0x600 | 0x670 | 112 bytes |
+
+The two integer getters are seven-byte `mov disp32(%rdi),%eax; ret` leaves. Their exact instruction bytes, symbol RVAs, sizes, hashes and disassembly are retained in [audit.json](evidence/panda-object-abi-audit-01/audit.json) and sdk/wheel-disassembly.txt. The vendor getter independently uses the differing string-member offsets. Different generated instructions alone would not establish an ABI problem; these instructions address the **same named members at different locations**. Selected vtable agreement cannot compensate for this data-member difference.
+
+The SDK's recorded generated dtool_config.h has **HAVE_CG undefined**. The original wheel GL module depends on libCg.so/libCgGL.so, and its libpanda Shader::ShaderCaps::clear writes Cg profile constants at offsets0x4,0x8,0x14,0x18, reaching byte31. In the SDK's no-Cg header, ShaderCaps contains only bool _supports_glsl. The same-source SDK build's libpanda clear is four bytes (`c6 07 00 c3`); that build library is inspected solely as DATA and is **not** the installed provider. GraphicsStateGuardian embeds ShaderCaps, and GLGraphicsStateGuardian conditionally embeds CGcontext. Thus a layout-sensitive Cg configuration difference is established. The complete wheel build configuration has not been recovered; enabling Cg alone has **not** been proven sufficient to reconcile every layout or fix the abort. No current SDK call to ShaderCaps::clear, overrun or actual corruption site is asserted from this comparison.
+
+Several alternatives were narrowed without execution:
+
+- Reconstructing PandaSystem::get_git_commit's constant return data yields **470e352ab87ceae6e30429720e4690c8371f5a55**, matching the SDK source revision. Wheel sequence version13 and memory alignment16 are visible in constant-return leaves. SDK numeric1010012 versus version string1.10.13 is explained by makepanda subtracting one for non-cmu distributors; it does not prove a source-version mismatch.
+- ReferenceCount/TypedReferenceCount/GLGraphicsStateGuardian vtable sizes match at40/88/1024bytes.125 named entries agree, with zero named disagreements;13 other entries are unresolved or constants. These selected tables do not certify full vtable coverage, function signatures, class size, allocator semantics or runtime symbol resolution.
+- SDK imports, rather than privately defines, TypeRegistry::_global_pointer, init_global_pointer and is_derived_from. The pinned wheel libp3dtool defines them. This selected static check does not establish all live relocation bindings or rule out every duplicate registry.
+- Compiler comments differ: SDK GCC14.2.0, wheel GCC10.2.1. Compiler version difference alone is not diagnosed as causal. --no-python is also not established as the cause.
+
+Input provenance is retained for34 files. The selected wheel matches its retained publisher SHA/size and selected ZIP CRC/RECORD hashes. Extracted core matches the authenticated installed-image inventory; four retained Panda provider libraries and the current SDK do too. Ten SDK headers match the recorded build input hashes. Original wheel libpandagl is a **reference comparator**, not the replacement module installed in the current image. The original wheel/core binaries remain in output/stage7-panda-object-abi-audit-01/ as non-executed DATA; only bounded disassembly, metadata, hashes and analysis recipes enter Git. [source-excerpts.txt](evidence/panda-object-abi-audit-01/source-excerpts.txt) records the relevant conditional fields and version generation. The trusted-input ELF recipe is an investigation artifact, not a new production parser or external-admission gate.
+
+No target SDK/Panda/GL/Xvfb/container was loaded or run, no target was rebuilt, and no workflow was activated or retried for this audit. All7035base files/modes at84e9128,299old pins,10originals,main,Drafts102–120,native8/image3/mapping01/dispatch01 and the one failed realGLX01 history are preserved. The reviewed260-source closure is unchanged. Existing realGLX failure bytes and old result/continuation/receipt remain untouched. The separate audit branch is feature/panda-object-abi-audit-v1, based on feature/panda-real-glx-canary-v1 at84e9128.
+
+The next native prerequisite is a coherent SDK/Panda layout contract covering Cg/ShaderCaps and all other relevant configuration, actual class/member sizes/offsets, plus distinct checkpoints around core import, engine, pipe and output/GSG creation. Existing READY→OBJECTS reporting cannot locate the previous abort within those substeps. A future diagnosis or repair requires its own scoped source/review/CI/request and fresh bounded execution slot; **none is granted or consumed by this DATA audit**. Do not replay realGLX01 or replace the frozen image/SDK in place.
+
+Scientific result remains **strict0/4 FAIL; Stage7 INCOMPLETE**. Software GLX/object/native admission, frames and production capture/model/cohort remain unqualified. M1 from the prior failure remains deferred: its raw default-off flag represents requested policy; complete-window observation is unknown. This audit neither changes that proof nor promotes a success claim.
+
+Final docs-only commit/own Draft/exactHEAD CI four jobs/attempt1/artifacts0/body/fresh preservation/clean-tree verification is recorded after the commit at output/stage7-panda-object-abi-audit-01/final-verification.json, outside its own commit. No Cloud/registry publication or main/shared-base update/merge.

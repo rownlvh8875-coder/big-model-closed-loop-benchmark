@@ -1,0 +1,62 @@
+
+/workspace/big-model-closed-loop-benchmark/docs/evidence/panda-sdk-link-audit-01/before-review/build/candidate-libpandagl.so.data:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+000000000003cc90 <GLGraphicsStateGuardian::get_driver_version_major()>:
+   3cc90:	8b 87 18 06 00 00    	mov    0x618(%rdi),%eax
+   3cc96:	c3                   	ret
+
+
+/workspace/big-model-closed-loop-benchmark/docs/evidence/panda-sdk-link-audit-01/before-review/build/candidate-libpandagl.so.data:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+000000000003cca0 <GLGraphicsStateGuardian::get_driver_version_minor()>:
+   3cca0:	8b 87 1c 06 00 00    	mov    0x61c(%rdi),%eax
+   3cca6:	c3                   	ret
+
+
+/workspace/big-model-closed-loop-benchmark/docs/evidence/panda-sdk-link-audit-01/before-review/build/candidate-libpandagl.so.data:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+000000000003e110 <GLGraphicsStateGuardian::get_driver_vendor()>:
+   3e110:	53                   	push   %rbx
+   3e111:	48 89 fb             	mov    %rdi,%rbx
+   3e114:	48 83 ec 10          	sub    $0x10,%rsp
+   3e118:	48 8b 86 00 06 00 00 	mov    0x600(%rsi),%rax
+   3e11f:	8b 50 f8             	mov    -0x8(%rax),%edx
+   3e122:	48 8d 78 e8          	lea    -0x18(%rax),%rdi
+   3e126:	85 d2                	test   %edx,%edx
+   3e128:	78 16                	js     3e140 <GLGraphicsStateGuardian::get_driver_vendor()+0x30>
+   3e12a:	48 3b 3d cf a7 08 00 	cmp    0x8a7cf(%rip),%rdi        # c8900 <std::string::_Rep::_S_empty_rep_storage@GLIBCXX_3.4>
+   3e131:	75 2d                	jne    3e160 <GLGraphicsStateGuardian::get_driver_vendor()+0x50>
+   3e133:	48 89 03             	mov    %rax,(%rbx)
+   3e136:	48 83 c4 10          	add    $0x10,%rsp
+   3e13a:	48 89 d8             	mov    %rbx,%rax
+   3e13d:	5b                   	pop    %rbx
+   3e13e:	c3                   	ret
+   3e13f:	90                   	nop
+   3e140:	48 8d 74 24 0f       	lea    0xf(%rsp),%rsi
+   3e145:	31 d2                	xor    %edx,%edx
+   3e147:	e8 d4 92 fe ff       	call   27420 <std::string::_Rep::_M_clone(std::allocator<char> const&, unsigned long)@plt>
+   3e14c:	48 89 03             	mov    %rax,(%rbx)
+   3e14f:	48 83 c4 10          	add    $0x10,%rsp
+   3e153:	48 89 d8             	mov    %rbx,%rax
+   3e156:	5b                   	pop    %rbx
+   3e157:	c3                   	ret
+   3e158:	0f 1f 84 00 00 00 00 	nopl   0x0(%rax,%rax,1)
+   3e15f:	00 
+   3e160:	48 8b 15 71 ab 08 00 	mov    0x8ab71(%rip),%rdx        # c8cd8 <__libc_single_threaded@GLIBC_2.32>
+   3e167:	80 3a 00             	cmpb   $0x0,(%rdx)
+   3e16a:	74 0c                	je     3e178 <GLGraphicsStateGuardian::get_driver_vendor()+0x68>
+   3e16c:	83 40 f8 01          	addl   $0x1,-0x8(%rax)
+   3e170:	eb c1                	jmp    3e133 <GLGraphicsStateGuardian::get_driver_vendor()+0x23>
+   3e172:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
+   3e178:	48 8d 48 f8          	lea    -0x8(%rax),%rcx
+   3e17c:	f0 83 01 01          	lock addl $0x1,(%rcx)
+   3e180:	eb b1                	jmp    3e133 <GLGraphicsStateGuardian::get_driver_vendor()+0x23>

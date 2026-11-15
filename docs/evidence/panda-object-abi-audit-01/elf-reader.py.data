@@ -1,0 +1,50 @@
+import struct,subprocess,json,hashlib
+from pathlib import Path
+class Elf:
+ def __init__(self,path):
+  self.path=Path(path);self.b=self.path.read_bytes();assert self.b[:6]==b'\x7fELF\x02\x01';h=struct.unpack_from('<16sHHIQQQIHHHHHH',self.b);self.sections=[struct.unpack_from('<IIQQQQIIQQ',self.b,h[6]+h[11]*i) for i in range(h[12])];self.symbols=[];self.tables={};self.reloc={}
+  for i,s in enumerate(self.sections):
+   if s[1] not in (2,11):continue
+   strings=self.sections[s[6]];names=self.b[strings[4]:strings[4]+strings[5]];tab=[]
+   for j in range(0,s[5],s[9]):
+    n,info,other,ndx,v,size=struct.unpack_from('<IBBHQQ',self.b,s[4]+j);end=names.find(b'\0',n);name=names[n:end].decode();x=dict(name=name,value=v,size=size,ndx=ndx,bind=info>>4,kind=info&15,table=i,index=j//s[9]);self.symbols.append(x);tab.append(x)
+   self.tables[i]=tab
+  for s in self.sections:
+   if s[1]!=4:continue
+   for j in range(0,s[5],s[9]):
+    addr,info,addend=struct.unpack_from('<QQq',self.b,s[4]+j);self.reloc[addr]=dict(type=info&0xffffffff,symbol=self.tables[s[6]][info>>32]['name'],addend=addend)
+  self.byname={x['name']:x for x in self.symbols if x['ndx']};self.byva={}
+  for x in self.symbols:
+   if x['ndx'] and x['name'] and x['kind'] in (1,2) and x['value']>0:self.byva.setdefault(x['value'],[]).append(x['name'])
+ def virtual(self,addr,size):
+  for s in self.sections:
+   if s[1]!=8 and s[3]<=addr and addr+size<=s[3]+s[5]:return self.b[s[4]+addr-s[3]:s[4]+addr-s[3]+size]
+  raise ValueError(hex(addr))
+ def table(self,name):
+  sym=self.byname[name];result=[]
+  for offset in range(0,sym['size'],8):
+   addr=sym['value']+offset;raw=struct.unpack('<Q',self.virtual(addr,8))[0];r=self.reloc.get(addr)
+   if r and r['type']==8:target=r['addend'];names=sorted(set(self.byva.get(target,[])));targetname='|'.join(names) or hex(target)
+   elif r and r['symbol']:targetname=r['symbol'];target=r['addend']
+   else:target=raw;targetname='|'.join(sorted(set(self.byva.get(raw,[])))) or hex(raw)
+   result.append(dict(offset=offset,entry=targetname,relocation=r,raw=raw))
+  return dict(symbol=sym,entries=result)
+if __name__=='__main__':
+ sdk=Elf('docs/evidence/panda-sdk-link-audit-01/before-review/build/candidate-libpandagl.so.data');wheel=Elf('output/stage7-panda-object-abi-audit-01/libpandagl.so.data');express=Elf('output/stage7-panda-sdk-link-audit-01/recon/libpandaexpress.so.1.10.data');panda=Elf('output/stage7-panda-sdk-link-audit-01/recon/libpanda.so.1.10.data');dtool=Elf('output/stage7-panda-sdk-link-audit-01/recon/libp3dtool.so.1.10.data')
+ comparisons=[]
+ for name,old in [('_ZTV14ReferenceCount',express),('_ZTV19TypedReferenceCount',express),('_ZTV23GLGraphicsStateGuardian',wheel)]:
+  a,b=sdk.table(name),old.table(name);known=[];unknown=[];mismatch=[]
+  for x,y in zip(a['entries'],b['entries']):
+   if x['offset']<16:continue
+   ax=x['entry'].split('|');bx=y['entry'].split('|');common=set(ax)&set(bx)
+   row=dict(offset=x['offset'],sdk=x['entry'],wheel=y['entry'])
+   if common and not x['entry'].startswith('0x'):known.append(row)
+   elif x['entry']==y['entry']:unknown.append(dict(**row,constant_equal=True))
+   elif not x['entry'].startswith('0x') and not y['entry'].startswith('0x'):mismatch.append(row)
+   else:unknown.append(row)
+  comparisons.append(dict(name=name,sdk=a,wheel=b,equal_size=a['symbol']['size']==b['symbol']['size'],named_agreements=known,named_disagreements=mismatch,unresolved=unknown))
+ out=Path('output/stage7-panda-object-abi-audit-01/vtables.json');out.write_text(json.dumps(comparisons,indent=2)+'\n')
+ for r in comparisons:print(r['name'],r['sdk']['symbol']['size'],r['wheel']['symbol']['size'],'agree',len(r['named_agreements']),'disagree',r['named_disagreements'][:4],'unknown',len(r['unresolved']))
+ for lib in [sdk,wheel,dtool]:
+  names=[x for x in lib.symbols if x['name'] in ['_ZN12TypeRegistry15_global_pointerE','_ZN12TypeRegistry19init_global_pointerEv','_ZN12TypeRegistry15is_derived_fromE10TypeHandleS0_P11TypedObject','_ZNK10TypeHandle14get_python_typeEv']]
+  print(str(lib.path),names)

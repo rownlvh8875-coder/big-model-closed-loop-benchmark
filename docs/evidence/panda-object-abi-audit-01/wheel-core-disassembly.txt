@@ -1,0 +1,15 @@
+
+/workspace/big-model-closed-loop-benchmark/output/stage7-panda-sdk-link-audit-01/recon/libpanda.so.1.10.data:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+00000000005baff0 <Shader::ShaderCaps::clear()@@Base>:
+  5baff0:	48 b8 01 18 00 00 01 	movabs $0x180100001801,%rax
+  5baff7:	18 00 00 
+  5baffa:	c6 07 00             	movb   $0x0,(%rdi)
+  5baffd:	c7 47 04 01 18 00 00 	movl   $0x1801,0x4(%rdi)
+  5bb004:	48 89 47 08          	mov    %rax,0x8(%rdi)
+  5bb008:	c7 47 14 01 18 00 00 	movl   $0x1801,0x14(%rdi)
+  5bb00f:	48 89 47 18          	mov    %rax,0x18(%rdi)
+  5bb013:	c3                   	ret

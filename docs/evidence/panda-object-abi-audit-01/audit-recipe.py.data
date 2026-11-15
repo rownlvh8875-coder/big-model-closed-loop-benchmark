@@ -1,0 +1,80 @@
+from pathlib import Path
+from hashlib import sha256
+from datetime import datetime,timezone,timedelta
+from importlib.machinery import SourceFileLoader
+import json,base64,csv,io,zipfile,struct,shutil,subprocess
+root=Path('/workspace/big-model-closed-loop-benchmark');out=root/'output/stage7-panda-object-abi-audit-01';ev=root/'docs/evidence/panda-object-abi-audit-01';ev.mkdir(exist_ok=True)
+def save(p,v):p.write_text(json.dumps(v,indent=2)+'\n')
+def digest(p):return sha256(p.read_bytes()).hexdigest()
+m=SourceFileLoader('auditelf','/tmp/panda-object-abi-elf.py').load_module();Elf=m.Elf
+sdk=Elf(root/'docs/evidence/panda-sdk-link-audit-01/before-review/build/candidate-libpandagl.so.data');wheel=Elf(out/'libpandagl.so.data');panda=Elf(root/'output/stage7-panda-sdk-link-audit-01/recon/libpanda.so.1.10.data');dtool=Elf(root/'output/stage7-panda-sdk-link-audit-01/recon/libp3dtool.so.1.10.data');buildpanda=Elf(root/'output/stage7-panda-sdk-link-audit-01/build-abi0/sdk/lib/libpanda.so.1.10')
+inventory_path=root/'docs/evidence/panda-sdk-abi0-image-01/actual/acceptance/candidate/installed-files.json';inventory=json.loads(inventory_path.read_text());installed={e['path']:e for e in inventory['entries']}
+inputs={}
+def pin(p,image_name=None):
+ p=Path(p);row=dict(nbytes=p.stat().st_size,sha256=digest(p))
+ if image_name:
+  x=installed[image_name];assert row['nbytes']==x['nbytes'] and row['sha256']==x['sha256'];row.update(installed_image_path=image_name,authenticated_inventory_match=True)
+ inputs[str(p.relative_to(root))]=row;return row
+pin(sdk.path,'/opt/venv/lib/python3.11/site-packages/panda3d/libpandagl.so')
+for lib in [panda,dtool]:pin(lib.path,'/opt/venv/lib/python3.11/site-packages/panda3d/'+lib.path.name.removesuffix('.data'))
+for name in ['libpandaexpress.so.1.10','libp3dtoolconfig.so.1.10']:pin(root/'output/stage7-panda-sdk-link-audit-01/recon'/(name+'.data'),'/opt/venv/lib/python3.11/site-packages/panda3d/'+name)
+core=out/'core.cpython-311-x86_64-linux-gnu.so.data';pin(core,'/opt/venv/lib/python3.11/site-packages/panda3d/'+core.name.removesuffix('.data'))
+pin(buildpanda.path)
+wheel_path=root/'output/stage7-python-wheel-closure/python-lock-20261114-02/wheels/panda3d-1.10.13-cp311-cp311-manylinux2014_x86_64.whl';wheelmeta=pin(wheel_path)
+publisher_path=wheel_path.parent.parent/'publisher/panda3d-1.10.13.json';publisher=json.loads(publisher_path.read_text());matches=[u for u in publisher['urls'] if u['filename']==wheel_path.name];assert len(matches)==1 and matches[0]['digests']['sha256']==wheelmeta['sha256'] and matches[0]['size']==wheelmeta['nbytes'];pin(publisher_path)
+with zipfile.ZipFile(wheel_path) as z:
+ records={r[0]:r for r in csv.reader(io.StringIO(z.read('panda3d-1.10.13.dist-info/RECORD').decode()))}
+ for n,p in [('panda3d/libpandagl.so',wheel.path),('panda3d/'+core.name.removesuffix('.data'),core)]:
+  data=z.read(n);rec=records[n];assert data==p.read_bytes() and int(rec[2])==len(data) and rec[1]=='sha256='+base64.urlsafe_b64encode(sha256(data).digest()).decode().rstrip('=')
+ pin(wheel.path);wheelmeta.update(publisher_metadata_match=True,selected_zip_crc_and_record_matched=True)
+ for name in ['panda3d-1.10.13.dist-info/WHEEL','panda3d-1.10.13.dist-info/METADATA']:(ev/Path(name).name).write_bytes(z.read(name))
+used_path=root/'output/stage7-panda-sdk-link-audit-01/build-abi0/used-inputs.json';used={r['path']:r for r in json.loads(used_path.read_text())};pin(used_path)
+include=root/'output/stage7-panda-sdk-link-audit-01/build-abi0/sdk/include';source=root/'output/stage7-panda-sdk-routes-02/source'
+for name in ['dtool_config.h','pandaVersion.h','shader.h','shader.I','graphicsStateGuardian.h','typedObject.h','typeHandle.h','referenceCount.h','typedReferenceCount.h','graphicsPipe.h']:
+ p=include/name;row=pin(p)
+ if str(p) in used:assert used[str(p)]['sha256']==row['sha256'];row['recorded_build_input_match']=True
+for rel in ['panda/src/glstuff/glGraphicsStateGuardian_src.h','panda/src/glstuff/glGraphicsStateGuardian_src.cxx','panda/src/gobj/shader.cxx','dtool/src/dtoolbase/typeRegistry.h','dtool/src/dtoolbase/typeRegistry.I','dtool/src/dtoolbase/typeRegistry.cxx','dtool/src/dtoolutil/pandaSystem.cxx','makepanda/makepanda.py']:pin(source/rel)
+for p in [inventory_path,root/'output/stage7-panda-sdk-link-audit-01/build-abi0/receipt.json',root/'docs/evidence/panda-real-glx-01/actual/acceptance/acceptance.json',root/'scripts/panda_real_glx_child.py',root/'scripts/panda_real_glx_objects.py']:pin(p)
+assert sdk.b== (root/'output/stage7-panda-sdk-link-audit-01/build-abi0/sdk/lib/libpandagl.so').read_bytes()
+# These deliberately small x86-64 leaves are independently displayed by objdump.
+getters=[]
+for name,expected in [('_ZN23GLGraphicsStateGuardian24get_driver_version_majorEv',(0x618,0x688)),('_ZN23GLGraphicsStateGuardian24get_driver_version_minorEv',(0x61c,0x68c))]:
+ row=dict(symbol=name)
+ for label,e,offset in [('sdk',sdk,expected[0]),('wheel',wheel,expected[1])]:
+  sym=e.byname[name];raw=e.virtual(sym['value'],sym['size']);assert len(raw)==7 and raw[:2]==bytes.fromhex('8b87') and raw[-1:]==b'\xc3' and struct.unpack('<I',raw[2:6])[0]==offset
+  row[label]=dict(vaddr=sym['value'],nbytes=sym['size'],bytes_hex=raw.hex(),sha256=sha256(raw).hexdigest(),member_offset=offset)
+ assert row['sdk']['member_offset']!=row['wheel']['member_offset'];row['offset_delta']=expected[1]-expected[0];getters.append(row)
+vendor='_ZN23GLGraphicsStateGuardian17get_driver_vendorEv';a,b=sdk.byname[vendor],wheel.byname[vendor];a_raw=sdk.virtual(a['value'],a['size']);b_raw=wheel.virtual(b['value'],b['size']);assert a_raw[8:15]==bytes.fromhex('488b8600060000') and b_raw[2:9]==bytes.fromhex('4881c670060000')
+getters.append(dict(symbol=vendor,sdk=dict(vaddr=a['value'],nbytes=a['size'],sha256=sha256(a_raw).hexdigest(),member_offset=0x600,offset_instruction_hex=a_raw[8:15].hex()),wheel=dict(vaddr=b['value'],nbytes=b['size'],sha256=sha256(b_raw).hexdigest(),member_offset=0x670,offset_instruction_hex=b_raw[2:9].hex()),offset_delta=112))
+assert '#undef HAVE_CG' in (include/'dtool_config.h').read_text()
+needed=subprocess.check_output(['readelf','-d',str(wheel.path)],text=True);assert '[libCg.so]' in needed and '[libCgGL.so]' in needed
+name='_ZN6Shader10ShaderCaps5clearEv';clear={}
+for label,e in [('sdk_build_data_only',buildpanda),('installed_wheel',panda)]:
+ sym=e.byname[name];raw=e.virtual(sym['value'],sym['size']);clear[label]=dict(vaddr=sym['value'],nbytes=sym['size'],sha256=sha256(raw).hexdigest(),bytes_hex=raw.hex())
+assert clear['sdk_build_data_only']['bytes_hex']=='c60700c3'
+assert bytes.fromhex('c7470401180000') in bytes.fromhex(clear['installed_wheel']['bytes_hex']) and bytes.fromhex('48894718') in bytes.fromhex(clear['installed_wheel']['bytes_hex'])
+# Reconstruct only the constant return data, without calling the function.
+commit_code=dtool.virtual(0x1ac50,116);assert bytes.fromhex('48b93337316635613535') in commit_code
+wheel_commit=dtool.virtual(0x3edb0,32)+bytes.fromhex('3337316635613535');assert wheel_commit.decode()=='470e352ab87ceae6e30429720e4690c8371f5a55'
+assert dtool.virtual(0x1aaf0,6)==bytes.fromhex('b810000000c3')
+registry=[]
+for name in ['_ZN12TypeRegistry15_global_pointerE','_ZN12TypeRegistry19init_global_pointerEv','_ZN12TypeRegistry15is_derived_fromE10TypeHandleS0_P11TypedObject']:
+ x=[s for s in sdk.symbols if s['name']==name];y=[s for s in dtool.symbols if s['name']==name];assert x and all(s['ndx']==0 for s in x) and any(s['ndx'] for s in y);registry.append(dict(symbol=name,sdk_defines_private_copy=False,sdk_imports=True,wheel_dtool_defines=True))
+vtables=json.loads((out/'vtables.json').read_text());assert len(vtables)==3 and all(v['equal_size'] and not v['named_disagreements'] for v in vtables)
+check=datetime.now(timezone(timedelta(hours=9))).isoformat()
+report=dict(schema='panda-object-abi-static-audit-v1',checked_at_kst=check,status='CONFIRMED_GSG_MEMBER_LAYOUT_MISMATCH_CG_CONFIGURATION_DIFFERS',analysis_mode='DATA_ONLY_NO_TARGET_EXECUTION',input_identities=inputs,source_revision_comparison=dict(sdk='470e352ab87ceae6e30429720e4690c8371f5a55',wheel_reconstructed=wheel_commit.decode(),same=True,reconstruction='PandaSystem::get_git_commit constant SIMD data32bytes plus immediate8bytes, no invocation'),numeric_version_caveat='makepanda subtracts one from numeric version for a non-cmu distributor; SDK1010012 versus string1.10.13 does not prove a source mismatch',compiler_comment=dict(sdk='GCC Debian14.2.0-19',wheel='GCC RedHat10.2.1-11',compiler_difference_alone_not_cause=True),memory_hook_alignment_wheel=16,member_layout_incompatible=True,getter_offsets=getters,cg_configuration=dict(sdk_have_cg=False,wheel_cg_implementation_present=True,wheel_needed=['libCg.so','libCgGL.so'],shader_caps_sdk_definition='only bool _supports_glsl when HAVE_CG undefined',shader_caps_wheel_clear_writes_through_offset31=True,clear=clear,conditional_fields=['Shader::ShaderCaps eight profile ints and pset<ShaderBug>','GraphicsStateGuardian embeds Shader::ShaderCaps','GLGraphicsStateGuardian conditionally embeds CGcontext'],complete_flag_set_recovered=False,cg_only_layout_reconciliation_proven=False),selected_vtables=[dict(name=v['name'],sdk_nbytes=v['sdk']['symbol']['size'],wheel_nbytes=v['wheel']['symbol']['size'],named_agreements=len(v['named_agreements']),named_disagreements=0,unresolved_or_constant_entries=len(v['unresolved'])) for v in vtables],registry_symbols=registry,interpretation='Same revision/version, selected vtable slot agreement and resolved symbol names do not establish data-member layout compatibility. The installed SDK and wheel compile different member offsets for the same GSG fields. This is a concrete integration blocker; it does not identify the exact crashing call.',prior_failure=dict(run_id=43720609023,attempt=1,child_returncode=-6,last_report='READY',objects_report=False,verified_frames=0,window_consumed=True,window_remaining=0),exact_abort_cause_confirmed=False,abort_may_precede_gsg_construction=True,native_reexecution=False,target_library_loaded=False,sdk_or_image_rebuilt=False,scientific_native_runs=0,native_admitted=False,stage7_complete=False,strict_current_result='0/4 FAIL')
+save(ev/'audit.json',report);shutil.copy2(out/'vtables.json',ev/'vtables.json');shutil.copy2('/tmp/panda-object-abi-elf.py',ev/'elf-reader.py.data');shutil.copy2('/tmp/write-panda-object-abi-audit.py',ev/'audit-recipe.py.data')
+# Retain bounded independent disassembly and source excerpts, not target binaries.
+for label,e,names in [('sdk',sdk,[g['symbol'] for g in getters]),('wheel',wheel,[g['symbol'] for g in getters]),('sdk-build',buildpanda,['_ZN6Shader10ShaderCaps5clearEv']),('wheel-core',panda,['_ZN6Shader10ShaderCaps5clearEv']),('wheel-dtool',dtool,['_ZN11PandaSystem14get_git_commitEv','_ZN11PandaSystem20get_memory_alignmentEv'])]:
+ text=[]
+ for name in names:
+  sym=e.byname[name];text.append(subprocess.check_output(['objdump','-d','-C','--start-address='+str(sym['value']),'--stop-address='+str(sym['value']+sym['size']),str(e.path)],text=True))
+ (ev/(label+'-disassembly.txt')).write_text('\n'.join(text))
+excerpts=[]
+for p,start,end in [(include/'dtool_config.h',1,65),(include/'shader.h',450,473),(include/'graphicsStateGuardian.h',642,656),(source/'panda/src/glstuff/glGraphicsStateGuardian_src.h',691,702),(source/'panda/src/glstuff/glGraphicsStateGuardian_src.h',746,754),(source/'makepanda/makepanda.py',3040,3068),(source/'dtool/src/dtoolbase/typeRegistry.I',64,80)]:
+ lines=p.read_text().splitlines();excerpts.append(str(p.relative_to(root))+'\n'+'\n'.join(f'{i+1}: {lines[i]}' for i in range(start-1,min(end,len(lines)))))
+(ev/'source-excerpts.txt').write_text('\n\n'.join(excerpts)+'\n')
+(ev/'original-wheel-needed.txt').write_text(needed)
+shutil.copytree(out/'preservation',ev/'preservation',dirs_exist_ok=True)
+(out/'verification.json').write_text(json.dumps(dict(status=report['status'],checked_at_kst=check,verified_inputs=len(inputs),getters_confirmed=3,member_offset_delta=112,vtable_named_agreements=sum(len(v['named_agreements']) for v in vtables),vtable_named_disagreements=0,root_cause_confirmed=False,native_execution=False),indent=2)+'\n')
+print((out/'verification.json').read_text())
