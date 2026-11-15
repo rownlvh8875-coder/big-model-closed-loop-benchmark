@@ -1,0 +1,15 @@
+test_failed_real_probe_keeps_return_and_structured_report (tests.test_panda_sdk_dispatch_runtime.RuntimeTests.test_failed_real_probe_keeps_return_and_structured_report) ... ERROR
+
+======================================================================
+ERROR: test_failed_real_probe_keeps_return_and_structured_report (tests.test_panda_sdk_dispatch_runtime.RuntimeTests.test_failed_real_probe_keeps_return_and_structured_report)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_dispatch_runtime.py", line 53, in test_failed_real_probe_keeps_return_and_structured_report
+    r=caught.exception.receipt;self.assertEqual(r['child']['probe_returned'],-17);self.assertEqual(r['child']['probe']['finish'],-1);self.assertEqual(r['child']['probe']['original_calls'],22);self.assertFalse(r['native_admitted'])
+                                                ~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+KeyError: 'probe_returned'
+
+----------------------------------------------------------------------
+Ran 1 test in 2.146s
+
+FAILED (errors=1)

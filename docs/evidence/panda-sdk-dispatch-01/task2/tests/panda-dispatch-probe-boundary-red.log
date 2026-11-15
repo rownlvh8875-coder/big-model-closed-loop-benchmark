@@ -1,0 +1,44 @@
+test_binary_profile_mismatch_is_rejected (tests.test_panda_sdk_dispatch_probe.ProbeTests.test_binary_profile_mismatch_is_rejected) ... ok
+test_compiler_receives_no_repository_token (tests.test_panda_sdk_dispatch_probe.ProbeTests.test_compiler_receives_no_repository_token) ... FAIL
+test_downstream_error_cannot_be_promoted_to_pass (tests.test_panda_sdk_dispatch_probe.ProbeTests.test_downstream_error_cannot_be_promoted_to_pass) ... ok
+test_failed_original_switch_does_not_mutate_current_cache (tests.test_panda_sdk_dispatch_probe.ProbeTests.test_failed_original_switch_does_not_mutate_current_cache) ... ok
+test_false_tool_or_input_stability_is_rejected (tests.test_panda_sdk_dispatch_probe.ProbeTests.test_false_tool_or_input_stability_is_rejected) ... FAIL
+test_guard_or_missing_forwarding_and_forged_admission_reject (tests.test_panda_sdk_dispatch_probe.ProbeTests.test_guard_or_missing_forwarding_and_forged_admission_reject) ... ok
+test_real_wrappers_replay_and_live_deletion_lifetimes (tests.test_panda_sdk_dispatch_probe.ProbeTests.test_real_wrappers_replay_and_live_deletion_lifetimes) ... ok
+
+======================================================================
+FAIL: test_compiler_receives_no_repository_token (tests.test_panda_sdk_dispatch_probe.ProbeTests.test_compiler_receives_no_repository_token)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_dispatch_probe.py", line 46, in test_compiler_receives_no_repository_token
+    with mock.patch.dict('os.environ',{'GH_TOKEN':'unit-token-never-forward'}),mock.patch.object(self.probe.cpu,'run_command',side_effect=guarded):self.probe.build_probe(self.root/'no-secret-probe')
+                                                                                                                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/scripts/panda_sdk_dispatch_probe.py", line 22, in build_probe
+    record=cpu.run_command(cmd,ROOT,cpu.cpu_environment(),out/'compile',30);need(record['returncode']==0,'probe compile failed: '+record.get('stderr','')[:1000]);need(read_input(tool,64*1024**2)==before and read_input(ROOT/SOURCE,1024**2)==source,'compile inputs changed');raw=read_input(target,1024**2);target.chmod(0o755)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.cloud-tools/python/cpython-3.11.17-linux-x86_64-gnu/lib/python3.11/unittest/mock.py", line 1124, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.cloud-tools/python/cpython-3.11.17-linux-x86_64-gnu/lib/python3.11/unittest/mock.py", line 1128, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.cloud-tools/python/cpython-3.11.17-linux-x86_64-gnu/lib/python3.11/unittest/mock.py", line 1189, in _execute_mock_call
+    result = effect(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_dispatch_probe.py", line 45, in guarded
+    self.assertNotIn('GH_TOKEN',env);return original(command,cwd,env,*args,**kwargs)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'GH_TOKEN' unexpectedly found in {'SHELL': '/bin/bash', 'COLORTERM': '', 'no_proxy': 'localhost,127.0.0.1,::1', 'AWS_EC2_METADATA_DISABLED': 'true', 'CODEX_EXEC_SERVER_REMOTE_BASE_URL': 'https://codex-cloud-environments.chatgpt.com/api', 'CODEX_VERSION': '0.0.0', 'CODEX_PRIMARY_RUNTIME_ROOT': '/opt/codex/runtimes/codex-primary-runtime', 'NODE_EXTRA_CA_CERTS': '/usr/local/share/ca-certificates/environment-proxy-ca.crt', 'AWS_PROFILE': '__oai_no_aws_identity__', 'BROWSER_MANAGEMENT_SOCKET_PATH': '/home/agent/.local/run/browser-management/socket', 'GH_TOKEN': 'unit-token-never-forward', 'GH_PAGER': 'cat', 'REMOTE_DESKTOP_H265_ENABLED': '0', 'PWD': '/workspace/big-model-closed-loop-benchmark', 'GOOGLE_APPLICATION_CREDENTIALS': '/run/codex-environment/outbound-identity/gcp/empty/application_default_credentials.json', 'OPENAI_CLUSTER': 'applied-caas45', 'HOME': '/home/agent', 'CODEX_SESSION_ID': '6af3afe7-79dc-8191-a046-99b4d5ffb09a', 'LANG': 'C', 'NPM_CONFIG_AUDIT': 'false', 'CODEX_PRIMARY_RUNTIME_PYTHON': '/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3', 'CODEX_CAAS_SESSION_ID': '0964dd9fcaa64267a7102987f40c6aea', 'CLOUDSDK_CORE_CUSTOM_CA_CERTS_FILE': '/etc/ssl/certs/ca-certificates.crt', 'AZURE_FEDERATED_TOKEN_FILE': '', 'DOCKER_TLS_CERTDIR': '', 'CLOUDSDK_CONFIG': '/run/codex-environment/outbound-identity/gcp/empty', 'NETWORK': 'caas_neko_desktop', 'OIC_MANIFEST_PATH': '/run/codex-environment/outbound-identity/connections.json', 'https_proxy': 'http://proxy:8080', 'CODEX_ENVIRONMENT_ID': 'ccarenv_b64_Y2NhcmVudl80ODAyMDA4Mzg2Zjg4MTkxOTM1YTI3MjIyNGNlOGFkZA', 'CODEX_HOME': '/home/agent/.codex', 'CODEX_NO_UPDATE': '1', 'CODEX_PRIMARY_RUNTIME_NODE': '/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node', 'CODEX_PRIMARY_RUNTIME_BUNDLE_VERSION': '26.1104.12130', 'NPM_CONFIG_PREFIX': '/home/agent/.local', 'CAAS_IMAGE_GIT_COMMIT_SHA': '2e3504c096fccb3ce33c7ec313cb717f6e1632be', 'CODEX_PERMISSION_PROFILE': ':workspace', 'AWS_CONFIG_FILE': '/run/codex-environment/outbound-identity/aws/config', 'TERM': 'dumb', 'CODEX_THREAD_ID': '6af3afe7-79dc-8191-a046-99b4d5ffb09a', 'CODEX_PROXY_CERT': '/usr/local/share/ca-certificates/environment-proxy-ca.crt', 'USER': 'agent', 'GIT_PAGER': 'cat', 'NO_PROXY': 'localhost,127.0.0.1,::1', 'BUILDX_CONFIG': '/workspace/.cache/docker-buildx', 'CODEX_APPLY_PATCH_PRESERVE_LINE_ENDINGS': '1', 'SHLVL': '1', 'CODEX_PRIMARY_RUNTIME': '/opt/codex/runtimes/codex-primary-runtime', 'SITES_MANAGED_LINUX_CONTAINER': '1', 'PAGER': 'cat', 'HTTPS_PROXY': 'http://proxy:8080', 'HTTP_PROXY': 'http://proxy:8080', 'http_proxy': 'http://proxy:8080', 'NPM_CONFIG_FUND': 'false', 'NO_COLOR': '1', 'CAAS_DIND_STORAGE_DRIVER': 'vfs', 'PLAYWRIGHT_NODEJS_PATH': '/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node', 'CODEX_EXEC_SERVER_PROXY_PRIVATE_IPS_VIA_UPSTREAM': 'true', 'CODEX_CI': '1', 'LC_CTYPE': 'C.UTF-8', 'DOCKER_IGNORE_BR_NETFILTER_ERROR': '1', 'CODEX_BROWSER_DEFER_ACTIVATION': '1', 'SSL_CERT_FILE': '/etc/ssl/certs/ca-certificates.crt', 'NODE_PATH': '/opt/codex/runtimes/codex-primary-runtime/dependencies/node/node_modules', 'REQUESTS_CA_BUNDLE': '/etc/ssl/certs/ca-certificates.crt', 'CODEX_TOOL_CALL_ID': 'exec-fa92cb5a-bd78-41e5-846f-9a692bb612cd', 'LC_ALL': 'C', 'AWS_SHARED_CREDENTIALS_FILE': '/run/codex-environment/outbound-identity/aws/credentials', 'CLOUDSDK_CORE_CHECK_GCE_METADATA': 'false', 'PATH': '/usr/bin:/bin', 'RUST_LOG': 'codex_exec_server=info,codex_cli=info,error', 'CODEX_PRIMARY_RUNTIME_NODE_MODULES': '/opt/codex/runtimes/codex-primary-runtime/dependencies/node/node_modules', 'GRPC_DEFAULT_SSL_ROOTS_FILE_PATH': '/etc/ssl/certs/ca-certificates.crt', 'DEBIAN_FRONTEND': 'noninteractive', 'CAAS_IMAGE_VERSION': '20261105234922-2e3504c096fc', '_': '/workspace/.cloud-tools/stage7/first-divergence-cpu-replay/bin/python', 'ASAN_OPTIONS': 'detect_leaks=1:halt_on_error=1', 'UBSAN_OPTIONS': 'halt_on_error=1:print_stacktrace=1'}
+
+======================================================================
+FAIL: test_false_tool_or_input_stability_is_rejected (tests.test_panda_sdk_dispatch_probe.ProbeTests.test_false_tool_or_input_stability_is_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_dispatch_probe.py", line 40, in test_false_tool_or_input_stability_is_rejected
+    with self.assertRaises(ValueError):self.probe.validate_identity(q)
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 7 tests in 1.278s
+
+FAILED (failures=2)

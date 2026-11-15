@@ -26,8 +26,8 @@ Interfaces: build_probe(out)->identity/profile/bytes/commands; validate_probe(re
 ### Task2: New process/code and authority boundary
 Files: scripts/panda_sdk_dispatch_{profile,policy,child,runtime}.py; tests/test_panda_sdk_dispatch_runtime.py; docs/evidence/panda-sdk-dispatch-01/profile.json.
 Interfaces: profile for SDK exports+full executablePT; runtime.run_window(library,profile,probe_identity,fixture=...,manifest=...)->owned observation.
-- [ ] RED CPU parent/child actual code/probe identity/path/maps/nonce/late foreign code/guard and production-in-fixture rejection; new request rejects old mapping authority/permissions.
-- [ ] Version old bounded engines without changing consumed files; one probe load/invocation/fulltext checkpoints/image+exactprobe membership; focused GREEN/full local matrix/preservation; commit.
+- [x] RED CPU parent/child actual code/probe identity/path/maps/nonce/late foreign code/guard and production-in-fixture rejection; new request rejects old mapping authority/permissions.
+- [x] Version old bounded engines without changing consumed files; one probe load/invocation/fulltext checkpoints/image+exactprobe membership; focused GREEN/full local matrix/preservation; commit.
 
 ### Task3: Hosted one-use execution and external acceptance
 Files: scripts/run_panda_sdk_dispatch_canary.py;scripts/accept_panda_sdk_dispatch_canary.py;scripts/panda_sdk_dispatch_carrier.py;.github/workflows/panda-sdk-dispatch-canary-v1.yml;tests/test_panda_sdk_dispatch_flow.py;docs/STAGE7_PANDA_SDK_DISPATCH_{RESULT,LEDGER,CONTINUATION}.md.

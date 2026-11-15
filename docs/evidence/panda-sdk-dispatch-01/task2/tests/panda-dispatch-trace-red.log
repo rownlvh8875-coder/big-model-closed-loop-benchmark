@@ -1,0 +1,42 @@
+test_forwarded_argument_or_return_trace_mismatch_rejects (tests.test_panda_sdk_dispatch_probe.ProbeTests.test_forwarded_argument_or_return_trace_mismatch_rejects) ... 
+  test_forwarded_argument_or_return_trace_mismatch_rejects (tests.test_panda_sdk_dispatch_probe.ProbeTests.test_forwarded_argument_or_return_trace_mismatch_rejects) (index=0, column=1) ... FAIL
+  test_forwarded_argument_or_return_trace_mismatch_rejects (tests.test_panda_sdk_dispatch_probe.ProbeTests.test_forwarded_argument_or_return_trace_mismatch_rejects) (index=1, column=2) ... FAIL
+  test_forwarded_argument_or_return_trace_mismatch_rejects (tests.test_panda_sdk_dispatch_probe.ProbeTests.test_forwarded_argument_or_return_trace_mismatch_rejects) (index=5, column=1) ... FAIL
+  test_forwarded_argument_or_return_trace_mismatch_rejects (tests.test_panda_sdk_dispatch_probe.ProbeTests.test_forwarded_argument_or_return_trace_mismatch_rejects) (index=16, column=6) ... FAIL
+
+======================================================================
+FAIL: test_forwarded_argument_or_return_trace_mismatch_rejects (tests.test_panda_sdk_dispatch_probe.ProbeTests.test_forwarded_argument_or_return_trace_mismatch_rejects) (index=0, column=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_dispatch_probe.py", line 51, in test_forwarded_argument_or_return_trace_mismatch_rejects
+    with self.subTest(index=index,column=column),self.assertRaises(ValueError):self.probe.validate_probe(q)
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_forwarded_argument_or_return_trace_mismatch_rejects (tests.test_panda_sdk_dispatch_probe.ProbeTests.test_forwarded_argument_or_return_trace_mismatch_rejects) (index=1, column=2)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_dispatch_probe.py", line 51, in test_forwarded_argument_or_return_trace_mismatch_rejects
+    with self.subTest(index=index,column=column),self.assertRaises(ValueError):self.probe.validate_probe(q)
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_forwarded_argument_or_return_trace_mismatch_rejects (tests.test_panda_sdk_dispatch_probe.ProbeTests.test_forwarded_argument_or_return_trace_mismatch_rejects) (index=5, column=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_dispatch_probe.py", line 51, in test_forwarded_argument_or_return_trace_mismatch_rejects
+    with self.subTest(index=index,column=column),self.assertRaises(ValueError):self.probe.validate_probe(q)
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_forwarded_argument_or_return_trace_mismatch_rejects (tests.test_panda_sdk_dispatch_probe.ProbeTests.test_forwarded_argument_or_return_trace_mismatch_rejects) (index=16, column=6)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_dispatch_probe.py", line 51, in test_forwarded_argument_or_return_trace_mismatch_rejects
+    with self.subTest(index=index,column=column),self.assertRaises(ValueError):self.probe.validate_probe(q)
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 1 test in 1.177s
+
+FAILED (failures=4)

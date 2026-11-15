@@ -33,4 +33,20 @@ buf=ctypes.create_string_buffer(65536);result=f(sdk._handle,int(sys.argv[3]),buf
  def test_binary_profile_mismatch_is_rejected(self):
   raw=Path(self.identity['path']).read_bytes();self.assertEqual(self.identity['nbytes'],len(raw));self.assertEqual(self.identity['profile'],self.probe.executable_profile(raw))
   with self.assertRaises(ValueError):self.probe.executable_profile(b'not ELF')
+ def test_false_tool_or_input_stability_is_rejected(self):
+  r=self.identity
+  for field in ('tool_profiles_unchanged','project_inputs_unchanged'):
+   q=copy.deepcopy(r);q[field]=False
+   with self.assertRaises(ValueError):self.probe.validate_identity(q)
+ def test_compiler_receives_no_repository_token(self):
+  from unittest import mock
+  original=self.probe.cpu.run_command
+  def guarded(command,cwd,env,*args,**kwargs):
+   self.assertFalse('GH_TOKEN' in env,'compiler token boundary');return original(command,cwd,env,*args,**kwargs)
+  with mock.patch.dict('os.environ',{'GH_TOKEN':'unit-token-never-forward'}),mock.patch.object(self.probe.cpu,'run_command',side_effect=guarded):self.probe.build_probe(self.root/'no-secret-probe')
+ def test_forwarded_argument_or_return_trace_mismatch_rejects(self):
+  r=self.run_probe()['report']
+  for index,column,value in [(0,1,99),(1,2,8),(5,1,2),(16,6,0)]:
+   q=copy.deepcopy(r);q['trace'][index][column]=value
+   with self.subTest(index=index,column=column),self.assertRaises(ValueError):self.probe.validate_probe(q)
 if __name__=='__main__':unittest.main()

@@ -1,5 +1,5 @@
 /* First-party CPU originals for an installed SDK C ABI probe. No GL calls. */
-#include "panda_cache_adapter.h"
+#include "panda_sdk_routes_v2/panda_cache_adapter.h"
 #include <dlfcn.h>
 #include <cstdio>
 #include <cstring>
