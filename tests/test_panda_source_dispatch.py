@@ -13,7 +13,7 @@ FAIL={'mismatch','unknown','delete_bad','glerror','thread','reentry','callback_r
 def compile_source_dispatch(path,sanitize=False):
     caller=Path(str(path)+'-caller.S')
     caller.write_text((ROOT/'tests/fixtures/panda_readback_caller.S').read_text().replace('pb_entry','psd_read_pixels'))
-    cmd=[shutil.which('g++'),'-std=c++11','-O1' if sanitize else '-O2','-Wall','-Wextra','-Werror','-Wno-misleading-indentation','-pthread',
+    cmd=[shutil.which('g++'),'-std=c++11','-O1' if sanitize else '-O2','-Wall','-Wextra','-Werror','-pthread',
          '-I',str(ROOT/'native'),'-Dpb_fixture_call=psd_fixture_call','-Dpb_fixture_return=psd_fixture_return']
     if sanitize:cmd+=['-fsanitize=address,undefined','-fno-sanitize-recover=all','-fno-omit-frame-pointer','-no-pie']
     cmd += [str(ROOT/'native/panda_source_dispatch.cxx'),str(ROOT/'tests/fixtures/panda_source_dispatch_fixture.cxx'),str(caller),'-o',str(path)]

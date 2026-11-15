@@ -61,7 +61,8 @@ Build: use pinned clean upstream tree, isolated output and a workspace-only head
 link sysroot extracted from exact Debian13dev packages; host runtimes may be linked
 through explicitly recorded symlinks. Install/upgrade nothing globally. Minimal
 makepanda --nothing --use-gl --use-x11 --no-python --no-copy-python --optimize3,
-threads<=4, no tests/installer/wheel/tool/PView execution. Compile/link only; inspect
+threads<=4, no tests/installer/wheel/PView/renderer execution. Necessary pinned CPU-only
+build-time generators are permitted. Compile/link only; inspect
 new ELF/symbols/imports/disassembly and hash outputs without loading them. This is
 not feature parity with the old Python/MetaDrive image and cannot replace it.
 If full build fails, preserve raw failure and partial objects, investigate/fix

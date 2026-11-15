@@ -23,7 +23,9 @@ static uint32_t get_error(){check_in();check_out();return 0x502;}
 static void original_read(int32_t x,int32_t y,int32_t w,int32_t h,uint32_t f,uint32_t t,void *p){
  ++read_calls;if(x!=-7 || y!=11 || w!=5 || h!=3 || f!=0x1907 || t!=0x1401 || p!=pixels || errno!=ERANGE)args_ok=0;check_out();}
 static int observer(const psd_event *event,void *user){
- if(user!=observed)args_ok=0;if(observer_calls<64)observed[observer_calls]=*event;++observer_calls;
+ if(user!=observed)args_ok=0;
+ if(observer_calls<64)observed[observer_calls]=*event;
+ ++observer_calls;
  if(event->kind==PSD_DELETE_BUFFER && (event->delete_count!=1 || event->names[0]!=7))snapshot_ok=0;
  if(event->kind==PSD_PIXEL_STORE && event->args[1]!=(std::strcmp(mode,"normalize")?1u:3u))normalized_ok=0;
  if(!std::strcmp(mode,"callback_reentry") && !depth){depth=1;errno=ERANGE;psd::call<PSD_PIXEL_STORE>(store,0xd05u,1);depth=0;}
@@ -59,7 +61,8 @@ int main(int argc,char **argv){
    else {if(wrapped==p)args_ok=0;errno=ERANGE;((void(*)(uint32_t,uint32_t))wrapped)(0x8d40,7);checked();}
    if(!std::strcmp(mode,"aliases")){
      std::strcpy(name,"glBindFramebuffer");errno=ERANGE;psd_lookup core(name);p=resolver(name);wrapped=psd_resolved(&core,p,PSD_SOURCE_COMPILED);checked();
-     if(wrapped==p)args_ok=0;errno=ERANGE;((void(*)(uint32_t,uint32_t))wrapped)(0x8d40,7);checked();
+     if(wrapped==p)args_ok=0;
+     errno=ERANGE;((void(*)(uint32_t,uint32_t))wrapped)(0x8d40,7);checked();
    }
    if(!std::strcmp(mode,"mismatch")){
      std::strcpy(name,"glBindFramebufferEXT");errno=ERANGE;psd_lookup next(name);++lookups;check_out();

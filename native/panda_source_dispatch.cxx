@@ -37,7 +37,8 @@ extern "C" {__attribute__((visibility("hidden"))) psd_read_fn psd_read_target=PS
 asm(".text\n.globl psd_read_pixels\n.hidden psd_read_pixels\n.type psd_read_pixels,@function\n"
     "psd_read_pixels:\n jmp *psd_read_target(%rip)\n.size psd_read_pixels,.-psd_read_pixels\n.section .note.GNU-stack,\"\",@progbits\n.previous\n");
 extern "C" int psd_bind_read(psd_read_fn original){
- if(!original)return -1;psd_read_fn empty=nullptr;
+ if(!original)return -1;
+ psd_read_fn empty=nullptr;
  return __atomic_compare_exchange_n(&psd_read_target,&empty,original,false,__ATOMIC_ACQ_REL,__ATOMIC_ACQUIRE)?0:-1;
 }
 extern "C" int psd_configure(psd_observer observer,void *user,const char *const *safe,size_t count,uint32_t cap){
