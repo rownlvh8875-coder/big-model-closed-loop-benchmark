@@ -1,0 +1,23 @@
+{
+  "name": "unsafe-safe",
+  "argv": [
+    "/workspace/.cloud-tools/stage7/first-divergence-cpu-replay/bin/python",
+    "-B",
+    "-m",
+    "scripts.panda_dispatch_coverage",
+    "--image",
+    "/workspace/big-model-closed-loop-benchmark/output/stage7-readback-return-core/source-audit/libpandagl.so",
+    "--source-dir",
+    "/workspace/big-model-closed-loop-benchmark/docs/evidence/panda-dispatch-coverage-01/source",
+    "--safe-names",
+    "/tmp/pc-mutation-u93qtj7d/unsafe-safe.json",
+    "--out",
+    "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-dispatch-coverage-01/before-review-final/unsafe-safe"
+  ],
+  "exit_code": 2,
+  "stdout": "",
+  "stderr": "dispatch coverage rejected: known mutation or routed name cannot be safe\n",
+  "audit_completed": false,
+  "native_admitted": false,
+  "runtime_admission_ready": false
+}

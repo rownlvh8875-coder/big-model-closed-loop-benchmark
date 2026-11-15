@@ -1,0 +1,17 @@
+
+Relocation section '.rela.dyn' at offset 0x488 contains 8 entries:
+    Offset             Info             Type               Symbol's Value  Symbol's Name + Addend
+0000000000003db8  0000000000000008 R_X86_64_RELATIVE                         1120
+0000000000003dc0  0000000000000008 R_X86_64_RELATIVE                         10e0
+0000000000004000  0000000000000008 R_X86_64_RELATIVE                         4000
+0000000000003fd8  0000000100000006 R_X86_64_GLOB_DAT      0000000000000000 _ITM_deregisterTMCloneTable + 0
+0000000000003fe0  0000000300000006 R_X86_64_GLOB_DAT      0000000000000000 glPixelStorei + 0
+0000000000003fe8  0000000400000006 R_X86_64_GLOB_DAT      0000000000000000 __gmon_start__ + 0
+0000000000003ff0  0000000700000006 R_X86_64_GLOB_DAT      0000000000000000 _ITM_registerTMCloneTable + 0
+0000000000003ff8  0000000800000006 R_X86_64_GLOB_DAT      0000000000000000 __cxa_finalize@GLIBC_2.2.5 + 0
+
+Relocation section '.rela.plt' at offset 0x548 contains 3 entries:
+    Offset             Info             Type               Symbol's Value  Symbol's Name + Addend
+0000000000003fc0  0000000200000007 R_X86_64_JUMP_SLOT     0000000000000000 puts@GLIBC_2.2.5 + 0
+0000000000003fc8  0000000500000007 R_X86_64_JUMP_SLOT     0000000000000000 glReadPixels + 0
+0000000000003fd0  0000000600000007 R_X86_64_JUMP_SLOT     0000000000000000 glXCreateContext + 0

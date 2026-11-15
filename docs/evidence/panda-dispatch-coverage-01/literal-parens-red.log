@@ -1,0 +1,39 @@
+EE
+======================================================================
+ERROR: test_parentheses_inside_literal_arguments_are_not_source_delimiters (tests.test_panda_dispatch_coverage.DispatchCoverageTests.test_parentheses_inside_literal_arguments_are_not_source_delimiters) (source='glDebugMessageInsert(0,0,1,0,-1,"(");')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_dispatch_coverage.py", line 73, in test_parentheses_inside_literal_arguments_are_not_source_delimiters
+    data=self.scan(source)
+         ^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_dispatch_coverage.py", line 37, in scan
+    return coverage.scan_source(text.encode(), 'cpu.cxx')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/scripts/panda_dispatch_coverage.py", line 164, in scan_source
+    close = _closing(tokens, index+1)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/scripts/panda_dispatch_coverage.py", line 108, in _closing
+    raise ValueError('unclosed source call')
+ValueError: unclosed source call
+
+======================================================================
+ERROR: test_parentheses_inside_literal_arguments_are_not_source_delimiters (tests.test_panda_dispatch_coverage.DispatchCoverageTests.test_parentheses_inside_literal_arguments_are_not_source_delimiters) (source="glReadBuffer('(');")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_dispatch_coverage.py", line 73, in test_parentheses_inside_literal_arguments_are_not_source_delimiters
+    data=self.scan(source)
+         ^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_dispatch_coverage.py", line 37, in scan
+    return coverage.scan_source(text.encode(), 'cpu.cxx')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/scripts/panda_dispatch_coverage.py", line 164, in scan_source
+    close = _closing(tokens, index+1)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/scripts/panda_dispatch_coverage.py", line 108, in _closing
+    raise ValueError('unclosed source call')
+ValueError: unclosed source call
+
+----------------------------------------------------------------------
+Ran 1 test in 0.051s
+
+FAILED (errors=2)

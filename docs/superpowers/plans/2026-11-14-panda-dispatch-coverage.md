@@ -24,15 +24,15 @@ Preserve3083basefiles/299pins/10originals/main/Drafts102–108/8nativehistories.
 **Create:** scripts/readback_elf_imports.py;tests/test_readback_elf_imports.py;tests/fixtures/readback_import_fixture.c.
 **Interface:** inspect_imports(blob:bytes)->dict with schema,imports(list name/symbol_index/type/binding/slot_vaddr/relocation_type),needed_libraries,elf_sha256. No section-header dependency, no loading.
 
-- [ ] RED tests: compiled CPU ELF requires literal glReadPixels/glXCreateContext/address-taken glPixelStorei imports; independent readelf slots agree; zero section headers still work. Corrupted ELF/machine/dynamic tags/strtab/symtab/entrysize/RELA/JMPREL/duplicates/overlap/termination/budgets reject.
-- [ ] Implement bounded unique PT_LOAD/actual dynamic table reader; focused tests PASS; commit with ledger evidence.
+- [x] RED tests: compiled CPU ELF requires literal glReadPixels/glXCreateContext/address-taken glPixelStorei imports; independent readelf slots agree; zero section headers still work. Corrupted ELF/machine/dynamic tags/strtab/symtab/entrysize/RELA/JMPREL/duplicates/overlap/termination/budgets reject.
+- [x] Implement bounded unique PT_LOAD/actual dynamic table reader; focused tests PASS; commit with ledger evidence.
 
 ### Task2: Pinned coverage scanner/assessor/CLI
 
 **Create:** scripts/panda_dispatch_coverage.py;tests/test_panda_dispatch_coverage.py;docs/evidence/panda-dispatch-coverage-01/{source,source-pins.json,...};RESULT/LEDGER/CONTINUATION docs.
 **Interfaces:** scan_source(data:bytes,filename:str)->dict literal_lookups/computed_lookups/direct_calls/member_calls;delivery_routes(data:bytes)->tuple names;assess_coverage(imports:dict,sources:list,routes:tuple,safe_names:tuple,mechanism:str)->dict;qualify(image:bytes,sources:dict,delivery:bytes,safe_names=(),mechanism='got-only')->dict. CLI --image,--source-dir,--delivery,--safe-names,--mechanism,--out reads bounded canonical files and creates a new directory.
 
-- [ ] RED parser/coverage/CLI tests: literal line identities, comments/unrelated strings, concatenation, computed calls, definitions/declarations, conditionals/malformed lexical forms; legacy glXCreateContext and glDeleteBuffers missing; unsafe/duplicate/oversized names reject; private resolver/GOT-only and source-integrated native readiness remainFalse; image/source/delivery mutation rejects; CLI invalid input/output preserves inputs/no success.
-- [ ] Implement scanner, explicit existing17route profile and planning gate, exact source/image/readABI binding and CLI. Actual pinned audit emits concrete gaps, not guessed allowlist/activebranch coverage; focusedPASS; commit.
+- [x] RED parser/coverage/CLI tests: literal line identities, comments/unrelated strings, concatenation, computed calls, definitions/declarations, conditionals/malformed lexical forms; legacy glXCreateContext and glDeleteBuffers missing; unsafe/duplicate/oversized names reject; private resolver/GOT-only and source-integrated native readiness remainFalse; image/source/delivery mutation rejects; CLI invalid input/output preserves inputs/no success.
+- [x] Implement scanner, explicit existing17route profile and planning gate, exact source/image/readABI binding and CLI. Actual pinned audit emits concrete gaps, not guessed allowlist/activebranch coverage; focusedPASS; commit.
 - [ ] Run pinned audit/environment guard/fullsuite; retain CPU ELF/source/raw reports, commands/logs/preservation. Onefreshwholebranchreview,oneCritical/ImportantRED→GREENfixpass+suite; all rulings/declined behavior/costs ledgered; no rereview.
 - [ ] Prepare ownDraft/exactHEADCI and final preserved originals/refs/history proof; copy/remove only thisplan scratch after fixes committed. ImmutableHEAD final receipt goes to PR body and retained output.
