@@ -1,0 +1,91 @@
+
+output/stage7-panda-sdk-cg-candidate-01/acceptance/candidate/candidate/libpandagl.so.data:     file format elf64-x86-64
+
+
+Disassembly of section .init:
+
+Disassembly of section .plt:
+
+Disassembly of section .plt.got:
+
+Disassembly of section .plt.sec:
+
+Disassembly of section .text:
+
+0000000000043700 <_ZN23GLGraphicsStateGuardian24get_driver_version_majorEv>:
+   43700:	f3 0f 1e fa          	endbr64
+   43704:	8b 87 78 06 00 00    	mov    0x678(%rdi),%eax
+   4370a:	c3                   	ret
+
+Disassembly of section .fini:
+
+output/stage7-panda-sdk-cg-candidate-01/acceptance/candidate/candidate/libpandagl.so.data:     file format elf64-x86-64
+
+
+Disassembly of section .init:
+
+Disassembly of section .plt:
+
+Disassembly of section .plt.got:
+
+Disassembly of section .plt.sec:
+
+Disassembly of section .text:
+
+0000000000043710 <_ZN23GLGraphicsStateGuardian24get_driver_version_minorEv>:
+   43710:	f3 0f 1e fa          	endbr64
+   43714:	8b 87 7c 06 00 00    	mov    0x67c(%rdi),%eax
+   4371a:	c3                   	ret
+
+Disassembly of section .fini:
+
+output/stage7-panda-sdk-cg-candidate-01/acceptance/candidate/candidate/libpandagl.so.data:     file format elf64-x86-64
+
+
+Disassembly of section .init:
+
+Disassembly of section .plt:
+
+Disassembly of section .plt.got:
+
+Disassembly of section .plt.sec:
+
+Disassembly of section .text:
+
+0000000000044d30 <_ZN23GLGraphicsStateGuardian17get_driver_vendorEv>:
+   44d30:	f3 0f 1e fa          	endbr64
+   44d34:	53                   	push   %rbx
+   44d35:	48 89 fb             	mov    %rdi,%rbx
+   44d38:	48 83 ec 10          	sub    $0x10,%rsp
+   44d3c:	48 8b 86 60 06 00 00 	mov    0x660(%rsi),%rax
+   44d43:	8b 50 f8             	mov    -0x8(%rax),%edx
+   44d46:	48 8d 78 e8          	lea    -0x18(%rax),%rdi
+   44d4a:	85 d2                	test   %edx,%edx
+   44d4c:	78 1a                	js     44d68 <_ZN23GLGraphicsStateGuardian17get_driver_vendorEv+0x38>
+   44d4e:	48 3b 3d 7b 2b 09 00 	cmp    0x92b7b(%rip),%rdi        # d78d0 <_ZNSs4_Rep20_S_empty_rep_storageE@GLIBCXX_3.4>
+   44d55:	75 29                	jne    44d80 <_ZN23GLGraphicsStateGuardian17get_driver_vendorEv+0x50>
+   44d57:	48 89 03             	mov    %rax,(%rbx)
+   44d5a:	48 83 c4 10          	add    $0x10,%rsp
+   44d5e:	48 89 d8             	mov    %rbx,%rax
+   44d61:	5b                   	pop    %rbx
+   44d62:	c3                   	ret
+   44d63:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+   44d68:	48 8d 74 24 0f       	lea    0xf(%rsp),%rsi
+   44d6d:	31 d2                	xor    %edx,%edx
+   44d6f:	e8 ac 90 fe ff       	call   2de20 <_ZNSs4_Rep8_M_cloneERKSaIcEm@plt>
+   44d74:	48 89 03             	mov    %rax,(%rbx)
+   44d77:	48 83 c4 10          	add    $0x10,%rsp
+   44d7b:	48 89 d8             	mov    %rbx,%rax
+   44d7e:	5b                   	pop    %rbx
+   44d7f:	c3                   	ret
+   44d80:	48 8b 15 41 2f 09 00 	mov    0x92f41(%rip),%rdx        # d7cc8 <__libc_single_threaded@GLIBC_2.32>
+   44d87:	80 3a 00             	cmpb   $0x0,(%rdx)
+   44d8a:	74 0c                	je     44d98 <_ZN23GLGraphicsStateGuardian17get_driver_vendorEv+0x68>
+   44d8c:	83 40 f8 01          	addl   $0x1,-0x8(%rax)
+   44d90:	eb c5                	jmp    44d57 <_ZN23GLGraphicsStateGuardian17get_driver_vendorEv+0x27>
+   44d92:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
+   44d98:	48 8d 48 f8          	lea    -0x8(%rax),%rcx
+   44d9c:	f0 83 01 01          	lock addl $0x1,(%rcx)
+   44da0:	eb b5                	jmp    44d57 <_ZN23GLGraphicsStateGuardian17get_driver_vendorEv+0x27>
+
+Disassembly of section .fini:

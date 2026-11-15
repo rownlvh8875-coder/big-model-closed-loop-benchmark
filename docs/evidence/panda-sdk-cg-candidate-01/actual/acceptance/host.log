@@ -1,0 +1,165 @@
+build	Set up job	﻿2026-11-15T21:30:25.3754913Z Current runner version: '2.338.2'
+build	Set up job	2026-11-15T21:30:25.3778277Z ##[group]Runner Image Provisioner
+build	Set up job	2026-11-15T21:30:25.3779091Z Hosted Compute Agent
+build	Set up job	2026-11-15T21:30:25.3779595Z Version: 20261103.629
+build	Set up job	2026-11-15T21:30:25.3780157Z Commit: 15dbd9ccb5dbf34fae002b6ed1a2670f52df37bc
+build	Set up job	2026-11-15T21:30:25.3780942Z Build Date: 2026-11-03T17:26:59Z
+build	Set up job	2026-11-15T21:30:25.3781529Z Worker ID: {bef28b4e-c18d-4057-bf4a-a3bd0418d9b8}
+build	Set up job	2026-11-15T21:30:25.3782157Z Region: centralus
+build	Set up job	2026-11-15T21:30:25.3782674Z Cloud: Azure
+build	Set up job	2026-11-15T21:30:25.3783116Z ##[endgroup]
+build	Set up job	2026-11-15T21:30:25.3784314Z ##[group]Operating System
+build	Set up job	2026-11-15T21:30:25.3784847Z Ubuntu
+build	Set up job	2026-11-15T21:30:25.3785331Z 24.04.5
+build	Set up job	2026-11-15T21:30:25.3785791Z LTS
+build	Set up job	2026-11-15T21:30:25.3786270Z ##[endgroup]
+build	Set up job	2026-11-15T21:30:25.3787061Z ##[group]Runner Image
+build	Set up job	2026-11-15T21:30:25.3787586Z Image: ubuntu-24.04
+build	Set up job	2026-11-15T21:30:25.3788415Z Version: 20261111.370.1
+build	Set up job	2026-11-15T21:30:25.3789354Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261111.370/images/ubuntu/Ubuntu2404-Readme.md
+build	Set up job	2026-11-15T21:30:25.3790924Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261111.370
+build	Set up job	2026-11-15T21:30:25.3791725Z ##[endgroup]
+build	Set up job	2026-11-15T21:30:25.3792740Z ##[group]GITHUB_TOKEN Permissions
+build	Set up job	2026-11-15T21:30:25.3795091Z Actions: read
+build	Set up job	2026-11-15T21:30:25.3795680Z Contents: read
+build	Set up job	2026-11-15T21:30:25.3796197Z Metadata: read
+build	Set up job	2026-11-15T21:30:25.3796918Z ##[endgroup]
+build	Set up job	2026-11-15T21:30:25.3798868Z Secret source: Actions
+build	Set up job	2026-11-15T21:30:25.3799685Z Cache mode: write
+build	Set up job	2026-11-15T21:30:25.3800622Z Prepare workflow directory
+build	Set up job	2026-11-15T21:30:25.4074192Z Prepare all required actions
+build	Set up job	2026-11-15T21:30:25.4115815Z Getting action download info
+build	Set up job	2026-11-15T21:30:25.6513387Z Download action repository 'actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683' (SHA:11bd71901bbe5b1630ceea73d27597364c9af683)
+build	Set up job	2026-11-15T21:30:25.8055608Z Download action repository 'actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+build	Set up job	2026-11-15T21:30:26.0772551Z Complete job name: build
+build	Reject repeated attempts	﻿2026-11-15T21:30:26.1389964Z ##[group]Run test "$ATTEMPT" = 1
+build	Reject repeated attempts	2026-11-15T21:30:26.1390528Z [36;1mtest "$ATTEMPT" = 1[0m
+build	Reject repeated attempts	2026-11-15T21:30:26.1411001Z shell: /usr/bin/bash -e {0}
+build	Reject repeated attempts	2026-11-15T21:30:26.1411689Z env:
+build	Reject repeated attempts	2026-11-15T21:30:26.1412043Z   ATTEMPT: 1
+build	Reject repeated attempts	2026-11-15T21:30:26.1412394Z ##[endgroup]
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	﻿2026-11-15T21:30:26.1667087Z ##[group]Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:26.1667745Z with:
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:26.1668089Z   fetch-depth: 1
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:26.1668463Z   persist-credentials: false
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:26.1668980Z   repository: rownlvh8875-coder/big-model-closed-loop-benchmark
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:26.1672155Z   token: ***
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:26.1672513Z   ssh-strict: true
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:26.1672873Z   ssh-user: git
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:26.1673210Z   clean: true
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:26.1673567Z   sparse-checkout-cone-mode: true
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:26.1673984Z   fetch-tags: false
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:26.1674358Z   show-progress: true
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:26.1674750Z   lfs: false
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:26.1675089Z   submodules: false
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:26.1675463Z   set-safe-directory: true
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:26.1675842Z ##[endgroup]
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:26.4119798Z Syncing repository: rownlvh8875-coder/big-model-closed-loop-benchmark
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:26.4122562Z ##[group]Getting Git version info
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:26.4124095Z Working directory is '/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark'
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:26.4126224Z [command]/usr/bin/git version
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:26.4248260Z git version 2.56.1
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:26.4255025Z ##[endgroup]
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:26.4278175Z Temporarily overriding HOME='/home/runner/work/_temp/a87c38ae-f64e-4904-af23-07530ca20d98' before making global git config changes
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:26.4280557Z Adding repository directory to the temporary git global config as a safe directory
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:26.4283346Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:26.4351974Z Deleting the contents of '/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark'
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:26.4354296Z ##[group]Initializing the repository
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:26.4355765Z [command]/usr/bin/git init /home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:26.4485313Z hint: Using 'master' as the name for the initial branch. This default branch name
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:26.4487481Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:26.4489026Z hint: to use in all of your new repositories, which will suppress this warning,
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:26.4492886Z hint: call:
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:26.4493486Z hint:
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:26.4494198Z hint: 	git config --global init.defaultBranch <name>
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:26.4495046Z hint:
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:26.4495933Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:26.4497445Z hint: 'development'. The just-created branch can be renamed via this command:
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:26.4498554Z hint:
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:26.4499173Z hint: 	git branch -m <name>
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:26.4499817Z hint:
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:26.4500682Z hint: Disable this message with "git config set advice.defaultBranchName false"
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:26.4502619Z Initialized empty Git repository in /home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/.git/
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:26.4508488Z [command]/usr/bin/git remote add origin https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:26.4558581Z ##[endgroup]
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:26.4559789Z ##[group]Disabling automatic garbage collection
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:26.4562545Z [command]/usr/bin/git config --local gc.auto 0
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:26.4598285Z ##[endgroup]
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:26.4598957Z ##[group]Setting up auth
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:26.4604711Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:26.4638815Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:26.5015694Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:26.5054049Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:26.5268182Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:26.5311983Z ##[endgroup]
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:26.5322727Z ##[group]Fetching the repository
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:26.5324331Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +ffc6d918c4b07605a32d22073827fc2241737b2d:refs/remotes/origin/prepare/panda-sdk-cg-build-20261115-01
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:31.1065071Z From https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:31.1066119Z  * [new ref]         ffc6d918c4b07605a32d22073827fc2241737b2d -> origin/prepare/panda-sdk-cg-build-20261115-01
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:31.1070869Z ##[endgroup]
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:31.1071269Z ##[group]Determining the checkout info
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:31.1073352Z ##[endgroup]
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:31.1080315Z [command]/usr/bin/git sparse-checkout disable
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:31.1144211Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:31.1179513Z ##[group]Checking out the ref
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:31.1184240Z [command]/usr/bin/git checkout --progress --force -B prepare/panda-sdk-cg-build-20261115-01 refs/remotes/origin/prepare/panda-sdk-cg-build-20261115-01
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:31.7778902Z Switched to a new branch 'prepare/panda-sdk-cg-build-20261115-01'
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:31.7782694Z branch 'prepare/panda-sdk-cg-build-20261115-01' set up to track 'origin/prepare/panda-sdk-cg-build-20261115-01'.
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:31.7856290Z ##[endgroup]
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:31.7907509Z [command]/usr/bin/git log -1 --format=%H
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:31.7937855Z ffc6d918c4b07605a32d22073827fc2241737b2d
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:31.7945346Z ##[group]Removing auth
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:31.7948619Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:31.7983803Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:31.8200404Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:31.8232418Z http.https://github.com/.extraheader
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:31.8238772Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:31.8275003Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+build	Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:30:31.8483550Z ##[endgroup]
+build	Compile one source-bound Cg SDK, never execute target code	﻿2026-11-15T21:30:31.8611377Z ##[group]Run /usr/bin/python3 -I -S -B scripts/produce_panda_sdk_cg.py --run
+build	Compile one source-bound Cg SDK, never execute target code	2026-11-15T21:30:31.8611921Z [36;1m/usr/bin/python3 -I -S -B scripts/produce_panda_sdk_cg.py --run[0m
+build	Compile one source-bound Cg SDK, never execute target code	2026-11-15T21:30:31.8630026Z shell: /usr/bin/bash -e {0}
+build	Compile one source-bound Cg SDK, never execute target code	2026-11-15T21:30:31.8630242Z env:
+build	Compile one source-bound Cg SDK, never execute target code	2026-11-15T21:30:31.8632329Z   GH_TOKEN: ***
+build	Compile one source-bound Cg SDK, never execute target code	2026-11-15T21:30:31.8632516Z ##[endgroup]
+build	Compile one source-bound Cg SDK, never execute target code	2026-11-15T21:35:46.7561101Z {"status": "FAILED", "build_start_attempts": 1, "target_execution": false}
+build	Compile one source-bound Cg SDK, never execute target code	2026-11-15T21:35:46.7749626Z ##[error]Process completed with exit code 2.
+build	Preserve candidate or available negative evidence	﻿2026-11-15T21:35:46.7817594Z ##[group]Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+build	Preserve candidate or available negative evidence	2026-11-15T21:35:46.7817968Z with:
+build	Preserve candidate or available negative evidence	2026-11-15T21:35:46.7818176Z   name: panda-sdk-cg-build-20261115-01
+build	Preserve candidate or available negative evidence	2026-11-15T21:35:46.7818504Z   path: output/stage7-panda-sdk-cg-candidate-01/producer/bundle/
+build	Preserve candidate or available negative evidence	2026-11-15T21:35:46.7818806Z   compression-level: 0
+build	Preserve candidate or available negative evidence	2026-11-15T21:35:46.7819011Z   retention-days: 30
+build	Preserve candidate or available negative evidence	2026-11-15T21:35:46.7819213Z   if-no-files-found: warn
+build	Preserve candidate or available negative evidence	2026-11-15T21:35:46.7819432Z   include-hidden-files: true
+build	Preserve candidate or available negative evidence	2026-11-15T21:35:46.7819646Z   overwrite: false
+build	Preserve candidate or available negative evidence	2026-11-15T21:35:46.7819843Z ##[endgroup]
+build	Preserve candidate or available negative evidence	2026-11-15T21:35:46.9270934Z (node:3050) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+build	Preserve candidate or available negative evidence	2026-11-15T21:35:46.9271664Z (Use `node --trace-deprecation ...` to show where the warning was created)
+build	Preserve candidate or available negative evidence	2026-11-15T21:35:46.9360705Z With the provided path, there will be 16 files uploaded
+build	Preserve candidate or available negative evidence	2026-11-15T21:35:46.9365337Z Artifact name is valid!
+build	Preserve candidate or available negative evidence	2026-11-15T21:35:46.9365718Z Root directory input is valid!
+build	Preserve candidate or available negative evidence	2026-11-15T21:35:47.2354925Z Beginning upload of artifact content to blob storage
+build	Preserve candidate or available negative evidence	2026-11-15T21:35:47.2919579Z (node:3050) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+build	Preserve candidate or available negative evidence	2026-11-15T21:35:47.7785429Z Uploaded bytes 8388608
+build	Preserve candidate or available negative evidence	2026-11-15T21:35:47.8335666Z Uploaded bytes 16777216
+build	Preserve candidate or available negative evidence	2026-11-15T21:35:47.9101581Z Uploaded bytes 25165824
+build	Preserve candidate or available negative evidence	2026-11-15T21:35:47.9800902Z Uploaded bytes 27327571
+build	Preserve candidate or available negative evidence	2026-11-15T21:35:48.0325028Z Finished uploading artifact content to blob storage!
+build	Preserve candidate or available negative evidence	2026-11-15T21:35:48.0327438Z SHA256 digest of uploaded artifact zip is e19b78abb2079e297fd565abc7fb796c62a4581fb5f9733c1895f89d90fae0dd
+build	Preserve candidate or available negative evidence	2026-11-15T21:35:48.0328227Z Finalizing artifact upload
+build	Preserve candidate or available negative evidence	2026-11-15T21:35:48.3975096Z Artifact panda-sdk-cg-build-20261115-01.zip successfully finalized. Artifact ID 14181437711
+build	Preserve candidate or available negative evidence	2026-11-15T21:35:48.3976001Z Artifact panda-sdk-cg-build-20261115-01 has been successfully uploaded! Final size is 27327571 bytes. Artifact ID is 14181437711
+build	Preserve candidate or available negative evidence	2026-11-15T21:35:48.3981876Z Artifact download URL: https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43764042768/artifacts/14181437711
+build	Post Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	﻿2026-11-15T21:35:48.4227100Z Post job cleanup.
+build	Post Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:35:48.4960703Z [command]/usr/bin/git version
+build	Post Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:35:48.4998976Z git version 2.56.1
+build	Post Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:35:48.5028796Z Temporarily overriding HOME='/home/runner/work/_temp/360705ad-d63e-4aa2-9114-27bf9b270459' before making global git config changes
+build	Post Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:35:48.5029971Z Adding repository directory to the temporary git global config as a safe directory
+build	Post Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:35:48.5033171Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark
+build	Post Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:35:48.5073844Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+build	Post Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:35:48.5111155Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+build	Post Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:35:48.5365898Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+build	Post Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683	2026-11-15T21:35:48.5405176Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+build	Complete job	﻿2026-11-15T21:35:48.5829338Z Cleaning up orphan processes
+build	Complete job	2026-11-15T21:35:48.6113208Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683, actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
