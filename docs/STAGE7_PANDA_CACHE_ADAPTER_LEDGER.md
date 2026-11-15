@@ -1,0 +1,10 @@
+# Panda source-cache adapter ledger
+
+Base55ab312dcded2a55640a560441010f8f2737531d;branchfeature/panda-cache-adapter-v1;3329basefiles. Draft110 rechecked open/unmerged/unchanged head; prior final1464tests/1457PASS7skip140.648s, exact4CIjobsPASS. Connected same Cloudenvironment/spec1. No AGENTS found. Current user says continue; prior choices inline/samecheckout/noquestions remain.
+Ruling: Use existing checkout/new ownbranch with sequential inline execution — persistent user autonomy preference and existing verified dependencies — no new worktree/dependency installation; fresh review remains required.
+Ruling: Use bounded per-context PBO/lifecycle shadow plus old cache public CPU APIs — old immutable cache lacks buffer-delete API and snapshot cannot run before FBO selection — extra shadow consistency tests; no old file edits or driver-state authority.
+Ruling: Defer release of current destroyed GLX context until successful unbind/switch — real GLX destruction is deferred while current — bounded pending flag plus lifecycle tests, no success inferred from void originals.
+Ruling: Separate actual build/name/safe256profile and full image/mapped ABI/camera/native qualification from CPU adapter — existing candidate remains minimal/unqualified — later distinct profile/image/native budget; never autoallowlist445possible names.
+Ruling: Preserve serialized owner setup, valid disjoint caller storage/spans/lifetimes and normal returns/noGL/no throw-longjmp as preconditions — immutable APIs cannot authenticate arbitrary callers — future native adapter must qualify these origins; no crash containment promised.
+Ruling: Cloud skill scripts are resource-backed rather than executable local files; use explicit plan identity/BASE/progress/test logs/review package equivalent — platform adaptation — keep equivalent gates/evidence, no fabricated script execution.
+Preflight1→2: native pca APIs consume psd observer and C rc ABI; harness compiles C cache separately then links C++ runtime/adapter/CPU originals. Source/candidate are inspected/pinned, never loaded; no interface conflict. BASE55ab312; Task1notstarted/Task2notstarted.
