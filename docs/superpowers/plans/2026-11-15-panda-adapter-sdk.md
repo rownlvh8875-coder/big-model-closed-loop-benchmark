@@ -24,8 +24,8 @@ Preserve3878basefiles/299pins/10originals/main/Drafts102–111/8nativehistories.
 **Create:** scripts/panda_adapter_sdk_stage.py;tests/test_panda_adapter_sdk_stage.py; pinned makepanda source fixture in evidence.
 **Interfaces:** transform(sources4,makepanda_bytes)->(changed4,changed_build,manifest);stage(upstream,dest)->dict;verify_stage(stage)->dict. Consume immutable4source transformer and9native pins, output baseline+new complete manifests.
 
-- [ ] RED pinned source/build mutation, target graph C/C++/NOHIDDEN/link inputs, exact include and changed count, foreign/existing/malformed source stage rejection. Execute only isolated CPU target-graph snippet, not full SDK code.
-- [ ] Implement minimal exact anchors/native copy/fresh stage/full upstream-tree reconstruction; focusedPASS and actual full source stage; record/commit.
+- [x] RED pinned source/build mutation, target graph C/C++/NOHIDDEN/link inputs, exact include and changed count, foreign/existing/malformed source stage rejection. Execute only isolated CPU target-graph snippet, not full SDK code.
+- [x] Implement minimal exact anchors/native copy/fresh stage/full upstream-tree reconstruction; focusedPASS and actual full source stage; record/commit.
 
 ### Task2: Constrained actual builder and static/CPU linkage
 
