@@ -82,7 +82,7 @@ def stage_provider_links(private,paths,inventory):
  return aliases
 
 def _copy(source,destination,limit):
- raw=a.read(source,limit);Path(destination).parent.mkdir(parents=True,exist_ok=True);Path(destination).write_bytes(raw);Path(destination).chmod(0o600)
+ raw=a.read(source,limit);a.need(len(raw)>0 and (Path(destination).name!='layout-descriptor.data' or len(raw)==128),'closed nonempty/exact DATA extent');Path(destination).parent.mkdir(parents=True,exist_ok=True);Path(destination).write_bytes(raw);Path(destination).chmod(0o600)
 def collect_diagnostics(out,receipt,build_out):
  bundle=out/'bundle';logs=bundle/'logs';logs.mkdir(parents=True,exist_ok=True);meta=receipt.setdefault('diagnostics',{});meta.update(streams=[],truncated=False);meta.setdefault('omitted_members',[])
  def prefix(path,limit):
@@ -140,15 +140,39 @@ def seal_failure_bundle(out,receipt):
   if not p.is_file():continue
   name=str(p.relative_to(bundle))
   if name=='reports/receipt.json':continue
-  if p.is_symlink() or name not in carrier.FILES or p.stat().st_size>carrier.FILE_LIMITS.get(name,0) or total+p.stat().st_size>240*1024**2:
-   quarantine.mkdir(parents=True,exist_ok=True);p.rename(quarantine/(name.replace('/','__')));continue
+  size=p.stat().st_size
+  if p.is_symlink() or name not in carrier.FILES or size>carrier.FILE_LIMITS.get(name,0) or (size==0 and not name.startswith('logs/')) or (name=='candidate/layout-descriptor.data' and size!=128) or total+size>240*1024**2:
+   receipt.setdefault('diagnostics',{}).setdefault('omitted_members',[]).append(dict(name=name,reason='outside closed carrier extent/type'));quarantine.mkdir(parents=True,exist_ok=True);p.rename(quarantine/(name.replace('/','__')));continue
   data=a.read(p,carrier.FILE_LIMITS[name]);regular[name]=dict(nbytes=len(data),sha256=a.sha(data));total+=len(data)
  receipt.update(files=regular,omissions=sorted(carrier.FILES-set(regular)-{'reports/receipt.json'}));a.write(bundle/'reports/receipt.json',receipt)
 
 def run_production(out=None):
- builder.action_context();raw=a.read(a.ROOT/a.REQUEST,4*1024**2);request=a.parse(raw);a.validate_request(request,a.ROOT);out=Path(out or a.ROOT/OUT);a.need(not out.exists(),'fresh producer output');out.mkdir(parents=True);(out/'bundle/reports').mkdir(parents=True);work=out/'work';work.mkdir();stop=time.monotonic()+2400;ctx=dict(repository=os.environ['GITHUB_REPOSITORY'],head_sha=os.environ['GITHUB_SHA'],run_id=int(os.environ['GITHUB_RUN_ID']),attempt=int(os.environ['GITHUB_RUN_ATTEMPT']),event=os.environ['GITHUB_EVENT_NAME'],actor=os.environ['GITHUB_ACTOR']);client=BuildClient(out/'api',repository=a.REPO,token=os.environ['GH_TOKEN'],deadline=stop,max_requests=96,max_payload_bytes=4*1024**3)
- receipt=dict(schema='panda-sdk-cg-runpath-production-v3',status='BLOCKED',source_sha=request['source_sha'],activation_sha=ctx['head_sha'],run_id=ctx['run_id'],request_sha256=a.sha(raw),build_start_attempts=0,native_admitted=False,stage7_complete=False,target_execution=False,scientific_native_runs=0,contract_sha256=builder.CONTRACT_SHA,image_sha256=inputs.contract()['current_image_sha256'],files={},omissions=[],staging=[]);qualified=None;tools=None;result=None;build_out=work/'build'
+ builder.action_context()
+ out=Path(out or a.ROOT/OUT).absolute()
+ a.need(out.resolve()==out and not out.exists(),'fresh canonical owned producer output')
+ out.mkdir(parents=True)
+ work=out/'work';build_out=work/'build';stop=time.monotonic()+2400
+ receipt=dict(schema='panda-sdk-cg-runpath-bootstrap-failure-v3',status='BLOCKED',source_sha=None,activation_sha=None,run_id=None,request_sha256=None,build_start_attempts=0,native_admitted=False,stage7_complete=False,target_execution=False,scientific_native_runs=0,actions_output_origin_authenticated=False,files={},omissions=[],bootstrap=dict(failure_stage='output_setup',request_validated=False,unvalidated_request_sha256=None,observed_context={key:os.environ.get(key,'')[:256] for key in ('GITHUB_REPOSITORY','GITHUB_SHA','GITHUB_RUN_ID','GITHUB_RUN_ATTEMPT','GITHUB_EVENT_NAME','GITHUB_ACTOR')}))
+ qualified=None;tools=None;result=None
  try:
+  (out/'bundle/reports').mkdir(parents=True)
+  a.write(out/'bundle/reports/receipt.json',receipt)
+  work.mkdir()
+  receipt['bootstrap']['failure_stage']='request_read'
+  raw=a.read(a.ROOT/a.REQUEST,4*1024**2)
+  receipt['bootstrap']['unvalidated_request_sha256']=a.sha(raw)
+  receipt['bootstrap']['failure_stage']='request_parse'
+  request=a.parse(raw)
+  receipt['bootstrap']['failure_stage']='request_validation'
+  a.validate_request(request,a.ROOT)
+  receipt['bootstrap']['request_validated']=True
+  receipt['bootstrap']['failure_stage']='context_conversion'
+  ctx=dict(repository=os.environ['GITHUB_REPOSITORY'],head_sha=os.environ['GITHUB_SHA'],run_id=int(os.environ['GITHUB_RUN_ID']),attempt=int(os.environ['GITHUB_RUN_ATTEMPT']),event=os.environ['GITHUB_EVENT_NAME'],actor=os.environ['GITHUB_ACTOR'])
+  a.need(a.hexstr(ctx['head_sha'],40) and a.positive(ctx['run_id']),'observed hosted identity shape')
+  receipt['bootstrap']['failure_stage']='client_construction'
+  client=BuildClient(out/'api',repository=a.REPO,token=os.environ['GH_TOKEN'],deadline=stop,max_requests=96,max_payload_bytes=4*1024**3)
+  receipt=dict(schema='panda-sdk-cg-runpath-production-v3',status='BLOCKED',source_sha=request['source_sha'],activation_sha=ctx['head_sha'],run_id=ctx['run_id'],request_sha256=a.sha(raw),build_start_attempts=0,native_admitted=False,stage7_complete=False,target_execution=False,scientific_native_runs=0,contract_sha256=builder.CONTRACT_SHA,image_sha256=inputs.contract()['current_image_sha256'],files={},omissions=[],staging=[])
+  a.write(out/'bundle/reports/receipt.json',receipt)
   from scripts.engine_clock_image_transport import _absolute_deadline
   with _absolute_deadline(stop):
    run=authenticate_context(client,request,ctx,raw);receipt['workflow_id']=run['workflow_id'];a.need(shutil.disk_usage(out).free>=16*1024**3,'16GiB initial free required');tools=builder.measure_tools(out=work/'tool-profile.json');receipt['host_resources']=dict(initial_free_bytes=shutil.disk_usage(out).free,memory_capacity=Path('/proc/meminfo').read_text().splitlines()[0],aggregate_cgroup_memory_limit_claimed=False)

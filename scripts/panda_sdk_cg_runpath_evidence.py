@@ -32,6 +32,38 @@ def successful(command,argv,cwd):
 def validate_build_evidence(receipt,root):
  try:return _validate(receipt,Path(root))
  except (KeyError,TypeError,AttributeError,IndexError) as error:raise ValueError('malformed build evidence: '+str(error)) from error
+
+def diagnostic_records(receipt,root):
+ diagnostics=receipt['diagnostics'];need(diagnostics['truncated'] is False and not diagnostics.get('omitted_members',[]),'complete positive diagnostic records');rows=diagnostics['streams'];need(type(rows) is list and 1<=len(rows)<=2048,'bounded diagnostic manifest');host=read(root/'logs/host.log',16*1024**2);make=read(root/'logs/makepanda.log',16*1024**2);records={};position=0
+ for index,row in enumerate(rows):
+  name=relative(row['path']);need(name.startswith('work/') and '\n' not in name and '\r' not in name and name not in records,'unique owned diagnostic path');count=row['saved_nbytes'];need(type(count) is int and type(row['observed_nbytes']) is int and 0<=count==row['observed_nbytes']<=16*1024**2 and row['truncated'] is False,'complete bounded diagnostic extent')
+  if index==0:need(name=='work/build/makepanda/stdout.log' and count==len(make),'separate compiler stdout record');records[name]=make;continue
+  header=name.encode()+b'\n';need(host[position:position+len(header)]==header,'retained diagnostic framing');position+=len(header);need(position+count<=len(host),'retained diagnostic span');records[name]=host[position:position+count];position+=count
+ need(position==len(host),'closed retained host diagnostic stream');return records
+
+def bind_command(command,folder,work,records):
+ prefix='work/'+str(folder.relative_to(work));need(e.parse(records[prefix+'/command.json'])==command,'retained owned command receipt')
+ for stream in ('stdout','stderr'):
+  raw=records[prefix+'/'+stream+'.log'];fact=command['streams'][stream];need(len(raw)==fact['observed_nbytes']==fact['saved_nbytes'] and sha(raw)==fact['sha256'],'retained owned command stream binding')
+
+def bind_tools(profile,work,repo,records,after=False):
+ path=absolute(profile['evidence_path'])
+ if after:need(re.fullmatch(re.escape(str(work))+r'/tool-rechecks/(?:[0-9]|1[0-5])/profile\.json',str(path)) is not None,'owned postcheck tool profile')
+ else:need(path==work/'tool-profile.json','owned initial tool profile')
+ name='work/'+str(path.relative_to(work));need(e.parse(records[name])==profile,'retained measured tool profile')
+ for index,query in enumerate(profile['queries']):
+  folder=path.parent/(path.stem+'-queries')/str(index);need(query['result'].get('cwd')==str(repo),'repository-owned tool query cwd')
+  for stream in ('stdout','stderr'):need(absolute(query[stream+'_path'])==folder/(stream+'.log'),'owned tool query stream path');need(records['work/'+str((folder/(stream+'.log')).relative_to(work))]==query[stream].encode(),'retained query text')
+  bind_command(query['result'],folder,work,records)
+
+def bind_layout(build,root,work,repo,records,parent,descriptor,layout_cmd):
+ layout=build['layout'];folder=work/'build/layout-build';bind_command(layout['command'],folder/'compile',work,records);argv=[item for item in layout_cmd[:-2] if item not in ('-c','-MD')]+['-E','-dM'];macro=layout['macro_command'];successful(macro,argv,repo);need(macro['elapsed_seconds']<=60,'bounded macro preprocessing');bind_command(macro,folder/'effective-macros',work,records);raw=records['work/build/layout-build/effective-macros/stdout.log'];need(len(raw)<=1024**2,'bounded retained macro output');macros={}
+ for line in raw.decode().splitlines():
+  fields=line.split(maxsplit=2)
+  if len(fields)>=2 and fields[0]=='#define':macros[fields[1]]=fields[2] if len(fields)==3 else ''
+ b.validate_effective(macros);measured=gate.previous.literal.verify_pair(parent,descriptor);names=('HAVE_CG','HAVE_EIGEN','HAVE_X11','HAVE_PYTHON','STDFLOAT_DOUBLE','LINMATH_ALIGN','MEMORY_HOOK_ALIGNMENT','_GLIBCXX_USE_CXX11_ABI');expected=dict(schema='panda-cg-eigen-effective-config-v2',macros={name:macros.get(name) for name in names},vector_alignment=measured['vector_alignment'],memory_alignment=measured['memory_alignment'],macro_stdout_sha256=sha(raw),target_execution=False)
+ def report(name):return e.parse(read(root/'reports'/str(name+'.json'),16*1024**2))
+ need(build['effective_configuration']==layout['effective_configuration']==report('effective-configuration')==expected,'retained macro/nested/reported effective configuration');need(report('layout')==report('gate')['layout']==measured,'standalone/gate/actual literal layout');extraction=gate.previous.literal.extract_literal(parent);extraction.pop('raw');need(layout['extraction']==report('layout-extraction')==extraction,'nested/reported/actual literal extraction');need(report('configuration')==build['configuration'],'reported generated configuration');b.validate_generated(build['configuration']);need(report('configuration-delta')==b.configuration_delta(build['configuration']),'reported configuration delta')
 def _validate(receipt,root):
  def report(name):return e.parse(read(root/'reports'/str(name+'.json'),16*1024**2))
  build=receipt['compiler_build'];gate.validate_link_facts(build);need(build['status']=='CG_EIGEN_SDK_COMPILED_NOT_LOADED' and type(build['build_start_attempts']) is int and build['build_start_attempts']==1 and build['native_admitted'] is False and build['target_execution'] is False,'compile-only build receipt');need(0<build['compile_elapsed_seconds']<=1200,'shared compile deadline')
@@ -49,7 +81,7 @@ def _validate(receipt,root):
   raw=(json.dumps(data,indent=2)+'\n').encode();expected_private[name]=dict(kind='file',nbytes=len(raw),sha256=sha(raw),mode=q['private_before'][name]['mode'])
  need(q['private_before']==expected_private,'exact private header/provider snapshot')
  log=read(root/'logs/makepanda.log',16*1024**2);stdout=build['command']['streams']['stdout'];need(len(log)==stdout['observed_nbytes']==stdout['saved_nbytes'] and sha(log)==stdout['sha256'],'retained complete compiler stdout binding');need(b.capture_link_commands(log.decode(),build_root)==build['link_commands'],'retained actual link argv provenance');gate.validate_runpath(read(root/'candidate/libpandagl.so.data',4*1024**2),read(root/'candidate/build-libpanda.so.data',64*1024**2))
- before,after=report('tools-before'),report('tools-after');need(before['tools']==after['tools']==b.TOOLS and b.tool_facts(before)==b.tool_facts(after),'before/after selected tool facts')
+ records=diagnostic_records(receipt,root);before,after=report('tools-before'),report('tools-after');bind_tools(before,work,repo,records);bind_tools(after,work,repo,records,after=True);need(before['tools']==after['tools']==b.TOOLS and b.tool_facts(before)==b.tool_facts(after),'before/after selected tool facts')
  for profile in (before,after):
   for name,row in profile['files'].items():absolute(name);absolute(row['resolved_path']);need(type(row['nbytes']) is int and 0<row['nbytes']<=64*1024**2 and digest_ok(row['sha256']),'bounded selected tool identity')
  host=report('host-before');need(type(host) is dict and 0<len(host)<=65536,'bounded host catalogue');host_roots=[P('/usr/include'),P('/usr/lib/gcc/x86_64-linux-gnu/13/include'),P('/usr/share/bison')];host_bytes=0
@@ -93,5 +125,5 @@ def _validate(receipt,root):
   if obj==build_root/'layout-build/layout-contract.o':need(command==layout_cmd,'actual descriptor compile command');layout_seen+=1
   else:need(obj.is_relative_to(sdk) and obj.suffix=='.o','SDK-owned compiler output')
   need(type(item['paths']) is list and 0<len(item['paths'])<=30000,'compiler dependency list');declared.update(resolve(name) for name in item['paths'])
- need(layout_seen==1 and declared==set(used_map),'actual dependency union/used-input equality');need(any('-I'+str(private/'usr/include/eigen3') in item['command'] for item in commands),'explicit private Eigen include')
+ need(layout_seen==1 and declared==set(used_map),'actual dependency union/used-input equality');need(any('-I'+str(private/'usr/include/eigen3') in item['command'] for item in commands),'explicit private Eigen include');bind_layout(build,root,work,repo,records,parent,descriptor,layout_cmd)
  return dict(records_coherent=True,remote_tools_independently_remeasured=False,remote_host_headers_independently_remeasured=False,native_admitted=False,source_manifest_sha256=BASE_SOURCE_SHA,used_inputs=len(used_map),compiler_commands=len(commands),retained_candidates_bound=4)

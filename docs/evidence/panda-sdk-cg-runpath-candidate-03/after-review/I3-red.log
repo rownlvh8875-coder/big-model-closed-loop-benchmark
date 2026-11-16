@@ -1,0 +1,123 @@
+test_macro_receipt_bytes_and_all_layout_reports_must_agree (test_panda_sdk_cg_runpath_evidence.ReviewMacroEvidenceTests.test_macro_receipt_bytes_and_all_layout_reports_must_agree) ... 
+  test_macro_receipt_bytes_and_all_layout_reports_must_agree (test_panda_sdk_cg_runpath_evidence.ReviewMacroEvidenceTests.test_macro_receipt_bytes_and_all_layout_reports_must_agree) (label='missing') ... FAIL
+  test_macro_receipt_bytes_and_all_layout_reports_must_agree (test_panda_sdk_cg_runpath_evidence.ReviewMacroEvidenceTests.test_macro_receipt_bytes_and_all_layout_reports_must_agree) (label='failed') ... FAIL
+  test_macro_receipt_bytes_and_all_layout_reports_must_agree (test_panda_sdk_cg_runpath_evidence.ReviewMacroEvidenceTests.test_macro_receipt_bytes_and_all_layout_reports_must_agree) (label='argv') ... FAIL
+  test_macro_receipt_bytes_and_all_layout_reports_must_agree (test_panda_sdk_cg_runpath_evidence.ReviewMacroEvidenceTests.test_macro_receipt_bytes_and_all_layout_reports_must_agree) (label='hash') ... FAIL
+  test_macro_receipt_bytes_and_all_layout_reports_must_agree (test_panda_sdk_cg_runpath_evidence.ReviewMacroEvidenceTests.test_macro_receipt_bytes_and_all_layout_reports_must_agree) (label='nested') ... FAIL
+  test_macro_receipt_bytes_and_all_layout_reports_must_agree (test_panda_sdk_cg_runpath_evidence.ReviewMacroEvidenceTests.test_macro_receipt_bytes_and_all_layout_reports_must_agree) (label='top') ... FAIL
+  test_macro_receipt_bytes_and_all_layout_reports_must_agree (test_panda_sdk_cg_runpath_evidence.ReviewMacroEvidenceTests.test_macro_receipt_bytes_and_all_layout_reports_must_agree) (report='layout') ... FAIL
+  test_macro_receipt_bytes_and_all_layout_reports_must_agree (test_panda_sdk_cg_runpath_evidence.ReviewMacroEvidenceTests.test_macro_receipt_bytes_and_all_layout_reports_must_agree) (report='gate') ... FAIL
+  test_macro_receipt_bytes_and_all_layout_reports_must_agree (test_panda_sdk_cg_runpath_evidence.ReviewMacroEvidenceTests.test_macro_receipt_bytes_and_all_layout_reports_must_agree) (report='effective-configuration') ... FAIL
+  test_macro_receipt_bytes_and_all_layout_reports_must_agree (test_panda_sdk_cg_runpath_evidence.ReviewMacroEvidenceTests.test_macro_receipt_bytes_and_all_layout_reports_must_agree) (report='layout-extraction') ... FAIL
+  test_macro_receipt_bytes_and_all_layout_reports_must_agree (test_panda_sdk_cg_runpath_evidence.ReviewMacroEvidenceTests.test_macro_receipt_bytes_and_all_layout_reports_must_agree) (report='configuration') ... FAIL
+  test_macro_receipt_bytes_and_all_layout_reports_must_agree (test_panda_sdk_cg_runpath_evidence.ReviewMacroEvidenceTests.test_macro_receipt_bytes_and_all_layout_reports_must_agree) (report='configuration-delta') ... FAIL
+test_macro_receipt_bytes_and_all_layout_reports_must_agree (test_panda_sdk_cg_runpath_evidence.ReviewMacroEvidenceTests.test_macro_receipt_bytes_and_all_layout_reports_must_agree) ... FAIL
+
+======================================================================
+FAIL: test_macro_receipt_bytes_and_all_layout_reports_must_agree (test_panda_sdk_cg_runpath_evidence.ReviewMacroEvidenceTests.test_macro_receipt_bytes_and_all_layout_reports_must_agree) (label='missing')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_cg_runpath_evidence.py", line 88, in test_macro_receipt_bytes_and_all_layout_reports_must_agree
+    with self.assertRaises(ValueError):v.validate_build_evidence(bad,root)
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_macro_receipt_bytes_and_all_layout_reports_must_agree (test_panda_sdk_cg_runpath_evidence.ReviewMacroEvidenceTests.test_macro_receipt_bytes_and_all_layout_reports_must_agree) (label='failed')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_cg_runpath_evidence.py", line 88, in test_macro_receipt_bytes_and_all_layout_reports_must_agree
+    with self.assertRaises(ValueError):v.validate_build_evidence(bad,root)
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_macro_receipt_bytes_and_all_layout_reports_must_agree (test_panda_sdk_cg_runpath_evidence.ReviewMacroEvidenceTests.test_macro_receipt_bytes_and_all_layout_reports_must_agree) (label='argv')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_cg_runpath_evidence.py", line 88, in test_macro_receipt_bytes_and_all_layout_reports_must_agree
+    with self.assertRaises(ValueError):v.validate_build_evidence(bad,root)
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_macro_receipt_bytes_and_all_layout_reports_must_agree (test_panda_sdk_cg_runpath_evidence.ReviewMacroEvidenceTests.test_macro_receipt_bytes_and_all_layout_reports_must_agree) (label='hash')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_cg_runpath_evidence.py", line 88, in test_macro_receipt_bytes_and_all_layout_reports_must_agree
+    with self.assertRaises(ValueError):v.validate_build_evidence(bad,root)
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_macro_receipt_bytes_and_all_layout_reports_must_agree (test_panda_sdk_cg_runpath_evidence.ReviewMacroEvidenceTests.test_macro_receipt_bytes_and_all_layout_reports_must_agree) (label='nested')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_cg_runpath_evidence.py", line 88, in test_macro_receipt_bytes_and_all_layout_reports_must_agree
+    with self.assertRaises(ValueError):v.validate_build_evidence(bad,root)
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_macro_receipt_bytes_and_all_layout_reports_must_agree (test_panda_sdk_cg_runpath_evidence.ReviewMacroEvidenceTests.test_macro_receipt_bytes_and_all_layout_reports_must_agree) (label='top')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_cg_runpath_evidence.py", line 88, in test_macro_receipt_bytes_and_all_layout_reports_must_agree
+    with self.assertRaises(ValueError):v.validate_build_evidence(bad,root)
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_macro_receipt_bytes_and_all_layout_reports_must_agree (test_panda_sdk_cg_runpath_evidence.ReviewMacroEvidenceTests.test_macro_receipt_bytes_and_all_layout_reports_must_agree) (report='layout')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_cg_runpath_evidence.py", line 92, in test_macro_receipt_bytes_and_all_layout_reports_must_agree
+    with self.subTest(report=name),self.assertRaises(ValueError):v.validate_build_evidence(receipt,root)
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_macro_receipt_bytes_and_all_layout_reports_must_agree (test_panda_sdk_cg_runpath_evidence.ReviewMacroEvidenceTests.test_macro_receipt_bytes_and_all_layout_reports_must_agree) (report='gate')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_cg_runpath_evidence.py", line 92, in test_macro_receipt_bytes_and_all_layout_reports_must_agree
+    with self.subTest(report=name),self.assertRaises(ValueError):v.validate_build_evidence(receipt,root)
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_macro_receipt_bytes_and_all_layout_reports_must_agree (test_panda_sdk_cg_runpath_evidence.ReviewMacroEvidenceTests.test_macro_receipt_bytes_and_all_layout_reports_must_agree) (report='effective-configuration')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_cg_runpath_evidence.py", line 92, in test_macro_receipt_bytes_and_all_layout_reports_must_agree
+    with self.subTest(report=name),self.assertRaises(ValueError):v.validate_build_evidence(receipt,root)
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_macro_receipt_bytes_and_all_layout_reports_must_agree (test_panda_sdk_cg_runpath_evidence.ReviewMacroEvidenceTests.test_macro_receipt_bytes_and_all_layout_reports_must_agree) (report='layout-extraction')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_cg_runpath_evidence.py", line 92, in test_macro_receipt_bytes_and_all_layout_reports_must_agree
+    with self.subTest(report=name),self.assertRaises(ValueError):v.validate_build_evidence(receipt,root)
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_macro_receipt_bytes_and_all_layout_reports_must_agree (test_panda_sdk_cg_runpath_evidence.ReviewMacroEvidenceTests.test_macro_receipt_bytes_and_all_layout_reports_must_agree) (report='configuration')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_cg_runpath_evidence.py", line 92, in test_macro_receipt_bytes_and_all_layout_reports_must_agree
+    with self.subTest(report=name),self.assertRaises(ValueError):v.validate_build_evidence(receipt,root)
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_macro_receipt_bytes_and_all_layout_reports_must_agree (test_panda_sdk_cg_runpath_evidence.ReviewMacroEvidenceTests.test_macro_receipt_bytes_and_all_layout_reports_must_agree) (report='configuration-delta')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_cg_runpath_evidence.py", line 92, in test_macro_receipt_bytes_and_all_layout_reports_must_agree
+    with self.subTest(report=name),self.assertRaises(ValueError):v.validate_build_evidence(receipt,root)
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_macro_receipt_bytes_and_all_layout_reports_must_agree (test_panda_sdk_cg_runpath_evidence.ReviewMacroEvidenceTests.test_macro_receipt_bytes_and_all_layout_reports_must_agree)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_cg_runpath_evidence.py", line 95, in test_macro_receipt_bytes_and_all_layout_reports_must_agree
+    with self.assertRaises(ValueError):v.validate_build_evidence(receipt,root)
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 1 test in 2.404s
+
+FAILED (failures=13)

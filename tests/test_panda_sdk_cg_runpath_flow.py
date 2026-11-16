@@ -161,3 +161,42 @@ class OwnedToolQueryTests(unittest.TestCase):
     with self.assertRaises(ValueError):b.measure_tools(paths,out=work/'tool-profile.json',query_seconds=.15)
     profile=json.loads((work/'tool-profile.json').read_text());self.assertEqual(profile['status'],'FAILED');self.assertEqual(len(profile['queries']),1);command=profile['queries'][0]['result'];self.assertEqual(command['status'],'EXITED' if mode=='nonzero' else 'TIMEOUT');self.assertTrue(command['owned_group_reaped']);self.assertIn('elapsed_seconds',command)
     r=dict(status='BLOCKED',build_start_attempts=0);producer.finalize_bundle(root,r,work/'build',None,None,None);host=(root/'bundle/logs/host.log').read_bytes();self.assertIn(b'partial version',host);self.assertIn(b'tool failed detail',host);self.assertIn(b'"owned_group_reaped": true',host)
+
+class ReviewPartialCarrierTests(unittest.TestCase):
+ def test_partial_optional_members_roundtrip_negative_carrier(self):
+  members=[('sdk/lib/libpandagl.so','candidate/libpandagl.so.data',0),('sdk/lib/libpanda.so.1.10','candidate/build-libpanda.so.data',0),('layout-build/layout-contract.o','candidate/layout-contract.o.data',0),('layout-build/layout-descriptor.data','candidate/layout-descriptor.data',0),('layout-build/layout-descriptor.data','candidate/layout-descriptor.data',127),('layout-build/layout-descriptor.data','candidate/layout-descriptor.data',129),('configuration.json','reports/configuration.json',0)]
+  for source,member,size in members:
+   with self.subTest(member=member,size=size),tempfile.TemporaryDirectory() as d:
+    root=Path(d);build,r=DurableFailureDiagnosticsTests().fixture(root);path=build/source;path.parent.mkdir(parents=True,exist_ok=True);path.write_bytes(b'x'*size)
+    try:producer.finalize_bundle(root,r,build,None,None,None)
+    except BaseException:producer.seal_failure_bundle(root,r)
+    archive=root/'negative.zip'
+    with zipfile.ZipFile(archive,'w') as z:
+     for path in (root/'bundle').rglob('*'):
+      if path.is_file():z.write(path,str(path.relative_to(root/'bundle')))
+    extracted=carrier.extract_carrier(archive,root/'received');self.assertNotIn(member,extracted['files']);self.assertIn(member,r['omissions']);self.assertIn(b'compiler stderr',(root/'received/logs/host.log').read_bytes());self.assertEqual(r['build_start_attempts'],1)
+  # Existing partial bundle files must also be removed by sealing.
+  with tempfile.TemporaryDirectory() as d:
+   root=Path(d);(root/'bundle/candidate').mkdir(parents=True);(root/'bundle/candidate/layout-descriptor.data').write_bytes(b'x');r=dict(status='FAILED',build_start_attempts=1);producer.seal_failure_bundle(root,r);self.assertIn('candidate/layout-descriptor.data',r['omissions'])
+
+class ReviewBootstrapTests(unittest.TestCase):
+ def test_qualified_entrypoint_bootstrap_failures_keep_diagnostic_artifact(self):
+  import contextlib,io,os,sys
+  from unittest.mock import patch
+  request=a.request_template('1'*40,[dict(event='push',run_id=11),dict(event='pull_request',run_id=12)],a.ROOT);original_read=a.read
+  for mode in ['malformed','closure','context','client']:
+   with self.subTest(mode=mode),tempfile.TemporaryDirectory() as d:
+    root=Path(d);output=root/'production';value=copy.deepcopy(request)
+    if mode=='closure':value['source_closure'][next(iter(value['source_closure']))]='0'*64
+    raw=b'{' if mode=='malformed' else json.dumps(value).encode()
+    def read(path,limit):return raw if Path(path)==a.ROOT/a.REQUEST else original_read(path,limit)
+    env=dict(GITHUB_ACTIONS='true',GITHUB_REPOSITORY=a.REPO,GITHUB_REF_NAME=a.BRANCH,GITHUB_RUN_ATTEMPT='1',GITHUB_SHA='2'*40,GITHUB_RUN_ID='bad' if mode=='context' else '55',GITHUB_EVENT_NAME='push',GITHUB_ACTOR=a.OWNER,GH_TOKEN='fixture-not-a-real-token')
+    with patch.dict(os.environ,env),patch.object(b,'ROOT',Path('/home/runner/work/fixture')),patch.object(producer,'OUT',str(output)),patch.object(a,'read',side_effect=read),patch.object(producer,'BuildClient',side_effect=ValueError('fixture client bootstrap failure')),patch.object(b,'measure_tools',side_effect=AssertionError('must not measure')),patch.object(b,'build',side_effect=AssertionError('must not build')),patch.object(sys,'argv',['producer','--run']),contextlib.redirect_stdout(io.StringIO()):
+     self.assertEqual(producer.main(),2)
+    receipt=json.loads((output/'bundle/reports/receipt.json').read_text());self.assertEqual(receipt['build_start_attempts'],0);self.assertFalse(receipt['target_execution']);self.assertIsNone(receipt['source_sha']);self.assertIsNone(receipt['activation_sha']);self.assertIsNone(receipt['run_id']);self.assertTrue(receipt['bootstrap']['failure_stage']);self.assertFalse((output/'work/cg-runpath-build-start.json').exists())
+    archive=root/'bootstrap.zip'
+    with zipfile.ZipFile(archive,'w') as z:
+     for path in (output/'bundle').rglob('*'):
+      if path.is_file():z.write(path,str(path.relative_to(output/'bundle')))
+    extracted=carrier.extract_carrier(archive,root/'received');self.assertIn('reports/receipt.json',extracted['files'])
+    with self.assertRaises(ValueError):acceptor.validate_receipt(receipt,extracted['files'],'1'*40,'2'*40,55,'3'*64)
