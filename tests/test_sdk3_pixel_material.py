@@ -11,7 +11,7 @@ class Texture:
     def __init__(self,resident=True,expected=3,buffer=None):self.resident=resident;self.expected=expected;self.buffer=buffer or Buffer(b'abc');self.ram_calls=0
     def hasRamImage(self):return self.resident
     def getExpectedRamImageSize(self):return self.expected
-    def getRamImageCompression(self):return 0
+    def getRamImageCompression(self):return 1
     def getRamImage(self):self.ram_calls+=1;return self.buffer
 
 class MaterialMathAndIO(unittest.TestCase):

@@ -41,6 +41,34 @@ def _attribute(value,required=None):
     p.need(value.get('values') is None,'unavailable attribute has no invented values');return None
 
 
+def _material_state(value):
+    p.need(isinstance(value,dict) and type(value.get('available')) is bool and isinstance(value.get('text'),str) and len(value['text'])<=4096,'explicit bounded material availability')
+    if not value['available']:p.need(set(value)=={'available','text'},'unavailable material has no invented properties');return
+    properties=('ambient','diffuse','emission','specular','basecolor');p.need(set(value)=={'available','text','name','shininess',*properties} and isinstance(value.get('name'),str) and len(value['name'])<=256 and type(value.get('shininess')) in (int,float) and np.isfinite(value['shininess']),'complete finite material properties')
+    for key in properties:
+        item=value[key];p.need(isinstance(item,dict) and set(item)=={'api_available','defined','value'} and type(item.get('api_available')) is bool,'material property API availability')
+        if item['api_available']:
+            p.need(type(item.get('defined')) is bool,'material property definition flag')
+            if item['defined']:_finite(item['value'],(4,))
+            else:p.need(item['value'] is None,'undefined material property has no invented value')
+        else:p.need(item['defined'] is None and item['value'] is None,'unavailable material API remains unknown')
+
+
+def _byte_availability(item,kind,texture):
+    p.need(isinstance(item,dict),'texture byte availability object');status=item.get('status')
+    if kind=='ram':
+        p.need(status in ('CAPTURED','UNAVAILABLE_NOT_RESIDENT','UNAVAILABLE_LIMIT'),'RAM-only availability status')
+        if status=='UNAVAILABLE_NOT_RESIDENT':p.need(set(item)=={'status','resident_before'} and item['resident_before'] is False,'RAM absence cannot claim residency');return
+        keys={'status','resident_before','expected_nbytes','compression'}|({'file','nbytes','sha256'} if status=='CAPTURED' else set())
+        p.need(set(item)==keys and item.get('resident_before') is True and type(item.get('expected_nbytes')) is int and 0<=item['expected_nbytes']<2**63 and type(item.get('compression')) is int and item['compression'] in {1,*range(3,15)},'resident RAM extent and pinned specific compression')
+    else:
+        p.need(status in ('CAPTURED','UNAVAILABLE_LIMIT','UNAVAILABLE_NO_PATH','UNAVAILABLE_OUTSIDE_ASSET_ROOT','UNAVAILABLE_FILE_TYPE','UNAVAILABLE_NOT_REGULAR','UNAVAILABLE_READ_ERROR'),'asset-only availability status')
+        keys=({'status','file','nbytes','sha256','source_path'} if status=='CAPTURED' else {'status','error_type'} if status=='UNAVAILABLE_READ_ERROR' else {'status','source_path'} if status=='UNAVAILABLE_LIMIT' and 'source_path' in item else {'status'})
+        p.need(set(item)==keys,'asset availability fields cannot claim RAM state')
+        if status=='UNAVAILABLE_NO_PATH':p.need(texture.get('fullpath')=='','missing asset path must actually be empty')
+        if status=='UNAVAILABLE_READ_ERROR':p.need(isinstance(item.get('error_type'),str) and 0<len(item['error_type'])<=128,'explicit asset read failure')
+
+
 def validate_material(folder,report,nonce,result):
     path=folder/'material.json';p.need(path.stat().st_size<=8*1024**2,'bounded material manifest');m=json.loads(path.read_text());p.need(m.get('protocol')=='sdk3-pixel-material-v1' and type(m.get('pid')) is int and m['pid']==report['pid'] and m.get('nonce')==nonce,'material observer identity')
     result.update(material_recorded=False,material_complete=None,material=None,gpu_material_result_proven=False)
@@ -65,11 +93,11 @@ def validate_material(folder,report,nonce,result):
         p.need(texture.get('texture_id')==index and type(texture.get('pointer')) is int and texture['pointer']>0,'texture identity')
         p.need(all(type(texture.get(k)) is int and 0<=texture[k]<2**63 for k in ('x_size','y_size','z_size','num_components','component_width','component_type','format','texture_type')) and all(isinstance(texture.get(k),str) and len(texture[k])<=4096 for k in ('name','filename','fullpath')),'bounded cached texture properties')
         for kind in ('ram','asset'):
-            item=texture.get(kind,{});status=item.get('status');p.need(status in ('CAPTURED','UNAVAILABLE_NOT_RESIDENT','UNAVAILABLE_LIMIT','UNAVAILABLE_NO_PATH','UNAVAILABLE_OUTSIDE_ASSET_ROOT','UNAVAILABLE_FILE_TYPE','UNAVAILABLE_NOT_REGULAR','UNAVAILABLE_READ_ERROR'),'explicit texture byte availability')
+            item=texture.get(kind,{});_byte_availability(item,kind,texture);status=item.get('status');p.need(status in ('CAPTURED','UNAVAILABLE_NOT_RESIDENT','UNAVAILABLE_LIMIT','UNAVAILABLE_NO_PATH','UNAVAILABLE_OUTSIDE_ASSET_ROOT','UNAVAILABLE_FILE_TYPE','UNAVAILABLE_NOT_REGULAR','UNAVAILABLE_READ_ERROR'),'explicit texture byte availability')
             if kind=='ram' and status!='CAPTURED':without_ram+=1
             if status=='CAPTURED':
                 name=item.get('file');p.need(type(name) is str and re.fullmatch(r'material-\d{3}-'+kind+r'\.bin',name) is not None and name not in files and type(item.get('nbytes')) is int and 0<item['nbytes']<=8388608,'unique bounded texture byte descriptor');file=folder/name;p.need(file.stat().st_size==item['nbytes'] and p.digest(file)==item.get('sha256'),'actual CPU texture bytes');files.add(name);captured+=item['nbytes']
-                if kind=='ram':p.need(item.get('resident_before') is True and type(item.get('expected_nbytes')) is int and 0<item['expected_nbytes']<=8388608 and type(item.get('compression')) is int and (item['compression']!=0 or item['nbytes']==item['expected_nbytes']),'resident RAM extent/compression')
+                if kind=='ram':p.need(item.get('resident_before') is True and type(item.get('expected_nbytes')) is int and 0<item['expected_nbytes']<=8388608 and type(item.get('compression')) is int and (item['compression']!=1 or item['nbytes']==item['expected_nbytes']),'resident RAM extent/compression')
                 else:
                     source=PurePosixPath(item.get('source_path',''));root=PurePosixPath('/opt/venv/lib/python3.11/site-packages/metadrive/assets');p.need(source.is_absolute() and source.is_relative_to(root) and '..' not in source.parts and '\\' not in str(source),'readonly asset provenance')
             else:p.need('file' not in item and 'sha256' not in item,'unavailable bytes cannot invent data')
@@ -77,7 +105,7 @@ def validate_material(folder,report,nonce,result):
     mesh_map={}
     for mesh in meshes:
         mesh_id=mesh.get('mesh_id');p.need(type(mesh_id) is int and mesh_id not in mesh_map and 0<=mesh_id<len(geo['meshes']),'unique actual mesh material');original=geo['meshes'][mesh_id]
-        p.need(all(mesh.get(k)==original.get(k) for k in ('node_ordinal','path','geom_index','geom_pointer','vertex_data_pointer','local_to_world','net_state_text','net_state_text_truncated')),'material mesh/state/source transform binding');_finite(mesh['local_to_world'],(4,4));p.need(type(mesh.get('net_state_pointer')) is int and mesh['net_state_pointer']>0 and isinstance(mesh.get('material'),dict),'CPU material state descriptor')
+        p.need(all(mesh.get(k)==original.get(k) for k in ('node_ordinal','path','geom_index','geom_pointer','vertex_data_pointer','local_to_world','net_state_text','net_state_text_truncated','net_state_pointer')),'material mesh/state/source transform binding');_finite(mesh['local_to_world'],(4,4));p.need(type(mesh.get('net_state_pointer')) is int and mesh['net_state_pointer']>0 and isinstance(mesh.get('material'),dict),'CPU material state descriptor');_material_state(mesh['material'])
         stages=mesh.get('stages');count=mesh.get('source_stage_count');p.need(type(count) is int and 0<=count<2**31 and isinstance(stages,list) and len(stages)<=min(count,8) and (not complete or len(stages)==count),'bounded complete/partial stage table')
         for stage_id,stage in enumerate(stages):
             p.need(stage.get('stage_id')==stage_id and type(stage.get('texture_id')) is int and 0<=stage['texture_id']<len(textures) and isinstance(stage.get('texcoord_column'),str) and 0<len(stage['texcoord_column'])<=256 and isinstance(stage.get('name'),str) and len(stage['name'])<=256 and type(stage.get('sort')) is int and type(stage.get('mode')) is int,'actual stage/texture/column link');_finite(stage['texture_matrix'],(4,4));effective=_sampler(stage['effective_sampler']);default=_sampler(stage['texture_default_sampler']);p.need(stage.get('differs_from_texture_default') is (effective!=default),'actual stage sampler value override')

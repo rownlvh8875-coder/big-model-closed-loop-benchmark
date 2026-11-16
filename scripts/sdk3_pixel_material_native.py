@@ -24,7 +24,7 @@ def _material(core,state):
     material=attrib.getMaterial();result=dict(available=True,text=str(material)[:4096],name=material.getName(),shininess=float(material.getShininess()))
     for name in ('Ambient','Diffuse','Emission','Specular','BaseColor'):
         has=getattr(material,'has'+name,None);get=getattr(material,'get'+name,None)
-        result[name.lower()]=dict(api_available=has is not None and get is not None,defined=bool(has()) if has is not None else None,value=[float(v) for v in get()] if has is not None and get is not None and has() else None)
+        result[name.lower()]=dict(api_available=has is not None and get is not None,defined=bool(has()) if has is not None and get is not None else None,value=[float(v) for v in get()] if has is not None and get is not None and has() else None)
     return result
 
 
@@ -68,7 +68,7 @@ def snapshot_material(core,engine,sensor,geometry,out,nonce,journal):
             p.need(int(geom.this)==original['geom_pointer'] and int(data.this)==original['vertex_data_pointer'],'same source Geom/vertex data')
             primitive=geom.getPrimitive(primitive_index).decompose();begin=primitive.getPrimitiveStart(decomposed_index);end=primitive.getPrimitiveEnd(decomposed_index);p.need(end-begin==3 and [int(primitive.getVertex(v)) for v in range(begin,end)]==vertices,'same source primitive vertex triple')
             if mesh_id not in mesh_map:
-                state=path.getNetState().compose(node.getGeomState(original['geom_index']));text=str(state);p.need(text[:4096]==original['net_state_text'] and (len(text)>4096)==original['net_state_text_truncated'],'same cached net-state text');matrix=_matrix(path.getMat(engine.render));p.need(matrix==original['local_to_world'],'same source world transform')
+                state=path.getNetState().compose(node.getGeomState(original['geom_index']));p.need(int(state.this)==original['net_state_pointer'],'same exact cached RenderState identity');text=str(state);p.need(text[:4096]==original['net_state_text'] and (len(text)>4096)==original['net_state_text_truncated'],'same cached net-state text');matrix=_matrix(path.getMat(engine.render));p.need(matrix==original['local_to_world'],'same source world transform')
                 row=dict(mesh_id=mesh_id,node_ordinal=original['node_ordinal'],path=str(path),geom_index=original['geom_index'],geom_pointer=int(geom.this),vertex_data_pointer=int(data.this),local_to_world=matrix,net_state_text=text[:4096],net_state_text_truncated=len(text)>4096,net_state_pointer=int(state.this),stages=[],source_stage_count=0,material=_material(core,state))
                 attrib=state.getAttrib(core.TextureAttrib.getClassSlot());texmatrix=state.getAttrib(core.TexMatrixAttrib.getClassSlot());count=0 if attrib is None else int(attrib.getNumOnStages());row['source_stage_count']=count
                 if count>8:reasons.add('stage_budget')

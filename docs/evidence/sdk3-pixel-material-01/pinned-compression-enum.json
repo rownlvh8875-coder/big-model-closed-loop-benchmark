@@ -1,0 +1,120 @@
+{
+  "panda_version": "v1.10.13",
+  "file": "panda/src/gobj/texture.h",
+  "sha256": "7e42f46d99afcda2b0d1fe3d3c342392a36c9eb04240bf592b46d981c97f4018",
+  "cm_default": 0,
+  "cm_off": 1,
+  "cm_on": 2,
+  "specific_compression_codes": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14
+  ],
+  "excerpt": [
+    {
+      "line": 201,
+      "text": "  enum CompressionMode {"
+    },
+    {
+      "line": 202,
+      "text": "    // Generic compression modes.  Usually, you should choose one of these."
+    },
+    {
+      "line": 203,
+      "text": "    CM_default,  // on or off, according to compressed-textures"
+    },
+    {
+      "line": 204,
+      "text": "    CM_off,      // uncompressed image"
+    },
+    {
+      "line": 205,
+      "text": "    CM_on,       // whatever compression the driver supports"
+    },
+    {
+      "line": 206,
+      "text": ""
+    },
+    {
+      "line": 207,
+      "text": "    // Specific compression modes.  Use only when you really want to use a"
+    },
+    {
+      "line": 208,
+      "text": "    // particular compression algorithm.  Use with caution; not all drivers"
+    },
+    {
+      "line": 209,
+      "text": "    // support all compression modes.  You can use"
+    },
+    {
+      "line": 210,
+      "text": "    // GSG::get_supports_compressed_texture_format() to query the available"
+    },
+    {
+      "line": 211,
+      "text": "    // compression modes for a particular GSG."
+    },
+    {
+      "line": 212,
+      "text": "    CM_fxt1,"
+    },
+    {
+      "line": 213,
+      "text": "    CM_dxt1, // BC1: RGB with optional binary alpha."
+    },
+    {
+      "line": 214,
+      "text": "    CM_dxt2, // Like DXT3, but assumes premultiplied alpha"
+    },
+    {
+      "line": 215,
+      "text": "    CM_dxt3, // BC2: RGB with uncompressed 4-bit alpha."
+    },
+    {
+      "line": 216,
+      "text": "    CM_dxt4, // Like DXT5, but assumes premultiplied alpha"
+    },
+    {
+      "line": 217,
+      "text": "    CM_dxt5, // BC3: RGB with separately compressed 8-bit alpha."
+    },
+    {
+      "line": 218,
+      "text": "    CM_pvr1_2bpp,"
+    },
+    {
+      "line": 219,
+      "text": "    CM_pvr1_4bpp,"
+    },
+    {
+      "line": 220,
+      "text": "    CM_rgtc, // BC4/BC5: 1 or 2 channels, individually compressed."
+    },
+    {
+      "line": 221,
+      "text": "    CM_etc1,"
+    },
+    {
+      "line": 222,
+      "text": "    CM_etc2,"
+    },
+    {
+      "line": 223,
+      "text": "    CM_eac, // EAC: 1 or 2 channels."
+    },
+    {
+      "line": 224,
+      "text": "  };"
+    }
+  ]
+}
