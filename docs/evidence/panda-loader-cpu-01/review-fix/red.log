@@ -1,0 +1,70 @@
+test_symbol_zero_and_packed_relocations_are_rejected_as_data_before_spawn (tests.test_panda_loader_cpu_fixture.CpuLoaderTests.test_symbol_zero_and_packed_relocations_are_rejected_as_data_before_spawn) ... 
+  test_symbol_zero_and_packed_relocations_are_rejected_as_data_before_spawn (tests.test_panda_loader_cpu_fixture.CpuLoaderTests.test_symbol_zero_and_packed_relocations_are_rejected_as_data_before_spawn) (kind='relative') ... FAIL
+  test_symbol_zero_and_packed_relocations_are_rejected_as_data_before_spawn (tests.test_panda_loader_cpu_fixture.CpuLoaderTests.test_symbol_zero_and_packed_relocations_are_rejected_as_data_before_spawn) (kind='irelative') ... FAIL
+  test_symbol_zero_and_packed_relocations_are_rejected_as_data_before_spawn (tests.test_panda_loader_cpu_fixture.CpuLoaderTests.test_symbol_zero_and_packed_relocations_are_rejected_as_data_before_spawn) (kind='relr') ... FAIL
+test_mapping_aliases_and_nonwritable_got_are_rejected_as_data_before_spawn (tests.test_panda_loader_cpu_fixture.CpuLoaderTests.test_mapping_aliases_and_nonwritable_got_are_rejected_as_data_before_spawn) ... 
+  test_mapping_aliases_and_nonwritable_got_are_rejected_as_data_before_spawn (tests.test_panda_loader_cpu_fixture.CpuLoaderTests.test_mapping_aliases_and_nonwritable_got_are_rejected_as_data_before_spawn) (kind='rounded-alias') ... FAIL
+  test_mapping_aliases_and_nonwritable_got_are_rejected_as_data_before_spawn (tests.test_panda_loader_cpu_fixture.CpuLoaderTests.test_mapping_aliases_and_nonwritable_got_are_rejected_as_data_before_spawn) (kind='incongruent') ... FAIL
+  test_mapping_aliases_and_nonwritable_got_are_rejected_as_data_before_spawn (tests.test_panda_loader_cpu_fixture.CpuLoaderTests.test_mapping_aliases_and_nonwritable_got_are_rejected_as_data_before_spawn) (kind='writable-code') ... FAIL
+  test_mapping_aliases_and_nonwritable_got_are_rejected_as_data_before_spawn (tests.test_panda_loader_cpu_fixture.CpuLoaderTests.test_mapping_aliases_and_nonwritable_got_are_rejected_as_data_before_spawn) (kind='executable-got') ... FAIL
+
+======================================================================
+FAIL: test_symbol_zero_and_packed_relocations_are_rejected_as_data_before_spawn (tests.test_panda_loader_cpu_fixture.CpuLoaderTests.test_symbol_zero_and_packed_relocations_are_rejected_as_data_before_spawn) (kind='relative')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_loader_cpu_fixture.py", line 67, in test_symbol_zero_and_packed_relocations_are_rejected_as_data_before_spawn
+    with self.assertRaises(ValueError):f._validate_binary(raw,'target1.so')
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_symbol_zero_and_packed_relocations_are_rejected_as_data_before_spawn (tests.test_panda_loader_cpu_fixture.CpuLoaderTests.test_symbol_zero_and_packed_relocations_are_rejected_as_data_before_spawn) (kind='irelative')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_loader_cpu_fixture.py", line 67, in test_symbol_zero_and_packed_relocations_are_rejected_as_data_before_spawn
+    with self.assertRaises(ValueError):f._validate_binary(raw,'target1.so')
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_symbol_zero_and_packed_relocations_are_rejected_as_data_before_spawn (tests.test_panda_loader_cpu_fixture.CpuLoaderTests.test_symbol_zero_and_packed_relocations_are_rejected_as_data_before_spawn) (kind='relr')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_loader_cpu_fixture.py", line 67, in test_symbol_zero_and_packed_relocations_are_rejected_as_data_before_spawn
+    with self.assertRaises(ValueError):f._validate_binary(raw,'target1.so')
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_mapping_aliases_and_nonwritable_got_are_rejected_as_data_before_spawn (tests.test_panda_loader_cpu_fixture.CpuLoaderTests.test_mapping_aliases_and_nonwritable_got_are_rejected_as_data_before_spawn) (kind='rounded-alias')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_loader_cpu_fixture.py", line 94, in test_mapping_aliases_and_nonwritable_got_are_rejected_as_data_before_spawn
+    with self.assertRaises(ValueError):f._validate_binary(bytes(raw),'root.so')
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_mapping_aliases_and_nonwritable_got_are_rejected_as_data_before_spawn (tests.test_panda_loader_cpu_fixture.CpuLoaderTests.test_mapping_aliases_and_nonwritable_got_are_rejected_as_data_before_spawn) (kind='incongruent')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_loader_cpu_fixture.py", line 94, in test_mapping_aliases_and_nonwritable_got_are_rejected_as_data_before_spawn
+    with self.assertRaises(ValueError):f._validate_binary(bytes(raw),'root.so')
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_mapping_aliases_and_nonwritable_got_are_rejected_as_data_before_spawn (tests.test_panda_loader_cpu_fixture.CpuLoaderTests.test_mapping_aliases_and_nonwritable_got_are_rejected_as_data_before_spawn) (kind='writable-code')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_loader_cpu_fixture.py", line 94, in test_mapping_aliases_and_nonwritable_got_are_rejected_as_data_before_spawn
+    with self.assertRaises(ValueError):f._validate_binary(bytes(raw),'root.so')
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_mapping_aliases_and_nonwritable_got_are_rejected_as_data_before_spawn (tests.test_panda_loader_cpu_fixture.CpuLoaderTests.test_mapping_aliases_and_nonwritable_got_are_rejected_as_data_before_spawn) (kind='executable-got')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_loader_cpu_fixture.py", line 94, in test_mapping_aliases_and_nonwritable_got_are_rejected_as_data_before_spawn
+    with self.assertRaises(ValueError):f._validate_binary(bytes(raw),'root.so')
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.374s
+
+FAILED (failures=7)

@@ -1,0 +1,62 @@
+{
+  "schema": "panda-loader-cpu-profile-v1",
+  "status": "FOUR_CPU_LOADER_VERSION_CASES_OBSERVED_NOT_SDK_RUNTIME",
+  "audit_source_sha": "2577fe4167a3c69a81166b6c810e476384730eee",
+  "actions_output_origin_authenticated": true,
+  "fixed_image_cpu_profile_observed": true,
+  "cpu_fixture_execution_requested": true,
+  "sdk_target_execution": false,
+  "scientific_native_runs": 0,
+  "new_sdk_builds": 0,
+  "new_workflow_activations": 0,
+  "artifact_downloads": 0,
+  "archive_extractions": 0,
+  "new_images": 0,
+  "execution_ledger_path": "cases/ledger.json",
+  "strict_current_result": "0/4 FAIL",
+  "native_admitted": false,
+  "stage7_complete": false,
+  "full_object_abi_qualified": false,
+  "full_dependency_closure_qualified": false,
+  "previous_abort_fixed": false,
+  "candidate_installed": false,
+  "runtime_mapping_qualified": false,
+  "external_build_origin_authenticated": false,
+  "loader_start_attempts": 4,
+  "loader_invocations": 4,
+  "loader_invocations_lower_bound": 4,
+  "loader_invocations_upper_bound": 4,
+  "verified_fixture_entries": 2,
+  "controlled_loader_failures": 2,
+  "source_count": 322,
+  "image": {
+    "image_sha256": "4984470cd7d732f9f2d1c12710c9433b563b3817ba6d1d419749a9a2b1b46698",
+    "inventory_sha256": "d84221127e69dec818a01762ff4c53b7570144caa4f91708b5009cf63058d7bc",
+    "image_artifact_id": 14156262448,
+    "loader": {
+      "image_path": "/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2",
+      "nbytes": 236616,
+      "sha256": "5fc0940888e9d2e1a00e66d6b1a559c36364ee867683652e1074fa576952cc3f",
+      "retained_path": "output/stage7-panda-sdk-cg-runpath-candidate-03/acceptance/provider-data/5fc0940888e9d2e1a00e66d6b1a559c36364ee867683652e1074fa576952cc3f.elf.data"
+    }
+  },
+  "loader_copy": {
+    "nbytes": 236616,
+    "sha256": "5fc0940888e9d2e1a00e66d6b1a559c36364ee867683652e1074fa576952cc3f",
+    "source_mode": 384,
+    "private_mode": 320
+  },
+  "audit_ci": [
+    {
+      "event": "push",
+      "run_id": 43815749321
+    },
+    {
+      "event": "pull_request",
+      "run_id": 43815807296
+    }
+  ],
+  "prior_witness_sha256": "aaca8ab9afb20b9f43f4807da1c9b4970b6a1aeb112c0a9e551e620d1867f2f1",
+  "prior_acceptance_sha256": "4045e856383d3bf947688f1f4998083f1cb5d8b4ceea5dad94b430ce6e6c0a46",
+  "old_failure_sha256": "d21eca8a87c507f2cabc6f86e3a293b2c48ce23105a4864344655a94acad789d"
+}

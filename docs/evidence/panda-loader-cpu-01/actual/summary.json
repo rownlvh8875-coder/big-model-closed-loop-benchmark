@@ -1,0 +1,111 @@
+{
+  "schema": "panda-loader-cpu-summary-v1",
+  "checked_at_kst": "2026-11-16T15:24:40.057196+09:00",
+  "status": "FOUR_CPU_LOADER_VERSION_CASES_OBSERVED_NOT_SDK_RUNTIME",
+  "audit_source_sha": "2577fe4167a3c69a81166b6c810e476384730eee",
+  "source_count": 322,
+  "loader": {
+    "image_path": "/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2",
+    "nbytes": 236616,
+    "sha256": "5fc0940888e9d2e1a00e66d6b1a559c36364ee867683652e1074fa576952cc3f",
+    "retained_path": "output/stage7-panda-sdk-cg-runpath-candidate-03/acceptance/provider-data/5fc0940888e9d2e1a00e66d6b1a559c36364ee867683652e1074fa576952cc3f.elf.data"
+  },
+  "image": {
+    "image_sha256": "4984470cd7d732f9f2d1c12710c9433b563b3817ba6d1d419749a9a2b1b46698",
+    "inventory_sha256": "d84221127e69dec818a01762ff4c53b7570144caa4f91708b5009cf63058d7bc",
+    "image_artifact_id": 14156262448,
+    "loader": {
+      "image_path": "/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2",
+      "nbytes": 236616,
+      "sha256": "5fc0940888e9d2e1a00e66d6b1a559c36364ee867683652e1074fa576952cc3f",
+      "retained_path": "output/stage7-panda-sdk-cg-runpath-candidate-03/acceptance/provider-data/5fc0940888e9d2e1a00e66d6b1a559c36364ee867683652e1074fa576952cc3f.elf.data"
+    }
+  },
+  "original_loader_mode": 384,
+  "private_loader_mode": 320,
+  "loader_start_attempts": 4,
+  "loader_invocations": 4,
+  "verified_fixture_entries": 2,
+  "controlled_loader_failures": 2,
+  "cases": [
+    {
+      "case": "same_library",
+      "pid": 326214,
+      "returncode": 7,
+      "observation": {
+        "fixture_entry_verified": true,
+        "declared_version_checked": true,
+        "bound_provider": "libstage7_cpu_legacy.so",
+        "failure_kind": null
+      },
+      "stderr": {
+        "path": "output/stage7-panda-loader-cpu-01/actual/cases/same_library/stderr.log",
+        "nbytes": 1451,
+        "sha256": "615cdf9cb048716d88cf8dd07f1cf05cf360c46d786d7ecb2c28c9c6347077f0"
+      }
+    },
+    {
+      "case": "merged_nondefault",
+      "pid": 326215,
+      "returncode": 7,
+      "observation": {
+        "fixture_entry_verified": true,
+        "declared_version_checked": true,
+        "bound_provider": "libstage7_cpu_merged.so",
+        "failure_kind": null
+      },
+      "stderr": {
+        "path": "output/stage7-panda-loader-cpu-01/actual/cases/merged_nondefault/stderr.log",
+        "nbytes": 1673,
+        "sha256": "9ffcad6b8badfd279ce8d7730f317a434cd7aa7a5068c69982eed09ff4182b3c"
+      }
+    },
+    {
+      "case": "missing_library_version",
+      "pid": 326216,
+      "returncode": 1,
+      "observation": {
+        "fixture_entry_verified": false,
+        "declared_version_checked": true,
+        "bound_provider": null,
+        "failure_kind": "DECLARED_LIBRARY_VERSION_MISSING"
+      },
+      "stderr": {
+        "path": "output/stage7-panda-loader-cpu-01/actual/cases/missing_library_version/stderr.log",
+        "nbytes": 1787,
+        "sha256": "04d0761e7fe080cc3ea95ef198825fb5e9792baf4b75e95eda2edd4d0409569a"
+      }
+    },
+    {
+      "case": "wrong_symbol_version",
+      "pid": 326217,
+      "returncode": 127,
+      "observation": {
+        "fixture_entry_verified": false,
+        "declared_version_checked": true,
+        "bound_provider": null,
+        "failure_kind": "EXPLICIT_SYMBOL_VERSION_MISSING"
+      },
+      "stderr": {
+        "path": "output/stage7-panda-loader-cpu-01/actual/cases/wrong_symbol_version/stderr.log",
+        "nbytes": 1504,
+        "sha256": "1587017fcb3dd50a893adfc52252f4706ac36534f138cf2ff1c9ce2ad75b4e40"
+      }
+    }
+  ],
+  "sdk_target_execution": false,
+  "scientific_native_runs": 0,
+  "new_sdk_builds": 0,
+  "new_workflow_activations": 0,
+  "archive_extractions": 0,
+  "new_images": 0,
+  "strict_current_result": "0/4 FAIL",
+  "native_admitted": false,
+  "stage7_complete": false,
+  "full_object_abi_qualified": false,
+  "full_dependency_closure_qualified": false,
+  "previous_abort_fixed": false,
+  "candidate_installed": false,
+  "runtime_mapping_qualified": false,
+  "external_build_origin_authenticated": false
+}

@@ -1,0 +1,47 @@
+{
+  "schema": "panda-loader-cpu-profile-contract-v1",
+  "base_sha": "09948dd5177d82882dcf1b4d1292160499dff31f",
+  "base_files": 7997,
+  "branch": "feature/panda-loader-cpu-profile-v1",
+  "frozen_source_path": "docs/evidence/panda-loader-cpu-01/frozen-source-318.json",
+  "frozen_source_sha256": "30fcc1eb65fb127ea2d2b5dbb6cbcfb7700ee66b33bc1b64d10f26a6438c1f14",
+  "frozen_source_count": 318,
+  "new_source_paths": [
+    "scripts/panda_loader_cpu_fixture.py",
+    "scripts/probe_panda_loader_versions.py",
+    "docs/evidence/panda-loader-cpu-01/contract.json",
+    "docs/evidence/panda-loader-cpu-01/frozen-source-318.json"
+  ],
+  "source_count": 322,
+  "prior_receipt_path": "docs/evidence/panda-provider-version-01/actual/acceptance.json",
+  "prior_receipt_sha256": "aaca8ab9afb20b9f43f4807da1c9b4970b6a1aeb112c0a9e551e620d1867f2f1",
+  "prior_audit_source_sha": "ee70b3c046794aed49fedba79a40d4166d024712",
+  "loader": {
+    "image_path": "/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2",
+    "nbytes": 236616,
+    "sha256": "5fc0940888e9d2e1a00e66d6b1a559c36364ee867683652e1074fa576952cc3f",
+    "retained_path": "output/stage7-panda-sdk-cg-runpath-candidate-03/acceptance/provider-data/5fc0940888e9d2e1a00e66d6b1a559c36364ee867683652e1074fa576952cc3f.elf.data"
+  },
+  "cases": [
+    "same_library",
+    "merged_nondefault",
+    "missing_library_version",
+    "wrong_symbol_version"
+  ],
+  "maximum_loader_invocations": 4,
+  "maximum_fixture_disk_bytes": 8388608,
+  "stream_limit_bytes": 65536,
+  "compile_seconds": 20,
+  "probe_seconds": 5,
+  "whole_seconds": 1200,
+  "cpu_fixture_execution": true,
+  "sdk_target_execution": false,
+  "scientific_native_runs": 0,
+  "new_sdk_builds": 0,
+  "new_workflow_activations": 0,
+  "archive_extractions": 0,
+  "new_images": 0,
+  "native_admitted": false,
+  "stage7_complete": false,
+  "actual_output_path": "output/stage7-panda-loader-cpu-01/actual"
+}

@@ -1,0 +1,511 @@
+{
+  "schema": "panda-loader-cpu-fixture-v1",
+  "root": "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-loader-cpu-01/actual/work/fixture",
+  "tools": {
+    "/usr/bin/gcc": {
+      "resolved_path": "/usr/bin/x86_64-linux-gnu-gcc-14",
+      "nbytes": 1162264,
+      "sha256": "a23ecab8ff08f09ad8c80602c2c5df7f49e09c25905cb8975902e101bf72635f"
+    },
+    "/usr/bin/as": {
+      "resolved_path": "/usr/bin/x86_64-linux-gnu-as",
+      "nbytes": 795184,
+      "sha256": "07dd8551ea0aa065975e4dddb8e1bb7dc308d12d54eca22c3858db79467c7cb9"
+    },
+    "/usr/bin/ld": {
+      "resolved_path": "/usr/bin/x86_64-linux-gnu-ld.bfd",
+      "nbytes": 1861256,
+      "sha256": "d2766988b6a1b1d1518cdc09242e726d1f24e151e16410ada3092b11ffd9081b"
+    }
+  },
+  "compile_commands": [
+    {
+      "argv": [
+        "/usr/bin/gcc",
+        "-nostdlib",
+        "-shared",
+        "-fPIC",
+        "-O2",
+        "-fno-stack-protector",
+        "-fcf-protection=none",
+        "-fno-asynchronous-unwind-tables",
+        "-fno-unwind-tables",
+        "-Wl,-z,noexecstack",
+        "-Wl,--hash-style=both",
+        "legacy.c",
+        "-Wl,--version-script=value1.map",
+        "-Wl,-soname=libstage7_cpu_legacy.so",
+        "-o",
+        "legacy.so"
+      ],
+      "cwd": "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-loader-cpu-01/actual/work/fixture/build",
+      "status": "EXITED",
+      "returncode": 0,
+      "owned_group_reaped": true,
+      "streams_complete": true,
+      "elapsed_seconds": 0.0310841629980132,
+      "pid": 326184,
+      "streams": {
+        "stdout": {
+          "observed_nbytes": 0,
+          "saved_nbytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stderr": {
+          "observed_nbytes": 0,
+          "saved_nbytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "argv": [
+        "/usr/bin/gcc",
+        "-nostdlib",
+        "-shared",
+        "-fPIC",
+        "-O2",
+        "-fno-stack-protector",
+        "-fcf-protection=none",
+        "-fno-asynchronous-unwind-tables",
+        "-fno-unwind-tables",
+        "-Wl,-z,noexecstack",
+        "-Wl,--hash-style=both",
+        "target1.c",
+        "-Wl,--version-script=value1.map",
+        "-Wl,-soname=libstage7_cpu_merged.so",
+        "-o",
+        "target1.so"
+      ],
+      "cwd": "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-loader-cpu-01/actual/work/fixture/build",
+      "status": "EXITED",
+      "returncode": 0,
+      "owned_group_reaped": true,
+      "streams_complete": true,
+      "elapsed_seconds": 0.019546693001757376,
+      "pid": 326189,
+      "streams": {
+        "stdout": {
+          "observed_nbytes": 0,
+          "saved_nbytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stderr": {
+          "observed_nbytes": 0,
+          "saved_nbytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "argv": [
+        "/usr/bin/gcc",
+        "-nostdlib",
+        "-shared",
+        "-fPIC",
+        "-O2",
+        "-fno-stack-protector",
+        "-fcf-protection=none",
+        "-fno-asynchronous-unwind-tables",
+        "-fno-unwind-tables",
+        "-Wl,-z,noexecstack",
+        "-Wl,--hash-style=both",
+        "target2.c",
+        "-Wl,--version-script=value2.map",
+        "-Wl,-soname=libstage7_cpu_merged.so",
+        "-o",
+        "target2.so"
+      ],
+      "cwd": "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-loader-cpu-01/actual/work/fixture/build",
+      "status": "EXITED",
+      "returncode": 0,
+      "owned_group_reaped": true,
+      "streams_complete": true,
+      "elapsed_seconds": 0.019717789997230284,
+      "pid": 326194,
+      "streams": {
+        "stdout": {
+          "observed_nbytes": 0,
+          "saved_nbytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stderr": {
+          "observed_nbytes": 0,
+          "saved_nbytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "argv": [
+        "/usr/bin/gcc",
+        "-nostdlib",
+        "-shared",
+        "-fPIC",
+        "-O2",
+        "-fno-stack-protector",
+        "-fcf-protection=none",
+        "-fno-asynchronous-unwind-tables",
+        "-fno-unwind-tables",
+        "-Wl,-z,noexecstack",
+        "-Wl,--hash-style=both",
+        "stub.c",
+        "-Wl,--version-script=stub1.map",
+        "-L.",
+        "-Wl,--no-as-needed",
+        "-l:target1.so",
+        "-Wl,-soname=libstage7_cpu_legacy.so",
+        "-o",
+        "stub1.so"
+      ],
+      "cwd": "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-loader-cpu-01/actual/work/fixture/build",
+      "status": "EXITED",
+      "returncode": 0,
+      "owned_group_reaped": true,
+      "streams_complete": true,
+      "elapsed_seconds": 0.018003147008130327,
+      "pid": 326199,
+      "streams": {
+        "stdout": {
+          "observed_nbytes": 0,
+          "saved_nbytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stderr": {
+          "observed_nbytes": 0,
+          "saved_nbytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "argv": [
+        "/usr/bin/gcc",
+        "-nostdlib",
+        "-shared",
+        "-fPIC",
+        "-O2",
+        "-fno-stack-protector",
+        "-fcf-protection=none",
+        "-fno-asynchronous-unwind-tables",
+        "-fno-unwind-tables",
+        "-Wl,-z,noexecstack",
+        "-Wl,--hash-style=both",
+        "stub.c",
+        "-Wl,--version-script=stub2.map",
+        "-L.",
+        "-Wl,--no-as-needed",
+        "-l:target1.so",
+        "-Wl,-soname=libstage7_cpu_legacy.so",
+        "-o",
+        "stub2.so"
+      ],
+      "cwd": "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-loader-cpu-01/actual/work/fixture/build",
+      "status": "EXITED",
+      "returncode": 0,
+      "owned_group_reaped": true,
+      "streams_complete": true,
+      "elapsed_seconds": 0.01717237500997726,
+      "pid": 326204,
+      "streams": {
+        "stdout": {
+          "observed_nbytes": 0,
+          "saved_nbytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stderr": {
+          "observed_nbytes": 0,
+          "saved_nbytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "argv": [
+        "/usr/bin/gcc",
+        "-nostdlib",
+        "-shared",
+        "-fPIC",
+        "-O2",
+        "-fno-stack-protector",
+        "-fcf-protection=none",
+        "-fno-asynchronous-unwind-tables",
+        "-fno-unwind-tables",
+        "-Wl,-z,noexecstack",
+        "-Wl,--hash-style=both",
+        "root.S",
+        "-L.",
+        "-Wl,--no-as-needed",
+        "-l:legacy.so",
+        "-Wl,-e,_start",
+        "-o",
+        "root.so"
+      ],
+      "cwd": "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-loader-cpu-01/actual/work/fixture/build",
+      "status": "EXITED",
+      "returncode": 0,
+      "owned_group_reaped": true,
+      "streams_complete": true,
+      "elapsed_seconds": 0.013031120994128287,
+      "pid": 326209,
+      "streams": {
+        "stdout": {
+          "observed_nbytes": 0,
+          "saved_nbytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stderr": {
+          "observed_nbytes": 0,
+          "saved_nbytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    }
+  ],
+  "files": {
+    "build/stub1.so": {
+      "nbytes": 13608,
+      "sha256": "9379de74464a76cf54d4db6eafb487ae1a21907e9f45112ac42725d88d2c8b33"
+    },
+    "build/legacy.so": {
+      "nbytes": 13608,
+      "sha256": "815dd6378e0529f5741bca59b8bd9af12038a8340ecbccd3a89a97a9af19f79e"
+    },
+    "build/root.so": {
+      "nbytes": 13720,
+      "sha256": "1b00385646c603462c1c1500ff52cc3b47a5dac44fd60777648f52451f75b39e"
+    },
+    "build/stub1.map": {
+      "nbytes": 56,
+      "sha256": "f35f7f57b60a4dd1d196f556b074eac15493fc7dc3729c89a7b39098b5aead11"
+    },
+    "build/target1.c": {
+      "nbytes": 77,
+      "sha256": "917d315722e079332d7d6190b66e0334ace09db3a53386457509b848915ae0c2"
+    },
+    "build/legacy.c": {
+      "nbytes": 37,
+      "sha256": "e822f44cf3aa4a997419f5c08b005958231858ee386e761c0868040addf0c935"
+    },
+    "build/target2.so": {
+      "nbytes": 13640,
+      "sha256": "f677fd44889e122daacbfdb9c6b2a8d456e79cd8120be5505c7430f34b5efb6e"
+    },
+    "build/stub.c": {
+      "nbytes": 43,
+      "sha256": "a1ef4daea5572a71e8308b700523b4b6960a79e0ba7a4bb6eccd6cbca9e287b1"
+    },
+    "build/value2.map": {
+      "nbytes": 50,
+      "sha256": "3d3c5cbb80ef613d333ef771bf9105ced43182ea1c44101f1898a3e24f52e87d"
+    },
+    "build/value1.map": {
+      "nbytes": 50,
+      "sha256": "484008b6393d2ed62a3cdbeadc0e16ef6ddd8467d5c844299dbcdf6fcdbc871b"
+    },
+    "build/target2.c": {
+      "nbytes": 77,
+      "sha256": "bc0bbf02873de79dd88469275b5200ee63bdf092f4a165adc1cd7f903717dffe"
+    },
+    "build/target1.so": {
+      "nbytes": 13640,
+      "sha256": "092d7091bc1aaa9e06d0244158a90473063106555b089fc2a715188e49694b9f"
+    },
+    "build/stub2.map": {
+      "nbytes": 56,
+      "sha256": "0574b76af358607a4339c7dfcd0ab110b5a5a5ced41ea80ddc4e98fb04d7ff82"
+    },
+    "build/root.S": {
+      "nbytes": 194,
+      "sha256": "1f8357e5c4f7fd8618973f431e810508809f5ad77f56c181e6bb5ff3f73aaf4f"
+    },
+    "build/stub2.so": {
+      "nbytes": 13608,
+      "sha256": "a8a94c5abce14162d317d21123e5e17f942d6eebfe1bbbc5925d60bac483c004"
+    },
+    "cases/same_library/root.so": {
+      "nbytes": 13720,
+      "sha256": "1b00385646c603462c1c1500ff52cc3b47a5dac44fd60777648f52451f75b39e"
+    },
+    "cases/same_library/libstage7_cpu_legacy.so": {
+      "nbytes": 13608,
+      "sha256": "815dd6378e0529f5741bca59b8bd9af12038a8340ecbccd3a89a97a9af19f79e"
+    },
+    "cases/wrong_symbol_version/root.so": {
+      "nbytes": 13720,
+      "sha256": "1b00385646c603462c1c1500ff52cc3b47a5dac44fd60777648f52451f75b39e"
+    },
+    "cases/wrong_symbol_version/libstage7_cpu_legacy.so": {
+      "nbytes": 13608,
+      "sha256": "9379de74464a76cf54d4db6eafb487ae1a21907e9f45112ac42725d88d2c8b33"
+    },
+    "cases/wrong_symbol_version/libstage7_cpu_merged.so": {
+      "nbytes": 13640,
+      "sha256": "f677fd44889e122daacbfdb9c6b2a8d456e79cd8120be5505c7430f34b5efb6e"
+    },
+    "cases/missing_library_version/root.so": {
+      "nbytes": 13720,
+      "sha256": "1b00385646c603462c1c1500ff52cc3b47a5dac44fd60777648f52451f75b39e"
+    },
+    "cases/missing_library_version/libstage7_cpu_legacy.so": {
+      "nbytes": 13608,
+      "sha256": "a8a94c5abce14162d317d21123e5e17f942d6eebfe1bbbc5925d60bac483c004"
+    },
+    "cases/missing_library_version/libstage7_cpu_merged.so": {
+      "nbytes": 13640,
+      "sha256": "092d7091bc1aaa9e06d0244158a90473063106555b089fc2a715188e49694b9f"
+    },
+    "cases/merged_nondefault/root.so": {
+      "nbytes": 13720,
+      "sha256": "1b00385646c603462c1c1500ff52cc3b47a5dac44fd60777648f52451f75b39e"
+    },
+    "cases/merged_nondefault/libstage7_cpu_legacy.so": {
+      "nbytes": 13608,
+      "sha256": "9379de74464a76cf54d4db6eafb487ae1a21907e9f45112ac42725d88d2c8b33"
+    },
+    "cases/merged_nondefault/libstage7_cpu_merged.so": {
+      "nbytes": 13640,
+      "sha256": "092d7091bc1aaa9e06d0244158a90473063106555b089fc2a715188e49694b9f"
+    },
+    "commands/2/stderr.log": {
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "commands/2/stdout.log": {
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "commands/2/command.json": {
+      "nbytes": 1009,
+      "sha256": "ed986920768fc47478cb28236b1fa4166d9d7bab4d9e2334ac579e214b2363dd"
+    },
+    "commands/1/stderr.log": {
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "commands/1/stdout.log": {
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "commands/1/command.json": {
+      "nbytes": 1009,
+      "sha256": "af8eaae06400fe19a3be684acd2146af29405500fdb6618883d136cc8b051f8a"
+    },
+    "commands/4/stderr.log": {
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "commands/4/stdout.log": {
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "commands/4/command.json": {
+      "nbytes": 1060,
+      "sha256": "72a11aa7e16ea03671f7434269025172d9749b927ed4116dc0f5cad6785402a0"
+    },
+    "commands/5/stderr.log": {
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "commands/5/stdout.log": {
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "commands/5/command.json": {
+      "nbytes": 999,
+      "sha256": "42bcc60d0a613051944997a6c9828b2a8fefe4d873603b84a1b95a473e3638fc"
+    },
+    "commands/0/stderr.log": {
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "commands/0/stdout.log": {
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "commands/0/command.json": {
+      "nbytes": 1005,
+      "sha256": "98de174ea25fa2eee26ac2440ad715bc344f25f6261b5804cb172bba933f5b87"
+    },
+    "commands/3/stderr.log": {
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "commands/3/stdout.log": {
+      "nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "commands/3/command.json": {
+      "nbytes": 1061,
+      "sha256": "0301ffc0c26c70406313a04d37c2424a825780e26ad2f12593fe578b12a1b8db"
+    }
+  },
+  "cases": {
+    "same_library": {
+      "files": {
+        "root.so": {
+          "nbytes": 13720,
+          "sha256": "1b00385646c603462c1c1500ff52cc3b47a5dac44fd60777648f52451f75b39e"
+        },
+        "libstage7_cpu_legacy.so": {
+          "nbytes": 13608,
+          "sha256": "815dd6378e0529f5741bca59b8bd9af12038a8340ecbccd3a89a97a9af19f79e"
+        }
+      },
+      "target_default_version": null
+    },
+    "merged_nondefault": {
+      "files": {
+        "root.so": {
+          "nbytes": 13720,
+          "sha256": "1b00385646c603462c1c1500ff52cc3b47a5dac44fd60777648f52451f75b39e"
+        },
+        "libstage7_cpu_legacy.so": {
+          "nbytes": 13608,
+          "sha256": "9379de74464a76cf54d4db6eafb487ae1a21907e9f45112ac42725d88d2c8b33"
+        },
+        "libstage7_cpu_merged.so": {
+          "nbytes": 13640,
+          "sha256": "092d7091bc1aaa9e06d0244158a90473063106555b089fc2a715188e49694b9f"
+        }
+      },
+      "target_default_version": false
+    },
+    "missing_library_version": {
+      "files": {
+        "root.so": {
+          "nbytes": 13720,
+          "sha256": "1b00385646c603462c1c1500ff52cc3b47a5dac44fd60777648f52451f75b39e"
+        },
+        "libstage7_cpu_legacy.so": {
+          "nbytes": 13608,
+          "sha256": "a8a94c5abce14162d317d21123e5e17f942d6eebfe1bbbc5925d60bac483c004"
+        },
+        "libstage7_cpu_merged.so": {
+          "nbytes": 13640,
+          "sha256": "092d7091bc1aaa9e06d0244158a90473063106555b089fc2a715188e49694b9f"
+        }
+      },
+      "target_default_version": false
+    },
+    "wrong_symbol_version": {
+      "files": {
+        "root.so": {
+          "nbytes": 13720,
+          "sha256": "1b00385646c603462c1c1500ff52cc3b47a5dac44fd60777648f52451f75b39e"
+        },
+        "libstage7_cpu_legacy.so": {
+          "nbytes": 13608,
+          "sha256": "9379de74464a76cf54d4db6eafb487ae1a21907e9f45112ac42725d88d2c8b33"
+        },
+        "libstage7_cpu_merged.so": {
+          "nbytes": 13640,
+          "sha256": "f677fd44889e122daacbfdb9c6b2a8d456e79cd8120be5505c7430f34b5efb6e"
+        }
+      },
+      "target_default_version": false
+    }
+  },
+  "sdk_target_execution": false,
+  "scientific_native_runs": 0
+}

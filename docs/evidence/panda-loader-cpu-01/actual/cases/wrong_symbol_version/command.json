@@ -1,0 +1,30 @@
+{
+  "argv": [
+    "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-loader-cpu-01/actual/work/image-loader",
+    "--inhibit-cache",
+    "--glibc-hwcaps-mask",
+    "",
+    "--library-path",
+    "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-loader-cpu-01/actual/work/fixture/cases/wrong_symbol_version",
+    "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-loader-cpu-01/actual/work/fixture/cases/wrong_symbol_version/root.so"
+  ],
+  "cwd": "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-loader-cpu-01/actual/work/fixture",
+  "status": "EXITED",
+  "returncode": 127,
+  "owned_group_reaped": true,
+  "streams_complete": true,
+  "elapsed_seconds": 0.0011432789906393737,
+  "pid": 326217,
+  "streams": {
+    "stdout": {
+      "observed_nbytes": 0,
+      "saved_nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stderr": {
+      "observed_nbytes": 1504,
+      "saved_nbytes": 1504,
+      "sha256": "1587017fcb3dd50a893adfc52252f4706ac36534f138cf2ff1c9ce2ad75b4e40"
+    }
+  }
+}

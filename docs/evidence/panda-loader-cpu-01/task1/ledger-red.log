@@ -1,0 +1,28 @@
+test_write_failure_after_real_call_retains_parseable_attempt_bounds (tests.test_panda_loader_cpu_fixture.CpuLoaderTests.test_write_failure_after_real_call_retains_parseable_attempt_bounds) ... FAIL
+
+======================================================================
+FAIL: test_write_failure_after_real_call_retains_parseable_attempt_bounds (tests.test_panda_loader_cpu_fixture.CpuLoaderTests.test_write_failure_after_real_call_retains_parseable_attempt_bounds)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_loader_cpu_fixture.py", line 85, in test_write_failure_after_real_call_retains_parseable_attempt_bounds
+    r=subprocess.run([sys.executable,'-B','-c',code,d],cwd=f.ROOT,capture_output=True,text=True,timeout=30);self.assertEqual(r.returncode,0,r.stdout+r.stderr)
+                                                                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 1 != 0 : OSError: [Errno 27] File too large
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<string>", line 12, in <module>
+  File "/workspace/big-model-closed-loop-benchmark/scripts/panda_loader_cpu_fixture.py", line 367, in run_cases
+    _write(out/'ledger.json', result)
+  File "/workspace/big-model-closed-loop-benchmark/scripts/panda_loader_cpu_fixture.py", line 102, in _write
+    path.write_text(json.dumps(value, indent=2, allow_nan=False) + '\n')
+  File "/workspace/.cloud-tools/python/cpython-3.11.17-linux-x86_64-gnu/lib/python3.11/pathlib.py", line 1078, in write_text
+    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+OSError: [Errno 27] File too large
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.590s
+
+FAILED (failures=1)

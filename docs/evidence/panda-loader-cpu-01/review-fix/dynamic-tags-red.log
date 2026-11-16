@@ -1,0 +1,15 @@
+test_symbol_zero_and_packed_relocations_are_rejected_as_data_before_spawn (tests.test_panda_loader_cpu_fixture.CpuLoaderTests.test_symbol_zero_and_packed_relocations_are_rejected_as_data_before_spawn) ... 
+  test_symbol_zero_and_packed_relocations_are_rejected_as_data_before_spawn (tests.test_panda_loader_cpu_fixture.CpuLoaderTests.test_symbol_zero_and_packed_relocations_are_rejected_as_data_before_spawn) (kind='unparsed-relative-count') ... FAIL
+
+======================================================================
+FAIL: test_symbol_zero_and_packed_relocations_are_rejected_as_data_before_spawn (tests.test_panda_loader_cpu_fixture.CpuLoaderTests.test_symbol_zero_and_packed_relocations_are_rejected_as_data_before_spawn) (kind='unparsed-relative-count')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_loader_cpu_fixture.py", line 74, in test_symbol_zero_and_packed_relocations_are_rejected_as_data_before_spawn
+    with self.assertRaises(ValueError):f._validate_binary(raw,'target1.so')
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 1 test in 0.883s
+
+FAILED (failures=1)
