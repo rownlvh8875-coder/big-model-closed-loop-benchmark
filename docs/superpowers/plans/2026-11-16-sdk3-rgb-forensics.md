@@ -3,7 +3,7 @@
 > **For agentic workers:** REQUIRED SUB-SKILL: superpowers:executing-plans inline. One fresh whole-branch reviewer before native activation; no implementer delegation. Steps use checkbox (`- [ ]`) syntax.
 
 **Goal:** Measure the actual pixels beyond step6 in the remaining SDK3 failure without changing the original gate.
-**Architecture:** Separate full12observer and analyzer; minimal opt-in factory/flag through existing trial/display ownership path. Two parallel pinned hosted pairs,control vs CPU-retention probe; independent host reanalysis.
+**Architecture:** Separate full12observer and analyzer; private factory namespace over the frozen trial bytecode and minimal opt-in SDK flag. Two parallel pinned hosted pairs,control vs CPU-retention probe; independent host reanalysis.
 **Tech Stack:** Python unittest/numpy/stdlib,zlib,existing pinned Docker/SDK/model,GitHub Actions.
 **Spec:** ../specs/2026-11-16-sdk3-rgb-forensics-design.md
 
@@ -20,9 +20,9 @@ Base46b750e6ad8d311b903c1104f12160779ce5806e; original checkout/old requests/ver
 5. Probe match or hostedSUCCESS cannot overwrite strict3/4FAIL or become repair/Stage7; Task2 outcome tests.
 
 ### Task1: Full12observer,analyzer and opt-in dispatch
-**Files:** Create scripts/sdk3_rgb_forensics.py,tests/test_sdk3_rgb_forensics.py; modify only scripts/native_mdv3_repeat_trial.py and scripts/panda_sdk3_diagnostic.py for optional factory/flag.
-**Interfaces:** FullEpisodeRGBCapture(); analyze_pair(folder:Path,arm:str)->dict; full_rgb_trial_options(args,out:Path)->dict. Consume legacy observer.save_after_episode/read_verified_pixels/summarize_pixel_difference and unmodified comparator.
-- [ ] Write tests: authentic synthetic step7 and step12 pixel differences with exact coordinates; SHA corruption/trailing zlib/duplicate manifest/mismatched seed rejected; legacy6 unchanged; factory absent control and full flag propagation; expectedRED.
+**Files:** Create scripts/sdk3_rgb_forensics.py,tests/test_sdk3_rgb_forensics.py; modify only scripts/panda_sdk3_diagnostic.py for optional flag; preserve original trial source byte-for-byte.
+**Interfaces:** FullEpisodeRGBCapture(); run_full_rgb_trial(*,raw_rgb_dir,**kwargs); analyze_pair(folder:Path,arm:str)->dict; full_rgb_trial_options(args,out:Path)->dict. Consume legacy observer.save_after_episode/read_verified_pixels/summarize_pixel_difference and unmodified comparator.
+- [ ] Write tests: authentic synthetic step7 and step12 pixel differences with exact coordinates; SHA corruption/trailing zlib/duplicate manifest/mismatched seed rejected; legacy6 unchanged; original callable/default absent observer,private factory probe and full flag propagation; expectedRED.
 - [ ] Implement minimal full12capture,full manifest/source authentication,exact metrics and bounded flags. Focused command unittest discover -p test_sdk3_rgb_forensics.py; expectedGREEN. Commit.
 
 ### Task2: Pinned host producer/workflow and scientific closeout

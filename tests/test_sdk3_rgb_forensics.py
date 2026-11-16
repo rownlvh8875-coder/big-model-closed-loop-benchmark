@@ -105,10 +105,11 @@ class FullRGBDispatch(unittest.TestCase):
             control=n.run_trial(**kw)
             self.assertNotIn('raw_rgb_pixel_audit',control)
             self.assertEqual(control['trial_evidence'],'UNMODIFIED_METADRIVE_NEW_FRAME_OFFICIAL_ONNX_DIAGNOSTIC')
-            probe=n.run_trial(**kw,raw_rgb_dir=root/'rgb',raw_rgb_capture_factory=f.FullEpisodeRGBCapture)
+            probe=f.run_full_rgb_trial(**kw,raw_rgb_dir=root/'rgb')
             self.assertEqual(probe['raw_rgb_pixel_audit']['captured_step_count'],12)
             self.assertEqual(len(json.loads((root/'rgb/manifest.json').read_text())['images']),24)
-            with self.assertRaises(ValueError):n.run_trial(**kw,raw_rgb_capture_factory=f.FullEpisodeRGBCapture)
+            self.assertIs(n.BoundedNativeRGBCapture,BoundedNativeRGBCapture)
+            with self.assertRaises(ValueError):f.run_full_rgb_trial(**kw,raw_rgb_dir=None)
 
     def test_full_rgb_flag_reaches_owned_child_and_disabled_path_has_no_capture(self):
         from types import SimpleNamespace
@@ -118,10 +119,12 @@ class FullRGBDispatch(unittest.TestCase):
         self.assertIn('--full-rgb',command)
         options=d.full_rgb_trial_options(args,Path(args.out))
         self.assertEqual(options['raw_rgb_dir'],Path('/out/run-0/rgb'))
-        self.assertIs(options['raw_rgb_capture_factory'],f.FullEpisodeRGBCapture)
+        self.assertIs(d.model_trial_callable(args),f.run_full_rgb_trial)
         args.full_rgb=False
         self.assertNotIn('--full-rgb',d.owned_child_command(args,999))
         self.assertEqual(d.full_rgb_trial_options(args,Path(args.out)),{})
+        from scripts.native_mdv3_repeat_trial import run_trial
+        self.assertIs(d.model_trial_callable(args),run_trial)
         args.full_rgb=True;args.reference_wheel=True
         with self.assertRaises(ValueError):d.full_rgb_trial_options(args,Path(args.out))
 

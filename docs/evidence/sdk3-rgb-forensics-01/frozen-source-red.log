@@ -1,0 +1,18 @@
+test_nine_pins_and_static_diagnostic_import_closure_stay_isolated (tests.test_public_action_frame.PublicBindingTests.test_nine_pins_and_static_diagnostic_import_closure_stay_isolated) ... FAIL
+
+======================================================================
+FAIL: test_nine_pins_and_static_diagnostic_import_closure_stay_isolated (tests.test_public_action_frame.PublicBindingTests.test_nine_pins_and_static_diagnostic_import_closure_stay_isolated)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/dev/shm/stage7-sdk3-runtime-20261116/repo/tests/test_public_action_frame.py", line 197, in test_nine_pins_and_static_diagnostic_import_closure_stay_isolated
+    for name,expected in PINS.items():self.assertEqual(sha256((ROOT/name).read_bytes()).hexdigest(),expected,name)
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: '4f4b5721d1b53b92ab48b591880bc53866e025d13f2043a9d3631e165cf80f64' != 'ddaf0510a775c3a44c908bb4dedf4879ae88bfcb80e1f2d022a8b513a4f42427'
+- 4f4b5721d1b53b92ab48b591880bc53866e025d13f2043a9d3631e165cf80f64
++ ddaf0510a775c3a44c908bb4dedf4879ae88bfcb80e1f2d022a8b513a4f42427
+ : scripts/native_mdv3_repeat_trial.py
+
+----------------------------------------------------------------------
+Ran 1 test in 0.118s
+
+FAILED (failures=1)

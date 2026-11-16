@@ -1,0 +1,39 @@
+{
+  "source_run": 43830776012,
+  "artifact_id": 14212471670,
+  "seed": 20261110,
+  "scenario": "s_curve_left_right",
+  "timeline": {
+    "first_different_step_by_field": {
+      "source_road_rgb_sha256": 7,
+      "source_wide_rgb_sha256": 8,
+      "road_frame_sha256": 7,
+      "wide_frame_sha256": 8,
+      "new_img_sha256": 7,
+      "raw_action_sha256": 7,
+      "state_after_step_sha256": 7
+    },
+    "first_native_road_or_wide_rgb_mismatch_step": 7,
+    "first_actual_onnx_new_img_mismatch_step": 7,
+    "first_raw_action_mismatch_step": 7,
+    "first_recurrent_state_mismatch_step": 7,
+    "source_vs_onnx_first_divergence_classification": "SOURCE_RGB_AND_ONNX_FEED_FIRST_DIFFER_SAME_STEP",
+    "source_sha_difference_not_pixel_location_or_unique_cause": true
+  },
+  "prior_step": 6,
+  "prior_step_all_fields_equal": true,
+  "capture7_entry_kinematic_pose_equal": true,
+  "capture7_entry_pose": {
+    "world_x_m": 67.79573787289344,
+    "world_y_m": 0.47959953206867456,
+    "heading_rad": 0.08040068114060529,
+    "time_s": 0.3
+  },
+  "row_pose_is_post_action": true,
+  "ordering_source": "bigbench/native_model_campaign.py",
+  "ordering_source_sha256": "0bcb4ca73e1404a7164be1c879a200eeff5ca41e47e3035301d40fd173000bad",
+  "ordering": "camera.capture(state) -> policy.step -> step_ideal -> rows.append(after pose)",
+  "raw_pixel_bytes_of_actual03_not_retained": true,
+  "old_first6_probe_cannot_measure_step7": true,
+  "unique_renderer_cause_proven": false
+}

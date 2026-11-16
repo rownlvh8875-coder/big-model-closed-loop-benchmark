@@ -10,19 +10,48 @@ from scripts.continue_panda_sdk3_models import PROFILE,unpack_prior
 ROOT=Path(__file__).resolve().parents[1]
 BASE='46b750e6ad8d311b903c1104f12160779ce5806e'
 REQUEST='docs/requests/sdk3-rgb-forensics-20261116-01.json'
-MODIFIED={'scripts/native_mdv3_repeat_trial.py','scripts/panda_sdk3_diagnostic.py'}
+MODIFIED={'scripts/panda_sdk3_diagnostic.py'}
 
 
 def validate_source_delta(rows):
     p.need(bool(rows) and all(row.startswith('A\t') or row.startswith('M\t') and row[2:] in MODIFIED for row in rows),'only declared optional observer dispatch extensions')
 
 
+def _validate_command(receipt,container,arm):
+    command=receipt.get('argv');p.need(isinstance(command,list) and all(type(v) is str for v in command) and command[:2]==['docker','create'] and command.count(p.IMAGE)==1,'actual Docker create command')
+    split=command.index(p.IMAGE);prefix=command[2:split];options={};flags=[];i=0
+    singles={'--network':'none','--user':'65534:65534','--cap-drop':'ALL','--security-opt':'no-new-privileges','--memory':'10g','--memory-swap':'10g','--cpus':'2','--pids-limit':'128','--ipc':'private','--ulimit':'core=0','--tmpfs':'/tmp:rw,nosuid,nodev,size=512m','--workdir':'/work/repo','--entrypoint':'/opt/venv/bin/python'}
+    allowed=set(singles)|{'--name','--mount','--env','--label'}
+    while i<len(prefix):
+        key=prefix[i]
+        if key=='--read-only':flags.append(key);i+=1;continue
+        p.need(key in allowed and i+1<len(prefix),'no undeclared container options')
+        options.setdefault(key,[]).append(prefix[i+1]);i+=2
+    p.need(flags==['--read-only'] and set(options)==allowed and all(options.get(k)==[v] for k,v in singles.items()),'fixed actual container isolation/resource options')
+    p.need(options['--name']==[container.get('name')] and type(container.get('name')) is str and bool(container['name']),'container command name binding')
+    owner=receipt.get('ownership_label');p.need(type(owner) is str and len(owner)==32 and all(c in '0123456789abcdef' for c in owner) and container.get('ownership_label')==owner and options['--label']==['stage7.sdk3.owner='+owner],'actual ownership label binding')
+    expected_env={'DISPLAY':':99','HOME':'/tmp','XDG_CACHE_HOME':'/tmp/cache','LIBGL_ALWAYS_SOFTWARE':'1','GALLIUM_DRIVER':'softpipe','LP_NUM_THREADS':'0','MESA_SHADER_CACHE_DISABLE':'true','PYOPENGL_PLATFORM':'glx','OMP_NUM_THREADS':'2'}
+    env=[v.split('=',1) for v in options['--env']]
+    p.need(all(len(v)==2 for v in env) and len(env)==len(expected_env) and dict(env)==expected_env,'fixed software renderer/runtime environment;no duplicate overrides')
+    mounts={}
+    for text in options['--mount']:
+        entries=[part.split('=',1) for part in text.split(',')];row={parts[0]:parts[1] if len(parts)==2 else True for parts in entries}
+        p.need(len(row)==len(entries) and row.get('type')=='bind' and type(row.get('src')) is str and Path(row['src']).is_absolute() and row.get('dst') not in mounts,'actual unique absolute bind mount')
+        mounts[row.get('dst')]=row
+    expected_mounts={'/work/repo',p.SDK_PATH,'/out','/model.onnx','/model-deps'};p.need(set(mounts)==expected_mounts,'exact native source/SDK/output/model/dependency mounts')
+    for destination,row in mounts.items():
+        p.need(set(row)==({'type','src','dst'} if destination=='/out' else {'type','src','dst','readonly'}) and (destination=='/out' or row.get('readonly') is True),'original payload mounts readonly')
+    expected=['-I','-S','-B','/work/repo/scripts/panda_sdk3_diagnostic.py','--out','/out','--model-pair','--seed',str(SEED),'--scenario',SCENE]+(['--full-rgb'] if arm=='full_rgb' else [])
+    p.need(command[split+1:]==expected,'fixed native pair entrypoint and diagnostic condition')
+
+
 def validate_observed_pair(folder,arm):
     pair=Path(folder)/'pair';execution=json.loads((pair/'execution.json').read_text());container=json.loads((pair/'container.json').read_text())
     p.need(execution.get('returncode')==0 and execution.get('failure') is None and execution.get('owned_container_removed') is True and execution.get('ownership_unresolved') is False,'complete owned diagnostic pair')
     state=execution.get('stopped_state',{});p.need(state.get('Running') is False and state.get('Pid')==0 and state.get('OOMKilled') is False and state.get('ExitCode')==0,'clean non-OOM diagnostic exit')
+    identity=container.get('id');p.need(type(identity) is str and len(identity)==64 and all(c in '0123456789abcdef' for c in identity) and execution.get('container_id')==identity,'valid matching actual container identity')
     p.need(container.get('image')==p.IMAGE and container.get('id')==execution.get('container_id') and container.get('effective_limits')==PROFILE,'same authenticated image/resource profile')
-    command=json.loads((pair/'command.json').read_text())['argv'];p.need(('--full-rgb' in command)==(arm=='full_rgb'),'actual command/probe arm binding')
+    _validate_command(json.loads((pair/'command.json').read_text()),container,arm)
     ledger=json.loads((pair/'pair-ledger.json').read_text());p.need(len(ledger)==2 and [row.get('index') for row in ledger]==[0,1] and p.observed_model_processes(ledger)==dict(known=2,upper=2,spawn_attempts=2) and all(row.get('returncode')==0 for row in ledger),'two actual completed model launches')
     for index in (0,1):
         native=json.loads((pair/f'run-{index}'/'native-child.json').read_text());trial=json.loads((pair/f'run-{index}'/'run.json').read_text())

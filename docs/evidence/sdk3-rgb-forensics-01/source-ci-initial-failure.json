@@ -1,0 +1,1060 @@
+[
+  {
+    "event": "push",
+    "run_id": 43852306676,
+    "counts": [
+      "failures=5, errors=125, skipped=7"
+    ],
+    "failed_tests": [
+      {
+        "kind": "ERROR",
+        "name": "test_exact_existing_origin_metadata_no_network_mutation (test_accept_panda_sdk_cg_runpath_json.ReceiverTests.test_exact_existing_origin_metadata_no_network_mutation)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_frozen_source314_and_original_failure_are_bound (test_accept_panda_sdk_cg_runpath_json.ReceiverTests.test_frozen_source314_and_original_failure_are_bound)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_frozen318_and_both_prior_verdicts_are_bound (test_audit_panda_provider_versions.ProviderAuditTests.test_frozen318_and_both_prior_verdicts_are_bound)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_source318_contains_only_the_four_new_paths_beyond_frozen314 (test_audit_panda_provider_versions.ProviderAuditTests.test_source318_contains_only_the_four_new_paths_beyond_frozen314)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_wrong_own_ci_is_rejected_before_any_original_producer_read (test_audit_panda_provider_versions.ProviderAuditTests.test_wrong_own_ci_is_rejected_before_any_original_producer_read)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_wrong_source_and_client_bootstrap_failures_leave_negative (test_audit_panda_provider_versions.ProviderAuditTests.test_wrong_source_and_client_bootstrap_failures_leave_negative) (mode='client')"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_closed_provider_and_complete_inventory_are_mandatory_metadata (test_engine_clock_held_abba_execution.HeldExecutionTests.test_closed_provider_and_complete_inventory_are_mandatory_metadata)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_metadata_attestor_binds_real_synthetic_archive_without_pixel_claim (test_engine_clock_held_abba_execution.HeldExecutionTests.test_metadata_attestor_binds_real_synthetic_archive_without_pixel_claim)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_permit_parent_uuid_must_match_completed_phase (test_engine_clock_held_abba_execution.HeldExecutionTests.test_permit_parent_uuid_must_match_completed_phase)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_closed_provider_and_complete_inventory_are_mandatory_metadata (test_engine_clock_held_abba_v2_execution.HeldExecutionTests.test_closed_provider_and_complete_inventory_are_mandatory_metadata)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_metadata_attestor_binds_real_synthetic_archive_without_pixel_claim (test_engine_clock_held_abba_v2_execution.HeldExecutionTests.test_metadata_attestor_binds_real_synthetic_archive_without_pixel_claim)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_permit_parent_uuid_must_match_completed_phase (test_engine_clock_held_abba_v2_execution.HeldExecutionTests.test_permit_parent_uuid_must_match_completed_phase)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_closed_provider_and_complete_inventory_are_mandatory_metadata (test_engine_clock_held_abba_v3_execution.HeldExecutionTests.test_closed_provider_and_complete_inventory_are_mandatory_metadata)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_metadata_attestor_binds_real_synthetic_archive_without_pixel_claim (test_engine_clock_held_abba_v3_execution.HeldExecutionTests.test_metadata_attestor_binds_real_synthetic_archive_without_pixel_claim)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_permit_parent_uuid_must_match_completed_phase (test_engine_clock_held_abba_v3_execution.HeldExecutionTests.test_permit_parent_uuid_must_match_completed_phase)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_phase_member_audit_is_bound_to_original_archive (test_engine_clock_held_abba_v3_execution.HeldExecutionTests.test_phase_member_audit_is_bound_to_original_archive)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_source_closure_exactly_70 (test_engine_clock_native.AdmissionTests.test_source_closure_exactly_70)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_extra_empty_artifact_directory_is_unregistered (test_engine_clock_native.AuthorizationTests.test_extra_empty_artifact_directory_is_unregistered)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_corrupt_png_and_packed_bytes_rejected_even_if_descriptors_rehashed (test_engine_clock_native.BoundaryFailureTests.test_corrupt_png_and_packed_bytes_rejected_even_if_descriptors_rehashed)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_context_rejects_api_completed_branch_attempt_head_and_source_before_native (test_engine_clock_native.BoundaryTests.test_context_rejects_api_completed_branch_attempt_head_and_source_before_native)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_exact_clock_six_pair_thread_raw_row_and_source_closure_linkage (test_engine_clock_native.ClockLinkageTests.test_exact_clock_six_pair_thread_raw_row_and_source_closure_linkage)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_standalone_valid_one_pair_trace_cannot_attest_native_six_pair_case (test_engine_clock_native.CompleteLinkageTests.test_standalone_valid_one_pair_trace_cannot_attest_native_six_pair_case)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_real_fixture_canary_and_abba_exact_counts_and_comparisons (test_engine_clock_native.DatasetTests.test_real_fixture_canary_and_abba_exact_counts_and_comparisons)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_tampered_markers_pose_counter_source_runtime_raw_and_extra_members_rejected (test_engine_clock_native.DatasetTests.test_tampered_markers_pose_counter_source_runtime_raw_and_extra_members_rejected)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_actual_original_zip_gate_and_api_artifact_direct_parent_rejections (test_engine_clock_native.GateTests.test_actual_original_zip_gate_and_api_artifact_direct_parent_rejections)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_actual_frozen_launcher_pipe_uses_fixed_child_command_and_preserves_popen_contract (test_engine_clock_native.TransportTests.test_actual_frozen_launcher_pipe_uses_fixed_child_command_and_preserves_popen_contract)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_genuine_cpu_fixture_is_replayed_and_tampered_raw_rejects (test_engine_clock_sealed_abba_execution.SealedAbbaExecutionTests.test_genuine_cpu_fixture_is_replayed_and_tampered_raw_rejects)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_canary_failure_preserves_prefix_bounds_and_primary_error_after_close (test_first_divergence.FirstDivergenceTests.test_canary_failure_preserves_prefix_bounds_and_primary_error_after_close) (close_fails=False)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_canary_failure_preserves_prefix_bounds_and_primary_error_after_close (test_first_divergence.FirstDivergenceTests.test_canary_failure_preserves_prefix_bounds_and_primary_error_after_close) (close_fails=True)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_canary_uses_one_provider_two_selected_pairs_and_writes_after_close (test_first_divergence.FirstDivergenceTests.test_canary_uses_one_provider_two_selected_pairs_and_writes_after_close)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_dataset_rejects_missing_unsafe_symlink_and_unregistered_files (test_first_divergence.FirstDivergenceTests.test_dataset_rejects_missing_unsafe_symlink_and_unregistered_files) (mutation='missing')"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_dataset_rejects_missing_unsafe_symlink_and_unregistered_files (test_first_divergence.FirstDivergenceTests.test_dataset_rejects_missing_unsafe_symlink_and_unregistered_files) (mutation='unsafe')"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_dataset_rejects_missing_unsafe_symlink_and_unregistered_files (test_first_divergence.FirstDivergenceTests.test_dataset_rejects_missing_unsafe_symlink_and_unregistered_files) (mutation='symlink')"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_dataset_rejects_missing_unsafe_symlink_and_unregistered_files (test_first_divergence.FirstDivergenceTests.test_dataset_rejects_missing_unsafe_symlink_and_unregistered_files) (mutation='extra')"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_failure_ledger_preserves_existing_manifest_and_original_io_error (test_first_divergence.FirstDivergenceTests.test_failure_ledger_preserves_existing_manifest_and_original_io_error)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_manifest_rejects_unregistered_claims_and_convergence_receipt_lies (test_first_divergence.FirstDivergenceTests.test_manifest_rejects_unregistered_claims_and_convergence_receipt_lies) (mutation='top_claim')"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_manifest_rejects_unregistered_claims_and_convergence_receipt_lies (test_first_divergence.FirstDivergenceTests.test_manifest_rejects_unregistered_claims_and_convergence_receipt_lies) (mutation='metadata_claim')"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_manifest_rejects_unregistered_claims_and_convergence_receipt_lies (test_first_divergence.FirstDivergenceTests.test_manifest_rejects_unregistered_claims_and_convergence_receipt_lies) (mutation='receipt')"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_missing_negative_or_contradictory_wrapper_acceptance_timings_are_rejected (test_first_divergence.FirstDivergenceTests.test_missing_negative_or_contradictory_wrapper_acceptance_timings_are_rejected)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_nested_record_claims_and_wrong_types_are_rejected (test_first_divergence.FirstDivergenceTests.test_nested_record_claims_and_wrong_types_are_rejected)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_post_close_png_error_preserves_partial_members_without_reserializing (test_first_divergence.FirstDivergenceTests.test_post_close_png_error_preserves_partial_members_without_reserializing)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_protocol_and_attempt_identity_tampering_fails_closed (test_first_divergence.FirstDivergenceTests.test_protocol_and_attempt_identity_tampering_fails_closed) (mutation='protocol')"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_protocol_and_attempt_identity_tampering_fails_closed (test_first_divergence.FirstDivergenceTests.test_protocol_and_attempt_identity_tampering_fails_closed) (mutation='attempt_raw')"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_protocol_and_attempt_identity_tampering_fails_closed (test_first_divergence.FirstDivergenceTests.test_protocol_and_attempt_identity_tampering_fails_closed) (mutation='attempt_canvas')"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_protocol_and_attempt_identity_tampering_fails_closed (test_first_divergence.FirstDivergenceTests.test_protocol_and_attempt_identity_tampering_fails_closed) (mutation='observation')"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_protocol_and_attempt_identity_tampering_fails_closed (test_first_divergence.FirstDivergenceTests.test_protocol_and_attempt_identity_tampering_fails_closed) (mutation='pose')"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_serialization_requires_closure_and_validates_literal_gray_i420 (test_first_divergence.FirstDivergenceTests.test_serialization_requires_closure_and_validates_literal_gray_i420)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_source_snapshot_rejects_changed_dependency_and_canary_requires_ephemeral_ci (test_first_divergence.FirstDivergenceTests.test_source_snapshot_rejects_changed_dependency_and_canary_requires_ephemeral_ci)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_valid_file_hash_cannot_hide_canvas_warp_or_packed_tampering (test_first_divergence.FirstDivergenceTests.test_valid_file_hash_cannot_hide_canvas_warp_or_packed_tampering) (boundary='raw')"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_valid_file_hash_cannot_hide_canvas_warp_or_packed_tampering (test_first_divergence.FirstDivergenceTests.test_valid_file_hash_cannot_hide_canvas_warp_or_packed_tampering) (boundary='canvas')"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_valid_file_hash_cannot_hide_canvas_warp_or_packed_tampering (test_first_divergence.FirstDivergenceTests.test_valid_file_hash_cannot_hide_canvas_warp_or_packed_tampering) (boundary='packed')"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_valid_file_hash_cannot_hide_canvas_warp_or_packed_tampering (test_first_divergence.FirstDivergenceTests.test_valid_file_hash_cannot_hide_canvas_warp_or_packed_tampering) (boundary='intrinsics')"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_validator_rejects_png_crc_budget_claims_and_feed_mismatch (test_first_divergence.FirstDivergenceTests.test_validator_rejects_png_crc_budget_claims_and_feed_mismatch) (mutation='crc')"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_validator_rejects_png_crc_budget_claims_and_feed_mismatch (test_first_divergence.FirstDivergenceTests.test_validator_rejects_png_crc_budget_claims_and_feed_mismatch) (mutation='budget')"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_validator_rejects_png_crc_budget_claims_and_feed_mismatch (test_first_divergence.FirstDivergenceTests.test_validator_rejects_png_crc_budget_claims_and_feed_mismatch) (mutation='claims')"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_validator_rejects_png_crc_budget_claims_and_feed_mismatch (test_first_divergence.FirstDivergenceTests.test_validator_rejects_png_crc_budget_claims_and_feed_mismatch) (mutation='actual_feed')"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_array_content_tamper_with_recomputed_file_hash_still_breaks_chain (test_first_divergence_model.FinalizationTests.test_array_content_tamper_with_recomputed_file_hash_still_breaks_chain)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_candidate_manifest_bytes_are_inside_dataset_cap (test_first_divergence_model.FinalizationTests.test_candidate_manifest_bytes_are_inside_dataset_cap)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_frozen_owner_close_error_preserves_raw_primary_and_separate_cleanup (test_first_divergence_model.FinalizationTests.test_frozen_owner_close_error_preserves_raw_primary_and_separate_cleanup)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_full_six_child_schedule_and_final_publication_validation (test_first_divergence_model.FinalizationTests.test_full_six_child_schedule_and_final_publication_validation)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_serialization_mismatch_is_primary_failure_after_confirmed_close (test_first_divergence_model.FinalizationTests.test_serialization_mismatch_is_primary_failure_after_confirmed_close)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_activation_requires_parent_capture_mode_and_only_registered_changes (test_first_divergence_model.GateTests.test_activation_requires_parent_capture_mode_and_only_registered_changes)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_api_bound_real_archive_is_validated_without_model_work (test_first_divergence_model.GateTests.test_api_bound_real_archive_is_validated_without_model_work)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_api_identity_attempt_artifact_and_runtime_tamper_fail_closed (test_first_divergence_model.GateTests.test_api_identity_attempt_artifact_and_runtime_tamper_fail_closed)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_source_blobs_are_verified_against_actual_parent_not_receipt_only (test_first_divergence_model.GateTests.test_source_blobs_are_verified_against_actual_parent_not_receipt_only)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_child_receipt_cannot_add_original_pass_or_system_equality_claims (test_first_divergence_model.OneShotGateTests.test_child_receipt_cannot_add_original_pass_or_system_equality_claims)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_duplicate_push_of_same_activation_commit_cannot_spend_calls (test_first_divergence_model.OneShotGateTests.test_duplicate_push_of_same_activation_commit_cannot_spend_calls)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_missing_dataset_runtime_is_not_accepted_from_external_receipt_alone (test_first_divergence_model.OneShotGateTests.test_missing_dataset_runtime_is_not_accepted_from_external_receipt_alone)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_all_child_exit_paths_publish_cap_inclusive_failed_evidence (test_first_divergence_model.StorageBudgetTests.test_all_child_exit_paths_publish_cap_inclusive_failed_evidence) (mode='nonzero')"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_all_child_exit_paths_publish_cap_inclusive_failed_evidence (test_first_divergence_model.StorageBudgetTests.test_all_child_exit_paths_publish_cap_inclusive_failed_evidence) (mode='timeout')"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_all_child_exit_paths_publish_cap_inclusive_failed_evidence (test_first_divergence_model.StorageBudgetTests.test_all_child_exit_paths_publish_cap_inclusive_failed_evidence) (mode='invalid')"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_all_child_exit_paths_publish_cap_inclusive_failed_evidence (test_first_divergence_model.StorageBudgetTests.test_all_child_exit_paths_publish_cap_inclusive_failed_evidence) (mode='overflow')"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_output_close_error_cannot_skip_group_reaping_or_failure_ledger (test_first_divergence_model.StorageBudgetTests.test_output_close_error_cannot_skip_group_reaping_or_failure_ledger)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_payload_reservation_prevents_partial_npy_and_preserves_image_prefix (test_first_divergence_model.StorageBudgetTests.test_payload_reservation_prevents_partial_npy_and_preserves_image_prefix)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_schedule_aborts_on_invalid_zero_exit_child_and_does_not_retry (test_first_divergence_model.StudyTests.test_schedule_aborts_on_invalid_zero_exit_child_and_does_not_retry)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_timeout_uses_remaining_deadline_and_cleans_whole_group (test_first_divergence_model.StudyTests.test_timeout_uses_remaining_deadline_and_cleans_whole_group)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_original_passes_public_binding_directly_and_records_unknown_observations (test_first_divergence_model.TrialTests.test_original_passes_public_binding_directly_and_records_unknown_observations)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_unconfirmed_close_writes_no_bulk_arrays_and_keeps_primary_error (test_first_divergence_model.TrialTests.test_unconfirmed_close_writes_no_bulk_arrays_and_keeps_primary_error)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_original_validates_with_unknown_intermediate_payloads (test_first_divergence_model.ValidationTests.test_original_validates_with_unknown_intermediate_payloads)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_parent_action_report_and_process_associations_are_checked (test_first_divergence_model.ValidationTests.test_parent_action_report_and_process_associations_are_checked)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_retention_replays_raw_warp_i420_and_recurrent_chain (test_first_divergence_model.ValidationTests.test_retention_replays_raw_warp_i420_and_recurrent_chain)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_changed_production_command_cannot_cross_substitution_boundary (test_first_divergence_transport.ProbeTests.test_changed_production_command_cannot_cross_substitution_boundary)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_early_exit_passively_reaps_retained_reader_before_delivery (test_first_divergence_transport.ProbeTests.test_early_exit_passively_reaps_retained_reader_before_delivery)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_failed_normal_stops_without_retry_and_keeps_failure_ledger (test_first_divergence_transport.ProbeTests.test_failed_normal_stops_without_retry_and_keeps_failure_ledger)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_log_overflow_is_bounded_and_stops (test_first_divergence_transport.ProbeTests.test_log_overflow_is_bounded_and_stops)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_missing_early_stderr_fails_with_real_exit_and_no_retry (test_first_divergence_transport.ProbeTests.test_missing_early_stderr_fails_with_real_exit_and_no_retry)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_real_launcher_two_sequential_cases_and_actual_receipts (test_first_divergence_transport.ProbeTests.test_real_launcher_two_sequential_cases_and_actual_receipts)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_serialization_failure_preserves_initiating_error_and_bounded_ledger (test_first_divergence_transport.ProbeTests.test_serialization_failure_preserves_initiating_error_and_bounded_ledger)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_source_preflight_respects_total_deadline_before_any_launch (test_first_divergence_transport.ProbeTests.test_source_preflight_respects_total_deadline_before_any_launch)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_validator_duplicate_nonfinite_and_cli_are_pure (test_first_divergence_transport.ProbeTests.test_validator_duplicate_nonfinite_and_cli_are_pure)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_validator_rejects_enormous_numeric_deadline_as_value_error (test_first_divergence_transport.ProbeTests.test_validator_rejects_enormous_numeric_deadline_as_value_error)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_validator_rejects_missing_extra_symlink_and_modified_logs (test_first_divergence_transport.ProbeTests.test_validator_rejects_missing_extra_symlink_and_modified_logs)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_validator_rejects_tampered_identity_source_claims_limits_and_substitutions (test_first_divergence_transport.ProbeTests.test_validator_rejects_tampered_identity_source_claims_limits_and_substitutions)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_source_pins_checked_before_factory_and_exact_inner_class_required (test_native_mdv3_world_frame.WorldFrameReceiptTests.test_source_pins_checked_before_factory_and_exact_inner_class_required)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_all_actual_configs_and_factory_pins_precede_no_second_adapter (test_native_mdv3_world_frame_expansion.CorrectedExpansionContracts.test_all_actual_configs_and_factory_pins_precede_no_second_adapter)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_closed_build_only_authority (test_panda_sdk_cg_build_flow.FlowTests.test_closed_build_only_authority)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_request_only_activation (test_panda_sdk_cg_build_flow.FlowTests.test_request_only_activation)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_source_ci_exact_four_jobs_and_attempt_one (test_panda_sdk_cg_build_flow.FlowTests.test_source_ci_exact_four_jobs_and_attempt_one)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_negative_eigen_receipt_keeps_observer_unknown (test_panda_sdk_cg_eigen_flow.EigenCarrierTests.test_negative_eigen_receipt_keeps_observer_unknown)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_closed_build_only_authority (test_panda_sdk_cg_eigen_flow.FlowTests.test_closed_build_only_authority)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_request_only_activation (test_panda_sdk_cg_eigen_flow.FlowTests.test_request_only_activation)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_source_ci_exact_four_jobs_and_attempt_one (test_panda_sdk_cg_eigen_flow.FlowTests.test_source_ci_exact_four_jobs_and_attempt_one)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_negative_eigen_receipt_keeps_observer_unknown (test_panda_sdk_cg_runpath_flow.EigenCarrierTests.test_negative_eigen_receipt_keeps_observer_unknown)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_closed_build_only_authority (test_panda_sdk_cg_runpath_flow.FlowTests.test_closed_build_only_authority)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_request_only_activation (test_panda_sdk_cg_runpath_flow.FlowTests.test_request_only_activation)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_source_ci_exact_four_jobs_and_attempt_one (test_panda_sdk_cg_runpath_flow.FlowTests.test_source_ci_exact_four_jobs_and_attempt_one)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_qualified_entrypoint_bootstrap_failures_keep_diagnostic_artifact (test_panda_sdk_cg_runpath_flow.ReviewBootstrapTests.test_qualified_entrypoint_bootstrap_failures_keep_diagnostic_artifact)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_frozen_source310_and_v2_identities_reject (test_panda_sdk_cg_runpath_flow.RunpathAuthorityTests.test_frozen_source310_and_v2_identities_reject)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_frozen322_and_prior_witness_and_original_verdicts_are_bound (test_probe_panda_loader_versions.FixedLoaderProbeTests.test_frozen322_and_prior_witness_and_original_verdicts_are_bound)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_wrong_source_and_alternate_actual_output_are_negative_before_probes (test_probe_panda_loader_versions.FixedLoaderProbeTests.test_wrong_source_and_alternate_actual_output_are_negative_before_probes)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_callback_comparison_is_separate_from_common_clock_comparison (test_renderer_pipeline_sealed_execution.RendererSealedExecutionTests.test_callback_comparison_is_separate_from_common_clock_comparison)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_canary_archive_cannot_accept_wrong_callback_getter_receipt (test_renderer_pipeline_sealed_execution.RendererSealedExecutionTests.test_canary_archive_cannot_accept_wrong_callback_getter_receipt)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_complete_canary_archive_and_inner_raw_replay_require_callbacks (test_renderer_pipeline_sealed_execution.RendererSealedExecutionTests.test_complete_canary_archive_and_inner_raw_replay_require_callbacks)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_full_synthetic_raw_canvas_i420_and_callback_case_replays (test_renderer_pipeline_sealed_execution.RendererSealedExecutionTests.test_full_synthetic_raw_canvas_i420_and_callback_case_replays)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_callback_comparison_is_separate_from_common_clock_comparison (test_renderer_tasks_sealed_execution.RendererSealedExecutionTests.test_callback_comparison_is_separate_from_common_clock_comparison)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_canary_archive_cannot_accept_wrong_callback_getter_receipt (test_renderer_tasks_sealed_execution.RendererSealedExecutionTests.test_canary_archive_cannot_accept_wrong_callback_getter_receipt)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_complete_canary_archive_and_inner_raw_replay_require_callbacks (test_renderer_tasks_sealed_execution.RendererSealedExecutionTests.test_complete_canary_archive_and_inner_raw_replay_require_callbacks)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_full_synthetic_raw_canvas_i420_and_callback_case_replays (test_renderer_tasks_sealed_execution.RendererSealedExecutionTests.test_full_synthetic_raw_canvas_i420_and_callback_case_replays)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_source_closure_exactly_65 (test_texture_generation_markers.AdmissionTests.test_source_closure_exactly_65)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_extra_empty_artifact_directory_is_unregistered (test_texture_generation_markers.AuthorizationTests.test_extra_empty_artifact_directory_is_unregistered)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_context_rejects_api_completed_branch_attempt_head_and_source_before_native (test_texture_generation_markers.BoundaryTests.test_context_rejects_api_completed_branch_attempt_head_and_source_before_native)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_real_fixture_canary_and_abba_exact_counts_and_comparisons (test_texture_generation_markers.DatasetTests.test_real_fixture_canary_and_abba_exact_counts_and_comparisons)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_tampered_markers_pose_counter_source_runtime_raw_and_extra_members_rejected (test_texture_generation_markers.DatasetTests.test_tampered_markers_pose_counter_source_runtime_raw_and_extra_members_rejected)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_actual_original_zip_gate_and_api_artifact_direct_parent_rejections (test_texture_generation_markers.GateTests.test_actual_original_zip_gate_and_api_artifact_direct_parent_rejections)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_actual_frozen_launcher_pipe_uses_fixed_child_command_and_preserves_popen_contract (test_texture_generation_markers.TransportTests.test_actual_frozen_launcher_pipe_uses_fixed_child_command_and_preserves_popen_contract)"
+      },
+      {
+        "kind": "FAIL",
+        "name": "test_post_close_manifest_size_failure_is_preserved_before_publication (test_first_divergence.FirstDivergenceTests.test_post_close_manifest_size_failure_is_preserved_before_publication)"
+      },
+      {
+        "kind": "FAIL",
+        "name": "test_post_close_real_validation_error_never_publishes_success (test_first_divergence.FirstDivergenceTests.test_post_close_real_validation_error_never_publishes_success)"
+      },
+      {
+        "kind": "FAIL",
+        "name": "test_shared_public_episode_applies_bridge_once_keeps_parent_frd_and_visibility (test_native_mdv3_world_frame.WorldFrameReceiptTests.test_shared_public_episode_applies_bridge_once_keeps_parent_frd_and_visibility)"
+      },
+      {
+        "kind": "FAIL",
+        "name": "test_shared_loop_actual_groups_route_and_uncommitted_unit_session_failure (test_native_mdv3_world_frame_expansion.CorrectedExpansionContracts.test_shared_loop_actual_groups_route_and_uncommitted_unit_session_failure)"
+      },
+      {
+        "kind": "FAIL",
+        "name": "test_nine_pins_and_static_diagnostic_import_closure_stay_isolated (test_public_action_frame.PublicBindingTests.test_nine_pins_and_static_diagnostic_import_closure_stay_isolated)"
+      }
+    ]
+  },
+  {
+    "event": "pull_request",
+    "run_id": 43852466903,
+    "counts": [
+      "failures=5, errors=125, skipped=7"
+    ],
+    "failed_tests": [
+      {
+        "kind": "ERROR",
+        "name": "test_exact_existing_origin_metadata_no_network_mutation (test_accept_panda_sdk_cg_runpath_json.ReceiverTests.test_exact_existing_origin_metadata_no_network_mutation)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_frozen_source314_and_original_failure_are_bound (test_accept_panda_sdk_cg_runpath_json.ReceiverTests.test_frozen_source314_and_original_failure_are_bound)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_frozen318_and_both_prior_verdicts_are_bound (test_audit_panda_provider_versions.ProviderAuditTests.test_frozen318_and_both_prior_verdicts_are_bound)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_source318_contains_only_the_four_new_paths_beyond_frozen314 (test_audit_panda_provider_versions.ProviderAuditTests.test_source318_contains_only_the_four_new_paths_beyond_frozen314)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_wrong_own_ci_is_rejected_before_any_original_producer_read (test_audit_panda_provider_versions.ProviderAuditTests.test_wrong_own_ci_is_rejected_before_any_original_producer_read)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_wrong_source_and_client_bootstrap_failures_leave_negative (test_audit_panda_provider_versions.ProviderAuditTests.test_wrong_source_and_client_bootstrap_failures_leave_negative) (mode='client')"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_closed_provider_and_complete_inventory_are_mandatory_metadata (test_engine_clock_held_abba_execution.HeldExecutionTests.test_closed_provider_and_complete_inventory_are_mandatory_metadata)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_metadata_attestor_binds_real_synthetic_archive_without_pixel_claim (test_engine_clock_held_abba_execution.HeldExecutionTests.test_metadata_attestor_binds_real_synthetic_archive_without_pixel_claim)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_permit_parent_uuid_must_match_completed_phase (test_engine_clock_held_abba_execution.HeldExecutionTests.test_permit_parent_uuid_must_match_completed_phase)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_closed_provider_and_complete_inventory_are_mandatory_metadata (test_engine_clock_held_abba_v2_execution.HeldExecutionTests.test_closed_provider_and_complete_inventory_are_mandatory_metadata)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_metadata_attestor_binds_real_synthetic_archive_without_pixel_claim (test_engine_clock_held_abba_v2_execution.HeldExecutionTests.test_metadata_attestor_binds_real_synthetic_archive_without_pixel_claim)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_permit_parent_uuid_must_match_completed_phase (test_engine_clock_held_abba_v2_execution.HeldExecutionTests.test_permit_parent_uuid_must_match_completed_phase)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_closed_provider_and_complete_inventory_are_mandatory_metadata (test_engine_clock_held_abba_v3_execution.HeldExecutionTests.test_closed_provider_and_complete_inventory_are_mandatory_metadata)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_metadata_attestor_binds_real_synthetic_archive_without_pixel_claim (test_engine_clock_held_abba_v3_execution.HeldExecutionTests.test_metadata_attestor_binds_real_synthetic_archive_without_pixel_claim)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_permit_parent_uuid_must_match_completed_phase (test_engine_clock_held_abba_v3_execution.HeldExecutionTests.test_permit_parent_uuid_must_match_completed_phase)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_phase_member_audit_is_bound_to_original_archive (test_engine_clock_held_abba_v3_execution.HeldExecutionTests.test_phase_member_audit_is_bound_to_original_archive)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_source_closure_exactly_70 (test_engine_clock_native.AdmissionTests.test_source_closure_exactly_70)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_extra_empty_artifact_directory_is_unregistered (test_engine_clock_native.AuthorizationTests.test_extra_empty_artifact_directory_is_unregistered)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_corrupt_png_and_packed_bytes_rejected_even_if_descriptors_rehashed (test_engine_clock_native.BoundaryFailureTests.test_corrupt_png_and_packed_bytes_rejected_even_if_descriptors_rehashed)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_context_rejects_api_completed_branch_attempt_head_and_source_before_native (test_engine_clock_native.BoundaryTests.test_context_rejects_api_completed_branch_attempt_head_and_source_before_native)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_exact_clock_six_pair_thread_raw_row_and_source_closure_linkage (test_engine_clock_native.ClockLinkageTests.test_exact_clock_six_pair_thread_raw_row_and_source_closure_linkage)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_standalone_valid_one_pair_trace_cannot_attest_native_six_pair_case (test_engine_clock_native.CompleteLinkageTests.test_standalone_valid_one_pair_trace_cannot_attest_native_six_pair_case)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_real_fixture_canary_and_abba_exact_counts_and_comparisons (test_engine_clock_native.DatasetTests.test_real_fixture_canary_and_abba_exact_counts_and_comparisons)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_tampered_markers_pose_counter_source_runtime_raw_and_extra_members_rejected (test_engine_clock_native.DatasetTests.test_tampered_markers_pose_counter_source_runtime_raw_and_extra_members_rejected)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_actual_original_zip_gate_and_api_artifact_direct_parent_rejections (test_engine_clock_native.GateTests.test_actual_original_zip_gate_and_api_artifact_direct_parent_rejections)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_actual_frozen_launcher_pipe_uses_fixed_child_command_and_preserves_popen_contract (test_engine_clock_native.TransportTests.test_actual_frozen_launcher_pipe_uses_fixed_child_command_and_preserves_popen_contract)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_genuine_cpu_fixture_is_replayed_and_tampered_raw_rejects (test_engine_clock_sealed_abba_execution.SealedAbbaExecutionTests.test_genuine_cpu_fixture_is_replayed_and_tampered_raw_rejects)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_canary_failure_preserves_prefix_bounds_and_primary_error_after_close (test_first_divergence.FirstDivergenceTests.test_canary_failure_preserves_prefix_bounds_and_primary_error_after_close) (close_fails=False)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_canary_failure_preserves_prefix_bounds_and_primary_error_after_close (test_first_divergence.FirstDivergenceTests.test_canary_failure_preserves_prefix_bounds_and_primary_error_after_close) (close_fails=True)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_canary_uses_one_provider_two_selected_pairs_and_writes_after_close (test_first_divergence.FirstDivergenceTests.test_canary_uses_one_provider_two_selected_pairs_and_writes_after_close)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_dataset_rejects_missing_unsafe_symlink_and_unregistered_files (test_first_divergence.FirstDivergenceTests.test_dataset_rejects_missing_unsafe_symlink_and_unregistered_files) (mutation='missing')"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_dataset_rejects_missing_unsafe_symlink_and_unregistered_files (test_first_divergence.FirstDivergenceTests.test_dataset_rejects_missing_unsafe_symlink_and_unregistered_files) (mutation='unsafe')"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_dataset_rejects_missing_unsafe_symlink_and_unregistered_files (test_first_divergence.FirstDivergenceTests.test_dataset_rejects_missing_unsafe_symlink_and_unregistered_files) (mutation='symlink')"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_dataset_rejects_missing_unsafe_symlink_and_unregistered_files (test_first_divergence.FirstDivergenceTests.test_dataset_rejects_missing_unsafe_symlink_and_unregistered_files) (mutation='extra')"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_failure_ledger_preserves_existing_manifest_and_original_io_error (test_first_divergence.FirstDivergenceTests.test_failure_ledger_preserves_existing_manifest_and_original_io_error)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_manifest_rejects_unregistered_claims_and_convergence_receipt_lies (test_first_divergence.FirstDivergenceTests.test_manifest_rejects_unregistered_claims_and_convergence_receipt_lies) (mutation='top_claim')"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_manifest_rejects_unregistered_claims_and_convergence_receipt_lies (test_first_divergence.FirstDivergenceTests.test_manifest_rejects_unregistered_claims_and_convergence_receipt_lies) (mutation='metadata_claim')"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_manifest_rejects_unregistered_claims_and_convergence_receipt_lies (test_first_divergence.FirstDivergenceTests.test_manifest_rejects_unregistered_claims_and_convergence_receipt_lies) (mutation='receipt')"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_missing_negative_or_contradictory_wrapper_acceptance_timings_are_rejected (test_first_divergence.FirstDivergenceTests.test_missing_negative_or_contradictory_wrapper_acceptance_timings_are_rejected)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_nested_record_claims_and_wrong_types_are_rejected (test_first_divergence.FirstDivergenceTests.test_nested_record_claims_and_wrong_types_are_rejected)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_post_close_png_error_preserves_partial_members_without_reserializing (test_first_divergence.FirstDivergenceTests.test_post_close_png_error_preserves_partial_members_without_reserializing)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_protocol_and_attempt_identity_tampering_fails_closed (test_first_divergence.FirstDivergenceTests.test_protocol_and_attempt_identity_tampering_fails_closed) (mutation='protocol')"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_protocol_and_attempt_identity_tampering_fails_closed (test_first_divergence.FirstDivergenceTests.test_protocol_and_attempt_identity_tampering_fails_closed) (mutation='attempt_raw')"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_protocol_and_attempt_identity_tampering_fails_closed (test_first_divergence.FirstDivergenceTests.test_protocol_and_attempt_identity_tampering_fails_closed) (mutation='attempt_canvas')"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_protocol_and_attempt_identity_tampering_fails_closed (test_first_divergence.FirstDivergenceTests.test_protocol_and_attempt_identity_tampering_fails_closed) (mutation='observation')"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_protocol_and_attempt_identity_tampering_fails_closed (test_first_divergence.FirstDivergenceTests.test_protocol_and_attempt_identity_tampering_fails_closed) (mutation='pose')"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_serialization_requires_closure_and_validates_literal_gray_i420 (test_first_divergence.FirstDivergenceTests.test_serialization_requires_closure_and_validates_literal_gray_i420)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_source_snapshot_rejects_changed_dependency_and_canary_requires_ephemeral_ci (test_first_divergence.FirstDivergenceTests.test_source_snapshot_rejects_changed_dependency_and_canary_requires_ephemeral_ci)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_valid_file_hash_cannot_hide_canvas_warp_or_packed_tampering (test_first_divergence.FirstDivergenceTests.test_valid_file_hash_cannot_hide_canvas_warp_or_packed_tampering) (boundary='raw')"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_valid_file_hash_cannot_hide_canvas_warp_or_packed_tampering (test_first_divergence.FirstDivergenceTests.test_valid_file_hash_cannot_hide_canvas_warp_or_packed_tampering) (boundary='canvas')"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_valid_file_hash_cannot_hide_canvas_warp_or_packed_tampering (test_first_divergence.FirstDivergenceTests.test_valid_file_hash_cannot_hide_canvas_warp_or_packed_tampering) (boundary='packed')"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_valid_file_hash_cannot_hide_canvas_warp_or_packed_tampering (test_first_divergence.FirstDivergenceTests.test_valid_file_hash_cannot_hide_canvas_warp_or_packed_tampering) (boundary='intrinsics')"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_validator_rejects_png_crc_budget_claims_and_feed_mismatch (test_first_divergence.FirstDivergenceTests.test_validator_rejects_png_crc_budget_claims_and_feed_mismatch) (mutation='crc')"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_validator_rejects_png_crc_budget_claims_and_feed_mismatch (test_first_divergence.FirstDivergenceTests.test_validator_rejects_png_crc_budget_claims_and_feed_mismatch) (mutation='budget')"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_validator_rejects_png_crc_budget_claims_and_feed_mismatch (test_first_divergence.FirstDivergenceTests.test_validator_rejects_png_crc_budget_claims_and_feed_mismatch) (mutation='claims')"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_validator_rejects_png_crc_budget_claims_and_feed_mismatch (test_first_divergence.FirstDivergenceTests.test_validator_rejects_png_crc_budget_claims_and_feed_mismatch) (mutation='actual_feed')"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_array_content_tamper_with_recomputed_file_hash_still_breaks_chain (test_first_divergence_model.FinalizationTests.test_array_content_tamper_with_recomputed_file_hash_still_breaks_chain)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_candidate_manifest_bytes_are_inside_dataset_cap (test_first_divergence_model.FinalizationTests.test_candidate_manifest_bytes_are_inside_dataset_cap)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_frozen_owner_close_error_preserves_raw_primary_and_separate_cleanup (test_first_divergence_model.FinalizationTests.test_frozen_owner_close_error_preserves_raw_primary_and_separate_cleanup)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_full_six_child_schedule_and_final_publication_validation (test_first_divergence_model.FinalizationTests.test_full_six_child_schedule_and_final_publication_validation)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_serialization_mismatch_is_primary_failure_after_confirmed_close (test_first_divergence_model.FinalizationTests.test_serialization_mismatch_is_primary_failure_after_confirmed_close)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_activation_requires_parent_capture_mode_and_only_registered_changes (test_first_divergence_model.GateTests.test_activation_requires_parent_capture_mode_and_only_registered_changes)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_api_bound_real_archive_is_validated_without_model_work (test_first_divergence_model.GateTests.test_api_bound_real_archive_is_validated_without_model_work)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_api_identity_attempt_artifact_and_runtime_tamper_fail_closed (test_first_divergence_model.GateTests.test_api_identity_attempt_artifact_and_runtime_tamper_fail_closed)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_source_blobs_are_verified_against_actual_parent_not_receipt_only (test_first_divergence_model.GateTests.test_source_blobs_are_verified_against_actual_parent_not_receipt_only)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_child_receipt_cannot_add_original_pass_or_system_equality_claims (test_first_divergence_model.OneShotGateTests.test_child_receipt_cannot_add_original_pass_or_system_equality_claims)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_duplicate_push_of_same_activation_commit_cannot_spend_calls (test_first_divergence_model.OneShotGateTests.test_duplicate_push_of_same_activation_commit_cannot_spend_calls)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_missing_dataset_runtime_is_not_accepted_from_external_receipt_alone (test_first_divergence_model.OneShotGateTests.test_missing_dataset_runtime_is_not_accepted_from_external_receipt_alone)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_all_child_exit_paths_publish_cap_inclusive_failed_evidence (test_first_divergence_model.StorageBudgetTests.test_all_child_exit_paths_publish_cap_inclusive_failed_evidence) (mode='nonzero')"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_all_child_exit_paths_publish_cap_inclusive_failed_evidence (test_first_divergence_model.StorageBudgetTests.test_all_child_exit_paths_publish_cap_inclusive_failed_evidence) (mode='timeout')"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_all_child_exit_paths_publish_cap_inclusive_failed_evidence (test_first_divergence_model.StorageBudgetTests.test_all_child_exit_paths_publish_cap_inclusive_failed_evidence) (mode='invalid')"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_all_child_exit_paths_publish_cap_inclusive_failed_evidence (test_first_divergence_model.StorageBudgetTests.test_all_child_exit_paths_publish_cap_inclusive_failed_evidence) (mode='overflow')"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_output_close_error_cannot_skip_group_reaping_or_failure_ledger (test_first_divergence_model.StorageBudgetTests.test_output_close_error_cannot_skip_group_reaping_or_failure_ledger)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_payload_reservation_prevents_partial_npy_and_preserves_image_prefix (test_first_divergence_model.StorageBudgetTests.test_payload_reservation_prevents_partial_npy_and_preserves_image_prefix)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_schedule_aborts_on_invalid_zero_exit_child_and_does_not_retry (test_first_divergence_model.StudyTests.test_schedule_aborts_on_invalid_zero_exit_child_and_does_not_retry)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_timeout_uses_remaining_deadline_and_cleans_whole_group (test_first_divergence_model.StudyTests.test_timeout_uses_remaining_deadline_and_cleans_whole_group)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_original_passes_public_binding_directly_and_records_unknown_observations (test_first_divergence_model.TrialTests.test_original_passes_public_binding_directly_and_records_unknown_observations)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_unconfirmed_close_writes_no_bulk_arrays_and_keeps_primary_error (test_first_divergence_model.TrialTests.test_unconfirmed_close_writes_no_bulk_arrays_and_keeps_primary_error)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_original_validates_with_unknown_intermediate_payloads (test_first_divergence_model.ValidationTests.test_original_validates_with_unknown_intermediate_payloads)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_parent_action_report_and_process_associations_are_checked (test_first_divergence_model.ValidationTests.test_parent_action_report_and_process_associations_are_checked)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_retention_replays_raw_warp_i420_and_recurrent_chain (test_first_divergence_model.ValidationTests.test_retention_replays_raw_warp_i420_and_recurrent_chain)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_changed_production_command_cannot_cross_substitution_boundary (test_first_divergence_transport.ProbeTests.test_changed_production_command_cannot_cross_substitution_boundary)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_early_exit_passively_reaps_retained_reader_before_delivery (test_first_divergence_transport.ProbeTests.test_early_exit_passively_reaps_retained_reader_before_delivery)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_failed_normal_stops_without_retry_and_keeps_failure_ledger (test_first_divergence_transport.ProbeTests.test_failed_normal_stops_without_retry_and_keeps_failure_ledger)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_log_overflow_is_bounded_and_stops (test_first_divergence_transport.ProbeTests.test_log_overflow_is_bounded_and_stops)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_missing_early_stderr_fails_with_real_exit_and_no_retry (test_first_divergence_transport.ProbeTests.test_missing_early_stderr_fails_with_real_exit_and_no_retry)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_real_launcher_two_sequential_cases_and_actual_receipts (test_first_divergence_transport.ProbeTests.test_real_launcher_two_sequential_cases_and_actual_receipts)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_serialization_failure_preserves_initiating_error_and_bounded_ledger (test_first_divergence_transport.ProbeTests.test_serialization_failure_preserves_initiating_error_and_bounded_ledger)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_source_preflight_respects_total_deadline_before_any_launch (test_first_divergence_transport.ProbeTests.test_source_preflight_respects_total_deadline_before_any_launch)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_validator_duplicate_nonfinite_and_cli_are_pure (test_first_divergence_transport.ProbeTests.test_validator_duplicate_nonfinite_and_cli_are_pure)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_validator_rejects_enormous_numeric_deadline_as_value_error (test_first_divergence_transport.ProbeTests.test_validator_rejects_enormous_numeric_deadline_as_value_error)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_validator_rejects_missing_extra_symlink_and_modified_logs (test_first_divergence_transport.ProbeTests.test_validator_rejects_missing_extra_symlink_and_modified_logs)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_validator_rejects_tampered_identity_source_claims_limits_and_substitutions (test_first_divergence_transport.ProbeTests.test_validator_rejects_tampered_identity_source_claims_limits_and_substitutions)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_source_pins_checked_before_factory_and_exact_inner_class_required (test_native_mdv3_world_frame.WorldFrameReceiptTests.test_source_pins_checked_before_factory_and_exact_inner_class_required)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_all_actual_configs_and_factory_pins_precede_no_second_adapter (test_native_mdv3_world_frame_expansion.CorrectedExpansionContracts.test_all_actual_configs_and_factory_pins_precede_no_second_adapter)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_closed_build_only_authority (test_panda_sdk_cg_build_flow.FlowTests.test_closed_build_only_authority)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_request_only_activation (test_panda_sdk_cg_build_flow.FlowTests.test_request_only_activation)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_source_ci_exact_four_jobs_and_attempt_one (test_panda_sdk_cg_build_flow.FlowTests.test_source_ci_exact_four_jobs_and_attempt_one)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_negative_eigen_receipt_keeps_observer_unknown (test_panda_sdk_cg_eigen_flow.EigenCarrierTests.test_negative_eigen_receipt_keeps_observer_unknown)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_closed_build_only_authority (test_panda_sdk_cg_eigen_flow.FlowTests.test_closed_build_only_authority)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_request_only_activation (test_panda_sdk_cg_eigen_flow.FlowTests.test_request_only_activation)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_source_ci_exact_four_jobs_and_attempt_one (test_panda_sdk_cg_eigen_flow.FlowTests.test_source_ci_exact_four_jobs_and_attempt_one)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_negative_eigen_receipt_keeps_observer_unknown (test_panda_sdk_cg_runpath_flow.EigenCarrierTests.test_negative_eigen_receipt_keeps_observer_unknown)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_closed_build_only_authority (test_panda_sdk_cg_runpath_flow.FlowTests.test_closed_build_only_authority)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_request_only_activation (test_panda_sdk_cg_runpath_flow.FlowTests.test_request_only_activation)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_source_ci_exact_four_jobs_and_attempt_one (test_panda_sdk_cg_runpath_flow.FlowTests.test_source_ci_exact_four_jobs_and_attempt_one)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_qualified_entrypoint_bootstrap_failures_keep_diagnostic_artifact (test_panda_sdk_cg_runpath_flow.ReviewBootstrapTests.test_qualified_entrypoint_bootstrap_failures_keep_diagnostic_artifact)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_frozen_source310_and_v2_identities_reject (test_panda_sdk_cg_runpath_flow.RunpathAuthorityTests.test_frozen_source310_and_v2_identities_reject)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_frozen322_and_prior_witness_and_original_verdicts_are_bound (test_probe_panda_loader_versions.FixedLoaderProbeTests.test_frozen322_and_prior_witness_and_original_verdicts_are_bound)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_wrong_source_and_alternate_actual_output_are_negative_before_probes (test_probe_panda_loader_versions.FixedLoaderProbeTests.test_wrong_source_and_alternate_actual_output_are_negative_before_probes)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_callback_comparison_is_separate_from_common_clock_comparison (test_renderer_pipeline_sealed_execution.RendererSealedExecutionTests.test_callback_comparison_is_separate_from_common_clock_comparison)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_canary_archive_cannot_accept_wrong_callback_getter_receipt (test_renderer_pipeline_sealed_execution.RendererSealedExecutionTests.test_canary_archive_cannot_accept_wrong_callback_getter_receipt)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_complete_canary_archive_and_inner_raw_replay_require_callbacks (test_renderer_pipeline_sealed_execution.RendererSealedExecutionTests.test_complete_canary_archive_and_inner_raw_replay_require_callbacks)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_full_synthetic_raw_canvas_i420_and_callback_case_replays (test_renderer_pipeline_sealed_execution.RendererSealedExecutionTests.test_full_synthetic_raw_canvas_i420_and_callback_case_replays)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_callback_comparison_is_separate_from_common_clock_comparison (test_renderer_tasks_sealed_execution.RendererSealedExecutionTests.test_callback_comparison_is_separate_from_common_clock_comparison)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_canary_archive_cannot_accept_wrong_callback_getter_receipt (test_renderer_tasks_sealed_execution.RendererSealedExecutionTests.test_canary_archive_cannot_accept_wrong_callback_getter_receipt)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_complete_canary_archive_and_inner_raw_replay_require_callbacks (test_renderer_tasks_sealed_execution.RendererSealedExecutionTests.test_complete_canary_archive_and_inner_raw_replay_require_callbacks)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_full_synthetic_raw_canvas_i420_and_callback_case_replays (test_renderer_tasks_sealed_execution.RendererSealedExecutionTests.test_full_synthetic_raw_canvas_i420_and_callback_case_replays)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_source_closure_exactly_65 (test_texture_generation_markers.AdmissionTests.test_source_closure_exactly_65)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_extra_empty_artifact_directory_is_unregistered (test_texture_generation_markers.AuthorizationTests.test_extra_empty_artifact_directory_is_unregistered)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_context_rejects_api_completed_branch_attempt_head_and_source_before_native (test_texture_generation_markers.BoundaryTests.test_context_rejects_api_completed_branch_attempt_head_and_source_before_native)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_real_fixture_canary_and_abba_exact_counts_and_comparisons (test_texture_generation_markers.DatasetTests.test_real_fixture_canary_and_abba_exact_counts_and_comparisons)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_tampered_markers_pose_counter_source_runtime_raw_and_extra_members_rejected (test_texture_generation_markers.DatasetTests.test_tampered_markers_pose_counter_source_runtime_raw_and_extra_members_rejected)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_actual_original_zip_gate_and_api_artifact_direct_parent_rejections (test_texture_generation_markers.GateTests.test_actual_original_zip_gate_and_api_artifact_direct_parent_rejections)"
+      },
+      {
+        "kind": "ERROR",
+        "name": "test_actual_frozen_launcher_pipe_uses_fixed_child_command_and_preserves_popen_contract (test_texture_generation_markers.TransportTests.test_actual_frozen_launcher_pipe_uses_fixed_child_command_and_preserves_popen_contract)"
+      },
+      {
+        "kind": "FAIL",
+        "name": "test_post_close_manifest_size_failure_is_preserved_before_publication (test_first_divergence.FirstDivergenceTests.test_post_close_manifest_size_failure_is_preserved_before_publication)"
+      },
+      {
+        "kind": "FAIL",
+        "name": "test_post_close_real_validation_error_never_publishes_success (test_first_divergence.FirstDivergenceTests.test_post_close_real_validation_error_never_publishes_success)"
+      },
+      {
+        "kind": "FAIL",
+        "name": "test_shared_public_episode_applies_bridge_once_keeps_parent_frd_and_visibility (test_native_mdv3_world_frame.WorldFrameReceiptTests.test_shared_public_episode_applies_bridge_once_keeps_parent_frd_and_visibility)"
+      },
+      {
+        "kind": "FAIL",
+        "name": "test_shared_loop_actual_groups_route_and_uncommitted_unit_session_failure (test_native_mdv3_world_frame_expansion.CorrectedExpansionContracts.test_shared_loop_actual_groups_route_and_uncommitted_unit_session_failure)"
+      },
+      {
+        "kind": "FAIL",
+        "name": "test_nine_pins_and_static_diagnostic_import_closure_stay_isolated (test_public_action_frame.PublicBindingTests.test_nine_pins_and_static_diagnostic_import_closure_stay_isolated)"
+      }
+    ]
+  }
+]

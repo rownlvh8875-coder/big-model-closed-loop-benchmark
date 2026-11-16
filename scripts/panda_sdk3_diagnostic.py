@@ -38,8 +38,15 @@ def owned_child_command(args,parent_pid):
 def full_rgb_trial_options(args,out):
     if not getattr(args,'full_rgb',False):return {}
     policy.need(args.model_trial and not args.reference_wheel,'full RGB requires SDK3 official model probe')
-    from scripts.sdk3_rgb_forensics import FullEpisodeRGBCapture
-    return dict(raw_rgb_dir=out/'rgb',raw_rgb_capture_factory=FullEpisodeRGBCapture)
+    return dict(raw_rgb_dir=out/'rgb')
+
+
+def model_trial_callable(args):
+    if getattr(args,'full_rgb',False):
+        from scripts.sdk3_rgb_forensics import run_full_rgb_trial
+        return run_full_rgb_trial
+    from scripts.native_mdv3_repeat_trial import run_trial
+    return run_trial
 
 
 def run_with_server(args):
@@ -114,8 +121,7 @@ def run(args):
         emit('SERVER_BEFORE');policy.need(Path('/tmp/.X11-unix/X99').exists(),'parent-owned live display');emit('SERVER_AFTER')
         if args.model_trial:
             policy.need(not args.reference_wheel,'official model requires SDK3');sys.path.insert(0,'/model-deps')
-            from scripts.native_mdv3_repeat_trial import run_trial
-            value=run_trial(model=Path('/model.onnx'),spec=Path('/work/repo/model_specs/md-v3.json'),scenario=args.scenario,seed=args.seed,steps=12,speed=8.,initial_fraction=.12,**full_rgb_trial_options(args,out))
+            value=model_trial_callable(args)(model=Path('/model.onnx'),spec=Path('/work/repo/model_specs/md-v3.json'),scenario=args.scenario,seed=args.seed,steps=12,speed=8.,initial_fraction=.12,**full_rgb_trial_options(args,out))
             value.update(selected_sdk_sha256=policy.SDK_SHA,sdk_load_order='core-first');policy.write(out/'run.json',value)
             policy.need(value['status']=='DIAGNOSTIC_EXECUTED' and value['completed_steps']==12,'complete official model trial');report['status']='OFFICIAL_MODEL_TRIAL_OBSERVED';return report
         renderer,base,report['driver'],report['objects'],report['output_properties']=setup_renderer(c,args.factory,emit);report['frames']=[]

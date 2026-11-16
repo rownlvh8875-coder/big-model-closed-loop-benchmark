@@ -8,6 +8,7 @@ from scripts.compare_native_mdv3_rgb_pixels import read_verified_pixels,summariz
 from scripts.compare_fresh_native_mdv3 import compare_fresh_trials
 from scripts.aggregate_original_mdv3_current_recheck import MODEL_SHA256,first_divergence_timeline
 
+PRODUCER_SHA='ddaf0510a775c3a44c908bb4dedf4879ae88bfcb80e1f2d022a8b513a4f42427'
 SEED=20261110
 SCENE='s_curve_left_right'
 
@@ -17,6 +18,23 @@ class FullEpisodeRGBCapture(BoundedNativeRGBCapture):
     def __init__(self):
         super().__init__()
         self.max_steps=12
+
+
+def run_full_rgb_trial(*,raw_rgb_dir,**kwargs):
+    """Run frozen producer bytecode in private globals with one observer factory.
+
+    No original module/function global is patched. This is an instrumented
+    diagnostic and retains the original source pin and default execution.
+    """
+    from types import FunctionType
+    from scripts import native_mdv3_repeat_trial as native
+    p.need(raw_rgb_dir is not None,'explicit full-RGB output required')
+    p.need(p.digest(Path(native.__file__))==PRODUCER_SHA,'frozen original trial source')
+    original=native.run_trial
+    namespace=dict(original.__globals__,BoundedNativeRGBCapture=FullEpisodeRGBCapture)
+    observed=FunctionType(original.__code__,namespace,original.__name__,original.__defaults__,original.__closure__)
+    observed.__kwdefaults__=dict(original.__kwdefaults__ or {})
+    return observed(raw_rgb_dir=raw_rgb_dir,**kwargs)
 
 
 def _manifest(folder,report):
@@ -37,6 +55,7 @@ def analyze_pair(folder:Path,arm:str)->dict:
     for row in reports:
         p.need(row.get('status')=='DIAGNOSTIC_EXECUTED' and row.get('model_sha256')==MODEL_SHA256 and row.get('selected_sdk_sha256')==p.SDK_SHA and row.get('sdk_load_order')=='core-first','actual pinned SDK/model trial')
         p.need(row.get('seed')==SEED and row.get('scenario')==SCENE and row.get('initial_fraction')==.12 and row.get('requested_steps')==row.get('completed_steps')==12 and len(row.get('frames',[]))==12,'complete registered diagnostic condition')
+        p.need(row.get('camera_capture_mode')=='native_MetaDrive_perceive_sequential_per_step','original sequential native capture mode')
         p.need(row.get('pssm_update_preserved') is True and row.get('gpu_hdr_extraction') is False and row.get('camera_convergence_attempts')==0 and row.get('camera_pixel_tolerance')==0 and row.get('camera_image_interpolation_or_replay') is False and row.get('model_scoring_allowed') is False and row.get('real_vehicle_testing') is False,'unchanged original rendering controls')
         evidence='ORIGINAL_PSSM_WITH_OPT_IN_CPU_RGB_RETENTION_PROBE' if arm=='full_rgb' else 'UNMODIFIED_METADRIVE_NEW_FRAME_OFFICIAL_ONNX_DIAGNOSTIC'
         p.need(row.get('trial_evidence')==evidence,'control/probe evidence separation')
