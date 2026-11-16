@@ -1,0 +1,105 @@
+{
+  "total_count": 1,
+  "jobs": [
+    {
+      "id": 133334855193,
+      "run_id": 43877667984,
+      "workflow_name": "Observe SDK3 capture boundaries and pre-timeout stacks without models",
+      "head_branch": "diagnostic/sdk3-capture-progress-20261116-01",
+      "run_url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43877667984",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOVklq188AAAAfC2BuGQ",
+      "head_sha": "d9eed91761b927989a3ca3b6e32f933f036a5883",
+      "url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/jobs/133334855193",
+      "html_url": "https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43877667984/job/133334855193",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-11-16T13:38:11Z",
+      "started_at": "2026-11-16T13:38:14Z",
+      "completed_at": "2026-11-16T13:43:54Z",
+      "name": "SDK3 capture progress",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-16T13:38:14Z",
+          "completed_at": "2026-11-16T13:38:15Z"
+        },
+        {
+          "name": "Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-16T13:38:15Z",
+          "completed_at": "2026-11-16T13:38:19Z"
+        },
+        {
+          "name": "Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-16T13:38:19Z",
+          "completed_at": "2026-11-16T13:38:19Z"
+        },
+        {
+          "name": "Install host-only image analysis dependency",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-16T13:38:19Z",
+          "completed_at": "2026-11-16T13:38:24Z"
+        },
+        {
+          "name": "Record authenticated observation, with native timeout kept explicit",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-11-16T13:38:24Z",
+          "completed_at": "2026-11-16T13:43:50Z"
+        },
+        {
+          "name": "Preserve actual progress, source images, stacks and failure receipts",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-11-16T13:43:50Z",
+          "completed_at": "2026-11-16T13:43:51Z"
+        },
+        {
+          "name": "Post Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-11-16T13:43:51Z",
+          "completed_at": "2026-11-16T13:43:52Z"
+        },
+        {
+          "name": "Post Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-11-16T13:43:52Z",
+          "completed_at": "2026-11-16T13:43:52Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-11-16T13:43:52Z",
+          "completed_at": "2026-11-16T13:43:52Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/check-runs/133334855193",
+      "labels": [
+        "ubuntu-24.04"
+      ],
+      "runner_id": 1000006813,
+      "runner_name": "GitHub Actions 1000006813",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    }
+  ]
+}

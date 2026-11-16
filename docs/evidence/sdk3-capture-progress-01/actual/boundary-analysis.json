@@ -1,0 +1,338 @@
+{
+  "run_id": 43877667984,
+  "source_sha": "e4a5cfcf1581272692f131caa75e1b3ee97a0290",
+  "analysis": {
+    "status": "TRACE_RECORDED_NATIVE_TIMEOUT",
+    "native_completed": false,
+    "renderer_diagnostic_passed": false,
+    "process_uuid": "b16eff4d253d409b9f7c4ed23254db41",
+    "pid": 10,
+    "container_id": "196a555c9d6a60b7651aaa4912367c4dcbd15f4b89c71a80645587f7ee802fc4",
+    "native_returncode": -9,
+    "known_renderer_processes": 1,
+    "completed_capture_returns": 1,
+    "persisted_capture_count": 1,
+    "verified_source_images": 2,
+    "completed_prefix_matches_reference": true,
+    "source_image_equivalence": null,
+    "active_boundaries": [
+      {
+        "operation": "capture",
+        "step": 2,
+        "camera": null
+      },
+      {
+        "operation": "perceive",
+        "step": 2,
+        "camera": "wide"
+      },
+      {
+        "operation": "task_step",
+        "step": 2,
+        "camera": "wide"
+      }
+    ],
+    "proc_snapshot_availability": {
+      "available": [
+        "stat",
+        "status",
+        "wchan"
+      ],
+      "unavailable": []
+    },
+    "last_event": {
+      "seq": 31,
+      "elapsed_s": 156.018234134,
+      "cpu_s": 156.284172074,
+      "identity": {
+        "pid": 10,
+        "nonce": "2a3ae18147d8bc89a438d1e489ee5165",
+        "protocol": "sdk3-capture-progress-v1"
+      },
+      "event": "task_step.enter",
+      "step": 2,
+      "camera": "wide",
+      "metadata": {}
+    },
+    "progress_records": 31,
+    "timed_stack_dumps": 5,
+    "official_model_processes": 0,
+    "onnx_inferences": 0,
+    "original_matrix_passed": 3,
+    "original_matrix_total": 4,
+    "original_matrix_gate_passed": false,
+    "gpu_pixel_owner_proven": false,
+    "unique_cause_proven": false,
+    "repair_proven": false,
+    "stage7_complete": false
+  },
+  "checkpoints": [
+    {
+      "stage": "OWNED_BOOT",
+      "elapsed_s": 0.00016946100001291597,
+      "cpu_s": 0.00016844700000000212
+    },
+    {
+      "stage": "DEPENDENCIES_READY",
+      "elapsed_s": 0.1693547540000111,
+      "cpu_s": 0.26547303
+    },
+    {
+      "stage": "SDK_VERIFIED",
+      "elapsed_s": 0.2160042940000153,
+      "cpu_s": 0.3120224
+    },
+    {
+      "stage": "PROVIDER_ENTER",
+      "elapsed_s": 4.488074562000008,
+      "cpu_s": 4.7683232239999995
+    },
+    {
+      "stage": "WORLD_READY",
+      "elapsed_s": 93.23317235799999,
+      "cpu_s": 93.501645431
+    },
+    {
+      "stage": "CAPTURE_ENTER",
+      "elapsed_s": 93.23363295900003,
+      "cpu_s": 93.502013808
+    },
+    {
+      "stage": "CAPTURE_RETURN",
+      "elapsed_s": 134.81513684700002,
+      "cpu_s": 135.083057614
+    },
+    {
+      "stage": "CAPTURE_ENTER",
+      "elapsed_s": 134.815516247,
+      "cpu_s": 135.083350541
+    }
+  ],
+  "completed_boundaries": [
+    {
+      "operation": "task_step",
+      "step": 1,
+      "camera": "road",
+      "terminal_phase": "return",
+      "wall_seconds": 20.221043258999998,
+      "cpu_seconds": 20.219661723,
+      "enter_elapsed_s": 93.23376165899998,
+      "exit_elapsed_s": 113.45480491799998
+    },
+    {
+      "operation": "get_rgb",
+      "step": 1,
+      "camera": "road",
+      "terminal_phase": "return",
+      "wall_seconds": 0.0017662820000055035,
+      "cpu_seconds": 0.0017688120000087793,
+      "enter_elapsed_s": 113.454891798,
+      "exit_elapsed_s": 113.45665808000001
+    },
+    {
+      "operation": "perceive",
+      "step": 1,
+      "camera": "road",
+      "terminal_phase": "return",
+      "wall_seconds": 20.22306998099998,
+      "cpu_seconds": 20.22168617199999,
+      "enter_elapsed_s": 93.23369655800002,
+      "exit_elapsed_s": 113.456766539
+    },
+    {
+      "operation": "task_step",
+      "step": 1,
+      "camera": "wide",
+      "terminal_phase": "return",
+      "wall_seconds": 21.211304778,
+      "cpu_seconds": 21.20979208300001,
+      "enter_elapsed_s": 113.45864743700002,
+      "exit_elapsed_s": 134.66995221500002
+    },
+    {
+      "operation": "get_rgb",
+      "step": 1,
+      "camera": "wide",
+      "terminal_phase": "return",
+      "wall_seconds": 0.0018639599999801248,
+      "cpu_seconds": 0.0018661169999916183,
+      "enter_elapsed_s": 134.67004253300001,
+      "exit_elapsed_s": 134.671906493
+    },
+    {
+      "operation": "perceive",
+      "step": 1,
+      "camera": "wide",
+      "terminal_phase": "return",
+      "wall_seconds": 21.213460722000036,
+      "cpu_seconds": 21.211945385999996,
+      "enter_elapsed_s": 113.45856938999998,
+      "exit_elapsed_s": 134.67203011200002
+    },
+    {
+      "operation": "capture",
+      "step": 1,
+      "camera": null,
+      "terminal_phase": "return",
+      "wall_seconds": 41.58091979599999,
+      "cpu_seconds": 41.580596807000006,
+      "enter_elapsed_s": 93.233668582,
+      "exit_elapsed_s": 134.814588378
+    },
+    {
+      "operation": "task_step",
+      "step": 2,
+      "camera": "road",
+      "terminal_phase": "return",
+      "wall_seconds": 21.198830447000034,
+      "cpu_seconds": 21.196937255999984,
+      "enter_elapsed_s": 134.815659558,
+      "exit_elapsed_s": 156.01449000500003
+    },
+    {
+      "operation": "get_rgb",
+      "step": 2,
+      "camera": "road",
+      "terminal_phase": "return",
+      "wall_seconds": 0.001696225999978651,
+      "cpu_seconds": 0.0016977890000191564,
+      "enter_elapsed_s": 156.01457273800003,
+      "exit_elapsed_s": 156.016268964
+    },
+    {
+      "operation": "perceive",
+      "step": 2,
+      "camera": "road",
+      "terminal_phase": "return",
+      "wall_seconds": 21.20078564900001,
+      "cpu_seconds": 21.198889786000024,
+      "enter_elapsed_s": 134.81559099700002,
+      "exit_elapsed_s": 156.01637664600003
+    }
+  ],
+  "active_entries": [
+    {
+      "event": "capture.enter",
+      "step": 2,
+      "camera": null,
+      "entered_elapsed_s": 134.81555553100003,
+      "entered_cpu_s": 135.083389213
+    },
+    {
+      "event": "perceive.enter",
+      "step": 2,
+      "camera": "wide",
+      "entered_elapsed_s": 156.01814993200003,
+      "entered_cpu_s": 156.284088892
+    },
+    {
+      "event": "task_step.enter",
+      "step": 2,
+      "camera": "wide",
+      "entered_elapsed_s": 156.018234134,
+      "entered_cpu_s": 156.284172074
+    }
+  ],
+  "timed_python_snapshots": [
+    {
+      "snapshot": 1,
+      "python_frames": [
+        "File \"/opt/venv/lib/python3.11/site-packages/metadrive/engine/base_engine.py\", line 395 in reset",
+        "File \"/opt/venv/lib/python3.11/site-packages/metadrive/envs/base_env.py\", line 532 in reset",
+        "File \"/work/repo/bigbench/metadrive_camera.py\", line 144 in start",
+        "File \"/work/repo/bigbench/metadrive_camera.py\", line 122 in __init__",
+        "File \"/work/repo/scripts/sdk3_capture_progress_native.py\", line 44 in run_native",
+        "File \"/work/repo/scripts/sdk3_capture_progress_native.py\", line 79 in main",
+        "File \"/work/repo/scripts/sdk3_capture_progress_native.py\", line 83 in <module>"
+      ],
+      "contains_render_frame": true,
+      "render_frame_source_mapping": "frozen-stack-source.json",
+      "contains_task_step": false,
+      "contains_original_capture": false
+    },
+    {
+      "snapshot": 2,
+      "python_frames": [
+        "File \"/opt/venv/lib/python3.11/site-packages/metadrive/engine/base_engine.py\", line 395 in reset",
+        "File \"/opt/venv/lib/python3.11/site-packages/metadrive/envs/base_env.py\", line 532 in reset",
+        "File \"/work/repo/bigbench/metadrive_camera.py\", line 144 in start",
+        "File \"/work/repo/bigbench/metadrive_camera.py\", line 122 in __init__",
+        "File \"/work/repo/scripts/sdk3_capture_progress_native.py\", line 44 in run_native",
+        "File \"/work/repo/scripts/sdk3_capture_progress_native.py\", line 79 in main",
+        "File \"/work/repo/scripts/sdk3_capture_progress_native.py\", line 83 in <module>"
+      ],
+      "contains_render_frame": true,
+      "render_frame_source_mapping": "frozen-stack-source.json",
+      "contains_task_step": false,
+      "contains_original_capture": false
+    },
+    {
+      "snapshot": 3,
+      "python_frames": [
+        "File \"/opt/venv/lib/python3.11/site-packages/direct/showbase/ShowBase.py\", line 2158 in __igLoop",
+        "File \"/opt/venv/lib/python3.11/site-packages/direct/task/Task.py\", line 504 in step",
+        "File \"/opt/venv/lib/python3.11/site-packages/metadrive/envs/base_env.py\", line 535 in reset",
+        "File \"/work/repo/bigbench/metadrive_camera.py\", line 144 in start",
+        "File \"/work/repo/bigbench/metadrive_camera.py\", line 122 in __init__",
+        "File \"/work/repo/scripts/sdk3_capture_progress_native.py\", line 44 in run_native",
+        "File \"/work/repo/scripts/sdk3_capture_progress_native.py\", line 79 in main",
+        "File \"/work/repo/scripts/sdk3_capture_progress_native.py\", line 83 in <module>"
+      ],
+      "contains_render_frame": true,
+      "render_frame_source_mapping": "frozen-stack-source.json",
+      "contains_task_step": true,
+      "contains_original_capture": false
+    },
+    {
+      "snapshot": 4,
+      "python_frames": [
+        "File \"/opt/venv/lib/python3.11/site-packages/direct/showbase/ShowBase.py\", line 2158 in __igLoop",
+        "File \"/opt/venv/lib/python3.11/site-packages/direct/task/Task.py\", line 504 in step",
+        "File \"/work/repo/scripts/sdk3_capture_progress.py\", line 79 in wrapped",
+        "File \"/opt/venv/lib/python3.11/site-packages/metadrive/component/sensors/base_camera.py\", line 183 in perceive",
+        "File \"/work/repo/scripts/sdk3_capture_progress.py\", line 79 in wrapped",
+        "File \"/work/repo/bigbench/native_model_campaign.py\", line 76 in capture",
+        "File \"/work/repo/scripts/sdk3_capture_progress.py\", line 79 in wrapped",
+        "File \"/work/repo/scripts/sdk3_capture_progress_native.py\", line 60 in run_native",
+        "File \"/work/repo/scripts/sdk3_capture_progress_native.py\", line 79 in main",
+        "File \"/work/repo/scripts/sdk3_capture_progress_native.py\", line 83 in <module>"
+      ],
+      "contains_render_frame": true,
+      "render_frame_source_mapping": "frozen-stack-source.json",
+      "contains_task_step": true,
+      "contains_original_capture": true
+    },
+    {
+      "snapshot": 5,
+      "python_frames": [
+        "File \"/opt/venv/lib/python3.11/site-packages/direct/showbase/ShowBase.py\", line 2158 in __igLoop",
+        "File \"/opt/venv/lib/python3.11/site-packages/direct/task/Task.py\", line 504 in step",
+        "File \"/work/repo/scripts/sdk3_capture_progress.py\", line 79 in wrapped",
+        "File \"/opt/venv/lib/python3.11/site-packages/metadrive/component/sensors/base_camera.py\", line 183 in perceive",
+        "File \"/work/repo/scripts/sdk3_capture_progress.py\", line 79 in wrapped",
+        "File \"/work/repo/bigbench/native_model_campaign.py\", line 76 in capture",
+        "File \"/work/repo/scripts/sdk3_capture_progress.py\", line 79 in wrapped",
+        "File \"/work/repo/scripts/sdk3_capture_progress_native.py\", line 60 in run_native",
+        "File \"/work/repo/scripts/sdk3_capture_progress_native.py\", line 79 in main",
+        "File \"/work/repo/scripts/sdk3_capture_progress_native.py\", line 83 in <module>"
+      ],
+      "contains_render_frame": true,
+      "render_frame_source_mapping": "frozen-stack-source.json",
+      "contains_task_step": true,
+      "contains_original_capture": true
+    }
+  ],
+  "proc_before_kill_raw_counters": {
+    "state": "R",
+    "user_ticks": 15720,
+    "system_ticks": 305,
+    "rss_pages": 1159373,
+    "wchan": "0",
+    "clock_tick_conversion_not_used": true
+  },
+  "native_gpu_stack_unobserved": true,
+  "deadlock_proven": false,
+  "unique_cause_proven": false,
+  "repair_proven": false,
+  "stage7_complete": false
+}

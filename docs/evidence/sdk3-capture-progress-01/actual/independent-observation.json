@@ -1,0 +1,259 @@
+{
+  "run_id": 43877667984,
+  "workflow_id": 420168670,
+  "head_sha": "d9eed91761b927989a3ca3b6e32f933f036a5883",
+  "source_sha": "e4a5cfcf1581272692f131caa75e1b3ee97a0290",
+  "workflow_conclusion": "success",
+  "artifact_id": 14231675746,
+  "artifact_size": 1796462,
+  "artifact_digest": "sha256:d3f86c502a03033b32a2f3bfc79ac643b961c52c6ab0efa77f21a31fb287491c",
+  "producer_summary": {
+    "status": "TRACE_RECORDED_NATIVE_TIMEOUT",
+    "known_renderer_processes": 1,
+    "renderer_spawn_attempts": 1,
+    "official_model_processes": 0,
+    "onnx_inferences": 0,
+    "repair_proven": false,
+    "stage7_complete": false,
+    "source_sha": "e4a5cfcf1581272692f131caa75e1b3ee97a0290",
+    "host_memory": {
+      "MemTotal": 16759308288,
+      "MemAvailable": 14847926272
+    },
+    "nonce": "2a3ae18147d8bc89a438d1e489ee5165",
+    "execution": {
+      "status": "EXIT_OBSERVED",
+      "returncode": 1,
+      "failure": null,
+      "stopped_state": {
+        "Status": "exited",
+        "Running": false,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 0,
+        "ExitCode": 1,
+        "Error": "",
+        "StartedAt": "2026-11-16T13:41:09.749294412Z",
+        "FinishedAt": "2026-11-16T13:43:50.136517706Z"
+      },
+      "create_attempted": true,
+      "start_attempted": true,
+      "container_id": "196a555c9d6a60b7651aaa4912367c4dcbd15f4b89c71a80645587f7ee802fc4",
+      "ownership_unresolved": false,
+      "owned_container_removed": true,
+      "cleanup_failure": null
+    },
+    "native_completed": false,
+    "renderer_diagnostic_passed": false
+  },
+  "analysis_validated": true,
+  "official_model_processes": 0,
+  "onnx_inferences": 0,
+  "original_matrix_passed": 3,
+  "original_matrix_total": 4,
+  "original_matrix_gate_passed": false,
+  "repair_proven": false,
+  "stage7_complete": false,
+  "observed_softpipe_and_initial_task_membership_match": true,
+  "analysis": {
+    "status": "TRACE_RECORDED_NATIVE_TIMEOUT",
+    "native_completed": false,
+    "renderer_diagnostic_passed": false,
+    "process_uuid": "b16eff4d253d409b9f7c4ed23254db41",
+    "pid": 10,
+    "container_id": "196a555c9d6a60b7651aaa4912367c4dcbd15f4b89c71a80645587f7ee802fc4",
+    "native_returncode": -9,
+    "known_renderer_processes": 1,
+    "completed_capture_returns": 1,
+    "persisted_capture_count": 1,
+    "verified_source_images": 2,
+    "completed_prefix_matches_reference": true,
+    "source_image_equivalence": null,
+    "active_boundaries": [
+      {
+        "operation": "capture",
+        "step": 2,
+        "camera": null
+      },
+      {
+        "operation": "perceive",
+        "step": 2,
+        "camera": "wide"
+      },
+      {
+        "operation": "task_step",
+        "step": 2,
+        "camera": "wide"
+      }
+    ],
+    "proc_snapshot_availability": {
+      "available": [
+        "stat",
+        "status",
+        "wchan"
+      ],
+      "unavailable": []
+    },
+    "last_event": {
+      "seq": 31,
+      "elapsed_s": 156.018234134,
+      "cpu_s": 156.284172074,
+      "identity": {
+        "pid": 10,
+        "nonce": "2a3ae18147d8bc89a438d1e489ee5165",
+        "protocol": "sdk3-capture-progress-v1"
+      },
+      "event": "task_step.enter",
+      "step": 2,
+      "camera": "wide",
+      "metadata": {}
+    },
+    "progress_records": 31,
+    "timed_stack_dumps": 5,
+    "official_model_processes": 0,
+    "onnx_inferences": 0,
+    "original_matrix_passed": 3,
+    "original_matrix_total": 4,
+    "original_matrix_gate_passed": false,
+    "gpu_pixel_owner_proven": false,
+    "unique_cause_proven": false,
+    "repair_proven": false,
+    "stage7_complete": false
+  },
+  "native-child": {
+    "spawn_attempted": true,
+    "pid": 10,
+    "returncode": -9,
+    "server_returncode": 0,
+    "container_cgroup_after_child": {
+      "memory.max": "10737418240",
+      "memory.peak": "5820428288",
+      "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+    }
+  },
+  "watchdog": {
+    "pid": 10,
+    "timeout_seconds": 160,
+    "timed_out": true,
+    "child_returncode": -9,
+    "server_returncode": 0,
+    "proc_before_kill": {
+      "stat": "10 (python) R 1 1 1 0 -1 4194560 1749906 379 0 0 15720 305 0 0 20 0 6 0 20011 5948706816 1159373 18446744073709551615 93828977573888 93828977574249 140725371733072 0 0 0 0 16781312 1258 0 0 0 17 2 0 0 0 0 0 93828977585560 93828977586192 93829469306880 140725371739667 140725371739842 140725371739842 140725371740131 0\n",
+      "status": "Name:\tpython\nUmask:\t0022\nState:\tR (running)\nTgid:\t10\nNgid:\t0\nPid:\t10\nPPid:\t1\nTracerPid:\t0\nUid:\t65534\t65534\t65534\t65534\nGid:\t65534\t65534\t65534\t65534\nFDSize:\t64\nGroups:\t65534 \nNStgid:\t10\nNSpid:\t10\nNSpgid:\t1\nNSsid:\t1\nKthread:\t0\nVmPeak:\t 6909124 kB\nVmSize:\t 5809284 kB\nVmLck:\t       0 kB\nVmPin:\t       0 kB\nVmHWM:\t 5766200 kB\nVmRSS:\t 4637776 kB\nRssAnon:\t 4454524 kB\nRssFile:\t  183252 kB\nRssShmem:\t       0 kB\nVmData:\t 5017920 kB\nVmStk:\t     132 kB\nVmExe:\t       4 kB\nVmLib:\t  459860 kB\nVmPTE:\t   10100 kB\nVmSwap:\t       0 kB\nHugetlbPages:\t       0 kB\nCoreDumping:\t0\nTHP_enabled:\t1\nuntag_mask:\t0xffffffffffffffff\nThreads:\t6\nSigQ:\t0/58109\nSigPnd:\t0000000000000000\nShdPnd:\t0000000000000000\nSigBlk:\t0000000000000000\nSigIgn:\t0000000001001000\nSigCgt:\t00000001000004ea\nCapInh:\t0000000000000000\nCapPrm:\t0000000000000000\nCapEff:\t0000000000000000\nCapBnd:\t0000000000000000\nCapAmb:\t0000000000000000\nNoNewPrivs:\t1\nSeccomp:\t2\nSeccomp_filters:\t1\nSpeculation_Store_Bypass:\tvulnerable\nSpeculationIndirectBranch:\talways enabled\nCpus_allowed:\tf\nCpus_allowed_list:\t0-3\nMems_allowed:\t00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000001\nMems_allowed_list:\t0\nvoluntary_ctxt_switches:\t110\nnonvoluntary_ctxt_switches:\t1186\nx86_Thread_features:\t\nx86_Thread_features_locked:\t\n",
+      "wchan": "0"
+    },
+    "elapsed_s": 160.16803707100001
+  },
+  "report": {
+    "protocol": "sdk3-capture-progress-v1",
+    "status": "INCOMPLETE",
+    "pid": 10,
+    "process_uuid": "b16eff4d253d409b9f7c4ed23254db41",
+    "nonce": "2a3ae18147d8bc89a438d1e489ee5165",
+    "repeat": 0,
+    "seed": 20261110,
+    "scenario": "s_curve_left_right",
+    "official_model_processes": 0,
+    "onnx_inferences": 0,
+    "model_weights_used": false,
+    "repair_proven": false,
+    "stage7_complete": false,
+    "provider_closed": false,
+    "captures": [
+      {
+        "step": 1,
+        "pose": {
+          "t": 0.0,
+          "x": 65.4052721645879,
+          "y": 0.26625325426066837,
+          "heading": 0.09843656981248028,
+          "speed": 8.0
+        },
+        "road_sha256": "061381a011d53d5cfd9c00db2efc3c7d9331cfef1d2e13cc741722af1694d14a",
+        "wide_sha256": "5beed42f80a4ee6e6a05b1ddcee016d93d1e0c2d021ee5f55cb8e1bffe901417",
+        "images": [
+          {
+            "camera": "road",
+            "file": "step1-road.rgb.zlib",
+            "shape": [
+              604,
+              964,
+              3
+            ],
+            "sha256": "061381a011d53d5cfd9c00db2efc3c7d9331cfef1d2e13cc741722af1694d14a",
+            "raw_bytes": 1746768,
+            "compressed_bytes": 860863
+          },
+          {
+            "camera": "wide",
+            "file": "step1-wide.rgb.zlib",
+            "shape": [
+              604,
+              964,
+              3
+            ],
+            "sha256": "5beed42f80a4ee6e6a05b1ddcee016d93d1e0c2d021ee5f55cb8e1bffe901417",
+            "raw_bytes": 1746768,
+            "compressed_bytes": 898845
+          }
+        ],
+        "task_frame_count_delta": 2
+      }
+    ],
+    "checkpoint": "CAPTURE_ENTER",
+    "core_sha256": "8b0372f1df91a930f18b2551f7fde5d5687e21bc79dee9ecd0dd2018cba72490",
+    "panda_version": "1.10.13",
+    "sdk_sha256": "27cd80fb1c06feaa7da8b5658cce918d1e3ab71c304a0c0ce42e30688ac008f3",
+    "reference_sha256": "93fc180b15fafb4c8904fa902583935be96e0bc92cacb53d401106946b5d17af",
+    "base_camera_sha256": "23d90c3d12894f855ae64d4607c03f3bf34e31e28dd7f5ce82bd0ddc7b37faf5",
+    "tasks_before": [
+      "PSSM.update",
+      "collisionLoop",
+      "dataLoop",
+      "eventManager",
+      "igLoop",
+      "ivalLoop",
+      "resetPrevTransform",
+      "update main chase camera"
+    ],
+    "driver": {
+      "vendor": "Mesa",
+      "renderer": "softpipe",
+      "version": "3.3 (Compatibility Profile) Mesa 25.2.8-0ubuntu0.24.04.4"
+    },
+    "active_step": 2,
+    "server_returncode": 0,
+    "child_finalized_before_server_stop": true
+  },
+  "execution": {
+    "status": "EXIT_OBSERVED",
+    "returncode": 1,
+    "failure": null,
+    "stopped_state": {
+      "Status": "exited",
+      "Running": false,
+      "Paused": false,
+      "Restarting": false,
+      "OOMKilled": false,
+      "Dead": false,
+      "Pid": 0,
+      "ExitCode": 1,
+      "Error": "",
+      "StartedAt": "2026-11-16T13:41:09.749294412Z",
+      "FinishedAt": "2026-11-16T13:43:50.136517706Z"
+    },
+    "create_attempted": true,
+    "start_attempted": true,
+    "container_id": "196a555c9d6a60b7651aaa4912367c4dcbd15f4b89c71a80645587f7ee802fc4",
+    "ownership_unresolved": false,
+    "owned_container_removed": true,
+    "cleanup_failure": null
+  },
+  "job_log": {
+    "job_id": 133334855193,
+    "nbytes": 43005,
+    "sha256": "2cde2c3791ddd67a9c903259fb5c5d7d5770647d54101de8aae35479b59c7ef4"
+  }
+}
