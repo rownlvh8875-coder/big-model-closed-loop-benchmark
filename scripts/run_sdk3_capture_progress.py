@@ -1,6 +1,6 @@
 """Authenticate one bounded zero-model capture-progress observation."""
 from __future__ import annotations
-import argparse,hashlib,json,os,shutil,subprocess,sys
+import argparse,hashlib,json,os,re,shutil,subprocess,sys
 from pathlib import Path
 from types import FunctionType
 if __name__=='__main__':sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
@@ -16,6 +16,26 @@ def native_command(*args,**kwargs):
     command=prior.native_command(*args,**kwargs);i=command.index(OLD_ENTRY);command[i]=ENTRY;return command
 
 
+def validate_proc_snapshot(snapshot,pid):
+    names=('stat','status','wchan');allowed={n for name in names for n in (name,name+'_error')}
+    p.need(isinstance(snapshot,dict) and set(snapshot)<=allowed,'declared proc snapshot fields')
+    for name in names:
+        p.need((name in snapshot)!=(name+'_error' in snapshot),'explicit available/unavailable proc field')
+    p.need(all(type(value) is str and 0<len(value.encode())<=16384 for value in snapshot.values()),'bounded proc strings')
+    p.need('stat' in snapshot,'actual child stat required,not errors-only evidence')
+    stat=snapshot['stat'];head,separator,tail=stat.rpartition(')');p.need(bool(separator) and head.startswith(str(pid)+' ('),'proc stat PID bound to child')
+    fields=tail.split();p.need(len(fields)>=22 and fields[0] in ('R','S','D','Z','T','t','X','x','K','W','P','I'),'proc stat structure')
+    try:values=[int(value) for value in fields[1:]]
+    except ValueError as error:raise ValueError('proc stat numeric fields') from error
+    p.need(values[10]>=0 and values[11]>=0 and values[20]>=0,'proc CPU/RSS fields')
+    if 'status' in snapshot:p.need(re.findall(r'^Pid:\s+(\d+)\s*$',snapshot['status'],re.MULTILINE)==[str(pid)],'proc status PID bound to child')
+    return dict(available=[n for n in names if n in snapshot],unavailable=[n for n in names if n+'_error' in snapshot])
+
+
+def observation_summary(summary,analysis):
+    return dict(summary,status=analysis['status'],native_completed=analysis['native_completed'],renderer_diagnostic_passed=analysis['renderer_diagnostic_passed'])
+
+
 def validate_receipt(folder,reference_path,nonce):
     folder=Path(folder);reference_path=Path(reference_path)
     def read(name):return json.loads((folder/name).read_text())
@@ -29,8 +49,9 @@ def validate_receipt(folder,reference_path,nonce):
     p.need(r.get('core_sha256')==p.CORE_SHA and r.get('sdk_sha256')==p.SDK_SHA and r.get('panda_version')=='1.10.13' and r.get('base_camera_sha256')=='23d90c3d12894f855ae64d4607c03f3bf34e31e28dd7f5ce82bd0ddc7b37faf5' and r.get('reference_sha256')==p.digest(reference_path),'actual frozen renderer and reference')
     p.need(all(type(r.get(k)) is int and r[k]==0 for k in ('official_model_processes','onnx_inferences')) and all(r.get(k) is False for k in ('model_weights_used','repair_proven','stage7_complete')),'zero-model observation only')
     p.need(w.get('timeout_seconds')==160 and type(w.get('timed_out')) is bool and type(w.get('elapsed_s')) in (int,float) and 0<=w['elapsed_s']<=180,'fixed watchdog receipt')
-    timed_out=w['timed_out'];rc=n.get('returncode');p.need(type(rc) is int and rc==w.get('child_returncode'),'known terminal native code')
-    if timed_out:p.need(rc==-9 and e.get('returncode')==state.get('ExitCode')==1 and w['elapsed_s']>=160 and bool(w.get('proc_before_kill')),'observed timeout/kill,never native PASS')
+    proc_availability=None;timed_out=w['timed_out'];rc=n.get('returncode');p.need(type(rc) is int and rc==w.get('child_returncode'),'known terminal native code')
+    if timed_out:
+        p.need(rc==-9 and e.get('returncode')==state.get('ExitCode')==1 and w['elapsed_s']>=160,'observed timeout/kill,never native PASS');proc_availability=validate_proc_snapshot(w.get('proc_before_kill'),pid)
     else:p.need(rc==0 and e.get('returncode')==state.get('ExitCode')==0 and r.get('provider_closed') is True and r.get('observers_restored') is True and r.get('ort_module_loaded') is False and r.get('extra_gpu_queries')==r.get('extra_render_tasks')==0,'complete finalized zero-model capture')
     rows=read_journal(folder/'progress.jsonl');p.need(all(row['identity']==dict(pid=pid,nonce=nonce,protocol='sdk3-capture-progress-v1') for row in rows),'all progress rows bound to actual child')
     active=[];returns=[]
@@ -41,6 +62,7 @@ def validate_receipt(folder,reference_path,nonce):
         else:
             active.pop()
             if operation=='capture' and phase=='return':returns.append(row['step'])
+    p.need(returns==list(range(1,len(returns)+1)),'successful capture steps form an exact prefix')
     captures=r.get('captures');p.need(isinstance(captures,list) and len(captures)<=7 and len(captures)<=len(returns)<=len(captures)+1,'durable completed captures,not assumed zero at timeout')
     matches=[];images_verified=0
     for step,record in enumerate(captures,1):
@@ -55,7 +77,8 @@ def validate_receipt(folder,reference_path,nonce):
     if timed_out:p.need('Timeout (' in stacks and 'File "' in stacks,'pre-timeout stacks retained')
     else:p.need(len(captures)==7 and not active and r.get('status')=='CAPTURE_REPLAY_RECORDED' and r.get('task_frame_count_delta')==14 and r.get('tasks_before')==r.get('tasks_after'),'complete original capture/tick/task protocol')
     prefix=all(matches) if matches else None;equivalent=(prefix if len(captures)==7 or prefix is False else None)
-    return dict(status='TRACE_RECORDED_NATIVE_TIMEOUT' if timed_out else 'TRACE_RECORDED_NATIVE_COMPLETED',native_completed=not timed_out,renderer_diagnostic_passed=not timed_out,process_uuid=r['process_uuid'],pid=pid,container_id=cid,native_returncode=rc,known_renderer_processes=1,completed_capture_returns=len(returns),persisted_capture_count=len(captures),verified_source_images=images_verified,completed_prefix_matches_reference=prefix,source_image_equivalence=equivalent,active_boundaries=active,last_event=rows[-1],progress_records=len(rows),timed_stack_dumps=stacks.count('Timeout ('),official_model_processes=0,onnx_inferences=0,original_matrix_passed=3,original_matrix_total=4,original_matrix_gate_passed=False,gpu_pixel_owner_proven=False,unique_cause_proven=False,repair_proven=False,stage7_complete=False)
+    status='TRACE_RECORDED_NATIVE_TIMEOUT' if timed_out else 'TRACE_RECORDED_NATIVE_COMPLETED' if equivalent is True else 'TRACE_RECORDED_NATIVE_COMPLETED_SOURCE_MISMATCH'
+    return dict(status=status,native_completed=not timed_out,renderer_diagnostic_passed=not timed_out and equivalent is True,process_uuid=r['process_uuid'],pid=pid,container_id=cid,native_returncode=rc,known_renderer_processes=1,completed_capture_returns=len(returns),persisted_capture_count=len(captures),verified_source_images=images_verified,completed_prefix_matches_reference=prefix,source_image_equivalence=equivalent,active_boundaries=active,proc_snapshot_availability=proc_availability,last_event=rows[-1],progress_records=len(rows),timed_stack_dumps=stacks.count('Timeout ('),official_model_processes=0,onnx_inferences=0,original_matrix_passed=3,original_matrix_total=4,original_matrix_gate_passed=False,gpu_pixel_owner_proven=False,unique_cause_proven=False,repair_proven=False,stage7_complete=False)
 
 
 def authenticate_source(bundle):
@@ -93,7 +116,7 @@ def run():
         summary['execution']=function('sdk3-progress-'+os.environ['GITHUB_RUN_ID'],sdk,bundle/'renderer',['--repeat','0','--nonce',nonce])
         path=bundle/'renderer/native-child.json'
         if path.exists():n=json.loads(path.read_text());summary.update(known_renderer_processes=int(type(n.get('pid')) is int and n['pid']>0),renderer_spawn_attempts=int(n.get('spawn_attempted') is True))
-        p.write(bundle/'summary.json',summary);analysis=validate_receipt(bundle/'renderer',reference_path,nonce);p.write(bundle/'analysis.json',analysis);summary.update(status=analysis['status'],native_completed=analysis['native_completed'],renderer_diagnostic_passed=analysis['renderer_diagnostic_passed']);p.write(bundle/'summary.json',summary);print(json.dumps(summary));return summary
+        p.write(bundle/'summary.json',summary);analysis=validate_receipt(bundle/'renderer',reference_path,nonce);p.write(bundle/'analysis.json',analysis);summary=observation_summary(summary,analysis);p.write(bundle/'summary.json',summary);print(json.dumps(summary));return summary
     except BaseException as error:summary['failure']=type(error).__name__+': '+str(error);p.write(bundle/'summary.json',summary);raise
 
 

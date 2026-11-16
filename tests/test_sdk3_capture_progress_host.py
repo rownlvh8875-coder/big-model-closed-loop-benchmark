@@ -22,7 +22,7 @@ class Admission(unittest.TestCase):
         for camera in ('road','wide'):
             name='step1-'+camera+'.rgb.zlib';compressed=zlib.compress(raw);(dest/name).write_bytes(compressed);images.append(dict(camera=camera,file=name,shape=[604,964,3],sha256=sha,raw_bytes=len(raw),compressed_bytes=len(compressed)))
         report=dict(protocol='sdk3-capture-progress-v1',status='INCOMPLETE',pid=11,process_uuid='12'*16,nonce=nonce,repeat=0,seed=20261110,scenario='s_curve_left_right',core_sha256=p.CORE_SHA,sdk_sha256=p.SDK_SHA,panda_version='1.10.13',base_camera_sha256='23d90c3d12894f855ae64d4607c03f3bf34e31e28dd7f5ce82bd0ddc7b37faf5',reference_sha256=p.digest(refpath),official_model_processes=0,onnx_inferences=0,model_weights_used=False,repair_proven=False,stage7_complete=False,provider_closed=False,checkpoint='CAPTURE_ENTER',active_step=2,driver=dict(renderer='softpipe'),tasks_before=['igLoop','PSSM.update','update main chase camera'],captures=[dict(step=1,pose=dict(t=0.,x=0.,y=0.,heading=0.,speed=8.),road_sha256=sha,wide_sha256=sha,images=images)])
-        write(dest/'report.json',report);write(dest/'native-child.json',dict(spawn_attempted=True,pid=11,returncode=-9,server_returncode=0));write(dest/'watchdog.json',dict(pid=11,timeout_seconds=160,timed_out=True,child_returncode=-9,server_returncode=0,elapsed_s=160.1,proc_before_kill={'stat':'11 (python) R 1'}))
+        write(dest/'report.json',report);write(dest/'native-child.json',dict(spawn_attempted=True,pid=11,returncode=-9,server_returncode=0));write(dest/'watchdog.json',dict(pid=11,timeout_seconds=160,timed_out=True,child_returncode=-9,server_returncode=0,elapsed_s=160.1,proc_before_kill={'stat':'11 '+Path('/proc/self/stat').read_text().split(' ',1)[1],'status':'Name:\tpython\nPid:\t11\n','wchan':'0'}))
         write(dest/'execution.json',dict(returncode=1,failure=None,ownership_unresolved=False,owned_container_removed=True,container_id=cid,stopped_state=dict(Running=False,Pid=0,OOMKilled=False,ExitCode=1)))
         write(dest/'container.json',dict(id=cid,name='test-progress',image=p.IMAGE,ownership_label=owner,effective_limits=PROFILE));cmd=h.native_command('test-progress',root,root/'sdk',dest,['--repeat','0','--nonce',nonce],reference=refpath,owner=owner);write(dest/'command.json',dict(argv=cmd,ownership_label=owner))
         j=Journal(dest,identity);c=Camera()
@@ -54,21 +54,24 @@ class Admission(unittest.TestCase):
             path.write_bytes(raw);(dest/'step1-road.rgb.zlib').write_bytes(zlib.compress(b'wrong'))
             with self.assertRaises(ValueError):h.validate_receipt(dest,ref,nonce)
 
+    def complete_fixture(self,d):
+        dest,ref,nonce=self.fixture(d);r=json.loads((dest/'report.json').read_text());reference=json.loads(ref.read_text());first=r['captures'][0];captures=[]
+        for step in range(1,8):
+            c=copy.deepcopy(first);c['step']=step
+            if step>1:c['pose']=reference['previous_states'][step-2]
+            for image in c['images']:
+                old=dest/image['file'];image['file']=f"step{step}-{image['camera']}.rgb.zlib";(dest/image['file']).write_bytes(old.read_bytes())
+            captures.append(c)
+        r.update(captures=captures,status='CAPTURE_REPLAY_RECORDED',provider_closed=True,observers_restored=True,ort_module_loaded=False,extra_gpu_queries=0,extra_render_tasks=0,tasks_after=r['tasks_before'],task_frame_count_delta=14);write(dest/'report.json',r)
+        n=json.loads((dest/'native-child.json').read_text());n['returncode']=0;write(dest/'native-child.json',n);w=json.loads((dest/'watchdog.json').read_text());w.update(timed_out=False,child_returncode=0,elapsed_s=2.,proc_before_kill={});write(dest/'watchdog.json',w);e=json.loads((dest/'execution.json').read_text());e['returncode']=0;e['stopped_state']['ExitCode']=0;write(dest/'execution.json',e)
+        (dest/'progress.jsonl').unlink();j=Journal(dest,dict(pid=11,nonce=nonce,protocol='sdk3-capture-progress-v1'));c=Camera()
+        with observe(c,j):
+            for _ in range(7):c.capture(None)
+        j.close()
+        return dest,ref,nonce
     def test_complete_seven_pose_source_match_is_still_not_original_gate(self):
         with tempfile.TemporaryDirectory() as d:
-            dest,ref,nonce=self.fixture(d);r=json.loads((dest/'report.json').read_text());reference=json.loads(ref.read_text());first=r['captures'][0];captures=[]
-            for step in range(1,8):
-                c=copy.deepcopy(first);c['step']=step
-                if step>1:c['pose']=reference['previous_states'][step-2]
-                for image in c['images']:
-                    old=dest/image['file'];image['file']=f"step{step}-{image['camera']}.rgb.zlib";(dest/image['file']).write_bytes(old.read_bytes())
-                captures.append(c)
-            r.update(captures=captures,status='CAPTURE_REPLAY_RECORDED',provider_closed=True,observers_restored=True,ort_module_loaded=False,extra_gpu_queries=0,extra_render_tasks=0,tasks_after=r['tasks_before'],task_frame_count_delta=14);write(dest/'report.json',r)
-            n=json.loads((dest/'native-child.json').read_text());n['returncode']=0;write(dest/'native-child.json',n);w=json.loads((dest/'watchdog.json').read_text());w.update(timed_out=False,child_returncode=0,elapsed_s=2.,proc_before_kill={});write(dest/'watchdog.json',w);e=json.loads((dest/'execution.json').read_text());e['returncode']=0;e['stopped_state']['ExitCode']=0;write(dest/'execution.json',e)
-            (dest/'progress.jsonl').unlink();j=Journal(dest,dict(pid=11,nonce=nonce,protocol='sdk3-capture-progress-v1'));c=Camera()
-            with observe(c,j):
-                for _ in range(7):c.capture(None)
-            j.close();result=h.validate_receipt(dest,ref,nonce);self.assertTrue(result['native_completed']);self.assertTrue(result['source_image_equivalence']);self.assertEqual(result['verified_source_images'],14);self.assertFalse(result['original_matrix_gate_passed']);self.assertFalse(result['repair_proven'])
+            dest,ref,nonce=self.complete_fixture(d);result=h.validate_receipt(dest,ref,nonce);self.assertTrue(result['native_completed']);self.assertTrue(result['source_image_equivalence']);self.assertEqual(result['verified_source_images'],14);self.assertFalse(result['original_matrix_gate_passed']);self.assertFalse(result['repair_proven'])
     def test_retained_source_mismatch_remains_inconclusive(self):
         with tempfile.TemporaryDirectory() as d:
             dest,ref,nonce=self.fixture(d);reference=json.loads(ref.read_text());reference['prefix_sha256'][0]['road']='00'*32;write(ref,reference);r=json.loads((dest/'report.json').read_text());r['reference_sha256']=p.digest(ref);write(dest/'report.json',r);result=h.validate_receipt(dest,ref,nonce);self.assertFalse(result['completed_prefix_matches_reference']);self.assertFalse(result['source_image_equivalence']);self.assertFalse(result['repair_proven'])

@@ -23,7 +23,7 @@ class Journal:
 def read_journal(path):
     with Path(path).open('rb') as f:raw=f.read(MAX_BYTES+1)
     if not raw or len(raw)>MAX_BYTES or not raw.endswith(b'\n'):raise ValueError('missing/truncated/oversized progress journal')
-    lines=raw.splitlines();rows=[];stack=[];identity=None;last_wall=last_cpu=0.;last_capture=0
+    lines=raw.splitlines();rows=[];stack=[];identity=None;last_wall=last_cpu=0.;last_capture=0;terminal_error=False
     if len(lines)>MAX_EVENTS:raise ValueError('too many progress records')
     for seq,line in enumerate(lines,1):
         if len(line)+1>MAX_LINE:raise ValueError('oversized progress line')
@@ -44,13 +44,22 @@ def read_journal(path):
             key=(operation,row['step'],row['camera'])
             if phase=='enter':
                 if operation=='capture':
-                    if stack or row['step']!=last_capture+1 or row['camera'] is not None:raise ValueError('capture order')
+                    if terminal_error or stack or row['step']!=last_capture+1 or row['camera'] is not None:raise ValueError('capture order')
                     last_capture=row['step']
-                elif not stack or stack[0][0]!='capture' or row['step']!=last_capture:raise ValueError('boundary outside capture')
-                if operation=='perceive' and (stack[-1][0]!='capture' or row['camera'] not in ('road','wide')):raise ValueError('perceive parent')
-                if operation in ('get_rgb','task_step') and (stack[-1][0]!='perceive' or stack[-1][2]!=row['camera']):raise ValueError('sensor operation parent')
-                stack.append(key)
-            elif not stack or stack.pop()!=key:raise ValueError('unbalanced progress boundary')
+                else:
+                    if not stack or row['step']!=last_capture:raise ValueError('boundary outside capture')
+                    parent=stack[-1]
+                    if parent['failed'] or parent['next']>=len(parent['expected']) or parent['expected'][parent['next']]!=(operation,row['camera']):raise ValueError('missing/reordered/duplicated original operation')
+                expected=([('perceive','road'),('perceive','wide')] if operation=='capture' else [('task_step',row['camera']),('get_rgb',row['camera'])] if operation=='perceive' else [])
+                stack.append(dict(key=key,expected=expected,next=0,failed=False))
+            else:
+                if not stack or stack[-1]['key']!=key:raise ValueError('unbalanced progress boundary')
+                frame=stack.pop()
+                if phase=='return' and (frame['failed'] or frame['next']!=len(frame['expected'])):raise ValueError('successful return omitted operations or swallowed an error')
+                if stack:
+                    if phase=='error':stack[-1]['failed']=True
+                    else:stack[-1]['next']+=1
+                elif phase=='error':terminal_error=True
         rows.append(row)
     return rows
 
