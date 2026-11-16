@@ -1,0 +1,24 @@
+test_version_definition_and_need_indices_cannot_overlap (tests.test_panda_provider_version_witness.VersionWitnessTests.test_version_definition_and_need_indices_cannot_overlap) ... 
+  test_version_definition_and_need_indices_cannot_overlap (tests.test_panda_provider_version_witness.VersionWitnessTests.test_version_definition_and_need_indices_cannot_overlap) (json_string_keys=False) ... FAIL
+  test_version_definition_and_need_indices_cannot_overlap (tests.test_panda_provider_version_witness.VersionWitnessTests.test_version_definition_and_need_indices_cannot_overlap) (json_string_keys=True) ... FAIL
+
+======================================================================
+FAIL: test_version_definition_and_need_indices_cannot_overlap (tests.test_panda_provider_version_witness.VersionWitnessTests.test_version_definition_and_need_indices_cannot_overlap) (json_string_keys=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_provider_version_witness.py", line 53, in test_version_definition_and_need_indices_cannot_overlap
+    with self.subTest(json_string_keys=roundtrip),self.assertRaises(ValueError):w.audit_graph(nodes,edges,policy)
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_version_definition_and_need_indices_cannot_overlap (tests.test_panda_provider_version_witness.VersionWitnessTests.test_version_definition_and_need_indices_cannot_overlap) (json_string_keys=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_provider_version_witness.py", line 53, in test_version_definition_and_need_indices_cannot_overlap
+    with self.subTest(json_string_keys=roundtrip),self.assertRaises(ValueError):w.audit_graph(nodes,edges,policy)
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 1 test in 0.128s
+
+FAILED (failures=2)

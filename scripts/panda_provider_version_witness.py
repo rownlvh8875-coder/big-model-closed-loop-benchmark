@@ -84,6 +84,7 @@ def _validate_nodes(nodes):
         need(type(meta['unsupported_features']) is list and
              all(type(s) is str for s in meta['unsupported_features']), 'unsupported feature list')
         definitions, requirements = meta['version_definitions'], meta['version_needs']
+        need(not set(definitions) & set(requirements), 'disjoint version definition/requirement indices')
         for key, value in definitions.items():
             need(int(key) >= 1 and type(value) is str and value, 'version definition')
         for key, value in requirements.items():

@@ -46,6 +46,11 @@ class VersionWitnessTests(unittest.TestCase):
             nodes,edges,policy=self.data();nodes[path]['version_definitions']={k:v for k,v in nodes[path]['version_definitions'].items() if v!='ABI_1'}
             with self.subTest(path=path):self.cannot_explain(nodes,edges,policy)
         nodes,edges,policy=self.data();policy['aliases']['liblegacy.so']['versions']=['ABI_2'];self.cannot_explain(nodes,edges,policy)
+    def test_version_definition_and_need_indices_cannot_overlap(self):
+        for roundtrip in [False,True]:
+            nodes,edges,policy=self.data();key=next(iter(nodes[self.consumer]['version_needs']));nodes[self.consumer]['version_definitions'][key]='CONTRADICTORY'
+            if roundtrip:nodes=json.loads(json.dumps(nodes))
+            with self.subTest(json_string_keys=roundtrip),self.assertRaises(ValueError):w.audit_graph(nodes,edges,policy)
     def test_wrong_names_versions_ifunc_types_and_unversioned_import_do_not_explain(self):
         changes=[lambda n:n[self.target]['exports'][next(i for i,s in enumerate(n[self.target]['exports']) if s['name']=='value')].update(name='other'),lambda n:n[self.target]['exports'][next(i for i,s in enumerate(n[self.target]['exports']) if s['name']=='value')].update(version='ABI_2'),lambda n:n[self.target]['exports'][next(i for i,s in enumerate(n[self.target]['exports']) if s['name']=='value')].update(symbol_type=10),lambda n:n[self.target]['exports'][next(i for i,s in enumerate(n[self.target]['exports']) if s['name']=='value')].update(symbol_type=1),lambda n:n[self.consumer]['imports'][0].update(version=None,version_library=None),lambda n:n[self.consumer]['imports'][0].update(symbol_type=True)]
         for change in changes:
