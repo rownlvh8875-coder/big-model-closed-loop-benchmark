@@ -22,8 +22,8 @@ Basef3bb85b6e692ecfd1efb54e2af3aabb93beb3c3e; all existing files unchanged; sour
 ### Task1: Host-only continuation and actual execution
 **Files:** Create scripts/continue_panda_sdk3_models.py,tests/test_continue_panda_sdk3_models.py,.github/workflows/panda-sdk3-model-final-case-v1.yml; own evidence.
 **Interfaces:** validate_source_delta(rows:list[str])->None; validate_case(folder:Path,seed:int,scene:str)->dict; copy_completed_cases(prior:Path,target:Path)->list[dict]; finalize_matrix(models:Path)->dict.
-- [ ] Add real JSON-fixture tests for all five review focuses; focused commandExpectedRED.
-- [ ] Implement exact provenance/byte-preserving composition/one missing pair/unchanged aggregate. FocusedExpectedGREEN;actionlint;commit/push.
-- [ ] Exact sourceCI4jobs/sole fresh review/one ImportantRED→GREEN pass if needed;no rereview. ExpectedGREEN before activation04.
-- [ ] Request-only04activation; observe exact native count2 and final recomputed four-case outcome; preserve negatives and actual source/Actions/artifact. Expectedhonest complete matrix,not necessarilyPASS.
-- [ ] Final report/PRbody/continuation,source preservation,final docHEADCI and output receipt. No Stage7 completion or merge while strict fails.
+- [x] Add real JSON-fixture tests for all five review focuses; focused commandExpectedRED.
+- [x] Implement exact provenance/byte-preserving composition/one missing pair/unchanged aggregate. FocusedExpectedGREEN;actionlint;commit/push.
+- [x] Exact sourceCI4jobs/sole fresh review/one ImportantRED→GREEN pass if needed;no rereview. ExpectedGREEN before activation04.
+- [x] Request-only04activation; observe exact native count2 and final recomputed four-case outcome; preserve negatives and actual source/Actions/artifact. Expectedhonest complete matrix,not necessarilyPASS.
+- [x] Final report/PRbody/continuation,source preservation,final docHEADCI and output receipt. No Stage7 completion or merge while strict fails.

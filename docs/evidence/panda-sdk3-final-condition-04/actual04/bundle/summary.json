@@ -1,0 +1,80 @@
+{
+  "status": "FOUR_CONDITION_CONTINUATION_RECOMPUTED",
+  "new_model_processes": 2,
+  "selected_matrix_processes": 8,
+  "stage7_complete": false,
+  "source_sha": "fce974e962dbc75b2abbb95fd1fd97ff064c334e",
+  "prior_glx": {
+    "selected_sdk_glx_qualified": true,
+    "verified_sdk_glx_children": 2,
+    "prior_model_cohort_qualified": false,
+    "prior_official_model_processes": 1,
+    "prior_strict_result": "NOT_RUN",
+    "full_object_abi_qualified": false,
+    "stage7_complete": false
+  },
+  "carried_cases": [
+    {
+      "seed": 20261109,
+      "scenario": "s_curve_left_right",
+      "strict_pass": true,
+      "origin_run": 43830776012,
+      "origin_artifact": 14212471670,
+      "origin_source": "f3bb85b6e692ecfd1efb54e2af3aabb93beb3c3e"
+    },
+    {
+      "seed": 20261109,
+      "scenario": "s_curve_right_left",
+      "strict_pass": true,
+      "origin_run": 43830776012,
+      "origin_artifact": 14212471670,
+      "origin_source": "f3bb85b6e692ecfd1efb54e2af3aabb93beb3c3e"
+    },
+    {
+      "seed": 20261110,
+      "scenario": "s_curve_left_right",
+      "strict_pass": false,
+      "origin_run": 43830776012,
+      "origin_artifact": 14212471670,
+      "origin_source": "f3bb85b6e692ecfd1efb54e2af3aabb93beb3c3e"
+    }
+  ],
+  "host_memory_before_model": {
+    "MemTotal": 16464306176,
+    "MemAvailable": 14789263360
+  },
+  "new_pair_execution": {
+    "status": "EXIT_OBSERVED",
+    "returncode": 0,
+    "failure": null,
+    "stopped_state": {
+      "Status": "exited",
+      "Running": false,
+      "Paused": false,
+      "Restarting": false,
+      "OOMKilled": false,
+      "Dead": false,
+      "Pid": 0,
+      "ExitCode": 0,
+      "Error": "",
+      "StartedAt": "2026-11-16T10:07:07.303430627Z",
+      "FinishedAt": "2026-11-16T10:22:24.083406439Z"
+    },
+    "create_attempted": true,
+    "start_attempted": true,
+    "container_id": "a141724fbc70f25049ff88e205528c05c326f0b799216ff90a58aef9d023e724",
+    "ownership_unresolved": false,
+    "owned_container_removed": true,
+    "cleanup_failure": null
+  },
+  "strict_pass_count": 3,
+  "strict_total": 4,
+  "strict_pass": false,
+  "new_condition": {
+    "seed": 20261110,
+    "scenario": "s_curve_right_left",
+    "origin_run": 43845729539,
+    "origin_source": "fce974e962dbc75b2abbb95fd1fd97ff064c334e"
+  },
+  "expansion_admitted": false
+}
