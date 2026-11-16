@@ -82,6 +82,11 @@ def validate_receipt(folder,reference_path,repeat,nonce):
     geometry=report.get('geometry',{});p.need(geometry.get('stage')=='AFTER_ORIGINAL_ROAD_CPU_READ_BEFORE_CAMERA_RESTORE' and geometry.get('borrowed_parent_is_origin') is True and geometry.get('source_viewport')==[0.,1.,0.,1.] and geometry.get('source_buffer_size')==[964,604],'CPU state from borrowed full-source camera')
     p.need(all(geometry.get(k) is False for k in ('cpu_scene_coverage_proven','gpu_pixel_owner_proven','depth_tie_proven','unique_cause_proven')) and geometry.get('cpu_sample_rays_not_msaa_positions') is True and geometry.get('cpu_net_state_not_actual_cull_draw_state') is True,'no CPU-to-GPU ownership/depth/causality overclaim')
     p.need(type(geometry.get('scan_finished_within_budget')) is bool,'explicit geometry truncation status')
+    budgets=dict(max_nodes=20_000,max_meshes=512,max_vertices=500_000,max_triangles=g.MAX_TRIANGLES,max_cpu_seconds=45);counts=geometry.get('counts',{});reasons=geometry.get('truncation_reasons');elapsed=geometry.get('cpu_scan_seconds')
+    p.need(geometry.get('budgets')==budgets and isinstance(reasons,list) and all(r in ('time_budget','node_budget','mesh_budget','vertex_budget','triangle_budget') for r in reasons),'fixed declared scan budgets and explicit omissions')
+    p.need(type(elapsed) in (int,float) and np.isfinite(elapsed) and elapsed>=0 and all(type(counts.get(k)) is int and 0<=counts[k]<=limit for k,limit in [('nodes_seen',20_000),('geoms_tested',512),('vertices_read',500_000),('triangles_tested',g.MAX_TRIANGLES)]),'bounded reported traversal counters')
+    if geometry['scan_finished_within_budget']:p.need(not reasons and elapsed<=45 and counts.get('oversize_skipped')==0,'completion cannot hide expired or skipped traversal')
+    else:p.need(bool(reasons),'incomplete scan must state a budget reason')
     triangles,ids=g.load_geometry_archive(folder/'geometry.npz',geometry['triangle_archive']);meshes=geometry['meshes'];p.need(geometry.get('counts',{}).get('triangles_tested')==len(triangles),'complete retained tested triangle count')
     cursor=0
     for index,mesh in enumerate(meshes):
@@ -89,7 +94,7 @@ def validate_receipt(folder,reference_path,repeat,nonce):
         selected=ids[cursor:end]
         p.need(np.all(selected[:,0]==index) and np.all(selected[:,3:]<mesh['vertex_count']) and all(row[1]<len(mesh['primitive_triangle_counts']) and row[2]<mesh['primitive_triangle_counts'][row[1]] for row in selected),'authentic source-index ranges')
         cursor=end
-    p.need(cursor==len(triangles),'every tested triangle has a source mesh')
+    p.need(cursor==len(triangles) and counts['geoms_tested']==len(meshes),'every tested triangle has a counted source mesh')
     rays=geometry['rays'];p.need([dict(name=r['name'],ndc=r['ndc']) for r in rays]==g.pixel_samples(964,604,596,494),'exact top-left center/corner ray labels')
     error=g.ray_projection_error(rays,geometry['camera_to_world'],geometry['lens_projection']);p.need(error<=1e-5,'CPU camera/lens ray reprojection,not an image tolerance')
     hits=g.all_ray_hits(triangles,rays);declared=geometry.get('hits');p.need(isinstance(declared,dict) and set(declared)==set(hits),'complete reported sample hit sets')

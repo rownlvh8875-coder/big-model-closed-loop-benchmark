@@ -1,0 +1,7 @@
+# Sole fresh review and one verified fix pass
+
+Read-only gpt-6-astra/high reviewed d02fefd..6cd5e3a;61focused/actionlint passed;21additions only;native/model0. Important1: under-I-S,NumPy was imported before pinned site enabled and before initial failure receipt. Important2: limits checked only between nodes;513geoms/100seconds could report complete,and exact triangle cap could omit remaining geometry without truncation. Reviewer MinorNPY bounds after allocation reproduced a470Barchive attempting72TB;executor regradedImportant because bounded decoding must bound shape before allocation.
+
+ONE fix pass,no rereview: initialize receipt+site before dependencies;isolated regressions stop before any Panda/SDK import. Check time within geom/vertex/primitive loops,exact limits only stop with explicit omission,host validatesbudget/completioncoherence. Preflight NPY magic/header dtype/shape/order/row count/exact byte extent before NumPy decoder. Every fix RED→GREEN;68combined tests/actionlintPASS. Raw original test output is retained losslessly in tdd-raw-logs.zip. Full canonicalCI required before native activation. No deferredMinors after regrading.
+
+Declined: real frozen-image Panda APIs/lens/buffer/geometry/nativefinalization;actual resources/artifacts/lifecycle/counts/independence;actual sevenpose source membership/candidates/coverage;remote exactCI/PR/request state;actual GPU ownership/MSAA/shader/cull/depth/draworder/uniquecause/repair/Stage7. Executor rulings retain each in ledger. CPU candidates do not establish them.

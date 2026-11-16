@@ -22,7 +22,7 @@ class ZeroModelAdmission(unittest.TestCase):
         captures=[dict(step=i+1,pose=reference['previous_states'][i-1] if i else dict(t=0.,x=0.,y=0.,heading=0.,speed=8.),road_sha256=road,wide_sha256=wide) for i in range(7)]
         rays=[dict(**sample,origin=[*sample['ndc'],-1.],direction=[0.,0.,1.],max_distance=2.) for sample in g.pixel_samples(964,604,596,494)]
         triangles=np.array([[[-1,-1,0],[1,-1,0],[0,1,0]]],dtype='<f8');ids=np.array([[0,0,0,0,1,2]],dtype='<i8');archive=g.save_geometry_archive(dest/'geometry.npz',triangles,ids)
-        geometry=dict(stage='AFTER_ORIGINAL_ROAD_CPU_READ_BEFORE_CAMERA_RESTORE',borrowed_parent_is_origin=True,source_viewport=[0.,1.,0.,1.],source_buffer_size=[964,604],camera_to_world=np.eye(4).tolist(),lens_projection=np.eye(4).tolist(),rays=rays,meshes=[dict(mesh_id=0,path='synthetic/road',vertex_count=3,source_primitive_count=1,primitive_triangle_counts=[1],triangle_start=0,triangle_end=1)],counts=dict(triangles_tested=1),triangle_archive=archive,hits=g.all_ray_hits(triangles,rays),scan_finished_within_budget=True,cpu_scene_coverage_proven=False,gpu_pixel_owner_proven=False,depth_tie_proven=False,unique_cause_proven=False,cpu_sample_rays_not_msaa_positions=True,cpu_net_state_not_actual_cull_draw_state=True)
+        geometry=dict(stage='AFTER_ORIGINAL_ROAD_CPU_READ_BEFORE_CAMERA_RESTORE',borrowed_parent_is_origin=True,source_viewport=[0.,1.,0.,1.],source_buffer_size=[964,604],camera_to_world=np.eye(4).tolist(),lens_projection=np.eye(4).tolist(),rays=rays,meshes=[dict(mesh_id=0,path='synthetic/road',vertex_count=3,source_primitive_count=1,primitive_triangle_counts=[1],triangle_start=0,triangle_end=1)],counts=dict(nodes_seen=1,geoms_tested=1,vertices_read=3,triangles_tested=1,oversize_skipped=0),triangle_archive=archive,hits=g.all_ray_hits(triangles,rays),scan_finished_within_budget=True,truncation_reasons=[],cpu_scan_seconds=.1,budgets=dict(max_nodes=20_000,max_meshes=512,max_vertices=500_000,max_triangles=500_000,max_cpu_seconds=45),cpu_scene_coverage_proven=False,gpu_pixel_owner_proven=False,depth_tie_proven=False,unique_cause_proven=False,cpu_sample_rays_not_msaa_positions=True,cpu_net_state_not_actual_cull_draw_state=True)
         images=[]
         for camera,raw in [('road',raw_road),('wide',raw_wide)]:
             name='step7-'+camera+'.rgb.zlib';compressed=zlib.compress(raw);(dest/name).write_bytes(compressed);images.append(dict(camera=camera,file=name,shape=[604,964,3],raw_bytes=len(raw),compressed_bytes=len(compressed),sha256=hashlib.sha256(raw).hexdigest()))
@@ -52,7 +52,7 @@ class ZeroModelAdmission(unittest.TestCase):
 
     def test_source_mismatch_and_truncated_scan_are_honestly_inconclusive(self):
         with tempfile.TemporaryDirectory() as d:
-            dest,ref,nonce=self.fixture(d);path=dest/'report.json';row=json.loads(path.read_text());reference=json.loads(ref.read_text());row['captures'][0]['road_sha256']='00'*32;row['replay']=g.qualify_replay(row['captures'],reference);row['geometry']['scan_finished_within_budget']=False;write(path,row)
+            dest,ref,nonce=self.fixture(d);path=dest/'report.json';row=json.loads(path.read_text());reference=json.loads(ref.read_text());row['captures'][0]['road_sha256']='00'*32;row['replay']=g.qualify_replay(row['captures'],reference);row['geometry']['scan_finished_within_budget']=False;row['geometry']['truncation_reasons']=['time_budget'];row['geometry']['cpu_scan_seconds']=46.;write(path,row)
             result=h.validate_receipt(dest,ref,0,nonce);self.assertFalse(result['replay']['source_images_match_reference']);self.assertFalse(result['geometry_scan_finished']);self.assertFalse(result['gpu_pixel_owner_proven'])
 
     def test_forged_geometry_hit_or_extra_model_mount_is_rejected(self):
@@ -61,5 +61,12 @@ class ZeroModelAdmission(unittest.TestCase):
             with self.assertRaises(ValueError):h.validate_receipt(dest,ref,0,nonce)
             path.write_bytes(raw);path=dest/'command.json';row=json.loads(path.read_text());i=row['argv'].index(p.IMAGE);row['argv'][i:i]=['--mount','type=bind,src=/tmp/model,dst=/model.onnx,readonly'];write(path,row)
             with self.assertRaises(ValueError):h.validate_receipt(dest,ref,0,nonce)
+
+    def test_completed_scan_cannot_exceed_or_redefine_its_budget(self):
+        with tempfile.TemporaryDirectory() as d:
+            dest,ref,nonce=self.fixture(d);path=dest/'report.json';raw=path.read_bytes()
+            for key,value in [('cpu_scan_seconds',100.),('budgets',dict(max_nodes=20_000,max_meshes=513,max_vertices=500_000,max_triangles=500_000,max_cpu_seconds=45))]:
+                row=json.loads(raw);row['geometry'][key]=value;write(path,row)
+                with self.subTest(key=key),self.assertRaises(ValueError):h.validate_receipt(dest,ref,0,nonce)
 
 if __name__=='__main__':unittest.main()

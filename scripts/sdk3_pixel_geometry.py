@@ -97,7 +97,7 @@ def qualify_replay(captures,reference):
 
 
 def _arrays(triangles,ids):
-    triangles=np.asarray(triangles,dtype='<f8');ids=np.asarray(ids,dtype='<i8')
+    triangles=np.ascontiguousarray(triangles,dtype='<f8');ids=np.ascontiguousarray(ids,dtype='<i8')
     need(triangles.ndim==3 and triangles.shape[1:]==(3,3) and len(triangles)<=MAX_TRIANGLES and ids.shape==(len(triangles),6) and np.isfinite(triangles).all() and np.all(ids>=0),'bounded finite geometry arrays and nonnegative source indices')
     return triangles,ids
 
@@ -117,6 +117,16 @@ def load_geometry_archive(path,receipt):
     path=Path(path);need(0<path.stat().st_size==receipt.get('nbytes')<=64*1024**2,'bounded geometry archive bytes');need(hashlib.sha256(path.read_bytes()).hexdigest()==receipt.get('sha256'),'authentic geometry archive')
     with ZipFile(path) as archive:
         need(archive.namelist()==['triangles.npy','ids.npy'] and sum(i.file_size for i in archive.infolist())<=MAX_TRIANGLES*120+2048,'bounded unique numeric array members')
+        shapes=[]
+        for name,dtype,tail in [('triangles.npy',np.dtype('<f8'),(3,3)),('ids.npy',np.dtype('<i8'),(6,))]:
+            info=archive.getinfo(name)
+            with archive.open(info) as stream:
+                version=np.lib.format.read_magic(stream);need(version in ((1,0),(2,0)),'supported bounded NPY header')
+                reader=np.lib.format.read_array_header_1_0 if version==(1,0) else np.lib.format.read_array_header_2_0
+                shape,fortran,actual_dtype=reader(stream,max_header_size=16_384)
+                need(isinstance(shape,tuple) and len(shape)==1+len(tail) and all(type(v) is int and v>=0 for v in shape) and shape[1:]==tail and shape[0]<=MAX_TRIANGLES and actual_dtype==dtype and not fortran,'bounded numeric C-order NPY shape before allocation')
+                need(info.file_size==stream.tell()+math.prod(shape)*dtype.itemsize,'exact declared NPY payload extent before allocation');shapes.append(shape)
+        need(shapes[0][0]==shapes[1][0],'aligned geometry/source-index NPY rows')
     with np.load(path,allow_pickle=False) as arrays:
         need(arrays['triangles'].dtype==np.dtype('<f8') and arrays['ids'].dtype==np.dtype('<i8'),'numeric-only geometry archive')
         triangles,ids=_arrays(arrays['triangles'],arrays['ids'])
