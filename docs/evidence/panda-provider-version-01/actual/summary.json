@@ -1,0 +1,105 @@
+{
+  "schema": "panda-provider-version-summary-v1",
+  "checked_at_kst": "2026-11-16T13:55:58.533924+09:00",
+  "status": "AUTHENTICATED_PROVIDER_VERSION_WITNESSES_NOT_RUNTIME",
+  "audit_source_sha": "ee70b3c046794aed49fedba79a40d4166d024712",
+  "source_count": 318,
+  "producer": {
+    "source_sha": "602f85807e980ac5c0df2f813938eb6a94551a99",
+    "activation_sha": "40dd7187ce8d3c5de510aa8c7a8ac2a6d37b0f38",
+    "run_id": 43786081196,
+    "run_attempt": 1,
+    "job_id": 133033912459,
+    "artifact_id": 14191115165,
+    "artifact_zip_nbytes": 61661546,
+    "artifact_zip_sha256": "2a44226962b3175081566918dd55eb845ac8ce1c9f9f5a396f469c8f6eca5d26",
+    "request_sha256": "9f394428753777c97536f044fd49f0782433fbe37b22e85b474a3afd803c2538",
+    "workflow_id": 419630498
+  },
+  "legacy_missing_count": 110,
+  "legacy_block_count": 6,
+  "witness_count": 110,
+  "unexplained_count": 0,
+  "all23legacy_audits_preserved": true,
+  "legacy_provider_blocks_removed": false,
+  "legacy_blocks": {
+    "/opt/venv/lib/python3.11/site-packages/panda3d/libCg.so": 13,
+    "/opt/venv/lib/python3.11/site-packages/panda3d/libCgGL.so": 5,
+    "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtool.so.1.10": 13,
+    "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10": 15,
+    "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10": 48,
+    "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10": 16
+  },
+  "populations": [
+    {
+      "version_library": "libdl.so.2",
+      "version": "GLIBC_2.2.5",
+      "witnesses": 17
+    },
+    {
+      "version_library": "libpthread.so.0",
+      "version": "GLIBC_2.2.5",
+      "witnesses": 87
+    },
+    {
+      "version_library": "libpthread.so.0",
+      "version": "GLIBC_2.3.2",
+      "witnesses": 6
+    }
+  ],
+  "model": {
+    "root": {
+      "path": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandagl.so",
+      "soname": null,
+      "sha256": "27cd80fb1c06feaa7da8b5658cce918d1e3ab71c304a0c0ce42e30688ac008f3",
+      "nbytes": 1052968
+    },
+    "target": {
+      "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+      "soname": "libc.so.6",
+      "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+      "nbytes": 2129424
+    },
+    "aliases": {
+      "libdl.so.2": {
+        "path": "/usr/lib/x86_64-linux-gnu/libdl.so.2",
+        "soname": "libdl.so.2",
+        "sha256": "4dbcca3c01ca84d092b5b7b2610f5835b55fc70a0288dd9d766b40ac9386e2d9",
+        "nbytes": 14408,
+        "versions": [
+          "GLIBC_2.2.5"
+        ]
+      },
+      "libpthread.so.0": {
+        "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+        "soname": "libpthread.so.0",
+        "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+        "nbytes": 14408,
+        "versions": [
+          "GLIBC_2.2.5",
+          "GLIBC_2.3.2"
+        ]
+      }
+    },
+    "expected_legacy_missing": 110,
+    "expected_legacy_blocks": 6
+  },
+  "prior_acceptance_sha256": "4045e856383d3bf947688f1f4998083f1cb5d8b4ceea5dad94b430ce6e6c0a46",
+  "old_failure_sha256": "d21eca8a87c507f2cabc6f86e3a293b2c48ce23105a4864344655a94acad789d",
+  "prior_gate_sha256": "62a82c3da2ad7a45c0d9a76f70a3e3ceb23261c816e23529d10f5b9f5fec37a9",
+  "new_sdk_builds": 0,
+  "new_workflow_activations": 0,
+  "artifact_downloads": 0,
+  "image_operations": 0,
+  "target_execution": false,
+  "scientific_native_runs": 0,
+  "strict_current_result": "0/4 FAIL",
+  "native_admitted": false,
+  "stage7_complete": false,
+  "full_object_abi_qualified": false,
+  "full_dependency_closure_qualified": false,
+  "previous_abort_fixed": false,
+  "candidate_installed": false,
+  "runtime_mapping_qualified": false,
+  "external_build_origin_authenticated": false
+}

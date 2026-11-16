@@ -1,0 +1,66 @@
+{
+  "schema": "panda-provider-version-witness-contract-v1",
+  "base_sha": "bbf8f872ef2353d0840ae61b435147cb9cf161df",
+  "base_files": 7930,
+  "branch": "feature/panda-provider-version-witness-v1",
+  "prior_acceptance_path": "docs/evidence/panda-sdk-cg-runpath-json-01/actual/acceptance.json",
+  "prior_acceptance_sha256": "4045e856383d3bf947688f1f4998083f1cb5d8b4ceea5dad94b430ce6e6c0a46",
+  "prior_audit_source_sha": "3280bb0d39645f384955ef99722520f50c5eb063",
+  "prior_gate_path": "output/stage7-panda-sdk-cg-runpath-json-01/actual/independent-static-gate.json",
+  "prior_gate_sha256": "62a82c3da2ad7a45c0d9a76f70a3e3ceb23261c816e23529d10f5b9f5fec37a9",
+  "frozen_source_path": "docs/evidence/panda-provider-version-01/frozen-source-314.json",
+  "frozen_source_sha256": "d335bf4bd22ebaee2826a3c5855ae367d82e040b6c11c4aebeaaa4cbcb05ed29",
+  "frozen_source_count": 314,
+  "new_source_paths": [
+    "scripts/panda_provider_version_witness.py",
+    "scripts/audit_panda_provider_versions.py",
+    "docs/evidence/panda-provider-version-01/contract.json",
+    "docs/evidence/panda-provider-version-01/frozen-source-314.json"
+  ],
+  "source_count": 318,
+  "maximum_nodes": 64,
+  "maximum_edges": 16384,
+  "maximum_symbols": 200000,
+  "audit_seconds": 1200,
+  "model": {
+    "root": {
+      "path": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandagl.so",
+      "soname": null,
+      "sha256": "27cd80fb1c06feaa7da8b5658cce918d1e3ab71c304a0c0ce42e30688ac008f3",
+      "nbytes": 1052968
+    },
+    "target": {
+      "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+      "soname": "libc.so.6",
+      "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+      "nbytes": 2129424
+    },
+    "aliases": {
+      "libdl.so.2": {
+        "path": "/usr/lib/x86_64-linux-gnu/libdl.so.2",
+        "soname": "libdl.so.2",
+        "sha256": "4dbcca3c01ca84d092b5b7b2610f5835b55fc70a0288dd9d766b40ac9386e2d9",
+        "nbytes": 14408,
+        "versions": [
+          "GLIBC_2.2.5"
+        ]
+      },
+      "libpthread.so.0": {
+        "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+        "soname": "libpthread.so.0",
+        "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+        "nbytes": 14408,
+        "versions": [
+          "GLIBC_2.2.5",
+          "GLIBC_2.3.2"
+        ]
+      }
+    },
+    "expected_legacy_missing": 110,
+    "expected_legacy_blocks": 6
+  },
+  "new_sdk_builds": 0,
+  "new_workflow_activations": 0,
+  "native_admitted": false,
+  "stage7_complete": false
+}

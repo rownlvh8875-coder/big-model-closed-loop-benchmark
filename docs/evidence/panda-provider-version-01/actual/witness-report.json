@@ -1,0 +1,5844 @@
+{
+  "schema": "panda-provider-version-witness-v1",
+  "provider_audits": {
+    "/opt/venv/lib/python3.11/site-packages/panda3d/libCg.so": {
+      "missing": [
+        {
+          "name": "pthread_key_create",
+          "symbol_index": 14,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 114,
+          "provider_candidates": []
+        },
+        {
+          "name": "pthread_mutex_destroy",
+          "symbol_index": 33,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 69,
+          "provider_candidates": []
+        },
+        {
+          "name": "pthread_mutexattr_init",
+          "symbol_index": 104,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 9,
+          "provider_candidates": []
+        },
+        {
+          "name": "pthread_setspecific",
+          "symbol_index": 125,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 202,
+          "provider_candidates": []
+        },
+        {
+          "name": "pthread_mutex_lock",
+          "symbol_index": 155,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 205,
+          "provider_candidates": []
+        },
+        {
+          "name": "pthread_mutexattr_destroy",
+          "symbol_index": 176,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 3,
+          "provider_candidates": []
+        },
+        {
+          "name": "pthread_once",
+          "symbol_index": 196,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 312,
+          "provider_candidates": []
+        },
+        {
+          "name": "longjmp",
+          "symbol_index": 238,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 9,
+          "provider_candidates": []
+        },
+        {
+          "name": "pthread_mutexattr_settype",
+          "symbol_index": 275,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 51,
+          "provider_candidates": []
+        },
+        {
+          "name": "pthread_mutex_init",
+          "symbol_index": 343,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 45,
+          "provider_candidates": []
+        },
+        {
+          "name": "__errno_location",
+          "symbol_index": 383,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 10,
+          "provider_candidates": []
+        },
+        {
+          "name": "pthread_mutex_unlock",
+          "symbol_index": 397,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 163,
+          "provider_candidates": []
+        },
+        {
+          "name": "pthread_getspecific",
+          "symbol_index": 404,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 78,
+          "provider_candidates": []
+        }
+      ],
+      "weak_unresolved": [
+        {
+          "name": "_Jv_RegisterClasses",
+          "symbol_index": 444,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "__gmon_start__",
+          "symbol_index": 468,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        }
+      ],
+      "resolved_count": 76,
+      "root_strong_symbols_available": false,
+      "legacy_audit_sha256": "06fe2ce8ff4686ca1f92d7c46d8e637b410612966fdabecce13ee6c0edd2357f",
+      "witnesses": [
+        {
+          "requirement_index": 3,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              1855
+            ]
+          },
+          "import": {
+            "name": "pthread_key_create",
+            "symbol_index": 14,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 114,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 3,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              1373
+            ]
+          },
+          "import": {
+            "name": "pthread_mutex_destroy",
+            "symbol_index": 33,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 69,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 3,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              1448
+            ]
+          },
+          "import": {
+            "name": "pthread_mutexattr_init",
+            "symbol_index": 104,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 9,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 3,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              2552
+            ]
+          },
+          "import": {
+            "name": "pthread_setspecific",
+            "symbol_index": 125,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 202,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 3,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              1596
+            ]
+          },
+          "import": {
+            "name": "pthread_mutex_lock",
+            "symbol_index": 155,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 205,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 3,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              886
+            ]
+          },
+          "import": {
+            "name": "pthread_mutexattr_destroy",
+            "symbol_index": 176,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 3,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 3,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              564
+            ]
+          },
+          "import": {
+            "name": "pthread_once",
+            "symbol_index": 196,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 312,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 3,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              3154
+            ]
+          },
+          "import": {
+            "name": "longjmp",
+            "symbol_index": 238,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 9,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 3,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              541
+            ]
+          },
+          "import": {
+            "name": "pthread_mutexattr_settype",
+            "symbol_index": 275,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 51,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 3,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              2488
+            ]
+          },
+          "import": {
+            "name": "pthread_mutex_init",
+            "symbol_index": 343,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 45,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 3,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              2926
+            ]
+          },
+          "import": {
+            "name": "__errno_location",
+            "symbol_index": 383,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 10,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 3,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              2690
+            ]
+          },
+          "import": {
+            "name": "pthread_mutex_unlock",
+            "symbol_index": 397,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 163,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 3,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              1561
+            ]
+          },
+          "import": {
+            "name": "pthread_getspecific",
+            "symbol_index": 404,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 78,
+            "provider_candidates": []
+          }
+        }
+      ],
+      "unexplained": []
+    },
+    "/opt/venv/lib/python3.11/site-packages/panda3d/libCgGL.so": {
+      "missing": [
+        {
+          "name": "dlopen",
+          "symbol_index": 60,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libdl.so.2",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 76,
+          "provider_candidates": []
+        },
+        {
+          "name": "pthread_mutex_lock",
+          "symbol_index": 61,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 205,
+          "provider_candidates": []
+        },
+        {
+          "name": "dlclose",
+          "symbol_index": 106,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libdl.so.2",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 54,
+          "provider_candidates": []
+        },
+        {
+          "name": "dlsym",
+          "symbol_index": 128,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libdl.so.2",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 138,
+          "provider_candidates": []
+        },
+        {
+          "name": "pthread_mutex_unlock",
+          "symbol_index": 141,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 163,
+          "provider_candidates": []
+        }
+      ],
+      "weak_unresolved": [
+        {
+          "name": "_Jv_RegisterClasses",
+          "symbol_index": 154,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "__gmon_start__",
+          "symbol_index": 161,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        }
+      ],
+      "resolved_count": 42,
+      "root_strong_symbols_available": false,
+      "legacy_audit_sha256": "476e1372d8335084dcee4bb55548f0d2adc168e81ce89ae2236aca8c7ee43de8",
+      "witnesses": [
+        {
+          "requirement_index": 3,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libdl.so.2",
+            "soname": "libdl.so.2",
+            "sha256": "4dbcca3c01ca84d092b5b7b2610f5835b55fc70a0288dd9d766b40ac9386e2d9",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              2301
+            ]
+          },
+          "import": {
+            "name": "dlopen",
+            "symbol_index": 60,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libdl.so.2",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 76,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 4,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              1596
+            ]
+          },
+          "import": {
+            "name": "pthread_mutex_lock",
+            "symbol_index": 61,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 205,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 3,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libdl.so.2",
+            "soname": "libdl.so.2",
+            "sha256": "4dbcca3c01ca84d092b5b7b2610f5835b55fc70a0288dd9d766b40ac9386e2d9",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              745
+            ]
+          },
+          "import": {
+            "name": "dlclose",
+            "symbol_index": 106,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libdl.so.2",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 54,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 3,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libdl.so.2",
+            "soname": "libdl.so.2",
+            "sha256": "4dbcca3c01ca84d092b5b7b2610f5835b55fc70a0288dd9d766b40ac9386e2d9",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              2151
+            ]
+          },
+          "import": {
+            "name": "dlsym",
+            "symbol_index": 128,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libdl.so.2",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 138,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 4,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              2690
+            ]
+          },
+          "import": {
+            "name": "pthread_mutex_unlock",
+            "symbol_index": 141,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 163,
+            "provider_candidates": []
+          }
+        }
+      ],
+      "unexplained": []
+    },
+    "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtool.so.1.10": {
+      "missing": [
+        {
+          "name": "close",
+          "symbol_index": 16,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "read",
+          "symbol_index": 43,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "dlerror",
+          "symbol_index": 92,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libdl.so.2",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "dlclose",
+          "symbol_index": 96,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libdl.so.2",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "lseek",
+          "symbol_index": 108,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "__errno_location",
+          "symbol_index": 131,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "dlopen",
+          "symbol_index": 161,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libdl.so.2",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "dlsym",
+          "symbol_index": 167,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libdl.so.2",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "pthread_mutex_lock",
+          "symbol_index": 180,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "pthread_mutex_destroy",
+          "symbol_index": 187,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "write",
+          "symbol_index": 188,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "pthread_mutex_unlock",
+          "symbol_index": 196,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "open",
+          "symbol_index": 202,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        }
+      ],
+      "weak_unresolved": [
+        {
+          "name": "_ITM_addUserCommitAction",
+          "symbol_index": 1,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "_ITM_memcpyRtWn",
+          "symbol_index": 2,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "__gmon_start__",
+          "symbol_index": 29,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "_ITM_RU1",
+          "symbol_index": 41,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "_ITM_deregisterTMCloneTable",
+          "symbol_index": 67,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "_ZGTtdlPv",
+          "symbol_index": 70,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "_ITM_registerTMCloneTable",
+          "symbol_index": 79,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "_ITM_RU8",
+          "symbol_index": 98,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "_ITM_memcpyRnWt",
+          "symbol_index": 128,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "__pthread_key_create",
+          "symbol_index": 176,
+          "binding": 2,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "_ZGTtnam",
+          "symbol_index": 181,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        }
+      ],
+      "resolved_count": 184,
+      "root_strong_symbols_available": false,
+      "legacy_audit_sha256": "3d87db40a1a8314f34d15c845a0f25b6ed1009a3885807127f53237b0ec82eb2",
+      "witnesses": [
+        {
+          "requirement_index": 5,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              2595
+            ]
+          },
+          "import": {
+            "name": "close",
+            "symbol_index": 16,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 5,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              1237
+            ]
+          },
+          "import": {
+            "name": "read",
+            "symbol_index": 43,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 9,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libdl.so.2",
+            "soname": "libdl.so.2",
+            "sha256": "4dbcca3c01ca84d092b5b7b2610f5835b55fc70a0288dd9d766b40ac9386e2d9",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              2350
+            ]
+          },
+          "import": {
+            "name": "dlerror",
+            "symbol_index": 92,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libdl.so.2",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 9,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libdl.so.2",
+            "soname": "libdl.so.2",
+            "sha256": "4dbcca3c01ca84d092b5b7b2610f5835b55fc70a0288dd9d766b40ac9386e2d9",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              745
+            ]
+          },
+          "import": {
+            "name": "dlclose",
+            "symbol_index": 96,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libdl.so.2",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 5,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              3081
+            ]
+          },
+          "import": {
+            "name": "lseek",
+            "symbol_index": 108,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 5,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              2926
+            ]
+          },
+          "import": {
+            "name": "__errno_location",
+            "symbol_index": 131,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 9,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libdl.so.2",
+            "soname": "libdl.so.2",
+            "sha256": "4dbcca3c01ca84d092b5b7b2610f5835b55fc70a0288dd9d766b40ac9386e2d9",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              2301
+            ]
+          },
+          "import": {
+            "name": "dlopen",
+            "symbol_index": 161,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libdl.so.2",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 9,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libdl.so.2",
+            "soname": "libdl.so.2",
+            "sha256": "4dbcca3c01ca84d092b5b7b2610f5835b55fc70a0288dd9d766b40ac9386e2d9",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              2151
+            ]
+          },
+          "import": {
+            "name": "dlsym",
+            "symbol_index": 167,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libdl.so.2",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 5,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              1596
+            ]
+          },
+          "import": {
+            "name": "pthread_mutex_lock",
+            "symbol_index": 180,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 5,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              1373
+            ]
+          },
+          "import": {
+            "name": "pthread_mutex_destroy",
+            "symbol_index": 187,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 5,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              2948
+            ]
+          },
+          "import": {
+            "name": "write",
+            "symbol_index": 188,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 5,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              2690
+            ]
+          },
+          "import": {
+            "name": "pthread_mutex_unlock",
+            "symbol_index": 196,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 5,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              1763
+            ]
+          },
+          "import": {
+            "name": "open",
+            "symbol_index": 202,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        }
+      ],
+      "unexplained": []
+    },
+    "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10": {
+      "missing": [
+        {
+          "name": "close",
+          "symbol_index": 14,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "read",
+          "symbol_index": 42,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "dlerror",
+          "symbol_index": 95,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libdl.so.2",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "dlclose",
+          "symbol_index": 102,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libdl.so.2",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "sigaction",
+          "symbol_index": 112,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "connect",
+          "symbol_index": 120,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "__errno_location",
+          "symbol_index": 141,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "dladdr",
+          "symbol_index": 165,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libdl.so.2",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "dlopen",
+          "symbol_index": 179,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libdl.so.2",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "dlsym",
+          "symbol_index": 187,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libdl.so.2",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "pthread_mutex_lock",
+          "symbol_index": 201,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "pthread_mutex_destroy",
+          "symbol_index": 206,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "write",
+          "symbol_index": 207,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "pthread_mutex_unlock",
+          "symbol_index": 218,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "open",
+          "symbol_index": 226,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        }
+      ],
+      "weak_unresolved": [
+        {
+          "name": "__gmon_start__",
+          "symbol_index": 25,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "_ITM_deregisterTMCloneTable",
+          "symbol_index": 68,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "_ITM_registerTMCloneTable",
+          "symbol_index": 83,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "__pthread_key_create",
+          "symbol_index": 196,
+          "binding": 2,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        }
+      ],
+      "resolved_count": 213,
+      "root_strong_symbols_available": false,
+      "legacy_audit_sha256": "9bdd59bc4b431622aacfe3a04921b898088884755283363b0caeadfcce5c2c37",
+      "witnesses": [
+        {
+          "requirement_index": 4,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              2595
+            ]
+          },
+          "import": {
+            "name": "close",
+            "symbol_index": 14,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 4,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              1237
+            ]
+          },
+          "import": {
+            "name": "read",
+            "symbol_index": 42,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 10,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libdl.so.2",
+            "soname": "libdl.so.2",
+            "sha256": "4dbcca3c01ca84d092b5b7b2610f5835b55fc70a0288dd9d766b40ac9386e2d9",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              2350
+            ]
+          },
+          "import": {
+            "name": "dlerror",
+            "symbol_index": 95,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libdl.so.2",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 10,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libdl.so.2",
+            "soname": "libdl.so.2",
+            "sha256": "4dbcca3c01ca84d092b5b7b2610f5835b55fc70a0288dd9d766b40ac9386e2d9",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              745
+            ]
+          },
+          "import": {
+            "name": "dlclose",
+            "symbol_index": 102,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libdl.so.2",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 4,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              777
+            ]
+          },
+          "import": {
+            "name": "sigaction",
+            "symbol_index": 112,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 4,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              2654
+            ]
+          },
+          "import": {
+            "name": "connect",
+            "symbol_index": 120,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 4,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              2926
+            ]
+          },
+          "import": {
+            "name": "__errno_location",
+            "symbol_index": 141,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 10,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libdl.so.2",
+            "soname": "libdl.so.2",
+            "sha256": "4dbcca3c01ca84d092b5b7b2610f5835b55fc70a0288dd9d766b40ac9386e2d9",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              388
+            ]
+          },
+          "import": {
+            "name": "dladdr",
+            "symbol_index": 165,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libdl.so.2",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 10,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libdl.so.2",
+            "soname": "libdl.so.2",
+            "sha256": "4dbcca3c01ca84d092b5b7b2610f5835b55fc70a0288dd9d766b40ac9386e2d9",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              2301
+            ]
+          },
+          "import": {
+            "name": "dlopen",
+            "symbol_index": 179,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libdl.so.2",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 10,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libdl.so.2",
+            "soname": "libdl.so.2",
+            "sha256": "4dbcca3c01ca84d092b5b7b2610f5835b55fc70a0288dd9d766b40ac9386e2d9",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              2151
+            ]
+          },
+          "import": {
+            "name": "dlsym",
+            "symbol_index": 187,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libdl.so.2",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 4,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              1596
+            ]
+          },
+          "import": {
+            "name": "pthread_mutex_lock",
+            "symbol_index": 201,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 4,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              1373
+            ]
+          },
+          "import": {
+            "name": "pthread_mutex_destroy",
+            "symbol_index": 206,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 4,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              2948
+            ]
+          },
+          "import": {
+            "name": "write",
+            "symbol_index": 207,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 4,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              2690
+            ]
+          },
+          "import": {
+            "name": "pthread_mutex_unlock",
+            "symbol_index": 218,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 4,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              1763
+            ]
+          },
+          "import": {
+            "name": "open",
+            "symbol_index": 226,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        }
+      ],
+      "unexplained": []
+    },
+    "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10": {
+      "missing": [
+        {
+          "name": "pthread_mutex_destroy",
+          "symbol_index": 44,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "fcntl",
+          "symbol_index": 63,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "pthread_attr_init",
+          "symbol_index": 71,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "pthread_setspecific",
+          "symbol_index": 92,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "close",
+          "symbol_index": 110,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "pthread_mutex_unlock",
+          "symbol_index": 120,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "pthread_key_create",
+          "symbol_index": 124,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "recvfrom",
+          "symbol_index": 131,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "pthread_mutex_lock",
+          "symbol_index": 135,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "lseek",
+          "symbol_index": 140,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "pthread_cond_destroy",
+          "symbol_index": 149,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.3.2",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "send",
+          "symbol_index": 176,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "connect",
+          "symbol_index": 189,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "pthread_mutex_init",
+          "symbol_index": 194,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "pthread_cond_init",
+          "symbol_index": 209,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.3.2",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "open",
+          "symbol_index": 221,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "sem_destroy",
+          "symbol_index": 250,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "pthread_cond_wait",
+          "symbol_index": 257,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.3.2",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "pthread_attr_setschedparam",
+          "symbol_index": 297,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "sem_init",
+          "symbol_index": 340,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "pthread_self",
+          "symbol_index": 363,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "pthread_attr_destroy",
+          "symbol_index": 367,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "pthread_create",
+          "symbol_index": 368,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "pthread_cond_signal",
+          "symbol_index": 373,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.3.2",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "longjmp",
+          "symbol_index": 375,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "sendto",
+          "symbol_index": 395,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "read",
+          "symbol_index": 402,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "pthread_mutex_trylock",
+          "symbol_index": 410,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "sem_getvalue",
+          "symbol_index": 420,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "pthread_attr_setstacksize",
+          "symbol_index": 422,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "pthread_attr_setdetachstate",
+          "symbol_index": 430,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "pthread_getspecific",
+          "symbol_index": 436,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "pthread_cond_timedwait",
+          "symbol_index": 442,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.3.2",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "accept",
+          "symbol_index": 450,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "pthread_detach",
+          "symbol_index": 466,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "pthread_attr_setscope",
+          "symbol_index": 474,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "pthread_cond_broadcast",
+          "symbol_index": 490,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.3.2",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "sem_post",
+          "symbol_index": 503,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "lseek64",
+          "symbol_index": 517,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "recv",
+          "symbol_index": 539,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "sem_trywait",
+          "symbol_index": 550,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "__errno_location",
+          "symbol_index": 575,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "write",
+          "symbol_index": 582,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "sem_wait",
+          "symbol_index": 585,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "nanosleep",
+          "symbol_index": 594,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "pthread_join",
+          "symbol_index": 659,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "pthread_attr_setschedpolicy",
+          "symbol_index": 669,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "open64",
+          "symbol_index": 673,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        }
+      ],
+      "weak_unresolved": [
+        {
+          "name": "_ITM_deregisterTMCloneTable",
+          "symbol_index": 45,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "__gmon_start__",
+          "symbol_index": 200,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "__pthread_key_create",
+          "symbol_index": 532,
+          "binding": 2,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "_ITM_registerTMCloneTable",
+          "symbol_index": 578,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        }
+      ],
+      "resolved_count": 630,
+      "root_strong_symbols_available": false,
+      "legacy_audit_sha256": "a5da9935861404ef42379f5a8372fe03aa6003ee93ce2358aeb40df2ae1ed59a",
+      "witnesses": [
+        {
+          "requirement_index": 8,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              1373
+            ]
+          },
+          "import": {
+            "name": "pthread_mutex_destroy",
+            "symbol_index": 44,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 8,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              818
+            ]
+          },
+          "import": {
+            "name": "fcntl",
+            "symbol_index": 63,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 8,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              1407
+            ]
+          },
+          "import": {
+            "name": "pthread_attr_init",
+            "symbol_index": 71,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 8,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              2552
+            ]
+          },
+          "import": {
+            "name": "pthread_setspecific",
+            "symbol_index": 92,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 8,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              2595
+            ]
+          },
+          "import": {
+            "name": "close",
+            "symbol_index": 110,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 8,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              2690
+            ]
+          },
+          "import": {
+            "name": "pthread_mutex_unlock",
+            "symbol_index": 120,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 8,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              1855
+            ]
+          },
+          "import": {
+            "name": "pthread_key_create",
+            "symbol_index": 124,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 8,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              1119
+            ]
+          },
+          "import": {
+            "name": "recvfrom",
+            "symbol_index": 131,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 8,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              1596
+            ]
+          },
+          "import": {
+            "name": "pthread_mutex_lock",
+            "symbol_index": 135,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 8,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              3081
+            ]
+          },
+          "import": {
+            "name": "lseek",
+            "symbol_index": 140,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 11,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 4
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 5,
+            "symbol_indices": [
+              2015
+            ]
+          },
+          "import": {
+            "name": "pthread_cond_destroy",
+            "symbol_index": 149,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.3.2",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 8,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              1371
+            ]
+          },
+          "import": {
+            "name": "send",
+            "symbol_index": 176,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 8,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              2654
+            ]
+          },
+          "import": {
+            "name": "connect",
+            "symbol_index": 189,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 8,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              2488
+            ]
+          },
+          "import": {
+            "name": "pthread_mutex_init",
+            "symbol_index": 194,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 11,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 4
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 5,
+            "symbol_indices": [
+              1166
+            ]
+          },
+          "import": {
+            "name": "pthread_cond_init",
+            "symbol_index": 209,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.3.2",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 8,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              1763
+            ]
+          },
+          "import": {
+            "name": "open",
+            "symbol_index": 221,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 8,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              227
+            ]
+          },
+          "import": {
+            "name": "sem_destroy",
+            "symbol_index": 250,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 11,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 4
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 5,
+            "symbol_indices": [
+              3062
+            ]
+          },
+          "import": {
+            "name": "pthread_cond_wait",
+            "symbol_index": 257,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.3.2",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 8,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              2659
+            ]
+          },
+          "import": {
+            "name": "pthread_attr_setschedparam",
+            "symbol_index": 297,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 8,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              305
+            ]
+          },
+          "import": {
+            "name": "sem_init",
+            "symbol_index": 340,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 8,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              711
+            ]
+          },
+          "import": {
+            "name": "pthread_self",
+            "symbol_index": 363,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 8,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              1653
+            ]
+          },
+          "import": {
+            "name": "pthread_attr_destroy",
+            "symbol_index": 367,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 8,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              1478
+            ]
+          },
+          "import": {
+            "name": "pthread_create",
+            "symbol_index": 368,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 11,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 4
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 5,
+            "symbol_indices": [
+              1476
+            ]
+          },
+          "import": {
+            "name": "pthread_cond_signal",
+            "symbol_index": 373,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.3.2",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 8,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              3154
+            ]
+          },
+          "import": {
+            "name": "longjmp",
+            "symbol_index": 375,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 8,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              1947
+            ]
+          },
+          "import": {
+            "name": "sendto",
+            "symbol_index": 395,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 8,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              1237
+            ]
+          },
+          "import": {
+            "name": "read",
+            "symbol_index": 402,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 8,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              1385
+            ]
+          },
+          "import": {
+            "name": "pthread_mutex_trylock",
+            "symbol_index": 410,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 8,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              461
+            ]
+          },
+          "import": {
+            "name": "sem_getvalue",
+            "symbol_index": 420,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 8,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              134
+            ]
+          },
+          "import": {
+            "name": "pthread_attr_setstacksize",
+            "symbol_index": 422,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 8,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              2591
+            ]
+          },
+          "import": {
+            "name": "pthread_attr_setdetachstate",
+            "symbol_index": 430,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 8,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              1561
+            ]
+          },
+          "import": {
+            "name": "pthread_getspecific",
+            "symbol_index": 436,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 11,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 4
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 5,
+            "symbol_indices": [
+              1461
+            ]
+          },
+          "import": {
+            "name": "pthread_cond_timedwait",
+            "symbol_index": 442,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.3.2",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 8,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              2493
+            ]
+          },
+          "import": {
+            "name": "accept",
+            "symbol_index": 450,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 8,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              97
+            ]
+          },
+          "import": {
+            "name": "pthread_detach",
+            "symbol_index": 466,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 8,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              21
+            ]
+          },
+          "import": {
+            "name": "pthread_attr_setscope",
+            "symbol_index": 474,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 11,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 4
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 5,
+            "symbol_indices": [
+              1605
+            ]
+          },
+          "import": {
+            "name": "pthread_cond_broadcast",
+            "symbol_index": 490,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.3.2",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 8,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              2570
+            ]
+          },
+          "import": {
+            "name": "sem_post",
+            "symbol_index": 503,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 8,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              532
+            ]
+          },
+          "import": {
+            "name": "lseek64",
+            "symbol_index": 517,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 8,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              1499
+            ]
+          },
+          "import": {
+            "name": "recv",
+            "symbol_index": 539,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 8,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              1791
+            ]
+          },
+          "import": {
+            "name": "sem_trywait",
+            "symbol_index": 550,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 8,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              2926
+            ]
+          },
+          "import": {
+            "name": "__errno_location",
+            "symbol_index": 575,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 8,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              2948
+            ]
+          },
+          "import": {
+            "name": "write",
+            "symbol_index": 582,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 8,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              2181
+            ]
+          },
+          "import": {
+            "name": "sem_wait",
+            "symbol_index": 585,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 8,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              91
+            ]
+          },
+          "import": {
+            "name": "nanosleep",
+            "symbol_index": 594,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 8,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              1197
+            ]
+          },
+          "import": {
+            "name": "pthread_join",
+            "symbol_index": 659,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 8,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              88
+            ]
+          },
+          "import": {
+            "name": "pthread_attr_setschedpolicy",
+            "symbol_index": 669,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 8,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              876
+            ]
+          },
+          "import": {
+            "name": "open64",
+            "symbol_index": 673,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        }
+      ],
+      "unexplained": []
+    },
+    "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10": {
+      "missing": [
+        {
+          "name": "__errno_location",
+          "symbol_index": 7,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "accept",
+          "symbol_index": 50,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "write",
+          "symbol_index": 56,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "dlerror",
+          "symbol_index": 89,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libdl.so.2",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "open",
+          "symbol_index": 123,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "dlclose",
+          "symbol_index": 128,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libdl.so.2",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "pthread_mutex_unlock",
+          "symbol_index": 134,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "connect",
+          "symbol_index": 149,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "dladdr",
+          "symbol_index": 194,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libdl.so.2",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "pthread_mutex_destroy",
+          "symbol_index": 228,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "sigaction",
+          "symbol_index": 245,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "read",
+          "symbol_index": 291,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "dlopen",
+          "symbol_index": 297,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libdl.so.2",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "pthread_mutex_lock",
+          "symbol_index": 298,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "dlsym",
+          "symbol_index": 369,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libdl.so.2",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "close",
+          "symbol_index": 390,
+          "binding": 1,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        }
+      ],
+      "weak_unresolved": [
+        {
+          "name": "__pthread_key_create",
+          "symbol_index": 341,
+          "binding": 2,
+          "symbol_type": 2,
+          "version": "GLIBC_2.2.5",
+          "version_library": "libpthread.so.0",
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "_ITM_deregisterTMCloneTable",
+          "symbol_index": 355,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "__gmon_start__",
+          "symbol_index": 376,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "_ITM_registerTMCloneTable",
+          "symbol_index": 381,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        }
+      ],
+      "resolved_count": 374,
+      "root_strong_symbols_available": false,
+      "legacy_audit_sha256": "ae36a592c10f2af63a24820845c223a7640f84915a9cb9f11859b85a26ad500f",
+      "witnesses": [
+        {
+          "requirement_index": 4,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              2926
+            ]
+          },
+          "import": {
+            "name": "__errno_location",
+            "symbol_index": 7,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 4,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              2493
+            ]
+          },
+          "import": {
+            "name": "accept",
+            "symbol_index": 50,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 4,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              2948
+            ]
+          },
+          "import": {
+            "name": "write",
+            "symbol_index": 56,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 7,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libdl.so.2",
+            "soname": "libdl.so.2",
+            "sha256": "4dbcca3c01ca84d092b5b7b2610f5835b55fc70a0288dd9d766b40ac9386e2d9",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              2350
+            ]
+          },
+          "import": {
+            "name": "dlerror",
+            "symbol_index": 89,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libdl.so.2",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 4,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              1763
+            ]
+          },
+          "import": {
+            "name": "open",
+            "symbol_index": 123,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 7,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libdl.so.2",
+            "soname": "libdl.so.2",
+            "sha256": "4dbcca3c01ca84d092b5b7b2610f5835b55fc70a0288dd9d766b40ac9386e2d9",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              745
+            ]
+          },
+          "import": {
+            "name": "dlclose",
+            "symbol_index": 128,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libdl.so.2",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 4,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              2690
+            ]
+          },
+          "import": {
+            "name": "pthread_mutex_unlock",
+            "symbol_index": 134,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 4,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              2654
+            ]
+          },
+          "import": {
+            "name": "connect",
+            "symbol_index": 149,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 7,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libdl.so.2",
+            "soname": "libdl.so.2",
+            "sha256": "4dbcca3c01ca84d092b5b7b2610f5835b55fc70a0288dd9d766b40ac9386e2d9",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              388
+            ]
+          },
+          "import": {
+            "name": "dladdr",
+            "symbol_index": 194,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libdl.so.2",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 4,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              1373
+            ]
+          },
+          "import": {
+            "name": "pthread_mutex_destroy",
+            "symbol_index": 228,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 4,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              777
+            ]
+          },
+          "import": {
+            "name": "sigaction",
+            "symbol_index": 245,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 4,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              1237
+            ]
+          },
+          "import": {
+            "name": "read",
+            "symbol_index": 291,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 7,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libdl.so.2",
+            "soname": "libdl.so.2",
+            "sha256": "4dbcca3c01ca84d092b5b7b2610f5835b55fc70a0288dd9d766b40ac9386e2d9",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              2301
+            ]
+          },
+          "import": {
+            "name": "dlopen",
+            "symbol_index": 297,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libdl.so.2",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 4,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              1596
+            ]
+          },
+          "import": {
+            "name": "pthread_mutex_lock",
+            "symbol_index": 298,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 7,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libdl.so.2",
+            "soname": "libdl.so.2",
+            "sha256": "4dbcca3c01ca84d092b5b7b2610f5835b55fc70a0288dd9d766b40ac9386e2d9",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              2151
+            ]
+          },
+          "import": {
+            "name": "dlsym",
+            "symbol_index": 369,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libdl.so.2",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        },
+        {
+          "requirement_index": 4,
+          "declared_library": {
+            "path": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+            "soname": "libpthread.so.0",
+            "sha256": "cd34f895c9d2aa669d5d2654bed6b71210fc9003c3a1e96bb5311a40feb86039",
+            "version_definition_index": 2
+          },
+          "target": {
+            "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+            "soname": "libc.so.6",
+            "sha256": "755a371e86cc9f564ab54f66140747700fb0a103f698f659f2060f707897e09a",
+            "version_definition_index": 2,
+            "symbol_indices": [
+              2595
+            ]
+          },
+          "import": {
+            "name": "close",
+            "symbol_index": 390,
+            "binding": 1,
+            "symbol_type": 2,
+            "version": "GLIBC_2.2.5",
+            "version_library": "libpthread.so.0",
+            "default_version": true,
+            "value": 0,
+            "nbytes": 0,
+            "provider_candidates": []
+          }
+        }
+      ],
+      "unexplained": []
+    },
+    "/opt/venv/lib/python3.11/site-packages/panda3d/libpandagl.so": {
+      "missing": [],
+      "weak_unresolved": [
+        {
+          "name": "_ITM_deregisterTMCloneTable",
+          "symbol_index": 59,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "__gmon_start__",
+          "symbol_index": 274,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "_ITM_registerTMCloneTable",
+          "symbol_index": 849,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        }
+      ],
+      "resolved_count": 1047,
+      "root_strong_symbols_available": true,
+      "legacy_audit_sha256": "b3815987ad8a61aa3cfec652b4c4d7d0a445dc5f21d939f638e3adee3777969f",
+      "witnesses": [],
+      "unexplained": []
+    },
+    "/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2": {
+      "missing": [],
+      "weak_unresolved": [],
+      "resolved_count": 0,
+      "root_strong_symbols_available": true,
+      "legacy_audit_sha256": "4d378fd7754e9c27e89f976ea4e6f8ee6ebc679c8bf45900a5cb82ffc054318c",
+      "witnesses": [],
+      "unexplained": []
+    },
+    "/usr/lib/x86_64-linux-gnu/libGL.so.1.7.0": {
+      "missing": [],
+      "weak_unresolved": [
+        {
+          "name": "_ITM_deregisterTMCloneTable",
+          "symbol_index": 2,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "__gmon_start__",
+          "symbol_index": 11,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "_ITM_registerTMCloneTable",
+          "symbol_index": 18,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        }
+      ],
+      "resolved_count": 16,
+      "root_strong_symbols_available": true,
+      "legacy_audit_sha256": "068c32d1979883be93851321637a9a7532c110749234ef027b8bbfec24350c97",
+      "witnesses": [],
+      "unexplained": []
+    },
+    "/usr/lib/x86_64-linux-gnu/libGLX.so.0.0.0": {
+      "missing": [],
+      "weak_unresolved": [
+        {
+          "name": "__gmon_start__",
+          "symbol_index": 7,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "_ITM_deregisterTMCloneTable",
+          "symbol_index": 23,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "_ITM_registerTMCloneTable",
+          "symbol_index": 26,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        }
+      ],
+      "resolved_count": 57,
+      "root_strong_symbols_available": true,
+      "legacy_audit_sha256": "0a4f4f1f7704adee58e6acb04f6192d1ecab1fad9732ee1a94ab4e45fa3ac0bd",
+      "witnesses": [],
+      "unexplained": []
+    },
+    "/usr/lib/x86_64-linux-gnu/libGLdispatch.so.0.0.0": {
+      "missing": [],
+      "weak_unresolved": [
+        {
+          "name": "__gmon_start__",
+          "symbol_index": 3,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "_ITM_deregisterTMCloneTable",
+          "symbol_index": 8,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "_ITM_registerTMCloneTable",
+          "symbol_index": 10,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        }
+      ],
+      "resolved_count": 22,
+      "root_strong_symbols_available": true,
+      "legacy_audit_sha256": "5e1db167627e2d88390af4fe615ff21771fe338e5def692037f98f717ec21624",
+      "witnesses": [],
+      "unexplained": []
+    },
+    "/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0": {
+      "missing": [],
+      "weak_unresolved": [
+        {
+          "name": "_ITM_deregisterTMCloneTable",
+          "symbol_index": 16,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "__gmon_start__",
+          "symbol_index": 73,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "_ITM_registerTMCloneTable",
+          "symbol_index": 124,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        }
+      ],
+      "resolved_count": 136,
+      "root_strong_symbols_available": true,
+      "legacy_audit_sha256": "bf1d508b8498cacc54d67bc8baef23e758c111109b845cc05003dfeaa8dc5f04",
+      "witnesses": [],
+      "unexplained": []
+    },
+    "/usr/lib/x86_64-linux-gnu/libXau.so.6.0.0": {
+      "missing": [],
+      "weak_unresolved": [
+        {
+          "name": "_ITM_deregisterTMCloneTable",
+          "symbol_index": 7,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "__gmon_start__",
+          "symbol_index": 16,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "_ITM_registerTMCloneTable",
+          "symbol_index": 27,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        }
+      ],
+      "resolved_count": 26,
+      "root_strong_symbols_available": true,
+      "legacy_audit_sha256": "4ddff876d7058cd47f2bf7ad147e22b603a8b673773ef9104bd459ac2f75a575",
+      "witnesses": [],
+      "unexplained": []
+    },
+    "/usr/lib/x86_64-linux-gnu/libXdmcp.so.6.0.0": {
+      "missing": [],
+      "weak_unresolved": [
+        {
+          "name": "_ITM_deregisterTMCloneTable",
+          "symbol_index": 2,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "__gmon_start__",
+          "symbol_index": 8,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "_ITM_registerTMCloneTable",
+          "symbol_index": 14,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        }
+      ],
+      "resolved_count": 12,
+      "root_strong_symbols_available": true,
+      "legacy_audit_sha256": "6f7d2fd32db9d9492691e6f9d3ac7900bd5ac78223a861938516ec82e5960c04",
+      "witnesses": [],
+      "unexplained": []
+    },
+    "/usr/lib/x86_64-linux-gnu/libbsd.so.0.12.1": {
+      "missing": [],
+      "weak_unresolved": [
+        {
+          "name": "_ITM_deregisterTMCloneTable",
+          "symbol_index": 14,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "__gmon_start__",
+          "symbol_index": 64,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "_ITM_registerTMCloneTable",
+          "symbol_index": 107,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        }
+      ],
+      "resolved_count": 115,
+      "root_strong_symbols_available": true,
+      "legacy_audit_sha256": "8604966c430e44f6bd9783b6f8af0d8950aee81f8a80434e4825f81d79fa2959",
+      "witnesses": [],
+      "unexplained": []
+    },
+    "/usr/lib/x86_64-linux-gnu/libc.so.6": {
+      "missing": [],
+      "weak_unresolved": [],
+      "resolved_count": 19,
+      "root_strong_symbols_available": true,
+      "legacy_audit_sha256": "4b926db60aabaaf69c33411660f997951628e32dfcd6a134069ade9db853e9a1",
+      "witnesses": [],
+      "unexplained": []
+    },
+    "/usr/lib/x86_64-linux-gnu/libdl.so.2": {
+      "missing": [],
+      "weak_unresolved": [
+        {
+          "name": "_ITM_deregisterTMCloneTable",
+          "symbol_index": 1,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "__gmon_start__",
+          "symbol_index": 2,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "_ITM_registerTMCloneTable",
+          "symbol_index": 3,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        }
+      ],
+      "resolved_count": 1,
+      "root_strong_symbols_available": true,
+      "legacy_audit_sha256": "736384d61d32699fda2e7bf7aa7f32a3b3b7ba675c2e3ea7268cf77af01780b5",
+      "witnesses": [],
+      "unexplained": []
+    },
+    "/usr/lib/x86_64-linux-gnu/libgcc_s.so.1": {
+      "missing": [],
+      "weak_unresolved": [
+        {
+          "name": "_ITM_deregisterTMCloneTable",
+          "symbol_index": 3,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "__gmon_start__",
+          "symbol_index": 13,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "_ITM_registerTMCloneTable",
+          "symbol_index": 23,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        }
+      ],
+      "resolved_count": 24,
+      "root_strong_symbols_available": true,
+      "legacy_audit_sha256": "52640f385475c9a94012ec5e3f1ee82af75a9f24e35f4d78191b073802da95a7",
+      "witnesses": [],
+      "unexplained": []
+    },
+    "/usr/lib/x86_64-linux-gnu/libm.so.6": {
+      "missing": [],
+      "weak_unresolved": [
+        {
+          "name": "_ITM_deregisterTMCloneTable",
+          "symbol_index": 2,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "__gmon_start__",
+          "symbol_index": 10,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "_ITM_registerTMCloneTable",
+          "symbol_index": 14,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        }
+      ],
+      "resolved_count": 13,
+      "root_strong_symbols_available": true,
+      "legacy_audit_sha256": "49543651ae3df047b9e2a97cfd951e940e271ef4dadbde05f363c3cd92108cb1",
+      "witnesses": [],
+      "unexplained": []
+    },
+    "/usr/lib/x86_64-linux-gnu/libmd.so.0.1.0": {
+      "missing": [],
+      "weak_unresolved": [
+        {
+          "name": "_ITM_deregisterTMCloneTable",
+          "symbol_index": 2,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "__gmon_start__",
+          "symbol_index": 7,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "_ITM_registerTMCloneTable",
+          "symbol_index": 11,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        }
+      ],
+      "resolved_count": 10,
+      "root_strong_symbols_available": true,
+      "legacy_audit_sha256": "56dd345ae6373e163d79f0d34b0ed308cbaf7bbf6f22fe7190c77f19de783b0f",
+      "witnesses": [],
+      "unexplained": []
+    },
+    "/usr/lib/x86_64-linux-gnu/libpthread.so.0": {
+      "missing": [],
+      "weak_unresolved": [
+        {
+          "name": "_ITM_deregisterTMCloneTable",
+          "symbol_index": 1,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "__gmon_start__",
+          "symbol_index": 2,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "_ITM_registerTMCloneTable",
+          "symbol_index": 3,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        }
+      ],
+      "resolved_count": 1,
+      "root_strong_symbols_available": true,
+      "legacy_audit_sha256": "736384d61d32699fda2e7bf7aa7f32a3b3b7ba675c2e3ea7268cf77af01780b5",
+      "witnesses": [],
+      "unexplained": []
+    },
+    "/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33": {
+      "missing": [],
+      "weak_unresolved": [
+        {
+          "name": "_ITM_addUserCommitAction",
+          "symbol_index": 1,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "_ITM_memcpyRtWn",
+          "symbol_index": 3,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "__gmon_start__",
+          "symbol_index": 34,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "_ZN9__gnu_cxx21zoneinfo_dir_overrideEv",
+          "symbol_index": 45,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "_ITM_RU1",
+          "symbol_index": 48,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "_ITM_deregisterTMCloneTable",
+          "symbol_index": 69,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "_ZGTtdlPv",
+          "symbol_index": 70,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "_ITM_registerTMCloneTable",
+          "symbol_index": 81,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "_ITM_RU8",
+          "symbol_index": 105,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "_ITM_memcpyRnWt",
+          "symbol_index": 136,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "_ZGTtnam",
+          "symbol_index": 177,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        }
+      ],
+      "resolved_count": 190,
+      "root_strong_symbols_available": true,
+      "legacy_audit_sha256": "7281adf5fe56d58c4c1303d3fcd875313bb03662bbe1f882c5c41d5eca0dbf48",
+      "witnesses": [],
+      "unexplained": []
+    },
+    "/usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0": {
+      "missing": [],
+      "weak_unresolved": [
+        {
+          "name": "_ITM_deregisterTMCloneTable",
+          "symbol_index": 8,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "__gmon_start__",
+          "symbol_index": 31,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        },
+        {
+          "name": "_ITM_registerTMCloneTable",
+          "symbol_index": 49,
+          "binding": 2,
+          "symbol_type": 0,
+          "version": null,
+          "version_library": null,
+          "default_version": true,
+          "value": 0,
+          "nbytes": 0,
+          "provider_candidates": []
+        }
+      ],
+      "resolved_count": 52,
+      "root_strong_symbols_available": true,
+      "legacy_audit_sha256": "72783e60c256a8f7e9275a32f5d30807724adabd334ce3e8c5824311d377a0e5",
+      "witnesses": [],
+      "unexplained": []
+    }
+  },
+  "legacy_missing_count": 110,
+  "legacy_block_count": 6,
+  "witness_count": 110,
+  "unexplained_count": 0,
+  "legacy_provider_blocks_removed": false,
+  "actions_output_origin_authenticated": false,
+  "target_execution": false,
+  "scientific_native_runs": 0,
+  "unsupported_features": [],
+  "diagnostic_witnesses_complete": true,
+  "status": "LEGACY_PROVIDER_VERSION_WITNESSES_COMPLETE_NOT_RUNTIME",
+  "native_admitted": false,
+  "stage7_complete": false,
+  "full_object_abi_qualified": false,
+  "full_dependency_closure_qualified": false,
+  "previous_abort_fixed": false,
+  "candidate_installed": false,
+  "runtime_mapping_qualified": false,
+  "external_build_origin_authenticated": false
+}

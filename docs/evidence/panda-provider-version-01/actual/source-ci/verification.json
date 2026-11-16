@@ -1,0 +1,50 @@
+{
+  "status": "EXACT_SOURCE_CI_AND_DRAFT_VERIFIED",
+  "checked_at_kst": "2026-11-16T13:54:39.965079+09:00",
+  "head_sha": "ee70b3c046794aed49fedba79a40d4166d024712",
+  "pr": 129,
+  "url": "https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/pull/129",
+  "ci": [
+    {
+      "event": "pull_request",
+      "id": 43806559945,
+      "jobs": [
+        {
+          "id": 133098572483,
+          "name": "onnx-interface-test"
+        },
+        {
+          "id": 133098572654,
+          "name": "synthetic-unit"
+        }
+      ],
+      "attempt": 1,
+      "conclusion": "success",
+      "artifacts": 0
+    },
+    {
+      "event": "push",
+      "id": 43806544432,
+      "jobs": [
+        {
+          "id": 133098521483,
+          "name": "synthetic-unit"
+        },
+        {
+          "id": 133098521753,
+          "name": "onnx-interface-test"
+        }
+      ],
+      "attempt": 1,
+      "conclusion": "success",
+      "artifacts": 0
+    }
+  ],
+  "body_roundtrip": true,
+  "draft_unmerged": true,
+  "original_gpu_bytes_observed": false,
+  "runtime_admission_ready": false,
+  "stage7_complete": false,
+  "no_main_merge": true,
+  "no_cloud_registry_publication": true
+}
