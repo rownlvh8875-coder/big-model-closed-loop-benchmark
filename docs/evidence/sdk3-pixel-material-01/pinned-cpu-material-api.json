@@ -1,0 +1,702 @@
+[
+  {
+    "panda_version": "v1.10.13",
+    "file": "textureAttrib.h",
+    "nbytes": 6912,
+    "sha256": "9e5896004c6bdc7c9466f6affbc884bbc1b886db18dfc0ea0c516284e9fdbe5c",
+    "excerpts": [
+      {
+        "line": 53,
+        "text": "  INLINE int get_num_on_stages() const;"
+      },
+      {
+        "line": 54,
+        "text": "  INLINE TextureStage *get_on_stage(int n) const;"
+      },
+      {
+        "line": 55,
+        "text": "  MAKE_SEQ(get_on_stages, get_num_on_stages, get_on_stage);"
+      },
+      {
+        "line": 56,
+        "text": "  INLINE int get_num_on_ff_stages() const;"
+      },
+      {
+        "line": 57,
+        "text": "  INLINE TextureStage *get_on_ff_stage(int n) const;"
+      },
+      {
+        "line": 58,
+        "text": "  MAKE_SEQ(get_on_ff_stages, get_num_on_ff_stages, get_on_ff_stage);"
+      },
+      {
+        "line": 59,
+        "text": "  INLINE int get_ff_tc_index(int n) const;"
+      },
+      {
+        "line": 60,
+        "text": "  INLINE bool has_on_stage(TextureStage *stage) const;"
+      },
+      {
+        "line": 61,
+        "text": "  INLINE Texture *get_on_texture(TextureStage *stage) const;"
+      },
+      {
+        "line": 62,
+        "text": "  INLINE const SamplerState &get_on_sampler(TextureStage *stage) const;"
+      },
+      {
+        "line": 63,
+        "text": "  INLINE int get_on_stage_override(TextureStage *stage) const;"
+      },
+      {
+        "line": 64,
+        "text": ""
+      },
+      {
+        "line": 65,
+        "text": "  int find_on_stage(const TextureStage *stage) const;"
+      },
+      {
+        "line": 66,
+        "text": ""
+      },
+      {
+        "line": 67,
+        "text": "  MAKE_SEQ_PROPERTY(on_stages, get_num_on_stages, get_on_stage);"
+      },
+      {
+        "line": 68,
+        "text": ""
+      },
+      {
+        "line": 69,
+        "text": "  MAKE_MAP_PROPERTY(textures, has_on_stage, get_on_texture);"
+      },
+      {
+        "line": 70,
+        "text": "  MAKE_MAP_KEYS_SEQ(textures, get_num_on_stages, get_on_stage);"
+      },
+      {
+        "line": 71,
+        "text": ""
+      },
+      {
+        "line": 72,
+        "text": "  MAKE_MAP_PROPERTY(samplers, has_on_stage, get_on_sampler);"
+      },
+      {
+        "line": 73,
+        "text": "  MAKE_MAP_KEYS_SEQ(samplers, get_num_on_stages, get_on_stage);"
+      },
+      {
+        "line": 74,
+        "text": ""
+      },
+      {
+        "line": 75,
+        "text": "  INLINE int get_num_off_stages() const;"
+      },
+      {
+        "line": 76,
+        "text": "  INLINE TextureStage *get_off_stage(int n) const;"
+      },
+      {
+        "line": 77,
+        "text": "  MAKE_SEQ(get_off_stages, get_num_off_stages, get_off_stage);"
+      }
+    ]
+  },
+  {
+    "panda_version": "v1.10.13",
+    "file": "textureAttrib.I",
+    "nbytes": 8101,
+    "sha256": "fcb94411256578ae9e369362d29056460b155bbe01dfe67131f1c635db45f8c2",
+    "excerpts": [
+      {
+        "line": 148,
+        "text": "INLINE const SamplerState &TextureAttrib::"
+      },
+      {
+        "line": 149,
+        "text": "get_on_sampler(TextureStage *stage) const {"
+      },
+      {
+        "line": 150,
+        "text": "  Stages::const_iterator si;"
+      },
+      {
+        "line": 151,
+        "text": "  si = _on_stages.find(StageNode(stage));"
+      },
+      {
+        "line": 152,
+        "text": "  nassertr_always(si != _on_stages.end(), SamplerState::get_default());"
+      },
+      {
+        "line": 153,
+        "text": ""
+      }
+    ]
+  },
+  {
+    "panda_version": "v1.10.13",
+    "file": "texture.h",
+    "nbytes": 49587,
+    "sha256": "7e42f46d99afcda2b0d1fe3d3c342392a36c9eb04240bf592b46d981c97f4018",
+    "excerpts": [
+      {
+        "line": 63,
+        "text": " *"
+      },
+      {
+        "line": 64,
+        "text": " * A texture's image data might be stored in system RAM (see get_ram_image())"
+      },
+      {
+        "line": 65,
+        "text": " * or its image may be represented in texture memory on one or more"
+      },
+      {
+        "line": 66,
+        "text": " * GraphicsStateGuardians (see prepare()), or both.  The typical usage pattern"
+      },
+      {
+        "line": 67,
+        "text": " * is that a texture is loaded from an image file on disk, which copies its"
+      },
+      {
+        "line": 68,
+        "text": " * image data into system RAM; then the first time the texture is rendered its"
+      },
+      {
+        "line": 419,
+        "text": ""
+      },
+      {
+        "line": 420,
+        "text": "  INLINE const SamplerState &get_default_sampler() const;"
+      },
+      {
+        "line": 421,
+        "text": "  INLINE void set_default_sampler(const SamplerState &sampler);"
+      },
+      {
+        "line": 422,
+        "text": "  MAKE_PROPERTY(default_sampler, get_default_sampler, set_default_sampler);"
+      },
+      {
+        "line": 423,
+        "text": "  INLINE bool uses_mipmaps() const;"
+      },
+      {
+        "line": 424,
+        "text": ""
+      },
+      {
+        "line": 425,
+        "text": "  INLINE QualityLevel get_quality_level() const;"
+      },
+      {
+        "line": 426,
+        "text": "  INLINE QualityLevel get_effective_quality_level() const;"
+      },
+      {
+        "line": 437,
+        "text": ""
+      },
+      {
+        "line": 438,
+        "text": "  INLINE bool has_ram_image() const;"
+      },
+      {
+        "line": 439,
+        "text": "  INLINE bool has_uncompressed_ram_image() const;"
+      },
+      {
+        "line": 440,
+        "text": "  INLINE bool might_have_ram_image() const;"
+      },
+      {
+        "line": 441,
+        "text": "  INLINE size_t get_ram_image_size() const;"
+      },
+      {
+        "line": 442,
+        "text": "  INLINE size_t get_ram_view_size() const;"
+      },
+      {
+        "line": 443,
+        "text": "  INLINE size_t get_ram_page_size() const;"
+      },
+      {
+        "line": 444,
+        "text": "  INLINE size_t get_expected_ram_image_size() const;"
+      },
+      {
+        "line": 445,
+        "text": "  INLINE size_t get_expected_ram_page_size() const;"
+      },
+      {
+        "line": 446,
+        "text": "  MAKE_PROPERTY(ram_image_size, get_ram_image_size);"
+      },
+      {
+        "line": 447,
+        "text": "  MAKE_PROPERTY(ram_view_size, get_ram_view_size);"
+      },
+      {
+        "line": 448,
+        "text": "  MAKE_PROPERTY(ram_page_size, get_ram_page_size);"
+      },
+      {
+        "line": 449,
+        "text": "  MAKE_PROPERTY(expected_ram_image_size, get_expected_ram_image_size);"
+      },
+      {
+        "line": 450,
+        "text": "  MAKE_PROPERTY(expected_ram_page_size, get_expected_ram_page_size);"
+      },
+      {
+        "line": 451,
+        "text": ""
+      },
+      {
+        "line": 452,
+        "text": "  INLINE CPTA_uchar get_ram_image();"
+      },
+      {
+        "line": 453,
+        "text": "  INLINE CompressionMode get_ram_image_compression() const;"
+      },
+      {
+        "line": 454,
+        "text": "  INLINE CPTA_uchar get_uncompressed_ram_image();"
+      },
+      {
+        "line": 455,
+        "text": "  CPTA_uchar get_ram_image_as(const std::string &requested_format);"
+      },
+      {
+        "line": 456,
+        "text": "  INLINE PTA_uchar modify_ram_image();"
+      },
+      {
+        "line": 457,
+        "text": "  INLINE PTA_uchar make_ram_image();"
+      },
+      {
+        "line": 458,
+        "text": "#ifndef CPPPARSER"
+      },
+      {
+        "line": 459,
+        "text": "  INLINE void set_ram_image(CPTA_uchar image, CompressionMode compression = CM_off,"
+      },
+      {
+        "line": 471,
+        "text": ""
+      },
+      {
+        "line": 472,
+        "text": "  MAKE_PROPERTY(ram_image_compression, get_ram_image_compression);"
+      },
+      {
+        "line": 473,
+        "text": "  MAKE_PROPERTY(keep_ram_image, get_keep_ram_image, set_keep_ram_image);"
+      },
+      {
+        "line": 474,
+        "text": "  MAKE_PROPERTY(cacheable, is_cacheable);"
+      },
+      {
+        "line": 475,
+        "text": ""
+      },
+      {
+        "line": 476,
+        "text": "  EXTENSION(PT(Texture) __deepcopy__(PyObject *memo) const);"
+      },
+      {
+        "line": 761,
+        "text": "  bool do_has_compression(const CData *cdata) const;"
+      },
+      {
+        "line": 762,
+        "text": "  virtual bool do_has_ram_image(const CData *cdata) const;"
+      },
+      {
+        "line": 763,
+        "text": "  virtual bool do_has_uncompressed_ram_image(const CData *cdata) const;"
+      },
+      {
+        "line": 764,
+        "text": "  CPTA_uchar do_get_ram_image(CData *cdata);"
+      },
+      {
+        "line": 765,
+        "text": "  CPTA_uchar do_get_uncompressed_ram_image(CData *cdata);"
+      },
+      {
+        "line": 766,
+        "text": "  void do_set_simple_ram_image(CData *cdata, CPTA_uchar image, int x_size, int y_size);"
+      },
+      {
+        "line": 767,
+        "text": "  INLINE size_t do_get_ram_image_size(const CData *cdata) const;"
+      },
+      {
+        "line": 768,
+        "text": "  INLINE bool do_has_ram_mipmap_image(const CData *cdata, int n) const;"
+      },
+      {
+        "line": 769,
+        "text": "  int do_get_expected_num_mipmap_levels(const CData *cdata) const;"
+      },
+      {
+        "line": 770,
+        "text": "  INLINE size_t do_get_expected_ram_image_size(const CData *cdata) const;"
+      },
+      {
+        "line": 771,
+        "text": "  INLINE size_t do_get_expected_ram_view_size(const CData *cdata) const;"
+      },
+      {
+        "line": 772,
+        "text": "  INLINE size_t do_get_expected_ram_page_size(const CData *cdata) const;"
+      },
+      {
+        "line": 773,
+        "text": "  size_t do_get_ram_mipmap_page_size(const CData *cdata, int n) const;"
+      },
+      {
+        "line": 774,
+        "text": "  INLINE size_t do_get_expected_ram_mipmap_image_size(const CData *cdata, int n) const;"
+      }
+    ]
+  },
+  {
+    "panda_version": "v1.10.13",
+    "file": "texture.I",
+    "nbytes": 77308,
+    "sha256": "ed22da317065f967c154ad421914016a991a270bef240c1cca78f1a9e513c840",
+    "excerpts": [
+      {
+        "line": 1242,
+        "text": "INLINE bool Texture::"
+      },
+      {
+        "line": 1243,
+        "text": "has_ram_image() const {"
+      },
+      {
+        "line": 1244,
+        "text": "  CDReader cdata(_cycler);"
+      },
+      {
+        "line": 1245,
+        "text": "  return do_has_ram_image(cdata);"
+      },
+      {
+        "line": 1246,
+        "text": "}"
+      },
+      {
+        "line": 1247,
+        "text": ""
+      },
+      {
+        "line": 1318,
+        "text": "INLINE size_t Texture::"
+      },
+      {
+        "line": 1319,
+        "text": "get_expected_ram_image_size() const {"
+      },
+      {
+        "line": 1320,
+        "text": "  CDReader cdata(_cycler);"
+      },
+      {
+        "line": 1321,
+        "text": "  return do_get_expected_ram_image_size(cdata);"
+      },
+      {
+        "line": 1322,
+        "text": "}"
+      },
+      {
+        "line": 1323,
+        "text": ""
+      },
+      {
+        "line": 1356,
+        "text": "INLINE CPTA_uchar Texture::"
+      },
+      {
+        "line": 1357,
+        "text": "get_ram_image() {"
+      },
+      {
+        "line": 1358,
+        "text": "  CDWriter cdata(_cycler, unlocked_ensure_ram_image(true));"
+      },
+      {
+        "line": 1359,
+        "text": "  return do_get_ram_image(cdata);"
+      },
+      {
+        "line": 1360,
+        "text": "}"
+      },
+      {
+        "line": 1361,
+        "text": ""
+      }
+    ]
+  },
+  {
+    "panda_version": "v1.10.13",
+    "file": "samplerState.h",
+    "nbytes": 7178,
+    "sha256": "f5ac1a250be2dffab5ca98400b899179d4f5cb51ba72f73e7fc37bfac8e33194",
+    "excerpts": [
+      {
+        "line": 102,
+        "text": "  INLINE FilterType get_magfilter() const;"
+      },
+      {
+        "line": 103,
+        "text": "  FilterType get_effective_minfilter() const;"
+      },
+      {
+        "line": 104,
+        "text": "  FilterType get_effective_magfilter() const;"
+      },
+      {
+        "line": 105,
+        "text": "  INLINE int get_anisotropic_degree() const;"
+      },
+      {
+        "line": 106,
+        "text": "  INLINE int get_effective_anisotropic_degree() const;"
+      },
+      {
+        "line": 107,
+        "text": "  INLINE const LColor &get_border_color() const;"
+      },
+      {
+        "line": 108,
+        "text": "  INLINE PN_stdfloat get_min_lod() const;"
+      },
+      {
+        "line": 109,
+        "text": "  INLINE PN_stdfloat get_max_lod() const;"
+      },
+      {
+        "line": 110,
+        "text": "  INLINE PN_stdfloat get_lod_bias() const;"
+      },
+      {
+        "line": 116,
+        "text": "  MAKE_PROPERTY(magfilter, get_magfilter, set_magfilter);"
+      },
+      {
+        "line": 117,
+        "text": "  MAKE_PROPERTY(effective_minfilter, get_effective_minfilter);"
+      },
+      {
+        "line": 118,
+        "text": "  MAKE_PROPERTY(effective_magfilter, get_effective_magfilter);"
+      },
+      {
+        "line": 119,
+        "text": "  MAKE_PROPERTY(anisotropic_degree, get_anisotropic_degree, set_anisotropic_degree);"
+      },
+      {
+        "line": 120,
+        "text": "  MAKE_PROPERTY(effective_anisotropic_degree, get_effective_anisotropic_degree);"
+      },
+      {
+        "line": 121,
+        "text": "  MAKE_PROPERTY(border_color, get_border_color, set_border_color);"
+      },
+      {
+        "line": 122,
+        "text": "  MAKE_PROPERTY(min_lod, get_min_lod, set_min_lod);"
+      },
+      {
+        "line": 123,
+        "text": "  MAKE_PROPERTY(max_lod, get_max_lod, set_max_lod);"
+      },
+      {
+        "line": 124,
+        "text": "  MAKE_PROPERTY(lod_bias, get_lod_bias, set_lod_bias);"
+      }
+    ]
+  },
+  {
+    "panda_version": "v1.10.13",
+    "file": "geomVertexReader.h",
+    "nbytes": 6075,
+    "sha256": "b598ab045097b877c1d3c52d4e489a0d36082116ef746aa39cd8094788c41372",
+    "excerpts": [
+      {
+        "line": 84,
+        "text": "  INLINE void clear();"
+      },
+      {
+        "line": 85,
+        "text": "  INLINE bool has_column() const;"
+      },
+      {
+        "line": 86,
+        "text": "  INLINE int get_array() const;"
+      },
+      {
+        "line": 87,
+        "text": "  INLINE const GeomVertexColumn *get_column() const;"
+      },
+      {
+        "line": 88,
+        "text": ""
+      },
+      {
+        "line": 89,
+        "text": "  INLINE void set_row_unsafe(int row);"
+      },
+      {
+        "line": 90,
+        "text": "  INLINE void set_row(int row);"
+      },
+      {
+        "line": 91,
+        "text": ""
+      },
+      {
+        "line": 92,
+        "text": "  INLINE int get_start_row() const;"
+      },
+      {
+        "line": 93,
+        "text": "  INLINE int get_read_row() const;"
+      },
+      {
+        "line": 94,
+        "text": "  INLINE bool is_at_end() const;"
+      },
+      {
+        "line": 96,
+        "text": "  INLINE float get_data1f();"
+      },
+      {
+        "line": 97,
+        "text": "  INLINE const LVecBase2f &get_data2f();"
+      },
+      {
+        "line": 98,
+        "text": "  INLINE const LVecBase3f &get_data3f();"
+      },
+      {
+        "line": 99,
+        "text": "  INLINE const LVecBase4f &get_data4f();"
+      },
+      {
+        "line": 100,
+        "text": "  INLINE LMatrix3f get_matrix3f();"
+      },
+      {
+        "line": 101,
+        "text": "  INLINE LMatrix4f get_matrix4f();"
+      }
+    ]
+  },
+  {
+    "panda_version": "v1.10.13",
+    "file": "textureStage.h",
+    "nbytes": 9678,
+    "sha256": "95ee024195c6520ddde278dc7867e78cf62e7f7da185be9032d71b8a3f623eb9",
+    "excerpts": [
+      {
+        "line": 112,
+        "text": "  INLINE void set_texcoord_name(const std::string &texcoord_name);"
+      },
+      {
+        "line": 113,
+        "text": "  INLINE InternalName *get_texcoord_name() const;"
+      },
+      {
+        "line": 114,
+        "text": "  INLINE InternalName *get_tangent_name() const;"
+      },
+      {
+        "line": 115,
+        "text": "  INLINE InternalName *get_binormal_name() const;"
+      },
+      {
+        "line": 116,
+        "text": ""
+      },
+      {
+        "line": 117,
+        "text": "  INLINE void set_mode(Mode mode);"
+      },
+      {
+        "line": 194,
+        "text": ""
+      },
+      {
+        "line": 195,
+        "text": "  MAKE_PROPERTY(texcoord_name, get_texcoord_name, set_texcoord_name);"
+      },
+      {
+        "line": 196,
+        "text": "  MAKE_PROPERTY(tangent_name, get_tangent_name);"
+      },
+      {
+        "line": 197,
+        "text": "  MAKE_PROPERTY(binormal_name, get_binormal_name);"
+      },
+      {
+        "line": 198,
+        "text": ""
+      },
+      {
+        "line": 199,
+        "text": "  MAKE_PROPERTY(mode, get_mode, set_mode);"
+      }
+    ]
+  },
+  {
+    "panda_version": "v1.10.13",
+    "file": "texMatrixAttrib.h",
+    "nbytes": 3746,
+    "sha256": "a1ac47435d5da1d00869c5c20ce85b1f82f80ca87fb55ce76b11a1a06574a555",
+    "excerpts": [
+      {
+        "line": 56,
+        "text": ""
+      },
+      {
+        "line": 57,
+        "text": "  CPT(TransformState) get_transform(TextureStage *stage) const;"
+      },
+      {
+        "line": 58,
+        "text": "  INLINE int get_override(TextureStage *stage) const;"
+      },
+      {
+        "line": 59,
+        "text": ""
+      },
+      {
+        "line": 60,
+        "text": "  INLINE int get_geom_rendering(int geom_rendering) const;"
+      },
+      {
+        "line": 61,
+        "text": ""
+      }
+    ]
+  }
+]

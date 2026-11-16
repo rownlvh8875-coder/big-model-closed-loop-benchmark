@@ -1,0 +1,9 @@
+# SDD ledger — plan: docs/superpowers/plans/2026-11-17-sdk3-pixel-material.md
+Ruling: Continue existingisolatedRAMclone/manualcloud-skill ledger/newbranch — disk0 andstandingcontinuousauthorization;KSTdateNov17 — cost: volatilelocaldata/hostedfullCI.
+Ruling: OneCPUmaterial extension at unchanged600/630s,notshader/sampler treatment — priorCPUsidewalkcandidate lacksactualUV/texturebinding — cost: onefreshhostedrenderer andnoGPUownership proof.
+Ruling: Cachebytesonlywhenresident;boundedreadonlyassetcopy asavailable,neverforceGPUread/reload — observeexistingstatewithoutmutatingrendering — cost: texelbytesmayremainunavailable.
+Ruling: Keepalloldfilesandprotocols;newmaterialmanifest andprivatefunctionglobaladapters — preservepriorfailure/sourcegates — cost: adapter/sourcebindingverification.
+Pre-flight Task1→Task2: finiteUV/transform/rawdescriptor/storeinterfaces shared;newmanifestbinds underlyinggeometry-budget/progress reports. No conflicts. Baseline288fc0a full1982tests/7skip/fourCIjobsPASS;cloneclean. Task1in_progress.
+Task1: complete — missingmoduleRED→7GREEN. LiteralbarycentricUV/homogeneous4texturetransform,invalidnumeric/shape,reload-not-called-on-absentRAM,expected/actualsize guards beforedata-copy,rawSHA,symlinkescape/oversize/globalbudget tested. No SDK/model locally. Task2in_progress.
+Ruling: Retain transformedUV as4homogeneous coordinates without assuming shader/projective division — shader-specific use is unobserved — cost: CPUattribute interpolation is not exact GPU texture-coordinate attribution.
+Task2code: missinghostRED→11newGREEN;110combinedCPUregressionsGREEN/actionlintPASS. Newnative readsboundsourcevertex/UV/normal/material/texmatrix/stage-effectivevsdefaultsamplers andboundedresident/assetbytes;newreceiver inheritsallimage/geometry/source/lifecyclegates and independently recomputesUV/files/samplers. Existingcode unchanged. ExactsourceCI/review/oneactual remainrequired;no localnative/model.
