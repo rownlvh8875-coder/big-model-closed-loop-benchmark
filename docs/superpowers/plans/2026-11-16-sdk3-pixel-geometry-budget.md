@@ -22,14 +22,15 @@ Basefc7aa92567f9d9fdc3dbc027d8242ef00c0d1d43;allA.1freshnative/0officialmodel/0i
 ### Task1: fixed no-model budget and nested geometry observer
 **Files:** Create scripts/sdk3_pixel_geometry_budget_native.py,scripts/sdk3_pixel_geometry_budget_runtime.py,tests/test_sdk3_pixel_geometry_budget.py.
 **Interfaces:** native_command(...reference...);run_renderer(name,sdk,out,args,reference);wait_renderer(child,server,legacy_timeout,out);geometry_observe(camera,journal,out,nonce,snapshot=None).
-- [ ] RED: exactsevenRoad originalcalls/before-restore snapshot+error restoration,targetbyte retention;real harmless child600wait receipt;630attach/owned-create-timeout recovery/foreign refusal. ExpectedFAIL missingmodules.
-- [ ] GREEN: private originalprogress observe rebind,materialized owned container lifecycle with630attach,no model args;ExpectedCPUtestsPASS. Commit.
+- [x] RED: exactsevenRoad originalcalls/before-restore snapshot+error restoration,targetbyte retention;real harmless child600wait receipt;630attach/owned-create-timeout recovery/foreign refusal. ExpectedFAIL missingmodules.
+- [x] GREEN: private originalprogress observe rebind,materialized owned container lifecycle with630attach,no model args;ExpectedCPUtestsPASS. Commit.
 
 ### Task2: source/geometry admission and one actual trial
 **Files:** Create scripts/run_sdk3_pixel_geometry_budget.py,tests/test_sdk3_pixel_geometry_budget_host.py,.github/workflows/sdk3-pixel-geometry-budget-v1.yml,new evidence/result only.
 **Interfaces:** validate_receipt(folder,reference_path,nonce)->dict;validate_geometry(folder,manifest,report)->dict;authenticate_source(bundle);run(). Uses Task1fixedsignature.
-- [ ] RED: complete7/14image/CPUhits retained;wrongtarget/PID/observer/hit/budget/old160receipt reject;source mismatch/partialcoverage remain inconclusive. ExpectedFAIL missingbehavior.
-- [ ] GREEN: materialized existing authentication/staging/receiver with600/630 checks and geometry audit;ExpectedfocusedregressionPASS/actionlint.
-- [ ] ExactsourceCI4jobsPASS;solefreshwholebranchreview;one ImportantRED→GREEN pass/no rereview;Minorledger.
-- [ ] One request-only activation,authenticate actualartifact/14images/geometry/lifecycle andindependently recompute. Retain failure/partial outcomes.
-- [ ] Result/ownDraftPR(parent134),finalexactHEADCI/logcounts/body/remote/parent/main/originalpreservation;archive/removeonlyownsddscratch. No repair promotion.
+- [x] RED: complete7/14image/CPUhits retained;wrongtarget/PID/observer/hit/budget/old160receipt reject;source mismatch/partialcoverage remain inconclusive. ExpectedFAIL missingbehavior.
+- [x] GREEN: materialized existing authentication/staging/receiver with600/630 checks and geometry audit;ExpectedfocusedregressionPASS/actionlint.
+- [x] ExactsourceCI4jobsPASS;solefreshwholebranchreview;one ImportantRED→GREEN pass/no rereview;Minorledger.
+- [x] One request-only activation,authenticate actualartifact/14images/geometry/lifecycle andindependently recompute. Retain failure/partial outcomes.
+- [x] Actual result/Draft135(parent134):7captures/14images/CPUgeometry complete;Road4two-pixel mismatch retained;sourceequivalencefalse,no repair promotion.
+- [ ] Final exactdocHEADCI/logcounts/body/remote/parent/main/original preservation and ownscratch archival/removal:authoritative status in output/stage7-sdk3-pixel-geometry-budget-01/final-closeout/verification.json after final commit.

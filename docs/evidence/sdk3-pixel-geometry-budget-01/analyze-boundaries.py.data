@@ -1,0 +1,19 @@
+from pathlib import Path
+import json,sys
+ROOT=Path('/dev/shm/stage7-sdk3-runtime-20261116/repo');sys.path.insert(0,str(ROOT))
+from scripts.sdk3_capture_progress import read_journal
+out=ROOT/'output/stage7-sdk3-pixel-geometry-budget-01/actual';x=json.loads((out/'independent-observation.json').read_text());assert x['analysis_validated'];folder=out/'bundle/renderer';rows=read_journal(folder/'progress.jsonl');stack=[];closed=[]
+for row in rows:
+ if row['event']=='checkpoint':continue
+ operation,phase=row['event'].split('.',1)
+ if phase=='enter':stack.append(row)
+ else:
+  start=stack.pop();closed.append(dict(operation=operation,step=row['step'],camera=row['camera'],terminal_phase=phase,wall_seconds=row['elapsed_s']-start['elapsed_s'],cpu_seconds=row['cpu_s']-start['cpu_s'],enter_elapsed_s=start['elapsed_s'],exit_elapsed_s=row['elapsed_s']))
+text=(folder/'stacks.log').read_text();chunks=text.split('Timeout (')[1:];snapshots=[]
+for i,chunk in enumerate(chunks,1):
+ frames=[line.strip() for line in chunk.splitlines() if line.lstrip().startswith('File "')];snapshots.append(dict(snapshot=i,python_frames=frames,contains_render_frame=any('__igLoop' in line or ('base_engine.py' in line and 'line 395 in reset' in line) for line in frames),render_frame_source_mapping='frozen-stack-source.json',contains_task_step=any('Task.py' in line and 'step' in line for line in frames),contains_original_capture=any('native_model_campaign.py' in line for line in frames)))
+w=x['watchdog'];proc=w.get('proc_before_kill',{});stat=proc.get('stat');raw_cpu=None
+if stat:
+ fields=stat.rsplit(')',1)[1].split();raw_cpu=dict(state=fields[0],user_ticks=int(fields[11]),system_ticks=int(fields[12]),rss_pages=int(fields[21]),wchan=proc.get('wchan'),clock_tick_conversion_not_used=True)
+y=dict(run_id=x['run_id'],source_sha=x['source_sha'],analysis=x['analysis'],checkpoints=[dict(stage=r['metadata'].get('stage'),elapsed_s=r['elapsed_s'],cpu_s=r['cpu_s']) for r in rows if r['event']=='checkpoint'],completed_boundaries=closed,active_entries=[dict(event=r['event'],step=r['step'],camera=r['camera'],entered_elapsed_s=r['elapsed_s'],entered_cpu_s=r['cpu_s']) for r in stack],timed_python_snapshots=snapshots,proc_before_kill_raw_counters=raw_cpu,native_gpu_stack_unobserved=True,deadlock_proven=False,unique_cause_proven=False,repair_proven=False,stage7_complete=False)
+(out/'boundary-analysis.json').write_text(json.dumps(y,indent=2)+'\n');print(json.dumps(y,ensure_ascii=False,indent=2))
