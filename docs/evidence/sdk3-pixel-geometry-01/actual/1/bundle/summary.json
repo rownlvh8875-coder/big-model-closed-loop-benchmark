@@ -1,0 +1,41 @@
+{
+  "status": "FAILED",
+  "repeat": 1,
+  "known_renderer_processes": 1,
+  "renderer_spawn_attempts": 1,
+  "official_model_processes": 0,
+  "onnx_inferences": 0,
+  "repair_proven": false,
+  "stage7_complete": false,
+  "source_sha": "6423b55624bcd0785056cb0e5577abda1b0dc52b",
+  "host_memory": {
+    "MemTotal": 16464297984,
+    "MemAvailable": 14782443520
+  },
+  "nonce": "7835facf9de300418deff805a94b9af5",
+  "execution": {
+    "status": "EXIT_OBSERVED",
+    "returncode": 1,
+    "failure": null,
+    "stopped_state": {
+      "Status": "exited",
+      "Running": false,
+      "Paused": false,
+      "Restarting": false,
+      "OOMKilled": false,
+      "Dead": false,
+      "Pid": 0,
+      "ExitCode": 1,
+      "Error": "",
+      "StartedAt": "2026-11-16T12:57:58.987745733Z",
+      "FinishedAt": "2026-11-16T13:00:39.717089724Z"
+    },
+    "create_attempted": true,
+    "start_attempted": true,
+    "container_id": "3cb3f4dc57061450c0d39bbb1bf5f1d92068621953f176777888bd4cfb6d9243",
+    "ownership_unresolved": false,
+    "owned_container_removed": true,
+    "cleanup_failure": null
+  },
+  "failure": "ValueError: clean owned renderer container"
+}

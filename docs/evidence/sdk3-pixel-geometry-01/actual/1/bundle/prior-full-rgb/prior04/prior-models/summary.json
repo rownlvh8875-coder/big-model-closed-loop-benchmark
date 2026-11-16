@@ -1,0 +1,131 @@
+{
+  "status": "SDK3_GLX_SELECTED_RUNTIME_OBSERVED",
+  "sdk_sha256": "27cd80fb1c06feaa7da8b5658cce918d1e3ab71c304a0c0ce42e30688ac008f3",
+  "image": "sha256:b9d673de93f1857e4dfa5ed6a48330d568ef96fce7f3cc975f0c688877e6e26e",
+  "probes": [],
+  "official_model_processes": 6,
+  "strict_result": "NOT_RUN",
+  "stage7_complete": false,
+  "source_sha": "f3bb85b6e692ecfd1efb54e2af3aabb93beb3c3e",
+  "disk_before": {
+    "total": 154894188544,
+    "used": 60563881984,
+    "free": 94313529344
+  },
+  "prior_glx": {
+    "selected_sdk_glx_qualified": true,
+    "verified_sdk_glx_children": 2,
+    "prior_model_cohort_qualified": false,
+    "prior_official_model_processes": 1,
+    "prior_strict_result": "NOT_RUN",
+    "full_object_abi_qualified": false,
+    "stage7_complete": false
+  },
+  "showbase_compatible": true,
+  "core_first_compatible": true,
+  "host_memory_before_model": {
+    "MemTotal": 16464302080,
+    "MemAvailable": 14787719168
+  },
+  "model_pairs": [
+    {
+      "seed": 20261109,
+      "scenario": "s_curve_left_right",
+      "counts": {
+        "known": 2,
+        "upper": 2,
+        "spawn_attempts": 2
+      },
+      "execution": {
+        "status": "EXIT_OBSERVED",
+        "returncode": 0,
+        "failure": null,
+        "stopped_state": {
+          "Status": "exited",
+          "Running": false,
+          "Paused": false,
+          "Restarting": false,
+          "OOMKilled": false,
+          "Dead": false,
+          "Pid": 0,
+          "ExitCode": 0,
+          "Error": "",
+          "StartedAt": "2026-11-16T08:25:38.927316914Z",
+          "FinishedAt": "2026-11-16T08:40:43.417328884Z"
+        },
+        "create_attempted": true,
+        "start_attempted": true,
+        "container_id": "7807e7ca3c41df75ab5eb6647d333aab762398f6e73883ea33a0b9ced728674b",
+        "ownership_unresolved": false,
+        "owned_container_removed": true,
+        "cleanup_failure": null
+      }
+    },
+    {
+      "seed": 20261109,
+      "scenario": "s_curve_right_left",
+      "counts": {
+        "known": 2,
+        "upper": 2,
+        "spawn_attempts": 2
+      },
+      "execution": {
+        "status": "EXIT_OBSERVED",
+        "returncode": 0,
+        "failure": null,
+        "stopped_state": {
+          "Status": "exited",
+          "Running": false,
+          "Paused": false,
+          "Restarting": false,
+          "OOMKilled": false,
+          "Dead": false,
+          "Pid": 0,
+          "ExitCode": 0,
+          "Error": "",
+          "StartedAt": "2026-11-16T08:40:43.565268049Z",
+          "FinishedAt": "2026-11-16T08:55:49.129607241Z"
+        },
+        "create_attempted": true,
+        "start_attempted": true,
+        "container_id": "74de8e8047a54ad1662cabdcef5942ab2bdd88a8c14929f069a35470b3f4c790",
+        "ownership_unresolved": false,
+        "owned_container_removed": true,
+        "cleanup_failure": null
+      }
+    },
+    {
+      "seed": 20261110,
+      "scenario": "s_curve_left_right",
+      "counts": {
+        "known": 2,
+        "upper": 2,
+        "spawn_attempts": 2
+      },
+      "execution": {
+        "status": "EXIT_OBSERVED",
+        "returncode": 0,
+        "failure": null,
+        "stopped_state": {
+          "Status": "exited",
+          "Running": false,
+          "Paused": false,
+          "Restarting": false,
+          "OOMKilled": false,
+          "Dead": false,
+          "Pid": 0,
+          "ExitCode": 0,
+          "Error": "",
+          "StartedAt": "2026-11-16T08:55:49.273485363Z",
+          "FinishedAt": "2026-11-16T09:11:03.534908179Z"
+        },
+        "create_attempted": true,
+        "start_attempted": true,
+        "container_id": "3783a328cfcc944a77045d18762644117dfdee56be72a0486df7f94fe71e09dd",
+        "ownership_unresolved": false,
+        "owned_container_removed": true,
+        "cleanup_failure": null
+      }
+    }
+  ]
+}

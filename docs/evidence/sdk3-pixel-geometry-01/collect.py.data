@@ -1,0 +1,43 @@
+from pathlib import Path,PurePosixPath
+from zipfile import ZipFile
+from concurrent.futures import ThreadPoolExecutor
+import hashlib,json,stat,subprocess,sys
+TASK=Path('/dev/shm/stage7-sdk3-pixel-geometry-20261116');ROOT=Path('/dev/shm/stage7-sdk3-runtime-20261116/repo');sys.path.insert(0,str(ROOT))
+from scripts.run_sdk3_pixel_geometry import validate_receipt
+prefix='repos/rownlvh8875-coder/big-model-closed-loop-benchmark/'
+def api(path):return json.loads(subprocess.check_output(['gh','api',prefix+path],text=True,timeout=60))
+activation=json.loads((TASK/'activation.json').read_text());runid=int(sys.argv[1]);run=api(f'actions/runs/{runid}')
+assert run['head_sha']==activation['head_sha'] and run['path']=='.github/workflows/sdk3-pixel-geometry-v1.yml' and run['run_attempt']==1 and run['event']=='push'
+if run['status']!='completed':print(json.dumps(dict(run=runid,status=run['status'])));raise SystemExit(2)
+with ThreadPoolExecutor() as ex:jobs,artifacts=list(ex.map(api,[f'actions/runs/{runid}/jobs',f'actions/runs/{runid}/artifacts']))
+assert jobs['total_count']==2 and {j['name'] for j in jobs['jobs']}=={'SDK3 pixel geometry 0','SDK3 pixel geometry 1'}
+assert artifacts['total_count']==2 and {a['name'] for a in artifacts['artifacts']}=={'sdk3-pixel-geometry-20261116-01-0','sdk3-pixel-geometry-20261116-01-1'}
+out=ROOT/'output/stage7-sdk3-pixel-geometry-01/actual';out.mkdir(exist_ok=True)
+for name,value in [('run',run),('jobs',jobs),('artifacts',artifacts)]: (out/(name+'.json')).write_text(json.dumps(value,indent=2)+'\n')
+results=[]
+for repeat in (0,1):
+ artifact=next(a for a in artifacts['artifacts'] if a['name']=='sdk3-pixel-geometry-20261116-01-'+str(repeat))
+ assert artifact['workflow_run']['head_sha']==run['head_sha'] and artifact['workflow_run']['id']==runid and not artifact['expired'] and artifact['size_in_bytes']<128*1024**2
+ folder=out/str(repeat);folder.mkdir(exist_ok=True);archive=folder/'proof.zip'
+ if not archive.exists():
+  with archive.open('wb') as f:subprocess.run(['gh','api',prefix+f"actions/artifacts/{artifact['id']}/zip"],stdout=f,check=True,timeout=180)
+ assert archive.stat().st_size==artifact['size_in_bytes'] and 'sha256:'+hashlib.sha256(archive.read_bytes()).hexdigest()==artifact['digest']
+ with ZipFile(archive) as z:
+  assert len(z.namelist())==len(set(z.namelist())) and sum(i.file_size for i in z.infolist())<256*1024**2
+  for i in z.infolist():
+   p=PurePosixPath(i.filename);assert not p.is_absolute() and '..' not in p.parts and '\\' not in i.filename and not stat.S_ISLNK(i.external_attr>>16) and i.file_size<64*1024**2
+  z.extractall(folder/'bundle')
+ bundle=folder/'bundle';summary=json.loads((bundle/'summary.json').read_text());result=dict(repeat=repeat,artifact_id=artifact['id'],artifact_size=artifact['size_in_bytes'],artifact_digest=artifact['digest'],producer_summary=summary)
+ nativepath=bundle/'renderer/native-child.json'
+ if nativepath.exists():result['native_child']=json.loads(nativepath.read_text())
+ try:
+  analysis=validate_receipt(bundle/'renderer',bundle/'reference.json',repeat,summary['nonce'])
+  assert analysis==json.loads((bundle/'analysis.json').read_text()) and summary['status']=='ZERO_MODEL_CPU_CANDIDATES_RECOMPUTED' and summary['source_sha']==activation['request']['source_sha'] and summary['known_renderer_processes']==summary['native_renderer_processes']==summary['renderer_spawn_attempts']==1
+  (folder/'independent-analysis.json').write_text(json.dumps(analysis,indent=2)+'\n');result['analysis']=analysis
+ except Exception as e:result['validation_failure']=type(e).__name__+': '+str(e)
+ results.append(result)
+valid=all('analysis' in r for r in results)
+if valid:assert len({r['analysis']['process_uuid'] for r in results})==2 and len({r['analysis']['container_id'] for r in results})==2
+combined=dict(run_id=runid,workflow_id=run['workflow_id'],head_sha=run['head_sha'],source_sha=activation['request']['source_sha'],workflow_conclusion=run['conclusion'],repeats=results,all_renderers_validated=valid,known_renderer_starts=sum(int(type(r.get('native_child',{}).get('pid')) is int and r['native_child']['pid']>0) for r in results),official_model_processes=0,onnx_inferences=0,original_matrix=dict(passed=3,total=4,gate_passed=False),repair_proven=False,stage7_complete=False)
+(out/'independent-comparison.json').write_text(json.dumps(combined,indent=2)+'\n')
+print(json.dumps(dict(run=runid,conclusion=run['conclusion'],validated=valid,known_renderer_starts=combined['known_renderer_starts'],repeats=[dict(repeat=r['repeat'],artifact=r['artifact_id'],size=r['artifact_size'],failure=r.get('validation_failure'),replay=r.get('analysis',{}).get('replay'),triangles=r.get('analysis',{}).get('triangles_tested')) for r in results])))

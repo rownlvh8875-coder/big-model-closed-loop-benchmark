@@ -1,0 +1,21 @@
+test_sdk3_pixel_geometry_host (unittest.loader._FailedTest.test_sdk3_pixel_geometry_host) ... ERROR
+
+======================================================================
+ERROR: test_sdk3_pixel_geometry_host (unittest.loader._FailedTest.test_sdk3_pixel_geometry_host)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_sdk3_pixel_geometry_host
+Traceback (most recent call last):
+  File "/workspace/.cloud-tools/python/cpython-3.11.17-linux-x86_64-gnu/lib/python3.11/unittest/loader.py", line 419, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.cloud-tools/python/cpython-3.11.17-linux-x86_64-gnu/lib/python3.11/unittest/loader.py", line 362, in _get_module_from_name
+    __import__(name)
+  File "/dev/shm/stage7-sdk3-runtime-20261116/repo/tests/test_sdk3_pixel_geometry_host.py", line 5, in <module>
+    from scripts import run_sdk3_pixel_geometry as h
+ImportError: cannot import name 'run_sdk3_pixel_geometry' from 'scripts' (/dev/shm/stage7-sdk3-runtime-20261116/repo/scripts/__init__.py)
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (errors=1)

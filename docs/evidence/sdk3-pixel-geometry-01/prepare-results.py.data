@@ -1,0 +1,23 @@
+from pathlib import Path
+import hashlib,json,shutil
+ROOT=Path('/dev/shm/stage7-sdk3-runtime-20261116/repo');out=ROOT/'output/stage7-sdk3-pixel-geometry-01/actual';e=ROOT/'docs/evidence/sdk3-pixel-geometry-01';x=json.loads((out/'independent-comparison.json').read_text());dest=e/'actual';dest.mkdir(exist_ok=True);allfiles=[];brief=[]
+for r in x['repeats']:
+ repeat=r['repeat'];folder=out/str(repeat);bundle=folder/'bundle';d=dest/str(repeat);d.mkdir(exist_ok=True)
+ for p in sorted(bundle.rglob('*')):
+  if not p.is_file():continue
+  rel=p.relative_to(bundle);keep=p.suffix in ('.json','.txt');retained=p
+  if keep:
+   retained=d/'bundle'/rel;retained.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(p,retained)
+  allfiles.append(dict(repeat=repeat,path=str(rel),nbytes=p.stat().st_size,sha256=hashlib.file_digest(p.open('rb'),'sha256').hexdigest(),retained_in_git=keep,retained_path=str(retained.relative_to(ROOT)),artifact_id=r['artifact_id']))
+ if (folder/'independent-analysis.json').exists():shutil.copyfile(folder/'independent-analysis.json',d/'independent-analysis.json')
+ report=json.loads((bundle/'renderer/report.json').read_text()) if (bundle/'renderer/report.json').exists() else {};analysis=r.get('analysis',{});geom=report.get('geometry',{});center=analysis.get('hits',{}).get('center',[]);candidates=[]
+ if center:
+  from scripts import sdk3_pixel_geometry as g
+  triangles,ids=g.load_geometry_archive(bundle/'renderer/geometry.npz',geom['triangle_archive'])
+  for hit in center[:8]:
+   source=ids[hit['triangle_index']].tolist();mesh=geom['meshes'][source[0]];candidates.append(dict(**hit,source_id=source,path=mesh['path'],geom_index=mesh['geom_index'],net_state_text=mesh['net_state_text'],local_to_world=mesh['local_to_world']))
+ b=dict(repeat=repeat,artifact_id=r['artifact_id'],artifact_size=r['artifact_size'],artifact_digest=r['artifact_digest'],validation_failure=r.get('validation_failure'),native_failure=report.get('failure'),checkpoint=report.get('checkpoint'),replay=analysis.get('replay'),target_road_rgb=analysis.get('target_road_rgb'),counts=geom.get('counts'),scan_finished=geom.get('scan_finished_within_budget'),truncation_reasons=geom.get('truncation_reasons'),cpu_scan_seconds=geom.get('cpu_scan_seconds'),cpu_total_seconds=geom.get('cpu_total_seconds'),framebuffer_depth_bits=geom.get('framebuffer_reported_depth_bits'),framebuffer_multisamples=geom.get('framebuffer_reported_multisamples'),hit_counts={k:len(v) for k,v in analysis.get('hits',{}).items()},center_candidates=candidates,cpu_reprojection_max_abs_ndc_error=analysis.get('cpu_reprojection_max_abs_ndc_error'));brief.append(b)
+index=dict(run_id=x['run_id'],workflow_id=x['workflow_id'],source_sha=x['source_sha'],activation=x['head_sha'],all_renderers_validated=x['all_renderers_validated'],known_renderer_starts=x['known_renderer_starts'],official_model_processes=0,onnx_inferences=0,repeats=brief,all_files=allfiles,raw_binary_artifacts_not_committed=True,full_zip_locations={str(i):str((out/str(i)/'proof.zip').relative_to(ROOT)) for i in (0,1)},gpu_pixel_owner_proven=False,depth_tie_proven=False,unique_cause_proven=False,repair_proven=False,stage7_complete=False)
+(dest/'retained-index.json').write_text(json.dumps(index,indent=2)+'\n')
+for name in ('run.json','jobs.json','artifacts.json','independent-comparison.json'):shutil.copyfile(out/name,dest/name)
+print(json.dumps({k:v for k,v in index.items() if k!='all_files'},ensure_ascii=False,indent=2));print('files',len(allfiles))

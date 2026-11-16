@@ -1,0 +1,205 @@
+{
+  "total_count": 2,
+  "jobs": [
+    {
+      "id": 133311426314,
+      "run_id": 43870880328,
+      "workflow_name": "Inspect CPU geometry at the SDK3 step-seven pixel without model inference",
+      "head_branch": "diagnostic/sdk3-pixel-geometry-20261116-01",
+      "run_url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43870880328",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOVklq188AAAAfCfrvCg",
+      "head_sha": "b498db9f247f93f57b1e4e19e0b921d9f6440557",
+      "url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/jobs/133311426314",
+      "html_url": "https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43870880328/job/133311426314",
+      "status": "completed",
+      "conclusion": "failure",
+      "created_at": "2026-11-16T12:55:00Z",
+      "started_at": "2026-11-16T12:55:03Z",
+      "completed_at": "2026-11-16T13:00:43Z",
+      "name": "SDK3 pixel geometry 0",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-16T12:55:04Z",
+          "completed_at": "2026-11-16T12:55:07Z"
+        },
+        {
+          "name": "Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-16T12:55:07Z",
+          "completed_at": "2026-11-16T12:55:15Z"
+        },
+        {
+          "name": "Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-16T12:55:15Z",
+          "completed_at": "2026-11-16T12:55:15Z"
+        },
+        {
+          "name": "Install host-only pixel analysis dependency",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-16T12:55:15Z",
+          "completed_at": "2026-11-16T12:55:22Z"
+        },
+        {
+          "name": "Authenticate prior source pixels and run one zero-model renderer",
+          "status": "completed",
+          "conclusion": "failure",
+          "number": 5,
+          "started_at": "2026-11-16T12:55:22Z",
+          "completed_at": "2026-11-16T13:00:36Z"
+        },
+        {
+          "name": "Preserve positive or negative actual observations, never model weights",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-11-16T13:00:36Z",
+          "completed_at": "2026-11-16T13:00:40Z"
+        },
+        {
+          "name": "Post Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 11,
+          "started_at": "2026-11-16T13:00:40Z",
+          "completed_at": "2026-11-16T13:00:40Z"
+        },
+        {
+          "name": "Post Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-11-16T13:00:40Z",
+          "completed_at": "2026-11-16T13:00:40Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-11-16T13:00:40Z",
+          "completed_at": "2026-11-16T13:00:40Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/check-runs/133311426314",
+      "labels": [
+        "ubuntu-24.04"
+      ],
+      "runner_id": 1000006794,
+      "runner_name": "GitHub Actions 1000006794",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 133311427308,
+      "run_id": 43870880328,
+      "workflow_name": "Inspect CPU geometry at the SDK3 step-seven pixel without model inference",
+      "head_branch": "diagnostic/sdk3-pixel-geometry-20261116-01",
+      "run_url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43870880328",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOVklq188AAAAfCfry7A",
+      "head_sha": "b498db9f247f93f57b1e4e19e0b921d9f6440557",
+      "url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/jobs/133311427308",
+      "html_url": "https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/43870880328/job/133311427308",
+      "status": "completed",
+      "conclusion": "failure",
+      "created_at": "2026-11-16T12:55:00Z",
+      "started_at": "2026-11-16T12:55:03Z",
+      "completed_at": "2026-11-16T13:00:46Z",
+      "name": "SDK3 pixel geometry 1",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-16T12:55:04Z",
+          "completed_at": "2026-11-16T12:55:06Z"
+        },
+        {
+          "name": "Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-16T12:55:06Z",
+          "completed_at": "2026-11-16T12:55:11Z"
+        },
+        {
+          "name": "Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-16T12:55:11Z",
+          "completed_at": "2026-11-16T12:55:11Z"
+        },
+        {
+          "name": "Install host-only pixel analysis dependency",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-16T12:55:11Z",
+          "completed_at": "2026-11-16T12:55:17Z"
+        },
+        {
+          "name": "Authenticate prior source pixels and run one zero-model renderer",
+          "status": "completed",
+          "conclusion": "failure",
+          "number": 5,
+          "started_at": "2026-11-16T12:55:17Z",
+          "completed_at": "2026-11-16T13:00:39Z"
+        },
+        {
+          "name": "Preserve positive or negative actual observations, never model weights",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-11-16T13:00:39Z",
+          "completed_at": "2026-11-16T13:00:43Z"
+        },
+        {
+          "name": "Post Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 11,
+          "started_at": "2026-11-16T13:00:43Z",
+          "completed_at": "2026-11-16T13:00:43Z"
+        },
+        {
+          "name": "Post Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-11-16T13:00:43Z",
+          "completed_at": "2026-11-16T13:00:43Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-11-16T13:00:43Z",
+          "completed_at": "2026-11-16T13:00:43Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/rownlvh8875-coder/big-model-closed-loop-benchmark/check-runs/133311427308",
+      "labels": [
+        "ubuntu-24.04"
+      ],
+      "runner_id": 1000006795,
+      "runner_name": "GitHub Actions 1000006795",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    }
+  ]
+}
