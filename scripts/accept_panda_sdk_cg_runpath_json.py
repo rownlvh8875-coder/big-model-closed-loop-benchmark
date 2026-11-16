@@ -7,25 +7,48 @@ import os
 import stat
 import subprocess
 import sys
+import tempfile
 import time
 import zipfile
 from pathlib import Path
 
 if __name__ == '__main__':
     sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from scripts import panda_sdk_cg_runpath_json as j
-from scripts import panda_sdk_cg_runpath_policy as a
-from scripts import panda_sdk_cg_runpath_carrier as carrier
-from scripts import accept_panda_sdk_cg_runpath as legacy
-from scripts import produce_panda_sdk_cg_runpath as host
-from scripts import panda_sdk_cg_runpath_evidence as evidence
-from scripts import panda_sdk_cg_runpath_gate as gate
-from scripts import panda_sdk_cg_inputs as inputs
-from scripts import panda_sdk_link_image as image
-from scripts.engine_clock_image_transport import _absolute_deadline
+
+def _dependencies():
+    # Frozen DATA reads during module initialization belong inside the receipt boundary.
+    global j, a, carrier, legacy, host, evidence, gate, inputs, image, _absolute_deadline
+    from scripts import panda_sdk_cg_runpath_json as j
+    from scripts import panda_sdk_cg_runpath_policy as a
+    from scripts import panda_sdk_cg_runpath_carrier as carrier
+    from scripts import accept_panda_sdk_cg_runpath as legacy
+    from scripts import produce_panda_sdk_cg_runpath as host
+    from scripts import panda_sdk_cg_runpath_evidence as evidence
+    from scripts import panda_sdk_cg_runpath_gate as gate
+    from scripts import panda_sdk_cg_inputs as inputs
+    from scripts import panda_sdk_link_image as image
+    from scripts.engine_clock_image_transport import _absolute_deadline
+
+
+def _write_receipt(path, result):
+    raw = (json.dumps(result, indent=2, allow_nan=False) + '\n').encode('utf-8')
+    fd, temporary = tempfile.mkstemp(dir=path.parent, prefix='.acceptance-')
+    try:
+        with os.fdopen(fd, 'wb') as stream:
+            if stream.write(raw) != len(raw):
+                raise OSError('short receipt write')
+            stream.flush()
+            os.fsync(stream.fileno())
+        os.replace(temporary, path)
+    finally:
+        try:
+            os.unlink(temporary)
+        except FileNotFoundError:
+            pass
 
 
 def frozen_state():
+    _dependencies()
     c = j.contract()
     closure = j.source_closure()
     raw = j.read(j.ROOT / c['old_failure_path'], 1024**2)
@@ -35,6 +58,7 @@ def frozen_state():
 
 
 def verify_audit_source(source):
+    _dependencies()
     j.need(a.hexstr(source, 40), 'exact audit source SHA')
     head = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=j.ROOT, timeout=10).decode().strip()
     j.need(head == source, 'audit source is current HEAD')
@@ -46,6 +70,7 @@ def verify_audit_source(source):
 
 
 def authenticate_producer(client):
+    _dependencies()
     pin = j.contract()['producer']
     meta = client.get_json('contents/' + a.REQUEST + '?ref=' + pin['activation_sha'], 'request-content.json')
     j.need(meta['type'] == 'file' and meta['encoding'] == 'base64', 'original request contents')
@@ -107,6 +132,7 @@ def _hash_file(path, limit):
 
 def verify_zip_files(zip_path, candidate, pin):
     """Verify transport bytes without extracting, executing or granting origin."""
+    _dependencies()
     zip_path, candidate = _canonical(zip_path), _canonical(candidate, directory=True)
     expected = dict(nbytes=pin['artifact_zip_nbytes'], sha256=pin['artifact_zip_sha256'])
     j.need(_hash_file(zip_path, carrier.MAX_ZIP) == expected, 'retained ZIP identity')
@@ -156,10 +182,12 @@ def verify_zip_files(zip_path, candidate, pin):
 
 
 def verify_cached_carrier(zip_path, candidate):
+    _dependencies()
     return verify_zip_files(zip_path, candidate, j.contract()['producer'])
 
 
 def provider_paths(inventory_document, cache):
+    _dependencies()
     cache = _canonical(cache, directory=True)
     inventory = image.Inventory(inventory_document)
     paths, checked = {}, {}
@@ -197,7 +225,8 @@ def _independent_reports(candidate, receipt, recomputed):
 
 def audit(source, registrations, out):
     out = Path(os.path.abspath(out))
-    j.need(out.resolve() == out and not out.exists(), 'fresh canonical JSON audit output')
+    if out.resolve() != out or out.exists():
+        raise ValueError('fresh canonical JSON audit output')
     out.mkdir(parents=True)
     result = dict(schema='panda-sdk-cg-runpath-json-acceptance-v1', status='FAILED',
                   audit_source_sha=source, actions_output_origin_authenticated=False,
@@ -206,10 +235,15 @@ def audit(source, registrations, out):
                   image_operations=0, target_execution=False, scientific_native_runs=0,
                   native_admitted=False, stage7_complete=False,
                   source_observer_default_off_observed=None, strict_current_result='0/4 FAIL')
-    for key in j.FORBIDDEN:
+    # Bootstrap has no checkout imports or contract reads before the initial negative.
+    for key in ('full_object_abi_qualified', 'full_dependency_closure_qualified',
+                'runtime_mapping_qualified', 'previous_abort_fixed', 'candidate_installed',
+                'external_build_origin_authenticated'):
         result[key] = False
-    a.write(out / 'acceptance.json', result)
+    _write_receipt(out / 'acceptance.json', result)
+    initial = dict(result)
     try:
+        _dependencies()
         stop = time.monotonic() + j.contract()['audit_seconds']
         with _absolute_deadline(stop):
             state = verify_audit_source(source)
@@ -257,7 +291,11 @@ def audit(source, registrations, out):
     except BaseException as error:
         result.update(status='FAILED', actions_output_origin_authenticated=False,
                       selected_static_accepted=False, failure=(type(error).__name__ + ': ' + str(error))[:4096])
-    a.write(out / 'acceptance.json', result)
+    try:
+        _write_receipt(out / 'acceptance.json', result)
+    except BaseException:
+        # Atomic replacement leaves the original parseable negative in place.
+        return initial
     return result
 
 

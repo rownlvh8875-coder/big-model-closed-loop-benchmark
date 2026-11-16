@@ -1,4 +1,4 @@
-import copy,json,tempfile,unittest,zipfile
+import copy,json,subprocess,sys,tempfile,unittest,zipfile
 from pathlib import Path
 from unittest.mock import patch
 from scripts import accept_panda_sdk_cg_runpath_json as receiver
@@ -25,6 +25,43 @@ def toy_carrier(root):
     return archive,candidate,pin
 
 class ReceiverTests(unittest.TestCase):
+    def child(self, code, out):
+        process=subprocess.run([sys.executable,'-B','-c',code,str(out)],cwd=j.ROOT,capture_output=True,text=True,timeout=30)
+        self.assertEqual(process.returncode,0,process.stdout+process.stderr)
+        saved=json.loads((out/'acceptance.json').read_text())
+        self.assertEqual(saved['status'],'FAILED');self.assertFalse(saved['actions_output_origin_authenticated']);self.assertFalse(saved['selected_static_accepted'])
+    def test_fresh_process_import_failure_still_has_negative_receipt(self):
+        code="""
+import os,sys
+from pathlib import Path
+original=os.open
+def blocked(path,*args,**kwargs):
+    if str(path).endswith('docs/evidence/panda-sdk-cg-residual-01/contract.json'):
+        raise OSError('fixture frozen-contract import unavailable')
+    return original(path,*args,**kwargs)
+os.open=blocked
+from scripts import accept_panda_sdk_cg_runpath_json as receiver
+result=receiver.audit('f'*40,[],Path(sys.argv[1]))
+assert result['status']=='FAILED' and not result['actions_output_origin_authenticated']
+"""
+        with tempfile.TemporaryDirectory() as d:self.child(code,Path(d)/'audit')
+    def test_final_write_failure_retains_parseable_negative_receipt(self):
+        code="""
+import json,resource,signal,sys
+from pathlib import Path
+from unittest.mock import patch
+from scripts import accept_panda_sdk_cg_runpath_json as receiver
+signal.signal(signal.SIGXFSZ,signal.SIG_IGN)
+def block_final_write(source):
+    resource.setrlimit(resource.RLIMIT_FSIZE,(0,resource.getrlimit(resource.RLIMIT_FSIZE)[1]))
+    raise ValueError('fixture failure after initial receipt')
+with patch.object(receiver,'verify_audit_source',side_effect=block_final_write):
+    result=receiver.audit('a'*40,[],Path(sys.argv[1]))
+saved=json.loads((Path(sys.argv[1])/'acceptance.json').read_text())
+assert result==saved and saved['status']=='FAILED' and not saved['selected_static_accepted']
+assert sorted(p.name for p in Path(sys.argv[1]).iterdir())==['acceptance.json']
+"""
+        with tempfile.TemporaryDirectory() as d:self.child(code,Path(d)/'audit')
     def test_exact_existing_origin_metadata_no_network_mutation(self):
         client=MemoryClient();result=receiver.authenticate_producer(client);self.assertEqual(result['run']['id'],43786081196);self.assertEqual(result['artifact']['id'],14191115165);self.assertEqual(result['job']['id'],133033912459);self.assertTrue(client.calls);self.assertTrue(all(not path.startswith('dispatch') for path in client.calls))
     def test_wrong_original_origin_cannot_substitute(self):
