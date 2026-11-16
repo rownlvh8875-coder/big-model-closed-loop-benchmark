@@ -1,0 +1,230 @@
+{
+  "status": "SDK3_GLX_SELECTED_RUNTIME_OBSERVED",
+  "sdk_sha256": "27cd80fb1c06feaa7da8b5658cce918d1e3ab71c304a0c0ce42e30688ac008f3",
+  "image": "sha256:b9d673de93f1857e4dfa5ed6a48330d568ef96fce7f3cc975f0c688877e6e26e",
+  "probes": [
+    {
+      "index": 0,
+      "role": "reference",
+      "factory": "manual",
+      "load_order": "core-first",
+      "nonce": "d739b8064583de71c75cef8911620d93",
+      "last_checkpoint": "CLEANUP_AFTER",
+      "execution": {
+        "status": "EXIT_OBSERVED",
+        "returncode": 0,
+        "failure": null,
+        "stopped_state": {
+          "Status": "exited",
+          "Running": false,
+          "Paused": false,
+          "Restarting": false,
+          "OOMKilled": false,
+          "Dead": false,
+          "Pid": 0,
+          "ExitCode": 0,
+          "Error": "",
+          "StartedAt": "2026-11-16T08:02:31.808674824Z",
+          "FinishedAt": "2026-11-16T08:02:32.756760926Z"
+        },
+        "create_attempted": true,
+        "start_attempted": true,
+        "container_id": "4584eda0510dbc195076f3d1996e2b5edc2cd528f16104558824ef6894cd1831",
+        "ownership_unresolved": false,
+        "owned_container_removed": true,
+        "cleanup_failure": null
+      },
+      "selected_runtime_compatible": false,
+      "validation_failure": "ValueError: exact fresh challenged RGB bytes"
+    },
+    {
+      "index": 1,
+      "role": "sdk3",
+      "factory": "manual",
+      "load_order": "core-first",
+      "nonce": "2eeda574daf5673205dfc305cdb3fb3b",
+      "last_checkpoint": "CLEANUP_AFTER",
+      "execution": {
+        "status": "EXIT_OBSERVED",
+        "returncode": 0,
+        "failure": null,
+        "stopped_state": {
+          "Status": "exited",
+          "Running": false,
+          "Paused": false,
+          "Restarting": false,
+          "OOMKilled": false,
+          "Dead": false,
+          "Pid": 0,
+          "ExitCode": 0,
+          "Error": "",
+          "StartedAt": "2026-11-16T08:02:32.905810816Z",
+          "FinishedAt": "2026-11-16T08:02:33.381421037Z"
+        },
+        "create_attempted": true,
+        "start_attempted": true,
+        "container_id": "0317f399a22fa2c97f86b414ad74ed9dc6e1c31af791ddf9d8cfc271d46695af",
+        "ownership_unresolved": false,
+        "owned_container_removed": true,
+        "cleanup_failure": null
+      },
+      "selected_runtime_compatible": false,
+      "validation_failure": "ValueError: exact fresh challenged RGB bytes"
+    },
+    {
+      "index": 2,
+      "role": "reference",
+      "factory": "showbase",
+      "load_order": "core-first",
+      "nonce": "3ad0077531845dda4ef77f3c3d6bda11",
+      "last_checkpoint": "CLEANUP_AFTER",
+      "execution": {
+        "status": "EXIT_OBSERVED",
+        "returncode": 0,
+        "failure": null,
+        "stopped_state": {
+          "Status": "exited",
+          "Running": false,
+          "Paused": false,
+          "Restarting": false,
+          "OOMKilled": false,
+          "Dead": false,
+          "Pid": 0,
+          "ExitCode": 0,
+          "Error": "",
+          "StartedAt": "2026-11-16T08:02:33.541079663Z",
+          "FinishedAt": "2026-11-16T08:02:34.166589852Z"
+        },
+        "create_attempted": true,
+        "start_attempted": true,
+        "container_id": "fb6e0bcfb3e31481190037cfcce9723d9329ea6043ee2858783ca5d738dcceaf",
+        "ownership_unresolved": false,
+        "owned_container_removed": true,
+        "cleanup_failure": null
+      },
+      "selected_runtime_compatible": false,
+      "reference_frames_verified": true,
+      "verified_frames": 2,
+      "stage7_complete": false
+    },
+    {
+      "index": 3,
+      "role": "sdk3",
+      "factory": "showbase",
+      "load_order": "core-first",
+      "nonce": "bdcc4b012412c70206072c12b08025f8",
+      "last_checkpoint": "CLEANUP_AFTER",
+      "execution": {
+        "status": "EXIT_OBSERVED",
+        "returncode": 0,
+        "failure": null,
+        "stopped_state": {
+          "Status": "exited",
+          "Running": false,
+          "Paused": false,
+          "Restarting": false,
+          "OOMKilled": false,
+          "Dead": false,
+          "Pid": 0,
+          "ExitCode": 0,
+          "Error": "",
+          "StartedAt": "2026-11-16T08:02:34.280069293Z",
+          "FinishedAt": "2026-11-16T08:02:34.903505954Z"
+        },
+        "create_attempted": true,
+        "start_attempted": true,
+        "container_id": "391db2c4caa6f177224bade847d95cd71bf9eccf4a89530d6c55d7e5bf5cc2c8",
+        "ownership_unresolved": false,
+        "owned_container_removed": true,
+        "cleanup_failure": null
+      },
+      "selected_runtime_compatible": true,
+      "verified_frames": 2,
+      "full_object_abi_qualified": false,
+      "stage7_complete": false
+    },
+    {
+      "index": 4,
+      "role": "sdk3",
+      "factory": "showbase",
+      "load_order": "core-first",
+      "nonce": "08334a51acebaa98bae0dc1a7a87c189",
+      "last_checkpoint": "CLEANUP_AFTER",
+      "execution": {
+        "status": "EXIT_OBSERVED",
+        "returncode": 0,
+        "failure": null,
+        "stopped_state": {
+          "Status": "exited",
+          "Running": false,
+          "Paused": false,
+          "Restarting": false,
+          "OOMKilled": false,
+          "Dead": false,
+          "Pid": 0,
+          "ExitCode": 0,
+          "Error": "",
+          "StartedAt": "2026-11-16T08:02:35.015289487Z",
+          "FinishedAt": "2026-11-16T08:02:35.642020374Z"
+        },
+        "create_attempted": true,
+        "start_attempted": true,
+        "container_id": "9b7fea5badb90dce4b8b2b06aa72c45dc7733b3f585e25aa29262f0c7b0d24d6",
+        "ownership_unresolved": false,
+        "owned_container_removed": true,
+        "cleanup_failure": null
+      },
+      "selected_runtime_compatible": true,
+      "verified_frames": 2,
+      "full_object_abi_qualified": false,
+      "stage7_complete": false
+    }
+  ],
+  "official_model_processes": 1,
+  "strict_result": "NOT_RUN",
+  "stage7_complete": false,
+  "source_sha": "3bc46af75a2ef1f8cec415139c3688e0c14428ed",
+  "disk_before": {
+    "total": 154894188544,
+    "used": 60563419136,
+    "free": 94313992192
+  },
+  "showbase_compatible": true,
+  "core_first_compatible": true,
+  "model_pairs": [
+    {
+      "seed": 20261109,
+      "scenario": "s_curve_left_right",
+      "counts": {
+        "known": 1,
+        "upper": 1,
+        "spawn_attempts": 1
+      },
+      "execution": {
+        "status": "FAILED",
+        "returncode": 1,
+        "failure": "ValueError: stopped non-OOM child",
+        "stopped_state": {
+          "Status": "exited",
+          "Running": false,
+          "Paused": false,
+          "Restarting": false,
+          "OOMKilled": true,
+          "Dead": false,
+          "Pid": 0,
+          "ExitCode": 1,
+          "Error": "",
+          "StartedAt": "2026-11-16T08:02:48.70447245Z",
+          "FinishedAt": "2026-11-16T08:05:09.665309824Z"
+        },
+        "create_attempted": true,
+        "start_attempted": true,
+        "container_id": "8b15a05b74b895f49f7fb6f3db5b79b6cc87f5b1c4489a409c147a1c1300928c",
+        "ownership_unresolved": false,
+        "owned_container_removed": true,
+        "cleanup_failure": null
+      }
+    }
+  ],
+  "failure": "ValueError: completed actual model pair"
+}

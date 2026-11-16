@@ -1,0 +1,93 @@
+{
+  "checked_at_kst": "2026-11-16T22:02:58.593993+09:00",
+  "status": "AUTHENTICATED_NEGATIVE_OBSERVATION_NO_PIXEL_GEOMETRY_RESULT",
+  "run_id": 43870880328,
+  "workflow_id": 420125951,
+  "source_sha": "6423b55624bcd0785056cb0e5577abda1b0dc52b",
+  "activation_sha": "b498db9f247f93f57b1e4e19e0b921d9f6440557",
+  "known_renderer_starts": 2,
+  "distinct_containers": [
+    "2218b519b42680a7ac035cc3833cffb83b50fce2dd9dd802715af1f8bc68bb94",
+    "3cb3f4dc57061450c0d39bbb1bf5f1d92068621953f176777888bd4cfb6d9243"
+  ],
+  "distinct_process_uuids": [
+    "a452643b20b3406cbbb2218779a8a394",
+    "d5f1c85e75644216ae60c8706f43b003"
+  ],
+  "repeats": [
+    {
+      "repeat": 0,
+      "process_uuid": "a452643b20b3406cbbb2218779a8a394",
+      "pid": 10,
+      "container_id": "2218b519b42680a7ac035cc3833cffb83b50fce2dd9dd802715af1f8bc68bb94",
+      "native_exit_code": null,
+      "watchdog_seconds": 160,
+      "watchdog_timeout_observed": true,
+      "container_exit_code": 1,
+      "server_exit_code": 0,
+      "oom_killed": false,
+      "cgroup_memory_peak_bytes": 5821292544,
+      "owned_container_removed": true,
+      "last_persisted_checkpoint": "WORLD_READY",
+      "persisted_capture_records": 0,
+      "actual_completed_capture_count": null,
+      "source_image_equivalence": null,
+      "geometry_observed": false,
+      "provider_finalization_unverified": true,
+      "final_runtime_module_audit_unavailable": true,
+      "official_model_processes": 0,
+      "onnx_inferences": 0
+    },
+    {
+      "repeat": 1,
+      "process_uuid": "d5f1c85e75644216ae60c8706f43b003",
+      "pid": 10,
+      "container_id": "3cb3f4dc57061450c0d39bbb1bf5f1d92068621953f176777888bd4cfb6d9243",
+      "native_exit_code": null,
+      "watchdog_seconds": 160,
+      "watchdog_timeout_observed": true,
+      "container_exit_code": 1,
+      "server_exit_code": 0,
+      "oom_killed": false,
+      "cgroup_memory_peak_bytes": 5824749568,
+      "owned_container_removed": true,
+      "last_persisted_checkpoint": "WORLD_READY",
+      "persisted_capture_records": 0,
+      "actual_completed_capture_count": null,
+      "source_image_equivalence": null,
+      "geometry_observed": false,
+      "provider_finalization_unverified": true,
+      "final_runtime_module_audit_unavailable": true,
+      "official_model_processes": 0,
+      "onnx_inferences": 0
+    }
+  ],
+  "job_logs": [
+    {
+      "job_id": 133311426314,
+      "file": "job-133311426314.log",
+      "nbytes": 44144,
+      "sha256": "8425d5263da71df3c1410cafa8b5ca91e465e25a90d102386c9a837c6171f121"
+    },
+    {
+      "job_id": 133311427308,
+      "file": "job-133311427308.log",
+      "nbytes": 44144,
+      "sha256": "867402c1929091ba4654458333b6a0a97d291d4b3ee9e9ef2799099b63975199"
+    }
+  ],
+  "source_image_equivalence": null,
+  "geometry_candidates": null,
+  "timeout_location_within_capture_loop_unknown": true,
+  "cold_render_slowness_or_deadlock_not_discriminated": true,
+  "official_model_processes": 0,
+  "onnx_inferences": 0,
+  "original_matrix_passed": 3,
+  "original_matrix_total": 4,
+  "original_matrix_gate_passed": false,
+  "gpu_pixel_owner_proven": false,
+  "depth_tie_proven": false,
+  "unique_cause_proven": false,
+  "repair_proven": false,
+  "stage7_complete": false
+}

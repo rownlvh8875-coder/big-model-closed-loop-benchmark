@@ -1,0 +1,33 @@
+from pathlib import Path
+from datetime import datetime,timezone,timedelta
+from concurrent.futures import ThreadPoolExecutor
+import hashlib,json,subprocess,sys
+ROOT=Path('/dev/shm/stage7-sdk3-runtime-20261116/repo');sys.path.insert(0,str(ROOT))
+from scripts.run_sdk3_pixel_geometry import validate_command
+from scripts import panda_sdk3_runtime as p
+from scripts.continue_panda_sdk3_models import PROFILE
+out=ROOT/'output/stage7-sdk3-pixel-geometry-01/actual';e=ROOT/'docs/evidence/sdk3-pixel-geometry-01/actual';combined=json.loads((out/'independent-comparison.json').read_text());activation=json.loads(Path('/dev/shm/stage7-sdk3-pixel-geometry-20261116/activation.json').read_text());rows=[];containers=[];uuids=[]
+assert combined['run_id']==43870880328 and combined['workflow_id']==420125951 and combined['head_sha']==activation['head_sha'] and not combined['all_renderers_validated']
+for repeat in (0,1):
+ root=out/str(repeat)/'bundle';folder=root/'renderer';summary=json.loads((root/'summary.json').read_text());request=json.loads((root/'request.json').read_text());r=json.loads((folder/'report.json').read_text());n=json.loads((folder/'native-child.json').read_text());c=json.loads((folder/'container.json').read_text());ex=json.loads((folder/'execution.json').read_text());cmd=json.loads((folder/'command.json').read_text());ref=root/'reference.json'
+ assert request==activation['request'] and summary['source_sha']==request['source_sha'] and summary['known_renderer_processes']==summary['renderer_spawn_attempts']==1
+ for event,key in [('push','push_ci'),('pull_request','pr_ci')]:
+  ci=json.loads((root/('source-ci-'+event+'.json')).read_text());assert ci['run']['id']==request[key] and ci['run']['head_sha']==request['source_sha'] and ci['run']['run_attempt']==1 and ci['run']['conclusion']=='success' and ci['jobs']['total_count']==2 and all(j['conclusion']=='success' for j in ci['jobs']['jobs']) and ci['artifacts']['total_count']==0
+ validate_command(cmd,c,repeat,summary['nonce']);assert c['image']==p.IMAGE and c['effective_limits']==PROFILE and c['id']==ex['container_id'] and len(c['id'])==64
+ assert type(n['pid']) is int and n['pid']>0 and n['spawn_attempted'] is True and r['pid']==n['pid'] and r['repeat']==repeat and r['nonce']==summary['nonce'] and len(r['process_uuid'])==32
+ assert r['checkpoint']=='WORLD_READY' and r['status']=='FAILED' and r['core_sha256']==p.CORE_SHA and r['sdk_sha256']==p.SDK_SHA and r['panda_version']=='1.10.13' and r['base_camera_sha256']=='23d90c3d12894f855ae64d4607c03f3bf34e31e28dd7f5ce82bd0ddc7b37faf5' and r['reference_sha256']==p.digest(ref)
+ assert n['returncode'] is None and n['server_returncode']==0 and n['failure'].startswith('TimeoutExpired:') and 'timed out after 160 seconds' in n['failure']
+ assert ex['returncode']==1 and ex['failure'] is None and ex['owned_container_removed'] is True and ex['ownership_unresolved'] is False and ex['cleanup_failure'] is None
+ state=ex['stopped_state'];assert state['Running'] is False and state['Pid']==0 and state['OOMKilled'] is False and state['ExitCode']==1
+ events=n['container_cgroup_after_child']['memory.events'];assert 'oom 0\n' in events and 'oom_kill 0\n' in events
+ assert all(not (folder/name).exists() for name in ('geometry.npz','step7-road.rgb.zlib','step7-wide.rgb.zlib')) and 'geometry' not in r and 'target_images' not in r and 'replay' not in r
+ assert summary['official_model_processes']==summary['onnx_inferences']==r['official_model_processes']==r['onnx_inferences']==0
+ containers.append(c['id']);uuids.append(r['process_uuid']);rows.append(dict(repeat=repeat,process_uuid=r['process_uuid'],pid=n['pid'],container_id=c['id'],native_exit_code=None,watchdog_seconds=160,watchdog_timeout_observed=True,container_exit_code=1,server_exit_code=0,oom_killed=False,cgroup_memory_peak_bytes=int(n['container_cgroup_after_child']['memory.peak']),owned_container_removed=True,last_persisted_checkpoint='WORLD_READY',persisted_capture_records=len(r['captures']),actual_completed_capture_count=None,source_image_equivalence=None,geometry_observed=False,provider_finalization_unverified=True,final_runtime_module_audit_unavailable=True,official_model_processes=0,onnx_inferences=0))
+assert len(set(containers))==len(set(uuids))==2
+jobs=json.loads((out/'jobs.json').read_text())['jobs']
+def logs(job):
+ raw=subprocess.check_output(['gh','api',f"repos/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/jobs/{job['id']}/logs"],timeout=60);name=f"job-{job['id']}.log";(out/name).write_bytes(raw);return dict(job_id=job['id'],file=name,nbytes=len(raw),sha256=hashlib.sha256(raw).hexdigest())
+with ThreadPoolExecutor() as pool:rawlogs=list(pool.map(logs,jobs))
+v=dict(checked_at_kst=datetime.now(timezone(timedelta(hours=9))).isoformat(),status='AUTHENTICATED_NEGATIVE_OBSERVATION_NO_PIXEL_GEOMETRY_RESULT',run_id=combined['run_id'],workflow_id=combined['workflow_id'],source_sha=combined['source_sha'],activation_sha=combined['head_sha'],known_renderer_starts=2,distinct_containers=containers,distinct_process_uuids=uuids,repeats=rows,job_logs=rawlogs,source_image_equivalence=None,geometry_candidates=None,timeout_location_within_capture_loop_unknown=True,cold_render_slowness_or_deadlock_not_discriminated=True,official_model_processes=0,onnx_inferences=0,original_matrix_passed=3,original_matrix_total=4,original_matrix_gate_passed=False,gpu_pixel_owner_proven=False,depth_tie_proven=False,unique_cause_proven=False,repair_proven=False,stage7_complete=False)
+for d in (out,e):(d/'negative-analysis.json').write_text(json.dumps(v,indent=2)+'\n')
+print(json.dumps(v,ensure_ascii=False))

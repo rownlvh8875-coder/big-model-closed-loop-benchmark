@@ -1,0 +1,140 @@
+{
+  "run_id": 43870880328,
+  "workflow_id": 420125951,
+  "head_sha": "b498db9f247f93f57b1e4e19e0b921d9f6440557",
+  "source_sha": "6423b55624bcd0785056cb0e5577abda1b0dc52b",
+  "workflow_conclusion": "failure",
+  "repeats": [
+    {
+      "repeat": 0,
+      "artifact_id": 14228082465,
+      "artifact_size": 43533073,
+      "artifact_digest": "sha256:e6546c03bc0c5249fcfa1e270abd76ac83ee4ed995c1117dc82ee88388a77bae",
+      "producer_summary": {
+        "status": "FAILED",
+        "repeat": 0,
+        "known_renderer_processes": 1,
+        "renderer_spawn_attempts": 1,
+        "official_model_processes": 0,
+        "onnx_inferences": 0,
+        "repair_proven": false,
+        "stage7_complete": false,
+        "source_sha": "6423b55624bcd0785056cb0e5577abda1b0dc52b",
+        "host_memory": {
+          "MemTotal": 16464302080,
+          "MemAvailable": 14374694912
+        },
+        "nonce": "b964860fd7f8be4eeca9e3dfae6eeda3",
+        "execution": {
+          "status": "EXIT_OBSERVED",
+          "returncode": 1,
+          "failure": null,
+          "stopped_state": {
+            "Status": "exited",
+            "Running": false,
+            "Paused": false,
+            "Restarting": false,
+            "OOMKilled": false,
+            "Dead": false,
+            "Pid": 0,
+            "ExitCode": 1,
+            "Error": "",
+            "StartedAt": "2026-11-16T12:57:55.994794216Z",
+            "FinishedAt": "2026-11-16T13:00:36.662087535Z"
+          },
+          "create_attempted": true,
+          "start_attempted": true,
+          "container_id": "2218b519b42680a7ac035cc3833cffb83b50fce2dd9dd802715af1f8bc68bb94",
+          "ownership_unresolved": false,
+          "owned_container_removed": true,
+          "cleanup_failure": null
+        },
+        "failure": "ValueError: clean owned renderer container"
+      },
+      "native_child": {
+        "spawn_attempted": true,
+        "pid": 10,
+        "returncode": null,
+        "server_returncode": 0,
+        "failure": "TimeoutExpired: Command '['/opt/venv/bin/python', '-I', '-S', '-B', '/work/repo/scripts/sdk3_pixel_geometry_native.py', '--owned-child', '--server-owner', '1', '--out', '/out', '--nonce', 'b964860fd7f8be4eeca9e3dfae6eeda3', '--repeat', '0']' timed out after 160 seconds",
+        "container_cgroup_after_child": {
+          "memory.max": "10737418240",
+          "memory.peak": "5821292544",
+          "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+        }
+      },
+      "validation_failure": "ValueError: clean owned renderer container"
+    },
+    {
+      "repeat": 1,
+      "artifact_id": 14227059497,
+      "artifact_size": 43533074,
+      "artifact_digest": "sha256:0b78018ed15b7fced29523c2ac142c230831bec8c3163ce6dfabd570337128e1",
+      "producer_summary": {
+        "status": "FAILED",
+        "repeat": 1,
+        "known_renderer_processes": 1,
+        "renderer_spawn_attempts": 1,
+        "official_model_processes": 0,
+        "onnx_inferences": 0,
+        "repair_proven": false,
+        "stage7_complete": false,
+        "source_sha": "6423b55624bcd0785056cb0e5577abda1b0dc52b",
+        "host_memory": {
+          "MemTotal": 16464297984,
+          "MemAvailable": 14782443520
+        },
+        "nonce": "7835facf9de300418deff805a94b9af5",
+        "execution": {
+          "status": "EXIT_OBSERVED",
+          "returncode": 1,
+          "failure": null,
+          "stopped_state": {
+            "Status": "exited",
+            "Running": false,
+            "Paused": false,
+            "Restarting": false,
+            "OOMKilled": false,
+            "Dead": false,
+            "Pid": 0,
+            "ExitCode": 1,
+            "Error": "",
+            "StartedAt": "2026-11-16T12:57:58.987745733Z",
+            "FinishedAt": "2026-11-16T13:00:39.717089724Z"
+          },
+          "create_attempted": true,
+          "start_attempted": true,
+          "container_id": "3cb3f4dc57061450c0d39bbb1bf5f1d92068621953f176777888bd4cfb6d9243",
+          "ownership_unresolved": false,
+          "owned_container_removed": true,
+          "cleanup_failure": null
+        },
+        "failure": "ValueError: clean owned renderer container"
+      },
+      "native_child": {
+        "spawn_attempted": true,
+        "pid": 10,
+        "returncode": null,
+        "server_returncode": 0,
+        "failure": "TimeoutExpired: Command '['/opt/venv/bin/python', '-I', '-S', '-B', '/work/repo/scripts/sdk3_pixel_geometry_native.py', '--owned-child', '--server-owner', '1', '--out', '/out', '--nonce', '7835facf9de300418deff805a94b9af5', '--repeat', '1']' timed out after 160 seconds",
+        "container_cgroup_after_child": {
+          "memory.max": "10737418240",
+          "memory.peak": "5824749568",
+          "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+        }
+      },
+      "validation_failure": "ValueError: clean owned renderer container"
+    }
+  ],
+  "all_renderers_validated": false,
+  "known_renderer_starts": 2,
+  "official_model_processes": 0,
+  "onnx_inferences": 0,
+  "original_matrix": {
+    "passed": 3,
+    "total": 4,
+    "gate_passed": false
+  },
+  "repair_proven": false,
+  "stage7_complete": false
+}

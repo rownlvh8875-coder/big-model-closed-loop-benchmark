@@ -22,14 +22,15 @@ Based02fefd;additions only. Same image498447tar/configb9d673,SDK27cd/core8b037,o
 ### Task1: CPU geometry and native replay
 **Files:** Create scripts/sdk3_pixel_geometry.py,scripts/sdk3_pixel_geometry_native.py,tests/test_sdk3_pixel_geometry.py.
 **Interfaces:** pixel_samples(width,height,x,y); intersect_triangles(origin,direction,triangles,max_distance); post_read_observer(sensor,callback,target_call=7); replay/reference validators. New native CLI implements owned-child+one fresh pose replay through unchanged world camera.
-- [ ] Literal pixel mapping,front/behind/edge/parallel/degenerate/nonfinite triangle tests and callback ordering/restoration tests;ExpectedRED.
-- [ ] Minimal bounded CPU rays/geometry snapshot/native CLI and reference membership;ExpectedGREEN. Commit.
+- [x] Literal pixel mapping,front/behind/edge/parallel/degenerate/nonfinite triangle tests and callback ordering/restoration tests;ExpectedRED.
+- [x] Minimal bounded CPU rays/geometry snapshot/native CLI and reference membership;ExpectedGREEN. Commit.
 
 ### Task2: Authenticated host workflow and actual diagnosis
 **Files:** Create scripts/run_sdk3_pixel_geometry.py,.github/workflows/sdk3-pixel-geometry-v1.yml,tests/test_sdk3_pixel_geometry_host.py;new evidence/result doc only.
 **Interfaces:** native_command(...,reference)->list; cloned run_container private globals; validate_receipt(folder,reference)->dict; exact prior/source authentication.
-- [ ] Add wrong source/replay/geometry/model/lifecycle/profile negative tests;ExpectedRED.
-- [ ] Implement pinned image/SDK/prior staging,zero-model2job execution and independent CPU reanalysis;ExpectedGREEN/actionlint;ownDraft parentPR132.
-- [ ] Exact-sourceCI4jobsSUCCESS;one fresh review;effect regrading and one ImportantRED→GREEN pass/no rereview;Minor ledger.
-- [ ] Request-only activation,observe actual2native/0model/0inference;authenticate/recompute every artifact;preserve source mismatch/partial outcomes honestly.
-- [ ] Report measured candidates and limits;final exactHEADCI/PRbody/remote/clean/original preservation receipt;archive own ledger/remove only ownscratch. No renderer repair promotion.
+- [x] Add wrong source/replay/geometry/model/lifecycle/profile negative tests;ExpectedRED.
+- [x] Implement pinned image/SDK/prior staging,zero-model2job execution and independent CPU reanalysis;ExpectedGREEN/actionlint;ownDraft parentPR132.
+- [x] Exact-sourceCI4jobsSUCCESS;one fresh review;effect regrading and one ImportantRED→GREEN pass/no rereview;Minor ledger.
+- [x] Request-only activation:actual2native/0model/0inference authenticated;both160sTIMEOUT,lastpersistedWORLD_READY,no geometry;negative evidence retained.
+- [x] Report actual timeout and unknown candidates/limits;all662files retained/indexed. No renderer repair promotion.
+- [ ] Final exactHEADCI/PRbody/remote/clean/original preservation and own-ledger archival/removal:authoritative result recorded in output/stage7-sdk3-pixel-geometry-01/final-closeout/verification.json after final commit.
