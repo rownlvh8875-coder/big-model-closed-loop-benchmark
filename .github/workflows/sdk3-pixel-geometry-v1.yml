@@ -1,0 +1,44 @@
+name: Inspect CPU geometry at the SDK3 step-seven pixel without model inference
+on:
+  push:
+    branches: ['diagnostic/sdk3-pixel-geometry-20261116-01']
+    paths: ['docs/requests/sdk3-pixel-geometry-20261116-01.json']
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: sdk3-pixel-geometry-20261116-01
+  cancel-in-progress: false
+jobs:
+  sdk3-runtime:
+    name: SDK3 pixel geometry ${{ matrix.repeat }}
+    strategy:
+      fail-fast: false
+      matrix:
+        repeat: [0, 1]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install host-only pixel analysis dependency
+        run: python -m pip install --no-deps numpy==1.26.4
+      - name: Authenticate prior source pixels and run one zero-model renderer
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python -I -B scripts/run_sdk3_pixel_geometry.py --run --repeat "${{ matrix.repeat }}"
+      - name: Preserve positive or negative actual observations, never model weights
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: sdk3-pixel-geometry-20261116-01-${{ matrix.repeat }}
+          path: output/stage7-sdk3-pixel-geometry-01/${{ matrix.repeat }}/producer/bundle/
+          retention-days: 30
+          compression-level: 6
+          include-hidden-files: true
+          if-no-files-found: error

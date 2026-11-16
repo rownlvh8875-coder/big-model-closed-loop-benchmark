@@ -122,3 +122,24 @@ def load_geometry_archive(path,receipt):
         triangles,ids=_arrays(arrays['triangles'],arrays['ids'])
     need(list(triangles.shape)==receipt.get('triangles_shape') and list(ids.shape)==receipt.get('ids_shape') and hashlib.sha256(triangles.tobytes()).hexdigest()==receipt.get('triangles_sha256') and hashlib.sha256(ids.tobytes()).hexdigest()==receipt.get('ids_sha256'),'geometry array identity')
     return triangles,ids
+
+
+def transform_points(points,matrix):
+    points=np.asarray(points,dtype=float).reshape((-1,3));matrix=np.asarray(matrix,dtype=float)
+    need(matrix.shape==(4,4) and np.isfinite(points).all() and np.isfinite(matrix).all(),'finite CPU point transform')
+    homogeneous=np.column_stack((points,np.ones(len(points))))@matrix
+    need(np.all(homogeneous[:,3]!=0),'finite homogeneous coordinate')
+    return homogeneous[:,:3]/homogeneous[:,3,None]
+
+
+def ray_projection_error(rays,camera_to_world,projection):
+    camera_to_world=np.asarray(camera_to_world,float);projection=np.asarray(projection,float)
+    need(camera_to_world.shape==projection.shape==(4,4) and np.isfinite(camera_to_world).all() and np.isfinite(projection).all(),'finite camera/lens matrices')
+    try:inverse=np.linalg.inv(camera_to_world)
+    except np.linalg.LinAlgError as error:raise ValueError('invertible CPU camera') from error
+    errors=[]
+    for ray in rays:
+        origin,direction=_ray(ray['origin'],ray['direction'],ray['max_distance']);points=np.array([origin+direction*ray['max_distance']*.25,origin+direction*ray['max_distance']])
+        clip=np.column_stack((points,np.ones(2)))@inverse@projection;need(np.all(clip[:,3]!=0),'projectable CPU ray')
+        ndc=clip[:,:2]/clip[:,3,None];errors.append(float(np.max(np.abs(ndc-np.asarray(ray['ndc'])))))
+    return max(errors,default=0.)

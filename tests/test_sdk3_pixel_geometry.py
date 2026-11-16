@@ -97,4 +97,16 @@ class ReferenceAndArchive(unittest.TestCase):
         self.assertNotIn('--model-trial',cmd);self.assertNotIn('--model-pair',cmd)
         self.assertEqual(cmd[-2:],['--repeat','1'])
 
+
+class MatrixCalibration(unittest.TestCase):
+    def test_row_vector_transform_and_pixel_reprojection(self):
+        matrix=np.eye(4);matrix[3,:3]=[2,3,4]
+        self.assertEqual(g.transform_points([[1,2,3]],matrix).tolist(),[[3.,5.,7.]])
+        rays=[]
+        for sample in g.pixel_samples(964,604,596,494):rays.append(dict(**sample,origin=[*sample['ndc'],-1.],direction=[0.,0.,1.],max_distance=2.))
+        self.assertEqual(g.ray_projection_error(rays,np.eye(4),np.eye(4)),0.)
+        rays[0]['origin'][0]+=1
+        self.assertGreater(g.ray_projection_error(rays,np.eye(4),np.eye(4)),.9)
+
+
 if __name__=='__main__':unittest.main()

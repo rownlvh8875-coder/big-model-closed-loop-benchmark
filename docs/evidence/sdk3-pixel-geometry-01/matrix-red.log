@@ -1,0 +1,15 @@
+test_row_vector_transform_and_pixel_reprojection (tests.test_sdk3_pixel_geometry.MatrixCalibration.test_row_vector_transform_and_pixel_reprojection) ... ERROR
+
+======================================================================
+ERROR: test_row_vector_transform_and_pixel_reprojection (tests.test_sdk3_pixel_geometry.MatrixCalibration.test_row_vector_transform_and_pixel_reprojection)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/dev/shm/stage7-sdk3-runtime-20261116/repo/tests/test_sdk3_pixel_geometry.py", line 105, in test_row_vector_transform_and_pixel_reprojection
+    self.assertEqual(g.transform_points([[1,2,3]],matrix).tolist(),[[3.,5.,7.]])
+                     ^^^^^^^^^^^^^^^^^^
+AttributeError: module 'scripts.sdk3_pixel_geometry' has no attribute 'transform_points'
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+FAILED (errors=1)
