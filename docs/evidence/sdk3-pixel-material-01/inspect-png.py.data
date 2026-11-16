@@ -1,0 +1,20 @@
+from pathlib import Path
+import hashlib,itertools,json,struct
+import cv2,numpy as np
+ROOT=Path('/dev/shm/stage7-sdk3-runtime-20261116/repo');out=ROOT/'output/stage7-sdk3-pixel-material-01/actual';folder=out/'bundle/renderer';m=json.loads((folder/'material.json').read_text());sample=next(s for s in m['samples'] if s['ray']=='center' and s['triangle_index']==606);rows=[]
+for texture in m['textures']:
+ if texture['name'] not in ('color','normal'):continue
+ asset=texture['asset'];assert asset['status']=='CAPTURED';b=(folder/asset['file']).read_bytes();assert hashlib.sha256(b).hexdigest()==asset['sha256'] and b[:8]==b'\x89PNG\r\n\x1a\n' and b[12:16]==b'IHDR';w,h,depth,color,_,_,_=struct.unpack('>IIBBBBB',b[16:29]);assert (w,h)==(512,512) and depth==8 and color==6 and w*h*4<=4*1024**2
+ decoded=cv2.imdecode(np.frombuffer(b,np.uint8),cv2.IMREAD_UNCHANGED);assert decoded.shape==(h,w,4) and decoded.dtype==np.uint8;rgba=decoded[:,:,[2,1,0,3]];rgb=rgba[:,:,:3];unique,counts=np.unique(rgb.reshape(-1,3),axis=0,return_counts=True);order=np.argsort(-counts,kind='stable')[:10]
+ stage=next(s for s in sample['stages'] if s['texture_id']==texture['texture_id']);u,v=stage['uv'];frac=np.mod([u,v],1);col=int(np.floor(frac[0]*w));row=int(np.floor(frac[1]*h));point_candidates=[]
+ for origin,y in [('PNG_TOP_ORIGIN',row),('PNG_BOTTOM_ORIGIN',h-1-row)]:point_candidates.append(dict(origin_assumption=origin,xy=[col,y],rgba=rgba[y,col].tolist()))
+ cache_matches=[]
+ if texture['ram']['status']=='CAPTURED':
+  raw=(folder/texture['ram']['file']).read_bytes();assert hashlib.sha256(raw).hexdigest()==texture['ram']['sha256'];cached=np.frombuffer(raw,np.uint8).reshape(h,w,4)
+  for flipped_y in (False,True):
+   for perm in itertools.permutations(range(4)):
+    candidate=rgba[::-1,:,:] if flipped_y else rgba
+    if np.array_equal(cached,candidate[:,:,perm]):cache_matches.append(dict(vertical_flip=flipped_y,ram_byte_lanes_as_png_rgba_indices=list(perm)))
+ rows.append(dict(texture_id=texture['texture_id'],name=texture['name'],png_sha256=asset['sha256'],decoded_shape=list(rgba.shape),channel_order='RGBA',rgb_min=rgb.min(axis=(0,1)).tolist(),rgb_max=rgb.max(axis=(0,1)).tolist(),rgb_mean=rgb.mean(axis=(0,1)).tolist(),unique_rgb_count=len(unique),top10_colors=[dict(rgb=unique[i].tolist(),count=int(counts[i])) for i in order],observed_target_exact_rgb_count=int(np.all(rgb==[199,187,0],axis=2).sum()),historical_gray_exact_rgb_count=int(np.all(rgb==[167,163,158],axis=2).sum()),point_samples_under_explicit_origin_assumptions=point_candidates,resident_ram_exact_numeric_matches=cache_matches))
+x=dict(run_id=43958720772,decoder='OpenCV '+cv2.__version__,only_bounded_512x512_8bit_rgba_png_assets=True,rows=rows,texture_file_pixels_are_not_gpu_samples=True,point_samples_ignore_mipmap_anisotropy_derivatives_shader_color_space_lighting=True,numeric_ram_match_does_not_prove_gpu_upload_or_sampler=True,gpu_material_result_proven=False,gpu_pixel_owner_proven=False,unique_cause_proven=False,repair_proven=False,stage7_complete=False)
+(out/'png-numeric-inspection.json').write_text(json.dumps(x,indent=2)+'\n');print(json.dumps(x))

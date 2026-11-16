@@ -1,6 +1,6 @@
 # SDK3 CPU pixel material Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: superpowers:executing-plans inline;one fresh whole-branch reviewer beforeactual,no implementer delegation. Steps use checkbox (`- [ ]`) syntax.
+> **For agentic workers:** REQUIRED SUB-SKILL: superpowers:executing-plans inline;one fresh whole-branch reviewer beforeactual,no implementer delegation. Steps use checkbox (`- [x]`) syntax.
 
 **Goal:** Bind Road7CPUcandidate UV/material/sampler and bounded cache/filebytes to authenticated target/geometry.
 **Architecture:** New pureCPU interpolation/boundedread helpers;new native material snapshot over unchangedbudget/progressprivateadapters;new receiver/source activation andonejobworkflow.
@@ -22,14 +22,14 @@ Base288fc0a80a11c28630239d031e61ffaf0d381e51;additionsonly. Onefreshnative/0offi
 ### Task1: pureCPU UV and bounded texture/cache IO
 **Files:** Create scripts/sdk3_pixel_material.py,tests/test_sdk3_pixel_material.py.
 **Interfaces:** interpolate_uv(values,barycentric)->list;transform_uv(uv,matrix)->list;capture_cached_ram(texture,store)->dict;BoundedStore(folder,max_file=8MiB,max_total=16MiB).save/copy_asset.
-- [ ] RED: literalUV/transform,invalid weights/nonfinite,unavailablecache neverread,expected/actualRAMlimits beforegetData,symlinkescape/oversize/globalbudget. ExpectedFAIL missingmodule.
-- [ ] GREEN: minimalpuremath andboundedIO/noGPUfallback. ExpectedCPUtestsPASS. Commit.
+- [x] RED: literalUV/transform,invalid weights/nonfinite,unavailablecache neverread,expected/actualRAMlimits beforegetData,symlinkescape/oversize/globalbudget. ExpectedFAIL missingmodule.
+- [x] GREEN: minimalpuremath andboundedIO/noGPUfallback. ExpectedCPUtestsPASS. Commit.
 
 ### Task2: native cached state snapshot and independent admission
 **Files:** Create scripts/sdk3_pixel_material_native.py,scripts/run_sdk3_pixel_material.py,tests/test_sdk3_pixel_material_host.py,.github/workflows/sdk3-pixel-material-v1.yml,new evidence/resultonly.
 **Interfaces:** snapshot_material(core,engine,sensor,geometry,out,nonce)->manifest;native/hostprivateadapters;validate_receipt(folder,reference,nonce)->dict;authenticate_source(bundle);run(). Uses Task1helpers.
-- [ ] RED: validUV/attribute/rawbindings;wrongPID/target/triangle/vertex/UV/matrix/stage/texture/rawbytes/budget rejects;unavailable/partial/source mismatch remainhonest. ExpectedFAIL missingbehavior.
-- [ ] GREEN: actualcachedPanda reads/onegeometrysnapshot/noextraGPUcalls;readonlyassets+cacheonly;privateoriginal600/630 lifecycle andsource authentication. ExpectedfocusedPASS/actionlint.
-- [ ] ExactsourceCI4jobsPASS;solefreshreview;one ImportantRED→GREEN pass/no rereview;Minorledger.
-- [ ] One versionedactualrequest;authenticateZIP/lifecycle/images/geometry/material+independentUV,retainnegative/unavailable observations.
-- [ ] Result/ownDraftPR(parent135);finalexactHEADCI/logcounts/remote/body/parent/main/originalpreservation;archive/removeonlyownsddscratch. No originalgatepromotion.
+- [x] RED: validUV/attribute/rawbindings;wrongPID/target/triangle/vertex/UV/matrix/stage/texture/rawbytes/budget rejects;unavailable/partial/source mismatch remainhonest. ExpectedFAIL missingbehavior.
+- [x] GREEN: actualcachedPanda reads/onegeometrysnapshot/noextraGPUcalls;readonlyassets+cacheonly;privateoriginal600/630 lifecycle andsource authentication. ExpectedfocusedPASS/actionlint.
+- [x] ExactsourceCI4jobsPASS;solefreshreview;one ImportantRED→GREEN pass/no rereview;Minorledger.
+- [x] One versionedactualrequest;authenticateZIP/lifecycle/images/geometry/material+independentUV,retainnegative/unavailable observations.
+- [ ] Final exactHEAD CI/logcounts, ownDraftPR136 head/base/body, parent135/main/original preservation receipt and own scratch archival/removal. Result report and authenticated raw evidence prepared. No originalgatepromotion.

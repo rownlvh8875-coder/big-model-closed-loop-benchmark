@@ -1,0 +1,305 @@
+{
+  "run_id": 43958720772,
+  "decoder": "OpenCV 5.0.0",
+  "only_bounded_512x512_8bit_rgba_png_assets": true,
+  "rows": [
+    {
+      "texture_id": 0,
+      "name": "color",
+      "png_sha256": "fffd4e3ae960c2d1209574e6d7645143b2ec5aa2de7e58e1489ee72500458594",
+      "decoded_shape": [
+        512,
+        512,
+        4
+      ],
+      "channel_order": "RGBA",
+      "rgb_min": [
+        53,
+        47,
+        22
+      ],
+      "rgb_max": [
+        236,
+        228,
+        216
+      ],
+      "rgb_mean": [
+        195.0449104309082,
+        181.34463500976562,
+        156.89416122436523
+      ],
+      "unique_rgb_count": 36776,
+      "top10_colors": [
+        {
+          "rgb": [
+            211,
+            195,
+            169
+          ],
+          "count": 319
+        },
+        {
+          "rgb": [
+            210,
+            194,
+            168
+          ],
+          "count": 318
+        },
+        {
+          "rgb": [
+            207,
+            191,
+            165
+          ],
+          "count": 313
+        },
+        {
+          "rgb": [
+            208,
+            192,
+            166
+          ],
+          "count": 305
+        },
+        {
+          "rgb": [
+            209,
+            193,
+            167
+          ],
+          "count": 302
+        },
+        {
+          "rgb": [
+            214,
+            198,
+            172
+          ],
+          "count": 291
+        },
+        {
+          "rgb": [
+            204,
+            188,
+            162
+          ],
+          "count": 284
+        },
+        {
+          "rgb": [
+            206,
+            190,
+            164
+          ],
+          "count": 278
+        },
+        {
+          "rgb": [
+            213,
+            197,
+            171
+          ],
+          "count": 277
+        },
+        {
+          "rgb": [
+            212,
+            196,
+            170
+          ],
+          "count": 273
+        }
+      ],
+      "observed_target_exact_rgb_count": 0,
+      "historical_gray_exact_rgb_count": 0,
+      "point_samples_under_explicit_origin_assumptions": [
+        {
+          "origin_assumption": "PNG_TOP_ORIGIN",
+          "xy": [
+            58,
+            110
+          ],
+          "rgba": [
+            133,
+            118,
+            96,
+            255
+          ]
+        },
+        {
+          "origin_assumption": "PNG_BOTTOM_ORIGIN",
+          "xy": [
+            58,
+            401
+          ],
+          "rgba": [
+            122,
+            113,
+            93,
+            255
+          ]
+        }
+      ],
+      "resident_ram_exact_numeric_matches": []
+    },
+    {
+      "texture_id": 1,
+      "name": "normal",
+      "png_sha256": "2cbee5a0e0472932e77b4e93dc97000af4399c01eaaf43f1ac223c9ef0b50c9a",
+      "decoded_shape": [
+        512,
+        512,
+        4
+      ],
+      "channel_order": "RGBA",
+      "rgb_min": [
+        0,
+        0,
+        95
+      ],
+      "rgb_max": [
+        255,
+        254,
+        255
+      ],
+      "rgb_mean": [
+        126.16830444335938,
+        129.47725677490234,
+        245.40576934814453
+      ],
+      "unique_rgb_count": 72819,
+      "top10_colors": [
+        {
+          "rgb": [
+            119,
+            145,
+            253
+          ],
+          "count": 132
+        },
+        {
+          "rgb": [
+            122,
+            143,
+            253
+          ],
+          "count": 128
+        },
+        {
+          "rgb": [
+            123,
+            145,
+            253
+          ],
+          "count": 128
+        },
+        {
+          "rgb": [
+            122,
+            146,
+            253
+          ],
+          "count": 127
+        },
+        {
+          "rgb": [
+            121,
+            146,
+            253
+          ],
+          "count": 125
+        },
+        {
+          "rgb": [
+            122,
+            135,
+            254
+          ],
+          "count": 125
+        },
+        {
+          "rgb": [
+            124,
+            146,
+            253
+          ],
+          "count": 125
+        },
+        {
+          "rgb": [
+            119,
+            144,
+            253
+          ],
+          "count": 124
+        },
+        {
+          "rgb": [
+            120,
+            144,
+            253
+          ],
+          "count": 124
+        },
+        {
+          "rgb": [
+            125,
+            135,
+            254
+          ],
+          "count": 124
+        }
+      ],
+      "observed_target_exact_rgb_count": 0,
+      "historical_gray_exact_rgb_count": 0,
+      "point_samples_under_explicit_origin_assumptions": [
+        {
+          "origin_assumption": "PNG_TOP_ORIGIN",
+          "xy": [
+            58,
+            110
+          ],
+          "rgba": [
+            124,
+            26,
+            217,
+            255
+          ]
+        },
+        {
+          "origin_assumption": "PNG_BOTTOM_ORIGIN",
+          "xy": [
+            58,
+            401
+          ],
+          "rgba": [
+            146,
+            118,
+            251,
+            255
+          ]
+        }
+      ],
+      "resident_ram_exact_numeric_matches": [
+        {
+          "vertical_flip": true,
+          "ram_byte_lanes_as_png_rgba_indices": [
+            2,
+            1,
+            0,
+            3
+          ]
+        }
+      ]
+    }
+  ],
+  "texture_file_pixels_are_not_gpu_samples": true,
+  "point_samples_ignore_mipmap_anisotropy_derivatives_shader_color_space_lighting": true,
+  "numeric_ram_match_does_not_prove_gpu_upload_or_sampler": true,
+  "gpu_material_result_proven": false,
+  "gpu_pixel_owner_proven": false,
+  "unique_cause_proven": false,
+  "repair_proven": false,
+  "stage7_complete": false
+}

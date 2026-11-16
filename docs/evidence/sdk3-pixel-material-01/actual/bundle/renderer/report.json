@@ -1,0 +1,330 @@
+{
+  "protocol": "sdk3-capture-progress-v1",
+  "status": "CAPTURE_REPLAY_RECORDED",
+  "pid": 10,
+  "process_uuid": "55eeb30a7fc3459cbd4be19bfd6d6c03",
+  "nonce": "edb1eab010c59f675eab4ec01d4ee34a",
+  "repeat": 0,
+  "seed": 20261110,
+  "scenario": "s_curve_left_right",
+  "official_model_processes": 0,
+  "onnx_inferences": 0,
+  "model_weights_used": false,
+  "repair_proven": false,
+  "stage7_complete": false,
+  "provider_closed": true,
+  "captures": [
+    {
+      "step": 1,
+      "pose": {
+        "t": 0.0,
+        "x": 65.4052721645879,
+        "y": 0.26625325426066837,
+        "heading": 0.09843656981248028,
+        "speed": 8.0
+      },
+      "road_sha256": "061381a011d53d5cfd9c00db2efc3c7d9331cfef1d2e13cc741722af1694d14a",
+      "wide_sha256": "5beed42f80a4ee6e6a05b1ddcee016d93d1e0c2d021ee5f55cb8e1bffe901417",
+      "images": [
+        {
+          "camera": "road",
+          "file": "step1-road.rgb.zlib",
+          "shape": [
+            604,
+            964,
+            3
+          ],
+          "sha256": "061381a011d53d5cfd9c00db2efc3c7d9331cfef1d2e13cc741722af1694d14a",
+          "raw_bytes": 1746768,
+          "compressed_bytes": 860863
+        },
+        {
+          "camera": "wide",
+          "file": "step1-wide.rgb.zlib",
+          "shape": [
+            604,
+            964,
+            3
+          ],
+          "sha256": "5beed42f80a4ee6e6a05b1ddcee016d93d1e0c2d021ee5f55cb8e1bffe901417",
+          "raw_bytes": 1746768,
+          "compressed_bytes": 898845
+        }
+      ],
+      "task_frame_count_delta": 2
+    },
+    {
+      "step": 2,
+      "pose": {
+        "t": 0.05,
+        "x": 65.80339919353325,
+        "y": 0.3049167877664134,
+        "heading": 0.09518339598435528,
+        "speed": 8.0
+      },
+      "road_sha256": "3bcb14067c9e136d64d162a43d9f0d5a583449f5872ede2310cebcac907ba04d",
+      "wide_sha256": "ae8a2572136d48d3e241d2bc7b172eebe5b5c5cfaee35e948e3f01bec85e5c29",
+      "images": [
+        {
+          "camera": "road",
+          "file": "step2-road.rgb.zlib",
+          "shape": [
+            604,
+            964,
+            3
+          ],
+          "sha256": "3bcb14067c9e136d64d162a43d9f0d5a583449f5872ede2310cebcac907ba04d",
+          "raw_bytes": 1746768,
+          "compressed_bytes": 867774
+        },
+        {
+          "camera": "wide",
+          "file": "step2-wide.rgb.zlib",
+          "shape": [
+            604,
+            964,
+            3
+          ],
+          "sha256": "ae8a2572136d48d3e241d2bc7b172eebe5b5c5cfaee35e948e3f01bec85e5c29",
+          "raw_bytes": 1746768,
+          "compressed_bytes": 899749
+        }
+      ],
+      "task_frame_count_delta": 4
+    },
+    {
+      "step": 3,
+      "pose": {
+        "t": 0.1,
+        "x": 66.20164818374124,
+        "y": 0.3423031729663885,
+        "heading": 0.09202177489060528,
+        "speed": 8.0
+      },
+      "road_sha256": "4f2e058109d7d22e18bd04ccecc11d663479534da29b4674060b5d89f58a9028",
+      "wide_sha256": "62178dbdf1e1dd7fb1e619e64c5a7531934b0857f88b1e397c25dd3effe25ef9",
+      "images": [
+        {
+          "camera": "road",
+          "file": "step3-road.rgb.zlib",
+          "shape": [
+            604,
+            964,
+            3
+          ],
+          "sha256": "4f2e058109d7d22e18bd04ccecc11d663479534da29b4674060b5d89f58a9028",
+          "raw_bytes": 1746768,
+          "compressed_bytes": 875251
+        },
+        {
+          "camera": "wide",
+          "file": "step3-wide.rgb.zlib",
+          "shape": [
+            604,
+            964,
+            3
+          ],
+          "sha256": "62178dbdf1e1dd7fb1e619e64c5a7531934b0857f88b1e397c25dd3effe25ef9",
+          "raw_bytes": 1746768,
+          "compressed_bytes": 903392
+        }
+      ],
+      "task_frame_count_delta": 6
+    },
+    {
+      "step": 4,
+      "pose": {
+        "t": 0.15000000000000002,
+        "x": 66.60001173073563,
+        "y": 0.37844849667571645,
+        "heading": 0.08895170653123029,
+        "speed": 8.0
+      },
+      "road_sha256": "00235567c953fdbb40d0992ede3e56fa78c12b0a1dc49edc9f2db06cdef0b8bc",
+      "wide_sha256": "ccfd7d72dd36305b9e9eaf404d2d519205bdc85cb78e83d687652be1b6cb51cd",
+      "images": [
+        {
+          "camera": "road",
+          "file": "step4-road.rgb.zlib",
+          "shape": [
+            604,
+            964,
+            3
+          ],
+          "sha256": "00235567c953fdbb40d0992ede3e56fa78c12b0a1dc49edc9f2db06cdef0b8bc",
+          "raw_bytes": 1746768,
+          "compressed_bytes": 882081
+        },
+        {
+          "camera": "wide",
+          "file": "step4-wide.rgb.zlib",
+          "shape": [
+            604,
+            964,
+            3
+          ],
+          "sha256": "ccfd7d72dd36305b9e9eaf404d2d519205bdc85cb78e83d687652be1b6cb51cd",
+          "raw_bytes": 1746768,
+          "compressed_bytes": 900194
+        }
+      ],
+      "task_frame_count_delta": 8
+    },
+    {
+      "step": 5,
+      "pose": {
+        "t": 0.2,
+        "x": 66.99849022477417,
+        "y": 0.41330376584374756,
+        "heading": 0.08554594481248029,
+        "speed": 8.0
+      },
+      "road_sha256": "9ad2ecce411b22b2f71b38880dabeee7deafc7280bb03e7262d71414655b5c8e",
+      "wide_sha256": "4de6dfdc0b17c31766d6f009b362f094c2d7255e808db2815c7137082bd56ce3",
+      "images": [
+        {
+          "camera": "road",
+          "file": "step5-road.rgb.zlib",
+          "shape": [
+            604,
+            964,
+            3
+          ],
+          "sha256": "9ad2ecce411b22b2f71b38880dabeee7deafc7280bb03e7262d71414655b5c8e",
+          "raw_bytes": 1746768,
+          "compressed_bytes": 886769
+        },
+        {
+          "camera": "wide",
+          "file": "step5-wide.rgb.zlib",
+          "shape": [
+            604,
+            964,
+            3
+          ],
+          "sha256": "4de6dfdc0b17c31766d6f009b362f094c2d7255e808db2815c7137082bd56ce3",
+          "raw_bytes": 1746768,
+          "compressed_bytes": 898225
+        }
+      ],
+      "task_frame_count_delta": 10
+    },
+    {
+      "step": 6,
+      "pose": {
+        "t": 0.25,
+        "x": 67.39707141016059,
+        "y": 0.4469644054091843,
+        "heading": 0.08295652830857404,
+        "speed": 8.0
+      },
+      "road_sha256": "2fc9adead9611d5504434aaacd07458bf4179981c270867cbbbb3be40bdc98d3",
+      "wide_sha256": "c431039e931ffc39db4dc476eac07492b7b9414e79648b84c77daf258eb18f48",
+      "images": [
+        {
+          "camera": "road",
+          "file": "step6-road.rgb.zlib",
+          "shape": [
+            604,
+            964,
+            3
+          ],
+          "sha256": "2fc9adead9611d5504434aaacd07458bf4179981c270867cbbbb3be40bdc98d3",
+          "raw_bytes": 1746768,
+          "compressed_bytes": 890630
+        },
+        {
+          "camera": "wide",
+          "file": "step6-wide.rgb.zlib",
+          "shape": [
+            604,
+            964,
+            3
+          ],
+          "sha256": "c431039e931ffc39db4dc476eac07492b7b9414e79648b84c77daf258eb18f48",
+          "raw_bytes": 1746768,
+          "compressed_bytes": 900448
+        }
+      ],
+      "task_frame_count_delta": 12
+    },
+    {
+      "step": 7,
+      "pose": {
+        "t": 0.3,
+        "x": 67.79573787289344,
+        "y": 0.47959953206867456,
+        "heading": 0.08040068114060529,
+        "speed": 8.0
+      },
+      "road_sha256": "5289613b610abe2270b4e7d98c106608689c55c216b2085d439eb39eec571adb",
+      "wide_sha256": "7b82f078e0dd376ee5e21ee5aef571925cd2f281b06c616919e63c14774cd07a",
+      "images": [
+        {
+          "camera": "road",
+          "file": "step7-road.rgb.zlib",
+          "shape": [
+            604,
+            964,
+            3
+          ],
+          "sha256": "5289613b610abe2270b4e7d98c106608689c55c216b2085d439eb39eec571adb",
+          "raw_bytes": 1746768,
+          "compressed_bytes": 895849
+        },
+        {
+          "camera": "wide",
+          "file": "step7-wide.rgb.zlib",
+          "shape": [
+            604,
+            964,
+            3
+          ],
+          "sha256": "7b82f078e0dd376ee5e21ee5aef571925cd2f281b06c616919e63c14774cd07a",
+          "raw_bytes": 1746768,
+          "compressed_bytes": 903052
+        }
+      ],
+      "task_frame_count_delta": 14
+    }
+  ],
+  "checkpoint": "REPLAY_COMPLETE",
+  "core_sha256": "8b0372f1df91a930f18b2551f7fde5d5687e21bc79dee9ecd0dd2018cba72490",
+  "panda_version": "1.10.13",
+  "sdk_sha256": "27cd80fb1c06feaa7da8b5658cce918d1e3ab71c304a0c0ce42e30688ac008f3",
+  "reference_sha256": "93fc180b15fafb4c8904fa902583935be96e0bc92cacb53d401106946b5d17af",
+  "base_camera_sha256": "23d90c3d12894f855ae64d4607c03f3bf34e31e28dd7f5ce82bd0ddc7b37faf5",
+  "tasks_before": [
+    "PSSM.update",
+    "collisionLoop",
+    "dataLoop",
+    "eventManager",
+    "igLoop",
+    "ivalLoop",
+    "resetPrevTransform",
+    "update main chase camera"
+  ],
+  "driver": {
+    "vendor": "Mesa",
+    "renderer": "softpipe",
+    "version": "3.3 (Compatibility Profile) Mesa 25.2.8-0ubuntu0.24.04.4"
+  },
+  "active_step": 7,
+  "observers_restored": true,
+  "tasks_after": [
+    "PSSM.update",
+    "collisionLoop",
+    "dataLoop",
+    "eventManager",
+    "igLoop",
+    "ivalLoop",
+    "resetPrevTransform",
+    "update main chase camera"
+  ],
+  "task_frame_count_delta": 14,
+  "ort_module_loaded": false,
+  "extra_gpu_queries": 0,
+  "extra_render_tasks": 0,
+  "server_returncode": 0,
+  "child_finalized_before_server_stop": true
+}

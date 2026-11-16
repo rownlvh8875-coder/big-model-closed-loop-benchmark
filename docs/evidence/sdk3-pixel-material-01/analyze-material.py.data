@@ -1,0 +1,24 @@
+from pathlib import Path
+import hashlib,json,math,struct
+ROOT=Path('/dev/shm/stage7-sdk3-runtime-20261116/repo');out=ROOT/'output/stage7-sdk3-pixel-material-01/actual';folder=out/'bundle/renderer'
+x=json.loads((out/'independent-observation.json').read_text());assert x['analysis_validated']
+m=json.loads((folder/'material.json').read_text());a=x['analysis'];meshes={v['mesh_id']:v for v in m['meshes']};triangles={v['triangle_index']:v for v in m['triangles']};textures={v['texture_id']:v for v in m['textures']}
+by_ray={}
+for sample in m['samples']:
+ triangle=triangles[sample['triangle_index']];mesh=meshes[triangle['source_id'][0]];rows=[]
+ for stage in sample['stages']:
+  state=next(s for s in mesh['stages'] if s['stage_id']==stage['stage_id']);texture=textures[stage['texture_id']];uv=stage['transformed4'];row=dict(stage,stage_name=state['name'],mode=state['mode'],texture_name=texture['name'],texture_extent=[texture['x_size'],texture['y_size']],texture_matrix=state['texture_matrix'],effective_sampler=state['effective_sampler'],differs_from_texture_default=state['differs_from_texture_default'])
+  if uv is not None:row['homogeneous_xy_times_texture_extent']=[uv[0]*texture['x_size'],uv[1]*texture['y_size']];row['xy_fractional_arithmetic_only']=[v-math.floor(v) for v in uv[:2]]
+  rows.append(row)
+ by_ray.setdefault(sample['ray'],[]).append(dict(triangle_index=sample['triangle_index'],source_id=triangle['source_id'],path=mesh['path'],material=mesh['material'],barycentric=sample['barycentric'],triangle_texcoords=triangle['texcoords'],stages=rows))
+files=[]
+for texture in textures.values():
+ for kind in ('ram','asset'):
+  v=texture[kind]
+  if v['status']!='CAPTURED':continue
+  p=folder/v['file'];b=p.read_bytes();assert len(b)==v['nbytes'] and hashlib.sha256(b).hexdigest()==v['sha256'];item=dict(texture_id=texture['texture_id'],kind=kind,descriptor=v,first16_hex=b[:16].hex())
+  if b[:8]==b'\x89PNG\r\n\x1a\n' and b[12:16]==b'IHDR' and len(b)>=33:
+   width,height,depth,color,compression,filter_,interlace=struct.unpack('>IIBBBBB',b[16:29]);item['png_ihdr']=dict(width=width,height=height,bit_depth=depth,color_type=color,compression=compression,filter=filter_,interlace=interlace)
+  files.append(item)
+r=dict(run_id=x['run_id'],source_sha=x['source_sha'],material_status=m['status'],selection_complete=m['selection_complete'],material_recorded=a['material_recorded'],material_complete=a['material_complete'],target_read_sha256=m['target_read_sha256'],geometry_archive_sha256=m['geometry_archive_sha256'],borrowed_parent_is_origin=m['borrowed_parent_is_origin'],observer_finalized=m['observer_finalized'],elapsed_wall_seconds=m['cpu_seconds'],material_enter_elapsed_s=m['material_enter_elapsed_s'],material_exit_elapsed_s=m['material_exit_elapsed_s'],truncation_reasons=m['truncation_reasons'],selected_triangle_indices=m['selected_triangle_indices'],selected_mesh_count=len(meshes),unique_texture_count=len(textures),bytes_captured=m['bytes_captured'],textures=list(textures.values()),samples_by_ray=by_ray,captured_files=files,homogeneous_coordinates_are_not_shader_projection=True,fractional_arithmetic_is_not_hardware_sampling=True,ram_channel_order_unproved=True,shader_inputs_unenumerated=True,hardware_sampler_state_unobserved=True,gpu_material_result_proven=False,gpu_pixel_owner_proven=False,unique_cause_proven=False,repair_proven=False,stage7_complete=False)
+(out/'material-analysis.json').write_text(json.dumps(r,indent=2)+'\n');print(json.dumps(dict(status=r['material_status'],complete=r['material_complete'],seconds=r['elapsed_wall_seconds'],triangles=r['selected_triangle_indices'],textures=[dict(id=t['texture_id'],name=t['name'],extent=[t['x_size'],t['y_size']],ram=t['ram']['status'],asset=t['asset']['status']) for t in r['textures']],bytes=r['bytes_captured'],center=by_ray.get('center')),ensure_ascii=False))
