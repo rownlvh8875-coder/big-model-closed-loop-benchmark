@@ -1,0 +1,66 @@
+{
+  "schema": "panda-sdk-cg-eigen-loader-search-negative-v2",
+  "inventory_sha256": "d84221127e69dec818a01762ff4c53b7570144caa4f91708b5009cf63058d7bc",
+  "candidate_sha256": "332551094adbca1aa12f716ff8798566e522021b62f25c46a66a425873ea1297",
+  "candidate_rpath": null,
+  "candidate_runpath": null,
+  "root_needed_selection": [
+    {
+      "needed": "libpanda.so.1.10",
+      "selected": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10"
+    },
+    {
+      "needed": "libpandaexpress.so.1.10",
+      "selected": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10"
+    },
+    {
+      "needed": "libp3dtool.so.1.10",
+      "selected": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtool.so.1.10"
+    },
+    {
+      "needed": "libp3dtoolconfig.so.1.10",
+      "selected": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10"
+    },
+    {
+      "needed": "libGL.so.1",
+      "selected": "/usr/lib/x86_64-linux-gnu/libGL.so.1.7.0"
+    },
+    {
+      "needed": "libCg.so",
+      "rejection": "needed provider absent: libCg.so requested by /opt/venv/lib/python3.11/site-packages/panda3d/libpandagl.so"
+    },
+    {
+      "needed": "libCgGL.so",
+      "rejection": "needed provider absent: libCgGL.so requested by /opt/venv/lib/python3.11/site-packages/panda3d/libpandagl.so"
+    },
+    {
+      "needed": "libX11.so.6",
+      "selected": "/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0"
+    },
+    {
+      "needed": "libstdc++.so.6",
+      "selected": "/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33"
+    },
+    {
+      "needed": "libc.so.6",
+      "selected": "/usr/lib/x86_64-linux-gnu/libc.so.6"
+    }
+  ],
+  "current_image_cg_file_records": {
+    "libCg.so": {
+      "image_path": "/opt/venv/lib/python3.11/site-packages/panda3d/libCg.so",
+      "inventory_record_matches": true
+    },
+    "libCgGL.so": {
+      "image_path": "/opt/venv/lib/python3.11/site-packages/panda3d/libCgGL.so",
+      "inventory_record_matches": true
+    }
+  },
+  "conclusion": "Cg files exist in the Panda package; no candidate RPATH/RUNPATH and current selector does not search that package for Cg dependencies",
+  "diagnostic_only": true,
+  "provider_policy_changed": false,
+  "full_dependency_graph_qualified": false,
+  "runtime_binding_qualified": false,
+  "native_admitted": false,
+  "target_execution": false
+}

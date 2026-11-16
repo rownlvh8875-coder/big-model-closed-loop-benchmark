@@ -1,0 +1,39 @@
+{
+  "schema": "panda-sdk-cg-eigen-static-gate-v2",
+  "status": "STATIC_CG_EIGEN_CANDIDATE_REJECTED",
+  "reasons": [
+    "ValueError: needed provider absent: libCg.so requested by /opt/venv/lib/python3.11/site-packages/panda3d/libpandagl.so"
+  ],
+  "native_admitted": false,
+  "full_object_abi_qualified": false,
+  "previous_abort_fixed": false,
+  "candidate_installed": false,
+  "runtime_mapping_qualified": false,
+  "stage7_complete": false,
+  "external_build_origin_authenticated": false,
+  "candidate_sha256": "332551094adbca1aa12f716ff8798566e522021b62f25c46a66a425873ea1297",
+  "candidate_nbytes": 1052968,
+  "offsets": {
+    "major": 1672,
+    "minor": 1676,
+    "vendor": 1648
+  },
+  "layout": {
+    "schema": "panda-cg-eigen-layout-v2",
+    "descriptor_sha256": "8d6dc6b0654a42178b210d97ac691ce801eb2b0e65f42b54bd0771335b812208",
+    "shader_caps_size": 88,
+    "graphics_pipe_size": 104,
+    "gsg_size": 848,
+    "gl_gsg_size": 3984,
+    "offsets": {
+      "vendor": 1648,
+      "major": 1672,
+      "minor": 1676
+    },
+    "have_eigen": true,
+    "effective_linmath_align": true,
+    "vector_alignment": 16,
+    "memory_alignment": 16,
+    "target_execution": false
+  }
+}

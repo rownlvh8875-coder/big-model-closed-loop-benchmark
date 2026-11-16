@@ -1,0 +1,5 @@
+# Next separate contract after Eigen/Cg v2
+
+The single compile-only attempt is closed. Eigen corrected all3selectedoffsets to0x688/0x68c/0x670 and confirmed vector/memory alignment16; report coherence passes. The final static gate remains rejected because libCg.so/libCgGL.so cannot be selected by the frozen search policy: both files exist in the Panda package, but the candidate has no RPATH/RUNPATH and package fallback covers only four Panda dependencies.
+
+Next work is a separate DATA-only loader-search design: specify whether and how those exact pinned Cg files are authorized as providers, distinguish static selection from actual runtime loader behavior, and assess a source-bound runpath or explicitly scoped static policy. Do not change consumed gates, reactivate SDK2, rebuild, install, transform the image or run target code under this result. Only a separately qualified future contract may authorize further production or native diagnosis. Full ABI and prior SIGABRT repair remain unknown; scientificallowance0/strict0of4FAIL/Stage7INCOMPLETE.
