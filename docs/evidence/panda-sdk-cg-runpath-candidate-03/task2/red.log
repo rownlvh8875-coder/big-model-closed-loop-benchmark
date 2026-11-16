@@ -1,0 +1,43 @@
+test_action_context_rejects_v2_and_attempt_two (test_build_panda_sdk_cg_runpath.RunpathBuilderTests.test_action_context_rejects_v2_and_attempt_two) ... ok
+test_actual_link_argv_and_output_cardinality (test_build_panda_sdk_cg_runpath.RunpathBuilderTests.test_actual_link_argv_and_output_cardinality) ... ok
+test_cpu_link_emits_runpath_with_origin_unset_and_spoofed (test_build_panda_sdk_cg_runpath.RunpathBuilderTests.test_cpu_link_emits_runpath_with_origin_unset_and_spoofed) ... ok
+test_exact_quoted_origin_environment (test_build_panda_sdk_cg_runpath.RunpathBuilderTests.test_exact_quoted_origin_environment) ... ok
+test_real_handwritten_descriptor_uses_own_lifecycle (test_build_panda_sdk_cg_runpath.RunpathBuilderTests.test_real_handwritten_descriptor_uses_own_lifecycle) ... ok
+test_v3_guard_deadline_and_failed_command_evidence (test_build_panda_sdk_cg_runpath.RunpathBuilderTests.test_v3_guard_deadline_and_failed_command_evidence) ... ok
+test_panda_sdk_cg_runpath_evidence (unittest.loader._FailedTest.test_panda_sdk_cg_runpath_evidence) ... ERROR
+test_panda_sdk_cg_runpath_gate (unittest.loader._FailedTest.test_panda_sdk_cg_runpath_gate) ... ERROR
+
+======================================================================
+ERROR: test_panda_sdk_cg_runpath_evidence (unittest.loader._FailedTest.test_panda_sdk_cg_runpath_evidence)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_panda_sdk_cg_runpath_evidence
+Traceback (most recent call last):
+  File "/workspace/.cloud-tools/python/cpython-3.11.17-linux-x86_64-gnu/lib/python3.11/unittest/loader.py", line 419, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.cloud-tools/python/cpython-3.11.17-linux-x86_64-gnu/lib/python3.11/unittest/loader.py", line 362, in _get_module_from_name
+    __import__(name)
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_cg_runpath_evidence.py", line 3, in <module>
+    from scripts import panda_sdk_cg_runpath_evidence as v
+ImportError: cannot import name 'panda_sdk_cg_runpath_evidence' from 'scripts' (/workspace/big-model-closed-loop-benchmark/scripts/__init__.py)
+
+
+======================================================================
+ERROR: test_panda_sdk_cg_runpath_gate (unittest.loader._FailedTest.test_panda_sdk_cg_runpath_gate)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_panda_sdk_cg_runpath_gate
+Traceback (most recent call last):
+  File "/workspace/.cloud-tools/python/cpython-3.11.17-linux-x86_64-gnu/lib/python3.11/unittest/loader.py", line 419, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.cloud-tools/python/cpython-3.11.17-linux-x86_64-gnu/lib/python3.11/unittest/loader.py", line 362, in _get_module_from_name
+    __import__(name)
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_cg_runpath_gate.py", line 4, in <module>
+    from scripts import panda_sdk_cg_runpath_gate as g
+ImportError: cannot import name 'panda_sdk_cg_runpath_gate' from 'scripts' (/workspace/big-model-closed-loop-benchmark/scripts/__init__.py)
+
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.136s
+
+FAILED (errors=2)
