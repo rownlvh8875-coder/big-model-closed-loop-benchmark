@@ -23,7 +23,7 @@ CORE_SHA='8b0372f1df91a930f18b2551f7fde5d5687e21bc79dee9ecd0dd2018cba72490'
 IMAGE='sha256:b9d673de93f1857e4dfa5ed6a48330d568ef96fce7f3cc975f0c688877e6e26e'
 MODEL_SHA='35976b11be3904eb78e32f7dc55a6abf8e9433ac5aa391a1998f1e9ce001b199'
 MODEL_ID='1365126a-e71e-4778-be00-8ab92dc82c09/12864/big_driving_supercombo.onnx'
-REQUEST='docs/requests/panda-sdk3-runtime-20261116-02.json'
+REQUEST='docs/requests/panda-sdk3-runtime-20261116-03.json'
 REFERENCE_SHA='f38e0734a5344eda9a11e3024695febf2cea0177aa80985b67ceef5837a088d7'
 STATS_FIELDS=('configured','closed','error','forwarded','resolutions','paths','events')
 CASES={(s,c) for s in (20261109,20261110) for c in ('s_curve_left_right','s_curve_right_left')}
@@ -147,8 +147,8 @@ def log_limits():
 
 def container_command(name,repo,sdk,out,args,*,model=None,deps=None,owner=None):
     cmd=['docker','create','--name',name,'--read-only','--network','none','--user','65534:65534',
-         '--cap-drop','ALL','--security-opt','no-new-privileges','--memory','4g' if model else '2g',
-         '--cpus','2' if model else '1','--pids-limit','128','--ipc','private','--ulimit','core=0',
+         '--cap-drop','ALL','--security-opt','no-new-privileges','--memory','10g' if model else '2g',
+         '--memory-swap','10g' if model else '2g','--cpus','2' if model else '1','--pids-limit','128','--ipc','private','--ulimit','core=0',
          '--tmpfs','/tmp:rw,nosuid,nodev,size='+('512m' if model else '256m'),
          '--mount',f'type=bind,src={repo.resolve()},dst=/work/repo,readonly',
          '--mount',f'type=bind,src={sdk.resolve()},dst={SDK_PATH},readonly',
@@ -211,7 +211,7 @@ def run_container(name,sdk,out,args,*,model=None,deps=None):
         need(creation.returncode==0,'Docker create failed; see retained creation logs')
         actual=inspect_container(name)
         need(actual is not None and actual['Config']['Labels'].get('stage7.sdk3.owner')==owner,'created ownership label')
-        cid=actual['Id'];write(out/'container.json',dict(id=cid,name=name,image=IMAGE,ownership_label=owner))
+        cid=actual['Id'];write(out/'container.json',dict(id=cid,name=name,image=IMAGE,ownership_label=owner,effective_limits={k:actual.get('HostConfig',{}).get(k) for k in ('Memory','MemorySwap','NanoCpus','PidsLimit','ReadonlyRootfs','NetworkMode','IpcMode')}))
         start_attempted=True
         with (out/'stdout.log').open('wb') as stdout,(out/'stderr.log').open('wb') as stderr:
             rc=subprocess.run(['docker','start','--attach',cid],stdout=stdout,stderr=stderr,timeout=1800 if model else 180,preexec_fn=log_limits).returncode
@@ -249,6 +249,22 @@ def aggregate_model_pairs(root):
     return dict(aggregate=aggregate,gate=gate)
 
 
+def validate_prior_glx(root):
+    root=Path(root);summary=json.loads((root/'summary.json').read_text())
+    need(summary['source_sha']=='3bc46af75a2ef1f8cec415139c3688e0c14428ed' and summary['image']==IMAGE and summary['sdk_sha256']==SDK_SHA and summary['showbase_compatible'] is True,'pinned prior selected GLX context')
+    ids=[]
+    for index in (3,4):
+        rows=[p for p in summary['probes'] if p['index']==index];need(len(rows)==1,'exact prior child');row=rows[0]
+        need(row['role']=='sdk3' and row['factory']=='showbase' and row['load_order']=='core-first','prior SDK3 standard path')
+        folder=root/f'probe-{index}-sdk3-showbase';report=json.loads((folder/'report.json').read_text());execution=json.loads((folder/'execution.json').read_text());native=json.loads((folder/'native-child.json').read_text())
+        need(execution['failure'] is None and execution['owned_container_removed'] is True and execution['stopped_state']['OOMKilled'] is False and execution['stopped_state']['Running'] is False and execution['stopped_state']['Pid']==0,'prior clean stopped scope')
+        need(native['spawn_attempted'] is True and native['pid']==report['pid'] and native['returncode']==execution['returncode']==0 and native['server_returncode']==report['server_returncode']==0 and report['child_finalized_before_server_stop'] is True,'prior child/display lifecycle')
+        events=[json.loads(line.removeprefix('STAGE7_EVENT ')) for line in (folder/'stdout.log').read_text().splitlines() if line.startswith('STAGE7_EVENT ')]
+        validate_probe(events,report,execution['returncode'],row['nonce'],'core-first',factory='showbase');ids.append(execution['container_id'])
+    need(len(set(ids))==2,'two independent prior containers')
+    return dict(selected_sdk_glx_qualified=True,verified_sdk_glx_children=2,prior_model_cohort_qualified=False,prior_official_model_processes=summary['official_model_processes'],prior_strict_result=summary['strict_result'],full_object_abi_qualified=False,stage7_complete=False)
+
+
 def run_host(out:Path,model_phase:bool):
     out=out.resolve();need(not out.exists(),'fresh cohort output');work=out/'work';bundle=out/'bundle';work.mkdir(parents=True);bundle.mkdir()
     summary=dict(status='FAILED',sdk_sha256=SDK_SHA,image=IMAGE,probes=[],official_model_processes=0,strict_result='NOT_RUN',stage7_complete=False)
@@ -262,29 +278,25 @@ def run_host(out:Path,model_phase:bool):
         sdkzip=artifact(work,bundle,14191115165,61661546,'2a44226962b3175081566918dd55eb845ac8ce1c9f9f5a396f469c8f6eca5d26',43786081196,'40dd7187ce8d3c5de510aa8c7a8ac2a6d37b0f38','sdk3')
         image=verify_member(imagezip,'image.tar',1727678464,'4984470cd7d732f9f2d1c12710c9433b563b3817ba6d1d419749a9a2b1b46698',work/'image.tar')
         sdk=verify_member(sdkzip,'candidate/libpandagl.so.data',1052968,SDK_SHA,work/'libpandagl.so')
-        reference=extract_reference(image,work/'publisher-libpandagl.so')
         subprocess.run(['docker','load','-i',str(image)],check=True,timeout=600)
         need(json.loads(subprocess.check_output(['docker','image','inspect',IMAGE],text=True))[0]['Id']==IMAGE,'loaded image config')
         prefix='sdk3-'+os.environ['GITHUB_RUN_ID']+'-'
-        plans=[('reference','manual'),('sdk3','manual'),('reference','showbase'),('sdk3','showbase'),('sdk3','showbase')]
-        for i,(role,factory) in enumerate(plans):
-            order='core-first';nonce=secrets.token_hex(16);dest=bundle/f'probe-{i}-{role}-{factory}'
-            args=['--nonce',nonce,'--load-order',order,'--factory',factory]+(['--reference-wheel'] if role=='reference' else [])
-            execution=run_container(prefix+str(i),reference if role=='reference' else sdk,dest,args)
-            events=[]
-            for line in ((dest/'stdout.log').read_text(errors='replace') if (dest/'stdout.log').exists() else '').splitlines():
-                if line.startswith('STAGE7_EVENT '):events.append(json.loads(line.removeprefix('STAGE7_EVENT ')))
-            report=json.loads((dest/'report.json').read_text()) if (dest/'report.json').exists() else {}
-            result=dict(index=i,role=role,factory=factory,load_order=order,nonce=nonce,last_checkpoint=events[-1]['stage'] if events else None,execution=execution,selected_runtime_compatible=False)
-            try:
-                need(execution['failure'] is None and execution['owned_container_removed'],'owned execution lifecycle')
-                validator=validate_reference_probe if role=='reference' else validate_probe
-                result.update(validator(events,report,execution['returncode'],nonce,order,factory=factory))
-            except Exception as e:result['validation_failure']=type(e).__name__+': '+str(e)
-            summary['probes'].append(result);write(dest/'validation.json',result);write(bundle/'summary.json',summary)
-        need(all(p['selected_runtime_compatible'] for p in summary['probes'][3:]),'two ordinary ShowBase SDK3/GLX children must pass')
+        priorzip=artifact(work,bundle,14206869856,4627908,'c6db9f8cb5a4e26f570fce6a8e91d6da96b5ec0c45f15d33f263bc20770a6d3b',43827976143,'523d1525c9a960a804605dabfb7b8a38ac96d906','prior-glx')
+        priorroot=bundle/'prior-glx';priorroot.mkdir()
+        selected=['summary.json']+[f'probe-{i}-sdk3-showbase/'+n for i in (3,4) for n in ('report.json','execution.json','native-child.json','stdout.log')]
+        with ZipFile(priorzip) as z:
+            need(len(z.namelist())==len(set(z.namelist())),'prior duplicate members')
+            for name in selected:
+                info=z.getinfo(name);need(info.file_size<=1024**2,'bounded prior member');dest=priorroot/name;dest.parent.mkdir(parents=True,exist_ok=True);dest.write_bytes(z.read(info))
+        summary['prior_glx']=validate_prior_glx(priorroot)
         summary['showbase_compatible']=True;summary['core_first_compatible']=True;summary['status']='SDK3_GLX_SELECTED_RUNTIME_OBSERVED'
         if model_phase:
+            meminfo={}
+            for line in Path('/proc/meminfo').read_text().splitlines():
+                key,value=line.split(':',1)
+                if key in ('MemTotal','MemAvailable'):meminfo[key]=int(value.split()[0])*1024
+            summary['host_memory_before_model']=meminfo;write(bundle/'summary.json',summary)
+            need(meminfo['MemAvailable']>=12*1024**3,'12GiB host availability required for10GiB model container')
             from bigbench.model_inventory import download_checked
             model=download_checked(path=MODEL_ID,sha256=MODEL_SHA,output_dir=work/'models',max_bytes=900000000)
             need(Path(model).stat().st_size==768750198,'official model extent')

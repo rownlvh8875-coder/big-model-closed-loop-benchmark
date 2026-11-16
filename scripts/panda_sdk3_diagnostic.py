@@ -48,6 +48,10 @@ def run_with_server(args):
         if child is not None and child.poll() is None:child.kill();child.wait(timeout=10)
         if server is not None and server.poll() is None:server.terminate();server.wait(timeout=5)
         status['server_returncode']=None if server is None else server.returncode
+        status['container_cgroup_after_child']={}
+        for name in ('memory.max','memory.peak','memory.events'):
+            path=Path('/sys/fs/cgroup')/name
+            if path.exists():status['container_cgroup_after_child'][name]=path.read_text().strip()
         policy.write(out/'native-child.json',status)
         if (out/'report.json').exists():
             report=json.loads((out/'report.json').read_text());report['server_returncode']=status['server_returncode'];report['child_finalized_before_server_stop']=child is not None and child.poll() is not None;policy.write(out/'report.json',report)

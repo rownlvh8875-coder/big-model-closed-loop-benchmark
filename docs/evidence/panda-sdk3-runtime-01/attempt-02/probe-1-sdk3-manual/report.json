@@ -1,0 +1,81 @@
+{
+  "status": "SDK3_GLX_FRAMES_OBSERVED",
+  "pid": 10,
+  "nonce": "2eeda574daf5673205dfc305cdb3fb3b",
+  "load_order": "core-first",
+  "factory": "manual",
+  "observer_instrumented": true,
+  "core_sha256": "8b0372f1df91a930f18b2551f7fde5d5687e21bc79dee9ecd0dd2018cba72490",
+  "panda_version": "1.10.13",
+  "sdk_sha256": "27cd80fb1c06feaa7da8b5658cce918d1e3ab71c304a0c0ce42e30688ac008f3",
+  "source_stats": [
+    {
+      "returned": 0,
+      "guards_ok": true,
+      "values": {
+        "configured": 0,
+        "closed": 0,
+        "error": 0,
+        "forwarded": 0,
+        "resolutions": 0,
+        "paths": 0,
+        "events": 0
+      }
+    },
+    {
+      "returned": 0,
+      "guards_ok": true,
+      "values": {
+        "configured": 0,
+        "closed": 0,
+        "error": 0,
+        "forwarded": 0,
+        "resolutions": 0,
+        "paths": 0,
+        "events": 0
+      }
+    }
+  ],
+  "driver": {
+    "vendor": "Mesa",
+    "renderer": "softpipe",
+    "version": "3.3 (Compatibility Profile) Mesa 25.2.8-0ubuntu0.24.04.4"
+  },
+  "objects": {
+    "pipe": 94302823940928,
+    "output": 94302823941328,
+    "gsg": 94302823943664,
+    "texture": 94303235068768,
+    "camera": 94302823955568
+  },
+  "output_properties": {
+    "output_class": "GraphicsBuffer",
+    "active": true,
+    "framebuffer": "color_bits=24 red_bits=8 green_bits=8 blue_bits=8 alpha_bits=8 force_hardware force_software ",
+    "width": 8,
+    "height": 8
+  },
+  "frames": [
+    {
+      "index": 0,
+      "raw_hex": "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nbytes": 192,
+      "sha256": "5d89f056865052bcb89c910d2d62872e029fb273c3db03f8968a52a41593c1b5"
+    },
+    {
+      "index": 1,
+      "raw_hex": "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "nbytes": 192,
+      "sha256": "5d89f056865052bcb89c910d2d62872e029fb273c3db03f8968a52a41593c1b5"
+    }
+  ],
+  "cleanup": {
+    "windows_after": 0,
+    "texture_ram_after": false,
+    "render_calls": 4,
+    "ram_reads": 2,
+    "cpp_deallocation_verified": false
+  },
+  "server_returncode": 0,
+  "child_finalized_before_server_stop": true
+}

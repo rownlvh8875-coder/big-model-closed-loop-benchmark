@@ -1,13 +1,13 @@
 name: Fresh SDK3 ABI checkpoints, GLX frames and conditional official MD-V3
 on:
   push:
-    branches: ['diagnostic/panda-sdk3-runtime-20261116-02']
-    paths: ['docs/requests/panda-sdk3-runtime-20261116-02.json']
+    branches: ['diagnostic/panda-sdk3-runtime-20261116-03']
+    paths: ['docs/requests/panda-sdk3-runtime-20261116-03.json']
 permissions:
   contents: read
   actions: read
 concurrency:
-  group: panda-sdk3-runtime-20261116-02
+  group: panda-sdk3-runtime-20261116-03
   cancel-in-progress: false
 jobs:
   sdk3-runtime:
@@ -44,7 +44,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: panda-sdk3-runtime-20261116-02
+          name: panda-sdk3-runtime-20261116-03
           path: output/stage7-panda-sdk3-runtime-01/producer/bundle/
           retention-days: 30
           compression-level: 6

@@ -207,6 +207,32 @@ class Sdk3RuntimeEvidence(unittest.TestCase):
             out=runtime.extract_reference(image,d/'reference.so',expected_size=9,expected_sha=hashlib.sha256(b'publisher').hexdigest())
             self.assertEqual(out.read_bytes(),b'publisher')
 
+    def prior_bundle(self,root):
+        root=Path(root);probes=[]
+        for index in [3,4]:
+            d=root/f'probe-{index}-sdk3-showbase';d.mkdir(parents=True)
+            e,r=self.probe();names=[x['stage'] for x in e[:11]]+['SHOWBASE_BEFORE','SHOWBASE_AFTER','DRIVER_AFTER','FRAME_0_BEFORE','FRAME_0_AFTER','FRAME_1_BEFORE','FRAME_1_AFTER','CLEANUP_BEFORE','CLEANUP_AFTER']
+            e=[dict(stage=n,nonce=r['nonce'],pid=r['pid'],monotonic=float(i)) for i,n in enumerate(names)];r.update(factory='showbase',child_finalized_before_server_stop=True,server_returncode=0)
+            execution=dict(returncode=0,failure=None,owned_container_removed=True,container_id=str(index)*64,stopped_state=dict(OOMKilled=False,Running=False,Pid=0))
+            row=dict(index=index,role='sdk3',factory='showbase',load_order='core-first',nonce=r['nonce'],selected_runtime_compatible=True,execution=execution);probes.append(row)
+            for name,v in [('report.json',r),('execution.json',execution),('native-child.json',dict(pid=r['pid'],returncode=0,server_returncode=0,spawn_attempted=True))]:(d/name).write_text(json.dumps(v))
+            (d/'stdout.log').write_text(''.join('STAGE7_EVENT '+json.dumps(x)+'\n' for x in e))
+        (root/'summary.json').write_text(json.dumps(dict(source_sha='3bc46af75a2ef1f8cec415139c3688e0c14428ed',sdk_sha256=runtime.SDK_SHA,image=runtime.IMAGE,showbase_compatible=True,probes=probes,official_model_processes=1,strict_result='NOT_RUN')))
+        return root
+
+    def test_prior_glx_is_recomputed_without_promoting_the_failed_model_cohort(self):
+        with tempfile.TemporaryDirectory() as d:
+            root=self.prior_bundle(d);v=runtime.validate_prior_glx(root)
+            self.assertTrue(v['selected_sdk_glx_qualified']);self.assertEqual(v['verified_sdk_glx_children'],2)
+            self.assertFalse(v['prior_model_cohort_qualified']);self.assertFalse(v['stage7_complete'])
+
+    def test_prior_success_flag_cannot_hide_bad_pixels_or_a_missing_second_child(self):
+        with tempfile.TemporaryDirectory() as d:
+            root=self.prior_bundle(d);p=root/'probe-4-sdk3-showbase'/'report.json';r=json.loads(p.read_text());r['frames'][0]['raw_hex']='00'*192;r['frames'][0]['sha256']=hashlib.sha256(bytes(192)).hexdigest();p.write_text(json.dumps(r))
+            with self.assertRaises(ValueError):runtime.validate_prior_glx(root)
+            p.unlink()
+            with self.assertRaises((ValueError,FileNotFoundError)):runtime.validate_prior_glx(root)
+
     def test_runtime_container_is_bounded_readonly_and_has_no_network_or_extra_sdk(self):
         with tempfile.TemporaryDirectory() as d:
             cmd=runtime.container_command('owned-sdk3-test',Path(d),Path(d)/'sdk',Path(d)/'out',['--load-order','core-first'])
