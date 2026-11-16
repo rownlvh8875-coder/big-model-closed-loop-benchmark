@@ -1,5 +1,5 @@
 """Native execution is confined to handwritten nostdlib CPU fixtures, never SDK."""
-import copy,json,os,shutil,subprocess,sys,tempfile,unittest
+import copy,json,os,shutil,struct,subprocess,sys,tempfile,unittest
 from pathlib import Path
 from unittest.mock import patch
 from scripts import panda_loader_cpu_fixture as f
@@ -43,6 +43,63 @@ class CpuLoaderTests(unittest.TestCase):
             for case,row in manifest['cases'].items():row['files']['root.so']=manifest['files']['cases/'+case+'/root.so']
             (fixture/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
             with self.assertRaises(ValueError):f.validate_fixture(fixture,manifest)
+    def _replace_role(self,fixture,manifest,role,raw):
+        record=dict(nbytes=len(raw),sha256=f.sha(raw))
+        (fixture/'build'/role).write_bytes(raw);manifest['files']['build/'+role]=record
+        for case,layout in f.LAYOUT.items():
+            for name,source in layout.items():
+                if source==role:
+                    (fixture/'cases'/case/name).write_bytes(raw);manifest['files']['cases/'+case+'/'+name]=record;manifest['cases'][case]['files'][name]=record
+        (fixture/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
+    def test_symbol_zero_and_packed_relocations_are_rejected_as_data_before_spawn(self):
+        normal='int impl(void){return 7;} __asm__(".symver impl,cpu_probe_value@CPU_ABI_1");\n'
+        variants={'relative':normal+'void *retained_pointer=(void*)impl;\n',
+                  'irelative':normal+'typedef int(*Fn)(void);static int resolved(void){return 13;}static Fn resolver(void){return resolved;}static int hidden(void) __attribute__((ifunc("resolver")));Fn retained_pointer=hidden;\n',
+                  'relr':normal+'void *retained_pointer=(void*)impl;\n',
+                  'unparsed-relative-count':normal}
+        for kind,source in variants.items():
+            with self.subTest(kind=kind),tempfile.TemporaryDirectory() as d:
+                root=Path(d);(root/'target.c').write_text(source);(root/'v.map').write_text('CPU_ABI_1 {global:cpu_probe_value;local:*;};\n')
+                argv=['/usr/bin/gcc','-nostdlib','-shared','-fPIC','-O2','-fcf-protection=none','-Wl,--version-script=v.map','-Wl,-soname,libstage7_cpu_merged.so','target.c','-o','target.so']
+                if kind=='relr':argv.append('-Wl,-z,pack-relative-relocs')
+                if kind=='unparsed-relative-count':argv.append('-Wl,--spare-dynamic-tags=6')
+                subprocess.run(argv,cwd=root,check=True,capture_output=True,timeout=20,env={'PATH':'/usr/bin:/bin','LANG':'C','LC_ALL':'C'})
+                raw=(root/'target.so').read_bytes()
+                if kind=='unparsed-relative-count':
+                    raw=bytearray(raw);h=struct.unpack_from('<16sHHIQQQIHHHHHH',raw);ph=[struct.unpack_from('<IIQQQQQQ',raw,h[5]+56*i) for i in range(h[10])];dyn=next(p for p in ph if p[0]==2);at=next(i for i in range(dyn[2],dyn[2]+dyn[5],16) if struct.unpack_from('<q',raw,i)[0]==0);self.assertLessEqual(at+80,dyn[2]+dyn[5])
+                    for index,(tag,value) in enumerate([(7,0),(8,0),(9,24),(0x6ffffff9,1),(0,0)]):struct.pack_into('<qQ',raw,at+index*16,tag,value)
+                    raw=bytes(raw)
+                meta=f.inspect_elf(raw);self.assertEqual(meta['relocation_kinds'],[]);self.assertEqual(meta['ifunc_exports'],0)
+                if kind not in ['relr','unparsed-relative-count']:self.assertGreater(meta['relocation_count'],0)
+                with self.assertRaises(ValueError):f._validate_binary(raw,'target1.so')
+                # This line is reached only after the data-only guard rejected it.
+                fixture=root/'fixture';manifest=f.build_fixture(fixture);self._replace_role(fixture,manifest,'target1.so',raw);r=f.run_cases(HOST_LOADER,fixture,manifest,root/'blocked');self.assertEqual(r['loader_start_attempts'],0);self.assertEqual(r['status'],'FAILED')
+    def test_mapping_aliases_and_nonwritable_got_are_rejected_as_data_before_spawn(self):
+        original=(self.fixture/'build/root.so').read_bytes();h=struct.unpack_from('<16sHHIQQQIHHHHHH',original);records=[list(struct.unpack_from('<IIQQQQQQ',original,h[5]+56*i)) for i in range(h[10])]
+        meta=f.inspect_elf(original);entry=next(s for s in meta['exports'] if s['name']=='_start')['value']
+        def offset(va):
+            p=next(p for p in records if p[0]==1 and p[3]<=va< p[3]+p[5]);return p[2]+va-p[3]
+        for kind in ['rounded-alias','incongruent','writable-code','executable-got']:
+            with self.subTest(kind=kind),tempfile.TemporaryDirectory() as d:
+                raw=bytearray(original);ph=copy.deepcopy(records)
+                if kind in ['rounded-alias','incongruent']:
+                    slot=next(i for i,p in enumerate(ph) if p[0]==0x6474e551);va=(entry&~4095)+0xf00;file_offset=0x2f00
+                    self.assertLess(file_offset+9,len(raw));ph[slot]=[1,5,file_offset+(kind=='incongruent'),va,va,8,8,1 if kind=='incongruent' else 4096]
+                    slots=[i for i,p in enumerate(ph) if p[0]==1];ordered=sorted((ph[i] for i in slots),key=lambda p:p[3])
+                    for i,p in zip(slots,ordered):ph[i]=p
+                elif kind=='writable-code':
+                    next(p for p in ph if p[0]==1 and p[3]<=entry<p[3]+p[5])[1]|=2
+                else:
+                    dyn=next(p for p in ph if p[0]==2);tags={}
+                    for at in range(dyn[2],dyn[2]+dyn[5],16):
+                        tag,value=struct.unpack_from('<qQ',raw,at)
+                        if tag==0:break
+                        tags[tag]=value
+                    body=offset(entry);target=entry+9+struct.unpack_from('<i',raw,body+5)[0];struct.pack_into('<i',raw,offset(target)+2,entry-(target+6));struct.pack_into('<Q',raw,offset(tags[23]),entry)
+                for i,p in enumerate(ph):struct.pack_into('<IIQQQQQQ',raw,h[5]+56*i,*p)
+                f.inspect_elf(bytes(raw))  # Frozen byte-span parser accepts this data.
+                with self.assertRaises(ValueError):f._validate_binary(bytes(raw),'root.so')
+                fixture=Path(d)/'fixture';manifest=f.build_fixture(fixture);self._replace_role(fixture,manifest,'root.so',bytes(raw));r=f.run_cases(HOST_LOADER,fixture,manifest,Path(d)/'blocked');self.assertEqual(r['loader_start_attempts'],0);self.assertEqual(r['status'],'FAILED')
     def test_trace_status_stream_and_ownership_contradictions_reject(self):
         for row in self.report['cases']:
             trace=(self.root/'host-only-probes'/row['case']/'stderr.log').read_text();command=row['command'];paths=f.case_paths(self.fixture,row['case']);f.validate_observation(row['case'],command,trace,paths)

@@ -182,6 +182,14 @@ def _headers(raw):
     dynamics = [p for p in ph if p[0] == 2]
     need(len(dynamics) == 1 and not any(p[0] == 7 for p in ph), 'one dynamic/no TLS fixture')
     need(all(not p[1] & 1 for p in ph if p[0] == 0x6474e551), 'nonexecutable fixture stack')
+    page = 4096
+    need(os.sysconf('SC_PAGE_SIZE') == page, '4KiB CPU mapping profile')
+    loads = [p for p in ph if p[0] == 1]
+    need([p[3] for p in loads] == sorted(p[3] for p in loads) and
+         all(p[7] >= page and p[7] & (p[7]-1) == 0 and p[2] % page == p[3] % page
+             for p in loads), 'ordered page-congruent CPU LOAD mappings')
+    rounded = [(p[3] & -page, (p[3]+p[6]+page-1) & -page) for p in loads if p[6]]
+    need(all(a[1] <= b[0] for a, b in zip(rounded, rounded[1:])), 'disjoint rounded CPU LOAD pages')
     d, tags = dynamics[0], {}
     for at in range(d[2], d[2]+d[5], 16):
         tag, value = struct.unpack_from('<qQ', raw, at)
@@ -189,11 +197,19 @@ def _headers(raw):
             break
         tags[tag] = value
     need(not any(tags.get(t, 0) for t in (12, 13, 25, 26, 27, 28, 32, 33)), 'no fixture constructors/destructors')
+    need(not any(t in tags for t in (17, 18, 19, 35, 36, 37, 0x6000000f, 0x60000010,
+                                    0x60000011, 0x60000012)), 'no unparsed/packed CPU relocations')
+    need(22 not in tags and not tags.get(30, 0) & 4, 'no CPU text relocations')
+    allowed = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 14, 20, 23, 30, 0x6ffffef5,
+               0x6ffffff0, 0x6ffffffb, 0x6ffffffc, 0x6ffffffd, 0x6ffffffe, 0x6fffffff}
+    need(set(tags) <= allowed and not tags.get(30, 0) & ~8 and
+         not tags.get(0x6ffffffb, 0) & ~1, 'closed CPU dynamic tags/flags')
     return tags
 
 
-def _virtual(raw, va, size):
-    rows = [p for p in elf_ranges(raw) if p['vaddr'] <= va and va+size <= p['vaddr']+p['filesz']]
+def _virtual(raw, va, size, executable=False):
+    rows = [p for p in elf_ranges(raw) if p['vaddr'] <= va and va+size <= p['vaddr']+p['filesz']
+            and (not executable or p['flags'] & 1 and not p['flags'] & 2)]
     need(len(rows) == 1, 'unique fixture code/data span')
     p = rows[0]
     return raw[p['offset']+va-p['vaddr']:p['offset']+va-p['vaddr']+size]
@@ -205,11 +221,12 @@ def _validate_binary(raw, role):
          not meta['unsupported_features'] and meta['rpath'] is None and meta['runpath'] is None,
          'closed CPU fixture loader features')
     need(set(meta['relocation_kinds']) <= {7}, 'only fixture PLT relocation')
+    need(meta['relocation_count'] == (1 if role == 'root.so' else 0), 'exact total CPU relocation count')
     functions = [r for r in meta['exports'] if r['symbol_type'] == 2]
     expected = '_start' if role == 'root.so' else ('cpu_probe_placeholder' if role.startswith('stub') else SYMBOL)
     need(len(functions) == 1 and functions[0]['name'] == expected, 'one closed fixture function')
     fn = functions[0]
-    body = _virtual(raw, fn['value'], fn['nbytes'])
+    body = _virtual(raw, fn['value'], fn['nbytes'], executable=True)
     if role == 'root.so':
         need(meta['needed'] == [LEGACY] and len(meta['imports']) == 1 and
              meta['imports'][0]['name'] == SYMBOL and meta['imports'][0]['version'] == V1 and
@@ -220,9 +237,12 @@ def _validate_binary(raw, role):
         header = struct.unpack_from('<16sHHIQQQIHHHHHH', raw)
         need(header[4] == fn['value'], 'fixed CPU ELF entry')
         target = fn['value']+9+struct.unpack_from('<i', body, 5)[0]
-        stub = _virtual(raw, target, 6)
+        stub = _virtual(raw, target, 6, executable=True)
         need(stub[:2] == b'\xff\x25', 'fixed CPU PLT jump')
         got = target+6+struct.unpack_from('<i', stub, 2)[0]
+        slots = [p for p in elf_ranges(raw) if p['vaddr'] <= got and got+8 <= p['vaddr']+p['memsz']
+                 and p['flags'] & 2 and not p['flags'] & 1]
+        need(len(slots) == 1, 'CPU GOT is writable nonexecutable memory')
         need(23 in tags and 2 in tags and tags[2] == 24, 'one CPU PLT relocation')
         slot, info, addend = struct.unpack('<QQq', _virtual(raw, tags[23], 24))
         need(slot == got and info & 0xffffffff == 7 and info >> 32 == meta['imports'][0]['symbol_index']
