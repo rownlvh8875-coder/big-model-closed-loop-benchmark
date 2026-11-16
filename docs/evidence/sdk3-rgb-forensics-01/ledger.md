@@ -1,0 +1,10 @@
+# SDD ledger — plan: docs/superpowers/plans/2026-11-16-sdk3-rgb-forensics.md
+Ruling: Continue inline without routine design questions under the user's standing autonomous instruction — select full12CPU pixel retention plus an uninstrumented control — cost: four new hosted model children; nondiscriminating equality may leave root cause unresolved.
+Ruling: Reuse the existing isolated memory clone on a new branch because original disk is full — original checkout and completed PR131 remain unchanged — cost: memory volatility; persist commits/evidence remotely.
+Ruling: Extend only optional observer-factory/CLI dispatch while keeping legacy6module unchanged — source additions alone cannot inject an observer into the existing trial/display stack cleanly — cost: two existing source files change on this new experimental branch; default regression and actual control are required.
+Ruling: Validate full regression through exact-source hosted CI; keep local verification to safe focused tests — local volume0 and memory filesystemnoexec — cost: no complete local duplicate suite.
+Pre-flight Task1→Task2: full12manifest with per-step/source SHA and actual lifecycle validation is required before analyzer output; Task2 cannot use legacy6admission. Planned self-review found no interface conflict.
+Task1: in_progress. Baseline46b750e6 remote/head clean; latest exact canonical4jobs1914tests/7skip passed. No prior native processes retried.
+Task1 implementation: Full12pixels REDmissing module→5GREEN; factory/child/pair option REDunexpected keyword/missing child builder/lost probe flag→8GREEN. Focused legacy/full12/runtime/continuation regression38testsGREEN. No actual target locally. Full suite canonical CI pending.
+Task2: in_progress.
+Task2 admission REDmissing host module→4GREEN,including15negative receipt mutations. Combined42testsGREEN;actionlint+diffcheckPASS. Host analysis requires numpy1.26.4 installed outside frozen image; native model numpy/dependency mounts unchanged. SourceCI/review pending before native activation.

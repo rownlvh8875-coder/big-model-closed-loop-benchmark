@@ -84,7 +84,6 @@ class FullEpisodeRGBForensics(unittest.TestCase):
             make_trial(d,0);make_trial(d,1)
             with self.assertRaises(ValueError):f.analyze_pair(Path(d),'control')
 
-if __name__=='__main__':unittest.main()
 
 class FullRGBDispatch(unittest.TestCase):
     def test_control_has_no_observer_and_probe_serializes_all_twelve_after_episode(self):
@@ -145,3 +144,5 @@ class FullRGBDispatch(unittest.TestCase):
             receipt=json.loads((root/'pair.json').read_text())
             self.assertEqual(receipt['status'],'PAIR_COMPLETED')
             self.assertEqual(receipt['counts'],dict(known=2,upper=2,spawn_attempts=2))
+
+if __name__=='__main__':unittest.main()

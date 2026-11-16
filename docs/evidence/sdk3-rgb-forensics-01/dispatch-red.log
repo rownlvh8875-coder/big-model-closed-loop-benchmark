@@ -1,0 +1,46 @@
+test_equal_probe_and_equal_control_do_not_promote_original_matrix (test_sdk3_rgb_forensics.FullEpisodeRGBForensics.test_equal_probe_and_equal_control_do_not_promote_original_matrix) ... ok
+test_forged_truncated_reordered_and_wrong_scene_pixels_are_rejected (test_sdk3_rgb_forensics.FullEpisodeRGBForensics.test_forged_truncated_reordered_and_wrong_scene_pixels_are_rejected) ... ok
+test_instrumented_trial_cannot_be_relabelled_as_control (test_sdk3_rgb_forensics.FullEpisodeRGBForensics.test_instrumented_trial_cannot_be_relabelled_as_control) ... ok
+test_observer_keeps_step12_without_expanding_legacy_six_step_behavior (test_sdk3_rgb_forensics.FullEpisodeRGBForensics.test_observer_keeps_step12_without_expanding_legacy_six_step_behavior) ... ok
+test_step7_and_step12_pixels_have_exact_location_and_delta (test_sdk3_rgb_forensics.FullEpisodeRGBForensics.test_step7_and_step12_pixels_have_exact_location_and_delta) ... ok
+test_control_has_no_observer_and_probe_serializes_all_twelve_after_episode (test_sdk3_rgb_forensics.FullRGBDispatch.test_control_has_no_observer_and_probe_serializes_all_twelve_after_episode) ... ERROR
+test_full_rgb_flag_reaches_owned_child_and_disabled_path_has_no_capture (test_sdk3_rgb_forensics.FullRGBDispatch.test_full_rgb_flag_reaches_owned_child_and_disabled_path_has_no_capture) ... ERROR
+test_pair_launcher_forwards_probe_flag_to_both_model_children (test_sdk3_rgb_forensics.FullRGBDispatch.test_pair_launcher_forwards_probe_flag_to_both_model_children) ... FAIL
+
+======================================================================
+ERROR: test_control_has_no_observer_and_probe_serializes_all_twelve_after_episode (test_sdk3_rgb_forensics.FullRGBDispatch.test_control_has_no_observer_and_probe_serializes_all_twelve_after_episode)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/dev/shm/stage7-sdk3-runtime-20261116/repo/tests/test_sdk3_rgb_forensics.py", line 109, in test_control_has_no_observer_and_probe_serializes_all_twelve_after_episode
+    probe=n.run_trial(**kw,raw_rgb_dir=root/'rgb',raw_rgb_capture_factory=f.FullEpisodeRGBCapture)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: run_trial() got an unexpected keyword argument 'raw_rgb_capture_factory'
+
+======================================================================
+ERROR: test_full_rgb_flag_reaches_owned_child_and_disabled_path_has_no_capture (test_sdk3_rgb_forensics.FullRGBDispatch.test_full_rgb_flag_reaches_owned_child_and_disabled_path_has_no_capture)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/dev/shm/stage7-sdk3-runtime-20261116/repo/tests/test_sdk3_rgb_forensics.py", line 118, in test_full_rgb_flag_reaches_owned_child_and_disabled_path_has_no_capture
+    command=d.owned_child_command(args,999)
+            ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'scripts.panda_sdk3_diagnostic' has no attribute 'owned_child_command'
+
+======================================================================
+FAIL: test_pair_launcher_forwards_probe_flag_to_both_model_children (test_sdk3_rgb_forensics.FullRGBDispatch.test_pair_launcher_forwards_probe_flag_to_both_model_children)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/dev/shm/stage7-sdk3-runtime-20261116/repo/tests/test_sdk3_rgb_forensics.py", line 144, in test_pair_launcher_forwards_probe_flag_to_both_model_children
+    with patch.object(d,'Path',side_effect=redirected_path),patch.object(d.subprocess,'Popen',Child):d.run_pair(args)
+                                                                                                     ^^^^^^^^^^^^^^^^
+  File "/dev/shm/stage7-sdk3-runtime-20261116/repo/scripts/panda_sdk3_diagnostic.py", line 134, in run_pair
+    launcher=subprocess.Popen([sys.executable,'-I','-S','-B',str(Path(__file__).resolve()),'--out',str(dest),'--model-trial','--nonce',nonce,'--seed',str(args.seed),'--scenario',args.scenario],stdout=stdout,stderr=stderr,env=env)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/dev/shm/stage7-sdk3-runtime-20261116/repo/tests/test_sdk3_rgb_forensics.py", line 138, in __init__
+    if '--full-rgb' not in argv:raise AssertionError('probe flag lost before display owner')
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: probe flag lost before display owner
+
+----------------------------------------------------------------------
+Ran 8 tests in 4.694s
+
+FAILED (failures=1, errors=2)
