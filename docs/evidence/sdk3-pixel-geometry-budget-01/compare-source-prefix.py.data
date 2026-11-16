@@ -1,0 +1,13 @@
+from pathlib import Path
+import json,sys,numpy as np
+ROOT=Path('/dev/shm/stage7-sdk3-runtime-20261116/repo');sys.path.insert(0,str(ROOT))
+from scripts.compare_native_mdv3_rgb_pixels import read_verified_pixels,summarize_pixel_difference
+out=ROOT/'output/stage7-sdk3-pixel-geometry-budget-01/actual';folder=out/'bundle/renderer';report=json.loads((folder/'report.json').read_text());old=ROOT/'output/stage7-sdk3-rgb-forensics-01/actual/full_rgb/bundle/pair';comparisons=[]
+for historical in (0,1):
+ root=old/f'run-{historical}'/'rgb';manifest=json.loads((root/'manifest.json').read_text());canonical=ROOT/'docs/evidence/sdk3-rgb-forensics-01/actual/full_rgb/bundle/pair'/f'run-{historical}';assert manifest==json.loads((canonical/'rgb/manifest.json').read_text());historical_report=json.loads((canonical/'run.json').read_text());rows=[]
+ for capture in report['captures']:
+  step=capture['step']
+  for camera in ('road','wide'):
+   source=next(r for r in manifest['images'] if r['step']==step and r['camera']==camera);assert source['sha256']==historical_report['frames'][step-1]['source_'+camera+'_rgb_sha256'];actual=next(r for r in capture['images'] if r['camera']==camera);lhs=read_verified_pixels(root,source);rhs=read_verified_pixels(folder,actual);metrics=summarize_pixel_difference(lhs,rhs);points=metrics['first_12_changed_xy'];rows.append(dict(step=step,camera=camera,metrics=metrics,changed_rgb=[dict(xy=[x,y],historical=lhs[y,x].tolist(),actual=rhs[y,x].tolist()) for x,y in points]))
+ comparisons.append(dict(historical_run=historical,comparisons=rows))
+x=dict(actual_run_id=43885514458,historical_run_id=43854755697,historical_artifact_id=14220249832,historical_artifact_sha256='6136240ea3894d5c90b16fa9c0e6c10e5829c59d7565daa00556084f1789aba1',all_original_pixels_reverified=True,historical_image_count=28,actual_unique_source_images=14,comparisons=comparisons,original_matrix_gate_passed=False,repair_proven=False,stage7_complete=False);(out/'source-prefix-pixel-comparison.json').write_text(json.dumps(x,indent=2)+'\n');print(json.dumps([dict(historical_run=r['historical_run'],differences=[q for q in r['comparisons'] if not q['metrics']['bit_exact']]) for r in comparisons],ensure_ascii=False,indent=2))

@@ -1,0 +1,154 @@
+[
+  {
+    "source": "panda3d/panda3d@v1.10.13/panda/src/gobj/lens.cxx",
+    "sha256": "ac61c27e79aa707578ff7ecc8bc6c765e804b293c59bab17b05390c793a2bfa7",
+    "excerpts": [
+      {
+        "line": 1111,
+        "text": "bool Lens::"
+      },
+      {
+        "line": 1112,
+        "text": "do_extrude(const CData *cdata,"
+      },
+      {
+        "line": 1113,
+        "text": "           const LPoint3 &point2d, LPoint3 &near_point, LPoint3 &far_point) const {"
+      },
+      {
+        "line": 1114,
+        "text": "  const LMatrix4 &projection_mat_inv = do_get_projection_mat_inv(cdata);"
+      },
+      {
+        "line": 1115,
+        "text": "  {"
+      },
+      {
+        "line": 1116,
+        "text": "    LVecBase4 full(point2d[0], point2d[1], -1.0f, 1.0f);"
+      },
+      {
+        "line": 1117,
+        "text": "    full = projection_mat_inv.xform(full);"
+      },
+      {
+        "line": 1118,
+        "text": ""
+      },
+      {
+        "line": 1119,
+        "text": "    PN_stdfloat recip_full3 = 1.0 / max((double)full[3], (double)lens_far_limit);"
+      },
+      {
+        "line": 1120,
+        "text": "    near_point.set(full[0] * recip_full3,"
+      },
+      {
+        "line": 1121,
+        "text": "                   full[1] * recip_full3,"
+      },
+      {
+        "line": 1122,
+        "text": "                   full[2] * recip_full3);"
+      },
+      {
+        "line": 1123,
+        "text": "  }"
+      },
+      {
+        "line": 1124,
+        "text": "  {"
+      },
+      {
+        "line": 1125,
+        "text": "    LVecBase4 full(point2d[0], point2d[1], 1.0f, 1.0f);"
+      },
+      {
+        "line": 1126,
+        "text": "    full = projection_mat_inv.xform(full);"
+      },
+      {
+        "line": 1127,
+        "text": ""
+      },
+      {
+        "line": 1128,
+        "text": "    // We can truncate the weight factor at near 0.  If it goes too close to"
+      },
+      {
+        "line": 1129,
+        "text": "    // zero, or becomes negative, the far plane moves out past infinity and"
+      },
+      {
+        "line": 1130,
+        "text": "    // comes back in behind the lens, which is just crazy.  Truncating it to"
+      },
+      {
+        "line": 1131,
+        "text": "    // zero keeps the far plane from moving too far out."
+      },
+      {
+        "line": 1132,
+        "text": "    PN_stdfloat recip_full3 = 1.0 / max((double)full[3], (double)lens_far_limit);"
+      },
+      {
+        "line": 1133,
+        "text": "    far_point.set(full[0] * recip_full3,"
+      },
+      {
+        "line": 1134,
+        "text": "                  full[1] * recip_full3,"
+      },
+      {
+        "line": 1135,
+        "text": "                  full[2] * recip_full3);"
+      },
+      {
+        "line": 1136,
+        "text": "  }"
+      },
+      {
+        "line": 1137,
+        "text": "  return true;"
+      }
+    ]
+  },
+  {
+    "source": "panda3d/panda3d@v1.10.13/panda/src/gobj/config_gobj.cxx",
+    "sha256": "8e6a5aadc2adb7b42a0fddb0f1dea041e587373909c4fcc38def92782300da3d",
+    "excerpts": [
+      {
+        "line": 393,
+        "text": "ConfigVariableDouble lens_far_limit"
+      },
+      {
+        "line": 394,
+        "text": "(\"lens-far-limit\", 0.0000001,"
+      },
+      {
+        "line": 395,
+        "text": "  PRC_DESC(\"This number is used to reduce the effect of numeric inaccuracies \""
+      },
+      {
+        "line": 396,
+        "text": "           \"in Lens::extrude().  It should be a very small, positive number, \""
+      },
+      {
+        "line": 397,
+        "text": "           \"almost zero; set it larger if Lens::extrude() returns values \""
+      },
+      {
+        "line": 398,
+        "text": "           \"that appear meaningless, and set it smaller if you appear to be \""
+      },
+      {
+        "line": 399,
+        "text": "           \"unable to move the far plane out far enough.\"));"
+      },
+      {
+        "line": 400,
+        "text": ""
+      }
+    ]
+  }
+]
