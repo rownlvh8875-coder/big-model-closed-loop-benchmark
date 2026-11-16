@@ -1,0 +1,66 @@
+test_fresh_process_import_failure_still_has_negative_receipt (tests.test_accept_panda_sdk_cg_runpath_json.ReceiverTests.test_fresh_process_import_failure_still_has_negative_receipt) ... FAIL
+test_final_write_failure_retains_parseable_negative_receipt (tests.test_accept_panda_sdk_cg_runpath_json.ReceiverTests.test_final_write_failure_retains_parseable_negative_receipt) ... FAIL
+
+======================================================================
+FAIL: test_fresh_process_import_failure_still_has_negative_receipt (tests.test_accept_panda_sdk_cg_runpath_json.ReceiverTests.test_fresh_process_import_failure_still_has_negative_receipt)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_accept_panda_sdk_cg_runpath_json.py", line 47, in test_fresh_process_import_failure_still_has_negative_receipt
+    with tempfile.TemporaryDirectory() as d:self.child(code,Path(d)/'audit')
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_accept_panda_sdk_cg_runpath_json.py", line 30, in child
+    self.assertEqual(process.returncode,0,process.stdout+process.stderr)
+AssertionError: 1 != 0 : Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/scripts/panda_sdk_cg_inputs.py", line 20, in read
+    try:fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 7, in blocked
+OSError: fixture frozen-contract import unavailable
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "<string>", line 10, in <module>
+  File "/workspace/big-model-closed-loop-benchmark/scripts/accept_panda_sdk_cg_runpath_json.py", line 18, in <module>
+    from scripts import panda_sdk_cg_runpath_carrier as carrier
+  File "/workspace/big-model-closed-loop-benchmark/scripts/panda_sdk_cg_runpath_carrier.py", line 7, in <module>
+    CONTRACT=a.eigen.contract()
+             ^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/scripts/panda_sdk_cg_eigen_inputs.py", line 10, in contract
+    raw=read(root/CONTRACT,1024**2);need(sha(raw)==CONTRACT_SHA,'Eigen design authority changed');return parse(raw)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/scripts/panda_sdk_cg_inputs.py", line 21, in read
+    except OSError as e:raise ValueError('regular DATA input required') from e
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: regular DATA input required
+
+
+======================================================================
+FAIL: test_final_write_failure_retains_parseable_negative_receipt (tests.test_accept_panda_sdk_cg_runpath_json.ReceiverTests.test_final_write_failure_retains_parseable_negative_receipt)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_accept_panda_sdk_cg_runpath_json.py", line 64, in test_final_write_failure_retains_parseable_negative_receipt
+    with tempfile.TemporaryDirectory() as d:self.child(code,Path(d)/'audit')
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_accept_panda_sdk_cg_runpath_json.py", line 30, in child
+    self.assertEqual(process.returncode,0,process.stdout+process.stderr)
+AssertionError: 1 != 0 : OSError: [Errno 27] File too large
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<string>", line 11, in <module>
+  File "/workspace/big-model-closed-loop-benchmark/scripts/accept_panda_sdk_cg_runpath_json.py", line 260, in audit
+    a.write(out / 'acceptance.json', result)
+  File "/workspace/big-model-closed-loop-benchmark/scripts/panda_sdk_cg_runpath_policy.py", line 14, in write
+    def write(p,v):Path(p).write_text(json.dumps(v,indent=2,allow_nan=False)+'\n')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.cloud-tools/python/cpython-3.11.17-linux-x86_64-gnu/lib/python3.11/pathlib.py", line 1078, in write_text
+    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+OSError: [Errno 27] File too large
+
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.322s
+
+FAILED (failures=2)

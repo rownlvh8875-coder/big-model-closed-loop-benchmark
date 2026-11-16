@@ -1,0 +1,126 @@
+{
+  "schema": "panda-sdk-cg-runpath-json-semantic-summary-v1",
+  "checked_at_kst": "2026-11-16T12:56:35.195947+09:00",
+  "status": "AUTHENTICATED_CG_RUNPATH_JSON_SELECTED_STATIC_ACCEPTED_NOT_RUNTIME",
+  "audit_source_sha": "3280bb0d39645f384955ef99722520f50c5eb063",
+  "original_producer": {
+    "source_sha": "602f85807e980ac5c0df2f813938eb6a94551a99",
+    "activation_sha": "40dd7187ce8d3c5de510aa8c7a8ac2a6d37b0f38",
+    "run_id": 43786081196,
+    "run_attempt": 1,
+    "job_id": 133033912459,
+    "artifact_id": 14191115165,
+    "artifact_zip_nbytes": 61661546,
+    "artifact_zip_sha256": "2a44226962b3175081566918dd55eb845ac8ce1c9f9f5a396f469c8f6eca5d26",
+    "request_sha256": "9f394428753777c97536f044fd49f0782433fbe37b22e85b474a3afd803c2538",
+    "workflow_id": 419630498
+  },
+  "source_count": 314,
+  "old_receiver_status": "FAILED",
+  "old_failure_sha256": "d21eca8a87c507f2cabc6f86e3a293b2c48ce23105a4864344655a94acad789d",
+  "root_sha256": "27cd80fb1c06feaa7da8b5658cce918d1e3ab71c304a0c0ce42e30688ac008f3",
+  "root_nbytes": 1052968,
+  "offsets": {
+    "major": 1672,
+    "minor": 1676,
+    "vendor": 1648
+  },
+  "runpath": {
+    "candidate_runpath": "$ORIGIN",
+    "candidate_rpath": null,
+    "candidate_sha256": "27cd80fb1c06feaa7da8b5658cce918d1e3ab71c304a0c0ce42e30688ac008f3",
+    "build_panda_runpath": "$ORIGIN",
+    "build_panda_rpath": null,
+    "build_panda_sha256": "df055a7a89bb78c0e1ef358b2e078dc8d14df28f77fa0a8f085584a48e08ca53"
+  },
+  "vtable_nbytes": 1024,
+  "required_exports": 33,
+  "source_state_instances": 1,
+  "root_strong_symbols_available": true,
+  "root_resolved": 1047,
+  "root_missing": 0,
+  "root_weak_unresolved": [
+    {
+      "name": "_ITM_deregisterTMCloneTable",
+      "symbol_index": 59,
+      "binding": 2,
+      "symbol_type": 0,
+      "version": null,
+      "version_library": null,
+      "default_version": true,
+      "value": 0,
+      "nbytes": 0,
+      "provider_candidates": []
+    },
+    {
+      "name": "__gmon_start__",
+      "symbol_index": 274,
+      "binding": 2,
+      "symbol_type": 0,
+      "version": null,
+      "version_library": null,
+      "default_version": true,
+      "value": 0,
+      "nbytes": 0,
+      "provider_candidates": []
+    },
+    {
+      "name": "_ITM_registerTMCloneTable",
+      "symbol_index": 849,
+      "binding": 2,
+      "symbol_type": 0,
+      "version": null,
+      "version_library": null,
+      "default_version": true,
+      "value": 0,
+      "nbytes": 0,
+      "provider_candidates": []
+    }
+  ],
+  "provider_count": 22,
+  "edge_count": 80,
+  "unsupported_features": [],
+  "provider_strict_blocks": {
+    "/opt/venv/lib/python3.11/site-packages/panda3d/libCg.so": {
+      "missing": 13,
+      "root_strong_symbols_available": false
+    },
+    "/opt/venv/lib/python3.11/site-packages/panda3d/libCgGL.so": {
+      "missing": 5,
+      "root_strong_symbols_available": false
+    },
+    "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtool.so.1.10": {
+      "missing": 13,
+      "root_strong_symbols_available": false
+    },
+    "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10": {
+      "missing": 15,
+      "root_strong_symbols_available": false
+    },
+    "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10": {
+      "missing": 48,
+      "root_strong_symbols_available": false
+    },
+    "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10": {
+      "missing": 16,
+      "root_strong_symbols_available": false
+    }
+  },
+  "provider_selector_changed": false,
+  "normalization_scope": "only direct version-table indices and provider_records[*].data_path advisory text",
+  "new_sdk_builds": 0,
+  "new_workflow_activations": 0,
+  "artifact_downloads": 0,
+  "image_operations": 0,
+  "target_execution": false,
+  "scientific_native_runs": 0,
+  "strict_current_result": "0/4 FAIL",
+  "native_admitted": false,
+  "stage7_complete": false,
+  "full_object_abi_qualified": false,
+  "full_dependency_closure_qualified": false,
+  "previous_abort_fixed": false,
+  "candidate_installed": false,
+  "runtime_mapping_qualified": false,
+  "external_build_origin_authenticated": false
+}
