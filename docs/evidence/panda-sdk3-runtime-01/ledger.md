@@ -1,0 +1,8 @@
+# SDD ledger — plan: docs/superpowers/plans/2026-11-16-sdk3-runtime.md
+Ruling: A new SDK3/GLX/model cohort is authorized by the user's explicit three-stage request — historical consumed windows and verdicts remain immutable — cost: new local/hosted outcomes must stay distinct from old authority.
+Ruling: Use hosted disposable containers and a /dev/shm source clone — local Docker hit ENOSPC before target execution and the original volume has0available — cost: memory-workspace volatility; persist commits and results remotely.
+Ruling: Keep the same image and change only its SDK file through a readonly container mount — isolate SDK3 behavior without replacing original image/installedSDK — cost: selected runtime compatibility does not certify every C++ ABI.
+Pre-flight Task1→Task2: two validated independent GLX probes gate the eight official-model processes; any negative blocks model launch. Task2→Task3: strict4/4 gates expansion, not CI success.
+Task1: in_progress.
+Ruling: Model repeats share a container but start fresh Python/Panda/Xvfb/ORT children and private caches — existing comparator requires distinct actual PIDs and namespace PID1 must not be rewritten — cost: shared image/kernel container context, disclosed with separate child UUID/PID evidence.
+Task 1: complete — missing-module RED → archive/checkpoint/frame/identity/cleanup checks GREEN. Task 2: complete — four-condition strict gate and observed-PID partial-spawn accounting RED→GREEN. Focused9PASS; no SDK or model executed locally. Full regression is delegated to canonical CI because original disk0 and memory workspace is noexec.
