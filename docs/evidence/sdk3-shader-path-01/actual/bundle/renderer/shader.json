@@ -1,0 +1,401 @@
+{
+  "protocol": "sdk3-shader-path-v1",
+  "pid": 10,
+  "nonce": "c9be66d35afd6b764b57a27d5a335b5a",
+  "status": "SHADER_PARTIAL",
+  "limits": {
+    "max_shader_objects": 8,
+    "max_file_bytes": 262144,
+    "max_total_bytes": 2097152,
+    "max_meshes": 40,
+    "max_cpu_seconds": 20
+  },
+  "clock": "journal_elapsed_monotonic_seconds",
+  "shader_enter_elapsed_s": 406.06807188,
+  "shader_exit_elapsed_s": 406.07251713299996,
+  "elapsed_wall_seconds": 0.004445252999971672,
+  "target_read_sha256": "3d7ced2bf6e8c448d5f99695c03221599150c1c93f44e2abb28105041c67054f",
+  "geometry_archive_sha256": "a37825f8adc223c0bf89d271e3eb470205249ba8743e2feea4c26a211f373eaf",
+  "material_sha256": "38b64eb2d1916f8e17dbe9d2cdac7e187a9db5abfa9c47bf7f93ae745853aa61",
+  "borrowed_parent_is_origin": true,
+  "observer_finalized": true,
+  "selection_complete": false,
+  "truncation_reasons": [
+    "inspection_error"
+  ],
+  "sources": [
+    {
+      "name": "third_party/simplepbr/__init__.py",
+      "file": "shader-text-001-source.txt",
+      "nbytes": 11320,
+      "sha256": "0e0e1dc534fb64e6deaccc00052a1d99bfd54f0d946071837bbbad89251d454a"
+    },
+    {
+      "name": "third_party/simplepbr/shaders/simplepbr.vert.glsl",
+      "file": "shader-text-002-source.txt",
+      "nbytes": 1714,
+      "sha256": "043d830b3dc10a6988c494ca2ed6282516f43cc64bb6ac9a28d59777c8133a9c"
+    },
+    {
+      "name": "third_party/simplepbr/shaders/simplepbr.frag.glsl",
+      "file": "shader-text-003-source.txt",
+      "nbytes": 8977,
+      "sha256": "202217ca27066fd0763cda495f1119dad60d434876def7fda5e08eb61f3d9cd3"
+    },
+    {
+      "name": "third_party/simplepbr/shaders/post.vert.glsl",
+      "file": "shader-text-004-source.txt",
+      "nbytes": 263,
+      "sha256": "e5ffb35e576b944f3f4d2780e592a53000f18a2565beb5b6cc2d84387ae5bb83"
+    },
+    {
+      "name": "third_party/simplepbr/shaders/tonemap.frag.glsl",
+      "file": "shader-text-005-source.txt",
+      "nbytes": 477,
+      "sha256": "e5496290ccab4c3ebd71155539a293b6cd93ac0d82c6b97ce68e32da9cbd310b"
+    },
+    {
+      "name": "component/sensors/rgb_camera.py",
+      "file": "shader-text-006-source.txt",
+      "nbytes": 2918,
+      "sha256": "a13b38cf0af05966dfa37d09af65ea3779deabdcbf33258b378025e882da4af0"
+    },
+    {
+      "name": "engine/core/image_buffer.py",
+      "file": "shader-text-007-source.txt",
+      "nbytes": 7067,
+      "sha256": "198526674ab0cb0cbea19660149522e100c6e286ddc82d3d28a7fefe33f0ed84"
+    },
+    {
+      "name": "engine/core/engine_core.py",
+      "file": "shader-text-008-source.txt",
+      "nbytes": 24643,
+      "sha256": "d41832d2779f3c216423077e4b6ff788131c16997f7a939bc064ba5a45a847c6"
+    },
+    {
+      "name": "engine/core/pssm.py",
+      "file": "shader-text-009-source.txt",
+      "nbytes": 8184,
+      "sha256": "2ef41669565d43eb83d3f2b3d5876b9303a321b74179a760f537a87936421f32"
+    },
+    {
+      "name": "engine/core/light.py",
+      "file": "shader-text-010-source.txt",
+      "nbytes": 1947,
+      "sha256": "f3262e51bd58adbe11d5cbfb4aa089b14c3ec4d15fa2d0ca9da3826973eb8360"
+    },
+    {
+      "name": "assets/shaders/skybox.vert.glsl",
+      "file": "shader-text-011-source.txt",
+      "nbytes": 285,
+      "sha256": "be74ee7d60e0a2f72369b34c756ac0ba494ae3d3b8f02a58d9ff813d1fb95a89"
+    },
+    {
+      "name": "assets/shaders/skybox.frag.glsl",
+      "file": "shader-text-012-source.txt",
+      "nbytes": 483,
+      "sha256": "3370322d9c569308376038d84bfa69ac3ea29816f5a9ffe5dad0c0acb94cf23f"
+    }
+  ],
+  "bytes_captured": 80045,
+  "pipeline": {
+    "max_lights": 8,
+    "exposure": 1.0,
+    "use_normal_maps": false,
+    "use_emission_maps": true,
+    "enable_fog": false,
+    "use_occlusion_maps": false,
+    "use_330": false,
+    "enable_hardware_skinning": true
+  },
+  "shaders": [
+    {
+      "shader_id": 0,
+      "pointer": 94554043139680,
+      "language": 2,
+      "error_flag": false,
+      "stages": {
+        "vertex": {
+          "filename": "created-shader",
+          "text": {
+            "file": "shader-text-013-vertex.txt",
+            "nbytes": 1987,
+            "sha256": "a0ee9afb297b54c776385b3c025d8effdac4825b135ee2aac5f226231fd807d1"
+          }
+        },
+        "fragment": {
+          "filename": "created-shader",
+          "text": {
+            "file": "shader-text-014-fragment.txt",
+            "nbytes": 7996,
+            "sha256": "da1fcda1e8fbf3c40ba666c50b27937bf2a324438182ad7473373a9f94c24a3e"
+          }
+        }
+      }
+    },
+    {
+      "shader_id": 1,
+      "pointer": 94554068486800,
+      "language": 2,
+      "error_flag": false,
+      "stages": {
+        "vertex": {
+          "filename": "/opt/venv/lib/python3.11/site-packages/metadrive/assets/../shaders/skybox.vert.glsl",
+          "text": {
+            "file": "shader-text-015-vertex.txt",
+            "nbytes": 210,
+            "sha256": "889eef22ba47b2717459745582703d05b9d0cf9de245a24a098e0c39b30d1662"
+          }
+        },
+        "fragment": {
+          "filename": "/opt/venv/lib/python3.11/site-packages/metadrive/assets/../shaders/skybox.frag.glsl",
+          "text": {
+            "file": "shader-text-016-fragment.txt",
+            "nbytes": 428,
+            "sha256": "33c1b9ecff67b822cdafbd0ae3cbf877278709d346fc8cf1ad9490d86d6d407b"
+          }
+        }
+      }
+    },
+    {
+      "shader_id": 2,
+      "pointer": 94554068465456,
+      "language": 2,
+      "error_flag": false,
+      "stages": {
+        "vertex": {
+          "filename": "created-shader",
+          "text": {
+            "file": "shader-text-017-vertex.txt",
+            "nbytes": 466,
+            "sha256": "8166ad854899374d1ba86d3e34dc075e8efa04c4293be7952c80196b75f38c73"
+          }
+        },
+        "fragment": {
+          "filename": "created-shader",
+          "text": {
+            "file": "shader-text-018-fragment.txt",
+            "nbytes": 680,
+            "sha256": "835b7ccb2d88f79d3d92b2009e142ad88453939a37a6e156808809e069c9af12"
+          }
+        }
+      }
+    }
+  ],
+  "meshes": [
+    {
+      "mesh_id": 1,
+      "net_state_pointer": 140688334379280,
+      "shader_attrib_pointer": 94554084322112,
+      "shader_id": 0,
+      "known_inputs": [
+        {
+          "name": "PSSMShadowAtlas",
+          "value_type": 1,
+          "priority": 0,
+          "status": "AVAILABLE_TEXTURE",
+          "texture": {
+            "pointer": 94554068497328,
+            "name": "PSSMShadowMap",
+            "x_size": 2048,
+            "y_size": 1024,
+            "z_size": 1,
+            "num_components": 1,
+            "component_width": 4,
+            "component_type": 2,
+            "format": 26,
+            "texture_type": 1
+          }
+        },
+        {
+          "name": "pssm_mvps",
+          "value_type": 4,
+          "priority": 0,
+          "status": "UNAVAILABLE_NUMERIC_ARRAY"
+        },
+        {
+          "name": "pssm_nearfar",
+          "value_type": 4,
+          "priority": 0,
+          "status": "UNAVAILABLE_NUMERIC_ARRAY"
+        },
+        {
+          "name": "border_bias",
+          "value_type": 3,
+          "priority": 0,
+          "status": "AVAILABLE_VECTOR",
+          "vector": [
+            0.057999998331069946,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "name": "use_pssm",
+          "value_type": 4,
+          "priority": 0,
+          "status": "UNAVAILABLE_NUMERIC_ARRAY"
+        },
+        {
+          "name": "fog",
+          "value_type": 4,
+          "priority": 0,
+          "status": "UNAVAILABLE_NUMERIC_ARRAY"
+        },
+        {
+          "name": "split_count",
+          "value_type": 4,
+          "priority": 0,
+          "status": "UNAVAILABLE_NUMERIC_ARRAY"
+        },
+        {
+          "name": "light_direction",
+          "value_type": 4,
+          "priority": 0,
+          "status": "UNAVAILABLE_NUMERIC_ARRAY"
+        }
+      ]
+    },
+    {
+      "mesh_id": 0,
+      "net_state_pointer": 140688334832800,
+      "shader_attrib_pointer": 94554083188128,
+      "shader_id": 1,
+      "known_inputs": [
+        {
+          "name": "PSSMShadowAtlas",
+          "value_type": 1,
+          "priority": 0,
+          "status": "AVAILABLE_TEXTURE",
+          "texture": {
+            "pointer": 94554068497328,
+            "name": "PSSMShadowMap",
+            "x_size": 2048,
+            "y_size": 1024,
+            "z_size": 1,
+            "num_components": 1,
+            "component_width": 4,
+            "component_type": 2,
+            "format": 26,
+            "texture_type": 1
+          }
+        },
+        {
+          "name": "pssm_mvps",
+          "value_type": 4,
+          "priority": 0,
+          "status": "UNAVAILABLE_NUMERIC_ARRAY"
+        },
+        {
+          "name": "pssm_nearfar",
+          "value_type": 4,
+          "priority": 0,
+          "status": "UNAVAILABLE_NUMERIC_ARRAY"
+        },
+        {
+          "name": "border_bias",
+          "value_type": 3,
+          "priority": 0,
+          "status": "AVAILABLE_VECTOR",
+          "vector": [
+            0.057999998331069946,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "name": "use_pssm",
+          "value_type": 4,
+          "priority": 0,
+          "status": "UNAVAILABLE_NUMERIC_ARRAY"
+        },
+        {
+          "name": "fog",
+          "value_type": 4,
+          "priority": 0,
+          "status": "UNAVAILABLE_NUMERIC_ARRAY"
+        },
+        {
+          "name": "split_count",
+          "value_type": 4,
+          "priority": 0,
+          "status": "UNAVAILABLE_NUMERIC_ARRAY"
+        },
+        {
+          "name": "light_direction",
+          "value_type": 4,
+          "priority": 0,
+          "status": "UNAVAILABLE_NUMERIC_ARRAY"
+        }
+      ]
+    }
+  ],
+  "camera": {
+    "initial_state_text": "(empty)\n",
+    "tag_state_key": "rgb"
+  },
+  "tonemap": {
+    "shader_id": 2,
+    "net_state_pointer": 140689067484688,
+    "shader_attrib_pointer": 94554068523264,
+    "quad_path": "filter-base-quad",
+    "scene_texture": {
+      "pointer": 94554068518640,
+      "name": "",
+      "x_size": 964,
+      "y_size": 604,
+      "z_size": 1,
+      "num_components": 4,
+      "component_width": 4,
+      "component_type": 2,
+      "format": 21,
+      "texture_type": 1
+    },
+    "copy_texture_pointer": 94554068525408,
+    "tex_input": {
+      "name": "tex",
+      "value_type": 1,
+      "priority": 0,
+      "status": "AVAILABLE_TEXTURE",
+      "texture": {
+        "pointer": 94554068518640,
+        "name": "",
+        "x_size": 964,
+        "y_size": 604,
+        "z_size": 1,
+        "num_components": 4,
+        "component_width": 4,
+        "component_type": 2,
+        "format": 21,
+        "texture_type": 1
+      }
+    },
+    "exposure_input": {
+      "name": "exposure",
+      "value_type": 3,
+      "priority": 0,
+      "status": "AVAILABLE_VECTOR",
+      "vector": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  },
+  "pssm_owner": {
+    "available": false,
+    "input_values_bound_to_shader": false
+  },
+  "known_input_scope": "KNOWN_EIGHT_PSSM_NAMES_ONLY",
+  "all_inputs_enumerated": false,
+  "gpu_program_execution_proven": false,
+  "hardware_uniform_values_proven": false,
+  "gpu_pixel_owner_proven": false,
+  "unique_cause_proven": false,
+  "repair_proven": false,
+  "stage7_complete": false,
+  "failure": "AttributeError: 'panda3d.core.UnalignedLMatrix4f' object has no attribute 'getCell'"
+}

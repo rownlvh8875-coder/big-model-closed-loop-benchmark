@@ -1,0 +1,15 @@
+from pathlib import Path
+import json,sys
+ROOT=Path('/dev/shm/stage7-sdk3-runtime-20261116/repo');sys.path.insert(0,str(ROOT))
+from scripts import sdk3_pixel_geometry as g
+out=ROOT/'output/stage7-sdk3-shader-path-01/actual';x=json.loads((out/'independent-observation.json').read_text());assert x['analysis_validated'];a=x['analysis'];folder=out/'bundle/renderer';m=json.loads((folder/'geometry-observer.json').read_text());result=dict(run_id=x['run_id'],source_sha=x['source_sha'],analysis=a,geometry_recorded=a.get('geometry_recorded'),source_image_equivalence=a['source_image_equivalence'],original_closed_loop_episode=False,gpu_pixel_owner_proven=False,depth_tie_proven=False,unique_cause_proven=False,repair_proven=False,stage7_complete=False)
+if a.get('geometry_recorded'):
+ reference=json.loads((out/'bundle/reference.json').read_text());report=json.loads((folder/'report.json').read_text());known=reference['target_road_sha256'];target=m['target_read_sha256'];result.update(target_road_matches_known_branch=target in known,target_road_known_branch_index=known.index(target) if target in known else None,prefix6_hashes_match=len(report['captures'])>=6 and all(record[c+'_sha256']==reference['prefix_sha256'][i][c] for i,record in enumerate(report['captures'][:6]) for c in ('road','wide')),wide7_matches_reference=report['captures'][6]['wide_sha256']==reference['target_wide_sha256'] if len(report['captures'])==7 else None)
+ geo=m['geometry'];triangles,ids=g.load_geometry_archive(folder/'geometry.npz',geo['triangle_archive']);rays={}
+ for name,hits in a['geometry']['hits'].items():
+  rows=[]
+  for hit in hits[:8]:
+   source=ids[hit['triangle_index']].tolist();mesh=geo['meshes'][source[0]];rows.append(dict(**hit,source_id=source,vertices_world=triangles[hit['triangle_index']].tolist(),path=mesh['path'],node_name=mesh.get('node_name'),geom_index=mesh['geom_index'],net_state_text=mesh.get('net_state_text'),net_state_pointer=mesh.get('net_state_pointer'),vertex_data_pointer=mesh.get('vertex_data_pointer'),geom_pointer=mesh.get('geom_pointer')))
+  rays[name]=dict(total_hits=len(hits),nearest_candidates=rows)
+ result.update(target_pixel_xy=m['target_pixel_xy'],target_pixel_rgb=m['target_pixel_rgb'],target_read_sha256=m['target_read_sha256'],scan_finished=geo['scan_finished_within_budget'],truncation_reasons=geo['truncation_reasons'],counts=geo['counts'],cpu_scan_seconds=geo['cpu_scan_seconds'],cpu_total_seconds=geo['cpu_total_seconds'],cached_framebuffer_depth_bits=geo['framebuffer_reported_depth_bits'],cached_framebuffer_multisamples=geo['framebuffer_reported_multisamples'],sample_rays=rays,camera_to_world=geo['camera_to_world'],lens_near=geo['lens_near'],lens_far=geo['lens_far'],segment_audit=a['geometry']['segment_audit'])
+(out/'candidate-analysis.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result,ensure_ascii=False,indent=2))

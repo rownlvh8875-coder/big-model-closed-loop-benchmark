@@ -1,0 +1,30 @@
+from pathlib import Path
+import hashlib,json,sys
+import numpy as np
+ROOT=Path('/dev/shm/stage7-sdk3-runtime-20261116/repo');sys.path.insert(0,str(ROOT))
+from scripts import sdk3_pixel_geometry as g
+out=ROOT/'output/stage7-sdk3-shader-path-01/actual';new=out/'bundle/renderer';old=ROOT/'output/stage7-sdk3-pixel-material-01/actual/bundle/renderer';a=json.loads((new/'material.json').read_text());b=json.loads((old/'material.json').read_text());ng=json.loads((new/'geometry-observer.json').read_text())['geometry'];og=json.loads((old/'geometry-observer.json').read_text())['geometry'];nt,ni=g.load_geometry_archive(new/'geometry.npz',ng['triangle_archive']);ot,oi=g.load_geometry_archive(old/'geometry.npz',og['triangle_archive'])
+for folder,manifest in ((new,a),(old,b)):
+ for texture in manifest['textures']:
+  for kind in ('ram','asset'):
+   item=texture[kind]
+   if item['status']=='CAPTURED':
+    p=folder/item['file'];assert p.stat().st_size==item['nbytes'] and hashlib.file_digest(p.open('rb'),'sha256').hexdigest()==item['sha256']
+def stable_meshes(m):
+ result=[]
+ for mesh in m['meshes']:
+  stages=[]
+  for stage in mesh['stages']:
+   row={k:v for k,v in stage.items() if k not in ('effective_sampler','texture_default_sampler')};row.update({key:{k:v for k,v in stage[key].items() if k!='text'} for key in ('effective_sampler','texture_default_sampler')});stages.append(row)
+  result.append(dict(mesh_id=mesh['mesh_id'],local_to_world=mesh['local_to_world'],material=mesh['material'],stages=stages))
+ return result
+def stable_textures(m):return [{k:v for k,v in texture.items() if k!='pointer'} for texture in m['textures']]
+checks=dict(all_world_triangle_coordinates=np.array_equal(nt,ot),all_triangle_source_ids=np.array_equal(ni,oi),selected_triangle_indices=a['selected_triangle_indices']==b['selected_triangle_indices'],selected_local_positions_normals_texcoords=a['triangles']==b['triangles'],ray_barycentric_uv_transforms=a['samples']==b['samples'],selected_material_transform_stage_and_numeric_samplers=stable_meshes(a)==stable_meshes(b),texture_metadata_availability_and_raw_sha=stable_textures(a)==stable_textures(b))
+metadata_equal=True;numeric_close=True;maximum_abs=0.
+for lhs,rhs in zip(a['samples'],b['samples']):
+ metadata_equal &= {k:v for k,v in lhs.items() if k not in ('barycentric','stages')}=={k:v for k,v in rhs.items() if k not in ('barycentric','stages')}
+ for v,w in [(lhs['barycentric'],rhs['barycentric'])]+[(l[key],r[key]) for l,r in zip(lhs['stages'],rhs['stages']) for key in ('uv','transformed4') if l[key] is not None and r[key] is not None]:
+  maximum_abs=max(maximum_abs,float(np.max(np.abs(np.asarray(v)-np.asarray(w)))));numeric_close &= bool(np.allclose(v,w,rtol=1e-12,atol=1e-9))
+ metadata_equal &= len(lhs['stages'])==len(rhs['stages']) and all({k:v for k,v in l.items() if k not in ('uv','transformed4')}=={k:v for k,v in r.items() if k not in ('uv','transformed4')} for l,r in zip(lhs['stages'],rhs['stages']))
+numeric=dict(sample_count_equal=len(a['samples'])==len(b['samples']),metadata_equal=bool(metadata_equal),within_existing_cpu_tolerance=bool(numeric_close),maximum_abs_difference=maximum_abs,atol=1e-9,rtol=1e-12,image_sha_tolerance_unchanged=True)
+x=dict(current_run=43977840900,prior_run=43958720772,current_target_rgb=[167,163,158],prior_target_rgb=[199,187,0],all_declared_comparisons_equal=all(checks.values()),comparisons=checks,sample_numeric_comparison=numeric,all_cpu_checks_with_existing_numeric_tolerance=all(v for k,v in checks.items() if k!='ray_barycentric_uv_transforms') and numeric_close and metadata_equal and len(a['samples'])==len(b['samples']),triangle_count=len(nt),old_and_new_texture_bytes_reverified=True,excluded=['pointers','dynamic scene path identifiers','sampler wrapper text addresses','shader program cache in prior run was not recorded','resolved uniforms/raster/depth/lighting execution'],cpu_input_equality_does_not_prove_gpu_pixel_ownership=True,gpu_program_execution_proven=False,hardware_uniform_values_proven=False,gpu_pixel_owner_proven=False,unique_cause_proven=False,repair_proven=False,stage7_complete=False);(out/'prior-material-comparison.json').write_text(json.dumps(x,indent=2)+'\n');print(json.dumps(x))

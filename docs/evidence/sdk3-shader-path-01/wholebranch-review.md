@@ -7,3 +7,5 @@ Important fixes: missing argparse entry import; captured UTF8 bytes must not rec
 Deferred Minor: extreme finite tonemap inputs can overflow toNaN; native receipt admission never calls this offline function.
 
 Every declined item is ledgered with cost: actual runtime; hosted CI/request/artifact/PR; GPU execution/uniform/output; rootcause/repair/matrix/Stage7; actual skybox variant; independent image extraction; full baseline semantics; coherent producer fabrication. Remote push was auto-review rejected due prior no-publication instruction. No remote write/native activation performed.
+
+User approval resolved remote blocker. Exact source2b788af hosted push43976973566/PR43977092390 fourjobs PASS,2015tests/7skips each. Actual43977840900 retained honest shaderpartial/UnalignedLMatrix4 API failure and source mismatch. Source scripts/tests/workflows unchanged after activation;no rereview or second renderer. Offline cache witness is derived evidence,not a receiver relaxation. DeferredMinor1 unchanged.

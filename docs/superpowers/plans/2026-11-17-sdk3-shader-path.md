@@ -31,6 +31,6 @@ Base dacce23588e45dfd986f69f1ec00f23e0be051ed;additionsonly. Onefreshnative/0off
 - [x] RED validactualsources/variant and knowninput availability;wrongtarget/material/state/hash/defines/scene_tex/falseflags/arrayvalues/partial rejectorremainhonest. Expected missingbehaviorFAIL.
 - [x] GREEN nativegetters/privateadapters/noextraGPU/no setters;receiver oldgates+exactsource/shader/text/input/identity/time/budgetchecks. Focusedregressions/actionlintPASS,commit.
 - [x] Sole fresh review and one Important correction pass: 16 new/132 focused PASS, actionlint PASS; Minor ledgered. Whole-suite gate pending canonical CI after local environment failures.
-- [ ] Exact-source canonical four CI jobs PASS; verify complete unit log counts. Remote approval required after auto-review rejection.
-- [ ] One versionedactualrequest;authenticateartifact/oldimages/geometry/material/newshader receipt,retainfailure/partial/source mismatch.
+- [x] Exact-source canonical four CI jobs PASS; both logs2015tests/7skips. User explicitly approved remote scope.
+- [x] One versioned actual43977840900 authenticated; nativecomplete,shaderpartial/source mismatch retained. Offline pinned Panda cache transformation reproduces6stage hashes exactly without admission change.
 - [ ] Finalreport/ownDraftPR(parent136),exactHEADfourCI/logcounts/remote/body/parent/main/originalpreservation;own scratch archive/remove. No originalgatepromotion.
