@@ -1,0 +1,10 @@
+# SDD ledger — plan: docs/superpowers/plans/2026-11-16-panda-provider-version-audit.md
+Basebbf8f872ef2353d0840ae61b435147cb9cf161df/Draft128,7930files/modes. User delegated next sequential work; existing samecheckout/inline/noquestions/ownDraft preferences persist. Exact clean baseline's source/finalCI eightjobs pass; no repeated setup or old changes.
+Ruling: Same checkout/own branch/inline with manual task briefs — existing user preference and unavailable cloud task helpers — cost: explicit preservation and record management.
+Ruling: Add separate witness evidence without replacing source314 or either prior verdict — preserve consumed authority and distinguish presence from binding — cost: another narrow contract/module and six legacy blocks remain.
+Ruling: Require only pinned ordinary-FUNC/version-library/stub→libc witnesses — actual110miss population is bounded and no loader namespace emulation is authorized — cost: other cases remain unexplained and runtime/fullclosure remain unqualified.
+Ruling: Reuse exact hash-checked DATA with no download/extraction/build fallback — low disk and existing authenticated artifact suffice — cost: missing/drifted cache retains a negative.
+Ruling: Keep truthful split matrix ordinary/tmp plus3real/dev/shm cases — known Errno28/path-guard context, original tests and capacity facts unchanged — cost: two filesystem contexts and one fixture's actual temporary-root environment differs.
+Pre-flight1→2: contract/source318/exactCI and pure audit_graph output are Task2 inputs; root/target/stub pins, residual110/6 and false authority schema align.
+Task1 in_progress; Task2 pending. NewSDKbuild/activation/target/native0.
+Task1: complete — missingmoduleRED→8PASS0.128s; real handwritten -nostdlib CPU ELF root/consumer/version-stub/merged-target fixture never loaded/executed. Exact version-library/definition/edge/export prerequisites and wrong name/type/IFUNC/weak/default/key/type/hash/population/CI negatives pass. Comparison-only retained actual metadata gives110witnesses/0unexplained/6legacyblocks unchanged; no new source/CI/origin/byte audit authority until Task2. New source318 waits for Task2 file.
