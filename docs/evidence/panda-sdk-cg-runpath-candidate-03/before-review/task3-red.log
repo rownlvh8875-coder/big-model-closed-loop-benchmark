@@ -1,0 +1,32 @@
+test_action_context_rejects_v2_and_attempt_two (test_build_panda_sdk_cg_runpath.RunpathBuilderTests.test_action_context_rejects_v2_and_attempt_two) ... ok
+test_actual_link_argv_and_output_cardinality (test_build_panda_sdk_cg_runpath.RunpathBuilderTests.test_actual_link_argv_and_output_cardinality) ... ok
+test_cpu_link_emits_runpath_with_origin_unset_and_spoofed (test_build_panda_sdk_cg_runpath.RunpathBuilderTests.test_cpu_link_emits_runpath_with_origin_unset_and_spoofed) ... ok
+test_exact_quoted_origin_environment (test_build_panda_sdk_cg_runpath.RunpathBuilderTests.test_exact_quoted_origin_environment) ... ok
+test_real_handwritten_descriptor_uses_own_lifecycle (test_build_panda_sdk_cg_runpath.RunpathBuilderTests.test_real_handwritten_descriptor_uses_own_lifecycle) ... ok
+test_v3_guard_deadline_and_failed_command_evidence (test_build_panda_sdk_cg_runpath.RunpathBuilderTests.test_v3_guard_deadline_and_failed_command_evidence) ... ok
+test_v3_report_contradictions (test_panda_sdk_cg_runpath_evidence.EvidenceTests.test_v3_report_contradictions) ... ok
+test_panda_sdk_cg_runpath_flow (unittest.loader._FailedTest.test_panda_sdk_cg_runpath_flow) ... ERROR
+test_actual_tags_required_for_both_retained_elfs (test_panda_sdk_cg_runpath_gate.GateTests.test_actual_tags_required_for_both_retained_elfs) ... ok
+test_consumed_sdk2_still_rejects_actual_null_tags (test_panda_sdk_cg_runpath_gate.GateTests.test_consumed_sdk2_still_rejects_actual_null_tags) ... ok
+test_frozen_selector_uses_each_object_own_paths (test_panda_sdk_cg_runpath_gate.GateTests.test_frozen_selector_uses_each_object_own_paths) ... ok
+test_selected_success_does_not_promote_provider_diagnostics (test_panda_sdk_cg_runpath_gate.GateTests.test_selected_success_does_not_promote_provider_diagnostics) ... ok
+
+======================================================================
+ERROR: test_panda_sdk_cg_runpath_flow (unittest.loader._FailedTest.test_panda_sdk_cg_runpath_flow)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_panda_sdk_cg_runpath_flow
+Traceback (most recent call last):
+  File "/workspace/.cloud-tools/python/cpython-3.11.17-linux-x86_64-gnu/lib/python3.11/unittest/loader.py", line 419, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.cloud-tools/python/cpython-3.11.17-linux-x86_64-gnu/lib/python3.11/unittest/loader.py", line 362, in _get_module_from_name
+    __import__(name)
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_cg_runpath_flow.py", line 3, in <module>
+    from scripts import panda_sdk_cg_runpath_policy as a
+ImportError: cannot import name 'panda_sdk_cg_runpath_policy' from 'scripts' (/workspace/big-model-closed-loop-benchmark/scripts/__init__.py)
+
+
+----------------------------------------------------------------------
+Ran 12 tests in 2.688s
+
+FAILED (errors=1)

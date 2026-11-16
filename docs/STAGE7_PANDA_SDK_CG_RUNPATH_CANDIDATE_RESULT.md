@@ -1,0 +1,7 @@
+# Source-built RUNPATH v3 — implemented, hosted result pending
+
+Tasks1–2 are complete and Task3's distinct request/workflow/carrier/producer/consumer are implemented. Actual SDK3 start/request0: sole fresh review, one fix pass if needed and exact reviewed-source CI4jobs precede one create-only request. Old SDK2 remains failed/consumed and unchanged.
+
+The builder binds exact quoted literal-origin link environment/actual stdout/link argv and both retained ELF identities; the gate requires actual DT_RUNPATH=$ORIGIN and absent DT_RPATH on both libraries before unchanged necessary v2 layout/provider/API predicates. Consumer independently rebinds all inputs/tools/source/dependencies/output/fourartifacts and full retained provider diagnostics; remote host facts are not remeasured. Strict provider-level blocks, full ABI, runtime binding, prior abort repair and scientific readiness remain distinct.
+
+Focused34PASS4.149s; full1830cases1823PASS7skip164.391s in the split real-filesystem matrix(1828normal+2space) after retained insufficient-disk and incompatible global-TMPDIR attempts. Existing tests were unchanged. Source310extends299frozenidentities,7664basefiles/modes and old histories preserved. No target/SDK/Panda/GL/Xvfb/officialmodel/ORT/cohort execution,image transform,publication or merge. Scientificallowance0/strict0of4FAIL/Stage7INCOMPLETE. Observed hosted result and exactHEAD closeout will replace this pending report; final receipt is output-only at output/stage7-panda-sdk-cg-runpath-candidate-03/final-verification.json.
