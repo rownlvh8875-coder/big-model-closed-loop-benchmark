@@ -161,4 +161,3 @@ class OwnedToolQueryTests(unittest.TestCase):
     with self.assertRaises(ValueError):b.measure_tools(paths,out=work/'tool-profile.json',query_seconds=.15)
     profile=json.loads((work/'tool-profile.json').read_text());self.assertEqual(profile['status'],'FAILED');self.assertEqual(len(profile['queries']),1);command=profile['queries'][0]['result'];self.assertEqual(command['status'],'EXITED' if mode=='nonzero' else 'TIMEOUT');self.assertTrue(command['owned_group_reaped']);self.assertIn('elapsed_seconds',command)
     r=dict(status='BLOCKED',build_start_attempts=0);producer.finalize_bundle(root,r,work/'build',None,None,None);host=(root/'bundle/logs/host.log').read_bytes();self.assertIn(b'partial version',host);self.assertIn(b'tool failed detail',host);self.assertIn(b'"owned_group_reaped": true',host)
-
