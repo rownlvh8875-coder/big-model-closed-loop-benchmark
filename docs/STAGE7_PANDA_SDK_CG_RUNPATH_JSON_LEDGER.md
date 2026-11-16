@@ -1,0 +1,9 @@
+# SDD ledger — plan: docs/superpowers/plans/2026-11-16-panda-sdk-cg-runpath-json-audit.md
+Base5c31664d2033fcac9a76a52ffa9c006a22f71970/Draft127,7863files. User authorized separate DATA-only receiver correction and actual audit of fixed SDK3; no new build/request/native/image action. Existing inline/samecheckout/no repeated questions/own Draft preferences persist.
+Ruling: Same checkout on own JSON-audit branch with manual cloud task briefs — existing user preference and unavailable task helper resources — cost: explicit preservation/manual record management.
+Ruling: New receiver/contract preserves all310consumed source identities and original FAILED verdict — correction receives separate authority rather than rewriting history — cost: one new module boundary/contract to maintain.
+Ruling: Reuse exact hash-checked ZIP/candidate/provider DATA caches with no download/extraction fallback — low disk and no rebuild needed — cost: missing cache causes a retained negative until DATA is available.
+Ruling: Use known split local full-suite matrix:ordinary/tmp plus2real-space cases/dev/shm — preserve old path guards and genuine capacity facts — cost: verification spans two filesystem contexts.
+Pre-flight1→2: canonical metadata/typed report equality and pinned contract/source314 feed separate read-only audit; old310helpers/verdict remain immutable.
+Task1 in_progress; SDKbuild0/activation0/actualauditpending.
+Task1: complete — base5c31664→Task1commit; missingmoduleRED→8PASS0.392s. Real version-script CPU ELF serializes integer version indices to JSON strings, new narrow comparator accepts equality while frozen old receiver rejects. Typed scalar/list/value/version/missing-row/location/key-collision/bounds/runtime-authority negatives pass. Retained actual reports also compare equal as comparison-only DATA; no audit/source-origin authority granted yet. Task2 closes source314 and full live audit.
