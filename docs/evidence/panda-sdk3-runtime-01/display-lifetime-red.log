@@ -1,0 +1,59 @@
+test_actual_renderer_cleanup_schema_is_accepted_without_full_deallocation_claim (test_panda_sdk3_runtime.Sdk3RuntimeEvidence.test_actual_renderer_cleanup_schema_is_accepted_without_full_deallocation_claim) ... ok
+test_ambiguous_create_is_recovered_only_by_owned_label_and_removed (test_panda_sdk3_runtime.Sdk3RuntimeEvidence.test_ambiguous_create_is_recovered_only_by_owned_label_and_removed) ... ok
+test_duplicate_unsafe_or_wrong_archive_bytes_are_rejected_before_publication (test_panda_sdk3_runtime.Sdk3RuntimeEvidence.test_duplicate_unsafe_or_wrong_archive_bytes_are_rejected_before_publication) ... ok
+test_exact_archive_member_is_extracted_without_unselected_payloads (test_panda_sdk3_runtime.Sdk3RuntimeEvidence.test_exact_archive_member_is_extracted_without_unselected_payloads) ... ok
+test_exact_challenged_frames_and_selected_objects_pass_for_each_load_order (test_panda_sdk3_runtime.Sdk3RuntimeEvidence.test_exact_challenged_frames_and_selected_objects_pass_for_each_load_order) ... ok
+test_failed_pair_counts_only_observed_pids_and_retains_unknown_spawn_bounds (test_panda_sdk3_runtime.Sdk3RuntimeEvidence.test_failed_pair_counts_only_observed_pids_and_retains_unknown_spawn_bounds) ... ok
+test_frame_bytes_are_checked_even_when_digest_is_recomputed (test_panda_sdk3_runtime.Sdk3RuntimeEvidence.test_frame_bytes_are_checked_even_when_digest_is_recomputed) ... ok
+test_glx_start_is_limited_to_the_declared_180_seconds (test_panda_sdk3_runtime.Sdk3RuntimeEvidence.test_glx_start_is_limited_to_the_declared_180_seconds) ... ok
+test_independent_model_aggregate_rejects_a_self_consistent_wrong_model (test_panda_sdk3_runtime.Sdk3RuntimeEvidence.test_independent_model_aggregate_rejects_a_self_consistent_wrong_model) ... ok
+test_missing_or_reordered_checkpoint_and_nonzero_exit_never_pass (test_panda_sdk3_runtime.Sdk3RuntimeEvidence.test_missing_or_reordered_checkpoint_and_nonzero_exit_never_pass) ... ok
+test_owned_display_outlives_the_child_finalization (test_panda_sdk3_runtime.Sdk3RuntimeEvidence.test_owned_display_outlives_the_child_finalization) ... ERROR
+test_publisher_reference_is_accepted_only_as_a_separate_control (test_panda_sdk3_runtime.Sdk3RuntimeEvidence.test_publisher_reference_is_accepted_only_as_a_separate_control) ... ERROR
+test_reference_extraction_uses_the_pinned_original_layer_not_the_sdk_overlay (test_panda_sdk3_runtime.Sdk3RuntimeEvidence.test_reference_extraction_uses_the_pinned_original_layer_not_the_sdk_overlay) ... ERROR
+test_removal_timeout_still_publishes_negative_execution_receipt (test_panda_sdk3_runtime.Sdk3RuntimeEvidence.test_removal_timeout_still_publishes_negative_execution_receipt) ... ok
+test_runtime_container_is_bounded_readonly_and_has_no_network_or_extra_sdk (test_panda_sdk3_runtime.Sdk3RuntimeEvidence.test_runtime_container_is_bounded_readonly_and_has_no_network_or_extra_sdk) ... ok
+test_standard_showbase_checkpoint_is_required_for_that_factory (test_panda_sdk3_runtime.Sdk3RuntimeEvidence.test_standard_showbase_checkpoint_is_required_for_that_factory) ... ERROR
+test_strict_gate_requires_four_unique_complete_conditions (test_panda_sdk3_runtime.Sdk3RuntimeEvidence.test_strict_gate_requires_four_unique_complete_conditions) ... ok
+test_wrong_identity_driver_observer_or_cleanup_reject (test_panda_sdk3_runtime.Sdk3RuntimeEvidence.test_wrong_identity_driver_observer_or_cleanup_reject) ... ok
+
+======================================================================
+ERROR: test_owned_display_outlives_the_child_finalization (test_panda_sdk3_runtime.Sdk3RuntimeEvidence.test_owned_display_outlives_the_child_finalization)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/dev/shm/stage7-sdk3-runtime-20261116/repo/tests/test_panda_sdk3_runtime.py", line 171, in test_owned_display_outlives_the_child_finalization
+    rc=child_module.wait_child_then_stop_server(child,server,3)
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'scripts.panda_sdk3_diagnostic' has no attribute 'wait_child_then_stop_server'
+
+======================================================================
+ERROR: test_publisher_reference_is_accepted_only_as_a_separate_control (test_panda_sdk3_runtime.Sdk3RuntimeEvidence.test_publisher_reference_is_accepted_only_as_a_separate_control)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/dev/shm/stage7-sdk3-runtime-20261116/repo/tests/test_panda_sdk3_runtime.py", line 188, in test_publisher_reference_is_accepted_only_as_a_separate_control
+    e,r=self.probe();r.update(status='PANDA_REFERENCE_GLX_FRAMES_OBSERVED',sdk_sha256=runtime.REFERENCE_SHA,source_stats=[],observer_instrumented=False)
+                                                                                      ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'scripts.panda_sdk3_runtime' has no attribute 'REFERENCE_SHA'
+
+======================================================================
+ERROR: test_reference_extraction_uses_the_pinned_original_layer_not_the_sdk_overlay (test_panda_sdk3_runtime.Sdk3RuntimeEvidence.test_reference_extraction_uses_the_pinned_original_layer_not_the_sdk_overlay)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/dev/shm/stage7-sdk3-runtime-20261116/repo/tests/test_panda_sdk3_runtime.py", line 207, in test_reference_extraction_uses_the_pinned_original_layer_not_the_sdk_overlay
+    out=runtime.extract_reference(image,d/'reference.so',expected_size=9,expected_sha=hashlib.sha256(b'publisher').hexdigest())
+        ^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'scripts.panda_sdk3_runtime' has no attribute 'extract_reference'
+
+======================================================================
+ERROR: test_standard_showbase_checkpoint_is_required_for_that_factory (test_panda_sdk3_runtime.Sdk3RuntimeEvidence.test_standard_showbase_checkpoint_is_required_for_that_factory)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/dev/shm/stage7-sdk3-runtime-20261116/repo/tests/test_panda_sdk3_runtime.py", line 184, in test_standard_showbase_checkpoint_is_required_for_that_factory
+    self.assertTrue(runtime.validate_probe(events,r,0,r['nonce'],'core-first',factory='showbase')['selected_runtime_compatible'])
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: validate_probe() got an unexpected keyword argument 'factory'
+
+----------------------------------------------------------------------
+Ran 18 tests in 0.080s
+
+FAILED (errors=4)

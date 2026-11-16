@@ -155,6 +155,58 @@ class Sdk3RuntimeEvidence(unittest.TestCase):
                         (folder/name).write_text(json.dumps(row))
             with self.assertRaises(ValueError):runtime.aggregate_model_pairs(root)
 
+    def test_owned_display_outlives_the_child_finalization(self):
+        import subprocess,sys,time
+        from scripts import panda_sdk3_diagnostic as child_module
+        with tempfile.TemporaryDirectory() as d:
+            d=Path(d);ready=d/'ready';finished=d/'finalized'
+            server_code="import signal,sys,time;from pathlib import Path;signal.signal(signal.SIGTERM,lambda *_:sys.exit(0 if Path(sys.argv[2]).exists() else 2));Path(sys.argv[1]).write_text('ready');time.sleep(10)"
+            server=subprocess.Popen([sys.executable,'-B','-c',server_code,str(ready),str(finished)])
+            try:
+                until=time.monotonic()+3
+                while not ready.exists() and time.monotonic()<until:time.sleep(.01)
+                self.assertTrue(ready.exists())
+                program="import atexit,time;from pathlib import Path;atexit.register(lambda:Path(%r).write_text('finalized'));time.sleep(.02)" % str(finished)
+                child=subprocess.Popen([sys.executable,'-B','-c',program])
+                rc=child_module.wait_child_then_stop_server(child,server,3)
+                self.assertEqual(rc,0);self.assertEqual(server.returncode,0);self.assertEqual(finished.read_text(),'finalized')
+            finally:
+                if 'child' in locals():
+                    if child.poll() is None:child.kill()
+                    child.wait()
+                if server.poll() is None:server.kill();server.wait()
+
+    def test_standard_showbase_checkpoint_is_required_for_that_factory(self):
+        e,r=self.probe();prefix=[x['stage'] for x in e[:11]]
+        names=prefix+['SHOWBASE_BEFORE','SHOWBASE_AFTER','DRIVER_AFTER','FRAME_0_BEFORE','FRAME_0_AFTER','FRAME_1_BEFORE','FRAME_1_AFTER','CLEANUP_BEFORE','CLEANUP_AFTER']
+        events=[dict(stage=n,nonce=r['nonce'],pid=r['pid'],monotonic=float(i)) for i,n in enumerate(names)]
+        r['factory']='showbase'
+        self.assertTrue(runtime.validate_probe(events,r,0,r['nonce'],'core-first',factory='showbase')['selected_runtime_compatible'])
+        with self.assertRaises(ValueError):runtime.validate_probe(events[:-1],r,0,r['nonce'],'core-first',factory='showbase')
+
+    def test_publisher_reference_is_accepted_only_as_a_separate_control(self):
+        e,r=self.probe();r.update(status='PANDA_REFERENCE_GLX_FRAMES_OBSERVED',sdk_sha256=runtime.REFERENCE_SHA,source_stats=[],observer_instrumented=False)
+        value=runtime.validate_reference_probe(e,r,0,r['nonce'],'core-first')
+        self.assertTrue(value['reference_frames_verified']);self.assertFalse(value['selected_runtime_compatible'])
+        with self.assertRaises(ValueError):runtime.validate_probe(e,r,0,r['nonce'],'core-first')
+
+    def test_reference_extraction_uses_the_pinned_original_layer_not_the_sdk_overlay(self):
+        import io,tarfile
+        with tempfile.TemporaryDirectory() as d:
+            d=Path(d);layers=[]
+            for raw in [b'publisher',b'new-sdk']:
+                stream=io.BytesIO()
+                with tarfile.open(fileobj=stream,mode='w') as t:
+                    info=tarfile.TarInfo(runtime.SDK_PATH.lstrip('/'));info.size=len(raw);t.addfile(info,io.BytesIO(raw))
+                layers.append(stream.getvalue())
+            image=d/'image.tar'
+            with tarfile.open(image,'w') as t:
+                manifest=json.dumps([dict(Layers=['base.tar','overlay.tar'])]).encode()
+                for name,raw in [('manifest.json',manifest),('base.tar',layers[0]),('overlay.tar',layers[1])]:
+                    info=tarfile.TarInfo(name);info.size=len(raw);t.addfile(info,io.BytesIO(raw))
+            out=runtime.extract_reference(image,d/'reference.so',expected_size=9,expected_sha=hashlib.sha256(b'publisher').hexdigest())
+            self.assertEqual(out.read_bytes(),b'publisher')
+
     def test_runtime_container_is_bounded_readonly_and_has_no_network_or_extra_sdk(self):
         with tempfile.TemporaryDirectory() as d:
             cmd=runtime.container_command('owned-sdk3-test',Path(d),Path(d)/'sdk',Path(d)/'out',['--load-order','core-first'])

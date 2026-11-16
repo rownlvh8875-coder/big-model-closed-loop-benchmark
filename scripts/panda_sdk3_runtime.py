@@ -11,6 +11,7 @@ import stat
 import subprocess
 import sys
 import time
+import tarfile
 from zipfile import ZipFile
 
 REPO='rownlvh8875-coder/big-model-closed-loop-benchmark'
@@ -22,7 +23,8 @@ CORE_SHA='8b0372f1df91a930f18b2551f7fde5d5687e21bc79dee9ecd0dd2018cba72490'
 IMAGE='sha256:b9d673de93f1857e4dfa5ed6a48330d568ef96fce7f3cc975f0c688877e6e26e'
 MODEL_SHA='35976b11be3904eb78e32f7dc55a6abf8e9433ac5aa391a1998f1e9ce001b199'
 MODEL_ID='1365126a-e71e-4778-be00-8ab92dc82c09/12864/big_driving_supercombo.onnx'
-REQUEST='docs/requests/panda-sdk3-runtime-20261116-01.json'
+REQUEST='docs/requests/panda-sdk3-runtime-20261116-02.json'
+REFERENCE_SHA='f38e0734a5344eda9a11e3024695febf2cea0177aa80985b67ceef5837a088d7'
 STATS_FIELDS=('configured','closed','error','forwarded','resolutions','paths','events')
 CASES={(s,c) for s in (20261109,20261110) for c in ('s_curve_left_right','s_curve_right_left')}
 
@@ -49,22 +51,21 @@ def challenge(nonce,index):
     return list(hashlib.sha256(bytes.fromhex(nonce)+bytes([index])).digest()[:3])
 
 
-def expected_stages(order):
-    need(order in ('core-first','sdk-first'),'load order')
+def expected_stages(order,factory='manual'):
+    need(order in ('core-first','sdk-first') and factory in ('manual','showbase'),'load order/factory')
     core=['CORE_BEFORE','CORE_AFTER'];sdk=['PRELOAD_BEFORE','PRELOAD_AFTER','SDK_BEFORE','SDK_AFTER']
-    return ['BOOT']+(core+sdk if order=='core-first' else sdk+core)+[
-        'SERVER_BEFORE','SERVER_AFTER','PRC_BEFORE','PRC_AFTER','ENGINE_BEFORE','ENGINE_AFTER',
-        'PIPE_BEFORE','PIPE_AFTER','OUTPUT_BEFORE','OUTPUT_AFTER','DRIVER_AFTER',
-        'FRAME_0_BEFORE','FRAME_0_AFTER','FRAME_1_BEFORE','FRAME_1_AFTER','CLEANUP_BEFORE','CLEANUP_AFTER']
+    setup=['SHOWBASE_BEFORE','SHOWBASE_AFTER'] if factory=='showbase' else ['ENGINE_BEFORE','ENGINE_AFTER','PIPE_BEFORE','PIPE_AFTER','OUTPUT_BEFORE','OUTPUT_AFTER']
+    return ['BOOT']+(core+sdk if order=='core-first' else sdk+core)+['SERVER_BEFORE','SERVER_AFTER','PRC_BEFORE','PRC_AFTER']+setup+[
+        'DRIVER_AFTER','FRAME_0_BEFORE','FRAME_0_AFTER','FRAME_1_BEFORE','FRAME_1_AFTER','CLEANUP_BEFORE','CLEANUP_AFTER']
 
 
-def validate_probe(events,report,returncode,nonce,order):
-    need(returncode==0 and report.get('status')=='SDK3_GLX_FRAMES_OBSERVED','complete child exit')
-    need(report.get('nonce')==nonce and report.get('load_order')==order,'probe identity/order')
-    need([e.get('stage') for e in events]==expected_stages(order),'complete ordered checkpoints')
+def validate_common_probe(events,report,returncode,nonce,order,factory):
+    need(returncode==0,'complete child exit')
+    need(report.get('nonce')==nonce and report.get('load_order')==order and report.get('factory','manual')==factory,'probe identity/order/factory')
+    need([e.get('stage') for e in events]==expected_stages(order,factory),'complete ordered checkpoints')
     need(type(report.get('pid')) is int and report['pid']>0 and all(e.get('nonce')==nonce and e.get('pid')==report['pid'] for e in events),'owned checkpoint identity')
     times=[e['monotonic'] for e in events];need(all(type(t) in (int,float) for t in times) and all(a<b for a,b in zip(times,times[1:])),'ordered checkpoint times')
-    need(report.get('sdk_sha256')==SDK_SHA and report.get('core_sha256')==CORE_SHA and report.get('panda_version')=='1.10.13','pinned actual SDK/core')
+    need(report.get('core_sha256')==CORE_SHA and report.get('panda_version')=='1.10.13','pinned actual core')
     need(report['driver']['renderer'].strip().lower()=='softpipe' and all(type(v) is str and 0<len(v)<=512 for v in report['driver'].values()),'actual softpipe driver')
     objects=report['objects'];need(set(objects)=={'pipe','output','gsg','texture','camera'} and all(type(v) is int and v>0 for v in objects.values()) and len(set(objects.values()))==5,'distinct Panda objects')
     need(len(report['frames'])==2,'two frames')
@@ -72,10 +73,36 @@ def validate_probe(events,report,returncode,nonce,order):
         raw=bytes.fromhex(row['raw_hex']);need(row['index']==i and row['nbytes']==len(raw)==192 and raw==bytes(challenge(nonce,i))*64 and row['sha256']==hashlib.sha256(raw).hexdigest(),'exact fresh challenged RGB bytes')
     need(report['frames'][0]['sha256']!=report['frames'][1]['sha256'],'distinct challenges')
     need(report['cleanup']==dict(windows_after=0,texture_ram_after=False,render_calls=4,ram_reads=2,cpp_deallocation_verified=False),'owned cleanup')
+
+
+def validate_probe(events,report,returncode,nonce,order,*,factory='manual'):
+    need(report.get('status')=='SDK3_GLX_FRAMES_OBSERVED' and report.get('sdk_sha256')==SDK_SHA,'pinned SDK3 outcome')
+    validate_common_probe(events,report,returncode,nonce,order,factory)
     need(len(report['source_stats'])==2,'complete observer interval')
     for s in report['source_stats']:
         need(s['returned']==0 and s['guards_ok'] is True and set(s['values'])==set(STATS_FIELDS) and all(type(v) is int and v==0 for v in s['values'].values()),'default-off observer')
     return dict(selected_runtime_compatible=True,verified_frames=2,full_object_abi_qualified=False,stage7_complete=False)
+
+
+def validate_reference_probe(events,report,returncode,nonce,order,*,factory='manual'):
+    need(report.get('status')=='PANDA_REFERENCE_GLX_FRAMES_OBSERVED' and report.get('sdk_sha256')==REFERENCE_SHA and report.get('source_stats')==[] and report.get('observer_instrumented') is False,'publisher wheel control only')
+    validate_common_probe(events,report,returncode,nonce,order,factory)
+    return dict(reference_frames_verified=True,selected_runtime_compatible=False,verified_frames=2,stage7_complete=False)
+
+
+def extract_reference(image,out,*,expected_size=913073,expected_sha=REFERENCE_SHA):
+    out=Path(out);need(not out.exists(),'fresh reference output')
+    with tarfile.open(image,'r:*') as archive:
+        manifest=json.load(archive.extractfile('manifest.json'));need(len(manifest)==1,'one image manifest')
+        for name in manifest[0]['Layers']:
+            with tarfile.open(fileobj=archive.extractfile(name),mode='r|*') as layer:
+                for member in layer:
+                    if member.name.lstrip('./')==SDK_PATH.lstrip('/') and member.isreg() and member.size==expected_size:
+                        raw=layer.extractfile(member).read(expected_size+1)
+                        if len(raw)==expected_size and hashlib.sha256(raw).hexdigest()==expected_sha:
+                            with out.open('xb') as target:target.write(raw)
+                            out.chmod(0o644);return out
+    raise ValueError('pinned publisher reference absent from original image layers')
 
 
 def verify_member(zip_path,member,size,sha,out):
@@ -235,23 +262,28 @@ def run_host(out:Path,model_phase:bool):
         sdkzip=artifact(work,bundle,14191115165,61661546,'2a44226962b3175081566918dd55eb845ac8ce1c9f9f5a396f469c8f6eca5d26',43786081196,'40dd7187ce8d3c5de510aa8c7a8ac2a6d37b0f38','sdk3')
         image=verify_member(imagezip,'image.tar',1727678464,'4984470cd7d732f9f2d1c12710c9433b563b3817ba6d1d419749a9a2b1b46698',work/'image.tar')
         sdk=verify_member(sdkzip,'candidate/libpandagl.so.data',1052968,SDK_SHA,work/'libpandagl.so')
+        reference=extract_reference(image,work/'publisher-libpandagl.so')
         subprocess.run(['docker','load','-i',str(image)],check=True,timeout=600)
         need(json.loads(subprocess.check_output(['docker','image','inspect',IMAGE],text=True))[0]['Id']==IMAGE,'loaded image config')
         prefix='sdk3-'+os.environ['GITHUB_RUN_ID']+'-'
-        for i,order in enumerate(['sdk-first','core-first','core-first']):
-            nonce=secrets.token_hex(16);dest=bundle/f'probe-{i}-{order}';execution=run_container(prefix+str(i),sdk,dest,['--nonce',nonce,'--load-order',order])
+        plans=[('reference','manual'),('sdk3','manual'),('reference','showbase'),('sdk3','showbase'),('sdk3','showbase')]
+        for i,(role,factory) in enumerate(plans):
+            order='core-first';nonce=secrets.token_hex(16);dest=bundle/f'probe-{i}-{role}-{factory}'
+            args=['--nonce',nonce,'--load-order',order,'--factory',factory]+(['--reference-wheel'] if role=='reference' else [])
+            execution=run_container(prefix+str(i),reference if role=='reference' else sdk,dest,args)
             events=[]
             for line in ((dest/'stdout.log').read_text(errors='replace') if (dest/'stdout.log').exists() else '').splitlines():
                 if line.startswith('STAGE7_EVENT '):events.append(json.loads(line.removeprefix('STAGE7_EVENT ')))
             report=json.loads((dest/'report.json').read_text()) if (dest/'report.json').exists() else {}
-            result=dict(index=i,load_order=order,nonce=nonce,last_checkpoint=events[-1]['stage'] if events else None,execution=execution,selected_runtime_compatible=False)
+            result=dict(index=i,role=role,factory=factory,load_order=order,nonce=nonce,last_checkpoint=events[-1]['stage'] if events else None,execution=execution,selected_runtime_compatible=False)
             try:
                 need(execution['failure'] is None and execution['owned_container_removed'],'owned execution lifecycle')
-                result.update(validate_probe(events,report,execution['returncode'],nonce,order))
+                validator=validate_reference_probe if role=='reference' else validate_probe
+                result.update(validator(events,report,execution['returncode'],nonce,order,factory=factory))
             except Exception as e:result['validation_failure']=type(e).__name__+': '+str(e)
             summary['probes'].append(result);write(dest/'validation.json',result);write(bundle/'summary.json',summary)
-        need(all(p['selected_runtime_compatible'] for p in summary['probes'][1:]),'two ordinary core-first SDK3/GLX children must pass')
-        summary['sdk_first_compatible']=summary['probes'][0]['selected_runtime_compatible'];summary['core_first_compatible']=True;summary['status']='SDK3_GLX_SELECTED_RUNTIME_OBSERVED'
+        need(all(p['selected_runtime_compatible'] for p in summary['probes'][3:]),'two ordinary ShowBase SDK3/GLX children must pass')
+        summary['showbase_compatible']=True;summary['core_first_compatible']=True;summary['status']='SDK3_GLX_SELECTED_RUNTIME_OBSERVED'
         if model_phase:
             from bigbench.model_inventory import download_checked
             model=download_checked(path=MODEL_ID,sha256=MODEL_SHA,output_dir=work/'models',max_bytes=900000000)
