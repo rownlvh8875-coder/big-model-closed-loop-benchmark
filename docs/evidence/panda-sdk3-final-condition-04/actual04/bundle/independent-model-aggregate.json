@@ -1,0 +1,259 @@
+{
+  "status": "ORIGINAL_MDV3_STRICT_NATIVE_GATE_NOT_PASSED",
+  "model_sha256": "35976b11be3904eb78e32f7dc55a6abf8e9433ac5aa391a1998f1e9ce001b199",
+  "official_model_id": "1365126a-e71e-4778-be00-8ab92dc82c09/12864/big_driving_supercombo.onnx",
+  "native_simulator": "MetaDrive 0.4.3 original PSSM.update",
+  "total_independent_native_onnx_processes": 8,
+  "actual_onnx_new_image_steps_across_all_processes": 96,
+  "strict_gate_pass_count": 3,
+  "strict_gate_total": 4,
+  "all_four_cases_strict_native_gate_passed": false,
+  "per_seed_scene": [
+    {
+      "seed": 20261109,
+      "scenario": "s_curve_left_right",
+      "steps_per_process": 12,
+      "independent_process_count": 2,
+      "strict_status": "STRICT_NATIVE_ONNX_REPEAT_MATCH",
+      "exact_repeated_execution_gate_passed": true,
+      "first_diverging_step": null,
+      "first_observed_mismatch_boundary": null,
+      "source_native_rgb_frames_match": true,
+      "warped_model_rgb_frames_match": true,
+      "actual_onnx_new_img_sha256_match": true,
+      "max_xy_position_delta_m": 0.0,
+      "full_discrepancy_receipt": [],
+      "raw_sensor_to_onnx_first_divergence_timeline": {
+        "first_different_step_by_field": {
+          "source_road_rgb_sha256": null,
+          "source_wide_rgb_sha256": null,
+          "road_frame_sha256": null,
+          "wide_frame_sha256": null,
+          "new_img_sha256": null,
+          "raw_action_sha256": null,
+          "state_after_step_sha256": null
+        },
+        "first_native_road_or_wide_rgb_mismatch_step": null,
+        "first_actual_onnx_new_img_mismatch_step": null,
+        "first_raw_action_mismatch_step": null,
+        "first_recurrent_state_mismatch_step": null,
+        "source_vs_onnx_first_divergence_classification": "NO_NATIVE_SOURCE_RGB_DIFFERENCE_OBSERVED",
+        "source_sha_difference_not_pixel_location_or_unique_cause": true
+      }
+    },
+    {
+      "seed": 20261109,
+      "scenario": "s_curve_right_left",
+      "steps_per_process": 12,
+      "independent_process_count": 2,
+      "strict_status": "STRICT_NATIVE_ONNX_REPEAT_MATCH",
+      "exact_repeated_execution_gate_passed": true,
+      "first_diverging_step": null,
+      "first_observed_mismatch_boundary": null,
+      "source_native_rgb_frames_match": true,
+      "warped_model_rgb_frames_match": true,
+      "actual_onnx_new_img_sha256_match": true,
+      "max_xy_position_delta_m": 0.0,
+      "full_discrepancy_receipt": [],
+      "raw_sensor_to_onnx_first_divergence_timeline": {
+        "first_different_step_by_field": {
+          "source_road_rgb_sha256": null,
+          "source_wide_rgb_sha256": null,
+          "road_frame_sha256": null,
+          "wide_frame_sha256": null,
+          "new_img_sha256": null,
+          "raw_action_sha256": null,
+          "state_after_step_sha256": null
+        },
+        "first_native_road_or_wide_rgb_mismatch_step": null,
+        "first_actual_onnx_new_img_mismatch_step": null,
+        "first_raw_action_mismatch_step": null,
+        "first_recurrent_state_mismatch_step": null,
+        "source_vs_onnx_first_divergence_classification": "NO_NATIVE_SOURCE_RGB_DIFFERENCE_OBSERVED",
+        "source_sha_difference_not_pixel_location_or_unique_cause": true
+      }
+    },
+    {
+      "seed": 20261110,
+      "scenario": "s_curve_left_right",
+      "steps_per_process": 12,
+      "independent_process_count": 2,
+      "strict_status": "STRICT_NATIVE_ONNX_REPEAT_MISMATCH",
+      "exact_repeated_execution_gate_passed": false,
+      "first_diverging_step": 7,
+      "first_observed_mismatch_boundary": "NATIVE_964x604_RGB",
+      "source_native_rgb_frames_match": false,
+      "warped_model_rgb_frames_match": false,
+      "actual_onnx_new_img_sha256_match": false,
+      "max_xy_position_delta_m": 2.807601350518265e-05,
+      "full_discrepancy_receipt": [
+        {
+          "step": 7,
+          "differing_fields": [
+            "world_x_m",
+            "world_y_m",
+            "heading_rad",
+            "source_road_rgb_sha256",
+            "desired_curvature_1pm",
+            "desired_acceleration_mps2",
+            "road_frame_sha256",
+            "new_img_sha256",
+            "raw_model_action",
+            "raw_action_sha256",
+            "state_after_step_sha256"
+          ],
+          "pose_delta_m": 9.155273439058571e-07
+        },
+        {
+          "step": 8,
+          "differing_fields": [
+            "world_x_m",
+            "world_y_m",
+            "heading_rad",
+            "source_road_rgb_sha256",
+            "source_wide_rgb_sha256",
+            "desired_curvature_1pm",
+            "desired_acceleration_mps2",
+            "road_frame_sha256",
+            "wide_frame_sha256",
+            "new_img_sha256",
+            "raw_model_action",
+            "raw_action_sha256",
+            "state_after_step_sha256"
+          ],
+          "pose_delta_m": 1.220705991619657e-06
+        },
+        {
+          "step": 9,
+          "differing_fields": [
+            "world_x_m",
+            "world_y_m",
+            "heading_rad",
+            "source_road_rgb_sha256",
+            "source_wide_rgb_sha256",
+            "desired_curvature_1pm",
+            "desired_acceleration_mps2",
+            "road_frame_sha256",
+            "wide_frame_sha256",
+            "new_img_sha256",
+            "raw_model_action",
+            "raw_action_sha256",
+            "state_after_step_sha256"
+          ],
+          "pose_delta_m": 1.4648436465890563e-05
+        },
+        {
+          "step": 10,
+          "differing_fields": [
+            "world_x_m",
+            "world_y_m",
+            "heading_rad",
+            "source_road_rgb_sha256",
+            "source_wide_rgb_sha256",
+            "desired_curvature_1pm",
+            "desired_acceleration_mps2",
+            "road_frame_sha256",
+            "wide_frame_sha256",
+            "new_img_sha256",
+            "raw_model_action",
+            "raw_action_sha256",
+            "state_after_step_sha256"
+          ],
+          "pose_delta_m": 2.807601350518265e-05
+        },
+        {
+          "step": 11,
+          "differing_fields": [
+            "world_x_m",
+            "world_y_m",
+            "heading_rad",
+            "source_road_rgb_sha256",
+            "source_wide_rgb_sha256",
+            "desired_curvature_1pm",
+            "desired_acceleration_mps2",
+            "road_frame_sha256",
+            "wide_frame_sha256",
+            "new_img_sha256",
+            "raw_model_action",
+            "raw_action_sha256",
+            "state_after_step_sha256"
+          ],
+          "pose_delta_m": 2.7465689040255526e-05
+        },
+        {
+          "step": 12,
+          "differing_fields": [
+            "world_x_m",
+            "world_y_m",
+            "heading_rad",
+            "source_road_rgb_sha256",
+            "source_wide_rgb_sha256",
+            "desired_curvature_1pm",
+            "desired_acceleration_mps2",
+            "road_frame_sha256",
+            "wide_frame_sha256",
+            "new_img_sha256",
+            "raw_model_action",
+            "raw_action_sha256",
+            "state_after_step_sha256"
+          ],
+          "pose_delta_m": 1.831172314045334e-05
+        }
+      ],
+      "raw_sensor_to_onnx_first_divergence_timeline": {
+        "first_different_step_by_field": {
+          "source_road_rgb_sha256": 7,
+          "source_wide_rgb_sha256": 8,
+          "road_frame_sha256": 7,
+          "wide_frame_sha256": 8,
+          "new_img_sha256": 7,
+          "raw_action_sha256": 7,
+          "state_after_step_sha256": 7
+        },
+        "first_native_road_or_wide_rgb_mismatch_step": 7,
+        "first_actual_onnx_new_img_mismatch_step": 7,
+        "first_raw_action_mismatch_step": 7,
+        "first_recurrent_state_mismatch_step": 7,
+        "source_vs_onnx_first_divergence_classification": "SOURCE_RGB_AND_ONNX_FEED_FIRST_DIFFER_SAME_STEP",
+        "source_sha_difference_not_pixel_location_or_unique_cause": true
+      }
+    },
+    {
+      "seed": 20261110,
+      "scenario": "s_curve_right_left",
+      "steps_per_process": 12,
+      "independent_process_count": 2,
+      "strict_status": "STRICT_NATIVE_ONNX_REPEAT_MATCH",
+      "exact_repeated_execution_gate_passed": true,
+      "first_diverging_step": null,
+      "first_observed_mismatch_boundary": null,
+      "source_native_rgb_frames_match": true,
+      "warped_model_rgb_frames_match": true,
+      "actual_onnx_new_img_sha256_match": true,
+      "max_xy_position_delta_m": 0.0,
+      "full_discrepancy_receipt": [],
+      "raw_sensor_to_onnx_first_divergence_timeline": {
+        "first_different_step_by_field": {
+          "source_road_rgb_sha256": null,
+          "source_wide_rgb_sha256": null,
+          "road_frame_sha256": null,
+          "wide_frame_sha256": null,
+          "new_img_sha256": null,
+          "raw_action_sha256": null,
+          "state_after_step_sha256": null
+        },
+        "first_native_road_or_wide_rgb_mismatch_step": null,
+        "first_actual_onnx_new_img_mismatch_step": null,
+        "first_raw_action_mismatch_step": null,
+        "first_recurrent_state_mismatch_step": null,
+        "source_vs_onnx_first_divergence_classification": "NO_NATIVE_SOURCE_RGB_DIFFERENCE_OBSERVED",
+        "source_sha_difference_not_pixel_location_or_unique_cause": true
+      }
+    }
+  ],
+  "CI_workflow_success_does_not_mean_strict_gate_passed": true,
+  "model_scoring_allowed": false,
+  "driving_model_performance_ranking_allowed": false,
+  "real_vehicle_testing": false,
+  "cd210_fallback": false
+}

@@ -1,0 +1,349 @@
+{
+  "status": "PARTIAL_OR_FAILED_COHORT",
+  "completed_cases": 3,
+  "reported_model_processes": 6,
+  "cases": [
+    {
+      "seed": 20261109,
+      "scenario": "s_curve_left_right",
+      "complete": true,
+      "execution": {
+        "status": "EXIT_OBSERVED",
+        "returncode": 0,
+        "failure": null,
+        "stopped_state": {
+          "Status": "exited",
+          "Running": false,
+          "Paused": false,
+          "Restarting": false,
+          "OOMKilled": false,
+          "Dead": false,
+          "Pid": 0,
+          "ExitCode": 0,
+          "Error": "",
+          "StartedAt": "2026-11-16T08:25:38.927316914Z",
+          "FinishedAt": "2026-11-16T08:40:43.417328884Z"
+        },
+        "create_attempted": true,
+        "start_attempted": true,
+        "container_id": "7807e7ca3c41df75ab5eb6647d333aab762398f6e73883ea33a0b9ced728674b",
+        "ownership_unresolved": false,
+        "owned_container_removed": true,
+        "cleanup_failure": null
+      },
+      "ledger": [
+        {
+          "index": 0,
+          "launcher_spawn_attempted": true,
+          "launcher_pid": 7,
+          "spawn_attempted": true,
+          "pid": 11,
+          "returncode": 0
+        },
+        {
+          "index": 1,
+          "launcher_spawn_attempted": true,
+          "launcher_pid": 20,
+          "spawn_attempted": true,
+          "pid": 24,
+          "returncode": 0
+        }
+      ],
+      "strict_pass": true,
+      "first_step": null,
+      "first_boundary": null,
+      "first_differing_fields": [],
+      "max_xy_delta_m": 0.0,
+      "matches_of_12": {
+        "source_road_rgb_sha256": 12,
+        "source_wide_rgb_sha256": 12,
+        "road_frame_sha256": 12,
+        "wide_frame_sha256": 12,
+        "new_img_sha256": 12,
+        "raw_model_action": 12,
+        "raw_action_sha256": 12,
+        "state_after_step_sha256": 12
+      },
+      "timeline": {
+        "first_different_step_by_field": {
+          "source_road_rgb_sha256": null,
+          "source_wide_rgb_sha256": null,
+          "road_frame_sha256": null,
+          "wide_frame_sha256": null,
+          "new_img_sha256": null,
+          "raw_action_sha256": null,
+          "state_after_step_sha256": null
+        },
+        "first_native_road_or_wide_rgb_mismatch_step": null,
+        "first_actual_onnx_new_img_mismatch_step": null,
+        "first_raw_action_mismatch_step": null,
+        "first_recurrent_state_mismatch_step": null,
+        "source_vs_onnx_first_divergence_classification": "NO_NATIVE_SOURCE_RGB_DIFFERENCE_OBSERVED",
+        "source_sha_difference_not_pixel_location_or_unique_cause": true
+      },
+      "processes": [
+        {
+          "pid": 11,
+          "uuid": "6e20abe4a4f849d9a8762490e99dd0c3"
+        },
+        {
+          "pid": 24,
+          "uuid": "1e66b33392644c6db51387b6989db107"
+        }
+      ],
+      "all_zero_source_frames": 0,
+      "source_hash_variation": [
+        {
+          "source_road_rgb_sha256": 12,
+          "source_wide_rgb_sha256": 12
+        },
+        {
+          "source_road_rgb_sha256": 12,
+          "source_wide_rgb_sha256": 12
+        }
+      ]
+    },
+    {
+      "seed": 20261109,
+      "scenario": "s_curve_right_left",
+      "complete": true,
+      "execution": {
+        "status": "EXIT_OBSERVED",
+        "returncode": 0,
+        "failure": null,
+        "stopped_state": {
+          "Status": "exited",
+          "Running": false,
+          "Paused": false,
+          "Restarting": false,
+          "OOMKilled": false,
+          "Dead": false,
+          "Pid": 0,
+          "ExitCode": 0,
+          "Error": "",
+          "StartedAt": "2026-11-16T08:40:43.565268049Z",
+          "FinishedAt": "2026-11-16T08:55:49.129607241Z"
+        },
+        "create_attempted": true,
+        "start_attempted": true,
+        "container_id": "74de8e8047a54ad1662cabdcef5942ab2bdd88a8c14929f069a35470b3f4c790",
+        "ownership_unresolved": false,
+        "owned_container_removed": true,
+        "cleanup_failure": null
+      },
+      "ledger": [
+        {
+          "index": 0,
+          "launcher_spawn_attempted": true,
+          "launcher_pid": 7,
+          "spawn_attempted": true,
+          "pid": 11,
+          "returncode": 0
+        },
+        {
+          "index": 1,
+          "launcher_spawn_attempted": true,
+          "launcher_pid": 20,
+          "spawn_attempted": true,
+          "pid": 24,
+          "returncode": 0
+        }
+      ],
+      "strict_pass": true,
+      "first_step": null,
+      "first_boundary": null,
+      "first_differing_fields": [],
+      "max_xy_delta_m": 0.0,
+      "matches_of_12": {
+        "source_road_rgb_sha256": 12,
+        "source_wide_rgb_sha256": 12,
+        "road_frame_sha256": 12,
+        "wide_frame_sha256": 12,
+        "new_img_sha256": 12,
+        "raw_model_action": 12,
+        "raw_action_sha256": 12,
+        "state_after_step_sha256": 12
+      },
+      "timeline": {
+        "first_different_step_by_field": {
+          "source_road_rgb_sha256": null,
+          "source_wide_rgb_sha256": null,
+          "road_frame_sha256": null,
+          "wide_frame_sha256": null,
+          "new_img_sha256": null,
+          "raw_action_sha256": null,
+          "state_after_step_sha256": null
+        },
+        "first_native_road_or_wide_rgb_mismatch_step": null,
+        "first_actual_onnx_new_img_mismatch_step": null,
+        "first_raw_action_mismatch_step": null,
+        "first_recurrent_state_mismatch_step": null,
+        "source_vs_onnx_first_divergence_classification": "NO_NATIVE_SOURCE_RGB_DIFFERENCE_OBSERVED",
+        "source_sha_difference_not_pixel_location_or_unique_cause": true
+      },
+      "processes": [
+        {
+          "pid": 11,
+          "uuid": "2f6131e82b644b658103ceaf1c223af4"
+        },
+        {
+          "pid": 24,
+          "uuid": "1b3c39684dd944bb81c91d1d4f96f46a"
+        }
+      ],
+      "all_zero_source_frames": 0,
+      "source_hash_variation": [
+        {
+          "source_road_rgb_sha256": 12,
+          "source_wide_rgb_sha256": 12
+        },
+        {
+          "source_road_rgb_sha256": 12,
+          "source_wide_rgb_sha256": 12
+        }
+      ]
+    },
+    {
+      "seed": 20261110,
+      "scenario": "s_curve_left_right",
+      "complete": true,
+      "execution": {
+        "status": "EXIT_OBSERVED",
+        "returncode": 0,
+        "failure": null,
+        "stopped_state": {
+          "Status": "exited",
+          "Running": false,
+          "Paused": false,
+          "Restarting": false,
+          "OOMKilled": false,
+          "Dead": false,
+          "Pid": 0,
+          "ExitCode": 0,
+          "Error": "",
+          "StartedAt": "2026-11-16T08:55:49.273485363Z",
+          "FinishedAt": "2026-11-16T09:11:03.534908179Z"
+        },
+        "create_attempted": true,
+        "start_attempted": true,
+        "container_id": "3783a328cfcc944a77045d18762644117dfdee56be72a0486df7f94fe71e09dd",
+        "ownership_unresolved": false,
+        "owned_container_removed": true,
+        "cleanup_failure": null
+      },
+      "ledger": [
+        {
+          "index": 0,
+          "launcher_spawn_attempted": true,
+          "launcher_pid": 7,
+          "spawn_attempted": true,
+          "pid": 11,
+          "returncode": 0
+        },
+        {
+          "index": 1,
+          "launcher_spawn_attempted": true,
+          "launcher_pid": 20,
+          "spawn_attempted": true,
+          "pid": 24,
+          "returncode": 0
+        }
+      ],
+      "strict_pass": false,
+      "first_step": 7,
+      "first_boundary": "NATIVE_964x604_RGB",
+      "first_differing_fields": [
+        "world_x_m",
+        "world_y_m",
+        "heading_rad",
+        "source_road_rgb_sha256",
+        "desired_curvature_1pm",
+        "desired_acceleration_mps2",
+        "road_frame_sha256",
+        "new_img_sha256",
+        "raw_model_action",
+        "raw_action_sha256",
+        "state_after_step_sha256"
+      ],
+      "max_xy_delta_m": 2.807601350518265e-05,
+      "matches_of_12": {
+        "source_road_rgb_sha256": 6,
+        "source_wide_rgb_sha256": 7,
+        "road_frame_sha256": 6,
+        "wide_frame_sha256": 7,
+        "new_img_sha256": 6,
+        "raw_model_action": 6,
+        "raw_action_sha256": 6,
+        "state_after_step_sha256": 6
+      },
+      "timeline": {
+        "first_different_step_by_field": {
+          "source_road_rgb_sha256": 7,
+          "source_wide_rgb_sha256": 8,
+          "road_frame_sha256": 7,
+          "wide_frame_sha256": 8,
+          "new_img_sha256": 7,
+          "raw_action_sha256": 7,
+          "state_after_step_sha256": 7
+        },
+        "first_native_road_or_wide_rgb_mismatch_step": 7,
+        "first_actual_onnx_new_img_mismatch_step": 7,
+        "first_raw_action_mismatch_step": 7,
+        "first_recurrent_state_mismatch_step": 7,
+        "source_vs_onnx_first_divergence_classification": "SOURCE_RGB_AND_ONNX_FEED_FIRST_DIFFER_SAME_STEP",
+        "source_sha_difference_not_pixel_location_or_unique_cause": true
+      },
+      "processes": [
+        {
+          "pid": 11,
+          "uuid": "0128dbc3db344595b1d1c381486d4f01"
+        },
+        {
+          "pid": 24,
+          "uuid": "b20c3cf68bd346a896d76b4da5adb16c"
+        }
+      ],
+      "all_zero_source_frames": 0,
+      "source_hash_variation": [
+        {
+          "source_road_rgb_sha256": 12,
+          "source_wide_rgb_sha256": 12
+        },
+        {
+          "source_road_rgb_sha256": 12,
+          "source_wide_rgb_sha256": 12
+        }
+      ]
+    },
+    {
+      "seed": 20261110,
+      "scenario": "s_curve_right_left",
+      "complete": false,
+      "execution": {
+        "status": "CREATE_IN_FLIGHT",
+        "create_attempted": true,
+        "start_attempted": false,
+        "ownership_label": "6391541446904a74825954fa536168ed",
+        "owned_container_removed": false
+      },
+      "ledger": [
+        {
+          "index": 0,
+          "launcher_spawn_attempted": true,
+          "launcher_pid": 7,
+          "spawn_attempted": true,
+          "pid": 11,
+          "returncode": 0
+        },
+        {
+          "index": 1,
+          "launcher_spawn_attempted": true,
+          "launcher_pid": 20,
+          "spawn_attempted": false,
+          "pid": null,
+          "returncode": null
+        }
+      ]
+    }
+  ]
+}

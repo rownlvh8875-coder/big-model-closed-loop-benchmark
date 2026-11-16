@@ -1,0 +1,2339 @@
+{
+  "scope": "GNU loader trace observations, not full ABI or frame qualification",
+  "probes": [
+    {
+      "probe": "probe-0-sdk-first",
+      "observed": 110,
+      "missing": 0,
+      "unobserved": [],
+      "bindings": [
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCg.so",
+          "name": "pthread_key_create",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCg.so",
+          "name": "pthread_mutex_destroy",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCg.so",
+          "name": "pthread_mutexattr_init",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCg.so",
+          "name": "pthread_setspecific",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCg.so",
+          "name": "pthread_mutex_lock",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCg.so",
+          "name": "pthread_mutexattr_destroy",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCg.so",
+          "name": "pthread_once",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCg.so",
+          "name": "longjmp",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCg.so",
+          "name": "pthread_mutexattr_settype",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCg.so",
+          "name": "pthread_mutex_init",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCg.so",
+          "name": "__errno_location",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCg.so",
+          "name": "pthread_mutex_unlock",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCg.so",
+          "name": "pthread_getspecific",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCgGL.so",
+          "name": "dlopen",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libdl.so.2",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCgGL.so",
+          "name": "pthread_mutex_lock",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCgGL.so",
+          "name": "dlclose",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libdl.so.2",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCgGL.so",
+          "name": "dlsym",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libdl.so.2",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCgGL.so",
+          "name": "pthread_mutex_unlock",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtool.so.1.10",
+          "name": "close",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtool.so.1.10",
+          "name": "read",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtool.so.1.10",
+          "name": "dlerror",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libdl.so.2",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtool.so.1.10",
+          "name": "dlclose",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libdl.so.2",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtool.so.1.10",
+          "name": "lseek",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtool.so.1.10",
+          "name": "__errno_location",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtool.so.1.10",
+          "name": "dlopen",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libdl.so.2",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtool.so.1.10",
+          "name": "dlsym",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libdl.so.2",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtool.so.1.10",
+          "name": "pthread_mutex_lock",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtool.so.1.10",
+          "name": "pthread_mutex_destroy",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtool.so.1.10",
+          "name": "write",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtool.so.1.10",
+          "name": "pthread_mutex_unlock",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtool.so.1.10",
+          "name": "open",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10",
+          "name": "close",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10",
+          "name": "read",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10",
+          "name": "dlerror",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libdl.so.2",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10",
+          "name": "dlclose",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libdl.so.2",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10",
+          "name": "sigaction",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10",
+          "name": "connect",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10",
+          "name": "__errno_location",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10",
+          "name": "dladdr",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libdl.so.2",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10",
+          "name": "dlopen",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libdl.so.2",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10",
+          "name": "dlsym",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libdl.so.2",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10",
+          "name": "pthread_mutex_lock",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10",
+          "name": "pthread_mutex_destroy",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10",
+          "name": "write",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10",
+          "name": "pthread_mutex_unlock",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10",
+          "name": "open",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_mutex_destroy",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "fcntl",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_attr_init",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_setspecific",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "close",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_mutex_unlock",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_key_create",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "recvfrom",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_mutex_lock",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "lseek",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_cond_destroy",
+          "version": "GLIBC_2.3.2",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "send",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "connect",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_mutex_init",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_cond_init",
+          "version": "GLIBC_2.3.2",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "open",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "sem_destroy",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_cond_wait",
+          "version": "GLIBC_2.3.2",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_attr_setschedparam",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "sem_init",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_self",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_attr_destroy",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_create",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_cond_signal",
+          "version": "GLIBC_2.3.2",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "longjmp",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "sendto",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "read",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_mutex_trylock",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "sem_getvalue",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_attr_setstacksize",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_attr_setdetachstate",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_getspecific",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_cond_timedwait",
+          "version": "GLIBC_2.3.2",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "accept",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_detach",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_attr_setscope",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_cond_broadcast",
+          "version": "GLIBC_2.3.2",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "sem_post",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "lseek64",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "recv",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "sem_trywait",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "__errno_location",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "write",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "sem_wait",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "nanosleep",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_join",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_attr_setschedpolicy",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "open64",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10",
+          "name": "__errno_location",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10",
+          "name": "accept",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10",
+          "name": "write",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10",
+          "name": "dlerror",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libdl.so.2",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10",
+          "name": "open",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10",
+          "name": "dlclose",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libdl.so.2",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10",
+          "name": "pthread_mutex_unlock",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10",
+          "name": "connect",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10",
+          "name": "dladdr",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libdl.so.2",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10",
+          "name": "pthread_mutex_destroy",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10",
+          "name": "sigaction",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10",
+          "name": "read",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10",
+          "name": "dlopen",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libdl.so.2",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10",
+          "name": "pthread_mutex_lock",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10",
+          "name": "dlsym",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libdl.so.2",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10",
+          "name": "close",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        }
+      ]
+    },
+    {
+      "probe": "probe-1-core-first",
+      "observed": 110,
+      "missing": 0,
+      "unobserved": [],
+      "bindings": [
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCg.so",
+          "name": "pthread_key_create",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCg.so",
+          "name": "pthread_mutex_destroy",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCg.so",
+          "name": "pthread_mutexattr_init",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCg.so",
+          "name": "pthread_setspecific",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCg.so",
+          "name": "pthread_mutex_lock",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCg.so",
+          "name": "pthread_mutexattr_destroy",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCg.so",
+          "name": "pthread_once",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCg.so",
+          "name": "longjmp",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCg.so",
+          "name": "pthread_mutexattr_settype",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCg.so",
+          "name": "pthread_mutex_init",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCg.so",
+          "name": "__errno_location",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCg.so",
+          "name": "pthread_mutex_unlock",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCg.so",
+          "name": "pthread_getspecific",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCgGL.so",
+          "name": "dlopen",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libdl.so.2",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCgGL.so",
+          "name": "pthread_mutex_lock",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCgGL.so",
+          "name": "dlclose",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libdl.so.2",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCgGL.so",
+          "name": "dlsym",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libdl.so.2",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCgGL.so",
+          "name": "pthread_mutex_unlock",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtool.so.1.10",
+          "name": "close",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtool.so.1.10",
+          "name": "read",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtool.so.1.10",
+          "name": "dlerror",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libdl.so.2",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtool.so.1.10",
+          "name": "dlclose",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libdl.so.2",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtool.so.1.10",
+          "name": "lseek",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtool.so.1.10",
+          "name": "__errno_location",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtool.so.1.10",
+          "name": "dlopen",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libdl.so.2",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtool.so.1.10",
+          "name": "dlsym",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libdl.so.2",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtool.so.1.10",
+          "name": "pthread_mutex_lock",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtool.so.1.10",
+          "name": "pthread_mutex_destroy",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtool.so.1.10",
+          "name": "write",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtool.so.1.10",
+          "name": "pthread_mutex_unlock",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtool.so.1.10",
+          "name": "open",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10",
+          "name": "close",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10",
+          "name": "read",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10",
+          "name": "dlerror",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libdl.so.2",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10",
+          "name": "dlclose",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libdl.so.2",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10",
+          "name": "sigaction",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10",
+          "name": "connect",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10",
+          "name": "__errno_location",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10",
+          "name": "dladdr",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libdl.so.2",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10",
+          "name": "dlopen",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libdl.so.2",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10",
+          "name": "dlsym",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libdl.so.2",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10",
+          "name": "pthread_mutex_lock",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10",
+          "name": "pthread_mutex_destroy",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10",
+          "name": "write",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10",
+          "name": "pthread_mutex_unlock",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10",
+          "name": "open",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_mutex_destroy",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "fcntl",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_attr_init",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_setspecific",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "close",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_mutex_unlock",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_key_create",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "recvfrom",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_mutex_lock",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "lseek",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_cond_destroy",
+          "version": "GLIBC_2.3.2",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "send",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "connect",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_mutex_init",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_cond_init",
+          "version": "GLIBC_2.3.2",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "open",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "sem_destroy",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_cond_wait",
+          "version": "GLIBC_2.3.2",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_attr_setschedparam",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "sem_init",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_self",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_attr_destroy",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_create",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_cond_signal",
+          "version": "GLIBC_2.3.2",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "longjmp",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "sendto",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "read",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_mutex_trylock",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "sem_getvalue",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_attr_setstacksize",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_attr_setdetachstate",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_getspecific",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_cond_timedwait",
+          "version": "GLIBC_2.3.2",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "accept",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_detach",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_attr_setscope",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_cond_broadcast",
+          "version": "GLIBC_2.3.2",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "sem_post",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "lseek64",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "recv",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "sem_trywait",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "__errno_location",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "write",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "sem_wait",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "nanosleep",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_join",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_attr_setschedpolicy",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "open64",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10",
+          "name": "__errno_location",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10",
+          "name": "accept",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10",
+          "name": "write",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10",
+          "name": "dlerror",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libdl.so.2",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10",
+          "name": "open",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10",
+          "name": "dlclose",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libdl.so.2",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10",
+          "name": "pthread_mutex_unlock",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10",
+          "name": "connect",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10",
+          "name": "dladdr",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libdl.so.2",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10",
+          "name": "pthread_mutex_destroy",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10",
+          "name": "sigaction",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10",
+          "name": "read",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10",
+          "name": "dlopen",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libdl.so.2",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10",
+          "name": "pthread_mutex_lock",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10",
+          "name": "dlsym",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libdl.so.2",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10",
+          "name": "close",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        }
+      ]
+    },
+    {
+      "probe": "probe-2-core-first",
+      "observed": 110,
+      "missing": 0,
+      "unobserved": [],
+      "bindings": [
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCg.so",
+          "name": "pthread_key_create",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCg.so",
+          "name": "pthread_mutex_destroy",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCg.so",
+          "name": "pthread_mutexattr_init",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCg.so",
+          "name": "pthread_setspecific",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCg.so",
+          "name": "pthread_mutex_lock",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCg.so",
+          "name": "pthread_mutexattr_destroy",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCg.so",
+          "name": "pthread_once",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCg.so",
+          "name": "longjmp",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCg.so",
+          "name": "pthread_mutexattr_settype",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCg.so",
+          "name": "pthread_mutex_init",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCg.so",
+          "name": "__errno_location",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCg.so",
+          "name": "pthread_mutex_unlock",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCg.so",
+          "name": "pthread_getspecific",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCgGL.so",
+          "name": "dlopen",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libdl.so.2",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCgGL.so",
+          "name": "pthread_mutex_lock",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCgGL.so",
+          "name": "dlclose",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libdl.so.2",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCgGL.so",
+          "name": "dlsym",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libdl.so.2",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCgGL.so",
+          "name": "pthread_mutex_unlock",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtool.so.1.10",
+          "name": "close",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtool.so.1.10",
+          "name": "read",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtool.so.1.10",
+          "name": "dlerror",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libdl.so.2",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtool.so.1.10",
+          "name": "dlclose",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libdl.so.2",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtool.so.1.10",
+          "name": "lseek",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtool.so.1.10",
+          "name": "__errno_location",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtool.so.1.10",
+          "name": "dlopen",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libdl.so.2",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtool.so.1.10",
+          "name": "dlsym",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libdl.so.2",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtool.so.1.10",
+          "name": "pthread_mutex_lock",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtool.so.1.10",
+          "name": "pthread_mutex_destroy",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtool.so.1.10",
+          "name": "write",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtool.so.1.10",
+          "name": "pthread_mutex_unlock",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtool.so.1.10",
+          "name": "open",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10",
+          "name": "close",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10",
+          "name": "read",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10",
+          "name": "dlerror",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libdl.so.2",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10",
+          "name": "dlclose",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libdl.so.2",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10",
+          "name": "sigaction",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10",
+          "name": "connect",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10",
+          "name": "__errno_location",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10",
+          "name": "dladdr",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libdl.so.2",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10",
+          "name": "dlopen",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libdl.so.2",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10",
+          "name": "dlsym",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libdl.so.2",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10",
+          "name": "pthread_mutex_lock",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10",
+          "name": "pthread_mutex_destroy",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10",
+          "name": "write",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10",
+          "name": "pthread_mutex_unlock",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10",
+          "name": "open",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_mutex_destroy",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "fcntl",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_attr_init",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_setspecific",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "close",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_mutex_unlock",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_key_create",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "recvfrom",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_mutex_lock",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "lseek",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_cond_destroy",
+          "version": "GLIBC_2.3.2",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "send",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "connect",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_mutex_init",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_cond_init",
+          "version": "GLIBC_2.3.2",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "open",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "sem_destroy",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_cond_wait",
+          "version": "GLIBC_2.3.2",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_attr_setschedparam",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "sem_init",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_self",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_attr_destroy",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_create",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_cond_signal",
+          "version": "GLIBC_2.3.2",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "longjmp",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "sendto",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "read",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_mutex_trylock",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "sem_getvalue",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_attr_setstacksize",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_attr_setdetachstate",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_getspecific",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_cond_timedwait",
+          "version": "GLIBC_2.3.2",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "accept",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_detach",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_attr_setscope",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_cond_broadcast",
+          "version": "GLIBC_2.3.2",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "sem_post",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "lseek64",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "recv",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "sem_trywait",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "__errno_location",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "write",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "sem_wait",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "nanosleep",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_join",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "pthread_attr_setschedpolicy",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "name": "open64",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10",
+          "name": "__errno_location",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10",
+          "name": "accept",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10",
+          "name": "write",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10",
+          "name": "dlerror",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libdl.so.2",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10",
+          "name": "open",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10",
+          "name": "dlclose",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libdl.so.2",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10",
+          "name": "pthread_mutex_unlock",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10",
+          "name": "connect",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10",
+          "name": "dladdr",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libdl.so.2",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10",
+          "name": "pthread_mutex_destroy",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10",
+          "name": "sigaction",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10",
+          "name": "read",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10",
+          "name": "dlopen",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libdl.so.2",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10",
+          "name": "pthread_mutex_lock",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10",
+          "name": "dlsym",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libdl.so.2",
+          "target": "libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10",
+          "name": "close",
+          "version": "GLIBC_2.2.5",
+          "declared_library": "libpthread.so.0",
+          "target": "libc.so.6"
+        }
+      ]
+    }
+  ]
+}

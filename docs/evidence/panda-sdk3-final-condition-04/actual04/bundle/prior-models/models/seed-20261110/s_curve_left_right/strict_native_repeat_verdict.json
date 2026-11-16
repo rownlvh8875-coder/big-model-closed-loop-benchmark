@@ -1,0 +1,142 @@
+{
+  "status": "STRICT_NATIVE_ONNX_REPEAT_MISMATCH",
+  "exact_repeated_execution_gate_passed": false,
+  "compare_rule": "bit-exact native raw 964x604, warped 512x256, actual I420 new_img feed, raw actions, recurrent states, virtual pose and time",
+  "scenario": "s_curve_left_right",
+  "seed": 20261110,
+  "steps": 12,
+  "initial_fraction": 0.12,
+  "camera_rgb_frames_match": false,
+  "source_native_rgb_frames_match": false,
+  "warped_model_rgb_frames_match": false,
+  "actual_onnx_new_img_sha256_match": false,
+  "first_observed_mismatch_boundary": "NATIVE_964x604_RGB",
+  "max_xy_position_delta_m": 2.807601350518265e-05,
+  "max_heading_delta_rad": 5.187988281250833e-05,
+  "first_diverging_step": 7,
+  "mismatches": [
+    {
+      "step": 7,
+      "differing_fields": [
+        "world_x_m",
+        "world_y_m",
+        "heading_rad",
+        "source_road_rgb_sha256",
+        "desired_curvature_1pm",
+        "desired_acceleration_mps2",
+        "road_frame_sha256",
+        "new_img_sha256",
+        "raw_model_action",
+        "raw_action_sha256",
+        "state_after_step_sha256"
+      ],
+      "pose_delta_m": 9.155273439058571e-07
+    },
+    {
+      "step": 8,
+      "differing_fields": [
+        "world_x_m",
+        "world_y_m",
+        "heading_rad",
+        "source_road_rgb_sha256",
+        "source_wide_rgb_sha256",
+        "desired_curvature_1pm",
+        "desired_acceleration_mps2",
+        "road_frame_sha256",
+        "wide_frame_sha256",
+        "new_img_sha256",
+        "raw_model_action",
+        "raw_action_sha256",
+        "state_after_step_sha256"
+      ],
+      "pose_delta_m": 1.220705991619657e-06
+    },
+    {
+      "step": 9,
+      "differing_fields": [
+        "world_x_m",
+        "world_y_m",
+        "heading_rad",
+        "source_road_rgb_sha256",
+        "source_wide_rgb_sha256",
+        "desired_curvature_1pm",
+        "desired_acceleration_mps2",
+        "road_frame_sha256",
+        "wide_frame_sha256",
+        "new_img_sha256",
+        "raw_model_action",
+        "raw_action_sha256",
+        "state_after_step_sha256"
+      ],
+      "pose_delta_m": 1.4648436465890563e-05
+    },
+    {
+      "step": 10,
+      "differing_fields": [
+        "world_x_m",
+        "world_y_m",
+        "heading_rad",
+        "source_road_rgb_sha256",
+        "source_wide_rgb_sha256",
+        "desired_curvature_1pm",
+        "desired_acceleration_mps2",
+        "road_frame_sha256",
+        "wide_frame_sha256",
+        "new_img_sha256",
+        "raw_model_action",
+        "raw_action_sha256",
+        "state_after_step_sha256"
+      ],
+      "pose_delta_m": 2.807601350518265e-05
+    },
+    {
+      "step": 11,
+      "differing_fields": [
+        "world_x_m",
+        "world_y_m",
+        "heading_rad",
+        "source_road_rgb_sha256",
+        "source_wide_rgb_sha256",
+        "desired_curvature_1pm",
+        "desired_acceleration_mps2",
+        "road_frame_sha256",
+        "wide_frame_sha256",
+        "new_img_sha256",
+        "raw_model_action",
+        "raw_action_sha256",
+        "state_after_step_sha256"
+      ],
+      "pose_delta_m": 2.7465689040255526e-05
+    },
+    {
+      "step": 12,
+      "differing_fields": [
+        "world_x_m",
+        "world_y_m",
+        "heading_rad",
+        "source_road_rgb_sha256",
+        "source_wide_rgb_sha256",
+        "desired_curvature_1pm",
+        "desired_acceleration_mps2",
+        "road_frame_sha256",
+        "wide_frame_sha256",
+        "new_img_sha256",
+        "raw_model_action",
+        "raw_action_sha256",
+        "state_after_step_sha256"
+      ],
+      "pose_delta_m": 1.831172314045334e-05
+    }
+  ],
+  "first_process_uuid": "0128dbc3db344595b1d1c381486d4f01",
+  "second_process_uuid": "b20c3cf68bd346a896d76b4da5adb16c",
+  "model_sha256": "35976b11be3904eb78e32f7dc55a6abf8e9433ac5aa391a1998f1e9ce001b199",
+  "no_tolerance_or_pixel_rewriting": true,
+  "scene_pssm_not_disabled": true,
+  "official_model_driving_performance_ranked": false,
+  "real_vehicle_testing": false,
+  "cd210_fallback": false,
+  "model_scoring_allowed": false,
+  "diagnostic_capture_complete": true,
+  "warning": "Strict repeatability in this short native environment is not camera fidelity, safety, long-run, cross-engine or model ranking proof"
+}

@@ -1,0 +1,21 @@
+test_continue_panda_sdk3_models (unittest.loader._FailedTest.test_continue_panda_sdk3_models) ... ERROR
+
+======================================================================
+ERROR: test_continue_panda_sdk3_models (unittest.loader._FailedTest.test_continue_panda_sdk3_models)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_continue_panda_sdk3_models
+Traceback (most recent call last):
+  File "/workspace/.cloud-tools/python/cpython-3.11.17-linux-x86_64-gnu/lib/python3.11/unittest/loader.py", line 419, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.cloud-tools/python/cpython-3.11.17-linux-x86_64-gnu/lib/python3.11/unittest/loader.py", line 362, in _get_module_from_name
+    __import__(name)
+  File "/dev/shm/stage7-sdk3-runtime-20261116/repo/tests/test_continue_panda_sdk3_models.py", line 6, in <module>
+    from scripts import continue_panda_sdk3_models as c
+ImportError: cannot import name 'continue_panda_sdk3_models' from 'scripts' (/dev/shm/stage7-sdk3-runtime-20261116/repo/scripts/__init__.py)
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (errors=1)

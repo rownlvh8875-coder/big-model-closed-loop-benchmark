@@ -1,0 +1,113 @@
+{
+  "status": "FAILED",
+  "sdk_sha256": "27cd80fb1c06feaa7da8b5658cce918d1e3ab71c304a0c0ce42e30688ac008f3",
+  "image": "sha256:b9d673de93f1857e4dfa5ed6a48330d568ef96fce7f3cc975f0c688877e6e26e",
+  "probes": [
+    {
+      "index": 0,
+      "load_order": "sdk-first",
+      "nonce": "9f0d0eb3d4d26647749ae368c1d56abe",
+      "last_checkpoint": "CLEANUP_AFTER",
+      "execution": {
+        "status": "EXIT_OBSERVED",
+        "returncode": 1,
+        "failure": null,
+        "stopped_state": {
+          "Status": "exited",
+          "Running": false,
+          "Paused": false,
+          "Restarting": false,
+          "OOMKilled": false,
+          "Dead": false,
+          "Pid": 0,
+          "ExitCode": 1,
+          "Error": "",
+          "StartedAt": "2026-11-16T07:33:39.330126166Z",
+          "FinishedAt": "2026-11-16T07:33:39.823333129Z"
+        },
+        "create_attempted": true,
+        "start_attempted": true,
+        "container_id": "47e7e6b0a9b60716a0503aa15d1c9cd0fa734c73404f0a57c83a25d6ba854d76",
+        "ownership_unresolved": false,
+        "owned_container_removed": true,
+        "cleanup_failure": null
+      },
+      "selected_runtime_compatible": false,
+      "validation_failure": "ValueError: complete child exit"
+    },
+    {
+      "index": 1,
+      "load_order": "core-first",
+      "nonce": "c4f04d635a81c3466819eaad0b2b0a7c",
+      "last_checkpoint": "CLEANUP_AFTER",
+      "execution": {
+        "status": "EXIT_OBSERVED",
+        "returncode": 1,
+        "failure": null,
+        "stopped_state": {
+          "Status": "exited",
+          "Running": false,
+          "Paused": false,
+          "Restarting": false,
+          "OOMKilled": false,
+          "Dead": false,
+          "Pid": 0,
+          "ExitCode": 1,
+          "Error": "",
+          "StartedAt": "2026-11-16T07:33:40.104446876Z",
+          "FinishedAt": "2026-11-16T07:33:40.559458085Z"
+        },
+        "create_attempted": true,
+        "start_attempted": true,
+        "container_id": "be86a3f1b96c118b90c77a2494184eecdf07acc546f86377f975fd8164252d54",
+        "ownership_unresolved": false,
+        "owned_container_removed": true,
+        "cleanup_failure": null
+      },
+      "selected_runtime_compatible": false,
+      "validation_failure": "ValueError: complete child exit"
+    },
+    {
+      "index": 2,
+      "load_order": "core-first",
+      "nonce": "64e00dbcdccf933bb038c74c7d385fbf",
+      "last_checkpoint": "CLEANUP_AFTER",
+      "execution": {
+        "status": "EXIT_OBSERVED",
+        "returncode": 1,
+        "failure": null,
+        "stopped_state": {
+          "Status": "exited",
+          "Running": false,
+          "Paused": false,
+          "Restarting": false,
+          "OOMKilled": false,
+          "Dead": false,
+          "Pid": 0,
+          "ExitCode": 1,
+          "Error": "",
+          "StartedAt": "2026-11-16T07:33:40.830224328Z",
+          "FinishedAt": "2026-11-16T07:33:41.297035469Z"
+        },
+        "create_attempted": true,
+        "start_attempted": true,
+        "container_id": "4c338acce822d5465cb837de743968bb45af7d50349d5655c308237fa91c885b",
+        "ownership_unresolved": false,
+        "owned_container_removed": true,
+        "cleanup_failure": null
+      },
+      "selected_runtime_compatible": false,
+      "validation_failure": "ValueError: complete child exit"
+    }
+  ],
+  "official_model_processes": 0,
+  "strict_result": "NOT_RUN",
+  "stage7_complete": false,
+  "source_sha": "013e54a12f4df94b3cc425104ce1c8d07a6e3780",
+  "disk_before": {
+    "total": 154894188544,
+    "used": 64005906432,
+    "free": 90871504896
+  },
+  "failure": "ValueError: two ordinary core-first SDK3/GLX children must pass"
+}

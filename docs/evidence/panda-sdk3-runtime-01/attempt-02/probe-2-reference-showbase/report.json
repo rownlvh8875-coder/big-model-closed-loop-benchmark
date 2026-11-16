@@ -1,0 +1,54 @@
+{
+  "status": "PANDA_REFERENCE_GLX_FRAMES_OBSERVED",
+  "pid": 10,
+  "nonce": "3ad0077531845dda4ef77f3c3d6bda11",
+  "load_order": "core-first",
+  "factory": "showbase",
+  "observer_instrumented": false,
+  "core_sha256": "8b0372f1df91a930f18b2551f7fde5d5687e21bc79dee9ecd0dd2018cba72490",
+  "panda_version": "1.10.13",
+  "sdk_sha256": "f38e0734a5344eda9a11e3024695febf2cea0177aa80985b67ceef5837a088d7",
+  "source_stats": [],
+  "driver": {
+    "vendor": "Mesa",
+    "renderer": "softpipe",
+    "version": "3.3 (Compatibility Profile) Mesa 25.2.8-0ubuntu0.24.04.4"
+  },
+  "objects": {
+    "pipe": 94701615834720,
+    "output": 94701615835120,
+    "gsg": 94701615837504,
+    "texture": 94702025567520,
+    "camera": 94701615847632
+  },
+  "output_properties": {
+    "output_class": "GraphicsBuffer",
+    "active": true,
+    "framebuffer": "depth_bits=24 color_bits=24 red_bits=8 green_bits=8 blue_bits=8 alpha_bits=8 back_buffers=1 force_hardware force_software ",
+    "width": 8,
+    "height": 8
+  },
+  "frames": [
+    {
+      "index": 0,
+      "raw_hex": "13f9f113f9f113f9f113f9f113f9f113f9f113f9f113f9f113f9f113f9f113f9f113f9f113f9f113f9f113f9f113f9f113f9f113f9f113f9f113f9f113f9f113f9f113f9f113f9f113f9f113f9f113f9f113f9f113f9f113f9f113f9f113f9f113f9f113f9f113f9f113f9f113f9f113f9f113f9f113f9f113f9f113f9f113f9f113f9f113f9f113f9f113f9f113f9f113f9f113f9f113f9f113f9f113f9f113f9f113f9f113f9f113f9f113f9f113f9f113f9f113f9f113f9f113f9f113f9f1",
+      "nbytes": 192,
+      "sha256": "e68bae768774b3a733e0dae822f8a942dff035bac5e0cba1486de5487f16d6a0"
+    },
+    {
+      "index": 1,
+      "raw_hex": "685c21685c21685c21685c21685c21685c21685c21685c21685c21685c21685c21685c21685c21685c21685c21685c21685c21685c21685c21685c21685c21685c21685c21685c21685c21685c21685c21685c21685c21685c21685c21685c21685c21685c21685c21685c21685c21685c21685c21685c21685c21685c21685c21685c21685c21685c21685c21685c21685c21685c21685c21685c21685c21685c21685c21685c21685c21685c21685c21685c21685c21685c21685c21685c21",
+      "nbytes": 192,
+      "sha256": "2b6ae52b55b220754b8421a6cd83ccf862d8fd6138fa1b66e6274e1bd1b61a6b"
+    }
+  ],
+  "cleanup": {
+    "windows_after": 0,
+    "texture_ram_after": false,
+    "render_calls": 4,
+    "ram_reads": 2,
+    "cpp_deallocation_verified": false
+  },
+  "server_returncode": 0,
+  "child_finalized_before_server_stop": true
+}
