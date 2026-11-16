@@ -1,0 +1,31 @@
+{
+  "schema": "sdk3-rgb-forensics-request-v1",
+  "source_sha": "937576d2f964baaf1de88bf916d0bdb71280a132",
+  "push_ci": 43854069925,
+  "pr_ci": 43854078078,
+  "arms": [
+    "control",
+    "full_rgb"
+  ],
+  "native_models_max": 4,
+  "seed": 20261110,
+  "scenario": "s_curve_left_right",
+  "steps_per_child": 12,
+  "prior_run_id": 43845729539,
+  "prior_artifact_id": 14216386095,
+  "model_memory_bytes": 10737418240,
+  "cpus": 2,
+  "new_glx_processes": 0,
+  "sdk_builds": 0,
+  "original_matrix": {
+    "passed": 3,
+    "total": 4,
+    "gate_passed": false
+  },
+  "requested_at_kst": "2026-11-16T20:06:14.794338+09:00",
+  "authorization": "User requested the next RGB repeatability investigation; independent control and CPU-retention diagnostics only.",
+  "repair_promotion": false,
+  "environment_publication": false,
+  "registry_publication": false,
+  "main_merge": false
+}

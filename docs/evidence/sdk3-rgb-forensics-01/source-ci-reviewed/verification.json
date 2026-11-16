@@ -1,0 +1,39 @@
+{
+  "checked_at_kst": "2026-11-16T20:06:13.001254+09:00",
+  "head_sha": "937576d2f964baaf1de88bf916d0bdb71280a132",
+  "pr": 132,
+  "ci": [
+    {
+      "event": "pull_request",
+      "id": 43854078078,
+      "jobs": [
+        {
+          "id": 133253737576,
+          "name": "onnx-interface-test"
+        },
+        {
+          "id": 133253737939,
+          "name": "synthetic-unit"
+        }
+      ],
+      "attempt": 1,
+      "artifacts": 0
+    },
+    {
+      "event": "push",
+      "id": 43854069925,
+      "jobs": [
+        {
+          "id": 133253708941,
+          "name": "synthetic-unit"
+        },
+        {
+          "id": 133253709516,
+          "name": "onnx-interface-test"
+        }
+      ],
+      "attempt": 1,
+      "artifacts": 0
+    }
+  ]
+}
