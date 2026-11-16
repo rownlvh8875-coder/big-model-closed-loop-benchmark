@@ -1,0 +1,28 @@
+test_full_six_child_schedule_and_final_publication_validation (test_first_divergence_model.FinalizationTests.test_full_six_child_schedule_and_final_publication_validation) ... DIAGNOSTIC {'status': 'FAILED_OR_INCOMPLETE', 'error': "AssertionError: 'FAILED_OR_INCOMPLETE' != 'TRIAL_ASSOCIATION_VALIDATED'\n- FAILED_OR_INCOMPLETE\n+ TRIAL_ASSOCIATION_VALIDATED\n : OSError: [Errno 28] No space left on device: '/tmp/tmp21d6g_cf/study/trial_03/step_04'", 'elapsed_wall_s': 1.824568417010596, 'cleanup_errors': []}
+LAUNCH ERRORS [('original', None), ('proxy', None), ('retention', None), ('retention', "AssertionError: 'FAILED_OR_INCOMPLETE' != 'TRIAL_ASSOCIATION_VALIDATED'\n- FAILED_OR_INCOMPLETE\n+ TRIAL_ASSOCIATION_VALIDATED\n : OSError: [Errno 28] No space left on device: '/tmp/tmp21d6g_cf/study/trial_03/step_04'")]
+FAIL
+
+======================================================================
+FAIL: test_full_six_child_schedule_and_final_publication_validation (test_first_divergence_model.FinalizationTests.test_full_six_child_schedule_and_final_publication_validation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_first_divergence_model.py", line 653, in test_full_six_child_schedule_and_final_publication_validation
+    self.assertEqual(launched,[('original',0),('proxy',0),('retention',0),('retention',1),('proxy',1),('original',1)])
+AssertionError: Lists differ: [('or[30 chars]etention', 0)] != [('or[30 chars]etention', 0), ('retention', 1), ('proxy', 1), ('original', 1)]
+
+Second list contains 3 additional elements.
+First extra element 3:
+('retention', 1)
+
+- [('original', 0), ('proxy', 0), ('retention', 0)]
++ [('original', 0),
++  ('proxy', 0),
++  ('retention', 0),
++  ('retention', 1),
++  ('proxy', 1),
++  ('original', 1)]
+
+----------------------------------------------------------------------
+Ran 1 test in 1.838s
+
+FAILED (failures=1)
