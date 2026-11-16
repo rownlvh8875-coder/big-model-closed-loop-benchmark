@@ -1,0 +1,41 @@
+test_build_panda_sdk_cg_eigen (unittest.loader._FailedTest.test_build_panda_sdk_cg_eigen) ... ERROR
+test_archive_inflation_member_and_header_bounds (test_panda_sdk_cg_eigen_inputs.EigenTests.test_archive_inflation_member_and_header_bounds) ... ok
+test_changed_archive_and_host_alias_never_stage (test_panda_sdk_cg_eigen_inputs.EigenTests.test_changed_archive_and_host_alias_never_stage) ... ok
+test_exact_pinned_eigen_headers (test_panda_sdk_cg_eigen_inputs.EigenTests.test_exact_pinned_eigen_headers) ... ok
+test_selected_path_link_duplicate_missing_and_digest_reject (test_panda_sdk_cg_eigen_inputs.EigenTests.test_selected_path_link_duplicate_missing_and_digest_reject) ... ok
+test_panda_sdk_cg_eigen_layout (unittest.loader._FailedTest.test_panda_sdk_cg_eigen_layout) ... ERROR
+
+======================================================================
+ERROR: test_build_panda_sdk_cg_eigen (unittest.loader._FailedTest.test_build_panda_sdk_cg_eigen)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_build_panda_sdk_cg_eigen
+Traceback (most recent call last):
+  File "/workspace/.cloud-tools/python/cpython-3.11.17-linux-x86_64-gnu/lib/python3.11/unittest/loader.py", line 419, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.cloud-tools/python/cpython-3.11.17-linux-x86_64-gnu/lib/python3.11/unittest/loader.py", line 362, in _get_module_from_name
+    __import__(name)
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_build_panda_sdk_cg_eigen.py", line 3, in <module>
+    from scripts import build_panda_sdk_cg_eigen as b
+ImportError: cannot import name 'build_panda_sdk_cg_eigen' from 'scripts' (/workspace/big-model-closed-loop-benchmark/scripts/__init__.py)
+
+
+======================================================================
+ERROR: test_panda_sdk_cg_eigen_layout (unittest.loader._FailedTest.test_panda_sdk_cg_eigen_layout)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_panda_sdk_cg_eigen_layout
+Traceback (most recent call last):
+  File "/workspace/.cloud-tools/python/cpython-3.11.17-linux-x86_64-gnu/lib/python3.11/unittest/loader.py", line 419, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.cloud-tools/python/cpython-3.11.17-linux-x86_64-gnu/lib/python3.11/unittest/loader.py", line 362, in _get_module_from_name
+    __import__(name)
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_cg_eigen_layout.py", line 3, in <module>
+    from scripts import panda_sdk_cg_eigen_layout as l
+ImportError: cannot import name 'panda_sdk_cg_eigen_layout' from 'scripts' (/workspace/big-model-closed-loop-benchmark/scripts/__init__.py)
+
+
+----------------------------------------------------------------------
+Ran 6 tests in 1.452s
+
+FAILED (errors=2)

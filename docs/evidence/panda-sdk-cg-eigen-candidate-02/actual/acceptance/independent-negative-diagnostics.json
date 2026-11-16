@@ -1,0 +1,74 @@
+{
+  "schema": "panda-sdk-cg-eigen-negative-data-diagnostics-v2",
+  "diagnostic_only": true,
+  "native_admitted": false,
+  "target_execution": false,
+  "full_object_abi_qualified": false,
+  "previous_abort_fixed": false,
+  "source_observer_default_off_observed": null,
+  "required_offsets": {
+    "major": 1672,
+    "minor": 1676,
+    "vendor": 1648
+  },
+  "producer_failure": null,
+  "bundle_failure": null,
+  "compiler_failure": null,
+  "candidate_nbytes": 1052968,
+  "candidate_sha256": "332551094adbca1aa12f716ff8798566e522021b62f25c46a66a425873ea1297",
+  "observed_offsets_diagnostic_only": {
+    "major": 1672,
+    "minor": 1676,
+    "vendor": 1648
+  },
+  "vtable_nbytes_diagnostic_only": 1024,
+  "extraction_diagnostic_only": {
+    "schema": "panda-cg-eigen-literal-extraction-v2",
+    "parent_sha256": "37c047bc1e690dd7116993ee9cb5880da4a76a59b868240747b9d51000783b90",
+    "parent_nbytes": 9848,
+    "section_index": 18,
+    "section_offset": 448,
+    "section_nbytes": 128,
+    "section_sha256": "8d6dc6b0654a42178b210d97ac691ce801eb2b0e65f42b54bd0771335b812208",
+    "targeting_relocations": 0,
+    "parent_loaded": false,
+    "target_execution": false
+  },
+  "descriptor_words_diagnostic_only": [
+    5782989451580098354,
+    2,
+    8,
+    0,
+    1,
+    88,
+    104,
+    848,
+    3984,
+    1648,
+    1672,
+    1676,
+    1,
+    1,
+    16,
+    16
+  ],
+  "raw_file_matches_parent": true,
+  "decoded_layout_diagnostic_only": {
+    "schema": "panda-cg-eigen-layout-v2",
+    "descriptor_sha256": "8d6dc6b0654a42178b210d97ac691ce801eb2b0e65f42b54bd0771335b812208",
+    "shader_caps_size": 88,
+    "graphics_pipe_size": 104,
+    "gsg_size": 848,
+    "gl_gsg_size": 3984,
+    "offsets": {
+      "vendor": 1648,
+      "major": 1672,
+      "minor": 1676
+    },
+    "have_eigen": true,
+    "effective_linmath_align": true,
+    "vector_alignment": 16,
+    "memory_alignment": 16,
+    "target_execution": false
+  }
+}

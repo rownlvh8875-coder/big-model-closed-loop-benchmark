@@ -1,0 +1,209 @@
+{
+  "status": "AUTHENTICATED_CG_EIGEN_BUILD_FAILED",
+  "static_passed": false,
+  "source_sha": "ba64c869c38bd9b1aac138ec81bf98738cda4dc1",
+  "activation_sha": "0150f7dcc41b74660826f0d926eff3b26bdd2fec",
+  "workflow_id": 419583286,
+  "run_id": 43777541292,
+  "run_attempt": 1,
+  "job_id": 133007151597,
+  "artifact_id": 14187227174,
+  "artifact_zip_nbytes": 31276211,
+  "artifact_zip_sha256": "c122566d853372c780020efd61664d3b2d38bf06807a840df40d7691a5cde947",
+  "build_start_attempts": 1,
+  "producer_status": "FAILED",
+  "failure": null,
+  "bundle_failure": null,
+  "build_failure": null,
+  "compile_elapsed_seconds": 338.603261358,
+  "compiler_commands": 101,
+  "candidate_sha256": "332551094adbca1aa12f716ff8798566e522021b62f25c46a66a425873ea1297",
+  "candidate_nbytes": 1052968,
+  "observed_offsets": {
+    "major": 1672,
+    "minor": 1676,
+    "vendor": 1648
+  },
+  "layout": {
+    "schema": "panda-cg-eigen-layout-v2",
+    "descriptor_sha256": "8d6dc6b0654a42178b210d97ac691ce801eb2b0e65f42b54bd0771335b812208",
+    "shader_caps_size": 88,
+    "graphics_pipe_size": 104,
+    "gsg_size": 848,
+    "gl_gsg_size": 3984,
+    "offsets": {
+      "vendor": 1648,
+      "major": 1672,
+      "minor": 1676
+    },
+    "have_eigen": true,
+    "effective_linmath_align": true,
+    "vector_alignment": 16,
+    "memory_alignment": 16,
+    "target_execution": false
+  },
+  "gate_reasons": [
+    "ValueError: needed provider absent: libCg.so requested by /opt/venv/lib/python3.11/site-packages/panda3d/libpandagl.so"
+  ],
+  "actions_output_origin_authenticated": true,
+  "build_slot_remaining": 0,
+  "no_retry": true,
+  "native_admitted": false,
+  "target_execution": false,
+  "candidate_installed": false,
+  "full_object_abi_qualified": false,
+  "previous_abort_fixed": false,
+  "scientific_native_runs": 0,
+  "strict_result": "0/4 FAIL",
+  "stage7_complete": false,
+  "negative_diagnostics": {
+    "schema": "panda-sdk-cg-eigen-negative-data-diagnostics-v2",
+    "diagnostic_only": true,
+    "native_admitted": false,
+    "target_execution": false,
+    "full_object_abi_qualified": false,
+    "previous_abort_fixed": false,
+    "source_observer_default_off_observed": null,
+    "required_offsets": {
+      "major": 1672,
+      "minor": 1676,
+      "vendor": 1648
+    },
+    "producer_failure": null,
+    "bundle_failure": null,
+    "compiler_failure": null,
+    "candidate_nbytes": 1052968,
+    "candidate_sha256": "332551094adbca1aa12f716ff8798566e522021b62f25c46a66a425873ea1297",
+    "observed_offsets_diagnostic_only": {
+      "major": 1672,
+      "minor": 1676,
+      "vendor": 1648
+    },
+    "vtable_nbytes_diagnostic_only": 1024,
+    "extraction_diagnostic_only": {
+      "schema": "panda-cg-eigen-literal-extraction-v2",
+      "parent_sha256": "37c047bc1e690dd7116993ee9cb5880da4a76a59b868240747b9d51000783b90",
+      "parent_nbytes": 9848,
+      "section_index": 18,
+      "section_offset": 448,
+      "section_nbytes": 128,
+      "section_sha256": "8d6dc6b0654a42178b210d97ac691ce801eb2b0e65f42b54bd0771335b812208",
+      "targeting_relocations": 0,
+      "parent_loaded": false,
+      "target_execution": false
+    },
+    "descriptor_words_diagnostic_only": [
+      5782989451580098354,
+      2,
+      8,
+      0,
+      1,
+      88,
+      104,
+      848,
+      3984,
+      1648,
+      1672,
+      1676,
+      1,
+      1,
+      16,
+      16
+    ],
+    "raw_file_matches_parent": true,
+    "decoded_layout_diagnostic_only": {
+      "schema": "panda-cg-eigen-layout-v2",
+      "descriptor_sha256": "8d6dc6b0654a42178b210d97ac691ce801eb2b0e65f42b54bd0771335b812208",
+      "shader_caps_size": 88,
+      "graphics_pipe_size": 104,
+      "gsg_size": 848,
+      "gl_gsg_size": 3984,
+      "offsets": {
+        "vendor": 1648,
+        "major": 1672,
+        "minor": 1676
+      },
+      "have_eigen": true,
+      "effective_linmath_align": true,
+      "vector_alignment": 16,
+      "memory_alignment": 16,
+      "target_execution": false
+    }
+  },
+  "independent_negative_build_evidence": {
+    "records_coherent": true,
+    "remote_tools_independently_remeasured": false,
+    "remote_host_headers_independently_remeasured": false,
+    "native_admitted": false,
+    "source_manifest_sha256": "42267657cd34308adea07449115791065fb7bf722d4a74644ef1d2a7089208b7",
+    "used_inputs": 4785,
+    "compiler_commands": 101,
+    "retained_candidates_bound": 4
+  },
+  "independent_loader_search_negative": {
+    "schema": "panda-sdk-cg-eigen-loader-search-negative-v2",
+    "inventory_sha256": "d84221127e69dec818a01762ff4c53b7570144caa4f91708b5009cf63058d7bc",
+    "candidate_sha256": "332551094adbca1aa12f716ff8798566e522021b62f25c46a66a425873ea1297",
+    "candidate_rpath": null,
+    "candidate_runpath": null,
+    "root_needed_selection": [
+      {
+        "needed": "libpanda.so.1.10",
+        "selected": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10"
+      },
+      {
+        "needed": "libpandaexpress.so.1.10",
+        "selected": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10"
+      },
+      {
+        "needed": "libp3dtool.so.1.10",
+        "selected": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtool.so.1.10"
+      },
+      {
+        "needed": "libp3dtoolconfig.so.1.10",
+        "selected": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10"
+      },
+      {
+        "needed": "libGL.so.1",
+        "selected": "/usr/lib/x86_64-linux-gnu/libGL.so.1.7.0"
+      },
+      {
+        "needed": "libCg.so",
+        "rejection": "needed provider absent: libCg.so requested by /opt/venv/lib/python3.11/site-packages/panda3d/libpandagl.so"
+      },
+      {
+        "needed": "libCgGL.so",
+        "rejection": "needed provider absent: libCgGL.so requested by /opt/venv/lib/python3.11/site-packages/panda3d/libpandagl.so"
+      },
+      {
+        "needed": "libX11.so.6",
+        "selected": "/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0"
+      },
+      {
+        "needed": "libstdc++.so.6",
+        "selected": "/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33"
+      },
+      {
+        "needed": "libc.so.6",
+        "selected": "/usr/lib/x86_64-linux-gnu/libc.so.6"
+      }
+    ],
+    "current_image_cg_file_records": {
+      "libCg.so": {
+        "image_path": "/opt/venv/lib/python3.11/site-packages/panda3d/libCg.so",
+        "inventory_record_matches": true
+      },
+      "libCgGL.so": {
+        "image_path": "/opt/venv/lib/python3.11/site-packages/panda3d/libCgGL.so",
+        "inventory_record_matches": true
+      }
+    },
+    "conclusion": "Cg files exist in the Panda package; no candidate RPATH/RUNPATH and current selector does not search that package for Cg dependencies",
+    "diagnostic_only": true,
+    "provider_policy_changed": false,
+    "full_dependency_graph_qualified": false,
+    "runtime_binding_qualified": false,
+    "native_admitted": false,
+    "target_execution": false
+  }
+}

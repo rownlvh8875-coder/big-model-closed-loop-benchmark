@@ -1,0 +1,3115 @@
+{
+  "schema": "panda-sdk-cg-eigen-production-v2",
+  "status": "FAILED",
+  "source_sha": "ba64c869c38bd9b1aac138ec81bf98738cda4dc1",
+  "activation_sha": "0150f7dcc41b74660826f0d926eff3b26bdd2fec",
+  "run_id": 43777541292,
+  "request_sha256": "09d45ecea0b762e693759632a5f1cbd048a5fae9a29876e3203237641f2cf0ed",
+  "build_start_attempts": 1,
+  "native_admitted": false,
+  "stage7_complete": false,
+  "target_execution": false,
+  "scientific_native_runs": 0,
+  "contract_sha256": "89bcc8e4372670aa80d535a45969aaec820cd57e0a6549549cf7fd6d030af509",
+  "image_sha256": "4984470cd7d732f9f2d1c12710c9433b563b3817ba6d1d419749a9a2b1b46698",
+  "files": {
+    "logs/host.log": {
+      "nbytes": 1014996,
+      "sha256": "cd6672ecb0c35935bd7639e966af452ae66e8665bbb198bf810886dd4f933681"
+    },
+    "logs/makepanda.log": {
+      "nbytes": 194064,
+      "sha256": "7e97458059e6a39e2b92e51bbf83c65961da2d38f306e85a468db0f96d3edef9"
+    },
+    "reports/source-manifest.json": {
+      "nbytes": 1413872,
+      "sha256": "42267657cd34308adea07449115791065fb7bf722d4a74644ef1d2a7089208b7"
+    },
+    "reports/configuration-delta.json": {
+      "nbytes": 65,
+      "sha256": "563747ea4febc5b037605579484608f31f5677ed971bc1c9a37971dff2297177"
+    },
+    "reports/gate.json": {
+      "nbytes": 1183,
+      "sha256": "6ee9acb651f74a586d0882890e7222e94ba7c86dbbd89f94f82cbe8b2a196db4"
+    },
+    "reports/layout-extraction.json": {
+      "nbytes": 413,
+      "sha256": "b63c52e9c11cd10e334d88c6d8826f5db4b913efbbc4449d8c4509d077788d5d"
+    },
+    "reports/sdk-output-manifest.json": {
+      "nbytes": 474329,
+      "sha256": "c9a9aa7bd09cd62cbc5dff5a0e3731ae57637b0215cabc6756f0e6f88ef0b126"
+    },
+    "reports/configuration.json": {
+      "nbytes": 2972,
+      "sha256": "8a611d7bd78399eb1c8a20a60082facfaece8e433acbfc01adcafabb9d4c1a65"
+    },
+    "reports/compile-dependencies.json": {
+      "nbytes": 10870292,
+      "sha256": "064a68dbab31c6bc7a9bf0a0acad8d3273b69ca8520496e0a16d9394033a2965"
+    },
+    "reports/effective-configuration.json": {
+      "nbytes": 459,
+      "sha256": "2b164d5076cd6e99d9302d021a7cc5b6db3f6ac8a2c191bceb4da685ca1d8b7b"
+    },
+    "reports/layout.json": {
+      "nbytes": 446,
+      "sha256": "6ad7085d927e2ba156e50b217a2ead5b610fe6005e5a4a18c7adaaf32ae38267"
+    },
+    "reports/used-inputs.json": {
+      "nbytes": 1699151,
+      "sha256": "33121a328e247f10e5bfd4d39bd4f6fafb8465eca99b8af1c27d7222cc7286c2"
+    },
+    "reports/tools-after.json": {
+      "nbytes": 48294,
+      "sha256": "7f27ff16daa08e69c90577b0390e61baf754ced1ccc67ae7f8d92bc940098ee6"
+    },
+    "reports/tools-before.json": {
+      "nbytes": 47710,
+      "sha256": "d31e7b808224488bd06062b4a7e1fe2e127724d8a3a1b4dea65395cb6a4760c2"
+    },
+    "reports/inputs.json": {
+      "nbytes": 302156,
+      "sha256": "8dc8b61e84931c5eaf2b2c2cf10b562d9287f98865ce1a94b9d8de1a300571c7"
+    },
+    "reports/host-before.json": {
+      "nbytes": 2246078,
+      "sha256": "1d4cba7b2b8c9c8d76a70af5e003e92d7cde2ec29769263a6aa86acb7bddbcd8"
+    },
+    "candidate/layout-descriptor.data": {
+      "nbytes": 128,
+      "sha256": "8d6dc6b0654a42178b210d97ac691ce801eb2b0e65f42b54bd0771335b812208"
+    },
+    "candidate/layout-contract.o.data": {
+      "nbytes": 9848,
+      "sha256": "37c047bc1e690dd7116993ee9cb5880da4a76a59b868240747b9d51000783b90"
+    },
+    "candidate/build-libpanda.so.data": {
+      "nbytes": 11796880,
+      "sha256": "607ef51aeabda0a7331305b2cf3f6fbd6eadcba28f8f517262ccf8b5441964ce"
+    },
+    "candidate/libpandagl.so.data": {
+      "nbytes": 1052968,
+      "sha256": "332551094adbca1aa12f716ff8798566e522021b62f25c46a66a425873ea1297"
+    }
+  },
+  "omissions": [
+    "reports/loader-metadata.json",
+    "reports/provider-audit.json"
+  ],
+  "staging": [
+    {
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "credential.helper=",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "http.sslVerify=true",
+        "-c",
+        "core.fsmonitor=false",
+        "clone",
+        "--filter=blob:none",
+        "--no-checkout",
+        "--depth=1",
+        "https://github.com/panda3d/panda3d.git",
+        "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-eigen-candidate-02/producer/work/upstream"
+      ],
+      "cwd": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-eigen-candidate-02/producer/work",
+      "status": "EXITED",
+      "returncode": 0,
+      "owned_group_reaped": true,
+      "streams_complete": true,
+      "elapsed_seconds": 0.26594211600000506,
+      "pid": 2187,
+      "streams": {
+        "stdout": {
+          "observed_nbytes": 0,
+          "saved_nbytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stderr": {
+          "observed_nbytes": 169,
+          "saved_nbytes": 169,
+          "sha256": "4baeb7925fe769b770e2443a23c23637d1e4713abfa13b23184fef7547500275"
+        }
+      }
+    },
+    {
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "credential.helper=",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "http.sslVerify=true",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-eigen-candidate-02/producer/work/upstream",
+        "fetch",
+        "--depth=1",
+        "origin",
+        "470e352ab87ceae6e30429720e4690c8371f5a55"
+      ],
+      "cwd": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-eigen-candidate-02/producer/work",
+      "status": "EXITED",
+      "returncode": 0,
+      "owned_group_reaped": true,
+      "streams_complete": true,
+      "elapsed_seconds": 0.2355004400000098,
+      "pid": 2193,
+      "streams": {
+        "stdout": {
+          "observed_nbytes": 0,
+          "saved_nbytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stderr": {
+          "observed_nbytes": 116,
+          "saved_nbytes": 116,
+          "sha256": "125b60a45b516ecdd578bcfd49217fbd1ccf4b89ebc6a33636ac6a87a6f31e5a"
+        }
+      }
+    },
+    {
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "credential.helper=",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "http.sslVerify=true",
+        "-c",
+        "core.fsmonitor=false",
+        "-C",
+        "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-eigen-candidate-02/producer/work/upstream",
+        "checkout",
+        "--detach",
+        "470e352ab87ceae6e30429720e4690c8371f5a55"
+      ],
+      "cwd": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-eigen-candidate-02/producer/work",
+      "status": "EXITED",
+      "returncode": 0,
+      "owned_group_reaped": true,
+      "streams_complete": true,
+      "elapsed_seconds": 3.1787463400000036,
+      "pid": 2204,
+      "streams": {
+        "stdout": {
+          "observed_nbytes": 0,
+          "saved_nbytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stderr": {
+          "observed_nbytes": 64,
+          "saved_nbytes": 64,
+          "sha256": "85258516b618de25c96a613ced2bb60ff3ba29f4bfd8b135d0d831994ae53281"
+        }
+      }
+    },
+    {
+      "argv": [
+        "/usr/bin/python3",
+        "-I",
+        "-S",
+        "-B",
+        "-c",
+        "import sys,json;sys.path.insert(0,sys.argv[1]);from scripts import panda_sdk_routes_stage as s;m=s.stage(sys.argv[2],sys.argv[3]);print(json.dumps(dict(source_files=m[\"source_tree_files\"])))",
+        "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark",
+        "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-eigen-candidate-02/producer/work/upstream",
+        "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-eigen-candidate-02/producer/work/source"
+      ],
+      "cwd": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-eigen-candidate-02/producer/work",
+      "status": "EXITED",
+      "returncode": 0,
+      "owned_group_reaped": true,
+      "streams_complete": true,
+      "elapsed_seconds": 5.918731816999994,
+      "pid": 2216,
+      "streams": {
+        "stdout": {
+          "observed_nbytes": 23,
+          "saved_nbytes": 23,
+          "sha256": "924c471220922f4aee89d99de9284506632da9e71eea57c4f6530357f8c6aa40"
+        },
+        "stderr": {
+          "observed_nbytes": 0,
+          "saved_nbytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    }
+  ],
+  "workflow_id": 419583286,
+  "host_resources": {
+    "initial_free_bytes": 91088416768,
+    "memory_capacity": "MemTotal:       16367528 kB",
+    "aggregate_cgroup_memory_limit_claimed": false
+  },
+  "compiler_build": {
+    "schema": "panda-sdk-cg-eigen-build-v2",
+    "status": "CG_EIGEN_SDK_COMPILED_NOT_LOADED",
+    "build_start_attempts": 1,
+    "target_execution": false,
+    "native_admitted": false,
+    "stage7_complete": false,
+    "argv": [
+      "/usr/bin/python3",
+      "-B",
+      "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-eigen-candidate-02/producer/work/source/makepanda/makepanda.py",
+      "--nothing",
+      "--use-gl",
+      "--use-x11",
+      "--use-nvidiacg",
+      "--no-python",
+      "--no-copy-python",
+      "--optimize",
+      "3",
+      "--threads",
+      "2",
+      "--git-commit",
+      "470e352ab87ceae6e30429720e4690c8371f5a55",
+      "--outputdir",
+      "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-eigen-candidate-02/producer/work/build/sdk",
+      "--nocolor",
+      "--verbose",
+      "--gl-incdir",
+      "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-eigen-candidate-02/producer/work/private/usr/include",
+      "--gl-libdir",
+      "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-eigen-candidate-02/producer/work/private/usr/lib/x86_64-linux-gnu",
+      "--x11-incdir",
+      "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-eigen-candidate-02/producer/work/private/usr/include",
+      "--x11-libdir",
+      "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-eigen-candidate-02/producer/work/private/usr/lib/x86_64-linux-gnu",
+      "--nvidiacg-incdir",
+      "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-eigen-candidate-02/producer/work/private/usr/include",
+      "--nvidiacg-libdir",
+      "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-eigen-candidate-02/producer/work/private/usr/lib/x86_64-linux-gnu",
+      "--cggl-incdir",
+      "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-eigen-candidate-02/producer/work/private/usr/include",
+      "--cggl-libdir",
+      "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-eigen-candidate-02/producer/work/private/usr/lib/x86_64-linux-gnu",
+      "--use-eigen",
+      "--eigen-incdir",
+      "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-eigen-candidate-02/producer/work/private/usr/include/eigen3"
+    ],
+    "source_manifest_sha256": "42267657cd34308adea07449115791065fb7bf722d4a74644ef1d2a7089208b7",
+    "contract_sha256": "b11e85da328bd4f68627fdd957b14f1aa4e2f0c898282404402405dd1f4d3630",
+    "command": {
+      "argv": [
+        "/usr/bin/python3",
+        "-B",
+        "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-eigen-candidate-02/producer/work/source/makepanda/makepanda.py",
+        "--nothing",
+        "--use-gl",
+        "--use-x11",
+        "--use-nvidiacg",
+        "--no-python",
+        "--no-copy-python",
+        "--optimize",
+        "3",
+        "--threads",
+        "2",
+        "--git-commit",
+        "470e352ab87ceae6e30429720e4690c8371f5a55",
+        "--outputdir",
+        "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-eigen-candidate-02/producer/work/build/sdk",
+        "--nocolor",
+        "--verbose",
+        "--gl-incdir",
+        "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-eigen-candidate-02/producer/work/private/usr/include",
+        "--gl-libdir",
+        "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-eigen-candidate-02/producer/work/private/usr/lib/x86_64-linux-gnu",
+        "--x11-incdir",
+        "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-eigen-candidate-02/producer/work/private/usr/include",
+        "--x11-libdir",
+        "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-eigen-candidate-02/producer/work/private/usr/lib/x86_64-linux-gnu",
+        "--nvidiacg-incdir",
+        "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-eigen-candidate-02/producer/work/private/usr/include",
+        "--nvidiacg-libdir",
+        "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-eigen-candidate-02/producer/work/private/usr/lib/x86_64-linux-gnu",
+        "--cggl-incdir",
+        "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-eigen-candidate-02/producer/work/private/usr/include",
+        "--cggl-libdir",
+        "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-eigen-candidate-02/producer/work/private/usr/lib/x86_64-linux-gnu",
+        "--use-eigen",
+        "--eigen-incdir",
+        "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-eigen-candidate-02/producer/work/private/usr/include/eigen3"
+      ],
+      "cwd": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-eigen-candidate-02/producer/work/source",
+      "status": "EXITED",
+      "returncode": 0,
+      "owned_group_reaped": true,
+      "streams_complete": true,
+      "elapsed_seconds": 312.50708980900004,
+      "pid": 2272,
+      "streams": {
+        "stdout": {
+          "observed_nbytes": 194064,
+          "saved_nbytes": 194064,
+          "sha256": "7e97458059e6a39e2b92e51bbf83c65961da2d38f306e85a468db0f96d3edef9"
+        },
+        "stderr": {
+          "observed_nbytes": 227606,
+          "saved_nbytes": 227606,
+          "sha256": "d4bea8056ace451c786d27d6d3c981613824dc7b2d29e7b9d30457d0605bd2aa"
+        }
+      }
+    },
+    "compile_elapsed_seconds": 338.603261358,
+    "layout": {
+      "object": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-eigen-candidate-02/producer/work/build/layout-build/layout-contract.o",
+      "object_sha256": "37c047bc1e690dd7116993ee9cb5880da4a76a59b868240747b9d51000783b90",
+      "descriptor": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-eigen-candidate-02/producer/work/build/layout-build/layout-descriptor.data",
+      "descriptor_sha256": "8d6dc6b0654a42178b210d97ac691ce801eb2b0e65f42b54bd0771335b812208",
+      "command": {
+        "argv": [
+          "/usr/bin/g++-13",
+          "-std=gnu++11",
+          "-D_GLIBCXX_USE_CXX11_ABI=0",
+          "-MD",
+          "-fno-access-control",
+          "-Wno-invalid-offsetof",
+          "-I/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-eigen-candidate-02/producer/work/build/sdk/include",
+          "-I/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-eigen-candidate-02/producer/work/private/usr/include",
+          "-I/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-eigen-candidate-02/producer/work/private/usr/include/eigen3",
+          "-c",
+          "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/native/panda_sdk_cg_v2/layout_contract.cxx",
+          "-o",
+          "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-eigen-candidate-02/producer/work/build/layout-build/layout-contract.o"
+        ],
+        "cwd": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark",
+        "status": "EXITED",
+        "returncode": 0,
+        "owned_group_reaped": true,
+        "streams_complete": true,
+        "elapsed_seconds": 6.46423380799996,
+        "pid": 3023,
+        "streams": {
+          "stdout": {
+            "observed_nbytes": 0,
+            "saved_nbytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "stderr": {
+            "observed_nbytes": 1078,
+            "saved_nbytes": 1078,
+            "sha256": "e80055e179a16691d7af51e794148dad8b788fee6d514bebf28236d0413a21cb"
+          }
+        }
+      },
+      "macro_command": {
+        "argv": [
+          "/usr/bin/g++-13",
+          "-std=gnu++11",
+          "-D_GLIBCXX_USE_CXX11_ABI=0",
+          "-fno-access-control",
+          "-Wno-invalid-offsetof",
+          "-I/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-eigen-candidate-02/producer/work/build/sdk/include",
+          "-I/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-eigen-candidate-02/producer/work/private/usr/include",
+          "-I/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-eigen-candidate-02/producer/work/private/usr/include/eigen3",
+          "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/native/panda_sdk_cg_v2/layout_contract.cxx",
+          "-E",
+          "-dM"
+        ],
+        "cwd": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark",
+        "status": "EXITED",
+        "returncode": 0,
+        "owned_group_reaped": true,
+        "streams_complete": true,
+        "elapsed_seconds": 0.19068994400004158,
+        "pid": 3027,
+        "streams": {
+          "stdout": {
+            "observed_nbytes": 408041,
+            "saved_nbytes": 408041,
+            "sha256": "7b4714ce87d533b9b0ec6ca034326470bd92d4f908e027f8b35d17f90f7c6d5f"
+          },
+          "stderr": {
+            "observed_nbytes": 0,
+            "saved_nbytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        }
+      },
+      "effective_configuration": {
+        "schema": "panda-cg-eigen-effective-config-v2",
+        "macros": {
+          "HAVE_CG": "1",
+          "HAVE_EIGEN": "1",
+          "HAVE_X11": "1",
+          "HAVE_PYTHON": null,
+          "STDFLOAT_DOUBLE": null,
+          "LINMATH_ALIGN": "1",
+          "MEMORY_HOOK_ALIGNMENT": "16",
+          "_GLIBCXX_USE_CXX11_ABI": "0"
+        },
+        "vector_alignment": 16,
+        "memory_alignment": 16,
+        "macro_stdout_sha256": "7b4714ce87d533b9b0ec6ca034326470bd92d4f908e027f8b35d17f90f7c6d5f",
+        "target_execution": false
+      },
+      "extraction": {
+        "schema": "panda-cg-eigen-literal-extraction-v2",
+        "parent_sha256": "37c047bc1e690dd7116993ee9cb5880da4a76a59b868240747b9d51000783b90",
+        "parent_nbytes": 9848,
+        "section_index": 18,
+        "section_offset": 448,
+        "section_nbytes": 128,
+        "section_sha256": "8d6dc6b0654a42178b210d97ac691ce801eb2b0e65f42b54bd0771335b812208",
+        "targeting_relocations": 0,
+        "parent_loaded": false,
+        "target_execution": false
+      },
+      "target_execution": false
+    },
+    "effective_configuration": {
+      "schema": "panda-cg-eigen-effective-config-v2",
+      "macros": {
+        "HAVE_CG": "1",
+        "HAVE_EIGEN": "1",
+        "HAVE_X11": "1",
+        "HAVE_PYTHON": null,
+        "STDFLOAT_DOUBLE": null,
+        "LINMATH_ALIGN": "1",
+        "MEMORY_HOOK_ALIGNMENT": "16",
+        "_GLIBCXX_USE_CXX11_ABI": "0"
+      },
+      "vector_alignment": 16,
+      "memory_alignment": 16,
+      "macro_stdout_sha256": "7b4714ce87d533b9b0ec6ca034326470bd92d4f908e027f8b35d17f90f7c6d5f",
+      "target_execution": false
+    },
+    "candidate": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-eigen-candidate-02/producer/work/build/sdk/lib/libpandagl.so",
+    "candidate_sha256": "332551094adbca1aa12f716ff8798566e522021b62f25c46a66a425873ea1297",
+    "build_panda": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-eigen-candidate-02/producer/work/build/sdk/lib/libpanda.so.1.10",
+    "build_panda_sha256": "607ef51aeabda0a7331305b2cf3f6fbd6eadcba28f8f517262ccf8b5441964ce",
+    "configuration": {
+      "COMPILE_IN_DEFAULT_FONT": "1",
+      "DEBUG_THREADS": false,
+      "DEFAULT_PATHSEP": "\":\"",
+      "DO_COLLISION_RECORDING": "1",
+      "DO_DCAST": "1",
+      "DO_MEMORY_USAGE": "1",
+      "DO_PIPELINING": "1",
+      "DO_PSTATS": "1",
+      "GETTIMEOFDAY_ONE_PARAM": false,
+      "GLOBAL_ARGC": false,
+      "GLOBAL_ARGV": false,
+      "HAVE_ARTOOLKIT": false,
+      "HAVE_AUDIO": "1",
+      "HAVE_BMP": "1",
+      "HAVE_CARBON": false,
+      "HAVE_CG": "1",
+      "HAVE_CGDX9": "1",
+      "HAVE_CGGL": "1",
+      "HAVE_COCOA": false,
+      "HAVE_DINKUM": false,
+      "HAVE_DIRECTCAM": false,
+      "HAVE_DX9": false,
+      "HAVE_EIGEN": "1",
+      "HAVE_FFTW": false,
+      "HAVE_FREETYPE": false,
+      "HAVE_GETOPT": "1",
+      "HAVE_GETOPT_LONG_ONLY": "1",
+      "HAVE_GLOBAL_ARGV": false,
+      "HAVE_IMG": "1",
+      "HAVE_IOS_BINARY": "1",
+      "HAVE_IOS_TYPEDEFS": "1",
+      "HAVE_JPEG": false,
+      "HAVE_MAYA": "1",
+      "HAVE_NET": "1",
+      "HAVE_OPENAL_FRAMEWORK": false,
+      "HAVE_OPENEXR": false,
+      "HAVE_OPENSSL": false,
+      "HAVE_OPUS": false,
+      "HAVE_P3D_PLUGIN": false,
+      "HAVE_PNG": false,
+      "HAVE_PNM": "1",
+      "HAVE_POSIX_THREADS": "1",
+      "HAVE_PROC_CURPROC_CMDLINE": false,
+      "HAVE_PROC_CURPROC_FILE": false,
+      "HAVE_PROC_CURPROC_MAP": false,
+      "HAVE_PROC_SELF_CMDLINE": "1",
+      "HAVE_PROC_SELF_ENVIRON": "1",
+      "HAVE_PROC_SELF_EXE": "1",
+      "HAVE_PROC_SELF_MAPS": "1",
+      "HAVE_PYTHON": false,
+      "HAVE_ROCKET_DEBUGGER": "1",
+      "HAVE_ROCKET_PYTHON": false,
+      "HAVE_RTTI": "1",
+      "HAVE_SGI_RGB": "1",
+      "HAVE_SOFTIMAGE_PIC": "1",
+      "HAVE_SQUISH": false,
+      "HAVE_STB_IMAGE": "1",
+      "HAVE_STL_HASH": false,
+      "HAVE_TGA": "1",
+      "HAVE_THREADS": "1",
+      "HAVE_TIFF": false,
+      "HAVE_VIDEO4LINUX": "1",
+      "HAVE_VORBIS": false,
+      "HAVE_WGL": false,
+      "HAVE_X11": "1",
+      "HAVE_ZLIB": false,
+      "IOCTL_TERMINAL_WIDTH": "1",
+      "IS_FREEBSD": false,
+      "IS_LINUX": "1",
+      "IS_OSX": false,
+      "LINMATH_ALIGN": "1",
+      "MUTEX_SPINLOCK": false,
+      "NOTIFY_DEBUG": "1",
+      "OS_SIMPLE_THREADS": "1",
+      "PHAVE_ALLOCA_H": "1",
+      "PHAVE_DIRENT_H": "1",
+      "PHAVE_GETOPT_H": "1",
+      "PHAVE_GLOB_H": "1",
+      "PHAVE_IOSTREAM": "1",
+      "PHAVE_IO_H": false,
+      "PHAVE_LIMITS_H": "1",
+      "PHAVE_LINUX_INPUT_H": "1",
+      "PHAVE_LOCALE_H": "1",
+      "PHAVE_LOCKF": "1",
+      "PHAVE_MALLOC_H": "1",
+      "PHAVE_NEW": "1",
+      "PHAVE_SSTREAM": "1",
+      "PHAVE_STDINT_H": "1",
+      "PHAVE_STDLIB_H": "1",
+      "PHAVE_STRING_H": "1",
+      "PHAVE_SYS_MALLOC_H": false,
+      "PHAVE_SYS_TIME_H": "1",
+      "PHAVE_SYS_TYPES_H": "1",
+      "PHAVE_UCONTEXT_H": "1",
+      "PHAVE_UNISTD_H": "1",
+      "PHAVE_UTIME_H": "1",
+      "PRC_SAVE_DESCRIPTIONS": "1",
+      "PROTOTYPE_GLOBAL_ARGV": false,
+      "PYTHON_FRAMEWORK": false,
+      "REPORT_OPENSSL_ERRORS": "1",
+      "SIMPLE_STRUCT_POINTERS": false,
+      "SIMPLE_THREADS": false,
+      "SIMULATE_NETWORK_DELAY": false,
+      "STATIC_INIT_GETENV": false,
+      "STDFLOAT_DOUBLE": false,
+      "SUPPORT_FIXED_FUNCTION": "1",
+      "SUPPORT_IMMEDIATE_MODE": false,
+      "USE_DEBUG_PYTHON": false,
+      "USE_DELETED_CHAIN": "1",
+      "USE_GENERIC_DXERR_LIBRARY": false,
+      "USE_PANDAFILESTREAM": "1",
+      "USE_TAU": false,
+      "WANT_NATIVE_NET": "1",
+      "WORDS_BIGENDIAN": false
+    },
+    "compiler_commands": 101,
+    "layout_object": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-eigen-candidate-02/producer/work/build/layout-build/layout-contract.o",
+    "layout_descriptor": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-eigen-candidate-02/producer/work/build/layout-build/layout-descriptor.data",
+    "source_state_instances": null
+  },
+  "diagnostics": {
+    "streams": [
+      {
+        "path": "work/build/makepanda/stdout.log",
+        "observed_nbytes": 194064,
+        "saved_nbytes": 194064,
+        "truncated": false
+      },
+      {
+        "path": "work/build/layout-build/compile/command.json",
+        "observed_nbytes": 1609,
+        "saved_nbytes": 1609,
+        "truncated": false
+      },
+      {
+        "path": "work/build/layout-build/effective-macros/command.json",
+        "observed_nbytes": 1420,
+        "saved_nbytes": 1420,
+        "truncated": false
+      },
+      {
+        "path": "work/build/makepanda/command.json",
+        "observed_nbytes": 3144,
+        "saved_nbytes": 3144,
+        "truncated": false
+      },
+      {
+        "path": "work/source-command-0/command.json",
+        "observed_nbytes": 1124,
+        "saved_nbytes": 1124,
+        "truncated": false
+      },
+      {
+        "path": "work/source-command-1/command.json",
+        "observed_nbytes": 1102,
+        "saved_nbytes": 1102,
+        "truncated": false
+      },
+      {
+        "path": "work/source-command-2/command.json",
+        "observed_nbytes": 1088,
+        "saved_nbytes": 1088,
+        "truncated": false
+      },
+      {
+        "path": "work/source-stage/command.json",
+        "observed_nbytes": 1333,
+        "saved_nbytes": 1333,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/0/command.json",
+        "observed_nbytes": 655,
+        "saved_nbytes": 655,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/1/command.json",
+        "observed_nbytes": 686,
+        "saved_nbytes": 686,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/10/command.json",
+        "observed_nbytes": 697,
+        "saved_nbytes": 697,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/11/command.json",
+        "observed_nbytes": 698,
+        "saved_nbytes": 698,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/12/command.json",
+        "observed_nbytes": 691,
+        "saved_nbytes": 691,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/13/command.json",
+        "observed_nbytes": 655,
+        "saved_nbytes": 655,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/14/command.json",
+        "observed_nbytes": 693,
+        "saved_nbytes": 693,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/15/command.json",
+        "observed_nbytes": 694,
+        "saved_nbytes": 694,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/16/command.json",
+        "observed_nbytes": 686,
+        "saved_nbytes": 686,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/17/command.json",
+        "observed_nbytes": 686,
+        "saved_nbytes": 686,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/18/command.json",
+        "observed_nbytes": 692,
+        "saved_nbytes": 692,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/19/command.json",
+        "observed_nbytes": 697,
+        "saved_nbytes": 697,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/2/command.json",
+        "observed_nbytes": 694,
+        "saved_nbytes": 694,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/20/command.json",
+        "observed_nbytes": 695,
+        "saved_nbytes": 695,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/21/command.json",
+        "observed_nbytes": 692,
+        "saved_nbytes": 692,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/22/command.json",
+        "observed_nbytes": 693,
+        "saved_nbytes": 693,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/23/command.json",
+        "observed_nbytes": 696,
+        "saved_nbytes": 696,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/24/command.json",
+        "observed_nbytes": 698,
+        "saved_nbytes": 698,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/25/command.json",
+        "observed_nbytes": 691,
+        "saved_nbytes": 691,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/3/command.json",
+        "observed_nbytes": 686,
+        "saved_nbytes": 686,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/4/command.json",
+        "observed_nbytes": 686,
+        "saved_nbytes": 686,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/5/command.json",
+        "observed_nbytes": 692,
+        "saved_nbytes": 692,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/6/command.json",
+        "observed_nbytes": 697,
+        "saved_nbytes": 697,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/7/command.json",
+        "observed_nbytes": 695,
+        "saved_nbytes": 695,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/8/command.json",
+        "observed_nbytes": 692,
+        "saved_nbytes": 692,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/9/command.json",
+        "observed_nbytes": 694,
+        "saved_nbytes": 694,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/0/command.json",
+        "observed_nbytes": 653,
+        "saved_nbytes": 653,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/1/command.json",
+        "observed_nbytes": 689,
+        "saved_nbytes": 689,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/10/command.json",
+        "observed_nbytes": 697,
+        "saved_nbytes": 697,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/11/command.json",
+        "observed_nbytes": 698,
+        "saved_nbytes": 698,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/12/command.json",
+        "observed_nbytes": 691,
+        "saved_nbytes": 691,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/13/command.json",
+        "observed_nbytes": 655,
+        "saved_nbytes": 655,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/14/command.json",
+        "observed_nbytes": 693,
+        "saved_nbytes": 693,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/15/command.json",
+        "observed_nbytes": 693,
+        "saved_nbytes": 693,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/16/command.json",
+        "observed_nbytes": 686,
+        "saved_nbytes": 686,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/17/command.json",
+        "observed_nbytes": 686,
+        "saved_nbytes": 686,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/18/command.json",
+        "observed_nbytes": 691,
+        "saved_nbytes": 691,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/19/command.json",
+        "observed_nbytes": 697,
+        "saved_nbytes": 697,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/2/command.json",
+        "observed_nbytes": 694,
+        "saved_nbytes": 694,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/20/command.json",
+        "observed_nbytes": 695,
+        "saved_nbytes": 695,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/21/command.json",
+        "observed_nbytes": 692,
+        "saved_nbytes": 692,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/22/command.json",
+        "observed_nbytes": 694,
+        "saved_nbytes": 694,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/23/command.json",
+        "observed_nbytes": 697,
+        "saved_nbytes": 697,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/24/command.json",
+        "observed_nbytes": 698,
+        "saved_nbytes": 698,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/25/command.json",
+        "observed_nbytes": 691,
+        "saved_nbytes": 691,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/3/command.json",
+        "observed_nbytes": 686,
+        "saved_nbytes": 686,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/4/command.json",
+        "observed_nbytes": 686,
+        "saved_nbytes": 686,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/5/command.json",
+        "observed_nbytes": 692,
+        "saved_nbytes": 692,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/6/command.json",
+        "observed_nbytes": 696,
+        "saved_nbytes": 696,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/7/command.json",
+        "observed_nbytes": 695,
+        "saved_nbytes": 695,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/8/command.json",
+        "observed_nbytes": 692,
+        "saved_nbytes": 692,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/9/command.json",
+        "observed_nbytes": 694,
+        "saved_nbytes": 694,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/0/command.json",
+        "observed_nbytes": 655,
+        "saved_nbytes": 655,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/1/command.json",
+        "observed_nbytes": 688,
+        "saved_nbytes": 688,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/10/command.json",
+        "observed_nbytes": 696,
+        "saved_nbytes": 696,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/11/command.json",
+        "observed_nbytes": 697,
+        "saved_nbytes": 697,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/12/command.json",
+        "observed_nbytes": 691,
+        "saved_nbytes": 691,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/13/command.json",
+        "observed_nbytes": 655,
+        "saved_nbytes": 655,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/14/command.json",
+        "observed_nbytes": 693,
+        "saved_nbytes": 693,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/15/command.json",
+        "observed_nbytes": 693,
+        "saved_nbytes": 693,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/16/command.json",
+        "observed_nbytes": 686,
+        "saved_nbytes": 686,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/17/command.json",
+        "observed_nbytes": 686,
+        "saved_nbytes": 686,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/18/command.json",
+        "observed_nbytes": 692,
+        "saved_nbytes": 692,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/19/command.json",
+        "observed_nbytes": 697,
+        "saved_nbytes": 697,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/2/command.json",
+        "observed_nbytes": 693,
+        "saved_nbytes": 693,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/20/command.json",
+        "observed_nbytes": 695,
+        "saved_nbytes": 695,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/21/command.json",
+        "observed_nbytes": 692,
+        "saved_nbytes": 692,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/22/command.json",
+        "observed_nbytes": 694,
+        "saved_nbytes": 694,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/23/command.json",
+        "observed_nbytes": 697,
+        "saved_nbytes": 697,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/24/command.json",
+        "observed_nbytes": 698,
+        "saved_nbytes": 698,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/25/command.json",
+        "observed_nbytes": 691,
+        "saved_nbytes": 691,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/3/command.json",
+        "observed_nbytes": 686,
+        "saved_nbytes": 686,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/4/command.json",
+        "observed_nbytes": 686,
+        "saved_nbytes": 686,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/5/command.json",
+        "observed_nbytes": 692,
+        "saved_nbytes": 692,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/6/command.json",
+        "observed_nbytes": 697,
+        "saved_nbytes": 697,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/7/command.json",
+        "observed_nbytes": 695,
+        "saved_nbytes": 695,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/8/command.json",
+        "observed_nbytes": 692,
+        "saved_nbytes": 692,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/9/command.json",
+        "observed_nbytes": 693,
+        "saved_nbytes": 693,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/0/command.json",
+        "observed_nbytes": 655,
+        "saved_nbytes": 655,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/1/command.json",
+        "observed_nbytes": 689,
+        "saved_nbytes": 689,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/10/command.json",
+        "observed_nbytes": 697,
+        "saved_nbytes": 697,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/11/command.json",
+        "observed_nbytes": 698,
+        "saved_nbytes": 698,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/12/command.json",
+        "observed_nbytes": 691,
+        "saved_nbytes": 691,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/13/command.json",
+        "observed_nbytes": 655,
+        "saved_nbytes": 655,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/14/command.json",
+        "observed_nbytes": 693,
+        "saved_nbytes": 693,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/15/command.json",
+        "observed_nbytes": 694,
+        "saved_nbytes": 694,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/16/command.json",
+        "observed_nbytes": 685,
+        "saved_nbytes": 685,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/17/command.json",
+        "observed_nbytes": 686,
+        "saved_nbytes": 686,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/18/command.json",
+        "observed_nbytes": 692,
+        "saved_nbytes": 692,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/19/command.json",
+        "observed_nbytes": 697,
+        "saved_nbytes": 697,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/2/command.json",
+        "observed_nbytes": 693,
+        "saved_nbytes": 693,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/20/command.json",
+        "observed_nbytes": 695,
+        "saved_nbytes": 695,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/21/command.json",
+        "observed_nbytes": 692,
+        "saved_nbytes": 692,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/22/command.json",
+        "observed_nbytes": 694,
+        "saved_nbytes": 694,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/23/command.json",
+        "observed_nbytes": 697,
+        "saved_nbytes": 697,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/24/command.json",
+        "observed_nbytes": 698,
+        "saved_nbytes": 698,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/25/command.json",
+        "observed_nbytes": 691,
+        "saved_nbytes": 691,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/3/command.json",
+        "observed_nbytes": 686,
+        "saved_nbytes": 686,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/4/command.json",
+        "observed_nbytes": 686,
+        "saved_nbytes": 686,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/5/command.json",
+        "observed_nbytes": 692,
+        "saved_nbytes": 692,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/6/command.json",
+        "observed_nbytes": 696,
+        "saved_nbytes": 696,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/7/command.json",
+        "observed_nbytes": 695,
+        "saved_nbytes": 695,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/8/command.json",
+        "observed_nbytes": 692,
+        "saved_nbytes": 692,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/9/command.json",
+        "observed_nbytes": 694,
+        "saved_nbytes": 694,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/0/command.json",
+        "observed_nbytes": 655,
+        "saved_nbytes": 655,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/1/command.json",
+        "observed_nbytes": 688,
+        "saved_nbytes": 688,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/10/command.json",
+        "observed_nbytes": 697,
+        "saved_nbytes": 697,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/11/command.json",
+        "observed_nbytes": 697,
+        "saved_nbytes": 697,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/12/command.json",
+        "observed_nbytes": 690,
+        "saved_nbytes": 690,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/13/command.json",
+        "observed_nbytes": 655,
+        "saved_nbytes": 655,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/14/command.json",
+        "observed_nbytes": 693,
+        "saved_nbytes": 693,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/15/command.json",
+        "observed_nbytes": 694,
+        "saved_nbytes": 694,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/16/command.json",
+        "observed_nbytes": 686,
+        "saved_nbytes": 686,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/17/command.json",
+        "observed_nbytes": 686,
+        "saved_nbytes": 686,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/18/command.json",
+        "observed_nbytes": 692,
+        "saved_nbytes": 692,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/19/command.json",
+        "observed_nbytes": 697,
+        "saved_nbytes": 697,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/2/command.json",
+        "observed_nbytes": 694,
+        "saved_nbytes": 694,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/20/command.json",
+        "observed_nbytes": 695,
+        "saved_nbytes": 695,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/21/command.json",
+        "observed_nbytes": 692,
+        "saved_nbytes": 692,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/22/command.json",
+        "observed_nbytes": 694,
+        "saved_nbytes": 694,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/23/command.json",
+        "observed_nbytes": 697,
+        "saved_nbytes": 697,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/24/command.json",
+        "observed_nbytes": 697,
+        "saved_nbytes": 697,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/25/command.json",
+        "observed_nbytes": 691,
+        "saved_nbytes": 691,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/3/command.json",
+        "observed_nbytes": 686,
+        "saved_nbytes": 686,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/4/command.json",
+        "observed_nbytes": 686,
+        "saved_nbytes": 686,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/5/command.json",
+        "observed_nbytes": 692,
+        "saved_nbytes": 692,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/6/command.json",
+        "observed_nbytes": 697,
+        "saved_nbytes": 697,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/7/command.json",
+        "observed_nbytes": 695,
+        "saved_nbytes": 695,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/8/command.json",
+        "observed_nbytes": 692,
+        "saved_nbytes": 692,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/9/command.json",
+        "observed_nbytes": 694,
+        "saved_nbytes": 694,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile.json",
+        "observed_nbytes": 47710,
+        "saved_nbytes": 47710,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile.json",
+        "observed_nbytes": 48293,
+        "saved_nbytes": 48293,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile.json",
+        "observed_nbytes": 48292,
+        "saved_nbytes": 48292,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile.json",
+        "observed_nbytes": 48295,
+        "saved_nbytes": 48295,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile.json",
+        "observed_nbytes": 48294,
+        "saved_nbytes": 48294,
+        "truncated": false
+      },
+      {
+        "path": "work/build/layout-build/compile/stderr.log",
+        "observed_nbytes": 1078,
+        "saved_nbytes": 1078,
+        "truncated": false
+      },
+      {
+        "path": "work/build/layout-build/compile/stdout.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/build/layout-build/effective-macros/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/build/layout-build/effective-macros/stdout.log",
+        "observed_nbytes": 408041,
+        "saved_nbytes": 408041,
+        "truncated": false
+      },
+      {
+        "path": "work/build/makepanda/stderr.log",
+        "observed_nbytes": 227606,
+        "saved_nbytes": 227606,
+        "truncated": false
+      },
+      {
+        "path": "work/source-command-0/stderr.log",
+        "observed_nbytes": 169,
+        "saved_nbytes": 169,
+        "truncated": false
+      },
+      {
+        "path": "work/source-command-0/stdout.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/source-command-1/stderr.log",
+        "observed_nbytes": 116,
+        "saved_nbytes": 116,
+        "truncated": false
+      },
+      {
+        "path": "work/source-command-1/stdout.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/source-command-2/stderr.log",
+        "observed_nbytes": 64,
+        "saved_nbytes": 64,
+        "truncated": false
+      },
+      {
+        "path": "work/source-command-2/stdout.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/source-stage/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/source-stage/stdout.log",
+        "observed_nbytes": 23,
+        "saved_nbytes": 23,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/0/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/0/stdout.log",
+        "observed_nbytes": 7,
+        "saved_nbytes": 7,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/1/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/1/stdout.log",
+        "observed_nbytes": 41,
+        "saved_nbytes": 41,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/10/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/10/stdout.log",
+        "observed_nbytes": 45,
+        "saved_nbytes": 45,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/11/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/11/stdout.log",
+        "observed_nbytes": 46,
+        "saved_nbytes": 46,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/12/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/12/stdout.log",
+        "observed_nbytes": 1194,
+        "saved_nbytes": 1194,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/13/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/13/stdout.log",
+        "observed_nbytes": 7,
+        "saved_nbytes": 7,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/14/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/14/stdout.log",
+        "observed_nbytes": 45,
+        "saved_nbytes": 45,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/15/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/15/stdout.log",
+        "observed_nbytes": 46,
+        "saved_nbytes": 46,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/16/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/16/stdout.log",
+        "observed_nbytes": 3,
+        "saved_nbytes": 3,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/17/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/17/stdout.log",
+        "observed_nbytes": 3,
+        "saved_nbytes": 3,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/18/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/18/stdout.log",
+        "observed_nbytes": 66,
+        "saved_nbytes": 66,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/19/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/19/stdout.log",
+        "observed_nbytes": 45,
+        "saved_nbytes": 45,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/2/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/2/stdout.log",
+        "observed_nbytes": 46,
+        "saved_nbytes": 46,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/20/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/20/stdout.log",
+        "observed_nbytes": 43,
+        "saved_nbytes": 43,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/21/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/21/stdout.log",
+        "observed_nbytes": 66,
+        "saved_nbytes": 66,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/22/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/22/stdout.log",
+        "observed_nbytes": 42,
+        "saved_nbytes": 42,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/23/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/23/stdout.log",
+        "observed_nbytes": 45,
+        "saved_nbytes": 45,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/24/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/24/stdout.log",
+        "observed_nbytes": 46,
+        "saved_nbytes": 46,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/25/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/25/stdout.log",
+        "observed_nbytes": 1194,
+        "saved_nbytes": 1194,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/3/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/3/stdout.log",
+        "observed_nbytes": 3,
+        "saved_nbytes": 3,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/4/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/4/stdout.log",
+        "observed_nbytes": 3,
+        "saved_nbytes": 3,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/5/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/5/stdout.log",
+        "observed_nbytes": 66,
+        "saved_nbytes": 66,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/6/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/6/stdout.log",
+        "observed_nbytes": 45,
+        "saved_nbytes": 45,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/7/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/7/stdout.log",
+        "observed_nbytes": 43,
+        "saved_nbytes": 43,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/8/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/8/stdout.log",
+        "observed_nbytes": 66,
+        "saved_nbytes": 66,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/9/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-profile-queries/9/stdout.log",
+        "observed_nbytes": 42,
+        "saved_nbytes": 42,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/0/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/0/stdout.log",
+        "observed_nbytes": 7,
+        "saved_nbytes": 7,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/1/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/1/stdout.log",
+        "observed_nbytes": 41,
+        "saved_nbytes": 41,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/10/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/10/stdout.log",
+        "observed_nbytes": 45,
+        "saved_nbytes": 45,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/11/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/11/stdout.log",
+        "observed_nbytes": 46,
+        "saved_nbytes": 46,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/12/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/12/stdout.log",
+        "observed_nbytes": 1194,
+        "saved_nbytes": 1194,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/13/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/13/stdout.log",
+        "observed_nbytes": 7,
+        "saved_nbytes": 7,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/14/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/14/stdout.log",
+        "observed_nbytes": 45,
+        "saved_nbytes": 45,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/15/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/15/stdout.log",
+        "observed_nbytes": 46,
+        "saved_nbytes": 46,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/16/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/16/stdout.log",
+        "observed_nbytes": 3,
+        "saved_nbytes": 3,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/17/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/17/stdout.log",
+        "observed_nbytes": 3,
+        "saved_nbytes": 3,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/18/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/18/stdout.log",
+        "observed_nbytes": 66,
+        "saved_nbytes": 66,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/19/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/19/stdout.log",
+        "observed_nbytes": 45,
+        "saved_nbytes": 45,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/2/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/2/stdout.log",
+        "observed_nbytes": 46,
+        "saved_nbytes": 46,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/20/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/20/stdout.log",
+        "observed_nbytes": 43,
+        "saved_nbytes": 43,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/21/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/21/stdout.log",
+        "observed_nbytes": 66,
+        "saved_nbytes": 66,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/22/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/22/stdout.log",
+        "observed_nbytes": 42,
+        "saved_nbytes": 42,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/23/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/23/stdout.log",
+        "observed_nbytes": 45,
+        "saved_nbytes": 45,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/24/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/24/stdout.log",
+        "observed_nbytes": 46,
+        "saved_nbytes": 46,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/25/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/25/stdout.log",
+        "observed_nbytes": 1194,
+        "saved_nbytes": 1194,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/3/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/3/stdout.log",
+        "observed_nbytes": 3,
+        "saved_nbytes": 3,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/4/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/4/stdout.log",
+        "observed_nbytes": 3,
+        "saved_nbytes": 3,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/5/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/5/stdout.log",
+        "observed_nbytes": 66,
+        "saved_nbytes": 66,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/6/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/6/stdout.log",
+        "observed_nbytes": 45,
+        "saved_nbytes": 45,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/7/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/7/stdout.log",
+        "observed_nbytes": 43,
+        "saved_nbytes": 43,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/8/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/8/stdout.log",
+        "observed_nbytes": 66,
+        "saved_nbytes": 66,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/9/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/0/profile-queries/9/stdout.log",
+        "observed_nbytes": 42,
+        "saved_nbytes": 42,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/0/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/0/stdout.log",
+        "observed_nbytes": 7,
+        "saved_nbytes": 7,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/1/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/1/stdout.log",
+        "observed_nbytes": 41,
+        "saved_nbytes": 41,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/10/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/10/stdout.log",
+        "observed_nbytes": 45,
+        "saved_nbytes": 45,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/11/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/11/stdout.log",
+        "observed_nbytes": 46,
+        "saved_nbytes": 46,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/12/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/12/stdout.log",
+        "observed_nbytes": 1194,
+        "saved_nbytes": 1194,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/13/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/13/stdout.log",
+        "observed_nbytes": 7,
+        "saved_nbytes": 7,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/14/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/14/stdout.log",
+        "observed_nbytes": 45,
+        "saved_nbytes": 45,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/15/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/15/stdout.log",
+        "observed_nbytes": 46,
+        "saved_nbytes": 46,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/16/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/16/stdout.log",
+        "observed_nbytes": 3,
+        "saved_nbytes": 3,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/17/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/17/stdout.log",
+        "observed_nbytes": 3,
+        "saved_nbytes": 3,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/18/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/18/stdout.log",
+        "observed_nbytes": 66,
+        "saved_nbytes": 66,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/19/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/19/stdout.log",
+        "observed_nbytes": 45,
+        "saved_nbytes": 45,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/2/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/2/stdout.log",
+        "observed_nbytes": 46,
+        "saved_nbytes": 46,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/20/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/20/stdout.log",
+        "observed_nbytes": 43,
+        "saved_nbytes": 43,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/21/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/21/stdout.log",
+        "observed_nbytes": 66,
+        "saved_nbytes": 66,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/22/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/22/stdout.log",
+        "observed_nbytes": 42,
+        "saved_nbytes": 42,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/23/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/23/stdout.log",
+        "observed_nbytes": 45,
+        "saved_nbytes": 45,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/24/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/24/stdout.log",
+        "observed_nbytes": 46,
+        "saved_nbytes": 46,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/25/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/25/stdout.log",
+        "observed_nbytes": 1194,
+        "saved_nbytes": 1194,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/3/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/3/stdout.log",
+        "observed_nbytes": 3,
+        "saved_nbytes": 3,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/4/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/4/stdout.log",
+        "observed_nbytes": 3,
+        "saved_nbytes": 3,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/5/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/5/stdout.log",
+        "observed_nbytes": 66,
+        "saved_nbytes": 66,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/6/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/6/stdout.log",
+        "observed_nbytes": 45,
+        "saved_nbytes": 45,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/7/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/7/stdout.log",
+        "observed_nbytes": 43,
+        "saved_nbytes": 43,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/8/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/8/stdout.log",
+        "observed_nbytes": 66,
+        "saved_nbytes": 66,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/9/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/1/profile-queries/9/stdout.log",
+        "observed_nbytes": 42,
+        "saved_nbytes": 42,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/0/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/0/stdout.log",
+        "observed_nbytes": 7,
+        "saved_nbytes": 7,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/1/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/1/stdout.log",
+        "observed_nbytes": 41,
+        "saved_nbytes": 41,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/10/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/10/stdout.log",
+        "observed_nbytes": 45,
+        "saved_nbytes": 45,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/11/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/11/stdout.log",
+        "observed_nbytes": 46,
+        "saved_nbytes": 46,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/12/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/12/stdout.log",
+        "observed_nbytes": 1194,
+        "saved_nbytes": 1194,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/13/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/13/stdout.log",
+        "observed_nbytes": 7,
+        "saved_nbytes": 7,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/14/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/14/stdout.log",
+        "observed_nbytes": 45,
+        "saved_nbytes": 45,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/15/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/15/stdout.log",
+        "observed_nbytes": 46,
+        "saved_nbytes": 46,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/16/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/16/stdout.log",
+        "observed_nbytes": 3,
+        "saved_nbytes": 3,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/17/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/17/stdout.log",
+        "observed_nbytes": 3,
+        "saved_nbytes": 3,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/18/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/18/stdout.log",
+        "observed_nbytes": 66,
+        "saved_nbytes": 66,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/19/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/19/stdout.log",
+        "observed_nbytes": 45,
+        "saved_nbytes": 45,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/2/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/2/stdout.log",
+        "observed_nbytes": 46,
+        "saved_nbytes": 46,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/20/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/20/stdout.log",
+        "observed_nbytes": 43,
+        "saved_nbytes": 43,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/21/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/21/stdout.log",
+        "observed_nbytes": 66,
+        "saved_nbytes": 66,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/22/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/22/stdout.log",
+        "observed_nbytes": 42,
+        "saved_nbytes": 42,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/23/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/23/stdout.log",
+        "observed_nbytes": 45,
+        "saved_nbytes": 45,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/24/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/24/stdout.log",
+        "observed_nbytes": 46,
+        "saved_nbytes": 46,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/25/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/25/stdout.log",
+        "observed_nbytes": 1194,
+        "saved_nbytes": 1194,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/3/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/3/stdout.log",
+        "observed_nbytes": 3,
+        "saved_nbytes": 3,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/4/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/4/stdout.log",
+        "observed_nbytes": 3,
+        "saved_nbytes": 3,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/5/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/5/stdout.log",
+        "observed_nbytes": 66,
+        "saved_nbytes": 66,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/6/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/6/stdout.log",
+        "observed_nbytes": 45,
+        "saved_nbytes": 45,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/7/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/7/stdout.log",
+        "observed_nbytes": 43,
+        "saved_nbytes": 43,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/8/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/8/stdout.log",
+        "observed_nbytes": 66,
+        "saved_nbytes": 66,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/9/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/2/profile-queries/9/stdout.log",
+        "observed_nbytes": 42,
+        "saved_nbytes": 42,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/0/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/0/stdout.log",
+        "observed_nbytes": 7,
+        "saved_nbytes": 7,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/1/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/1/stdout.log",
+        "observed_nbytes": 41,
+        "saved_nbytes": 41,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/10/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/10/stdout.log",
+        "observed_nbytes": 45,
+        "saved_nbytes": 45,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/11/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/11/stdout.log",
+        "observed_nbytes": 46,
+        "saved_nbytes": 46,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/12/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/12/stdout.log",
+        "observed_nbytes": 1194,
+        "saved_nbytes": 1194,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/13/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/13/stdout.log",
+        "observed_nbytes": 7,
+        "saved_nbytes": 7,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/14/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/14/stdout.log",
+        "observed_nbytes": 45,
+        "saved_nbytes": 45,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/15/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/15/stdout.log",
+        "observed_nbytes": 46,
+        "saved_nbytes": 46,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/16/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/16/stdout.log",
+        "observed_nbytes": 3,
+        "saved_nbytes": 3,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/17/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/17/stdout.log",
+        "observed_nbytes": 3,
+        "saved_nbytes": 3,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/18/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/18/stdout.log",
+        "observed_nbytes": 66,
+        "saved_nbytes": 66,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/19/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/19/stdout.log",
+        "observed_nbytes": 45,
+        "saved_nbytes": 45,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/2/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/2/stdout.log",
+        "observed_nbytes": 46,
+        "saved_nbytes": 46,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/20/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/20/stdout.log",
+        "observed_nbytes": 43,
+        "saved_nbytes": 43,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/21/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/21/stdout.log",
+        "observed_nbytes": 66,
+        "saved_nbytes": 66,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/22/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/22/stdout.log",
+        "observed_nbytes": 42,
+        "saved_nbytes": 42,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/23/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/23/stdout.log",
+        "observed_nbytes": 45,
+        "saved_nbytes": 45,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/24/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/24/stdout.log",
+        "observed_nbytes": 46,
+        "saved_nbytes": 46,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/25/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/25/stdout.log",
+        "observed_nbytes": 1194,
+        "saved_nbytes": 1194,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/3/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/3/stdout.log",
+        "observed_nbytes": 3,
+        "saved_nbytes": 3,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/4/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/4/stdout.log",
+        "observed_nbytes": 3,
+        "saved_nbytes": 3,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/5/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/5/stdout.log",
+        "observed_nbytes": 66,
+        "saved_nbytes": 66,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/6/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/6/stdout.log",
+        "observed_nbytes": 45,
+        "saved_nbytes": 45,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/7/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/7/stdout.log",
+        "observed_nbytes": 43,
+        "saved_nbytes": 43,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/8/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/8/stdout.log",
+        "observed_nbytes": 66,
+        "saved_nbytes": 66,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/9/stderr.log",
+        "observed_nbytes": 0,
+        "saved_nbytes": 0,
+        "truncated": false
+      },
+      {
+        "path": "work/tool-rechecks/3/profile-queries/9/stdout.log",
+        "observed_nbytes": 42,
+        "saved_nbytes": 42,
+        "truncated": false
+      }
+    ],
+    "truncated": false,
+    "omitted_members": []
+  }
+}

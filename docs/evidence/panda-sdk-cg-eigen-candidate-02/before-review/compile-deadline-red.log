@@ -1,0 +1,15 @@
+test_elapsed_sdk_budget_blocks_descriptor_before_spawn (test_build_panda_sdk_cg_eigen.WholeCompileDeadlineTests.test_elapsed_sdk_budget_blocks_descriptor_before_spawn) ... ERROR
+
+======================================================================
+ERROR: test_elapsed_sdk_budget_blocks_descriptor_before_spawn (test_build_panda_sdk_cg_eigen.WholeCompileDeadlineTests.test_elapsed_sdk_budget_blocks_descriptor_before_spawn)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_build_panda_sdk_cg_eigen.py", line 49, in test_elapsed_sdk_budget_blocks_descriptor_before_spawn
+    with self.assertRaises(ValueError):b.compile_layout(root,dict(root=str(root)),root/'layout',dict(tools=dict(cxx='/usr/bin/false')),deadline=time.monotonic()-1)
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: compile_layout() got an unexpected keyword argument 'deadline'
+
+----------------------------------------------------------------------
+Ran 1 test in 0.018s
+
+FAILED (errors=1)
