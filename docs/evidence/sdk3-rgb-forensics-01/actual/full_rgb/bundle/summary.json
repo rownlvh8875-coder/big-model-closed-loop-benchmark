@@ -1,0 +1,51 @@
+{
+  "status": "DIAGNOSTIC_PAIR_RECOMPUTED",
+  "arm": "full_rgb",
+  "known_native_model_processes": 2,
+  "repair_proven": false,
+  "stage7_complete": false,
+  "original_matrix_passed": 3,
+  "original_matrix_total": 4,
+  "original_matrix_gate_passed": false,
+  "source_sha": "937576d2f964baaf1de88bf916d0bdb71280a132",
+  "selected_glx": {
+    "selected_sdk_glx_qualified": true,
+    "verified_sdk_glx_children": 2,
+    "prior_model_cohort_qualified": false,
+    "prior_official_model_processes": 1,
+    "prior_strict_result": "NOT_RUN",
+    "full_object_abi_qualified": false,
+    "stage7_complete": false
+  },
+  "host_memory_before_model": {
+    "MemTotal": 16464306176,
+    "MemAvailable": 14614646784
+  },
+  "execution": {
+    "status": "EXIT_OBSERVED",
+    "returncode": 0,
+    "failure": null,
+    "stopped_state": {
+      "Status": "exited",
+      "Running": false,
+      "Paused": false,
+      "Restarting": false,
+      "OOMKilled": false,
+      "Dead": false,
+      "Pid": 0,
+      "ExitCode": 0,
+      "Error": "",
+      "StartedAt": "2026-11-16T11:07:38.802071134Z",
+      "FinishedAt": "2026-11-16T11:22:59.204592078Z"
+    },
+    "create_attempted": true,
+    "start_attempted": true,
+    "container_id": "5521925da1c3ff52fe0a7ada6e413e7517b5189f05877de4698553a8abd5323a",
+    "ownership_unresolved": false,
+    "owned_container_removed": true,
+    "cleanup_failure": null
+  },
+  "strict_pair_pass": false,
+  "first_raw_source_diff_step": 7,
+  "new_native_model_processes": 2
+}

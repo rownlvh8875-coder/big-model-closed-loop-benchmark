@@ -1,0 +1,176 @@
+{
+  "description": "Read-only exact cross-run frame grouping,not a cross-PID strict gate or causal proof",
+  "trace_groups": [
+    [
+      "original03_0",
+      "control_0",
+      "control_1",
+      "full_rgb_0"
+    ],
+    [
+      "original03_1",
+      "full_rgb_1"
+    ]
+  ],
+  "records": [
+    {
+      "label": "original03_0",
+      "uuid": "0128dbc3db344595b1d1c381486d4f01",
+      "pid": 11,
+      "frames_sha256": "e0bf88a56a2ca448ca592ce1fcae10917911142db1f5347db698754e1a767c17",
+      "path": "output/stage7-panda-sdk3-runtime-01/attempt-03/bundle/models/seed-20261110/s_curve_left_right/run_0.json"
+    },
+    {
+      "label": "original03_1",
+      "uuid": "b20c3cf68bd346a896d76b4da5adb16c",
+      "pid": 24,
+      "frames_sha256": "a779d765aaeccfc43973612a8903dc3c730aaa4e71e43bab904ad41e334fd965",
+      "path": "output/stage7-panda-sdk3-runtime-01/attempt-03/bundle/models/seed-20261110/s_curve_left_right/run_1.json"
+    },
+    {
+      "label": "control_0",
+      "uuid": "5b417ed758d94544a6e3c9d62934e608",
+      "pid": 12,
+      "frames_sha256": "e0bf88a56a2ca448ca592ce1fcae10917911142db1f5347db698754e1a767c17",
+      "path": "output/stage7-sdk3-rgb-forensics-01/actual/control/bundle/pair/run-0/run.json"
+    },
+    {
+      "label": "control_1",
+      "uuid": "14a42c40849c4eabbf8b1f535a566231",
+      "pid": 25,
+      "frames_sha256": "e0bf88a56a2ca448ca592ce1fcae10917911142db1f5347db698754e1a767c17",
+      "path": "output/stage7-sdk3-rgb-forensics-01/actual/control/bundle/pair/run-1/run.json"
+    },
+    {
+      "label": "full_rgb_0",
+      "uuid": "e85e7ccc96bd45fc9fb6b3eb187bb8e7",
+      "pid": 11,
+      "frames_sha256": "e0bf88a56a2ca448ca592ce1fcae10917911142db1f5347db698754e1a767c17",
+      "path": "output/stage7-sdk3-rgb-forensics-01/actual/full_rgb/bundle/pair/run-0/run.json"
+    },
+    {
+      "label": "full_rgb_1",
+      "uuid": "78b88f0c8da9425f8e0ffdb9bc510d29",
+      "pid": 24,
+      "frames_sha256": "a779d765aaeccfc43973612a8903dc3c730aaa4e71e43bab904ad41e334fd965",
+      "path": "output/stage7-sdk3-rgb-forensics-01/actual/full_rgb/bundle/pair/run-1/run.json"
+    }
+  ],
+  "first_step": 7,
+  "first_changed_rgb_samples": {
+    "road": [
+      {
+        "x": 596,
+        "y": 494,
+        "rgb0": [
+          167,
+          163,
+          158
+        ],
+        "rgb1": [
+          199,
+          187,
+          0
+        ]
+      }
+    ],
+    "wide": []
+  },
+  "first_difference_metrics": {
+    "road": {
+      "step": 7,
+      "bit_exact": false,
+      "changed_pixel_count": 1,
+      "total_pixels": 582256,
+      "changed_channel_values": 3,
+      "changed_channels_rgb": [
+        1,
+        1,
+        1
+      ],
+      "maximum_absolute_channel_delta": 158,
+      "bounding_box_xyxy_inclusive": [
+        596,
+        494,
+        596,
+        494
+      ],
+      "first_12_changed_xy": [
+        [
+          596,
+          494
+        ]
+      ],
+      "changed_pixel_counts_grid_4x4_top_left_to_bottom_right": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          0
+        ]
+      ],
+      "changed_mask_is_not_a_shadow_or_lane_semantic_segmentation": true
+    },
+    "wide": {
+      "step": 7,
+      "bit_exact": true,
+      "changed_pixel_count": 0,
+      "total_pixels": 582256,
+      "changed_channel_values": 0,
+      "changed_channels_rgb": [
+        0,
+        0,
+        0
+      ],
+      "maximum_absolute_channel_delta": 0,
+      "bounding_box_xyxy_inclusive": null,
+      "first_12_changed_xy": [],
+      "changed_pixel_counts_grid_4x4_top_left_to_bottom_right": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "changed_mask_is_not_a_shadow_or_lane_semantic_segmentation": true
+    }
+  },
+  "unique_cause_proven": false
+}

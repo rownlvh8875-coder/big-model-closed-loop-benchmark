@@ -22,14 +22,14 @@ Base46b750e6ad8d311b903c1104f12160779ce5806e; original checkout/old requests/ver
 ### Task1: Full12observer,analyzer and opt-in dispatch
 **Files:** Create scripts/sdk3_rgb_forensics.py,tests/test_sdk3_rgb_forensics.py; modify only scripts/panda_sdk3_diagnostic.py for optional flag; preserve original trial source byte-for-byte.
 **Interfaces:** FullEpisodeRGBCapture(); run_full_rgb_trial(*,raw_rgb_dir,**kwargs); analyze_pair(folder:Path,arm:str)->dict; full_rgb_trial_options(args,out:Path)->dict. Consume legacy observer.save_after_episode/read_verified_pixels/summarize_pixel_difference and unmodified comparator.
-- [ ] Write tests: authentic synthetic step7 and step12 pixel differences with exact coordinates; SHA corruption/trailing zlib/duplicate manifest/mismatched seed rejected; legacy6 unchanged; original callable/default absent observer,private factory probe and full flag propagation; expectedRED.
-- [ ] Implement minimal full12capture,full manifest/source authentication,exact metrics and bounded flags. Focused command unittest discover -p test_sdk3_rgb_forensics.py; expectedGREEN. Commit.
+- [x] Write tests: authentic synthetic step7 and step12 pixel differences with exact coordinates; SHA corruption/trailing zlib/duplicate manifest/mismatched seed rejected; legacy6 unchanged; original callable/default absent observer,private factory probe and full flag propagation; expectedRED.
+- [x] Implement minimal full12capture,full manifest/source authentication,exact metrics and bounded flags. Focused command unittest discover -p test_sdk3_rgb_forensics.py; expectedGREEN. Commit.
 
 ### Task2: Pinned host producer/workflow and scientific closeout
 **Files:** Create scripts/run_sdk3_rgb_forensics.py,.github/workflows/sdk3-rgb-forensics-v1.yml,tests/test_sdk3_rgb_forensics_host.py; own evidence/result companion doc.
 **Interfaces:** validate_observed_pair(folder,arm); authenticate exact sourceCI/request/prior04artifact; run(arm) through unchanged run_container. Two arm artifacts,2processes each.
-- [ ] Add profile/exit/OOM/cleanup/identity rejection and scientific admission tests; expectedRED.
-- [ ] Implement pinned artifact/model staging,priorGLX recomputation,same bounded two-child executor and post-episode full analyzer. ExpectedGREEN;actionlint;commit/push ownDraft based on46b750e6.
-- [ ] Canonical exact source4jobsSUCCESS; one fresh whole-branch review. Regrade by effect; one ImportantRED→GREEN pass if needed,no rereview; Minors ledger.
-- [ ] Request-only activation and actual two arm jobs. Authenticate both ZIPs/origins/digests/native count4,independent reanalysis including rawpixels; mismatch or equality both reported honestly. No gate promotion.
-- [ ] Report actual outcome,remaining causal uncertainty,PR/CI/artifact hashes; final exactHEAD CI and remote/body/clean/preservation receipt. Archive own ledger and remove own scratch only.
+- [x] Add profile/exit/OOM/cleanup/identity rejection and scientific admission tests; expectedRED.
+- [x] Implement pinned artifact/model staging,priorGLX recomputation,same bounded two-child executor and post-episode full analyzer. ExpectedGREEN;actionlint;commit/push ownDraft based on46b750e6.
+- [x] Canonical exact source4jobsSUCCESS; one fresh whole-branch review. Regrade by effect; one ImportantRED→GREEN pass if needed,no rereview; Minors ledger.
+- [x] Request-only activation and actual two arm jobs. Authenticate both ZIPs/origins/digests/native count4,independent reanalysis including rawpixels; mismatch or equality both reported honestly. No gate promotion.
+- [x] Report actual outcome,remaining causal uncertainty,PR/CI/artifact hashes; final exactHEAD CI and remote/body/clean/preservation receipt. Archive own ledger and remove own scratch only.
