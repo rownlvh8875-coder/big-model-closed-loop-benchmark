@@ -1,0 +1,147 @@
+{
+  "image_tar_sha256": "4984470cd7d732f9f2d1c12710c9433b563b3817ba6d1d419749a9a2b1b46698",
+  "sources": {
+    "direct/showbase/ShowBase.py": {
+      "image_member": "opt/venv/lib/python3.11/site-packages/direct/showbase/ShowBase.py",
+      "layer": "blobs/sha256/ed744a455c23963a1766deeb20a89020917f0d1f33a1d663fdc97f99279e12c6",
+      "nbytes": 135505,
+      "sha256": "683162e54a3e524f4119929ea0a72afd1db9c169c17c2601f33df5609c8a8bf2",
+      "excerpts": {
+        "2158": [
+          {
+            "line": 2156,
+            "text": ""
+          },
+          {
+            "line": 2157,
+            "text": "        # Finally, render the frame."
+          },
+          {
+            "line": 2158,
+            "text": "        self.graphicsEngine.renderFrame()"
+          },
+          {
+            "line": 2159,
+            "text": "        if self.clusterSyncFlag:"
+          },
+          {
+            "line": 2160,
+            "text": "            self.graphicsEngine.syncFrame()"
+          }
+        ]
+      }
+    },
+    "direct/task/Task.py": {
+      "image_member": "opt/venv/lib/python3.11/site-packages/direct/task/Task.py",
+      "layer": "blobs/sha256/ed744a455c23963a1766deeb20a89020917f0d1f33a1d663fdc97f99279e12c6",
+      "nbytes": 51866,
+      "sha256": "567d181c855814da8d1426057a7db166aa96963c8138da484ca0298516c54054",
+      "excerpts": {
+        "504": [
+          {
+            "line": 502,
+            "text": ""
+          },
+          {
+            "line": 503,
+            "text": "        try:"
+          },
+          {
+            "line": 504,
+            "text": "            self.mgr.poll()"
+          },
+          {
+            "line": 505,
+            "text": ""
+          },
+          {
+            "line": 506,
+            "text": "            # This is the spot for an internal yield function"
+          }
+        ]
+      }
+    },
+    "metadrive/engine/base_engine.py": {
+      "image_member": "opt/venv/lib/python3.11/site-packages/metadrive/engine/base_engine.py",
+      "layer": "blobs/sha256/ed744a455c23963a1766deeb20a89020917f0d1f33a1d663fdc97f99279e12c6",
+      "nbytes": 33957,
+      "sha256": "7b0a4840bfacfedb1084717627d3aa9666aaa3d022e8c0f0ca29320e293ea727",
+      "excerpts": {
+        "395": [
+          {
+            "line": 393,
+            "text": "        # refresh graphics to support multi-thread rendering, avoiding bugs like shadow disappearance at first frame"
+          },
+          {
+            "line": 394,
+            "text": "        for _ in range(5):"
+          },
+          {
+            "line": 395,
+            "text": "            self.graphicsEngine.renderFrame()"
+          },
+          {
+            "line": 396,
+            "text": ""
+          },
+          {
+            "line": 397,
+            "text": "        # reset colors"
+          }
+        ]
+      }
+    },
+    "metadrive/envs/base_env.py": {
+      "image_member": "opt/venv/lib/python3.11/site-packages/metadrive/envs/base_env.py",
+      "layer": "blobs/sha256/ed744a455c23963a1766deeb20a89020917f0d1f33a1d663fdc97f99279e12c6",
+      "nbytes": 41160,
+      "sha256": "0f2a624e44674f48e765fad1d6a50059dc35dc66bff9d89f93d845bd209c01c6",
+      "excerpts": {
+        "532": [
+          {
+            "line": 530,
+            "text": "                \"singleton of MetaDrive and restart your program.\""
+          },
+          {
+            "line": 531,
+            "text": "            )"
+          },
+          {
+            "line": 532,
+            "text": "        reset_info = self.engine.reset()"
+          },
+          {
+            "line": 533,
+            "text": "        self.reset_sensors()"
+          },
+          {
+            "line": 534,
+            "text": "        # render the scene"
+          }
+        ],
+        "535": [
+          {
+            "line": 533,
+            "text": "        self.reset_sensors()"
+          },
+          {
+            "line": 534,
+            "text": "        # render the scene"
+          },
+          {
+            "line": 535,
+            "text": "        self.engine.taskMgr.step()"
+          },
+          {
+            "line": 536,
+            "text": "        if self.top_down_renderer is not None:"
+          },
+          {
+            "line": 537,
+            "text": "            self.top_down_renderer.clear()"
+          }
+        ]
+      }
+    }
+  }
+}

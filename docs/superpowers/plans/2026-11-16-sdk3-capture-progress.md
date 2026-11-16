@@ -22,14 +22,15 @@ Baseee1203b12cf6e185b754ef8095097296650d8270;additions only. One hostedrenderer/
 ### Task1: durable CPU observers and parent watchdog
 **Files:** Create scripts/sdk3_capture_progress.py,tests/test_sdk3_capture_progress.py.
 **Interfaces:** Journal(folder,identity);Journal.emit(event,step=0,camera=None,**metadata);observe(camera,journal)contextmanager;stack_watchdog(path,seconds=30)contextmanager;wait_observed(child,server,timeout,out)->int;read_journal(path)->list.
-- [ ] RED: real nested capture/perceive/getter/step ordering,exact restoration/exception,bounds/sequence;ExpectedFAIL missing module/behavior.
-- [ ] GREEN: bounded durable journal and instance wrappers,real subprocess stack+timeout/exit tests;ExpectedPASS. Commit.
+- [x] RED: real nested capture/perceive/getter/step ordering,exact restoration/exception,bounds/sequence;ExpectedFAIL missing module/behavior.
+- [x] GREEN: bounded durable journal and instance wrappers,real subprocess stack+timeout/exit tests;ExpectedPASS. Commit.
 
 ### Task2: authenticated single renderer and independent closeout
 **Files:** Create scripts/sdk3_capture_progress_native.py,scripts/run_sdk3_capture_progress.py,tests/test_sdk3_capture_progress_host.py,.github/workflows/sdk3-capture-progress-v1.yml,new evidence/report only.
 **Interfaces:** native_command(...reference...);validate_receipt(folder,reference_path,nonce)->dict;authenticate_source(bundle);run(). Uses Task1 exact names.
-- [ ] RED: timeout remains nativeFAIL,unknown exits/trace/PID/model/cleanup reject,source mismatch partialinconclusive;ExpectedFAIL missing module/behavior.
-- [ ] GREEN: new zero-model native/bootstrap/progress/rawimages,parentwait and host pinnedstaging/request/resource guards;ExpectedfocusedPASS/actionlint.
-- [ ] ExactsourceCI4jobsPASS;solefreshreview;one ImportantRED→GREEN fixpass/no rereview;Minorledger.
-- [ ] Request-only single-child activation;authenticate actualartifact and independently recompute trace/images/lifecycle. Retain timeouts and unknowns.
-- [ ] New result/DraftPR based on133;final exactHEADCI/log counts/remote/body/parent/main/original preservation. Archive/remove only this plan scratch. No original gate promotion.
+- [x] RED: timeout remains nativeFAIL,unknown exits/trace/PID/model/cleanup reject,source mismatch partialinconclusive;ExpectedFAIL missing module/behavior.
+- [x] GREEN: new zero-model native/bootstrap/progress/rawimages,parentwait and host pinnedstaging/request/resource guards;ExpectedfocusedPASS/actionlint.
+- [x] ExactsourceCI4jobsPASS;solefreshreview;one ImportantRED→GREEN fixpass/no rereview;Minorledger.
+- [x] Request-only single-child activation;authenticate actualartifact and independently recompute trace/images/lifecycle. Retain timeouts and unknowns.
+- [x] Actual result/Draft134basedon133:onecompletecapture,2sourceimages,5stacks,deadlineWide2taskstep;originalgateunchanged.
+- [ ] Final exactdocHEADCI/logcounts/remote/body/parent/main/original preservation and ownledger archival/removal:authoritative result in output/stage7-sdk3-capture-progress-01/final-closeout/verification.json after final commit.
