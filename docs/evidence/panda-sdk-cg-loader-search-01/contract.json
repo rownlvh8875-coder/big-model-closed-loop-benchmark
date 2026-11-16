@@ -1,0 +1,121 @@
+{
+  "schema": "panda-sdk-cg-loader-search-design-contract-v1",
+  "state": "DESIGN_ONLY_NOT_A_BUILD_REQUEST",
+  "base_sha": "6b1730c7cef597381cb3c7ec0d61a16264521b95",
+  "base_files": 7603,
+  "source_closure_files": 299,
+  "source_closure_path": "docs/evidence/panda-sdk-cg-loader-search-01/source-closure.json",
+  "source_closure_sha256": "5a60002414ee61526e208b9f639a6149370a9dccb525e784aeacbacf26e9b142",
+  "prior_acceptance_path": "docs/evidence/panda-sdk-cg-eigen-candidate-02/actual/acceptance/acceptance.json",
+  "prior_acceptance_sha256": "ab69f635e01b4592cc16f1070f3f0cc2ff94f47ce81f28904516448969f1903f",
+  "prior_build": {
+    "workflow_id": 419583286,
+    "run_id": 43777541292,
+    "attempt": 1,
+    "activation_sha": "0150f7dcc41b74660826f0d926eff3b26bdd2fec",
+    "source_sha": "ba64c869c38bd9b1aac138ec81bf98738cda4dc1",
+    "verdict": "AUTHENTICATED_CG_EIGEN_BUILD_FAILED",
+    "build_start_attempts": 1,
+    "request_closed": true
+  },
+  "candidate": {
+    "nbytes": 1052968,
+    "sha256": "332551094adbca1aa12f716ff8798566e522021b62f25c46a66a425873ea1297",
+    "actual_rpath": null,
+    "actual_runpath": null,
+    "required_offsets": {
+      "major": 1672,
+      "minor": 1676,
+      "vendor": 1648
+    }
+  },
+  "image_sha256": "4984470cd7d732f9f2d1c12710c9433b563b3817ba6d1d419749a9a2b1b46698",
+  "cg_providers": {
+    "libCg.so": {
+      "elf_sha256": "942f33fe1e0935445d88e0595089fda99d20335ef089b5205d61cd6ade054018",
+      "nbytes": 20398129,
+      "soname": "libCg.so",
+      "needed": [
+        "libm.so.6",
+        "libpthread.so.0",
+        "libc.so.6",
+        "ld-linux-x86-64.so.2"
+      ],
+      "rpath": "$ORIGIN",
+      "runpath": null
+    },
+    "libCgGL.so": {
+      "elf_sha256": "034f5ac079da5d56dcfe621c3ea9b6aaff553fc44ecfb630c167c91c68abe0df",
+      "nbytes": 545121,
+      "soname": "libCgGL.so",
+      "needed": [
+        "libCg.so",
+        "libm.so.6",
+        "libpthread.so.0",
+        "libdl.so.2",
+        "libc.so.6",
+        "ld-linux-x86-64.so.2"
+      ],
+      "rpath": "$ORIGIN",
+      "runpath": null
+    }
+  },
+  "current_actions": {
+    "data_analysis": true,
+    "write_design_plan": true,
+    "new_sdk_build": false,
+    "workflow_activation": false,
+    "target_execution": false,
+    "image_transform": false,
+    "publication": false,
+    "merge": false
+  },
+  "future": {
+    "source_branch": "feature/panda-sdk-cg-runpath-candidate-v3",
+    "activation_branch": "prepare/panda-sdk-cg-runpath-build-20261116-03",
+    "request_path": "docs/requests/panda-sdk-cg-runpath-build-20261116-03.json",
+    "workflow_path": ".github/workflows/panda-sdk-cg-runpath-build-v3.yml",
+    "artifact_name": "panda-sdk-cg-runpath-build-20261116-03",
+    "output": "output/stage7-panda-sdk-cg-runpath-candidate-03",
+    "source_closure_extra_files": [
+      "scripts/build_panda_sdk_cg_runpath.py",
+      "scripts/panda_sdk_cg_runpath_gate.py",
+      "scripts/panda_sdk_cg_runpath_evidence.py",
+      "scripts/panda_sdk_cg_runpath_policy.py",
+      "scripts/panda_sdk_cg_runpath_carrier.py",
+      "scripts/produce_panda_sdk_cg_runpath.py",
+      "scripts/accept_panda_sdk_cg_runpath.py",
+      ".github/workflows/panda-sdk-cg-runpath-build-v3.yml",
+      "docs/evidence/panda-sdk-cg-loader-search-01/contract.json",
+      "docs/evidence/panda-sdk-cg-loader-search-01/source-closure.json",
+      "docs/evidence/panda-sdk-cg-loader-search-01/runpath-hypothesis.json"
+    ],
+    "source_closure_expected_files": 310,
+    "ldflags": "-Wl,-z,defs -Wl,--enable-new-dtags,-rpath,'$ORIGIN'",
+    "required_candidate_rpath": null,
+    "required_candidate_runpath": "$ORIGIN",
+    "required_build_panda_rpath": null,
+    "required_build_panda_runpath": "$ORIGIN",
+    "elf_patching_permitted": false,
+    "inventory_selection_override_permitted": false,
+    "provider_byte_substitution_permitted": false,
+    "carrier_files": 23,
+    "max_sdk_build_starts": 1,
+    "workers": 2,
+    "compile_seconds": 1200,
+    "whole_seconds": 2400,
+    "output_bytes": 8589934592,
+    "workspace_bytes": 12884901888,
+    "initial_free_bytes": 17179869184,
+    "combined_log_bytes": 33554432,
+    "artifact_bytes": 268435456,
+    "job_minutes": 45,
+    "source_ci_jobs": 4,
+    "workflow_attempt": 1,
+    "retry_permitted": false
+  },
+  "root_strong_availability_is_full_provider_closure": false,
+  "scientific_allowance_remaining": 0,
+  "strict_result": "0/4 FAIL",
+  "stage7_complete": false
+}

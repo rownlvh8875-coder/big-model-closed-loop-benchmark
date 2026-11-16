@@ -1,0 +1,1661 @@
+{
+  "schema": "panda-sdk-cg-loader-search-design-diagnostics-v1",
+  "candidate_sha256": "332551094adbca1aa12f716ff8798566e522021b62f25c46a66a425873ea1297",
+  "image_sha256": "4984470cd7d732f9f2d1c12710c9433b563b3817ba6d1d419749a9a2b1b46698",
+  "modes": {
+    "frozen": {
+      "graph_complete": false,
+      "failure": "ValueError: needed provider absent: libCg.so requested by /opt/venv/lib/python3.11/site-packages/panda3d/libpandagl.so",
+      "conditional_overrides": []
+    },
+    "root-pair": {
+      "graph_complete": true,
+      "root_strong_symbols_available": true,
+      "root_missing": [],
+      "root_weak_unresolved": [
+        "_ITM_deregisterTMCloneTable",
+        "__gmon_start__",
+        "_ITM_registerTMCloneTable"
+      ],
+      "unsupported_features": [],
+      "provider_count": 22,
+      "edges": [
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandagl.so",
+          "needed": "libpanda.so.1.10",
+          "selected": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandagl.so",
+          "needed": "libpandaexpress.so.1.10",
+          "selected": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandagl.so",
+          "needed": "libp3dtool.so.1.10",
+          "selected": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtool.so.1.10"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandagl.so",
+          "needed": "libp3dtoolconfig.so.1.10",
+          "selected": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandagl.so",
+          "needed": "libGL.so.1",
+          "selected": "/usr/lib/x86_64-linux-gnu/libGL.so.1.7.0"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandagl.so",
+          "needed": "libCg.so",
+          "selected": "/opt/venv/lib/python3.11/site-packages/panda3d/libCg.so"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandagl.so",
+          "needed": "libCgGL.so",
+          "selected": "/opt/venv/lib/python3.11/site-packages/panda3d/libCgGL.so"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandagl.so",
+          "needed": "libX11.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandagl.so",
+          "needed": "libstdc++.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandagl.so",
+          "needed": "libc.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCg.so",
+          "needed": "libm.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libm.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCg.so",
+          "needed": "libpthread.so.0",
+          "selected": "/usr/lib/x86_64-linux-gnu/libpthread.so.0"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCg.so",
+          "needed": "libc.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCg.so",
+          "needed": "ld-linux-x86-64.so.2",
+          "selected": "/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCgGL.so",
+          "needed": "libCg.so",
+          "selected": "/opt/venv/lib/python3.11/site-packages/panda3d/libCg.so"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCgGL.so",
+          "needed": "libm.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libm.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCgGL.so",
+          "needed": "libpthread.so.0",
+          "selected": "/usr/lib/x86_64-linux-gnu/libpthread.so.0"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCgGL.so",
+          "needed": "libdl.so.2",
+          "selected": "/usr/lib/x86_64-linux-gnu/libdl.so.2"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCgGL.so",
+          "needed": "libc.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCgGL.so",
+          "needed": "ld-linux-x86-64.so.2",
+          "selected": "/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtool.so.1.10",
+          "needed": "libdl.so.2",
+          "selected": "/usr/lib/x86_64-linux-gnu/libdl.so.2"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtool.so.1.10",
+          "needed": "libstdc++.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtool.so.1.10",
+          "needed": "libm.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libm.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtool.so.1.10",
+          "needed": "libgcc_s.so.1",
+          "selected": "/usr/lib/x86_64-linux-gnu/libgcc_s.so.1"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtool.so.1.10",
+          "needed": "libpthread.so.0",
+          "selected": "/usr/lib/x86_64-linux-gnu/libpthread.so.0"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtool.so.1.10",
+          "needed": "libc.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10",
+          "needed": "libp3dtool.so.1.10",
+          "selected": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtool.so.1.10"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10",
+          "needed": "libdl.so.2",
+          "selected": "/usr/lib/x86_64-linux-gnu/libdl.so.2"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10",
+          "needed": "libstdc++.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10",
+          "needed": "libm.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libm.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10",
+          "needed": "libgcc_s.so.1",
+          "selected": "/usr/lib/x86_64-linux-gnu/libgcc_s.so.1"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10",
+          "needed": "libpthread.so.0",
+          "selected": "/usr/lib/x86_64-linux-gnu/libpthread.so.0"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10",
+          "needed": "libc.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "needed": "libpandaexpress.so.1.10",
+          "selected": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "needed": "libp3dtoolconfig.so.1.10",
+          "selected": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "needed": "libp3dtool.so.1.10",
+          "selected": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtool.so.1.10"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "needed": "libCg.so",
+          "selected": "/opt/venv/lib/python3.11/site-packages/panda3d/libCg.so"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "needed": "libdl.so.2",
+          "selected": "/usr/lib/x86_64-linux-gnu/libdl.so.2"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "needed": "libstdc++.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "needed": "libm.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libm.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "needed": "libgcc_s.so.1",
+          "selected": "/usr/lib/x86_64-linux-gnu/libgcc_s.so.1"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "needed": "libpthread.so.0",
+          "selected": "/usr/lib/x86_64-linux-gnu/libpthread.so.0"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "needed": "libc.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10",
+          "needed": "libp3dtool.so.1.10",
+          "selected": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtool.so.1.10"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10",
+          "needed": "libp3dtoolconfig.so.1.10",
+          "selected": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10",
+          "needed": "libdl.so.2",
+          "selected": "/usr/lib/x86_64-linux-gnu/libdl.so.2"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10",
+          "needed": "libstdc++.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10",
+          "needed": "libm.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libm.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10",
+          "needed": "libgcc_s.so.1",
+          "selected": "/usr/lib/x86_64-linux-gnu/libgcc_s.so.1"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10",
+          "needed": "libpthread.so.0",
+          "selected": "/usr/lib/x86_64-linux-gnu/libpthread.so.0"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10",
+          "needed": "libc.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libc.so.6"
+        },
+        {
+          "requester": "/usr/lib/x86_64-linux-gnu/libGL.so.1.7.0",
+          "needed": "libGLdispatch.so.0",
+          "selected": "/usr/lib/x86_64-linux-gnu/libGLdispatch.so.0.0.0"
+        },
+        {
+          "requester": "/usr/lib/x86_64-linux-gnu/libGL.so.1.7.0",
+          "needed": "libGLX.so.0",
+          "selected": "/usr/lib/x86_64-linux-gnu/libGLX.so.0.0.0"
+        },
+        {
+          "requester": "/usr/lib/x86_64-linux-gnu/libGL.so.1.7.0",
+          "needed": "libc.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libc.so.6"
+        },
+        {
+          "requester": "/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0",
+          "needed": "libxcb.so.1",
+          "selected": "/usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0"
+        },
+        {
+          "requester": "/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0",
+          "needed": "libc.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libc.so.6"
+        },
+        {
+          "requester": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+          "needed": "ld-linux-x86-64.so.2",
+          "selected": "/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2"
+        },
+        {
+          "requester": "/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33",
+          "needed": "libm.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libm.so.6"
+        },
+        {
+          "requester": "/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33",
+          "needed": "libc.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libc.so.6"
+        },
+        {
+          "requester": "/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33",
+          "needed": "ld-linux-x86-64.so.2",
+          "selected": "/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2"
+        },
+        {
+          "requester": "/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33",
+          "needed": "libgcc_s.so.1",
+          "selected": "/usr/lib/x86_64-linux-gnu/libgcc_s.so.1"
+        },
+        {
+          "requester": "/usr/lib/x86_64-linux-gnu/libGLX.so.0.0.0",
+          "needed": "libGLdispatch.so.0",
+          "selected": "/usr/lib/x86_64-linux-gnu/libGLdispatch.so.0.0.0"
+        },
+        {
+          "requester": "/usr/lib/x86_64-linux-gnu/libGLX.so.0.0.0",
+          "needed": "libX11.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0"
+        },
+        {
+          "requester": "/usr/lib/x86_64-linux-gnu/libGLX.so.0.0.0",
+          "needed": "libc.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libc.so.6"
+        },
+        {
+          "requester": "/usr/lib/x86_64-linux-gnu/libGLdispatch.so.0.0.0",
+          "needed": "libc.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libc.so.6"
+        },
+        {
+          "requester": "/usr/lib/x86_64-linux-gnu/libdl.so.2",
+          "needed": "libc.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libc.so.6"
+        },
+        {
+          "requester": "/usr/lib/x86_64-linux-gnu/libgcc_s.so.1",
+          "needed": "libc.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libc.so.6"
+        },
+        {
+          "requester": "/usr/lib/x86_64-linux-gnu/libgcc_s.so.1",
+          "needed": "ld-linux-x86-64.so.2",
+          "selected": "/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2"
+        },
+        {
+          "requester": "/usr/lib/x86_64-linux-gnu/libm.so.6",
+          "needed": "libc.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libc.so.6"
+        },
+        {
+          "requester": "/usr/lib/x86_64-linux-gnu/libm.so.6",
+          "needed": "ld-linux-x86-64.so.2",
+          "selected": "/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2"
+        },
+        {
+          "requester": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+          "needed": "libc.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libc.so.6"
+        },
+        {
+          "requester": "/usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0",
+          "needed": "libXau.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libXau.so.6.0.0"
+        },
+        {
+          "requester": "/usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0",
+          "needed": "libXdmcp.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libXdmcp.so.6.0.0"
+        },
+        {
+          "requester": "/usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0",
+          "needed": "libc.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libc.so.6"
+        },
+        {
+          "requester": "/usr/lib/x86_64-linux-gnu/libXau.so.6.0.0",
+          "needed": "libc.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libc.so.6"
+        },
+        {
+          "requester": "/usr/lib/x86_64-linux-gnu/libXdmcp.so.6.0.0",
+          "needed": "libbsd.so.0",
+          "selected": "/usr/lib/x86_64-linux-gnu/libbsd.so.0.12.1"
+        },
+        {
+          "requester": "/usr/lib/x86_64-linux-gnu/libXdmcp.so.6.0.0",
+          "needed": "libc.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libc.so.6"
+        },
+        {
+          "requester": "/usr/lib/x86_64-linux-gnu/libbsd.so.0.12.1",
+          "needed": "libmd.so.0",
+          "selected": "/usr/lib/x86_64-linux-gnu/libmd.so.0.1.0"
+        },
+        {
+          "requester": "/usr/lib/x86_64-linux-gnu/libbsd.so.0.12.1",
+          "needed": "libc.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libc.so.6"
+        },
+        {
+          "requester": "/usr/lib/x86_64-linux-gnu/libmd.so.0.1.0",
+          "needed": "libc.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libc.so.6"
+        }
+      ],
+      "provider_audit_summary": {
+        "/opt/venv/lib/python3.11/site-packages/panda3d/libCg.so": {
+          "strong_available": false,
+          "missing": [
+            "pthread_key_create",
+            "pthread_mutex_destroy",
+            "pthread_mutexattr_init",
+            "pthread_setspecific",
+            "pthread_mutex_lock",
+            "pthread_mutexattr_destroy",
+            "pthread_once",
+            "longjmp",
+            "pthread_mutexattr_settype",
+            "pthread_mutex_init",
+            "__errno_location",
+            "pthread_mutex_unlock",
+            "pthread_getspecific"
+          ],
+          "weak": [
+            "_Jv_RegisterClasses",
+            "__gmon_start__"
+          ],
+          "unsupported": []
+        },
+        "/opt/venv/lib/python3.11/site-packages/panda3d/libCgGL.so": {
+          "strong_available": false,
+          "missing": [
+            "dlopen",
+            "pthread_mutex_lock",
+            "dlclose",
+            "dlsym",
+            "pthread_mutex_unlock"
+          ],
+          "weak": [
+            "_Jv_RegisterClasses",
+            "__gmon_start__"
+          ],
+          "unsupported": []
+        },
+        "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtool.so.1.10": {
+          "strong_available": false,
+          "missing": [
+            "close",
+            "read",
+            "dlerror",
+            "dlclose",
+            "lseek",
+            "__errno_location",
+            "dlopen",
+            "dlsym",
+            "pthread_mutex_lock",
+            "pthread_mutex_destroy",
+            "write",
+            "pthread_mutex_unlock",
+            "open"
+          ],
+          "weak": [
+            "_ITM_addUserCommitAction",
+            "_ITM_memcpyRtWn",
+            "__gmon_start__",
+            "_ITM_RU1",
+            "_ITM_deregisterTMCloneTable",
+            "_ZGTtdlPv",
+            "_ITM_registerTMCloneTable",
+            "_ITM_RU8",
+            "_ITM_memcpyRnWt",
+            "__pthread_key_create",
+            "_ZGTtnam"
+          ],
+          "unsupported": []
+        },
+        "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10": {
+          "strong_available": false,
+          "missing": [
+            "close",
+            "read",
+            "dlerror",
+            "dlclose",
+            "sigaction",
+            "connect",
+            "__errno_location",
+            "dladdr",
+            "dlopen",
+            "dlsym",
+            "pthread_mutex_lock",
+            "pthread_mutex_destroy",
+            "write",
+            "pthread_mutex_unlock",
+            "open"
+          ],
+          "weak": [
+            "__gmon_start__",
+            "_ITM_deregisterTMCloneTable",
+            "_ITM_registerTMCloneTable",
+            "__pthread_key_create"
+          ],
+          "unsupported": []
+        },
+        "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10": {
+          "strong_available": false,
+          "missing": [
+            "pthread_mutex_destroy",
+            "fcntl",
+            "pthread_attr_init",
+            "pthread_setspecific",
+            "close",
+            "pthread_mutex_unlock",
+            "pthread_key_create",
+            "recvfrom",
+            "pthread_mutex_lock",
+            "lseek",
+            "pthread_cond_destroy",
+            "send",
+            "connect",
+            "pthread_mutex_init",
+            "pthread_cond_init",
+            "open",
+            "sem_destroy",
+            "pthread_cond_wait",
+            "pthread_attr_setschedparam",
+            "sem_init",
+            "pthread_self",
+            "pthread_attr_destroy",
+            "pthread_create",
+            "pthread_cond_signal",
+            "longjmp",
+            "sendto",
+            "read",
+            "pthread_mutex_trylock",
+            "sem_getvalue",
+            "pthread_attr_setstacksize",
+            "pthread_attr_setdetachstate",
+            "pthread_getspecific",
+            "pthread_cond_timedwait",
+            "accept",
+            "pthread_detach",
+            "pthread_attr_setscope",
+            "pthread_cond_broadcast",
+            "sem_post",
+            "lseek64",
+            "recv",
+            "sem_trywait",
+            "__errno_location",
+            "write",
+            "sem_wait",
+            "nanosleep",
+            "pthread_join",
+            "pthread_attr_setschedpolicy",
+            "open64"
+          ],
+          "weak": [
+            "_ITM_deregisterTMCloneTable",
+            "__gmon_start__",
+            "__pthread_key_create",
+            "_ITM_registerTMCloneTable"
+          ],
+          "unsupported": []
+        },
+        "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10": {
+          "strong_available": false,
+          "missing": [
+            "__errno_location",
+            "accept",
+            "write",
+            "dlerror",
+            "open",
+            "dlclose",
+            "pthread_mutex_unlock",
+            "connect",
+            "dladdr",
+            "pthread_mutex_destroy",
+            "sigaction",
+            "read",
+            "dlopen",
+            "pthread_mutex_lock",
+            "dlsym",
+            "close"
+          ],
+          "weak": [
+            "__pthread_key_create",
+            "_ITM_deregisterTMCloneTable",
+            "__gmon_start__",
+            "_ITM_registerTMCloneTable"
+          ],
+          "unsupported": []
+        },
+        "/usr/lib/x86_64-linux-gnu/libGL.so.1.7.0": {
+          "strong_available": true,
+          "missing": [],
+          "weak": [
+            "_ITM_deregisterTMCloneTable",
+            "__gmon_start__",
+            "_ITM_registerTMCloneTable"
+          ],
+          "unsupported": []
+        },
+        "/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0": {
+          "strong_available": true,
+          "missing": [],
+          "weak": [
+            "_ITM_deregisterTMCloneTable",
+            "__gmon_start__",
+            "_ITM_registerTMCloneTable"
+          ],
+          "unsupported": []
+        },
+        "/usr/lib/x86_64-linux-gnu/libc.so.6": {
+          "strong_available": true,
+          "missing": [],
+          "weak": [],
+          "unsupported": []
+        },
+        "/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33": {
+          "strong_available": true,
+          "missing": [],
+          "weak": [
+            "_ITM_addUserCommitAction",
+            "_ITM_memcpyRtWn",
+            "__gmon_start__",
+            "_ZN9__gnu_cxx21zoneinfo_dir_overrideEv",
+            "_ITM_RU1",
+            "_ITM_deregisterTMCloneTable",
+            "_ZGTtdlPv",
+            "_ITM_registerTMCloneTable",
+            "_ITM_RU8",
+            "_ITM_memcpyRnWt",
+            "_ZGTtnam"
+          ],
+          "unsupported": []
+        },
+        "/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2": {
+          "strong_available": true,
+          "missing": [],
+          "weak": [],
+          "unsupported": []
+        },
+        "/usr/lib/x86_64-linux-gnu/libGLX.so.0.0.0": {
+          "strong_available": true,
+          "missing": [],
+          "weak": [
+            "__gmon_start__",
+            "_ITM_deregisterTMCloneTable",
+            "_ITM_registerTMCloneTable"
+          ],
+          "unsupported": []
+        },
+        "/usr/lib/x86_64-linux-gnu/libGLdispatch.so.0.0.0": {
+          "strong_available": true,
+          "missing": [],
+          "weak": [
+            "__gmon_start__",
+            "_ITM_deregisterTMCloneTable",
+            "_ITM_registerTMCloneTable"
+          ],
+          "unsupported": []
+        },
+        "/usr/lib/x86_64-linux-gnu/libdl.so.2": {
+          "strong_available": true,
+          "missing": [],
+          "weak": [
+            "_ITM_deregisterTMCloneTable",
+            "__gmon_start__",
+            "_ITM_registerTMCloneTable"
+          ],
+          "unsupported": []
+        },
+        "/usr/lib/x86_64-linux-gnu/libgcc_s.so.1": {
+          "strong_available": true,
+          "missing": [],
+          "weak": [
+            "_ITM_deregisterTMCloneTable",
+            "__gmon_start__",
+            "_ITM_registerTMCloneTable"
+          ],
+          "unsupported": []
+        },
+        "/usr/lib/x86_64-linux-gnu/libm.so.6": {
+          "strong_available": true,
+          "missing": [],
+          "weak": [
+            "_ITM_deregisterTMCloneTable",
+            "__gmon_start__",
+            "_ITM_registerTMCloneTable"
+          ],
+          "unsupported": []
+        },
+        "/usr/lib/x86_64-linux-gnu/libpthread.so.0": {
+          "strong_available": true,
+          "missing": [],
+          "weak": [
+            "_ITM_deregisterTMCloneTable",
+            "__gmon_start__",
+            "_ITM_registerTMCloneTable"
+          ],
+          "unsupported": []
+        },
+        "/usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0": {
+          "strong_available": true,
+          "missing": [],
+          "weak": [
+            "_ITM_deregisterTMCloneTable",
+            "__gmon_start__",
+            "_ITM_registerTMCloneTable"
+          ],
+          "unsupported": []
+        },
+        "/usr/lib/x86_64-linux-gnu/libXau.so.6.0.0": {
+          "strong_available": true,
+          "missing": [],
+          "weak": [
+            "_ITM_deregisterTMCloneTable",
+            "__gmon_start__",
+            "_ITM_registerTMCloneTable"
+          ],
+          "unsupported": []
+        },
+        "/usr/lib/x86_64-linux-gnu/libXdmcp.so.6.0.0": {
+          "strong_available": true,
+          "missing": [],
+          "weak": [
+            "_ITM_deregisterTMCloneTable",
+            "__gmon_start__",
+            "_ITM_registerTMCloneTable"
+          ],
+          "unsupported": []
+        },
+        "/usr/lib/x86_64-linux-gnu/libbsd.so.0.12.1": {
+          "strong_available": true,
+          "missing": [],
+          "weak": [
+            "_ITM_deregisterTMCloneTable",
+            "__gmon_start__",
+            "_ITM_registerTMCloneTable"
+          ],
+          "unsupported": []
+        },
+        "/usr/lib/x86_64-linux-gnu/libmd.so.0.1.0": {
+          "strong_available": true,
+          "missing": [],
+          "weak": [
+            "_ITM_deregisterTMCloneTable",
+            "__gmon_start__",
+            "_ITM_registerTMCloneTable"
+          ],
+          "unsupported": []
+        }
+      },
+      "conditional_overrides": [
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandagl.so",
+          "needed": "libCg.so",
+          "selected": "/opt/venv/lib/python3.11/site-packages/panda3d/libCg.so",
+          "conditional_only": true
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandagl.so",
+          "needed": "libCgGL.so",
+          "selected": "/opt/venv/lib/python3.11/site-packages/panda3d/libCgGL.so",
+          "conditional_only": true
+        }
+      ]
+    },
+    "scoped": {
+      "graph_complete": true,
+      "root_strong_symbols_available": true,
+      "root_missing": [],
+      "root_weak_unresolved": [
+        "_ITM_deregisterTMCloneTable",
+        "__gmon_start__",
+        "_ITM_registerTMCloneTable"
+      ],
+      "unsupported_features": [],
+      "provider_count": 22,
+      "edges": [
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandagl.so",
+          "needed": "libpanda.so.1.10",
+          "selected": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandagl.so",
+          "needed": "libpandaexpress.so.1.10",
+          "selected": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandagl.so",
+          "needed": "libp3dtool.so.1.10",
+          "selected": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtool.so.1.10"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandagl.so",
+          "needed": "libp3dtoolconfig.so.1.10",
+          "selected": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandagl.so",
+          "needed": "libGL.so.1",
+          "selected": "/usr/lib/x86_64-linux-gnu/libGL.so.1.7.0"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandagl.so",
+          "needed": "libCg.so",
+          "selected": "/opt/venv/lib/python3.11/site-packages/panda3d/libCg.so"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandagl.so",
+          "needed": "libCgGL.so",
+          "selected": "/opt/venv/lib/python3.11/site-packages/panda3d/libCgGL.so"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandagl.so",
+          "needed": "libX11.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandagl.so",
+          "needed": "libstdc++.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandagl.so",
+          "needed": "libc.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCg.so",
+          "needed": "libm.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libm.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCg.so",
+          "needed": "libpthread.so.0",
+          "selected": "/usr/lib/x86_64-linux-gnu/libpthread.so.0"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCg.so",
+          "needed": "libc.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCg.so",
+          "needed": "ld-linux-x86-64.so.2",
+          "selected": "/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCgGL.so",
+          "needed": "libCg.so",
+          "selected": "/opt/venv/lib/python3.11/site-packages/panda3d/libCg.so"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCgGL.so",
+          "needed": "libm.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libm.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCgGL.so",
+          "needed": "libpthread.so.0",
+          "selected": "/usr/lib/x86_64-linux-gnu/libpthread.so.0"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCgGL.so",
+          "needed": "libdl.so.2",
+          "selected": "/usr/lib/x86_64-linux-gnu/libdl.so.2"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCgGL.so",
+          "needed": "libc.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCgGL.so",
+          "needed": "ld-linux-x86-64.so.2",
+          "selected": "/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtool.so.1.10",
+          "needed": "libdl.so.2",
+          "selected": "/usr/lib/x86_64-linux-gnu/libdl.so.2"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtool.so.1.10",
+          "needed": "libstdc++.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtool.so.1.10",
+          "needed": "libm.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libm.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtool.so.1.10",
+          "needed": "libgcc_s.so.1",
+          "selected": "/usr/lib/x86_64-linux-gnu/libgcc_s.so.1"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtool.so.1.10",
+          "needed": "libpthread.so.0",
+          "selected": "/usr/lib/x86_64-linux-gnu/libpthread.so.0"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtool.so.1.10",
+          "needed": "libc.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10",
+          "needed": "libp3dtool.so.1.10",
+          "selected": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtool.so.1.10"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10",
+          "needed": "libdl.so.2",
+          "selected": "/usr/lib/x86_64-linux-gnu/libdl.so.2"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10",
+          "needed": "libstdc++.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10",
+          "needed": "libm.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libm.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10",
+          "needed": "libgcc_s.so.1",
+          "selected": "/usr/lib/x86_64-linux-gnu/libgcc_s.so.1"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10",
+          "needed": "libpthread.so.0",
+          "selected": "/usr/lib/x86_64-linux-gnu/libpthread.so.0"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10",
+          "needed": "libc.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "needed": "libpandaexpress.so.1.10",
+          "selected": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "needed": "libp3dtoolconfig.so.1.10",
+          "selected": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "needed": "libp3dtool.so.1.10",
+          "selected": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtool.so.1.10"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "needed": "libCg.so",
+          "selected": "/opt/venv/lib/python3.11/site-packages/panda3d/libCg.so"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "needed": "libdl.so.2",
+          "selected": "/usr/lib/x86_64-linux-gnu/libdl.so.2"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "needed": "libstdc++.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "needed": "libm.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libm.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "needed": "libgcc_s.so.1",
+          "selected": "/usr/lib/x86_64-linux-gnu/libgcc_s.so.1"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "needed": "libpthread.so.0",
+          "selected": "/usr/lib/x86_64-linux-gnu/libpthread.so.0"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10",
+          "needed": "libc.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libc.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10",
+          "needed": "libp3dtool.so.1.10",
+          "selected": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtool.so.1.10"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10",
+          "needed": "libp3dtoolconfig.so.1.10",
+          "selected": "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10",
+          "needed": "libdl.so.2",
+          "selected": "/usr/lib/x86_64-linux-gnu/libdl.so.2"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10",
+          "needed": "libstdc++.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10",
+          "needed": "libm.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libm.so.6"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10",
+          "needed": "libgcc_s.so.1",
+          "selected": "/usr/lib/x86_64-linux-gnu/libgcc_s.so.1"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10",
+          "needed": "libpthread.so.0",
+          "selected": "/usr/lib/x86_64-linux-gnu/libpthread.so.0"
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10",
+          "needed": "libc.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libc.so.6"
+        },
+        {
+          "requester": "/usr/lib/x86_64-linux-gnu/libGL.so.1.7.0",
+          "needed": "libGLdispatch.so.0",
+          "selected": "/usr/lib/x86_64-linux-gnu/libGLdispatch.so.0.0.0"
+        },
+        {
+          "requester": "/usr/lib/x86_64-linux-gnu/libGL.so.1.7.0",
+          "needed": "libGLX.so.0",
+          "selected": "/usr/lib/x86_64-linux-gnu/libGLX.so.0.0.0"
+        },
+        {
+          "requester": "/usr/lib/x86_64-linux-gnu/libGL.so.1.7.0",
+          "needed": "libc.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libc.so.6"
+        },
+        {
+          "requester": "/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0",
+          "needed": "libxcb.so.1",
+          "selected": "/usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0"
+        },
+        {
+          "requester": "/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0",
+          "needed": "libc.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libc.so.6"
+        },
+        {
+          "requester": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+          "needed": "ld-linux-x86-64.so.2",
+          "selected": "/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2"
+        },
+        {
+          "requester": "/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33",
+          "needed": "libm.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libm.so.6"
+        },
+        {
+          "requester": "/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33",
+          "needed": "libc.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libc.so.6"
+        },
+        {
+          "requester": "/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33",
+          "needed": "ld-linux-x86-64.so.2",
+          "selected": "/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2"
+        },
+        {
+          "requester": "/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33",
+          "needed": "libgcc_s.so.1",
+          "selected": "/usr/lib/x86_64-linux-gnu/libgcc_s.so.1"
+        },
+        {
+          "requester": "/usr/lib/x86_64-linux-gnu/libGLX.so.0.0.0",
+          "needed": "libGLdispatch.so.0",
+          "selected": "/usr/lib/x86_64-linux-gnu/libGLdispatch.so.0.0.0"
+        },
+        {
+          "requester": "/usr/lib/x86_64-linux-gnu/libGLX.so.0.0.0",
+          "needed": "libX11.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0"
+        },
+        {
+          "requester": "/usr/lib/x86_64-linux-gnu/libGLX.so.0.0.0",
+          "needed": "libc.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libc.so.6"
+        },
+        {
+          "requester": "/usr/lib/x86_64-linux-gnu/libGLdispatch.so.0.0.0",
+          "needed": "libc.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libc.so.6"
+        },
+        {
+          "requester": "/usr/lib/x86_64-linux-gnu/libdl.so.2",
+          "needed": "libc.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libc.so.6"
+        },
+        {
+          "requester": "/usr/lib/x86_64-linux-gnu/libgcc_s.so.1",
+          "needed": "libc.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libc.so.6"
+        },
+        {
+          "requester": "/usr/lib/x86_64-linux-gnu/libgcc_s.so.1",
+          "needed": "ld-linux-x86-64.so.2",
+          "selected": "/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2"
+        },
+        {
+          "requester": "/usr/lib/x86_64-linux-gnu/libm.so.6",
+          "needed": "libc.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libc.so.6"
+        },
+        {
+          "requester": "/usr/lib/x86_64-linux-gnu/libm.so.6",
+          "needed": "ld-linux-x86-64.so.2",
+          "selected": "/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2"
+        },
+        {
+          "requester": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+          "needed": "libc.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libc.so.6"
+        },
+        {
+          "requester": "/usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0",
+          "needed": "libXau.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libXau.so.6.0.0"
+        },
+        {
+          "requester": "/usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0",
+          "needed": "libXdmcp.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libXdmcp.so.6.0.0"
+        },
+        {
+          "requester": "/usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0",
+          "needed": "libc.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libc.so.6"
+        },
+        {
+          "requester": "/usr/lib/x86_64-linux-gnu/libXau.so.6.0.0",
+          "needed": "libc.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libc.so.6"
+        },
+        {
+          "requester": "/usr/lib/x86_64-linux-gnu/libXdmcp.so.6.0.0",
+          "needed": "libbsd.so.0",
+          "selected": "/usr/lib/x86_64-linux-gnu/libbsd.so.0.12.1"
+        },
+        {
+          "requester": "/usr/lib/x86_64-linux-gnu/libXdmcp.so.6.0.0",
+          "needed": "libc.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libc.so.6"
+        },
+        {
+          "requester": "/usr/lib/x86_64-linux-gnu/libbsd.so.0.12.1",
+          "needed": "libmd.so.0",
+          "selected": "/usr/lib/x86_64-linux-gnu/libmd.so.0.1.0"
+        },
+        {
+          "requester": "/usr/lib/x86_64-linux-gnu/libbsd.so.0.12.1",
+          "needed": "libc.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libc.so.6"
+        },
+        {
+          "requester": "/usr/lib/x86_64-linux-gnu/libmd.so.0.1.0",
+          "needed": "libc.so.6",
+          "selected": "/usr/lib/x86_64-linux-gnu/libc.so.6"
+        }
+      ],
+      "provider_audit_summary": {
+        "/opt/venv/lib/python3.11/site-packages/panda3d/libCg.so": {
+          "strong_available": false,
+          "missing": [
+            "pthread_key_create",
+            "pthread_mutex_destroy",
+            "pthread_mutexattr_init",
+            "pthread_setspecific",
+            "pthread_mutex_lock",
+            "pthread_mutexattr_destroy",
+            "pthread_once",
+            "longjmp",
+            "pthread_mutexattr_settype",
+            "pthread_mutex_init",
+            "__errno_location",
+            "pthread_mutex_unlock",
+            "pthread_getspecific"
+          ],
+          "weak": [
+            "_Jv_RegisterClasses",
+            "__gmon_start__"
+          ],
+          "unsupported": []
+        },
+        "/opt/venv/lib/python3.11/site-packages/panda3d/libCgGL.so": {
+          "strong_available": false,
+          "missing": [
+            "dlopen",
+            "pthread_mutex_lock",
+            "dlclose",
+            "dlsym",
+            "pthread_mutex_unlock"
+          ],
+          "weak": [
+            "_Jv_RegisterClasses",
+            "__gmon_start__"
+          ],
+          "unsupported": []
+        },
+        "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtool.so.1.10": {
+          "strong_available": false,
+          "missing": [
+            "close",
+            "read",
+            "dlerror",
+            "dlclose",
+            "lseek",
+            "__errno_location",
+            "dlopen",
+            "dlsym",
+            "pthread_mutex_lock",
+            "pthread_mutex_destroy",
+            "write",
+            "pthread_mutex_unlock",
+            "open"
+          ],
+          "weak": [
+            "_ITM_addUserCommitAction",
+            "_ITM_memcpyRtWn",
+            "__gmon_start__",
+            "_ITM_RU1",
+            "_ITM_deregisterTMCloneTable",
+            "_ZGTtdlPv",
+            "_ITM_registerTMCloneTable",
+            "_ITM_RU8",
+            "_ITM_memcpyRnWt",
+            "__pthread_key_create",
+            "_ZGTtnam"
+          ],
+          "unsupported": []
+        },
+        "/opt/venv/lib/python3.11/site-packages/panda3d/libp3dtoolconfig.so.1.10": {
+          "strong_available": false,
+          "missing": [
+            "close",
+            "read",
+            "dlerror",
+            "dlclose",
+            "sigaction",
+            "connect",
+            "__errno_location",
+            "dladdr",
+            "dlopen",
+            "dlsym",
+            "pthread_mutex_lock",
+            "pthread_mutex_destroy",
+            "write",
+            "pthread_mutex_unlock",
+            "open"
+          ],
+          "weak": [
+            "__gmon_start__",
+            "_ITM_deregisterTMCloneTable",
+            "_ITM_registerTMCloneTable",
+            "__pthread_key_create"
+          ],
+          "unsupported": []
+        },
+        "/opt/venv/lib/python3.11/site-packages/panda3d/libpanda.so.1.10": {
+          "strong_available": false,
+          "missing": [
+            "pthread_mutex_destroy",
+            "fcntl",
+            "pthread_attr_init",
+            "pthread_setspecific",
+            "close",
+            "pthread_mutex_unlock",
+            "pthread_key_create",
+            "recvfrom",
+            "pthread_mutex_lock",
+            "lseek",
+            "pthread_cond_destroy",
+            "send",
+            "connect",
+            "pthread_mutex_init",
+            "pthread_cond_init",
+            "open",
+            "sem_destroy",
+            "pthread_cond_wait",
+            "pthread_attr_setschedparam",
+            "sem_init",
+            "pthread_self",
+            "pthread_attr_destroy",
+            "pthread_create",
+            "pthread_cond_signal",
+            "longjmp",
+            "sendto",
+            "read",
+            "pthread_mutex_trylock",
+            "sem_getvalue",
+            "pthread_attr_setstacksize",
+            "pthread_attr_setdetachstate",
+            "pthread_getspecific",
+            "pthread_cond_timedwait",
+            "accept",
+            "pthread_detach",
+            "pthread_attr_setscope",
+            "pthread_cond_broadcast",
+            "sem_post",
+            "lseek64",
+            "recv",
+            "sem_trywait",
+            "__errno_location",
+            "write",
+            "sem_wait",
+            "nanosleep",
+            "pthread_join",
+            "pthread_attr_setschedpolicy",
+            "open64"
+          ],
+          "weak": [
+            "_ITM_deregisterTMCloneTable",
+            "__gmon_start__",
+            "__pthread_key_create",
+            "_ITM_registerTMCloneTable"
+          ],
+          "unsupported": []
+        },
+        "/opt/venv/lib/python3.11/site-packages/panda3d/libpandaexpress.so.1.10": {
+          "strong_available": false,
+          "missing": [
+            "__errno_location",
+            "accept",
+            "write",
+            "dlerror",
+            "open",
+            "dlclose",
+            "pthread_mutex_unlock",
+            "connect",
+            "dladdr",
+            "pthread_mutex_destroy",
+            "sigaction",
+            "read",
+            "dlopen",
+            "pthread_mutex_lock",
+            "dlsym",
+            "close"
+          ],
+          "weak": [
+            "__pthread_key_create",
+            "_ITM_deregisterTMCloneTable",
+            "__gmon_start__",
+            "_ITM_registerTMCloneTable"
+          ],
+          "unsupported": []
+        },
+        "/usr/lib/x86_64-linux-gnu/libGL.so.1.7.0": {
+          "strong_available": true,
+          "missing": [],
+          "weak": [
+            "_ITM_deregisterTMCloneTable",
+            "__gmon_start__",
+            "_ITM_registerTMCloneTable"
+          ],
+          "unsupported": []
+        },
+        "/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0": {
+          "strong_available": true,
+          "missing": [],
+          "weak": [
+            "_ITM_deregisterTMCloneTable",
+            "__gmon_start__",
+            "_ITM_registerTMCloneTable"
+          ],
+          "unsupported": []
+        },
+        "/usr/lib/x86_64-linux-gnu/libc.so.6": {
+          "strong_available": true,
+          "missing": [],
+          "weak": [],
+          "unsupported": []
+        },
+        "/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33": {
+          "strong_available": true,
+          "missing": [],
+          "weak": [
+            "_ITM_addUserCommitAction",
+            "_ITM_memcpyRtWn",
+            "__gmon_start__",
+            "_ZN9__gnu_cxx21zoneinfo_dir_overrideEv",
+            "_ITM_RU1",
+            "_ITM_deregisterTMCloneTable",
+            "_ZGTtdlPv",
+            "_ITM_registerTMCloneTable",
+            "_ITM_RU8",
+            "_ITM_memcpyRnWt",
+            "_ZGTtnam"
+          ],
+          "unsupported": []
+        },
+        "/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2": {
+          "strong_available": true,
+          "missing": [],
+          "weak": [],
+          "unsupported": []
+        },
+        "/usr/lib/x86_64-linux-gnu/libGLX.so.0.0.0": {
+          "strong_available": true,
+          "missing": [],
+          "weak": [
+            "__gmon_start__",
+            "_ITM_deregisterTMCloneTable",
+            "_ITM_registerTMCloneTable"
+          ],
+          "unsupported": []
+        },
+        "/usr/lib/x86_64-linux-gnu/libGLdispatch.so.0.0.0": {
+          "strong_available": true,
+          "missing": [],
+          "weak": [
+            "__gmon_start__",
+            "_ITM_deregisterTMCloneTable",
+            "_ITM_registerTMCloneTable"
+          ],
+          "unsupported": []
+        },
+        "/usr/lib/x86_64-linux-gnu/libdl.so.2": {
+          "strong_available": true,
+          "missing": [],
+          "weak": [
+            "_ITM_deregisterTMCloneTable",
+            "__gmon_start__",
+            "_ITM_registerTMCloneTable"
+          ],
+          "unsupported": []
+        },
+        "/usr/lib/x86_64-linux-gnu/libgcc_s.so.1": {
+          "strong_available": true,
+          "missing": [],
+          "weak": [
+            "_ITM_deregisterTMCloneTable",
+            "__gmon_start__",
+            "_ITM_registerTMCloneTable"
+          ],
+          "unsupported": []
+        },
+        "/usr/lib/x86_64-linux-gnu/libm.so.6": {
+          "strong_available": true,
+          "missing": [],
+          "weak": [
+            "_ITM_deregisterTMCloneTable",
+            "__gmon_start__",
+            "_ITM_registerTMCloneTable"
+          ],
+          "unsupported": []
+        },
+        "/usr/lib/x86_64-linux-gnu/libpthread.so.0": {
+          "strong_available": true,
+          "missing": [],
+          "weak": [
+            "_ITM_deregisterTMCloneTable",
+            "__gmon_start__",
+            "_ITM_registerTMCloneTable"
+          ],
+          "unsupported": []
+        },
+        "/usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0": {
+          "strong_available": true,
+          "missing": [],
+          "weak": [
+            "_ITM_deregisterTMCloneTable",
+            "__gmon_start__",
+            "_ITM_registerTMCloneTable"
+          ],
+          "unsupported": []
+        },
+        "/usr/lib/x86_64-linux-gnu/libXau.so.6.0.0": {
+          "strong_available": true,
+          "missing": [],
+          "weak": [
+            "_ITM_deregisterTMCloneTable",
+            "__gmon_start__",
+            "_ITM_registerTMCloneTable"
+          ],
+          "unsupported": []
+        },
+        "/usr/lib/x86_64-linux-gnu/libXdmcp.so.6.0.0": {
+          "strong_available": true,
+          "missing": [],
+          "weak": [
+            "_ITM_deregisterTMCloneTable",
+            "__gmon_start__",
+            "_ITM_registerTMCloneTable"
+          ],
+          "unsupported": []
+        },
+        "/usr/lib/x86_64-linux-gnu/libbsd.so.0.12.1": {
+          "strong_available": true,
+          "missing": [],
+          "weak": [
+            "_ITM_deregisterTMCloneTable",
+            "__gmon_start__",
+            "_ITM_registerTMCloneTable"
+          ],
+          "unsupported": []
+        },
+        "/usr/lib/x86_64-linux-gnu/libmd.so.0.1.0": {
+          "strong_available": true,
+          "missing": [],
+          "weak": [
+            "_ITM_deregisterTMCloneTable",
+            "__gmon_start__",
+            "_ITM_registerTMCloneTable"
+          ],
+          "unsupported": []
+        }
+      },
+      "conditional_overrides": [
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandagl.so",
+          "needed": "libCg.so",
+          "selected": "/opt/venv/lib/python3.11/site-packages/panda3d/libCg.so",
+          "conditional_only": true
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libpandagl.so",
+          "needed": "libCgGL.so",
+          "selected": "/opt/venv/lib/python3.11/site-packages/panda3d/libCgGL.so",
+          "conditional_only": true
+        },
+        {
+          "requester": "/opt/venv/lib/python3.11/site-packages/panda3d/libCgGL.so",
+          "needed": "libCg.so",
+          "selected": "/opt/venv/lib/python3.11/site-packages/panda3d/libCg.so",
+          "conditional_only": true
+        }
+      ]
+    }
+  },
+  "target_execution": false,
+  "native_admitted": false,
+  "previous_build_verdict_changed": false,
+  "runtime_binding_qualified": false,
+  "full_object_abi_qualified": false,
+  "scientific_native_runs": 0,
+  "cg_metadata": {
+    "libCg.so": {
+      "schema": "panda-sdk-link-loader-metadata-v1",
+      "elf_sha256": "942f33fe1e0935445d88e0595089fda99d20335ef089b5205d61cd6ade054018",
+      "nbytes": 20398129,
+      "soname": "libCg.so",
+      "needed": [
+        "libm.so.6",
+        "libpthread.so.0",
+        "libc.so.6",
+        "ld-linux-x86-64.so.2"
+      ],
+      "rpath": "$ORIGIN",
+      "runpath": null,
+      "dynamic_symbol_count": 472,
+      "relocation_count": 345497,
+      "relocation_kinds": [
+        1,
+        6,
+        7
+      ],
+      "version_needs": {
+        "4": {
+          "name": "GLIBC_2.2.5",
+          "library": "libm.so.6"
+        },
+        "3": {
+          "name": "GLIBC_2.2.5",
+          "library": "libpthread.so.0"
+        },
+        "2": {
+          "name": "GLIBC_2.2.5",
+          "library": "libc.so.6"
+        }
+      },
+      "version_definitions": {},
+      "init_present": true,
+      "ifunc_exports": 0,
+      "unsupported_features": [],
+      "section_headers_used": false,
+      "native_admitted": false,
+      "runtime_mapping_qualified": false
+    },
+    "libCgGL.so": {
+      "schema": "panda-sdk-link-loader-metadata-v1",
+      "elf_sha256": "034f5ac079da5d56dcfe621c3ea9b6aaff553fc44ecfb630c167c91c68abe0df",
+      "nbytes": 545121,
+      "soname": "libCgGL.so",
+      "needed": [
+        "libCg.so",
+        "libm.so.6",
+        "libpthread.so.0",
+        "libdl.so.2",
+        "libc.so.6",
+        "ld-linux-x86-64.so.2"
+      ],
+      "rpath": "$ORIGIN",
+      "runpath": null,
+      "dynamic_symbol_count": 163,
+      "relocation_count": 1875,
+      "relocation_kinds": [
+        6,
+        7
+      ],
+      "version_needs": {
+        "4": {
+          "name": "GLIBC_2.2.5",
+          "library": "libpthread.so.0"
+        },
+        "3": {
+          "name": "GLIBC_2.2.5",
+          "library": "libdl.so.2"
+        },
+        "2": {
+          "name": "GLIBC_2.2.5",
+          "library": "libc.so.6"
+        }
+      },
+      "version_definitions": {},
+      "init_present": true,
+      "ifunc_exports": 0,
+      "unsupported_features": [],
+      "section_headers_used": false,
+      "native_admitted": false,
+      "runtime_mapping_qualified": false
+    }
+  }
+}
