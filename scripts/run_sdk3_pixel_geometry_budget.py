@@ -18,6 +18,36 @@ validate_proc_snapshot=baseline.validate_proc_snapshot
 observation_summary=baseline.observation_summary
 
 
+def validate_ray_segments(geometry):
+    projection=np.asarray(geometry['lens_projection'],dtype=float);inverse=np.asarray(geometry['lens_projection_inverse'],dtype=float);camera=np.asarray(geometry['camera_to_world'],dtype=float)
+    p.need(all(m.shape==(4,4) and np.isfinite(m).all() for m in (projection,inverse,camera)) and geometry.get('lens_inverse_dtype')=='float32' and geometry.get('lens_far_limit')==1e-7,'finite pinned float32 lens matrices/clamp')
+    p.need(np.allclose(projection@inverse,np.eye(4),rtol=0,atol=1e-5) and np.allclose(inverse,np.linalg.inv(projection),rtol=32*np.finfo(np.float32).eps,atol=32*np.finfo(np.float32).eps),'retained inverse independently matches projection')
+    tolerance=32*float(np.finfo(np.float32).eps);maximum_error=0.
+    for ray in geometry['rays']:
+        x,y=ray['ndc'];clip=np.asarray([[x,y,-1.,1.],[x,y,1.,1.]],np.float32)@inverse.astype(np.float32)
+        weight=np.maximum(clip[:,3].astype(float),1e-7);reciprocal=(1./weight).astype(np.float32);points=(clip[:,:3]*reciprocal[:,None]).astype(float);expected=g.transform_points(points,camera)
+        origin=np.asarray(ray['origin'],float);direction=np.asarray(ray['direction'],float);distance=ray['max_distance']
+        p.need(origin.shape==direction.shape==(3,) and np.isfinite(origin).all() and np.isfinite(direction).all() and type(distance) in (int,float) and np.isfinite(distance) and distance>0,'finite bounded segment')
+        delta=expected[1]-expected[0];length=float(np.linalg.norm(delta));p.need(length>0,'nondegenerate lens segment');endpoint=origin+direction*distance
+        p.need(np.allclose(origin,expected[0],rtol=tolerance,atol=tolerance) and np.allclose(endpoint,expected[1],rtol=tolerance,atol=tolerance) and np.allclose(direction,delta/length,rtol=tolerance,atol=tolerance) and np.isclose(distance,length,rtol=tolerance,atol=tolerance),'actual forward near-to-far lens segment')
+        maximum_error=max(maximum_error,float(np.max(np.abs(np.array([origin,endpoint])-expected))))
+    return dict(max_endpoint_abs_world_error=maximum_error,float32_endpoint_rtol=tolerance,float32_endpoint_atol_world=tolerance,inverse_residual_atol=1e-5,clip_depth_near=-1.,clip_depth_far=1.)
+
+
+def validate_mesh_counters(geometry,triangles,ids):
+    meshes=geometry['meshes'];counts=geometry['counts'];complete=geometry['scan_finished_within_budget'];vertices=0;primitives=0;last_node=-1;seen=set()
+    p.need(isinstance(meshes,list) and len(meshes)<=512 and type(counts.get('nontriangle_primitives')) is int and 0<=counts['nontriangle_primitives']<2**31,'bounded mesh/nontriangle metadata')
+    for mesh in meshes:
+        p.need(all(type(mesh.get(k)) is int for k in ('node_ordinal','geom_index','vertex_count','source_primitive_count','triangle_start','triangle_end','mesh_id')),'integer source mesh metadata')
+        node=mesh['node_ordinal'];geom=mesh['geom_index'];p.need(last_node<=node<counts['nodes_seen'] and 0<=node and 0<=geom<2**31 and (node,geom) not in seen and 0<=mesh['vertex_count']<=500_000 and 0<=mesh['source_primitive_count']<2**31,'actual source node/geom/vertex/primitive ranges');last_node=node;seen.add((node,geom))
+        entries=mesh['primitive_triangle_counts'];p.need(isinstance(entries,list) and all(type(n) is int and 0<=n<2**31 for n in entries) and len(entries)<=mesh['source_primitive_count'],'decomposed source primitive metadata')
+        if complete:p.need(len(entries)==mesh['source_primitive_count'],'complete source primitive coverage')
+        selected=ids[mesh['triangle_start']:mesh['triangle_end']];p.need(len(np.unique(selected[:,1:3],axis=0))==len(selected),'source triangles enumerated once')
+        vertices+=mesh['vertex_count'];primitives+=sum(entries)
+    if complete:p.need(vertices==counts['vertices_read'] and primitives==len(triangles)+counts['nontriangle_primitives'],'complete traversal counters reconcile')
+    else:p.need(vertices<=counts['vertices_read'] and primitives>=len(triangles)+counts['nontriangle_primitives'],'partial counters allow unfinished reads/decomposition only')
+
+
 def validate_geometry(folder,manifest):
     geometry=manifest.get('geometry',{});p.need(geometry.get('stage')=='AFTER_ORIGINAL_ROAD_CPU_READ_BEFORE_CAMERA_RESTORE' and geometry.get('borrowed_parent_is_origin') is True and geometry.get('source_viewport')==[0.,1.,0.,1.] and geometry.get('source_buffer_size')==[964,604],'CPU state from borrowed full-source camera')
     p.need(all(geometry.get(k) is False for k in ('cpu_scene_coverage_proven','gpu_pixel_owner_proven','depth_tie_proven','unique_cause_proven')) and geometry.get('cpu_sample_rays_not_msaa_positions') is True and geometry.get('cpu_net_state_not_actual_cull_draw_state') is True,'no CPU-to-GPU ownership/depth/causality overclaim')
@@ -35,6 +65,8 @@ def validate_geometry(folder,manifest):
         p.need(np.all(selected[:,0]==index) and np.all(selected[:,3:]<mesh['vertex_count']) and all(row[1]<len(mesh['primitive_triangle_counts']) and row[2]<mesh['primitive_triangle_counts'][row[1]] for row in selected),'authentic source-index ranges')
         cursor=end
     p.need(cursor==len(triangles) and counts['geoms_tested']==len(meshes),'every tested triangle has a counted source mesh')
+    validate_mesh_counters(geometry,triangles,ids)
+    segment_audit=validate_ray_segments(geometry)
     rays=geometry['rays'];p.need([dict(name=r['name'],ndc=r['ndc']) for r in rays]==g.pixel_samples(964,604,596,494),'exact top-left center/corner ray labels')
     error=g.ray_projection_error(rays,geometry['camera_to_world'],geometry['lens_projection']);p.need(error<=1e-5,'CPU camera/lens ray reprojection,not an image tolerance')
     hits=g.all_ray_hits(triangles,rays);declared=geometry.get('hits');p.need(isinstance(declared,dict) and set(declared)==set(hits),'complete reported sample hit sets')
@@ -43,7 +75,7 @@ def validate_geometry(folder,manifest):
         for left,right in zip(rows,declared[name]):
             p.need(set(right)==set(left) and left['triangle_index']==right.get('triangle_index'),'independent source triangle identity')
             p.need(np.allclose([left['distance'],*left['barycentric'],*left['position']],[right['distance'],*right['barycentric'],*right['position']],rtol=1e-12,atol=1e-9),'independent CPU numerical intersection')
-    return dict(scan_finished=geometry['scan_finished_within_budget'],triangles_tested=len(triangles),meshes_tested=len(meshes),hits=hits,cpu_reprojection_max_abs_ndc_error=error,gpu_pixel_owner_proven=False,depth_tie_proven=False,unique_cause_proven=False)
+    return dict(segment_audit=segment_audit,scan_finished=geometry['scan_finished_within_budget'],triangles_tested=len(triangles),meshes_tested=len(meshes),hits=hits,cpu_reprojection_max_abs_ndc_error=error,gpu_pixel_owner_proven=False,depth_tie_proven=False,unique_cause_proven=False)
 
 
 def qualify_geometry(folder,report,nonce,result):

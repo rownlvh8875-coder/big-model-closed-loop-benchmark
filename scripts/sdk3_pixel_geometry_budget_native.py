@@ -42,6 +42,7 @@ def geometry_observe(camera,journal,out,nonce,snapshot=None):
             import panda3d.core as core
             from scripts.sdk3_pixel_geometry_native import snapshot_geometry
             geometry=snapshot_geometry(core,engine,sensor,out)
+            lens=sensor.get_lens();inverse=lens.getProjectionMatInv();geometry.update(lens_projection_inverse=[[float(inverse.getCell(r,c)) for c in range(4)] for r in range(4)],lens_inverse_dtype='float32',lens_far_limit=float(core.ConfigVariableDouble('lens-far-limit').getValue()))
         else:geometry=snapshot(engine,sensor,out)
         manifest.update(status='GEOMETRY_RECORDED',geometry=geometry);p.write(out/'geometry-observer.json',manifest);journal.emit('checkpoint',stage='GEOMETRY_RETURN')
     try:
