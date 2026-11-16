@@ -1,0 +1,32 @@
+{
+  "schema": "sdk3-shader-path-execution-proposal-v1",
+  "status": "AWAITING_EXPLICIT_REMOTE_APPROVAL",
+  "feature_branch": "feature/sdk3-shader-path-v1",
+  "draft_pr_base": "feature/sdk3-pixel-material-v1",
+  "base_sha": "dacce23588e45dfd986f69f1ec00f23e0be051ed",
+  "proposed_actions": [
+    "push reviewed feature branch",
+    "create draft PR",
+    "require exact-source canonical push/pull_request four successful CI jobs",
+    "add request-only versioned branch after CI success",
+    "run exactly one bounded renderer and independently authenticate artifact"
+  ],
+  "activation_branch": "diagnostic/sdk3-shader-path-20261117-01",
+  "request_path": "docs/requests/sdk3-shader-path-20261117-01.json",
+  "renderer_processes": 1,
+  "official_model_processes": 0,
+  "onnx_inferences": 0,
+  "child_timeout_seconds": 600,
+  "container_timeout_seconds": 630,
+  "job_timeout_minutes": 20,
+  "cpus": 2,
+  "memory_gib": 10,
+  "network": "none",
+  "root_readonly": true,
+  "environment_publication": false,
+  "registry_publication": false,
+  "main_merge": false,
+  "original_matrix_gate_passed": false,
+  "repair_proven": false,
+  "stage7_complete": false
+}

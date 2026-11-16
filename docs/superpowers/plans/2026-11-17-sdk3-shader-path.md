@@ -22,14 +22,15 @@ Base dacce23588e45dfd986f69f1ec00f23e0be051ed;additionsonly. Onefreshnative/0off
 ### Task1: exact shader variant and CPU tonemap
 **Files:** Create scripts/sdk3_shader_path.py,tests/test_sdk3_shader_path.py;newfrozen-source evidenceonly.
 **Interfaces:** variant(raw:str,defines:dict,stage:str)->str;pipeline_defines(config:dict)->dict;tonemap(rgb,exposure=1)->array;TextStore(folder).save(text,label)->descriptor with file/nbytes/SHA.
-- [ ] RED literal alias/order/USE330/missingversion,boundedUTF8/globalbudget,tonemapzero/knownfinitevector/negative/invalidvalues. Expected missingmoduleFAIL.
-- [ ] GREEN minimalpurefunctions,run CPUtestsPASS,commit.
+- [x] RED literal alias/order/USE330/missingversion,boundedUTF8/globalbudget,tonemapzero/knownfinitevector/negative/invalidvalues. Expected missingmoduleFAIL.
+- [x] GREEN minimalpurefunctions,run CPUtestsPASS,commit.
 
 ### Task2: cached source/input native observation and independent admission
 **Files:** Create scripts/sdk3_shader_path_native.py,scripts/run_sdk3_shader_path.py,tests/test_sdk3_shader_path_host.py,.github/workflows/sdk3-shader-path-v1.yml,newresult/evidenceonly.
 **Interfaces:** snapshot_shader(core,engine,sensor,geometry,out,nonce,journal)->manifest;validate_receipt(folder,reference,nonce)->dict. Uses Task1 and unchangedmaterialvalidator/privateadapters.
-- [ ] RED validactualsources/variant and knowninput availability;wrongtarget/material/state/hash/defines/scene_tex/falseflags/arrayvalues/partial rejectorremainhonest. Expected missingbehaviorFAIL.
-- [ ] GREEN nativegetters/privateadapters/noextraGPU/no setters;receiver oldgates+exactsource/shader/text/input/identity/time/budgetchecks. Focusedregressions/actionlintPASS,commit.
-- [ ] ExactsourcefourCIjobsPASS;solefreshreview and ONE ImportantRED→GREEN pass/no rereview;Minorledger.
+- [x] RED validactualsources/variant and knowninput availability;wrongtarget/material/state/hash/defines/scene_tex/falseflags/arrayvalues/partial rejectorremainhonest. Expected missingbehaviorFAIL.
+- [x] GREEN nativegetters/privateadapters/noextraGPU/no setters;receiver oldgates+exactsource/shader/text/input/identity/time/budgetchecks. Focusedregressions/actionlintPASS,commit.
+- [x] Sole fresh review and one Important correction pass: 16 new/132 focused PASS, actionlint PASS; Minor ledgered. Whole-suite gate pending canonical CI after local environment failures.
+- [ ] Exact-source canonical four CI jobs PASS; verify complete unit log counts. Remote approval required after auto-review rejection.
 - [ ] One versionedactualrequest;authenticateartifact/oldimages/geometry/material/newshader receipt,retainfailure/partial/source mismatch.
 - [ ] Finalreport/ownDraftPR(parent136),exactHEADfourCI/logcounts/remote/body/parent/main/originalpreservation;own scratch archive/remove. No originalgatepromotion.

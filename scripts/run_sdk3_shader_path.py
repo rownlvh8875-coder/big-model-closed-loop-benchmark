@@ -1,7 +1,7 @@
 """Authenticate cached shader source and bindings; preserve original failure gates."""
 from pathlib import Path
 from types import FunctionType
-import hashlib,json,os,re,shutil,subprocess,sys
+import argparse,hashlib,json,os,re,shutil,subprocess,sys
 import numpy as np
 if __name__=='__main__':sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 from scripts import run_sdk3_pixel_material as material,run_sdk3_pixel_geometry_budget as budget,panda_sdk3_runtime as p,sdk3_pixel_geometry as g,sdk3_pixel_geometry_budget_runtime as runtime,sdk3_shader_path as s
@@ -43,7 +43,7 @@ def validate_shader(folder,nonce,result):
     files=set();total=0
     def text(desc):
         nonlocal total
-        p.need(isinstance(desc,dict) and isinstance(desc.get('file'),str) and re.fullmatch(r'shader-text-\d{3}-[a-z0-9-]+\.txt',desc['file']) is not None and desc['file'] not in files and type(desc.get('nbytes')) is int and 0<desc['nbytes']<=262144,'unique bounded source/shader descriptor');q=folder/desc['file'];p.need(q.stat().st_size==desc['nbytes'] and p.digest(q)==desc.get('sha256'),'actual shader source bytes');files.add(desc['file']);total+=desc['nbytes'];p.need(total<=2097152,'global shader byte budget');return q.read_text()
+        p.need(isinstance(desc,dict) and isinstance(desc.get('file'),str) and re.fullmatch(r'shader-text-\d{3}-[a-z0-9-]+\.txt',desc['file']) is not None and desc['file'] not in files and type(desc.get('nbytes')) is int and 0<desc['nbytes']<=262144,'unique bounded source/shader descriptor');q=folder/desc['file'];p.need(q.stat().st_size==desc['nbytes'] and p.digest(q)==desc.get('sha256'),'actual shader source bytes');files.add(desc['file']);total+=desc['nbytes'];p.need(total<=2097152,'global shader byte budget');return q.read_bytes().decode('utf-8')
     sources=x.get('sources');p.need(isinstance(sources,list) and [v.get('name') for v in sources]==list(SOURCE_PINS)[:len(sources)] and (not complete or len(sources)==len(SOURCE_PINS)),'exact pinned frozen source set');raw={}
     for row in sources:
         pin=SOURCE_PINS[row['name']];raw[row['name']]=text(row);p.need(row['sha256']==pin['sha256'] and row['nbytes']==pin['nbytes'],'frozen file SHA/size match immutable image')

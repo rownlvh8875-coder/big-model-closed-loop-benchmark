@@ -5,7 +5,6 @@ import argparse,json,os,sys,time
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 from scripts import sdk3_pixel_material_native as material,sdk3_pixel_geometry_budget_native as budget,panda_sdk3_runtime as p
 from scripts.sdk3_capture_progress import stack_watchdog
-_clone=None
 
 def clone(function,**changes):
     from types import FunctionType
@@ -35,10 +34,12 @@ def snapshot_shader(core,engine,sensor,geometry,out,nonce,journal):
         if shader is None:return None
         pointer=int(shader.this)
         if pointer in lookup:return lookup[pointer]
-        p.need(len(shaders)<8,'shader object limit');stages={}
+        p.need(len(shaders)<8,'shader object limit');stages={name:dict(filename='',text=None) for name in ('vertex','fragment')}
+        index=len(shaders);shaders.append(dict(shader_id=index,pointer=pointer,language=int(shader.getLanguage()),error_flag=bool(shader.getErrorFlag()),stages=stages));lookup[pointer]=index
         for name,kind in [('vertex',core.Shader.ST_vertex),('fragment',core.Shader.ST_fragment)]:
-            guard();text=shader.getText(kind);stages[name]=dict(filename=str(shader.getFilename(kind)),text=store.save(text,name) if text else None)
-        index=len(shaders);shaders.append(dict(shader_id=index,pointer=pointer,language=int(shader.getLanguage()),error_flag=bool(shader.getErrorFlag()),stages=stages));lookup[pointer]=index;return index
+            guard();stages[name]['filename']=str(shader.getFilename(kind));text=shader.getText(kind)
+            if text:stages[name]['text']=store.save(text,name)
+        return index
     try:
         pipeline=engine.pbrpipe;p.need(pipeline is not None,'existing simplepbr pipeline');x['pipeline']=dict(max_lights=int(pipeline.max_lights),exposure=float(pipeline.exposure),**{key:bool(getattr(pipeline,key)) for key in s.CONFIG_FLAGS})
         root=(Path(p.SITE)/'metadrive').resolve()
