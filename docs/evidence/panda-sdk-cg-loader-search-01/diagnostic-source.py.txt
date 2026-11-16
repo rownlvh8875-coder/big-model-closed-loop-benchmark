@@ -1,0 +1,35 @@
+from pathlib import Path
+from hashlib import sha256
+import json,sys,time
+root=Path('/workspace/big-model-closed-loop-benchmark');sys.path.insert(0,str(root))
+from scripts import panda_sdk_cg_inputs as cg
+from scripts import panda_sdk_link_image as image
+from scripts import panda_sdk_link_elf as elf
+from scripts import panda_sdk_cg_eigen_gate as gate
+out=root/'output/stage7-panda-sdk-cg-loader-search-01';c,authority,_=cg.image_authority(root/cg.contract()['current_image_acceptance_path']);raw=cg.read(root/'output/stage7-panda-sdk-cg-eigen-candidate-02/acceptance/candidate/candidate/libpandagl.so.data',4*1024**2);assert len(raw)==1052968 and sha256(raw).hexdigest()=='332551094adbca1aa12f716ff8798566e522021b62f25c46a66a425873ea1297'
+inv=json.loads(cg.read(root/cg.INVENTORY,16*1024**2));pins=c['image_cg_providers'];pair={n:r['image_path'] for n,r in pins.items()};records={}
+for name,pin in pins.items():
+ p=(root/'output/stage7-panda-sdk-abi0-image-01/acceptance/root-symbol-audit/providers'/(pin['sha256']+'.elf.data')) if name=='libCg.so' else root/'output/stage7-panda-sdk-cg-candidate-01/input-data/libCgGL.so.data';b=cg.read(p,64*1024**2);assert len(b)==pin['nbytes'] and sha256(b).hexdigest()==pin['sha256'];records[pin['image_path']]=p
+class DiagnosticInventory(image.Inventory):
+ def __init__(self,mode):super().__init__(inv);self.mode=mode;self.overrides=[]
+ def select(self,requester,name,meta):
+  allowed=requester==image.LIB and name in pair or self.mode=='scoped' and requester==pair['libCgGL.so'] and name=='libCg.so'
+  if self.mode!='frozen' and allowed:
+   self.overrides.append(dict(requester=requester,needed=name,selected=pair[name],conditional_only=True));return self.resolve(pair[name])
+  return super().select(requester,name,meta)
+class DataReader:
+ def __init__(self,mode):self.inventory=DiagnosticInventory(mode);self.cache={}
+ def collect(self,paths):
+  assert len(self.cache)+len(paths)<=64;rows={}
+  for name in paths:
+   expected=self.inventory.rows[name];p=records.get(name,root/'output/stage7-panda-sdk-abi0-image-01/acceptance/root-symbol-audit/providers'/(expected['sha256']+'.elf.data'));b=cg.read(p,64*1024**2);assert len(b)==expected['nbytes'] and sha256(b).hexdigest()==expected['sha256'];rows[name]=dict(path=name,nbytes=len(b),sha256=expected['sha256'],data_path=str(p),native_admitted=False)
+  self.cache.update(rows);return rows
+summary=dict(schema='panda-sdk-cg-loader-search-design-diagnostics-v1',candidate_sha256=sha256(raw).hexdigest(),image_sha256=c['current_image_sha256'],modes={},target_execution=False,native_admitted=False,previous_build_verdict_changed=False,runtime_binding_qualified=False,full_object_abi_qualified=False,scientific_native_runs=0)
+for mode in ['frozen','root-pair','scoped']:
+ reader=DataReader(mode)
+ try:
+  availability,nodes=image.provider_graph(reader,raw);(out/(mode+'-availability.json')).write_text(json.dumps(availability,indent=2)+'\n');(out/(mode+'-loader-metadata.json')).write_text(json.dumps(nodes,indent=2)+'\n');summary['modes'][mode]=dict(graph_complete=True,root_strong_symbols_available=availability['root_strong_symbols_available'],root_missing=[dict(name=r['name'],version=r.get('version'),library=r.get('version_library')) for r in availability['missing']],root_weak_unresolved=[r['name'] for r in availability['weak_unresolved']],unsupported_features=availability['unsupported_features'],provider_count=availability['provider_count'],edges=availability['edges'],provider_audit_summary={p:dict(strong_available=r['root_strong_symbols_available'],missing=[x['name'] for x in r['missing']],weak=[x['name'] for x in r['weak_unresolved']],unsupported=r['unsupported_features']) for p,r in availability['provider_audits'].items()},conditional_overrides=reader.inventory.overrides)
+ except Exception as error:summary['modes'][mode]=dict(graph_complete=False,failure=type(error).__name__+': '+str(error),conditional_overrides=reader.inventory.overrides)
+summary['cg_metadata']={name:{k:v for k,v in elf.inspect_elf(cg.read(records[p['image_path']],64*1024**2)).items() if k not in ('imports','exports')} for name,p in pins.items()}
+(out/'diagnostics.json').write_text(json.dumps(summary,indent=2)+'\n')
+print(json.dumps({mode:{k:v for k,v in row.items() if k not in ('edges','provider_audit_summary','conditional_overrides')} for mode,row in summary['modes'].items()}))
