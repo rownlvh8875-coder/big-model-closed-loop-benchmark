@@ -1,0 +1,9 @@
+# SDD ledger — plan: docs/superpowers/plans/2026-11-16-panda-sdk-cg-runpath-candidate-v3.md
+Base69d722b95818841f7956498fb9f5ee2f88c2d616/Draft126,7664files. User requested continuation of all3implementation tasks, including the new one-use compile-only build after TDD/fulltests/solefreshreview/sourceCI. No old request replay, target/SDK/Panda/GL/Xvfb/officialmodel/ORT/cohort execution,image operation,merge or publication.
+Ruling: Work inline in the existing checkout on the own v3 feature branch — persisted user preference — cost: strict base-file/mode and history preservation required.
+Ruling: Use equivalent manual briefs/completion records because cloud task-start/task-done helper resources were unavailable — retain full task identity and RED/GREEN logs — cost: helper-generated formatting unavailable.
+Ruling: Create separately versioned guarded wrappers while reusing only immutable pure primitives — consumed v2 source must remain byte-identical — cost: more wrapper code/source identities to review.
+Pre-flight1→2: builder environment/link argv/contract plus actual root/buildPanda hashes feed actual-byte gate; neutral compile status stays compatible with pure v2 gate, v3 schema/origin remains separately bound.
+Pre-flight2→3: v3 work roots/full23carrier relationships and new gate feed distinct source310/request/run/artifact; no v2 owned path or consumed authority reused.
+Task1 in_progress; new SDKstarts0/request0.
+Task1: complete — base69d722b→Task1commit; missing-module RED→6PASS0.083s. CPU links with ORIGIN empty/spoofed emit exact RUNPATH and absent RPATH; selected link argv/cardinality/indirection mutations reject. New own guard/layout lifecycle saves failed spawn/deadline evidence; parent initializer stays inert. Inherited owned measurement/process/input behavior remains unchanged. ActualSDKstarts0/request0.
