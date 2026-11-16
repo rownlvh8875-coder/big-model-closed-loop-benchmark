@@ -1,0 +1,22 @@
+"""Read-only witness for six retained no-include GLSL stages; not an admission rule."""
+from pathlib import Path
+import hashlib,json,re,sys
+ROOT=Path('/dev/shm/stage7-sdk3-runtime-20261116/repo');sys.path.insert(0,str(ROOT))
+from scripts import sdk3_shader_path as s
+out=ROOT/'output/stage7-sdk3-shader-path-01/actual';folder=out/'bundle/renderer';x=json.loads((folder/'shader.json').read_text());material=json.loads((folder/'material.json').read_text());meshes={v['mesh_id']:v for v in material['meshes']};programs={v['shader_id']:v for v in x['shaders']};raw={v['name']:(folder/v['file']).read_bytes() for v in x['sources']};defines=s.pipeline_defines(x['pipeline'])
+def pinned_subset(data):
+ assert b'/*' not in data and b'\\\n' not in data and re.search(rb'^\s*#\s*(include|pragma|extension)\b',data,re.M) is None,'unsupported preprocessor input'
+ lines=data.split(b'\n')
+ if lines[-1]==b'':lines.pop()
+ # shader.cxx v1.10.13 r_preprocess_source: // removal, trailing isspace,
+ # blank-line retention. do_load_source/do_read_source: trim end + one LF.
+ result=b''.join(line.split(b'//',1)[0].rstrip(b' \t\r\v\f')+b'\n' for line in lines)
+ return result.rstrip(b' \t\r\n\v\f')+b'\n'
+roles=[(row['shader_id'],'skybox' if meshes[row['mesh_id']]['path'].endswith('/SkyboxMesh') else 'pipeline') for row in x['meshes']]+[(x['tonemap']['shader_id'],'tonemap')];rows=[]
+for shader_id,role in roles:
+ for stage,base in zip(('vertex','fragment'),('simplepbr.vert','simplepbr.frag') if role=='pipeline' else ('post.vert','tonemap.frag') if role=='tonemap' else ('skybox.vert','skybox.frag')):
+  name=('assets/shaders/' if role=='skybox' else 'third_party/simplepbr/shaders/')+base+'.glsl';source=raw[name] if role=='skybox' else s.variant(raw[name].decode(),defines if role=='pipeline' else {},stage).encode();expected=pinned_subset(source);desc=programs[shader_id]['stages'][stage]['text'];actual=(folder/desc['file']).read_bytes();bad=source.replace(b'void main()',b'void changed()',1);assert bad!=source and pinned_subset(bad)!=actual,'semantic mutation must remain detectable'
+  rows.append(dict(shader_id=shader_id,role=role,stage=stage,source_file=name,captured_file=desc['file'],captured_sha256=hashlib.sha256(actual).hexdigest(),reproduced_sha256=hashlib.sha256(expected).hexdigest(),captured_nbytes=len(actual),reproduced_nbytes=len(expected),exact_bytes=actual==expected,code_mutation_detected=True))
+assert len(rows)==6 and all(v['exact_bytes'] for v in rows)
+index=json.loads(Path('/dev/shm/stage7-sdk3-shader-path-20261117/panda-cache-source/index.json').read_text());r=dict(run_id=43977840900,scope='ONLY_SIX_OBSERVED_GLSL_WITHOUT_BLOCK_COMMENTS_CONTINUATIONS_INCLUDE_PRAGMA_EXTENSION',panda_reference_version='v1.10.13',pinned_reference_files=index,all_six_cache_bytes_reproduced=True,rows=rows,strict_original_shader_variants_matched=False,original_manifest_shader_complete=False,original_raw_evidence_unmodified=True,receiver_admission_unchanged=True,extra_native_runs=0,gpu_program_execution_proven=False,hardware_uniform_values_proven=False,gpu_pixel_owner_proven=False,unique_cause_proven=False,repair_proven=False,stage7_complete=False)
+(out/'panda-cache-reproduction.json').write_text(json.dumps(r,indent=2)+'\n');print(json.dumps(dict(all_six_exact=True,sha_pairs=[dict(role=v['role'],stage=v['stage'],sha256=v['captured_sha256'],nbytes=v['captured_nbytes']) for v in rows],admission_unchanged=True)))

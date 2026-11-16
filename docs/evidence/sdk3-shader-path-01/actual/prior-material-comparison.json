@@ -1,0 +1,50 @@
+{
+  "current_run": 43977840900,
+  "prior_run": 43958720772,
+  "current_target_rgb": [
+    167,
+    163,
+    158
+  ],
+  "prior_target_rgb": [
+    199,
+    187,
+    0
+  ],
+  "all_declared_comparisons_equal": false,
+  "comparisons": {
+    "all_world_triangle_coordinates": true,
+    "all_triangle_source_ids": true,
+    "selected_triangle_indices": true,
+    "selected_local_positions_normals_texcoords": true,
+    "ray_barycentric_uv_transforms": false,
+    "selected_material_transform_stage_and_numeric_samplers": true,
+    "texture_metadata_availability_and_raw_sha": true
+  },
+  "sample_numeric_comparison": {
+    "sample_count_equal": true,
+    "metadata_equal": true,
+    "within_existing_cpu_tolerance": true,
+    "maximum_abs_difference": 7.105427357601002e-15,
+    "atol": 1e-09,
+    "rtol": 1e-12,
+    "image_sha_tolerance_unchanged": true
+  },
+  "all_cpu_checks_with_existing_numeric_tolerance": true,
+  "triangle_count": 1004,
+  "old_and_new_texture_bytes_reverified": true,
+  "excluded": [
+    "pointers",
+    "dynamic scene path identifiers",
+    "sampler wrapper text addresses",
+    "shader program cache in prior run was not recorded",
+    "resolved uniforms/raster/depth/lighting execution"
+  ],
+  "cpu_input_equality_does_not_prove_gpu_pixel_ownership": true,
+  "gpu_program_execution_proven": false,
+  "hardware_uniform_values_proven": false,
+  "gpu_pixel_owner_proven": false,
+  "unique_cause_proven": false,
+  "repair_proven": false,
+  "stage7_complete": false
+}

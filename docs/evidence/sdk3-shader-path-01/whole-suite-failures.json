@@ -1,0 +1,303 @@
+{
+  "runs": [
+    {
+      "log": "full-local.log",
+      "tests": 2012,
+      "seconds": 170.045,
+      "summary": "FAILED (failures=1, errors=26, skipped=7)",
+      "failed_cases": [
+        {
+          "test": "ERROR: test_array_content_tamper_with_recomputed_file_hash_still_breaks_chain (test_first_divergence_model.FinalizationTests.test_array_content_tamper_with_recomputed_file_hash_still_breaks_chain)",
+          "exception": "ValueError: native output must be below RUNNER_TEMP"
+        },
+        {
+          "test": "ERROR: test_candidate_manifest_bytes_are_inside_dataset_cap (test_first_divergence_model.FinalizationTests.test_candidate_manifest_bytes_are_inside_dataset_cap)",
+          "exception": "ValueError: native output must be below RUNNER_TEMP"
+        },
+        {
+          "test": "ERROR: test_frozen_owner_close_error_preserves_raw_primary_and_separate_cleanup (test_first_divergence_model.FinalizationTests.test_frozen_owner_close_error_preserves_raw_primary_and_separate_cleanup)",
+          "exception": "ValueError: native output must be below RUNNER_TEMP"
+        },
+        {
+          "test": "ERROR: test_full_six_child_schedule_and_final_publication_validation (test_first_divergence_model.FinalizationTests.test_full_six_child_schedule_and_final_publication_validation)",
+          "exception": "ValueError: native output must be below RUNNER_TEMP"
+        },
+        {
+          "test": "ERROR: test_serialization_mismatch_is_primary_failure_after_confirmed_close (test_first_divergence_model.FinalizationTests.test_serialization_mismatch_is_primary_failure_after_confirmed_close)",
+          "exception": "ValueError: native output must be below RUNNER_TEMP"
+        },
+        {
+          "test": "ERROR: test_all_child_exit_paths_publish_cap_inclusive_failed_evidence (test_first_divergence_model.StorageBudgetTests.test_all_child_exit_paths_publish_cap_inclusive_failed_evidence) (mode='nonzero')",
+          "exception": "ValueError: native output must be below RUNNER_TEMP"
+        },
+        {
+          "test": "ERROR: test_all_child_exit_paths_publish_cap_inclusive_failed_evidence (test_first_divergence_model.StorageBudgetTests.test_all_child_exit_paths_publish_cap_inclusive_failed_evidence) (mode='timeout')",
+          "exception": "ValueError: native output must be below RUNNER_TEMP"
+        },
+        {
+          "test": "ERROR: test_all_child_exit_paths_publish_cap_inclusive_failed_evidence (test_first_divergence_model.StorageBudgetTests.test_all_child_exit_paths_publish_cap_inclusive_failed_evidence) (mode='invalid')",
+          "exception": "ValueError: native output must be below RUNNER_TEMP"
+        },
+        {
+          "test": "ERROR: test_all_child_exit_paths_publish_cap_inclusive_failed_evidence (test_first_divergence_model.StorageBudgetTests.test_all_child_exit_paths_publish_cap_inclusive_failed_evidence) (mode='overflow')",
+          "exception": "ValueError: native output must be below RUNNER_TEMP"
+        },
+        {
+          "test": "ERROR: test_output_close_error_cannot_skip_group_reaping_or_failure_ledger (test_first_divergence_model.StorageBudgetTests.test_output_close_error_cannot_skip_group_reaping_or_failure_ledger)",
+          "exception": "ValueError: native output must be below RUNNER_TEMP"
+        },
+        {
+          "test": "ERROR: test_payload_reservation_prevents_partial_npy_and_preserves_image_prefix (test_first_divergence_model.StorageBudgetTests.test_payload_reservation_prevents_partial_npy_and_preserves_image_prefix)",
+          "exception": "ValueError: native output must be below RUNNER_TEMP"
+        },
+        {
+          "test": "ERROR: test_schedule_aborts_on_invalid_zero_exit_child_and_does_not_retry (test_first_divergence_model.StudyTests.test_schedule_aborts_on_invalid_zero_exit_child_and_does_not_retry)",
+          "exception": "ValueError: native output must be below RUNNER_TEMP"
+        },
+        {
+          "test": "ERROR: test_timeout_uses_remaining_deadline_and_cleans_whole_group (test_first_divergence_model.StudyTests.test_timeout_uses_remaining_deadline_and_cleans_whole_group)",
+          "exception": "ValueError: native output must be below RUNNER_TEMP"
+        },
+        {
+          "test": "ERROR: test_original_passes_public_binding_directly_and_records_unknown_observations (test_first_divergence_model.TrialTests.test_original_passes_public_binding_directly_and_records_unknown_observations)",
+          "exception": "ValueError: native output must be below RUNNER_TEMP"
+        },
+        {
+          "test": "ERROR: test_unconfirmed_close_writes_no_bulk_arrays_and_keeps_primary_error (test_first_divergence_model.TrialTests.test_unconfirmed_close_writes_no_bulk_arrays_and_keeps_primary_error)",
+          "exception": "ValueError: native output must be below RUNNER_TEMP"
+        },
+        {
+          "test": "ERROR: test_original_validates_with_unknown_intermediate_payloads (test_first_divergence_model.ValidationTests.test_original_validates_with_unknown_intermediate_payloads)",
+          "exception": "ValueError: native output must be below RUNNER_TEMP"
+        },
+        {
+          "test": "ERROR: test_parent_action_report_and_process_associations_are_checked (test_first_divergence_model.ValidationTests.test_parent_action_report_and_process_associations_are_checked)",
+          "exception": "ValueError: native output must be below RUNNER_TEMP"
+        },
+        {
+          "test": "ERROR: test_retention_replays_raw_warp_i420_and_recurrent_chain (test_first_divergence_model.ValidationTests.test_retention_replays_raw_warp_i420_and_recurrent_chain)",
+          "exception": "ValueError: native output must be below RUNNER_TEMP"
+        },
+        {
+          "test": "ERROR: test_even_rehashed_changed_entry_code_is_rejected (test_panda_loader_cpu_fixture.CpuLoaderTests.test_even_rehashed_changed_entry_code_is_rejected)",
+          "exception": "ValueError: CPU fixture compilation failed"
+        },
+        {
+          "test": "ERROR: test_extra_bytes_symlink_and_parent_alias_are_rejected_before_execution (test_panda_loader_cpu_fixture.CpuLoaderTests.test_extra_bytes_symlink_and_parent_alias_are_rejected_before_execution) (mode='bytes')",
+          "exception": "ValueError: CPU fixture compilation failed"
+        },
+        {
+          "test": "ERROR: test_mapping_aliases_and_nonwritable_got_are_rejected_as_data_before_spawn (test_panda_loader_cpu_fixture.CpuLoaderTests.test_mapping_aliases_and_nonwritable_got_are_rejected_as_data_before_spawn) (kind='rounded-alias')",
+          "exception": "ValueError: CPU fixture compilation failed"
+        },
+        {
+          "test": "ERROR: test_symbol_zero_and_packed_relocations_are_rejected_as_data_before_spawn (test_panda_loader_cpu_fixture.CpuLoaderTests.test_symbol_zero_and_packed_relocations_are_rejected_as_data_before_spawn) (kind='relative')",
+          "exception": "subprocess.CalledProcessError: Command '['/usr/bin/gcc', '-nostdlib', '-shared', '-fPIC', '-O2', '-fcf-protection=none', '-Wl,--version-script=v.map', '-Wl,-soname,libstage7_cpu_merged.so', 'target.c', '-o', 'target.so']' returned non-zero exit status 4."
+        },
+        {
+          "test": "ERROR: test_symbol_zero_and_packed_relocations_are_rejected_as_data_before_spawn (test_panda_loader_cpu_fixture.CpuLoaderTests.test_symbol_zero_and_packed_relocations_are_rejected_as_data_before_spawn) (kind='relr')",
+          "exception": "ValueError: CPU fixture compilation failed"
+        },
+        {
+          "test": "ERROR: test_foreign_nonce_stale_frame_code_and_extra_render_reject (test_panda_real_glx_runtime.RuntimeTests.test_foreign_nonce_stale_frame_code_and_extra_render_reject)",
+          "exception": "ValueError: driver shared memory before driver phase"
+        },
+        {
+          "test": "ERROR: test_missing_object_or_defaultoff_fields_cannot_validate (test_panda_real_glx_runtime.RuntimeTests.test_missing_object_or_defaultoff_fields_cannot_validate)",
+          "exception": "ValueError: driver shared memory before driver phase"
+        },
+        {
+          "test": "ERROR: test_owned_cpu_process_two_challenges_code_and_cleanup (test_panda_real_glx_runtime.RuntimeTests.test_owned_cpu_process_two_challenges_code_and_cleanup)",
+          "exception": "ValueError: driver shared memory before driver phase"
+        },
+        {
+          "test": "FAIL: test_timeout_reaps_child_and_pipe_holding_descendant (test_engine_clock_builder_sandbox.SandboxTests.test_timeout_reaps_child_and_pipe_holding_descendant)",
+          "exception": "AssertionError: 'TIMEOUT' != 'EXITED'"
+        }
+      ],
+      "sha256": "e1994024a6461377fabf7a55c13dbc4cffbcf14771f0b1f45f497e5b5615f463"
+    },
+    {
+      "log": "full-local-after-review.log",
+      "tests": 1997,
+      "seconds": 166.28,
+      "summary": "FAILED (failures=2, errors=39, skipped=7)",
+      "failed_cases": [
+        {
+          "test": "ERROR: test_array_content_tamper_with_recomputed_file_hash_still_breaks_chain (test_first_divergence_model.FinalizationTests.test_array_content_tamper_with_recomputed_file_hash_still_breaks_chain)",
+          "exception": "ValueError: native output must be below RUNNER_TEMP"
+        },
+        {
+          "test": "ERROR: test_candidate_manifest_bytes_are_inside_dataset_cap (test_first_divergence_model.FinalizationTests.test_candidate_manifest_bytes_are_inside_dataset_cap)",
+          "exception": "ValueError: native output must be below RUNNER_TEMP"
+        },
+        {
+          "test": "ERROR: test_frozen_owner_close_error_preserves_raw_primary_and_separate_cleanup (test_first_divergence_model.FinalizationTests.test_frozen_owner_close_error_preserves_raw_primary_and_separate_cleanup)",
+          "exception": "ValueError: native output must be below RUNNER_TEMP"
+        },
+        {
+          "test": "ERROR: test_full_six_child_schedule_and_final_publication_validation (test_first_divergence_model.FinalizationTests.test_full_six_child_schedule_and_final_publication_validation)",
+          "exception": "ValueError: native output must be below RUNNER_TEMP"
+        },
+        {
+          "test": "ERROR: test_serialization_mismatch_is_primary_failure_after_confirmed_close (test_first_divergence_model.FinalizationTests.test_serialization_mismatch_is_primary_failure_after_confirmed_close)",
+          "exception": "ValueError: native output must be below RUNNER_TEMP"
+        },
+        {
+          "test": "ERROR: test_all_child_exit_paths_publish_cap_inclusive_failed_evidence (test_first_divergence_model.StorageBudgetTests.test_all_child_exit_paths_publish_cap_inclusive_failed_evidence) (mode='nonzero')",
+          "exception": "ValueError: native output must be below RUNNER_TEMP"
+        },
+        {
+          "test": "ERROR: test_all_child_exit_paths_publish_cap_inclusive_failed_evidence (test_first_divergence_model.StorageBudgetTests.test_all_child_exit_paths_publish_cap_inclusive_failed_evidence) (mode='timeout')",
+          "exception": "ValueError: native output must be below RUNNER_TEMP"
+        },
+        {
+          "test": "ERROR: test_all_child_exit_paths_publish_cap_inclusive_failed_evidence (test_first_divergence_model.StorageBudgetTests.test_all_child_exit_paths_publish_cap_inclusive_failed_evidence) (mode='invalid')",
+          "exception": "ValueError: native output must be below RUNNER_TEMP"
+        },
+        {
+          "test": "ERROR: test_all_child_exit_paths_publish_cap_inclusive_failed_evidence (test_first_divergence_model.StorageBudgetTests.test_all_child_exit_paths_publish_cap_inclusive_failed_evidence) (mode='overflow')",
+          "exception": "ValueError: native output must be below RUNNER_TEMP"
+        },
+        {
+          "test": "ERROR: test_output_close_error_cannot_skip_group_reaping_or_failure_ledger (test_first_divergence_model.StorageBudgetTests.test_output_close_error_cannot_skip_group_reaping_or_failure_ledger)",
+          "exception": "ValueError: native output must be below RUNNER_TEMP"
+        },
+        {
+          "test": "ERROR: test_payload_reservation_prevents_partial_npy_and_preserves_image_prefix (test_first_divergence_model.StorageBudgetTests.test_payload_reservation_prevents_partial_npy_and_preserves_image_prefix)",
+          "exception": "ValueError: native output must be below RUNNER_TEMP"
+        },
+        {
+          "test": "ERROR: test_schedule_aborts_on_invalid_zero_exit_child_and_does_not_retry (test_first_divergence_model.StudyTests.test_schedule_aborts_on_invalid_zero_exit_child_and_does_not_retry)",
+          "exception": "ValueError: native output must be below RUNNER_TEMP"
+        },
+        {
+          "test": "ERROR: test_timeout_uses_remaining_deadline_and_cleans_whole_group (test_first_divergence_model.StudyTests.test_timeout_uses_remaining_deadline_and_cleans_whole_group)",
+          "exception": "ValueError: native output must be below RUNNER_TEMP"
+        },
+        {
+          "test": "ERROR: test_original_passes_public_binding_directly_and_records_unknown_observations (test_first_divergence_model.TrialTests.test_original_passes_public_binding_directly_and_records_unknown_observations)",
+          "exception": "ValueError: native output must be below RUNNER_TEMP"
+        },
+        {
+          "test": "ERROR: test_unconfirmed_close_writes_no_bulk_arrays_and_keeps_primary_error (test_first_divergence_model.TrialTests.test_unconfirmed_close_writes_no_bulk_arrays_and_keeps_primary_error)",
+          "exception": "ValueError: native output must be below RUNNER_TEMP"
+        },
+        {
+          "test": "ERROR: test_original_validates_with_unknown_intermediate_payloads (test_first_divergence_model.ValidationTests.test_original_validates_with_unknown_intermediate_payloads)",
+          "exception": "ValueError: native output must be below RUNNER_TEMP"
+        },
+        {
+          "test": "ERROR: test_parent_action_report_and_process_associations_are_checked (test_first_divergence_model.ValidationTests.test_parent_action_report_and_process_associations_are_checked)",
+          "exception": "ValueError: native output must be below RUNNER_TEMP"
+        },
+        {
+          "test": "ERROR: test_retention_replays_raw_warp_i420_and_recurrent_chain (test_first_divergence_model.ValidationTests.test_retention_replays_raw_warp_i420_and_recurrent_chain)",
+          "exception": "ValueError: native output must be below RUNNER_TEMP"
+        },
+        {
+          "test": "ERROR: test_even_rehashed_changed_entry_code_is_rejected (test_panda_loader_cpu_fixture.CpuLoaderTests.test_even_rehashed_changed_entry_code_is_rejected)",
+          "exception": "ValueError: CPU fixture compilation failed"
+        },
+        {
+          "test": "ERROR: test_extra_bytes_symlink_and_parent_alias_are_rejected_before_execution (test_panda_loader_cpu_fixture.CpuLoaderTests.test_extra_bytes_symlink_and_parent_alias_are_rejected_before_execution) (mode='bytes')",
+          "exception": "ValueError: CPU fixture compilation failed"
+        },
+        {
+          "test": "ERROR: test_extra_bytes_symlink_and_parent_alias_are_rejected_before_execution (test_panda_loader_cpu_fixture.CpuLoaderTests.test_extra_bytes_symlink_and_parent_alias_are_rejected_before_execution) (mode='extra')",
+          "exception": "ValueError: CPU fixture compilation failed"
+        },
+        {
+          "test": "ERROR: test_extra_bytes_symlink_and_parent_alias_are_rejected_before_execution (test_panda_loader_cpu_fixture.CpuLoaderTests.test_extra_bytes_symlink_and_parent_alias_are_rejected_before_execution) (mode='file-link')",
+          "exception": "ValueError: CPU fixture compilation failed"
+        },
+        {
+          "test": "ERROR: test_extra_bytes_symlink_and_parent_alias_are_rejected_before_execution (test_panda_loader_cpu_fixture.CpuLoaderTests.test_extra_bytes_symlink_and_parent_alias_are_rejected_before_execution) (mode='parent-link')",
+          "exception": "ValueError: CPU fixture compilation failed"
+        },
+        {
+          "test": "ERROR: test_late_fixture_drift_preserves_one_observed_call_without_retry (test_panda_loader_cpu_fixture.CpuLoaderTests.test_late_fixture_drift_preserves_one_observed_call_without_retry)",
+          "exception": "ValueError: CPU fixture compilation failed"
+        },
+        {
+          "test": "ERROR: test_mapping_aliases_and_nonwritable_got_are_rejected_as_data_before_spawn (test_panda_loader_cpu_fixture.CpuLoaderTests.test_mapping_aliases_and_nonwritable_got_are_rejected_as_data_before_spawn) (kind='rounded-alias')",
+          "exception": "ValueError: CPU fixture compilation failed"
+        },
+        {
+          "test": "ERROR: test_mapping_aliases_and_nonwritable_got_are_rejected_as_data_before_spawn (test_panda_loader_cpu_fixture.CpuLoaderTests.test_mapping_aliases_and_nonwritable_got_are_rejected_as_data_before_spawn) (kind='incongruent')",
+          "exception": "ValueError: CPU fixture compilation failed"
+        },
+        {
+          "test": "ERROR: test_mapping_aliases_and_nonwritable_got_are_rejected_as_data_before_spawn (test_panda_loader_cpu_fixture.CpuLoaderTests.test_mapping_aliases_and_nonwritable_got_are_rejected_as_data_before_spawn) (kind='writable-code')",
+          "exception": "ValueError: CPU fixture compilation failed"
+        },
+        {
+          "test": "ERROR: test_mapping_aliases_and_nonwritable_got_are_rejected_as_data_before_spawn (test_panda_loader_cpu_fixture.CpuLoaderTests.test_mapping_aliases_and_nonwritable_got_are_rejected_as_data_before_spawn) (kind='executable-got')",
+          "exception": "ValueError: CPU fixture compilation failed"
+        },
+        {
+          "test": "ERROR: test_sanitized_environment_resists_loader_and_compiler_injection (test_panda_loader_cpu_fixture.CpuLoaderTests.test_sanitized_environment_resists_loader_and_compiler_injection)",
+          "exception": "ValueError: CPU fixture compilation failed"
+        },
+        {
+          "test": "ERROR: test_symbol_zero_and_packed_relocations_are_rejected_as_data_before_spawn (test_panda_loader_cpu_fixture.CpuLoaderTests.test_symbol_zero_and_packed_relocations_are_rejected_as_data_before_spawn) (kind='relative')",
+          "exception": "ValueError: CPU fixture compilation failed"
+        },
+        {
+          "test": "ERROR: test_symbol_zero_and_packed_relocations_are_rejected_as_data_before_spawn (test_panda_loader_cpu_fixture.CpuLoaderTests.test_symbol_zero_and_packed_relocations_are_rejected_as_data_before_spawn) (kind='irelative')",
+          "exception": "subprocess.CalledProcessError: Command '['/usr/bin/gcc', '-nostdlib', '-shared', '-fPIC', '-O2', '-fcf-protection=none', '-Wl,--version-script=v.map', '-Wl,-soname,libstage7_cpu_merged.so', 'target.c', '-o', 'target.so']' returned non-zero exit status 4."
+        },
+        {
+          "test": "ERROR: test_symbol_zero_and_packed_relocations_are_rejected_as_data_before_spawn (test_panda_loader_cpu_fixture.CpuLoaderTests.test_symbol_zero_and_packed_relocations_are_rejected_as_data_before_spawn) (kind='relr')",
+          "exception": "ValueError: CPU fixture compilation failed"
+        },
+        {
+          "test": "ERROR: test_symbol_zero_and_packed_relocations_are_rejected_as_data_before_spawn (test_panda_loader_cpu_fixture.CpuLoaderTests.test_symbol_zero_and_packed_relocations_are_rejected_as_data_before_spawn) (kind='unparsed-relative-count')",
+          "exception": "ValueError: CPU fixture compilation failed"
+        },
+        {
+          "test": "ERROR: setUpClass (test_panda_provider_version_witness.VersionWitnessTests)",
+          "exception": "subprocess.CalledProcessError: Command '['/usr/bin/gcc', '-nostdlib', '-shared', '-fPIC', 'use.c', '-L.', '-Wl,--no-as-needed', '-l:fulllegacy.so', '-Wl,-soname,libconsumer.so', '-o', 'consumer.so']' returned non-zero exit status 4."
+        },
+        {
+          "test": "ERROR: test_foreign_nonce_stale_frame_code_and_extra_render_reject (test_panda_real_glx_runtime.RuntimeTests.test_foreign_nonce_stale_frame_code_and_extra_render_reject)",
+          "exception": "ValueError: driver shared memory before driver phase"
+        },
+        {
+          "test": "ERROR: test_missing_object_or_defaultoff_fields_cannot_validate (test_panda_real_glx_runtime.RuntimeTests.test_missing_object_or_defaultoff_fields_cannot_validate)",
+          "exception": "ValueError: driver shared memory before driver phase"
+        },
+        {
+          "test": "ERROR: test_owned_cpu_process_two_challenges_code_and_cleanup (test_panda_real_glx_runtime.RuntimeTests.test_owned_cpu_process_two_challenges_code_and_cleanup)",
+          "exception": "ValueError: driver shared memory before driver phase"
+        },
+        {
+          "test": "ERROR: test_compiler_receives_no_repository_token (test_panda_sdk_dispatch_probe.ProbeTests.test_compiler_receives_no_repository_token)",
+          "exception": "ValueError: probe compile failed: Cannot create temporary file in /tmp/: No space left on device"
+        },
+        {
+          "test": "ERROR: setUpClass (test_panda_sdk_link_elf.LoaderSymbolTests)",
+          "exception": "subprocess.CalledProcessError: Command '['/usr/bin/g++', '-shared', '-fPIC', '-D_GLIBCXX_USE_CXX11_ABI=0', '-Wl,-soname,libprovider.so', 'provider.cpp', '-o', 'libprovider.so']' returned non-zero exit status 4."
+        },
+        {
+          "test": "FAIL: test_timeout_reaps_child_and_pipe_holding_descendant (test_engine_clock_builder_sandbox.SandboxTests.test_timeout_reaps_child_and_pipe_holding_descendant)",
+          "exception": "AssertionError: 'TIMEOUT' != 'EXITED'"
+        },
+        {
+          "test": "FAIL: test_write_failure_after_real_call_retains_parseable_attempt_bounds (test_panda_loader_cpu_fixture.CpuLoaderTests.test_write_failure_after_real_call_retains_parseable_attempt_bounds)",
+          "exception": "ValueError: CPU fixture compilation failed"
+        }
+      ],
+      "sha256": "263f103659be3e9e05af9bdf10541070f8b7fae0d79db0889a8d542b75a32bc2"
+    }
+  ],
+  "original_files_modified": false,
+  "baseline_suite_passed": false,
+  "known_environment_constraints": [
+    "test fixtures hardcode RUNNER_TEMP=/tmp while writable TMPDIR is under /dev/shm",
+    "sanitized compiler uses full /tmp; observed Cannot create temporary file / No space left on device",
+    "existing GLX fixture treats /dev/shm mappings as driver memory before driver phase",
+    "existing bounded fork/timeout case exits early; isolated sandbox receipt retained, cause not fully established"
+  ],
+  "fresh_hosted_ci_required": true
+}

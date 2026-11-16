@@ -1,0 +1,117 @@
+{
+  "run_id": 43977840900,
+  "scope": "ONLY_SIX_OBSERVED_GLSL_WITHOUT_BLOCK_COMMENTS_CONTINUATIONS_INCLUDE_PRAGMA_EXTENSION",
+  "panda_reference_version": "v1.10.13",
+  "pinned_reference_files": [
+    {
+      "url": "https://raw.githubusercontent.com/panda3d/panda3d/v1.10.13/panda/src/gobj/shader.cxx",
+      "file": "shader.cxx",
+      "nbytes": 114459,
+      "sha256": "aad792a474792b1d7af5c524f8326e718a4ae4cbaecb3b844824910d2d5dccf6"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/panda3d/panda3d/v1.10.13/panda/src/gobj/shader.I",
+      "file": "shader.I",
+      "nbytes": 16859,
+      "sha256": "ebe67b44ec237cba313ac14a9f5c95a75635dab7e8f3c539a431cbf0096feec4"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/panda3d/panda3d/v1.10.13/panda/src/linmath/lmatrix4_src.h",
+      "file": "lmatrix4_src.h",
+      "nbytes": 15212,
+      "sha256": "81531d2dae61967f52bf6177c16e26d60e3c6ab2ef74eaac71d5605ffa19e4f2"
+    }
+  ],
+  "all_six_cache_bytes_reproduced": true,
+  "rows": [
+    {
+      "shader_id": 0,
+      "role": "pipeline",
+      "stage": "vertex",
+      "source_file": "third_party/simplepbr/shaders/simplepbr.vert.glsl",
+      "captured_file": "shader-text-013-vertex.txt",
+      "captured_sha256": "a0ee9afb297b54c776385b3c025d8effdac4825b135ee2aac5f226231fd807d1",
+      "reproduced_sha256": "a0ee9afb297b54c776385b3c025d8effdac4825b135ee2aac5f226231fd807d1",
+      "captured_nbytes": 1987,
+      "reproduced_nbytes": 1987,
+      "exact_bytes": true,
+      "code_mutation_detected": true
+    },
+    {
+      "shader_id": 0,
+      "role": "pipeline",
+      "stage": "fragment",
+      "source_file": "third_party/simplepbr/shaders/simplepbr.frag.glsl",
+      "captured_file": "shader-text-014-fragment.txt",
+      "captured_sha256": "da1fcda1e8fbf3c40ba666c50b27937bf2a324438182ad7473373a9f94c24a3e",
+      "reproduced_sha256": "da1fcda1e8fbf3c40ba666c50b27937bf2a324438182ad7473373a9f94c24a3e",
+      "captured_nbytes": 7996,
+      "reproduced_nbytes": 7996,
+      "exact_bytes": true,
+      "code_mutation_detected": true
+    },
+    {
+      "shader_id": 1,
+      "role": "skybox",
+      "stage": "vertex",
+      "source_file": "assets/shaders/skybox.vert.glsl",
+      "captured_file": "shader-text-015-vertex.txt",
+      "captured_sha256": "889eef22ba47b2717459745582703d05b9d0cf9de245a24a098e0c39b30d1662",
+      "reproduced_sha256": "889eef22ba47b2717459745582703d05b9d0cf9de245a24a098e0c39b30d1662",
+      "captured_nbytes": 210,
+      "reproduced_nbytes": 210,
+      "exact_bytes": true,
+      "code_mutation_detected": true
+    },
+    {
+      "shader_id": 1,
+      "role": "skybox",
+      "stage": "fragment",
+      "source_file": "assets/shaders/skybox.frag.glsl",
+      "captured_file": "shader-text-016-fragment.txt",
+      "captured_sha256": "33c1b9ecff67b822cdafbd0ae3cbf877278709d346fc8cf1ad9490d86d6d407b",
+      "reproduced_sha256": "33c1b9ecff67b822cdafbd0ae3cbf877278709d346fc8cf1ad9490d86d6d407b",
+      "captured_nbytes": 428,
+      "reproduced_nbytes": 428,
+      "exact_bytes": true,
+      "code_mutation_detected": true
+    },
+    {
+      "shader_id": 2,
+      "role": "tonemap",
+      "stage": "vertex",
+      "source_file": "third_party/simplepbr/shaders/post.vert.glsl",
+      "captured_file": "shader-text-017-vertex.txt",
+      "captured_sha256": "8166ad854899374d1ba86d3e34dc075e8efa04c4293be7952c80196b75f38c73",
+      "reproduced_sha256": "8166ad854899374d1ba86d3e34dc075e8efa04c4293be7952c80196b75f38c73",
+      "captured_nbytes": 466,
+      "reproduced_nbytes": 466,
+      "exact_bytes": true,
+      "code_mutation_detected": true
+    },
+    {
+      "shader_id": 2,
+      "role": "tonemap",
+      "stage": "fragment",
+      "source_file": "third_party/simplepbr/shaders/tonemap.frag.glsl",
+      "captured_file": "shader-text-018-fragment.txt",
+      "captured_sha256": "835b7ccb2d88f79d3d92b2009e142ad88453939a37a6e156808809e069c9af12",
+      "reproduced_sha256": "835b7ccb2d88f79d3d92b2009e142ad88453939a37a6e156808809e069c9af12",
+      "captured_nbytes": 680,
+      "reproduced_nbytes": 680,
+      "exact_bytes": true,
+      "code_mutation_detected": true
+    }
+  ],
+  "strict_original_shader_variants_matched": false,
+  "original_manifest_shader_complete": false,
+  "original_raw_evidence_unmodified": true,
+  "receiver_admission_unchanged": true,
+  "extra_native_runs": 0,
+  "gpu_program_execution_proven": false,
+  "hardware_uniform_values_proven": false,
+  "gpu_pixel_owner_proven": false,
+  "unique_cause_proven": false,
+  "repair_proven": false,
+  "stage7_complete": false
+}
