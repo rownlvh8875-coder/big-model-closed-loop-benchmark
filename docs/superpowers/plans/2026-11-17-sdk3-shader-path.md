@@ -9,7 +9,7 @@
 
 ## Global Constraints
 
-Base dacce23588e45dfd986f69f1ec00f23e0be051ed;additionsonly. Onefreshnative/0officialmodel/0inference;600schild/630container/20minjob;2CPU/10GiB/privateIPC/readonlyroot/networknone/uid65534/tmpfs512MiB and unchanged image/SDK/core/BaseCamera/reference pins. No local SDK/native/model/newdependencies/GPUqueries/render/task/shader/sampler/setter/forcedRAM/readback/publication/mainmerge. Tenexactfrozen sources;256KiBtext/2MiBtotal/max8shaders/40meshbindings/20s cooperative observer. Known8PSSMnames only;numericarraysunavailable,ownerrigdata notbounduniformproof. AllGPUowner/hardwareuniform/cause/repair/originalgate/Stage7false;original3/4FAIL. Requestdocs/requests/sdk3-shader-path-20261117-01.json on diagnostic/sdk3-shader-path-20261117-01.
+Base dacce23588e45dfd986f69f1ec00f23e0be051ed;additionsonly. Onefreshnative/0officialmodel/0inference;600schild/630container/20minjob;2CPU/10GiB/privateIPC/readonlyroot/networknone/uid65534/tmpfs512MiB and unchanged image/SDK/core/BaseCamera/reference pins. No local SDK/native/model/newdependencies/GPUqueries/render/task/shader/sampler/setter/forcedRAM/readback/publication/mainmerge. Twelveexactfrozen sources;256KiBtext/2MiBtotal/max8shaders/40meshbindings/20s cooperative observer. Known8PSSMnames only;numericarraysunavailable,ownerrigdata notbounduniformproof. AllGPUowner/hardwareuniform/cause/repair/originalgate/Stage7false;original3/4FAIL. Requestdocs/requests/sdk3-shader-path-20261117-01.json on diagnostic/sdk3-shader-path-20261117-01.
 
 ## Review Focus
 
