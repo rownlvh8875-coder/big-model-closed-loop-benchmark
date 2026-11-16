@@ -1,0 +1,178 @@
+test_partial_optional_members_roundtrip_negative_carrier (test_panda_sdk_cg_runpath_flow.ReviewPartialCarrierTests.test_partial_optional_members_roundtrip_negative_carrier) ... 
+  test_partial_optional_members_roundtrip_negative_carrier (test_panda_sdk_cg_runpath_flow.ReviewPartialCarrierTests.test_partial_optional_members_roundtrip_negative_carrier) (member='candidate/libpandagl.so.data', size=0) ... ERROR
+  test_partial_optional_members_roundtrip_negative_carrier (test_panda_sdk_cg_runpath_flow.ReviewPartialCarrierTests.test_partial_optional_members_roundtrip_negative_carrier) (member='candidate/build-libpanda.so.data', size=0) ... ERROR
+  test_partial_optional_members_roundtrip_negative_carrier (test_panda_sdk_cg_runpath_flow.ReviewPartialCarrierTests.test_partial_optional_members_roundtrip_negative_carrier) (member='candidate/layout-contract.o.data', size=0) ... ERROR
+  test_partial_optional_members_roundtrip_negative_carrier (test_panda_sdk_cg_runpath_flow.ReviewPartialCarrierTests.test_partial_optional_members_roundtrip_negative_carrier) (member='candidate/layout-descriptor.data', size=0) ... ERROR
+  test_partial_optional_members_roundtrip_negative_carrier (test_panda_sdk_cg_runpath_flow.ReviewPartialCarrierTests.test_partial_optional_members_roundtrip_negative_carrier) (member='candidate/layout-descriptor.data', size=127) ... ERROR
+  test_partial_optional_members_roundtrip_negative_carrier (test_panda_sdk_cg_runpath_flow.ReviewPartialCarrierTests.test_partial_optional_members_roundtrip_negative_carrier) (member='reports/configuration.json', size=0) ... ERROR
+test_partial_optional_members_roundtrip_negative_carrier (test_panda_sdk_cg_runpath_flow.ReviewPartialCarrierTests.test_partial_optional_members_roundtrip_negative_carrier) ... FAIL
+
+======================================================================
+ERROR: test_partial_optional_members_roundtrip_negative_carrier (test_panda_sdk_cg_runpath_flow.ReviewPartialCarrierTests.test_partial_optional_members_roundtrip_negative_carrier) (member='candidate/libpandagl.so.data', size=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/scripts/panda_sdk_cg_runpath_carrier.py", line 43, in extract_carrier
+    before=os.fstat(f.fileno());a.need(stat.S_ISREG(before.st_mode) and before.st_nlink==1 and 0<before.st_size<=MAX_ZIP,'regular bounded ZIP');expected=_preflight(f,before.st_size);f.seek(0)
+                                                                                                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/scripts/panda_sdk_cg_runpath_carrier.py", line 35, in _preflight
+    nbytes,compressed,local,disk=values;a.need(name!='candidate/layout-descriptor.data' or nbytes==128,'exact raw descriptor extent');a.need(disk==0 and 0<=nbytes<=FILE_LIMITS[name] and (nbytes>0 or name in DIRS or name.startswith('logs/')) and 0<=compressed<=MAX_ZIP and 0<=local<offset,'ZIP member bounds');total+=nbytes;a.need(total<=MAX_ZIP,'ZIP extracted byte budget');pos=endpos
+                                                                                                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/scripts/panda_sdk_cg_inputs.py", line 11, in need
+    if not ok:raise ValueError(message)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: ZIP member bounds
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_cg_runpath_flow.py", line 177, in test_partial_optional_members_roundtrip_negative_carrier
+    extracted=carrier.extract_carrier(archive,root/'received');self.assertNotIn(member,extracted['files']);self.assertIn(member,r['omissions']);self.assertIn(b'compiler stderr',(root/'received/logs/host.log').read_bytes());self.assertEqual(r['build_start_attempts'],1)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/scripts/panda_sdk_cg_runpath_carrier.py", line 58, in extract_carrier
+    except Exception as e:raise ValueError('CG_BUILD_CARRIER_REJECTED') from e
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: CG_BUILD_CARRIER_REJECTED
+
+======================================================================
+ERROR: test_partial_optional_members_roundtrip_negative_carrier (test_panda_sdk_cg_runpath_flow.ReviewPartialCarrierTests.test_partial_optional_members_roundtrip_negative_carrier) (member='candidate/build-libpanda.so.data', size=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/scripts/panda_sdk_cg_runpath_carrier.py", line 43, in extract_carrier
+    before=os.fstat(f.fileno());a.need(stat.S_ISREG(before.st_mode) and before.st_nlink==1 and 0<before.st_size<=MAX_ZIP,'regular bounded ZIP');expected=_preflight(f,before.st_size);f.seek(0)
+                                                                                                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/scripts/panda_sdk_cg_runpath_carrier.py", line 35, in _preflight
+    nbytes,compressed,local,disk=values;a.need(name!='candidate/layout-descriptor.data' or nbytes==128,'exact raw descriptor extent');a.need(disk==0 and 0<=nbytes<=FILE_LIMITS[name] and (nbytes>0 or name in DIRS or name.startswith('logs/')) and 0<=compressed<=MAX_ZIP and 0<=local<offset,'ZIP member bounds');total+=nbytes;a.need(total<=MAX_ZIP,'ZIP extracted byte budget');pos=endpos
+                                                                                                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/scripts/panda_sdk_cg_inputs.py", line 11, in need
+    if not ok:raise ValueError(message)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: ZIP member bounds
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_cg_runpath_flow.py", line 177, in test_partial_optional_members_roundtrip_negative_carrier
+    extracted=carrier.extract_carrier(archive,root/'received');self.assertNotIn(member,extracted['files']);self.assertIn(member,r['omissions']);self.assertIn(b'compiler stderr',(root/'received/logs/host.log').read_bytes());self.assertEqual(r['build_start_attempts'],1)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/scripts/panda_sdk_cg_runpath_carrier.py", line 58, in extract_carrier
+    except Exception as e:raise ValueError('CG_BUILD_CARRIER_REJECTED') from e
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: CG_BUILD_CARRIER_REJECTED
+
+======================================================================
+ERROR: test_partial_optional_members_roundtrip_negative_carrier (test_panda_sdk_cg_runpath_flow.ReviewPartialCarrierTests.test_partial_optional_members_roundtrip_negative_carrier) (member='candidate/layout-contract.o.data', size=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/scripts/panda_sdk_cg_runpath_carrier.py", line 43, in extract_carrier
+    before=os.fstat(f.fileno());a.need(stat.S_ISREG(before.st_mode) and before.st_nlink==1 and 0<before.st_size<=MAX_ZIP,'regular bounded ZIP');expected=_preflight(f,before.st_size);f.seek(0)
+                                                                                                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/scripts/panda_sdk_cg_runpath_carrier.py", line 35, in _preflight
+    nbytes,compressed,local,disk=values;a.need(name!='candidate/layout-descriptor.data' or nbytes==128,'exact raw descriptor extent');a.need(disk==0 and 0<=nbytes<=FILE_LIMITS[name] and (nbytes>0 or name in DIRS or name.startswith('logs/')) and 0<=compressed<=MAX_ZIP and 0<=local<offset,'ZIP member bounds');total+=nbytes;a.need(total<=MAX_ZIP,'ZIP extracted byte budget');pos=endpos
+                                                                                                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/scripts/panda_sdk_cg_inputs.py", line 11, in need
+    if not ok:raise ValueError(message)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: ZIP member bounds
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_cg_runpath_flow.py", line 177, in test_partial_optional_members_roundtrip_negative_carrier
+    extracted=carrier.extract_carrier(archive,root/'received');self.assertNotIn(member,extracted['files']);self.assertIn(member,r['omissions']);self.assertIn(b'compiler stderr',(root/'received/logs/host.log').read_bytes());self.assertEqual(r['build_start_attempts'],1)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/scripts/panda_sdk_cg_runpath_carrier.py", line 58, in extract_carrier
+    except Exception as e:raise ValueError('CG_BUILD_CARRIER_REJECTED') from e
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: CG_BUILD_CARRIER_REJECTED
+
+======================================================================
+ERROR: test_partial_optional_members_roundtrip_negative_carrier (test_panda_sdk_cg_runpath_flow.ReviewPartialCarrierTests.test_partial_optional_members_roundtrip_negative_carrier) (member='candidate/layout-descriptor.data', size=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/scripts/panda_sdk_cg_runpath_carrier.py", line 43, in extract_carrier
+    before=os.fstat(f.fileno());a.need(stat.S_ISREG(before.st_mode) and before.st_nlink==1 and 0<before.st_size<=MAX_ZIP,'regular bounded ZIP');expected=_preflight(f,before.st_size);f.seek(0)
+                                                                                                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/scripts/panda_sdk_cg_runpath_carrier.py", line 35, in _preflight
+    nbytes,compressed,local,disk=values;a.need(name!='candidate/layout-descriptor.data' or nbytes==128,'exact raw descriptor extent');a.need(disk==0 and 0<=nbytes<=FILE_LIMITS[name] and (nbytes>0 or name in DIRS or name.startswith('logs/')) and 0<=compressed<=MAX_ZIP and 0<=local<offset,'ZIP member bounds');total+=nbytes;a.need(total<=MAX_ZIP,'ZIP extracted byte budget');pos=endpos
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/scripts/panda_sdk_cg_inputs.py", line 11, in need
+    if not ok:raise ValueError(message)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: exact raw descriptor extent
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_cg_runpath_flow.py", line 177, in test_partial_optional_members_roundtrip_negative_carrier
+    extracted=carrier.extract_carrier(archive,root/'received');self.assertNotIn(member,extracted['files']);self.assertIn(member,r['omissions']);self.assertIn(b'compiler stderr',(root/'received/logs/host.log').read_bytes());self.assertEqual(r['build_start_attempts'],1)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/scripts/panda_sdk_cg_runpath_carrier.py", line 58, in extract_carrier
+    except Exception as e:raise ValueError('CG_BUILD_CARRIER_REJECTED') from e
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: CG_BUILD_CARRIER_REJECTED
+
+======================================================================
+ERROR: test_partial_optional_members_roundtrip_negative_carrier (test_panda_sdk_cg_runpath_flow.ReviewPartialCarrierTests.test_partial_optional_members_roundtrip_negative_carrier) (member='candidate/layout-descriptor.data', size=127)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/scripts/panda_sdk_cg_runpath_carrier.py", line 43, in extract_carrier
+    before=os.fstat(f.fileno());a.need(stat.S_ISREG(before.st_mode) and before.st_nlink==1 and 0<before.st_size<=MAX_ZIP,'regular bounded ZIP');expected=_preflight(f,before.st_size);f.seek(0)
+                                                                                                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/scripts/panda_sdk_cg_runpath_carrier.py", line 35, in _preflight
+    nbytes,compressed,local,disk=values;a.need(name!='candidate/layout-descriptor.data' or nbytes==128,'exact raw descriptor extent');a.need(disk==0 and 0<=nbytes<=FILE_LIMITS[name] and (nbytes>0 or name in DIRS or name.startswith('logs/')) and 0<=compressed<=MAX_ZIP and 0<=local<offset,'ZIP member bounds');total+=nbytes;a.need(total<=MAX_ZIP,'ZIP extracted byte budget');pos=endpos
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/scripts/panda_sdk_cg_inputs.py", line 11, in need
+    if not ok:raise ValueError(message)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: exact raw descriptor extent
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_cg_runpath_flow.py", line 177, in test_partial_optional_members_roundtrip_negative_carrier
+    extracted=carrier.extract_carrier(archive,root/'received');self.assertNotIn(member,extracted['files']);self.assertIn(member,r['omissions']);self.assertIn(b'compiler stderr',(root/'received/logs/host.log').read_bytes());self.assertEqual(r['build_start_attempts'],1)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/scripts/panda_sdk_cg_runpath_carrier.py", line 58, in extract_carrier
+    except Exception as e:raise ValueError('CG_BUILD_CARRIER_REJECTED') from e
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: CG_BUILD_CARRIER_REJECTED
+
+======================================================================
+ERROR: test_partial_optional_members_roundtrip_negative_carrier (test_panda_sdk_cg_runpath_flow.ReviewPartialCarrierTests.test_partial_optional_members_roundtrip_negative_carrier) (member='reports/configuration.json', size=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/scripts/panda_sdk_cg_runpath_carrier.py", line 43, in extract_carrier
+    before=os.fstat(f.fileno());a.need(stat.S_ISREG(before.st_mode) and before.st_nlink==1 and 0<before.st_size<=MAX_ZIP,'regular bounded ZIP');expected=_preflight(f,before.st_size);f.seek(0)
+                                                                                                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/scripts/panda_sdk_cg_runpath_carrier.py", line 35, in _preflight
+    nbytes,compressed,local,disk=values;a.need(name!='candidate/layout-descriptor.data' or nbytes==128,'exact raw descriptor extent');a.need(disk==0 and 0<=nbytes<=FILE_LIMITS[name] and (nbytes>0 or name in DIRS or name.startswith('logs/')) and 0<=compressed<=MAX_ZIP and 0<=local<offset,'ZIP member bounds');total+=nbytes;a.need(total<=MAX_ZIP,'ZIP extracted byte budget');pos=endpos
+                                                                                                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/scripts/panda_sdk_cg_inputs.py", line 11, in need
+    if not ok:raise ValueError(message)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: ZIP member bounds
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_cg_runpath_flow.py", line 177, in test_partial_optional_members_roundtrip_negative_carrier
+    extracted=carrier.extract_carrier(archive,root/'received');self.assertNotIn(member,extracted['files']);self.assertIn(member,r['omissions']);self.assertIn(b'compiler stderr',(root/'received/logs/host.log').read_bytes());self.assertEqual(r['build_start_attempts'],1)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/big-model-closed-loop-benchmark/scripts/panda_sdk_cg_runpath_carrier.py", line 58, in extract_carrier
+    except Exception as e:raise ValueError('CG_BUILD_CARRIER_REJECTED') from e
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: CG_BUILD_CARRIER_REJECTED
+
+======================================================================
+FAIL: test_partial_optional_members_roundtrip_negative_carrier (test_panda_sdk_cg_runpath_flow.ReviewPartialCarrierTests.test_partial_optional_members_roundtrip_negative_carrier)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_cg_runpath_flow.py", line 180, in test_partial_optional_members_roundtrip_negative_carrier
+    root=Path(d);(root/'bundle/candidate').mkdir(parents=True);(root/'bundle/candidate/layout-descriptor.data').write_bytes(b'x');r=dict(status='FAILED',build_start_attempts=1);producer.seal_failure_bundle(root,r);self.assertIn('candidate/layout-descriptor.data',r['omissions'])
+                                                                                                                                                                                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'candidate/layout-descriptor.data' not found in ['candidate/build-libpanda.so.data', 'candidate/layout-contract.o.data', 'candidate/libpandagl.so.data', 'reports/compile-dependencies.json', 'reports/configuration-delta.json', 'reports/configuration.json', 'reports/effective-configuration.json', 'reports/gate.json', 'reports/host-before.json', 'reports/inputs.json', 'reports/layout-extraction.json', 'reports/layout.json', 'reports/loader-metadata.json', 'reports/provider-audit.json', 'reports/sdk-output-manifest.json', 'reports/source-manifest.json', 'reports/tools-after.json', 'reports/tools-before.json', 'reports/used-inputs.json']
+
+----------------------------------------------------------------------
+Ran 1 test in 0.025s
+
+FAILED (failures=1, errors=6)

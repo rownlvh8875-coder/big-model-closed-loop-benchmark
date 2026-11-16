@@ -1,0 +1,38 @@
+name: One-use measured Cg/Eigen SDK RUNPATH compile-only candidate v3
+on:
+  push:
+    branches: ['prepare/panda-sdk-cg-runpath-build-20261116-03']
+    paths: ['docs/requests/panda-sdk-cg-runpath-build-20261116-03.json']
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: panda-sdk-cg-runpath-build-20261116-03
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - name: Reject repeated attempts
+        env:
+          ATTEMPT: ${{ github.run_attempt }}
+        run: test "$ATTEMPT" = 1
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          fetch-depth: 1
+          persist-credentials: false
+      - name: Compile one source-bound Eigen/Cg SDK, never execute target code
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: /usr/bin/python3 -I -S -B scripts/produce_panda_sdk_cg_runpath.py --run
+      - name: Preserve candidate or available negative evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: panda-sdk-cg-runpath-build-20261116-03
+          path: output/stage7-panda-sdk-cg-runpath-candidate-03/producer/bundle/
+          compression-level: 0
+          retention-days: 30
+          if-no-files-found: warn
+          include-hidden-files: true

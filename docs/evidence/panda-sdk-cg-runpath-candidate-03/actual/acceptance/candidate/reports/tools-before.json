@@ -1,0 +1,1174 @@
+{
+  "schema": "panda-cg-eigen-tools-v2",
+  "status": "VERIFIED",
+  "tools": {
+    "cc": "/usr/bin/gcc-13",
+    "cxx": "/usr/bin/g++-13",
+    "readelf": "/usr/bin/readelf",
+    "objdump": "/usr/bin/objdump",
+    "ld": "/usr/bin/ld",
+    "as": "/usr/bin/as",
+    "ar": "/usr/bin/ar",
+    "ranlib": "/usr/bin/ranlib",
+    "bison": "/usr/bin/bison",
+    "flex": "/usr/bin/flex",
+    "m4": "/usr/bin/m4",
+    "pkg-config": "/usr/bin/pkg-config",
+    "python": "/usr/bin/python3",
+    "git": "/usr/bin/git"
+  },
+  "files": {
+    "/usr/bin/gcc-13": {
+      "resolved_path": "/usr/bin/x86_64-linux-gnu-gcc-13",
+      "nbytes": 1023032,
+      "sha256": "1b99826121ae6682a634e5efe09bd3e3df58ce58e0b28f849114ab5b89139c26"
+    },
+    "/usr/bin/g++-13": {
+      "resolved_path": "/usr/bin/x86_64-linux-gnu-g++-13",
+      "nbytes": 1027128,
+      "sha256": "1353e9bdd29a7295c7226bf6c63abccce056d8cac31f112e5cdbecc3f28c2769"
+    },
+    "/usr/bin/readelf": {
+      "resolved_path": "/usr/bin/x86_64-linux-gnu-readelf",
+      "nbytes": 789280,
+      "sha256": "64c58e15274bbbb5153f31078e455e9e77ee5f51489e709bba5bb788ce9df2b0"
+    },
+    "/usr/bin/objdump": {
+      "resolved_path": "/usr/bin/x86_64-linux-gnu-objdump",
+      "nbytes": 390848,
+      "sha256": "325c4205a4c658a9d1e1ebc469ae55975a2b897a3d3c1e79d9b158612d37f745"
+    },
+    "/usr/bin/ld": {
+      "resolved_path": "/usr/bin/x86_64-linux-gnu-ld.bfd",
+      "nbytes": 1359128,
+      "sha256": "e9ceb054c12207970f2726dfc07e9a66b411602748628baf27399f02a9bbb31b"
+    },
+    "/usr/bin/as": {
+      "resolved_path": "/usr/bin/x86_64-linux-gnu-as",
+      "nbytes": 745768,
+      "sha256": "21aff249b692b5c31a44007491f922dcb49f41323e362c57d2ada3f52eddb7f0"
+    },
+    "/usr/bin/ar": {
+      "resolved_path": "/usr/bin/x86_64-linux-gnu-ar",
+      "nbytes": 55792,
+      "sha256": "6452af2eea333b8c65e1adb92964fc8f97863ab003fa13f9d12bff5345cd7dbe"
+    },
+    "/usr/bin/ranlib": {
+      "resolved_path": "/usr/bin/x86_64-linux-gnu-ranlib",
+      "nbytes": 55792,
+      "sha256": "60254978b8ee2c1b21b41d16a18a621dbbcc72e43eb2fa9f916818256c77e9ee"
+    },
+    "/usr/bin/bison": {
+      "resolved_path": "/usr/bin/bison",
+      "nbytes": 504656,
+      "sha256": "b67826f519b3bc9c6cc4fb50d03bf6c362ba3f202b32a553c7256a801f4c985e"
+    },
+    "/usr/bin/flex": {
+      "resolved_path": "/usr/bin/flex",
+      "nbytes": 423096,
+      "sha256": "6b70611fd650c8216b5c8c1a54a69ed470cd82c63ec0dc095dd4d9782bc3efbb"
+    },
+    "/usr/bin/m4": {
+      "resolved_path": "/usr/bin/m4",
+      "nbytes": 244088,
+      "sha256": "426fbab900b6c676038cf71da51c3ae45a6d546c9580fff9372bc5b1bb81d576"
+    },
+    "/usr/bin/pkg-config": {
+      "resolved_path": "/usr/bin/pkgconf",
+      "nbytes": 45168,
+      "sha256": "7e8152db1b0c7e49d47b4b82a70dc9997b557951c5d4d938b0e7f208ce9eb10b"
+    },
+    "/usr/bin/python3": {
+      "resolved_path": "/usr/bin/python3.12",
+      "nbytes": 8020928,
+      "sha256": "e50d468e8b0adfb05733f5b87b3cff34829c4a8c1aea50c865aa8bdfe4bb150f"
+    },
+    "/usr/bin/git": {
+      "resolved_path": "/usr/bin/git",
+      "nbytes": 4640384,
+      "sha256": "08ca4d2ee4d8915e86f1faaa52603752507c57af1d16d451dec9992bc9b6d801"
+    },
+    "/usr/libexec/gcc/x86_64-linux-gnu/13/cc1": {
+      "resolved_path": "/usr/libexec/gcc/x86_64-linux-gnu/13/cc1",
+      "nbytes": 30487984,
+      "sha256": "5d1679131184e2de4435b426eb264bf13472fe026db8e5c6bc97445814e8e2f4"
+    },
+    "/usr/libexec/gcc/x86_64-linux-gnu/13/collect2": {
+      "resolved_path": "/usr/libexec/gcc/x86_64-linux-gnu/13/collect2",
+      "nbytes": 336056,
+      "sha256": "4d1f341ae5b763b513258ee2812422a45e063c30a2f1924a0cf63d3699f3a158"
+    },
+    "/usr/lib/x86_64-linux-gnu/crti.o": {
+      "resolved_path": "/usr/lib/x86_64-linux-gnu/crti.o",
+      "nbytes": 1192,
+      "sha256": "077ccb6c68db1794da3ee262c4a16a3c6f8e902845dd0829110ad4b7065e5aa3"
+    },
+    "/usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o": {
+      "resolved_path": "/usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o",
+      "nbytes": 2752,
+      "sha256": "667ff5f1edc931d44d1f2bb44d313907aa274bcc207c0beff71a398335f0d29f"
+    },
+    "/usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o": {
+      "resolved_path": "/usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o",
+      "nbytes": 1168,
+      "sha256": "9c8b2caad195193301ef072895dc89bea1d23371d4c19accd821debe27773063"
+    },
+    "/usr/lib/x86_64-linux-gnu/crtn.o": {
+      "resolved_path": "/usr/lib/x86_64-linux-gnu/crtn.o",
+      "nbytes": 760,
+      "sha256": "a2266079f95b84ccc2162ebbf279bcd78858a748aa1882e0bdb912316c76a58f"
+    },
+    "/usr/lib/gcc/x86_64-linux-gnu/13/libgcc.a": {
+      "resolved_path": "/usr/lib/gcc/x86_64-linux-gnu/13/libgcc.a",
+      "nbytes": 3093656,
+      "sha256": "d9376c55f97863a4e5fbb6c6beca2591b319bf786f3a7ca56da8964c5662171f"
+    },
+    "/usr/lib/gcc/x86_64-linux-gnu/13/libgcc_s.so": {
+      "resolved_path": "/usr/lib/gcc/x86_64-linux-gnu/13/libgcc_s.so",
+      "nbytes": 132,
+      "sha256": "69a56a9993b7729b29b274e65016031c81f2397f176ed5ad44d59bd50425e0bd"
+    },
+    "/usr/lib/gcc/x86_64-linux-gnu/13/libstdc++.so": {
+      "resolved_path": "/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33",
+      "nbytes": 2592224,
+      "sha256": "1fd75fe70354a416d75aef22bcae68c47bd25d20e2d0568c30b1a9838cf62f11"
+    },
+    "/usr/libexec/gcc/x86_64-linux-gnu/13/cc1plus": {
+      "resolved_path": "/usr/libexec/gcc/x86_64-linux-gnu/13/cc1plus",
+      "nbytes": 32675168,
+      "sha256": "840b332fb62ec6f694ac77d91fe69ef7f80b0d69512ed89374af0ee7a506255d"
+    }
+  },
+  "queries": [
+    {
+      "argv": [
+        "/usr/bin/gcc-13",
+        "-dumpfullversion"
+      ],
+      "result": {
+        "argv": [
+          "/usr/bin/gcc-13",
+          "-dumpfullversion"
+        ],
+        "cwd": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark",
+        "status": "EXITED",
+        "returncode": 0,
+        "owned_group_reaped": true,
+        "streams_complete": true,
+        "elapsed_seconds": 0.0021662900000016805,
+        "pid": 2156,
+        "streams": {
+          "stdout": {
+            "observed_nbytes": 7,
+            "saved_nbytes": 7,
+            "sha256": "bb6aade8c4ca40cae9cb1be8abe12377f651fccd82954af74ec61703b6608fc5"
+          },
+          "stderr": {
+            "observed_nbytes": 0,
+            "saved_nbytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        }
+      },
+      "stdout_path": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-runpath-candidate-03/producer/work/tool-profile-queries/0/stdout.log",
+      "stderr_path": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-runpath-candidate-03/producer/work/tool-profile-queries/0/stderr.log",
+      "stdout": "13.3.0\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/gcc-13",
+        "-shared",
+        "-fPIC",
+        "-print-prog-name=cc1"
+      ],
+      "result": {
+        "argv": [
+          "/usr/bin/gcc-13",
+          "-shared",
+          "-fPIC",
+          "-print-prog-name=cc1"
+        ],
+        "cwd": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark",
+        "status": "EXITED",
+        "returncode": 0,
+        "owned_group_reaped": true,
+        "streams_complete": true,
+        "elapsed_seconds": 0.0025878149999982725,
+        "pid": 2157,
+        "streams": {
+          "stdout": {
+            "observed_nbytes": 41,
+            "saved_nbytes": 41,
+            "sha256": "a8081bc5652e2ec80147e680dfc24dd61f11820e2109d1e3b759d77c378583a9"
+          },
+          "stderr": {
+            "observed_nbytes": 0,
+            "saved_nbytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        }
+      },
+      "stdout_path": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-runpath-candidate-03/producer/work/tool-profile-queries/1/stdout.log",
+      "stderr_path": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-runpath-candidate-03/producer/work/tool-profile-queries/1/stderr.log",
+      "stdout": "/usr/libexec/gcc/x86_64-linux-gnu/13/cc1\n",
+      "stderr": "",
+      "selected_path": "/usr/libexec/gcc/x86_64-linux-gnu/13/cc1"
+    },
+    {
+      "argv": [
+        "/usr/bin/gcc-13",
+        "-shared",
+        "-fPIC",
+        "-print-prog-name=collect2"
+      ],
+      "result": {
+        "argv": [
+          "/usr/bin/gcc-13",
+          "-shared",
+          "-fPIC",
+          "-print-prog-name=collect2"
+        ],
+        "cwd": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark",
+        "status": "EXITED",
+        "returncode": 0,
+        "owned_group_reaped": true,
+        "streams_complete": true,
+        "elapsed_seconds": 0.0012269160000002444,
+        "pid": 2158,
+        "streams": {
+          "stdout": {
+            "observed_nbytes": 46,
+            "saved_nbytes": 46,
+            "sha256": "c0b7638fa61ef43107d74ccefe76e6f9cd3c061bfee7d6ffd58a7b783012afed"
+          },
+          "stderr": {
+            "observed_nbytes": 0,
+            "saved_nbytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        }
+      },
+      "stdout_path": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-runpath-candidate-03/producer/work/tool-profile-queries/2/stdout.log",
+      "stderr_path": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-runpath-candidate-03/producer/work/tool-profile-queries/2/stderr.log",
+      "stdout": "/usr/libexec/gcc/x86_64-linux-gnu/13/collect2\n",
+      "stderr": "",
+      "selected_path": "/usr/libexec/gcc/x86_64-linux-gnu/13/collect2"
+    },
+    {
+      "argv": [
+        "/usr/bin/gcc-13",
+        "-shared",
+        "-fPIC",
+        "-print-prog-name=as"
+      ],
+      "result": {
+        "argv": [
+          "/usr/bin/gcc-13",
+          "-shared",
+          "-fPIC",
+          "-print-prog-name=as"
+        ],
+        "cwd": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark",
+        "status": "EXITED",
+        "returncode": 0,
+        "owned_group_reaped": true,
+        "streams_complete": true,
+        "elapsed_seconds": 0.0009247019999989448,
+        "pid": 2159,
+        "streams": {
+          "stdout": {
+            "observed_nbytes": 3,
+            "saved_nbytes": 3,
+            "sha256": "8b97bca79750847558d488e2ea4de79903c9c71c9af27ecf1b3dff5dba2abdd9"
+          },
+          "stderr": {
+            "observed_nbytes": 0,
+            "saved_nbytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        }
+      },
+      "stdout_path": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-runpath-candidate-03/producer/work/tool-profile-queries/3/stdout.log",
+      "stderr_path": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-runpath-candidate-03/producer/work/tool-profile-queries/3/stderr.log",
+      "stdout": "as\n",
+      "stderr": "",
+      "selected_path": "/usr/bin/as"
+    },
+    {
+      "argv": [
+        "/usr/bin/gcc-13",
+        "-shared",
+        "-fPIC",
+        "-print-prog-name=ld"
+      ],
+      "result": {
+        "argv": [
+          "/usr/bin/gcc-13",
+          "-shared",
+          "-fPIC",
+          "-print-prog-name=ld"
+        ],
+        "cwd": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark",
+        "status": "EXITED",
+        "returncode": 0,
+        "owned_group_reaped": true,
+        "streams_complete": true,
+        "elapsed_seconds": 0.0009151870000003726,
+        "pid": 2160,
+        "streams": {
+          "stdout": {
+            "observed_nbytes": 3,
+            "saved_nbytes": 3,
+            "sha256": "3b6cb8ae51045d062a7c7de7cc488ad8785144cfbc0a7fc9546ed52429e0d97f"
+          },
+          "stderr": {
+            "observed_nbytes": 0,
+            "saved_nbytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        }
+      },
+      "stdout_path": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-runpath-candidate-03/producer/work/tool-profile-queries/4/stdout.log",
+      "stderr_path": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-runpath-candidate-03/producer/work/tool-profile-queries/4/stderr.log",
+      "stdout": "ld\n",
+      "stderr": "",
+      "selected_path": "/usr/bin/ld"
+    },
+    {
+      "argv": [
+        "/usr/bin/gcc-13",
+        "-shared",
+        "-fPIC",
+        "-print-file-name=crti.o"
+      ],
+      "result": {
+        "argv": [
+          "/usr/bin/gcc-13",
+          "-shared",
+          "-fPIC",
+          "-print-file-name=crti.o"
+        ],
+        "cwd": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark",
+        "status": "EXITED",
+        "returncode": 0,
+        "owned_group_reaped": true,
+        "streams_complete": true,
+        "elapsed_seconds": 0.0010315920000003587,
+        "pid": 2161,
+        "streams": {
+          "stdout": {
+            "observed_nbytes": 66,
+            "saved_nbytes": 66,
+            "sha256": "3f213ce9e9b403d21aca86ba08f61458419300786c64ebd65ea002316b2803bb"
+          },
+          "stderr": {
+            "observed_nbytes": 0,
+            "saved_nbytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        }
+      },
+      "stdout_path": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-runpath-candidate-03/producer/work/tool-profile-queries/5/stdout.log",
+      "stderr_path": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-runpath-candidate-03/producer/work/tool-profile-queries/5/stderr.log",
+      "stdout": "/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o\n",
+      "stderr": "",
+      "selected_path": "/usr/lib/x86_64-linux-gnu/crti.o"
+    },
+    {
+      "argv": [
+        "/usr/bin/gcc-13",
+        "-shared",
+        "-fPIC",
+        "-print-file-name=crtbeginS.o"
+      ],
+      "result": {
+        "argv": [
+          "/usr/bin/gcc-13",
+          "-shared",
+          "-fPIC",
+          "-print-file-name=crtbeginS.o"
+        ],
+        "cwd": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark",
+        "status": "EXITED",
+        "returncode": 0,
+        "owned_group_reaped": true,
+        "streams_complete": true,
+        "elapsed_seconds": 0.000906875000001861,
+        "pid": 2162,
+        "streams": {
+          "stdout": {
+            "observed_nbytes": 45,
+            "saved_nbytes": 45,
+            "sha256": "0566eae03790430b0fc3a27bd7847a687f090069369c8c3eb2cd3f33a9adacec"
+          },
+          "stderr": {
+            "observed_nbytes": 0,
+            "saved_nbytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        }
+      },
+      "stdout_path": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-runpath-candidate-03/producer/work/tool-profile-queries/6/stdout.log",
+      "stderr_path": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-runpath-candidate-03/producer/work/tool-profile-queries/6/stderr.log",
+      "stdout": "/usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o\n",
+      "stderr": "",
+      "selected_path": "/usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o"
+    },
+    {
+      "argv": [
+        "/usr/bin/gcc-13",
+        "-shared",
+        "-fPIC",
+        "-print-file-name=crtendS.o"
+      ],
+      "result": {
+        "argv": [
+          "/usr/bin/gcc-13",
+          "-shared",
+          "-fPIC",
+          "-print-file-name=crtendS.o"
+        ],
+        "cwd": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark",
+        "status": "EXITED",
+        "returncode": 0,
+        "owned_group_reaped": true,
+        "streams_complete": true,
+        "elapsed_seconds": 0.0009036599999987516,
+        "pid": 2163,
+        "streams": {
+          "stdout": {
+            "observed_nbytes": 43,
+            "saved_nbytes": 43,
+            "sha256": "104853a79416b6612cf41a45bf7fa19ebeb81a6ed9b65fc00bd0307a698bdf75"
+          },
+          "stderr": {
+            "observed_nbytes": 0,
+            "saved_nbytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        }
+      },
+      "stdout_path": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-runpath-candidate-03/producer/work/tool-profile-queries/7/stdout.log",
+      "stderr_path": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-runpath-candidate-03/producer/work/tool-profile-queries/7/stderr.log",
+      "stdout": "/usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o\n",
+      "stderr": "",
+      "selected_path": "/usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o"
+    },
+    {
+      "argv": [
+        "/usr/bin/gcc-13",
+        "-shared",
+        "-fPIC",
+        "-print-file-name=crtn.o"
+      ],
+      "result": {
+        "argv": [
+          "/usr/bin/gcc-13",
+          "-shared",
+          "-fPIC",
+          "-print-file-name=crtn.o"
+        ],
+        "cwd": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark",
+        "status": "EXITED",
+        "returncode": 0,
+        "owned_group_reaped": true,
+        "streams_complete": true,
+        "elapsed_seconds": 0.0008727929999992057,
+        "pid": 2164,
+        "streams": {
+          "stdout": {
+            "observed_nbytes": 66,
+            "saved_nbytes": 66,
+            "sha256": "367754b2451e40adeb0fef5c4010a2650ce66a86842dd92757e2442f8706da54"
+          },
+          "stderr": {
+            "observed_nbytes": 0,
+            "saved_nbytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        }
+      },
+      "stdout_path": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-runpath-candidate-03/producer/work/tool-profile-queries/8/stdout.log",
+      "stderr_path": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-runpath-candidate-03/producer/work/tool-profile-queries/8/stderr.log",
+      "stdout": "/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o\n",
+      "stderr": "",
+      "selected_path": "/usr/lib/x86_64-linux-gnu/crtn.o"
+    },
+    {
+      "argv": [
+        "/usr/bin/gcc-13",
+        "-shared",
+        "-fPIC",
+        "-print-file-name=libgcc.a"
+      ],
+      "result": {
+        "argv": [
+          "/usr/bin/gcc-13",
+          "-shared",
+          "-fPIC",
+          "-print-file-name=libgcc.a"
+        ],
+        "cwd": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark",
+        "status": "EXITED",
+        "returncode": 0,
+        "owned_group_reaped": true,
+        "streams_complete": true,
+        "elapsed_seconds": 0.0008852230000009342,
+        "pid": 2165,
+        "streams": {
+          "stdout": {
+            "observed_nbytes": 42,
+            "saved_nbytes": 42,
+            "sha256": "49e0ee3c95e74be54cf8cb48a3e08423726429a8edc38cb0a38018efb7e7e5b1"
+          },
+          "stderr": {
+            "observed_nbytes": 0,
+            "saved_nbytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        }
+      },
+      "stdout_path": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-runpath-candidate-03/producer/work/tool-profile-queries/9/stdout.log",
+      "stderr_path": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-runpath-candidate-03/producer/work/tool-profile-queries/9/stderr.log",
+      "stdout": "/usr/lib/gcc/x86_64-linux-gnu/13/libgcc.a\n",
+      "stderr": "",
+      "selected_path": "/usr/lib/gcc/x86_64-linux-gnu/13/libgcc.a"
+    },
+    {
+      "argv": [
+        "/usr/bin/gcc-13",
+        "-shared",
+        "-fPIC",
+        "-print-file-name=libgcc_s.so"
+      ],
+      "result": {
+        "argv": [
+          "/usr/bin/gcc-13",
+          "-shared",
+          "-fPIC",
+          "-print-file-name=libgcc_s.so"
+        ],
+        "cwd": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark",
+        "status": "EXITED",
+        "returncode": 0,
+        "owned_group_reaped": true,
+        "streams_complete": true,
+        "elapsed_seconds": 0.0010440210000020045,
+        "pid": 2166,
+        "streams": {
+          "stdout": {
+            "observed_nbytes": 45,
+            "saved_nbytes": 45,
+            "sha256": "44346845a2cb35dc1183f481c2b8b58898fede41bcfea0e24e15953394903114"
+          },
+          "stderr": {
+            "observed_nbytes": 0,
+            "saved_nbytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        }
+      },
+      "stdout_path": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-runpath-candidate-03/producer/work/tool-profile-queries/10/stdout.log",
+      "stderr_path": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-runpath-candidate-03/producer/work/tool-profile-queries/10/stderr.log",
+      "stdout": "/usr/lib/gcc/x86_64-linux-gnu/13/libgcc_s.so\n",
+      "stderr": "",
+      "selected_path": "/usr/lib/gcc/x86_64-linux-gnu/13/libgcc_s.so"
+    },
+    {
+      "argv": [
+        "/usr/bin/gcc-13",
+        "-shared",
+        "-fPIC",
+        "-print-file-name=libstdc++.so"
+      ],
+      "result": {
+        "argv": [
+          "/usr/bin/gcc-13",
+          "-shared",
+          "-fPIC",
+          "-print-file-name=libstdc++.so"
+        ],
+        "cwd": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark",
+        "status": "EXITED",
+        "returncode": 0,
+        "owned_group_reaped": true,
+        "streams_complete": true,
+        "elapsed_seconds": 0.0009140459999983364,
+        "pid": 2167,
+        "streams": {
+          "stdout": {
+            "observed_nbytes": 46,
+            "saved_nbytes": 46,
+            "sha256": "04d2234b44defd9e9bdf1d2dfde278560f76efcd48dc2c3c9096ce7589e0e27c"
+          },
+          "stderr": {
+            "observed_nbytes": 0,
+            "saved_nbytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        }
+      },
+      "stdout_path": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-runpath-candidate-03/producer/work/tool-profile-queries/11/stdout.log",
+      "stderr_path": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-runpath-candidate-03/producer/work/tool-profile-queries/11/stderr.log",
+      "stdout": "/usr/lib/gcc/x86_64-linux-gnu/13/libstdc++.so\n",
+      "stderr": "",
+      "selected_path": "/usr/lib/gcc/x86_64-linux-gnu/13/libstdc++.so"
+    },
+    {
+      "argv": [
+        "/usr/bin/gcc-13",
+        "-shared",
+        "-fPIC",
+        "-print-search-dirs"
+      ],
+      "result": {
+        "argv": [
+          "/usr/bin/gcc-13",
+          "-shared",
+          "-fPIC",
+          "-print-search-dirs"
+        ],
+        "cwd": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark",
+        "status": "EXITED",
+        "returncode": 0,
+        "owned_group_reaped": true,
+        "streams_complete": true,
+        "elapsed_seconds": 0.0008925640000008173,
+        "pid": 2168,
+        "streams": {
+          "stdout": {
+            "observed_nbytes": 1194,
+            "saved_nbytes": 1194,
+            "sha256": "35d3d157615681245967db80fd6d13a54e57f21d4a19cf0c7d28ffd3bc0dc309"
+          },
+          "stderr": {
+            "observed_nbytes": 0,
+            "saved_nbytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        }
+      },
+      "stdout_path": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-runpath-candidate-03/producer/work/tool-profile-queries/12/stdout.log",
+      "stderr_path": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-runpath-candidate-03/producer/work/tool-profile-queries/12/stderr.log",
+      "stdout": "install: /usr/lib/gcc/x86_64-linux-gnu/13/\nprograms: =/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/bin/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/bin/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/bin/\nlibraries: =/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/lib/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/lib/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib/:/lib/x86_64-linux-gnu/13/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/13/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../:/lib/:/usr/lib/\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/g++-13",
+        "-dumpfullversion"
+      ],
+      "result": {
+        "argv": [
+          "/usr/bin/g++-13",
+          "-dumpfullversion"
+        ],
+        "cwd": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark",
+        "status": "EXITED",
+        "returncode": 0,
+        "owned_group_reaped": true,
+        "streams_complete": true,
+        "elapsed_seconds": 0.0007655219999982421,
+        "pid": 2169,
+        "streams": {
+          "stdout": {
+            "observed_nbytes": 7,
+            "saved_nbytes": 7,
+            "sha256": "bb6aade8c4ca40cae9cb1be8abe12377f651fccd82954af74ec61703b6608fc5"
+          },
+          "stderr": {
+            "observed_nbytes": 0,
+            "saved_nbytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        }
+      },
+      "stdout_path": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-runpath-candidate-03/producer/work/tool-profile-queries/13/stdout.log",
+      "stderr_path": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-runpath-candidate-03/producer/work/tool-profile-queries/13/stderr.log",
+      "stdout": "13.3.0\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/g++-13",
+        "-shared",
+        "-fPIC",
+        "-print-prog-name=cc1plus"
+      ],
+      "result": {
+        "argv": [
+          "/usr/bin/g++-13",
+          "-shared",
+          "-fPIC",
+          "-print-prog-name=cc1plus"
+        ],
+        "cwd": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark",
+        "status": "EXITED",
+        "returncode": 0,
+        "owned_group_reaped": true,
+        "streams_complete": true,
+        "elapsed_seconds": 0.0009594540000001928,
+        "pid": 2170,
+        "streams": {
+          "stdout": {
+            "observed_nbytes": 45,
+            "saved_nbytes": 45,
+            "sha256": "3cf1bad0c4b2b5e0a6d569f800f949510f194bb594dcfaeddb1394fd3cc91758"
+          },
+          "stderr": {
+            "observed_nbytes": 0,
+            "saved_nbytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        }
+      },
+      "stdout_path": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-runpath-candidate-03/producer/work/tool-profile-queries/14/stdout.log",
+      "stderr_path": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-runpath-candidate-03/producer/work/tool-profile-queries/14/stderr.log",
+      "stdout": "/usr/libexec/gcc/x86_64-linux-gnu/13/cc1plus\n",
+      "stderr": "",
+      "selected_path": "/usr/libexec/gcc/x86_64-linux-gnu/13/cc1plus"
+    },
+    {
+      "argv": [
+        "/usr/bin/g++-13",
+        "-shared",
+        "-fPIC",
+        "-print-prog-name=collect2"
+      ],
+      "result": {
+        "argv": [
+          "/usr/bin/g++-13",
+          "-shared",
+          "-fPIC",
+          "-print-prog-name=collect2"
+        ],
+        "cwd": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark",
+        "status": "EXITED",
+        "returncode": 0,
+        "owned_group_reaped": true,
+        "streams_complete": true,
+        "elapsed_seconds": 0.0013297320000020818,
+        "pid": 2172,
+        "streams": {
+          "stdout": {
+            "observed_nbytes": 46,
+            "saved_nbytes": 46,
+            "sha256": "c0b7638fa61ef43107d74ccefe76e6f9cd3c061bfee7d6ffd58a7b783012afed"
+          },
+          "stderr": {
+            "observed_nbytes": 0,
+            "saved_nbytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        }
+      },
+      "stdout_path": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-runpath-candidate-03/producer/work/tool-profile-queries/15/stdout.log",
+      "stderr_path": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-runpath-candidate-03/producer/work/tool-profile-queries/15/stderr.log",
+      "stdout": "/usr/libexec/gcc/x86_64-linux-gnu/13/collect2\n",
+      "stderr": "",
+      "selected_path": "/usr/libexec/gcc/x86_64-linux-gnu/13/collect2"
+    },
+    {
+      "argv": [
+        "/usr/bin/g++-13",
+        "-shared",
+        "-fPIC",
+        "-print-prog-name=as"
+      ],
+      "result": {
+        "argv": [
+          "/usr/bin/g++-13",
+          "-shared",
+          "-fPIC",
+          "-print-prog-name=as"
+        ],
+        "cwd": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark",
+        "status": "EXITED",
+        "returncode": 0,
+        "owned_group_reaped": true,
+        "streams_complete": true,
+        "elapsed_seconds": 0.001130471999999827,
+        "pid": 2173,
+        "streams": {
+          "stdout": {
+            "observed_nbytes": 3,
+            "saved_nbytes": 3,
+            "sha256": "8b97bca79750847558d488e2ea4de79903c9c71c9af27ecf1b3dff5dba2abdd9"
+          },
+          "stderr": {
+            "observed_nbytes": 0,
+            "saved_nbytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        }
+      },
+      "stdout_path": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-runpath-candidate-03/producer/work/tool-profile-queries/16/stdout.log",
+      "stderr_path": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-runpath-candidate-03/producer/work/tool-profile-queries/16/stderr.log",
+      "stdout": "as\n",
+      "stderr": "",
+      "selected_path": "/usr/bin/as"
+    },
+    {
+      "argv": [
+        "/usr/bin/g++-13",
+        "-shared",
+        "-fPIC",
+        "-print-prog-name=ld"
+      ],
+      "result": {
+        "argv": [
+          "/usr/bin/g++-13",
+          "-shared",
+          "-fPIC",
+          "-print-prog-name=ld"
+        ],
+        "cwd": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark",
+        "status": "EXITED",
+        "returncode": 0,
+        "owned_group_reaped": true,
+        "streams_complete": true,
+        "elapsed_seconds": 0.0009375709999979165,
+        "pid": 2174,
+        "streams": {
+          "stdout": {
+            "observed_nbytes": 3,
+            "saved_nbytes": 3,
+            "sha256": "3b6cb8ae51045d062a7c7de7cc488ad8785144cfbc0a7fc9546ed52429e0d97f"
+          },
+          "stderr": {
+            "observed_nbytes": 0,
+            "saved_nbytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        }
+      },
+      "stdout_path": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-runpath-candidate-03/producer/work/tool-profile-queries/17/stdout.log",
+      "stderr_path": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-runpath-candidate-03/producer/work/tool-profile-queries/17/stderr.log",
+      "stdout": "ld\n",
+      "stderr": "",
+      "selected_path": "/usr/bin/ld"
+    },
+    {
+      "argv": [
+        "/usr/bin/g++-13",
+        "-shared",
+        "-fPIC",
+        "-print-file-name=crti.o"
+      ],
+      "result": {
+        "argv": [
+          "/usr/bin/g++-13",
+          "-shared",
+          "-fPIC",
+          "-print-file-name=crti.o"
+        ],
+        "cwd": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark",
+        "status": "EXITED",
+        "returncode": 0,
+        "owned_group_reaped": true,
+        "streams_complete": true,
+        "elapsed_seconds": 0.0009138149999969869,
+        "pid": 2175,
+        "streams": {
+          "stdout": {
+            "observed_nbytes": 66,
+            "saved_nbytes": 66,
+            "sha256": "3f213ce9e9b403d21aca86ba08f61458419300786c64ebd65ea002316b2803bb"
+          },
+          "stderr": {
+            "observed_nbytes": 0,
+            "saved_nbytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        }
+      },
+      "stdout_path": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-runpath-candidate-03/producer/work/tool-profile-queries/18/stdout.log",
+      "stderr_path": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-runpath-candidate-03/producer/work/tool-profile-queries/18/stderr.log",
+      "stdout": "/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o\n",
+      "stderr": "",
+      "selected_path": "/usr/lib/x86_64-linux-gnu/crti.o"
+    },
+    {
+      "argv": [
+        "/usr/bin/g++-13",
+        "-shared",
+        "-fPIC",
+        "-print-file-name=crtbeginS.o"
+      ],
+      "result": {
+        "argv": [
+          "/usr/bin/g++-13",
+          "-shared",
+          "-fPIC",
+          "-print-file-name=crtbeginS.o"
+        ],
+        "cwd": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark",
+        "status": "EXITED",
+        "returncode": 0,
+        "owned_group_reaped": true,
+        "streams_complete": true,
+        "elapsed_seconds": 0.0008810160000010114,
+        "pid": 2176,
+        "streams": {
+          "stdout": {
+            "observed_nbytes": 45,
+            "saved_nbytes": 45,
+            "sha256": "0566eae03790430b0fc3a27bd7847a687f090069369c8c3eb2cd3f33a9adacec"
+          },
+          "stderr": {
+            "observed_nbytes": 0,
+            "saved_nbytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        }
+      },
+      "stdout_path": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-runpath-candidate-03/producer/work/tool-profile-queries/19/stdout.log",
+      "stderr_path": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-runpath-candidate-03/producer/work/tool-profile-queries/19/stderr.log",
+      "stdout": "/usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o\n",
+      "stderr": "",
+      "selected_path": "/usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o"
+    },
+    {
+      "argv": [
+        "/usr/bin/g++-13",
+        "-shared",
+        "-fPIC",
+        "-print-file-name=crtendS.o"
+      ],
+      "result": {
+        "argv": [
+          "/usr/bin/g++-13",
+          "-shared",
+          "-fPIC",
+          "-print-file-name=crtendS.o"
+        ],
+        "cwd": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark",
+        "status": "EXITED",
+        "returncode": 0,
+        "owned_group_reaped": true,
+        "streams_complete": true,
+        "elapsed_seconds": 0.0009028789999980802,
+        "pid": 2177,
+        "streams": {
+          "stdout": {
+            "observed_nbytes": 43,
+            "saved_nbytes": 43,
+            "sha256": "104853a79416b6612cf41a45bf7fa19ebeb81a6ed9b65fc00bd0307a698bdf75"
+          },
+          "stderr": {
+            "observed_nbytes": 0,
+            "saved_nbytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        }
+      },
+      "stdout_path": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-runpath-candidate-03/producer/work/tool-profile-queries/20/stdout.log",
+      "stderr_path": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-runpath-candidate-03/producer/work/tool-profile-queries/20/stderr.log",
+      "stdout": "/usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o\n",
+      "stderr": "",
+      "selected_path": "/usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o"
+    },
+    {
+      "argv": [
+        "/usr/bin/g++-13",
+        "-shared",
+        "-fPIC",
+        "-print-file-name=crtn.o"
+      ],
+      "result": {
+        "argv": [
+          "/usr/bin/g++-13",
+          "-shared",
+          "-fPIC",
+          "-print-file-name=crtn.o"
+        ],
+        "cwd": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark",
+        "status": "EXITED",
+        "returncode": 0,
+        "owned_group_reaped": true,
+        "streams_complete": true,
+        "elapsed_seconds": 0.0009012070000018468,
+        "pid": 2178,
+        "streams": {
+          "stdout": {
+            "observed_nbytes": 66,
+            "saved_nbytes": 66,
+            "sha256": "367754b2451e40adeb0fef5c4010a2650ce66a86842dd92757e2442f8706da54"
+          },
+          "stderr": {
+            "observed_nbytes": 0,
+            "saved_nbytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        }
+      },
+      "stdout_path": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-runpath-candidate-03/producer/work/tool-profile-queries/21/stdout.log",
+      "stderr_path": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-runpath-candidate-03/producer/work/tool-profile-queries/21/stderr.log",
+      "stdout": "/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o\n",
+      "stderr": "",
+      "selected_path": "/usr/lib/x86_64-linux-gnu/crtn.o"
+    },
+    {
+      "argv": [
+        "/usr/bin/g++-13",
+        "-shared",
+        "-fPIC",
+        "-print-file-name=libgcc.a"
+      ],
+      "result": {
+        "argv": [
+          "/usr/bin/g++-13",
+          "-shared",
+          "-fPIC",
+          "-print-file-name=libgcc.a"
+        ],
+        "cwd": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark",
+        "status": "EXITED",
+        "returncode": 0,
+        "owned_group_reaped": true,
+        "streams_complete": true,
+        "elapsed_seconds": 0.001012453000001301,
+        "pid": 2179,
+        "streams": {
+          "stdout": {
+            "observed_nbytes": 42,
+            "saved_nbytes": 42,
+            "sha256": "49e0ee3c95e74be54cf8cb48a3e08423726429a8edc38cb0a38018efb7e7e5b1"
+          },
+          "stderr": {
+            "observed_nbytes": 0,
+            "saved_nbytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        }
+      },
+      "stdout_path": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-runpath-candidate-03/producer/work/tool-profile-queries/22/stdout.log",
+      "stderr_path": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-runpath-candidate-03/producer/work/tool-profile-queries/22/stderr.log",
+      "stdout": "/usr/lib/gcc/x86_64-linux-gnu/13/libgcc.a\n",
+      "stderr": "",
+      "selected_path": "/usr/lib/gcc/x86_64-linux-gnu/13/libgcc.a"
+    },
+    {
+      "argv": [
+        "/usr/bin/g++-13",
+        "-shared",
+        "-fPIC",
+        "-print-file-name=libgcc_s.so"
+      ],
+      "result": {
+        "argv": [
+          "/usr/bin/g++-13",
+          "-shared",
+          "-fPIC",
+          "-print-file-name=libgcc_s.so"
+        ],
+        "cwd": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark",
+        "status": "EXITED",
+        "returncode": 0,
+        "owned_group_reaped": true,
+        "streams_complete": true,
+        "elapsed_seconds": 0.000974735999999865,
+        "pid": 2180,
+        "streams": {
+          "stdout": {
+            "observed_nbytes": 45,
+            "saved_nbytes": 45,
+            "sha256": "44346845a2cb35dc1183f481c2b8b58898fede41bcfea0e24e15953394903114"
+          },
+          "stderr": {
+            "observed_nbytes": 0,
+            "saved_nbytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        }
+      },
+      "stdout_path": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-runpath-candidate-03/producer/work/tool-profile-queries/23/stdout.log",
+      "stderr_path": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-runpath-candidate-03/producer/work/tool-profile-queries/23/stderr.log",
+      "stdout": "/usr/lib/gcc/x86_64-linux-gnu/13/libgcc_s.so\n",
+      "stderr": "",
+      "selected_path": "/usr/lib/gcc/x86_64-linux-gnu/13/libgcc_s.so"
+    },
+    {
+      "argv": [
+        "/usr/bin/g++-13",
+        "-shared",
+        "-fPIC",
+        "-print-file-name=libstdc++.so"
+      ],
+      "result": {
+        "argv": [
+          "/usr/bin/g++-13",
+          "-shared",
+          "-fPIC",
+          "-print-file-name=libstdc++.so"
+        ],
+        "cwd": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark",
+        "status": "EXITED",
+        "returncode": 0,
+        "owned_group_reaped": true,
+        "streams_complete": true,
+        "elapsed_seconds": 0.0009378919999996072,
+        "pid": 2181,
+        "streams": {
+          "stdout": {
+            "observed_nbytes": 46,
+            "saved_nbytes": 46,
+            "sha256": "04d2234b44defd9e9bdf1d2dfde278560f76efcd48dc2c3c9096ce7589e0e27c"
+          },
+          "stderr": {
+            "observed_nbytes": 0,
+            "saved_nbytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        }
+      },
+      "stdout_path": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-runpath-candidate-03/producer/work/tool-profile-queries/24/stdout.log",
+      "stderr_path": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-runpath-candidate-03/producer/work/tool-profile-queries/24/stderr.log",
+      "stdout": "/usr/lib/gcc/x86_64-linux-gnu/13/libstdc++.so\n",
+      "stderr": "",
+      "selected_path": "/usr/lib/gcc/x86_64-linux-gnu/13/libstdc++.so"
+    },
+    {
+      "argv": [
+        "/usr/bin/g++-13",
+        "-shared",
+        "-fPIC",
+        "-print-search-dirs"
+      ],
+      "result": {
+        "argv": [
+          "/usr/bin/g++-13",
+          "-shared",
+          "-fPIC",
+          "-print-search-dirs"
+        ],
+        "cwd": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark",
+        "status": "EXITED",
+        "returncode": 0,
+        "owned_group_reaped": true,
+        "streams_complete": true,
+        "elapsed_seconds": 0.0009283670000002076,
+        "pid": 2182,
+        "streams": {
+          "stdout": {
+            "observed_nbytes": 1194,
+            "saved_nbytes": 1194,
+            "sha256": "35d3d157615681245967db80fd6d13a54e57f21d4a19cf0c7d28ffd3bc0dc309"
+          },
+          "stderr": {
+            "observed_nbytes": 0,
+            "saved_nbytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        }
+      },
+      "stdout_path": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-runpath-candidate-03/producer/work/tool-profile-queries/25/stdout.log",
+      "stderr_path": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-runpath-candidate-03/producer/work/tool-profile-queries/25/stderr.log",
+      "stdout": "install: /usr/lib/gcc/x86_64-linux-gnu/13/\nprograms: =/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/bin/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/bin/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/bin/\nlibraries: =/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/lib/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/lib/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib/:/lib/x86_64-linux-gnu/13/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/13/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../:/lib/:/usr/lib/\n",
+      "stderr": ""
+    }
+  ],
+  "compiler_major": 13,
+  "evidence_path": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-panda-sdk-cg-runpath-candidate-03/producer/work/tool-profile.json"
+}

@@ -1,0 +1,14 @@
+test_owned_tool_paths_cwd_and_host_records_are_required (test_panda_sdk_cg_runpath_evidence.ReviewToolEvidenceTests.test_owned_tool_paths_cwd_and_host_records_are_required) ... FAIL
+
+======================================================================
+FAIL: test_owned_tool_paths_cwd_and_host_records_are_required (test_panda_sdk_cg_runpath_evidence.ReviewToolEvidenceTests.test_owned_tool_paths_cwd_and_host_records_are_required)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_cg_runpath_evidence.py", line 70, in test_owned_tool_paths_cwd_and_host_records_are_required
+    with self.assertRaises(ValueError):v.validate_build_evidence(receipt,root)
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 1 test in 0.462s
+
+FAILED (failures=1)

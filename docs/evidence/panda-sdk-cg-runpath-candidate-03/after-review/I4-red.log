@@ -1,0 +1,70 @@
+test_qualified_entrypoint_bootstrap_failures_keep_diagnostic_artifact (test_panda_sdk_cg_runpath_flow.ReviewBootstrapTests.test_qualified_entrypoint_bootstrap_failures_keep_diagnostic_artifact) ... 
+  test_qualified_entrypoint_bootstrap_failures_keep_diagnostic_artifact (test_panda_sdk_cg_runpath_flow.ReviewBootstrapTests.test_qualified_entrypoint_bootstrap_failures_keep_diagnostic_artifact) (mode='malformed') ... ERROR
+  test_qualified_entrypoint_bootstrap_failures_keep_diagnostic_artifact (test_panda_sdk_cg_runpath_flow.ReviewBootstrapTests.test_qualified_entrypoint_bootstrap_failures_keep_diagnostic_artifact) (mode='closure') ... ERROR
+  test_qualified_entrypoint_bootstrap_failures_keep_diagnostic_artifact (test_panda_sdk_cg_runpath_flow.ReviewBootstrapTests.test_qualified_entrypoint_bootstrap_failures_keep_diagnostic_artifact) (mode='context') ... ERROR
+  test_qualified_entrypoint_bootstrap_failures_keep_diagnostic_artifact (test_panda_sdk_cg_runpath_flow.ReviewBootstrapTests.test_qualified_entrypoint_bootstrap_failures_keep_diagnostic_artifact) (mode='client') ... ERROR
+
+======================================================================
+ERROR: test_qualified_entrypoint_bootstrap_failures_keep_diagnostic_artifact (test_panda_sdk_cg_runpath_flow.ReviewBootstrapTests.test_qualified_entrypoint_bootstrap_failures_keep_diagnostic_artifact) (mode='malformed')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_cg_runpath_flow.py", line 196, in test_qualified_entrypoint_bootstrap_failures_keep_diagnostic_artifact
+    receipt=json.loads((output/'bundle/reports/receipt.json').read_text());self.assertEqual(receipt['build_start_attempts'],0);self.assertFalse(receipt['target_execution']);self.assertIsNone(receipt['source_sha']);self.assertIsNone(receipt['activation_sha']);self.assertIsNone(receipt['run_id']);self.assertTrue(receipt['bootstrap']['failure_stage']);self.assertFalse((output/'work/cg-runpath-build-start.json').exists())
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.cloud-tools/python/cpython-3.11.17-linux-x86_64-gnu/lib/python3.11/pathlib.py", line 1058, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.cloud-tools/python/cpython-3.11.17-linux-x86_64-gnu/lib/python3.11/pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/tmp/tmpeg9tmef2/production/bundle/reports/receipt.json'
+
+======================================================================
+ERROR: test_qualified_entrypoint_bootstrap_failures_keep_diagnostic_artifact (test_panda_sdk_cg_runpath_flow.ReviewBootstrapTests.test_qualified_entrypoint_bootstrap_failures_keep_diagnostic_artifact) (mode='closure')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_cg_runpath_flow.py", line 196, in test_qualified_entrypoint_bootstrap_failures_keep_diagnostic_artifact
+    receipt=json.loads((output/'bundle/reports/receipt.json').read_text());self.assertEqual(receipt['build_start_attempts'],0);self.assertFalse(receipt['target_execution']);self.assertIsNone(receipt['source_sha']);self.assertIsNone(receipt['activation_sha']);self.assertIsNone(receipt['run_id']);self.assertTrue(receipt['bootstrap']['failure_stage']);self.assertFalse((output/'work/cg-runpath-build-start.json').exists())
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.cloud-tools/python/cpython-3.11.17-linux-x86_64-gnu/lib/python3.11/pathlib.py", line 1058, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.cloud-tools/python/cpython-3.11.17-linux-x86_64-gnu/lib/python3.11/pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/tmp/tmpgnr7oqpa/production/bundle/reports/receipt.json'
+
+======================================================================
+ERROR: test_qualified_entrypoint_bootstrap_failures_keep_diagnostic_artifact (test_panda_sdk_cg_runpath_flow.ReviewBootstrapTests.test_qualified_entrypoint_bootstrap_failures_keep_diagnostic_artifact) (mode='context')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_cg_runpath_flow.py", line 196, in test_qualified_entrypoint_bootstrap_failures_keep_diagnostic_artifact
+    receipt=json.loads((output/'bundle/reports/receipt.json').read_text());self.assertEqual(receipt['build_start_attempts'],0);self.assertFalse(receipt['target_execution']);self.assertIsNone(receipt['source_sha']);self.assertIsNone(receipt['activation_sha']);self.assertIsNone(receipt['run_id']);self.assertTrue(receipt['bootstrap']['failure_stage']);self.assertFalse((output/'work/cg-runpath-build-start.json').exists())
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.cloud-tools/python/cpython-3.11.17-linux-x86_64-gnu/lib/python3.11/pathlib.py", line 1058, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.cloud-tools/python/cpython-3.11.17-linux-x86_64-gnu/lib/python3.11/pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/tmp/tmpmbcmp8c9/production/bundle/reports/receipt.json'
+
+======================================================================
+ERROR: test_qualified_entrypoint_bootstrap_failures_keep_diagnostic_artifact (test_panda_sdk_cg_runpath_flow.ReviewBootstrapTests.test_qualified_entrypoint_bootstrap_failures_keep_diagnostic_artifact) (mode='client')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/big-model-closed-loop-benchmark/tests/test_panda_sdk_cg_runpath_flow.py", line 196, in test_qualified_entrypoint_bootstrap_failures_keep_diagnostic_artifact
+    receipt=json.loads((output/'bundle/reports/receipt.json').read_text());self.assertEqual(receipt['build_start_attempts'],0);self.assertFalse(receipt['target_execution']);self.assertIsNone(receipt['source_sha']);self.assertIsNone(receipt['activation_sha']);self.assertIsNone(receipt['run_id']);self.assertTrue(receipt['bootstrap']['failure_stage']);self.assertFalse((output/'work/cg-runpath-build-start.json').exists())
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.cloud-tools/python/cpython-3.11.17-linux-x86_64-gnu/lib/python3.11/pathlib.py", line 1058, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.cloud-tools/python/cpython-3.11.17-linux-x86_64-gnu/lib/python3.11/pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/tmp/tmpc5oyle1m/production/bundle/reports/receipt.json'
+
+----------------------------------------------------------------------
+Ran 1 test in 0.418s
+
+FAILED (errors=4)
