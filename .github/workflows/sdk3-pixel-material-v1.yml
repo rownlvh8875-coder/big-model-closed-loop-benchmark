@@ -1,0 +1,40 @@
+name: Inspect SDK3 CPU vertex UV, material and resident texture state
+on:
+  push:
+    branches: ['diagnostic/sdk3-pixel-material-20261117-01']
+    paths: ['docs/requests/sdk3-pixel-material-20261117-01.json']
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: sdk3-pixel-material-20261117-01
+  cancel-in-progress: false
+jobs:
+  sdk3-progress:
+    name: SDK3 pixel material
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install host-only image analysis dependency
+        run: python -m pip install --no-deps numpy==1.26.4
+      - name: Record authenticated observation, with native timeout kept explicit
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python -I -B scripts/run_sdk3_pixel_material.py --run
+      - name: Preserve actual progress, source images, stacks and failure receipts
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: sdk3-pixel-material-20261117-01
+          path: output/stage7-sdk3-pixel-material-01/producer/bundle/
+          retention-days: 30
+          compression-level: 6
+          include-hidden-files: true
+          if-no-files-found: error

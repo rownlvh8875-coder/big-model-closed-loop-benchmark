@@ -1,0 +1,18 @@
+from pathlib import Path
+import hashlib,json,shutil
+ROOT=Path('/dev/shm/stage7-sdk3-runtime-20261116/repo');out=ROOT/'output/stage7-sdk3-pixel-material-01/actual';e=ROOT/'docs/evidence/sdk3-pixel-material-01';dest=e/'actual';dest.mkdir(exist_ok=True);x=json.loads((out/'independent-observation.json').read_text());bundle=out/'bundle';index=[]
+for p in sorted(bundle.rglob('*')):
+ if not p.is_file():continue
+ relative=p.relative_to(bundle);keep=p.suffix in ('.json','.jsonl','.txt') or p.name=='stacks.log';retained=p
+ if keep:
+  retained=dest/'bundle'/relative;retained.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(p,retained)
+ index.append(dict(path=str(relative),nbytes=p.stat().st_size,sha256=hashlib.file_digest(p.open('rb'),'sha256').hexdigest(),retained_in_git=keep,retained_path=str(retained.relative_to(ROOT)),artifact_id=x['artifact_id']))
+for name in ['run.json','jobs.json','artifacts.json','independent-analysis.json','independent-observation.json']:
+ if (out/name).exists():shutil.copyfile(out/name,dest/name)
+v=dict(run_id=x['run_id'],workflow_id=x['workflow_id'],source_sha=x['source_sha'],activation_sha=x['head_sha'],artifact_id=x['artifact_id'],artifact_size=x['artifact_size'],artifact_digest=x['artifact_digest'],zip_path=str((out/'proof.zip').relative_to(ROOT)),all_files=index,analysis_validated=x['analysis_validated'],official_model_processes=0,onnx_inferences=0,original_matrix_gate_passed=False,repair_proven=False,stage7_complete=False);(dest/'retained-index.json').write_text(json.dumps(v,indent=2)+'\n')
+ci=e/'source-ci-reviewed';ci.mkdir(exist_ok=True)
+for p in (ROOT/'output/stage7-sdk3-pixel-material-01/source-ci-reviewed').glob('*.json'):shutil.copyfile(p,ci/p.name)
+shutil.copyfile(ROOT/'output/stage7-sdk3-pixel-material-01/original-preservation.json',e/'original-preservation.json')
+task=Path('/dev/shm/stage7-sdk3-pixel-material-20261117');shutil.copyfile(task/'activation.json',e/'activation.json')
+for name in ['collect.py','prepare-results.py']:shutil.copyfile(task/name,e/(name+'.data'))
+print(json.dumps(dict(files=len(index),git_files=sum(i['retained_in_git'] for i in index),artifact=x['artifact_id'],analysis=x.get('analysis'),validation_failure=x.get('validation_failure')),ensure_ascii=False))
