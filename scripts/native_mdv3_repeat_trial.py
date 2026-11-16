@@ -62,17 +62,20 @@ class AuditedOfficialOnnx(OnnxBigModelPolicy):
 
 def run_trial(*, model: Path, spec: Path, scenario: str,
               seed: int, steps: int, speed: float, initial_fraction: float,
-              raw_rgb_dir: Path | None = None) -> dict:
+              raw_rgb_dir: Path | None = None, raw_rgb_capture_factory=None) -> dict:
     if type(seed) is not int or type(steps) is not int or not 2 <= steps <= 30:
         raise ValueError("bounded seed/ONNX step count invalid")
     if initial_fraction not in (0.12, 0.28):
         raise ValueError("fraction is not admitted by reproducibility matrix")
+    if raw_rgb_capture_factory is not None and raw_rgb_dir is None:
+        raise ValueError("capture factory requires an explicit raw RGB output directory")
     config=CampaignSpec(
         scenario=scenario,seed=seed,steps=steps,
         speed_mps=speed,initial_fraction=initial_fraction,
     )
     policy=AuditedOfficialOnnx(model,spec)
-    raw_observer=BoundedNativeRGBCapture() if raw_rgb_dir is not None else None
+    factory=BoundedNativeRGBCapture if raw_rgb_capture_factory is None else raw_rgb_capture_factory
+    raw_observer=factory() if raw_rgb_dir is not None else None
     report=run_native_episode(policy,config,
                               full_s_route=False, camera_convergence=0,
                               raw_rgb_observer=raw_observer)

@@ -27,6 +27,21 @@ def wait_child_then_stop_server(child,server,timeout):
             except subprocess.TimeoutExpired:server.kill();server.wait(timeout=5)
 
 
+def owned_child_command(args,parent_pid):
+    argv=[sys.executable,'-I','-S','-B',str(Path(__file__).resolve()),'--owned-child','--server-owner',str(parent_pid),'--out',args.out,'--nonce',args.nonce,'--load-order',args.load_order,'--factory',args.factory]
+    if args.reference_wheel:argv+=['--reference-wheel']
+    if args.model_trial:argv+=['--model-trial','--seed',str(args.seed),'--scenario',args.scenario]
+    if getattr(args,'full_rgb',False):argv+=['--full-rgb']
+    return argv
+
+
+def full_rgb_trial_options(args,out):
+    if not getattr(args,'full_rgb',False):return {}
+    policy.need(args.model_trial and not args.reference_wheel,'full RGB requires SDK3 official model probe')
+    from scripts.sdk3_rgb_forensics import FullEpisodeRGBCapture
+    return dict(raw_rgb_dir=out/'rgb',raw_rgb_capture_factory=FullEpisodeRGBCapture)
+
+
 def run_with_server(args):
     out=Path(args.out);server=None;child=None;status=dict(spawn_attempted=False,pid=None,returncode=None,server_returncode=None)
     try:
@@ -35,9 +50,7 @@ def run_with_server(args):
             deadline=time.monotonic()+15
             while not Path('/tmp/.X11-unix/X99').exists():
                 policy.need(server.poll() is None and time.monotonic()<deadline,'owned display readiness');time.sleep(.05)
-            argv=[sys.executable,'-I','-S','-B',str(Path(__file__).resolve()),'--owned-child','--server-owner',str(os.getpid()),'--out',args.out,'--nonce',args.nonce,'--load-order',args.load_order,'--factory',args.factory]
-            if args.reference_wheel:argv+=['--reference-wheel']
-            if args.model_trial:argv+=['--model-trial','--seed',str(args.seed),'--scenario',args.scenario]
+            argv=owned_child_command(args,os.getpid())
             status['spawn_attempted']=True;policy.write(out/'native-child.json',status)
             child=subprocess.Popen(argv);status['pid']=child.pid;policy.write(out/'native-child.json',status)
             status['returncode']=wait_child_then_stop_server(child,server,850 if args.model_trial else 160)
@@ -102,7 +115,7 @@ def run(args):
         if args.model_trial:
             policy.need(not args.reference_wheel,'official model requires SDK3');sys.path.insert(0,'/model-deps')
             from scripts.native_mdv3_repeat_trial import run_trial
-            value=run_trial(model=Path('/model.onnx'),spec=Path('/work/repo/model_specs/md-v3.json'),scenario=args.scenario,seed=args.seed,steps=12,speed=8.,initial_fraction=.12)
+            value=run_trial(model=Path('/model.onnx'),spec=Path('/work/repo/model_specs/md-v3.json'),scenario=args.scenario,seed=args.seed,steps=12,speed=8.,initial_fraction=.12,**full_rgb_trial_options(args,out))
             value.update(selected_sdk_sha256=policy.SDK_SHA,sdk_load_order='core-first');policy.write(out/'run.json',value)
             policy.need(value['status']=='DIAGNOSTIC_EXECUTED' and value['completed_steps']==12,'complete official model trial');report['status']='OFFICIAL_MODEL_TRIAL_OBSERVED';return report
         renderer,base,report['driver'],report['objects'],report['output_properties']=setup_renderer(c,args.factory,emit);report['frames']=[]
@@ -131,7 +144,7 @@ def run_pair(args):
             row=dict(index=index,launcher_spawn_attempted=True,launcher_pid=None,spawn_attempted=False,pid=None,returncode=None);ledger.append(row);policy.write(out/'pair-ledger.json',ledger)
             env=dict(os.environ,HOME='/tmp/home-'+nonce,XDG_CACHE_HOME='/tmp/cache-'+nonce);Path(env['HOME']).mkdir()
             with (dest/'stdout.log').open('wb') as stdout,(dest/'stderr.log').open('wb') as stderr:
-                launcher=subprocess.Popen([sys.executable,'-I','-S','-B',str(Path(__file__).resolve()),'--out',str(dest),'--model-trial','--nonce',nonce,'--seed',str(args.seed),'--scenario',args.scenario],stdout=stdout,stderr=stderr,env=env)
+                launcher=subprocess.Popen([sys.executable,'-I','-S','-B',str(Path(__file__).resolve()),'--out',str(dest),'--model-trial','--nonce',nonce,'--seed',str(args.seed),'--scenario',args.scenario]+(['--full-rgb'] if getattr(args,'full_rgb',False) else []),stdout=stdout,stderr=stderr,env=env)
                 row['launcher_pid']=launcher.pid;policy.write(out/'pair-ledger.json',ledger)
                 try:row['returncode']=launcher.wait(timeout=880)
                 except subprocess.TimeoutExpired:launcher.kill();launcher.wait(timeout=10);row['returncode']=launcher.returncode;raise
@@ -145,7 +158,8 @@ def run_pair(args):
 
 
 def main():
-    faulthandler.enable();p=argparse.ArgumentParser();p.add_argument('--out',required=True);p.add_argument('--nonce',default='00'*16);p.add_argument('--load-order',choices=['core-first','sdk-first'],default='core-first');p.add_argument('--factory',choices=['manual','showbase'],default='manual');p.add_argument('--reference-wheel',action='store_true');p.add_argument('--owned-child',action='store_true');p.add_argument('--server-owner',type=int);p.add_argument('--model-trial',action='store_true');p.add_argument('--model-pair',action='store_true');p.add_argument('--seed',type=int);p.add_argument('--scenario');args=p.parse_args()
+    faulthandler.enable();p=argparse.ArgumentParser();p.add_argument('--out',required=True);p.add_argument('--nonce',default='00'*16);p.add_argument('--load-order',choices=['core-first','sdk-first'],default='core-first');p.add_argument('--factory',choices=['manual','showbase'],default='manual');p.add_argument('--reference-wheel',action='store_true');p.add_argument('--owned-child',action='store_true');p.add_argument('--server-owner',type=int);p.add_argument('--model-trial',action='store_true');p.add_argument('--model-pair',action='store_true');p.add_argument('--full-rgb',action='store_true');p.add_argument('--seed',type=int);p.add_argument('--scenario');args=p.parse_args()
+    if args.full_rgb and (args.reference_wheel or not (args.model_pair or args.model_trial)):p.error('--full-rgb requires SDK3 model trial/pair')
     if args.model_pair:run_pair(args);return 0
     if args.owned_child:run(args);return 0
     return run_with_server(args)
