@@ -22,14 +22,14 @@ Base2435bf438651916ff496c07d334ba264d56a71bc; all prior files/modes/requests/ver
 ### Task1: Actual SDK3/GLX diagnostic pipeline
 **Files:** scripts/panda_sdk3_runtime.py,scripts/panda_sdk3_diagnostic.py,tests/test_panda_sdk3_runtime.py,.github/workflows/panda-sdk3-runtime-v1.yml.
 **Interfaces:** verify_member(zip_path,member,size,digest,out)->Path; validate_probe(events,report,returncode)->dict; run_host(out:Path,model_phase:bool)->dict. Child emits JSONL checkpoints and report.json.
-- [ ] Add tests for exact bytes, duplicate/traversal archive entries, incomplete checkpoints/nonzero exits, distinct exact RGB frames, driver/SDK/core identity and cleanup; run focused command,ExpectedRED.
-- [ ] Implement minimal fixed artifact/SDK3 staging and owned container/child checkpoint+frame checks; run focused,ExpectedGREEN. Commit.
+- [x] Add tests for exact bytes, duplicate/traversal archive entries, incomplete checkpoints/nonzero exits, distinct exact RGB frames, driver/SDK/core identity and cleanup; run focused command,ExpectedRED.
+- [x] Implement minimal fixed artifact/SDK3 staging and owned container/child checkpoint+frame checks; run focused,ExpectedGREEN. Commit.
 
 ### Task2: Conditional official MD-V3 cohort
 **Files:** same orchestrator/workflow/test; existing scripts/native_mdv3_repeat_trial.py and comparators are consumed unchanged.
 **Interfaces:** model_gate(verdicts:list[dict])->dict; calls existing compare_fresh_trials and aggregate_original_mdv3_current_recheck.
-- [ ] Add incomplete/duplicate pair/mismatch tests; run focused,ExpectedRED.
-- [ ] Add exact model download and eight fresh bounded model containers after two GLX passes; preserve all JSON and strict gate. Expansion remains conditional. Run focused,ExpectedGREEN. Commit.
+- [x] Add incomplete/duplicate pair/mismatch tests; run focused,ExpectedRED.
+- [x] Add exact model download and eight fresh bounded model containers after two GLX passes; preserve all JSON and strict gate. Expansion remains conditional. Run focused,ExpectedGREEN. Commit.
 
 ### Task3: Review, real execution, diagnosis and closeout
 - [ ] Run canonical CI/full suite; sole fresh review/one Important RED→GREEN fix pass; preserve original base. ExpectedGREEN before runtime.

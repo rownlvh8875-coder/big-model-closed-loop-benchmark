@@ -71,7 +71,7 @@ def validate_probe(events,report,returncode,nonce,order):
     for i,row in enumerate(report['frames']):
         raw=bytes.fromhex(row['raw_hex']);need(row['index']==i and row['nbytes']==len(raw)==192 and raw==bytes(challenge(nonce,i))*64 and row['sha256']==hashlib.sha256(raw).hexdigest(),'exact fresh challenged RGB bytes')
     need(report['frames'][0]['sha256']!=report['frames'][1]['sha256'],'distinct challenges')
-    need(report['cleanup']==dict(windows_after=0,texture_ram_after=False,render_calls=4,ram_reads=2),'owned cleanup')
+    need(report['cleanup']==dict(windows_after=0,texture_ram_after=False,render_calls=4,ram_reads=2,cpp_deallocation_verified=False),'owned cleanup')
     need(len(report['source_stats'])==2,'complete observer interval')
     for s in report['source_stats']:
         need(s['returned']==0 and s['guards_ok'] is True and set(s['values'])==set(STATS_FIELDS) and all(type(v) is int and v==0 for v in s['values'].values()),'default-off observer')
@@ -118,7 +118,7 @@ def log_limits():
     resource.setrlimit(resource.RLIMIT_CORE,(0,0))
 
 
-def container_command(name,repo,sdk,out,args,*,model=None,deps=None):
+def container_command(name,repo,sdk,out,args,*,model=None,deps=None,owner=None):
     cmd=['docker','create','--name',name,'--read-only','--network','none','--user','65534:65534',
          '--cap-drop','ALL','--security-opt','no-new-privileges','--memory','4g' if model else '2g',
          '--cpus','2' if model else '1','--pids-limit','128','--ipc','private','--ulimit','core=0',
@@ -131,6 +131,7 @@ def container_command(name,repo,sdk,out,args,*,model=None,deps=None):
          '--env','GALLIUM_DRIVER=softpipe','--env','LP_NUM_THREADS=0',
          '--env','MESA_SHADER_CACHE_DISABLE=true','--env','PYOPENGL_PLATFORM=glx',
          '--env','OMP_NUM_THREADS=2']
+    if owner is not None:cmd+=['--label','stage7.sdk3.owner='+owner]
     if not model:cmd+=['--env','LD_DEBUG=bindings,versions']
     if model:
         cmd+=['--mount',f'type=bind,src={model.resolve()},dst=/model.onnx,readonly',
@@ -162,25 +163,63 @@ def artifact(work,bundle,aid,size,sha,run,head,label):
     need(path.stat().st_size==size and digest(path)==sha,'artifact ZIP digest');return path
 
 
+def inspect_container(identity):
+    result=subprocess.run(['docker','inspect',identity],capture_output=True,text=True,timeout=15)
+    if result.returncode:return None
+    rows=json.loads(result.stdout);need(len(rows)==1,'one inspected container');return rows[0]
+
+
 def run_container(name,sdk,out,args,*,model=None,deps=None):
-    out.mkdir(parents=True);out.chmod(0o777)
-    cmd=container_command(name,ROOT,sdk,out,args,model=model,deps=deps);write(out/'command.json',dict(argv=cmd))
-    created=False;rc=None;failure=None;state=None
+    out.mkdir(parents=True);out.chmod(0o777);owner=secrets.token_hex(16)
+    cmd=container_command(name,ROOT,sdk,out,args,model=model,deps=deps,owner=owner)
+    write(out/'command.json',dict(argv=cmd,ownership_label=owner))
+    cid=None;rc=None;failure=None;state=None;create_attempted=False;start_attempted=False;removed=False;cleanup_failure=None
+    write(out/'execution.json',dict(status='PREPARING',create_attempted=False,start_attempted=False,owned_container_removed=False))
     try:
-        cid=subprocess.check_output(cmd,text=True,timeout=90).strip();created=True;write(out/'container.json',dict(id=cid,name=name,image=IMAGE))
+        need(inspect_container(name) is None,'fresh owned container name')
+        create_attempted=True
+        write(out/'execution.json',dict(status='CREATE_IN_FLIGHT',create_attempted=True,start_attempted=False,ownership_label=owner,owned_container_removed=False))
+        with (out/'create.stdout.log').open('wb') as stdout,(out/'create.stderr.log').open('wb') as stderr:
+            creation=subprocess.run(cmd,stdout=stdout,stderr=stderr,timeout=90)
+        need(creation.returncode==0,'Docker create failed; see retained creation logs')
+        actual=inspect_container(name)
+        need(actual is not None and actual['Config']['Labels'].get('stage7.sdk3.owner')==owner,'created ownership label')
+        cid=actual['Id'];write(out/'container.json',dict(id=cid,name=name,image=IMAGE,ownership_label=owner))
+        start_attempted=True
         with (out/'stdout.log').open('wb') as stdout,(out/'stderr.log').open('wb') as stderr:
-            try:rc=subprocess.run(['docker','start','--attach',name],stdout=stdout,stderr=stderr,timeout=1800 if model else 240,preexec_fn=log_limits).returncode
-            except subprocess.TimeoutExpired:failure='container deadline';subprocess.run(['docker','kill',name],capture_output=True,timeout=30)
-        state=json.loads(subprocess.check_output(['docker','inspect',name],text=True,timeout=30))[0]['State']
+            rc=subprocess.run(['docker','start','--attach',cid],stdout=stdout,stderr=stderr,timeout=1800 if model else 180,preexec_fn=log_limits).returncode
+        actual=inspect_container(cid);need(actual is not None,'retained stopped container');state=actual['State']
         need(not state['Running'] and state['Pid']==0 and not state['OOMKilled'],'stopped non-OOM child')
         need(all((out/n).stat().st_size<=16*1024**2 for n in ['stdout.log','stderr.log']),'complete bounded logs')
-    except Exception as e:failure=type(e).__name__+': '+str(e)
+    except BaseException as e:failure=type(e).__name__+': '+str(e)
     finally:
-        if created:
-            removed=subprocess.run(['docker','rm','--force',name],capture_output=True,text=True,timeout=30)
-            if removed.returncode:failure=(failure or '')+'; owned removal failed'
-    execution=dict(returncode=rc,failure=failure,stopped_state=state,owned_container_removed=created and removed.returncode==0)
-    write(out/'execution.json',execution);return execution
+        # A create timeout can follow daemon-side creation. Recover only our exact label.
+        if create_attempted and cid is None:
+            try:
+                actual=inspect_container(name)
+                if actual is not None and actual['Config']['Labels'].get('stage7.sdk3.owner')==owner:cid=actual['Id'];state=actual['State']
+            except BaseException as e:cleanup_failure='ownership recovery '+type(e).__name__+': '+str(e)
+        if cid is not None:
+            try:
+                with (out/'remove.stdout.log').open('wb') as stdout,(out/'remove.stderr.log').open('wb') as stderr:
+                    removal=subprocess.run(['docker','rm','--force',cid],stdout=stdout,stderr=stderr,timeout=30)
+                removed=removal.returncode==0
+                if not removed:cleanup_failure='owned removal returned '+str(removal.returncode)
+            except BaseException as e:cleanup_failure='owned removal '+type(e).__name__+': '+str(e)
+        if cleanup_failure:failure=((failure+'; ') if failure else '')+cleanup_failure
+        execution=dict(status='FAILED' if failure else 'EXIT_OBSERVED',returncode=rc,failure=failure,stopped_state=state,
+            create_attempted=create_attempted,start_attempted=start_attempted,container_id=cid,
+            ownership_unresolved=create_attempted and cid is None,owned_container_removed=removed,cleanup_failure=cleanup_failure)
+        write(out/'execution.json',execution)
+    return execution
+
+
+def aggregate_model_pairs(root):
+    from scripts.aggregate_original_mdv3_current_recheck import aggregate_original_mdv3
+    aggregate=aggregate_original_mdv3(root)
+    rows=[dict(seed=r['seed'],scenario=r['scenario'],status=r['strict_status'],exact_repeated_execution_gate_passed=r['exact_repeated_execution_gate_passed']) for r in aggregate['per_seed_scene']]
+    gate=model_gate(rows);need(gate['passed']==aggregate['strict_gate_pass_count'],'independent aggregate coherence')
+    return dict(aggregate=aggregate,gate=gate)
 
 
 def run_host(out:Path,model_phase:bool):
@@ -202,7 +241,7 @@ def run_host(out:Path,model_phase:bool):
         for i,order in enumerate(['sdk-first','core-first','core-first']):
             nonce=secrets.token_hex(16);dest=bundle/f'probe-{i}-{order}';execution=run_container(prefix+str(i),sdk,dest,['--nonce',nonce,'--load-order',order])
             events=[]
-            for line in (dest/'stdout.log').read_text(errors='replace').splitlines():
+            for line in ((dest/'stdout.log').read_text(errors='replace') if (dest/'stdout.log').exists() else '').splitlines():
                 if line.startswith('STAGE7_EVENT '):events.append(json.loads(line.removeprefix('STAGE7_EVENT ')))
             report=json.loads((dest/'report.json').read_text()) if (dest/'report.json').exists() else {}
             result=dict(index=i,load_order=order,nonce=nonce,last_checkpoint=events[-1]['stage'] if events else None,execution=execution,selected_runtime_compatible=False)
@@ -221,7 +260,7 @@ def run_host(out:Path,model_phase:bool):
             from scripts.compare_fresh_native_mdv3 import compare_fresh_trials
             verdicts=[]
             for seed,scene in sorted(CASES):
-                case=bundle/'models'/str(seed)/scene
+                case=bundle/'models'/f'seed-{seed}'/scene
                 dest=case/'pair'
                 e=run_container(prefix+f'{seed}-{scene}',sdk,dest,['--model-pair','--seed',str(seed),'--scenario',scene],model=Path(model),deps=deps)
                 ledger=json.loads((dest/'pair-ledger.json').read_text()) if (dest/'pair-ledger.json').exists() else []
@@ -233,8 +272,10 @@ def run_host(out:Path,model_phase:bool):
                 need(counts==dict(known=2,upper=2,spawn_attempts=2),'two actual model children')
                 rows=[json.loads((dest/f'run-{n}'/'run.json').read_text()) for n in range(2)]
                 need(rows[0]['process_uuid']!=rows[1]['process_uuid'],'fresh independent process UUIDs')
-                v=compare_fresh_trials(*rows);write(case/'strict-verdict.json',v);verdicts.append(v)
-            summary['model_gate']=model_gate(verdicts);summary['strict_result']=str(summary['model_gate']['passed'])+'/4 '+('PASS' if summary['model_gate']['strict_pass'] else 'FAIL')
+                v=compare_fresh_trials(*rows);write(case/'strict_native_repeat_verdict.json',v);verdicts.append(v)
+                for n in range(2):(case/f'run_{n}.json').write_bytes((dest/f'run-{n}'/'run.json').read_bytes())
+            independent=aggregate_model_pairs(bundle/'models');write(bundle/'independent-model-aggregate.json',independent['aggregate'])
+            summary['model_gate']=independent['gate'];summary['strict_result']=str(summary['model_gate']['passed'])+'/4 '+('PASS' if summary['model_gate']['strict_pass'] else 'FAIL')
             summary['status']='SDK3_MODEL_COHORT_OBSERVED';summary['expansion']='PENDING_SEPARATE_MATRIX' if summary['model_gate']['strict_pass'] else 'BLOCKED_BY_STRICT_FAILURE'
         write(bundle/'summary.json',summary);return summary
     except BaseException as e:

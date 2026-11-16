@@ -1,0 +1,74 @@
+test_actual_renderer_cleanup_schema_is_accepted_without_full_deallocation_claim (test_panda_sdk3_runtime.Sdk3RuntimeEvidence.test_actual_renderer_cleanup_schema_is_accepted_without_full_deallocation_claim) ... ERROR
+test_ambiguous_create_is_recovered_only_by_owned_label_and_removed (test_panda_sdk3_runtime.Sdk3RuntimeEvidence.test_ambiguous_create_is_recovered_only_by_owned_label_and_removed) ... FAIL
+test_duplicate_unsafe_or_wrong_archive_bytes_are_rejected_before_publication (test_panda_sdk3_runtime.Sdk3RuntimeEvidence.test_duplicate_unsafe_or_wrong_archive_bytes_are_rejected_before_publication) ... ok
+test_exact_archive_member_is_extracted_without_unselected_payloads (test_panda_sdk3_runtime.Sdk3RuntimeEvidence.test_exact_archive_member_is_extracted_without_unselected_payloads) ... ok
+test_exact_challenged_frames_and_selected_objects_pass_for_each_load_order (test_panda_sdk3_runtime.Sdk3RuntimeEvidence.test_exact_challenged_frames_and_selected_objects_pass_for_each_load_order) ... ok
+test_failed_pair_counts_only_observed_pids_and_retains_unknown_spawn_bounds (test_panda_sdk3_runtime.Sdk3RuntimeEvidence.test_failed_pair_counts_only_observed_pids_and_retains_unknown_spawn_bounds) ... ok
+test_frame_bytes_are_checked_even_when_digest_is_recomputed (test_panda_sdk3_runtime.Sdk3RuntimeEvidence.test_frame_bytes_are_checked_even_when_digest_is_recomputed) ... ok
+test_glx_start_is_limited_to_the_declared_180_seconds (test_panda_sdk3_runtime.Sdk3RuntimeEvidence.test_glx_start_is_limited_to_the_declared_180_seconds) ... FAIL
+test_independent_model_aggregate_rejects_a_self_consistent_wrong_model (test_panda_sdk3_runtime.Sdk3RuntimeEvidence.test_independent_model_aggregate_rejects_a_self_consistent_wrong_model) ... ERROR
+test_missing_or_reordered_checkpoint_and_nonzero_exit_never_pass (test_panda_sdk3_runtime.Sdk3RuntimeEvidence.test_missing_or_reordered_checkpoint_and_nonzero_exit_never_pass) ... ok
+test_removal_timeout_still_publishes_negative_execution_receipt (test_panda_sdk3_runtime.Sdk3RuntimeEvidence.test_removal_timeout_still_publishes_negative_execution_receipt) ... FAIL
+test_runtime_container_is_bounded_readonly_and_has_no_network_or_extra_sdk (test_panda_sdk3_runtime.Sdk3RuntimeEvidence.test_runtime_container_is_bounded_readonly_and_has_no_network_or_extra_sdk) ... ok
+test_strict_gate_requires_four_unique_complete_conditions (test_panda_sdk3_runtime.Sdk3RuntimeEvidence.test_strict_gate_requires_four_unique_complete_conditions) ... ok
+test_wrong_identity_driver_observer_or_cleanup_reject (test_panda_sdk3_runtime.Sdk3RuntimeEvidence.test_wrong_identity_driver_observer_or_cleanup_reject) ... ok
+
+======================================================================
+ERROR: test_actual_renderer_cleanup_schema_is_accepted_without_full_deallocation_claim (test_panda_sdk3_runtime.Sdk3RuntimeEvidence.test_actual_renderer_cleanup_schema_is_accepted_without_full_deallocation_claim)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/dev/shm/stage7-sdk3-runtime-20261116/repo/tests/test_panda_sdk3_runtime.py", line 96, in test_actual_renderer_cleanup_schema_is_accepted_without_full_deallocation_claim
+    self.assertTrue(runtime.validate_probe(e,r,0,r['nonce'],'core-first')['selected_runtime_compatible'])
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/dev/shm/stage7-sdk3-runtime-20261116/repo/scripts/panda_sdk3_runtime.py", line 74, in validate_probe
+    need(report['cleanup']==dict(windows_after=0,texture_ram_after=False,render_calls=4,ram_reads=2),'owned cleanup')
+  File "/dev/shm/stage7-sdk3-runtime-20261116/repo/scripts/panda_sdk3_runtime.py", line 31, in need
+    if not value:raise ValueError(message)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: owned cleanup
+
+======================================================================
+ERROR: test_independent_model_aggregate_rejects_a_self_consistent_wrong_model (test_panda_sdk3_runtime.Sdk3RuntimeEvidence.test_independent_model_aggregate_rejects_a_self_consistent_wrong_model)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/dev/shm/stage7-sdk3-runtime-20261116/repo/tests/test_panda_sdk3_runtime.py", line 156, in test_independent_model_aggregate_rejects_a_self_consistent_wrong_model
+    with self.assertRaises(ValueError):runtime.aggregate_model_pairs(root)
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'scripts.panda_sdk3_runtime' has no attribute 'aggregate_model_pairs'
+
+======================================================================
+FAIL: test_ambiguous_create_is_recovered_only_by_owned_label_and_removed (test_panda_sdk3_runtime.Sdk3RuntimeEvidence.test_ambiguous_create_is_recovered_only_by_owned_label_and_removed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/dev/shm/stage7-sdk3-runtime-20261116/repo/tests/test_panda_sdk3_runtime.py", line 134, in test_ambiguous_create_is_recovered_only_by_owned_label_and_removed
+    self.assertTrue(value['owned_container_removed']);self.assertTrue(value['failure'])
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_glx_start_is_limited_to_the_declared_180_seconds (test_panda_sdk3_runtime.Sdk3RuntimeEvidence.test_glx_start_is_limited_to_the_declared_180_seconds)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/dev/shm/stage7-sdk3-runtime-20261116/repo/tests/test_panda_sdk3_runtime.py", line 142, in test_glx_start_is_limited_to_the_declared_180_seconds
+    self.assertEqual([kw['timeout'] for cmd,kw in state['calls'] if cmd[1]=='start'],[180])
+AssertionError: Lists differ: [240] != [180]
+
+First differing element 0:
+240
+180
+
+- [240]
++ [180]
+
+======================================================================
+FAIL: test_removal_timeout_still_publishes_negative_execution_receipt (test_panda_sdk3_runtime.Sdk3RuntimeEvidence.test_removal_timeout_still_publishes_negative_execution_receipt)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/dev/shm/stage7-sdk3-runtime-20261116/repo/tests/test_panda_sdk3_runtime.py", line 126, in test_removal_timeout_still_publishes_negative_execution_receipt
+    self.assertTrue(receipt.exists(),'Docker removal failure lost execution facts')
+AssertionError: False is not true : Docker removal failure lost execution facts
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.039s
+
+FAILED (failures=3, errors=2)

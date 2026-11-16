@@ -1,6 +1,7 @@
 """Pinned SDK runtime evidence rejects incomplete or unrelated observations."""
 import copy
 import hashlib
+import json
 import tempfile
 import unittest
 from pathlib import Path
@@ -23,7 +24,7 @@ class Sdk3RuntimeEvidence(unittest.TestCase):
                     driver=dict(vendor='Mesa',renderer='softpipe',version='4.5'),frames=frames,
                     objects={k:i+100 for i,k in enumerate(['pipe','output','gsg','texture','camera'])},
                     source_stats=[dict(returned=0,guards_ok=True,values={k:0 for k in runtime.STATS_FIELDS}) for _ in range(2)],
-                    cleanup=dict(windows_after=0,texture_ram_after=False,render_calls=4,ram_reads=2))
+                    cleanup=dict(windows_after=0,texture_ram_after=False,render_calls=4,ram_reads=2,cpp_deallocation_verified=False))
         return events,report
 
     def test_exact_challenged_frames_and_selected_objects_pass_for_each_load_order(self):
@@ -87,6 +88,72 @@ class Sdk3RuntimeEvidence(unittest.TestCase):
         self.assertEqual(runtime.observed_model_processes(ledger),dict(known=1,upper=2,spawn_attempts=2))
         ledger[1]['pid']=41
         self.assertEqual(runtime.observed_model_processes(ledger),dict(known=2,upper=2,spawn_attempts=2))
+
+    def test_actual_renderer_cleanup_schema_is_accepted_without_full_deallocation_claim(self):
+        from scripts.panda_real_glx_objects import Renderer
+        renderer=Renderer(None);renderer.render_calls=4;renderer.ram_reads=2
+        e,r=self.probe();r['cleanup']=renderer.close()
+        self.assertTrue(runtime.validate_probe(e,r,0,r['nonce'],'core-first')['selected_runtime_compatible'])
+        self.assertFalse(r['cleanup']['cpp_deallocation_verified'])
+
+    def docker_stub(self,mode):
+        from subprocess import CompletedProcess,TimeoutExpired,PIPE
+        state=dict(created=False,owner='',calls=[])
+        def invoke(cmd,**kw):
+            state['calls'].append((cmd,kw));action=cmd[1]
+            if action=='create':
+                state['created']=True
+                if '--label' in cmd:state['owner']=cmd[cmd.index('--label')+1].split('=',1)[1]
+                if mode=='create-timeout':raise TimeoutExpired(cmd,kw['timeout'])
+                if hasattr(kw.get('stdout'),'write'):kw['stdout'].write(b'abc123\n')
+                return CompletedProcess(cmd,0,stdout='abc123\n',stderr='')
+            if action=='inspect':
+                row=dict(Id='abc123',Config=dict(Labels={'stage7.sdk3.owner':state['owner']}),State=dict(Running=False,Pid=0,OOMKilled=False,ExitCode=0))
+                return CompletedProcess(cmd,0 if state['created'] else 1,stdout=json.dumps([row]) if state['created'] else '[]',stderr='')
+            if action=='start':return CompletedProcess(cmd,0,stdout='',stderr='')
+            if action=='rm' and mode=='remove-timeout':raise TimeoutExpired(cmd,kw['timeout'])
+            return CompletedProcess(cmd,0,stdout='',stderr='')
+        return state,invoke
+
+    def test_removal_timeout_still_publishes_negative_execution_receipt(self):
+        from unittest.mock import patch
+        with tempfile.TemporaryDirectory() as d:
+            d=Path(d);state,stub=self.docker_stub('remove-timeout')
+            with patch.object(runtime.subprocess,'run',side_effect=stub):
+                try:runtime.run_container('owned-test',d/'sdk',d/'out',[])
+                except Exception:pass
+            receipt=d/'out'/'execution.json'
+            self.assertTrue(receipt.exists(),'Docker removal failure lost execution facts')
+            value=json.loads(receipt.read_text());self.assertFalse(value['owned_container_removed']);self.assertTrue(value['failure'])
+
+    def test_ambiguous_create_is_recovered_only_by_owned_label_and_removed(self):
+        from unittest.mock import patch
+        with tempfile.TemporaryDirectory() as d:
+            d=Path(d);state,stub=self.docker_stub('create-timeout')
+            with patch.object(runtime.subprocess,'run',side_effect=stub):value=runtime.run_container('owned-test',d/'sdk',d/'out',[])
+            self.assertTrue(value['owned_container_removed']);self.assertTrue(value['failure'])
+            self.assertFalse(any(c[0][1]=='start' for c in state['calls']))
+
+    def test_glx_start_is_limited_to_the_declared_180_seconds(self):
+        from unittest.mock import patch
+        with tempfile.TemporaryDirectory() as d:
+            d=Path(d);state,stub=self.docker_stub('ok')
+            with patch.object(runtime.subprocess,'run',side_effect=stub):runtime.run_container('owned-test',d/'sdk',d/'out',[])
+            self.assertEqual([kw['timeout'] for cmd,kw in state['calls'] if cmd[1]=='start'],[180])
+
+    def test_independent_model_aggregate_rejects_a_self_consistent_wrong_model(self):
+        from tests.test_aggregate_original_mdv3_current_recheck import mock_trial
+        from scripts.compare_fresh_native_mdv3 import compare_fresh_trials
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d)
+            for seed in [20261109,20261110]:
+                for scene in ['s_curve_left_right','s_curve_right_left']:
+                    folder=root/f'seed-{seed}'/scene;folder.mkdir(parents=True)
+                    a=mock_trial(seed,scene,100);b=mock_trial(seed,scene,200)
+                    for row in [a,b]:row['model_sha256']='0'*64
+                    for name,row in [('run_0.json',a),('run_1.json',b),('strict_native_repeat_verdict.json',compare_fresh_trials(a,b))]:
+                        (folder/name).write_text(json.dumps(row))
+            with self.assertRaises(ValueError):runtime.aggregate_model_pairs(root)
 
     def test_runtime_container_is_bounded_readonly_and_has_no_network_or_extra_sdk(self):
         with tempfile.TemporaryDirectory() as d:
