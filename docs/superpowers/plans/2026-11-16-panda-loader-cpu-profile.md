@@ -35,10 +35,13 @@ Base09948dd/Draft129,7997files/modes; old318 and all old receipts/verdicts immut
 
 - [x] Write source322/prior receipts/loader pin+metadata+private-copy/nooptin/wrongCI/bootstrap/final-write/freshout negatives and partial-case accounting. Run new tests; Expected RED missing module.
 - [x] Implement stdlib atomic receipt before imports,explicit CPU flag/exact source322+CI+prior receipts/original origin+image inventory/byte-pinned loader staging,closed fixture compilation/validation,then exactly4case slots. Recheck source/old receipts/loader bytes and preserve precise partial facts on failure; never retry/accept an arbitrary payload. Run focused tests; Expected GREEN.
-- [ ] Run full known matrix; Expected GREEN. Sole fresh wholebranch review after commit, regrade,ONE Important RED→GREEN fix pass/fullgreen,Minor deferred/no rereview. Save source322 snapshot/logs.
-- [ ] OwnDraft against feature/panda-provider-version-witness-v1 at09948dd(actual PR number),exact reviewed-sourceCI4jobs/attempt1/artifacts0; Expected PASS. Then explicit --run-cpu-fixtures with fixed loader cache exactlyonce/freshout; Expected observed4case outcomes or retained negative without relaxing checks.
-- [ ] Document actual scope/counts/traces and limits,rulings,deferredMinors; preservebase7997/old318/histories/receipts/siblings. Archive/remove only ownscratch;docs-onlyfinalHEADCI4jobs/clean/exactremote/output-onlyfinalreceipt. Expected noSDK/native-science/newbuild/image/publication/merge; strict0of4FAIL/Stage7INCOMPLETE.
+- [x] Run full known matrix; Expected GREEN. Sole fresh wholebranch review after commit, regrade,ONE Important RED→GREEN fix pass/fullgreen,Minor deferred/no rereview. Save source322 snapshot/logs.
+- [x] OwnDraft against feature/panda-provider-version-witness-v1 at09948dd(actual PR number),exact reviewed-sourceCI4jobs/attempt1/artifacts0; Expected PASS. Then explicit --run-cpu-fixtures with fixed loader cache exactlyonce/freshout; Expected observed4case outcomes or retained negative without relaxing checks.
+- [x] Document actual scope/counts/traces and limits,rulings,deferredMinors; preservebase7997/old318/histories/receipts/siblings. Archive/remove only ownscratch. NoSDK/native-science/newbuild/image/publication/merge; strict0of4FAIL/Stage7INCOMPLETE.
+- [ ] After this documentation commit, verify finalHEADCI4jobs/clean/exactremote and write output-onlyfinalreceipt; its final verification status closes this operational checkbox without another documentation commit.
 
 ## Self-review
 
 Fixture manifest and observations are exact Task2 inputs; closed four-case names and cumulative invocation ledger align. Each focus has owning negatives. CPU fixture execution is new explicit scope, not a change to historical SDK authority. No unknown dependency or arbitrary target path.
+
+Final operational HEADCI/clean/exactremote after this docs commit is closed in output/stage7-panda-loader-cpu-01/final-verification.json,without another documentation commit.

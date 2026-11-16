@@ -1,0 +1,39 @@
+{
+  "argv": [
+    "/usr/bin/gcc",
+    "-nostdlib",
+    "-shared",
+    "-fPIC",
+    "-O2",
+    "-fno-stack-protector",
+    "-fcf-protection=none",
+    "-fno-asynchronous-unwind-tables",
+    "-fno-unwind-tables",
+    "-Wl,-z,noexecstack",
+    "-Wl,--hash-style=both",
+    "legacy.c",
+    "-Wl,--version-script=value1.map",
+    "-Wl,-soname=libstage7_cpu_legacy.so",
+    "-o",
+    "legacy.so"
+  ],
+  "cwd": "/workspace/big-model-closed-loop-benchmark/output/stage7-panda-loader-cpu-01/actual/work/fixture/build",
+  "status": "EXITED",
+  "returncode": 0,
+  "owned_group_reaped": true,
+  "streams_complete": true,
+  "elapsed_seconds": 0.0310841629980132,
+  "pid": 326184,
+  "streams": {
+    "stdout": {
+      "observed_nbytes": 0,
+      "saved_nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stderr": {
+      "observed_nbytes": 0,
+      "saved_nbytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  }
+}
