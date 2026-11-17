@@ -1,0 +1,18 @@
+#version 120
+#define p3d_TextureBaseColor p3d_TextureModulate
+#define p3d_TextureMetalRoughness p3d_TextureSelector
+#define p3d_TextureNormal p3d_TextureNormal
+#define p3d_TextureEmission p3d_TextureEmission
+#line 1
+
+uniform mat4 p3d_ModelViewProjectionMatrix;
+
+attribute vec4 p3d_Vertex;
+attribute vec2 p3d_MultiTexCoord0;
+
+varying vec2 v_texcoord;
+
+void main() {
+    v_texcoord = p3d_MultiTexCoord0;
+    gl_Position = p3d_ModelViewProjectionMatrix * p3d_Vertex;
+}
