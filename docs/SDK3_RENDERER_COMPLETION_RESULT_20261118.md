@@ -4,7 +4,7 @@
 
 | 작업 | 실제 결과 | 증거 |
 |---|---|---|
-| 렌더링 원인 | Road7(596,494)에서 geometry와terrain의 D24정규화 깊이floatbits가 모두1065153572. 원래GL_LESS는 뒤에 그리는terrain을 거부한다. 한픽셀 깊이clear 실험에서 그픽셀만 gray167/163/158→yellow199/187/0; 나머지27+이미지의 모든다른픽셀은동일 | [원인03](evidence/sdk3-renderer-completion-01/depth-mechanism-03/target-depth-cause.json) |
+| 렌더링 원인 | Road7(596,494)에서 geometry와terrain의 D24정규화 깊이floatbits가 모두1065153572. 원래GL_LESS는 뒤에 그리는terrain을 거부한다. 한픽셀 깊이clear 실험에서 그픽셀만 gray167/163/158→yellow199/187/0; 14쌍의 원본이미지비교에서 해당픽셀을 제외한 모든픽셀은동일 | [원인03](evidence/sdk3-renderer-completion-01/depth-mechanism-03/target-depth-cause.json) |
 | 원인별 수정 | 두RGB카메라의 기존Terrain tagstate에 background/-1bin만추가. 셰이더·GL_LESS·depthwrite·PSSM·원래캡처시계 유지. 8x8canary8이미지의 모든픽셀 통과; 독립candidate-off/trace 원본14이미지 모두일치, terrain이geometry보다먼저실행, depthclear없음 | [수정04](evidence/sdk3-renderer-completion-01/priority-repair-04/README.md) |
 | 공식대형ONNX 폐루프 | 새4조건 모두엄격일치. 독립4컨테이너·8프로세스·96실제추론. 원본RGB/warp/I420입력/원시출력/재귀상태/궤적/시각 모두일치. 허용오차·입력재생·추가렌더·수렴관측없음 | [공식모델01](evidence/sdk3-renderer-completion-01/official-model-cohort-01/README.md) |
 
