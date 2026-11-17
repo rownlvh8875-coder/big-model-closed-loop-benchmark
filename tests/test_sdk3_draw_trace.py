@@ -39,6 +39,26 @@ class DrawTraceContracts(unittest.TestCase):
         x=self.run_case('msaa');self.assertEqual(x['restored'],1);self.assertEqual(x['stats']['error'],0);self.assertGreater(x['stats']['blits'],0);self.assertEqual(x['calls'],1)
     def test_requested_msaa_is_not_promoted_over_observed_sample_storage(self):
         x=self.run_case('sample_storage');draw=next(r for r in x['rows'] if r.get('event')=='draw');self.assertEqual(draw['after']['sample_buffers'],0);self.assertEqual(draw['after']['max_samples'],4);self.assertEqual(draw['after']['samples'],0)
+    def run_depth_case(self,case,enabled,exhaust=False):
+        folder=build(str(self.folder));path=folder/(case+'.jsonl');program=CHILD.replace("gl.fake_setup(4 if case=='msaa' else 0,case=='error');", "gl.fake_setup(0,False);gl.fake_terrain_scene();trace.dt_enable_depth_probe("+str(int(enabled))+");")
+        program=program.replace("returns=[sdk.fake_invoke", "returns=[sdk.fake_invoke").replace("rows=rows)))", "rows=rows,changed_pixels=gl.fake_changed_pixels())))")
+        if case in ('depth_error','bad_row'):program=program.replace("gl.fake_terrain_scene();","gl.fake_terrain_scene();gl."+("fake_clear_error" if case=='depth_error' else "fake_bad_row")+"();")
+        if exhaust:program=program.replace("returns=[sdk.fake_invoke(k,1 if case=='nested' else 0) for k in kinds]","returns=[sdk.fake_invoke(4,0) for _ in range(2)];gl.fake_plain_program();returns += [sdk.fake_invoke(4,0) for _ in range(510)]")
+        env=dict(os.environ,LD_PRELOAD=str(folder/'libtrace.so'),SDK3_DRAW_TRACE_SDK=str(folder/'libfakesdk.so'),SDK3_DRAW_TRACE_GL=str(folder/'libfakegl.so'))
+        r=subprocess.run([sys.executable,'-I','-B','-c',program,case,str(path)],env=env,capture_output=True,text=True,timeout=15);self.assertEqual(r.returncode,0,r.stderr);return json.loads(r.stdout)
+    def test_depth_probe_exposes_occluded_terrain_only_at_one_pixel(self):
+        x=self.run_depth_case('depth_probe',True);self.assertEqual(x['changed_pixels'],1);self.assertEqual(x['calls'],1);self.assertEqual(x['args_ok'],1);self.assertEqual(x['restored'],1);self.assertEqual(x['stats']['error'],0)
+        draw=next(r for r in x['rows'] if r.get('event')=='draw');self.assertEqual(draw['depth_probe']['cleared_pixels'],1);self.assertTrue(draw['depth_probe']['state_restored']);self.assertEqual(draw['before']['scissor'],draw['after']['scissor']);self.assertEqual(draw['before']['scissor_test'],draw['after']['scissor_test']);self.assertLess(draw['before']['depth'],draw['after']['depth'])
+    def test_default_trace_does_not_clear_depth(self):
+        x=self.run_depth_case('depth_control',False);self.assertEqual(x['changed_pixels'],0);self.assertEqual(x['stats']['error'],0);draw=next(r for r in x['rows'] if r.get('event')=='draw');self.assertIsNone(draw['depth_probe']);self.assertEqual(draw['before']['depth_bits32'],draw['after']['depth_bits32'])
+    def test_terrain_row_is_bound_to_exact_gpu_view_and_restores_pack_and_fbo(self):
+        x=self.run_depth_case('terrain_row',False);draw=next(r for r in x['rows'] if r.get('event')=='draw');row=draw['terrain_data_row'];self.assertEqual(row['view_index'],2);self.assertEqual(row['width'],7);self.assertEqual(row['nbytes'],112);self.assertTrue(row['restored']);self.assertEqual(row['values'][:4],[0.,2.,1.,.5]);self.assertEqual(row['values'][-4:],[6.,2.,1.,.5]);self.assertEqual(x['restored'],1)
+    def test_row_reads_cannot_exceed_existing_readback_budget(self):
+        x=self.run_depth_case('row_budget',False,exhaust=True);self.assertEqual(x['calls'],512);self.assertEqual(x['args_ok'],1);self.assertLessEqual(x['stats']['readbacks'],2048);self.assertNotEqual(x['stats']['error'],0)
+    def test_failed_clear_retains_attempted_pixel_mutation_and_forwards_original(self):
+        x=self.run_depth_case('depth_error',True);self.assertEqual(x['calls'],1);self.assertEqual(x['args_ok'],1);self.assertEqual(x['restored'],1);self.assertNotEqual(x['stats']['error'],0);draw=next(r for r in x['rows'] if r.get('event')=='draw');self.assertIsNotNone(draw['depth_probe']);self.assertFalse(draw['depth_probe']['state_restored'])
+    def test_nonfinite_terrain_row_is_partial_with_retained_bits(self):
+        x=self.run_depth_case('bad_row',False);self.assertEqual(x['calls'],1);self.assertEqual(x['restored'],1);self.assertNotEqual(x['stats']['error'],0);draw=next(r for r in x['rows'] if r.get('event')=='draw');self.assertEqual(draw['terrain_data_row']['status'],'ROW_PARTIAL');self.assertIsNone(draw['terrain_data_row']['values'][0]);self.assertIsInstance(draw['terrain_data_row']['float_bits'][0],int)
     def test_cap_marks_partial_but_never_suppresses_original_draw(self):
         x=self.run_case('cap');self.assertEqual(x['calls'],2);self.assertEqual(x['stats']['draws'],1);self.assertNotEqual(x['stats']['error'],0);self.assertEqual(x['restored'],1)
     def test_read_error_remains_failure_with_original_draw_and_state_restored(self):

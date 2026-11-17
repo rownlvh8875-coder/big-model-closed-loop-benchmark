@@ -3,7 +3,7 @@ from contextlib import contextmanager
 from pathlib import Path
 import ctypes,hashlib,math
 
-LIMITS=dict(max_draws=512,max_queries=100000,max_pixel_readbacks=2048,max_samples=16,max_programs=8,max_shader_files=16,max_shader_file_bytes=262144,max_shader_bytes=4194304,max_trace_bytes=33554432)
+LIMITS=dict(max_draws=512,max_queries=100000,max_pixel_readbacks=2048,max_samples=16,max_programs=8,max_shader_files=16,max_shader_file_bytes=262144,max_shader_bytes=4194304,max_trace_bytes=33554432,max_terrain_row_texels=64,max_terrain_rows=2,max_terrain_row_bytes=1024,max_terrain_total_bytes=2048,max_depth_clear_pixels=1)
 
 def need(value,message):
     if not value:raise ValueError(message)
@@ -17,9 +17,10 @@ class Stats(ctypes.Structure):
 class Trace:
     def __init__(self,library,folder,expected_sha):
         library=Path(library);need(isinstance(expected_sha,str) and len(expected_sha)==64 and hashlib.sha256(library.read_bytes()).hexdigest()==expected_sha,'exact staged trace library')
-        self.lib=ctypes.CDLL(str(library),use_errno=True);self.closed=False;self.lib.dt_configure.argtypes=[ctypes.c_char_p,ctypes.c_uint];self.lib.dt_begin.argtypes=[ctypes.c_int,ctypes.c_int,ctypes.c_int];self.lib.dt_get_stats.argtypes=[ctypes.POINTER(Stats)]
-        for name in ('dt_configure','dt_begin','dt_end','dt_close','dt_get_stats'):getattr(self.lib,name).restype=ctypes.c_int
+        self.lib=ctypes.CDLL(str(library),use_errno=True);self.closed=False;self.lib.dt_configure.argtypes=[ctypes.c_char_p,ctypes.c_uint];self.lib.dt_begin.argtypes=[ctypes.c_int,ctypes.c_int,ctypes.c_int];self.lib.dt_get_stats.argtypes=[ctypes.POINTER(Stats)];self.lib.dt_enable_depth_probe.argtypes=[ctypes.c_int]
+        for name in ('dt_configure','dt_begin','dt_end','dt_close','dt_get_stats','dt_enable_depth_probe'):getattr(self.lib,name).restype=ctypes.c_int
         need(self.lib.dt_configure(str(Path(folder)/'draw-trace.jsonl').encode(),512)==0,'trace configure')
+    def enable_depth_probe(self,enabled):need(type(enabled) is bool and not self.closed and self.lib.dt_enable_depth_probe(int(enabled))==0,'explicit scoped depth-probe policy')
     def begin(self,phase,x,y):need(not self.closed and self.lib.dt_begin(phase,x,y)==0,'trace begin')
     def end(self):need(self.lib.dt_end()==0,'trace end reports observation failure')
     def stats(self):
@@ -70,3 +71,10 @@ def unproject_depth(mvp,viewport,pixel,depth,*,depth_range=(0.,1.),sample=(.5,.5
     try:local=np.linalg.solve(matrix.reshape((4,4),order='F'),np.array([*ndc,1.]))
     except np.linalg.LinAlgError as exc:raise ValueError('invertible captured GPU MVP') from exc
     need(np.isfinite(local).all() and abs(local[3])>1e-15,'finite unprojected homogeneous point');return dict(local_point=(local[:3]/local[3]).tolist(),ndc=ndc,sample=sample.tolist(),depth=depth,actual_coordinates_proven=False)
+
+def verify_depth_canary_pixels(raw,component_width,component_type,front,back,pixel=(3,3)):
+    import numpy as np
+    dtype=np.dtype('float32') if component_type==2 and component_width==4 else np.dtype('float16') if component_type==7 and component_width==2 else np.dtype('uint8') if component_type==0 and component_width==1 else None
+    need(dtype is not None and type(raw) is bytes and len(raw)==256*component_width<=8192 and len(front)==len(back)==3 and front!=back,'bounded distinct challenged depth pixels')
+    x,y=pixel;need(type(x) is int and type(y) is int and 0<=x<8 and 0<=y<8,'8x8GL target');pixels=np.frombuffer(raw,dtype=dtype).reshape(8,8,4);scale=255 if component_width==1 else 1;expected=np.broadcast_to(np.asarray([*front,1.])*scale,(8,8,4)).copy();expected[y,x]=np.asarray([*back,1.])*scale;need(np.array_equal(pixels,expected),'exact one target changed and63 foreground pixels preserved')
+    return dict(status='ONE_PIXEL_DEPTH_PROBE_VERIFIED',verified_unchanged_pixels=63,mutated_pixel_gl=[x,y],raw_origin='GL_bottom_left',nbytes=len(raw),sha256=hashlib.sha256(raw).hexdigest())

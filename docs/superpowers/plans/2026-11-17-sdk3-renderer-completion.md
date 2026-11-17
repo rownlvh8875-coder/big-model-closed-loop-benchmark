@@ -37,6 +37,7 @@ Interfaces:compile/stagehelperSHA,exactsourceCI/request/mounts,immutableimageSDK
 - [ ] Fresh request once, tinyactualGPUcanaryaccepted before fullsceneOFF+ON. Authenticate actualrun/artifact and independently inspect/pin128MiBcarrier/source14images/probechains/staterestoration. Do not end turn; continue Task4.
 
 ### Task 4: root cause isolation and repair specification
+Measured mechanism spec: ../specs/2026-11-17-sdk3-depth-mechanism-amendment.md (actual02 motivates one-pixel depth clear and bounded terrain view row; no repair claim).
 Files:create docs/evidence/sdk3-renderer-completion-01/**,cause-specific spec/plan amendment beforefixcode.
 - [ ] Decode originaldrawtransition/program/shader/sampler/depth/resolvedpixelchain and verify sourcepixel ownership evidence with explicitMSAAlimits. Ifinconclusive execute next measured single-variable contrast within declaredallowance; preserve allnegativecases.
 - [ ] Write exact evidencedcause, invariant to restore, smallest proposedchange and REDreproductionbefore implementation. Stop speculativefixes; no request rerun or gateweakening. Continue Task5 without usercheck-in.

@@ -3,6 +3,7 @@
 #include <stdint.h>
 struct dt_stats {uint32_t version,error,active,restored;uint64_t lookups,forwards,draws,queries,readbacks,blits;};
 int dt_configure(const char *path,unsigned max_draws);
+int dt_enable_depth_probe(int enabled);
 int dt_begin(int phase,int x,int y);
 int dt_end(void);
 int dt_close(void);

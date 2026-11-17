@@ -32,7 +32,7 @@ def sdk_stats(sdk):
     function=sdk.psd_get_stats;function.argtypes=[ctypes.POINTER(Source)];function.restype=ctypes.c_int;value=Source();p.need(function(ctypes.byref(value))==0,'original SDK default-OFF stats');return {k:int(getattr(value,k)) for k,_ in value._fields_}
 
 def new_trace(args,report):
-    p.need(os.environ.get('LD_PRELOAD')==str(args.trace_library),'exact explicit diagnostic preload');value=t.Trace(args.trace_library,Path(args.out),args.trace_sha256);report.update(trace_library_sha256=args.trace_sha256,observer_is_intervention=True);return value
+    p.need(os.environ.get('LD_PRELOAD')==str(args.trace_library),'exact explicit diagnostic preload');value=t.Trace(args.trace_library,Path(args.out),args.trace_sha256);report.update(trace_library_sha256=args.trace_sha256,observer_is_intervention=True,intentional_target_depth_mutation=args.mode=='depth-probe');return value
 
 def regions(sensor):
     manager=sensor.manager;buffers=manager.buffers;p.need(isinstance(buffers,list) and len(buffers)<=4,'existing bounded filter buffers');found=[]
@@ -67,7 +67,8 @@ def replay(args,report):
                 for camera in ('road','wide'):
                     rgb=images[camera];raw=rgb.tobytes(order='C');p.need(hashlib.sha256(raw).hexdigest()==hashes[camera],'original immediate copied pixels');packed=zlib.compress(raw,6);name=f'step{self.count}-{camera}.rgb.zlib';(out/name).write_bytes(packed);self.images.append(dict(camera=camera,file=name,shape=list(rgb.shape),sha256=hashes[camera],raw_bytes=len(raw),compressed_bytes=len(packed)))
         recorder=RGB();capture=NativeWorldCamera(provider,raw_rgb_observer=recorder);sensor=engine.sensors['bigbench_road'];gsg=sensor.buffer.getGsg();report['driver']=dict(vendor=gsg.getDriverVendor(),renderer=gsg.getDriverRenderer(),version=gsg.getDriverVersion());clock=core.ClockObject.getGlobalClock();before=clock.getFrameCount();tasks=lambda:sorted(task.getName() for task in engine.taskMgr.getTasks());report['tasks_before']=tasks();receipt={};pairs=[];report['regions']=[]
-        if args.mode=='trace':tracer=new_trace(args,report);pairs,report['regions']=regions(sensor)
+        if args.mode in ('trace','depth-probe'):
+            tracer=new_trace(args,report);pairs,report['regions']=regions(sensor);tracer.enable_depth_probe(args.mode=='depth-probe')
         else:p.need(not os.environ.get('LD_PRELOAD'),'OFFcontrol has no preloaded observer');report.update(observer_is_intervention=False,trace_library_sha256=None)
         saved=[(obj,name,getattr(obj,name),name in vars(obj)) for obj,name in [(capture,'capture'),(engine.taskMgr,'step')]+[(engine.sensors['bigbench_'+kind],name) for kind in ('road','wide') for name in ('perceive','get_rgb_array_cpu')]]
         with observe(capture,journal):
@@ -83,6 +84,24 @@ def replay(args,report):
             try:provider.close();report['provider_closed']=True
             except BaseException as exc:report['close_failure']=type(exc).__name__+': '+str(exc)
         journal.emit('checkpoint',stage='CHILD_FINAL_REPORT');journal.close()
+
+def depth_canary(base,core,np,tracer,args,report,buffers,shader,front,back):
+    fb=core.FrameBufferProperties();fb.setRgbColor(True);fb.setFloatColor(True);fb.setRgbaBits(16,16,16,16);fb.setDepthBits(24);fb.setMultisamples(4);buffer=base.win.makeTextureBuffer('sdk3-tiny-depth',8,8,fbp=fb);p.need(buffer is not None,'tiny depth framebuffer');buffers.append(buffer);buffer.setClearDepthActive(True);buffer.setClearDepth(1.);buffer.setClearColorActive(True)
+    root=core.NodePath('sdk3-depth-canary');card=core.CardMaker('sdk3-depth-card');card.setFrame(-1,1,-1,1);foreground=root.attachNewNode(card.generate());foreground.setShader(shader);foreground.setShaderInput('diagnostic_rgb',core.Vec3(*front));foreground.setBin('fixed',0);foreground.setAttrib(core.DepthTestAttrib.make(core.DepthTestAttrib.MLess));foreground.setDepthWrite(True)
+    vertex='#version 330\nuniform mat4 p3d_ModelViewProjectionMatrix;in vec4 p3d_Vertex;flat out int instance;void main(){instance=gl_InstanceID;gl_Position=p3d_ModelViewProjectionMatrix*p3d_Vertex;}\n'
+    fragment='#version 330\nuniform struct{sampler2D data_texture;sampler2D heightfield;int view_index;int terrain_size;int chunk_size;}ShaderTerrainMesh;uniform sampler2D attribute_tex;uniform float elevation_texture_ratio;flat in int instance;out vec4 color;void main(){vec2 uv=vec2(float(ShaderTerrainMesh.chunk_size)/float(ShaderTerrainMesh.terrain_size));vec3 extra=texture(attribute_tex,uv).rgb+texture(ShaderTerrainMesh.heightfield,uv).rgb*elevation_texture_ratio;color=vec4(texelFetch(ShaderTerrainMesh.data_texture,ivec2(instance,ShaderTerrainMesh.view_index),0).rgb+extra,1);}\n'
+    background=root.attachNewNode(card.generate());background.setY(.5);background.setShader(core.Shader.make(core.Shader.SL_GLSL,vertex=vertex,fragment=fragment));background.setBin('fixed',1);background.setAttrib(core.DepthTestAttrib.make(core.DepthTestAttrib.MLess));background.setDepthWrite(True);background.setInstanceCount(1)
+    black=core.Texture('sdk3-depth-black');black.setup2dTexture(2,1,core.Texture.TUnsignedByte,core.Texture.F_rgba);black.setRamImage(bytes(8));black.setMinfilter(core.SamplerState.FTLinear);black.setMagfilter(core.SamplerState.FTLinear)
+    data=core.Texture('sdk3-depth-data');data.setup2dTexture(2,1,core.Texture.TFloat,core.Texture.F_rgba32);data.setRamImageAs(np.asarray([[*back,1.],[*front,1.]],dtype=np.float32).tobytes(),'RGBA');data.setMinfilter(core.SamplerState.FTNearest);data.setMagfilter(core.SamplerState.FTNearest)
+    for name,value in [('attribute_tex',black),('ShaderTerrainMesh.heightfield',black),('ShaderTerrainMesh.data_texture',data),('elevation_texture_ratio',2.),('ShaderTerrainMesh.view_index',0),('ShaderTerrainMesh.terrain_size',2),('ShaderTerrainMesh.chunk_size',1)]:background.setShaderInput(name,value)
+    camera=core.Camera('sdk3-depth-camera');camera.setScene(root);lens=core.OrthographicLens();lens.setFilmSize(2,2);lens.setNearFar(.1,10);camera.setLens(lens);cam=root.attachNewNode(camera);cam.setPos(0,-2,0);region=buffer.makeDisplayRegion();region.setCamera(cam);region.setClearDepthActive(True);texture=core.Texture('sdk3-depth-ram');texture.setFormat(core.Texture.F_rgba16);texture.setComponentType(core.Texture.TFloat);buffer.addRenderTexture(texture,core.GraphicsOutput.RTMCopyRam)
+    for _ in range(2):base.graphicsEngine.renderFrame();base.graphicsEngine.syncFrame();report['canary_render_calls']+=1
+    raw_before=bytes(texture.getRamImageAs('RGBA'));width=texture.getComponentWidth();typ=texture.getComponentType();dtype=np.dtype('float32') if typ==core.Texture.TFloat and width==4 else np.dtype('float16') if typ==core.Texture.THalfFloat and width==2 else None;p.need(dtype is not None and np.array_equal(np.frombuffer(raw_before,dtype=dtype).reshape(64,4),np.broadcast_to(np.asarray([*front,1.]),(64,4))),'all64foreground initially occludes farther card');(Path(args.out)/'canary-depth-before.rgba').write_bytes(raw_before)
+    receipt={};start=tracer.stats()['draws'];tracer.enable_depth_probe(True)
+    try:
+        with t.scoped_callbacks([(1,region)],SimpleNamespace(step=1,camera='road'),tracer,(3,3),make_callback=core.CallbackObject.make,receipt=receipt,target_step=1,expected_returns=1):base.graphicsEngine.renderFrame();base.graphicsEngine.syncFrame();report['canary_render_calls']+=1
+    finally:tracer.enable_depth_probe(False)
+    raw=bytes(texture.getRamImageAs('RGBA'));(Path(args.out)/'canary-depth-after.rgba').write_bytes(raw);result=t.verify_depth_canary_pixels(raw,width,int(typ),front,back);result.update(front=front,back=back,component_width=width,component_type=int(typ),raw_before='canary-depth-before.rgba',raw_before_sha256=hashlib.sha256(raw_before).hexdigest(),raw_file='canary-depth-after.rgba',draw_range=[start+1,tracer.stats()['draws']],callback_receipt=receipt,requested_samples=4,framebuffer=str(buffer.getFbProperties()),expected_terrain_data_row=[*back,1.]);buffer.setActive(False);root.removeNode();return result
 
 def canary(args,report):
     out=Path(args.out);base=None;tracer=None;buffers=[]
@@ -101,7 +120,7 @@ def canary(args,report):
                     for _ in range(2):base.graphicsEngine.renderFrame();base.graphicsEngine.syncFrame();report['canary_render_calls']+=1
                     p.need(texture.hasRamImage() and texture.getXSize()==texture.getYSize()==8,'tiny RAM copy');raw=bytes(texture.getRamImageAs('RGBA'));width=texture.getComponentWidth();typ=texture.getComponentType();p.need(len(raw)==64*4*width<=8192,'bounded8x8RGBAcanary');dtype=np.dtype('float32') if typ==core.Texture.TFloat and width==4 else np.dtype('float16') if typ==core.Texture.THalfFloat and width==2 else np.dtype('uint8') if typ==core.Texture.TUnsignedByte and width==1 else None;p.need(dtype is not None,'explicit canary component layout');pixels=np.frombuffer(raw,dtype=dtype).reshape((64,4));expected=np.array([*color,1.])*(255 if width==1 else 1);p.need(np.array_equal(pixels,np.broadcast_to(expected,pixels.shape)),'exact all64 challenged pixel values');name=f'canary-{phase}-{index}.rgba';(out/name).write_bytes(raw);case['challenges'].append(dict(color=color,draw_range=[start+1,tracer.stats()['draws']],raw_file=name,nbytes=len(raw),sha256=hashlib.sha256(raw).hexdigest(),component_width=width,component_type=int(typ),all64_exact=True))
             case['callback_receipt']=receipt;report['canary_cases'].append(case);buffer.setActive(False);region.clearDrawCallback();root.removeNode()
-        report.update(trace_stats=tracer.close(),source_stats_after=sdk_stats(sdk),provider_closed=True,status='TINY_GPU_CANARY_RECORDED');return report
+        report['depth_probe_canary']=depth_canary(base,core,np,tracer,args,report,buffers,shader,challenges[0],challenges[1]);report.update(trace_stats=tracer.close(),source_stats_after=sdk_stats(sdk),provider_closed=True,status='TINY_GPU_CANARY_RECORDED');return report
     finally:
         if tracer is not None:report['trace_stats']=tracer.close()
         if base is not None:
@@ -109,13 +128,13 @@ def canary(args,report):
             base.destroy();report['provider_closed']=True
 
 def run_native(args):
-    report=dict(protocol='sdk3-draw-trace-native-v1',status='INCOMPLETE',pid=os.getpid(),process_uuid=uuid.uuid4().hex,nonce=args.nonce,mode=args.mode,seed=20261110,scenario='s_curve_left_right',captures=[],official_model_processes=0,onnx_inferences=0,model_weights_used=False,repair_proven=False,stage7_complete=False,provider_closed=False,gpu_pixel_owner_proven=False,unique_cause_proven=False)
+    report=dict(protocol='sdk3-draw-trace-native-v1',status='INCOMPLETE',pid=os.getpid(),process_uuid=uuid.uuid4().hex,nonce=args.nonce,mode=args.mode,seed=20261110,scenario='s_curve_left_right',captures=[],official_model_processes=0,onnx_inferences=0,model_weights_used=False,repair_proven=False,stage7_complete=False,provider_closed=False,gpu_pixel_owner_proven=False,unique_cause_proven=False,intentional_target_depth_mutation=False)
     try:p.need(args.server_owner==os.getppid(),'owned native/display parent');return canary(args,report) if args.mode=='canary' else replay(args,report)
     except BaseException as exc:report['failure']=type(exc).__name__+': '+str(exc);raise
     finally:p.write(Path(args.out)/'report.json',report)
 
 def main():
-    import faulthandler;faulthandler.enable();parser=argparse.ArgumentParser();parser.add_argument('--out',required=True);parser.add_argument('--nonce',required=True);parser.add_argument('--mode',choices=('canary','off','trace'),required=True);parser.add_argument('--trace-library',type=Path,default=Path('/drawtrace.so'));parser.add_argument('--trace-sha256');parser.add_argument('--owned-child',action='store_true');parser.add_argument('--server-owner',type=int);args=parser.parse_args();args.model_trial=False
+    import faulthandler;faulthandler.enable();parser=argparse.ArgumentParser();parser.add_argument('--out',required=True);parser.add_argument('--nonce',required=True);parser.add_argument('--mode',choices=('canary','off','trace','depth-probe'),required=True);parser.add_argument('--trace-library',type=Path,default=Path('/drawtrace.so'));parser.add_argument('--trace-sha256');parser.add_argument('--owned-child',action='store_true');parser.add_argument('--server-owner',type=int);args=parser.parse_args();args.model_trial=False
     if args.owned_child:
         with stack_watchdog(Path(args.out)/'stacks.log'):run_native(args)
         return 0

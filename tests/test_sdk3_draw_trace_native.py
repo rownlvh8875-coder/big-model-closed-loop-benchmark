@@ -1,6 +1,6 @@
 from pathlib import Path
 from types import SimpleNamespace
-import subprocess,sys,unittest
+import subprocess,sys,unittest,struct
 try:from scripts import sdk3_draw_trace as h,sdk3_draw_trace_native as native
 except ImportError:h=native=None
 class Region:
@@ -62,6 +62,14 @@ class NativeTraceContracts(unittest.TestCase):
         def broken(phase,data):raise ValueError('missing scene')
         with h.scoped_callbacks([(1,r)],SimpleNamespace(step=7,camera='road'),Tracer(),(3,3),make_callback=lambda f:f,receipt=receipt,scene_metadata=broken):r.callback(data)
         self.assertEqual(data.calls,1);self.assertFalse(receipt['trace_complete']);self.assertIn('scene',receipt['errors'][0])
+    def test_depth_probe_canary_requires_exactly_one_changed_gpu_pixel(self):
+        front=[1.,0.,0.];back=[0.,1.,1.];values=[[*front,1.] for _ in range(64)];values[27]=[*back,1.];raw=b''.join(struct.pack('<4f',*p) for p in values)
+        result=h.verify_depth_canary_pixels(raw,4,2,front,back);self.assertEqual(result['verified_unchanged_pixels'],63);self.assertEqual(result['mutated_pixel_gl'],[3,3])
+        for index in (26,35):
+            changed=[list(p) for p in values];changed[index]=[*back,1.]
+            with self.subTest(index=index),self.assertRaises(ValueError):h.verify_depth_canary_pixels(b''.join(struct.pack('<4f',*p) for p in changed),4,2,front,back)
+    def test_native_help_declares_diagnostic_depth_probe_mode(self):
+        r=subprocess.run([sys.executable,'-I','-S','-B',str(Path(native.__file__).resolve()),'--help'],capture_output=True,text=True,timeout=15);self.assertEqual(r.returncode,0,r.stderr);self.assertIn('depth-probe',r.stdout)
     def test_exact_cold_native_help_bootstraps_without_panda_or_numpy(self):
         r=subprocess.run([sys.executable,'-I','-S','-B',str(Path(native.__file__).resolve()),'--help'],capture_output=True,text=True,timeout=15);self.assertEqual(r.returncode,0,r.stderr);self.assertIn('--mode',r.stdout)
     def test_owned_command_is_versioned_and_keeps_mode_and_nonce(self):

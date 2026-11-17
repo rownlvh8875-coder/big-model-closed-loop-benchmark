@@ -1,11 +1,11 @@
 from pathlib import Path
-import copy,hashlib,json,subprocess,sys,tempfile,unittest
+import copy,hashlib,json,subprocess,sys,tempfile,unittest,struct
 try:from scripts import run_sdk3_draw_trace as h
 except ImportError:h=None
 from scripts import panda_sdk3_runtime as p
 
 def report(mode='trace'):
-    return dict(protocol='sdk3-draw-trace-native-v1',pid=123,nonce='a'*32,mode=mode,core_sha256=p.CORE_SHA,sdk_sha256=p.SDK_SHA,panda_version='1.10.13',driver=dict(renderer='softpipe'),official_model_processes=0,onnx_inferences=0,model_weights_used=False,repair_proven=False,stage7_complete=False,provider_closed=True,trace_library_sha256='b'*64 if mode!='off' else None,observer_is_intervention=mode!='off',source_stats_before={k:0 for k in p.STATS_FIELDS},source_stats_after={k:0 for k in p.STATS_FIELDS},trace_stats=dict(version=1,error=0,active=0,restored=1,lookups=10,forwards=20,draws=2,queries=500,readbacks=8,blits=0) if mode!='off' else dict(version=1,error=0,active=0,restored=1,lookups=0,forwards=0,draws=0,queries=0,readbacks=0,blits=0))
+    return dict(intentional_target_depth_mutation=mode=='depth-probe',protocol='sdk3-draw-trace-native-v1',pid=123,nonce='a'*32,mode=mode,core_sha256=p.CORE_SHA,sdk_sha256=p.SDK_SHA,panda_version='1.10.13',driver=dict(renderer='softpipe'),official_model_processes=0,onnx_inferences=0,model_weights_used=False,repair_proven=False,stage7_complete=False,provider_closed=True,trace_library_sha256='b'*64 if mode!='off' else None,observer_is_intervention=mode!='off',source_stats_before={k:0 for k in p.STATS_FIELDS},source_stats_after={k:0 for k in p.STATS_FIELDS},trace_stats=dict(version=1,error=0,active=0,restored=1,lookups=10,forwards=20,draws=2,queries=500,readbacks=8,blits=0) if mode!='off' else dict(version=1,error=0,active=0,restored=1,lookups=0,forwards=0,draws=0,queries=0,readbacks=0,blits=0))
 class HostContracts(unittest.TestCase):
     def setUp(self):self.assertIsNotNone(h,'authenticated draw host missing')
     def test_report_qualified_observer_counts_are_not_zeroed(self):
@@ -64,6 +64,24 @@ class HostContracts(unittest.TestCase):
             with self.assertRaises(ValueError):h.validate_canary(folder,r,stats)
     def test_actual_c_schema_canary_decodes_bytes_and_requires_both_draw_kinds(self):self.check_canary()
     def test_one_effective_sample_resolve_never_claims_multiple_sample_qualification(self):self.check_canary(1)
+    def terrain_draw(self):
+        values=[0.,2.,1.,.5]*2;bits=list(struct.unpack('<8I',struct.pack('<8f',*values)));return dict(sequence=1,phase=1,instances=2,pixel_gl=[596,109],uniforms=dict(terrain_data_texture=dict(texture=55,unit=3,width=8,height=8,internal_format=34836,restored=True),terrain_view_index=2),terrain_data_row=dict(status='ROW_RECORDED',texture=55,unit=3,texture_size=[8,8],internal_format=34836,view_index=2,width=2,nbytes=32,restored=True,gl_error_before=0,gl_error_after=0,values=values,float_bits=bits),depth_probe=None)
+    def test_terrain_row_bytes_bind_to_current_sampler_view_and_float_bits(self):
+        d=self.terrain_draw();r=h.validate_trace_details([d],'trace',[596,109]);self.assertEqual(r['terrain_row_bytes'],32);self.assertTrue(r['terrain_rows_complete'])
+        for name in ('view_index','texture','nbytes','float_bits'):
+            x=copy.deepcopy(d);x['terrain_data_row'][name]=[0]*8 if name=='float_bits' else 999
+            with self.subTest(name=name),self.assertRaises(ValueError):h.validate_trace_details([x],'trace',[596,109])
+    def test_extra_rows_or_undisclosed_pixel_mutation_never_qualify(self):
+        d=self.terrain_draw()
+        with self.assertRaises(ValueError):h.validate_trace_details([d,d,d],'trace',[596,109])
+        d['depth_probe']=dict(cleared_pixels=1,state_restored=True,original_depth_bits32=[1])
+        with self.assertRaises(ValueError):h.validate_trace_details([d],'trace',[596,109])
+    def test_depth_probe_requires_one_scoped_mutation_and_preserves_original_depth_state(self):
+        d=self.terrain_draw();base=dict(valid=True,depth_test=1,depth_write=1,depth_func=513,scissor=[0,0,964,604],scissor_test=0,depth_bits32=[1056964608],color_bits=[1,2,3,4]);d['before']=base;d['after']=dict(base,depth_bits32=[1058642330],color_bits=[5,6,7,8]);d['depth_probe']=dict(cleared_pixels=1,state_restored=True,original_depth_bits32=base['depth_bits32']);r=h.validate_trace_details([d],'depth-probe',[596,109]);self.assertEqual(r['depth_clear_pixels'],1);self.assertTrue(r['occluded_terrain_exposed'])
+        for key,value in [('cleared_pixels',2),('state_restored',False),('original_depth_bits32',[0])]:
+            x=copy.deepcopy(d);x['depth_probe'][key]=value
+            with self.subTest(key=key),self.assertRaises(ValueError):h.validate_trace_details([x],'depth-probe',[596,109])
+        with self.assertRaises(ValueError):h.validate_trace_details([],'depth-probe',[596,109])
     def test_cold_host_help(self):
         r=subprocess.run([sys.executable,'-I','-B',h.__file__,'--help'],capture_output=True,text=True,timeout=15);self.assertEqual(r.returncode,0,r.stderr)
 if __name__=='__main__':unittest.main()

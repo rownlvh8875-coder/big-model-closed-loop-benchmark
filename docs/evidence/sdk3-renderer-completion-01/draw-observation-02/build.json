@@ -1,0 +1,18 @@
+{
+  "command": [
+    "gcc",
+    "-std=c11",
+    "-shared",
+    "-fPIC",
+    "-O2",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/native/sdk3_draw_trace/trace.c",
+    "-ldl",
+    "-o",
+    "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-sdk3-draw-trace-02/producer/work/drawtrace.so"
+  ],
+  "compiler": "gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+  "sha256": "7d77c139a49fbe5c42f05b86eac1ca531a58379e7e7436dc674182632b1bf8b7"
+}
