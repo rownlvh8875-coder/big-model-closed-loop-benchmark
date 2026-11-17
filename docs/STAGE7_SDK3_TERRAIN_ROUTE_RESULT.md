@@ -21,10 +21,20 @@ RGB 카메라의 `rgb` 태그 상태는 `TERRAIN`에 `Terrain.make_render_state`
 
 고정 이미지 tarSHA4984470cd7d732f9f2d1c12710c9433b563b3817ba6d1d419749a9a2b1b46698의11레이어를 순서대로 읽고 각 blob SHA를 확인했다. 선택한8원본을 보존했고 관련 whiteout은 없었다. Panda 공식 태그와 고정 커밋470e352ab87ceae6e30429720e4690c8371f5a55로 읽은 헤더도 바이트가 같았다. 감사 입력18개/128460B는 코드에 고정한 인덱스 SHA로 검증한다. 원본을 import/실행하지 않으며 실제 캐시 바이트를 정규화하지 않는다.
 
-새 테스트18개 RED→GREEN 및 관련 회귀80개 PASS. 전체 canonical push/PR CI와 독립 리뷰는 아래 완료 기록에 추가한다. 보존 원본의 CRLF는 해시 유지를 위해 변경하지 않았으며 whitespace 검사는 명령별 `core.whitespace=cr-at-eol`로 수행한다.
+새 테스트18개 RED→GREEN 및 관련 회귀80개 PASS. 독립 리뷰 Critical0/Important0/Minor0. 리뷰된 커밋708081686ffc0008ce2b07f4ca2f7bc4bf3c8421의 canonical push43996092960 및 PR43996101876 네 작업이 모두 성공했고, 양쪽 unit 로그 각각2048tests/7skips를 확인했다. 보존 원본의 CRLF는 해시 유지를 위해 변경하지 않았으며 whitespace 검사는 명령별 `core.whitespace=cr-at-eol`로 수행한다.
 
 이번 단계의 새 native 렌더러/모델 실행은 **0/0**이다. GPU readback·추가 render/task·셰이더나 런타임 변경이 없다. 다음 실측에서 필요한 관찰은 원래 Road7 CPU-read 경계의 절차적 지형 노드, 카메라 TERRAIN 태그 상태와 shader 우선순위, heightfield/attribute 입력이다. 실제 GPU 픽셀 소유자와 HDR 색은 여전히 별도 증거가 필요하다.
 
 재현: `python -I -B scripts/sdk3_terrain_route.py`.
 
 근거: [audit.json](evidence/sdk3-terrain-route-01/audit.json), [원본 검증](evidence/sdk3-terrain-route-01/image-source-verification.json), [입력 인덱스](evidence/sdk3-terrain-route-01/input-index.json), [Panda 헤더 출처](evidence/sdk3-terrain-route-01/panda-reference/index.json).
+
+## 완료 기록
+
+Draft PR: https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/pull/139 (base: Draft PR138).
+
+원본 checkout2435bf438651916ff496c07d334ba264d56a71bc의 clean 상태와 주요6아티팩트 해시/모드, 이전31작업 디렉터리3846파일 해시를 다시 검증했다. 변경은 base7997c1907d9edd4012116e3749a5c0c732ebf7bc 대비 추가 파일뿐이다. 기존 native·PSSM·캐시 전처리·모델 코드는 변경하지 않았다.
+
+[독립 리뷰](evidence/sdk3-terrain-route-01/review/whole-branch-review.md), [정확한 소스 CI](evidence/sdk3-terrain-route-01/verification/source-ci/verification.json), [unit 로그 개수](evidence/sdk3-terrain-route-01/verification/source-ci/unit-counts.json), [판단 기록](evidence/sdk3-terrain-route-01/ledger.md), [원본 보존](evidence/sdk3-terrain-route-01/verification/original-preservation.json)을 보존했다. 미룬 Minor 지적은0개다.
+
+문서·근거를 포함한 최종 커밋의 exact-HEAD CI와 원격 PR/부모/main 보존 결과는 커밋 자기참조를 피하기 위해 `output/stage7-sdk3-terrain-route-01/final-closeout/verification.json` 및 `final-ledger.md`에 기록한다. 환경·레지스트리 게시나 merge는 하지 않는다.

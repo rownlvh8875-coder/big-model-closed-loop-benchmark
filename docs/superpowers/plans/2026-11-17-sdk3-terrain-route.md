@@ -27,6 +27,6 @@ Base7997c1907d9edd4012116e3749a5c0c732ebf7bc; additions only. No old bytes chang
 ### Task2: evidence, review and exact CI closeout
 **Files:** Create docs/STAGE7_SDK3_TERRAIN_ROUTE_RESULT.md,docs/evidence/sdk3-terrain-route-01/{audit.json,verification/**,review/**,ledger.md}.
 **Interfaces:** consumes audit result; report states source coverage gap, unknown live tag state and next runtime question; no native repair claim.
-- [ ] Reproduce exact JSON twice, verify old inputs unchanged and additions-only. Expected byte-identical audit and same original matrix3/4FAIL/Stage7false.
-- [ ] One fresh review against spec/plan; fix Important once RED-GREEN if any, defer Minor. Commit audit/report/Draft PR.
+- [x] Reproduce exact JSON twice, verify old inputs unchanged and additions-only. Expected byte-identical audit and same original matrix3/4FAIL/Stage7false.
+- [x] One fresh review against spec/plan; fix Important once RED-GREEN if any, defer Minor. Commit audit/report/Draft PR.
 - [ ] Exact final HEAD canonical push+PR CI four jobs PASS; count unit tests from logs. Verify remote Draft PR/source/main/parent/original preservation and close own scratch. No extra native run or publication.
