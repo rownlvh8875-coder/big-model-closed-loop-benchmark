@@ -1,0 +1,19 @@
+from pathlib import Path
+import json,subprocess
+R=Path('/dev/shm/stage7-sdk3-runtime-20261116/repo');T=Path('/dev/shm/stage7-sdk3-sampling-envelope-20261117');e=R/'docs/evidence/sdk3-sampling-envelope-01';number=json.loads((T/'pr-number.json').read_text())['number'];x=json.loads((e/'result.json').read_text());a=json.loads((e/'input-analysis.json').read_text());review=json.loads((e/'review/review-assessment.json').read_text());head=subprocess.check_output(['git','rev-parse','HEAD'],cwd=R,text=True).strip();ci=R/'output/stage7-sdk3-sampling-envelope-01/final-ci';v=json.loads((ci/'verification.json').read_text());units=json.loads((ci/'unit-counts.json').read_text());assert v['head_sha']==head and all(r['tests']==2147 and r['skipped']==7 for r in units)
+body=f'''The prior SDK3 Road7 pixel is gray even though the captured mip1 CPU candidate enters the yellow shader branch. This CPU-only diagnostic tests whether scalar quantization, float32 coordinate arithmetic and modeled weight precision alone change that branch at the recorded points.
+
+**Result: 135/135 scenarios and all10conditional intervals remain yellow.** At the central candidate, recorded value0.01687556688432301 becomes0.017717129883200268 under hypothetical nearest-even SNORM8; the adjacent-code/±1/256fraction interval is[0.015613318640467009,0.018088530902566895]. Under these explicit models/coordinates, precision changes alone do not explain gray. This does not rule out other GPU behavior or attest runtime texture format/precision.
+
+The central lower-threshold root lies -0.09430186338071567mip1texels along one axis, equivalent to8.572896670974151mm through the recorded proxy transform. Five points span6.743477–10.080922mm. These are within-cell one-axis proxy distances, not actual terrain intersections, screen-pixel offsets or minimum2Ddistances. Uncaptured neighbor texels remain unavailable.
+
+Inputs:11fixedPR142files/{a['input_bytes']}B,source `{x['source']['source_commit']}`,prior native run44067526874/artifact14320743853. IndexSHA `{a['input_index_sha256']}`. Revalidates prior prepared boundary only; no fresh image capture/validation. This step launches **zero renderers,zero official model processes and zero ONNX inferences**, with no GPU query/readback or dependency install. Prior14images remain prior evidence.
+
+Validation:33newtests/179focusedPASS; independent50-digitDecimal checks135scenarios/10intervals/8axisroots, maxscalarerror{a['maximum_decimal_value_error']}. Sole fresh review Critical{review['critical']}/Important{review['important']}/Minor{review['minor']}; cold-I-S-B help PASS. Exact finalHEAD `{head}` push/PR fourcanonicaljobsPASS/attempt1/artifacts0; each2147tests/7skips, including generated small ONNX integration test.
+
+'''+''.join(f"- {row['event']}: [{row['id']}](https://github.com/rownlvh8875-coder/big-model-closed-loop-benchmark/actions/runs/{row['id']})\n" for row in v['ci'])+f'''
+ResultSHA `{a['result_sha256']}`; report `docs/STAGE7_SDK3_SAMPLING_ENVELOPE_RESULT.md`; raw result,independentanalysis,review,TDDlogs and hashes in `docs/evidence/sdk3-sampling-envelope-01/`. ExactHEAD closeout receipt: `output/stage7-sdk3-sampling-envelope-01/final-closeout/verification.json`.
+
+Stacked Draft on unchanged PR142/d6eb529. Additions only; CPU code unchanged after analysis; original checkout/sixfileSHA+modes/main preserved. Hardware format/coordinates/pixelowner/cause/repair unproven. **Official matrix remains3/4PASS,overallFAIL,Stage7=false. No main merge/environment or registry publication.**
+'''
+payload=dict(title='Bound conditional SDK3 sampling models that retain the yellow selector branch',body=body);q=T/'pr-update.json';q.write_text(json.dumps(payload,indent=2)+'\n');subprocess.run(['gh','api','--method','PATCH',f'repos/rownlvh8875-coder/big-model-closed-loop-benchmark/pulls/{number}','--input',str(q)],check=True,stdout=subprocess.DEVNULL);print(json.dumps(dict(pr=number,head=head)))

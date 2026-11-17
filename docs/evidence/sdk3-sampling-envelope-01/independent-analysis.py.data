@@ -1,0 +1,45 @@
+from pathlib import Path
+from decimal import Decimal as D,localcontext,ROUND_HALF_EVEN,ROUND_FLOOR,ROUND_CEILING
+from datetime import datetime,timezone,timedelta
+import hashlib,json,math,struct,subprocess
+R=Path('/dev/shm/stage7-sdk3-runtime-20261116/repo');out=R/'output/stage7-sdk3-sampling-envelope-01/actual-reviewed';x=json.loads((out/'result.json').read_text());indexraw=(R/'docs/evidence/sdk3-sampling-envelope-01/input-index.json').read_bytes();assert hashlib.sha256(indexraw).hexdigest()=='6543dc462cf3af472af77ad481566cfdfc947ec321b8cf46b98f23d02f9c3e54';idx=json.loads(indexraw)
+for row in idx['files']:
+ raw=(R/row['path']).read_bytes();assert len(raw)==row['nbytes'] and hashlib.sha256(raw).hexdigest()==row['sha256']
+f=R/'docs/evidence/sdk3-prepared-texture-01/actual/bundle/renderer';terrain=json.loads((f/'terrain.json').read_text());prepared=json.loads((f/'prepared.json').read_text());attribute=prepared['textures'][0];points=[];maxerror=D(0);modelcount=0
+f32=lambda v:struct.unpack('=f',struct.pack('=f',float(v)))[0]
+def interp(v,a,b):return v[0]+(v[1]-v[0])*a+(v[2]-v[0])*b+(v[0]-v[1]-v[2]+v[3])*a*b
+with localcontext() as context:
+ context.prec=50
+ for point,sample,item in zip(x['points'],terrain['samples'],attribute['mip1_windows']):
+  w=item['window'];values=[D.from_float(struct.unpack(('<' if w['byte_order']=='little' else '>')+'f',bytes.fromhex(v['raw_hex']))[0]) for v in w['texels']];size=w['size_xy'];uv=sample['attribute_uv'];exact_fraction=[D.from_float(u)*n-D('.5') for u,n in zip(uv,size)];a,b=[v-v.to_integral_value(rounding=ROUND_FLOOR) for v in exact_fraction]
+  errors=[]
+  for scenario in point['scenarios']:
+   assert scenario['status']=='MODELED';mode=scenario['coordinate_model'];ratio=terrain['owner']['elevation_ratio'];local=sample['heightfield_uv']
+   if mode=='recorded_f64':expecteduv=[v*ratio+.5 for v in local]
+   elif mode=='f32_separate':expecteduv=[f32(f32(f32(v)*f32(ratio))+.5) for v in local]
+   else:expecteduv=[f32(D.from_float(f32(v))*D.from_float(f32(ratio))+D('.5')) for v in local]
+   assert scenario['uv']==expecteduv
+   fractions=[D.from_float(u)*n-D('.5') for u,n in zip(expecteduv,size)];aa,bb=[v-v.to_integral_value(rounding=ROUND_FLOOR) for v in fractions];bits=scenario['weight_bits']
+   if bits is not None:aa,bb=[(v*2**bits).to_integral_value(rounding=ROUND_HALF_EVEN)/2**bits for v in (aa,bb)]
+   model=scenario['format_model'];scalar=values
+   if model!='recorded_float32':
+    scale=127 if model=='snorm8_nearest_even' else 255;minimum=-1 if scale==127 else 0;scalar=[(max(D(minimum),min(D(1),v))*scale).to_integral_value(rounding=ROUND_HALF_EVEN)/scale for v in values]
+   value=interp(scalar,aa,bb);error=abs(value-D.from_float(scenario['value']));assert error<D('2e-12');errors.append(error);assert scenario['yellow']==(D('.01')<value<D('.11'));modelcount+=1
+  for interval in point['conditional_envelopes']:
+   bits=interval['fraction_bits_model'];eps=D(1)/2**bits;lo=[(v*127).to_integral_value(rounding=ROUND_FLOOR)/127 for v in values];hi=[(v*127).to_integral_value(rounding=ROUND_CEILING)/127 for v in values];box=[(max(D(0),v-eps),min(D(1),v+eps)) for v in (a,b)];low=min(interp(lo,aa,bb) for aa in box[0] for bb in box[1]);high=max(interp(hi,aa,bb) for aa in box[0] for bb in box[1]);assert abs(low-D.from_float(interval['minimum']))<D('2e-12') and abs(high-D.from_float(interval['maximum']))<D('2e-12') and interval['all_yellow'] and D('.01')<low<high<D('.11')
+  # Direct one-axis solve, independent of the helper's (threshold-current)/slope form.
+  base=interp(values,a,b)
+  ra,rb=[D.from_float(v) for v in point['recorded_fraction']];assert max(abs(ra-a),abs(rb-b))<D('2e-12')
+  root_errors=[]
+  for root in point['threshold_roots']:
+   threshold=D(str(root['threshold']));axis=root['axis'];aa,bb=a,b
+   if axis==0:rr=(threshold-values[0]-(values[2]-values[0])*b)/(values[1]-values[0]+(values[0]-values[1]-values[2]+values[3])*b);aa=rr
+   else:rr=(threshold-values[0]-(values[1]-values[0])*a)/(values[2]-values[0]+(values[0]-values[1]-values[2]+values[3])*a);bb=rr
+   rounded_root=(threshold-values[0]-(values[2]-values[0])*rb)/(values[1]-values[0]+(values[0]-values[1]-values[2]+values[3])*rb) if axis==0 else (threshold-values[0]-(values[1]-values[0])*ra)/(values[2]-values[0]+(values[0]-values[1]-values[2]+values[3])*ra)
+   assert abs(rounded_root-D.from_float(root['fraction']))<D('2e-12');root_errors.append(float(abs(rr-D.from_float(root['fraction']))))
+   assert D(0)<=rr<=D(1) and abs(rr-D.from_float(root['fraction']))<D('1e-9') and abs(interp(values,aa,bb)-threshold)<D('1e-45')
+  closest=min(point['threshold_roots'],key=lambda r:abs(r['delta_texels']));maxerror=max(maxerror,*errors);points.append(dict(ray=point['ray'],models_checked=len(errors),all_models_yellow=all(v['yellow'] for v in point['scenarios']),conditional_envelopes_checked=2,closest_axis_threshold=closest,base_value=float(base),maximum_decimal_value_error=float(max(errors)),maximum_exact_uv_root_fraction_difference=max(root_errors),root_check_uses_independently_verified_recorded_f64_fractions=True))
+assert modelcount==x['scenario_count']==x['modeled_scenario_count']==x['modeled_yellow_count']==135 and len(points)==5 and x['native_renderer_processes_this_step']==x['official_model_processes']==x['onnx_inferences']==0 and x['fresh_source_images_verified'] is False
+for key in ('actual_gpu_sample_proven','hardware_bound_proven','actual_texture_format_proven','actual_sample_coordinates_proven','gpu_pixel_owner_proven','unique_cause_proven','repair_proven','stage7_complete'):assert x[key] is False
+result=dict(checked_at_kst=datetime.now(timezone(timedelta(hours=9))).isoformat(),cpu_code_commit='53cad9de110ef3162a9d876ca9e314344fe2a270',prior_run_id=44067526874,input_index_sha256=hashlib.sha256(indexraw).hexdigest(),input_files_verified=11,input_bytes=sum(v['nbytes'] for v in idx['files']),result_sha256=hashlib.sha256((out/'result.json').read_bytes()).hexdigest(),decimal_precision=50,value_tolerance_absolute=2e-12,root_tolerance_at_recorded_fraction=2e-12,exact_uv_root_difference_limit=1e-9,maximum_decimal_value_error=float(maxerror),models_checked=modelcount,all_models_yellow=True,conditional_intervals_checked=10,points=points,native_renderer_processes_this_step=0,official_model_processes=0,onnx_inferences=0,hardware_bound_proven=False,gpu_pixel_owner_proven=False,unique_cause_proven=False,repair_proven=False,stage7_complete=False)
+(out/'input-analysis.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result,indent=2))

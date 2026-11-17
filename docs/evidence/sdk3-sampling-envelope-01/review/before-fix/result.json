@@ -1,0 +1,2878 @@
+{
+  "actual_gpu_sample_proven": false,
+  "actual_sample_coordinates_proven": false,
+  "actual_texture_format_proven": false,
+  "actual_upload_bias_proven": false,
+  "assumptions": [
+    "Nearest-even SNORM8/UNORM8 codes are hypothetical; runtime internal format is unmeasured.",
+    "8/12-bit weight rounding and adjacent-code/fraction boxes are conditional models, not driver guarantees.",
+    "Float32 separate/FMA coordinates model arithmetic only; actual terrain draw coordinates remain unknown.",
+    "Axis threshold roots hold the other fraction fixed and stay within each captured cell; neighbors are unavailable."
+  ],
+  "fresh_source_images_verified": false,
+  "gpu_pixel_owner_proven": false,
+  "gpu_program_execution_proven": false,
+  "hardware_bound_proven": false,
+  "hardware_texture_dimensions_proven": false,
+  "input_points_are_geomnode_proxies": true,
+  "modeled_scenario_count": 135,
+  "modeled_yellow_count": 135,
+  "native_renderer_processes_this_step": 0,
+  "official_model_processes": 0,
+  "onnx_inferences": 0,
+  "original_matrix_gate_passed": false,
+  "original_matrix_passed": 3,
+  "original_matrix_total": 4,
+  "points": [
+    {
+      "conditional_envelopes": [
+        {
+          "all_yellow": true,
+          "code_model": "adjacent_snorm8_floor_ceil",
+          "fraction_bits_model": 8,
+          "fraction_box": [
+            [
+              0.02395790670925635,
+              0.03177040670925635
+            ],
+            [
+              0.22755065087403636,
+              0.23536315087403636
+            ]
+          ],
+          "fraction_error": 0.00390625,
+          "hardware_bound_proven": false,
+          "maximum": 0.018088530902566895,
+          "minimum": 0.015613318640467009
+        },
+        {
+          "all_yellow": true,
+          "code_model": "adjacent_snorm8_floor_ceil",
+          "fraction_bits_model": 12,
+          "fraction_box": [
+            [
+              0.02762001608425635,
+              0.02810829733425635
+            ],
+            [
+              0.23121276024903636,
+              0.23170104149903636
+            ]
+          ],
+          "fraction_error": 0.000244140625,
+          "hardware_bound_proven": false,
+          "maximum": 0.017740272047723937,
+          "minimum": 0.015924597394711346
+        }
+      ],
+      "cpu_candidate_bounds_match": true,
+      "raw_float32_values": [
+        0.0,
+        0.0,
+        0.07500000298023224,
+        0.0
+      ],
+      "ray": "center",
+      "recorded_attribute_uv": [
+        1.5744431697582306,
+        1.5004200512163417
+      ],
+      "recorded_fraction": [
+        0.02786415670925635,
+        0.23145690087403636
+      ],
+      "scenarios": [
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "recorded_f64",
+          "format_model": "recorded_float32",
+          "fraction": [
+            0.02786415670925635,
+            0.23145690087403636
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.5744431697582306,
+            1.5004200512163417
+          ],
+          "value": 0.01687556688432301,
+          "weight_bits": null,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "recorded_f64",
+          "format_model": "recorded_float32",
+          "fraction": [
+            0.02786415670925635,
+            0.23145690087403636
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.5744431697582306,
+            1.5004200512163417
+          ],
+          "value": 0.016812515926858396,
+          "weight_bits": 8,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "recorded_f64",
+          "format_model": "recorded_float32",
+          "fraction": [
+            0.02786415670925635,
+            0.23145690087403636
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.5744431697582306,
+            1.5004200512163417
+          ],
+          "value": 0.016875279620300887,
+          "weight_bits": 12,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "recorded_f64",
+          "format_model": "snorm8_nearest_even",
+          "fraction": [
+            0.02786415670925635,
+            0.23145690087403636
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.5744431697582306,
+            1.5004200512163417
+          ],
+          "value": 0.017717129883200268,
+          "weight_bits": null,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "recorded_f64",
+          "format_model": "snorm8_nearest_even",
+          "fraction": [
+            0.02786415670925635,
+            0.23145690087403636
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.5744431697582306,
+            1.5004200512163417
+          ],
+          "value": 0.017650934654896654,
+          "weight_bits": 8,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "recorded_f64",
+          "format_model": "snorm8_nearest_even",
+          "fraction": [
+            0.02786415670925635,
+            0.23145690087403636
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.5744431697582306,
+            1.5004200512163417
+          ],
+          "value": 0.017716828293687713,
+          "weight_bits": 12,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "recorded_f64",
+          "format_model": "unorm8_nearest_even",
+          "fraction": [
+            0.02786415670925635,
+            0.23145690087403636
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.5744431697582306,
+            1.5004200512163417
+          ],
+          "value": 0.016765268395357743,
+          "weight_bits": null,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "recorded_f64",
+          "format_model": "unorm8_nearest_even",
+          "fraction": [
+            0.02786415670925635,
+            0.23145690087403636
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.5744431697582306,
+            1.5004200512163417
+          ],
+          "value": 0.01670262953814338,
+          "weight_bits": 8,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "recorded_f64",
+          "format_model": "unorm8_nearest_even",
+          "fraction": [
+            0.02786415670925635,
+            0.23145690087403636
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.5744431697582306,
+            1.5004200512163417
+          ],
+          "value": 0.01676498300888959,
+          "weight_bits": 12,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_separate",
+          "format_model": "recorded_float32",
+          "fraction": [
+            0.0284423828125,
+            0.23193359375
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.5744432210922241,
+            1.500420093536377
+          ],
+          "value": 0.016900264398267417,
+          "weight_bits": null,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_separate",
+          "format_model": "recorded_float32",
+          "fraction": [
+            0.0284423828125,
+            0.23193359375
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.5744432210922241,
+            1.500420093536377
+          ],
+          "value": 0.016812515926858396,
+          "weight_bits": 8,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_separate",
+          "format_model": "recorded_float32",
+          "fraction": [
+            0.0284423828125,
+            0.23193359375
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.5744432210922241,
+            1.500420093536377
+          ],
+          "value": 0.016902387813821917,
+          "weight_bits": 12,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_separate",
+          "format_model": "snorm8_nearest_even",
+          "fraction": [
+            0.0284423828125,
+            0.23193359375
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.5744432210922241,
+            1.500420093536377
+          ],
+          "value": 0.017743059030668,
+          "weight_bits": null,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_separate",
+          "format_model": "snorm8_nearest_even",
+          "fraction": [
+            0.0284423828125,
+            0.23193359375
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.5744432210922241,
+            1.500420093536377
+          ],
+          "value": 0.017650934654896654,
+          "weight_bits": 8,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_separate",
+          "format_model": "snorm8_nearest_even",
+          "fraction": [
+            0.0284423828125,
+            0.23193359375
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.5744432210922241,
+            1.500420093536377
+          ],
+          "value": 0.017745288338248184,
+          "weight_bits": 12,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_separate",
+          "format_model": "unorm8_nearest_even",
+          "fraction": [
+            0.0284423828125,
+            0.23193359375
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.5744432210922241,
+            1.500420093536377
+          ],
+          "value": 0.01678980448666741,
+          "weight_bits": null,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_separate",
+          "format_model": "unorm8_nearest_even",
+          "fraction": [
+            0.0284423828125,
+            0.23193359375
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.5744432210922241,
+            1.500420093536377
+          ],
+          "value": 0.01670262953814338,
+          "weight_bits": 8,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_separate",
+          "format_model": "unorm8_nearest_even",
+          "fraction": [
+            0.0284423828125,
+            0.23193359375
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.5744432210922241,
+            1.500420093536377
+          ],
+          "value": 0.016791914023605047,
+          "weight_bits": 12,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_fma_model",
+          "format_model": "recorded_float32",
+          "fraction": [
+            0.0284423828125,
+            0.23193359375
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.5744432210922241,
+            1.500420093536377
+          ],
+          "value": 0.016900264398267417,
+          "weight_bits": null,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_fma_model",
+          "format_model": "recorded_float32",
+          "fraction": [
+            0.0284423828125,
+            0.23193359375
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.5744432210922241,
+            1.500420093536377
+          ],
+          "value": 0.016812515926858396,
+          "weight_bits": 8,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_fma_model",
+          "format_model": "recorded_float32",
+          "fraction": [
+            0.0284423828125,
+            0.23193359375
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.5744432210922241,
+            1.500420093536377
+          ],
+          "value": 0.016902387813821917,
+          "weight_bits": 12,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_fma_model",
+          "format_model": "snorm8_nearest_even",
+          "fraction": [
+            0.0284423828125,
+            0.23193359375
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.5744432210922241,
+            1.500420093536377
+          ],
+          "value": 0.017743059030668,
+          "weight_bits": null,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_fma_model",
+          "format_model": "snorm8_nearest_even",
+          "fraction": [
+            0.0284423828125,
+            0.23193359375
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.5744432210922241,
+            1.500420093536377
+          ],
+          "value": 0.017650934654896654,
+          "weight_bits": 8,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_fma_model",
+          "format_model": "snorm8_nearest_even",
+          "fraction": [
+            0.0284423828125,
+            0.23193359375
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.5744432210922241,
+            1.500420093536377
+          ],
+          "value": 0.017745288338248184,
+          "weight_bits": 12,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_fma_model",
+          "format_model": "unorm8_nearest_even",
+          "fraction": [
+            0.0284423828125,
+            0.23193359375
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.5744432210922241,
+            1.500420093536377
+          ],
+          "value": 0.01678980448666741,
+          "weight_bits": null,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_fma_model",
+          "format_model": "unorm8_nearest_even",
+          "fraction": [
+            0.0284423828125,
+            0.23193359375
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.5744432210922241,
+            1.500420093536377
+          ],
+          "value": 0.01670262953814338,
+          "weight_bits": 8,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_fma_model",
+          "format_model": "unorm8_nearest_even",
+          "fraction": [
+            0.0284423828125,
+            0.23193359375
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.5744432210922241,
+            1.500420093536377
+          ],
+          "value": 0.016791914023605047,
+          "weight_bits": 12,
+          "yellow": true
+        }
+      ],
+      "terrain_uv": [
+        0.5372215848791153,
+        0.5002100256081708
+      ],
+      "threshold_roots": [
+        {
+          "axis": 0,
+          "delta_attribute_uv": [
+            3.516288132711369e-05,
+            0.0
+          ],
+          "delta_texels": 0.3960746952686086,
+          "fraction": 0.42393885197786496,
+          "threshold": 0.01,
+          "threshold_is_yellow": false,
+          "world_displacement": [
+            0.03600679047896442,
+            0.0,
+            0.0
+          ],
+          "world_displacement_is_proxy_only": true,
+          "world_displacement_norm": 0.03600679047896442
+        },
+        {
+          "axis": 1,
+          "delta_attribute_uv": [
+            0.0,
+            -8.371969405248195e-06
+          ],
+          "delta_texels": -0.09430186338071567,
+          "fraction": 0.1371550374933207,
+          "threshold": 0.01,
+          "threshold_is_yellow": false,
+          "world_displacement": [
+            0.0,
+            -0.008572896670974151,
+            0.0
+          ],
+          "world_displacement_is_proxy_only": true,
+          "world_displacement_norm": 0.008572896670974151
+        }
+      ],
+      "triangle_index": 606
+    },
+    {
+      "conditional_envelopes": [
+        {
+          "all_yellow": true,
+          "code_model": "adjacent_snorm8_floor_ceil",
+          "fraction_bits_model": 8,
+          "fraction_box": [
+            [
+              0.1344270289846463,
+              0.1422395289846463
+            ],
+            [
+              0.2617227535956772,
+              0.2695352535956772
+            ]
+          ],
+          "fraction_error": 0.00390625,
+          "hardware_bound_proven": false,
+          "maximum": 0.01837027009828245,
+          "minimum": 0.01590912513068481
+        },
+        {
+          "all_yellow": true,
+          "code_model": "adjacent_snorm8_floor_ceil",
+          "fraction_bits_model": 12,
+          "fraction_box": [
+            [
+              0.1380891383596463,
+              0.1385774196096463
+            ],
+            [
+              0.2653848629706772,
+              0.2658731442206772
+            ]
+          ],
+          "fraction_error": 0.000244140625,
+          "hardware_bound_proven": false,
+          "maximum": 0.018044011875769598,
+          "minimum": 0.016200603315832052
+        }
+      ],
+      "cpu_candidate_bounds_match": true,
+      "raw_float32_values": [
+        0.0,
+        0.0,
+        0.07500000298023224,
+        0.0
+      ],
+      "ray": "top_left",
+      "recorded_attribute_uv": [
+        1.57445297703116,
+        1.5004230849612568
+      ],
+      "recorded_fraction": [
+        0.1383332789846463,
+        0.2656290035956772
+      ],
+      "scenarios": [
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "recorded_f64",
+          "format_model": "recorded_float32",
+          "fraction": [
+            0.1383332789846463,
+            0.2656290035956772
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.57445297703116,
+            1.5004230849612568
+          ],
+          "value": 0.017166276122241208,
+          "weight_bits": null,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "recorded_f64",
+          "format_model": "recorded_float32",
+          "fraction": [
+            0.1383332789846463,
+            0.2656290035956772
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.57445297703116,
+            1.5004230849612568
+          ],
+          "value": 0.01719818183573807,
+          "weight_bits": 8,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "recorded_f64",
+          "format_model": "recorded_float32",
+          "fraction": [
+            0.1383332789846463,
+            0.2656290035956772
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.57445297703116,
+            1.5004230849612568
+          ],
+          "value": 0.017164135661289492,
+          "weight_bits": 12,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "recorded_f64",
+          "format_model": "snorm8_nearest_even",
+          "fraction": [
+            0.1383332789846463,
+            0.2656290035956772
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.57445297703116,
+            1.5004230849612568
+          ],
+          "value": 0.018022336420067935,
+          "weight_bits": null,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "recorded_f64",
+          "format_model": "snorm8_nearest_even",
+          "fraction": [
+            0.1383332789846463,
+            0.2656290035956772
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.57445297703116,
+            1.5004230849612568
+          ],
+          "value": 0.018055833230807086,
+          "weight_bits": 8,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "recorded_f64",
+          "format_model": "snorm8_nearest_even",
+          "fraction": [
+            0.1383332789846463,
+            0.2656290035956772
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.57445297703116,
+            1.5004230849612568
+          ],
+          "value": 0.018020089217058315,
+          "weight_bits": 12,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "recorded_f64",
+          "format_model": "unorm8_nearest_even",
+          "fraction": [
+            0.1383332789846463,
+            0.2656290035956772
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.57445297703116,
+            1.5004230849612568
+          ],
+          "value": 0.017054077561421147,
+          "weight_bits": null,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "recorded_f64",
+          "format_model": "unorm8_nearest_even",
+          "fraction": [
+            0.1383332789846463,
+            0.2656290035956772
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.57445297703116,
+            1.5004230849612568
+          ],
+          "value": 0.017085774739583334,
+          "weight_bits": 8,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "recorded_f64",
+          "format_model": "unorm8_nearest_even",
+          "fraction": [
+            0.1383332789846463,
+            0.2656290035956772
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.57445297703116,
+            1.5004230849612568
+          ],
+          "value": 0.01705195109049479,
+          "weight_bits": 12,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_separate",
+          "format_model": "recorded_float32",
+          "fraction": [
+            0.1385498046875,
+            0.2655029296875
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.5744529962539673,
+            1.5004230737686157
+          ],
+          "value": 0.017153816979281755,
+          "weight_bits": null,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_separate",
+          "format_model": "recorded_float32",
+          "fraction": [
+            0.1385498046875,
+            0.2655029296875
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.5744529962539673,
+            1.5004230737686157
+          ],
+          "value": 0.01719818183573807,
+          "weight_bits": 8,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_separate",
+          "format_model": "recorded_float32",
+          "fraction": [
+            0.1385498046875,
+            0.2655029296875
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.5744529962539673,
+            1.5004230737686157
+          ],
+          "value": 0.017159271922082553,
+          "weight_bits": 12,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_separate",
+          "format_model": "snorm8_nearest_even",
+          "fraction": [
+            0.1385498046875,
+            0.2655029296875
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.5744529962539673,
+            1.5004230737686157
+          ],
+          "value": 0.01800925595553841,
+          "weight_bits": null,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_separate",
+          "format_model": "snorm8_nearest_even",
+          "fraction": [
+            0.1385498046875,
+            0.2655029296875
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.5744529962539673,
+            1.5004230737686157
+          ],
+          "value": 0.018055833230807086,
+          "weight_bits": 8,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_separate",
+          "format_model": "snorm8_nearest_even",
+          "fraction": [
+            0.1385498046875,
+            0.2655029296875
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.5744529962539673,
+            1.5004230737686157
+          ],
+          "value": 0.018014982929379923,
+          "weight_bits": 12,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_separate",
+          "format_model": "unorm8_nearest_even",
+          "fraction": [
+            0.1385498046875,
+            0.2655029296875
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.5744529962539673,
+            1.5004230737686157
+          ],
+          "value": 0.017041699851260465,
+          "weight_bits": null,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_separate",
+          "format_model": "unorm8_nearest_even",
+          "fraction": [
+            0.1385498046875,
+            0.2655029296875
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.5744529962539673,
+            1.5004230737686157
+          ],
+          "value": 0.017085774739583334,
+          "weight_bits": 8,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_separate",
+          "format_model": "unorm8_nearest_even",
+          "fraction": [
+            0.1385498046875,
+            0.2655029296875
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.5744529962539673,
+            1.5004230737686157
+          ],
+          "value": 0.017047119140625,
+          "weight_bits": 12,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_fma_model",
+          "format_model": "recorded_float32",
+          "fraction": [
+            0.1385498046875,
+            0.2655029296875
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.5744529962539673,
+            1.5004230737686157
+          ],
+          "value": 0.017153816979281755,
+          "weight_bits": null,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_fma_model",
+          "format_model": "recorded_float32",
+          "fraction": [
+            0.1385498046875,
+            0.2655029296875
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.5744529962539673,
+            1.5004230737686157
+          ],
+          "value": 0.01719818183573807,
+          "weight_bits": 8,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_fma_model",
+          "format_model": "recorded_float32",
+          "fraction": [
+            0.1385498046875,
+            0.2655029296875
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.5744529962539673,
+            1.5004230737686157
+          ],
+          "value": 0.017159271922082553,
+          "weight_bits": 12,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_fma_model",
+          "format_model": "snorm8_nearest_even",
+          "fraction": [
+            0.1385498046875,
+            0.2655029296875
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.5744529962539673,
+            1.5004230737686157
+          ],
+          "value": 0.01800925595553841,
+          "weight_bits": null,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_fma_model",
+          "format_model": "snorm8_nearest_even",
+          "fraction": [
+            0.1385498046875,
+            0.2655029296875
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.5744529962539673,
+            1.5004230737686157
+          ],
+          "value": 0.018055833230807086,
+          "weight_bits": 8,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_fma_model",
+          "format_model": "snorm8_nearest_even",
+          "fraction": [
+            0.1385498046875,
+            0.2655029296875
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.5744529962539673,
+            1.5004230737686157
+          ],
+          "value": 0.018014982929379923,
+          "weight_bits": 12,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_fma_model",
+          "format_model": "unorm8_nearest_even",
+          "fraction": [
+            0.1385498046875,
+            0.2655029296875
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.5744529962539673,
+            1.5004230737686157
+          ],
+          "value": 0.017041699851260465,
+          "weight_bits": null,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_fma_model",
+          "format_model": "unorm8_nearest_even",
+          "fraction": [
+            0.1385498046875,
+            0.2655029296875
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.5744529962539673,
+            1.5004230737686157
+          ],
+          "value": 0.017085774739583334,
+          "weight_bits": 8,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_fma_model",
+          "format_model": "unorm8_nearest_even",
+          "fraction": [
+            0.1385498046875,
+            0.2655029296875
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.5744529962539673,
+            1.5004230737686157
+          ],
+          "value": 0.017047119140625,
+          "weight_bits": 12,
+          "yellow": true
+        }
+      ],
+      "terrain_uv": [
+        0.53722648851558,
+        0.5002115424806284
+      ],
+      "threshold_roots": [
+        {
+          "axis": 0,
+          "delta_attribute_uv": [
+            3.193479423536667e-05,
+            0.0
+          ],
+          "delta_texels": 0.35971352226717024,
+          "fraction": 0.49804680125181655,
+          "threshold": 0.01,
+          "threshold_is_yellow": false,
+          "world_displacement": [
+            0.03270122929701547,
+            0.0,
+            0.0
+          ],
+          "world_displacement_is_proxy_only": true,
+          "world_displacement_norm": 0.03270122929701547
+        },
+        {
+          "axis": 1,
+          "delta_attribute_uv": [
+            0.0,
+            -9.844650333922174e-06
+          ],
+          "delta_texels": -0.11089014136129938,
+          "fraction": 0.15473886223437783,
+          "threshold": 0.01,
+          "threshold_is_yellow": false,
+          "world_displacement": [
+            0.0,
+            -0.010080921941936306,
+            0.0
+          ],
+          "world_displacement_is_proxy_only": true,
+          "world_displacement_norm": 0.010080921941936306
+        }
+      ],
+      "triangle_index": 606
+    },
+    {
+      "conditional_envelopes": [
+        {
+          "all_yellow": true,
+          "code_model": "adjacent_snorm8_floor_ceil",
+          "fraction_bits_model": 8,
+          "fraction_box": [
+            [
+              0.9137607044976903,
+              0.9215732044976903
+            ],
+            [
+              0.19346266287902836,
+              0.20127516287902836
+            ]
+          ],
+          "fraction_error": 0.00390625,
+          "hardware_bound_proven": false,
+          "maximum": 0.01721519615179751,
+          "minimum": 0.014904649865359951
+        },
+        {
+          "all_yellow": true,
+          "code_model": "adjacent_snorm8_floor_ceil",
+          "fraction_bits_model": 12,
+          "fraction_box": [
+            [
+              0.9174228138726903,
+              0.9179110951226903
+            ],
+            [
+              0.19712477225402836,
+              0.19761305350402836
+            ]
+          ],
+          "fraction_error": 0.000244140625,
+          "hardware_bound_proven": false,
+          "maximum": 0.016844990819245394,
+          "minimum": 0.015243626118673055
+        }
+      ],
+      "cpu_candidate_bounds_match": true,
+      "raw_float32_values": [
+        0.0,
+        0.0,
+        0.15000000596046448,
+        0.07500000298023224
+      ],
+      "ray": "top_right",
+      "recorded_attribute_uv": [
+        1.574433386625932,
+        1.5004170249389985
+      ],
+      "recorded_fraction": [
+        0.9176669544976903,
+        0.19736891287902836
+      ],
+      "scenarios": [
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "recorded_f64",
+          "format_model": "recorded_float32",
+          "fraction": [
+            0.9176669544976903,
+            0.19736891287902836
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.574433386625932,
+            1.5004170249389985
+          ],
+          "value": 0.016021417878921834,
+          "weight_bits": null,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "recorded_f64",
+          "format_model": "recorded_float32",
+          "fraction": [
+            0.9176669544976903,
+            0.19736891287902836
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.574433386625932,
+            1.5004170249389985
+          ],
+          "value": 0.016167069123866895,
+          "weight_bits": 8,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "recorded_f64",
+          "format_model": "recorded_float32",
+          "fraction": [
+            0.9176669544976903,
+            0.19736891287902836
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.574433386625932,
+            1.5004170249389985
+          ],
+          "value": 0.016012180487798844,
+          "weight_bits": 12,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "recorded_f64",
+          "format_model": "snorm8_nearest_even",
+          "fraction": [
+            0.9176669544976903,
+            0.19736891287902836
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.574433386625932,
+            1.5004170249389985
+          ],
+          "value": 0.016692432928768326,
+          "weight_bits": null,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "recorded_f64",
+          "format_model": "snorm8_nearest_even",
+          "fraction": [
+            0.9176669544976903,
+            0.19736891287902836
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.574433386625932,
+            1.5004170249389985
+          ],
+          "value": 0.016844621793491634,
+          "weight_bits": 8,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "recorded_f64",
+          "format_model": "snorm8_nearest_even",
+          "fraction": [
+            0.9176669544976903,
+            0.19736891287902836
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.574433386625932,
+            1.5004170249389985
+          ],
+          "value": 0.01668289139514833,
+          "weight_bits": 12,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "recorded_f64",
+          "format_model": "unorm8_nearest_even",
+          "fraction": [
+            0.9176669544976903,
+            0.19736891287902836
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.574433386625932,
+            1.5004170249389985
+          ],
+          "value": 0.01591670209691348,
+          "weight_bits": null,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "recorded_f64",
+          "format_model": "unorm8_nearest_even",
+          "fraction": [
+            0.9176669544976903,
+            0.19736891287902836
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.574433386625932,
+            1.5004170249389985
+          ],
+          "value": 0.0160614013671875,
+          "weight_bits": 8,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "recorded_f64",
+          "format_model": "unorm8_nearest_even",
+          "fraction": [
+            0.9176669544976903,
+            0.19736891287902836
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.574433386625932,
+            1.5004170249389985
+          ],
+          "value": 0.015907525081260532,
+          "weight_bits": 12,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_separate",
+          "format_model": "recorded_float32",
+          "fraction": [
+            0.9183349609375,
+            0.197021484375
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.574433445930481,
+            1.5004169940948486
+          ],
+          "value": 0.01598334450456873,
+          "weight_bits": null,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_separate",
+          "format_model": "recorded_float32",
+          "fraction": [
+            0.9183349609375,
+            0.197021484375
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.574433445930481,
+            1.5004169940948486
+          ],
+          "value": 0.015850067768496956,
+          "weight_bits": 8,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_separate",
+          "format_model": "recorded_float32",
+          "fraction": [
+            0.9183349609375,
+            0.197021484375
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.574433445930481,
+            1.5004169940948486
+          ],
+          "value": 0.01598154071893454,
+          "weight_bits": 12,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_separate",
+          "format_model": "snorm8_nearest_even",
+          "fraction": [
+            0.9183349609375,
+            0.197021484375
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.574433445930481,
+            1.5004169940948486
+          ],
+          "value": 0.01665372243077736,
+          "weight_bits": null,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_separate",
+          "format_model": "snorm8_nearest_even",
+          "fraction": [
+            0.9183349609375,
+            0.197021484375
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.574433445930481,
+            1.5004169940948486
+          ],
+          "value": 0.016514335091658464,
+          "weight_bits": 8,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_separate",
+          "format_model": "snorm8_nearest_even",
+          "fraction": [
+            0.9183349609375,
+            0.197021484375
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.574433445930481,
+            1.5004169940948486
+          ],
+          "value": 0.016652018066466323,
+          "weight_bits": 12,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_separate",
+          "format_model": "unorm8_nearest_even",
+          "fraction": [
+            0.9183349609375,
+            0.197021484375
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.574433445930481,
+            1.5004169940948486
+          ],
+          "value": 0.015878877569647395,
+          "weight_bits": null,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_separate",
+          "format_model": "unorm8_nearest_even",
+          "fraction": [
+            0.9183349609375,
+            0.197021484375
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.574433445930481,
+            1.5004169940948486
+          ],
+          "value": 0.015746471928615197,
+          "weight_bits": 8,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_separate",
+          "format_model": "unorm8_nearest_even",
+          "fraction": [
+            0.9183349609375,
+            0.197021484375
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.574433445930481,
+            1.5004169940948486
+          ],
+          "value": 0.015877085573533,
+          "weight_bits": 12,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_fma_model",
+          "format_model": "recorded_float32",
+          "fraction": [
+            0.9183349609375,
+            0.197021484375
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.574433445930481,
+            1.5004169940948486
+          ],
+          "value": 0.01598334450456873,
+          "weight_bits": null,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_fma_model",
+          "format_model": "recorded_float32",
+          "fraction": [
+            0.9183349609375,
+            0.197021484375
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.574433445930481,
+            1.5004169940948486
+          ],
+          "value": 0.015850067768496956,
+          "weight_bits": 8,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_fma_model",
+          "format_model": "recorded_float32",
+          "fraction": [
+            0.9183349609375,
+            0.197021484375
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.574433445930481,
+            1.5004169940948486
+          ],
+          "value": 0.01598154071893454,
+          "weight_bits": 12,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_fma_model",
+          "format_model": "snorm8_nearest_even",
+          "fraction": [
+            0.9183349609375,
+            0.197021484375
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.574433445930481,
+            1.5004169940948486
+          ],
+          "value": 0.01665372243077736,
+          "weight_bits": null,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_fma_model",
+          "format_model": "snorm8_nearest_even",
+          "fraction": [
+            0.9183349609375,
+            0.197021484375
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.574433445930481,
+            1.5004169940948486
+          ],
+          "value": 0.016514335091658464,
+          "weight_bits": 8,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_fma_model",
+          "format_model": "snorm8_nearest_even",
+          "fraction": [
+            0.9183349609375,
+            0.197021484375
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.574433445930481,
+            1.5004169940948486
+          ],
+          "value": 0.016652018066466323,
+          "weight_bits": 12,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_fma_model",
+          "format_model": "unorm8_nearest_even",
+          "fraction": [
+            0.9183349609375,
+            0.197021484375
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.574433445930481,
+            1.5004169940948486
+          ],
+          "value": 0.015878877569647395,
+          "weight_bits": null,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_fma_model",
+          "format_model": "unorm8_nearest_even",
+          "fraction": [
+            0.9183349609375,
+            0.197021484375
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.574433445930481,
+            1.5004169940948486
+          ],
+          "value": 0.015746471928615197,
+          "weight_bits": 8,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_fma_model",
+          "format_model": "unorm8_nearest_even",
+          "fraction": [
+            0.9183349609375,
+            0.197021484375
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.574433445930481,
+            1.5004169940948486
+          ],
+          "value": 0.015877085573533,
+          "weight_bits": 12,
+          "yellow": true
+        }
+      ],
+      "terrain_uv": [
+        0.537216693312966,
+        0.5002085124694993
+      ],
+      "threshold_roots": [
+        {
+          "axis": 1,
+          "delta_attribute_uv": [
+            0.0,
+            -6.585426802365495e-06
+          ],
+          "delta_texels": -0.07417824750184493,
+          "fraction": 0.12319066537718343,
+          "threshold": 0.01,
+          "threshold_is_yellow": false,
+          "world_displacement": [
+            0.0,
+            -0.006743477045622267,
+            0.0
+          ],
+          "world_displacement_is_proxy_only": true,
+          "world_displacement_norm": 0.006743477045622267
+        }
+      ],
+      "triangle_index": 606
+    },
+    {
+      "conditional_envelopes": [
+        {
+          "all_yellow": true,
+          "code_model": "adjacent_snorm8_floor_ceil",
+          "fraction_bits_model": 8,
+          "fraction_box": [
+            [
+              0.9137607044976903,
+              0.9215732044976903
+            ],
+            [
+              0.19346266287902836,
+              0.20127516287902836
+            ]
+          ],
+          "fraction_error": 0.00390625,
+          "hardware_bound_proven": false,
+          "maximum": 0.01721519615179751,
+          "minimum": 0.014904649865359951
+        },
+        {
+          "all_yellow": true,
+          "code_model": "adjacent_snorm8_floor_ceil",
+          "fraction_bits_model": 12,
+          "fraction_box": [
+            [
+              0.9174228138726903,
+              0.9179110951226903
+            ],
+            [
+              0.19712477225402836,
+              0.19761305350402836
+            ]
+          ],
+          "fraction_error": 0.000244140625,
+          "hardware_bound_proven": false,
+          "maximum": 0.016844990819245394,
+          "minimum": 0.015243626118673055
+        }
+      ],
+      "cpu_candidate_bounds_match": true,
+      "raw_float32_values": [
+        0.0,
+        0.0,
+        0.15000000596046448,
+        0.07500000298023224
+      ],
+      "ray": "bottom_right",
+      "recorded_attribute_uv": [
+        1.574433386625932,
+        1.5004170249389985
+      ],
+      "recorded_fraction": [
+        0.9176669544976903,
+        0.19736891287902836
+      ],
+      "scenarios": [
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "recorded_f64",
+          "format_model": "recorded_float32",
+          "fraction": [
+            0.9176669544976903,
+            0.19736891287902836
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.574433386625932,
+            1.5004170249389985
+          ],
+          "value": 0.016021417878921834,
+          "weight_bits": null,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "recorded_f64",
+          "format_model": "recorded_float32",
+          "fraction": [
+            0.9176669544976903,
+            0.19736891287902836
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.574433386625932,
+            1.5004170249389985
+          ],
+          "value": 0.016167069123866895,
+          "weight_bits": 8,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "recorded_f64",
+          "format_model": "recorded_float32",
+          "fraction": [
+            0.9176669544976903,
+            0.19736891287902836
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.574433386625932,
+            1.5004170249389985
+          ],
+          "value": 0.016012180487798844,
+          "weight_bits": 12,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "recorded_f64",
+          "format_model": "snorm8_nearest_even",
+          "fraction": [
+            0.9176669544976903,
+            0.19736891287902836
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.574433386625932,
+            1.5004170249389985
+          ],
+          "value": 0.016692432928768326,
+          "weight_bits": null,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "recorded_f64",
+          "format_model": "snorm8_nearest_even",
+          "fraction": [
+            0.9176669544976903,
+            0.19736891287902836
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.574433386625932,
+            1.5004170249389985
+          ],
+          "value": 0.016844621793491634,
+          "weight_bits": 8,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "recorded_f64",
+          "format_model": "snorm8_nearest_even",
+          "fraction": [
+            0.9176669544976903,
+            0.19736891287902836
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.574433386625932,
+            1.5004170249389985
+          ],
+          "value": 0.01668289139514833,
+          "weight_bits": 12,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "recorded_f64",
+          "format_model": "unorm8_nearest_even",
+          "fraction": [
+            0.9176669544976903,
+            0.19736891287902836
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.574433386625932,
+            1.5004170249389985
+          ],
+          "value": 0.01591670209691348,
+          "weight_bits": null,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "recorded_f64",
+          "format_model": "unorm8_nearest_even",
+          "fraction": [
+            0.9176669544976903,
+            0.19736891287902836
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.574433386625932,
+            1.5004170249389985
+          ],
+          "value": 0.0160614013671875,
+          "weight_bits": 8,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "recorded_f64",
+          "format_model": "unorm8_nearest_even",
+          "fraction": [
+            0.9176669544976903,
+            0.19736891287902836
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.574433386625932,
+            1.5004170249389985
+          ],
+          "value": 0.015907525081260532,
+          "weight_bits": 12,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_separate",
+          "format_model": "recorded_float32",
+          "fraction": [
+            0.9183349609375,
+            0.197021484375
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.574433445930481,
+            1.5004169940948486
+          ],
+          "value": 0.01598334450456873,
+          "weight_bits": null,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_separate",
+          "format_model": "recorded_float32",
+          "fraction": [
+            0.9183349609375,
+            0.197021484375
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.574433445930481,
+            1.5004169940948486
+          ],
+          "value": 0.015850067768496956,
+          "weight_bits": 8,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_separate",
+          "format_model": "recorded_float32",
+          "fraction": [
+            0.9183349609375,
+            0.197021484375
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.574433445930481,
+            1.5004169940948486
+          ],
+          "value": 0.01598154071893454,
+          "weight_bits": 12,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_separate",
+          "format_model": "snorm8_nearest_even",
+          "fraction": [
+            0.9183349609375,
+            0.197021484375
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.574433445930481,
+            1.5004169940948486
+          ],
+          "value": 0.01665372243077736,
+          "weight_bits": null,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_separate",
+          "format_model": "snorm8_nearest_even",
+          "fraction": [
+            0.9183349609375,
+            0.197021484375
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.574433445930481,
+            1.5004169940948486
+          ],
+          "value": 0.016514335091658464,
+          "weight_bits": 8,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_separate",
+          "format_model": "snorm8_nearest_even",
+          "fraction": [
+            0.9183349609375,
+            0.197021484375
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.574433445930481,
+            1.5004169940948486
+          ],
+          "value": 0.016652018066466323,
+          "weight_bits": 12,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_separate",
+          "format_model": "unorm8_nearest_even",
+          "fraction": [
+            0.9183349609375,
+            0.197021484375
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.574433445930481,
+            1.5004169940948486
+          ],
+          "value": 0.015878877569647395,
+          "weight_bits": null,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_separate",
+          "format_model": "unorm8_nearest_even",
+          "fraction": [
+            0.9183349609375,
+            0.197021484375
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.574433445930481,
+            1.5004169940948486
+          ],
+          "value": 0.015746471928615197,
+          "weight_bits": 8,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_separate",
+          "format_model": "unorm8_nearest_even",
+          "fraction": [
+            0.9183349609375,
+            0.197021484375
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.574433445930481,
+            1.5004169940948486
+          ],
+          "value": 0.015877085573533,
+          "weight_bits": 12,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_fma_model",
+          "format_model": "recorded_float32",
+          "fraction": [
+            0.9183349609375,
+            0.197021484375
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.574433445930481,
+            1.5004169940948486
+          ],
+          "value": 0.01598334450456873,
+          "weight_bits": null,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_fma_model",
+          "format_model": "recorded_float32",
+          "fraction": [
+            0.9183349609375,
+            0.197021484375
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.574433445930481,
+            1.5004169940948486
+          ],
+          "value": 0.015850067768496956,
+          "weight_bits": 8,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_fma_model",
+          "format_model": "recorded_float32",
+          "fraction": [
+            0.9183349609375,
+            0.197021484375
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.574433445930481,
+            1.5004169940948486
+          ],
+          "value": 0.01598154071893454,
+          "weight_bits": 12,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_fma_model",
+          "format_model": "snorm8_nearest_even",
+          "fraction": [
+            0.9183349609375,
+            0.197021484375
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.574433445930481,
+            1.5004169940948486
+          ],
+          "value": 0.01665372243077736,
+          "weight_bits": null,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_fma_model",
+          "format_model": "snorm8_nearest_even",
+          "fraction": [
+            0.9183349609375,
+            0.197021484375
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.574433445930481,
+            1.5004169940948486
+          ],
+          "value": 0.016514335091658464,
+          "weight_bits": 8,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_fma_model",
+          "format_model": "snorm8_nearest_even",
+          "fraction": [
+            0.9183349609375,
+            0.197021484375
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.574433445930481,
+            1.5004169940948486
+          ],
+          "value": 0.016652018066466323,
+          "weight_bits": 12,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_fma_model",
+          "format_model": "unorm8_nearest_even",
+          "fraction": [
+            0.9183349609375,
+            0.197021484375
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.574433445930481,
+            1.5004169940948486
+          ],
+          "value": 0.015878877569647395,
+          "weight_bits": null,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_fma_model",
+          "format_model": "unorm8_nearest_even",
+          "fraction": [
+            0.9183349609375,
+            0.197021484375
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.574433445930481,
+            1.5004169940948486
+          ],
+          "value": 0.015746471928615197,
+          "weight_bits": 8,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_fma_model",
+          "format_model": "unorm8_nearest_even",
+          "fraction": [
+            0.9183349609375,
+            0.197021484375
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.574433445930481,
+            1.5004169940948486
+          ],
+          "value": 0.015877085573533,
+          "weight_bits": 12,
+          "yellow": true
+        }
+      ],
+      "terrain_uv": [
+        0.537216693312966,
+        0.5002085124694993
+      ],
+      "threshold_roots": [
+        {
+          "axis": 1,
+          "delta_attribute_uv": [
+            0.0,
+            -6.585426802365495e-06
+          ],
+          "delta_texels": -0.07417824750184493,
+          "fraction": 0.12319066537718343,
+          "threshold": 0.01,
+          "threshold_is_yellow": false,
+          "world_displacement": [
+            0.0,
+            -0.006743477045622267,
+            0.0
+          ],
+          "world_displacement_is_proxy_only": true,
+          "world_displacement_norm": 0.006743477045622267
+        }
+      ],
+      "triangle_index": 606
+    },
+    {
+      "conditional_envelopes": [
+        {
+          "all_yellow": true,
+          "code_model": "adjacent_snorm8_floor_ceil",
+          "fraction_bits_model": 8,
+          "fraction_box": [
+            [
+              0.1344270289846463,
+              0.1422395289846463
+            ],
+            [
+              0.2617227535956772,
+              0.2695352535956772
+            ]
+          ],
+          "fraction_error": 0.00390625,
+          "hardware_bound_proven": false,
+          "maximum": 0.01837027009828245,
+          "minimum": 0.01590912513068481
+        },
+        {
+          "all_yellow": true,
+          "code_model": "adjacent_snorm8_floor_ceil",
+          "fraction_bits_model": 12,
+          "fraction_box": [
+            [
+              0.1380891383596463,
+              0.1385774196096463
+            ],
+            [
+              0.2653848629706772,
+              0.2658731442206772
+            ]
+          ],
+          "fraction_error": 0.000244140625,
+          "hardware_bound_proven": false,
+          "maximum": 0.018044011875769598,
+          "minimum": 0.016200603315832052
+        }
+      ],
+      "cpu_candidate_bounds_match": true,
+      "raw_float32_values": [
+        0.0,
+        0.0,
+        0.07500000298023224,
+        0.0
+      ],
+      "ray": "bottom_left",
+      "recorded_attribute_uv": [
+        1.57445297703116,
+        1.5004230849612568
+      ],
+      "recorded_fraction": [
+        0.1383332789846463,
+        0.2656290035956772
+      ],
+      "scenarios": [
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "recorded_f64",
+          "format_model": "recorded_float32",
+          "fraction": [
+            0.1383332789846463,
+            0.2656290035956772
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.57445297703116,
+            1.5004230849612568
+          ],
+          "value": 0.017166276122241208,
+          "weight_bits": null,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "recorded_f64",
+          "format_model": "recorded_float32",
+          "fraction": [
+            0.1383332789846463,
+            0.2656290035956772
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.57445297703116,
+            1.5004230849612568
+          ],
+          "value": 0.01719818183573807,
+          "weight_bits": 8,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "recorded_f64",
+          "format_model": "recorded_float32",
+          "fraction": [
+            0.1383332789846463,
+            0.2656290035956772
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.57445297703116,
+            1.5004230849612568
+          ],
+          "value": 0.017164135661289492,
+          "weight_bits": 12,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "recorded_f64",
+          "format_model": "snorm8_nearest_even",
+          "fraction": [
+            0.1383332789846463,
+            0.2656290035956772
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.57445297703116,
+            1.5004230849612568
+          ],
+          "value": 0.018022336420067935,
+          "weight_bits": null,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "recorded_f64",
+          "format_model": "snorm8_nearest_even",
+          "fraction": [
+            0.1383332789846463,
+            0.2656290035956772
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.57445297703116,
+            1.5004230849612568
+          ],
+          "value": 0.018055833230807086,
+          "weight_bits": 8,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "recorded_f64",
+          "format_model": "snorm8_nearest_even",
+          "fraction": [
+            0.1383332789846463,
+            0.2656290035956772
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.57445297703116,
+            1.5004230849612568
+          ],
+          "value": 0.018020089217058315,
+          "weight_bits": 12,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "recorded_f64",
+          "format_model": "unorm8_nearest_even",
+          "fraction": [
+            0.1383332789846463,
+            0.2656290035956772
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.57445297703116,
+            1.5004230849612568
+          ],
+          "value": 0.017054077561421147,
+          "weight_bits": null,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "recorded_f64",
+          "format_model": "unorm8_nearest_even",
+          "fraction": [
+            0.1383332789846463,
+            0.2656290035956772
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.57445297703116,
+            1.5004230849612568
+          ],
+          "value": 0.017085774739583334,
+          "weight_bits": 8,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "recorded_f64",
+          "format_model": "unorm8_nearest_even",
+          "fraction": [
+            0.1383332789846463,
+            0.2656290035956772
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.57445297703116,
+            1.5004230849612568
+          ],
+          "value": 0.01705195109049479,
+          "weight_bits": 12,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_separate",
+          "format_model": "recorded_float32",
+          "fraction": [
+            0.1385498046875,
+            0.2655029296875
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.5744529962539673,
+            1.5004230737686157
+          ],
+          "value": 0.017153816979281755,
+          "weight_bits": null,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_separate",
+          "format_model": "recorded_float32",
+          "fraction": [
+            0.1385498046875,
+            0.2655029296875
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.5744529962539673,
+            1.5004230737686157
+          ],
+          "value": 0.01719818183573807,
+          "weight_bits": 8,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_separate",
+          "format_model": "recorded_float32",
+          "fraction": [
+            0.1385498046875,
+            0.2655029296875
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.5744529962539673,
+            1.5004230737686157
+          ],
+          "value": 0.017159271922082553,
+          "weight_bits": 12,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_separate",
+          "format_model": "snorm8_nearest_even",
+          "fraction": [
+            0.1385498046875,
+            0.2655029296875
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.5744529962539673,
+            1.5004230737686157
+          ],
+          "value": 0.01800925595553841,
+          "weight_bits": null,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_separate",
+          "format_model": "snorm8_nearest_even",
+          "fraction": [
+            0.1385498046875,
+            0.2655029296875
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.5744529962539673,
+            1.5004230737686157
+          ],
+          "value": 0.018055833230807086,
+          "weight_bits": 8,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_separate",
+          "format_model": "snorm8_nearest_even",
+          "fraction": [
+            0.1385498046875,
+            0.2655029296875
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.5744529962539673,
+            1.5004230737686157
+          ],
+          "value": 0.018014982929379923,
+          "weight_bits": 12,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_separate",
+          "format_model": "unorm8_nearest_even",
+          "fraction": [
+            0.1385498046875,
+            0.2655029296875
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.5744529962539673,
+            1.5004230737686157
+          ],
+          "value": 0.017041699851260465,
+          "weight_bits": null,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_separate",
+          "format_model": "unorm8_nearest_even",
+          "fraction": [
+            0.1385498046875,
+            0.2655029296875
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.5744529962539673,
+            1.5004230737686157
+          ],
+          "value": 0.017085774739583334,
+          "weight_bits": 8,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_separate",
+          "format_model": "unorm8_nearest_even",
+          "fraction": [
+            0.1385498046875,
+            0.2655029296875
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.5744529962539673,
+            1.5004230737686157
+          ],
+          "value": 0.017047119140625,
+          "weight_bits": 12,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_fma_model",
+          "format_model": "recorded_float32",
+          "fraction": [
+            0.1385498046875,
+            0.2655029296875
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.5744529962539673,
+            1.5004230737686157
+          ],
+          "value": 0.017153816979281755,
+          "weight_bits": null,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_fma_model",
+          "format_model": "recorded_float32",
+          "fraction": [
+            0.1385498046875,
+            0.2655029296875
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.5744529962539673,
+            1.5004230737686157
+          ],
+          "value": 0.01719818183573807,
+          "weight_bits": 8,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_fma_model",
+          "format_model": "recorded_float32",
+          "fraction": [
+            0.1385498046875,
+            0.2655029296875
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.5744529962539673,
+            1.5004230737686157
+          ],
+          "value": 0.017159271922082553,
+          "weight_bits": 12,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_fma_model",
+          "format_model": "snorm8_nearest_even",
+          "fraction": [
+            0.1385498046875,
+            0.2655029296875
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.5744529962539673,
+            1.5004230737686157
+          ],
+          "value": 0.01800925595553841,
+          "weight_bits": null,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_fma_model",
+          "format_model": "snorm8_nearest_even",
+          "fraction": [
+            0.1385498046875,
+            0.2655029296875
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.5744529962539673,
+            1.5004230737686157
+          ],
+          "value": 0.018055833230807086,
+          "weight_bits": 8,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_fma_model",
+          "format_model": "snorm8_nearest_even",
+          "fraction": [
+            0.1385498046875,
+            0.2655029296875
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.5744529962539673,
+            1.5004230737686157
+          ],
+          "value": 0.018014982929379923,
+          "weight_bits": 12,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_fma_model",
+          "format_model": "unorm8_nearest_even",
+          "fraction": [
+            0.1385498046875,
+            0.2655029296875
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.5744529962539673,
+            1.5004230737686157
+          ],
+          "value": 0.017041699851260465,
+          "weight_bits": null,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_fma_model",
+          "format_model": "unorm8_nearest_even",
+          "fraction": [
+            0.1385498046875,
+            0.2655029296875
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.5744529962539673,
+            1.5004230737686157
+          ],
+          "value": 0.017085774739583334,
+          "weight_bits": 8,
+          "yellow": true
+        },
+        {
+          "actual_gpu_sample_proven": false,
+          "coordinate_model": "f32_fma_model",
+          "format_model": "unorm8_nearest_even",
+          "fraction": [
+            0.1385498046875,
+            0.2655029296875
+          ],
+          "status": "MODELED",
+          "uv": [
+            1.5744529962539673,
+            1.5004230737686157
+          ],
+          "value": 0.017047119140625,
+          "weight_bits": 12,
+          "yellow": true
+        }
+      ],
+      "terrain_uv": [
+        0.53722648851558,
+        0.5002115424806284
+      ],
+      "threshold_roots": [
+        {
+          "axis": 0,
+          "delta_attribute_uv": [
+            3.193479423536667e-05,
+            0.0
+          ],
+          "delta_texels": 0.35971352226717024,
+          "fraction": 0.49804680125181655,
+          "threshold": 0.01,
+          "threshold_is_yellow": false,
+          "world_displacement": [
+            0.03270122929701547,
+            0.0,
+            0.0
+          ],
+          "world_displacement_is_proxy_only": true,
+          "world_displacement_norm": 0.03270122929701547
+        },
+        {
+          "axis": 1,
+          "delta_attribute_uv": [
+            0.0,
+            -9.844650333922174e-06
+          ],
+          "delta_texels": -0.11089014136129938,
+          "fraction": 0.15473886223437783,
+          "threshold": 0.01,
+          "threshold_is_yellow": false,
+          "world_displacement": [
+            0.0,
+            -0.010080921941936306,
+            0.0
+          ],
+          "world_displacement_is_proxy_only": true,
+          "world_displacement_norm": 0.010080921941936306
+        }
+      ],
+      "triangle_index": 606
+    }
+  ],
+  "prior_prepared_boundary_revalidated": true,
+  "prior_verified_source_images": 14,
+  "protocol": "sdk3-sampling-envelope-v1",
+  "repair_proven": false,
+  "scenario_count": 135,
+  "source": {
+    "actual_run": 44067526874,
+    "artifact_digest": "sha256:f5bbd810ad6369c64cece2e5c828b33b4eb43356b2069ca7136338c235144aad",
+    "artifact_id": 14320743853,
+    "input_file_count": 11,
+    "input_index_sha256": "6543dc462cf3af472af77ad481566cfdfc947ec321b8cf46b98f23d02f9c3e54",
+    "inputs": [
+      {
+        "nbytes": 15418,
+        "path": "docs/evidence/sdk3-prepared-texture-01/actual/bundle/renderer/prepared.json",
+        "sha256": "1a6650f8a760b6cf595e971e246e8e63cd5b91667a77bdfbc40ac738a5c2a5f1"
+      },
+      {
+        "nbytes": 59038,
+        "path": "docs/evidence/sdk3-prepared-texture-01/actual/bundle/renderer/terrain.json",
+        "sha256": "43791e0a6bf8609d3bef79ad2d18b0004591cb76462771a9e07bf7eaebd7601d"
+      },
+      {
+        "nbytes": 13924,
+        "path": "docs/evidence/sdk3-prepared-texture-01/actual/bundle/renderer/geometry-observer.json",
+        "sha256": "5092fa3e7cb1ba3eaa6b6390532104e75a83a8006e214ffff49e0909974c1692"
+      },
+      {
+        "nbytes": 24465,
+        "path": "docs/evidence/sdk3-prepared-texture-01/actual/bundle/renderer/material.json",
+        "sha256": "b1fa19a995f50b181f0a9de9279942bd45688a7b966b32c476c5707ca66b0b53"
+      },
+      {
+        "nbytes": 12581,
+        "path": "docs/evidence/sdk3-prepared-texture-01/actual/bundle/renderer/shader.json",
+        "sha256": "df9818eae82bd3623164648beebb2510e4a923a6d68cdf71edfa68391d1d80d3"
+      },
+      {
+        "nbytes": 9318,
+        "path": "docs/evidence/sdk3-prepared-texture-01/actual/bundle/renderer/report.json",
+        "sha256": "66f9802f473e0abfba08f2108bdf9dc1067a3bf955830a126310af8f5b3ba8c9"
+      },
+      {
+        "nbytes": 28410,
+        "path": "docs/evidence/sdk3-prepared-texture-01/actual/bundle/renderer/progress.jsonl",
+        "sha256": "5835a65f2d2ac9e28cc886900b1486370ea1603f0ca79c60df85d29df98698d0"
+      },
+      {
+        "nbytes": 21592,
+        "path": "docs/evidence/sdk3-prepared-texture-01/actual/independent-observation.json",
+        "sha256": "35b49f5af2d640b8591fc8e3fed8f8454c54a56ba3b186b9f5718ecdedfc3a02"
+      },
+      {
+        "nbytes": 6504,
+        "path": "docs/evidence/sdk3-prepared-texture-01/reference-index.json",
+        "sha256": "c4e30a70fcc8200f4b6134c1b3c23681b4d17d7609f6d9bd41c8af73398a0f1b"
+      },
+      {
+        "nbytes": 491575,
+        "path": "docs/evidence/sdk3-prepared-texture-01/panda-reference/glGraphicsStateGuardian_src.cxx.data",
+        "sha256": "a7ee480dbafa47f652bbab8b525606421cde6d9a15507422c423fe62128f2d6a"
+      },
+      {
+        "nbytes": 334067,
+        "path": "docs/evidence/sdk3-prepared-texture-01/panda-reference/texture.cxx.data",
+        "sha256": "66a590a220f98b0d3a3c17ee18efc51f3623cc66d69012f8cb20dcba8afd2691"
+      }
+    ],
+    "source_commit": "d6eb529d52364117a01d446652f2e938089625c2",
+    "source_pr": 142
+  },
+  "stage7_complete": false,
+  "status": "CONDITIONAL_MODELS_RECORDED",
+  "unavailable_scenario_count": 0,
+  "unique_cause_proven": false,
+  "within_captured_cells_only": true
+}
