@@ -1,0 +1,7 @@
+from pathlib import Path
+import json
+ROOT=Path('/dev/shm/stage7-sdk3-runtime-20261116/repo');out=ROOT/'output/stage7-sdk3-shader-cache-01/actual';receipt=json.loads((out/'independent-observation.json').read_text());report=json.loads((out/'bundle/renderer/report.json').read_text());old=ROOT/'docs/evidence/sdk3-shader-path-01/actual/bundle/renderer/report.json';prior=json.loads(old.read_text());rows=[]
+for capture,before in zip(report['captures'],prior['captures']):
+ assert capture['step']==before['step']
+ for camera in ('road','wide'):rows.append(dict(step=capture['step'],camera=camera,sha256=capture[camera+'_sha256'],prior_sha256=before[camera+'_sha256'],bit_exact=capture[camera+'_sha256']==before[camera+'_sha256']))
+x=dict(current_run=receipt['run_id'],prior_run=43977840900,prior_report=str(old.relative_to(ROOT)),current_capture_count=len(report['captures']),all_14_source_images_bit_exact=len(rows)==14 and all(v['bit_exact'] for v in rows),images=rows,gpu_cause_proven=False,repair_proven=False,stage7_complete=False);(out/'prior-phase-image-comparison.json').write_text(json.dumps(x,indent=2)+'\n');print(json.dumps(dict(all14=x['all_14_source_images_bit_exact'],differences=[r for r in rows if not r['bit_exact']])))

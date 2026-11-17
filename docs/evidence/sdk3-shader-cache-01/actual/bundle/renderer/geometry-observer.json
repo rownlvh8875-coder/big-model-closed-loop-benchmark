@@ -1,0 +1,549 @@
+{
+  "protocol": "sdk3-pixel-geometry-budget-v1",
+  "pid": 9,
+  "nonce": "000a998f899270bf1fc735459f6bcc5a",
+  "status": "GEOMETRY_RECORDED",
+  "child_timeout_seconds": 600,
+  "container_timeout_seconds": 630,
+  "official_model_processes": 0,
+  "onnx_inferences": 0,
+  "repair_proven": false,
+  "stage7_complete": false,
+  "target_step": 7,
+  "target_pixel_xy": [
+    596,
+    494
+  ],
+  "target_pixel_rgb": [
+    199,
+    187,
+    0
+  ],
+  "target_read_sha256": "5289613b610abe2270b4e7d98c106608689c55c216b2085d439eb39eec571adb",
+  "target_image": {
+    "camera": "road",
+    "file": "target-road.rgb.zlib",
+    "shape": [
+      604,
+      964,
+      3
+    ],
+    "sha256": "5289613b610abe2270b4e7d98c106608689c55c216b2085d439eb39eec571adb",
+    "raw_bytes": 1746768,
+    "compressed_bytes": 895849
+  },
+  "observer": {
+    "read_attempts": 7,
+    "reads": 7,
+    "inspection_attempts": 1,
+    "inspections": 1
+  },
+  "geometry": {
+    "stage": "AFTER_ORIGINAL_ROAD_CPU_READ_BEFORE_CAMERA_RESTORE",
+    "borrowed_parent_is_origin": true,
+    "source_viewport": [
+      0.0,
+      1.0,
+      0.0,
+      1.0
+    ],
+    "source_buffer_size": [
+      964,
+      604
+    ],
+    "camera_node_path": "render/world_np/cam",
+    "camera_to_world": [
+      [
+        0.08031406998634338,
+        -0.9967696070671082,
+        0.0,
+        0.0
+      ],
+      [
+        0.9967696070671082,
+        0.08031406998634338,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0,
+        0.0
+      ],
+      [
+        67.79573822021484,
+        0.4795995354652405,
+        1.2200000286102295,
+        1.0
+      ]
+    ],
+    "lens_projection": [
+      [
+        2.746887683868408,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0000020265579224,
+        1.0
+      ],
+      [
+        0.0,
+        4.384105682373047,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        -0.20000019669532776,
+        0.0
+      ]
+    ],
+    "lens_near": 0.10000000149011612,
+    "lens_far": 100000.0,
+    "framebuffer_reported_depth_bits": 0,
+    "framebuffer_reported_multisamples": 0,
+    "framebuffer_properties": "color_bits=24 red_bits=8 green_bits=8 blue_bits=8 force_hardware force_software ",
+    "camera_mask": " 0000 0000 0000 0000 0000 1000 0000 0000\n",
+    "camera_initial_state": "(empty)\n",
+    "rays": [
+      {
+        "name": "center",
+        "ndc": [
+          0.237551867219917,
+          -0.6374172185430463
+        ],
+        "origin": [
+          67.89610974152885,
+          0.47901084123364,
+          1.2054607523605227
+        ],
+        "direction": [
+          0.9896541704704817,
+          -0.005804472304065049,
+          -0.143355958968067
+        ],
+        "max_distance": 101283.15668906394
+      },
+      {
+        "name": "top_left",
+        "ndc": [
+          0.23651452282157676,
+          -0.6357615894039735
+        ],
+        "origin": [
+          67.89610670853232,
+          0.4790484834395163,
+          1.2054985146969557
+        ],
+        "direction": [
+          0.9897083830023106,
+          -0.005433776679551457,
+          -0.1429957715666749
+        ],
+        "max_distance": 101274.54832761342
+      },
+      {
+        "name": "top_right",
+        "ndc": [
+          0.23858921161825727,
+          -0.6357615894039735
+        ],
+        "origin": [
+          67.89611277452536,
+          0.47897319902776375,
+          1.2054985146969557
+        ],
+        "direction": [
+          0.9897053432203794,
+          -0.006175752861499355,
+          -0.14298669056113145
+        ],
+        "max_distance": 101280.98021810032
+      },
+      {
+        "name": "bottom_right",
+        "ndc": [
+          0.23858921161825727,
+          -0.6390728476821192
+        ],
+        "origin": [
+          67.89611277452536,
+          0.47897319902776375,
+          1.205422987230122
+        ],
+        "direction": [
+          0.9895996972415917,
+          -0.006175093631496937,
+          -0.14371606534411002
+        ],
+        "max_distance": 101291.79259841687
+      },
+      {
+        "name": "bottom_left",
+        "ndc": [
+          0.23651452282157676,
+          -0.6390728476821192
+        ],
+        "origin": [
+          67.89610670853232,
+          0.4790484834395163,
+          1.205422987230122
+        ],
+        "direction": [
+          0.9896027232816879,
+          -0.005433196578043025,
+          -0.14372519072316947
+        ],
+        "max_distance": 101285.36139454496
+      }
+    ],
+    "meshes": [
+      {
+        "mesh_id": 0,
+        "node_ordinal": 3,
+        "path": "render/8a1553ff-0186-42e6-b76b-59e2ca61a02a/SceneRoot/SkyboxMesh",
+        "node_name": "SkyboxMesh",
+        "geom_index": 0,
+        "vertex_count": 285,
+        "source_primitive_count": 1,
+        "primitive_triangle_counts": [
+          566
+        ],
+        "triangle_start": 0,
+        "triangle_end": 566,
+        "local_to_world": [
+          [
+            20000.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            20000.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            20000.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            -4400.0,
+            1.0
+          ]
+        ],
+        "bounds_min": [
+          -18889.060546875,
+          -18625.875,
+          -15877.7470703125
+        ],
+        "bounds_max": [
+          18613.484375,
+          18620.34375,
+          14871.765625
+        ],
+        "net_state_text": "AntialiasAttrib: auto\nCullFaceAttrib:cull_clockwise\nLightAttrib:on\n  render/d1287710-d206-483d-8415-01a3de7737be/direction light\n  render/d1287710-d206-483d-8415-01a3de7737be/Ambient\nMaterialAttrib:Material  a(1 1 1 1) d(1 1 1 1) s(1 1 1 1) s0 l0 t0\nRescaleNormalAttrib:auto\nShaderAttrib:skybox.frag.glsl,8 inputs\nTextureAttrib:on default:skybox\n",
+        "net_state_text_truncated": false,
+        "net_state_pointer": 139769113636480,
+        "vertex_data_pointer": 139769485031248,
+        "transform_pointer": 139769096413712,
+        "geom_pointer": 139769485033072,
+        "vertex_format": "Array 0:\n  Array format (stride = 24):\n    vertex(3f) float32 point start at 0\n    normal(3f) float32 normal start at 12\nArray 1:\n  Array format (stride = 8):\n    texcoord(2f) float32 texcoord start at 0\n"
+      },
+      {
+        "mesh_id": 1,
+        "node_ordinal": 5,
+        "path": "render/world_np/1C/1C_sidewalk/polygon_node",
+        "node_name": "polygon_node",
+        "geom_index": 0,
+        "vertex_count": 300,
+        "source_primitive_count": 1,
+        "primitive_triangle_counts": [
+          438
+        ],
+        "triangle_start": 566,
+        "triangle_end": 1004,
+        "local_to_world": [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "bounds_min": [
+          59.904380798339844,
+          -3.950000047683716,
+          -0.15000000596046448
+        ],
+        "bounds_max": [
+          144.033203125,
+          71.22618865966797,
+          0.15000000596046448
+        ],
+        "net_state_text": "AntialiasAttrib: auto\nCullFaceAttrib:cull_clockwise\nLightAttrib:on\n  render/d1287710-d206-483d-8415-01a3de7737be/direction light\n  render/d1287710-d206-483d-8415-01a3de7737be/Ambient\nMaterialAttrib:Material  s0 l0 t0\nRescaleNormalAttrib:auto\nShaderAttrib:created-shader,8 inputs\nTextureAttrib:on default:color normal:normal\n",
+        "net_state_text_truncated": false,
+        "net_state_pointer": 139768761881952,
+        "vertex_data_pointer": 139769096814336,
+        "transform_pointer": 139770223751952,
+        "geom_pointer": 139769096709088,
+        "vertex_format": "Array 0:\n  Array format (stride = 32):\n    vertex(3f) float32 point start at 0\n    normal(3f) float32 normal start at 12\n    texcoord(2f) float32 texcoord start at 24\n"
+      }
+    ],
+    "counts": {
+      "nodes_seen": 36,
+      "hidden": 3,
+      "bounds_missed": 31,
+      "geoms_tested": 2,
+      "triangles_tested": 1004,
+      "vertices_read": 585,
+      "oversize_skipped": 0,
+      "nontriangle_primitives": 0
+    },
+    "triangle_archive": {
+      "nbytes": 19652,
+      "sha256": "a37825f8adc223c0bf89d271e3eb470205249ba8743e2feea4c26a211f373eaf",
+      "triangles_shape": [
+        1004,
+        3,
+        3
+      ],
+      "ids_shape": [
+        1004,
+        6
+      ],
+      "triangles_sha256": "cb8e0e7e306e42e25e303a309f3b5eea9df25345419d716293fc5db421103f67",
+      "ids_sha256": "0230a71ce9b010614ffa8eae24928f036769ce850897db1bb50e52b13e026994"
+    },
+    "hits": {
+      "center": [
+        {
+          "triangle_index": 606,
+          "distance": 8.42081642210178,
+          "barycentric": [
+            0.2998789225350661,
+            0.2058326143177276,
+            0.4942884631472063
+          ],
+          "position": [
+            76.2298058324282,
+            0.4301324455339341,
+            -0.0017134611239248976
+          ]
+        },
+        {
+          "triangle_index": 106,
+          "distance": 18718.44201667925,
+          "barycentric": [
+            0.012186732991111282,
+            0.5637652718573293,
+            0.42404799515155944
+          ],
+          "position": [
+            18592.680316258047,
+            -108.17166741982861,
+            -2682.1947449368517
+          ]
+        }
+      ],
+      "top_left": [
+        {
+          "triangle_index": 606,
+          "distance": 8.430505303051548,
+          "barycentric": [
+            0.30326341382502486,
+            0.1968302388707361,
+            0.499906347304239
+          ],
+          "position": [
+            76.23984847990786,
+            0.4332390003269599,
+            -2.8095809844863595e-05
+          ]
+        },
+        {
+          "triangle_index": 106,
+          "distance": 18717.068270900436,
+          "barycentric": [
+            0.014836498471619997,
+            0.5619420647139288,
+            0.4232214368144512
+          ],
+          "position": [
+            18592.335479645255,
+            -101.2253205965518,
+            -2675.2561203488403
+          ]
+        }
+      ],
+      "top_right": [
+        {
+          "triangle_index": 606,
+          "distance": 8.410255827602906,
+          "barycentric": [
+            0.2965027621801931,
+            0.19368434775791576,
+            0.5098128900618911
+          ],
+          "position": [
+            76.2197879049543,
+            0.42703353753450346,
+            0.0029438671355463963
+          ]
+        },
+        {
+          "triangle_index": 106,
+          "distance": 18717.711230703902,
+          "barycentric": [
+            0.011060813731208263,
+            0.5619173774431182,
+            0.42702180882567353
+          ],
+          "position": [
+            18592.91493065828,
+            -115.11698549471048,
+            -2675.178085242577
+          ]
+        }
+      ],
+      "bottom_right": [
+        {
+          "triangle_index": 606,
+          "distance": 8.411153675198493,
+          "barycentric": [
+            0.29650276218019345,
+            0.2148136506169861,
+            0.48868358720282046
+          ],
+          "position": [
+            76.21978790495429,
+            0.42703353753450346,
+            -0.00339492397405583
+          ]
+        },
+        {
+          "triangle_index": 106,
+          "distance": 18719.820831678015,
+          "barycentric": [
+            0.009537038429355438,
+            0.5655885320738462,
+            0.4248744294967984
+          ],
+          "position": [
+            18593.02514021993,
+            -115.11767320143083,
+            -2689.1335708882393
+          ]
+        }
+      ],
+      "bottom_left": [
+        {
+          "triangle_index": 606,
+          "distance": 8.431405426721454,
+          "barycentric": [
+            0.3032634138250246,
+            0.21801113796221758,
+            0.4787254482127578
+          ],
+          "position": [
+            76.23984847990786,
+            0.4332390003269599,
+            -0.006382365789785016
+          ]
+        },
+        {
+          "triangle_index": 106,
+          "distance": 18719.178056456716,
+          "barycentric": [
+            0.013312701204089394,
+            0.5656133265311551,
+            0.42107397226475546
+          ],
+          "position": [
+            18592.44568897291,
+            -101.22592567667921,
+            -2689.21201335798
+          ]
+        }
+      ]
+    },
+    "scan_finished_within_budget": true,
+    "truncation_reasons": [],
+    "budgets": {
+      "max_nodes": 20000,
+      "max_meshes": 512,
+      "max_vertices": 500000,
+      "max_triangles": 500000,
+      "max_cpu_seconds": 45
+    },
+    "cpu_scan_seconds": 0.03652959100008957,
+    "cpu_total_seconds": 0.04149595400008366,
+    "cpu_solver_epsilon": 1e-12,
+    "cpu_bounds_padding_world_units": 0.0001,
+    "cpu_ray_reprojection_max_abs_ndc_error": 7.588248540635334e-08,
+    "cpu_sample_rays_not_msaa_positions": true,
+    "cpu_net_state_not_actual_cull_draw_state": true,
+    "cpu_scene_coverage_proven": false,
+    "gpu_pixel_owner_proven": false,
+    "depth_tie_proven": false,
+    "unique_cause_proven": false,
+    "lens_projection_inverse": [
+      [
+        0.36404839158058167,
+        0.0,
+        -0.0,
+        0.0
+      ],
+      [
+        0.0,
+        -0.0,
+        0.22809670865535736,
+        -0.0
+      ],
+      [
+        -0.0,
+        0.0,
+        -0.0,
+        -4.999995231628418
+      ],
+      [
+        0.0,
+        1.0,
+        -0.0,
+        5.00000524520874
+      ]
+    ],
+    "lens_inverse_dtype": "float32",
+    "lens_far_limit": 1e-07
+  },
+  "observers_restored": true
+}

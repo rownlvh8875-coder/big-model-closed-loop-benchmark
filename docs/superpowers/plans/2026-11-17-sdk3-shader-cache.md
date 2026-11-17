@@ -22,20 +22,20 @@ Base1fab41913a864d77a0f78a4f2b1d8fb0021e6745,additionsonly. Onefreshnative/0offi
 ### Task1: PSSM unaligned matrix compatibility
 **Files:** Create scripts/sdk3_pssm_matrix.py,scripts/sdk3_shader_cache_native.py,tests/test_sdk3_pssm_matrix.py.
 **Interfaces:** matrix_rows(core,matrix)->list[list[float]] via core.LMatrix4f conversion;newnative snapshot_shader/core adapter andownedentry overoldnative.
-- [ ] RED distinctrow/column non-getCell source,unaltered source,nonfinite,real oldsnapshot complete owner throughCPUdoubles. Expected missingmodule/oldAPI failure.
-- [ ] GREEN minimalconvert+finiteguard andprivate snapshot adapter;CPUtestsPASS,commit.
+- [x] RED distinctrow/column non-getCell source,unaltered source,nonfinite,real oldsnapshot complete owner throughCPUdoubles. Expected missingmodule/oldAPI failure.
+- [x] GREEN minimalconvert+finiteguard andprivate snapshot adapter;CPUtestsPASS,commit.
 
 ### Task2: exact pinned cache preprocessing
 **Files:** Create scripts/sdk3_shader_cache.py,tests/test_sdk3_shader_cache.py.
 **Interfaces:** preprocess_cache(source:str)->str;uses strictbounded observedsubset only,never receives actualcache for normalization.
-- [ ] RED literalcomments/blanklines/trailingwhitespace/EOF/sourceCRLF,unsupportedblock/continuation/quote/directive/NUL/oversize;all6prioractual cacheSHApositive/code negative. Expected missingmoduleFAIL.
-- [ ] GREEN exactbounded implementation;CPUtestsPASS,commit.
+- [x] RED literalcomments/blanklines/trailingwhitespace/EOF/sourceCRLF,unsupportedblock/continuation/quote/directive/NUL/oversize;all6prioractual cacheSHApositive/code negative. Expected missingmoduleFAIL.
+- [x] GREEN exactbounded implementation;CPUtestsPASS,commit.
 
 ### Task3: independent receiver,exact CI and one actual
 **Files:** Create scripts/run_sdk3_shader_cache.py,tests/test_sdk3_shader_cache_host.py,.github/workflows/sdk3-shader-cache-v1.yml,newreport/evidenceonly.
 **Interfaces:** validate_receipt(folder,reference,nonce)->dict withcachepolicyidentifier andowner-complete requirement;native helpers Task1,preprocess Task2,oldmaterialvalidation.
-- [ ] RED coherent completeactual-sourcefixture;rehashedcacheCRLF/code mismatch,missing/nonfinite owner,partial and source mismatch,wrongbindings,entryhelp. Expected missingreceiverFAIL.
-- [ ] GREEN reuseoldresource/source/lifecycle;expected-onlycachepreprocess;focusedregressions/actionlintPASS,commit.
-- [ ] Solefreshreview,one ImportantRED→GREEN pass/no rereview;exactsourcefourCIjobs+unitlogsPASS.
-- [ ] Oneversionedrequest;authenticateartifact/oldrawimages/geometry/material/cache+owner arrays,retainnegative/partial.
+- [x] RED coherent completeactual-sourcefixture;rehashedcacheCRLF/code mismatch,missing/nonfinite owner,partial and source mismatch,wrongbindings,entryhelp. Expected missingreceiverFAIL.
+- [x] GREEN reuseoldresource/source/lifecycle;expected-onlycachepreprocess;focusedregressions/actionlintPASS,commit.
+- [x] Sole fresh review: Critical0/Important0/Minor1; no fix pass/rereview. Exact source canonical4jobs PASS, both2030tests/7skips.
+- [x] One actual43985158042 authenticated. PSSM owner arrays complete/finite and6cache exact; original source mismatch retained.
 - [ ] Actualreport/ownDraftPR(parent137),finalexactHEADCI/logcounts/remote/body/parent/main/originalpreservation;own scratch archival/removal. No originalgatepromotion.

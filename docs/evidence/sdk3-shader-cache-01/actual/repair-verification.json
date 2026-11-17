@@ -1,0 +1,94 @@
+{
+  "current_run": 43985158042,
+  "prior_run": 43977840900,
+  "prior_matrix_api_failure": "AttributeError: 'panda3d.core.UnalignedLMatrix4f' object has no attribute 'getCell'",
+  "prior_owner_available": false,
+  "matrix_api_repair_observed": true,
+  "current_owner_available": true,
+  "mvp_shape": [
+    2,
+    4,
+    4
+  ],
+  "nearfar_shape": [
+    2,
+    2
+  ],
+  "finite_owner_arrays": true,
+  "nearfar_values": [
+    [
+      10.0,
+      88.77685546875
+    ],
+    [
+      10.0,
+      107.83857727050781
+    ]
+  ],
+  "shader_complete": true,
+  "shader_cache_policy_id": "panda1.10.13-observed-subset-v1",
+  "shader_variants_matched": true,
+  "stage_comparisons": [
+    {
+      "role": "pipeline",
+      "stage": "vertex",
+      "prior_sha256": "a0ee9afb297b54c776385b3c025d8effdac4825b135ee2aac5f226231fd807d1",
+      "current_sha256": "a0ee9afb297b54c776385b3c025d8effdac4825b135ee2aac5f226231fd807d1",
+      "same_raw_cache": true,
+      "exact_preprocessed_expected": true
+    },
+    {
+      "role": "pipeline",
+      "stage": "fragment",
+      "prior_sha256": "da1fcda1e8fbf3c40ba666c50b27937bf2a324438182ad7473373a9f94c24a3e",
+      "current_sha256": "da1fcda1e8fbf3c40ba666c50b27937bf2a324438182ad7473373a9f94c24a3e",
+      "same_raw_cache": true,
+      "exact_preprocessed_expected": true
+    },
+    {
+      "role": "skybox",
+      "stage": "vertex",
+      "prior_sha256": "889eef22ba47b2717459745582703d05b9d0cf9de245a24a098e0c39b30d1662",
+      "current_sha256": "889eef22ba47b2717459745582703d05b9d0cf9de245a24a098e0c39b30d1662",
+      "same_raw_cache": true,
+      "exact_preprocessed_expected": true
+    },
+    {
+      "role": "skybox",
+      "stage": "fragment",
+      "prior_sha256": "33c1b9ecff67b822cdafbd0ae3cbf877278709d346fc8cf1ad9490d86d6d407b",
+      "current_sha256": "33c1b9ecff67b822cdafbd0ae3cbf877278709d346fc8cf1ad9490d86d6d407b",
+      "same_raw_cache": true,
+      "exact_preprocessed_expected": true
+    },
+    {
+      "role": "tonemap",
+      "stage": "vertex",
+      "prior_sha256": "8166ad854899374d1ba86d3e34dc075e8efa04c4293be7952c80196b75f38c73",
+      "current_sha256": "8166ad854899374d1ba86d3e34dc075e8efa04c4293be7952c80196b75f38c73",
+      "same_raw_cache": true,
+      "exact_preprocessed_expected": true
+    },
+    {
+      "role": "tonemap",
+      "stage": "fragment",
+      "prior_sha256": "835b7ccb2d88f79d3d92b2009e142ad88453939a37a6e156808809e069c9af12",
+      "current_sha256": "835b7ccb2d88f79d3d92b2009e142ad88453939a37a6e156808809e069c9af12",
+      "same_raw_cache": true,
+      "exact_preprocessed_expected": true
+    }
+  ],
+  "all_six_actual_cache_bytes_match_pinned_expected": true,
+  "all_six_raw_cache_bytes_equal_prior": true,
+  "same_panda_core_version": true,
+  "source_image_equivalence": false,
+  "renderer_diagnostic_passed": false,
+  "owner_arrays_are_not_effective_gpu_uniform_proof": true,
+  "gpu_program_execution_proven": false,
+  "hardware_uniform_values_proven": false,
+  "gpu_pixel_owner_proven": false,
+  "unique_cause_proven": false,
+  "original_matrix_gate_passed": false,
+  "repair_proven": false,
+  "stage7_complete": false
+}
