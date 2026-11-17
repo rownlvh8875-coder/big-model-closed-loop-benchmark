@@ -68,7 +68,7 @@ def validate_terrain(folder,nonce,result):
     else:
         p.need(owner['available'],'present terrain owner');node=x.get('node');camera=x.get('camera');p.need(isinstance(node,dict) and isinstance(camera,dict) and all(isinstance(node.get(k),str) and len(node[k])<=4096 for k in ('path','name','node_type','direct_tag')) and all(isinstance(camera.get(k),str) and len(camera[k])<=4096 for k in ('tag_state_key','tag_value')) and type(camera.get('has_tag_state')) is bool,'bounded actual terrain path/tag context')
         p.need(all(type(node.get(k)) is int and node[k]>0 for k in ('pointer','heightfield_pointer')) and all(type(node.get(k)) is bool for k in ('is_geom_node','cpu_hidden')),'typed terrain node/heightfield identity');matrix=previous.material._finite(node['local_to_world'],(4,4));expected_samples=terrain.candidate_samples(geometry['hits'],matrix,owner['elevation_ratio'])
-        p.need([r.get('ray') for r in samples]==[r['ray'] for r in expected_samples] and len(samples)==len(expected_samples),'exact existing nearest CPU candidate set')
+        p.need((len(samples)==len(expected_samples) or not complete and not samples) and [r.get('ray') for r in samples]==[r['ray'] for r in expected_samples[:len(samples)]],'complete candidate assignment or unassigned partial set')
         for sample,expected in zip(samples,expected_samples):
             p.need(set(sample)==set(expected) and sample['ray']==expected['ray'] and sample['triangle_index']==expected['triangle_index'],'CPU candidate identity')
             for key in ('world_point','local_point','heightfield_uv','attribute_uv','yellow_uv'):p.need(np.allclose(previous.material._finite(sample[key],(len(expected[key]),)),expected[key],atol=1e-9,rtol=1e-12),'recomputed candidate '+key)

@@ -72,6 +72,11 @@ class TerrainAdmission(unittest.TestCase):
                 else:inputs[0]['vector']=[1.,0.,0.,0.]
                 write(folder/'terrain.json',v)
                 with self.subTest(duplicate=duplicate),self.assertRaises(ValueError):h.validate_receipt(folder,ref,nonce)
+    def test_real_snapshot_interruption_retains_inconclusive_partial_receipt(self):
+        with tempfile.TemporaryDirectory() as d:
+            folder,ref,nonce,x=fixture(d,native,interrupt=True)
+            self.assertEqual(x['status'],'TERRAIN_PARTIAL');self.assertTrue(x['terrain_present']);self.assertEqual(x['states'],[]);self.assertEqual(x['samples'],[]);self.assertIn('fixture interruption before candidates',x['failure'])
+            r=h.validate_receipt(folder,ref,nonce);self.assertTrue(r['terrain_recorded']);self.assertFalse(r['terrain_complete']);self.assertFalse(r['renderer_diagnostic_passed']);self.assertEqual(r['status'],'INCONCLUSIVE_TERRAIN_STATE_RECORDED')
     def test_private_entry_does_not_change_prior_globals(self):
         args=SimpleNamespace(out='/tmp/out',nonce='n');before=oldnative.owned_child_command(args,1);cmd=native.owned_child_command(args,1)
         self.assertIn('sdk3_terrain_state_native.py',cmd[4]);self.assertEqual(oldnative.owned_child_command(args,1),before);self.assertNotIn('--model-trial',cmd)

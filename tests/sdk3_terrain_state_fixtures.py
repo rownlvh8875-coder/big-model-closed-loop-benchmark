@@ -8,7 +8,7 @@ from tests.sdk3_shader_cache_fixtures import fixture as old_fixture,Aligned,Unal
 from tests.test_sdk3_terrain_state import CORE
 ROOT=Path(__file__).resolve().parents[1]
 
-def fixture(folder,native,*,absent=False,resident=True):
+def fixture(folder,native,*,absent=False,resident=True,interrupt=False):
     dest,ref,nonce,prior=old_fixture(folder,cached);geometry=json.loads((dest/'geometry-observer.json').read_text())['geometry'];site=Path(folder)/'terrain-site'
     for name in ('shaders/terrain.vert.glsl','shaders/terrain.frag.glsl'):
         q=site/'metadrive'/name;q.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(ROOT/'docs/evidence/sdk3-terrain-route-01/frozen-source'/(name+'.data'),q)
@@ -33,7 +33,9 @@ def fixture(folder,native,*,absent=False,resident=True):
     inputs=dict(attribute_tex=attribute,yellow_tex=yellow);net_attrib=attrib(901,None,inputs);tag_attrib=attrib(902,shader,{});composed_attrib=attrib(903,shader,inputs)
     class State:
         def __init__(self,pointer,attrib,override):self.this=pointer;self.attrib=attrib;self.override=override
-        def getAttrib(self,slot):return self.attrib
+        def getAttrib(self,slot):
+            if interrupt and self.this==1001:raise RuntimeError('fixture interruption before candidates')
+            return self.attrib
         def getOverride(self,slot):return self.override
         def compose(self,other):return combined
         def __str__(self):return 'CPU state '+str(self.this)
