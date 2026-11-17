@@ -46,7 +46,7 @@ def read_trace(folder,pid):
     return draws,programs
 
 def validate_trace_details(draws,mode,pixel):
-    rows=expected=clears=total=0;complete=True;exposed=False
+    rows=expected=clears=total=matrix_bytes=0;complete=True;exposed=False
     for draw in draws:
         uniforms=draw.get('uniforms') or {};sampler=uniforms.get('terrain_data_texture');expected+=int(sampler is not None);row=draw.get('terrain_data_row')
         if row is not None:
@@ -54,11 +54,16 @@ def validate_trace_details(draws,mode,pixel):
             if row.get('status')!='ROW_RECORDED':p.need(row.get('status') in ('UNAVAILABLE_LIMIT','UNAVAILABLE_UNIT','UNAVAILABLE_LAYOUT','ROW_PARTIAL'),'explicit partial terrain row');complete=False
             else:
                 width=row.get('width');values=row.get('values');bits=row.get('float_bits');p.need(isinstance(sampler,dict) and sampler.get('restored') is True and type(width) is int and width==draw.get('instances') and 1<=width<=64 and row.get('nbytes')==width*16 and row['nbytes']<=1024,'row bound to original instance width and byte cap');p.need(row.get('texture')==sampler.get('texture') and row.get('unit')==sampler.get('unit') and row.get('texture_size')==[sampler.get('width'),sampler.get('height')] and row.get('internal_format')==sampler.get('internal_format')==34836 and row.get('view_index')==uniforms.get('terrain_view_index') and type(row['view_index']) is int and 0<=row['view_index']<sampler['height'] and width<=sampler['width'],'actual sampler/texture/view binding');p.need(row.get('restored') is True and row.get('gl_error_before')==row.get('gl_error_after')==0,'row query state and errors');p.need(isinstance(values,list) and isinstance(bits,list) and len(values)==len(bits)==4*width and all(type(v) in (int,float) and math.isfinite(v) for v in values) and all(type(v) is int and 0<=v<2**32 for v in bits),'finite typed row floats/bits');p.need(list(struct.unpack('<'+str(len(values))+'I',struct.pack('<'+str(len(values))+'f',*values)))==bits,'retained row float bit identity');total+=row['nbytes'];p.need(total<=2048,'total GPUrow byte cap')
+        table=draw.get('transform_table')
+        if table is not None:
+            p.need(isinstance(table,dict) and table.get('status') in ('MATRICES_RECORDED','MATRICES_PARTIAL'),'explicit matrix array outcome');count=table.get('count');bits=table.get('float_bits');p.need(table.get('uniform')=='p3d_TransformTable' and type(count) is int and 1<=count<=100 and type(table.get('nbytes')) is int and table['nbytes']==count*64<=6400 and isinstance(bits,list) and len(bits)==count*16 and all(type(v) is int and 0<=v<2**32 for v in bits),'bounded indexed matrix bits/extent')
+            if table['status']=='MATRICES_RECORDED':p.need(table.get('gl_error_before')==table.get('gl_error_after')==0 and all(math.isfinite(v) for v in struct.unpack('<'+str(len(bits))+'f',struct.pack('<'+str(len(bits))+'I',*bits))),'finite exact uniform matrices')
+            matrix_bytes+=table['nbytes']
         probe=draw.get('depth_probe')
         if probe is not None:
             p.need(mode in ('depth-probe','canary') and draw.get('phase')==1 and draw.get('pixel_gl')==list(pixel),'explicit scoped target-only depth mutation');clears+=1;p.need(clears<=1 and set(probe)=={'cleared_pixels','state_restored','original_depth_bits32'} and type(probe.get('cleared_pixels')) is int and probe['cleared_pixels']==1 and probe.get('state_restored') is True,'exact one restored depth clear');before,after=draw['before'],draw['after'];p.need(before.get('valid') is True and after.get('valid') is True and probe['original_depth_bits32']==before.get('depth_bits32') and len(probe['original_depth_bits32'])==1,'original pre-clear depth binding');p.need(all(before.get(k)==after.get(k)==v for k,v in [('depth_func',513),('depth_test',1),('depth_write',1)]) and before.get('scissor')==after.get('scissor') and before.get('scissor_test')==after.get('scissor_test'),'original LESS/depth/scissor state preserved');exposed=after['depth_bits32'][0]>=before['depth_bits32'][0] and after['color_bits']!=before['color_bits']
     if mode=='depth-probe':p.need(clears==1,'depth probe performed exactly once')
-    return dict(terrain_row_count=rows,terrain_row_bytes=total,terrain_rows_complete=complete and rows==expected and rows>0,depth_clear_pixels=clears,occluded_terrain_exposed=exposed)
+    return dict(transform_matrix_bytes=matrix_bytes,terrain_row_count=rows,terrain_row_bytes=total,terrain_rows_complete=complete and rows==expected and rows>0,depth_clear_pixels=clears,occluded_terrain_exposed=exposed)
 
 def validate_canary(folder,r,stats):
     p.need(r.get('status')=='TINY_GPU_CANARY_RECORDED' and r.get('canary_render_calls')==(11 if r.get('depth_probe_canary') else 8) and stats['complete'],'actual tiny GPU completed');draws,programs=read_trace(folder,r['pid']);p.need(len(draws)==stats['draws'],'actual draw counter binding');cases=r.get('canary_cases');p.need(isinstance(cases,list) and [c.get('requested_samples') for c in cases]==[0,4],'single/MSAA challenged cases')

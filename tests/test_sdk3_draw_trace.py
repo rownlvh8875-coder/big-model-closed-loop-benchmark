@@ -42,6 +42,7 @@ class DrawTraceContracts(unittest.TestCase):
     def run_depth_case(self,case,enabled,exhaust=False):
         folder=build(str(self.folder));path=folder/(case+'.jsonl');program=CHILD.replace("gl.fake_setup(4 if case=='msaa' else 0,case=='error');", "gl.fake_setup(0,False);gl.fake_terrain_scene();trace.dt_enable_depth_probe("+str(int(enabled))+");")
         program=program.replace("returns=[sdk.fake_invoke", "returns=[sdk.fake_invoke").replace("rows=rows)))", "rows=rows,changed_pixels=gl.fake_changed_pixels())))")
+        if case=='skinning_table':program=program.replace('gl.fake_terrain_scene();','gl.fake_skinning_scene();')
         if case in ('depth_error','bad_row'):program=program.replace("gl.fake_terrain_scene();","gl.fake_terrain_scene();gl."+("fake_clear_error" if case=='depth_error' else "fake_bad_row")+"();")
         if exhaust:program=program.replace("returns=[sdk.fake_invoke(k,1 if case=='nested' else 0) for k in kinds]","returns=[sdk.fake_invoke(4,0) for _ in range(2)];gl.fake_plain_program();returns += [sdk.fake_invoke(4,0) for _ in range(510)]")
         env=dict(os.environ,LD_PRELOAD=str(folder/'libtrace.so'),SDK3_DRAW_TRACE_SDK=str(folder/'libfakesdk.so'),SDK3_DRAW_TRACE_GL=str(folder/'libfakegl.so'))
@@ -59,6 +60,8 @@ class DrawTraceContracts(unittest.TestCase):
         x=self.run_depth_case('depth_error',True);self.assertEqual(x['calls'],1);self.assertEqual(x['args_ok'],1);self.assertEqual(x['restored'],1);self.assertNotEqual(x['stats']['error'],0);draw=next(r for r in x['rows'] if r.get('event')=='draw');self.assertIsNotNone(draw['depth_probe']);self.assertFalse(draw['depth_probe']['state_restored'])
     def test_nonfinite_terrain_row_is_partial_with_retained_bits(self):
         x=self.run_depth_case('bad_row',False);self.assertEqual(x['calls'],1);self.assertEqual(x['restored'],1);self.assertNotEqual(x['stats']['error'],0);draw=next(r for r in x['rows'] if r.get('event')=='draw');self.assertEqual(draw['terrain_data_row']['status'],'ROW_PARTIAL');self.assertIsNone(draw['terrain_data_row']['values'][0]);self.assertIsInstance(draw['terrain_data_row']['float_bits'][0],int)
+    def test_skinning_array_uses_each_indexed_matrix_and_retains_exact_bits(self):
+        x=self.run_depth_case('skinning_table',False);draw=next(r for r in x['rows'] if r.get('event')=='draw');table=draw['transform_table'];self.assertEqual(table['count'],2);self.assertEqual(table['nbytes'],128);self.assertEqual(len(table['float_bits']),32);self.assertEqual(table['float_bits'][12],1067450368);self.assertEqual(table['float_bits'][28],1074790400);self.assertEqual(x['stats']['error'],0);self.assertEqual(x['calls'],1)
     def test_cap_marks_partial_but_never_suppresses_original_draw(self):
         x=self.run_case('cap');self.assertEqual(x['calls'],2);self.assertEqual(x['stats']['draws'],1);self.assertNotEqual(x['stats']['error'],0);self.assertEqual(x['restored'],1)
     def test_read_error_remains_failure_with_original_draw_and_state_restored(self):

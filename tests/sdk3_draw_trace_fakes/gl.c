@@ -6,6 +6,7 @@
 #include <stdio.h>
 static int clear_error,bad_row;void fake_clear_error(void){clear_error=1;}void fake_bad_row(void){bad_row=1;}
 static int reflect_terrain=1;void fake_plain_program(void){reflect_terrain=0;}
+static int skinning_scene;
 static int terrain_scene,scissor_on,depth_mask=1,scissor_box[4]={0,0,8,8},row_fbo;static float grid_depth[64];
 static int calls,fail,args_ok=1,queries,samples,draw=77,readfb=78,readbuf=0x8ce0,rb=92,packbuf=17,active=0x84c3;
 static int pack[8]={8,11,7,6,1,1,13,3};static unsigned err,nextid=100;static unsigned formats[512];
@@ -13,6 +14,7 @@ static const unsigned packenum[8]={0xd05,0xd02,0xd03,0xd04,0xd00,0xd01,0x806c,0x
 static void counted(void){++queries;errno=ENOENT;}
 void fake_setup(int n,int f){samples=n;fail=f;}
 void fake_terrain_scene(void){terrain_scene=1;scissor_on=1;scissor_box[0]=1;scissor_box[1]=2;scissor_box[2]=6;scissor_box[3]=5;for(int i=0;i<64;i++)grid_depth[i]=.42f;}
+void fake_skinning_scene(void){fake_terrain_scene();skinning_scene=1;}
 int fake_changed_pixels(void){int count=0;for(int i=0;i<64;i++)count+=grid_depth[i]!=.42f;return count;}
 int fake_calls(void){return calls;}int fake_args_ok(void){return args_ok;}int fake_queries(void){return queries;}
 int fake_restored(void){const int want[8]={8,11,7,6,1,1,13,3};return draw==77&&readfb==78&&readbuf==0x8ce0&&rb==92&&packbuf==17&&active==0x84c3&&!memcmp(want,pack,sizeof(pack))&&(!terrain_scene||(scissor_on&&depth_mask==1&&scissor_box[0]==1&&scissor_box[1]==2&&scissor_box[2]==6&&scissor_box[3]==5));}
@@ -59,14 +61,14 @@ void glBlitFramebuffer(int ax,int ay,int bx,int by,int cx,int cy,int dx,int dy,u
 void glReadPixels(int x,int y,int w,int h,unsigned format,unsigned type,void *p){counted();if(fail){err=0x502;return;}if(packbuf||pack[0]!=1||pack[1]||pack[2]||pack[3]||pack[4]||pack[5]||pack[6]||pack[7]||h!=1||type!=0x1406){err=0x502;return;}float *v=p;if(terrain_scene&&readfb==row_fbo&&row_fbo){if(x||y!=2||w<1||w>8||format!=0x1908){err=0x502;return;}for(int i=0;i<w;i++){v[i*4]=(float)i;v[i*4+1]=2;v[i*4+2]=1;v[i*4+3]=.5f;}if(bad_row)v[0]=NAN;return;}if(w!=1){err=0x502;return;}if(terrain_scene){if(x<0||x>7||y<0||y>7){err=0x502;return;}float z=grid_depth[y*8+x];if(format==0x1902)*v=z;else{v[0]=z==.42f?.3f:1;v[1]=.5f;v[2]=z==.42f?.7f:0;v[3]=1;}return;}if(format==0x1902)*v=.42f;else{v[0]=calls*.1f;v[1]=.5f;v[2]=.75f;v[3]=1.;}}
 
 void glGetMultisamplefv(unsigned p,unsigned i,float *v){(void)p;counted();v[0]=(i+.5f)/16;v[1]=.5f;}
-void glGetProgramiv(unsigned p,unsigned q,int *v){(void)p;counted();*v=q==0x8b82?1:q==0x8b86&&terrain_scene&&reflect_terrain?11:0;}
+void glGetProgramiv(unsigned p,unsigned q,int *v){(void)p;counted();*v=q==0x8b82?1:q==0x8b86&&terrain_scene&&reflect_terrain?(skinning_scene?12:11):0;}
 void glGetAttachedShaders(unsigned p,int n,int *count,unsigned *s){(void)p;(void)n;(void)s;counted();*count=0;}
 void glGetShaderiv(unsigned s,unsigned p,int *v){(void)s;(void)p;counted();*v=0;}
 void glGetShaderSource(unsigned s,int n,int *len,char *text){(void)s;(void)n;(void)text;counted();*len=0;}
 static const char *names[12]={"p3d_ModelViewProjectionMatrix","p3d_ModelMatrix","elevation_texture_ratio","attribute_tex","ShaderTerrainMesh.heightfield","yellow_tex","p3d_ModelViewMatrix","p3d_ProjectionMatrix","ShaderTerrainMesh.data_texture","ShaderTerrainMesh.view_index","ShaderTerrainMesh.terrain_size","ShaderTerrainMesh.chunk_size"};
-void glGetActiveUniform(unsigned p,unsigned i,int n,int *len,int *size,unsigned *type,char *name){(void)p;counted();unsigned map[11]={0,1,2,3,4,6,7,8,9,10,11};if(!terrain_scene||i>=11){*len=*size=0;*type=0;return;}int k=(int)map[i];snprintf(name,(size_t)n,"%s",names[k]);*len=(int)strlen(name);*size=1;*type=k==0||k==1||k==6||k==7?0x8b5c:k==2?0x1406:k>=9?0x1404:0x8b5e;}
-int glGetUniformLocation(unsigned p,const char *n){(void)p;counted();for(int i=0;i<12;i++)if(!strcmp(n,names[i]))return i;return -1;}
-void glGetUniformfv(unsigned p,int l,float *v){(void)p;counted();if(l==2){*v=2;return;}for(int i=0;i<16;i++)v[i]=i%5==0?1:0;}
+void glGetActiveUniform(unsigned p,unsigned i,int n,int *len,int *size,unsigned *type,char *name){(void)p;counted();unsigned map[11]={0,1,2,3,4,6,7,8,9,10,11};if(skinning_scene&&i==11){snprintf(name,(size_t)n,"p3d_TransformTable[0]");*len=(int)strlen(name);*size=2;*type=0x8b5c;return;}if(!terrain_scene||i>=11){*len=*size=0;*type=0;return;}int k=(int)map[i];snprintf(name,(size_t)n,"%s",names[k]);*len=(int)strlen(name);*size=1;*type=k==0||k==1||k==6||k==7?0x8b5c:k==2?0x1406:k>=9?0x1404:0x8b5e;}
+int glGetUniformLocation(unsigned p,const char *n){(void)p;counted();int index=0;if(sscanf(n,"p3d_TransformTable[%d]",&index)==1&&index>=0&&index<2)return 20+index;for(int i=0;i<12;i++)if(!strcmp(n,names[i]))return i;return -1;}
+void glGetUniformfv(unsigned p,int l,float *v){(void)p;counted();if(l==2){*v=2;return;}for(int i=0;i<16;i++)v[i]=i%5==0?1:0;if(l>=20)v[12]=(float)(l-20)+1.25f;}
 void glGetUniformiv(unsigned p,int l,int *v){(void)p;counted();*v=l==3?10:l==4?1:l==5?3:l==8?11:l==9?2:l==10?2048:l==11?128:0;}
 
 void glGetIntegeri_v(unsigned p,unsigned i,int *v){(void)p;(void)i;counted();*v=0;}

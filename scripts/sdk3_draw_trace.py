@@ -3,7 +3,7 @@ from contextlib import contextmanager
 from pathlib import Path
 import ctypes,hashlib,math
 
-LIMITS=dict(max_draws=512,max_queries=100000,max_pixel_readbacks=2048,max_samples=16,max_programs=8,max_shader_files=16,max_shader_file_bytes=262144,max_shader_bytes=4194304,max_trace_bytes=33554432,max_terrain_row_texels=64,max_terrain_rows=2,max_terrain_row_bytes=1024,max_terrain_total_bytes=2048,max_depth_clear_pixels=1)
+LIMITS=dict(max_draws=512,max_queries=100000,max_pixel_readbacks=2048,max_samples=16,max_programs=8,max_shader_files=16,max_shader_file_bytes=262144,max_shader_bytes=4194304,max_trace_bytes=33554432,max_terrain_row_texels=64,max_terrain_rows=2,max_terrain_row_bytes=1024,max_terrain_total_bytes=2048,max_depth_clear_pixels=1,max_transform_matrices=100,max_transform_bytes_per_draw=6400)
 
 def need(value,message):
     if not value:raise ValueError(message)

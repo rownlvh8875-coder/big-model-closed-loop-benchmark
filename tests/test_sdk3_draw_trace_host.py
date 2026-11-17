@@ -82,6 +82,11 @@ class HostContracts(unittest.TestCase):
             x=copy.deepcopy(d);x['depth_probe'][key]=value
             with self.subTest(key=key),self.assertRaises(ValueError):h.validate_trace_details([x],'depth-probe',[596,109])
         with self.assertRaises(ValueError):h.validate_trace_details([],'depth-probe',[596,109])
+    def test_matrix_arrays_keep_declared_bound_bytes_and_finite_float_bits(self):
+        d=self.terrain_draw();d['transform_table']=dict(status='MATRICES_RECORDED',uniform='p3d_TransformTable',count=2,nbytes=128,float_bits=[0]*32,gl_error_before=0,gl_error_after=0);r=h.validate_trace_details([d],'trace',[596,109]);self.assertEqual(r['transform_matrix_bytes'],128)
+        for field,value in [('count',101),('nbytes',64),('float_bits',[0x7fc00000]*32)]:
+            x=copy.deepcopy(d);x['transform_table'][field]=value
+            with self.subTest(field=field),self.assertRaises(ValueError):h.validate_trace_details([x],'trace',[596,109])
     def test_cold_host_help(self):
         r=subprocess.run([sys.executable,'-I','-B',h.__file__,'--help'],capture_output=True,text=True,timeout=15);self.assertEqual(r.returncode,0,r.stderr)
 if __name__=='__main__':unittest.main()
