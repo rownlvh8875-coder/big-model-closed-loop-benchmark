@@ -21,6 +21,8 @@ class ProbeContracts(unittest.TestCase):
   with tempfile.TemporaryDirectory() as d:
    raw=t.RawFrames();camera=ProbeCamera(raw,stale=True)
    with self.assertRaisesRegex(ValueError,'pose'):t.capture_probe(camera,raw,route(),{'renderer':'unit'},intrinsics={c:reference_source(c) for c in ('road','wide')},out=Path(d),seed=20261109,scene='s_curve_left_right',receipt={})
+ def test_measured_full_route_rate_uses_all600_steps_and_registered9000second_limit(self):
+  r=t.rate_admission(363,4.75);self.assertTrue(r['admitted']);self.assertEqual(r['child_limit_s'],9000);self.assertEqual(r['conservative_child_estimate_s'],6300.)
  def test_rate_admission_respects_route_step_limit_and_whole_child_budget(self):
   self.assertTrue(t.rate_admission(100,1.)['admitted']);self.assertFalse(t.rate_admission(100,20.)['admitted']);self.assertFalse(t.rate_admission(601,.01)['admitted'])
   for steps,seconds in [(True,1.),(100,float('nan')),(0,1.)]:

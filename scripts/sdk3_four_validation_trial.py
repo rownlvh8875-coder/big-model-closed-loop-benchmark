@@ -22,12 +22,13 @@ class RawFrames:
 
 def rate_admission(minimum_steps,second_capture_s):
  if type(minimum_steps) is not int or minimum_steps<1 or type(second_capture_s) not in (int,float) or not math.isfinite(second_capture_s) or second_capture_s<0:raise ValueError('finite measured rate and positive route steps')
- estimate=2*second_capture_s*minimum_steps+600.;return dict(admitted=minimum_steps<=600 and estimate<=3600,minimum_steps=minimum_steps,second_capture_s=second_capture_s,conservative_child_estimate_s=estimate,child_limit_s=3600,max_steps=600)
+ estimate=2*second_capture_s*600+600.;return dict(admitted=minimum_steps<=600 and estimate<=9000,minimum_steps=minimum_steps,second_capture_s=second_capture_s,conservative_child_estimate_s=estimate,child_limit_s=9000,max_steps=600)
 
 def capture_probe(camera,raw,lanes,driver,*,intrinsics,out,seed,scene,receipt):
  from bigbench.full_s_validation import validate_route
  from bigbench.kinematics import AgentState
  from bigbench.optical_calibration import PinholeRectifier,assert_intrinsics_match,reference_source
+ import numpy as np,cv2
  geometry=validate_route(lanes);out=Path(out);out.mkdir(parents=True,exist_ok=True);rectifier=PinholeRectifier()
  for role in ('road','wide'):assert_intrinsics_match(intrinsics[role],reference_source(role))
  pairs=[];captures=[];first=lanes[0];start=float(first.length)*.12
@@ -41,7 +42,7 @@ def capture_probe(camera,raw,lanes,driver,*,intrinsics,out,seed,scene,receipt):
  for role in ('road','wide'):
   images=[next(r for r in c['images'] if r['camera']==role) for c in captures];pins.need(images[0]['source_sha256']!=images[1]['source_sha256'] and images[0]['canvas_sha256']!=images[1]['canvas_sha256'],'positive pose change must alter both actual source and canvas')
  minimum=math.ceil((sum(r['length_m'] for r in geometry)-start)/.4)
- return dict(protocol='sdk3-four-native-probe-v1',seed=seed,scenario=scene,driver=driver,renderer_candidate=receipt,geometry=geometry,minimum_steps=minimum,capture_calls=2,captures=captures,rate=rate_admission(minimum,captures[1]['capture_wall_s']),physical_optics_validated=False,hardware_gpu_validated=False,carla_validated=False,official_model_processes=0,onnx_inferences=0,extra_render_tasks=0,source_rgb_observer='ZERO_MODEL_CPU_RETENTION_ONLY',source_context=source_context(),scope='native virtual pinhole only; no physical camera dataset')
+ return dict(libraries=dict(numpy=np.__version__,opencv=cv2.__version__),protocol='sdk3-four-native-probe-v1',seed=seed,scenario=scene,driver=driver,renderer_candidate=receipt,geometry=geometry,minimum_steps=minimum,capture_calls=2,captures=captures,rate=rate_admission(minimum,captures[1]['capture_wall_s']),physical_optics_validated=False,hardware_gpu_validated=False,carla_validated=False,official_model_processes=0,onnx_inferences=0,extra_render_tasks=0,source_rgb_observer='ZERO_MODEL_CPU_RETENTION_ONLY',source_context=source_context(),scope='native virtual pinhole only; no physical camera dataset')
 
 def _world(seed,scene):
  from bigbench.metadrive_camera import NativeMetaDriveProvider

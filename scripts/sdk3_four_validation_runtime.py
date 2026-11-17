@@ -33,7 +33,7 @@ def run_container(name,sdk,out,args,*,model=None,deps=None):
         cid=actual['Id'];write(out/'container.json',dict(id=cid,name=name,image=IMAGE,ownership_label=owner,effective_limits={k:actual.get('HostConfig',{}).get(k) for k in ('Memory','MemorySwap','NanoCpus','PidsLimit','ReadonlyRootfs','NetworkMode','IpcMode')}))
         start_attempted=True
         with (out/'stdout.log').open('wb') as stdout,(out/'stderr.log').open('wb') as stderr:
-            rc=subprocess.run(['docker','start','--attach',cid],stdout=stdout,stderr=stderr,timeout=7380 if model else 300,preexec_fn=log_limits).returncode
+            rc=subprocess.run(['docker','start','--attach',cid],stdout=stdout,stderr=stderr,timeout=18180 if model else 300,preexec_fn=log_limits).returncode
         actual=inspect_container(cid);need(actual is not None,'retained stopped container');state=actual['State']
         need(not state['Running'] and state['Pid']==0 and not state['OOMKilled'],'stopped non-OOM child')
         need(all((out/n).stat().st_size<=16*1024**2 for n in ['stdout.log','stderr.log']),'complete bounded logs')

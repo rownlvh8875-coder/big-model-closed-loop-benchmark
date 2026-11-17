@@ -28,13 +28,14 @@ class HostContracts(unittest.TestCase):
   with tempfile.TemporaryDirectory() as d:
    r=self.probe(d);v=h.validate_virtual_probe(Path(d),20261109,'s_curve_left_right');self.assertTrue(v['virtual_pinhole_passed']);self.assertFalse(v['physical_optics_passed']);self.assertFalse(v['hardware_gpu_passed'])
  def test_corrupt_source_stale_pose_bad_lens_or_unqualified_driver_reject(self):
-  for kind in ('source','stale','lens','driver','scope'):
+  for kind in ('source','stale','lens','driver','scope','libraries'):
    with self.subTest(kind=kind),tempfile.TemporaryDirectory() as d:
     r=self.probe(d)
     if kind=='source':(Path(d)/r['captures'][0]['images'][0]['source_file']).write_bytes(b'bad')
     elif kind=='stale':r['captures'][1]['images'][0]['source_sha256']=r['captures'][0]['images'][0]['source_sha256']
     elif kind=='lens':r['captures'][0]['images'][0]['measured_intrinsics']['fx']*=1.2
     elif kind=='driver':r['driver']['renderer']='softpipe'
+    elif kind=='libraries':r['libraries']=dict(numpy='wrong',opencv='wrong')
     else:r['physical_optics_validated']=True
     (Path(d)/'probe.json').write_text(json.dumps(r))
     with self.assertRaises(ValueError):h.validate_virtual_probe(Path(d),20261109,'s_curve_left_right')
@@ -54,7 +55,7 @@ class HostContracts(unittest.TestCase):
   rows=[dict(seed=s,scenario=c,container_id=str(i)*64,process_uuids=[str(i)+'a'*31,str(i)+'b'*31],inference_bounds=[58,58],verdict=dict(strict_repeat_passed=True,traversal_passed=True,passed=True)) for i,(s,c) in enumerate(sorted(p.CASES))];r=h.aggregate_cases(rows);self.assertEqual(r['full_s_passed_cases'],4);self.assertFalse(r['all_four_validation_tracks_passed']);rows[2]['verdict'].update(traversal_passed=False,passed=False);self.assertEqual(h.aggregate_cases(rows)['full_s_passed_cases'],3)
   with self.assertRaises(ValueError):h.aggregate_cases(rows[:3])
  def test_request_cannot_expand_model_calls_or_change_driver(self):
-  r=dict(schema='sdk3-four-validation-request-v1',cases=[dict(seed=s,scenario=c) for s,c in sorted(p.CASES)],max_model_processes=8,max_inferences=4800,max_steps=600,driver='llvmpipe',lp_num_threads=2,model_sha256=p.MODEL_SHA,base_sha=h.BASE);h.validate_request(r)
+  r=dict(schema='sdk3-four-validation-request-v2',cases=[dict(seed=s,scenario=c) for s,c in sorted(p.CASES)],max_model_processes=8,max_inferences=4800,max_steps=600,child_timeout_seconds=9000,driver='llvmpipe',lp_num_threads=2,model_sha256=p.MODEL_SHA,base_sha=h.BASE);h.validate_request(r)
   for key,value in [('max_inferences',4801),('driver','softpipe'),('max_steps',601)]:
    x=copy.deepcopy(r);x[key]=value
    with self.assertRaises(ValueError):h.validate_request(x)

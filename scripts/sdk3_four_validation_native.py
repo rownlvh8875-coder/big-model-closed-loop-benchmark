@@ -32,10 +32,10 @@ def run_pair(args):
  out=Path(args.out);ledger=[];failure=None;started=time.monotonic()
  try:
   for index in (0,1):
-   p.need(time.monotonic()-started<7320,'bounded full-S pair');dest=out/f'run-{index}';dest.mkdir();nonce=secrets.token_hex(16);row=dict(index=index,launcher_spawn_attempted=True,launcher_pid=None,spawn_attempted=False,pid=None,returncode=None);ledger.append(row);p.write(out/'pair-ledger.json',ledger);env=dict(os.environ,HOME='/tmp/home-'+nonce,XDG_CACHE_HOME='/tmp/cache-'+nonce);Path(env['HOME']).mkdir()
+   p.need(time.monotonic()-started<18120,'bounded full-S pair');dest=out/f'run-{index}';dest.mkdir();nonce=secrets.token_hex(16);row=dict(index=index,launcher_spawn_attempted=True,launcher_pid=None,spawn_attempted=False,pid=None,returncode=None);ledger.append(row);p.write(out/'pair-ledger.json',ledger);env=dict(os.environ,HOME='/tmp/home-'+nonce,XDG_CACHE_HOME='/tmp/cache-'+nonce);Path(env['HOME']).mkdir()
    with (dest/'stdout.log').open('wb') as stdout,(dest/'stderr.log').open('wb') as stderr:
     launcher=subprocess.Popen([sys.executable,'-I','-S','-B',str(Path(__file__).resolve()),'--model-trial','--out',str(dest),'--nonce',nonce,'--seed',str(args.seed),'--scenario',args.scenario],stdout=stdout,stderr=stderr,env=env);row['launcher_pid']=launcher.pid;p.write(out/'pair-ledger.json',ledger)
-    try:row['returncode']=launcher.wait(timeout=min(3630,max(1,7320-(time.monotonic()-started))))
+    try:row['returncode']=launcher.wait(timeout=min(9030,max(1,18120-(time.monotonic()-started))))
     except subprocess.TimeoutExpired:launcher.kill();launcher.wait(timeout=10);row['returncode']=launcher.returncode;raise
     finally:
      path=dest/'native-child.json'
@@ -51,6 +51,6 @@ def main(argv=None):
  parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--out',required=True);parser.add_argument('--nonce',default='0'*32);parser.add_argument('--seed',required=True,type=int);parser.add_argument('--scenario',required=True,choices=('s_curve_left_right','s_curve_right_left'));m=parser.add_mutually_exclusive_group(required=True);m.add_argument('--probe',action='store_true');m.add_argument('--model-trial',action='store_true');m.add_argument('--model-pair',action='store_true');parser.add_argument('--owned-child',action='store_true');parser.add_argument('--server-owner',type=int);args=parser.parse_args(argv);p.need((args.seed,args.scenario) in p.CASES and len(args.nonce)==32 and all(x in '0123456789abcdef' for x in args.nonce),'registered case and owned nonce');p.need(not os.environ.get('LD_PRELOAD'),'no draw instrumentation preload');prepare_nonce(args)
  if args.model_pair:p.need(not args.owned_child,'pair is parent only');run_pair(args);return 0
  if args.owned_child:return run_child(args)
- def bounded_wait(child,server,original_limit):return owner.wait_child_then_stop_server(child,server,3600 if args.model_trial else 240)
+ def bounded_wait(child,server,original_limit):return owner.wait_child_then_stop_server(child,server,9000 if args.model_trial else 240)
  return clone(owner.run_with_server,owned_child_command=owned_child_command,wait_child_then_stop_server=bounded_wait)(args)
 if __name__=='__main__':raise SystemExit(main())
