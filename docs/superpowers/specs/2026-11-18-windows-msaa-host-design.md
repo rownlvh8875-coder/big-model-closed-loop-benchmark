@@ -1,0 +1,18 @@
+# Windows stock-Panda MSAA host correction
+
+User requests the next stage after REPORT.json and safe disk cleanup. User's standing continuous-execution/brainstorming opt-out persists; implement inline, one fresh whole-branch review. Base14297e289a84f290dd638bf9a874864c4c262530 and priorPR145 remain frozen; reuse existing isolated RAM worktree on new feature/windows-msaa-host-v1. No main merge, environment/registry publication, local native Panda/SDK/large model loads, GPU preference edits, model/input/controller tuning or extra official-model runs.
+
+## Evidence and intent
+REPORT.json (local-laptop-validation-handoff-v1, uploaded2026-11-18KST) reports two original GPU failures `unable to allocate requested stock-Panda framebuffer`, initial Intel selection corrected to RTX3050Ti, a separate host experiment passing measured4samples/uniformRGBA/edge-on-off controls, and4.68GiB availableRAM below8GiB admission. Raw experiment.diff/diagnostic images are absent, so do not claim independent hardware revalidation. Source142 creates ShowBase(windowType=none), then makeOutput without host/GSG. Official Panda1.10.13 wglGraphicsPipe.cxx146–149 rejects FBO retry when host==nullptr; wglGraphicsBuffer.cxx326–347 initializes GSG during zero-sample pbuffer opening. Root cause boundary is established; do not relabel original failures.
+
+## Approaches and executor's choice
+1. Keep unhosted4sample pbuffer: known failed on the laptop; rejected.
+2. Open an owned zero-sample offscreen host, initialize/validate its GSG, deactivate it, pass this exact GSG+host to requested-MSAA canary: selected; preserves offscreen behavior and actual4sample verdict.
+3. Add a visible-window fallback: may help drivers without pbuffer support but changes user-visible behavior and is unnecessary for the reported zero-sample-capable driver; deferred.
+
+## Contract
+Private `_allocate_msaa_output(base,core,requested_samples,owners)` returns the requested canary; registers both owned outputs immediately with caller ExitStack, with reverse canary→host removal. Open and validate host/GSG before canary allocation. Host requests0samples and is inactive before any canary render. Target retains user's2..64 requested samples; never retry lower values. All four existing render calls, shaders, triangles, uniform/edge bytes, WGL measured samples/state/error gates remain unchanged. Restore original callback before disposing outputs; dispose both outputs and ShowBase even on constructor/draw/callback/disposal failures. Native Windows error remainsERROR, notPASS. Readback v2 contract stays unchanged; new attemptv2/construction marker identifies corrected producer without inheriting prior experiment qualification.
+
+Fake WGL regressions must exercise actual run_gpu_probe through first original draw, reject hostless requests, validate initialization/GSG identity/host inactivity and all failure cleanup without importing real Panda/ORT. Cold help and missing-resource preflight remain safe. Add bounded hosted Linux stockPanda1.10.13 software allocation smoke (zero models) to verify actual API/ownership; its Mesa result never proves WGL/RTX/MSAA pixels. Windows portable58 baseline plus regressions and canonical4jobs remain required at finalHEAD.
+
+Read-only retrospective of authenticated source54 Linux four-condition/eight-trial records may compare applied curvature to native geometry and explain the observed first departure mechanically. Label derived numbers as old saved-data observations, not new cloud execution or causal proof of model/optical failure. No GT control, predictions or new inference. Separate Codex thread reported in the private handoff is not queryable by available task tools; report status only as handoff metadata until actual results arrive.
