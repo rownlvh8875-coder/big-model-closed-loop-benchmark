@@ -1,6 +1,6 @@
 # SDK3 conditional sampling envelope result
 
-Checked 2026-11-17T20:27:23.648705+09:00; based on unchanged PR142/d6eb529d52364117a01d446652f2e938089625c2. **Original official matrix remains3/4 PASS,overallFAIL,Stage7=false.**
+Checked 2026-11-17T20:40:07.747058+09:00; based on unchanged PR142/d6eb529d52364117a01d446652f2e938089625c2. **Original official matrix remains3/4 PASS,overallFAIL,Stage7=false.**
 
 ## Finding
 
@@ -18,7 +18,7 @@ The central unquantized candidate is0.01687556688432301; hypothetical SNORM8 nea
 |bottom_right|0.016021417879|0.016692432929|[0.014904649865,0.017215196152]|-0.074178247502|6.743477|
 |bottom_left|0.017166276122|0.018022336420|[0.015909125131,0.018370270098]|-0.110890141361|10.080922|
 
-Each nearest root reaches the lower0.01threshold by reducing the second coordinate while holding the first fixed; equality is not yellow. The center root moves attribute UV by[0,-8.371969405248195e-06],or -0.09430186338071567mip1texels. Through the recorded affine transform/elevation ratio this is a **proxy** world displacement0.008572896670974151m. Across the five points, the corresponding one-axis distances are6.743477–10.080922mm. These are not screen-pixel offsets, minimum2Ddistances, measured terrain motion, or evidence of an actual terrain intersection. A nearer crossing in an unrecorded neighboring cell is outside this calculation.
+Each nearest root reaches the lower0.01threshold by reducing the second coordinate while holding the first fixed; equality is not yellow. The center root moves attribute UV by[0,-8.37196940525e-06],or -0.094301863381mip1texels. Through the recorded affine transform/elevation ratio this is a **proxy** world displacementapproximately0.008572897m. Across the five points, the corresponding one-axis distances are6.743477–10.080922mm. These are not screen-pixel offsets, minimum2Ddistances, measured terrain motion, or evidence of an actual terrain intersection. A nearer crossing in an unrecorded neighboring cell is outside this calculation.
 
 ## Models and evidence boundaries
 
@@ -36,10 +36,10 @@ The driver rechecks the final prepared→terrain/material→shader digest chain,
 
 A separate50-digit Decimal evaluator independently verified all135scenario values/coordinates,10conditional intervals and axis roots. Maximum scalar discrepancy 9.531072878547926e-14, tolerance2e-12. Strict root comparisons use independently checked recorded float64 fractions; evaluating UV products in exact Decimal instead changes a root by at most 2.829485629664833e-12,below1e-9. The first diagnostic mismatch came from comparing exact Decimal UV products with the helper's rounded float64 fractions; the independent checker now separates those domains. No production correction was needed.
 
-[Full result](evidence/sdk3-sampling-envelope-01/result.json),[independent analysis](evidence/sdk3-sampling-envelope-01/input-analysis.json),[result hashes](evidence/sdk3-sampling-envelope-01/result-index.json). CPU code commit `7f2c5bc07eff3e5ab13073e9f26a7c88443e6f20`; executed resultSHA `3aa26b56ea04a3364ab77837bcb1801834c4e993d45d3582c71575521228f37b`. CLI: `python -I -B scripts/run_sdk3_sampling_envelope.py --out output/stage7-sdk3-sampling-envelope-01/actual` (fresh output only).
+[Full result](evidence/sdk3-sampling-envelope-01/result.json),[independent analysis](evidence/sdk3-sampling-envelope-01/input-analysis.json),[result hashes](evidence/sdk3-sampling-envelope-01/result-index.json). CPU code commit `53cad9de110ef3162a9d876ca9e314344fe2a270`; executed resultSHA `3aa26b56ea04a3364ab77837bcb1801834c4e993d45d3582c71575521228f37b`. CLI: `python -I -B scripts/run_sdk3_sampling_envelope.py --out output/stage7-sdk3-sampling-envelope-01/actual` (fresh output only).
 
 ## Verification and remaining question
 
-26newtests cover literal quantization/ties/clamps/strict thresholds/f32ratio/FMA/roots/cellescape/rawintegrity, actual135cases, input tampering, identity/falseproof flags, cold-I-S-B help and immutable output.172focusedtestsPASS. Wholebranch fresh review and exactfinalHEAD canonical push+PR fourjobs/fullcounts are final executor gates; their receipts are linked in the new DraftPR and retained in `output/stage7-sdk3-sampling-envelope-01/final-closeout/verification.json`. Original checkout/sixfiles/main/parentPR142 remain preserved; additionsonly/no runtimecode changes/no mainmerge/environmentregistrypublication.
+33newtests cover literal quantization/ties/clamps/strict thresholds/f32ratio/FMA/roots/cellescape/rawintegrity, actual135cases, input tampering, identity/falseproof flags, cold-I-S-B help and immutable output.179focusedtestsPASS. Sole fresh review found4Important/0Critical/0Minor numerical issues. One fix pass corrected exactfloat32FMA, duplicate-offset bytes, endpoint/domain roots and exactnormalized-code selection/outward intervals;6regressionsRED→GREEN plusconsistentduplicatepositive,179testsPASS. No rereview. ExactfinalHEAD canonical push+PR fourjobs/fullcounts are final executor gates; their receipts are linked in the new DraftPR and retained in `output/stage7-sdk3-sampling-envelope-01/final-closeout/verification.json`. Original checkout/sixfiles/main/parentPR142 remain preserved; additionsonly/no runtimecode changes/no mainmerge/environmentregistrypublication.
 
 Remaining evidence must address actual procedural terrain surface/cull/draw coordinates and sampler state. The modeled precision changes tested here keep the branch yellow; this result does not prove a renderer repair or move Stage7 to complete.

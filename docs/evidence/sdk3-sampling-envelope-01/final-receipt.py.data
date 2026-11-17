@@ -1,0 +1,35 @@
+from pathlib import Path
+from datetime import datetime,timezone,timedelta
+from concurrent.futures import ThreadPoolExecutor
+import hashlib,json,shutil,subprocess,sys
+R=Path('/dev/shm/stage7-sdk3-runtime-20261116/repo');T=Path('/dev/shm/stage7-sdk3-sampling-envelope-20261117');BASE='d6eb529d52364117a01d446652f2e938089625c2';P='repos/rownlvh8875-coder/big-model-closed-loop-benchmark/';number=json.loads((T/'pr-number.json').read_text())['number'];e=R/'docs/evidence/sdk3-sampling-envelope-01';outroot=R/'output/stage7-sdk3-sampling-envelope-01'
+def git(*args,cwd=R):return subprocess.check_output(['git',*args],cwd=cwd,text=True).strip()
+def api(path):return json.loads(subprocess.check_output(['gh','api',P+path],text=True,timeout=60))
+def digest(p):
+ with p.open('rb') as f:return hashlib.file_digest(f,'sha256').hexdigest()
+head=git('rev-parse','HEAD');ci=outroot/'final-ci';v=json.loads((ci/'verification.json').read_text());units=json.loads((ci/'unit-counts.json').read_text());assert v['head_sha']==head and not git('status','--porcelain') and git('branch','--show-current')=='feature/sdk3-sampling-envelope-v1'
+assert len(v['ci'])==len(units)==2 and {r['event'] for r in v['ci']}=={'push','pull_request'}
+for row in units:assert row['tests']==2147 and row['skipped']==7 and digest(ci/(row['event']+'-unit.log'))==row['log_sha256']
+with ThreadPoolExecutor() as pool:pr,parent,main,ref=list(pool.map(api,[f'pulls/{number}','pulls/142','git/ref/heads/main','git/ref/heads/feature/sdk3-sampling-envelope-v1']))
+payload=json.loads((T/'pr-update.json').read_text());before=json.loads((T/'parent-pr142-before.json').read_text());assert pr['head']['sha']==head==ref['object']['sha'] and pr['base']['sha']==BASE and pr['draft'] and pr['state']=='open' and not pr['merged'] and pr['body']==payload['body'] and pr['title']==payload['title'];assert all(parent[k]==before[k] for k in ('body','title','draft','state','merged')) and parent['head']['sha']==before['head']['sha']==BASE;assert main['object']['sha']==json.loads((T/'main-before.json').read_text())['object']['sha']=='48e79a7ed5aedf6daa5a62ff68d2225af7955ef1'
+delta=git('diff','--name-status',BASE,head).splitlines();assert delta and all(row.startswith('A\t') for row in delta);subprocess.run(['git','diff','--check',BASE,head],cwd=R,check=True)
+a=json.loads((e/'input-analysis.json').read_text());x=json.loads((e/'result.json').read_text());assert not git('diff','--name-only',a['cpu_code_commit'],head,'--','scripts','tests')
+for row in json.loads((e/'input-index.json').read_text())['files']:
+ p=R/row['path'];assert p.stat().st_size==row['nbytes'] and digest(p)==row['sha256']
+for row in json.loads((e/'result-index.json').read_text())['files']:
+ p=R/row['path'];assert p.stat().st_size==row['nbytes'] and digest(p)==row['sha256']
+for row in json.loads((e/'review/before-fix/index.json').read_text())['files']:
+ p=R/row['path'];assert p.stat().st_size==row['nbytes'] and digest(p)==row['sha256']
+assert digest(e/'result.json')==a['result_sha256']=='e50301ff29c205abf85b61187c1682fb98d23b3fb163e6cf1e135ef99cf4a05c' and a['models_checked']==x['scenario_count']==x['modeled_scenario_count']==x['modeled_yellow_count']==135 and len(x['points'])==5 and a['all_models_yellow'] and a['conditional_intervals_checked']==10 and x['native_renderer_processes_this_step']==x['official_model_processes']==x['onnx_inferences']==0 and x['fresh_source_images_verified'] is False
+sys.path.insert(0,str(R));from scripts.run_sdk3_sampling_envelope import analyze,load_inputs,FALSE_FLAGS
+fresh=analyze(load_inputs(R));assert fresh==x and all(x[k] is False for k in FALSE_FLAGS)
+original=Path('/workspace/big-model-closed-loop-benchmark');assert git('rev-parse','HEAD',cwd=original)=='2435bf438651916ff496c07d334ba264d56a71bc' and not git('status','--porcelain',cwd=original)
+for row in json.loads((e/'original-preservation.json').read_text())['original_artifacts']:
+ p=original/row['path'];assert p.stat().st_size==row['nbytes'] and oct(p.stat().st_mode&0o777)==row['mode'] and digest(p)==row['sha256']
+review=json.loads((e/'review/review-assessment.json').read_text());assert review['critical']==review['important']==0
+ledger=R/'.superpowers/sdd/2026-11-17-sdk3-sampling-envelope/progress.md';assert ledger.read_text().splitlines()[0]=='# SDD ledger — plan: docs/superpowers/plans/2026-11-17-sdk3-sampling-envelope.md';rulings=[s for s in ledger.read_text().splitlines() if 'Ruling:' in s];minors=[s for s in ledger.read_text().splitlines() if 'minor (deferred)' in s];assert len(minors)==review['minor']
+close=outroot/'final-closeout';close.mkdir(exist_ok=True)
+with ledger.open('a') as f:f.write(f'Task 3: complete — finalHEAD{head};exactcanonicalpush+PRfourjobsPASS/attempt1/artifacts0,both2147tests/7skips. ActualCPU135models/5points/10conditionalintervals remainyellow; independentDecimal and finalrecomputationmatch resultSHA. Zero newnative/models/inferences;priorrunonly. Drafthead/body/base,parent142/main/original6files preserved,additionsonly,codeunchangedafterCPUanalysis. Archive/cleanupownscratchonly; official3/4 overallFAIL/Stage7false. ExactHEAD external receipt avoids self-reference.\n')
+shutil.copyfile(ledger,close/'final-ledger.md');receipt=dict(checked_at_kst=datetime.now(timezone(timedelta(hours=9))).isoformat(),head_sha=head,cpu_code_commit=a['cpu_code_commit'],clean=True,branch='feature/sdk3-sampling-envelope-v1',pr=number,draft=True,open=True,merged=False,remote_head_matches=True,body_roundtrip=True,parent_pr142_unchanged=True,main_unchanged=True,original_checkout_preserved=True,original_artifacts_verified=6,other_sdd_scratch_untouched=True,source_additions_only=True,added_files=len(delta),code_unchanged_after_cpu_analysis=True,ci=v['ci'],unit_logs=units,prior_native_run=44067526874,new_native_renderers=0,official_model_processes=0,onnx_inferences=0,input_files_verified=11,result_files_verified=4,prior_prepared_boundary_revalidated=True,fresh_source_images_verified=False,result_sha256=a['result_sha256'],models=135,modeled_yellow=135,candidate_points=5,conditional_intervals=10,all_conditional_intervals_yellow=True,independent_decimal_precision=50,maximum_decimal_value_error=a['maximum_decimal_value_error'],final_recomputation_matches=True,critical=review['critical'],important=review['important'],deferred_minors=len(minors),rulings=rulings,original_matrix_passed=3,original_matrix_total=4,original_matrix_gate_passed=False,hardware_bound_proven=False,actual_texture_format_proven=False,actual_sample_coordinates_proven=False,gpu_pixel_owner_proven=False,unique_cause_proven=False,repair_proven=False,stage7_complete=False,published=False,own_sdd_scratch_archived_removed=True,final_plan_step_completed=True)
+for name,value in [('verification.json',receipt),('pr.json',pr),('parent-pr142.json',parent),('main.json',main),('ref.json',ref)]:(close/name).write_text(json.dumps(value,indent=2)+'\n')
+shutil.rmtree(ledger.parent);assert not git('status','--porcelain');print(json.dumps(receipt))

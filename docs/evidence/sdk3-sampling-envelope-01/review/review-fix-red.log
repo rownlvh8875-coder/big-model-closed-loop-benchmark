@@ -1,0 +1,76 @@
+.....F.F.F....FF.....F...........
+======================================================================
+FAIL: test_conditional_adjacent_codes_and_outward_bound_are_exact (tests.test_sdk3_sampling_envelope.SamplingMath.test_conditional_adjacent_codes_and_outward_bound_are_exact)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/dev/shm/stage7-sdk3-runtime-20261116/repo/tests/test_sdk3_sampling_envelope.py", line 78, in test_conditional_adjacent_codes_and_outward_bound_are_exact
+    r=h.conditional_envelope([2/127]*4,[.5,.5],8);self.assertAlmostEqual(r['minimum'],1/127);self.assertAlmostEqual(r['maximum'],2/127);self.assertFalse(r['all_yellow']);self.assertLessEqual(F(r['minimum']),F(1,127));self.assertGreaterEqual(F(r['maximum']),F(2,127))
+                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0.015748031496062992 != 0.007874015748031496 within 7 places (0.007874015748031496 difference)
+
+======================================================================
+FAIL: test_conflicting_duplicate_texel_bytes_are_rejected (tests.test_sdk3_sampling_envelope.SamplingMath.test_conflicting_duplicate_texel_bytes_are_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/dev/shm/stage7-sdk3-runtime-20261116/repo/tests/test_sdk3_sampling_envelope.py", line 65, in test_conflicting_duplicate_texel_bytes_are_rejected
+    with self.assertRaises(ValueError):h.scenario(w,[0.,0.],'recorded_float32',None)
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_exact_endpoint_root_is_retained (tests.test_sdk3_sampling_envelope.SamplingMath.test_exact_endpoint_root_is_retained)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/dev/shm/stage7-sdk3-runtime-20261116/repo/tests/test_sdk3_sampling_envelope.py", line 72, in test_exact_endpoint_root_is_retained
+    roots=h.threshold_roots([.01,.03,.01,.03],[.5,.5]);self.assertTrue(any(r['axis']==0 and r['threshold']==.01 and r['fraction']==0. for r in roots))
+                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_normalization_near_midpoint_uses_exact_input_value (tests.test_sdk3_sampling_envelope.SamplingMath.test_normalization_near_midpoint_uses_exact_input_value)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/dev/shm/stage7-sdk3-runtime-20261116/repo/tests/test_sdk3_sampling_envelope.py", line 76, in test_normalization_near_midpoint_uses_exact_input_value
+    self.assertEqual(h.normalize([.011811023622047244],'snorm8_nearest_even'),[1/127]);self.assertEqual(h.normalize([.0058823529411764705],'unorm8_nearest_even'),[1/255])
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [0.015748031496062992] != [0.007874015748031496]
+
+First differing element 0:
+0.015748031496062992
+0.007874015748031496
+
+- [0.015748031496062992]
++ [0.007874015748031496]
+
+======================================================================
+FAIL: test_outside_root_cannot_round_into_the_cell (tests.test_sdk3_sampling_envelope.SamplingMath.test_outside_root_cannot_round_into_the_cell)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/dev/shm/stage7-sdk3-runtime-20261116/repo/tests/test_sdk3_sampling_envelope.py", line 74, in test_outside_root_cannot_round_into_the_cell
+    lo=math.nextafter(.01,math.inf);self.assertEqual(h.threshold_roots([lo,.03,lo,.03],[1.,.5]),[])
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [{'axis': 0, 'threshold': 0.01, 'fraction'[54 chars]lse}] != []
+
+First list contains 1 additional elements.
+First extra element 0:
+{'axis': 0, 'threshold': 0.01, 'fraction': 0.0, 'delta_texels': -1.0, 'threshold_is_yellow': False}
+
++ []
+- [{'axis': 0,
+-   'delta_texels': -1.0,
+-   'fraction': 0.0,
+-   'threshold': 0.01,
+-   'threshold_is_yellow': False}]
+
+======================================================================
+FAIL: test_true_single_round_fma_above_float32_midpoint (tests.test_sdk3_sampling_envelope.SamplingMath.test_true_single_round_fma_above_float32_midpoint)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/dev/shm/stage7-sdk3-runtime-20261116/repo/tests/test_sdk3_sampling_envelope.py", line 61, in test_true_single_round_fma_above_float32_midpoint
+    exact=F(uv)*F(ratio)+F(1,2);self.assertLess(abs(exact-F(expected)),abs(exact-F(.5)));self.assertEqual(h.attribute_uv([uv,0.],ratio,'f32_fma_model')[0],expected)
+                                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0.5 != 0.5000000596046448
+
+----------------------------------------------------------------------
+Ran 33 tests in 0.489s
+
+FAILED (failures=6)

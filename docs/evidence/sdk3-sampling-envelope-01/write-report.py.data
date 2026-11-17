@@ -26,7 +26,7 @@ The central unquantized candidate is0.01687556688432301; hypothetical SNORM8 nea
 |---|---|---|---|---|---|
 {chr(10).join(rows)}
 
-Each nearest root reaches the lower0.01threshold by reducing the second coordinate while holding the first fixed; equality is not yellow. The center root moves attribute UV by[0,-8.371969405248195e-06],or -0.09430186338071567mip1texels. Through the recorded affine transform/elevation ratio this is a **proxy** world displacement0.008572896670974151m. Across the five points, the corresponding one-axis distances are6.743477–10.080922mm. These are not screen-pixel offsets, minimum2Ddistances, measured terrain motion, or evidence of an actual terrain intersection. A nearer crossing in an unrecorded neighboring cell is outside this calculation.
+Each nearest root reaches the lower0.01threshold by reducing the second coordinate while holding the first fixed; equality is not yellow. The center root moves attribute UV by[0,-8.37196940525e-06],or -0.094301863381mip1texels. Through the recorded affine transform/elevation ratio this is a **proxy** world displacementapproximately0.008572897m. Across the five points, the corresponding one-axis distances are6.743477–10.080922mm. These are not screen-pixel offsets, minimum2Ddistances, measured terrain motion, or evidence of an actual terrain intersection. A nearer crossing in an unrecorded neighboring cell is outside this calculation.
 
 ## Models and evidence boundaries
 
@@ -48,7 +48,7 @@ A separate50-digit Decimal evaluator independently verified all135scenario value
 
 ## Verification and remaining question
 
-26newtests cover literal quantization/ties/clamps/strict thresholds/f32ratio/FMA/roots/cellescape/rawintegrity, actual135cases, input tampering, identity/falseproof flags, cold-I-S-B help and immutable output.172focusedtestsPASS. Wholebranch fresh review and exactfinalHEAD canonical push+PR fourjobs/fullcounts are final executor gates; their receipts are linked in the new DraftPR and retained in `output/stage7-sdk3-sampling-envelope-01/final-closeout/verification.json`. Original checkout/sixfiles/main/parentPR142 remain preserved; additionsonly/no runtimecode changes/no mainmerge/environmentregistrypublication.
+33newtests cover literal quantization/ties/clamps/strict thresholds/f32ratio/FMA/roots/cellescape/rawintegrity, actual135cases, input tampering, identity/falseproof flags, cold-I-S-B help and immutable output.179focusedtestsPASS. Sole fresh review found4Important/0Critical/0Minor numerical issues. One fix pass corrected exactfloat32FMA, duplicate-offset bytes, endpoint/domain roots and exactnormalized-code selection/outward intervals;6regressionsRED→GREEN plusconsistentduplicatepositive,179testsPASS. No rereview. ExactfinalHEAD canonical push+PR fourjobs/fullcounts are final executor gates; their receipts are linked in the new DraftPR and retained in `output/stage7-sdk3-sampling-envelope-01/final-closeout/verification.json`. Original checkout/sixfiles/main/parentPR142 remain preserved; additionsonly/no runtimecode changes/no mainmerge/environmentregistrypublication.
 
 Remaining evidence must address actual procedural terrain surface/cull/draw coordinates and sampler state. The modeled precision changes tested here keep the branch yellow; this result does not prove a renderer repair or move Stage7 to complete.
 '''
