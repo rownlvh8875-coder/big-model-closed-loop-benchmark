@@ -1,0 +1,1138 @@
+{
+  "run_id": 44045492487,
+  "source_sha": "bdd09f8f71a72fa55def13416edaacaaa077e45d",
+  "analysis": {
+    "status": "INCONCLUSIVE_TERRAIN_STATE_RECORDED",
+    "native_completed": true,
+    "renderer_diagnostic_passed": false,
+    "process_uuid": "a1396ee092bd4d1a8afa68b3435340b9",
+    "pid": 10,
+    "container_id": "0203d359d3d109aa2789309400cc3f8f6cc71d886582ba26195235e5128069d6",
+    "native_returncode": 0,
+    "known_renderer_processes": 1,
+    "completed_capture_returns": 7,
+    "persisted_capture_count": 7,
+    "verified_source_images": 14,
+    "completed_prefix_matches_reference": false,
+    "source_image_equivalence": false,
+    "active_boundaries": [],
+    "proc_snapshot_availability": null,
+    "last_event": {
+      "seq": 121,
+      "elapsed_s": 330.843032807,
+      "cpu_s": 331.033224857,
+      "identity": {
+        "pid": 10,
+        "nonce": "ae0ae2f197936e88c40022c18d490392",
+        "protocol": "sdk3-capture-progress-v1"
+      },
+      "event": "checkpoint",
+      "step": 7,
+      "camera": null,
+      "metadata": {
+        "stage": "CHILD_FINAL_REPORT"
+      }
+    },
+    "progress_records": 121,
+    "timed_stack_dumps": 11,
+    "official_model_processes": 0,
+    "onnx_inferences": 0,
+    "original_matrix_passed": 3,
+    "original_matrix_total": 4,
+    "original_matrix_gate_passed": false,
+    "gpu_pixel_owner_proven": false,
+    "unique_cause_proven": false,
+    "repair_proven": false,
+    "stage7_complete": false,
+    "geometry_recorded": true,
+    "geometry_scan_finished": true,
+    "geometry": {
+      "segment_audit": {
+        "max_endpoint_abs_world_error": 1.8189894035458565e-12,
+        "float32_endpoint_rtol": 3.814697265625e-06,
+        "float32_endpoint_atol_world": 3.814697265625e-06,
+        "inverse_residual_atol": 1e-05,
+        "clip_depth_near": -1.0,
+        "clip_depth_far": 1.0
+      },
+      "scan_finished": true,
+      "triangles_tested": 1004,
+      "meshes_tested": 2,
+      "hits": {
+        "center": [
+          {
+            "triangle_index": 606,
+            "distance": 8.42081642210178,
+            "barycentric": [
+              0.2998789225350661,
+              0.2058326143177276,
+              0.4942884631472063
+            ],
+            "position": [
+              76.2298058324282,
+              0.4301324455339341,
+              -0.0017134611239248976
+            ]
+          },
+          {
+            "triangle_index": 106,
+            "distance": 18718.44201667925,
+            "barycentric": [
+              0.012186732991111282,
+              0.5637652718573293,
+              0.42404799515155944
+            ],
+            "position": [
+              18592.680316258047,
+              -108.17166741982861,
+              -2682.1947449368517
+            ]
+          }
+        ],
+        "top_left": [
+          {
+            "triangle_index": 606,
+            "distance": 8.430505303051548,
+            "barycentric": [
+              0.30326341382502486,
+              0.1968302388707361,
+              0.499906347304239
+            ],
+            "position": [
+              76.23984847990786,
+              0.4332390003269599,
+              -2.8095809844863595e-05
+            ]
+          },
+          {
+            "triangle_index": 106,
+            "distance": 18717.068270900436,
+            "barycentric": [
+              0.014836498471619997,
+              0.5619420647139288,
+              0.4232214368144512
+            ],
+            "position": [
+              18592.335479645255,
+              -101.2253205965518,
+              -2675.2561203488403
+            ]
+          }
+        ],
+        "top_right": [
+          {
+            "triangle_index": 606,
+            "distance": 8.410255827602906,
+            "barycentric": [
+              0.2965027621801931,
+              0.19368434775791576,
+              0.5098128900618911
+            ],
+            "position": [
+              76.2197879049543,
+              0.42703353753450346,
+              0.0029438671355463963
+            ]
+          },
+          {
+            "triangle_index": 106,
+            "distance": 18717.711230703902,
+            "barycentric": [
+              0.011060813731208263,
+              0.5619173774431182,
+              0.42702180882567353
+            ],
+            "position": [
+              18592.91493065828,
+              -115.11698549471048,
+              -2675.178085242577
+            ]
+          }
+        ],
+        "bottom_right": [
+          {
+            "triangle_index": 606,
+            "distance": 8.411153675198493,
+            "barycentric": [
+              0.29650276218019345,
+              0.2148136506169861,
+              0.48868358720282046
+            ],
+            "position": [
+              76.21978790495429,
+              0.42703353753450346,
+              -0.00339492397405583
+            ]
+          },
+          {
+            "triangle_index": 106,
+            "distance": 18719.820831678015,
+            "barycentric": [
+              0.009537038429355438,
+              0.5655885320738462,
+              0.4248744294967984
+            ],
+            "position": [
+              18593.02514021993,
+              -115.11767320143083,
+              -2689.1335708882393
+            ]
+          }
+        ],
+        "bottom_left": [
+          {
+            "triangle_index": 606,
+            "distance": 8.431405426721454,
+            "barycentric": [
+              0.3032634138250246,
+              0.21801113796221758,
+              0.4787254482127578
+            ],
+            "position": [
+              76.23984847990786,
+              0.4332390003269599,
+              -0.006382365789785016
+            ]
+          },
+          {
+            "triangle_index": 106,
+            "distance": 18719.178056456716,
+            "barycentric": [
+              0.013312701204089394,
+              0.5656133265311551,
+              0.42107397226475546
+            ],
+            "position": [
+              18592.44568897291,
+              -101.22592567667921,
+              -2689.21201335798
+            ]
+          }
+        ]
+      },
+      "cpu_reprojection_max_abs_ndc_error": 7.588248540635334e-08,
+      "gpu_pixel_owner_proven": false,
+      "depth_tie_proven": false,
+      "unique_cause_proven": false
+    },
+    "target_pixel_rgb": [
+      199,
+      187,
+      0
+    ],
+    "target_read_sha256": "5289613b610abe2270b4e7d98c106608689c55c216b2085d439eb39eec571adb",
+    "material_recorded": true,
+    "material_complete": true,
+    "material": {
+      "triangles": 2,
+      "meshes": 2,
+      "textures": 3,
+      "samples": 10,
+      "two_d_stage_samples": 15,
+      "captured_bytes": 3656083,
+      "textures_without_ram": 2,
+      "cpu_seconds": 0.007811599999968166
+    },
+    "gpu_material_result_proven": false,
+    "shader_recorded": true,
+    "shader_complete": true,
+    "shader_variants_matched": true,
+    "shader": {
+      "shader_objects": 3,
+      "meshes": 2,
+      "known_inputs": 16,
+      "source_files": 12,
+      "captured_bytes": 80045,
+      "elapsed_wall_seconds": 0.0037503909999827556,
+      "mesh_variant_matches": [
+        true,
+        true
+      ],
+      "tonemap_variant_matches": true
+    },
+    "gpu_program_execution_proven": false,
+    "hardware_uniform_values_proven": false,
+    "shader_cache_policy_id": "panda1.10.13-observed-subset-v1",
+    "panda_shader_cxx_sha256": "aad792a474792b1d7af5c524f8326e718a4ae4cbaecb3b844824910d2d5dccf6",
+    "pssm_owner_arrays_recorded": true,
+    "terrain_recorded": true,
+    "terrain_complete": true,
+    "terrain_present": true,
+    "terrain_tag_shader_matched": true,
+    "cpu_candidate_windows_captured": 10,
+    "terrain": {
+      "states": 4,
+      "shaders": 2,
+      "sources": 2,
+      "textures": 3,
+      "candidate_points": 5,
+      "elapsed_wall_seconds": 0.002105637999989085,
+      "captured_bytes": 28549
+    }
+  },
+  "checkpoints": [
+    {
+      "stage": "OWNED_BOOT",
+      "elapsed_s": 0.00012341499999024563,
+      "cpu_s": 0.00012213100000000449
+    },
+    {
+      "stage": "DEPENDENCIES_READY",
+      "elapsed_s": 0.1547913240000014,
+      "cpu_s": 0.258129112
+    },
+    {
+      "stage": "SDK_VERIFIED",
+      "elapsed_s": 0.1951807909999843,
+      "cpu_s": 0.298377683
+    },
+    {
+      "stage": "PROVIDER_ENTER",
+      "elapsed_s": 3.954384196999996,
+      "cpu_s": 4.256833222
+    },
+    {
+      "stage": "WORLD_READY",
+      "elapsed_s": 80.050258848,
+      "cpu_s": 80.295237235
+    },
+    {
+      "stage": "CAPTURE_ENTER",
+      "elapsed_s": 80.053951832,
+      "cpu_s": 80.298691706
+    },
+    {
+      "stage": "CAPTURE_RETURN",
+      "elapsed_s": 115.09021235399999,
+      "cpu_s": 115.333216029
+    },
+    {
+      "stage": "CAPTURE_ENTER",
+      "elapsed_s": 115.09061226599997,
+      "cpu_s": 115.333479319
+    },
+    {
+      "stage": "CAPTURE_RETURN",
+      "elapsed_s": 151.05476663800002,
+      "cpu_s": 151.296349992
+    },
+    {
+      "stage": "CAPTURE_ENTER",
+      "elapsed_s": 151.055146108,
+      "cpu_s": 151.29660435
+    },
+    {
+      "stage": "CAPTURE_RETURN",
+      "elapsed_s": 187.004013436,
+      "cpu_s": 187.243377042
+    },
+    {
+      "stage": "CAPTURE_ENTER",
+      "elapsed_s": 187.004500299,
+      "cpu_s": 187.243741442
+    },
+    {
+      "stage": "CAPTURE_RETURN",
+      "elapsed_s": 222.819070553,
+      "cpu_s": 223.05646137899998
+    },
+    {
+      "stage": "CAPTURE_ENTER",
+      "elapsed_s": 222.81953036500002,
+      "cpu_s": 223.056807933
+    },
+    {
+      "stage": "CAPTURE_RETURN",
+      "elapsed_s": 258.74637172099995,
+      "cpu_s": 258.982231393
+    },
+    {
+      "stage": "CAPTURE_ENTER",
+      "elapsed_s": 258.746852354,
+      "cpu_s": 258.98259002400005
+    },
+    {
+      "stage": "CAPTURE_RETURN",
+      "elapsed_s": 294.478896801,
+      "cpu_s": 294.672163866
+    },
+    {
+      "stage": "CAPTURE_ENTER",
+      "elapsed_s": 294.47942705799994,
+      "cpu_s": 294.67256846500004
+    },
+    {
+      "stage": "GEOMETRY_ENTER",
+      "elapsed_s": 312.52782931499996,
+      "cpu_s": 312.71953066500004
+    },
+    {
+      "stage": "GEOMETRY_RETURN",
+      "elapsed_s": 312.62312020599995,
+      "cpu_s": 312.813892378
+    },
+    {
+      "stage": "CAPTURE_RETURN",
+      "elapsed_s": 330.46720764199995,
+      "cpu_s": 330.65814957000003
+    },
+    {
+      "stage": "REPLAY_COMPLETE",
+      "elapsed_s": 330.47367012300003,
+      "cpu_s": 330.664025821
+    },
+    {
+      "stage": "CHILD_FINAL_REPORT",
+      "elapsed_s": 330.843032807,
+      "cpu_s": 331.033224857
+    }
+  ],
+  "completed_boundaries": [
+    {
+      "operation": "task_step",
+      "step": 1,
+      "camera": "road",
+      "terminal_phase": "return",
+      "wall_seconds": 17.142254189,
+      "cpu_seconds": 17.140604089999997,
+      "enter_elapsed_s": 80.05407880299998,
+      "exit_elapsed_s": 97.19633299199998
+    },
+    {
+      "operation": "get_rgb",
+      "step": 1,
+      "camera": "road",
+      "terminal_phase": "return",
+      "wall_seconds": 0.0016466870000044764,
+      "cpu_seconds": 0.001648283999998057,
+      "enter_elapsed_s": 97.19643247099998,
+      "exit_elapsed_s": 97.19807915799998
+    },
+    {
+      "operation": "perceive",
+      "step": 1,
+      "camera": "road",
+      "terminal_phase": "return",
+      "wall_seconds": 17.144168847999993,
+      "cpu_seconds": 17.14251619400001,
+      "enter_elapsed_s": 80.05401007,
+      "exit_elapsed_s": 97.198178918
+    },
+    {
+      "operation": "task_step",
+      "step": 1,
+      "camera": "wide",
+      "terminal_phase": "return",
+      "wall_seconds": 17.763580440000027,
+      "cpu_seconds": 17.761696716999992,
+      "enter_elapsed_s": 97.19942272899999,
+      "exit_elapsed_s": 114.96300316900002
+    },
+    {
+      "operation": "get_rgb",
+      "step": 1,
+      "camera": "wide",
+      "terminal_phase": "return",
+      "wall_seconds": 0.0015417989999946258,
+      "cpu_seconds": 0.0015424670000072638,
+      "enter_elapsed_s": 114.96310434099999,
+      "exit_elapsed_s": 114.96464613999999
+    },
+    {
+      "operation": "perceive",
+      "step": 1,
+      "camera": "wide",
+      "terminal_phase": "return",
+      "wall_seconds": 17.765384022000006,
+      "cpu_seconds": 17.763496904999997,
+      "enter_elapsed_s": 97.199374637,
+      "exit_elapsed_s": 114.96475865900001
+    },
+    {
+      "operation": "capture",
+      "step": 1,
+      "camera": null,
+      "terminal_phase": "return",
+      "wall_seconds": 35.03567954800002,
+      "cpu_seconds": 35.034082076999994,
+      "enter_elapsed_s": 80.05398291899999,
+      "exit_elapsed_s": 115.08966246700001
+    },
+    {
+      "operation": "task_step",
+      "step": 2,
+      "camera": "road",
+      "terminal_phase": "return",
+      "wall_seconds": 18.04492557100002,
+      "cpu_seconds": 18.04313073499999,
+      "enter_elapsed_s": 115.09076423399998,
+      "exit_elapsed_s": 133.135689805
+    },
+    {
+      "operation": "get_rgb",
+      "step": 2,
+      "camera": "road",
+      "terminal_phase": "return",
+      "wall_seconds": 0.0017048039999849607,
+      "cpu_seconds": 0.0017052679999949305,
+      "enter_elapsed_s": 133.135783907,
+      "exit_elapsed_s": 133.13748871099997
+    },
+    {
+      "operation": "perceive",
+      "step": 2,
+      "camera": "road",
+      "terminal_phase": "return",
+      "wall_seconds": 18.046897347000026,
+      "cpu_seconds": 18.045100704999996,
+      "enter_elapsed_s": 115.09068176999997,
+      "exit_elapsed_s": 133.137579117
+    },
+    {
+      "operation": "task_step",
+      "step": 2,
+      "camera": "wide",
+      "terminal_phase": "return",
+      "wall_seconds": 17.79051010300003,
+      "cpu_seconds": 17.789352614999984,
+      "enter_elapsed_s": 133.13878535199999,
+      "exit_elapsed_s": 150.92929545500002
+    },
+    {
+      "operation": "get_rgb",
+      "step": 2,
+      "camera": "wide",
+      "terminal_phase": "return",
+      "wall_seconds": 0.0015532360000065637,
+      "cpu_seconds": 0.001554233999996768,
+      "enter_elapsed_s": 150.929393793,
+      "exit_elapsed_s": 150.930947029
+    },
+    {
+      "operation": "perceive",
+      "step": 2,
+      "camera": "wide",
+      "terminal_phase": "return",
+      "wall_seconds": 17.792302748999987,
+      "cpu_seconds": 17.791142327999978,
+      "enter_elapsed_s": 133.138743118,
+      "exit_elapsed_s": 150.931045867
+    },
+    {
+      "operation": "capture",
+      "step": 2,
+      "camera": null,
+      "terminal_phase": "return",
+      "wall_seconds": 35.96351657299999,
+      "cpu_seconds": 35.96238808799998,
+      "enter_elapsed_s": 115.090644534,
+      "exit_elapsed_s": 151.054161107
+    },
+    {
+      "operation": "task_step",
+      "step": 3,
+      "camera": "road",
+      "terminal_phase": "return",
+      "wall_seconds": 18.097376491999967,
+      "cpu_seconds": 18.095311803000016,
+      "enter_elapsed_s": 151.05531325,
+      "exit_elapsed_s": 169.15268974199998
+    },
+    {
+      "operation": "get_rgb",
+      "step": 3,
+      "camera": "road",
+      "terminal_phase": "return",
+      "wall_seconds": 0.0016506630000208133,
+      "cpu_seconds": 0.0016513680000116437,
+      "enter_elapsed_s": 169.152791695,
+      "exit_elapsed_s": 169.154442358
+    },
+    {
+      "operation": "perceive",
+      "step": 3,
+      "camera": "road",
+      "terminal_phase": "return",
+      "wall_seconds": 18.099321397999972,
+      "cpu_seconds": 18.097254143000015,
+      "enter_elapsed_s": 151.055211066,
+      "exit_elapsed_s": 169.15453246399997
+    },
+    {
+      "operation": "task_step",
+      "step": 3,
+      "camera": "wide",
+      "terminal_phase": "return",
+      "wall_seconds": 17.723809294000034,
+      "cpu_seconds": 17.722197215999984,
+      "enter_elapsed_s": 169.15575949899997,
+      "exit_elapsed_s": 186.879568793
+    },
+    {
+      "operation": "get_rgb",
+      "step": 3,
+      "camera": "wide",
+      "terminal_phase": "return",
+      "wall_seconds": 0.0016019800000321993,
+      "cpu_seconds": 0.0016028349999999136,
+      "enter_elapsed_s": 186.87966726099998,
+      "exit_elapsed_s": 186.881269241
+    },
+    {
+      "operation": "perceive",
+      "step": 3,
+      "camera": "wide",
+      "terminal_phase": "return",
+      "wall_seconds": 17.725648440000043,
+      "cpu_seconds": 17.72403374800001,
+      "enter_elapsed_s": 169.15571520299997,
+      "exit_elapsed_s": 186.88136364300001
+    },
+    {
+      "operation": "capture",
+      "step": 3,
+      "camera": null,
+      "terminal_phase": "return",
+      "wall_seconds": 35.94818383899997,
+      "cpu_seconds": 35.94625823000001,
+      "enter_elapsed_s": 151.055174171,
+      "exit_elapsed_s": 187.00335800999997
+    },
+    {
+      "operation": "task_step",
+      "step": 4,
+      "camera": "road",
+      "terminal_phase": "return",
+      "wall_seconds": 17.960308849,
+      "cpu_seconds": 17.958392398,
+      "enter_elapsed_s": 187.00464714899996,
+      "exit_elapsed_s": 204.96495599799997
+    },
+    {
+      "operation": "get_rgb",
+      "step": 4,
+      "camera": "road",
+      "terminal_phase": "return",
+      "wall_seconds": 0.001669200999970144,
+      "cpu_seconds": 0.0016699560000006386,
+      "enter_elapsed_s": 204.965064641,
+      "exit_elapsed_s": 204.96673384199997
+    },
+    {
+      "operation": "perceive",
+      "step": 4,
+      "camera": "road",
+      "terminal_phase": "return",
+      "wall_seconds": 17.962263337999957,
+      "cpu_seconds": 17.960344211999995,
+      "enter_elapsed_s": 187.00456512600002,
+      "exit_elapsed_s": 204.96682846399997
+    },
+    {
+      "operation": "task_step",
+      "step": 4,
+      "camera": "wide",
+      "terminal_phase": "return",
+      "wall_seconds": 17.726219703000027,
+      "cpu_seconds": 17.724547083999994,
+      "enter_elapsed_s": 204.96805455899997,
+      "exit_elapsed_s": 222.694274262
+    },
+    {
+      "operation": "get_rgb",
+      "step": 4,
+      "camera": "wide",
+      "terminal_phase": "return",
+      "wall_seconds": 0.0015263660000073287,
+      "cpu_seconds": 0.0015268829999968148,
+      "enter_elapsed_s": 222.694373952,
+      "exit_elapsed_s": 222.695900318
+    },
+    {
+      "operation": "perceive",
+      "step": 4,
+      "camera": "wide",
+      "terminal_phase": "return",
+      "wall_seconds": 17.72796897400002,
+      "cpu_seconds": 17.726293844000026,
+      "enter_elapsed_s": 204.96801332699997,
+      "exit_elapsed_s": 222.695982301
+    },
+    {
+      "operation": "capture",
+      "step": 4,
+      "camera": null,
+      "terminal_phase": "return",
+      "wall_seconds": 35.81360498199996,
+      "cpu_seconds": 35.81190231399998,
+      "enter_elapsed_s": 187.004529092,
+      "exit_elapsed_s": 222.81813407399997
+    },
+    {
+      "operation": "task_step",
+      "step": 5,
+      "camera": "road",
+      "terminal_phase": "return",
+      "wall_seconds": 18.104741499,
+      "cpu_seconds": 18.103258400000016,
+      "enter_elapsed_s": 222.81967500199997,
+      "exit_elapsed_s": 240.92441650099997
+    },
+    {
+      "operation": "get_rgb",
+      "step": 5,
+      "camera": "road",
+      "terminal_phase": "return",
+      "wall_seconds": 0.001603341000020464,
+      "cpu_seconds": 0.001604198000023871,
+      "enter_elapsed_s": 240.924509321,
+      "exit_elapsed_s": 240.926112662
+    },
+    {
+      "operation": "perceive",
+      "step": 5,
+      "camera": "road",
+      "terminal_phase": "return",
+      "wall_seconds": 18.106596749000005,
+      "cpu_seconds": 18.10511158700001,
+      "enter_elapsed_s": 222.81959841699998,
+      "exit_elapsed_s": 240.92619516599999
+    },
+    {
+      "operation": "task_step",
+      "step": 5,
+      "camera": "wide",
+      "terminal_phase": "return",
+      "wall_seconds": 17.695537065999957,
+      "cpu_seconds": 17.693869597000003,
+      "enter_elapsed_s": 240.927432067,
+      "exit_elapsed_s": 258.62296913299997
+    },
+    {
+      "operation": "get_rgb",
+      "step": 5,
+      "camera": "wide",
+      "terminal_phase": "return",
+      "wall_seconds": 0.0014877679999472093,
+      "cpu_seconds": 0.0014881359999776578,
+      "enter_elapsed_s": 258.62306150200004,
+      "exit_elapsed_s": 258.62454927
+    },
+    {
+      "operation": "perceive",
+      "step": 5,
+      "camera": "wide",
+      "terminal_phase": "return",
+      "wall_seconds": 17.697233808999982,
+      "cpu_seconds": 17.695563639000028,
+      "enter_elapsed_s": 240.927389843,
+      "exit_elapsed_s": 258.62462365199997
+    },
+    {
+      "operation": "capture",
+      "step": 5,
+      "camera": null,
+      "terminal_phase": "return",
+      "wall_seconds": 35.92612895900001,
+      "cpu_seconds": 35.92486016500004,
+      "enter_elapsed_s": 222.81956121099998,
+      "exit_elapsed_s": 258.74569017
+    },
+    {
+      "operation": "task_step",
+      "step": 6,
+      "camera": "road",
+      "terminal_phase": "return",
+      "wall_seconds": 17.960765850999906,
+      "cpu_seconds": 17.95955980599996,
+      "enter_elapsed_s": 258.74699682100004,
+      "exit_elapsed_s": 276.70776267199994
+    },
+    {
+      "operation": "get_rgb",
+      "step": 6,
+      "camera": "road",
+      "terminal_phase": "return",
+      "wall_seconds": 0.04313597400005165,
+      "cpu_seconds": 0.0018384649999916292,
+      "enter_elapsed_s": 276.70784926199997,
+      "exit_elapsed_s": 276.750985236
+    },
+    {
+      "operation": "perceive",
+      "step": 6,
+      "camera": "road",
+      "terminal_phase": "return",
+      "wall_seconds": 18.004202867999993,
+      "cpu_seconds": 17.961695093000003,
+      "enter_elapsed_s": 258.746917812,
+      "exit_elapsed_s": 276.75112068
+    },
+    {
+      "operation": "task_step",
+      "step": 6,
+      "camera": "wide",
+      "terminal_phase": "return",
+      "wall_seconds": 17.603506662999962,
+      "cpu_seconds": 17.601786812,
+      "enter_elapsed_s": 276.752419263,
+      "exit_elapsed_s": 294.35592592599994
+    },
+    {
+      "operation": "get_rgb",
+      "step": 6,
+      "camera": "wide",
+      "terminal_phase": "return",
+      "wall_seconds": 0.0015219489999935831,
+      "cpu_seconds": 0.0015225260000306662,
+      "enter_elapsed_s": 294.356017394,
+      "exit_elapsed_s": 294.357539343
+    },
+    {
+      "operation": "perceive",
+      "step": 6,
+      "camera": "wide",
+      "terminal_phase": "return",
+      "wall_seconds": 17.605256906000022,
+      "cpu_seconds": 17.603534403000026,
+      "enter_elapsed_s": 276.75235682899995,
+      "exit_elapsed_s": 294.357613735
+    },
+    {
+      "operation": "capture",
+      "step": 6,
+      "camera": null,
+      "terminal_phase": "return",
+      "wall_seconds": 35.731309581000005,
+      "cpu_seconds": 35.68896582000002,
+      "enter_elapsed_s": 258.746882349,
+      "exit_elapsed_s": 294.47819193
+    },
+    {
+      "operation": "task_step",
+      "step": 7,
+      "camera": "road",
+      "terminal_phase": "return",
+      "wall_seconds": 17.98692507599992,
+      "cpu_seconds": 17.985627051999984,
+      "enter_elapsed_s": 294.479579788,
+      "exit_elapsed_s": 312.46650486399994
+    },
+    {
+      "operation": "get_rgb",
+      "step": 7,
+      "camera": "road",
+      "terminal_phase": "return",
+      "wall_seconds": 0.0016523250000091139,
+      "cpu_seconds": 0.001653400000009242,
+      "enter_elapsed_s": 312.466623583,
+      "exit_elapsed_s": 312.468275908
+    },
+    {
+      "operation": "perceive",
+      "step": 7,
+      "camera": "road",
+      "terminal_phase": "return",
+      "wall_seconds": 18.143694448999895,
+      "cpu_seconds": 18.141324142999963,
+      "enter_elapsed_s": 294.47949852600004,
+      "exit_elapsed_s": 312.62319297499994
+    },
+    {
+      "operation": "task_step",
+      "step": 7,
+      "camera": "wide",
+      "terminal_phase": "return",
+      "wall_seconds": 17.719926010999984,
+      "cpu_seconds": 17.718310298999995,
+      "enter_elapsed_s": 312.62445083700004,
+      "exit_elapsed_s": 330.344376848
+    },
+    {
+      "operation": "get_rgb",
+      "step": 7,
+      "camera": "wide",
+      "terminal_phase": "return",
+      "wall_seconds": 0.001534047999939503,
+      "cpu_seconds": 0.0015350759999819275,
+      "enter_elapsed_s": 330.344481094,
+      "exit_elapsed_s": 330.34601514199994
+    },
+    {
+      "operation": "perceive",
+      "step": 7,
+      "camera": "wide",
+      "terminal_phase": "return",
+      "wall_seconds": 17.721704206000027,
+      "cpu_seconds": 17.720085390999998,
+      "enter_elapsed_s": 312.624407832,
+      "exit_elapsed_s": 330.346112038
+    },
+    {
+      "operation": "capture",
+      "step": 7,
+      "camera": null,
+      "terminal_phase": "return",
+      "wall_seconds": 35.9869887430001,
+      "cpu_seconds": 35.98492220700001,
+      "enter_elapsed_s": 294.47945898599994,
+      "exit_elapsed_s": 330.46644772900004
+    }
+  ],
+  "active_entries": [],
+  "timed_python_snapshots": [
+    {
+      "snapshot": 1,
+      "python_frames": [
+        "File \"/opt/venv/lib/python3.11/site-packages/metadrive/engine/base_engine.py\", line 395 in reset",
+        "File \"/opt/venv/lib/python3.11/site-packages/metadrive/envs/base_env.py\", line 532 in reset",
+        "File \"/work/repo/bigbench/metadrive_camera.py\", line 144 in start",
+        "File \"/work/repo/bigbench/metadrive_camera.py\", line 122 in __init__",
+        "File \"/work/repo/scripts/sdk3_capture_progress_native.py\", line 44 in run_native",
+        "File \"/work/repo/scripts/sdk3_pixel_geometry_budget_native.py\", line 62 in run_native",
+        "File \"/work/repo/scripts/sdk3_pixel_material_native.py\", line 118 in run_native",
+        "File \"/work/repo/scripts/sdk3_shader_path_native.py\", line 71 in run_native",
+        "File \"/work/repo/scripts/sdk3_terrain_state_native.py\", line 64 in run_native",
+        "File \"/work/repo/scripts/sdk3_terrain_state_native.py\", line 71 in main",
+        "File \"/work/repo/scripts/sdk3_terrain_state_native.py\", line 74 in <module>"
+      ],
+      "contains_render_frame": true,
+      "render_frame_source_mapping": "frozen-stack-source.json",
+      "contains_task_step": false,
+      "contains_original_capture": false
+    },
+    {
+      "snapshot": 2,
+      "python_frames": [
+        "File \"/opt/venv/lib/python3.11/site-packages/metadrive/engine/base_engine.py\", line 395 in reset",
+        "File \"/opt/venv/lib/python3.11/site-packages/metadrive/envs/base_env.py\", line 532 in reset",
+        "File \"/work/repo/bigbench/metadrive_camera.py\", line 144 in start",
+        "File \"/work/repo/bigbench/metadrive_camera.py\", line 122 in __init__",
+        "File \"/work/repo/scripts/sdk3_capture_progress_native.py\", line 44 in run_native",
+        "File \"/work/repo/scripts/sdk3_pixel_geometry_budget_native.py\", line 62 in run_native",
+        "File \"/work/repo/scripts/sdk3_pixel_material_native.py\", line 118 in run_native",
+        "File \"/work/repo/scripts/sdk3_shader_path_native.py\", line 71 in run_native",
+        "File \"/work/repo/scripts/sdk3_terrain_state_native.py\", line 64 in run_native",
+        "File \"/work/repo/scripts/sdk3_terrain_state_native.py\", line 71 in main",
+        "File \"/work/repo/scripts/sdk3_terrain_state_native.py\", line 74 in <module>"
+      ],
+      "contains_render_frame": true,
+      "render_frame_source_mapping": "frozen-stack-source.json",
+      "contains_task_step": false,
+      "contains_original_capture": false
+    },
+    {
+      "snapshot": 3,
+      "python_frames": [
+        "File \"/opt/venv/lib/python3.11/site-packages/direct/showbase/ShowBase.py\", line 2158 in __igLoop",
+        "File \"/opt/venv/lib/python3.11/site-packages/direct/task/Task.py\", line 504 in step",
+        "File \"/work/repo/scripts/sdk3_capture_progress.py\", line 79 in wrapped",
+        "File \"/opt/venv/lib/python3.11/site-packages/metadrive/component/sensors/base_camera.py\", line 183 in perceive",
+        "File \"/work/repo/scripts/sdk3_capture_progress.py\", line 79 in wrapped",
+        "File \"/work/repo/bigbench/native_model_campaign.py\", line 76 in capture",
+        "File \"/work/repo/scripts/sdk3_capture_progress.py\", line 79 in wrapped",
+        "File \"/work/repo/scripts/sdk3_capture_progress_native.py\", line 60 in run_native",
+        "File \"/work/repo/scripts/sdk3_pixel_geometry_budget_native.py\", line 62 in run_native",
+        "File \"/work/repo/scripts/sdk3_pixel_material_native.py\", line 118 in run_native",
+        "File \"/work/repo/scripts/sdk3_shader_path_native.py\", line 71 in run_native",
+        "File \"/work/repo/scripts/sdk3_terrain_state_native.py\", line 64 in run_native",
+        "File \"/work/repo/scripts/sdk3_terrain_state_native.py\", line 71 in main",
+        "File \"/work/repo/scripts/sdk3_terrain_state_native.py\", line 74 in <module>"
+      ],
+      "contains_render_frame": true,
+      "render_frame_source_mapping": "frozen-stack-source.json",
+      "contains_task_step": true,
+      "contains_original_capture": true
+    },
+    {
+      "snapshot": 4,
+      "python_frames": [
+        "File \"/opt/venv/lib/python3.11/site-packages/direct/showbase/ShowBase.py\", line 2158 in __igLoop",
+        "File \"/opt/venv/lib/python3.11/site-packages/direct/task/Task.py\", line 504 in step",
+        "File \"/work/repo/scripts/sdk3_capture_progress.py\", line 79 in wrapped",
+        "File \"/opt/venv/lib/python3.11/site-packages/metadrive/component/sensors/base_camera.py\", line 183 in perceive",
+        "File \"/work/repo/scripts/sdk3_capture_progress.py\", line 79 in wrapped",
+        "File \"/work/repo/bigbench/native_model_campaign.py\", line 76 in capture",
+        "File \"/work/repo/scripts/sdk3_capture_progress.py\", line 79 in wrapped",
+        "File \"/work/repo/scripts/sdk3_capture_progress_native.py\", line 60 in run_native",
+        "File \"/work/repo/scripts/sdk3_pixel_geometry_budget_native.py\", line 62 in run_native",
+        "File \"/work/repo/scripts/sdk3_pixel_material_native.py\", line 118 in run_native",
+        "File \"/work/repo/scripts/sdk3_shader_path_native.py\", line 71 in run_native",
+        "File \"/work/repo/scripts/sdk3_terrain_state_native.py\", line 64 in run_native",
+        "File \"/work/repo/scripts/sdk3_terrain_state_native.py\", line 71 in main",
+        "File \"/work/repo/scripts/sdk3_terrain_state_native.py\", line 74 in <module>"
+      ],
+      "contains_render_frame": true,
+      "render_frame_source_mapping": "frozen-stack-source.json",
+      "contains_task_step": true,
+      "contains_original_capture": true
+    },
+    {
+      "snapshot": 5,
+      "python_frames": [
+        "File \"/opt/venv/lib/python3.11/site-packages/direct/showbase/ShowBase.py\", line 2158 in __igLoop",
+        "File \"/opt/venv/lib/python3.11/site-packages/direct/task/Task.py\", line 504 in step",
+        "File \"/work/repo/scripts/sdk3_capture_progress.py\", line 79 in wrapped",
+        "File \"/opt/venv/lib/python3.11/site-packages/metadrive/component/sensors/base_camera.py\", line 183 in perceive",
+        "File \"/work/repo/scripts/sdk3_capture_progress.py\", line 79 in wrapped",
+        "File \"/work/repo/bigbench/native_model_campaign.py\", line 76 in capture",
+        "File \"/work/repo/scripts/sdk3_capture_progress.py\", line 79 in wrapped",
+        "File \"/work/repo/scripts/sdk3_capture_progress_native.py\", line 60 in run_native",
+        "File \"/work/repo/scripts/sdk3_pixel_geometry_budget_native.py\", line 62 in run_native",
+        "File \"/work/repo/scripts/sdk3_pixel_material_native.py\", line 118 in run_native",
+        "File \"/work/repo/scripts/sdk3_shader_path_native.py\", line 71 in run_native",
+        "File \"/work/repo/scripts/sdk3_terrain_state_native.py\", line 64 in run_native",
+        "File \"/work/repo/scripts/sdk3_terrain_state_native.py\", line 71 in main",
+        "File \"/work/repo/scripts/sdk3_terrain_state_native.py\", line 74 in <module>"
+      ],
+      "contains_render_frame": true,
+      "render_frame_source_mapping": "frozen-stack-source.json",
+      "contains_task_step": true,
+      "contains_original_capture": true
+    },
+    {
+      "snapshot": 6,
+      "python_frames": [
+        "File \"/opt/venv/lib/python3.11/site-packages/direct/showbase/ShowBase.py\", line 2158 in __igLoop",
+        "File \"/opt/venv/lib/python3.11/site-packages/direct/task/Task.py\", line 504 in step",
+        "File \"/work/repo/scripts/sdk3_capture_progress.py\", line 79 in wrapped",
+        "File \"/opt/venv/lib/python3.11/site-packages/metadrive/component/sensors/base_camera.py\", line 183 in perceive",
+        "File \"/work/repo/scripts/sdk3_capture_progress.py\", line 79 in wrapped",
+        "File \"/work/repo/bigbench/native_model_campaign.py\", line 76 in capture",
+        "File \"/work/repo/scripts/sdk3_capture_progress.py\", line 79 in wrapped",
+        "File \"/work/repo/scripts/sdk3_capture_progress_native.py\", line 60 in run_native",
+        "File \"/work/repo/scripts/sdk3_pixel_geometry_budget_native.py\", line 62 in run_native",
+        "File \"/work/repo/scripts/sdk3_pixel_material_native.py\", line 118 in run_native",
+        "File \"/work/repo/scripts/sdk3_shader_path_native.py\", line 71 in run_native",
+        "File \"/work/repo/scripts/sdk3_terrain_state_native.py\", line 64 in run_native",
+        "File \"/work/repo/scripts/sdk3_terrain_state_native.py\", line 71 in main",
+        "File \"/work/repo/scripts/sdk3_terrain_state_native.py\", line 74 in <module>"
+      ],
+      "contains_render_frame": true,
+      "render_frame_source_mapping": "frozen-stack-source.json",
+      "contains_task_step": true,
+      "contains_original_capture": true
+    },
+    {
+      "snapshot": 7,
+      "python_frames": [
+        "File \"/opt/venv/lib/python3.11/site-packages/direct/showbase/ShowBase.py\", line 2158 in __igLoop",
+        "File \"/opt/venv/lib/python3.11/site-packages/direct/task/Task.py\", line 504 in step",
+        "File \"/work/repo/scripts/sdk3_capture_progress.py\", line 79 in wrapped",
+        "File \"/opt/venv/lib/python3.11/site-packages/metadrive/component/sensors/base_camera.py\", line 183 in perceive",
+        "File \"/work/repo/scripts/sdk3_capture_progress.py\", line 79 in wrapped",
+        "File \"/work/repo/bigbench/native_model_campaign.py\", line 76 in capture",
+        "File \"/work/repo/scripts/sdk3_capture_progress.py\", line 79 in wrapped",
+        "File \"/work/repo/scripts/sdk3_capture_progress_native.py\", line 60 in run_native",
+        "File \"/work/repo/scripts/sdk3_pixel_geometry_budget_native.py\", line 62 in run_native",
+        "File \"/work/repo/scripts/sdk3_pixel_material_native.py\", line 118 in run_native",
+        "File \"/work/repo/scripts/sdk3_shader_path_native.py\", line 71 in run_native",
+        "File \"/work/repo/scripts/sdk3_terrain_state_native.py\", line 64 in run_native",
+        "File \"/work/repo/scripts/sdk3_terrain_state_native.py\", line 71 in main",
+        "File \"/work/repo/scripts/sdk3_terrain_state_native.py\", line 74 in <module>"
+      ],
+      "contains_render_frame": true,
+      "render_frame_source_mapping": "frozen-stack-source.json",
+      "contains_task_step": true,
+      "contains_original_capture": true
+    },
+    {
+      "snapshot": 8,
+      "python_frames": [
+        "File \"/opt/venv/lib/python3.11/site-packages/direct/showbase/ShowBase.py\", line 2158 in __igLoop",
+        "File \"/opt/venv/lib/python3.11/site-packages/direct/task/Task.py\", line 504 in step",
+        "File \"/work/repo/scripts/sdk3_capture_progress.py\", line 79 in wrapped",
+        "File \"/opt/venv/lib/python3.11/site-packages/metadrive/component/sensors/base_camera.py\", line 183 in perceive",
+        "File \"/work/repo/scripts/sdk3_capture_progress.py\", line 79 in wrapped",
+        "File \"/work/repo/bigbench/native_model_campaign.py\", line 76 in capture",
+        "File \"/work/repo/scripts/sdk3_capture_progress.py\", line 79 in wrapped",
+        "File \"/work/repo/scripts/sdk3_capture_progress_native.py\", line 60 in run_native",
+        "File \"/work/repo/scripts/sdk3_pixel_geometry_budget_native.py\", line 62 in run_native",
+        "File \"/work/repo/scripts/sdk3_pixel_material_native.py\", line 118 in run_native",
+        "File \"/work/repo/scripts/sdk3_shader_path_native.py\", line 71 in run_native",
+        "File \"/work/repo/scripts/sdk3_terrain_state_native.py\", line 64 in run_native",
+        "File \"/work/repo/scripts/sdk3_terrain_state_native.py\", line 71 in main",
+        "File \"/work/repo/scripts/sdk3_terrain_state_native.py\", line 74 in <module>"
+      ],
+      "contains_render_frame": true,
+      "render_frame_source_mapping": "frozen-stack-source.json",
+      "contains_task_step": true,
+      "contains_original_capture": true
+    },
+    {
+      "snapshot": 9,
+      "python_frames": [
+        "File \"/opt/venv/lib/python3.11/site-packages/direct/showbase/ShowBase.py\", line 2158 in __igLoop",
+        "File \"/opt/venv/lib/python3.11/site-packages/direct/task/Task.py\", line 504 in step",
+        "File \"/work/repo/scripts/sdk3_capture_progress.py\", line 79 in wrapped",
+        "File \"/opt/venv/lib/python3.11/site-packages/metadrive/component/sensors/base_camera.py\", line 183 in perceive",
+        "File \"/work/repo/scripts/sdk3_capture_progress.py\", line 79 in wrapped",
+        "File \"/work/repo/bigbench/native_model_campaign.py\", line 76 in capture",
+        "File \"/work/repo/scripts/sdk3_capture_progress.py\", line 79 in wrapped",
+        "File \"/work/repo/scripts/sdk3_capture_progress_native.py\", line 60 in run_native",
+        "File \"/work/repo/scripts/sdk3_pixel_geometry_budget_native.py\", line 62 in run_native",
+        "File \"/work/repo/scripts/sdk3_pixel_material_native.py\", line 118 in run_native",
+        "File \"/work/repo/scripts/sdk3_shader_path_native.py\", line 71 in run_native",
+        "File \"/work/repo/scripts/sdk3_terrain_state_native.py\", line 64 in run_native",
+        "File \"/work/repo/scripts/sdk3_terrain_state_native.py\", line 71 in main",
+        "File \"/work/repo/scripts/sdk3_terrain_state_native.py\", line 74 in <module>"
+      ],
+      "contains_render_frame": true,
+      "render_frame_source_mapping": "frozen-stack-source.json",
+      "contains_task_step": true,
+      "contains_original_capture": true
+    },
+    {
+      "snapshot": 10,
+      "python_frames": [
+        "File \"/opt/venv/lib/python3.11/site-packages/direct/showbase/ShowBase.py\", line 2158 in __igLoop",
+        "File \"/opt/venv/lib/python3.11/site-packages/direct/task/Task.py\", line 504 in step",
+        "File \"/work/repo/scripts/sdk3_capture_progress.py\", line 79 in wrapped",
+        "File \"/opt/venv/lib/python3.11/site-packages/metadrive/component/sensors/base_camera.py\", line 183 in perceive",
+        "File \"/work/repo/scripts/sdk3_capture_progress.py\", line 79 in wrapped",
+        "File \"/work/repo/bigbench/native_model_campaign.py\", line 76 in capture",
+        "File \"/work/repo/scripts/sdk3_capture_progress.py\", line 79 in wrapped",
+        "File \"/work/repo/scripts/sdk3_capture_progress_native.py\", line 60 in run_native",
+        "File \"/work/repo/scripts/sdk3_pixel_geometry_budget_native.py\", line 62 in run_native",
+        "File \"/work/repo/scripts/sdk3_pixel_material_native.py\", line 118 in run_native",
+        "File \"/work/repo/scripts/sdk3_shader_path_native.py\", line 71 in run_native",
+        "File \"/work/repo/scripts/sdk3_terrain_state_native.py\", line 64 in run_native",
+        "File \"/work/repo/scripts/sdk3_terrain_state_native.py\", line 71 in main",
+        "File \"/work/repo/scripts/sdk3_terrain_state_native.py\", line 74 in <module>"
+      ],
+      "contains_render_frame": true,
+      "render_frame_source_mapping": "frozen-stack-source.json",
+      "contains_task_step": true,
+      "contains_original_capture": true
+    },
+    {
+      "snapshot": 11,
+      "python_frames": [
+        "File \"/opt/venv/lib/python3.11/site-packages/direct/showbase/ShowBase.py\", line 2158 in __igLoop",
+        "File \"/opt/venv/lib/python3.11/site-packages/direct/task/Task.py\", line 504 in step",
+        "File \"/work/repo/scripts/sdk3_capture_progress.py\", line 79 in wrapped",
+        "File \"/opt/venv/lib/python3.11/site-packages/metadrive/component/sensors/base_camera.py\", line 183 in perceive",
+        "File \"/work/repo/scripts/sdk3_capture_progress.py\", line 79 in wrapped",
+        "File \"/work/repo/bigbench/native_model_campaign.py\", line 76 in capture",
+        "File \"/work/repo/scripts/sdk3_capture_progress.py\", line 79 in wrapped",
+        "File \"/work/repo/scripts/sdk3_capture_progress_native.py\", line 60 in run_native",
+        "File \"/work/repo/scripts/sdk3_pixel_geometry_budget_native.py\", line 62 in run_native",
+        "File \"/work/repo/scripts/sdk3_pixel_material_native.py\", line 118 in run_native",
+        "File \"/work/repo/scripts/sdk3_shader_path_native.py\", line 71 in run_native",
+        "File \"/work/repo/scripts/sdk3_terrain_state_native.py\", line 64 in run_native",
+        "File \"/work/repo/scripts/sdk3_terrain_state_native.py\", line 71 in main",
+        "File \"/work/repo/scripts/sdk3_terrain_state_native.py\", line 74 in <module>"
+      ],
+      "contains_render_frame": true,
+      "render_frame_source_mapping": "frozen-stack-source.json",
+      "contains_task_step": true,
+      "contains_original_capture": true
+    }
+  ],
+  "proc_before_kill_raw_counters": null,
+  "native_gpu_stack_unobserved": true,
+  "deadlock_proven": false,
+  "unique_cause_proven": false,
+  "repair_proven": false,
+  "stage7_complete": false
+}

@@ -1,0 +1,40 @@
+test_recovery_host_help_has_run_without_starting_renderer (tests.test_sdk3_terrain_state_recovery.RecoveryEntry.test_recovery_host_help_has_run_without_starting_renderer) ... ok
+test_recovery_keeps_identical_native_command_and_receipt_validator (tests.test_sdk3_terrain_state_recovery.RecoveryEntry.test_recovery_keeps_identical_native_command_and_receipt_validator) ... ok
+test_compressed_ram_is_not_sampled_as_texels (tests.test_sdk3_terrain_state.TerrainMath.test_compressed_ram_is_not_sampled_as_texels) ... ok
+test_default_unsupported_wrap_is_not_silently_repeated (tests.test_sdk3_terrain_state.TerrainMath.test_default_unsupported_wrap_is_not_silently_repeated) ... ok
+test_inconsistent_extent_cannot_produce_captured_bytes (tests.test_sdk3_terrain_state.TerrainMath.test_inconsistent_extent_cannot_produce_captured_bytes) ... ok
+test_invalid_footprint_inputs_reject (tests.test_sdk3_terrain_state.TerrainMath.test_invalid_footprint_inputs_reject) ... ok
+test_invalid_point_rejects (tests.test_sdk3_terrain_state.TerrainMath.test_invalid_point_rejects) ... ok
+test_literal_clamp_at_edges (tests.test_sdk3_terrain_state.TerrainMath.test_literal_clamp_at_edges) ... ok
+test_literal_half_texel_repeat (tests.test_sdk3_terrain_state.TerrainMath.test_literal_half_texel_repeat) ... ok
+test_middle_texel_uses_x_fastest_four_corners (tests.test_sdk3_terrain_state.TerrainMath.test_middle_texel_uses_x_fastest_four_corners) ... ok
+test_mirror_both_negative_and_positive_edges (tests.test_sdk3_terrain_state.TerrainMath.test_mirror_both_negative_and_positive_edges) ... ok
+test_nearest_only_and_five_candidate_limit (tests.test_sdk3_terrain_state.TerrainMath.test_nearest_only_and_five_candidate_limit) ... ok
+test_no_ram_does_not_call_ram_getters (tests.test_sdk3_terrain_state.TerrainMath.test_no_ram_does_not_call_ram_getters) ... ok
+test_nonaffine_or_invalid_ratio_reject (tests.test_sdk3_terrain_state.TerrainMath.test_nonaffine_or_invalid_ratio_reject) ... ok
+test_nonfinite_or_singular_matrix_reject (tests.test_sdk3_terrain_state.TerrainMath.test_nonfinite_or_singular_matrix_reject) ... ok
+test_oversized_resident_extent_is_not_touched (tests.test_sdk3_terrain_state.TerrainMath.test_oversized_resident_extent_is_not_touched) ... ok
+test_ratio_one_uses_unscaled_uv (tests.test_sdk3_terrain_state.TerrainMath.test_ratio_one_uses_unscaled_uv) ... ok
+test_raw_window_reads_only_four_exact_offsets (tests.test_sdk3_terrain_state.TerrainMath.test_raw_window_reads_only_four_exact_offsets) ... ok
+test_row_vector_scaled_translated_projection (tests.test_sdk3_terrain_state.TerrainMath.test_row_vector_scaled_translated_projection) ... ok
+test_uninterpreted_multicomponent_window_keeps_full_texel (tests.test_sdk3_terrain_state.TerrainMath.test_uninterpreted_multicomponent_window_keeps_full_texel) ... ok
+test_unsupported_buffer_is_explicit (tests.test_sdk3_terrain_state.TerrainMath.test_unsupported_buffer_is_explicit) ... ok
+test_absent_terrain_is_explicit_and_unqualified (tests.test_sdk3_terrain_state_host.TerrainAdmission.test_absent_terrain_is_explicit_and_unqualified) ... ok
+test_changed_source_and_actual_shader_bytes_reject (tests.test_sdk3_terrain_state_host.TerrainAdmission.test_changed_source_and_actual_shader_bytes_reject) ... ok
+test_duplicate_known_input_or_forged_unavailable_data_rejects (tests.test_sdk3_terrain_state_host.TerrainAdmission.test_duplicate_known_input_or_forged_unavailable_data_rejects) ... ok
+test_forged_candidate_uv_or_world_position_rejects (tests.test_sdk3_terrain_state_host.TerrainAdmission.test_forged_candidate_uv_or_world_position_rejects) ... ok
+test_identity_binding_interval_and_false_claim_mutations_reject (tests.test_sdk3_terrain_state_host.TerrainAdmission.test_identity_binding_interval_and_false_claim_mutations_reject) ... ok
+test_native_help_boots_with_site_disabled_before_verified_runtime (tests.test_sdk3_terrain_state_host.TerrainAdmission.test_native_help_boots_with_site_disabled_before_verified_runtime) ... ok
+test_offset_coordinate_and_byte_hash_mutations_reject (tests.test_sdk3_terrain_state_host.TerrainAdmission.test_offset_coordinate_and_byte_hash_mutations_reject) ... ok
+test_owner_texture_binding_mismatch_rejects (tests.test_sdk3_terrain_state_host.TerrainAdmission.test_owner_texture_binding_mismatch_rejects) ... ok
+test_partial_observation_cannot_promote_gate (tests.test_sdk3_terrain_state_host.TerrainAdmission.test_partial_observation_cannot_promote_gate) ... ok
+test_private_entry_does_not_change_prior_globals (tests.test_sdk3_terrain_state_host.TerrainAdmission.test_private_entry_does_not_change_prior_globals) ... ok
+test_real_snapshot_interruption_retains_inconclusive_partial_receipt (tests.test_sdk3_terrain_state_host.TerrainAdmission.test_real_snapshot_interruption_retains_inconclusive_partial_receipt) ... ok
+test_real_snapshot_records_tag_sources_and_candidate_windows (tests.test_sdk3_terrain_state_host.TerrainAdmission.test_real_snapshot_records_tag_sources_and_candidate_windows) ... ok
+test_rehashed_changed_cache_is_retained_as_mismatch (tests.test_sdk3_terrain_state_host.TerrainAdmission.test_rehashed_changed_cache_is_retained_as_mismatch) ... ok
+test_unavailable_cpu_ram_never_fabricates_texels (tests.test_sdk3_terrain_state_host.TerrainAdmission.test_unavailable_cpu_ram_never_fabricates_texels) ... ok
+
+----------------------------------------------------------------------
+Ran 35 tests in 3.892s
+
+OK

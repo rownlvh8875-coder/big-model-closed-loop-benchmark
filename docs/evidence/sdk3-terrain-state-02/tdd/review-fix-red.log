@@ -1,0 +1,23 @@
+test_real_snapshot_interruption_retains_inconclusive_partial_receipt (tests.test_sdk3_terrain_state_host.TerrainAdmission.test_real_snapshot_interruption_retains_inconclusive_partial_receipt) ... ERROR
+
+======================================================================
+ERROR: test_real_snapshot_interruption_retains_inconclusive_partial_receipt (tests.test_sdk3_terrain_state_host.TerrainAdmission.test_real_snapshot_interruption_retains_inconclusive_partial_receipt)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/dev/shm/stage7-sdk3-runtime-20261116/repo/tests/test_sdk3_terrain_state_host.py", line 79, in test_real_snapshot_interruption_retains_inconclusive_partial_receipt
+    r=h.validate_receipt(folder,ref,nonce);self.assertTrue(r['terrain_recorded']);self.assertFalse(r['terrain_complete']);self.assertFalse(r['renderer_diagnostic_passed']);self.assertEqual(r['status'],'INCONCLUSIVE_TERRAIN_STATE_RECORDED')
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/dev/shm/stage7-sdk3-runtime-20261116/repo/scripts/run_sdk3_terrain_state.py", line 94, in validate_receipt
+    result=_clone(previous.validate_receipt,ENTRY=ENTRY)(folder,reference_path,nonce);return validate_terrain(folder,nonce,result)
+                                                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/dev/shm/stage7-sdk3-runtime-20261116/repo/scripts/run_sdk3_terrain_state.py", line 71, in validate_terrain
+    p.need([r.get('ray') for r in samples]==[r['ray'] for r in expected_samples] and len(samples)==len(expected_samples),'exact existing nearest CPU candidate set')
+  File "/dev/shm/stage7-sdk3-runtime-20261116/repo/scripts/panda_sdk3_runtime.py", line 33, in need
+    if not value:raise ValueError(message)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: exact existing nearest CPU candidate set
+
+----------------------------------------------------------------------
+Ran 1 test in 0.188s
+
+FAILED (errors=1)

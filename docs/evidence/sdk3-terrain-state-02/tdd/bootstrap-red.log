@@ -1,0 +1,21 @@
+test_native_help_boots_with_site_disabled_before_verified_runtime (tests.test_sdk3_terrain_state_host.TerrainAdmission.test_native_help_boots_with_site_disabled_before_verified_runtime) ... FAIL
+
+======================================================================
+FAIL: test_native_help_boots_with_site_disabled_before_verified_runtime (tests.test_sdk3_terrain_state_host.TerrainAdmission.test_native_help_boots_with_site_disabled_before_verified_runtime)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/dev/shm/stage7-sdk3-runtime-20261116/repo/tests/test_sdk3_terrain_state_host.py", line 82, in test_native_help_boots_with_site_disabled_before_verified_runtime
+    self.assertEqual(r.returncode,0,r.stderr);self.assertIn('--out',r.stdout)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 1 != 0 : Traceback (most recent call last):
+  File "/dev/shm/stage7-sdk3-runtime-20261116/repo/scripts/sdk3_terrain_state_native.py", line 6, in <module>
+    from scripts import sdk3_shader_cache_native as cached,sdk3_shader_path_native as previous,panda_sdk3_runtime as p,sdk3_terrain_state as terrain
+  File "/dev/shm/stage7-sdk3-runtime-20261116/repo/scripts/sdk3_terrain_state.py", line 5, in <module>
+    import numpy as np
+ModuleNotFoundError: No module named 'numpy'
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.094s
+
+FAILED (failures=1)
