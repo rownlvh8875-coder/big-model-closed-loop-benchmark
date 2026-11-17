@@ -1,0 +1,15 @@
+test_private_entry_does_not_change_prior_globals (tests.test_sdk3_terrain_state_host.TerrainAdmission.test_private_entry_does_not_change_prior_globals) ... FAIL
+
+======================================================================
+FAIL: test_private_entry_does_not_change_prior_globals (tests.test_sdk3_terrain_state_host.TerrainAdmission.test_private_entry_does_not_change_prior_globals)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/dev/shm/stage7-sdk3-runtime-20261116/repo/tests/test_sdk3_terrain_state_host.py", line 80, in test_private_entry_does_not_change_prior_globals
+    if entry==h.__file__:self.assertIn('--run',r.stdout)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: '--run' not found in ''
+
+----------------------------------------------------------------------
+Ran 1 test in 0.373s
+
+FAILED (failures=1)

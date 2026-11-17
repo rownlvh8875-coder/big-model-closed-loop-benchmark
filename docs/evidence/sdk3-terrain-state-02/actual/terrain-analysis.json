@@ -1,0 +1,1551 @@
+{
+  "run_id": 44045492487,
+  "source_sha": "bdd09f8f71a72fa55def13416edaacaaa077e45d",
+  "manifest_status": "TERRAIN_RECORDED",
+  "terrain_present": true,
+  "terrain_complete": true,
+  "terrain_tag_shader_matched": true,
+  "cpu_candidate_windows_captured": 10,
+  "owner": {
+    "available": true,
+    "render": true,
+    "use_mesh_terrain": false,
+    "terrain_size": 2048,
+    "height_scale": 50.0,
+    "elevation_ratio": 2.0
+  },
+  "node": {
+    "path": "render/29aef82c-af82-4870-b99c-120bc1644f97/ShaderTerrainMesh",
+    "name": "ShaderTerrainMesh",
+    "node_type": "ShaderTerrainMesh",
+    "pointer": 94372395638800,
+    "is_geom_node": false,
+    "direct_tag": "TERRAIN",
+    "cpu_hidden": false,
+    "local_to_world": [
+      [
+        2048.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        2048.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        50.0,
+        0.0
+      ],
+      [
+        -1024.0,
+        -1024.0,
+        -3.13720703125,
+        1.0
+      ]
+    ],
+    "heightfield_pointer": 94372395639872
+  },
+  "camera": {
+    "tag_state_key": "rgb",
+    "tag_value": "TERRAIN",
+    "has_tag_state": true
+  },
+  "states": [
+    {
+      "role": "node_net",
+      "pointer": 140354598267168,
+      "shader_override": 0,
+      "shader_attrib_pointer": 94372530710704,
+      "shader_id": 0,
+      "available_inputs": [
+        {
+          "name": "PSSMShadowAtlas",
+          "value_type": 1,
+          "priority": 0,
+          "status": "AVAILABLE_TEXTURE",
+          "texture": {
+            "pointer": 94372420998064,
+            "name": "PSSMShadowMap",
+            "x_size": 2048,
+            "y_size": 1024,
+            "z_size": 1,
+            "num_components": 1,
+            "component_width": 4,
+            "component_type": 2,
+            "format": 26,
+            "texture_type": 1
+          }
+        },
+        {
+          "name": "pssm_mvps",
+          "value_type": 4,
+          "priority": 0,
+          "status": "UNAVAILABLE_NUMERIC_ARRAY"
+        },
+        {
+          "name": "pssm_nearfar",
+          "value_type": 4,
+          "priority": 0,
+          "status": "UNAVAILABLE_NUMERIC_ARRAY"
+        },
+        {
+          "name": "border_bias",
+          "value_type": 3,
+          "priority": 0,
+          "status": "AVAILABLE_VECTOR",
+          "vector": [
+            0.057999998331069946,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "name": "use_pssm",
+          "value_type": 4,
+          "priority": 0,
+          "status": "UNAVAILABLE_NUMERIC_ARRAY"
+        },
+        {
+          "name": "fog",
+          "value_type": 4,
+          "priority": 0,
+          "status": "UNAVAILABLE_NUMERIC_ARRAY"
+        },
+        {
+          "name": "split_count",
+          "value_type": 4,
+          "priority": 0,
+          "status": "UNAVAILABLE_NUMERIC_ARRAY"
+        },
+        {
+          "name": "light_direction",
+          "value_type": 4,
+          "priority": 0,
+          "status": "UNAVAILABLE_NUMERIC_ARRAY"
+        },
+        {
+          "name": "attribute_tex",
+          "value_type": 1,
+          "priority": 0,
+          "status": "AVAILABLE_TEXTURE",
+          "texture": {
+            "pointer": 94372395639408,
+            "name": "",
+            "x_size": 22528,
+            "y_size": 22528,
+            "z_size": 1,
+            "num_components": 1,
+            "component_width": 4,
+            "component_type": 2,
+            "format": 3,
+            "texture_type": 1
+          }
+        },
+        {
+          "name": "yellow_tex",
+          "value_type": 1,
+          "priority": 0,
+          "status": "AVAILABLE_TEXTURE",
+          "texture": {
+            "pointer": 94372387113616,
+            "name": "white lane line",
+            "x_size": 1024,
+            "y_size": 1024,
+            "z_size": 1,
+            "num_components": 4,
+            "component_width": 1,
+            "component_type": 0,
+            "format": 12,
+            "texture_type": 1
+          }
+        },
+        {
+          "name": "road_tex",
+          "value_type": 1,
+          "priority": 0,
+          "status": "AVAILABLE_TEXTURE",
+          "texture": {
+            "pointer": 94372387110672,
+            "name": "diff_2k",
+            "x_size": 2048,
+            "y_size": 2048,
+            "z_size": 1,
+            "num_components": 3,
+            "component_width": 1,
+            "component_type": 0,
+            "format": 7,
+            "texture_type": 1
+          }
+        },
+        {
+          "name": "white_tex",
+          "value_type": 1,
+          "priority": 0,
+          "status": "AVAILABLE_TEXTURE",
+          "texture": {
+            "pointer": 94372387113056,
+            "name": "white lane line",
+            "x_size": 1024,
+            "y_size": 1024,
+            "z_size": 1,
+            "num_components": 4,
+            "component_width": 1,
+            "component_type": 0,
+            "format": 12,
+            "texture_type": 1
+          }
+        },
+        {
+          "name": "road_normal",
+          "value_type": 1,
+          "priority": 0,
+          "status": "AVAILABLE_TEXTURE",
+          "texture": {
+            "pointer": 94372387111584,
+            "name": "normal_2k",
+            "x_size": 2048,
+            "y_size": 2048,
+            "z_size": 1,
+            "num_components": 3,
+            "component_width": 1,
+            "component_type": 0,
+            "format": 7,
+            "texture_type": 1
+          }
+        },
+        {
+          "name": "road_rough",
+          "value_type": 1,
+          "priority": 0,
+          "status": "AVAILABLE_TEXTURE",
+          "texture": {
+            "pointer": 94372387112496,
+            "name": "rough_2k",
+            "x_size": 2048,
+            "y_size": 2048,
+            "z_size": 1,
+            "num_components": 1,
+            "component_width": 1,
+            "component_type": 0,
+            "format": 18,
+            "texture_type": 1
+          }
+        },
+        {
+          "name": "grass_tex",
+          "value_type": 1,
+          "priority": 0,
+          "status": "AVAILABLE_TEXTURE",
+          "texture": {
+            "pointer": 94372387105392,
+            "name": "GroundGrassGreen002_COL_1K",
+            "x_size": 1024,
+            "y_size": 1024,
+            "z_size": 1,
+            "num_components": 3,
+            "component_width": 1,
+            "component_type": 0,
+            "format": 7,
+            "texture_type": 1
+          }
+        },
+        {
+          "name": "grass_normal",
+          "value_type": 1,
+          "priority": 0,
+          "status": "AVAILABLE_TEXTURE",
+          "texture": {
+            "pointer": 94372387106208,
+            "name": "GroundGrassGreen002_NRM_1K",
+            "x_size": 1024,
+            "y_size": 1024,
+            "z_size": 1,
+            "num_components": 3,
+            "component_width": 1,
+            "component_type": 0,
+            "format": 7,
+            "texture_type": 1
+          }
+        },
+        {
+          "name": "grass_rough",
+          "value_type": 1,
+          "priority": 0,
+          "status": "AVAILABLE_TEXTURE",
+          "texture": {
+            "pointer": 94372387107024,
+            "name": "grass_path_2_rough_1k",
+            "x_size": 1024,
+            "y_size": 1024,
+            "z_size": 1,
+            "num_components": 1,
+            "component_width": 1,
+            "component_type": 0,
+            "format": 18,
+            "texture_type": 1
+          }
+        },
+        {
+          "name": "rock_tex",
+          "value_type": 1,
+          "priority": 0,
+          "status": "AVAILABLE_TEXTURE",
+          "texture": {
+            "pointer": 94372387107936,
+            "name": "brown_mud_leaves_01_diff_1k",
+            "x_size": 1024,
+            "y_size": 1024,
+            "z_size": 1,
+            "num_components": 3,
+            "component_width": 1,
+            "component_type": 0,
+            "format": 7,
+            "texture_type": 1
+          }
+        },
+        {
+          "name": "rock_normal",
+          "value_type": 1,
+          "priority": 0,
+          "status": "AVAILABLE_TEXTURE",
+          "texture": {
+            "pointer": 94372387108848,
+            "name": "brown_mud_leaves_01_nor_gl_1k",
+            "x_size": 1024,
+            "y_size": 1024,
+            "z_size": 1,
+            "num_components": 3,
+            "component_width": 1,
+            "component_type": 0,
+            "format": 7,
+            "texture_type": 1
+          }
+        },
+        {
+          "name": "rock_rough",
+          "value_type": 1,
+          "priority": 0,
+          "status": "AVAILABLE_TEXTURE",
+          "texture": {
+            "pointer": 94372387109760,
+            "name": "brown_mud_leaves_01_rough_1k",
+            "x_size": 1024,
+            "y_size": 1024,
+            "z_size": 1,
+            "num_components": 1,
+            "component_width": 1,
+            "component_type": 0,
+            "format": 18,
+            "texture_type": 1
+          }
+        },
+        {
+          "name": "crosswalk_tex",
+          "value_type": 1,
+          "priority": 0,
+          "status": "AVAILABLE_TEXTURE",
+          "texture": {
+            "pointer": 94372387114176,
+            "name": "",
+            "x_size": 2048,
+            "y_size": 2048,
+            "z_size": 1,
+            "num_components": 3,
+            "component_width": 1,
+            "component_type": 0,
+            "format": 7,
+            "texture_type": 1
+          }
+        },
+        {
+          "name": "height_scale",
+          "value_type": 4,
+          "priority": 0,
+          "status": "UNAVAILABLE_NUMERIC_ARRAY"
+        },
+        {
+          "name": "elevation_texture_ratio",
+          "value_type": 3,
+          "priority": 0,
+          "status": "AVAILABLE_VECTOR",
+          "vector": [
+            2.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "name": "grass_tex_ratio",
+          "value_type": 4,
+          "priority": 0,
+          "status": "UNAVAILABLE_NUMERIC_ARRAY"
+        }
+      ]
+    },
+    {
+      "role": "camera_initial",
+      "pointer": 140356123643760,
+      "shader_override": 0,
+      "shader_attrib_pointer": null,
+      "shader_id": null,
+      "available_inputs": []
+    },
+    {
+      "role": "camera_tag",
+      "pointer": 140355314810272,
+      "shader_override": 0,
+      "shader_attrib_pointer": 94372421019216,
+      "shader_id": 1,
+      "available_inputs": []
+    },
+    {
+      "role": "cpu_net_then_tag",
+      "pointer": 140354943611376,
+      "shader_override": 0,
+      "shader_attrib_pointer": 94372556143808,
+      "shader_id": 1,
+      "available_inputs": [
+        {
+          "name": "PSSMShadowAtlas",
+          "value_type": 1,
+          "priority": 0,
+          "status": "AVAILABLE_TEXTURE",
+          "texture": {
+            "pointer": 94372420998064,
+            "name": "PSSMShadowMap",
+            "x_size": 2048,
+            "y_size": 1024,
+            "z_size": 1,
+            "num_components": 1,
+            "component_width": 4,
+            "component_type": 2,
+            "format": 26,
+            "texture_type": 1
+          }
+        },
+        {
+          "name": "pssm_mvps",
+          "value_type": 4,
+          "priority": 0,
+          "status": "UNAVAILABLE_NUMERIC_ARRAY"
+        },
+        {
+          "name": "pssm_nearfar",
+          "value_type": 4,
+          "priority": 0,
+          "status": "UNAVAILABLE_NUMERIC_ARRAY"
+        },
+        {
+          "name": "border_bias",
+          "value_type": 3,
+          "priority": 0,
+          "status": "AVAILABLE_VECTOR",
+          "vector": [
+            0.057999998331069946,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "name": "use_pssm",
+          "value_type": 4,
+          "priority": 0,
+          "status": "UNAVAILABLE_NUMERIC_ARRAY"
+        },
+        {
+          "name": "fog",
+          "value_type": 4,
+          "priority": 0,
+          "status": "UNAVAILABLE_NUMERIC_ARRAY"
+        },
+        {
+          "name": "split_count",
+          "value_type": 4,
+          "priority": 0,
+          "status": "UNAVAILABLE_NUMERIC_ARRAY"
+        },
+        {
+          "name": "light_direction",
+          "value_type": 4,
+          "priority": 0,
+          "status": "UNAVAILABLE_NUMERIC_ARRAY"
+        },
+        {
+          "name": "attribute_tex",
+          "value_type": 1,
+          "priority": 0,
+          "status": "AVAILABLE_TEXTURE",
+          "texture": {
+            "pointer": 94372395639408,
+            "name": "",
+            "x_size": 22528,
+            "y_size": 22528,
+            "z_size": 1,
+            "num_components": 1,
+            "component_width": 4,
+            "component_type": 2,
+            "format": 3,
+            "texture_type": 1
+          }
+        },
+        {
+          "name": "yellow_tex",
+          "value_type": 1,
+          "priority": 0,
+          "status": "AVAILABLE_TEXTURE",
+          "texture": {
+            "pointer": 94372387113616,
+            "name": "white lane line",
+            "x_size": 1024,
+            "y_size": 1024,
+            "z_size": 1,
+            "num_components": 4,
+            "component_width": 1,
+            "component_type": 0,
+            "format": 12,
+            "texture_type": 1
+          }
+        },
+        {
+          "name": "road_tex",
+          "value_type": 1,
+          "priority": 0,
+          "status": "AVAILABLE_TEXTURE",
+          "texture": {
+            "pointer": 94372387110672,
+            "name": "diff_2k",
+            "x_size": 2048,
+            "y_size": 2048,
+            "z_size": 1,
+            "num_components": 3,
+            "component_width": 1,
+            "component_type": 0,
+            "format": 7,
+            "texture_type": 1
+          }
+        },
+        {
+          "name": "white_tex",
+          "value_type": 1,
+          "priority": 0,
+          "status": "AVAILABLE_TEXTURE",
+          "texture": {
+            "pointer": 94372387113056,
+            "name": "white lane line",
+            "x_size": 1024,
+            "y_size": 1024,
+            "z_size": 1,
+            "num_components": 4,
+            "component_width": 1,
+            "component_type": 0,
+            "format": 12,
+            "texture_type": 1
+          }
+        },
+        {
+          "name": "road_normal",
+          "value_type": 1,
+          "priority": 0,
+          "status": "AVAILABLE_TEXTURE",
+          "texture": {
+            "pointer": 94372387111584,
+            "name": "normal_2k",
+            "x_size": 2048,
+            "y_size": 2048,
+            "z_size": 1,
+            "num_components": 3,
+            "component_width": 1,
+            "component_type": 0,
+            "format": 7,
+            "texture_type": 1
+          }
+        },
+        {
+          "name": "road_rough",
+          "value_type": 1,
+          "priority": 0,
+          "status": "AVAILABLE_TEXTURE",
+          "texture": {
+            "pointer": 94372387112496,
+            "name": "rough_2k",
+            "x_size": 2048,
+            "y_size": 2048,
+            "z_size": 1,
+            "num_components": 1,
+            "component_width": 1,
+            "component_type": 0,
+            "format": 18,
+            "texture_type": 1
+          }
+        },
+        {
+          "name": "grass_tex",
+          "value_type": 1,
+          "priority": 0,
+          "status": "AVAILABLE_TEXTURE",
+          "texture": {
+            "pointer": 94372387105392,
+            "name": "GroundGrassGreen002_COL_1K",
+            "x_size": 1024,
+            "y_size": 1024,
+            "z_size": 1,
+            "num_components": 3,
+            "component_width": 1,
+            "component_type": 0,
+            "format": 7,
+            "texture_type": 1
+          }
+        },
+        {
+          "name": "grass_normal",
+          "value_type": 1,
+          "priority": 0,
+          "status": "AVAILABLE_TEXTURE",
+          "texture": {
+            "pointer": 94372387106208,
+            "name": "GroundGrassGreen002_NRM_1K",
+            "x_size": 1024,
+            "y_size": 1024,
+            "z_size": 1,
+            "num_components": 3,
+            "component_width": 1,
+            "component_type": 0,
+            "format": 7,
+            "texture_type": 1
+          }
+        },
+        {
+          "name": "grass_rough",
+          "value_type": 1,
+          "priority": 0,
+          "status": "AVAILABLE_TEXTURE",
+          "texture": {
+            "pointer": 94372387107024,
+            "name": "grass_path_2_rough_1k",
+            "x_size": 1024,
+            "y_size": 1024,
+            "z_size": 1,
+            "num_components": 1,
+            "component_width": 1,
+            "component_type": 0,
+            "format": 18,
+            "texture_type": 1
+          }
+        },
+        {
+          "name": "rock_tex",
+          "value_type": 1,
+          "priority": 0,
+          "status": "AVAILABLE_TEXTURE",
+          "texture": {
+            "pointer": 94372387107936,
+            "name": "brown_mud_leaves_01_diff_1k",
+            "x_size": 1024,
+            "y_size": 1024,
+            "z_size": 1,
+            "num_components": 3,
+            "component_width": 1,
+            "component_type": 0,
+            "format": 7,
+            "texture_type": 1
+          }
+        },
+        {
+          "name": "rock_normal",
+          "value_type": 1,
+          "priority": 0,
+          "status": "AVAILABLE_TEXTURE",
+          "texture": {
+            "pointer": 94372387108848,
+            "name": "brown_mud_leaves_01_nor_gl_1k",
+            "x_size": 1024,
+            "y_size": 1024,
+            "z_size": 1,
+            "num_components": 3,
+            "component_width": 1,
+            "component_type": 0,
+            "format": 7,
+            "texture_type": 1
+          }
+        },
+        {
+          "name": "rock_rough",
+          "value_type": 1,
+          "priority": 0,
+          "status": "AVAILABLE_TEXTURE",
+          "texture": {
+            "pointer": 94372387109760,
+            "name": "brown_mud_leaves_01_rough_1k",
+            "x_size": 1024,
+            "y_size": 1024,
+            "z_size": 1,
+            "num_components": 1,
+            "component_width": 1,
+            "component_type": 0,
+            "format": 18,
+            "texture_type": 1
+          }
+        },
+        {
+          "name": "crosswalk_tex",
+          "value_type": 1,
+          "priority": 0,
+          "status": "AVAILABLE_TEXTURE",
+          "texture": {
+            "pointer": 94372387114176,
+            "name": "",
+            "x_size": 2048,
+            "y_size": 2048,
+            "z_size": 1,
+            "num_components": 3,
+            "component_width": 1,
+            "component_type": 0,
+            "format": 7,
+            "texture_type": 1
+          }
+        },
+        {
+          "name": "height_scale",
+          "value_type": 4,
+          "priority": 0,
+          "status": "UNAVAILABLE_NUMERIC_ARRAY"
+        },
+        {
+          "name": "elevation_texture_ratio",
+          "value_type": 3,
+          "priority": 0,
+          "status": "AVAILABLE_VECTOR",
+          "vector": [
+            2.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "name": "grass_tex_ratio",
+          "value_type": 4,
+          "priority": 0,
+          "status": "UNAVAILABLE_NUMERIC_ARRAY"
+        }
+      ]
+    }
+  ],
+  "shader_sources": [
+    {
+      "name": "shaders/terrain.vert.glsl",
+      "file": "terrain-text-001.txt",
+      "nbytes": 2608,
+      "sha256": "aa53110d38a217fdeb375c3c5753941e95415aeeae85c46e710250667ba1af76"
+    },
+    {
+      "name": "shaders/terrain.frag.glsl",
+      "file": "terrain-text-002.txt",
+      "nbytes": 7862,
+      "sha256": "ffcc41b72827a93a60957adeb9645af1846bbf291dfd35dbc15573888b80129b"
+    }
+  ],
+  "cached_shaders": [
+    {
+      "shader_id": 0,
+      "pointer": 94372395640416,
+      "language": 2,
+      "error_flag": false,
+      "stages": {
+        "vertex": {
+          "filename": "created-shader",
+          "text": {
+            "file": "terrain-text-003.txt",
+            "nbytes": 1987,
+            "sha256": "a0ee9afb297b54c776385b3c025d8effdac4825b135ee2aac5f226231fd807d1"
+          }
+        },
+        "fragment": {
+          "filename": "created-shader",
+          "text": {
+            "file": "terrain-text-004.txt",
+            "nbytes": 7996,
+            "sha256": "da1fcda1e8fbf3c40ba666c50b27937bf2a324438182ad7473373a9f94c24a3e"
+          }
+        }
+      }
+    },
+    {
+      "shader_id": 1,
+      "pointer": 94372421017952,
+      "language": 2,
+      "error_flag": false,
+      "stages": {
+        "vertex": {
+          "filename": "/opt/venv/lib/python3.11/site-packages/metadrive/assets/../shaders/terrain.vert.glsl",
+          "text": {
+            "file": "terrain-text-005.txt",
+            "nbytes": 1800,
+            "sha256": "74fe5c4b1dfeb80ecf3f200ff2236aaff76cc802b3cc956a3f4be0ff80a857c3"
+          }
+        },
+        "fragment": {
+          "filename": "/opt/venv/lib/python3.11/site-packages/metadrive/assets/../shaders/terrain.frag.glsl",
+          "text": {
+            "file": "terrain-text-006.txt",
+            "nbytes": 6296,
+            "sha256": "2c1104ff463d5cb6f0170dcd0a0efec6da1234faa611ce5fe6291a93a0bb9404"
+          }
+        }
+      }
+    }
+  ],
+  "inspection_elapsed_wall_seconds": 0.002105637999989085,
+  "candidate_windows": [
+    {
+      "role": "attribute",
+      "ray": "center",
+      "candidate_triangle_index": 606,
+      "window_status": "UNAVAILABLE_EXTENT",
+      "world_point": [
+        76.2298058324282,
+        0.4301324455339341,
+        -0.0017134611239248976
+      ],
+      "local_point": [
+        0.5372215848791153,
+        0.5002100256081708,
+        0.0627098714025215
+      ]
+    },
+    {
+      "role": "attribute",
+      "ray": "top_left",
+      "candidate_triangle_index": 606,
+      "window_status": "UNAVAILABLE_EXTENT",
+      "world_point": [
+        76.23984847990786,
+        0.4332390003269599,
+        -2.8095809844863595e-05
+      ],
+      "local_point": [
+        0.53722648851558,
+        0.5002115424806284,
+        0.06274357870880311
+      ]
+    },
+    {
+      "role": "attribute",
+      "ray": "top_right",
+      "candidate_triangle_index": 606,
+      "window_status": "UNAVAILABLE_EXTENT",
+      "world_point": [
+        76.2197879049543,
+        0.42703353753450346,
+        0.0029438671355463963
+      ],
+      "local_point": [
+        0.537216693312966,
+        0.5002085124694993,
+        0.06280301796771093
+      ]
+    },
+    {
+      "role": "attribute",
+      "ray": "bottom_right",
+      "candidate_triangle_index": 606,
+      "window_status": "UNAVAILABLE_EXTENT",
+      "world_point": [
+        76.21978790495429,
+        0.42703353753450346,
+        -0.00339492397405583
+      ],
+      "local_point": [
+        0.537216693312966,
+        0.5002085124694993,
+        0.06267624214551888
+      ]
+    },
+    {
+      "role": "attribute",
+      "ray": "bottom_left",
+      "candidate_triangle_index": 606,
+      "window_status": "UNAVAILABLE_EXTENT",
+      "world_point": [
+        76.23984847990786,
+        0.4332390003269599,
+        -0.006382365789785016
+      ],
+      "local_point": [
+        0.53722648851558,
+        0.5002115424806284,
+        0.0626164933092043
+      ]
+    },
+    {
+      "role": "heightfield",
+      "ray": "center",
+      "candidate_triangle_index": 606,
+      "window_status": "CAPTURED",
+      "world_point": [
+        76.2298058324282,
+        0.4301324455339341,
+        -0.0017134611239248976
+      ],
+      "local_point": [
+        0.5372215848791153,
+        0.5002100256081708,
+        0.0627098714025215
+      ],
+      "uv": [
+        0.5372215848791153,
+        0.5002100256081708
+      ],
+      "texel_xy": [
+        [
+          1099,
+          1023
+        ],
+        [
+          1100,
+          1023
+        ],
+        [
+          1099,
+          1024
+        ],
+        [
+          1100,
+          1024
+        ]
+      ],
+      "raw_hex": [
+        "0708",
+        "0708",
+        "0708",
+        "0708"
+      ],
+      "component_type": 6,
+      "component_width": 2,
+      "num_components": 1,
+      "cpu_unsigned16_bits": [
+        2055,
+        2055,
+        2055,
+        2055
+      ],
+      "cpu_signed16_bits": [
+        2055,
+        2055,
+        2055,
+        2055
+      ]
+    },
+    {
+      "role": "heightfield",
+      "ray": "top_left",
+      "candidate_triangle_index": 606,
+      "window_status": "CAPTURED",
+      "world_point": [
+        76.23984847990786,
+        0.4332390003269599,
+        -2.8095809844863595e-05
+      ],
+      "local_point": [
+        0.53722648851558,
+        0.5002115424806284,
+        0.06274357870880311
+      ],
+      "uv": [
+        0.53722648851558,
+        0.5002115424806284
+      ],
+      "texel_xy": [
+        [
+          1099,
+          1023
+        ],
+        [
+          1100,
+          1023
+        ],
+        [
+          1099,
+          1024
+        ],
+        [
+          1100,
+          1024
+        ]
+      ],
+      "raw_hex": [
+        "0708",
+        "0708",
+        "0708",
+        "0708"
+      ],
+      "component_type": 6,
+      "component_width": 2,
+      "num_components": 1,
+      "cpu_unsigned16_bits": [
+        2055,
+        2055,
+        2055,
+        2055
+      ],
+      "cpu_signed16_bits": [
+        2055,
+        2055,
+        2055,
+        2055
+      ]
+    },
+    {
+      "role": "heightfield",
+      "ray": "top_right",
+      "candidate_triangle_index": 606,
+      "window_status": "CAPTURED",
+      "world_point": [
+        76.2197879049543,
+        0.42703353753450346,
+        0.0029438671355463963
+      ],
+      "local_point": [
+        0.537216693312966,
+        0.5002085124694993,
+        0.06280301796771093
+      ],
+      "uv": [
+        0.537216693312966,
+        0.5002085124694993
+      ],
+      "texel_xy": [
+        [
+          1099,
+          1023
+        ],
+        [
+          1100,
+          1023
+        ],
+        [
+          1099,
+          1024
+        ],
+        [
+          1100,
+          1024
+        ]
+      ],
+      "raw_hex": [
+        "0708",
+        "0708",
+        "0708",
+        "0708"
+      ],
+      "component_type": 6,
+      "component_width": 2,
+      "num_components": 1,
+      "cpu_unsigned16_bits": [
+        2055,
+        2055,
+        2055,
+        2055
+      ],
+      "cpu_signed16_bits": [
+        2055,
+        2055,
+        2055,
+        2055
+      ]
+    },
+    {
+      "role": "heightfield",
+      "ray": "bottom_right",
+      "candidate_triangle_index": 606,
+      "window_status": "CAPTURED",
+      "world_point": [
+        76.21978790495429,
+        0.42703353753450346,
+        -0.00339492397405583
+      ],
+      "local_point": [
+        0.537216693312966,
+        0.5002085124694993,
+        0.06267624214551888
+      ],
+      "uv": [
+        0.537216693312966,
+        0.5002085124694993
+      ],
+      "texel_xy": [
+        [
+          1099,
+          1023
+        ],
+        [
+          1100,
+          1023
+        ],
+        [
+          1099,
+          1024
+        ],
+        [
+          1100,
+          1024
+        ]
+      ],
+      "raw_hex": [
+        "0708",
+        "0708",
+        "0708",
+        "0708"
+      ],
+      "component_type": 6,
+      "component_width": 2,
+      "num_components": 1,
+      "cpu_unsigned16_bits": [
+        2055,
+        2055,
+        2055,
+        2055
+      ],
+      "cpu_signed16_bits": [
+        2055,
+        2055,
+        2055,
+        2055
+      ]
+    },
+    {
+      "role": "heightfield",
+      "ray": "bottom_left",
+      "candidate_triangle_index": 606,
+      "window_status": "CAPTURED",
+      "world_point": [
+        76.23984847990786,
+        0.4332390003269599,
+        -0.006382365789785016
+      ],
+      "local_point": [
+        0.53722648851558,
+        0.5002115424806284,
+        0.0626164933092043
+      ],
+      "uv": [
+        0.53722648851558,
+        0.5002115424806284
+      ],
+      "texel_xy": [
+        [
+          1099,
+          1023
+        ],
+        [
+          1100,
+          1023
+        ],
+        [
+          1099,
+          1024
+        ],
+        [
+          1100,
+          1024
+        ]
+      ],
+      "raw_hex": [
+        "0708",
+        "0708",
+        "0708",
+        "0708"
+      ],
+      "component_type": 6,
+      "component_width": 2,
+      "num_components": 1,
+      "cpu_unsigned16_bits": [
+        2055,
+        2055,
+        2055,
+        2055
+      ],
+      "cpu_signed16_bits": [
+        2055,
+        2055,
+        2055,
+        2055
+      ]
+    },
+    {
+      "role": "yellow",
+      "ray": "center",
+      "candidate_triangle_index": 606,
+      "window_status": "CAPTURED",
+      "world_point": [
+        76.2298058324282,
+        0.4301324455339341,
+        -0.0017134611239248976
+      ],
+      "local_point": [
+        0.5372215848791153,
+        0.5002100256081708,
+        0.0627098714025215
+      ],
+      "uv": [
+        68.76436286452676,
+        64.02688327784587
+      ],
+      "texel_xy": [
+        [
+          782,
+          27
+        ],
+        [
+          783,
+          27
+        ],
+        [
+          782,
+          28
+        ],
+        [
+          783,
+          28
+        ]
+      ],
+      "raw_hex": [
+        "00c8ff00",
+        "00c8ff00",
+        "00c8ff00",
+        "00c8ff00"
+      ],
+      "component_type": 0,
+      "component_width": 1,
+      "num_components": 4
+    },
+    {
+      "role": "yellow",
+      "ray": "top_left",
+      "candidate_triangle_index": 606,
+      "window_status": "CAPTURED",
+      "world_point": [
+        76.23984847990786,
+        0.4332390003269599,
+        -2.8095809844863595e-05
+      ],
+      "local_point": [
+        0.53722648851558,
+        0.5002115424806284,
+        0.06274357870880311
+      ],
+      "uv": [
+        68.76499052999424,
+        64.02707743752043
+      ],
+      "texel_xy": [
+        [
+          782,
+          27
+        ],
+        [
+          783,
+          27
+        ],
+        [
+          782,
+          28
+        ],
+        [
+          783,
+          28
+        ]
+      ],
+      "raw_hex": [
+        "00c8ff00",
+        "00c8ff00",
+        "00c8ff00",
+        "00c8ff00"
+      ],
+      "component_type": 0,
+      "component_width": 1,
+      "num_components": 4
+    },
+    {
+      "role": "yellow",
+      "ray": "top_right",
+      "candidate_triangle_index": 606,
+      "window_status": "CAPTURED",
+      "world_point": [
+        76.2197879049543,
+        0.42703353753450346,
+        0.0029438671355463963
+      ],
+      "local_point": [
+        0.537216693312966,
+        0.5002085124694993,
+        0.06280301796771093
+      ],
+      "uv": [
+        68.76373674405964,
+        64.0266895960959
+      ],
+      "texel_xy": [
+        [
+          781,
+          26
+        ],
+        [
+          782,
+          26
+        ],
+        [
+          781,
+          27
+        ],
+        [
+          782,
+          27
+        ]
+      ],
+      "raw_hex": [
+        "00c8ff00",
+        "00c8ff00",
+        "00c8ff00",
+        "00c8ff00"
+      ],
+      "component_type": 0,
+      "component_width": 1,
+      "num_components": 4
+    },
+    {
+      "role": "yellow",
+      "ray": "bottom_right",
+      "candidate_triangle_index": 606,
+      "window_status": "CAPTURED",
+      "world_point": [
+        76.21978790495429,
+        0.42703353753450346,
+        -0.00339492397405583
+      ],
+      "local_point": [
+        0.537216693312966,
+        0.5002085124694993,
+        0.06267624214551888
+      ],
+      "uv": [
+        68.76373674405964,
+        64.0266895960959
+      ],
+      "texel_xy": [
+        [
+          781,
+          26
+        ],
+        [
+          782,
+          26
+        ],
+        [
+          781,
+          27
+        ],
+        [
+          782,
+          27
+        ]
+      ],
+      "raw_hex": [
+        "00c8ff00",
+        "00c8ff00",
+        "00c8ff00",
+        "00c8ff00"
+      ],
+      "component_type": 0,
+      "component_width": 1,
+      "num_components": 4
+    },
+    {
+      "role": "yellow",
+      "ray": "bottom_left",
+      "candidate_triangle_index": 606,
+      "window_status": "CAPTURED",
+      "world_point": [
+        76.23984847990786,
+        0.4332390003269599,
+        -0.006382365789785016
+      ],
+      "local_point": [
+        0.53722648851558,
+        0.5002115424806284,
+        0.0626164933092043
+      ],
+      "uv": [
+        68.76499052999424,
+        64.02707743752043
+      ],
+      "texel_xy": [
+        [
+          782,
+          27
+        ],
+        [
+          783,
+          27
+        ],
+        [
+          782,
+          28
+        ],
+        [
+          783,
+          28
+        ]
+      ],
+      "raw_hex": [
+        "00c8ff00",
+        "00c8ff00",
+        "00c8ff00",
+        "00c8ff00"
+      ],
+      "component_type": 0,
+      "component_width": 1,
+      "num_components": 4
+    }
+  ],
+  "texture_metadata": [
+    {
+      "role": "attribute",
+      "texture": {
+        "pointer": 94372395639408,
+        "name": "",
+        "x_size": 22528,
+        "y_size": 22528,
+        "z_size": 1,
+        "num_components": 1,
+        "component_width": 4,
+        "component_type": 2,
+        "format": 3,
+        "texture_type": 1
+      },
+      "default_sampler": {
+        "wrap_u": 1,
+        "wrap_v": 1,
+        "wrap_w": 1,
+        "minfilter": 7,
+        "magfilter": 7,
+        "effective_minfilter": 1,
+        "effective_magfilter": 1,
+        "anisotropic_degree": 0,
+        "effective_anisotropic_degree": 1,
+        "border_color": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "min_lod": -1000.0,
+        "max_lod": 1000.0,
+        "lod_bias": 0.0,
+        "text": "<panda3d.core.SamplerState object at 0x7fa714cbd1a0>"
+      }
+    },
+    {
+      "role": "heightfield",
+      "texture": {
+        "pointer": 94372395639872,
+        "name": "",
+        "x_size": 2048,
+        "y_size": 2048,
+        "z_size": 1,
+        "num_components": 1,
+        "component_width": 2,
+        "component_type": 6,
+        "format": 27,
+        "texture_type": 1
+      },
+      "default_sampler": {
+        "wrap_u": 0,
+        "wrap_v": 0,
+        "wrap_w": 1,
+        "minfilter": 1,
+        "magfilter": 1,
+        "effective_minfilter": 1,
+        "effective_magfilter": 1,
+        "anisotropic_degree": 0,
+        "effective_anisotropic_degree": 1,
+        "border_color": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "min_lod": -1000.0,
+        "max_lod": 1000.0,
+        "lod_bias": 0.0,
+        "text": "<panda3d.core.SamplerState object at 0x7fa714cbd1a0>"
+      }
+    },
+    {
+      "role": "yellow",
+      "texture": {
+        "pointer": 94372387113616,
+        "name": "white lane line",
+        "x_size": 1024,
+        "y_size": 1024,
+        "z_size": 1,
+        "num_components": 4,
+        "component_width": 1,
+        "component_type": 0,
+        "format": 12,
+        "texture_type": 1
+      },
+      "default_sampler": {
+        "wrap_u": 1,
+        "wrap_v": 1,
+        "wrap_w": 1,
+        "minfilter": 7,
+        "magfilter": 7,
+        "effective_minfilter": 1,
+        "effective_magfilter": 1,
+        "anisotropic_degree": 0,
+        "effective_anisotropic_degree": 1,
+        "border_color": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "min_lod": -1000.0,
+        "max_lod": 1000.0,
+        "lod_bias": 0.0,
+        "text": "<panda3d.core.SamplerState object at 0x7fa714cbd1a0>"
+      }
+    }
+  ],
+  "limits": {
+    "max_states": 4,
+    "max_shader_objects": 4,
+    "max_sources": 2,
+    "max_file_bytes": 262144,
+    "max_total_bytes": 2097152,
+    "max_resident_bytes": 1073741824,
+    "max_points": 5,
+    "max_cpu_seconds": 20
+  },
+  "limitations": [
+    "Candidate points are nearest prior CPU GeomNode hits projected to localxy, not terrain intersections or raster samples.",
+    "Four raw CPU texels and optional LOD0 bilinear arithmetic do not prove actual GPU sampler, mipmap, anisotropy or rendered color.",
+    "CPU state composition is hypothetical; actual cull/draw/driver uniforms remain unobserved.",
+    "Raw RAM layout is not assumed to be shader RGB; only scalar float32 or16bit patterns decoded."
+  ],
+  "gpu_program_execution_proven": false,
+  "gpu_pixel_owner_proven": false,
+  "depth_tie_proven": false,
+  "unique_cause_proven": false,
+  "repair_proven": false,
+  "stage7_complete": false
+}

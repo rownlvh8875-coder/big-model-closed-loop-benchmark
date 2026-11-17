@@ -1,0 +1,21 @@
+{
+  "status": "AUTHENTICATED_PRE_MAIN_IMPORT_FAILURE",
+  "run_id": 44042878824,
+  "workflow_id": 421062991,
+  "activation_sha": "9c0853c3b1febd7d59c171e5d255d14547ec365c",
+  "source_sha": "e2b0aa79c7efe6625298e7987dc4920f0a650ce5",
+  "artifact_id": 14310940477,
+  "artifact_digest": "sha256:141aa88da6fda25c449fe5a5cbc2ba5b8bcbc231fb1a19c6298eb86479720f78",
+  "artifact_size": 30516,
+  "stderr_sha256": "2248f91f7eb26c73d600d9de2abefcafee68a6cf4e045701d3042cf9c6a2e48a",
+  "failure": "ModuleNotFoundError: No module named 'numpy'",
+  "failure_before_main": true,
+  "owned_renderer_children": 0,
+  "official_model_processes": 0,
+  "onnx_inferences": 0,
+  "container_removed": true,
+  "oom_killed": false,
+  "reason": "Pinned entry imports helper before reaching main; helper imports numpy under -I -S, so owned-child/Xvfb bootstrap is unreachable.",
+  "repair_proven": false,
+  "stage7_complete": false
+}

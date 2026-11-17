@@ -33,11 +33,11 @@ Base1ddcdc8e3b8a1c0022a07bc9844aeae613ca2b4c,additionsonly; preserve old bytes/o
 **Files:** Create .github/workflows/sdk3-terrain-state-v1.yml,docs/STAGE7_SDK3_TERRAIN_STATE_RESULT.md,docs/evidence/sdk3-terrain-state-01/** only.
 **Interfaces:** one request authenticates exact source push+PR4jobs and old immutable runtime; independent artifact analysis uses Task2 unchanged receiver.
 - [x] actionlintPASS; one fresh review and one Important RED-GREEN fix pass if needed; exactsourceCI4jobsPASS with logcounts.
-- [ ] One request-only activation/one actual artifact; independently recompute analysis and CPU windows; preserve14images/originalfailure/partial statuses. No rerun same request.
+- [x] One request-only activation/one actual artifact; independently recompute analysis and CPU windows; preserve14images/originalfailure/partial statuses. No rerun same request.
 - [ ] New DraftPR(parent139), finalexactHEADCI/logcounts/remote/body/parent/main/originalpreservation and own scratch archive/removal. No gate promotion.
 
 ### Runtime bootstrap recovery within Task3
 - [x] Authenticate initial44042878824 failure before main/0ownedchildren; retain complete first evidence and do not rerun01.
 - [x] RED exact -I -S -B native --help reproduces missing numpy; GREEN lazy imports/113focusedPASS.
-- [ ] RED→GREEN new recovery host CLI and identical Docker command/receipt validator; actionlintv2,exactsourceCI then distinct request02 with pinned parent-failure proof.
-- [ ] One actual owned renderer via02, independent artifact/14images/state/window analysis; same final closeout gates. Total native child limit1 unchanged.
+- [x] RED→GREEN new recovery host CLI and identical Docker command/receipt validator; actionlintv2,exactsourceCI then distinct request02 with pinned parent-failure proof.
+- [x] One actual owned renderer via02, independent artifact/14images/state/window analysis; same final closeout gates. Total native child limit1 unchanged.

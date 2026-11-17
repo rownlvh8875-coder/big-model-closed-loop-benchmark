@@ -1,0 +1,56 @@
+from pathlib import Path,PurePosixPath
+from zipfile import ZipFile
+import hashlib,json,stat,subprocess,sys
+ROOT=Path('/dev/shm/stage7-sdk3-runtime-20261116/repo');TASK=Path('/dev/shm/stage7-sdk3-terrain-state-20261117/recovery');sys.path.insert(0,str(ROOT))
+from scripts.run_sdk3_terrain_state_v2 import validate_receipt
+from scripts.sdk3_pixel_geometry import reference_from_reports
+prefix='repos/rownlvh8875-coder/big-model-closed-loop-benchmark/'
+def api(path):return json.loads(subprocess.check_output(['gh','api',prefix+path],text=True,timeout=60))
+def compare_analysis(actual,declared):
+ import copy,numpy as np
+ left=copy.deepcopy(actual);right=copy.deepcopy(declared)
+ if left.get('geometry') is not None:
+  a=left['geometry']['segment_audit'].pop('max_endpoint_abs_world_error');b=right['geometry']['segment_audit'].pop('max_endpoint_abs_world_error');assert abs(a-b)<=1e-9
+ for field in ('hits','cpu_reprojection_max_abs_ndc_error'):
+  if left.get('geometry') is None:continue
+  a=left['geometry'].pop(field);b=right['geometry'].pop(field)
+  if field=='hits':
+   assert set(a)==set(b)
+   for key in a:
+    assert len(a[key])==len(b[key])
+    for x,y in zip(a[key],b[key]):
+     assert set(x)==set(y) and x['triangle_index']==y['triangle_index'] and np.allclose([x['distance'],*x['barycentric'],*x['position']],[y['distance'],*y['barycentric'],*y['position']],rtol=1e-12,atol=1e-9)
+  else:assert abs(a-b)<=1e-9
+ assert left==right
+ return True
+a=json.loads((TASK/'activation.json').read_text());runid=int(sys.argv[1]);r=api(f'actions/runs/{runid}');assert r['head_sha']==a['head_sha'] and r['path']=='.github/workflows/sdk3-terrain-state-v2.yml' and r['run_attempt']==1 and r['event']=='push'
+if r['status']!='completed':print(json.dumps(dict(run=runid,status=r['status'])));raise SystemExit(2)
+j=api(f'actions/runs/{runid}/jobs');art=api(f'actions/runs/{runid}/artifacts');assert j['total_count']==1 and j['jobs'][0]['name']=='SDK3 terrain bootstrap recovery' and art['total_count']==1
+artifact=art['artifacts'][0];assert artifact['name']=='sdk3-terrain-state-20261117-02' and artifact['workflow_run']['id']==runid and artifact['workflow_run']['head_sha']==a['head_sha'] and not artifact['expired'] and artifact['size_in_bytes']<128*1024**2
+out=ROOT/'output/stage7-sdk3-terrain-state-02/actual';out.mkdir(exist_ok=True)
+for name,obj in [('run',r),('jobs',j),('artifacts',art)]:(out/(name+'.json')).write_text(json.dumps(obj,indent=2)+'\n')
+archive=out/'proof.zip'
+if not archive.exists():
+ with archive.open('wb') as f:subprocess.run(['gh','api',prefix+f"actions/artifacts/{artifact['id']}/zip"],stdout=f,check=True,timeout=180)
+assert archive.stat().st_size==artifact['size_in_bytes'] and 'sha256:'+hashlib.file_digest(archive.open('rb'),'sha256').hexdigest()==artifact['digest']
+with ZipFile(archive) as z:
+ assert len(z.namelist())==len(set(z.namelist())) and sum(i.file_size for i in z.infolist())<256*1024**2
+ for i in z.infolist():
+  path=PurePosixPath(i.filename);assert not path.is_absolute() and '..' not in path.parts and '\\' not in i.filename and not stat.S_ISLNK(i.external_attr>>16) and i.file_size<64*1024**2
+ z.extractall(out/'bundle')
+bundle=out/'bundle';summary=json.loads((bundle/'summary.json').read_text());result=dict(run_id=runid,workflow_id=r['workflow_id'],head_sha=r['head_sha'],source_sha=a['request']['source_sha'],workflow_conclusion=r['conclusion'],artifact_id=artifact['id'],artifact_size=artifact['size_in_bytes'],artifact_digest=artifact['digest'],producer_summary=summary,analysis_validated=False,official_model_processes=0,onnx_inferences=0,original_matrix_passed=3,original_matrix_total=4,original_matrix_gate_passed=False,repair_proven=False,stage7_complete=False)
+try:
+ assert json.loads((bundle/'request.json').read_text())==a['request'] and summary['source_sha']==a['request']['source_sha']
+ reports=[]
+ for i in (0,1):
+  report=json.loads((bundle/'prior-reference'/f'run-{i}.json').read_text());canonical=json.loads((ROOT/'docs/evidence/sdk3-rgb-forensics-01/actual/full_rgb/bundle/pair'/f'run-{i}'/'run.json').read_text());assert report==canonical;reports.append(report)
+ assert reference_from_reports(*reports)==json.loads((bundle/'reference.json').read_text())
+ runtime=json.loads((bundle/'renderer/report.json').read_text());baseline=json.loads((ROOT/'docs/evidence/sdk3-pixel-geometry-01/actual/0/bundle/renderer/report.json').read_text());assert 'softpipe' in runtime.get('driver',{}).get('renderer','').lower() and runtime.get('tasks_before')==baseline['tasks_before'];result['observed_softpipe_and_initial_task_membership_match']=True
+ analysis=validate_receipt(bundle/'renderer',bundle/'reference.json',summary['nonce']);assert compare_analysis(analysis,json.loads((bundle/'analysis.json').read_text())) and summary['status']==analysis['status'] and summary['known_renderer_processes']==summary['renderer_spawn_attempts']==1
+ result.update(analysis_validated=True,analysis=analysis);(out/'independent-analysis.json').write_text(json.dumps(analysis,indent=2)+'\n')
+except Exception as error:result['validation_failure']=type(error).__name__+': '+str(error)
+for name in ('native-child.json','watchdog.json','report.json','execution.json'):
+ path=bundle/'renderer'/name
+ if path.exists():result[name.removesuffix('.json')]=json.loads(path.read_text())
+jobid=j['jobs'][0]['id'];log=subprocess.check_output(['gh','api',prefix+f'actions/jobs/{jobid}/logs'],timeout=60);(out/'job.log').write_bytes(log);result['job_log']=dict(job_id=jobid,nbytes=len(log),sha256=hashlib.sha256(log).hexdigest())
+(out/'independent-observation.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps({k:v for k,v in result.items() if k not in ('report','execution','producer_summary','native-child','watchdog')},ensure_ascii=False))
