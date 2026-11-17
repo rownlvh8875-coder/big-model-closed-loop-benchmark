@@ -64,6 +64,9 @@ static void snapshot(struct snapshot *r){
  Q(glBindFramebuffer,0x8ca8,(unsigned)r->draw);int source_readbuf=iv(0xc02);unsigned source_buffer=r->draw?0x8ce0:(unsigned)iv(0x8825);Q(glReadBuffer,source_buffer);
  Q(glBindBuffer,0x88eb,0);for(int i=0;i<8;i++)Q(glPixelStorei,pack_names[i],i?0:1);
  int read_x=px,read_y=py,ready=coordinate_ok;
+ /* The private resolve writes destination (0,0), which source scissor can clip.
+    Reject that unsupported observation using captured state; successful GL calls stay identical. */
+ if(ready&&r->samples&&r->scissor_test&&!(r->scissor[0]<=0&&r->scissor[1]<=0&&(int64_t)r->scissor[0]+r->scissor[2]>0&&(int64_t)r->scissor[1]+r->scissor[3]>0))ready=0;
  if(ready&&r->samples){int color=rb_format(0x8ce0),depth=r->depth_bits?rb_format(0x8d00):0;ready=color>0&&(!r->depth_bits||depth>0)&&make_resolve((unsigned)color,(unsigned)depth);if(ready){Q(glBindFramebuffer,0x8ca8,(unsigned)r->draw);Q(glBindFramebuffer,0x8ca9,resolve_fbo);Q(glBlitFramebuffer,px,py,px+1,py+1,0,0,1,1,0x4000u|(r->depth_bits?0x0100u:0),0x2600);S.blits++;Q(glBindFramebuffer,0x8ca8,resolve_fbo);Q(glReadBuffer,0x8ce0);read_x=read_y=0;}}
  if(ready){Q(glReadPixels,read_x,read_y,1,1,0x1908,0x1406,r->color);S.readbacks++;if(r->depth_bits){Q(glReadPixels,read_x,read_y,1,1,0x1902,0x1406,&r->depth);S.readbacks++;}}
  Q(glBindFramebuffer,0x8ca8,(unsigned)r->draw);Q(glReadBuffer,(unsigned)source_readbuf);Q(glBindFramebuffer,0x8ca8,(unsigned)r->read);Q(glReadBuffer,(unsigned)old_readbuf);Q(glBindFramebuffer,0x8ca9,(unsigned)r->draw);Q(glBindRenderbuffer,0x8d41,(unsigned)old_rb);

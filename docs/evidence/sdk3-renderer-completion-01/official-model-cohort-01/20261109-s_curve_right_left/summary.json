@@ -1,0 +1,342 @@
+{
+  "status": "FRESH_OFFICIAL_CANDIDATE_CASE_OBSERVED",
+  "seed": 20261109,
+  "scenario": "s_curve_right_left",
+  "repair_id": "SDK3_RGB_TERRAIN_DEPTH_TIE_PRIORITY_V1",
+  "counts": {
+    "known_model_processes": 2,
+    "upper_model_processes": 2,
+    "spawn_attempts": 2,
+    "inferences_lower_bound": 24,
+    "inferences_upper_bound": 24
+  },
+  "model_scoring_allowed": false,
+  "real_vehicle_testing": false,
+  "historical_original_matrix_replaced": false,
+  "stage7_complete": false,
+  "source_sha": "ce983fa4a03fe87c43d7ea0e2f2900a017e09cf3",
+  "renderer_validation": {
+    "descriptor": {
+      "run_id": 44106362913,
+      "workflow_id": 421335903,
+      "attempt": 1,
+      "source_sha": "1d1763f5279581be499450c99857504697e9a695",
+      "activation_sha": "4bca03fa3c81212fd22aa1878dbb1fd22b595031",
+      "artifact_id": 14338669738,
+      "artifact_size": 25032261,
+      "artifact_sha256": "f9a9ad68b77cad51f80e8dd4da6664f6df13b2b24ff62fe61789fa49a5cecaba"
+    },
+    "gate": {
+      "protocol": "sdk3-priority-repeat-gate-v1",
+      "status": "CANDIDATE_RENDERER_REPEAT_MATCH",
+      "passed": true,
+      "repair_id": "SDK3_RGB_TERRAIN_DEPTH_TIE_PRIORITY_V1",
+      "all14_source_images_match": true,
+      "capture_pair_matches": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "actual_terrain_precedes_geometry": true,
+      "original_less_and_depth_write_preserved": true,
+      "no_diagnostic_depth_clear": true,
+      "target_yellow": true,
+      "model_gate_passed": false,
+      "historical_original_matrix_replaced": false,
+      "stage7_complete": false
+    },
+    "arms": {
+      "canary": {
+        "priority_tie_canary_qualified": true,
+        "priority_canary_verified_images": 8,
+        "verified_images": 8,
+        "one_pixel_depth_probe_qualified": true,
+        "terrain_row_read_qualified": true,
+        "status": "QUALIFIED_TINY_GPU_CANARY",
+        "draws": 10,
+        "queries": 1858,
+        "max_effective_samples_observed": 1,
+        "multiple_effective_samples_qualified": false,
+        "scope": "single-sample and observed multisample-storage resolve only",
+        "stage7_complete": false
+      },
+      "candidate-off": {
+        "status": "REPLAY_RECORDED",
+        "source_image_equivalence": false,
+        "capture_matches_reference": [
+          false,
+          true,
+          false,
+          false,
+          true,
+          false,
+          true
+        ],
+        "target_road_rgb": [
+          199,
+          187,
+          0
+        ],
+        "verified_images": 14,
+        "trace_complete": true,
+        "trace_stats": {
+          "version": 1,
+          "error": 0,
+          "active": 0,
+          "restored": 1,
+          "lookups": 0,
+          "forwards": 0,
+          "draws": 0,
+          "queries": 0,
+          "readbacks": 0,
+          "blits": 0,
+          "complete": true
+        },
+        "gpu_pixel_owner_proven": false,
+        "unique_cause_proven": false,
+        "repair_proven": false,
+        "stage7_complete": false
+      },
+      "candidate-trace": {
+        "status": "REPLAY_RECORDED",
+        "source_image_equivalence": false,
+        "capture_matches_reference": [
+          false,
+          true,
+          false,
+          false,
+          true,
+          false,
+          true
+        ],
+        "target_road_rgb": [
+          199,
+          187,
+          0
+        ],
+        "verified_images": 14,
+        "trace_complete": true,
+        "trace_stats": {
+          "version": 1,
+          "error": 0,
+          "active": 0,
+          "restored": 1,
+          "lookups": 161,
+          "forwards": 2133,
+          "draws": 5,
+          "queries": 1547,
+          "readbacks": 19,
+          "blits": 8,
+          "complete": true
+        },
+        "gpu_pixel_owner_proven": false,
+        "unique_cause_proven": false,
+        "repair_proven": false,
+        "stage7_complete": false,
+        "callback_receipt": {
+          "status": "TRACE_RECORDED",
+          "target_region_entries": 2,
+          "target_region_returns": 2,
+          "errors": [],
+          "callbacks_restored": true,
+          "trace_complete": true,
+          "scene_observations": [
+            {
+              "scene_setup_pointer": 93854173677808,
+              "region_pointer": 93854064295664,
+              "camera_node_pointer": 93854064286720,
+              "scene_root": "render",
+              "camera_path": "render/world_np/cam",
+              "camera_transform": [
+                0.08031406998634338,
+                -0.9967696070671082,
+                0.0,
+                0.0,
+                0.9967696070671082,
+                0.08031406998634338,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                67.79573822021484,
+                0.4795995354652405,
+                1.2200000286102295,
+                1.0
+              ],
+              "world_transform": [
+                0.08031406998634338,
+                0.9967696070671082,
+                0.0,
+                0.0,
+                -0.9967696070671082,
+                0.08031406998634338,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                -4.966899871826172,
+                -67.61524963378906,
+                -1.2200000286102295,
+                1.0
+              ],
+              "viewport": [
+                964,
+                604
+              ],
+              "transform_layout": "row-major Panda matrix",
+              "recorded_thread_id": 140634102528960,
+              "phase": 1,
+              "cpu_capture_label_proves_gpu_pose": false
+            },
+            {
+              "scene_setup_pointer": 93854079968768,
+              "region_pointer": 93854064287616,
+              "camera_node_pointer": 93854064294864,
+              "scene_root": "filter-base-quad",
+              "camera_path": "filter-base-quad/filter-quad-cam",
+              "camera_transform": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "world_transform": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "viewport": [
+                964,
+                604
+              ],
+              "transform_layout": "row-major Panda matrix",
+              "recorded_thread_id": 140634102528960,
+              "phase": 2,
+              "cpu_capture_label_proves_gpu_pose": false
+            }
+          ]
+        },
+        "draw_count": 5,
+        "program_count": 4,
+        "final_post_float_rgba": [
+          0.78039223,
+          0.733333349,
+          0,
+          1
+        ],
+        "transform_matrix_bytes": 12800,
+        "terrain_row_count": 1,
+        "terrain_row_bytes": 512,
+        "terrain_rows_complete": true,
+        "depth_clear_pixels": 0,
+        "occluded_terrain_exposed": false,
+        "intentional_depth_pixel_mutation": false
+      }
+    }
+  },
+  "host_memory_before_model": {
+    "MemTotal": 16464306176,
+    "MemAvailable": 14400802816
+  },
+  "execution": {
+    "status": "EXIT_OBSERVED",
+    "returncode": 0,
+    "failure": null,
+    "stopped_state": {
+      "Status": "exited",
+      "Running": false,
+      "Paused": false,
+      "Restarting": false,
+      "OOMKilled": false,
+      "Dead": false,
+      "Pid": 0,
+      "ExitCode": 0,
+      "Error": "",
+      "StartedAt": "2026-11-17T15:35:29.921444182Z",
+      "FinishedAt": "2026-11-17T15:50:37.316344567Z"
+    },
+    "create_attempted": true,
+    "start_attempted": true,
+    "container_id": "2d588f09d3ff9fdc3456def6060452dae5fb77c9f7d10f5e2daa0a6d7f776b3e",
+    "ownership_unresolved": false,
+    "owned_container_removed": true,
+    "cleanup_failure": null
+  },
+  "case": {
+    "seed": 20261109,
+    "scenario": "s_curve_right_left",
+    "container_id": "2d588f09d3ff9fdc3456def6060452dae5fb77c9f7d10f5e2daa0a6d7f776b3e",
+    "process_uuids": [
+      "83600bbf87a647f98a6630daae5cec15",
+      "d444c922a94f4db7a6fae40c59b14fff"
+    ],
+    "official_model_processes": 2,
+    "onnx_inferences": 24,
+    "model_sha256": "35976b11be3904eb78e32f7dc55a6abf8e9433ac5aa391a1998f1e9ce001b199",
+    "repair_id": "SDK3_RGB_TERRAIN_DEPTH_TIE_PRIORITY_V1",
+    "adapter_sha256": "16aafa7d35bcb91cf11b1744749a47e049ba23049aa5f7985ac4d31a66aba182",
+    "verdict": {
+      "status": "STRICT_NATIVE_ONNX_REPEAT_MATCH",
+      "exact_repeated_execution_gate_passed": true,
+      "compare_rule": "bit-exact native raw 964x604, warped 512x256, actual I420 new_img feed, raw actions, recurrent states, virtual pose and time",
+      "scenario": "s_curve_right_left",
+      "seed": 20261109,
+      "steps": 12,
+      "initial_fraction": 0.12,
+      "camera_rgb_frames_match": true,
+      "source_native_rgb_frames_match": true,
+      "warped_model_rgb_frames_match": true,
+      "actual_onnx_new_img_sha256_match": true,
+      "first_observed_mismatch_boundary": null,
+      "max_xy_position_delta_m": 0.0,
+      "max_heading_delta_rad": 0.0,
+      "first_diverging_step": null,
+      "mismatches": [],
+      "first_process_uuid": "83600bbf87a647f98a6630daae5cec15",
+      "second_process_uuid": "d444c922a94f4db7a6fae40c59b14fff",
+      "model_sha256": "35976b11be3904eb78e32f7dc55a6abf8e9433ac5aa391a1998f1e9ce001b199",
+      "no_tolerance_or_pixel_rewriting": true,
+      "scene_pssm_not_disabled": true,
+      "official_model_driving_performance_ranked": false,
+      "real_vehicle_testing": false,
+      "cd210_fallback": false,
+      "model_scoring_allowed": false,
+      "diagnostic_capture_complete": true,
+      "warning": "Strict repeatability in this short native environment is not camera fidelity, safety, long-run, cross-engine or model ranking proof"
+    }
+  },
+  "strict_pass": true
+}

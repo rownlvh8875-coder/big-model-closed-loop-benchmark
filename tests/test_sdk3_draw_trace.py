@@ -7,7 +7,9 @@ import ctypes as C,json,os,sys
 from pathlib import Path
 class Stats(C.Structure):_fields_=[(k,C.c_uint32) for k in ('version','error','active','restored')]+[(k,C.c_uint64) for k in ('lookups','forwards','draws','queries','readbacks','blits')]
 sdk=C.CDLL(os.environ['SDK3_DRAW_TRACE_SDK'],use_errno=True);gl=C.CDLL(os.environ['SDK3_DRAW_TRACE_GL']);trace=C.CDLL(None);trace.dt_configure.argtypes=[C.c_char_p,C.c_uint];trace.dt_begin.argtypes=[C.c_int,C.c_int,C.c_int];trace.dt_get_stats.argtypes=[C.POINTER(Stats)]
-case=sys.argv[1];path=Path(sys.argv[2]);gl.fake_setup(4 if case=='msaa' else 0,case=='error');assert trace.dt_configure(str(path).encode(),1 if case=='cap' else 512)==0
+case=sys.argv[1];path=Path(sys.argv[2]);gl.fake_setup(4 if case=='msaa' or case.startswith('resolve_scissor') else 0,case=='error');
+if case.startswith('resolve_scissor'):gl.fake_resolve_scissor(int(case[-1]))
+assert trace.dt_configure(str(path).encode(),1 if case=='cap' else 512)==0
 if case!='off':assert trace.dt_begin(1,3,3)==0
 kinds=list(range(9)) if case in ('off','abi') else [4,4] if case=='cap' else [4]
 returns=[sdk.fake_invoke(k,1 if case=='nested' else 0) for k in kinds]
@@ -37,10 +39,18 @@ class DrawTraceContracts(unittest.TestCase):
         x=self.run_case('single');self.assertEqual(x['restored'],1);self.assertEqual(x['stats']['error'],0);self.assertEqual(x['stats']['blits'],0);self.assertGreater(x['stats']['readbacks'],0);self.assertTrue(all(r['restored'] for r in x['rows'] if r.get('event')=='draw'))
     def test_multisample_path_resolves_one_pixel_and_restores_bindings(self):
         x=self.run_case('msaa');self.assertEqual(x['restored'],1);self.assertEqual(x['stats']['error'],0);self.assertGreater(x['stats']['blits'],0);self.assertEqual(x['calls'],1)
+    def test_resolve_clipped_by_scissor_is_partial_but_original_draw_still_forwards(self):
+        x=self.run_case('resolve_scissor1');self.assertEqual(x['calls'],1);self.assertEqual(x['args_ok'],1);self.assertEqual(x['returns'],[34]);self.assertEqual(x['restored'],1);self.assertNotEqual(x['stats']['error'],0);self.assertEqual(x['stats']['blits'],0);self.assertEqual(x['stats']['readbacks'],0)
+        draw=next(r for r in x['rows'] if r.get('event')=='draw')
+        for key in ('before','after'):self.assertFalse(draw[key]['valid']);self.assertTrue(draw[key]['restored']);self.assertEqual(draw[key]['scissor'],[2,2,6,6])
+    def test_resolve_scissor_guard_preserves_enabled_origin_and_disabled_paths(self):
+        for case in ('resolve_scissor2','resolve_scissor3'):
+            with self.subTest(case=case):
+                x=self.run_case(case);self.assertEqual(x['restored'],1);self.assertEqual(x['stats']['error'],0);self.assertEqual(x['calls'],1);draw=next(r for r in x['rows'] if r.get('event')=='draw');self.assertTrue(draw['after']['valid']);self.assertAlmostEqual(draw['after']['color'][0],.1);self.assertEqual(draw['after']['color'][1:],[.5,.75,1.])
     def test_requested_msaa_is_not_promoted_over_observed_sample_storage(self):
         x=self.run_case('sample_storage');draw=next(r for r in x['rows'] if r.get('event')=='draw');self.assertEqual(draw['after']['sample_buffers'],0);self.assertEqual(draw['after']['max_samples'],4);self.assertEqual(draw['after']['samples'],0)
     def run_depth_case(self,case,enabled,exhaust=False):
-        folder=build(str(self.folder));path=folder/(case+'.jsonl');program=CHILD.replace("gl.fake_setup(4 if case=='msaa' else 0,case=='error');", "gl.fake_setup(0,False);gl.fake_terrain_scene();trace.dt_enable_depth_probe("+str(int(enabled))+");")
+        folder=build(str(self.folder));path=folder/(case+'.jsonl');program=CHILD.replace("gl.fake_setup(4 if case=='msaa' or case.startswith('resolve_scissor') else 0,case=='error');", "gl.fake_setup(0,False);gl.fake_terrain_scene();trace.dt_enable_depth_probe("+str(int(enabled))+");")
         program=program.replace("returns=[sdk.fake_invoke", "returns=[sdk.fake_invoke").replace("rows=rows)))", "rows=rows,changed_pixels=gl.fake_changed_pixels())))")
         if case=='skinning_table':program=program.replace('gl.fake_terrain_scene();','gl.fake_skinning_scene();')
         if case in ('depth_error','bad_row'):program=program.replace("gl.fake_terrain_scene();","gl.fake_terrain_scene();gl."+("fake_clear_error" if case=='depth_error' else "fake_bad_row")+"();")

@@ -7,17 +7,19 @@
 static int clear_error,bad_row;void fake_clear_error(void){clear_error=1;}void fake_bad_row(void){bad_row=1;}
 static int reflect_terrain=1;void fake_plain_program(void){reflect_terrain=0;}
 static int skinning_scene;
+static int scissor_case,scissor_expected_on,scissor_expected[4];static float resolve_rgba[4],resolve_z;
 static int terrain_scene,scissor_on,depth_mask=1,scissor_box[4]={0,0,8,8},row_fbo;static float grid_depth[64];
 static int calls,fail,args_ok=1,queries,samples,draw=77,readfb=78,readbuf=0x8ce0,rb=92,packbuf=17,active=0x84c3;
 static int pack[8]={8,11,7,6,1,1,13,3};static unsigned err,nextid=100;static unsigned formats[512];
 static const unsigned packenum[8]={0xd05,0xd02,0xd03,0xd04,0xd00,0xd01,0x806c,0x806b};
 static void counted(void){++queries;errno=ENOENT;}
 void fake_setup(int n,int f){samples=n;fail=f;}
+void fake_resolve_scissor(int mode){scissor_case=1;scissor_on=scissor_expected_on=mode!=3;int origin=mode==2?-2:2;scissor_box[0]=scissor_box[1]=origin;scissor_box[2]=scissor_box[3]=6;memcpy(scissor_expected,scissor_box,sizeof(scissor_box));}
 void fake_terrain_scene(void){terrain_scene=1;scissor_on=1;scissor_box[0]=1;scissor_box[1]=2;scissor_box[2]=6;scissor_box[3]=5;for(int i=0;i<64;i++)grid_depth[i]=.42f;}
 void fake_skinning_scene(void){fake_terrain_scene();skinning_scene=1;}
 int fake_changed_pixels(void){int count=0;for(int i=0;i<64;i++)count+=grid_depth[i]!=.42f;return count;}
 int fake_calls(void){return calls;}int fake_args_ok(void){return args_ok;}int fake_queries(void){return queries;}
-int fake_restored(void){const int want[8]={8,11,7,6,1,1,13,3};return draw==77&&readfb==78&&readbuf==0x8ce0&&rb==92&&packbuf==17&&active==0x84c3&&!memcmp(want,pack,sizeof(pack))&&(!terrain_scene||(scissor_on&&depth_mask==1&&scissor_box[0]==1&&scissor_box[1]==2&&scissor_box[2]==6&&scissor_box[3]==5));}
+int fake_restored(void){const int want[8]={8,11,7,6,1,1,13,3};return (!scissor_case||(scissor_on==scissor_expected_on&&!memcmp(scissor_expected,scissor_box,sizeof(scissor_box))))&&draw==77&&readfb==78&&readbuf==0x8ce0&&rb==92&&packbuf==17&&active==0x84c3&&!memcmp(want,pack,sizeof(pack))&&(!terrain_scene||(scissor_on&&depth_mask==1&&scissor_box[0]==1&&scissor_box[1]==2&&scissor_box[2]==6&&scissor_box[3]==5));}
 static void call(int ok){args_ok&=ok&&errno==EDOM;++calls;if(terrain_scene)for(int i=0;i<64;i++)if(.6f<grid_depth[i])grid_depth[i]=.6f;errno=ERANGE;}
 void glDrawArrays(unsigned m,int f,int n){call(m==4&&f==17&&n==31);}
 void glDrawElements(unsigned m,int n,unsigned t,const void *p){call(m==4&&n==31&&t==5125&&(uintptr_t)p==0x12345000);}
@@ -57,8 +59,8 @@ void glFramebufferRenderbuffer(unsigned t,unsigned a,unsigned rt,unsigned id){(v
 unsigned glCheckFramebufferStatus(unsigned t){(void)t;counted();return 0x8cd5;}
 void glGetFramebufferAttachmentParameteriv(unsigned t,unsigned a,unsigned p,int *v){(void)t;counted();*v=p==0x8cd0?0x8d41:(a==0x8ce0?88:89);}
 void glGetRenderbufferParameteriv(unsigned t,unsigned p,int *v){(void)t;counted();*v=p==0x8d44?(rb==88?0x881a:rb==89?0x81a6:(int)formats[rb]):8;}
-void glBlitFramebuffer(int ax,int ay,int bx,int by,int cx,int cy,int dx,int dy,unsigned mask,unsigned filter){counted();(void)mask;if(bx-ax!=1||by-ay!=1||cx||cy||dx!=1||dy!=1||filter!=0x2600)err=0x501;}
-void glReadPixels(int x,int y,int w,int h,unsigned format,unsigned type,void *p){counted();if(fail){err=0x502;return;}if(packbuf||pack[0]!=1||pack[1]||pack[2]||pack[3]||pack[4]||pack[5]||pack[6]||pack[7]||h!=1||type!=0x1406){err=0x502;return;}float *v=p;if(terrain_scene&&readfb==row_fbo&&row_fbo){if(x||y!=2||w<1||w>8||format!=0x1908){err=0x502;return;}for(int i=0;i<w;i++){v[i*4]=(float)i;v[i*4+1]=2;v[i*4+2]=1;v[i*4+3]=.5f;}if(bad_row)v[0]=NAN;return;}if(w!=1){err=0x502;return;}if(terrain_scene){if(x<0||x>7||y<0||y>7){err=0x502;return;}float z=grid_depth[y*8+x];if(format==0x1902)*v=z;else{v[0]=z==.42f?.3f:1;v[1]=.5f;v[2]=z==.42f?.7f:0;v[3]=1;}return;}if(format==0x1902)*v=.42f;else{v[0]=calls*.1f;v[1]=.5f;v[2]=.75f;v[3]=1.;}}
+void glBlitFramebuffer(int ax,int ay,int bx,int by,int cx,int cy,int dx,int dy,unsigned mask,unsigned filter){counted();(void)mask;if(bx-ax!=1||by-ay!=1||cx||cy||dx!=1||dy!=1||filter!=0x2600)err=0x501;if(scissor_case&&(!scissor_on||(cx>=scissor_box[0]&&cy>=scissor_box[1]&&cx<scissor_box[0]+scissor_box[2]&&cy<scissor_box[1]+scissor_box[3]))){resolve_rgba[0]=calls*.1f;resolve_rgba[1]=.5f;resolve_rgba[2]=.75f;resolve_rgba[3]=1.f;resolve_z=.42f;}}
+void glReadPixels(int x,int y,int w,int h,unsigned format,unsigned type,void *p){counted();if(fail){err=0x502;return;}if(packbuf||pack[0]!=1||pack[1]||pack[2]||pack[3]||pack[4]||pack[5]||pack[6]||pack[7]||h!=1||type!=0x1406){err=0x502;return;}float *v=p;if(scissor_case&&readfb!=77){if(format==0x1902)*v=resolve_z;else memcpy(v,resolve_rgba,sizeof(resolve_rgba));return;}if(terrain_scene&&readfb==row_fbo&&row_fbo){if(x||y!=2||w<1||w>8||format!=0x1908){err=0x502;return;}for(int i=0;i<w;i++){v[i*4]=(float)i;v[i*4+1]=2;v[i*4+2]=1;v[i*4+3]=.5f;}if(bad_row)v[0]=NAN;return;}if(w!=1){err=0x502;return;}if(terrain_scene){if(x<0||x>7||y<0||y>7){err=0x502;return;}float z=grid_depth[y*8+x];if(format==0x1902)*v=z;else{v[0]=z==.42f?.3f:1;v[1]=.5f;v[2]=z==.42f?.7f:0;v[3]=1;}return;}if(format==0x1902)*v=.42f;else{v[0]=calls*.1f;v[1]=.5f;v[2]=.75f;v[3]=1.;}}
 
 void glGetMultisamplefv(unsigned p,unsigned i,float *v){(void)p;counted();v[0]=(i+.5f)/16;v[1]=.5f;}
 void glGetProgramiv(unsigned p,unsigned q,int *v){(void)p;counted();*v=q==0x8b82?1:q==0x8b86&&terrain_scene&&reflect_terrain?(skinning_scene?12:11):0;}
