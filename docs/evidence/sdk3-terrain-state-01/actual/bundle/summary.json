@@ -1,0 +1,40 @@
+{
+  "status": "FAILED",
+  "known_renderer_processes": 0,
+  "renderer_spawn_attempts": 0,
+  "official_model_processes": 0,
+  "onnx_inferences": 0,
+  "repair_proven": false,
+  "stage7_complete": false,
+  "source_sha": "e2b0aa79c7efe6625298e7987dc4920f0a650ce5",
+  "host_memory": {
+    "MemTotal": 16464306176,
+    "MemAvailable": 14800748544
+  },
+  "nonce": "e7f6edb64c0cd758dffa6c90148e2328",
+  "execution": {
+    "status": "EXIT_OBSERVED",
+    "returncode": 1,
+    "failure": null,
+    "stopped_state": {
+      "Status": "exited",
+      "Running": false,
+      "Paused": false,
+      "Restarting": false,
+      "OOMKilled": false,
+      "Dead": false,
+      "Pid": 0,
+      "ExitCode": 1,
+      "Error": "",
+      "StartedAt": "2026-11-17T08:01:23.316231961Z",
+      "FinishedAt": "2026-11-17T08:01:24.036193132Z"
+    },
+    "create_attempted": true,
+    "start_attempted": true,
+    "container_id": "fdc6dd035ae538d4b78d8d8b1b05995fc21e052a6535e313838c6cab507f8d49",
+    "ownership_unresolved": false,
+    "owned_container_removed": true,
+    "cleanup_failure": null
+  },
+  "failure": "FileNotFoundError: [Errno 2] No such file or directory: '/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-sdk3-terrain-state-01/producer/bundle/renderer/report.json'"
+}

@@ -77,6 +77,9 @@ class TerrainAdmission(unittest.TestCase):
             folder,ref,nonce,x=fixture(d,native,interrupt=True)
             self.assertEqual(x['status'],'TERRAIN_PARTIAL');self.assertTrue(x['terrain_present']);self.assertEqual(x['states'],[]);self.assertEqual(x['samples'],[]);self.assertIn('fixture interruption before candidates',x['failure'])
             r=h.validate_receipt(folder,ref,nonce);self.assertTrue(r['terrain_recorded']);self.assertFalse(r['terrain_complete']);self.assertFalse(r['renderer_diagnostic_passed']);self.assertEqual(r['status'],'INCONCLUSIVE_TERRAIN_STATE_RECORDED')
+    def test_native_help_boots_with_site_disabled_before_verified_runtime(self):
+        r=subprocess.run([sys.executable,'-I','-S','-B',str(Path(native.__file__).resolve()),'--help'],capture_output=True,text=True,timeout=15)
+        self.assertEqual(r.returncode,0,r.stderr);self.assertIn('--out',r.stdout)
     def test_private_entry_does_not_change_prior_globals(self):
         args=SimpleNamespace(out='/tmp/out',nonce='n');before=oldnative.owned_child_command(args,1);cmd=native.owned_child_command(args,1)
         self.assertIn('sdk3_terrain_state_native.py',cmd[4]);self.assertEqual(oldnative.owned_child_command(args,1),before);self.assertNotIn('--model-trial',cmd)

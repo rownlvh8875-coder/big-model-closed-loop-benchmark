@@ -1,0 +1,88 @@
+{
+  "run_id": 44042878824,
+  "workflow_id": 421062991,
+  "head_sha": "9c0853c3b1febd7d59c171e5d255d14547ec365c",
+  "source_sha": "e2b0aa79c7efe6625298e7987dc4920f0a650ce5",
+  "workflow_conclusion": "failure",
+  "artifact_id": 14310940477,
+  "artifact_size": 30516,
+  "artifact_digest": "sha256:141aa88da6fda25c449fe5a5cbc2ba5b8bcbc231fb1a19c6298eb86479720f78",
+  "producer_summary": {
+    "status": "FAILED",
+    "known_renderer_processes": 0,
+    "renderer_spawn_attempts": 0,
+    "official_model_processes": 0,
+    "onnx_inferences": 0,
+    "repair_proven": false,
+    "stage7_complete": false,
+    "source_sha": "e2b0aa79c7efe6625298e7987dc4920f0a650ce5",
+    "host_memory": {
+      "MemTotal": 16464306176,
+      "MemAvailable": 14800748544
+    },
+    "nonce": "e7f6edb64c0cd758dffa6c90148e2328",
+    "execution": {
+      "status": "EXIT_OBSERVED",
+      "returncode": 1,
+      "failure": null,
+      "stopped_state": {
+        "Status": "exited",
+        "Running": false,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 0,
+        "ExitCode": 1,
+        "Error": "",
+        "StartedAt": "2026-11-17T08:01:23.316231961Z",
+        "FinishedAt": "2026-11-17T08:01:24.036193132Z"
+      },
+      "create_attempted": true,
+      "start_attempted": true,
+      "container_id": "fdc6dd035ae538d4b78d8d8b1b05995fc21e052a6535e313838c6cab507f8d49",
+      "ownership_unresolved": false,
+      "owned_container_removed": true,
+      "cleanup_failure": null
+    },
+    "failure": "FileNotFoundError: [Errno 2] No such file or directory: '/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/output/stage7-sdk3-terrain-state-01/producer/bundle/renderer/report.json'"
+  },
+  "analysis_validated": false,
+  "official_model_processes": 0,
+  "onnx_inferences": 0,
+  "original_matrix_passed": 3,
+  "original_matrix_total": 4,
+  "original_matrix_gate_passed": false,
+  "repair_proven": false,
+  "stage7_complete": false,
+  "validation_failure": "FileNotFoundError: [Errno 2] No such file or directory: '/dev/shm/stage7-sdk3-runtime-20261116/repo/output/stage7-sdk3-terrain-state-01/actual/bundle/renderer/report.json'",
+  "execution": {
+    "status": "EXIT_OBSERVED",
+    "returncode": 1,
+    "failure": null,
+    "stopped_state": {
+      "Status": "exited",
+      "Running": false,
+      "Paused": false,
+      "Restarting": false,
+      "OOMKilled": false,
+      "Dead": false,
+      "Pid": 0,
+      "ExitCode": 1,
+      "Error": "",
+      "StartedAt": "2026-11-17T08:01:23.316231961Z",
+      "FinishedAt": "2026-11-17T08:01:24.036193132Z"
+    },
+    "create_attempted": true,
+    "start_attempted": true,
+    "container_id": "fdc6dd035ae538d4b78d8d8b1b05995fc21e052a6535e313838c6cab507f8d49",
+    "ownership_unresolved": false,
+    "owned_container_removed": true,
+    "cleanup_failure": null
+  },
+  "job_log": {
+    "job_id": 133901456581,
+    "nbytes": 47773,
+    "sha256": "9fcf7e42a3c2398672ea2e6c62fe4c9e57a34b6b98c514b1bfc87a9f3896056f"
+  }
+}

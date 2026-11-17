@@ -2,7 +2,6 @@
 import hashlib
 import math
 import sys
-import numpy as np
 
 MAX_RESIDENT_BYTES=1073741824
 
@@ -10,6 +9,7 @@ def _need(condition,message):
     if not condition:raise ValueError(message)
 
 def candidate_samples(hits,local_to_world,elevation_ratio):
+    import numpy as np
     matrix=np.asarray(local_to_world,dtype=float)
     _need(matrix.shape==(4,4) and np.isfinite(matrix).all() and np.allclose(matrix[:,3],[0.,0.,0.,1.],rtol=0,atol=1e-12),'finite affine row-vector terrain matrix')
     _need(type(elevation_ratio) in (int,float) and np.isfinite(elevation_ratio) and 0<elevation_ratio<=65536,'finite positive terrain ratio')
@@ -29,6 +29,7 @@ def candidate_samples(hits,local_to_world,elevation_ratio):
     return result
 
 def footprint(size_xy,uv,wrap_u,wrap_v):
+    import numpy as np
     _need(isinstance(size_xy,(list,tuple)) and len(size_xy)==2 and all(type(v) is int and 0<v<=2**24 for v in size_xy),'bounded two-dimensional texture size')
     point=np.asarray(uv,dtype=float);_need(point.shape==(2,) and np.isfinite(point).all() and np.max(np.abs(point))<=2**20,'finite bounded texture coordinate')
     _need(wrap_u in ('repeat','clamp','mirror') and wrap_v in ('repeat','clamp','mirror'),'supported CPU default wrap policy')
