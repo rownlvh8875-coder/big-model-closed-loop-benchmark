@@ -4,7 +4,7 @@ from scripts import sdk3_terrain_state as previous
 
 MAX_RESIDENT_BYTES=2147483648
 LIMITS=dict(previous.LIMITS,max_resident_bytes=MAX_RESIDENT_BYTES)
-SPARSE_POLICY=dict(max_logical_buffer_bytes=MAX_RESIDENT_BYTES,max_window_bytes=64,max_total_sample_bytes=960)
+SPARSE_POLICY=dict(max_logical_buffer_bytes=MAX_RESIDENT_BYTES,max_window_bytes=64,max_total_sample_bytes=960,max_rss_delta_kib=32768)
 
 def clone(function,**changes):
     result=FunctionType(function.__code__,dict(function.__globals__,**changes),function.__name__,function.__defaults__,function.__closure__);result.__kwdefaults__=dict(function.__kwdefaults__ or {});return result

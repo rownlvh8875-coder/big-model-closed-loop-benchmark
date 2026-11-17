@@ -26,8 +26,8 @@ Base279ab9d6881a4924bb27aca6de198fd8e9ee1d04,additionsonly. Logical cap214748364
 ### Task2: native and host policy adapters
 **Files:** Create scripts/sdk3_terrain_attribute_native.py,scripts/run_sdk3_terrain_attribute.py,tests/test_sdk3_terrain_attribute_host.py,tests/sdk3_terrain_attribute_fixtures.py.
 **Interfaces:** snapshot_terrain(...) adds sparse_policy/sparse_sample_bytes_captured; validate_receipt(folder,reference,nonce)->dict adds attribute_window_count/attribute_collection_complete and no gate promotion.
-- [ ] RED actual snapshot over sparse large attribute CPUdouble; wrongpolicy/counter/offset/UV/hash/identity/flag negatives; originalreceiver rejects2GiB; absent/partial; native-I-S-Bhelp and identical Docker budgets. Expected missingentryFAIL.
-- [ ] GREEN private native andhost clones,newrequest authentication/versioned entry; focused new+inherited regressionsPASS;commit.
+- [x] RED actual snapshot over sparse large attribute CPUdouble; wrongpolicy/counter/offset/UV/hash/identity/flag negatives; originalreceiver rejects2GiB; absent/partial; native-I-S-Bhelp and identical Docker budgets. Expected missingentryFAIL.
+- [x] GREEN private native andhost clones,newrequest authentication/versioned entry; focused new+inherited regressionsPASS;commit.
 
 ### Task3: exactCI,one actual and final evidence
 **Files:** Create .github/workflows/sdk3-terrain-attribute-v1.yml,docs/STAGE7_SDK3_TERRAIN_ATTRIBUTE_RESULT.md,docs/evidence/sdk3-terrain-attribute-01/** only.
@@ -35,3 +35,5 @@ Base279ab9d6881a4924bb27aca6de198fd8e9ee1d04,additionsonly. Logical cap214748364
 - [ ] actionlint,one fresh wholebranchreview/Importantfixonce ifany,exactsource4jobsPASS/logcounts.
 - [ ] One request-only activation/one actual; authenticate run/ZIP/reference/receiver/14images and sparse byte counts. No rerun same request.
 - [ ] DraftPRparent140,finalexactHEAD4jobs/logcounts,remote/body/parent/main/originalpreservation; archive own ledger only and closeout. No benchmark promotion.
+
+Sparse runtime RSS highwater before/after is recorded in KiB,independently typed/recomputed by receiver; delta>32768KiB forces partial with rss_delta_budget. This complements sparse code/byte counters and does not claim absence of all internal driver allocations. Native-I-S-Bhelp and host receipt mutations cover this metadata.
