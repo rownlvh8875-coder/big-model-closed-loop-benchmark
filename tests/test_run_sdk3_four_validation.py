@@ -40,7 +40,7 @@ class HostContracts(unittest.TestCase):
     (Path(d)/'probe.json').write_text(json.dumps(r))
     with self.assertRaises(ValueError):h.validate_virtual_probe(Path(d),20261109,'s_curve_left_right')
  def test_full_s_receipt_reconstructs_actions_and_real_route_completion(self):
-  r=self.model();v=h.validate_full_report(r,20261109,'s_curve_left_right');self.assertTrue(v['traversal_passed']);self.assertEqual(v['inference_bounds'],[29,29])
+  r=self.model();v=h.validate_full_report(r,20261109,'s_curve_left_right',qualified_case=dict(seed=20261109,scenario='s_curve_left_right',geometry=copy.deepcopy(r['geometry'])));self.assertTrue(v['traversal_passed']);self.assertEqual(v['inference_bounds'],[29,29])
  def test_wrong_bridge_unearned_completion_and_test_double_are_rejected(self):
   for kind in ('bridge','pose','completion','testdouble','source','counts'):
    r=self.model()
@@ -50,7 +50,10 @@ class HostContracts(unittest.TestCase):
    elif kind=='testdouble':r['model_test_double']=True
    elif kind=='source':r['frames'][2]['source_road_rgb_sha256']='bad'
    else:r['actual_inference_bounds']=[0,0]
-   with self.subTest(kind=kind),self.assertRaises(ValueError):h.validate_full_report(r,20261109,'s_curve_left_right')
+   with self.subTest(kind=kind),self.assertRaises(ValueError):h.validate_full_report(r,20261109,'s_curve_left_right',qualified_case=dict(seed=20261109,scenario='s_curve_left_right',geometry=copy.deepcopy(r['geometry'])))
+ def test_unbound_or_scenario_swapped_model_report_cannot_qualify(self):
+  r=self.model();r['scenario']='s_curve_right_left'
+  with self.assertRaises(ValueError):h.validate_full_report(r,20261109,'s_curve_right_left')
  def test_all_four_cases_are_required_and_traversal_failure_stays_failed(self):
   rows=[dict(seed=s,scenario=c,container_id=str(i)*64,process_uuids=[str(i)+'a'*31,str(i)+'b'*31],inference_bounds=[58,58],verdict=dict(strict_repeat_passed=True,traversal_passed=True,passed=True)) for i,(s,c) in enumerate(sorted(p.CASES))];r=h.aggregate_cases(rows);self.assertEqual(r['full_s_passed_cases'],4);self.assertFalse(r['all_four_validation_tracks_passed']);rows[2]['verdict'].update(traversal_passed=False,passed=False);self.assertEqual(h.aggregate_cases(rows)['full_s_passed_cases'],3)
   with self.assertRaises(ValueError):h.aggregate_cases(rows[:3])

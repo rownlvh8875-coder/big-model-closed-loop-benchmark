@@ -1,0 +1,57 @@
+{
+  "protocol": "strengthened-four-validation-receiver-v1",
+  "actual_source": "54e2510adf9647a14161fe55461028dfb21f4758",
+  "activation": "2993d1b2dce2fbf25985e1be25666afa23d47a91",
+  "run_id": 44176109300,
+  "workflow_id": 421873536,
+  "attempt": 1,
+  "artifact_integrity_rechecked": true,
+  "qualified_case_geometry_bound": true,
+  "all_original_case_verdicts_unchanged": true,
+  "negative_scenario_swaps": [
+    {
+      "seed": 20261109,
+      "original": "s_curve_left_right",
+      "forged": "s_curve_right_left",
+      "rejected": true
+    },
+    {
+      "seed": 20261109,
+      "original": "s_curve_right_left",
+      "forged": "s_curve_left_right",
+      "rejected": true
+    },
+    {
+      "seed": 20261110,
+      "original": "s_curve_left_right",
+      "forged": "s_curve_right_left",
+      "rejected": true
+    },
+    {
+      "seed": 20261110,
+      "original": "s_curve_right_left",
+      "forged": "s_curve_left_right",
+      "rejected": true
+    }
+  ],
+  "aggregate": {
+    "full_s_passed_cases": 0,
+    "strict_repeat_passed_cases": 4,
+    "total": 4,
+    "official_model_processes": 8,
+    "inference_bounds": [
+      554,
+      554
+    ],
+    "all_four_validation_tracks_passed": false,
+    "physical_optics": "BLOCKED_MISSING_MEASURED_DATA",
+    "hardware_gpu": "BLOCKED_NO_CLOUD_DEVICE",
+    "carla": "BLOCKED_NO_SERVER",
+    "stage7_complete": false
+  },
+  "verifier_sha256": {
+    "scripts/run_sdk3_four_validation.py": "8d4b5fd6a3a146104d655a17846067790f646b50d3e0637fe016e2bb0c230161",
+    "bigbench/full_s_receipts.py": "33ed1d2be1e98582b3508aa22a30a5906aaf17cc3533a6f1aa8731e7a4380fa9"
+  },
+  "scope": "post-review CPU-only revalidation of authenticated frozen actual reports; no new model/native execution"
+}

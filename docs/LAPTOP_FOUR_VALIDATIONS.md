@@ -25,7 +25,7 @@ py -3.11 -m venv .venv-laptop
 
 패키지와 MetaDrive asset 다운로드는 위 명시적 설치 명령에서 일어납니다. 가상환경 활성화나 PowerShell 실행 정책 변경은 필요하지 않습니다. `opencv-python`과 `opencv-python-headless`를 같은 가상환경에 함께 설치하지 마세요.
 
-GPU 검사는 모델 없이 8×8 RGBA 화면 두 개를 렌더링합니다. 활성 WGL 컨텍스트의 NVIDIA 렌더러, 실제 샘플 수, 전체 픽셀 읽기와 정리를 확인합니다. **MSAA 4를 요청했다는 사실만으로 통과하지 않습니다.** Optimus가 Intel GPU를 선택하면 Windows 설정 → 시스템 → 디스플레이 → 그래픽에서 이 가상환경의 `python.exe`를 추가하고 고성능 NVIDIA를 선택한 뒤 새 폴더로 재실행하세요.
+GPU 검사는 모델 없이 두 색상 화면과 MSAA를 켜고 끈 삼각형 경계 대조 화면을 각각 8×8 RGBA로 렌더링합니다. 활성 WGL 컨텍스트의 NVIDIA 렌더러, 실제 샘플 수, 전체 픽셀 읽기와 정리를 확인합니다. GL_MULTISAMPLE 상태와 실제 경계의 부분 커버리지도 확인하여 샘플 버퍼만 있고 MSAA가 꺼진 경우를 구별합니다. **MSAA 4를 요청했다는 사실만으로 통과하지 않습니다.** Optimus가 Intel GPU를 선택하면 Windows 설정 → 시스템 → 디스플레이 → 그래픽에서 이 가상환경의 `python.exe`를 추가하고 고성능 NVIDIA를 선택한 뒤 새 폴더로 재실행하세요.
 
 이 결과의 범위는 해당 Windows stock-Panda 프레임버퍼입니다. Linux SDK3 `.so`를 Windows DLL로 사용하지 않으며, 모델 카메라의 MSAA나 실제 광학을 인증하지 않습니다. 현재 클라우드에서 이 실제 Windows GPU 검사는 **미실행**입니다.
 
@@ -61,7 +61,7 @@ GPU와 네 조건의 무모델 원본 카메라 검사를 먼저 실행합니다
 - `schema: "offline-camera-holdout-v1"`, `provenance: "OFFLINE_MEASURED_CAMERA_CORRESPONDENCES"`, `pose_source: "INDEPENDENT_BOARD_POSE_NOT_FIT_ON_HOLDOUT"`.
 - `calibration: {"file": "calibration.json", "sha256": "실제 파일 SHA256"}`. 보정 파일에는 `model: "PINHOLE_BROWN5"`, `cameras.road/wide` 각각 `width`, `height`, 3×3 `K`, `[k1,k2,p1,p2,k3]` `distortion`이 필요합니다.
 - `board: {"inner_columns": 9, "inner_rows": 6, "square_size_m": 0.025}`처럼 실제 측정값을 지정합니다.
-- 보정 파일의 `training_images`와 매니페스트의 `heldout`은 각각 road/wide별 최소 3장의 서로 다른 영상 레코드입니다. 각 레코드에는 `camera`, 상대 `file`, 실제 `sha256`이 필요합니다. 두 집합은 겹칠 수 없습니다.
+- 보정 파일의 `training_images`와 매니페스트의 `heldout`은 각각 road/wide별 최소 3장의 서로 다른 영상 레코드입니다. 각 레코드에는 `camera`, 상대 `file`, 실제 `sha256`이 필요합니다. 두 집합은 파일 SHA와 해독한 영상 픽셀 SHA 모두 겹칠 수 없습니다. 모든 학습 영상도 실제 해독과 해상도 검사를 통과해야 합니다.
 - `heldout`의 각 레코드에 `board_to_camera: {"rotation": 3×3, "translation_m": [x,y,z]}`를 추가합니다. 이 자세는 홀드아웃 영상에 맞춰 피팅한 값이 아닌 독립 측정값이어야 합니다. 좌표는 광학 카메라의 오른쪽/아래/앞, 보드 점 순서는 OpenCV 체커보드 검출 순서입니다.
 
 프로그램이 실제 영상을 해독하고 코너를 직접 검출합니다. 매니페스트의 `passed`나 임의 픽셀 좌표는 사용하지 않습니다. 고정 기준은 영상별 RMS ≤1 px, 최대 오차 ≤2 px입니다. 지원하지 않는 렌즈 모델·유효하지 않은 자세·검출 실패는 오류로 남습니다.
@@ -76,7 +76,7 @@ CARLA는 별도 서버 설치와 상당한 디스크/메모리를 요구합니�
 .\.venv-laptop\Scripts\python.exe scripts\run_laptop_validation.py --mode carla-full-s --carla-host 127.0.0.1 --carla-port 2000 --dedicated-carla --model models\md-v3.onnx --out output\laptop-carla-full-s-01
 ```
 
-준비 검사는 버전만 확인하며 교차 엔진 검증 통과가 아닙니다. full-S 명령은 전용 서버의 지도를 임시로 바꿉니다. 기존 차량·보행자·센서·컨트롤러가 있으면 시작을 거부합니다. 클라우드에서 인증한 네 조건의 MetaDrive 기하를 OpenDRIVE로 만들고, 실제 CARLA waypoint 위치/방향 일치와 두 카메라의 프레임 ID를 먼저 검사합니다. 원본 지도·날씨·설정을 복원하고 소유 센서만 정리합니다. **서버 경과 시각은 복원할 수 없습니다.** 부모 프로세스는 자식 시간 초과 때도 복구를 시도하며, 외부 동적 액터를 발견하면 지도 재설정을 거부하고 복구 실패를 기록합니다.
+준비 검사는 버전만 확인하며 교차 엔진 검증 통과가 아닙니다. full-S 명령은 전용 서버의 지도를 임시로 바꿉니다. 기존 차량·보행자·센서·컨트롤러가 있으면 시작을 거부합니다. 클라우드에서 인증한 네 조건의 MetaDrive 기하를 OpenDRIVE로 만들고, 실제 CARLA waypoint 위치/방향 일치와 두 카메라의 프레임 ID, 반환된 영상의 실제 위치·높이·방향을 요청한 직전 이상적 자세와 대조합니다. 원본 지도·날씨·설정을 복원하고 소유 센서만 정리합니다. **서버 경과 시각은 복원할 수 없습니다.** 부모 프로세스는 자식 시간 초과 때도 복구를 시도하며, 외부 동적 액터를 발견하면 지도 재설정을 거부하고 복구 실패를 기록합니다.
 
 CARLA도 별도 최대 8 모델·4,800 추론입니다. 두 로컬 백엔드를 모두 명시적으로 실행하면 합계 최대 16 모델·9,600 추론입니다. 동일 엔진의 두 실행만 픽셀 단위로 비교합니다. 엔진 간 영상 일치나 주행 품질 순위는 요구하지 않으며, 공통 기하·시계·카메라·동작 변환·이상적 운동 계약과 각 완주 결과를 따로 기록합니다. **실제 CARLA 실행은 아직 미실행**이고 이 어댑터는 순수 계약 테스트만 거쳤습니다.
 

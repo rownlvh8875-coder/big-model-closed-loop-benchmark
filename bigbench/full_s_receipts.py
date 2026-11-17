@@ -56,3 +56,8 @@ def validate_trajectory(r,seed,scene,*,geometry_context='metadrive-native'):
  else:
   need(r.get('trial_completed') is True and bounds[0]==bounds[1]==len(frames),'complete actual inference accounting');expected='LANE_INTRUSION' if last and last['intrusion_m']>0 else 'FULL_S_COMPLETED' if passed else 'STEP_LIMIT';need(outcome==expected and (outcome!='STEP_LIMIT' or len(frames)==600),'exact actual traversal outcome')
  return dict(seed=seed,scenario=scene,traversal_passed=passed,outcome=outcome,inference_bounds=bounds)
+
+
+def bind_case_geometry(report,qualified):
+ need(isinstance(qualified,dict) and (report.get('seed'),report.get('scenario'))==(qualified.get('seed'),qualified.get('scenario')),'exact qualified geometry case identity')
+ geometry=qualified.get('geometry');need(isinstance(geometry,list) and geometry and report.get('geometry')==geometry,'model trajectory geometry must equal its qualified case probe')

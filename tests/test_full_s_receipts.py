@@ -16,6 +16,11 @@ class PortableReceipts(unittest.TestCase):
   root=str(Path(__file__).resolve().parents[1]);code="import sys;sys.path.insert(0,"+repr(root)+");\nclass Fence:\n def find_spec(self,fullname,path=None,target=None):\n  if fullname.split('.')[0] in ('resource','panda3d','numpy','onnxruntime'):raise RuntimeError('forbidden import '+fullname)\nsys.meta_path.insert(0,Fence());import bigbench.full_s_receipts\n";out=subprocess.run([sys.executable,'-I','-S','-B','-c',code],capture_output=True,text=True,timeout=10);self.assertEqual(out.returncode,0,out.stderr)
  def test_portable_verifier_reconstructs_actual_recorded_trajectory(self):
   value=self.fixture();self.assertTrue(r.validate_trajectory(value,20261109,'s_curve_left_right')['traversal_passed'])
+ def test_model_route_cannot_borrow_another_case_probe(self):
+  value=self.fixture();other=copy.deepcopy(value);other['geometry'][0]['length_m']+=1
+  with self.assertRaises(ValueError):r.bind_case_geometry(value,other)
+  other=copy.deepcopy(value);other['scenario']='s_curve_right_left'
+  with self.assertRaises(ValueError):r.bind_case_geometry(value,other)
  def test_corrupt_pose_is_rejected_in_portable_context(self):
   value=self.fixture();value['frames'][3]['world_x_m']+=.001
   with self.assertRaises(ValueError):r.validate_trajectory(value,20261109,'s_curve_left_right')

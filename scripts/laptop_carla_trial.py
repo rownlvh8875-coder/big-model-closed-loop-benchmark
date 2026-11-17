@@ -13,12 +13,12 @@ def context():
 def run(a):
  from scripts.run_laptop_validation import write,check_model
  from bigbench.validation_resources import endpoint
- need(a.parent==os.getppid() and len(a.nonce)==32 and all(c in '0123456789abcdef' for c in a.nonce) and a.dedicated_carla,'owned child with explicit dedicated CARLA scope required');endpoint(a.carla_host,a.carla_port);ref=ROOT/'docs/fixtures/sdk3-full-s-native-route-v1.json';need(hashlib.sha256(ref.read_bytes()).hexdigest()==REFERENCE_SHA,'immutable authenticated native geometry reference');references=json.loads(ref.read_text());found=[r for r in references['cases'] if (r['seed'],r['scenario'])==(a.seed,a.scenario)];need(len(found)==1,'registered CARLA condition');rows=found[0]['geometry'];owner=None;result=None;life=dict(protocol='carla-laptop-model-lifecycle-v1',process_id=os.getpid(),nonce=a.nonce,policy_constructor_entered=False,policy_created=False,inference_bounds=[0,0],status='PRE_RUNTIME',owned_sensor_ids=[]);write(a.out/'lifecycle.json',life)
+ need(a.parent==os.getppid() and len(a.nonce)==32 and all(c in '0123456789abcdef' for c in a.nonce) and a.dedicated_carla,'owned child with explicit dedicated CARLA scope required');endpoint(a.carla_host,a.carla_port);ref=ROOT/'docs/fixtures/sdk3-full-s-native-route-v1.json';need(hashlib.sha256(ref.read_bytes()).hexdigest()==REFERENCE_SHA,'immutable authenticated native geometry reference');references=json.loads(ref.read_text());found=[r for r in references['cases'] if (r['seed'],r['scenario'])==(a.seed,a.scenario)];need(len(found)==1,'registered CARLA condition');rows=found[0]['geometry'];owner=None;result=None;life=dict(protocol='carla-laptop-model-lifecycle-v1',process_id=os.getpid(),nonce=a.nonce,policy_constructor_entered=False,policy_created=False,inference_bounds=[0,0],status='PRE_RUNTIME',owned_sensor_ids=[],world_mutation_entered=False,world_restored=False);write(a.out/'lifecycle.json',life)
  def progress(row):life.update(row);write(a.out/'lifecycle.json',life)
  try:
   from bigbench.carla_validation import DedicatedCarlaWorld,CarlaWorldCamera,RegisteredCarlaLane
   from bigbench.full_s_validation import validate_route,run_full_s
-  owner=DedicatedCarlaWorld(a.carla_host,a.carla_port,rows,dedicated=a.dedicated_carla,on_spawn=lambda ids:progress(dict(owned_sensor_ids=ids)));camera=CarlaWorldCamera(owner);lanes=[RegisteredCarlaLane(r) for r in rows];ctx=context()
+  owner=DedicatedCarlaWorld(a.carla_host,a.carla_port,rows,dedicated=a.dedicated_carla,on_spawn=lambda ids:progress(dict(owned_sensor_ids=ids)),on_state=progress);camera=CarlaWorldCamera(owner);lanes=[RegisteredCarlaLane(r) for r in rows];ctx=context()
   if a.probe:
    from dataclasses import asdict
    from bigbench.kinematics import AgentState

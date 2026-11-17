@@ -40,25 +40,37 @@ def carla_readiness(host,port,dedicated):
   return dict(status='READY_FOR_PROBE',client_version=local,server_version=server,cross_engine_validated=False,world_mutated=False,scope='read-only endpoint/version readiness only; not a cross-engine model validation')
  except Exception as e:return dict(status='BLOCKED',missing=['CARLA_CLIENT_OR_SERVER_UNAVAILABLE'],error=type(e).__name__+': '+str(e),cross_engine_validated=False,world_mutated=False)
 def launch_worker(*,dest,seed,scene,probe,model,backend='metadrive',carla_host=None,carla_port=2000):
- dest=Path(dest);dest.mkdir(parents=True,exist_ok=False);nonce=secrets.token_hex(16);cmd=[sys.executable,'-I','-B',str(ROOT/('scripts/laptop_carla_trial.py' if backend=='carla' else 'scripts/laptop_native_trial.py')),'--parent',str(os.getpid()),'--nonce',nonce,'--seed',str(seed),'--scenario',scene,'--out',str(dest),'--probe' if probe else '--model',*([str(model.resolve())] if not probe else [])];ledger=dict(nonce=nonce,spawn_attempted=False,pid=None,returncode=None,model=not probe);lease=None;report=None
+ dest=Path(dest);dest.mkdir(parents=True,exist_ok=False);nonce=secrets.token_hex(16);cmd=[sys.executable,'-I','-B',str(ROOT/('scripts/laptop_carla_trial.py' if backend=='carla' else 'scripts/laptop_native_trial.py')),'--parent',str(os.getpid()),'--nonce',nonce,'--seed',str(seed),'--scenario',scene,'--out',str(dest),'--probe' if probe else '--model',*([str(model.resolve())] if not probe else [])];ledger=dict(nonce=nonce,spawn_attempted=False,spawn_succeeded=None,pid=None,returncode=None,model=not probe);lease=None;report=None;child=None
  if backend=='carla':
   from bigbench.carla_validation import CarlaParentLease
   lease=CarlaParentLease(carla_host,carla_port,True);cmd.extend(['--carla-host',carla_host,'--carla-port',str(carla_port),'--dedicated-carla'])
  try:
   with (dest/'stdout.log').open('wb') as stdout,(dest/'stderr.log').open('wb') as stderr:
-   child=subprocess.Popen(cmd,stdout=stdout,stderr=stderr,cwd=ROOT,env=dict(os.environ,OMP_NUM_THREADS='2',OPENBLAS_NUM_THREADS='2'));ledger.update(spawn_attempted=True,pid=child.pid);write(dest/'owner.json',ledger)
+   ledger['spawn_attempted']=True;write(dest/'owner.json',ledger)
+   try:child=subprocess.Popen(cmd,stdout=stdout,stderr=stderr,cwd=ROOT,env=dict(os.environ,OMP_NUM_THREADS='2',OPENBLAS_NUM_THREADS='2'))
+   except BaseException:ledger['spawn_succeeded']=False;raise
+   ledger.update(spawn_succeeded=True,pid=child.pid);write(dest/'owner.json',ledger)
    try:ledger['returncode']=child.wait(timeout=(600 if backend=='carla' else 240) if probe else 9000)
-   except subprocess.TimeoutExpired:child.kill();child.wait(timeout=15);ledger.update(returncode=child.returncode,timeout=True);raise RuntimeError('owned laptop child deadline exceeded')
+   except subprocess.TimeoutExpired:ledger['timeout']=True;raise RuntimeError('owned laptop child deadline exceeded')
   if ledger['returncode']!=0:raise RuntimeError('laptop child failed; inspect retained lifecycle/stdout/stderr')
   report=json.loads((dest/'probe.json' if probe else dest/'run.json').read_text(encoding='utf-8'))
   if report.get('nonce')!=nonce or report.get('process_id')!=child.pid or report.get('seed')!=seed or report.get('scenario')!=scene or report.get('provider_closed') is not True:raise ValueError('owned complete laptop receipt required')
   return report
  finally:
-  write(dest/'owner.json',ledger)
-  if lease is not None and (report is None or report.get('carla_cleanup_restored') is not True):
-   life=json.loads((dest/'lifecycle.json').read_text()) if (dest/'lifecycle.json').is_file() else {}
-   try:write(dest/'parent-recovery.json',lease.recover(life.get('owned_sensor_ids',[])))
-   except Exception as e:write(dest/'parent-recovery.json',dict(restored=False,error=type(e).__name__+': '+str(e)));raise
+  # Every exit, including KeyboardInterrupt or receipt I/O errors, ends this exact
+  # worker before touching its CARLA world. Failed reaping never permits a reset.
+  reaped=child is None
+  if child is not None:
+   if child.poll() is None:child.kill()
+   child.wait(timeout=15);reaped=child.poll() is not None;ledger.update(returncode=child.returncode,child_reaped=reaped)
+   if not reaped:raise RuntimeError('owned worker not reaped; refuse CARLA recovery')
+  try:write(dest/'owner.json',ledger)
+  finally:
+   if lease is not None and child is not None and reaped and (report is None or report.get('carla_cleanup_restored') is not True):
+    life=json.loads((dest/'lifecycle.json').read_text()) if (dest/'lifecycle.json').is_file() else {}
+    try:
+     if life.get('world_mutation_entered') is not False and life.get('world_restored') is not True:write(dest/'parent-recovery.json',lease.recover(life.get('owned_sensor_ids',[])))
+    except Exception as e:write(dest/'parent-recovery.json',dict(restored=False,error=type(e).__name__+': '+str(e)));raise
 def run_full_cohort(out,model,inventory):
  ready=windows_readiness(inventory)
  if not ready['ready']:return dict(status='BLOCKED',**ready,model_processes=0,inferences=[0,0])
@@ -69,7 +81,7 @@ def run_full_cohort(out,model,inventory):
  probes=[]
  for seed,scene in CASES:probes.append(launch_worker(dest=out/f'probe-{seed}-{scene}',seed=seed,scene=scene,probe=True,model=None))
  if len({json.dumps(p['context'],sort_keys=True) for p in probes})!=1 or not all(p.get('passed') is True for p in probes):raise ValueError('all four zero-model camera probes must qualify the same Windows context')
- from bigbench.full_s_receipts import validate_trajectory
+ from bigbench.full_s_receipts import validate_trajectory,bind_case_geometry
  from bigbench.full_s_validation import compare_full_s
  cases=[]
  for seed,scene in CASES:
@@ -77,14 +89,14 @@ def run_full_cohort(out,model,inventory):
   for index in (0,1):
    r=launch_worker(dest=out/f'{seed}-{scene}'/f'run-{index}',seed=seed,scene=scene,probe=False,model=model)
    if r.get('context')!=probes[0]['context'] or r.get('model_sha256')!=MODEL_SHA or r.get('model_test_double') is not False or r.get('injected_session') is not False:raise ValueError('real official model in qualified Windows context required')
-   validate_trajectory(r,seed,scene);pair.append(r)
+   bind_case_geometry(r,next(p for p in probes if (p['seed'],p['scenario'])==(seed,scene)));validate_trajectory(r,seed,scene);pair.append(r)
   result=compare_full_s(*pair);cases.append(dict(seed=seed,scenario=scene,**result));write(out/'case-results.json',cases)
  return dict(status='MEASURED',passed=all(c['passed'] for c in cases),cases=cases,model_processes=8,inferences=[sum(json.loads(p.read_text())['actual_inference_bounds'][i] for p in out.glob('20*/run-*/run.json')) for i in (0,1)],linux_sdk3_qualified=False,physical_optics_validated=False,carla_validated=False)
 def observed_laptop_counts(out):
  known=upper=low=high=0
  for path in Path(out).glob('20*/run-*/owner.json'):
   owner=json.loads(path.read_text());life_path=path.parent/'lifecycle.json';life=json.loads(life_path.read_text()) if life_path.is_file() else {}
-  if not owner.get('spawn_attempted'):continue
+  if not owner.get('spawn_attempted') or owner.get('spawn_succeeded') is False:continue
   if life.get('policy_constructor_entered') is True:known+=1;upper+=1
   elif life.get('policy_constructor_entered') is False:continue
   else:upper+=1
@@ -93,7 +105,7 @@ def observed_laptop_counts(out):
   low+=bounds[0];high+=bounds[1]
  return dict(known_model_processes=known,upper_model_processes=upper,inference_bounds=[low,high])
 def validate_carla_report(r,seed,scene):
- from bigbench.carla_validation import RegisteredCarlaLane,verify_waypoints
+ from bigbench.carla_validation import RegisteredCarlaLane,verify_waypoints,validate_sensor_bindings
  from bigbench.full_s_validation import validate_route
  from bigbench.full_s_receipts import validate_trajectory
  from scripts.laptop_carla_trial import context
@@ -106,14 +118,7 @@ def validate_carla_report(r,seed,scene):
    point=lane.position(lane.length*fraction,0.);expected.append((float(point[0]),float(point[1]),float(lane.heading_theta_at(lane.length*fraction))))
  if len(actual)!=len(expected) or any((row['expected_x'],row['expected_y'],row['expected_heading_rad'])!=point for row,point in zip(actual,expected)):raise ValueError('actual CARLA waypoints must bind the independently registered sample positions')
  if verify_waypoints(actual)!=r['waypoint_validation']:raise ValueError('CARLA waypoint verdict recomputation')
- frames=r.get('sensor_frames');committed=r.get('frames',[])
- if not isinstance(frames,list) or len(frames)!=len(committed):raise ValueError('complete actual CARLA sensor frame evidence required')
- previous=None
- for sensor,row in zip(frames,committed):
-  cameras=sensor['cameras'];frame=sensor['world_frame']
-  if cameras['road']['frame']!=cameras['wide']['frame'] or cameras['road']['frame']!=frame or abs(cameras['road']['timestamp']-cameras['wide']['timestamp'])>1e-9 or any(cameras[role]['source_sha256']!=row['source_'+role+'_rgb_sha256'] for role in ('road','wide')):raise ValueError('actual dual sensor frame/source binding')
-  if previous is not None and (frame!=previous['world_frame']+1 or abs(cameras['road']['timestamp']-previous['cameras']['road']['timestamp']-.05)>1e-6):raise ValueError('uninterrupted synchronous CARLA .05s ticks')
-  previous=sensor
+ committed=r.get('frames',[]);poses=[r['initial_state']]+[dict(t=row['time_s'],x=row['world_x_m'],y=row['world_y_m'],heading=row['heading_rad'],speed=row['speed_mps']) for row in committed[:-1]] if committed else [];sources=[{role:row['source_'+role+'_rgb_sha256'] for role in ('road','wide')} for row in committed];validate_sensor_bindings(r.get('sensor_frames'),poses,sources)
  return validate_trajectory(r,seed,scene,geometry_context='carla-prescribed')
 def run_carla_cohort(out,model,host,port,dedicated):
  readiness=carla_readiness(host,port,dedicated)
@@ -121,6 +126,8 @@ def run_carla_cohort(out,model,host,port,dedicated):
  check_model(model);probes=[]
  for seed,scene in CASES:probes.append(launch_worker(dest=out/f'probe-{seed}-{scene}',seed=seed,scene=scene,probe=True,model=None,backend='carla',carla_host=host,carla_port=port))
  if not all(p.get('passed') is True and p.get('carla_cleanup_restored') is True for p in probes) or len({json.dumps(p['context'],sort_keys=True) for p in probes})!=1:raise ValueError('four actual qualified CARLA camera/route probes required before model loading')
+ from bigbench.carla_validation import validate_sensor_bindings
+ for probe in probes:validate_sensor_bindings(probe.get('sensor_frames'),[row['pose'] for row in probe['frames']],[row['source'] for row in probe['frames']])
  from bigbench.full_s_validation import compare_full_s
  cases=[]
  for seed,scene in CASES:

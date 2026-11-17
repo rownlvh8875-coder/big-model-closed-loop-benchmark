@@ -20,31 +20,33 @@ Base8380e8a immutable/additionsonly; no mainmerge/environment/registrypublish/re
 ### Task 1: resource contracts and laptop preflight
 Files:new bigbench/validation_resources.py, scripts/validate_laptop_environment.py, tests/test_validation_resources.py.
 Interfaces:collect_resources()->dict observations; resource_gates(report)->dict fourtrack readiness; aggregate_validation(reports)->dict actualcomplete states. No actualsim/model atpreflight.
-- [ ] RED tests:softwareGPUvsdevicepresence, missing/inaccessibleCARLA/calibration, malformedcounterfeitpass, Windows/macOS/Linux safecommandvectors, noautomaticinstallation.
-- [ ] GREEN stdlib read-onlycollector/CLI; coldhelp/preflight workswithoutPanda/ORT andwritesJSON requestedpath; preserveprivacy. ExpectedfocusedtestsPASS.
-- [ ] Run actualCloudpreflight, retain rawmetadata/deviceabsence/GitHub403distinction; commit Task1.
+- [x] RED tests:softwareGPUvsdevicepresence, missing/inaccessibleCARLA/calibration, malformedcounterfeitpass, Windows/macOS/Linux safecommandvectors, noautomaticinstallation.
+- [x] GREEN stdlib read-onlycollector/CLI; coldhelp/preflight workswithoutPanda/ORT andwritesJSON requestedpath; preserveprivacy. ExpectedfocusedtestsPASS.
+- [x] Run actualCloudpreflight, retain rawmetadata/deviceabsence/GitHub403distinction; commit Task1.
 
 ### Task 2: full-S protocol and original policy boundary
 Files:new bigbench/full_s_validation.py, tests/test_full_s_validation.py.
 Interfaces:run_full_s(policy,camera,lanes,*,seed,scene,max_steps=600)->dict fulltruthfultrial; route_state(lanes,index,state)->dict exactprogress/truth/terminal; compare_full_s(a,b)->dict strictrepeat separatefromtraversal.
-- [ ] RED purefake-lane/model tests:twobends+connector complete, terminalovershoot, firstlane/prefix/stepbudget/departure FAIL, ambiguous/discontinuous/repeatedlanes reject, rawmodel/bridge/clock/feed preserved, uncertain inferencefailure bounds.
-- [ ] GREEN independentfixedspeedloop usingoriginalcamera/policyinterface andexistingWorldFramePolicyAdapter; captureoriginalhashes/audit/bridge/progress; noGTcontroller. ExpectedfocusedtestsPASS; commit.
+- [x] RED purefake-lane/model tests:twobends+connector complete, terminalovershoot, firstlane/prefix/stepbudget/departure FAIL, ambiguous/discontinuous/repeatedlanes reject, rawmodel/bridge/clock/feed preserved, uncertain inferencefailure bounds.
+- [x] GREEN independentfixedspeedloop usingoriginalcamera/policyinterface andexistingWorldFramePolicyAdapter; captureoriginalhashes/audit/bridge/progress; noGTcontroller. ExpectedfocusedtestsPASS; commit.
 
 ### Task 3: native geometry/virtual optical and full-S adapters
 Files:new scripts/sdk3_four_validation_native.py, scripts/sdk3_four_validation_runtime.py, scripts/run_sdk3_four_validation.py, corresponding3testmodules.
 Interfaces:owned nativechild/pair modes; immutableimage/SDK stage; nativeprobe rawreports/geometry/sourceRGB; fullSreports; hostvalidate_geometry_optics()/validate_full_case() consumecontracts and regenerategates.
-- [ ] RED coldhelp/importfences, exactcommands/resources/driver/modelSHA/actionbridge, rawpixel/lens/coverage/source/context negatives, processownership/counttimeout tests.
-- [ ] GREEN ownedzero-modelnativeprobe4cases/twoposes; newownedfullS2children, lifecyclebounds; hostsource/artifact authenticators andindependentreceivers; nooriginalproducerchanges. Expectedtests/actionlintPASS.
-- [ ] New workflow .github/workflows/sdk3-four-validation-v1.yml:probejob, gated4fullScases; alwaysrawupload, fixedrequestactivation path. Commit/pushfeature/DraftPR; requirecanonicalpush+PR4jobsPASS.
-- [ ] Freshactualrequest; independentlyreceiveactualzero-modelprobe. Ifqualifiedrate, runfreshfullS4cases; otherwise recordblockedwith0actualmodels. Savealloutcomes withoutretry/outcomeselection.
+- [x] RED coldhelp/importfences, exactcommands/resources/driver/modelSHA/actionbridge, rawpixel/lens/coverage/source/context negatives, processownership/counttimeout tests.
+- [x] GREEN ownedzero-modelnativeprobe4cases/twoposes; newownedfullS2children, lifecyclebounds; hostsource/artifact authenticators andindependentreceivers; nooriginalproducerchanges. Expectedtests/actionlintPASS.
+- [x] New workflow .github/workflows/sdk3-four-validation-v1.yml:probejob, gated4fullScases; alwaysrawupload, fixedrequestactivation path. Commit/pushfeature/DraftPR; requirecanonicalpush+PR4jobsPASS.
+- [x] Freshactualrequest; independentlyreceiveactualzero-modelprobe. Ifqualifiedrate, runfreshfullS4cases; otherwise recordblockedwith0actualmodels. Savealloutcomes withoutretry/outcomeselection.
 
 ### Task 4: laptop orchestration and external tracks
 Files:new scripts/run_laptop_validation.py, docs/LAPTOP_FOUR_VALIDATIONS.md, tests/test_laptop_validation.py; externalinputschemas asneeded.
 Interfaces:explicituserexecution paths resourceprobe/full-S/physicalcalibration/CARLA/hardware; commonmachine-readablereports. OS-specificinstructions baseduseranswer, noautomaticresourcepurchase.
-- [ ] RED externalinputsabsent blocked;softwareGPU/MSAArequestnotactual reject; invaliddatasetprovenance/holdout/missingCARLAowner notPASS; nohiddenmodeldownload orworldmutation inpreflight.
-- [ ] GREEN runnableexplicitcommands foravailablebackends, strictmissingrequirements forunavailable ones, privatecalibrationdata stayslocal. Executeactualsupportedchecks; neverlabelruntimechecker asfullvalidationPASS.
+- [x] RED externalinputsabsent blocked;softwareGPU/MSAArequestnotactual reject; invaliddatasetprovenance/holdout/missingCARLAowner notPASS; nohiddenmodeldownload orworldmutation inpreflight.
+- [x] GREEN runnableexplicitcommands foravailablebackends, strictmissingrequirements forunavailable ones, privatecalibrationdata stayslocal. Executeactualsupportedchecks; neverlabelruntimechecker asfullvalidationPASS.
 
 ### Task 5: independent review and closeout
 - [ ] Rootindependentlyregeneratesactualfourtrackstate/traversal/repeatgates anddistinguishesblockedresources; preserveprevious3taskevidence.
 - [ ] Singlefreshwholebranchreviewbase838..HEAD withReviewFocus/spec/ledger; oneImportantRED→GREENfixpass, Minordefer/no rereview.
 - [ ] FinalHEAD4canonicalCIjobs/fullcounts/DraftPR/sourceparent/main/originalpreservation; archiveledger/allrulings/exactexternalreceipt, deleteonlyownscratch. Preserveworktree andstateforlaptop followup. FinalhonestactualPASS/FAIL/BLOCKED pertrack withprecise nextrequirements.
+
+Effective final progress: Tasks1–4 implementation and supported actualCloud verification complete. Task3 actual02 fullSFAIL0/4, strictrepeatPASS4/4,8officialmodels554inferences; noexternalphysical/hardware/CARLAPASS. Task4 targetWindowsRTX3050Ti, separateexplicitWindowsandCARLAmodelcohorts8each/4800callsafterzero-modelgates. Effectivechild9000/launcher9030/pair18120/container18180/modeljob320min, host+nativeNumPy2.4.6/OpenCV5.0, replacinginitialpilotbudget. Task5 singlefreshwholebranchreview complete;6Important acceptedandfixedwithRED→GREEN68focusedtests,1troubleshootingMinor deferred. ExactfinalHEADfullCIandarchivecloseoutare recorded externally after the final commit; do not rerun actualmodels toqualify documentation/receiver-only changes.
