@@ -1,0 +1,39 @@
+{
+  "schema": "sdk3-priority-models-request-v1",
+  "source_sha": "ce983fa4a03fe87c43d7ea0e2f2900a017e09cf3",
+  "push_ci": 44114713592,
+  "pr_ci": 44114727539,
+  "official_model_processes": 8,
+  "onnx_inferences": 96,
+  "cases": [
+    {
+      "seed": 20261109,
+      "scenario": "s_curve_left_right"
+    },
+    {
+      "seed": 20261109,
+      "scenario": "s_curve_right_left"
+    },
+    {
+      "seed": 20261110,
+      "scenario": "s_curve_left_right"
+    },
+    {
+      "seed": 20261110,
+      "scenario": "s_curve_right_left"
+    }
+  ],
+  "repair_id": "SDK3_RGB_TERRAIN_DEPTH_TIE_PRIORITY_V1",
+  "adapter_sha256": "16aafa7d35bcb91cf11b1744749a47e049ba23049aa5f7985ac4d31a66aba182",
+  "model_sha256": "35976b11be3904eb78e32f7dc55a6abf8e9433ac5aa391a1998f1e9ce001b199",
+  "renderer": {
+    "run_id": 44106362913,
+    "workflow_id": 421335903,
+    "attempt": 1,
+    "source_sha": "1d1763f5279581be499450c99857504697e9a695",
+    "activation_sha": "4bca03fa3c81212fd22aa1878dbb1fd22b595031",
+    "artifact_id": 14338669738,
+    "artifact_size": 25032261,
+    "artifact_sha256": "f9a9ad68b77cad51f80e8dd4da6664f6df13b2b24ff62fe61789fa49a5cecaba"
+  }
+}
