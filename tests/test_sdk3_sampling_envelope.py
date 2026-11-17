@@ -1,5 +1,6 @@
 """Literal numerical contracts; a mode/offset/threshold change must break these."""
 import copy,hashlib,math,struct,unittest
+from fractions import Fraction as F
 try:from scripts import sdk3_sampling_envelope as h
 except ImportError:h=None
 
@@ -13,7 +14,7 @@ class SamplingMath(unittest.TestCase):
     def test_unorm8_literals_and_unsigned_clamping(self):
         self.assertEqual(h.normalize([.075,.15,-2.,2.],'unorm8_nearest_even'),[19/255,38/255,0.,1.])
     def test_codepoint_ties_are_nearest_even(self):
-        self.assertEqual(h.normalize([.5/127,1.5/127,2.5/127,-1.5/127],'snorm8_nearest_even'),[0.,2/127,2/127,-2/127])
+        self.assertEqual(h.normalize([.5,-.5,0.,1.],'snorm8_nearest_even'),[64/127,-64/127,0.,1.])
     def test_recorded_values_are_not_quantized(self):
         values=[0.,.07500000298023224,.15000000596046448,0.];self.assertEqual(h.normalize(values,'recorded_float32'),values)
     def test_yellow_predicate_is_strict_at_both_thresholds(self):
@@ -55,4 +56,25 @@ class SamplingMath(unittest.TestCase):
     def test_nonfinite_unknown_mode_and_bad_fraction_reject(self):
         for call in (lambda:h.normalize([math.nan],'recorded_float32'),lambda:h.normalize([0.],'bogus'),lambda:h.bilinear([0.,0.,0.,1.],[1.01,0.]),lambda:h.bilinear([0.,0.,0.,1.],[.5,.5],4),lambda:h.attribute_uv([math.inf,0.],2.,'f32_separate'),lambda:h.attribute_uv([0.,0.],0.,'recorded_f64'),lambda:h.fractions([0.,0.],[0,2])):
             with self.subTest(call=call),self.assertRaises(ValueError):call()
+    def test_true_single_round_fma_above_float32_midpoint(self):
+        uv=1.4904742329235887e-08;ratio=1.9995194673538208;expected=.5000000596046448
+        exact=F(uv)*F(ratio)+F(1,2);self.assertLess(abs(exact-F(expected)),abs(exact-F(.5)));self.assertEqual(h.attribute_uv([uv,0.],ratio,'f32_fma_model')[0],expected)
+    def test_conflicting_duplicate_texel_bytes_are_rejected(self):
+        w=window();w.update(size_xy=[1,1],expected_nbytes=4,uv=[0.,0.],wrap_codes=[0,0],wrap_modes=['clamp','clamp'])
+        for row in w['texels']:row.update(xy=[0,0],offset=0)
+        with self.assertRaises(ValueError):h.scenario(w,[0.,0.],'recorded_float32',None)
+    def test_consistent_clamp_mirror_duplicate_corners_remain_available(self):
+        for mode,code in (('clamp',0),('mirror',2)):
+            w=window((.075,)*4);w.update(size_xy=[1,1],expected_nbytes=4,uv=[0.,0.],wrap_codes=[code,code],wrap_modes=[mode,mode])
+            for row in w['texels']:row.update(xy=[0,0],offset=0)
+            r=h.scenario(w,[0.,0.],'recorded_float32',None);self.assertEqual(r['status'],'MODELED');self.assertTrue(r['yellow'])
+    def test_exact_endpoint_root_is_retained(self):
+        roots=h.threshold_roots([.01,.03,.01,.03],[.5,.5]);self.assertTrue(any(r['axis']==0 and r['threshold']==.01 and r['fraction']==0. for r in roots))
+    def test_outside_root_cannot_round_into_the_cell(self):
+        lo=math.nextafter(.01,math.inf);self.assertEqual(h.threshold_roots([lo,.03,lo,.03],[1.,.5]),[])
+    def test_normalization_near_midpoint_uses_exact_input_value(self):
+        self.assertEqual(h.normalize([.011811023622047244],'snorm8_nearest_even'),[1/127]);self.assertEqual(h.normalize([.0058823529411764705],'unorm8_nearest_even'),[1/255])
+    def test_conditional_adjacent_codes_and_outward_bound_are_exact(self):
+        r=h.conditional_envelope([2/127]*4,[.5,.5],8);self.assertAlmostEqual(r['minimum'],1/127);self.assertAlmostEqual(r['maximum'],2/127);self.assertFalse(r['all_yellow']);self.assertLessEqual(F(r['minimum']),F(1,127));self.assertGreaterEqual(F(r['maximum']),F(2,127))
+
 if __name__=='__main__':unittest.main()
