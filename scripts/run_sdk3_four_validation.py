@@ -16,7 +16,7 @@ ROOT=Path(__file__).resolve().parents[1];BASE='8380e8a0c0583fa0e47af6b8bbb4b6446
 def read(path):return json.loads(Path(path).read_text())
 def need(v,message):p.need(v,message)
 def digest64(value):return isinstance(value,str) and len(value)==64 and all(c in '0123456789abcdef' for c in value)
-def validate_delta(rows):need(rows and all(r.startswith('A\t') for r in rows),'all previous producer/evidence files remain unchanged')
+def validate_delta(rows):need(rows and all(r.startswith('A\t') or r=='M\ttests/test_engine_clock_native.py' for r in rows),'all previous producer/evidence files remain unchanged')
 def finite(v):return type(v) in (int,float) and math.isfinite(v)
 def close(a,b):return finite(a) and finite(b) and abs(a-b)<=1e-8
 

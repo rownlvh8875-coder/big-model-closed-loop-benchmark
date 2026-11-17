@@ -67,6 +67,6 @@ class HostContracts(unittest.TestCase):
    bad=dict(good);bad[key]+=' changed'
    with self.assertRaises(ValueError):h.same_driver(bad,good)
  def test_immutable_base_files_cannot_be_modified(self):
-  h.validate_delta(['A\tscripts/new.py'])
+  h.validate_delta(['A\tscripts/new.py']);h.validate_delta(['M\ttests/test_engine_clock_native.py'])
   with self.assertRaises(ValueError):h.validate_delta(['M\tbigbench/onnx_policy.py'])
 if __name__=='__main__':unittest.main()

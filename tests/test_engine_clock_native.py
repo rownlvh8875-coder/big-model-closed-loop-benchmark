@@ -617,7 +617,8 @@ class AuthorizationTests(unittest.TestCase):
     def test_native_boundary_rejects_imported_ort_even_with_allowed_distribution_metadata(self):
         valid=dict(python='3.11.9',executable='/usr/bin/python',numpy='2.4.6',
                    **{'opencv-python-headless':'5.0.0.93','panda3d':'1.10.13','metadrive-simulator':'0.4.3'},onnxruntime=None)
-        with patch.object(m.capture,'runtime_versions',return_value=valid),patch.dict(os.environ,{'ImageOS':'ubuntu24','ImageVersion':'2026'}),patch.dict(m.sys.modules,{'onnxruntime':types.ModuleType('onnxruntime')}):
+        import cv2
+        with patch.object(cv2,'__version__','5.0.0'),patch.object(m.capture,'runtime_versions',return_value=valid),patch.dict(os.environ,{'ImageOS':'ubuntu24','ImageVersion':'2026'}),patch.dict(m.sys.modules,{'onnxruntime':types.ModuleType('onnxruntime')}):
             with self.assertRaisesRegex(ValueError,'imported ORT'):m._runtime()
 
     def test_empty_cache_files_do_not_attest_populated_driver_route(self):
