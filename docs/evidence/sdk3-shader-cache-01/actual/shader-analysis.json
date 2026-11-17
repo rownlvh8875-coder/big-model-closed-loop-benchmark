@@ -1,0 +1,439 @@
+{
+  "run_id": 43985158042,
+  "source_sha": "9fd62e72b204c42557e40d73c7a336eca765d466",
+  "status": "INCONCLUSIVE_PREPROCESSED_SHADER_CACHE_RECORDED",
+  "shader_recorded": true,
+  "shader_complete": true,
+  "shader_variants_matched": true,
+  "source_image_equivalence": false,
+  "target_pixel_rgb": [
+    199,
+    187,
+    0
+  ],
+  "target_read_sha256": "5289613b610abe2270b4e7d98c106608689c55c216b2085d439eb39eec571adb",
+  "material_sha256": "3ee8e8482352179a073b899561dfcc6463a8042bfdaf1236233d95419928ca50",
+  "source_file_count": 12,
+  "shader_object_count": 3,
+  "bytes_captured": 80045,
+  "elapsed_wall_seconds": 0.0034713349999719867,
+  "enter_elapsed_s": 367.057004478,
+  "exit_elapsed_s": 367.060475813,
+  "pipeline": {
+    "max_lights": 8,
+    "exposure": 1.0,
+    "use_normal_maps": false,
+    "use_emission_maps": true,
+    "enable_fog": false,
+    "use_occlusion_maps": false,
+    "use_330": false,
+    "enable_hardware_skinning": true
+  },
+  "pipeline_defines": {
+    "MAX_LIGHTS": 8,
+    "USE_EMISSION_MAP": "",
+    "ENABLE_SKINNING": ""
+  },
+  "shader_cache_policy_id": "panda1.10.13-observed-subset-v1",
+  "pssm_owner_arrays_recorded": true,
+  "mesh_bindings": [
+    {
+      "mesh_id": 1,
+      "path": "render/world_np/1C/1C_sidewalk/polygon_node",
+      "role": "pipeline",
+      "net_state_pointer": 139768761881952,
+      "shader_attrib_pointer": 94546403503520,
+      "program": {
+        "available": true,
+        "shader_id": 0,
+        "pointer": 94546363455072,
+        "language": 2,
+        "cached_error_flag": false,
+        "stages": {
+          "vertex": {
+            "available": true,
+            "file": "shader-text-013-vertex.txt",
+            "nbytes": 1987,
+            "sha256": "a0ee9afb297b54c776385b3c025d8effdac4825b135ee2aac5f226231fd807d1",
+            "expected_nbytes": 1987,
+            "expected_sha256": "a0ee9afb297b54c776385b3c025d8effdac4825b135ee2aac5f226231fd807d1",
+            "exact_bytes": true,
+            "first_difference_byte_index": null,
+            "actual_crlf_count": 0,
+            "expected_crlf_count": 0,
+            "normalized_lf_equal_for_analysis_only": true,
+            "generated_header": "#version 330\n#define MAX_LIGHTS 8\n#define USE_EMISSION_MAP\n#define ENABLE_SKINNING\n#define p3d_TextureBaseColor p3d_TextureModulate\n#define p3d_TextureMetalRoughness p3d_TextureSelector\n#define p3d_TextureNormal p3d_TextureNormal\n#define p3d_TextureEmission p3d_TextureEmission\n"
+          },
+          "fragment": {
+            "available": true,
+            "file": "shader-text-014-fragment.txt",
+            "nbytes": 7996,
+            "sha256": "da1fcda1e8fbf3c40ba666c50b27937bf2a324438182ad7473373a9f94c24a3e",
+            "expected_nbytes": 7996,
+            "expected_sha256": "da1fcda1e8fbf3c40ba666c50b27937bf2a324438182ad7473373a9f94c24a3e",
+            "exact_bytes": true,
+            "first_difference_byte_index": null,
+            "actual_crlf_count": 0,
+            "expected_crlf_count": 0,
+            "normalized_lf_equal_for_analysis_only": true,
+            "generated_header": "#version 330\n#define MAX_LIGHTS 8\n#define USE_EMISSION_MAP\n#define ENABLE_SKINNING\n#define p3d_TextureBaseColor p3d_TextureModulate\n#define p3d_TextureMetalRoughness p3d_TextureSelector\n#define p3d_TextureNormal p3d_TextureNormal\n#define p3d_TextureEmission p3d_TextureEmission\n"
+          }
+        }
+      },
+      "known_inputs": [
+        {
+          "name": "PSSMShadowAtlas",
+          "value_type": 1,
+          "priority": 0,
+          "status": "AVAILABLE_TEXTURE",
+          "texture": {
+            "pointer": 94546388812720,
+            "name": "PSSMShadowMap",
+            "x_size": 2048,
+            "y_size": 1024,
+            "z_size": 1,
+            "num_components": 1,
+            "component_width": 4,
+            "component_type": 2,
+            "format": 26,
+            "texture_type": 1
+          }
+        },
+        {
+          "name": "pssm_mvps",
+          "value_type": 4,
+          "priority": 0,
+          "status": "UNAVAILABLE_NUMERIC_ARRAY"
+        },
+        {
+          "name": "pssm_nearfar",
+          "value_type": 4,
+          "priority": 0,
+          "status": "UNAVAILABLE_NUMERIC_ARRAY"
+        },
+        {
+          "name": "border_bias",
+          "value_type": 3,
+          "priority": 0,
+          "status": "AVAILABLE_VECTOR",
+          "vector": [
+            0.057999998331069946,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "name": "use_pssm",
+          "value_type": 4,
+          "priority": 0,
+          "status": "UNAVAILABLE_NUMERIC_ARRAY"
+        },
+        {
+          "name": "fog",
+          "value_type": 4,
+          "priority": 0,
+          "status": "UNAVAILABLE_NUMERIC_ARRAY"
+        },
+        {
+          "name": "split_count",
+          "value_type": 4,
+          "priority": 0,
+          "status": "UNAVAILABLE_NUMERIC_ARRAY"
+        },
+        {
+          "name": "light_direction",
+          "value_type": 4,
+          "priority": 0,
+          "status": "UNAVAILABLE_NUMERIC_ARRAY"
+        }
+      ]
+    },
+    {
+      "mesh_id": 0,
+      "path": "render/8a1553ff-0186-42e6-b76b-59e2ca61a02a/SceneRoot/SkyboxMesh",
+      "role": "skybox",
+      "net_state_pointer": 139769113636480,
+      "shader_attrib_pointer": 94546480219312,
+      "program": {
+        "available": true,
+        "shader_id": 1,
+        "pointer": 94546388802192,
+        "language": 2,
+        "cached_error_flag": false,
+        "stages": {
+          "vertex": {
+            "available": true,
+            "file": "shader-text-015-vertex.txt",
+            "nbytes": 210,
+            "sha256": "889eef22ba47b2717459745582703d05b9d0cf9de245a24a098e0c39b30d1662",
+            "expected_nbytes": 210,
+            "expected_sha256": "889eef22ba47b2717459745582703d05b9d0cf9de245a24a098e0c39b30d1662",
+            "exact_bytes": true,
+            "first_difference_byte_index": null,
+            "actual_crlf_count": 0,
+            "expected_crlf_count": 0,
+            "normalized_lf_equal_for_analysis_only": true,
+            "generated_header": "#version 150\n\n\n\nin vec4 p3d_Vertex;\nuniform mat4 p3d_ModelViewProjectionMatrix;\n\nout vec3 skybox_pos;"
+          },
+          "fragment": {
+            "available": true,
+            "file": "shader-text-016-fragment.txt",
+            "nbytes": 428,
+            "sha256": "33c1b9ecff67b822cdafbd0ae3cbf877278709d346fc8cf1ad9490d86d6d407b",
+            "expected_nbytes": 428,
+            "expected_sha256": "33c1b9ecff67b822cdafbd0ae3cbf877278709d346fc8cf1ad9490d86d6d407b",
+            "exact_bytes": true,
+            "first_difference_byte_index": null,
+            "actual_crlf_count": 0,
+            "expected_crlf_count": 0,
+            "normalized_lf_equal_for_analysis_only": true,
+            "generated_header": "#version 150\n\nin vec3 skybox_pos;\nout vec4 color;\n\nuniform sampler2D p3d_Texture0;\n\nvoid main() {"
+          }
+        }
+      },
+      "known_inputs": [
+        {
+          "name": "PSSMShadowAtlas",
+          "value_type": 1,
+          "priority": 0,
+          "status": "AVAILABLE_TEXTURE",
+          "texture": {
+            "pointer": 94546388812720,
+            "name": "PSSMShadowMap",
+            "x_size": 2048,
+            "y_size": 1024,
+            "z_size": 1,
+            "num_components": 1,
+            "component_width": 4,
+            "component_type": 2,
+            "format": 26,
+            "texture_type": 1
+          }
+        },
+        {
+          "name": "pssm_mvps",
+          "value_type": 4,
+          "priority": 0,
+          "status": "UNAVAILABLE_NUMERIC_ARRAY"
+        },
+        {
+          "name": "pssm_nearfar",
+          "value_type": 4,
+          "priority": 0,
+          "status": "UNAVAILABLE_NUMERIC_ARRAY"
+        },
+        {
+          "name": "border_bias",
+          "value_type": 3,
+          "priority": 0,
+          "status": "AVAILABLE_VECTOR",
+          "vector": [
+            0.057999998331069946,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "name": "use_pssm",
+          "value_type": 4,
+          "priority": 0,
+          "status": "UNAVAILABLE_NUMERIC_ARRAY"
+        },
+        {
+          "name": "fog",
+          "value_type": 4,
+          "priority": 0,
+          "status": "UNAVAILABLE_NUMERIC_ARRAY"
+        },
+        {
+          "name": "split_count",
+          "value_type": 4,
+          "priority": 0,
+          "status": "UNAVAILABLE_NUMERIC_ARRAY"
+        },
+        {
+          "name": "light_direction",
+          "value_type": 4,
+          "priority": 0,
+          "status": "UNAVAILABLE_NUMERIC_ARRAY"
+        }
+      ]
+    }
+  ],
+  "tonemap": {
+    "shader_id": 2,
+    "net_state_pointer": 139769485071888,
+    "shader_attrib_pointer": 94546388838656,
+    "quad_path": "filter-base-quad",
+    "scene_texture": {
+      "pointer": 94546388834032,
+      "name": "",
+      "x_size": 964,
+      "y_size": 604,
+      "z_size": 1,
+      "num_components": 4,
+      "component_width": 4,
+      "component_type": 2,
+      "format": 21,
+      "texture_type": 1
+    },
+    "copy_texture_pointer": 94546388840800,
+    "tex_input": {
+      "name": "tex",
+      "value_type": 1,
+      "priority": 0,
+      "status": "AVAILABLE_TEXTURE",
+      "texture": {
+        "pointer": 94546388834032,
+        "name": "",
+        "x_size": 964,
+        "y_size": 604,
+        "z_size": 1,
+        "num_components": 4,
+        "component_width": 4,
+        "component_type": 2,
+        "format": 21,
+        "texture_type": 1
+      }
+    },
+    "exposure_input": {
+      "name": "exposure",
+      "value_type": 3,
+      "priority": 0,
+      "status": "AVAILABLE_VECTOR",
+      "vector": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "program": {
+      "available": true,
+      "shader_id": 2,
+      "pointer": 94546388780848,
+      "language": 2,
+      "cached_error_flag": false,
+      "stages": {
+        "vertex": {
+          "available": true,
+          "file": "shader-text-017-vertex.txt",
+          "nbytes": 466,
+          "sha256": "8166ad854899374d1ba86d3e34dc075e8efa04c4293be7952c80196b75f38c73",
+          "expected_nbytes": 466,
+          "expected_sha256": "8166ad854899374d1ba86d3e34dc075e8efa04c4293be7952c80196b75f38c73",
+          "exact_bytes": true,
+          "first_difference_byte_index": null,
+          "actual_crlf_count": 0,
+          "expected_crlf_count": 0,
+          "normalized_lf_equal_for_analysis_only": true,
+          "generated_header": "#version 120\n#define p3d_TextureBaseColor p3d_TextureModulate\n#define p3d_TextureMetalRoughness p3d_TextureSelector\n#define p3d_TextureNormal p3d_TextureNormal\n#define p3d_TextureEmission p3d_TextureEmission\n"
+        },
+        "fragment": {
+          "available": true,
+          "file": "shader-text-018-fragment.txt",
+          "nbytes": 680,
+          "sha256": "835b7ccb2d88f79d3d92b2009e142ad88453939a37a6e156808809e069c9af12",
+          "expected_nbytes": 680,
+          "expected_sha256": "835b7ccb2d88f79d3d92b2009e142ad88453939a37a6e156808809e069c9af12",
+          "exact_bytes": true,
+          "first_difference_byte_index": null,
+          "actual_crlf_count": 0,
+          "expected_crlf_count": 0,
+          "normalized_lf_equal_for_analysis_only": true,
+          "generated_header": "#version 120\n#define p3d_TextureBaseColor p3d_TextureModulate\n#define p3d_TextureMetalRoughness p3d_TextureSelector\n#define p3d_TextureNormal p3d_TextureNormal\n#define p3d_TextureEmission p3d_TextureEmission\n"
+        }
+      }
+    }
+  },
+  "pssm_owner": {
+    "available": true,
+    "input_values_bound_to_shader": false,
+    "num_splits": 2,
+    "use_pssm": true,
+    "fog": true,
+    "freeze_pssm": false,
+    "border_bias": 0.058,
+    "mvp_array": [
+      [
+        [
+          -0.04520402476191521,
+          0.019342074170708656,
+          0.014657865278422832,
+          0.0
+        ],
+        [
+          -0.04520402103662491,
+          -0.019342074170708656,
+          -0.014657867141067982,
+          0.0
+        ],
+        [
+          3.810414206384394e-09,
+          0.03868414834141731,
+          -0.014657867141067982,
+          0.0
+        ],
+        [
+          1.001953363418579,
+          -0.392578125,
+          0.3007192611694336,
+          1.0
+        ]
+      ],
+      [
+        [
+          -0.023755867034196854,
+          0.009386678226292133,
+          0.011802097782492638,
+          0.0
+        ],
+        [
+          -0.023755865171551704,
+          -0.009386677294969559,
+          -0.011802099645137787,
+          0.0
+        ],
+        [
+          2.002469745576718e-09,
+          0.018773354589939117,
+          -0.011802099645137787,
+          0.0
+        ],
+        [
+          1.138671875,
+          -0.38476571440696716,
+          -0.2777317762374878,
+          1.0
+        ]
+      ]
+    ],
+    "nearfar_array": [
+      [
+        10.0,
+        88.77685546875
+      ],
+      [
+        10.0,
+        107.83857727050781
+      ]
+    ]
+  },
+  "camera": {
+    "initial_state_text": "(empty)\n",
+    "tag_state_key": "rgb"
+  },
+  "truncation_reasons": [],
+  "failure": null,
+  "shader_sources_are_cpu_cache_only": true,
+  "actual_hdr_pixel_values_unobserved": true,
+  "normalizing_byte_comparisons_never_relaxes_admission": true,
+  "gpu_program_execution_proven": false,
+  "hardware_uniform_values_proven": false,
+  "gpu_pixel_owner_proven": false,
+  "unique_cause_proven": false,
+  "repair_proven": false,
+  "stage7_complete": false
+}
