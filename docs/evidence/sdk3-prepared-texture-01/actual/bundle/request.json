@@ -1,0 +1,64 @@
+{
+  "schema": "sdk3-prepared-texture-request-v1",
+  "created_at_kst": "2026-11-17T19:43:54.057654+09:00",
+  "source_sha": "b759849d911190a2d3376b0f90daa330d8192c1c",
+  "push_ci": 44066782185,
+  "pr_ci": 44066792018,
+  "renderer_processes": 1,
+  "official_model_processes": 0,
+  "onnx_inferences": 0,
+  "seed": 20261110,
+  "scenario": "s_curve_left_right",
+  "child_timeout_seconds": 600,
+  "container_timeout_seconds": 630,
+  "python_stack_period_seconds": 30,
+  "target_pixel": [
+    596,
+    494
+  ],
+  "shader_limits": {
+    "max_shader_objects": 8,
+    "max_file_bytes": 262144,
+    "max_total_bytes": 2097152,
+    "max_meshes": 40,
+    "max_cpu_seconds": 20
+  },
+  "terrain_limits": {
+    "max_states": 4,
+    "max_shader_objects": 4,
+    "max_sources": 2,
+    "max_file_bytes": 262144,
+    "max_total_bytes": 2097152,
+    "max_resident_bytes": 2147483648,
+    "max_points": 5,
+    "max_cpu_seconds": 20
+  },
+  "sparse_policy": {
+    "max_logical_buffer_bytes": 2147483648,
+    "max_window_bytes": 64,
+    "max_total_sample_bytes": 960,
+    "max_rss_delta_kib": 32768
+  },
+  "prepared_policy": {
+    "max_outputs": 6,
+    "max_gsgs": 6,
+    "max_textures": 3,
+    "max_views": 8,
+    "max_mip_levels": 4,
+    "max_points": 5,
+    "max_logical_buffer_bytes": 2147483648,
+    "max_window_bytes": 16,
+    "max_total_sample_bytes": 80,
+    "max_cpu_seconds": 20,
+    "max_rss_delta_kib": 32768
+  },
+  "reference_index_sha256": "c4e30a70fcc8200f4b6134c1b3c23681b4d17d7609f6d9bd41c8af73398a0f1b",
+  "cache_policy_id": "panda1.10.13-observed-subset-v1",
+  "panda_shader_cxx_sha256": "aad792a474792b1d7af5c524f8326e718a4ae4cbaecb3b844824910d2d5dccf6",
+  "original_matrix_gate_passed": false,
+  "repair_proven": false,
+  "stage7_complete": false,
+  "publish": false,
+  "merge": false,
+  "remote_execution_user_approved": true
+}

@@ -1,0 +1,59 @@
+FFFFFF
+======================================================================
+FAIL: test_absent_mip_never_fetches_or_generates (tests.test_sdk3_prepared_texture.PreparedHelper.test_absent_mip_never_fetches_or_generates)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/dev/shm/stage7-sdk3-runtime-20261116/repo/tests/test_sdk3_prepared_texture.py", line 30, in setUp
+    def setUp(self):self.assertIsNotNone(h,'prepared texture observation helper is missing')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : prepared texture observation helper is missing
+
+======================================================================
+FAIL: test_metadata_bounded_to_four_levels_and_has_no_fetch (tests.test_sdk3_prepared_texture.PreparedHelper.test_metadata_bounded_to_four_levels_and_has_no_fetch)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/dev/shm/stage7-sdk3-runtime-20261116/repo/tests/test_sdk3_prepared_texture.py", line 30, in setUp
+    def setUp(self):self.assertIsNotNone(h,'prepared texture observation helper is missing')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : prepared texture observation helper is missing
+
+======================================================================
+FAIL: test_minimum_cap_bias_is_cpu_halving_inference (tests.test_sdk3_prepared_texture.PreparedHelper.test_minimum_cap_bias_is_cpu_halving_inference)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/dev/shm/stage7-sdk3-runtime-20261116/repo/tests/test_sdk3_prepared_texture.py", line 30, in setUp
+    def setUp(self):self.assertIsNotNone(h,'prepared texture observation helper is missing')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : prepared texture observation helper is missing
+
+======================================================================
+FAIL: test_multiview_is_unavailable_without_fetch (tests.test_sdk3_prepared_texture.PreparedHelper.test_multiview_is_unavailable_without_fetch)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/dev/shm/stage7-sdk3-runtime-20261116/repo/tests/test_sdk3_prepared_texture.py", line 30, in setUp
+    def setUp(self):self.assertIsNotNone(h,'prepared texture observation helper is missing')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : prepared texture observation helper is missing
+
+======================================================================
+FAIL: test_queue_nonresident_and_retained_bytes_are_not_reinterpreted (tests.test_sdk3_prepared_texture.PreparedHelper.test_queue_nonresident_and_retained_bytes_are_not_reinterpreted)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/dev/shm/stage7-sdk3-runtime-20261116/repo/tests/test_sdk3_prepared_texture.py", line 30, in setUp
+    def setUp(self):self.assertIsNotNone(h,'prepared texture observation helper is missing')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : prepared texture observation helper is missing
+
+======================================================================
+FAIL: test_sparse_mip1_reads_literal_corners_without_whole_copy (tests.test_sdk3_prepared_texture.PreparedHelper.test_sparse_mip1_reads_literal_corners_without_whole_copy)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/dev/shm/stage7-sdk3-runtime-20261116/repo/tests/test_sdk3_prepared_texture.py", line 30, in setUp
+    def setUp(self):self.assertIsNotNone(h,'prepared texture observation helper is missing')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : prepared texture observation helper is missing
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.001s
+
+FAILED (failures=6)

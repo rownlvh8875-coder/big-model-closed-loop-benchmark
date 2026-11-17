@@ -1,0 +1,15 @@
+# SDD ledger — plan: docs/superpowers/plans/2026-11-17-sdk3-prepared-texture.md
+Spec read and isolated RAM clone verified; source bf71fb9, new branch feature/sdk3-prepared-texture-v1, clean. Skill helper resources unavailable; equivalent ledger/brief/test-log steps run manually. Continuous inline execution already authorized; new branch pushes/DraftPR and one bounded native diagnostic authorized, no main merge/publication.
+Pre-flight Task1→2: helper POLICY/reference hash/mip fields are host recomputed; no conflict.
+Pre-flight Task2→3: source-bound native entry/request/policies feed one fresh runtime and artifact receiver; no conflict.
+Ruling: Observe the three terrain-owner textures and up to four existing filter buffers only — this targets the remaining CPU versus prepared-texture question without expanding scene traversal — if wrong, another texture or context may explain the pixel and remains unexamined.
+Ruling: Treat already-absent mip1 as valid metadata completion but incomplete mip collection — generating it would perturb the diagnostic — if wrong, the run may leave the upload-level hypothesis unresolved.
+Task 1: in_progress BASE bf71fb9a794506b1fc64f996f4ff062cbb1b98a4.
+Task 1: complete (commits bf71fb9..d681352, tests: unittest tests.test_sdk3_prepared_texture tests.test_sdk3_terrain_attribute → 12 PASS; missing-helper RED then GREEN, sparse507510784B mmap literal16B).
+Task 2: in_progress BASE d68135268964c008ac1ad7e644984a19fe9c6cd8.
+Task 2: complete (commits d681352..b759849, tests: focused unittest20modules →146 PASS/20.245s, actionlint PASS, cold native-I-S-B/host-I-B help PASS; new boundary9 RED then GREEN).
+Task 3: in_progress BASE b759849d911190a2d3376b0f90daa330d8192c1c.
+Final review: sole fresh reviewer /root/sdk3_prepared_texture_review,gpt-6-astra/high,forknone; Critical0/Important0/Minor0,110independentCPUtestsPASS/18.248s,15references1284742B verified,coldbootstrap/actionlintPASS. No fix pass/rereview.
+Final: Ruling: Independent hardware draws remain outside this CPU cache diagnostic — cache state, inferred bias and RAM texels cannot establish GPU pixel ownership or cause, so those gates stay false — if wrong, the remaining cause cannot be resolved by this stage and needs another diagnostic.
+Task 3 gates: exact source b759849 push44066782185/PR44066792018, fourcanonicaljobsPASS/attempt1/artifacts0; both2114tests/7skips. Draft142 open/unmerged based on unchangedPR141. Request-only activation051b0f33ca2684d072363b42a4cba84a517cb2e3; one native run44067526874/workflow421213685 started, no rerun. Original6filesSHA/mode reverified beforeactivation.
+Actual44067526874 complete: native287.983467614s,child/Xvfb/container0/0/0,noOOM/timeout,14sourceimages; independentreceiverPASS,preparedcomplete/GSG1/textures3,mip1fivewindows20float32/80B,combined280B,RSSdelta0KiB,prepared0.000880379s. Mip1center0.01687556688432301 enters yellow predicate, basecornersall0; Road7gray[167,163,158],Road2onepixel differslegacy. Cachedcap16384,attributeGPUreported126877696B compatible11264²x1 or5632²x4; pinned desktopF_red/T_float→R8_SNORM is a hypothesis,not runtime format proof. All owner/cause/repair/Stage7false.
