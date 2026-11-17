@@ -1,0 +1,197 @@
+{
+  "camera_terrain_tag_state_proven": false,
+  "citations": {
+    "asset_base": {
+      "file": "docs/evidence/sdk3-terrain-route-01/frozen-source/engine/asset_loader.py.data",
+      "line": 17,
+      "sha256": "7bfacf1f4fdced96ff68916b3012699ff07297b21adc54ed7b3b274bcce929d1",
+      "text": "    asset_path = pathlib.PurePosixPath(__file__).parent.parent.joinpath(\"assets\") if not is_win("
+    },
+    "asset_join": {
+      "file": "docs/evidence/sdk3-terrain-route-01/frozen-source/engine/asset_loader.py.data",
+      "line": 74,
+      "sha256": "7bfacf1f4fdced96ff68916b3012699ff07297b21adc54ed7b3b274bcce929d1",
+      "text": "        path = AssetLoader.asset_path.joinpath(*path_string)"
+    },
+    "attribute_lower_bound": {
+      "file": "docs/evidence/sdk3-terrain-route-01/frozen-source/shaders/terrain.frag.glsl.data",
+      "line": 132,
+      "sha256": "ffcc41b72827a93a60957adeb9645af1846bbf291dfd35dbc15573888b80129b",
+      "text": "  if ((attri.r > 0.01) && (terrain_uv.x>=r_min) && (terrain_uv.y >= r_min) && (terrain_uv.x<=r_max) && (terrain_uv.y<=r_max)){"
+    },
+    "attribute_upper_bound": {
+      "file": "docs/evidence/sdk3-terrain-route-01/frozen-source/shaders/terrain.frag.glsl.data",
+      "line": 134,
+      "sha256": "ffcc41b72827a93a60957adeb9645af1846bbf291dfd35dbc15573888b80129b",
+      "text": "    if (value < 0.11) {"
+    },
+    "fog_after_diffuse": {
+      "file": "docs/evidence/sdk3-terrain-route-01/frozen-source/shaders/terrain.frag.glsl.data",
+      "line": 221,
+      "sha256": "ffcc41b72827a93a60957adeb9645af1846bbf291dfd35dbc15573888b80129b",
+      "text": "    shading = mix(shading, vec3(0.7, 0.7, 0.8), fog_factor);"
+    },
+    "height_displacement": {
+      "file": "docs/evidence/sdk3-terrain-route-01/frozen-source/shaders/terrain.vert.glsl.data",
+      "line": 63,
+      "sha256": "aa53110d38a217fdeb375c3c5753941e95415aeeae85c46e710250667ba1af76",
+      "text": "  chunk_position.z += texture(ShaderTerrainMesh.heightfield, terrain_uv).x;"
+    },
+    "instanced_data": {
+      "file": "docs/evidence/sdk3-terrain-route-01/frozen-source/shaders/terrain.vert.glsl.data",
+      "line": 39,
+      "sha256": "aa53110d38a217fdeb375c3c5753941e95415aeeae85c46e710250667ba1af76",
+      "text": "    ivec2(gl_InstanceID, ShaderTerrainMesh.view_index), 0);"
+    },
+    "parent_shader_route": {
+      "file": "docs/evidence/sdk3-terrain-route-01/frozen-source/engine/core/terrain.py.data",
+      "line": 626,
+      "sha256": "0b595062fb2e7468b1e31d36a16eeb3fe007cbf8dc74fc37aec12db7b371fcc6",
+      "text": "        vert = AssetLoader.file_path(\"../shaders\", vert)"
+    },
+    "prior_geom_query": {
+      "file": "scripts/sdk3_pixel_geometry_native.py",
+      "line": 39,
+      "sha256": "2878874335335c0f3976a8ec5091e2ba4965b69e9ddd8a9b3399ee4b6c635c25",
+      "text": "    paths=world.findAllMatches('**/+GeomNode');camera_mask=camera.node().getCameraMask()"
+    },
+    "procedural_node_base": {
+      "file": "docs/evidence/sdk3-terrain-route-01/panda-reference/shaderTerrainMesh.h.data",
+      "line": 54,
+      "sha256": "f892903866e634eae5d4454438dfd1f39bf4684dee70e77eb2e7286302813c90",
+      "text": "class EXPCL_PANDA_GRUTIL ShaderTerrainMesh : public PandaNode {"
+    },
+    "rgb_camera_tag": {
+      "file": "docs/evidence/sdk3-terrain-route-01/frozen-source/component/sensors/rgb_camera.py.data",
+      "line": 32,
+      "sha256": "a13b38cf0af05966dfa37d09af65ea3779deabdcbf33258b378025e882da4af0",
+      "text": "        cam.setTagStateKey(CameraTagStateKey.RGB)"
+    },
+    "rgb_terrain_shader": {
+      "file": "docs/evidence/sdk3-terrain-route-01/frozen-source/component/sensors/rgb_camera.py.data",
+      "line": 35,
+      "sha256": "a13b38cf0af05966dfa37d09af65ea3779deabdcbf33258b378025e882da4af0",
+      "text": "            Semantics.TERRAIN.label, Terrain.make_render_state(self.engine, \"terrain.vert.glsl\", \"terrain.frag.glsl\")"
+    },
+    "terrain_construct": {
+      "file": "docs/evidence/sdk3-terrain-route-01/frozen-source/engine/core/terrain.py.data",
+      "line": 82,
+      "sha256": "0b595062fb2e7468b1e31d36a16eeb3fe007cbf8dc74fc37aec12db7b371fcc6",
+      "text": "            self._mesh_terrain_node = ShaderTerrainMesh()"
+    },
+    "terrain_rgb_tag": {
+      "file": "docs/evidence/sdk3-terrain-route-01/frozen-source/engine/core/terrain.py.data",
+      "line": 224,
+      "sha256": "0b595062fb2e7468b1e31d36a16eeb3fe007cbf8dc74fc37aec12db7b371fcc6",
+      "text": "        self._mesh_terrain.setTag(CameraTagStateKey.RGB, self.SEMANTIC_LABEL)"
+    },
+    "terrain_semantics": {
+      "file": "docs/evidence/sdk3-terrain-route-01/frozen-source/engine/core/terrain.py.data",
+      "line": 41,
+      "sha256": "0b595062fb2e7468b1e31d36a16eeb3fe007cbf8dc74fc37aec12db7b371fcc6",
+      "text": "    SEMANTIC_LABEL = Semantics.TERRAIN.label"
+    },
+    "yellow_fill": {
+      "file": "docs/evidence/sdk3-terrain-route-01/frozen-source/engine/core/terrain.py.data",
+      "line": 511,
+      "sha256": "0b595062fb2e7468b1e31d36a16eeb3fe007cbf8dc74fc37aec12db7b371fcc6",
+      "text": "        yellow_lane_line.fill(*(255 / 255, 200 / 255, 0 / 255))"
+    },
+    "yellow_input": {
+      "file": "docs/evidence/sdk3-terrain-route-01/frozen-source/engine/core/terrain.py.data",
+      "line": 268,
+      "sha256": "0b595062fb2e7468b1e31d36a16eeb3fe007cbf8dc74fc37aec12db7b371fcc6",
+      "text": "            self._mesh_terrain.set_shader_input(\"yellow_tex\", self.yellow_lane_line)"
+    },
+    "yellow_sample": {
+      "file": "docs/evidence/sdk3-terrain-route-01/frozen-source/shaders/terrain.frag.glsl.data",
+      "line": 136,
+      "sha256": "ffcc41b72827a93a60957adeb9645af1846bbf291dfd35dbc15573888b80129b",
+      "text": "        diffuse=texture(yellow_tex, terrain_uv * road_tex_ratio).rgb;"
+    }
+  },
+  "depth_tie_proven": false,
+  "evidence": {
+    "files_verified": 18,
+    "image_config": "blobs/sha256/b9d673de93f1857e4dfa5ed6a48330d568ef96fce7f3cc975f0c688877e6e26e",
+    "image_tar_sha256": "4984470cd7d732f9f2d1c12710c9433b563b3817ba6d1d419749a9a2b1b46698",
+    "index_sha256": "023a4e33bbaeebf71ecc7aabfed7d540762831080fdcd29d5bc3a76fc7220b4a",
+    "prior_artifact_id": 14285208580,
+    "prior_run_id": 43985158042,
+    "total_bytes": 128460
+  },
+  "gpu_pixel_owner_proven": false,
+  "gpu_program_execution_proven": false,
+  "new_model_processes": 0,
+  "new_native_processes": 0,
+  "original_matrix_gate_passed": false,
+  "prior_observation": {
+    "cached_camera_tag_key": "rgb",
+    "camera_key_matches_source": true,
+    "cpu_scene_coverage_proven": false,
+    "expected_cache_policy_id": "panda1.10.13-observed-subset-v1",
+    "expected_terrain_sha256": {
+      "fragment": "2c1104ff463d5cb6f0170dcd0a0efec6da1234faa611ce5fe6291a93a0bb9404",
+      "vertex": "74fe5c4b1dfeb80ecf3f200ff2236aaff76cc802b3cc956a3f4be0ff80a857c3"
+    },
+    "geom_mesh_count": 2,
+    "geom_mesh_paths": [
+      "render/8a1553ff-0186-42e6-b76b-59e2ca61a02a/SceneRoot/SkyboxMesh",
+      "render/world_np/1C/1C_sidewalk/polygon_node"
+    ],
+    "shader_objects": 3,
+    "shader_stages": 6,
+    "target_rgb": [
+      199,
+      187,
+      0
+    ],
+    "terrain_program_present": false,
+    "terrain_stage_matches": {
+      "fragment": [],
+      "vertex": []
+    }
+  },
+  "procedural": {
+    "uses_heightfield_displacement": true,
+    "uses_instance_data": true
+  },
+  "protocol": "sdk3-terrain-route-audit-v1",
+  "repair_proven": false,
+  "runtime_terrain_present_proven": false,
+  "source_route": {
+    "camera_tag_key": "rgb",
+    "query_base": "GeomNode",
+    "resolved_fragment": "shaders/terrain.frag.glsl",
+    "resolved_vertex": "shaders/terrain.vert.glsl",
+    "sample_sources_are_distinct": true,
+    "terrain_node_base": "PandaNode",
+    "terrain_tag_label": "TERRAIN"
+  },
+  "stage7_complete": false,
+  "status": "SOURCE_COVERAGE_GAP_RECORDED",
+  "unique_cause_proven": false,
+  "unobserved": [
+    "runtime_terrain_node",
+    "camera_terrain_tag_state",
+    "camera_tag_shader_priority",
+    "attribute_tex_sample",
+    "terrain_heightfield_and_lod",
+    "effective_gpu_inputs",
+    "hdr_pixel_before_tonemap",
+    "gpu_pixel_owner",
+    "depth_tie"
+  ],
+  "yellow_branch": {
+    "attribute_red_lower_exclusive": 0.01,
+    "attribute_red_upper_exclusive": 0.11,
+    "bounds_condition_also_required": true,
+    "note": "Source branch only; live attribute sample, fog and lighting are unobserved",
+    "source_fill_rgb": [
+      1.0,
+      0.7843137254901961,
+      0.0
+    ],
+    "texture_uniform": "yellow_tex"
+  }
+}
