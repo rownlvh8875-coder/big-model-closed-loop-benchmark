@@ -70,6 +70,8 @@ class NativeTraceContracts(unittest.TestCase):
             with self.subTest(index=index),self.assertRaises(ValueError):h.verify_depth_canary_pixels(b''.join(struct.pack('<4f',*p) for p in changed),4,2,front,back)
     def test_native_help_declares_diagnostic_depth_probe_mode(self):
         r=subprocess.run([sys.executable,'-I','-S','-B',str(Path(native.__file__).resolve()),'--help'],capture_output=True,text=True,timeout=15);self.assertEqual(r.returncode,0,r.stderr);self.assertIn('depth-probe',r.stdout)
+    def test_native_help_declares_separate_modified_candidate_modes(self):
+        r=subprocess.run([sys.executable,'-I','-S','-B',str(Path(native.__file__).resolve()),'--help'],capture_output=True,text=True,timeout=15);self.assertEqual(r.returncode,0,r.stderr);self.assertIn('candidate-off',r.stdout);self.assertIn('candidate-trace',r.stdout)
     def test_exact_cold_native_help_bootstraps_without_panda_or_numpy(self):
         r=subprocess.run([sys.executable,'-I','-S','-B',str(Path(native.__file__).resolve()),'--help'],capture_output=True,text=True,timeout=15);self.assertEqual(r.returncode,0,r.stderr);self.assertIn('--mode',r.stdout)
     def test_owned_command_is_versioned_and_keeps_mode_and_nonce(self):

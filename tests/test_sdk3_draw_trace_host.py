@@ -5,7 +5,8 @@ except ImportError:h=None
 from scripts import panda_sdk3_runtime as p
 
 def report(mode='trace'):
-    return dict(intentional_target_depth_mutation=mode=='depth-probe',protocol='sdk3-draw-trace-native-v1',pid=123,nonce='a'*32,mode=mode,core_sha256=p.CORE_SHA,sdk_sha256=p.SDK_SHA,panda_version='1.10.13',driver=dict(renderer='softpipe'),official_model_processes=0,onnx_inferences=0,model_weights_used=False,repair_proven=False,stage7_complete=False,provider_closed=True,trace_library_sha256='b'*64 if mode!='off' else None,observer_is_intervention=mode!='off',source_stats_before={k:0 for k in p.STATS_FIELDS},source_stats_after={k:0 for k in p.STATS_FIELDS},trace_stats=dict(version=1,error=0,active=0,restored=1,lookups=10,forwards=20,draws=2,queries=500,readbacks=8,blits=0) if mode!='off' else dict(version=1,error=0,active=0,restored=1,lookups=0,forwards=0,draws=0,queries=0,readbacks=0,blits=0))
+    loaded=mode not in ('off','candidate-off')
+    return dict(renderer_policy_modified=mode in ('candidate-off','candidate-trace'),renderer_candidate_id=None,intentional_target_depth_mutation=mode=='depth-probe',protocol='sdk3-draw-trace-native-v1',pid=123,nonce='a'*32,mode=mode,core_sha256=p.CORE_SHA,sdk_sha256=p.SDK_SHA,panda_version='1.10.13',driver=dict(renderer='softpipe'),official_model_processes=0,onnx_inferences=0,model_weights_used=False,repair_proven=False,stage7_complete=False,provider_closed=True,trace_library_sha256='b'*64 if loaded else None,observer_is_intervention=loaded,source_stats_before={k:0 for k in p.STATS_FIELDS},source_stats_after={k:0 for k in p.STATS_FIELDS},trace_stats=dict(version=1,error=0,active=0,restored=1,lookups=10,forwards=20,draws=2,queries=500,readbacks=8,blits=0) if loaded else dict(version=1,error=0,active=0,restored=1,lookups=0,forwards=0,draws=0,queries=0,readbacks=0,blits=0))
 class HostContracts(unittest.TestCase):
     def setUp(self):self.assertIsNotNone(h,'authenticated draw host missing')
     def test_report_qualified_observer_counts_are_not_zeroed(self):
@@ -87,6 +88,43 @@ class HostContracts(unittest.TestCase):
         for field,value in [('count',101),('nbytes',64),('float_bits',[0x7fc00000]*32)]:
             x=copy.deepcopy(d);x['transform_table'][field]=value
             with self.subTest(field=field),self.assertRaises(ValueError):h.validate_trace_details([x],'trace',[596,109])
+    def priority_fixture(self,folder):
+        from bigbench import sdk3_terrain_priority as policy
+        from tests.test_sdk3_terrain_priority import fixture
+        engine,core=fixture()
+        for sensor in engine.sensors.values():sensor.cam.key='sdk3-priority-rgb'
+        receipt=policy.install_rgb_terrain_priority(engine,terrain_label='terrain',tag_key='sdk3-priority-rgb',core=core);r=dict(protocol='sdk3-priority-tie-canary-v1',status='PRIORITY_TIE_CANARY_RECORDED',tag_key='sdk3-priority-rgb',terrain_label='terrain',render_calls=8,receipt=receipt,cases=[])
+        for stage in ('control','candidate'):
+            for first in ('geometry','terrain'):
+                color=[0.,1.,1.] if stage=='candidate' or first=='terrain' else [1.,0.,0.];case=dict(stage=stage,first=first,images=[])
+                for role in ('road','wide'):
+                    name=f'priority-{stage}-{first}-{role}.rgba';raw=struct.pack('<4f',*color,1.)*64;(folder/name).write_bytes(raw);case['images'].append(dict(camera=role,file=name,nbytes=len(raw),sha256=hashlib.sha256(raw).hexdigest(),component_width=4,component_type=2))
+                r['cases'].append(case)
+        return r
+    def test_actual_priority_canary_requires_both_original_orders_and_candidate_terrain(self):
+        with tempfile.TemporaryDirectory() as d:
+            folder=Path(d);r=self.priority_fixture(folder);result=h.validate_priority_canary(folder,r,'a'*32);self.assertTrue(result['priority_tie_canary_qualified']);self.assertEqual(result['verified_images'],8)
+            image=r['cases'][2]['images'][0];raw=struct.pack('<4f',1.,0.,0.,1.)*64;(folder/image['file']).write_bytes(raw);image['sha256']=hashlib.sha256(raw).hexdigest()
+            with self.assertRaises(ValueError):h.validate_priority_canary(folder,r,'a'*32)
+    def test_priority_canary_cannot_hide_shader_or_depth_function_change(self):
+        with tempfile.TemporaryDirectory() as d:
+            folder=Path(d);r=self.priority_fixture(folder)
+            for key in ('shader_replaced','depth_function_changed'):
+                x=copy.deepcopy(r);x['receipt'][key]=True
+                with self.subTest(key=key),self.assertRaises(ValueError):h.validate_priority_canary(folder,x,'a'*32)
+    def candidate_pair(self):
+        from bigbench import sdk3_terrain_priority as policy
+        def one(mode,uuid):return dict(renderer_policy_modified=True,renderer_candidate_id=policy.REPAIR_ID,mode=mode,seed=20261110,scenario='s_curve_left_right',reference_sha256='c'*64,process_uuid=uuid,captures=[dict(step=i,pose=dict(x=float(i)),road_sha256=f'{i:064x}',wide_sha256=f'{i+20:064x}') for i in range(1,8)])
+        state=dict(depth_func=513,depth_test=1,depth_write=1);draws=[dict(sequence=1,phase=1,uniforms=dict(attribute={'texture':1},heightfield={'texture':2}),transform_table=None,before=state,after=state,depth_probe=None),dict(sequence=2,phase=1,uniforms={},transform_table={'count':100},before=state,after=state,depth_probe=None)];return one('candidate-off','a'*32),one('candidate-trace','b'*32),draws
+    def test_candidate_gate_requires_all_fourteen_hashes_and_actual_early_less(self):
+        a,b,draws=self.candidate_pair();self.assertTrue(h.candidate_repeat_gate(a,b,draws,[199,187,0],[199,187,0])['passed']);b['captures'][6]['road_sha256']='f'*64;self.assertFalse(h.candidate_repeat_gate(a,b,draws,[199,187,0],[199,187,0])['passed'])
+    def test_same_images_without_priority_or_with_original_evidence_do_not_qualify(self):
+        a,b,draws=self.candidate_pair();draws[0]['sequence']=3;self.assertFalse(h.candidate_repeat_gate(a,b,draws,[199,187,0],[199,187,0])['passed']);a['renderer_policy_modified']=False
+        with self.assertRaises(ValueError):h.candidate_repeat_gate(a,b,draws,[199,187,0],[199,187,0])
+    def test_candidate_receipt_is_bound_to_exact_adapter_source(self):
+        with tempfile.TemporaryDirectory() as d:
+            r=self.priority_fixture(Path(d))['receipt'];r['adapter_sha256']='f'*64
+            with self.assertRaises(ValueError):h.validate_candidate_receipt(r)
     def test_cold_host_help(self):
         r=subprocess.run([sys.executable,'-I','-B',h.__file__,'--help'],capture_output=True,text=True,timeout=15);self.assertEqual(r.returncode,0,r.stderr)
 if __name__=='__main__':unittest.main()

@@ -4,6 +4,7 @@ from pathlib import Path
 from types import FunctionType,SimpleNamespace
 import argparse,ctypes,hashlib,json,os,sys,time,uuid,zlib
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
+from bigbench.sdk3_terrain_priority import install_rgb_terrain_priority,REPAIR_ID
 from scripts import sdk3_draw_trace as t,panda_sdk3_runtime as p,panda_sdk3_diagnostic as owner
 from scripts.sdk3_capture_progress import Journal,observe,stack_watchdog,wait_observed
 BASE_CAMERA_SHA='23d90c3d12894f855ae64d4607c03f3bf34e31e28dd7f5ce82bd0ddc7b37faf5'
@@ -59,7 +60,11 @@ def replay(args,report):
         from bigbench.kinematics import AgentState
         import metadrive.component.sensors.base_camera as camera_module
         report['base_camera_sha256']=p.digest(camera_module.__file__);p.need(report['base_camera_sha256']==BASE_CAMERA_SHA,'same original BaseCamera')
-        provider=NativeMetaDriveProvider(seed=20261110,map_config=SCENARIOS['s_curve_left_right'].map_config());engine=provider.env.engine;lane=select_native_curve_lanes(provider.env.current_map,SCENARIOS['s_curve_left_right'])[0];distance=float(lane.length)*.12;xy=lane.position(distance,0.);initial=dict(t=0.,x=float(xy[0]),y=float(xy[1]),heading=float(lane.heading_theta_at(distance)),speed=8.);poses=[initial,*reference['previous_states']]
+        provider=NativeMetaDriveProvider(seed=20261110,map_config=SCENARIOS['s_curve_left_right'].map_config());engine=provider.env.engine
+        if args.mode in ('candidate-off','candidate-trace'):
+            from metadrive.constants import Semantics,CameraTagStateKey
+            report.update(renderer_candidate=install_rgb_terrain_priority(engine,terrain_label=Semantics.TERRAIN.label,tag_key=CameraTagStateKey.RGB,core=core),renderer_policy_modified=True,renderer_candidate_id=REPAIR_ID)
+        lane=select_native_curve_lanes(provider.env.current_map,SCENARIOS['s_curve_left_right'])[0];distance=float(lane.length)*.12;xy=lane.position(distance,0.);initial=dict(t=0.,x=float(xy[0]),y=float(xy[1]),heading=float(lane.heading_theta_at(distance)),speed=8.);poses=[initial,*reference['previous_states']]
         class RGB:
             def __init__(self):self.count=0;self.images=[]
             def record_native_rgb(self,images,hashes):
@@ -67,7 +72,7 @@ def replay(args,report):
                 for camera in ('road','wide'):
                     rgb=images[camera];raw=rgb.tobytes(order='C');p.need(hashlib.sha256(raw).hexdigest()==hashes[camera],'original immediate copied pixels');packed=zlib.compress(raw,6);name=f'step{self.count}-{camera}.rgb.zlib';(out/name).write_bytes(packed);self.images.append(dict(camera=camera,file=name,shape=list(rgb.shape),sha256=hashes[camera],raw_bytes=len(raw),compressed_bytes=len(packed)))
         recorder=RGB();capture=NativeWorldCamera(provider,raw_rgb_observer=recorder);sensor=engine.sensors['bigbench_road'];gsg=sensor.buffer.getGsg();report['driver']=dict(vendor=gsg.getDriverVendor(),renderer=gsg.getDriverRenderer(),version=gsg.getDriverVersion());clock=core.ClockObject.getGlobalClock();before=clock.getFrameCount();tasks=lambda:sorted(task.getName() for task in engine.taskMgr.getTasks());report['tasks_before']=tasks();receipt={};pairs=[];report['regions']=[]
-        if args.mode in ('trace','depth-probe'):
+        if args.mode in ('trace','depth-probe','candidate-trace'):
             tracer=new_trace(args,report);pairs,report['regions']=regions(sensor);tracer.enable_depth_probe(args.mode=='depth-probe')
         else:p.need(not os.environ.get('LD_PRELOAD'),'OFFcontrol has no preloaded observer');report.update(observer_is_intervention=False,trace_library_sha256=None)
         saved=[(obj,name,getattr(obj,name),name in vars(obj)) for obj,name in [(capture,'capture'),(engine.taskMgr,'step')]+[(engine.sensors['bigbench_'+kind],name) for kind in ('road','wide') for name in ('perceive','get_rgb_array_cpu')]]
@@ -120,7 +125,9 @@ def canary(args,report):
                     for _ in range(2):base.graphicsEngine.renderFrame();base.graphicsEngine.syncFrame();report['canary_render_calls']+=1
                     p.need(texture.hasRamImage() and texture.getXSize()==texture.getYSize()==8,'tiny RAM copy');raw=bytes(texture.getRamImageAs('RGBA'));width=texture.getComponentWidth();typ=texture.getComponentType();p.need(len(raw)==64*4*width<=8192,'bounded8x8RGBAcanary');dtype=np.dtype('float32') if typ==core.Texture.TFloat and width==4 else np.dtype('float16') if typ==core.Texture.THalfFloat and width==2 else np.dtype('uint8') if typ==core.Texture.TUnsignedByte and width==1 else None;p.need(dtype is not None,'explicit canary component layout');pixels=np.frombuffer(raw,dtype=dtype).reshape((64,4));expected=np.array([*color,1.])*(255 if width==1 else 1);p.need(np.array_equal(pixels,np.broadcast_to(expected,pixels.shape)),'exact all64 challenged pixel values');name=f'canary-{phase}-{index}.rgba';(out/name).write_bytes(raw);case['challenges'].append(dict(color=color,draw_range=[start+1,tracer.stats()['draws']],raw_file=name,nbytes=len(raw),sha256=hashlib.sha256(raw).hexdigest(),component_width=width,component_type=int(typ),all64_exact=True))
             case['callback_receipt']=receipt;report['canary_cases'].append(case);buffer.setActive(False);region.clearDrawCallback();root.removeNode()
-        report['depth_probe_canary']=depth_canary(base,core,np,tracer,args,report,buffers,shader,challenges[0],challenges[1]);report.update(trace_stats=tracer.close(),source_stats_after=sdk_stats(sdk),provider_closed=True,status='TINY_GPU_CANARY_RECORDED');return report
+        report['depth_probe_canary']=depth_canary(base,core,np,tracer,args,report,buffers,shader,challenges[0],challenges[1])
+        from scripts.sdk3_priority_canary import run as priority_canary
+        report['priority_canary']=priority_canary(base,core,np,args.out,args.nonce,report,buffers,shader);report.update(trace_stats=tracer.close(),source_stats_after=sdk_stats(sdk),provider_closed=True,status='TINY_GPU_CANARY_RECORDED');return report
     finally:
         if tracer is not None:report['trace_stats']=tracer.close()
         if base is not None:
@@ -128,13 +135,13 @@ def canary(args,report):
             base.destroy();report['provider_closed']=True
 
 def run_native(args):
-    report=dict(protocol='sdk3-draw-trace-native-v1',status='INCOMPLETE',pid=os.getpid(),process_uuid=uuid.uuid4().hex,nonce=args.nonce,mode=args.mode,seed=20261110,scenario='s_curve_left_right',captures=[],official_model_processes=0,onnx_inferences=0,model_weights_used=False,repair_proven=False,stage7_complete=False,provider_closed=False,gpu_pixel_owner_proven=False,unique_cause_proven=False,intentional_target_depth_mutation=False)
+    report=dict(protocol='sdk3-draw-trace-native-v1',status='INCOMPLETE',pid=os.getpid(),process_uuid=uuid.uuid4().hex,nonce=args.nonce,mode=args.mode,seed=20261110,scenario='s_curve_left_right',captures=[],official_model_processes=0,onnx_inferences=0,model_weights_used=False,repair_proven=False,stage7_complete=False,provider_closed=False,gpu_pixel_owner_proven=False,unique_cause_proven=False,intentional_target_depth_mutation=False,renderer_policy_modified=False,renderer_candidate_id=None)
     try:p.need(args.server_owner==os.getppid(),'owned native/display parent');return canary(args,report) if args.mode=='canary' else replay(args,report)
     except BaseException as exc:report['failure']=type(exc).__name__+': '+str(exc);raise
     finally:p.write(Path(args.out)/'report.json',report)
 
 def main():
-    import faulthandler;faulthandler.enable();parser=argparse.ArgumentParser();parser.add_argument('--out',required=True);parser.add_argument('--nonce',required=True);parser.add_argument('--mode',choices=('canary','off','trace','depth-probe'),required=True);parser.add_argument('--trace-library',type=Path,default=Path('/drawtrace.so'));parser.add_argument('--trace-sha256');parser.add_argument('--owned-child',action='store_true');parser.add_argument('--server-owner',type=int);args=parser.parse_args();args.model_trial=False
+    import faulthandler;faulthandler.enable();parser=argparse.ArgumentParser();parser.add_argument('--out',required=True);parser.add_argument('--nonce',required=True);parser.add_argument('--mode',choices=('canary','off','trace','depth-probe','candidate-off','candidate-trace'),required=True);parser.add_argument('--trace-library',type=Path,default=Path('/drawtrace.so'));parser.add_argument('--trace-sha256');parser.add_argument('--owned-child',action='store_true');parser.add_argument('--server-owner',type=int);args=parser.parse_args();args.model_trial=False
     if args.owned_child:
         with stack_watchdog(Path(args.out)/'stacks.log'):run_native(args)
         return 0

@@ -1,13 +1,13 @@
 name: Trace original SDK3 draw boundaries after tiny GPU qualification
 on:
   push:
-    branches: ['diagnostic/sdk3-draw-trace-20261117-03']
-    paths: ['docs/requests/sdk3-draw-trace-20261117-03.json']
+    branches: ['diagnostic/sdk3-draw-trace-20261117-04']
+    paths: ['docs/requests/sdk3-draw-trace-20261117-04.json']
 permissions:
   contents: read
   actions: read
 concurrency:
-  group: sdk3-draw-trace-20261117-03
+  group: sdk3-draw-trace-20261117-04
   cancel-in-progress: false
 jobs:
   draw-trace:
@@ -24,7 +24,7 @@ jobs:
           python-version: '3.11'
       - name: Install host-only raw-image analysis
         run: python -m pip install --no-deps numpy==1.26.4
-      - name: Qualify one-pixel depth probe then compare traced control and probe
+      - name: Qualify equal-depth priority then compare unloaded and traced candidate
         env:
           GH_TOKEN: ${{ github.token }}
         run: python -I -B scripts/run_sdk3_draw_trace.py --run
@@ -32,8 +32,8 @@ jobs:
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: sdk3-draw-trace-20261117-03
-          path: output/stage7-sdk3-draw-trace-03/producer/bundle/
+          name: sdk3-draw-trace-20261117-04
+          path: output/stage7-sdk3-draw-trace-04/producer/bundle/
           retention-days: 30
           compression-level: 6
           include-hidden-files: true
