@@ -1,0 +1,123 @@
+{
+  "checked_at_kst": "2026-11-17T10:20:56.942680+09:00",
+  "image_tar_sha256": "4984470cd7d732f9f2d1c12710c9433b563b3817ba6d1d419749a9a2b1b46698",
+  "image_config": "blobs/sha256/b9d673de93f1857e4dfa5ed6a48330d568ef96fce7f3cc975f0c688877e6e26e",
+  "method": "Sequential layer traversal; every layer blob digest verified; last regular member wins; selected MetaDrive whiteouts rejected; no extraction/import/execution of source",
+  "image_layers": [
+    {
+      "layer": "blobs/sha256/21210938f5a37a9887b2d0a20428917b923a636ca6efe038c3c7d9cd9f1f9b61",
+      "sha256": "21210938f5a37a9887b2d0a20428917b923a636ca6efe038c3c7d9cd9f1f9b61",
+      "selected": []
+    },
+    {
+      "layer": "blobs/sha256/2be112340d71ee43c6819c0259e050c865f12bf7c9837bb4cb8839f196db779c",
+      "sha256": "2be112340d71ee43c6819c0259e050c865f12bf7c9837bb4cb8839f196db779c",
+      "selected": []
+    },
+    {
+      "layer": "blobs/sha256/f2fca4086c8612de50eccd05fee84655db8d071fd6b0651200f2be6d1ccfc90a",
+      "sha256": "f2fca4086c8612de50eccd05fee84655db8d071fd6b0651200f2be6d1ccfc90a",
+      "selected": []
+    },
+    {
+      "layer": "blobs/sha256/239e68b48ac29be0254dfad4b0ee14138d26ff2ea91852b7a6ca147e22ea7f61",
+      "sha256": "239e68b48ac29be0254dfad4b0ee14138d26ff2ea91852b7a6ca147e22ea7f61",
+      "selected": []
+    },
+    {
+      "layer": "blobs/sha256/ed744a455c23963a1766deeb20a89020917f0d1f33a1d663fdc97f99279e12c6",
+      "sha256": "ed744a455c23963a1766deeb20a89020917f0d1f33a1d663fdc97f99279e12c6",
+      "selected": [
+        "assets/shaders/terrain.frag.glsl",
+        "assets/shaders/terrain.vert.glsl",
+        "component/sensors/rgb_camera.py",
+        "constants.py",
+        "engine/asset_loader.py",
+        "engine/core/terrain.py",
+        "shaders/terrain.frag.glsl",
+        "shaders/terrain.vert.glsl"
+      ]
+    },
+    {
+      "layer": "blobs/sha256/a556f0ec831a9814191d64ab66cf3cec89bed47bda59444a61a7c0fe3f45a0ea",
+      "sha256": "a556f0ec831a9814191d64ab66cf3cec89bed47bda59444a61a7c0fe3f45a0ea",
+      "selected": []
+    },
+    {
+      "layer": "blobs/sha256/8f86aac91e848162bd1f7b46663b3f2141c522c54e4fcb415dca6f9aeb972f27",
+      "sha256": "8f86aac91e848162bd1f7b46663b3f2141c522c54e4fcb415dca6f9aeb972f27",
+      "selected": []
+    },
+    {
+      "layer": "blobs/sha256/0511464e26b9263af5856802ed4e5479c63560dc2d30d0d535d5c8f6b465a769",
+      "sha256": "0511464e26b9263af5856802ed4e5479c63560dc2d30d0d535d5c8f6b465a769",
+      "selected": []
+    },
+    {
+      "layer": "blobs/sha256/d6799d868d199cfd5482d62aa735e74d9ece7a30489d03b1505a72fa5f123602",
+      "sha256": "d6799d868d199cfd5482d62aa735e74d9ece7a30489d03b1505a72fa5f123602",
+      "selected": []
+    },
+    {
+      "layer": "blobs/sha256/f150c0ec8770d5d98573cd167c2e705822e18eae979adb2a81dc04ee31f48efe",
+      "sha256": "f150c0ec8770d5d98573cd167c2e705822e18eae979adb2a81dc04ee31f48efe",
+      "selected": []
+    },
+    {
+      "layer": "blobs/sha256/25c4d798c9d2baa748a21815f63c3fe1b2db95da8d2f39f8c274ac326db92b91",
+      "sha256": "25c4d798c9d2baa748a21815f63c3fe1b2db95da8d2f39f8c274ac326db92b91",
+      "selected": []
+    }
+  ],
+  "selected_whiteouts": [],
+  "files": {
+    "assets/shaders/terrain.frag.glsl": {
+      "image_path": "opt/venv/lib/python3.11/site-packages/metadrive/assets/shaders/terrain.frag.glsl",
+      "layer": "blobs/sha256/ed744a455c23963a1766deeb20a89020917f0d1f33a1d663fdc97f99279e12c6",
+      "nbytes": 2039,
+      "sha256": "53f38180b93f870ba072aac1b9316f15150a35c78b6d7278f44e71690c4dc9f7"
+    },
+    "assets/shaders/terrain.vert.glsl": {
+      "image_path": "opt/venv/lib/python3.11/site-packages/metadrive/assets/shaders/terrain.vert.glsl",
+      "layer": "blobs/sha256/ed744a455c23963a1766deeb20a89020917f0d1f33a1d663fdc97f99279e12c6",
+      "nbytes": 2293,
+      "sha256": "e0932a4da95d36a9095feb9f7bbc6f13805ce995e8b2a8075f2dfcfbff16123d"
+    },
+    "component/sensors/rgb_camera.py": {
+      "image_path": "opt/venv/lib/python3.11/site-packages/metadrive/component/sensors/rgb_camera.py",
+      "layer": "blobs/sha256/ed744a455c23963a1766deeb20a89020917f0d1f33a1d663fdc97f99279e12c6",
+      "nbytes": 2918,
+      "sha256": "a13b38cf0af05966dfa37d09af65ea3779deabdcbf33258b378025e882da4af0"
+    },
+    "constants.py": {
+      "image_path": "opt/venv/lib/python3.11/site-packages/metadrive/constants.py",
+      "layer": "blobs/sha256/ed744a455c23963a1766deeb20a89020917f0d1f33a1d663fdc97f99279e12c6",
+      "nbytes": 19027,
+      "sha256": "5c27d8c6e788eff0d3732e30471af7e0a5c6f94d81fd79cc5be53aec323a5b7b"
+    },
+    "engine/asset_loader.py": {
+      "image_path": "opt/venv/lib/python3.11/site-packages/metadrive/engine/asset_loader.py",
+      "layer": "blobs/sha256/ed744a455c23963a1766deeb20a89020917f0d1f33a1d663fdc97f99279e12c6",
+      "nbytes": 4708,
+      "sha256": "7bfacf1f4fdced96ff68916b3012699ff07297b21adc54ed7b3b274bcce929d1"
+    },
+    "engine/core/terrain.py": {
+      "image_path": "opt/venv/lib/python3.11/site-packages/metadrive/engine/core/terrain.py",
+      "layer": "blobs/sha256/ed744a455c23963a1766deeb20a89020917f0d1f33a1d663fdc97f99279e12c6",
+      "nbytes": 29512,
+      "sha256": "0b595062fb2e7468b1e31d36a16eeb3fe007cbf8dc74fc37aec12db7b371fcc6"
+    },
+    "shaders/terrain.frag.glsl": {
+      "image_path": "opt/venv/lib/python3.11/site-packages/metadrive/shaders/terrain.frag.glsl",
+      "layer": "blobs/sha256/ed744a455c23963a1766deeb20a89020917f0d1f33a1d663fdc97f99279e12c6",
+      "nbytes": 7862,
+      "sha256": "ffcc41b72827a93a60957adeb9645af1846bbf291dfd35dbc15573888b80129b"
+    },
+    "shaders/terrain.vert.glsl": {
+      "image_path": "opt/venv/lib/python3.11/site-packages/metadrive/shaders/terrain.vert.glsl",
+      "layer": "blobs/sha256/ed744a455c23963a1766deeb20a89020917f0d1f33a1d663fdc97f99279e12c6",
+      "nbytes": 2608,
+      "sha256": "aa53110d38a217fdeb375c3c5753941e95415aeeae85c46e710250667ba1af76"
+    }
+  }
+}
