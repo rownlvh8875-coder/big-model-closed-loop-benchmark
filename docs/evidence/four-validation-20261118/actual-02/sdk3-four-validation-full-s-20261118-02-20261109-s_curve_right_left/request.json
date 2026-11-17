@@ -1,0 +1,32 @@
+{
+  "schema": "sdk3-four-validation-request-v2",
+  "source_sha": "54e2510adf9647a14161fe55461028dfb21f4758",
+  "base_sha": "8380e8a0c0583fa0e47af6b8bbb4b6446060e420",
+  "push_ci": 44175298494,
+  "pr_ci": 44175310895,
+  "cases": [
+    {
+      "seed": 20261109,
+      "scenario": "s_curve_left_right"
+    },
+    {
+      "seed": 20261109,
+      "scenario": "s_curve_right_left"
+    },
+    {
+      "seed": 20261110,
+      "scenario": "s_curve_left_right"
+    },
+    {
+      "seed": 20261110,
+      "scenario": "s_curve_right_left"
+    }
+  ],
+  "max_model_processes": 8,
+  "max_inferences": 4800,
+  "max_steps": 600,
+  "child_timeout_seconds": 9000,
+  "driver": "llvmpipe",
+  "lp_num_threads": 2,
+  "model_sha256": "35976b11be3904eb78e32f7dc55a6abf8e9433ac5aa391a1998f1e9ce001b199"
+}

@@ -1,0 +1,31 @@
+{
+  "seed": 20261110,
+  "scenario": "s_curve_right_left",
+  "container_id": "bcad7df3241fb8e7765d1e725fa3d435583c293bb3b7885f64fa1028960d3d98",
+  "process_uuids": [
+    "60d6e90c400a4927bb9cacfbc26aa241",
+    "d83537b362764e25a6ddb29660912827"
+  ],
+  "inference_bounds": [
+    130,
+    130
+  ],
+  "verdict": {
+    "protocol": "full-s-strict-pair-v1",
+    "strict_repeat_passed": true,
+    "traversal_passed": false,
+    "passed": false,
+    "first_diverging_step": null,
+    "differences": [],
+    "outcomes": [
+      "LANE_INTRUSION",
+      "LANE_INTRUSION"
+    ],
+    "no_tolerance": true,
+    "model_scoring_allowed": false
+  },
+  "outcomes": [
+    "LANE_INTRUSION",
+    "LANE_INTRUSION"
+  ]
+}

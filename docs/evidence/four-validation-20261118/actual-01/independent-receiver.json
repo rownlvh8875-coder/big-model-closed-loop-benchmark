@@ -1,0 +1,70 @@
+{
+  "status": "ACTUAL_RECEIPTS_REGENERATED",
+  "source": "0374130294f3003427d9e9fba643c22a99258f43",
+  "activation": "1d46c09287931aa0d537fc0c59763863da8fcb83",
+  "run_id": 44172902877,
+  "workflow_id": 421853166,
+  "attempt": 1,
+  "workflow_conclusion": "failure",
+  "probe_cases": [
+    {
+      "seed": 20261109,
+      "scenario": "s_curve_left_right",
+      "virtual_pinhole_passed": true,
+      "physical_optics_passed": false,
+      "hardware_gpu_passed": false,
+      "carla_passed": false,
+      "rate": {
+        "admitted": false,
+        "minimum_steps": 363,
+        "second_capture_s": 4.754533971000001,
+        "conservative_child_estimate_s": 4051.7916629460005,
+        "child_limit_s": 3600,
+        "max_steps": 600
+      },
+      "driver": {
+        "renderer": "llvmpipe (LLVM 20.1.2, 256 bits)",
+        "vendor": "Mesa",
+        "version": "4.5 (Compatibility Profile) Mesa 25.2.8-0ubuntu0.24.04.4",
+        "physical_device_binding_verified": false,
+        "actual_msaa_samples": null
+      }
+    }
+  ],
+  "probe_errors": [
+    {
+      "seed": 20261109,
+      "scenario": "s_curve_right_left",
+      "error": "FileNotFoundError: [Errno 2] No such file or directory: '/dev/shm/stage7-four-validation-20261118/actual-01/sdk3-four-validation-probe-20261118-01/20261109-s_curve_right_left/container.json'"
+    },
+    {
+      "seed": 20261110,
+      "scenario": "s_curve_left_right",
+      "error": "FileNotFoundError: [Errno 2] No such file or directory: '/dev/shm/stage7-four-validation-20261118/actual-01/sdk3-four-validation-probe-20261118-01/20261110-s_curve_left_right/container.json'"
+    },
+    {
+      "seed": 20261110,
+      "scenario": "s_curve_right_left",
+      "error": "FileNotFoundError: [Errno 2] No such file or directory: '/dev/shm/stage7-four-validation-20261118/actual-01/sdk3-four-validation-probe-20261118-01/20261110-s_curve_right_left/container.json'"
+    }
+  ],
+  "cases": [],
+  "case_errors": [],
+  "artifacts": [
+    {
+      "id": 14369035780,
+      "name": "sdk3-four-validation-probe-20261118-01",
+      "size": 4441597,
+      "sha256": "f2b08b10b7ef2a7fa1579d4d2dfe1fd1e69335a2429245fe83996f7e636f698a",
+      "run_id": 44172902877,
+      "workflow_id": 421853166,
+      "activation": "1d46c09287931aa0d537fc0c59763863da8fcb83",
+      "source": "0374130294f3003427d9e9fba643c22a99258f43"
+    }
+  ],
+  "actual_official_model_processes": 0,
+  "all_four_validation_tracks_passed": false,
+  "physical_optics": "BLOCKED_NO_OFFLINE_MEASURED_DATA",
+  "hardware_gpu": "PENDING_ACTUAL_WINDOWS_RTX3050TI_RUN",
+  "carla": "BLOCKED_NO_DEDICATED_SERVER"
+}

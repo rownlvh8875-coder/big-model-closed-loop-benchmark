@@ -1,0 +1,380 @@
+{
+  "protocol": "native-full-s-reference-v1",
+  "source": "54e2510adf9647a14161fe55461028dfb21f4758",
+  "run_id": 44176109300,
+  "workflow_id": 421873536,
+  "activation": "2993d1b2dce2fbf25985e1be25666afa23d47a91",
+  "artifact": {
+    "id": 14371040573,
+    "name": "sdk3-four-validation-probe-20261118-02",
+    "size": 17758463,
+    "sha256": "015928632eb559de13b96dd29874ef03cc961631762847976fecf9115d721f5f",
+    "run_id": 44176109300,
+    "workflow_id": 421873536,
+    "activation": "2993d1b2dce2fbf25985e1be25666afa23d47a91",
+    "source": "54e2510adf9647a14161fe55461028dfb21f4758"
+  },
+  "cases": [
+    {
+      "seed": 20261109,
+      "scenario": "s_curve_left_right",
+      "geometry": [
+        {
+          "lane_id": "('>>>', '1C0_0_', 1)",
+          "length_m": 45.11676116405342,
+          "start": [
+            60.0,
+            0.0
+          ],
+          "end": [
+            100.22445358905438,
+            17.490090196562583
+          ],
+          "start_heading_rad": 0.0,
+          "end_heading_rad": 0.8203047484373349,
+          "width_m": 3.5,
+          "curvature_1pm": 0.018181818181818077,
+          "lane_class": "metadrive.component.lane.circular_lane.CircularLane",
+          "shape": {
+            "kind": "circular",
+            "center": [
+              60.0,
+              55.0
+            ],
+            "radius": 55.0,
+            "start_phase": -1.5707963267948966,
+            "end_phase": -0.7504915783575616,
+            "direction": 1
+          }
+        },
+        {
+          "lane_id": "('1C0_0_', '1C0_1_', 1)",
+          "length_m": 59.99999999999999,
+          "start": [
+            100.22445358905438,
+            17.490090196562583
+          ],
+          "end": [
+            141.14435519280428,
+            61.37131229371281
+          ],
+          "start_heading_rad": 0.8203047484373349,
+          "end_heading_rad": 0.8203047484373349,
+          "width_m": 3.5,
+          "curvature_1pm": 0.0,
+          "lane_class": "metadrive.component.lane.straight_lane.StraightLane",
+          "shape": {
+            "kind": "straight",
+            "direction": [
+              0.6819983600624985,
+              0.7313537016191706
+            ],
+            "lateral_direction": [
+              0.7313537016191706,
+              -0.6819983600624985
+            ]
+          }
+        },
+        {
+          "lane_id": "('1C0_1_', '2C0_0_', 1)",
+          "length_m": 45.11676116405342,
+          "start": [
+            141.14435519280428,
+            61.37131229371282
+          ],
+          "end": [
+            181.36880878185866,
+            78.8614024902754
+          ],
+          "start_heading_rad": 0.8203047484373349,
+          "end_heading_rad": 0.0,
+          "width_m": 3.5,
+          "curvature_1pm": -0.018181818181818077,
+          "lane_class": "metadrive.component.lane.circular_lane.CircularLane",
+          "shape": {
+            "kind": "circular",
+            "center": [
+              181.36880878185866,
+              23.861402490275395
+            ],
+            "radius": 55.0,
+            "start_phase": 2.3911010752322315,
+            "end_phase": 1.5707963267948966,
+            "direction": -1
+          }
+        }
+      ]
+    },
+    {
+      "seed": 20261109,
+      "scenario": "s_curve_right_left",
+      "geometry": [
+        {
+          "lane_id": "('>>>', '1C0_0_', 1)",
+          "length_m": 45.11676116405342,
+          "start": [
+            60.0,
+            0.0
+          ],
+          "end": [
+            100.22445358905438,
+            -17.490090196562583
+          ],
+          "start_heading_rad": 0.0,
+          "end_heading_rad": -0.8203047484373349,
+          "width_m": 3.5,
+          "curvature_1pm": -0.018181818181818077,
+          "lane_class": "metadrive.component.lane.circular_lane.CircularLane",
+          "shape": {
+            "kind": "circular",
+            "center": [
+              60.0,
+              -55.0
+            ],
+            "radius": 55.0,
+            "start_phase": 1.5707963267948966,
+            "end_phase": 0.7504915783575616,
+            "direction": -1
+          }
+        },
+        {
+          "lane_id": "('1C0_0_', '1C0_1_', 1)",
+          "length_m": 59.99999999999999,
+          "start": [
+            100.22445358905438,
+            -17.490090196562583
+          ],
+          "end": [
+            141.14435519280428,
+            -61.37131229371281
+          ],
+          "start_heading_rad": -0.8203047484373349,
+          "end_heading_rad": -0.8203047484373349,
+          "width_m": 3.5,
+          "curvature_1pm": 0.0,
+          "lane_class": "metadrive.component.lane.straight_lane.StraightLane",
+          "shape": {
+            "kind": "straight",
+            "direction": [
+              0.6819983600624985,
+              -0.7313537016191706
+            ],
+            "lateral_direction": [
+              -0.7313537016191706,
+              -0.6819983600624985
+            ]
+          }
+        },
+        {
+          "lane_id": "('1C0_1_', '2C0_0_', 1)",
+          "length_m": 45.11676116405342,
+          "start": [
+            141.14435519280428,
+            -61.37131229371282
+          ],
+          "end": [
+            181.36880878185866,
+            -78.8614024902754
+          ],
+          "start_heading_rad": -0.8203047484373349,
+          "end_heading_rad": 0.0,
+          "width_m": 3.5,
+          "curvature_1pm": 0.018181818181818077,
+          "lane_class": "metadrive.component.lane.circular_lane.CircularLane",
+          "shape": {
+            "kind": "circular",
+            "center": [
+              181.36880878185866,
+              -23.861402490275395
+            ],
+            "radius": 55.0,
+            "start_phase": -2.3911010752322315,
+            "end_phase": -1.5707963267948966,
+            "direction": 1
+          }
+        }
+      ]
+    },
+    {
+      "seed": 20261110,
+      "scenario": "s_curve_left_right",
+      "geometry": [
+        {
+          "lane_id": "('>>>', '1C0_0_', 1)",
+          "length_m": 45.11676116405342,
+          "start": [
+            60.0,
+            0.0
+          ],
+          "end": [
+            100.22445358905438,
+            17.490090196562583
+          ],
+          "start_heading_rad": 0.0,
+          "end_heading_rad": 0.8203047484373349,
+          "width_m": 3.5,
+          "curvature_1pm": 0.018181818181818077,
+          "lane_class": "metadrive.component.lane.circular_lane.CircularLane",
+          "shape": {
+            "kind": "circular",
+            "center": [
+              60.0,
+              55.0
+            ],
+            "radius": 55.0,
+            "start_phase": -1.5707963267948966,
+            "end_phase": -0.7504915783575616,
+            "direction": 1
+          }
+        },
+        {
+          "lane_id": "('1C0_0_', '1C0_1_', 1)",
+          "length_m": 59.99999999999999,
+          "start": [
+            100.22445358905438,
+            17.490090196562583
+          ],
+          "end": [
+            141.14435519280428,
+            61.37131229371281
+          ],
+          "start_heading_rad": 0.8203047484373349,
+          "end_heading_rad": 0.8203047484373349,
+          "width_m": 3.5,
+          "curvature_1pm": 0.0,
+          "lane_class": "metadrive.component.lane.straight_lane.StraightLane",
+          "shape": {
+            "kind": "straight",
+            "direction": [
+              0.6819983600624985,
+              0.7313537016191706
+            ],
+            "lateral_direction": [
+              0.7313537016191706,
+              -0.6819983600624985
+            ]
+          }
+        },
+        {
+          "lane_id": "('1C0_1_', '2C0_0_', 1)",
+          "length_m": 45.11676116405342,
+          "start": [
+            141.14435519280428,
+            61.37131229371282
+          ],
+          "end": [
+            181.36880878185866,
+            78.8614024902754
+          ],
+          "start_heading_rad": 0.8203047484373349,
+          "end_heading_rad": 0.0,
+          "width_m": 3.5,
+          "curvature_1pm": -0.018181818181818077,
+          "lane_class": "metadrive.component.lane.circular_lane.CircularLane",
+          "shape": {
+            "kind": "circular",
+            "center": [
+              181.36880878185866,
+              23.861402490275395
+            ],
+            "radius": 55.0,
+            "start_phase": 2.3911010752322315,
+            "end_phase": 1.5707963267948966,
+            "direction": -1
+          }
+        }
+      ]
+    },
+    {
+      "seed": 20261110,
+      "scenario": "s_curve_right_left",
+      "geometry": [
+        {
+          "lane_id": "('>>>', '1C0_0_', 1)",
+          "length_m": 45.11676116405342,
+          "start": [
+            60.0,
+            0.0
+          ],
+          "end": [
+            100.22445358905438,
+            -17.490090196562583
+          ],
+          "start_heading_rad": 0.0,
+          "end_heading_rad": -0.8203047484373349,
+          "width_m": 3.5,
+          "curvature_1pm": -0.018181818181818077,
+          "lane_class": "metadrive.component.lane.circular_lane.CircularLane",
+          "shape": {
+            "kind": "circular",
+            "center": [
+              60.0,
+              -55.0
+            ],
+            "radius": 55.0,
+            "start_phase": 1.5707963267948966,
+            "end_phase": 0.7504915783575616,
+            "direction": -1
+          }
+        },
+        {
+          "lane_id": "('1C0_0_', '1C0_1_', 1)",
+          "length_m": 59.99999999999999,
+          "start": [
+            100.22445358905438,
+            -17.490090196562583
+          ],
+          "end": [
+            141.14435519280428,
+            -61.37131229371281
+          ],
+          "start_heading_rad": -0.8203047484373349,
+          "end_heading_rad": -0.8203047484373349,
+          "width_m": 3.5,
+          "curvature_1pm": 0.0,
+          "lane_class": "metadrive.component.lane.straight_lane.StraightLane",
+          "shape": {
+            "kind": "straight",
+            "direction": [
+              0.6819983600624985,
+              -0.7313537016191706
+            ],
+            "lateral_direction": [
+              -0.7313537016191706,
+              -0.6819983600624985
+            ]
+          }
+        },
+        {
+          "lane_id": "('1C0_1_', '2C0_0_', 1)",
+          "length_m": 45.11676116405342,
+          "start": [
+            141.14435519280428,
+            -61.37131229371282
+          ],
+          "end": [
+            181.36880878185866,
+            -78.8614024902754
+          ],
+          "start_heading_rad": -0.8203047484373349,
+          "end_heading_rad": 0.0,
+          "width_m": 3.5,
+          "curvature_1pm": 0.018181818181818077,
+          "lane_class": "metadrive.component.lane.circular_lane.CircularLane",
+          "shape": {
+            "kind": "circular",
+            "center": [
+              181.36880878185866,
+              -23.861402490275395
+            ],
+            "radius": 55.0,
+            "start_phase": -2.3911010752322315,
+            "end_phase": -1.5707963267948966,
+            "direction": 1
+          }
+        }
+      ]
+    }
+  ],
+  "scope": "registered native geometry only; no actual CARLA evidence"
+}
