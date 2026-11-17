@@ -1,0 +1,27 @@
+{
+  "schema": "sdk3-draw-trace-request-v1",
+  "source_sha": "0d8184b829df6c6f9dd206bcc483907564994fa4",
+  "push_ci": 44087241894,
+  "pr_ci": 44087250273,
+  "renderer_processes": 3,
+  "official_model_processes": 0,
+  "onnx_inferences": 0,
+  "target_pixel": [
+    596,
+    494
+  ],
+  "limits": {
+    "max_draws": 512,
+    "max_queries": 100000,
+    "max_pixel_readbacks": 2048,
+    "max_samples": 16,
+    "max_programs": 8,
+    "max_shader_files": 16,
+    "max_shader_file_bytes": 262144,
+    "max_shader_bytes": 4194304,
+    "max_trace_bytes": 33554432
+  },
+  "canary_child_timeout_seconds": 90,
+  "child_timeout_seconds": 600,
+  "container_timeout_seconds": 630
+}
