@@ -1,6 +1,6 @@
 # SDK3 conditional sampling envelope result
 
-Checked 2026-11-17T20:40:07.747058+09:00; based on unchanged PR142/d6eb529d52364117a01d446652f2e938089625c2. **Original official matrix remains3/4 PASS,overallFAIL,Stage7=false.**
+Checked 2026-11-17T20:47:33.250208+09:00; based on unchanged PR142/d6eb529d52364117a01d446652f2e938089625c2. **Original official matrix remains3/4 PASS,overallFAIL,Stage7=false.**
 
 ## Finding
 
@@ -36,7 +36,7 @@ The driver rechecks the final prepared→terrain/material→shader digest chain,
 
 A separate50-digit Decimal evaluator independently verified all135scenario values/coordinates,10conditional intervals and axis roots. Maximum scalar discrepancy 9.531072878547926e-14, tolerance2e-12. Strict root comparisons use independently checked recorded float64 fractions; evaluating UV products in exact Decimal instead changes a root by at most 2.829485629664833e-12,below1e-9. The first diagnostic mismatch came from comparing exact Decimal UV products with the helper's rounded float64 fractions; the independent checker now separates those domains. No production correction was needed.
 
-[Full result](evidence/sdk3-sampling-envelope-01/result.json),[independent analysis](evidence/sdk3-sampling-envelope-01/input-analysis.json),[result hashes](evidence/sdk3-sampling-envelope-01/result-index.json). CPU code commit `53cad9de110ef3162a9d876ca9e314344fe2a270`; executed resultSHA `3aa26b56ea04a3364ab77837bcb1801834c4e993d45d3582c71575521228f37b`. CLI: `python -I -B scripts/run_sdk3_sampling_envelope.py --out output/stage7-sdk3-sampling-envelope-01/actual` (fresh output only).
+[Full result](evidence/sdk3-sampling-envelope-01/result.json),[independent analysis](evidence/sdk3-sampling-envelope-01/input-analysis.json),[result hashes](evidence/sdk3-sampling-envelope-01/result-index.json). CPU code commit `53cad9de110ef3162a9d876ca9e314344fe2a270`; executed resultSHA `e50301ff29c205abf85b61187c1682fb98d23b3fb163e6cf1e135ef99cf4a05c`. CLI: `python -I -B scripts/run_sdk3_sampling_envelope.py --out output/stage7-sdk3-sampling-envelope-01/actual` (fresh output only).
 
 ## Verification and remaining question
 

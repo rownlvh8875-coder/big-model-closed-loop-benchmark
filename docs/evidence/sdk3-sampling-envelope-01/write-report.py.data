@@ -1,7 +1,7 @@
 from pathlib import Path
 from datetime import datetime,timezone,timedelta
 import hashlib,json,shutil
-R=Path('/dev/shm/stage7-sdk3-runtime-20261116/repo');T=Path('/dev/shm/stage7-sdk3-sampling-envelope-20261117');out=R/'output/stage7-sdk3-sampling-envelope-01/actual';e=R/'docs/evidence/sdk3-sampling-envelope-01';x=json.loads((out/'result.json').read_text());a=json.loads((out/'input-analysis.json').read_text());rows=[]
+R=Path('/dev/shm/stage7-sdk3-runtime-20261116/repo');T=Path('/dev/shm/stage7-sdk3-sampling-envelope-20261117');out=R/'output/stage7-sdk3-sampling-envelope-01/actual-reviewed';e=R/'docs/evidence/sdk3-sampling-envelope-01';x=json.loads((out/'result.json').read_text());a=json.loads((out/'input-analysis.json').read_text());rows=[]
 for p in x['points']:
  base=next(v['value'] for v in p['scenarios'] if v['coordinate_model']=='recorded_f64' and v['format_model']=='recorded_float32' and v['weight_bits'] is None);sn=next(v['value'] for v in p['scenarios'] if v['coordinate_model']=='recorded_f64' and v['format_model']=='snorm8_nearest_even' and v['weight_bits'] is None);interval=p['conditional_envelopes'][0];root=min(p['threshold_roots'],key=lambda v:abs(v['delta_texels']));rows.append(f"|{p['ray']}|{base:.12f}|{sn:.12f}|[{interval['minimum']:.12f},{interval['maximum']:.12f}]|{root['delta_texels']:.12f}|{root['world_displacement_norm']*1000:.6f}|")
 for name in ('result.json','input-analysis.json'):shutil.copyfile(out/name,e/name)
