@@ -47,7 +47,7 @@ class HostContracts(unittest.TestCase):
     def test_source_activation_rejects_modified_historical_producer(self):
         with self.assertRaises(ValueError):h.validate_source_delta(['M\tscripts/panda_sdk3_runtime.py'])
         h.validate_source_delta(['A\tscripts/new.py'])
-    def test_actual_c_schema_canary_decodes_bytes_and_requires_both_draw_kinds(self):
+    def check_canary(self,sample_count=4):
         with tempfile.TemporaryDirectory() as d:
             folder=Path(d);r=report('canary');r.update(status='TINY_GPU_CANARY_RECORDED',canary_render_calls=8,canary_cases=[]);rows=[dict(event='configured',pid=123,max_draws=512)]
             for phase in (0,1):
@@ -55,13 +55,15 @@ class HostContracts(unittest.TestCase):
                 for challenge,color in enumerate(([1.,0.,0.],[0.,1.,1.])):
                     name=f'canary-{phase}-{challenge}.rgba';raw=bytes([int(v*255) for v in [*color,1.]])*64;(folder/name).write_bytes(raw);start=len(rows)
                     for _ in range(2):
-                        snap=dict(valid=True,restored=True,gl_error_before=0,gl_error_after=0,samples=phase*4,depth_bits=24,color=[*color,1.]);rows.append(dict(event='draw',pid=123,sequence=len(rows),phase=phase,pixel_gl=[3,3],kind=2 if phase==0 else 5,restored=True,before=snap,after=snap))
+                        snap=dict(valid=True,restored=True,gl_error_before=0,gl_error_after=0,samples=phase*sample_count,sample_buffers=phase,max_samples=4,depth_bits=24,color=[*color,1.]);rows.append(dict(event='draw',pid=123,sequence=len(rows),phase=phase,pixel_gl=[3,3],kind=2 if phase==0 else 5,restored=True,before=snap,after=snap))
                     case['challenges'].append(dict(color=color,raw_file=name,nbytes=len(raw),sha256=hashlib.sha256(raw).hexdigest(),component_width=1,component_type=0,draw_range=[start,len(rows)-1]))
                 r['canary_cases'].append(case)
             (folder/'draw-trace.jsonl').write_text(''.join(json.dumps(row)+'\n' for row in rows));stats=dict(complete=True,draws=8,queries=1000,blits=8,readbacks=32)
-            self.assertEqual(h.validate_canary(folder,r,stats)['status'],'QUALIFIED_TINY_GPU_CANARY')
+            result=h.validate_canary(folder,r,stats);self.assertEqual(result['status'],'QUALIFIED_TINY_GPU_CANARY');self.assertEqual(result['multiple_effective_samples_qualified'],sample_count>1)
             rows[-1]['after']=dict(rows[-1]['after'],gl_error_after=1282);(folder/'draw-trace.jsonl').write_text(''.join(json.dumps(row)+'\n' for row in rows))
             with self.assertRaises(ValueError):h.validate_canary(folder,r,stats)
+    def test_actual_c_schema_canary_decodes_bytes_and_requires_both_draw_kinds(self):self.check_canary()
+    def test_one_effective_sample_resolve_never_claims_multiple_sample_qualification(self):self.check_canary(1)
     def test_cold_host_help(self):
         r=subprocess.run([sys.executable,'-I','-B',h.__file__,'--help'],capture_output=True,text=True,timeout=15);self.assertEqual(r.returncode,0,r.stderr)
 if __name__=='__main__':unittest.main()

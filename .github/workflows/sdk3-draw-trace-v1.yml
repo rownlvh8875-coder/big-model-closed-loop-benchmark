@@ -1,13 +1,13 @@
 name: Trace original SDK3 draw boundaries after tiny GPU qualification
 on:
   push:
-    branches: ['diagnostic/sdk3-draw-trace-20261117-01']
-    paths: ['docs/requests/sdk3-draw-trace-20261117-01.json']
+    branches: ['diagnostic/sdk3-draw-trace-20261117-02']
+    paths: ['docs/requests/sdk3-draw-trace-20261117-02.json']
 permissions:
   contents: read
   actions: read
 concurrency:
-  group: sdk3-draw-trace-20261117-01
+  group: sdk3-draw-trace-20261117-02
   cancel-in-progress: false
 jobs:
   draw-trace:
@@ -32,8 +32,8 @@ jobs:
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: sdk3-draw-trace-20261117-01
-          path: output/stage7-sdk3-draw-trace-01/producer/bundle/
+          name: sdk3-draw-trace-20261117-02
+          path: output/stage7-sdk3-draw-trace-02/producer/bundle/
           retention-days: 30
           compression-level: 6
           include-hidden-files: true

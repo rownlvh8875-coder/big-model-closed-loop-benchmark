@@ -6,7 +6,7 @@ from scripts import panda_sdk3_runtime as p,sdk3_draw_trace as t,sdk3_draw_trace
 from scripts.continue_panda_sdk3_models import PROFILE,unpack_prior
 from scripts.compare_native_mdv3_rgb_pixels import read_verified_pixels
 from scripts.sdk3_capture_progress import read_journal
-ROOT=Path(__file__).resolve().parents[1];BASE='ae836ad09f410dd38f2503ac250863e889974c27';REQUEST='docs/requests/sdk3-draw-trace-20261117-01.json';ENTRY='/work/repo/scripts/sdk3_draw_trace_native.py'
+ROOT=Path(__file__).resolve().parents[1];BASE='ae836ad09f410dd38f2503ac250863e889974c27';REQUEST='docs/requests/sdk3-draw-trace-20261117-02.json';ENTRY='/work/repo/scripts/sdk3_draw_trace_native.py'
 
 def native_command(name,repo,sdk,out,args,*,reference,owner=None,library=None):
     command=runtime.native_command(name,repo,sdk,out,args,reference=reference,owner=owner);command[command.index(runtime.ENTRY)]=ENTRY
@@ -57,8 +57,8 @@ def validate_canary(folder,r,stats):
             p.need(any(d['kind'] in ((1,2,3) if phase==0 else (4,5)) for d in selected),'actual noninstanced and instanced interception')
             for d in selected:
                 p.need(d['phase']==phase and d['restored'] is True and d['pixel_gl']==[3,3] and all(d[k]['valid'] is True and d[k]['restored'] is True and d[k]['gl_error_before']==d[k]['gl_error_after']==0 for k in ('before','after')),'actual challenged readback/state restoration')
-                p.need((d['after']['samples']==0 if phase==0 else 2<=d['after']['samples']<=16) and d['after']['depth_bits']>=16,'observed single/MSAA depth attachment');p.need(np.array_equal(np.asarray(d['after']['color']),np.asarray([*challenge['color'],1.])),'draw boundary reaches challenged color')
-    p.need(stats['blits']>0 and stats['readbacks']==4*stats['draws'],'actual multisample resolve/read path');return dict(status='QUALIFIED_TINY_GPU_CANARY',draws=len(draws),queries=stats['queries'],stage7_complete=False)
+                p.need((d['after']['samples']==0 and d['after']['sample_buffers']==0 if phase==0 else 1<=d['after']['samples']<=16 and d['after']['sample_buffers']==1) and d['after']['depth_bits']>=16,'observed single/MSAA depth attachment');p.need(np.array_equal(np.asarray(d['after']['color']),np.asarray([*challenge['color'],1.])),'draw boundary reaches challenged color')
+    p.need(stats['blits']>0 and stats['readbacks']==4*stats['draws'],'actual multisample resolve/read path');return dict(status='QUALIFIED_TINY_GPU_CANARY',draws=len(draws),queries=stats['queries'],max_effective_samples_observed=max(d['after']['samples'] for d in draws),multiple_effective_samples_qualified=any(d['after']['samples']>1 for d in draws),scope='single-sample and observed multisample-storage resolve only',stage7_complete=False)
 
 def validate_receipt(folder,reference,nonce,mode,sha,spec):
     folder=Path(folder);read=lambda n:json.loads((folder/n).read_text());r=read('report.json');n=read('native-child.json');c=read('container.json');e=read('execution.json');w=read('watchdog.json');cmd=read('command.json');validate_command(cmd['argv'],dict(spec,owner=cmd['ownership_label']))
@@ -106,7 +106,7 @@ def run_arm(name,sdk,out,args,reference,library):
     return native.clone(runtime.run_renderer,native_command=command)(name,sdk,out,args,reference)
 
 def run():
-    out=ROOT/'output/stage7-sdk3-draw-trace-01/producer';p.need(not out.exists(),'fresh output');work=out/'work';bundle=out/'bundle';work.mkdir(parents=True);bundle.mkdir();summary=dict(status='FAILED',official_model_processes=0,onnx_inferences=0,repair_proven=False,stage7_complete=False,arms={});p.write(bundle/'summary.json',summary)
+    out=ROOT/'output/stage7-sdk3-draw-trace-02/producer';p.need(not out.exists(),'fresh output');work=out/'work';bundle=out/'bundle';work.mkdir(parents=True);bundle.mkdir();summary=dict(status='FAILED',official_model_processes=0,onnx_inferences=0,repair_proven=False,stage7_complete=False,arms={});p.write(bundle/'summary.json',summary)
     try:
         request=authenticate_source(bundle);summary['source_sha']=request['source_sha'];sdk,reference=stage(work,bundle,summary);library=work/'drawtrace.so';command=['gcc','-std=c11','-shared','-fPIC','-O2','-Wall','-Wextra','-Werror',str(ROOT/'native/sdk3_draw_trace/trace.c'),'-ldl','-o',str(library)];subprocess.run(command,check=True,timeout=60);library.chmod(0o644);sha=p.digest(library);shutil.copyfile(library,bundle/'drawtrace.so.data');p.write(bundle/'build.json',dict(command=command,compiler=subprocess.check_output(['gcc','--version'],text=True).splitlines()[0],sha256=sha))
         for mode in ('canary','off','trace'):

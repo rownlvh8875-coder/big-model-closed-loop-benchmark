@@ -20,7 +20,7 @@ void glDrawElementsInstancedARB(unsigned m,int n,unsigned t,const void *p,int k)
 void glDrawArraysInstancedEXT(unsigned m,int f,int n,int k){glDrawArraysInstanced(m,f,n,k);}
 void glDrawElementsIndirect(unsigned m,unsigned t,const void *p){call(m==4&&t==5125&&(uintptr_t)p==0x12345000);}
 void glDrawArraysIndirect(unsigned m,const void *p){call(m==4&&(uintptr_t)p==0x12345000);}
-void glGetIntegerv(unsigned p,int *v){counted();*v=0;for(int i=0;i<8;i++)if(p==packenum[i]){*v=pack[i];return;}switch(p){case 0x8ca6:*v=draw;break;case 0x8caa:*v=readfb;break;case 0xc02:*v=readbuf;break;case 0x8ca7:*v=rb;break;case 0x88ed:*v=packbuf;break;case 0x84e0:*v=active;break;case 0x8b8d:*v=7;break;case 0xba2:v[0]=v[1]=0;v[2]=v[3]=8;break;case 0x80a9:*v=draw==77?samples:0;break;case 0xd56:*v=24;break;case 0xb74:*v=0x203;break;case 0x8069:*v=55;break;case 0xb72:*v=1;break;}}
+void glGetIntegerv(unsigned p,int *v){counted();*v=0;for(int i=0;i<8;i++)if(p==packenum[i]){*v=pack[i];return;}switch(p){case 0x8ca6:*v=draw;break;case 0x8caa:*v=readfb;break;case 0xc02:*v=readbuf;break;case 0x8ca7:*v=rb;break;case 0x88ed:*v=packbuf;break;case 0x84e0:*v=active;break;case 0x8b8d:*v=7;break;case 0xba2:v[0]=v[1]=0;v[2]=v[3]=8;break;case 0x80a8:*v=draw==77&&samples>0;break;case 0x8d57:*v=4;break;case 0x80a9:*v=draw==77?samples:0;break;case 0xd56:*v=24;break;case 0xb74:*v=0x203;break;case 0x8069:*v=55;break;case 0xb72:*v=1;break;}}
 void glGetFloatv(unsigned p,float *v){counted();if(p==0xb70){v[0]=0;v[1]=1;}else *v=0;}
 void glGetBooleanv(unsigned p,unsigned char *v){counted();*v=p==0xb72;}
 unsigned char glIsEnabled(unsigned p){counted();return p==0xb71;}

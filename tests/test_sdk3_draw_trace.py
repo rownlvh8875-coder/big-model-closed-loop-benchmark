@@ -37,6 +37,8 @@ class DrawTraceContracts(unittest.TestCase):
         x=self.run_case('single');self.assertEqual(x['restored'],1);self.assertEqual(x['stats']['error'],0);self.assertEqual(x['stats']['blits'],0);self.assertGreater(x['stats']['readbacks'],0);self.assertTrue(all(r['restored'] for r in x['rows'] if r.get('event')=='draw'))
     def test_multisample_path_resolves_one_pixel_and_restores_bindings(self):
         x=self.run_case('msaa');self.assertEqual(x['restored'],1);self.assertEqual(x['stats']['error'],0);self.assertGreater(x['stats']['blits'],0);self.assertEqual(x['calls'],1)
+    def test_requested_msaa_is_not_promoted_over_observed_sample_storage(self):
+        x=self.run_case('sample_storage');draw=next(r for r in x['rows'] if r.get('event')=='draw');self.assertEqual(draw['after']['sample_buffers'],0);self.assertEqual(draw['after']['max_samples'],4);self.assertEqual(draw['after']['samples'],0)
     def test_cap_marks_partial_but_never_suppresses_original_draw(self):
         x=self.run_case('cap');self.assertEqual(x['calls'],2);self.assertEqual(x['stats']['draws'],1);self.assertNotEqual(x['stats']['error'],0);self.assertEqual(x['restored'],1)
     def test_read_error_remains_failure_with_original_draw_and_state_restored(self):
