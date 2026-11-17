@@ -1,0 +1,27 @@
+test_absent_or_nonresident_attribute_cannot_claim_complete_collection (tests.test_sdk3_terrain_attribute_host.AttributeAdmission.test_absent_or_nonresident_attribute_cannot_claim_complete_collection) ... ok
+test_exact_cold_native_help_and_host_help_boot (tests.test_sdk3_terrain_attribute_host.AttributeAdmission.test_exact_cold_native_help_and_host_help_boot) ... FAIL
+test_identity_and_gpu_claim_mutations_reject (tests.test_sdk3_terrain_attribute_host.AttributeAdmission.test_identity_and_gpu_claim_mutations_reject) ... ok
+test_offset_uv_rawhash_and_owner_binding_mutations_reject (tests.test_sdk3_terrain_attribute_host.AttributeAdmission.test_offset_uv_rawhash_and_owner_binding_mutations_reject) ... ok
+test_original_host_keeps_1gib_admission (tests.test_sdk3_terrain_attribute_host.AttributeAdmission.test_original_host_keeps_1gib_admission) ... ok
+test_private_entry_changes_only_script_and_preserves_old_globals (tests.test_sdk3_terrain_attribute_host.AttributeAdmission.test_private_entry_changes_only_script_and_preserves_old_globals) ... ok
+test_real_large_attribute_snapshot_is_admitted_with_exact_sparse_counter (tests.test_sdk3_terrain_attribute_host.AttributeAdmission.test_real_large_attribute_snapshot_is_admitted_with_exact_sparse_counter) ... ok
+test_real_producer_interruption_stays_inconclusive (tests.test_sdk3_terrain_attribute_host.AttributeAdmission.test_real_producer_interruption_stays_inconclusive) ... ok
+test_wrong_policy_counter_type_or_count_rejects (tests.test_sdk3_terrain_attribute_host.AttributeAdmission.test_wrong_policy_counter_type_or_count_rejects) ... ok
+
+======================================================================
+FAIL: test_exact_cold_native_help_and_host_help_boot (tests.test_sdk3_terrain_attribute_host.AttributeAdmission.test_exact_cold_native_help_and_host_help_boot)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/dev/shm/stage7-sdk3-runtime-20261116/repo/tests/test_sdk3_terrain_attribute_host.py", line 52, in test_exact_cold_native_help_and_host_help_boot
+    r=subprocess.run([sys.executable,*flags,str(Path(entry).resolve()),'--help'],capture_output=True,text=True,timeout=15);self.assertEqual(r.returncode,0,r.stderr);self.assertIn(expected,r.stdout)
+                                                                                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 1 != 0 : Traceback (most recent call last):
+  File "/dev/shm/stage7-sdk3-runtime-20261116/repo/scripts/sdk3_terrain_attribute_native.py", line 5, in <module>
+    from scripts import sdk3_terrain_state_native as previous,sdk3_terrain_attribute as sparse
+ModuleNotFoundError: No module named 'scripts'
+
+
+----------------------------------------------------------------------
+Ran 9 tests in 2.207s
+
+FAILED (failures=1)
