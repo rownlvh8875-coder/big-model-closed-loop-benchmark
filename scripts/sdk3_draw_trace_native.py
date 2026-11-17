@@ -44,6 +44,11 @@ def regions(sensor):
     metadata=[dict(phase=phase,region_pointer=int(region.this),buffer_pointer=int(win.this),gsg_pointer=int(win.getGsg().this),camera_pointer=int(region.getCamera().node().this),framebuffer=str(win.getFbProperties()),size=[win.getXSize(),win.getYSize()]) for phase,win,region in [(1,buffer,scene),(2,sensor.buffer,post)]]
     return [(1,scene),(2,post)],metadata
 
+def scene_metadata(phase,data):
+    setup=data.getSceneSetup();p.need(setup is not None,'draw callback scene setup')
+    matrix=lambda transform:[float(transform.getMat().getCell(row,col)) for row in range(4) for col in range(4)]
+    return dict(scene_setup_pointer=int(setup.this),region_pointer=int(setup.getDisplayRegion().this),camera_node_pointer=int(setup.getCameraNode().this),scene_root=str(setup.getSceneRoot()),camera_path=str(setup.getCameraPath()),camera_transform=matrix(setup.getCameraTransform()),world_transform=matrix(setup.getWorldTransform()),viewport=[setup.getViewportWidth(),setup.getViewportHeight()],transform_layout='row-major Panda matrix',recorded_thread_id=__import__('threading').get_ident())
+
 def replay(args,report):
     out=Path(args.out);provider=None;tracer=None;journal=Journal(out,dict(pid=os.getpid(),nonce=args.nonce,protocol='sdk3-draw-trace-native-v1'))
     try:
@@ -66,10 +71,11 @@ def replay(args,report):
         else:p.need(not os.environ.get('LD_PRELOAD'),'OFFcontrol has no preloaded observer');report.update(observer_is_intervention=False,trace_library_sha256=None)
         saved=[(obj,name,getattr(obj,name),name in vars(obj)) for obj,name in [(capture,'capture'),(engine.taskMgr,'step')]+[(engine.sensors['bigbench_'+kind],name) for kind in ('road','wide') for name in ('perceive','get_rgb_array_cpu')]]
         with observe(capture,journal):
-            with t.scoped_callbacks(pairs,journal,tracer,t.pixel_gl(964,604,596,494),make_callback=core.CallbackObject.make,receipt=receipt,enabled=tracer is not None,borrowed=lambda:sensor.cam.getParent()==engine.origin):
+            with t.scoped_callbacks(pairs,journal,tracer,t.pixel_gl(964,604,596,494),make_callback=core.CallbackObject.make,receipt=receipt,enabled=tracer is not None,scene_metadata=scene_metadata):
                 for index,pose in enumerate(poses,1):
                     report['active_step']=index;journal.emit('checkpoint',stage='CAPTURE_ENTER');capture.capture(AgentState(**pose));hashes=capture.last_source_rgb_sha256;report['captures'].append(dict(step=index,pose=pose,road_sha256=hashes['road'],wide_sha256=hashes['wide'],images=recorder.images,task_frame_count_delta=clock.getFrameCount()-before));p.write(out/'report.json',report);journal.emit('checkpoint',stage='CAPTURE_RETURN')
-        report.update(callback_receipt=receipt,observers_restored=receipt['callbacks_restored'] and all(getattr(obj,name)==value and (name in vars(obj))==owned for obj,name,value,owned in saved),tasks_after=tasks(),task_frame_count_delta=clock.getFrameCount()-before,source_stats_after=sdk_stats(sdk),ort_module_loaded=any(k=='onnxruntime' or k.startswith('onnxruntime.') for k in sys.modules),extra_render_tasks=0)
+                if tracer is not None:engine.graphicsEngine.syncFrame();report['terminal_sync_calls']=1
+        report.update(callback_receipt=receipt,observers_restored=receipt['callbacks_restored'] and all(getattr(obj,name)==value and (name in vars(obj))==owned for obj,name,value,owned in saved),tasks_after=tasks(),task_frame_count_delta=clock.getFrameCount()-before,source_stats_after=sdk_stats(sdk),ort_module_loaded=any(k=='onnxruntime' or k.startswith('onnxruntime.') for k in sys.modules),extra_render_tasks=0,terminal_sync_calls=report.get('terminal_sync_calls',0))
         report['trace_stats']=tracer.close() if tracer else dict(version=1,error=0,active=0,restored=1,lookups=0,forwards=0,draws=0,queries=0,readbacks=0,blits=0);report['extra_gpu_queries']=report['trace_stats']['queries'];report['status']='DRAW_TRACE_REPLAY_RECORDED';return report
     finally:
         if tracer is not None:report['trace_stats']=tracer.close();report['extra_gpu_queries']=report['trace_stats']['queries']

@@ -29,8 +29,8 @@ class Trace:
         return self.stats()
 
 @contextmanager
-def scoped_callbacks(regions,journal,tracer,pixel,*,make_callback,receipt,enabled=True,borrowed=lambda:True,target_step=7,expected_returns=None):
-    receipt.update(status='OFF' if not enabled else 'INSTALLED',target_region_entries=0,target_region_returns=0,errors=[],callbacks_restored=not enabled,trace_complete=False)
+def scoped_callbacks(regions,journal,tracer,pixel,*,make_callback,receipt,enabled=True,borrowed=lambda:True,target_step=7,expected_returns=None,scene_metadata=None):
+    receipt.update(status='OFF' if not enabled else 'INSTALLED',target_region_entries=0,target_region_returns=0,errors=[],callbacks_restored=not enabled,trace_complete=False,scene_observations=[])
     if not enabled:yield receipt;return
     need(regions and len(regions)<=2 and len({phase for phase,_ in regions})==len(regions) and all(region.getDrawCallback() is None for _,region in regions),'unique unoccupied target display regions')
     installed=[];expected_returns=len(regions) if expected_returns is None else expected_returns
@@ -41,7 +41,11 @@ def scoped_callbacks(regions,journal,tracer,pixel,*,make_callback,receipt,enable
                 if journal.step!=target_step or journal.camera!='road':data.upcall();return
                 receipt['target_region_entries']+=1;begun=False;returned=False
                 try:
-                    try:need(borrowed(),'target camera still borrowed into origin');tracer.begin(phase,*pixel);begun=True
+                    try:
+                        need(borrowed(),'target camera still borrowed into origin')
+                        if scene_metadata is not None:
+                            need(len(receipt['scene_observations'])<8,'bounded draw scene snapshots');scene=dict(scene_metadata(phase,data));scene.update(phase=phase,cpu_capture_label_proves_gpu_pose=False);receipt['scene_observations'].append(scene)
+                        tracer.begin(phase,*pixel);begun=True
                     except BaseException as exc:error('begin',exc)
                     data.upcall();returned=True
                 finally:
