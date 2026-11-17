@@ -1,0 +1,163 @@
+{
+  "status": "FULL_S_CASE_RECORDED",
+  "phase": "full-s",
+  "official_model_processes": 2,
+  "inference_bounds": [
+    180,
+    180
+  ],
+  "physical_optics_passed": false,
+  "hardware_gpu_passed": false,
+  "carla_passed": false,
+  "stage7_complete": false,
+  "source_sha": "54e2510adf9647a14161fe55461028dfb21f4758",
+  "probe_validation": [
+    {
+      "seed": 20261109,
+      "scenario": "s_curve_left_right",
+      "virtual_pinhole_passed": true,
+      "physical_optics_passed": false,
+      "hardware_gpu_passed": false,
+      "carla_passed": false,
+      "rate": {
+        "admitted": true,
+        "minimum_steps": 363,
+        "second_capture_s": 3.4228748600000074,
+        "conservative_child_estimate_s": 4707.449832000009,
+        "child_limit_s": 9000,
+        "max_steps": 600
+      },
+      "driver": {
+        "renderer": "llvmpipe (LLVM 20.1.2, 256 bits)",
+        "vendor": "Mesa",
+        "version": "4.5 (Compatibility Profile) Mesa 25.2.8-0ubuntu0.24.04.4",
+        "physical_device_binding_verified": false,
+        "actual_msaa_samples": null
+      }
+    },
+    {
+      "seed": 20261109,
+      "scenario": "s_curve_right_left",
+      "virtual_pinhole_passed": true,
+      "physical_optics_passed": false,
+      "hardware_gpu_passed": false,
+      "carla_passed": false,
+      "rate": {
+        "admitted": true,
+        "minimum_steps": 363,
+        "second_capture_s": 3.343920472999997,
+        "conservative_child_estimate_s": 4612.704567599996,
+        "child_limit_s": 9000,
+        "max_steps": 600
+      },
+      "driver": {
+        "renderer": "llvmpipe (LLVM 20.1.2, 256 bits)",
+        "vendor": "Mesa",
+        "version": "4.5 (Compatibility Profile) Mesa 25.2.8-0ubuntu0.24.04.4",
+        "physical_device_binding_verified": false,
+        "actual_msaa_samples": null
+      }
+    },
+    {
+      "seed": 20261110,
+      "scenario": "s_curve_left_right",
+      "virtual_pinhole_passed": true,
+      "physical_optics_passed": false,
+      "hardware_gpu_passed": false,
+      "carla_passed": false,
+      "rate": {
+        "admitted": true,
+        "minimum_steps": 363,
+        "second_capture_s": 3.4664037169999915,
+        "conservative_child_estimate_s": 4759.68446039999,
+        "child_limit_s": 9000,
+        "max_steps": 600
+      },
+      "driver": {
+        "renderer": "llvmpipe (LLVM 20.1.2, 256 bits)",
+        "vendor": "Mesa",
+        "version": "4.5 (Compatibility Profile) Mesa 25.2.8-0ubuntu0.24.04.4",
+        "physical_device_binding_verified": false,
+        "actual_msaa_samples": null
+      }
+    },
+    {
+      "seed": 20261110,
+      "scenario": "s_curve_right_left",
+      "virtual_pinhole_passed": true,
+      "physical_optics_passed": false,
+      "hardware_gpu_passed": false,
+      "carla_passed": false,
+      "rate": {
+        "admitted": true,
+        "minimum_steps": 363,
+        "second_capture_s": 3.336799245999998,
+        "conservative_child_estimate_s": 4604.159095199998,
+        "child_limit_s": 9000,
+        "max_steps": 600
+      },
+      "driver": {
+        "renderer": "llvmpipe (LLVM 20.1.2, 256 bits)",
+        "vendor": "Mesa",
+        "version": "4.5 (Compatibility Profile) Mesa 25.2.8-0ubuntu0.24.04.4",
+        "physical_device_binding_verified": false,
+        "actual_msaa_samples": null
+      }
+    }
+  ],
+  "execution": {
+    "status": "EXIT_OBSERVED",
+    "returncode": 0,
+    "failure": null,
+    "stopped_state": {
+      "Status": "exited",
+      "Running": false,
+      "Paused": false,
+      "Restarting": false,
+      "OOMKilled": false,
+      "Dead": false,
+      "Pid": 0,
+      "ExitCode": 0,
+      "Error": "",
+      "StartedAt": "2026-11-17T21:09:37.51664549Z",
+      "FinishedAt": "2026-11-17T21:23:05.732328058Z"
+    },
+    "create_attempted": true,
+    "start_attempted": true,
+    "container_id": "f5520bcbb39236ee22b2acd1ad9ff894c34ffd9bda05a95d619dfa41741f6fd1",
+    "ownership_unresolved": false,
+    "owned_container_removed": true,
+    "cleanup_failure": null
+  },
+  "case": {
+    "seed": 20261109,
+    "scenario": "s_curve_right_left",
+    "container_id": "f5520bcbb39236ee22b2acd1ad9ff894c34ffd9bda05a95d619dfa41741f6fd1",
+    "process_uuids": [
+      "ff0cc74830294a6fbcdee2506a1155aa",
+      "63797653e9014210beaa7f3cd5cb414e"
+    ],
+    "inference_bounds": [
+      180,
+      180
+    ],
+    "verdict": {
+      "protocol": "full-s-strict-pair-v1",
+      "strict_repeat_passed": true,
+      "traversal_passed": false,
+      "passed": false,
+      "first_diverging_step": null,
+      "differences": [],
+      "outcomes": [
+        "LANE_INTRUSION",
+        "LANE_INTRUSION"
+      ],
+      "no_tolerance": true,
+      "model_scoring_allowed": false
+    },
+    "outcomes": [
+      "LANE_INTRUSION",
+      "LANE_INTRUSION"
+    ]
+  }
+}

@@ -1,0 +1,303 @@
+{
+  "status": "ACTUAL_RECEIPTS_REGENERATED",
+  "source": "54e2510adf9647a14161fe55461028dfb21f4758",
+  "activation": "2993d1b2dce2fbf25985e1be25666afa23d47a91",
+  "run_id": 44176109300,
+  "workflow_id": 421873536,
+  "attempt": 1,
+  "workflow_conclusion": "success",
+  "probe_cases": [
+    {
+      "seed": 20261109,
+      "scenario": "s_curve_left_right",
+      "virtual_pinhole_passed": true,
+      "physical_optics_passed": false,
+      "hardware_gpu_passed": false,
+      "carla_passed": false,
+      "rate": {
+        "admitted": true,
+        "minimum_steps": 363,
+        "second_capture_s": 3.4228748600000074,
+        "conservative_child_estimate_s": 4707.449832000009,
+        "child_limit_s": 9000,
+        "max_steps": 600
+      },
+      "driver": {
+        "renderer": "llvmpipe (LLVM 20.1.2, 256 bits)",
+        "vendor": "Mesa",
+        "version": "4.5 (Compatibility Profile) Mesa 25.2.8-0ubuntu0.24.04.4",
+        "physical_device_binding_verified": false,
+        "actual_msaa_samples": null
+      }
+    },
+    {
+      "seed": 20261109,
+      "scenario": "s_curve_right_left",
+      "virtual_pinhole_passed": true,
+      "physical_optics_passed": false,
+      "hardware_gpu_passed": false,
+      "carla_passed": false,
+      "rate": {
+        "admitted": true,
+        "minimum_steps": 363,
+        "second_capture_s": 3.343920472999997,
+        "conservative_child_estimate_s": 4612.704567599996,
+        "child_limit_s": 9000,
+        "max_steps": 600
+      },
+      "driver": {
+        "renderer": "llvmpipe (LLVM 20.1.2, 256 bits)",
+        "vendor": "Mesa",
+        "version": "4.5 (Compatibility Profile) Mesa 25.2.8-0ubuntu0.24.04.4",
+        "physical_device_binding_verified": false,
+        "actual_msaa_samples": null
+      }
+    },
+    {
+      "seed": 20261110,
+      "scenario": "s_curve_left_right",
+      "virtual_pinhole_passed": true,
+      "physical_optics_passed": false,
+      "hardware_gpu_passed": false,
+      "carla_passed": false,
+      "rate": {
+        "admitted": true,
+        "minimum_steps": 363,
+        "second_capture_s": 3.4664037169999915,
+        "conservative_child_estimate_s": 4759.68446039999,
+        "child_limit_s": 9000,
+        "max_steps": 600
+      },
+      "driver": {
+        "renderer": "llvmpipe (LLVM 20.1.2, 256 bits)",
+        "vendor": "Mesa",
+        "version": "4.5 (Compatibility Profile) Mesa 25.2.8-0ubuntu0.24.04.4",
+        "physical_device_binding_verified": false,
+        "actual_msaa_samples": null
+      }
+    },
+    {
+      "seed": 20261110,
+      "scenario": "s_curve_right_left",
+      "virtual_pinhole_passed": true,
+      "physical_optics_passed": false,
+      "hardware_gpu_passed": false,
+      "carla_passed": false,
+      "rate": {
+        "admitted": true,
+        "minimum_steps": 363,
+        "second_capture_s": 3.336799245999998,
+        "conservative_child_estimate_s": 4604.159095199998,
+        "child_limit_s": 9000,
+        "max_steps": 600
+      },
+      "driver": {
+        "renderer": "llvmpipe (LLVM 20.1.2, 256 bits)",
+        "vendor": "Mesa",
+        "version": "4.5 (Compatibility Profile) Mesa 25.2.8-0ubuntu0.24.04.4",
+        "physical_device_binding_verified": false,
+        "actual_msaa_samples": null
+      }
+    }
+  ],
+  "probe_errors": [],
+  "cases": [
+    {
+      "seed": 20261109,
+      "scenario": "s_curve_left_right",
+      "container_id": "113a604294d6ee5e6f69bc1d82c55f1ecaf37b21932a8f2b2746aa40df918e3a",
+      "process_uuids": [
+        "eb80e11f38ad43f480966aeb4b8cfe99",
+        "6520d709b187411484f8a21a47772635"
+      ],
+      "inference_bounds": [
+        120,
+        120
+      ],
+      "verdict": {
+        "protocol": "full-s-strict-pair-v1",
+        "strict_repeat_passed": true,
+        "traversal_passed": false,
+        "passed": false,
+        "first_diverging_step": null,
+        "differences": [],
+        "outcomes": [
+          "LANE_INTRUSION",
+          "LANE_INTRUSION"
+        ],
+        "no_tolerance": true,
+        "model_scoring_allowed": false
+      },
+      "outcomes": [
+        "LANE_INTRUSION",
+        "LANE_INTRUSION"
+      ]
+    },
+    {
+      "seed": 20261109,
+      "scenario": "s_curve_right_left",
+      "container_id": "f5520bcbb39236ee22b2acd1ad9ff894c34ffd9bda05a95d619dfa41741f6fd1",
+      "process_uuids": [
+        "ff0cc74830294a6fbcdee2506a1155aa",
+        "63797653e9014210beaa7f3cd5cb414e"
+      ],
+      "inference_bounds": [
+        180,
+        180
+      ],
+      "verdict": {
+        "protocol": "full-s-strict-pair-v1",
+        "strict_repeat_passed": true,
+        "traversal_passed": false,
+        "passed": false,
+        "first_diverging_step": null,
+        "differences": [],
+        "outcomes": [
+          "LANE_INTRUSION",
+          "LANE_INTRUSION"
+        ],
+        "no_tolerance": true,
+        "model_scoring_allowed": false
+      },
+      "outcomes": [
+        "LANE_INTRUSION",
+        "LANE_INTRUSION"
+      ]
+    },
+    {
+      "seed": 20261110,
+      "scenario": "s_curve_left_right",
+      "container_id": "24993dfabfc8a8dbe039e2cdcfdb70034a78eceeff7de11f778411e3c7e884c5",
+      "process_uuids": [
+        "d821a20b5bc648688cbd554b167b8c38",
+        "1cc4721f15674e789a30a394337ceba8"
+      ],
+      "inference_bounds": [
+        124,
+        124
+      ],
+      "verdict": {
+        "protocol": "full-s-strict-pair-v1",
+        "strict_repeat_passed": true,
+        "traversal_passed": false,
+        "passed": false,
+        "first_diverging_step": null,
+        "differences": [],
+        "outcomes": [
+          "LANE_INTRUSION",
+          "LANE_INTRUSION"
+        ],
+        "no_tolerance": true,
+        "model_scoring_allowed": false
+      },
+      "outcomes": [
+        "LANE_INTRUSION",
+        "LANE_INTRUSION"
+      ]
+    },
+    {
+      "seed": 20261110,
+      "scenario": "s_curve_right_left",
+      "container_id": "bcad7df3241fb8e7765d1e725fa3d435583c293bb3b7885f64fa1028960d3d98",
+      "process_uuids": [
+        "60d6e90c400a4927bb9cacfbc26aa241",
+        "d83537b362764e25a6ddb29660912827"
+      ],
+      "inference_bounds": [
+        130,
+        130
+      ],
+      "verdict": {
+        "protocol": "full-s-strict-pair-v1",
+        "strict_repeat_passed": true,
+        "traversal_passed": false,
+        "passed": false,
+        "first_diverging_step": null,
+        "differences": [],
+        "outcomes": [
+          "LANE_INTRUSION",
+          "LANE_INTRUSION"
+        ],
+        "no_tolerance": true,
+        "model_scoring_allowed": false
+      },
+      "outcomes": [
+        "LANE_INTRUSION",
+        "LANE_INTRUSION"
+      ]
+    }
+  ],
+  "case_errors": [],
+  "artifacts": [
+    {
+      "id": 14371040573,
+      "name": "sdk3-four-validation-probe-20261118-02",
+      "size": 17758463,
+      "sha256": "015928632eb559de13b96dd29874ef03cc961631762847976fecf9115d721f5f",
+      "run_id": 44176109300,
+      "workflow_id": 421873536,
+      "activation": "2993d1b2dce2fbf25985e1be25666afa23d47a91",
+      "source": "54e2510adf9647a14161fe55461028dfb21f4758"
+    },
+    {
+      "id": 14370793425,
+      "name": "sdk3-four-validation-full-s-20261118-02-20261109-s_curve_left_right",
+      "size": 170369,
+      "sha256": "78591774c49ddf5203f8d0f097f753c308deeff7ace1c459909f285abe8c5913",
+      "run_id": 44176109300,
+      "workflow_id": 421873536,
+      "activation": "2993d1b2dce2fbf25985e1be25666afa23d47a91",
+      "source": "54e2510adf9647a14161fe55461028dfb21f4758"
+    },
+    {
+      "id": 14371242007,
+      "name": "sdk3-four-validation-full-s-20261118-02-20261109-s_curve_right_left",
+      "size": 237140,
+      "sha256": "4c82f74e6155896f93434b2a5fb45ed6a509733b63dc11e9bcebc55734f50758",
+      "run_id": 44176109300,
+      "workflow_id": 421873536,
+      "activation": "2993d1b2dce2fbf25985e1be25666afa23d47a91",
+      "source": "54e2510adf9647a14161fe55461028dfb21f4758"
+    },
+    {
+      "id": 14370314370,
+      "name": "sdk3-four-validation-full-s-20261118-02-20261110-s_curve_left_right",
+      "size": 174897,
+      "sha256": "c536ce8984922feacb13dfd3523840279edd94eee5f0b6c8df5f2f9eecc8684c",
+      "run_id": 44176109300,
+      "workflow_id": 421873536,
+      "activation": "2993d1b2dce2fbf25985e1be25666afa23d47a91",
+      "source": "54e2510adf9647a14161fe55461028dfb21f4758"
+    },
+    {
+      "id": 14370513601,
+      "name": "sdk3-four-validation-full-s-20261118-02-20261110-s_curve_right_left",
+      "size": 181448,
+      "sha256": "aaeaed2ad0627d19334ea11e10a00a0f2b8368865ff9d29cccf81eeb4670bb37",
+      "run_id": 44176109300,
+      "workflow_id": 421873536,
+      "activation": "2993d1b2dce2fbf25985e1be25666afa23d47a91",
+      "source": "54e2510adf9647a14161fe55461028dfb21f4758"
+    }
+  ],
+  "actual_official_model_processes": 8,
+  "all_four_validation_tracks_passed": false,
+  "physical_optics": "BLOCKED_NO_OFFLINE_MEASURED_DATA",
+  "hardware_gpu": "PENDING_ACTUAL_WINDOWS_RTX3050TI_RUN",
+  "carla": "BLOCKED_NO_DEDICATED_SERVER",
+  "native_aggregate": {
+    "full_s_passed_cases": 0,
+    "strict_repeat_passed_cases": 4,
+    "total": 4,
+    "official_model_processes": 8,
+    "inference_bounds": [
+      554,
+      554
+    ],
+    "all_four_validation_tracks_passed": false,
+    "physical_optics": "BLOCKED_MISSING_MEASURED_DATA",
+    "hardware_gpu": "BLOCKED_NO_CLOUD_DEVICE",
+    "carla": "BLOCKED_NO_SERVER",
+    "stage7_complete": false
+  }
+}

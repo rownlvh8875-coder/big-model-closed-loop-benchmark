@@ -1,0 +1,57 @@
+{
+  "protocol": "four-validation-laptop-resources-v1",
+  "system": "Linux",
+  "machine": "x86_64",
+  "python_version": "3.12.14",
+  "wsl": false,
+  "memory_total_bytes": 34359738368,
+  "memory_available_bytes": 30190923776,
+  "disk_free_bytes": 16036028416,
+  "gpu_devices": [],
+  "active_renderer": null,
+  "device_probes": [],
+  "carla": {
+    "endpoint_configured": false,
+    "endpoint": null,
+    "client_installed": false,
+    "dedicated_server": false
+  },
+  "calibration": {
+    "manifest_exists": false,
+    "measured_provenance": false
+  },
+  "simulator_imported": false,
+  "model_loaded": false,
+  "network_connections_attempted": 0,
+  "tracks": {
+    "full_s": {
+      "readiness": "READY_FOR_PROBE",
+      "missing": [],
+      "verification_status": "NOT_RUN"
+    },
+    "hardware_gpu": {
+      "readiness": "BLOCKED",
+      "missing": [
+        "HARDWARE_DEVICE_REQUIRED"
+      ],
+      "verification_status": "NOT_RUN"
+    },
+    "carla": {
+      "readiness": "BLOCKED",
+      "missing": [
+        "DEDICATED_CARLA_ENDPOINT_REQUIRED",
+        "MATCHING_CARLA_CLIENT_REQUIRED",
+        "DEDICATED_SERVER_OWNERSHIP_REQUIRED"
+      ],
+      "verification_status": "NOT_RUN"
+    },
+    "physical_optics": {
+      "readiness": "BLOCKED",
+      "missing": [
+        "OFFLINE_CALIBRATION_MANIFEST_REQUIRED",
+        "MEASURED_CALIBRATION_DATASET_REQUIRED"
+      ],
+      "verification_status": "NOT_RUN"
+    }
+  }
+}

@@ -1,0 +1,350 @@
+{
+  "libraries": {
+    "numpy": "2.4.6",
+    "opencv": "5.0.0"
+  },
+  "protocol": "sdk3-four-native-probe-v1",
+  "seed": 20261110,
+  "scenario": "s_curve_right_left",
+  "driver": {
+    "renderer": "llvmpipe (LLVM 20.1.2, 256 bits)",
+    "vendor": "Mesa",
+    "version": "4.5 (Compatibility Profile) Mesa 25.2.8-0ubuntu0.24.04.4",
+    "physical_device_binding_verified": false,
+    "actual_msaa_samples": null
+  },
+  "renderer_candidate": {
+    "adapter_sha256": "16aafa7d35bcb91cf11b1744749a47e049ba23049aa5f7985ac4d31a66aba182",
+    "adapter_path": "/work/repo/bigbench/sdk3_terrain_priority.py",
+    "protocol": "sdk3-rgb-terrain-priority-v1",
+    "repair_id": "SDK3_RGB_TERRAIN_DEPTH_TIE_PRIORITY_V1",
+    "classification": "MODIFIED_RGB_TERRAIN_PRIORITY_CANDIDATE",
+    "bin": "background",
+    "draw_order": -1,
+    "override": 1000,
+    "tag_key": "rgb",
+    "terrain_label": "TERRAIN",
+    "cameras": [
+      {
+        "role": "road",
+        "camera_pointer": 94898240555712,
+        "original_state_pointer": 140199376877488,
+        "updated_state_pointer": 140198381530192,
+        "shader_attrib_pointer": 94898240558672,
+        "shader_preserved": true,
+        "other_attributes_preserved": true
+      },
+      {
+        "role": "wide",
+        "camera_pointer": 94898240569312,
+        "original_state_pointer": 140199376877488,
+        "updated_state_pointer": 140198381530192,
+        "shader_attrib_pointer": 94898240558672,
+        "shader_preserved": true,
+        "other_attributes_preserved": true
+      }
+    ],
+    "depth_function_changed": false,
+    "shader_replaced": false,
+    "extra_render_tasks": 0,
+    "source_pixel_rewrite": false,
+    "historical_original_result_replaced": false,
+    "stage7_complete": false
+  },
+  "geometry": [
+    {
+      "lane_id": "('>>>', '1C0_0_', 1)",
+      "length_m": 45.11676116405342,
+      "start": [
+        60.0,
+        0.0
+      ],
+      "end": [
+        100.22445358905438,
+        -17.490090196562583
+      ],
+      "start_heading_rad": 0.0,
+      "end_heading_rad": -0.8203047484373349,
+      "width_m": 3.5,
+      "curvature_1pm": -0.018181818181818077,
+      "lane_class": "metadrive.component.lane.circular_lane.CircularLane",
+      "shape": {
+        "kind": "circular",
+        "center": [
+          60.0,
+          -55.0
+        ],
+        "radius": 55.0,
+        "start_phase": 1.5707963267948966,
+        "end_phase": 0.7504915783575616,
+        "direction": -1
+      }
+    },
+    {
+      "lane_id": "('1C0_0_', '1C0_1_', 1)",
+      "length_m": 59.99999999999999,
+      "start": [
+        100.22445358905438,
+        -17.490090196562583
+      ],
+      "end": [
+        141.14435519280428,
+        -61.37131229371281
+      ],
+      "start_heading_rad": -0.8203047484373349,
+      "end_heading_rad": -0.8203047484373349,
+      "width_m": 3.5,
+      "curvature_1pm": 0.0,
+      "lane_class": "metadrive.component.lane.straight_lane.StraightLane",
+      "shape": {
+        "kind": "straight",
+        "direction": [
+          0.6819983600624985,
+          -0.7313537016191706
+        ],
+        "lateral_direction": [
+          -0.7313537016191706,
+          -0.6819983600624985
+        ]
+      }
+    },
+    {
+      "lane_id": "('1C0_1_', '2C0_0_', 1)",
+      "length_m": 45.11676116405342,
+      "start": [
+        141.14435519280428,
+        -61.37131229371282
+      ],
+      "end": [
+        181.36880878185866,
+        -78.8614024902754
+      ],
+      "start_heading_rad": -0.8203047484373349,
+      "end_heading_rad": 0.0,
+      "width_m": 3.5,
+      "curvature_1pm": 0.018181818181818077,
+      "lane_class": "metadrive.component.lane.circular_lane.CircularLane",
+      "shape": {
+        "kind": "circular",
+        "center": [
+          181.36880878185866,
+          -23.861402490275395
+        ],
+        "radius": 55.0,
+        "start_phase": -2.3911010752322315,
+        "end_phase": -1.5707963267948966,
+        "direction": 1
+      }
+    }
+  ],
+  "minimum_steps": 363,
+  "capture_calls": 2,
+  "captures": [
+    {
+      "index": 0,
+      "pose": {
+        "t": 0.0,
+        "x": 65.4052721645879,
+        "y": -0.26625325426066837,
+        "heading": -0.09843656981248028,
+        "speed": 8.0
+      },
+      "capture_wall_s": 3.676700459000017,
+      "images": [
+        {
+          "camera": "road",
+          "source_file": "pose-0-road-source.rgb.zlib",
+          "source_sha256": "65edda1942749feef3a11d7bc426ba5e4f96bb323449b17d1240ee9d342d5cb1",
+          "source_shape": [
+            604,
+            964,
+            3
+          ],
+          "canvas_file": "pose-0-road-canvas.rgb.zlib",
+          "canvas_sha256": "2805415e664dc18e82f8ef8bf06b257ee521a7bb88b5e68d3c17f3c984340649",
+          "source_coverage": 0.99609375,
+          "measured_intrinsics": {
+            "width": 964,
+            "height": 604,
+            "fx": 1323.9998636245728,
+            "fy": 1323.999942541119,
+            "cx": 482.0,
+            "cy": 302.0
+          },
+          "warp_matrix": [
+            [
+              1.454944905081948,
+              0.0,
+              109.5341042990213
+            ],
+            [
+              0.0,
+              1.4549449918034274,
+              232.74461839015686
+            ],
+            [
+              0.0,
+              0.0,
+              1.0
+            ]
+          ]
+        },
+        {
+          "camera": "wide",
+          "source_file": "pose-0-wide-source.rgb.zlib",
+          "source_sha256": "44416997df81b39509c9c5356c8f53c08455fccbf08073c23b147de61ae0f5dc",
+          "source_shape": [
+            604,
+            964,
+            3
+          ],
+          "canvas_file": "pose-0-wide-canvas.rgb.zlib",
+          "canvas_sha256": "2ae87f8b6abf9195ebb68199de3f2250def2273d0bb547053a5ec9b6e9c759ca",
+          "source_coverage": 1.0,
+          "measured_intrinsics": {
+            "width": 964,
+            "height": 604,
+            "fx": 283.5000333786011,
+            "fy": 283.5000502765209,
+            "cx": 482.0,
+            "cy": 302.0
+          },
+          "warp_matrix": [
+            [
+              0.6230769964364858,
+              0.0,
+              322.4922889122596
+            ],
+            [
+              0.0,
+              0.6230770335747712,
+              207.41690630334972
+            ],
+            [
+              0.0,
+              0.0,
+              1.0
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "pose": {
+        "t": 0.0,
+        "x": 67.39157827959944,
+        "y": -0.49894890429585814,
+        "heading": -0.13480020617611643,
+        "speed": 8.0
+      },
+      "capture_wall_s": 3.336799245999998,
+      "images": [
+        {
+          "camera": "road",
+          "source_file": "pose-1-road-source.rgb.zlib",
+          "source_sha256": "32b586af29526f4b52f21da5cf6aec0c4168982002d2c3f1952649f7b7df088a",
+          "source_shape": [
+            604,
+            964,
+            3
+          ],
+          "canvas_file": "pose-1-road-canvas.rgb.zlib",
+          "canvas_sha256": "0ef1f54f5043bc1abce156d6522855afb7e3998a16d64645ccd682ed13447b52",
+          "source_coverage": 0.99609375,
+          "measured_intrinsics": {
+            "width": 964,
+            "height": 604,
+            "fx": 1323.9998636245728,
+            "fy": 1323.999942541119,
+            "cx": 482.0,
+            "cy": 302.0
+          },
+          "warp_matrix": [
+            [
+              1.454944905081948,
+              0.0,
+              109.5341042990213
+            ],
+            [
+              0.0,
+              1.4549449918034274,
+              232.74461839015686
+            ],
+            [
+              0.0,
+              0.0,
+              1.0
+            ]
+          ]
+        },
+        {
+          "camera": "wide",
+          "source_file": "pose-1-wide-source.rgb.zlib",
+          "source_sha256": "0c3ad5f1811a3aea7f5194a80640674c5d802363f5195be62502eeceb0b74ed8",
+          "source_shape": [
+            604,
+            964,
+            3
+          ],
+          "canvas_file": "pose-1-wide-canvas.rgb.zlib",
+          "canvas_sha256": "135712870fe68deefd956c2b6b1db6ef2d04c32a7e6d919482c22e1c4f85a7da",
+          "source_coverage": 1.0,
+          "measured_intrinsics": {
+            "width": 964,
+            "height": 604,
+            "fx": 283.5000333786011,
+            "fy": 283.5000502765209,
+            "cx": 482.0,
+            "cy": 302.0
+          },
+          "warp_matrix": [
+            [
+              0.6230769964364858,
+              0.0,
+              322.4922889122596
+            ],
+            [
+              0.0,
+              0.6230770335747712,
+              207.41690630334972
+            ],
+            [
+              0.0,
+              0.0,
+              1.0
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "rate": {
+    "admitted": true,
+    "minimum_steps": 363,
+    "second_capture_s": 3.336799245999998,
+    "conservative_child_estimate_s": 4604.159095199998,
+    "child_limit_s": 9000,
+    "max_steps": 600
+  },
+  "physical_optics_validated": false,
+  "hardware_gpu_validated": false,
+  "carla_validated": false,
+  "official_model_processes": 0,
+  "onnx_inferences": 0,
+  "extra_render_tasks": 0,
+  "source_rgb_observer": "ZERO_MODEL_CPU_RETENTION_ONLY",
+  "source_context": {
+    "native_entry_sha256": "bb29a6d27bd3cb346df0c91897b4bf76bb9031da0691131a29455b79effdd9db",
+    "trial_sha256": "60f9b70756c75cf19683eb409b10f742d76e17afacd635cf113653a70a91f60f",
+    "full_s_protocol_sha256": "3426729744a8789e2123fcaaf83972060d769fa77d4a3973142e5b8ba64c7b18",
+    "original_camera_capture_sha256": "a5aeeba573fcc77a9e7d4190c8e830205a76df8a4cf1c16a2c7d47da0173d4ef",
+    "original_policy_step_sha256": "48704670b875b4eb74820a1ef1baecc8a76de0117317cdfbfae2838f71253900",
+    "existing_frame_adapter_step_sha256": "cb405d4c5ac8251d91f93837f78b468f9ed068bc0f85f5495795fa5a28dd317b",
+    "terrain_adapter_sha256": "16aafa7d35bcb91cf11b1744749a47e049ba23049aa5f7985ac4d31a66aba182",
+    "model_spec_sha256": "689f4d80082070b08ff35920e37d7070e811dfb42a279909751f79e900c735e2"
+  },
+  "scope": "native virtual pinhole only; no physical camera dataset",
+  "ort_module_loaded": false,
+  "provider_closed": true
+}
