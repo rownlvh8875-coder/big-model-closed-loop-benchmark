@@ -26,8 +26,8 @@ Base1ddcdc8e3b8a1c0022a07bc9844aeae613ca2b4c,additionsonly; preserve old bytes/o
 ### Task2: borrowed terrain snapshot and strict receiver
 **Files:** Create scripts/sdk3_terrain_state_native.py,scripts/run_sdk3_terrain_state.py,tests/test_sdk3_terrain_state_host.py,tests/sdk3_terrain_state_fixtures.py.
 **Interfaces:** snapshot_terrain(core,engine,sensor,geometry,out,nonce,journal)->dict; validate_receipt(folder,reference,nonce)->dict retaining every previous gate and new terrain fields.
-- [ ] RED actual snapshot with CPU doubles and coherent inherited receipt; bound fixed sources,states,ownertextures,candidatewindows; invalid finalshader/target/nonce/claims/pointer/UV/offset/rawbyte and absent/partial/unavailable tests. Expected missingmoduleFAIL.
-- [ ] GREEN private adapters/strict receiver and versioned entry/authentication. Focused helper/newhost+inherited shader/material suitesPASS; commit.
+- [x] RED actual snapshot with CPU doubles and coherent inherited receipt; bound fixed sources,states,ownertextures,candidatewindows; invalid finalshader/target/nonce/claims/pointer/UV/offset/rawbyte and absent/partial/unavailable tests. Expected missingmoduleFAIL.
+- [x] GREEN private adapters/strict receiver and versioned entry/authentication. Focused helper/newhost+inherited shader/material suitesPASS; commit.
 
 ### Task3: exact CI, one actual and closeout
 **Files:** Create .github/workflows/sdk3-terrain-state-v1.yml,docs/STAGE7_SDK3_TERRAIN_STATE_RESULT.md,docs/evidence/sdk3-terrain-state-01/** only.

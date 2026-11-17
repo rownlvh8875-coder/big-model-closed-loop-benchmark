@@ -62,3 +62,6 @@ def resident_window(texture,uv,core):
             rows.append(dict(xy=[x,y],offset=offset,nbytes=stride,raw_hex=raw.hex()));samples.append(raw)
         return dict(result,status='CAPTURED',size_xy=[width,height],num_components=components,component_width=component_width,component_type=int(texture.getComponentType()),byte_order=sys.byteorder,uv=[float(v) for v in uv],wrap_codes=codes,wrap_modes=modes,texels=rows,sample_sha256=hashlib.sha256(b''.join(samples)).hexdigest())
     finally:view.release()
+
+INPUT_NAMES=('PSSMShadowAtlas','pssm_mvps','pssm_nearfar','border_bias','use_pssm','fog','split_count','light_direction','attribute_tex','yellow_tex','road_tex','white_tex','road_normal','road_rough','grass_tex','grass_normal','grass_rough','rock_tex','rock_normal','rock_rough','crosswalk_tex','height_scale','elevation_texture_ratio','grass_tex_ratio')
+LIMITS=dict(max_states=4,max_shader_objects=4,max_sources=2,max_file_bytes=262144,max_total_bytes=2097152,max_resident_bytes=MAX_RESIDENT_BYTES,max_points=5,max_cpu_seconds=20)
