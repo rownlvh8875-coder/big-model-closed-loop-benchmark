@@ -15,18 +15,18 @@ Base: bf71fb9a794506b1fc64f996f4ff062cbb1b98a4. All old tracked bytes immutable.
 ### Task1: bounded cache/mip helper
 Files: scripts/sdk3_prepared_texture.py,tests/test_sdk3_prepared_texture.py,reference-index and inert reference data.
 Interface: POLICY,reference hash, minimum_bias(size,cap),texture_cache(texture,pgo),mip_metadata(texture),mip1_window(texture,uv,core).
-- [ ] Write tests first: literal bias11264/cap16384, unknowncap, readonly507510784B mip map four literal float bytes, no fullcopy/generation/prepare, missing mip no fetch, cache semantics. Run RED expected missing module assertion.
-- [ ] Implement minimal stdlib helper. Run named unittest GREEN and commit.
+- [x] Write tests first: literal bias11264/cap16384, unknowncap, readonly507510784B mip map four literal float bytes, no fullcopy/generation/prepare, missing mip no fetch, cache semantics. Run RED expected missing module assertion.
+- [x] Implement minimal stdlib helper. Run named unittest GREEN and commit.
 
 ### Task2: native/host boundary
 Files: scripts/sdk3_prepared_texture_native.py,scripts/run_sdk3_prepared_texture.py,tests/sdk3_prepared_texture_fixtures.py,tests/test_sdk3_prepared_texture_host.py,.github/workflows/sdk3-prepared-texture-v1.yml.
 Interface: snapshot_prepared after old terrain snapshot; prepared.json; native command private adapter; host validation and request auth exact policies.
-- [ ] Tests first: real snapshot and sparse mip over CPU doubles, shared GSG dedup, missingoutput/cap/mip/partial failures, identity/hash/UV/offset/policy/count/claim mutation rejection, RSS limit32768/32769, cold help, old global invariance. RED expected missing entry.
-- [ ] Implement native/host wrappers and workflow; focused new+inherited unittest GREEN, actionlint; commit.
+- [x] Tests first: real snapshot and sparse mip over CPU doubles, shared GSG dedup, missingoutput/cap/mip/partial failures, identity/hash/UV/offset/policy/count/claim mutation rejection, RSS limit32768/32769, cold help, old global invariance. RED expected missing entry.
+- [x] Implement native/host wrappers and workflow; focused new+inherited unittest GREEN, actionlint; commit.
 
 ### Task3: review, exact CI, one actual and closeout
 Interfaces: request-only activation, immutable runtime, independent raw artifact and pixels.
-- [ ] One fresh wholebranch review against spec/plan/ledger. Critical/Important one RED→GREEN fix pass; Minor defer.
-- [ ] Push new feature branch, create DraftPR based on PR141; exactsource push+PR four jobs and full unit counts PASS.
-- [ ] One fresh bounded diagnostic request. Authenticate run/attempt/activation/artifact/archive hashes, validate receiver, independently analyze cache caps/mip bytes and all14image SHA/pixels; retain raw and Git evidence, report actual limitations. No request rerun.
+- [x] One fresh wholebranch review against spec/plan/ledger. Critical/Important one RED→GREEN fix pass; Minor defer.
+- [x] Push new feature branch, create DraftPR based on PR141; exactsource push+PR four jobs and full unit counts PASS.
+- [x] One fresh bounded diagnostic request. Authenticate run/attempt/activation/artifact/archive hashes, validate receiver, independently analyze cache caps/mip bytes and all14image SHA/pixels; retain raw and Git evidence, report actual limitations. No request rerun.
 - [ ] Final evidence commit, exactfinal CI, DraftPR body/head/parent/main/original sixfiles preservation, archive own ledger and final external receipt; delete only own scratch. No publication/merge.

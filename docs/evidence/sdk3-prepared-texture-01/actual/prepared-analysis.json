@@ -1,0 +1,661 @@
+{
+  "run_id": 44067526874,
+  "source_sha": "b759849d911190a2d3376b0f90daa330d8192c1c",
+  "activation_sha": "051b0f33ca2684d072363b42a4cba84a517cb2e3",
+  "artifact_id": 14320743853,
+  "manifest_status": "PREPARED_RECORDED",
+  "prepared_complete": true,
+  "outputs": [
+    {
+      "role": "engine_output",
+      "available": true,
+      "context_index": 0
+    },
+    {
+      "role": "road_output",
+      "available": true,
+      "context_index": 0
+    },
+    {
+      "role": "filter_buffer_0",
+      "available": true,
+      "context_index": 0
+    }
+  ],
+  "contexts": [
+    {
+      "context_index": 0,
+      "gsg_pointer": 94411837636944,
+      "pgo_pointer": 94411837641824,
+      "max_texture_dimension": 16384,
+      "supports_tex_non_pow2": true,
+      "max_texture_stages": 8
+    }
+  ],
+  "textures": [
+    {
+      "role": "attribute",
+      "pointer": 94412256514672,
+      "base_size": [
+        22528,
+        22528
+      ],
+      "mips": {
+        "num_views": 1,
+        "num_ram_mipmap_images": 15,
+        "levels": [
+          {
+            "level": 0,
+            "size_xy": [
+              22528,
+              22528
+            ],
+            "expected_nbytes": 2030043136,
+            "resident": true,
+            "cached_nbytes": 2030043136
+          },
+          {
+            "level": 1,
+            "size_xy": [
+              11264,
+              11264
+            ],
+            "expected_nbytes": 507510784,
+            "resident": true,
+            "cached_nbytes": 507510784
+          },
+          {
+            "level": 2,
+            "size_xy": [
+              5632,
+              5632
+            ],
+            "expected_nbytes": 126877696,
+            "resident": true,
+            "cached_nbytes": 126877696
+          },
+          {
+            "level": 3,
+            "size_xy": [
+              2816,
+              2816
+            ],
+            "expected_nbytes": 31719424,
+            "resident": true,
+            "cached_nbytes": 31719424
+          }
+        ]
+      },
+      "contexts": [
+        {
+          "compatible_single_level_byte_models": [
+            {
+              "cpu_level": 1,
+              "logical_size": [
+                11264,
+                11264
+              ],
+              "hypothetical_bytes_per_texel": 1
+            },
+            {
+              "cpu_level": 2,
+              "logical_size": [
+                5632,
+                5632
+              ],
+              "hypothetical_bytes_per_texel": 4
+            }
+          ],
+          "gsg": {
+            "context_index": 0,
+            "gsg_pointer": 94411837636944,
+            "pgo_pointer": 94411837641824,
+            "max_texture_dimension": 16384,
+            "supports_tex_non_pow2": true,
+            "max_texture_stages": 8
+          },
+          "pgo_cache": {
+            "context_index": 0,
+            "queued_or_prepared": true,
+            "reported_graphics_bytes": 126877696,
+            "active_recent_frame": true,
+            "resident_reported": true,
+            "image_modified_or_unprepared": false
+          },
+          "cpu_minimum_halving_bias": 1,
+          "cpu_size_at_bias": [
+            11264,
+            11264
+          ],
+          "reported_bytes_equal_inferred_uncompressed_level": false,
+          "inferred_uncompressed_level_bytes": 507510784,
+          "hardware_dimensions_proven": false,
+          "actual_upload_bias_proven": false,
+          "active_is_target_pixel_proof": false
+        }
+      ],
+      "candidate_mip1": [
+        {
+          "ray": "center",
+          "candidate_triangle_index": 606,
+          "uv": [
+            1.5744431697582306,
+            1.5004200512163417
+          ],
+          "status": "CAPTURED",
+          "mip1_size_xy": [
+            11264,
+            11264
+          ],
+          "texel_xy": [
+            [
+              6470,
+              5636
+            ],
+            [
+              6471,
+              5636
+            ],
+            [
+              6470,
+              5637
+            ],
+            [
+              6471,
+              5637
+            ]
+          ],
+          "raw_hex": [
+            "00000000",
+            "00000000",
+            "9a99993d",
+            "00000000"
+          ],
+          "float32_values": [
+            0.0,
+            0.0,
+            0.07500000298023224,
+            0.0
+          ],
+          "cpu_mip1_bilinear_weights": [
+            0.7471282937741003,
+            0.021414805351863388,
+            0.2250075495166434,
+            0.006449351357392962
+          ],
+          "cpu_mip1_bilinear_value": 0.01687556688432301,
+          "base_float32_values": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "cpu_bounds_match": true,
+          "cpu_candidate_yellow_branch_at_mip1": true
+        },
+        {
+          "ray": "top_left",
+          "candidate_triangle_index": 606,
+          "uv": [
+            1.57445297703116,
+            1.5004230849612568
+          ],
+          "status": "CAPTURED",
+          "mip1_size_xy": [
+            11264,
+            11264
+          ],
+          "texel_xy": [
+            [
+              6470,
+              5636
+            ],
+            [
+              6471,
+              5636
+            ],
+            [
+              6470,
+              5637
+            ],
+            [
+              6471,
+              5637
+            ]
+          ],
+          "raw_hex": [
+            "00000000",
+            "00000000",
+            "9a99993d",
+            "00000000"
+          ],
+          "float32_values": [
+            0.0,
+            0.0,
+            0.07500000298023224,
+            0.0
+          ],
+          "cpu_mip1_bilinear_weights": [
+            0.6327830484804909,
+            0.10158794792383188,
+            0.22888367253486278,
+            0.036745331060814436
+          ],
+          "cpu_mip1_bilinear_value": 0.017166276122241208,
+          "base_float32_values": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "cpu_bounds_match": true,
+          "cpu_candidate_yellow_branch_at_mip1": true
+        },
+        {
+          "ray": "top_right",
+          "candidate_triangle_index": 606,
+          "uv": [
+            1.574433386625932,
+            1.5004170249389985
+          ],
+          "status": "CAPTURED",
+          "mip1_size_xy": [
+            11264,
+            11264
+          ],
+          "texel_xy": [
+            [
+              6469,
+              5636
+            ],
+            [
+              6470,
+              5636
+            ],
+            [
+              6469,
+              5637
+            ],
+            [
+              6470,
+              5637
+            ]
+          ],
+          "raw_hex": [
+            "00000000",
+            "00000000",
+            "9a99193e",
+            "9a99993d"
+          ],
+          "float32_values": [
+            0.0,
+            0.0,
+            0.15000000596046448,
+            0.07500000298023224
+          ],
+          "cpu_mip1_bilinear_weights": [
+            0.06608306181749925,
+            0.7365480253034724,
+            0.016249983684810437,
+            0.18111892919421793
+          ],
+          "cpu_mip1_bilinear_value": 0.016021417878921834,
+          "base_float32_values": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "cpu_bounds_match": true,
+          "cpu_candidate_yellow_branch_at_mip1": true
+        },
+        {
+          "ray": "bottom_right",
+          "candidate_triangle_index": 606,
+          "uv": [
+            1.574433386625932,
+            1.5004170249389985
+          ],
+          "status": "CAPTURED",
+          "mip1_size_xy": [
+            11264,
+            11264
+          ],
+          "texel_xy": [
+            [
+              6469,
+              5636
+            ],
+            [
+              6470,
+              5636
+            ],
+            [
+              6469,
+              5637
+            ],
+            [
+              6470,
+              5637
+            ]
+          ],
+          "raw_hex": [
+            "00000000",
+            "00000000",
+            "9a99193e",
+            "9a99993d"
+          ],
+          "float32_values": [
+            0.0,
+            0.0,
+            0.15000000596046448,
+            0.07500000298023224
+          ],
+          "cpu_mip1_bilinear_weights": [
+            0.06608306181749925,
+            0.7365480253034724,
+            0.016249983684810437,
+            0.18111892919421793
+          ],
+          "cpu_mip1_bilinear_value": 0.016021417878921834,
+          "base_float32_values": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "cpu_bounds_match": true,
+          "cpu_candidate_yellow_branch_at_mip1": true
+        },
+        {
+          "ray": "bottom_left",
+          "candidate_triangle_index": 606,
+          "uv": [
+            1.57445297703116,
+            1.5004230849612568
+          ],
+          "status": "CAPTURED",
+          "mip1_size_xy": [
+            11264,
+            11264
+          ],
+          "texel_xy": [
+            [
+              6470,
+              5636
+            ],
+            [
+              6471,
+              5636
+            ],
+            [
+              6470,
+              5637
+            ],
+            [
+              6471,
+              5637
+            ]
+          ],
+          "raw_hex": [
+            "00000000",
+            "00000000",
+            "9a99993d",
+            "00000000"
+          ],
+          "float32_values": [
+            0.0,
+            0.0,
+            0.07500000298023224,
+            0.0
+          ],
+          "cpu_mip1_bilinear_weights": [
+            0.6327830484804909,
+            0.10158794792383188,
+            0.22888367253486278,
+            0.036745331060814436
+          ],
+          "cpu_mip1_bilinear_value": 0.017166276122241208,
+          "base_float32_values": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "cpu_bounds_match": true,
+          "cpu_candidate_yellow_branch_at_mip1": true
+        }
+      ]
+    },
+    {
+      "role": "heightfield",
+      "pointer": 94412256515136,
+      "base_size": [
+        2048,
+        2048
+      ],
+      "mips": {
+        "num_views": 1,
+        "num_ram_mipmap_images": 1,
+        "levels": [
+          {
+            "level": 0,
+            "size_xy": [
+              2048,
+              2048
+            ],
+            "expected_nbytes": 8388608,
+            "resident": true,
+            "cached_nbytes": 8388608
+          },
+          {
+            "level": 1,
+            "size_xy": [
+              1024,
+              1024
+            ],
+            "expected_nbytes": 2097152,
+            "resident": false,
+            "cached_nbytes": 0
+          },
+          {
+            "level": 2,
+            "size_xy": [
+              512,
+              512
+            ],
+            "expected_nbytes": 524288,
+            "resident": false,
+            "cached_nbytes": 0
+          },
+          {
+            "level": 3,
+            "size_xy": [
+              256,
+              256
+            ],
+            "expected_nbytes": 131072,
+            "resident": false,
+            "cached_nbytes": 0
+          }
+        ]
+      },
+      "contexts": [
+        {
+          "compatible_single_level_byte_models": [
+            {
+              "cpu_level": 0,
+              "logical_size": [
+                2048,
+                2048
+              ],
+              "hypothetical_bytes_per_texel": 2
+            }
+          ],
+          "gsg": {
+            "context_index": 0,
+            "gsg_pointer": 94411837636944,
+            "pgo_pointer": 94411837641824,
+            "max_texture_dimension": 16384,
+            "supports_tex_non_pow2": true,
+            "max_texture_stages": 8
+          },
+          "pgo_cache": {
+            "context_index": 0,
+            "queued_or_prepared": true,
+            "reported_graphics_bytes": 8388608,
+            "active_recent_frame": true,
+            "resident_reported": true,
+            "image_modified_or_unprepared": false
+          },
+          "cpu_minimum_halving_bias": 0,
+          "cpu_size_at_bias": [
+            2048,
+            2048
+          ],
+          "reported_bytes_equal_inferred_uncompressed_level": true,
+          "inferred_uncompressed_level_bytes": 8388608,
+          "hardware_dimensions_proven": false,
+          "actual_upload_bias_proven": false,
+          "active_is_target_pixel_proof": false
+        }
+      ],
+      "candidate_mip1": []
+    },
+    {
+      "role": "yellow",
+      "pointer": 94412247988880,
+      "base_size": [
+        1024,
+        1024
+      ],
+      "mips": {
+        "num_views": 1,
+        "num_ram_mipmap_images": 1,
+        "levels": [
+          {
+            "level": 0,
+            "size_xy": [
+              1024,
+              1024
+            ],
+            "expected_nbytes": 4194304,
+            "resident": true,
+            "cached_nbytes": 4194304
+          },
+          {
+            "level": 1,
+            "size_xy": [
+              512,
+              512
+            ],
+            "expected_nbytes": 1048576,
+            "resident": false,
+            "cached_nbytes": 0
+          },
+          {
+            "level": 2,
+            "size_xy": [
+              256,
+              256
+            ],
+            "expected_nbytes": 262144,
+            "resident": false,
+            "cached_nbytes": 0
+          },
+          {
+            "level": 3,
+            "size_xy": [
+              128,
+              128
+            ],
+            "expected_nbytes": 65536,
+            "resident": false,
+            "cached_nbytes": 0
+          }
+        ]
+      },
+      "contexts": [
+        {
+          "compatible_single_level_byte_models": [
+            {
+              "cpu_level": 0,
+              "logical_size": [
+                1024,
+                1024
+              ],
+              "hypothetical_bytes_per_texel": 4
+            }
+          ],
+          "gsg": {
+            "context_index": 0,
+            "gsg_pointer": 94411837636944,
+            "pgo_pointer": 94411837641824,
+            "max_texture_dimension": 16384,
+            "supports_tex_non_pow2": true,
+            "max_texture_stages": 8
+          },
+          "pgo_cache": {
+            "context_index": 0,
+            "queued_or_prepared": true,
+            "reported_graphics_bytes": 4194304,
+            "active_recent_frame": true,
+            "resident_reported": true,
+            "image_modified_or_unprepared": false
+          },
+          "cpu_minimum_halving_bias": 0,
+          "cpu_size_at_bias": [
+            1024,
+            1024
+          ],
+          "reported_bytes_equal_inferred_uncompressed_level": true,
+          "inferred_uncompressed_level_bytes": 4194304,
+          "hardware_dimensions_proven": false,
+          "actual_upload_bias_proven": false,
+          "active_is_target_pixel_proof": false
+        }
+      ],
+      "candidate_mip1": []
+    }
+  ],
+  "mip1_window_count": 5,
+  "mip1_collection_complete": true,
+  "mip1_texels": 20,
+  "mip1_raw_bytes": 80,
+  "base_raw_bytes": 200,
+  "all_sparse_raw_bytes": 280,
+  "prepared_rss_delta_kib": 0,
+  "prepared_elapsed_seconds": 0.0008803790000229128,
+  "policy": {
+    "max_outputs": 6,
+    "max_gsgs": 6,
+    "max_textures": 3,
+    "max_views": 8,
+    "max_mip_levels": 4,
+    "max_points": 5,
+    "max_logical_buffer_bytes": 2147483648,
+    "max_window_bytes": 16,
+    "max_total_sample_bytes": 80,
+    "max_cpu_seconds": 20,
+    "max_rss_delta_kib": 32768
+  },
+  "limitations": [
+    "API references describe cached getters and original GL upload code; runtime build source identity is not attested.",
+    "Reported graphics bytes aggregate views and may remain nonzero when not resident.",
+    "is_prepared includes queued objects; active refers to a recent frame, never the target pixel.",
+    "Cached cap and byte agreement support a halving hypothesis but do not measure hardware dimensions or prove upload bias.",
+    "Mip1 raw CPU values at projected GeomNode candidate points are not actual terrain raster intersections or GPU sampler values."
+  ],
+  "hardware_texture_dimensions_proven": false,
+  "actual_upload_bias_proven": false,
+  "gpu_pixel_owner_proven": false,
+  "unique_cause_proven": false,
+  "repair_proven": false,
+  "stage7_complete": false,
+  "static_format_path": {
+    "reference": "panda-reference/glGraphicsStateGuardian_src.cxx.data:10453",
+    "texture_is_unsigned_reference": "panda-reference/texture.cxx.data:2604",
+    "desktop_F_red_T_float_maps_to": "GL_R8_SNORM",
+    "source_reference_is_runtime_format_attestation": false
+  }
+}

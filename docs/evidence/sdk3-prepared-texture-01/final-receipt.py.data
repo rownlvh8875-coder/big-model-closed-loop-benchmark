@@ -1,0 +1,39 @@
+from pathlib import Path
+from datetime import datetime,timezone,timedelta
+from concurrent.futures import ThreadPoolExecutor
+import hashlib,json,shutil,subprocess
+R=Path('/dev/shm/stage7-sdk3-runtime-20261116/repo');T=Path('/dev/shm/stage7-sdk3-prepared-texture-20261117');BASE='bf71fb9a794506b1fc64f996f4ff062cbb1b98a4';SOURCE=json.loads((T/'source.json').read_text())['source_sha'];PREFIX='repos/rownlvh8875-coder/big-model-closed-loop-benchmark/'
+def git(*args,cwd=R):return subprocess.check_output(['git',*args],cwd=cwd,text=True).strip()
+def api(path):return json.loads(subprocess.check_output(['gh','api',PREFIX+path],text=True,timeout=60))
+def digest(p):
+ with p.open('rb') as f:return hashlib.file_digest(f,'sha256').hexdigest()
+head=git('rev-parse','HEAD');outroot=R/'output/stage7-sdk3-prepared-texture-01';ci=outroot/'final-ci';v=json.loads((ci/'verification.json').read_text());units=json.loads((ci/'unit-counts.json').read_text());assert v['head_sha']==head and git('branch','--show-current')=='feature/sdk3-prepared-texture-v1' and not git('status','--porcelain')
+assert len(v['ci'])==len(units)==2 and {x['event'] for x in v['ci']}=={'push','pull_request'}
+for row in units:assert row['tests']==2114 and row['skipped']==7 and digest(ci/(row['event']+'-unit.log'))==row['log_sha256']
+actual=json.loads((outroot/'actual/independent-observation.json').read_text());runid=actual['run_id']
+with ThreadPoolExecutor() as ex:pr,parent,main,ref,run=list(ex.map(api,['pulls/142','pulls/141','git/ref/heads/main','git/ref/heads/feature/sdk3-prepared-texture-v1',f'actions/runs/{runid}']))
+payload=json.loads((T/'pr-update.json').read_text());assert pr['head']['sha']==head==ref['object']['sha'] and pr['base']['sha']==BASE and pr['draft'] and pr['state']=='open' and not pr['merged'] and pr['body']==payload['body'] and pr['title']==payload['title']
+before=json.loads((T/'parent-pr141-before.json').read_text());assert all(parent[k]==before[k] for k in ('body','title','draft','state','merged')) and parent['head']['sha']==before['head']['sha']==BASE;assert main['object']['sha']==json.loads((T/'main-before.json').read_text())['object']['sha']=='48e79a7ed5aedf6daa5a62ff68d2225af7955ef1'
+activation=json.loads((T/'activation.json').read_text());assert activation['request']['source_sha']==SOURCE and run['head_sha']==activation['head_sha'] and run['run_attempt']==1 and run['conclusion']=='success'
+assert not git('diff','--name-only',SOURCE,head,'--','scripts','tests','.github/workflows');delta=git('diff','--name-status',BASE,head).splitlines();assert delta and all(row.startswith('A\t') for row in delta);subprocess.run(['git','-c','core.whitespace=cr-at-eol','diff','--check',BASE,head],cwd=R,check=True)
+original=Path('/workspace/big-model-closed-loop-benchmark');assert git('rev-parse','HEAD',cwd=original)=='2435bf438651916ff496c07d334ba264d56a71bc' and not git('status','--porcelain',cwd=original)
+e=R/'docs/evidence/sdk3-prepared-texture-01';preserved=json.loads((e/'original-preservation.json').read_text())
+for row in preserved['original_artifacts']:
+ p=original/row['path'];assert p.stat().st_size==row['nbytes'] and oct(p.stat().st_mode&0o777)==row['mode'] and digest(p)==row['sha256']
+a=actual['analysis'];assert actual['analysis_validated'] and actual['source_sha']==SOURCE and actual['head_sha']==activation['head_sha'] and a['known_renderer_processes']==1 and a['native_completed'] and a['verified_source_images']==14
+index=json.loads((e/'actual/retained-index.json').read_text())
+for row in index['all_files']:
+ p=R/row['retained_path'];assert p.stat().st_size==row['nbytes'] and digest(p)==row['sha256']
+assert 'sha256:'+digest(R/index['zip_path'])==index['artifact_digest'];derived=json.loads((e/'actual/derived-analysis-index.json').read_text())
+for row in derived['files']:
+ p=R/row['path'];assert p.stat().st_size==row['nbytes'] and digest(p)==row['sha256']
+reference=json.loads((e/'reference-index.json').read_text());assert digest(e/'reference-index.json')=='c4e30a70fcc8200f4b6134c1b3c23681b4d17d7609f6d9bd41c8af73398a0f1b'
+for row in reference['files']:
+ p=R/row['file'];assert p.stat().st_size==row['nbytes'] and digest(p)==row['sha256']
+review=json.loads((e/'review/review-assessment.json').read_text());assert review['critical']==review['important']==review['minor']==0 and review['fix_passes']==review['rereviews']==0
+ledger=R/'.superpowers/sdd/2026-11-17-sdk3-prepared-texture/progress.md';assert ledger.read_text().splitlines()[0]=='# SDD ledger — plan: docs/superpowers/plans/2026-11-17-sdk3-prepared-texture.md';rulings=[s for s in ledger.read_text().splitlines() if 'Ruling:' in s];minors=[s for s in ledger.read_text().splitlines() if 'minor (deferred)' in s];assert len(rulings)==3 and len(minors)==0
+out=outroot/'final-closeout';out.mkdir(exist_ok=True)
+with ledger.open('a') as f:f.write(f'Task 3: complete — finalHEAD{head},exactcanonicalfourjobsPASS,both2114tests/7skips,one actual renderer/0officialmodels/0inferences,14sourceimages authenticated,all raw/derived/reference hashes reverified. Draft142head/body/base,parent141/main/original preserved; additionsonly/clean; no source change after execution. Original matrix3/4 overallFAIL/Stage7false preserved. ExactHEAD completion receipt is external to avoid commit self-reference.\n')
+shutil.copyfile(ledger,out/'final-ledger.md');receipt=dict(checked_at_kst=datetime.now(timezone(timedelta(hours=9))).isoformat(),head_sha=head,source_sha=SOURCE,branch='feature/sdk3-prepared-texture-v1',clean=True,pr=142,draft=True,open=True,merged=False,remote_head_matches=True,body_roundtrip=True,parent_pr141_unchanged=True,main_unchanged=True,original_checkout_preserved=True,original_artifacts_verified=6,other_sdd_scratch_untouched=True,source_code_unchanged_after_execution=True,additions_only=True,added_files=len(delta),ci=v['ci'],unit_logs=units,actual_run_id=actual['run_id'],artifact_id=actual['artifact_id'],artifact_digest=actual['artifact_digest'],raw_data_files_verified=len(index['all_files']),derived_files_verified=len(derived['files']),reference_files_verified=len(reference['files']),native_renderers=1,official_model_processes=0,onnx_inferences=0,analysis_validated=True,observation_status=a['status'],native_completed=a['native_completed'],verified_source_images=a['verified_source_images'],source_image_equivalence=a['source_image_equivalence'],renderer_diagnostic_passed=a['renderer_diagnostic_passed'],prepared_complete=a['prepared_complete'],prepared_contexts=a.get('prepared_contexts'),mip1_collection_complete=a['mip1_collection_complete'],mip1_window_count=a['mip1_window_count'],mip1_raw_bytes=a['mip1_sample_bytes_captured'],critical=0,important=0,deferred_minors=0,rulings_count=3,rulings=rulings,original_matrix_passed=3,original_matrix_total=4,original_matrix_gate_passed=False,hardware_texture_dimensions_proven=False,actual_upload_bias_proven=False,gpu_program_execution_proven=False,gpu_pixel_owner_proven=False,unique_cause_proven=False,repair_proven=False,stage7_complete=False,published=False,own_sdd_scratch_archived_removed=True,final_plan_step_completed=True)
+for name,value in [('verification.json',receipt),('pr.json',pr),('parent-pr141.json',parent),('main.json',main),('ref.json',ref),('actual-run-current.json',run)]:(out/name).write_text(json.dumps(value,indent=2)+'\n')
+shutil.rmtree(ledger.parent);assert not git('status','--porcelain');print(json.dumps(receipt))

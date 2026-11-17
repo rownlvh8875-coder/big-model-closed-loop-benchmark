@@ -1,0 +1,608 @@
+{
+  "protocol": "sdk3-prepared-texture-v1",
+  "pid": 10,
+  "nonce": "b584707f108cbd86cc1dc993e54e2715",
+  "status": "PREPARED_RECORDED",
+  "policy": {
+    "max_outputs": 6,
+    "max_gsgs": 6,
+    "max_textures": 3,
+    "max_views": 8,
+    "max_mip_levels": 4,
+    "max_points": 5,
+    "max_logical_buffer_bytes": 2147483648,
+    "max_window_bytes": 16,
+    "max_total_sample_bytes": 80,
+    "max_cpu_seconds": 20,
+    "max_rss_delta_kib": 32768
+  },
+  "reference_index_sha256": "c4e30a70fcc8200f4b6134c1b3c23681b4d17d7609f6d9bd41c8af73398a0f1b",
+  "clock": "journal_elapsed_monotonic_seconds",
+  "prepared_enter_elapsed_s": 271.890171957,
+  "prepared_exit_elapsed_s": 271.89105233600003,
+  "elapsed_wall_seconds": 0.0008803790000229128,
+  "target_read_sha256": "3d7ced2bf6e8c448d5f99695c03221599150c1c93f44e2abb28105041c67054f",
+  "geometry_archive_sha256": "a37825f8adc223c0bf89d271e3eb470205249ba8743e2feea4c26a211f373eaf",
+  "terrain_sha256": "43791e0a6bf8609d3bef79ad2d18b0004591cb76462771a9e07bf7eaebd7601d",
+  "material_sha256": "b1fa19a995f50b181f0a9de9279942bd45688a7b966b32c476c5707ca66b0b53",
+  "borrowed_parent_is_origin": true,
+  "observer_finalized": true,
+  "selection_complete": true,
+  "truncation_reasons": [],
+  "outputs": [
+    {
+      "role": "engine_output",
+      "available": true,
+      "context_index": 0
+    },
+    {
+      "role": "road_output",
+      "available": true,
+      "context_index": 0
+    },
+    {
+      "role": "filter_buffer_0",
+      "available": true,
+      "context_index": 0
+    }
+  ],
+  "contexts": [
+    {
+      "context_index": 0,
+      "gsg_pointer": 94411837636944,
+      "pgo_pointer": 94411837641824,
+      "max_texture_dimension": 16384,
+      "supports_tex_non_pow2": true,
+      "max_texture_stages": 8
+    }
+  ],
+  "textures": [
+    {
+      "role": "attribute",
+      "pointer": 94412256514672,
+      "mips": {
+        "num_views": 1,
+        "num_ram_mipmap_images": 15,
+        "levels": [
+          {
+            "level": 0,
+            "size_xy": [
+              22528,
+              22528
+            ],
+            "expected_nbytes": 2030043136,
+            "resident": true,
+            "cached_nbytes": 2030043136
+          },
+          {
+            "level": 1,
+            "size_xy": [
+              11264,
+              11264
+            ],
+            "expected_nbytes": 507510784,
+            "resident": true,
+            "cached_nbytes": 507510784
+          },
+          {
+            "level": 2,
+            "size_xy": [
+              5632,
+              5632
+            ],
+            "expected_nbytes": 126877696,
+            "resident": true,
+            "cached_nbytes": 126877696
+          },
+          {
+            "level": 3,
+            "size_xy": [
+              2816,
+              2816
+            ],
+            "expected_nbytes": 31719424,
+            "resident": true,
+            "cached_nbytes": 31719424
+          }
+        ]
+      },
+      "minimum_bias_by_context": [
+        1
+      ],
+      "cache": [
+        {
+          "context_index": 0,
+          "queued_or_prepared": true,
+          "reported_graphics_bytes": 126877696,
+          "active_recent_frame": true,
+          "resident_reported": true,
+          "image_modified_or_unprepared": false
+        }
+      ],
+      "mip1_windows": [
+        {
+          "sample_index": 0,
+          "window": {
+            "resident_before": true,
+            "expected_nbytes": 507510784,
+            "compression": 1,
+            "status": "CAPTURED",
+            "size_xy": [
+              11264,
+              11264
+            ],
+            "num_components": 1,
+            "component_width": 4,
+            "component_type": 2,
+            "byte_order": "little",
+            "uv": [
+              1.5744431697582306,
+              1.5004200512163417
+            ],
+            "wrap_codes": [
+              1,
+              1
+            ],
+            "wrap_modes": [
+              "repeat",
+              "repeat"
+            ],
+            "texels": [
+              {
+                "xy": [
+                  6470,
+                  5636
+                ],
+                "offset": 253961496,
+                "nbytes": 4,
+                "raw_hex": "00000000"
+              },
+              {
+                "xy": [
+                  6471,
+                  5636
+                ],
+                "offset": 253961500,
+                "nbytes": 4,
+                "raw_hex": "00000000"
+              },
+              {
+                "xy": [
+                  6470,
+                  5637
+                ],
+                "offset": 254006552,
+                "nbytes": 4,
+                "raw_hex": "9a99993d"
+              },
+              {
+                "xy": [
+                  6471,
+                  5637
+                ],
+                "offset": 254006556,
+                "nbytes": 4,
+                "raw_hex": "00000000"
+              }
+            ],
+            "sample_sha256": "2910f1d5851a445fd60fa39f551d49adf6710eba14b594d497c9b6bdfb8ae82e"
+          }
+        },
+        {
+          "sample_index": 1,
+          "window": {
+            "resident_before": true,
+            "expected_nbytes": 507510784,
+            "compression": 1,
+            "status": "CAPTURED",
+            "size_xy": [
+              11264,
+              11264
+            ],
+            "num_components": 1,
+            "component_width": 4,
+            "component_type": 2,
+            "byte_order": "little",
+            "uv": [
+              1.57445297703116,
+              1.5004230849612568
+            ],
+            "wrap_codes": [
+              1,
+              1
+            ],
+            "wrap_modes": [
+              "repeat",
+              "repeat"
+            ],
+            "texels": [
+              {
+                "xy": [
+                  6470,
+                  5636
+                ],
+                "offset": 253961496,
+                "nbytes": 4,
+                "raw_hex": "00000000"
+              },
+              {
+                "xy": [
+                  6471,
+                  5636
+                ],
+                "offset": 253961500,
+                "nbytes": 4,
+                "raw_hex": "00000000"
+              },
+              {
+                "xy": [
+                  6470,
+                  5637
+                ],
+                "offset": 254006552,
+                "nbytes": 4,
+                "raw_hex": "9a99993d"
+              },
+              {
+                "xy": [
+                  6471,
+                  5637
+                ],
+                "offset": 254006556,
+                "nbytes": 4,
+                "raw_hex": "00000000"
+              }
+            ],
+            "sample_sha256": "2910f1d5851a445fd60fa39f551d49adf6710eba14b594d497c9b6bdfb8ae82e"
+          }
+        },
+        {
+          "sample_index": 2,
+          "window": {
+            "resident_before": true,
+            "expected_nbytes": 507510784,
+            "compression": 1,
+            "status": "CAPTURED",
+            "size_xy": [
+              11264,
+              11264
+            ],
+            "num_components": 1,
+            "component_width": 4,
+            "component_type": 2,
+            "byte_order": "little",
+            "uv": [
+              1.574433386625932,
+              1.5004170249389985
+            ],
+            "wrap_codes": [
+              1,
+              1
+            ],
+            "wrap_modes": [
+              "repeat",
+              "repeat"
+            ],
+            "texels": [
+              {
+                "xy": [
+                  6469,
+                  5636
+                ],
+                "offset": 253961492,
+                "nbytes": 4,
+                "raw_hex": "00000000"
+              },
+              {
+                "xy": [
+                  6470,
+                  5636
+                ],
+                "offset": 253961496,
+                "nbytes": 4,
+                "raw_hex": "00000000"
+              },
+              {
+                "xy": [
+                  6469,
+                  5637
+                ],
+                "offset": 254006548,
+                "nbytes": 4,
+                "raw_hex": "9a99193e"
+              },
+              {
+                "xy": [
+                  6470,
+                  5637
+                ],
+                "offset": 254006552,
+                "nbytes": 4,
+                "raw_hex": "9a99993d"
+              }
+            ],
+            "sample_sha256": "5964723808e15d6837782533e1fc387ed975a064c7b4ebcb83d51583346a05d0"
+          }
+        },
+        {
+          "sample_index": 3,
+          "window": {
+            "resident_before": true,
+            "expected_nbytes": 507510784,
+            "compression": 1,
+            "status": "CAPTURED",
+            "size_xy": [
+              11264,
+              11264
+            ],
+            "num_components": 1,
+            "component_width": 4,
+            "component_type": 2,
+            "byte_order": "little",
+            "uv": [
+              1.574433386625932,
+              1.5004170249389985
+            ],
+            "wrap_codes": [
+              1,
+              1
+            ],
+            "wrap_modes": [
+              "repeat",
+              "repeat"
+            ],
+            "texels": [
+              {
+                "xy": [
+                  6469,
+                  5636
+                ],
+                "offset": 253961492,
+                "nbytes": 4,
+                "raw_hex": "00000000"
+              },
+              {
+                "xy": [
+                  6470,
+                  5636
+                ],
+                "offset": 253961496,
+                "nbytes": 4,
+                "raw_hex": "00000000"
+              },
+              {
+                "xy": [
+                  6469,
+                  5637
+                ],
+                "offset": 254006548,
+                "nbytes": 4,
+                "raw_hex": "9a99193e"
+              },
+              {
+                "xy": [
+                  6470,
+                  5637
+                ],
+                "offset": 254006552,
+                "nbytes": 4,
+                "raw_hex": "9a99993d"
+              }
+            ],
+            "sample_sha256": "5964723808e15d6837782533e1fc387ed975a064c7b4ebcb83d51583346a05d0"
+          }
+        },
+        {
+          "sample_index": 4,
+          "window": {
+            "resident_before": true,
+            "expected_nbytes": 507510784,
+            "compression": 1,
+            "status": "CAPTURED",
+            "size_xy": [
+              11264,
+              11264
+            ],
+            "num_components": 1,
+            "component_width": 4,
+            "component_type": 2,
+            "byte_order": "little",
+            "uv": [
+              1.57445297703116,
+              1.5004230849612568
+            ],
+            "wrap_codes": [
+              1,
+              1
+            ],
+            "wrap_modes": [
+              "repeat",
+              "repeat"
+            ],
+            "texels": [
+              {
+                "xy": [
+                  6470,
+                  5636
+                ],
+                "offset": 253961496,
+                "nbytes": 4,
+                "raw_hex": "00000000"
+              },
+              {
+                "xy": [
+                  6471,
+                  5636
+                ],
+                "offset": 253961500,
+                "nbytes": 4,
+                "raw_hex": "00000000"
+              },
+              {
+                "xy": [
+                  6470,
+                  5637
+                ],
+                "offset": 254006552,
+                "nbytes": 4,
+                "raw_hex": "9a99993d"
+              },
+              {
+                "xy": [
+                  6471,
+                  5637
+                ],
+                "offset": 254006556,
+                "nbytes": 4,
+                "raw_hex": "00000000"
+              }
+            ],
+            "sample_sha256": "2910f1d5851a445fd60fa39f551d49adf6710eba14b594d497c9b6bdfb8ae82e"
+          }
+        }
+      ]
+    },
+    {
+      "role": "heightfield",
+      "pointer": 94412256515136,
+      "mips": {
+        "num_views": 1,
+        "num_ram_mipmap_images": 1,
+        "levels": [
+          {
+            "level": 0,
+            "size_xy": [
+              2048,
+              2048
+            ],
+            "expected_nbytes": 8388608,
+            "resident": true,
+            "cached_nbytes": 8388608
+          },
+          {
+            "level": 1,
+            "size_xy": [
+              1024,
+              1024
+            ],
+            "expected_nbytes": 2097152,
+            "resident": false,
+            "cached_nbytes": 0
+          },
+          {
+            "level": 2,
+            "size_xy": [
+              512,
+              512
+            ],
+            "expected_nbytes": 524288,
+            "resident": false,
+            "cached_nbytes": 0
+          },
+          {
+            "level": 3,
+            "size_xy": [
+              256,
+              256
+            ],
+            "expected_nbytes": 131072,
+            "resident": false,
+            "cached_nbytes": 0
+          }
+        ]
+      },
+      "minimum_bias_by_context": [
+        0
+      ],
+      "cache": [
+        {
+          "context_index": 0,
+          "queued_or_prepared": true,
+          "reported_graphics_bytes": 8388608,
+          "active_recent_frame": true,
+          "resident_reported": true,
+          "image_modified_or_unprepared": false
+        }
+      ],
+      "mip1_windows": []
+    },
+    {
+      "role": "yellow",
+      "pointer": 94412247988880,
+      "mips": {
+        "num_views": 1,
+        "num_ram_mipmap_images": 1,
+        "levels": [
+          {
+            "level": 0,
+            "size_xy": [
+              1024,
+              1024
+            ],
+            "expected_nbytes": 4194304,
+            "resident": true,
+            "cached_nbytes": 4194304
+          },
+          {
+            "level": 1,
+            "size_xy": [
+              512,
+              512
+            ],
+            "expected_nbytes": 1048576,
+            "resident": false,
+            "cached_nbytes": 0
+          },
+          {
+            "level": 2,
+            "size_xy": [
+              256,
+              256
+            ],
+            "expected_nbytes": 262144,
+            "resident": false,
+            "cached_nbytes": 0
+          },
+          {
+            "level": 3,
+            "size_xy": [
+              128,
+              128
+            ],
+            "expected_nbytes": 65536,
+            "resident": false,
+            "cached_nbytes": 0
+          }
+        ]
+      },
+      "minimum_bias_by_context": [
+        0
+      ],
+      "cache": [
+        {
+          "context_index": 0,
+          "queued_or_prepared": true,
+          "reported_graphics_bytes": 4194304,
+          "active_recent_frame": true,
+          "resident_reported": true,
+          "image_modified_or_unprepared": false
+        }
+      ],
+      "mip1_windows": []
+    }
+  ],
+  "mip1_sample_bytes_captured": 80,
+  "reported_state_is_cpu_cache": true,
+  "hardware_texture_dimensions_proven": false,
+  "actual_upload_bias_proven": false,
+  "active_is_target_pixel_proof": false,
+  "gpu_program_execution_proven": false,
+  "gpu_pixel_owner_proven": false,
+  "unique_cause_proven": false,
+  "repair_proven": false,
+  "stage7_complete": false,
+  "rss_peak_kib": [
+    5767768,
+    5767768
+  ]
+}
