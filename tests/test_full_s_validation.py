@@ -22,6 +22,8 @@ class FullSContracts(unittest.TestCase):
   camera=Camera()
   with self.assertRaises(ValueError):f.run_full_s(Policy(),camera,route(),seed=20261109,scene='s_curve_left_right')
   self.assertEqual(camera.poses,[])
+ def test_route_exports_primitives_for_independent_geometry_reconstruction(self):
+  rows=f.validate_route(route());self.assertEqual(rows[0]['shape']['kind'],'circular');self.assertEqual(rows[0]['shape']['radius'],1000.);self.assertEqual(rows[1]['shape']['kind'],'straight');self.assertEqual(rows[2]['shape']['direction'],-1)
  def test_non_s_discontinuous_or_repeated_route_rejected_before_inference(self):
   a,b,c=route()
   for lanes in ((a,b),(a,b,a),(a,b,c)):
