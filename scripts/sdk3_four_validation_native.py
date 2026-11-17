@@ -8,6 +8,10 @@ from scripts.sdk3_priority_model_trial import clone
 def owned_child_command(args,parent_pid):
  return [sys.executable,'-I','-S','-B',str(Path(__file__).resolve()),'--owned-child','--server-owner',str(parent_pid),'--out',args.out,'--nonce',args.nonce,'--model-trial' if args.model_trial else '--probe','--seed',str(args.seed),'--scenario',args.scenario]
 
+def prepare_nonce(args):
+ if not args.owned_child and not args.model_pair and args.nonce=='0'*32:args.nonce=secrets.token_hex(16)
+ p.need(args.model_pair or args.nonce!='0'*32,'fresh nonce required; owned child cannot rebind zero')
+
 def bootstrap(report):
  sys.path.insert(0,p.SITE);import panda3d.core as core
  preload=ctypes.CDLL(p.SITE+'/panda3d/libpanda.so.1.10',mode=os.RTLD_NOW|os.RTLD_GLOBAL);sdk=ctypes.CDLL(p.SDK_PATH,mode=os.RTLD_NOW|os.RTLD_LOCAL);report.update(core_sha256=p.digest(core.__file__),sdk_sha256=p.digest(p.SDK_PATH),load_order='core-first',panda_version=core.PandaSystem.get_version_string());p.need(report['core_sha256']==p.CORE_SHA and report['sdk_sha256']==p.SDK_SHA,'actual immutable SDK/core bytes');return core,preload,sdk
@@ -44,7 +48,7 @@ def run_pair(args):
  finally:p.write(out/'pair.json',dict(status='PAIR_RECORDED' if failure is None else 'FAILED',failure=failure,counts=p.observed_model_processes(ledger)))
 
 def main(argv=None):
- parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--out',required=True);parser.add_argument('--nonce',default='0'*32);parser.add_argument('--seed',required=True,type=int);parser.add_argument('--scenario',required=True,choices=('s_curve_left_right','s_curve_right_left'));m=parser.add_mutually_exclusive_group(required=True);m.add_argument('--probe',action='store_true');m.add_argument('--model-trial',action='store_true');m.add_argument('--model-pair',action='store_true');parser.add_argument('--owned-child',action='store_true');parser.add_argument('--server-owner',type=int);args=parser.parse_args(argv);p.need((args.seed,args.scenario) in p.CASES and len(args.nonce)==32 and all(x in '0123456789abcdef' for x in args.nonce),'registered case and owned nonce');p.need(not os.environ.get('LD_PRELOAD'),'no draw instrumentation preload')
+ parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--out',required=True);parser.add_argument('--nonce',default='0'*32);parser.add_argument('--seed',required=True,type=int);parser.add_argument('--scenario',required=True,choices=('s_curve_left_right','s_curve_right_left'));m=parser.add_mutually_exclusive_group(required=True);m.add_argument('--probe',action='store_true');m.add_argument('--model-trial',action='store_true');m.add_argument('--model-pair',action='store_true');parser.add_argument('--owned-child',action='store_true');parser.add_argument('--server-owner',type=int);args=parser.parse_args(argv);p.need((args.seed,args.scenario) in p.CASES and len(args.nonce)==32 and all(x in '0123456789abcdef' for x in args.nonce),'registered case and owned nonce');p.need(not os.environ.get('LD_PRELOAD'),'no draw instrumentation preload');prepare_nonce(args)
  if args.model_pair:p.need(not args.owned_child,'pair is parent only');run_pair(args);return 0
  if args.owned_child:return run_child(args)
  def bounded_wait(child,server,original_limit):return owner.wait_child_then_stop_server(child,server,3600 if args.model_trial else 240)
