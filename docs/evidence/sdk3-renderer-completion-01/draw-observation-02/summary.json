@@ -1,0 +1,301 @@
+{
+  "status": "DRAW_OBSERVATION_RECORDED",
+  "official_model_processes": 0,
+  "onnx_inferences": 0,
+  "repair_proven": false,
+  "stage7_complete": false,
+  "arms": {
+    "canary": {
+      "nonce": "c72377a19be377d71f57c2d744c9383d",
+      "spawn_attempted": true,
+      "execution": {
+        "status": "EXIT_OBSERVED",
+        "returncode": 0,
+        "failure": null,
+        "stopped_state": {
+          "Status": "exited",
+          "Running": false,
+          "Paused": false,
+          "Restarting": false,
+          "OOMKilled": false,
+          "Dead": false,
+          "Pid": 0,
+          "ExitCode": 0,
+          "Error": "",
+          "StartedAt": "2026-11-17T13:06:34.642038546Z",
+          "FinishedAt": "2026-11-17T13:06:35.411580442Z"
+        },
+        "create_attempted": true,
+        "start_attempted": true,
+        "container_id": "e41306aca4cb094a8d12cbb196166a9197713ccc52866841d0206344b8dc4eec",
+        "ownership_unresolved": false,
+        "owned_container_removed": true,
+        "cleanup_failure": null
+      },
+      "analysis": {
+        "status": "QUALIFIED_TINY_GPU_CANARY",
+        "draws": 8,
+        "queries": 1351,
+        "max_effective_samples_observed": 1,
+        "multiple_effective_samples_qualified": false,
+        "scope": "single-sample and observed multisample-storage resolve only",
+        "stage7_complete": false
+      }
+    },
+    "off": {
+      "nonce": "a73662a59e36ba9fe8f160f3151593c1",
+      "spawn_attempted": true,
+      "execution": {
+        "status": "EXIT_OBSERVED",
+        "returncode": 0,
+        "failure": null,
+        "stopped_state": {
+          "Status": "exited",
+          "Running": false,
+          "Paused": false,
+          "Restarting": false,
+          "OOMKilled": false,
+          "Dead": false,
+          "Pid": 0,
+          "ExitCode": 0,
+          "Error": "",
+          "StartedAt": "2026-11-17T13:06:35.622360222Z",
+          "FinishedAt": "2026-11-17T13:12:05.479957417Z"
+        },
+        "create_attempted": true,
+        "start_attempted": true,
+        "container_id": "048769329f7f80be457e91923ff4d60daf71550122eafe0a85162bf5dc2f0ab3",
+        "ownership_unresolved": false,
+        "owned_container_removed": true,
+        "cleanup_failure": null
+      },
+      "analysis": {
+        "status": "REPLAY_RECORDED",
+        "source_image_equivalence": false,
+        "capture_matches_reference": [
+          true,
+          true,
+          true,
+          false,
+          true,
+          true,
+          true
+        ],
+        "target_road_rgb": [
+          199,
+          187,
+          0
+        ],
+        "verified_images": 14,
+        "trace_complete": true,
+        "trace_stats": {
+          "version": 1,
+          "error": 0,
+          "active": 0,
+          "restored": 1,
+          "lookups": 0,
+          "forwards": 0,
+          "draws": 0,
+          "queries": 0,
+          "readbacks": 0,
+          "blits": 0,
+          "complete": true
+        },
+        "gpu_pixel_owner_proven": false,
+        "unique_cause_proven": false,
+        "repair_proven": false,
+        "stage7_complete": false
+      }
+    },
+    "trace": {
+      "nonce": "639f400a0e68562003bf50ab2f3c466e",
+      "spawn_attempted": true,
+      "execution": {
+        "status": "EXIT_OBSERVED",
+        "returncode": 0,
+        "failure": null,
+        "stopped_state": {
+          "Status": "exited",
+          "Running": false,
+          "Paused": false,
+          "Restarting": false,
+          "OOMKilled": false,
+          "Dead": false,
+          "Pid": 0,
+          "ExitCode": 0,
+          "Error": "",
+          "StartedAt": "2026-11-17T13:12:05.78131042Z",
+          "FinishedAt": "2026-11-17T13:17:35.941675387Z"
+        },
+        "create_attempted": true,
+        "start_attempted": true,
+        "container_id": "990bc2f79d577d2c3dc0b30b4097b019daaeb3e076fcb92355f7e980e39fab78",
+        "ownership_unresolved": false,
+        "owned_container_removed": true,
+        "cleanup_failure": null
+      },
+      "analysis": {
+        "status": "REPLAY_RECORDED",
+        "source_image_equivalence": false,
+        "capture_matches_reference": [
+          true,
+          false,
+          true,
+          true,
+          true,
+          false,
+          true
+        ],
+        "target_road_rgb": [
+          167,
+          163,
+          158
+        ],
+        "verified_images": 14,
+        "trace_complete": true,
+        "trace_stats": {
+          "version": 1,
+          "error": 0,
+          "active": 0,
+          "restored": 1,
+          "lookups": 161,
+          "forwards": 2133,
+          "draws": 5,
+          "queries": 1052,
+          "readbacks": 18,
+          "blits": 8,
+          "complete": true
+        },
+        "gpu_pixel_owner_proven": false,
+        "unique_cause_proven": false,
+        "repair_proven": false,
+        "stage7_complete": false,
+        "callback_receipt": {
+          "status": "TRACE_RECORDED",
+          "target_region_entries": 2,
+          "target_region_returns": 2,
+          "errors": [],
+          "callbacks_restored": true,
+          "trace_complete": true,
+          "scene_observations": [
+            {
+              "scene_setup_pointer": 94710302440128,
+              "region_pointer": 94710195056368,
+              "camera_node_pointer": 94710195047424,
+              "scene_root": "render",
+              "camera_path": "render/world_np/cam",
+              "camera_transform": [
+                0.08031406998634338,
+                -0.9967696070671082,
+                0.0,
+                0.0,
+                0.9967696070671082,
+                0.08031406998634338,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                67.79573822021484,
+                0.4795995354652405,
+                1.2200000286102295,
+                1.0
+              ],
+              "world_transform": [
+                0.08031406998634338,
+                0.9967696070671082,
+                0.0,
+                0.0,
+                -0.9967696070671082,
+                0.08031406998634338,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                -4.966899871826172,
+                -67.61524963378906,
+                -1.2200000286102295,
+                1.0
+              ],
+              "viewport": [
+                964,
+                604
+              ],
+              "transform_layout": "row-major Panda matrix",
+              "recorded_thread_id": 140335331134400,
+              "phase": 1,
+              "cpu_capture_label_proves_gpu_pose": false
+            },
+            {
+              "scene_setup_pointer": 94710304733424,
+              "region_pointer": 94710195048320,
+              "camera_node_pointer": 94710195055568,
+              "scene_root": "filter-base-quad",
+              "camera_path": "filter-base-quad/filter-quad-cam",
+              "camera_transform": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "world_transform": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "viewport": [
+                964,
+                604
+              ],
+              "transform_layout": "row-major Panda matrix",
+              "recorded_thread_id": 140335331134400,
+              "phase": 2,
+              "cpu_capture_label_proves_gpu_pose": false
+            }
+          ]
+        },
+        "draw_count": 5,
+        "program_count": 4,
+        "final_post_float_rgba": [
+          0.654901981,
+          0.639215708,
+          0.619607866,
+          1
+        ]
+      }
+    }
+  },
+  "source_sha": "c41b97705c973da11d823f1441cbaf70ad51e698",
+  "host_memory": {
+    "MemTotal": 16760348672,
+    "MemAvailable": 15334731776
+  }
+}

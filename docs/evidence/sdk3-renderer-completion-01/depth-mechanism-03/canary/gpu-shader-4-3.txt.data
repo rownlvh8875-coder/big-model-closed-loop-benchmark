@@ -1,0 +1,2 @@
+#version 330
+uniform struct{sampler2D data_texture;sampler2D heightfield;int view_index;int terrain_size;int chunk_size;}ShaderTerrainMesh;uniform sampler2D attribute_tex;uniform float elevation_texture_ratio;flat in int instance;out vec4 color;void main(){vec2 uv=vec2(float(ShaderTerrainMesh.chunk_size)/float(ShaderTerrainMesh.terrain_size));vec3 extra=texture(attribute_tex,uv).rgb+texture(ShaderTerrainMesh.heightfield,uv).rgb*elevation_texture_ratio;color=vec4(texelFetch(ShaderTerrainMesh.data_texture,ivec2(instance,ShaderTerrainMesh.view_index),0).rgb+extra,1);}

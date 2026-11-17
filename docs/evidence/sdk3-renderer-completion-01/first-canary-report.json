@@ -1,0 +1,164 @@
+{
+  "protocol": "sdk3-draw-trace-native-v1",
+  "status": "TINY_GPU_CANARY_RECORDED",
+  "pid": 10,
+  "process_uuid": "861e9c6c94f747da9322020e5179e580",
+  "nonce": "9a9573cafcda84da1af88b5e860da9b9",
+  "mode": "canary",
+  "seed": 20261110,
+  "scenario": "s_curve_left_right",
+  "captures": [],
+  "official_model_processes": 0,
+  "onnx_inferences": 0,
+  "model_weights_used": false,
+  "repair_proven": false,
+  "stage7_complete": false,
+  "provider_closed": true,
+  "gpu_pixel_owner_proven": false,
+  "unique_cause_proven": false,
+  "core_sha256": "8b0372f1df91a930f18b2551f7fde5d5687e21bc79dee9ecd0dd2018cba72490",
+  "panda_version": "1.10.13",
+  "sdk_sha256": "27cd80fb1c06feaa7da8b5658cce918d1e3ab71c304a0c0ce42e30688ac008f3",
+  "source_stats_before": {
+    "configured": 0,
+    "closed": 0,
+    "error": 0,
+    "forwarded": 0,
+    "resolutions": 0,
+    "paths": 0,
+    "events": 0
+  },
+  "trace_library_sha256": "58d055686cddcb2453ecfac4b7f0e2c886f53595fa87c8bd87a8f2521f20243b",
+  "observer_is_intervention": true,
+  "driver": {
+    "vendor": "Mesa",
+    "renderer": "softpipe",
+    "version": "3.3 (Compatibility Profile) Mesa 25.2.8-0ubuntu0.24.04.4"
+  },
+  "canary_cases": [
+    {
+      "phase": 0,
+      "requested_samples": 0,
+      "framebuffer": "depth_bits=24 float_color color_bits=48 red_bits=16 green_bits=16 blue_bits=16 alpha_bits=16 ",
+      "challenges": [
+        {
+          "color": [
+            1.0,
+            1.0,
+            0.0
+          ],
+          "draw_range": [
+            1,
+            2
+          ],
+          "raw_file": "canary-0-0.rgba",
+          "nbytes": 1024,
+          "sha256": "dc13b52bb4b15f37b9cafaced1f22e6095b6c3bcf4fc2a8da20651b44e33751b",
+          "component_width": 4,
+          "component_type": 2,
+          "all64_exact": true
+        },
+        {
+          "color": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "draw_range": [
+            3,
+            4
+          ],
+          "raw_file": "canary-0-1.rgba",
+          "nbytes": 1024,
+          "sha256": "5c80663f6564f37fa71338edc03e067db5fc5aaae0ba5f8ae5b31f6d9f4e4433",
+          "component_width": 4,
+          "component_type": 2,
+          "all64_exact": true
+        }
+      ],
+      "callback_receipt": {
+        "status": "TRACE_RECORDED",
+        "target_region_entries": 4,
+        "target_region_returns": 4,
+        "errors": [],
+        "callbacks_restored": true,
+        "trace_complete": true,
+        "scene_observations": []
+      }
+    },
+    {
+      "phase": 1,
+      "requested_samples": 4,
+      "framebuffer": "depth_bits=24 float_color color_bits=48 red_bits=16 green_bits=16 blue_bits=16 alpha_bits=16 multisamples=4 ",
+      "challenges": [
+        {
+          "color": [
+            1.0,
+            1.0,
+            0.0
+          ],
+          "draw_range": [
+            5,
+            6
+          ],
+          "raw_file": "canary-1-0.rgba",
+          "nbytes": 1024,
+          "sha256": "dc13b52bb4b15f37b9cafaced1f22e6095b6c3bcf4fc2a8da20651b44e33751b",
+          "component_width": 4,
+          "component_type": 2,
+          "all64_exact": true
+        },
+        {
+          "color": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "draw_range": [
+            7,
+            8
+          ],
+          "raw_file": "canary-1-1.rgba",
+          "nbytes": 1024,
+          "sha256": "5c80663f6564f37fa71338edc03e067db5fc5aaae0ba5f8ae5b31f6d9f4e4433",
+          "component_width": 4,
+          "component_type": 2,
+          "all64_exact": true
+        }
+      ],
+      "callback_receipt": {
+        "status": "TRACE_RECORDED",
+        "target_region_entries": 4,
+        "target_region_returns": 4,
+        "errors": [],
+        "callbacks_restored": true,
+        "trace_complete": true,
+        "scene_observations": []
+      }
+    }
+  ],
+  "canary_render_calls": 8,
+  "trace_stats": {
+    "version": 1,
+    "error": 0,
+    "active": 0,
+    "restored": 1,
+    "lookups": 161,
+    "forwards": 8,
+    "draws": 8,
+    "queries": 1319,
+    "readbacks": 32,
+    "blits": 8
+  },
+  "source_stats_after": {
+    "configured": 0,
+    "closed": 0,
+    "error": 0,
+    "forwarded": 0,
+    "resolutions": 0,
+    "paths": 0,
+    "events": 0
+  },
+  "server_returncode": 0,
+  "child_finalized_before_server_stop": true
+}

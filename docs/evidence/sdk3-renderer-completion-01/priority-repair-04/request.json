@@ -1,0 +1,40 @@
+{
+  "schema": "sdk3-terrain-priority-request-v1",
+  "repair_id": "SDK3_RGB_TERRAIN_DEPTH_TIE_PRIORITY_V1",
+  "source_sha": "1d1763f5279581be499450c99857504697e9a695",
+  "push_ci": 44105540591,
+  "pr_ci": 44105554902,
+  "arms": [
+    "canary",
+    "candidate-off",
+    "candidate-trace"
+  ],
+  "renderer_processes": 3,
+  "official_model_processes": 0,
+  "onnx_inferences": 0,
+  "target_pixel": [
+    596,
+    494
+  ],
+  "limits": {
+    "max_draws": 512,
+    "max_queries": 100000,
+    "max_pixel_readbacks": 2048,
+    "max_samples": 16,
+    "max_programs": 8,
+    "max_shader_files": 16,
+    "max_shader_file_bytes": 262144,
+    "max_shader_bytes": 4194304,
+    "max_trace_bytes": 33554432,
+    "max_terrain_row_texels": 64,
+    "max_terrain_rows": 2,
+    "max_terrain_row_bytes": 1024,
+    "max_terrain_total_bytes": 2048,
+    "max_depth_clear_pixels": 1,
+    "max_transform_matrices": 100,
+    "max_transform_bytes_per_draw": 6400
+  },
+  "canary_child_timeout_seconds": 90,
+  "child_timeout_seconds": 600,
+  "container_timeout_seconds": 630
+}

@@ -1,0 +1,349 @@
+{
+  "protocol": "sdk3-draw-trace-native-v1",
+  "status": "TINY_GPU_CANARY_RECORDED",
+  "pid": 10,
+  "process_uuid": "e90befe2861d41adb4fed25592e31b2a",
+  "nonce": "ab884beb900d4e98812a798965eb926e",
+  "mode": "canary",
+  "seed": 20261110,
+  "scenario": "s_curve_left_right",
+  "captures": [],
+  "official_model_processes": 0,
+  "onnx_inferences": 0,
+  "model_weights_used": false,
+  "repair_proven": false,
+  "stage7_complete": false,
+  "provider_closed": true,
+  "gpu_pixel_owner_proven": false,
+  "unique_cause_proven": false,
+  "intentional_target_depth_mutation": false,
+  "renderer_policy_modified": false,
+  "renderer_candidate_id": null,
+  "core_sha256": "8b0372f1df91a930f18b2551f7fde5d5687e21bc79dee9ecd0dd2018cba72490",
+  "panda_version": "1.10.13",
+  "sdk_sha256": "27cd80fb1c06feaa7da8b5658cce918d1e3ab71c304a0c0ce42e30688ac008f3",
+  "source_stats_before": {
+    "configured": 0,
+    "closed": 0,
+    "error": 0,
+    "forwarded": 0,
+    "resolutions": 0,
+    "paths": 0,
+    "events": 0
+  },
+  "trace_library_sha256": "2a07fd1a5f557b1d65debc266e356af32a305ea2fa9380c67a1fcbf5c4569f61",
+  "observer_is_intervention": true,
+  "driver": {
+    "vendor": "Mesa",
+    "renderer": "softpipe",
+    "version": "3.3 (Compatibility Profile) Mesa 25.2.8-0ubuntu0.24.04.4"
+  },
+  "canary_cases": [
+    {
+      "phase": 0,
+      "requested_samples": 0,
+      "framebuffer": "depth_bits=24 float_color color_bits=48 red_bits=16 green_bits=16 blue_bits=16 alpha_bits=16 ",
+      "challenges": [
+        {
+          "color": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "draw_range": [
+            1,
+            2
+          ],
+          "raw_file": "canary-0-0.rgba",
+          "nbytes": 1024,
+          "sha256": "5eec73e4050f3eb5e6378d8a484ef2ac1362bf636bf6b77d8b002498b6878fe7",
+          "component_width": 4,
+          "component_type": 2,
+          "all64_exact": true
+        },
+        {
+          "color": [
+            0.0,
+            1.0,
+            1.0
+          ],
+          "draw_range": [
+            3,
+            4
+          ],
+          "raw_file": "canary-0-1.rgba",
+          "nbytes": 1024,
+          "sha256": "64dfa26ebbaafc94bd0e8efd2c95f6143501da0ad3e4bcc8feda227d8394a53e",
+          "component_width": 4,
+          "component_type": 2,
+          "all64_exact": true
+        }
+      ],
+      "callback_receipt": {
+        "status": "TRACE_RECORDED",
+        "target_region_entries": 4,
+        "target_region_returns": 4,
+        "errors": [],
+        "callbacks_restored": true,
+        "trace_complete": true,
+        "scene_observations": []
+      }
+    },
+    {
+      "phase": 1,
+      "requested_samples": 4,
+      "framebuffer": "depth_bits=24 float_color color_bits=48 red_bits=16 green_bits=16 blue_bits=16 alpha_bits=16 multisamples=4 ",
+      "challenges": [
+        {
+          "color": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "draw_range": [
+            5,
+            6
+          ],
+          "raw_file": "canary-1-0.rgba",
+          "nbytes": 1024,
+          "sha256": "5eec73e4050f3eb5e6378d8a484ef2ac1362bf636bf6b77d8b002498b6878fe7",
+          "component_width": 4,
+          "component_type": 2,
+          "all64_exact": true
+        },
+        {
+          "color": [
+            0.0,
+            1.0,
+            1.0
+          ],
+          "draw_range": [
+            7,
+            8
+          ],
+          "raw_file": "canary-1-1.rgba",
+          "nbytes": 1024,
+          "sha256": "64dfa26ebbaafc94bd0e8efd2c95f6143501da0ad3e4bcc8feda227d8394a53e",
+          "component_width": 4,
+          "component_type": 2,
+          "all64_exact": true
+        }
+      ],
+      "callback_receipt": {
+        "status": "TRACE_RECORDED",
+        "target_region_entries": 4,
+        "target_region_returns": 4,
+        "errors": [],
+        "callbacks_restored": true,
+        "trace_complete": true,
+        "scene_observations": []
+      }
+    }
+  ],
+  "canary_render_calls": 19,
+  "depth_probe_canary": {
+    "status": "ONE_PIXEL_DEPTH_PROBE_VERIFIED",
+    "verified_unchanged_pixels": 63,
+    "mutated_pixel_gl": [
+      3,
+      3
+    ],
+    "raw_origin": "GL_bottom_left",
+    "nbytes": 1024,
+    "sha256": "56e35dd35fd9e027bf8ae7f0760cd19f34789c7f484f3ce1498b50070b1a693a",
+    "front": [
+      1.0,
+      0.0,
+      0.0
+    ],
+    "back": [
+      0.0,
+      1.0,
+      1.0
+    ],
+    "component_width": 4,
+    "component_type": 2,
+    "raw_before": "canary-depth-before.rgba",
+    "raw_before_sha256": "5eec73e4050f3eb5e6378d8a484ef2ac1362bf636bf6b77d8b002498b6878fe7",
+    "raw_file": "canary-depth-after.rgba",
+    "draw_range": [
+      9,
+      10
+    ],
+    "callback_receipt": {
+      "status": "TRACE_RECORDED",
+      "target_region_entries": 1,
+      "target_region_returns": 1,
+      "errors": [],
+      "callbacks_restored": true,
+      "trace_complete": true,
+      "scene_observations": []
+    },
+    "requested_samples": 4,
+    "framebuffer": "depth_bits=24 float_color color_bits=48 red_bits=16 green_bits=16 blue_bits=16 alpha_bits=16 stencil_bits=8 multisamples=1 force_hardware force_software ",
+    "expected_terrain_data_row": [
+      0.0,
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  "priority_canary": {
+    "protocol": "sdk3-priority-tie-canary-v1",
+    "status": "PRIORITY_TIE_CANARY_RECORDED",
+    "tag_key": "sdk3-priority-rgb",
+    "terrain_label": "terrain",
+    "render_calls": 8,
+    "cases": [
+      {
+        "stage": "control",
+        "first": "geometry",
+        "images": [
+          {
+            "camera": "road",
+            "file": "priority-control-geometry-road.rgba",
+            "nbytes": 1024,
+            "sha256": "5eec73e4050f3eb5e6378d8a484ef2ac1362bf636bf6b77d8b002498b6878fe7",
+            "component_width": 4,
+            "component_type": 2
+          },
+          {
+            "camera": "wide",
+            "file": "priority-control-geometry-wide.rgba",
+            "nbytes": 1024,
+            "sha256": "5eec73e4050f3eb5e6378d8a484ef2ac1362bf636bf6b77d8b002498b6878fe7",
+            "component_width": 4,
+            "component_type": 2
+          }
+        ]
+      },
+      {
+        "stage": "control",
+        "first": "terrain",
+        "images": [
+          {
+            "camera": "road",
+            "file": "priority-control-terrain-road.rgba",
+            "nbytes": 1024,
+            "sha256": "64dfa26ebbaafc94bd0e8efd2c95f6143501da0ad3e4bcc8feda227d8394a53e",
+            "component_width": 4,
+            "component_type": 2
+          },
+          {
+            "camera": "wide",
+            "file": "priority-control-terrain-wide.rgba",
+            "nbytes": 1024,
+            "sha256": "64dfa26ebbaafc94bd0e8efd2c95f6143501da0ad3e4bcc8feda227d8394a53e",
+            "component_width": 4,
+            "component_type": 2
+          }
+        ]
+      },
+      {
+        "stage": "candidate",
+        "first": "geometry",
+        "images": [
+          {
+            "camera": "road",
+            "file": "priority-candidate-geometry-road.rgba",
+            "nbytes": 1024,
+            "sha256": "64dfa26ebbaafc94bd0e8efd2c95f6143501da0ad3e4bcc8feda227d8394a53e",
+            "component_width": 4,
+            "component_type": 2
+          },
+          {
+            "camera": "wide",
+            "file": "priority-candidate-geometry-wide.rgba",
+            "nbytes": 1024,
+            "sha256": "64dfa26ebbaafc94bd0e8efd2c95f6143501da0ad3e4bcc8feda227d8394a53e",
+            "component_width": 4,
+            "component_type": 2
+          }
+        ]
+      },
+      {
+        "stage": "candidate",
+        "first": "terrain",
+        "images": [
+          {
+            "camera": "road",
+            "file": "priority-candidate-terrain-road.rgba",
+            "nbytes": 1024,
+            "sha256": "64dfa26ebbaafc94bd0e8efd2c95f6143501da0ad3e4bcc8feda227d8394a53e",
+            "component_width": 4,
+            "component_type": 2
+          },
+          {
+            "camera": "wide",
+            "file": "priority-candidate-terrain-wide.rgba",
+            "nbytes": 1024,
+            "sha256": "64dfa26ebbaafc94bd0e8efd2c95f6143501da0ad3e4bcc8feda227d8394a53e",
+            "component_width": 4,
+            "component_type": 2
+          }
+        ]
+      }
+    ],
+    "receipt": {
+      "adapter_sha256": "16aafa7d35bcb91cf11b1744749a47e049ba23049aa5f7985ac4d31a66aba182",
+      "adapter_path": "/work/repo/bigbench/sdk3_terrain_priority.py",
+      "protocol": "sdk3-rgb-terrain-priority-v1",
+      "repair_id": "SDK3_RGB_TERRAIN_DEPTH_TIE_PRIORITY_V1",
+      "classification": "MODIFIED_RGB_TERRAIN_PRIORITY_CANDIDATE",
+      "bin": "background",
+      "draw_order": -1,
+      "override": 1000,
+      "tag_key": "sdk3-priority-rgb",
+      "terrain_label": "terrain",
+      "cameras": [
+        {
+          "role": "road",
+          "camera_pointer": 94297348482336,
+          "original_state_pointer": 139701596036720,
+          "updated_state_pointer": 139701135173376,
+          "shader_attrib_pointer": 94297336935552,
+          "shader_preserved": true,
+          "other_attributes_preserved": true
+        },
+        {
+          "role": "wide",
+          "camera_pointer": 94297348488096,
+          "original_state_pointer": 139701596036720,
+          "updated_state_pointer": 139701135173376,
+          "shader_attrib_pointer": 94297336935552,
+          "shader_preserved": true,
+          "other_attributes_preserved": true
+        }
+      ],
+      "depth_function_changed": false,
+      "shader_replaced": false,
+      "extra_render_tasks": 0,
+      "source_pixel_rewrite": false,
+      "historical_original_result_replaced": false,
+      "stage7_complete": false
+    }
+  },
+  "trace_stats": {
+    "version": 1,
+    "error": 0,
+    "active": 0,
+    "restored": 1,
+    "lookups": 161,
+    "forwards": 46,
+    "draws": 10,
+    "queries": 1858,
+    "readbacks": 41,
+    "blits": 12
+  },
+  "source_stats_after": {
+    "configured": 0,
+    "closed": 0,
+    "error": 0,
+    "forwarded": 0,
+    "resolutions": 0,
+    "paths": 0,
+    "events": 0
+  },
+  "server_returncode": 0,
+  "child_finalized_before_server_stop": true
+}

@@ -1,0 +1,110 @@
+...........F......FFFFFFFFFFFF
+======================================================================
+FAIL: test_resolve_clipped_by_scissor_is_partial_but_original_draw_still_forwards (tests.test_sdk3_draw_trace.DrawTraceContracts.test_resolve_clipped_by_scissor_is_partial_but_original_draw_still_forwards)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/dev/shm/stage7-sdk3-runtime-20261116/repo/tests/test_sdk3_draw_trace.py", line 43, in test_resolve_clipped_by_scissor_is_partial_but_original_draw_still_forwards
+    x=self.run_case('resolve_scissor1');self.assertEqual(x['calls'],1);self.assertEqual(x['args_ok'],1);self.assertEqual(x['returns'],[34]);self.assertEqual(x['restored'],1);self.assertNotEqual(x['stats']['error'],0);self.assertEqual(x['stats']['blits'],0);self.assertEqual(x['stats']['readbacks'],0)
+                                                                                                                                                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0 == 0
+
+======================================================================
+FAIL: test_partial_invalid_and_sample_unqualified_observations_never_qualify (tests.test_sdk3_renderer_qualification_review.RendererQualificationReview.test_partial_invalid_and_sample_unqualified_observations_never_qualify) (case='counter_error')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/dev/shm/stage7-sdk3-runtime-20261116/repo/tests/test_sdk3_renderer_qualification_review.py", line 46, in test_partial_invalid_and_sample_unqualified_observations_never_qualify
+    with self.assertRaises(ValueError):self.invoke(d,values)
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_partial_invalid_and_sample_unqualified_observations_never_qualify (tests.test_sdk3_renderer_qualification_review.RendererQualificationReview.test_partial_invalid_and_sample_unqualified_observations_never_qualify) (case='counter_incomplete')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/dev/shm/stage7-sdk3-runtime-20261116/repo/tests/test_sdk3_renderer_qualification_review.py", line 46, in test_partial_invalid_and_sample_unqualified_observations_never_qualify
+    with self.assertRaises(ValueError):self.invoke(d,values)
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_partial_invalid_and_sample_unqualified_observations_never_qualify (tests.test_sdk3_renderer_qualification_review.RendererQualificationReview.test_partial_invalid_and_sample_unqualified_observations_never_qualify) (case='callback_partial')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/dev/shm/stage7-sdk3-runtime-20261116/repo/tests/test_sdk3_renderer_qualification_review.py", line 46, in test_partial_invalid_and_sample_unqualified_observations_never_qualify
+    with self.assertRaises(ValueError):self.invoke(d,values)
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_partial_invalid_and_sample_unqualified_observations_never_qualify (tests.test_sdk3_renderer_qualification_review.RendererQualificationReview.test_partial_invalid_and_sample_unqualified_observations_never_qualify) (case='invalid_snapshot')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/dev/shm/stage7-sdk3-runtime-20261116/repo/tests/test_sdk3_renderer_qualification_review.py", line 46, in test_partial_invalid_and_sample_unqualified_observations_never_qualify
+    with self.assertRaises(ValueError):self.invoke(d,values)
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_partial_invalid_and_sample_unqualified_observations_never_qualify (tests.test_sdk3_renderer_qualification_review.RendererQualificationReview.test_partial_invalid_and_sample_unqualified_observations_never_qualify) (case='unrestored_snapshot')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/dev/shm/stage7-sdk3-runtime-20261116/repo/tests/test_sdk3_renderer_qualification_review.py", line 46, in test_partial_invalid_and_sample_unqualified_observations_never_qualify
+    with self.assertRaises(ValueError):self.invoke(d,values)
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_partial_invalid_and_sample_unqualified_observations_never_qualify (tests.test_sdk3_renderer_qualification_review.RendererQualificationReview.test_partial_invalid_and_sample_unqualified_observations_never_qualify) (case='row_partial')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/dev/shm/stage7-sdk3-runtime-20261116/repo/tests/test_sdk3_renderer_qualification_review.py", line 46, in test_partial_invalid_and_sample_unqualified_observations_never_qualify
+    with self.assertRaises(ValueError):self.invoke(d,values)
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_partial_invalid_and_sample_unqualified_observations_never_qualify (tests.test_sdk3_renderer_qualification_review.RendererQualificationReview.test_partial_invalid_and_sample_unqualified_observations_never_qualify) (case='matrix_partial')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/dev/shm/stage7-sdk3-runtime-20261116/repo/tests/test_sdk3_renderer_qualification_review.py", line 46, in test_partial_invalid_and_sample_unqualified_observations_never_qualify
+    with self.assertRaises(ValueError):self.invoke(d,values)
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_partial_invalid_and_sample_unqualified_observations_never_qualify (tests.test_sdk3_renderer_qualification_review.RendererQualificationReview.test_partial_invalid_and_sample_unqualified_observations_never_qualify) (case='unqualified_samples')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/dev/shm/stage7-sdk3-runtime-20261116/repo/tests/test_sdk3_renderer_qualification_review.py", line 46, in test_partial_invalid_and_sample_unqualified_observations_never_qualify
+    with self.assertRaises(ValueError):self.invoke(d,values)
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_partial_invalid_and_sample_unqualified_observations_never_qualify (tests.test_sdk3_renderer_qualification_review.RendererQualificationReview.test_partial_invalid_and_sample_unqualified_observations_never_qualify) (case='nonfinite_color')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/dev/shm/stage7-sdk3-runtime-20261116/repo/tests/test_sdk3_renderer_qualification_review.py", line 46, in test_partial_invalid_and_sample_unqualified_observations_never_qualify
+    with self.assertRaises(ValueError):self.invoke(d,values)
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_partial_invalid_and_sample_unqualified_observations_never_qualify (tests.test_sdk3_renderer_qualification_review.RendererQualificationReview.test_partial_invalid_and_sample_unqualified_observations_never_qualify) (case='clipped_resolve')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/dev/shm/stage7-sdk3-runtime-20261116/repo/tests/test_sdk3_renderer_qualification_review.py", line 46, in test_partial_invalid_and_sample_unqualified_observations_never_qualify
+    with self.assertRaises(ValueError):self.invoke(d,values)
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_partial_invalid_and_sample_unqualified_observations_never_qualify (tests.test_sdk3_renderer_qualification_review.RendererQualificationReview.test_partial_invalid_and_sample_unqualified_observations_never_qualify) (case='gl_error')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/dev/shm/stage7-sdk3-runtime-20261116/repo/tests/test_sdk3_renderer_qualification_review.py", line 46, in test_partial_invalid_and_sample_unqualified_observations_never_qualify
+    with self.assertRaises(ValueError):self.invoke(d,values)
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_partial_invalid_and_sample_unqualified_observations_never_qualify (tests.test_sdk3_renderer_qualification_review.RendererQualificationReview.test_partial_invalid_and_sample_unqualified_observations_never_qualify) (case='missing_context')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/dev/shm/stage7-sdk3-runtime-20261116/repo/tests/test_sdk3_renderer_qualification_review.py", line 46, in test_partial_invalid_and_sample_unqualified_observations_never_qualify
+    with self.assertRaises(ValueError):self.invoke(d,values)
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 19 tests in 1.235s
+
+FAILED (failures=13)

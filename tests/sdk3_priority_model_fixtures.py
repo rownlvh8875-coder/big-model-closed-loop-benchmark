@@ -1,0 +1,24 @@
+"""Schema fixtures only: no model, SDK, graphics or inference is executed."""
+from pathlib import Path
+import hashlib,json
+from bigbench import sdk3_terrain_priority as repair
+from scripts import panda_sdk3_runtime as pins
+from tests.test_sdk3_terrain_priority import fixture
+
+def digest(text):return hashlib.sha256(text.encode()).hexdigest()
+def report(host,index=0,seed=20261110,scene='s_curve_left_right'):
+    engine,core=fixture();receipt=repair.install_rgb_terrain_priority(engine,terrain_label='terrain',tag_key='rgb',core=core);frames=[];clock=0.
+    for i in range(1,13):
+        clock+=.05;r=dict(step=i,time_s=clock,world_x_m=float(i),world_y_m=0.,heading_rad=0.,speed_mps=8.,desired_curvature_1pm=.001,desired_acceleration_mps2=0.,raw_model_action=[.1,.2])
+        for name in ('source_road_rgb_sha256','source_wide_rgb_sha256','road_frame_sha256','wide_frame_sha256','new_img_sha256','raw_action_sha256','state_after_step_sha256'):r[name]=digest(name+str(i))
+        frames.append(r)
+    return dict(status='DIAGNOSTIC_EXECUTED',process_id=40+index*10,process_uuid=f'{index+1:032x}',model_sha256=pins.MODEL_SHA,selected_sdk_sha256=pins.SDK_SHA,sdk_load_order='core-first',seed=seed,scenario=scene,requested_steps=12,completed_steps=12,initial_fraction=.12,camera_capture_mode='native_MetaDrive_perceive_sequential_per_step',trial_evidence=host.CANDIDATE_EVIDENCE,renderer_candidate_id=repair.REPAIR_ID,renderer_policy_modified=True,renderer_candidate=receipt,original_unmodified_pipeline=False,model_scoring_allowed=False,real_vehicle_testing=False,camera_convergence_attempts=0,camera_pixel_tolerance=0,camera_image_interpolation_or_replay=False,gpu_hdr_extraction=False,pssm_update_preserved=True,actual_onnx_image_feed_sha_captured_per_step=True,native_source_964x604_rgb_sha_captured_per_step=True,raw_action_and_recurrent_sha_captured_per_step=True,source_context=host.expected_source_context(),raw_rgb_observer_used=False,extra_gpu_queries=0,extra_render_tasks=0,diagnostic_depth_clear_pixels=0,draw_trace_modules_loaded=False,ld_preload_present=False,draw_trace_library_mapped=False,onnxruntime_version='1.20.1',onnxruntime_providers=['CPUExecutionProvider'],injected_session=False,real_ort_session=True,actual_onnx_inferences_completed=12,actual_onnx_inference_bounds=[12,12],source_stats_after=dict(returned=0,guards_ok=True,values=dict.fromkeys(pins.STATS_FIELDS,0)),frames=frames,cd210_fallback=False,carrot_tuning_used=False)
+
+def write(path,value):pins.write(path,value)
+def case(host,folder,seed=20261110,scene='s_curve_left_right',case_index=0):
+    folder=Path(folder);pair=folder/'pair';pair.mkdir(parents=True);cid=f'{case_index+1:064x}';owner='a'*32;name='fixture-'+str(case_index);sdk=folder/'sdk';model=folder/'model';deps=folder/'deps';args=['--model-pair','--seed',str(seed),'--scenario',scene];command=host.native_command(name,host.ROOT,sdk,pair,args,model=model,deps=deps,owner=owner)
+    write(pair/'command.json',dict(argv=command,ownership_label=owner));write(pair/'container.json',dict(id=cid,name=name,image=pins.IMAGE,ownership_label=owner,effective_limits=host.PROFILE));write(pair/'execution.json',dict(returncode=0,failure=None,container_id=cid,ownership_unresolved=False,owned_container_removed=True,cleanup_failure=None,stopped_state=dict(Running=False,Pid=0,OOMKilled=False,ExitCode=0)))
+    ledger=[];reports=[]
+    for index in (0,1):
+        r=report(host,case_index*2+index,seed,scene);reports.append(r);dest=pair/f'run-{index}';dest.mkdir();nonce=f'{123+case_index*2+index:032x}';write(dest/'run.json',r);write(folder/f'run_{index}.json',r);write(dest/'native-child.json',dict(spawn_attempted=True,pid=r['process_id'],returncode=0,server_returncode=0));write(dest/'report.json',dict(status='OFFICIAL_MODEL_TRIAL_OBSERVED',pid=r['process_id'],nonce=nonce,load_order='core-first',factory='manual',core_sha256=pins.CORE_SHA,sdk_sha256=pins.SDK_SHA,source_stats=[r['source_stats_after']],child_finalized_before_server_stop=True,server_returncode=0));write(dest/'model-trial-lifecycle.json',dict(protocol='sdk3-priority-model-lifecycle-v1',pid=r['process_id'],nonce=nonce,seed=seed,scenario=scene,status='COMPLETED',policy_created=True,policy_constructor_entered=True,completed=True,inferences_completed_lower_bound=12,inferences_completed_upper_bound=12,source_stats_after=r['source_stats_after'],model_spec_sha256=pins.digest(host.ROOT/'model_specs/md-v3.json'),native_entry_sha256=pins.digest(host.ROOT/'scripts/sdk3_priority_model_native.py')));ledger.append(dict(index=index,launcher_spawn_attempted=True,launcher_pid=5+index,pid=r['process_id'],spawn_attempted=True,returncode=0))
+    write(pair/'pair-ledger.json',ledger);write(pair/'pair.json',dict(status='PAIR_COMPLETED',failure=None,counts=dict(known=2,upper=2,spawn_attempts=2)));write(folder/'strict_native_repeat_verdict.json',host.compare_fresh_trials(*reports));return folder,reports

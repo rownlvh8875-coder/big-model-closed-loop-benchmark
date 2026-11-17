@@ -1,0 +1,289 @@
+{
+  "status": "REVIEW_HARDENING_REVALIDATED",
+  "renderer04": {
+    "descriptor": {
+      "run_id": 44106362913,
+      "workflow_id": 421335903,
+      "attempt": 1,
+      "source_sha": "1d1763f5279581be499450c99857504697e9a695",
+      "activation_sha": "4bca03fa3c81212fd22aa1878dbb1fd22b595031",
+      "artifact_id": 14338669738,
+      "artifact_size": 25032261,
+      "artifact_sha256": "f9a9ad68b77cad51f80e8dd4da6664f6df13b2b24ff62fe61789fa49a5cecaba"
+    },
+    "gate": {
+      "protocol": "sdk3-priority-repeat-gate-v1",
+      "status": "CANDIDATE_RENDERER_REPEAT_MATCH",
+      "passed": true,
+      "repair_id": "SDK3_RGB_TERRAIN_DEPTH_TIE_PRIORITY_V1",
+      "all14_source_images_match": true,
+      "capture_pair_matches": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "actual_terrain_precedes_geometry": true,
+      "original_less_and_depth_write_preserved": true,
+      "no_diagnostic_depth_clear": true,
+      "target_yellow": true,
+      "model_gate_passed": false,
+      "historical_original_matrix_replaced": false,
+      "stage7_complete": false
+    },
+    "arms": {
+      "canary": {
+        "priority_tie_canary_qualified": true,
+        "priority_canary_verified_images": 8,
+        "verified_images": 8,
+        "one_pixel_depth_probe_qualified": true,
+        "terrain_row_read_qualified": true,
+        "status": "QUALIFIED_TINY_GPU_CANARY",
+        "draws": 10,
+        "queries": 1858,
+        "max_effective_samples_observed": 1,
+        "multiple_effective_samples_qualified": false,
+        "scope": "single-sample and observed multisample-storage resolve only",
+        "stage7_complete": false
+      },
+      "candidate-off": {
+        "status": "REPLAY_RECORDED",
+        "source_image_equivalence": false,
+        "capture_matches_reference": [
+          false,
+          true,
+          false,
+          false,
+          true,
+          false,
+          true
+        ],
+        "target_road_rgb": [
+          199,
+          187,
+          0
+        ],
+        "verified_images": 14,
+        "trace_complete": true,
+        "trace_stats": {
+          "version": 1,
+          "error": 0,
+          "active": 0,
+          "restored": 1,
+          "lookups": 0,
+          "forwards": 0,
+          "draws": 0,
+          "queries": 0,
+          "readbacks": 0,
+          "blits": 0,
+          "complete": true
+        },
+        "gpu_pixel_owner_proven": false,
+        "unique_cause_proven": false,
+        "repair_proven": false,
+        "stage7_complete": false
+      },
+      "candidate-trace": {
+        "status": "REPLAY_RECORDED",
+        "source_image_equivalence": false,
+        "capture_matches_reference": [
+          false,
+          true,
+          false,
+          false,
+          true,
+          false,
+          true
+        ],
+        "target_road_rgb": [
+          199,
+          187,
+          0
+        ],
+        "verified_images": 14,
+        "trace_complete": true,
+        "trace_stats": {
+          "version": 1,
+          "error": 0,
+          "active": 0,
+          "restored": 1,
+          "lookups": 161,
+          "forwards": 2133,
+          "draws": 5,
+          "queries": 1547,
+          "readbacks": 19,
+          "blits": 8,
+          "complete": true
+        },
+        "gpu_pixel_owner_proven": false,
+        "unique_cause_proven": false,
+        "repair_proven": false,
+        "stage7_complete": false,
+        "callback_receipt": {
+          "status": "TRACE_RECORDED",
+          "target_region_entries": 2,
+          "target_region_returns": 2,
+          "errors": [],
+          "callbacks_restored": true,
+          "trace_complete": true,
+          "scene_observations": [
+            {
+              "scene_setup_pointer": 93854173677808,
+              "region_pointer": 93854064295664,
+              "camera_node_pointer": 93854064286720,
+              "scene_root": "render",
+              "camera_path": "render/world_np/cam",
+              "camera_transform": [
+                0.08031406998634338,
+                -0.9967696070671082,
+                0.0,
+                0.0,
+                0.9967696070671082,
+                0.08031406998634338,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                67.79573822021484,
+                0.4795995354652405,
+                1.2200000286102295,
+                1.0
+              ],
+              "world_transform": [
+                0.08031406998634338,
+                0.9967696070671082,
+                0.0,
+                0.0,
+                -0.9967696070671082,
+                0.08031406998634338,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                -4.966899871826172,
+                -67.61524963378906,
+                -1.2200000286102295,
+                1.0
+              ],
+              "viewport": [
+                964,
+                604
+              ],
+              "transform_layout": "row-major Panda matrix",
+              "recorded_thread_id": 140634102528960,
+              "phase": 1,
+              "cpu_capture_label_proves_gpu_pose": false
+            },
+            {
+              "scene_setup_pointer": 93854079968768,
+              "region_pointer": 93854064287616,
+              "camera_node_pointer": 93854064294864,
+              "scene_root": "filter-base-quad",
+              "camera_path": "filter-base-quad/filter-quad-cam",
+              "camera_transform": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "world_transform": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "viewport": [
+                964,
+                604
+              ],
+              "transform_layout": "row-major Panda matrix",
+              "recorded_thread_id": 140634102528960,
+              "phase": 2,
+              "cpu_capture_label_proves_gpu_pose": false
+            }
+          ]
+        },
+        "draw_count": 5,
+        "program_count": 4,
+        "final_post_float_rgba": [
+          0.78039223,
+          0.733333349,
+          0,
+          1
+        ],
+        "transform_matrix_bytes": 12800,
+        "terrain_row_count": 1,
+        "terrain_row_bytes": 512,
+        "terrain_rows_complete": true,
+        "depth_clear_pixels": 0,
+        "occluded_terrain_exposed": false,
+        "intentional_depth_pixel_mutation": false
+      }
+    }
+  },
+  "mechanism03": {
+    "trace": {
+      "complete": true,
+      "draws": 5,
+      "source_sha": "197facec4f1103e99b9d63e09ef8ef38e4e87283",
+      "helper_sha256": "2a07fd1a5f557b1d65debc266e356af32a305ea2fa9380c67a1fcbf5c4569f61"
+    },
+    "depth-probe": {
+      "complete": true,
+      "draws": 5,
+      "source_sha": "197facec4f1103e99b9d63e09ef8ef38e4e87283",
+      "helper_sha256": "2a07fd1a5f557b1d65debc266e356af32a305ea2fa9380c67a1fcbf5c4569f61"
+    }
+  },
+  "official_model_aggregate": {
+    "strict_pass": true,
+    "passed": 4,
+    "total": 4,
+    "expansion_admitted": true,
+    "stage7_complete": false,
+    "classification": "FRESH_MODIFIED_RGB_PRIORITY_OFFICIAL_MDV3_COHORT",
+    "official_model_processes": 8,
+    "onnx_inferences": 96,
+    "repair_id": "SDK3_RGB_TERRAIN_DEPTH_TIE_PRIORITY_V1",
+    "historical_original_passed": 3,
+    "historical_original_total": 4,
+    "historical_original_matrix_replaced": false,
+    "model_scoring_allowed": false,
+    "real_vehicle_testing": false
+  },
+  "candidate_model_producer_unchanged": true,
+  "historical_helper_sha_preserved": true,
+  "revised_helper_remotely_executed": false,
+  "stage7_complete": false
+}
