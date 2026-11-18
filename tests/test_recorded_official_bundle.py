@@ -22,8 +22,11 @@ class BundleTests(unittest.TestCase):
         trial_fixture(native/'observed-trial',kind)
         trial=_read_receipt(native/'observed-trial/recorded-trial.json',4*1024**2)
         life=_read_receipt(native/'observed-trial/recorded-trial-lifecycle.json')
+        trial['driver']=dict(renderer='llvmpipe CPU_UNIT_FIXTURE_ONLY',vendor='fixture',version='fixture')
+        self.write(native/'observed-trial/recorded-trial.json',trial)
         r,x,m,ci=admission_tests.AdmissionTests().good();m={'bigbench/recorded_official_execution.py':hashlib.sha256((c.ROOT/'bigbench/recorded_official_execution.py').read_bytes()).hexdigest()};r['source_map']=m
         self.mapping=m
+        self.driver=copy.deepcopy(trial['driver'])
         auth=h.validate_admission(r,x,manifest=m,ci=ci,**admission_tests.AdmissionTests().external(r,x,m,ci))
         desc=dict(protocol='recorded-official-installed-dependencies-v1',declaration_sha256=d.DECLARATION_SHA,versions=d.VERSIONS,files={'module.py':dict(nbytes=1,sha256='a'*64)})
         self.write(root/'model-dependencies.json',desc);self.write(native/'model-dependencies.json',desc)
@@ -34,7 +37,7 @@ class BundleTests(unittest.TestCase):
         top=dict(launch,protocol='recorded-official-native-v1',status='OFFICIAL_RECORDED_DIAGNOSTIC_RETURNED' if rc==0 else 'FAILED',pid=trial['pid'],
             source_map_sha256=c.check_source_map(c.ROOT,m),parent_admission_checked=True,sdk_sha256=pins.SDK_SHA,core_sha256=pins.CORE_SHA,load_order='core-first',panda_version='1.10.13',
             source_stats_before=stats,source_stats_after=stats,server_returncode=0,child_finalized_before_server_stop=True,failure=None if rc==0 else 'TrialFailure: fixture',container_hostname='f'*12,
-            recorded_trial_sha256=hashlib.sha256((native/'observed-trial/recorded-trial.json').read_bytes()).hexdigest(),dependencies=dict(versions=d.VERSIONS,declaration_sha256=d.DECLARATION_SHA,file_count=1),model_sha256=pins.MODEL_SHA,model_nbytes=768750198,
+            recorded_trial_sha256=hashlib.sha256((native/'observed-trial/recorded-trial.json').read_bytes()).hexdigest(),dependencies=dict(versions=d.VERSIONS,declaration_sha256=d.DECLARATION_SHA,file_count=1),model_sha256=pins.MODEL_SHA,model_nbytes=768750198,model_memory=c.model_memory_gate(12*1024**3,10*1024**3,1024**3),
             **c.activity_bounds(life),**{k:False for k in c.FALSE_FLAGS})
         child=dict(pid=trial['pid'],spawn_attempted=True,returncode=rc,server_returncode=0,failure=None)
         self.write(native/'report.json',top);self.write(native/'launch.json',launch);self.write(native/'native-child.json',child)
@@ -50,11 +53,12 @@ class BundleTests(unittest.TestCase):
         self.write(root/'evidence-handoff.json',dict(protocol='recorded-worker-evidence-handoff-v1',status='EVIDENCE_HANDED_TO_RUNNER',native_dir='/out',uid=1001,gid=1001,writer_uid=65534,writer_gid=65534,symlinks_followed=False,container_removed=True,argv=['sudo','-n','chown','-R','--no-dereference','--from=65534:65534','1001:1001','--','/out']))
         self.write(root/'authentication.json',auth)
         pages=[dict(total_count=1,workflow_runs=[dict(id=int(auth['run_id']),workflow_id=98765,status='in_progress')])]
-        for stage in ('before-staging','before-container'):self.write(root/('public-activity-'+stage+'.json'),dict(pages=pages))
+        for stage in ('before-staging','before-model','before-container'):self.write(root/('public-activity-'+stage+'.json'),dict(pages=pages))
+        for stage in ('before-model','before-container'):self.write(root/('authentication-'+stage+'.json'),auth)
     def write(self,path,data):path.write_text(json.dumps(data,indent=2)+'\n')
     def verify(self,root):
         report=root/'native/observed-trial/recording/report.json'
-        with patch.object(h,'source_manifest',return_value=self.mapping):return c.validate_native_bundle(root,qualified=_read_receipt(report,16*1024**2) if report.exists() else None)
+        with patch.object(h,'source_manifest',return_value=self.mapping):return c.validate_native_bundle(root,qualified=dict(_read_receipt(report,16*1024**2),driver=self.driver) if report.exists() else None)
     def test_complete_and_failed_original_bodies_keep_distinct_status_and_bounds(self):
         for kind,status in (('complete','COMPLETE_DIAGNOSTIC'),('graph','PARTIAL_DIAGNOSTIC'),('constructor','INCOMPLETE_EVIDENCE')):
             with self.subTest(kind=kind),tempfile.TemporaryDirectory() as tmp:
@@ -67,7 +71,7 @@ class BundleTests(unittest.TestCase):
             root=Path(tmp);self.build(root)
             changes=(('native/report.json',{'official_model_process_bounds':[0,0]}),('native/launch.json',{'mode':'CAMERA_ONLY_NO_GRAPH'}),
                 ('native/parent-completion.json',{'report_sha256':'e'*64}),('native/container.json',{'image':'other'}),
-                ('native/execution.json',{'owned_container_removed':False}),('native/model-dependencies.json',{'versions':{}}),
+                ('native/model-dependencies.json',{'versions':{}}),
                 ('evidence-handoff.json',{'symlinks_followed':True}))
             for name,delta in changes:
                 path=root/name;raw=path.read_bytes();value=json.loads(raw);value.update(delta);self.write(path,value)

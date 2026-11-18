@@ -28,7 +28,9 @@ def validate_declaration(value):
 
 def installed_versions(root):
     from importlib.metadata import distributions
-    found=list(distributions(path=[str(root)]))
+    found=[]
+    for value in distributions(path=[str(root)]):
+        need(len(found)<8,'bounded installed distribution count required');found.append(value)
     names=[d.metadata['Name'].lower().replace('_','-') for d in found]
     need(len(names)==len(set(names)),'unique installed distributions required')
     return dict(zip(names,[d.version for d in found]))
@@ -38,26 +40,39 @@ def file_map(root):
     root=Path(root).absolute()
     need(root.is_dir() and not root.is_symlink() and all(not p.is_symlink() for p in root.parents),'regular dependency directory required')
     mapping={};total=0
-    for path in sorted(root.rglob('*')):
-        info=path.lstat();need(not path.is_symlink(),'dependency symlink forbidden')
-        if stat.S_ISDIR(info.st_mode):continue
-        need(stat.S_ISREG(info.st_mode) and len(mapping)<MAX_FILES and info.st_size<=MAX_MEMBER,'bounded regular dependency member required')
-        name=path.relative_to(root).as_posix()
-        need(not name.endswith(('.pth','.pyc')) and '__pycache__' not in path.parts,'dependency startup hooks/compiled cache forbidden')
-        total+=info.st_size;need(total<=MAX_TOTAL,'bounded total dependency bytes required')
-        h=hashlib.sha256()
-        with path.open('rb') as stream:
-            for data in iter(lambda:stream.read(1024**2),b''):h.update(data)
-        need(path.stat().st_size==info.st_size,'stable dependency extent required')
-        mapping[name]=dict(nbytes=info.st_size,sha256=h.hexdigest())
+    import os
+    stack=[root];entries=0
+    while stack:
+        directory=stack.pop()
+        with os.scandir(directory) as scan:
+            children=[]
+            for entry in scan:
+                entries+=1;need(entries<=MAX_FILES,'bounded dependency namespace before allocation/metadata required')
+                children.append(Path(entry.path))
+        for path in children:
+            info=path.lstat();need(not path.is_symlink(),'dependency symlink forbidden')
+            if stat.S_ISDIR(info.st_mode):
+                stack.append(path);continue
+            need(stat.S_ISREG(info.st_mode) and len(mapping)<MAX_FILES and info.st_size<=MAX_MEMBER,'bounded regular dependency member required')
+            name=path.relative_to(root).as_posix()
+            need(not name.endswith(('.pth','.pyc')) and '__pycache__' not in path.parts,'dependency startup hooks/compiled cache forbidden')
+            total+=info.st_size;need(total<=MAX_TOTAL,'bounded total dependency bytes required')
+            if path.parent.name.endswith('.dist-info'):
+                need(info.st_size<=1024**2,'bounded distribution metadata before parse required')
+            h=hashlib.sha256()
+            with path.open('rb') as stream:
+                for data in iter(lambda:stream.read(1024**2),b''):h.update(data)
+            need(path.stat().st_size==info.st_size,'stable dependency extent required')
+            mapping[name]=dict(nbytes=info.st_size,sha256=h.hexdigest())
     need(mapping,'nonempty dependency namespace required')
     return mapping
 
 
 def describe(root):
+    mapping=file_map(root)  # Bound the namespace and metadata BEFORE discovery.
     versions=installed_versions(root);need(versions==VERSIONS,'exact eight original dependency versions required')
     result=dict(protocol='recorded-official-installed-dependencies-v1',declaration_sha256=DECLARATION_SHA,
-        versions=versions,files=file_map(root))
+        versions=versions,files=mapping,removed_inert_hook=dict(path='coloredlogs.pth',nbytes=147,sha256='dda83a855986efa5cd87f0248b0199c0086eb0e8e7fece7d6741959c5ce39536',site_processing_used=False))
     need(len(json.dumps(result).encode())<=4*1024**2,'bounded dependency descriptor required')
     return result
 
@@ -65,6 +80,15 @@ def describe(root):
 def verify(root,descriptor):
     need(isinstance(descriptor,dict) and descriptor==describe(root),'all mounted dependency versions/bytes/namespace must match descriptor')
     return dict(versions=VERSIONS,declaration_sha256=DECLARATION_SHA,file_count=len(descriptor['files']))
+
+
+def remove_inert_hook(root):
+    path=Path(root)/'coloredlogs.pth'
+    raw=_receipt_bytes(path,147)
+    need(len(raw)==147 and hashlib.sha256(raw).hexdigest()=='dda83a855986efa5cd87f0248b0199c0086eb0e8e7fece7d6741959c5ce39536',
+         'exact original inert coloredlogs hook bytes required before removal')
+    path.unlink()
+    return dict(path='coloredlogs.pth',nbytes=147,sha256=hashlib.sha256(raw).hexdigest(),site_processing_used=False)
 
 
 def stage(work):
@@ -89,4 +113,6 @@ def stage(work):
         need(size==entry['nbytes'] and digest.hexdigest()==entry['sha256'],'exact pinned wheel bytes required')
         files.append(str(path))
     subprocess.run([sys.executable,'-m','pip','install','--no-index','--no-deps','--no-compile','--target',str(target),*files],check=True,timeout=300)
-    return target,describe(target)
+    hook=remove_inert_hook(target)
+    descriptor=describe(target);descriptor['removed_inert_hook']=hook
+    return target,descriptor

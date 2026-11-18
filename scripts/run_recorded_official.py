@@ -29,17 +29,41 @@ def git(*args):
     return subprocess.check_output(['git',*args],cwd=ROOT,text=True,timeout=30).strip()
 
 
+def git_bytes(args,limit):
+    import tempfile
+    with tempfile.TemporaryFile() as errors:
+        proc=subprocess.Popen(['git',*args],cwd=ROOT,stdout=subprocess.PIPE,stderr=errors)
+        try:
+            raw=proc.stdout.read(limit+1)
+            need(len(raw)<=limit,'bounded Git output required before allocation')
+            need(proc.wait(timeout=30)==0,'immutable Git object read failed')
+            return raw
+        finally:
+            if proc.poll() is None:proc.kill();proc.wait(timeout=10)
+            proc.stdout.close()
+
+
 def source_manifest(source):
-    names=git('ls-tree','-r','--name-only',source).splitlines()
-    selected=[name for name in names if
-        (name.startswith(('bigbench/','scripts/')) and name.endswith('.py')) or
-        name.startswith(('model_specs/','.github/workflows/')) or name in (c.QUALIFIED_PROBE,c.RUNTIME) or
-        name in ('pyproject.toml','setup.py','setup.cfg','uv.lock') or
-        name.startswith('requirements') and name.endswith(('.txt','.in'))]
-    need(c.WORKFLOW in selected and 'bigbench/recorded_official_execution.py' in selected,
-        'new canary source closure required')
-    return {name:hashlib.sha256(subprocess.check_output(['git','show',source+':'+name],cwd=ROOT,timeout=30)).hexdigest()
-            for name in selected}
+    need(isinstance(source,str) and len(source)==40 and all(v in '0123456789abcdef' for v in source),'source SHA required before Git allocation')
+    raw=git_bytes(['ls-tree','-r','-l','-z',source],4*1024**2)
+    rows=raw.split(b'\0');need(len(rows)<=20001,'bounded tracked source namespace required')
+    selected=[]
+    for row in rows:
+        if not row:continue
+        metadata,name=row.split(b'\t',1);mode,kind,oid,extent=metadata.split()
+        name=name.decode('utf-8')
+        if not ((name.startswith(('bigbench/','scripts/')) and name.endswith('.py')) or
+            name.startswith(('model_specs/','.github/workflows/')) or name in (c.QUALIFIED_PROBE,c.RUNTIME) or
+            name in ('pyproject.toml','setup.py','setup.cfg','uv.lock') or name.startswith('requirements') and name.endswith(('.txt','.in'))):continue
+        need(mode==b'100644' or mode==b'100755','regular runnable Git source required')
+        need(kind==b'blob' and extent.isdigit() and int(extent)<=16*1024**2 and len(selected)<4096,'bounded source blobs required before read')
+        selected.append((name,oid.decode(),int(extent)))
+    need(c.WORKFLOW in {n for n,_,_ in selected} and 'bigbench/recorded_official_execution.py' in {n for n,_,_ in selected},'new canary source closure required')
+    result={}
+    for name,oid,extent in selected:
+        raw=git_bytes(['cat-file','blob',oid],extent)
+        need(len(raw)==extent,'immutable source blob extent required');result[name]=hashlib.sha256(raw).hexdigest()
+    return result
 
 
 def validate_request(request):
@@ -49,7 +73,9 @@ def validate_request(request):
          request.get('case')==dict(seed=c.CASE[0],scenario=c.CASE[1]) and
          isinstance(request.get('source'),str) and len(request['source'])==40 and
          all(v in '0123456789abcdef' for v in request['source']) and
-         all(type(request.get(k)) is int and request[k]>0 for k in ('push_ci','pr_ci')),
+         all(type(request.get(k)) is int and request[k]>0 for k in ('push_ci','pr_ci')) and
+         isinstance(request.get('aux_ci'),dict) and set(request['aux_ci'])=={'windows_push','windows_pr','software_api_pr'} and
+         all(type(v) is int and v>0 for v in request['aux_ci'].values()),
          'sealed active one-model request required')
 
 
@@ -70,7 +96,7 @@ def validate_authority(request,manifest,authority):
          'immutable separate approval commit must have the reviewed source as sole parent')
     need(doc==dict(schema='recorded-official-reviewed-source-approval-v1',source=request['source'],
          source_map=manifest,push_ci=request['push_ci'],pr_ci=request['pr_ci'],request_path=c.REQUEST,
-         mode=c.MODE,limits=c.LIMITS),'request must equal the independent source approval')
+         mode=c.MODE,limits=c.LIMITS,aux_ci=request['aux_ci']),'request must equal the independent source approval')
 
 
 def validate_admission(request,context,*,manifest,ci,authority=None,current=None,history=None):
@@ -96,7 +122,7 @@ def validate_admission(request,context,*,manifest,ci,authority=None,current=None
     identities=[_run_identity(v) if 'head_repository' in v else v for v in history.get('workflow_runs',[])]
     need(history.get('total_count')==len(identities)==1 and identities==[identity],
          'one-shot request already consumed or concurrent activations present')
-    need(isinstance(ci,dict) and set(ci)=={'push','pull_request'},'complete retained canonical source CI required')
+    need(isinstance(ci,dict) and set(ci)=={'push','pull_request','windows_push','windows_pr','software_api_pr'},'complete retained canonical source CI required')
     for event in ('push','pull_request'):
         value=ci[event];run=value['run'];jobs=value['jobs'];artifacts=value['artifacts']
         need(run.get('id')==request['push_ci' if event=='push' else 'pr_ci'] and
@@ -107,6 +133,13 @@ def validate_admission(request,context,*,manifest,ci,authority=None,current=None
              {j.get('name') for j in jobs['jobs']}=={'synthetic-unit','onnx-interface-test'} and
              all(j.get('conclusion')=='success' and j.get('status')=='completed' for j in jobs['jobs']) and
              artifacts.get('total_count')==0 and artifacts.get('artifacts')==[], 'four exact canonical source CI jobs required')
+    for role,workflow,event in (('windows_push',421897387,'push'),('windows_pr',421897387,'pull_request'),('software_api_pr',422015100,'pull_request')):
+        value=ci[role];run=value['run'];jobs=value['jobs']
+        need(run.get('id')==request['aux_ci'][role] and run.get('head_sha')==source and run.get('head_branch')==FEATURE and
+             run.get('event')==event and run.get('workflow_id')==workflow and type(run.get('run_attempt')) is int and run['run_attempt']==1 and
+             run.get('conclusion')=='success' and run.get('status')=='completed' and run.get('head_repository',{}).get('full_name')==context['repository'] and
+             jobs.get('total_count')==len(jobs.get('jobs',[]))==1 and all(j.get('status')=='completed' and j.get('conclusion')=='success' for j in jobs['jobs']),
+             'all seven exact reviewed-source CI jobs required')
     return dict(request=request,source=source,activation=context['head'],run_id=str(context['run_id']),
         branch=c.BRANCH,event='push',attempt=1,source_ci=ci,context=context,authority=authority,
         current_identity=identity,history=dict(total_count=1,workflow_runs=identities))
@@ -129,7 +162,7 @@ def fetch_authority(request):
     return dict(ref=ref,commit=commit,document=_decode(raw))
 
 
-def authenticate_request(bundle):
+def authenticate_request(bundle,*,name='authentication.json'):
     from scripts import panda_sdk3_runtime as pins
     request=_read_receipt(ROOT/c.REQUEST,4*1024**2)
     validate_request(request)
@@ -156,9 +189,20 @@ def authenticate_request(bundle):
     for event,key in (('push','push_ci'),('pull_request','pr_ci')):
         prefix='actions/runs/'+str(request[key])
         ci[event]=dict(run=pins.api(prefix),jobs=pins.api(prefix+'/jobs'),artifacts=pins.api(prefix+'/artifacts'))
+    for role,run_id in request['aux_ci'].items():
+        prefix='actions/runs/'+str(run_id)
+        ci[role]=dict(run=pins.api(prefix),jobs=pins.api(prefix+'/jobs'),artifacts=pins.api(prefix+'/artifacts'))
     auth=validate_admission(request,context,manifest=manifest,ci=ci,authority=authority,current=current,history=history)
-    _write_receipt(bundle/'authentication.json',auth)
+    _write_receipt(bundle/name,auth)
     return auth
+
+
+def refresh_admission(bundle,label,original):
+    fresh=authenticate_request(bundle,name='authentication-'+label+'.json')
+    keys=('request','source','activation','run_id','branch','event','attempt','context','current_identity','history')
+    need(all(fresh[k]==original[k] for k in keys),'same immutable authority/current activation required after staging')
+    public_activity(bundle,label,fresh['run_id'])
+    return fresh
 
 
 def official_command(name,repo,sdk,out,args,*,owner,model=None,deps=None):
@@ -178,7 +222,7 @@ class DeadlineProcess:
         return subprocess.run(argv,**kwargs)
 
 
-def public_activity(bundle,label,current_id):
+def public_activity(bundle,label,current_id,*,require_current=True):
     from scripts import panda_sdk3_runtime as pins
     pages=[]
     for number in range(1,101):
@@ -187,9 +231,46 @@ def public_activity(bundle,label,current_id):
             {k:r.get(k) for k in ('id','workflow_id','status','head_sha','head_branch','run_attempt','event')} for r in value.get('workflow_runs',[])]))
         if len(value.get('workflow_runs',[]))<100:break
     _write_receipt(bundle/('public-activity-'+label+'.json'),dict(pages=pages))
-    result=c.validate_public_activity(pages,current_id=int(current_id))
+    result=c.validate_public_activity(pages,current_id=int(current_id),require_current=require_current)
     _write_receipt(bundle/('public-activity-'+label+'-verdict.json'),result)
     return result
+
+
+def retain_runner_evidence(out,quarantine):
+    """Unresolved handoff: preserve readable runner-owned receipts, follow no links."""
+    import shutil
+    import stat
+    out=Path(out);quarantine=Path(quarantine)
+    need(out.is_dir() and not out.is_symlink() and out.stat().st_uid==os.getuid() and not quarantine.exists(),
+         'fresh runner-owned partial snapshot required')
+    moved=quarantine
+    out.rename(moved);out.mkdir()
+    retained=[]
+    with os.scandir(moved) as scan:
+        for count,entry in enumerate(scan):
+            need(count<512,'bounded partial runner evidence namespace required')
+            info=entry.stat(follow_symlinks=False)
+            if not stat.S_ISREG(info.st_mode) or info.st_uid!=os.getuid() or info.st_size>16*1024**2:continue
+            source=Path(entry.path)
+            with source.open('rb') as stream:
+                raw=stream.read(16*1024**2+1)
+            need(len(raw)==info.st_size,'stable partial runner file required')
+            (out/entry.name).write_bytes(raw);retained.append(entry.name)
+    return dict(protocol='recorded-official-readable-partial-v1',retained=retained,
+        original_directory_moved_outside_artifact=True,unsafe_ownership_handoff_attempted=False,
+        official_model_process_bounds=[0,1],official_inference_bounds=[0,600])
+
+
+def failure_detail(bundle,execution,verdict=None):
+    if verdict and verdict.get('body',{}):
+        value=verdict['body'].get('primary_error')
+        if value:return value
+    for name,key in (('observed-trial/recorded-trial.json','primary_error'),('report.json','failure')):
+        try:
+            value=_read_receipt(bundle/'native'/name,4*1024**2).get(key)
+            if isinstance(value,str) and value:return value
+        except (OSError,ValueError):pass
+    return execution.get('failure') or 'Native diagnostic incomplete; see retained receipts'
 
 
 def run():
@@ -201,6 +282,8 @@ def run():
     summary=dict(protocol='recorded-official-host-v1',status='FAILED',mode=c.MODE,
         official_model_process_bounds=[0,1],official_inference_bounds=[0,600],
         private_task_state='UNKNOWN',**{k:False for k in c.FALSE_FLAGS})
+    primary=None
+    secondary=summary.setdefault('secondary_errors',[])
     try:
         auth=authenticate_request(bundle)
         public_activity(bundle,'before-staging',auth['run_id'])
@@ -212,9 +295,10 @@ def run():
         _write_receipt(bundle/'model-dependencies.json',descriptor)
         dep_sha=hashlib.sha256(_read_bytes(bundle/'model-dependencies.json')).hexdigest()
         from bigbench.model_inventory import download_checked
+        auth=refresh_admission(bundle,'before-model',auth)
         model=download_checked(path=pins.MODEL_ID,sha256=pins.MODEL_SHA,output_dir=work/'models',max_bytes=900000000)
         need(model.stat().st_size==768750198,'official model extent required')
-        public_activity(bundle,'before-container',auth['run_id'])
+        auth=refresh_admission(bundle,'before-container',auth)
         def mounted_command(name,repo,sdk,out,args,**kwargs):
             import shutil
             shutil.copyfile(bundle/'model-dependencies.json',out/'model-dependencies.json')
@@ -225,18 +309,26 @@ def run():
              '--approval',auth['request']['approval_sha'],'--dependencies-sha256',dep_sha],model=model,deps=deps)
         summary['execution']=execution
         from scripts.run_recorded_worker_canary import handoff_evidence
-        _write_receipt(bundle/'evidence-handoff.json',handoff_evidence(bundle/'native',execution))
+        summary['primary_error']=failure_detail(bundle,execution) if execution.get('returncode')!=0 or execution.get('failure') else None
+        try:
+            _write_receipt(bundle/'evidence-handoff.json',handoff_evidence(bundle/'native',execution))
+        except BaseException as exc:
+            secondary.append(type(exc).__name__+': '+str(exc)[:2048])
+            _write_receipt(bundle/'readable-partial.json',retain_runner_evidence(bundle/'native',work/'unhanded-native'))
         verdict=c.validate_native_bundle(bundle)
         _write_receipt(bundle/'receiver.json',verdict)
         summary.update(status=verdict['status'],source=auth['source'],activation=auth['activation'],run_id=auth['run_id'],
             official_model_process_bounds=verdict['official_model_process_bounds'],official_inference_bounds=verdict['official_inference_bounds'])
-        need(execution.get('returncode')==0 and execution.get('failure') is None and verdict['status']=='COMPLETE_DIAGNOSTIC','native body did not complete; retained diagnostic evidence remains partial')
+        if execution.get('returncode')!=0 or execution.get('failure') is not None or verdict['status']!='COMPLETE_DIAGNOSTIC':
+            summary['primary_error']=failure_detail(bundle,execution,verdict)
+            raise RuntimeError(summary['primary_error'])
         return 0
     except BaseException as exc:
-        summary['failure']=type(exc).__name__+': '+str(exc)[:2048]
+        primary=exc
+        summary['failure']=summary.get('primary_error') or type(exc).__name__+': '+str(exc)[:2048]
         raise
     finally:
-        _write_receipt(bundle/'summary.json',summary)
+        c.finalize_preserving_primary(primary,[lambda:_write_receipt(bundle/'summary.json',summary)],secondary)
 
 
 def _read_bytes(path):

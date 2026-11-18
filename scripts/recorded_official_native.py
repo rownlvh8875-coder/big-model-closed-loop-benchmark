@@ -28,6 +28,28 @@ def invoke_body(args):
         nonce=args.nonce,seed=c.CASE[0],scenario=c.CASE[1]))
 
 
+def model_memory():
+    rows={k:int(v.split()[0])*1024 for k,v in (row.split(':',1) for row in Path('/proc/meminfo').read_text().splitlines()) if k=='MemAvailable'}
+    maximum=Path('/sys/fs/cgroup/memory.max').read_text().strip()
+    current=Path('/sys/fs/cgroup/memory.current').read_text().strip()
+    worker.need(maximum.isdecimal() and current.isdecimal(),'observed bounded cgroup-v2 memory required')
+    return c.model_memory_gate(rows['MemAvailable'],int(maximum),int(current))
+
+
+def finalize_child(out,report,primary):
+    secondary=report.setdefault('secondary_errors',[])
+    def lifecycle():
+        try:life=worker._read_receipt(out/'observed-trial/recorded-trial-lifecycle.json')
+        except FileNotFoundError:return
+        worker.need(all(life.get(k)==report[k] for k in ('pid','parent_pid','nonce','seed','scenario')),'original lifecycle identity required')
+        from bigbench.full_s_recorded_receiver import _lifecycle
+        _lifecycle(life);report.update(c.activity_bounds(life))
+    def trial_digest():
+        try:report['recorded_trial_sha256']=pins.digest(out/'observed-trial/recorded-trial.json')
+        except FileNotFoundError:report['recorded_trial_sha256']=None
+    c.finalize_preserving_primary(primary,[lifecycle,trial_digest,lambda:pins.write(out/'report.json',report)],secondary)
+
+
 def child(args):
     out=Path(args.out)
     report=dict(protocol='recorded-official-native-v1',status='FAILED',mode=c.MODE,
@@ -35,6 +57,7 @@ def child(args):
         source=args.source,activation=args.activation,run_id=args.run_id,approval=args.approval,limits=c.LIMITS,
         official_model_process_bounds=[0,1],official_inference_bounds=[0,600],failure=None,
         container_hostname=socket.gethostname(),dependencies_sha256=args.dependencies_sha256,**{k:False for k in c.FALSE_FLAGS})
+    primary=None
     try:
         ack=ownership.await_parent_ack(out,parent=args.server_owner,nonce=args.nonce,
             seed=c.CASE[0],scene=c.CASE[1],read_owner=c.read_native_ack)
@@ -63,25 +86,18 @@ def child(args):
         core,preload,sdk=bootstrap(report)  # Retain all handles through teardown.
         sys.path.insert(0,'/model-deps')  # No site hooks; only after admission/byte checks.
         report['source_stats_before']=source_stats_after()
+        report['model_memory']=model_memory()
         invoke_body(args)  # Frozen worker constructs the original real policy ONCE.
         report['source_stats_after']=source_stats_after()
         report.update(status='OFFICIAL_RECORDED_DIAGNOSTIC_RETURNED')
         return 0
     except BaseException as exc:
+        primary=exc
+        report['status']='FAILED'
         report['failure']=worker._error(exc)
         raise
     finally:
-        try:
-            life=worker._read_receipt(out/'observed-trial/recorded-trial-lifecycle.json')
-            worker.need(all(life.get(k)==report[k] for k in ('pid','parent_pid','nonce','seed','scenario')),'original lifecycle identity required')
-            from bigbench.full_s_recorded_receiver import _lifecycle
-            _lifecycle(life)
-            report.update(c.activity_bounds(life))
-        except FileNotFoundError:pass
-        except Exception as exc:report['lifecycle_error']=worker._error(exc)
-        try:report['recorded_trial_sha256']=pins.digest(out/'observed-trial/recorded-trial.json')
-        except FileNotFoundError:report['recorded_trial_sha256']=None
-        pins.write(out/'report.json',report)
+        finalize_child(out,report,primary)
 
 
 def main(argv=None):
@@ -119,14 +135,17 @@ def main(argv=None):
             returncode=code,parent_pid=os.getpid(),pid=None,nonce=args.nonce,source=args.source,
             activation=args.activation,run_id=args.run_id,approval=args.approval,mode=c.MODE,
             container_hostname=socket.gethostname(),native_child_sha256=None,report_sha256=None)
-        for name,key in (('native-child.json','native_child_sha256'),('report.json','report_sha256')):
-            try:
-                raw=worker._receipt_bytes(out/name)
-                final[key]=hashlib.sha256(raw).hexdigest()
-                if name=='native-child.json':final['pid']=worker._read_receipt(out/name).get('pid')
-            except Exception as exc:
-                final.setdefault('receipt_errors',[]).append(worker._error(exc))
-        pins.write(out/'parent-completion.json',final)
+        secondary=final.setdefault('secondary_errors',[])
+        def hashes():
+            for name,key in (('native-child.json','native_child_sha256'),('report.json','report_sha256')):
+                try:
+                    raw=worker._receipt_bytes(out/name)
+                    final[key]=hashlib.sha256(raw).hexdigest()
+                    if name=='native-child.json':final['pid']=worker._read_receipt(out/name).get('pid')
+                except FileNotFoundError:pass
+        primary=RuntimeError(failure or ('native child returned '+str(code))) if failure is not None or code!=0 else None
+        c.finalize_preserving_primary(primary,[hashes,lambda:pins.write(out/'parent-completion.json',final)],secondary)
+
 
 
 if __name__=='__main__':raise SystemExit(main())

@@ -25,7 +25,7 @@ class AdmissionTests(unittest.TestCase):
         manifest={'scripts/example.py':'c'*64}
         request=dict(schema='recorded-official-request-v1',active=True,mode=c.MODE,
             limits=dict(c.LIMITS),case=dict(seed=c.CASE[0],scenario=c.CASE[1]),source=source,
-            push_ci=12,pr_ci=13,source_map=manifest,approval_sha='e'*40)
+            push_ci=12,pr_ci=13,aux_ci=dict(windows_push=14,windows_pr=15,software_api_pr=16),source_map=manifest,approval_sha='e'*40)
         context=dict(attempt=1,event='push',branch=c.BRANCH,env_head=head,head=head,
             parents=[source],delta=['M\t'+c.REQUEST],repository='rownlvh8875-coder/big-model-closed-loop-benchmark',run_id='987')
         ci={}
@@ -34,13 +34,15 @@ class AdmissionTests(unittest.TestCase):
                 run_attempt=1,conclusion='success',status='completed',head_repository=dict(full_name=context['repository'])),
                 jobs=dict(total_count=2,jobs=[dict(name=n,conclusion='success',status='completed') for n in ('synthetic-unit','onnx-interface-test')]),
                 artifacts=dict(total_count=0,artifacts=[]))
+        for role,workflow,event in (('windows_push',421897387,'push'),('windows_pr',421897387,'pull_request'),('software_api_pr',422015100,'pull_request')):
+            ci[role]=dict(run=dict(id=request['aux_ci'][role],head_sha=source,head_branch=host.FEATURE,event=event,workflow_id=workflow,run_attempt=1,status='completed',conclusion='success',head_repository=dict(full_name=context['repository'])),jobs=dict(total_count=1,jobs=[dict(status='completed',conclusion='success')]),artifacts=dict(total_count=0,artifacts=[]))
         return request,context,manifest,ci
 
     def external(self,r,x,m,ci):
         authority=dict(ref=dict(ref='refs/heads/'+c.APPROVAL_BRANCH,object=dict(type='commit',sha=r['approval_sha'])),
             commit=dict(sha=r['approval_sha'],parents=[dict(sha=r['source'])],files=[dict(filename=c.APPROVAL_PATH,status='added')]),
             document=dict(schema='recorded-official-reviewed-source-approval-v1',source=r['source'],source_map=m,
-                push_ci=r['push_ci'],pr_ci=r['pr_ci'],request_path=c.REQUEST,mode=c.MODE,limits=c.LIMITS))
+                push_ci=r['push_ci'],pr_ci=r['pr_ci'],request_path=c.REQUEST,mode=c.MODE,limits=c.LIMITS,aux_ci=r['aux_ci']))
         current=dict(id=int(x['run_id']),workflow_id=98765,path=c.WORKFLOW,head_sha=x['head'],head_branch=c.BRANCH,
             event='push',run_attempt=1,head_repository=dict(full_name=x['repository']))
         history=dict(total_count=1,workflow_runs=[current])
@@ -100,7 +102,7 @@ class AdmissionTests(unittest.TestCase):
 
 class ActiveRunTests(unittest.TestCase):
     def test_unknown_active_run_and_incomplete_or_duplicate_pages_fail_closed(self):
-        rows=[dict(id=1,workflow_id=411705464,status='completed'),dict(id=2,workflow_id=123,status='in_progress')]
+        rows=[dict(id=987,workflow_id=411705464,status='in_progress'),dict(id=2,workflow_id=123,status='in_progress')]
         for pages in ([dict(total_count=2,workflow_runs=rows)], [dict(total_count=3,workflow_runs=rows)],
                       [dict(total_count=2,workflow_runs=[rows[0],rows[0]])]):
             with self.assertRaises(ValueError):c.validate_public_activity(pages,current_id=987)
