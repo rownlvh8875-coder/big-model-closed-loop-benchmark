@@ -3,6 +3,7 @@ import copy
 import hashlib
 import json
 import os
+import shutil
 from pathlib import Path
 import subprocess
 import sys
@@ -298,6 +299,175 @@ class FullSFailureCaptureTests(unittest.TestCase):
             self.assertEqual(data['new_model_processes'], 0)
             self.assertFalse(data['execution_activated'])
             self.assertEqual(data['heavy_modules_loaded'], [])
+
+    def test_successful_inference_without_scientific_frame_keeps_audited_post_state(self):
+        with tempfile.TemporaryDirectory() as temp:
+            out = Path(temp) / 'record'
+            with patch('bigbench.full_s_validation.route_state', side_effect=ValueError('route failure after inference')):
+                report, parent, _ = self.record(out)
+            self.assertEqual(report['actual_inference_bounds'], [1, 1])
+            self.assertEqual(report['completed_steps'], 0)
+            self.assertEqual(parent.session.calls, 1)
+            m = json.loads((out/'manifest.json').read_text())
+            self.assertEqual(m['steps'][0]['phase'], 'AUDITED')
+            self.assertIn('post/state_feat_q', m['packages']['1']['blobs'])
+            verified = capture.verify_recording(out)
+            self.assertEqual(verified['recording_status'], 'PARTIAL')
+            self.assertEqual(verified['actual_inference_bounds'], [1, 1])
+
+    def test_post_snapshot_failure_preserves_committed_report_and_available_bytes(self):
+        original = capture._states
+        calls = []
+        def snapshot(*args, **kwargs):
+            calls.append(1)
+            if len(calls) == 2:
+                raise ValueError('post snapshot failed')
+            return original(*args, **kwargs)
+        with tempfile.TemporaryDirectory() as temp:
+            out = Path(temp)/'record'
+            with patch.object(capture, '_states', side_effect=snapshot):
+                with self.assertRaises(RuntimeError) as error:
+                    self.record(out)
+            self.assertEqual(error.exception.report['actual_inference_bounds'], [1, 1])
+            self.assertEqual(error.exception.report['completed_steps'], 1)
+            m = json.loads((out/'manifest.json').read_text())
+            self.assertTrue(m['recording_errors'])
+            self.assertIn('pre/state_feat_q', m['packages']['1']['blobs'])
+            self.assertNotIn('post/state_feat_q', m['packages']['1']['blobs'])
+            verified = capture.verify_recording(out)
+            self.assertEqual(verified['recording_status'], 'PARTIAL')
+            self.assertTrue(verified['missing_snapshot_blobs'])
+
+    def test_lifecycle_callback_failures_save_original_result_before_surfacing(self):
+        for event in ('STEP_COMMITTED', 'TRIAL_RECORDED'):
+            with self.subTest(event=event), tempfile.TemporaryDirectory() as temp:
+                out = Path(temp)/'record'
+                def progress(payload):
+                    if payload['status'] == event:
+                        raise OSError('lifecycle write failed')
+                with self.assertRaises(RuntimeError) as caught:
+                    self.record(out, progress=progress)
+                saved = json.loads((out/'report.json').read_text())
+                self.assertEqual(caught.exception.report, saved)
+                self.assertEqual(saved['actual_inference_bounds'][0], saved['completed_steps'])
+                self.assertTrue(json.loads((out/'manifest.json').read_text())['recording_errors'])
+                self.assertEqual(capture.verify_recording(out)['recording_status'], 'PARTIAL')
+
+    def test_original_result_is_available_on_exception_when_report_file_cannot_be_written(self):
+        original = Path.open
+        def fail_report(path, mode='r', *args, **kwargs):
+            if path.name == 'report.json' and mode == 'xb':
+                raise OSError('no report storage')
+            return original(path, mode, *args, **kwargs)
+        with tempfile.TemporaryDirectory() as temp:
+            out = Path(temp)/'record'
+            with patch.object(Path, 'open', new=fail_report):
+                with self.assertRaises(OSError) as caught:
+                    self.record(out)
+            self.assertIsInstance(getattr(caught.exception, 'report', None), dict)
+            self.assertEqual(caught.exception.inference_bounds, [3, 3])
+            self.assertFalse((out/'manifest.json').exists())
+
+    def test_exception_outside_original_report_keeps_aborted_bytes_and_unknown_bounds(self):
+        with tempfile.TemporaryDirectory() as temp:
+            out = Path(temp)/'record'
+            caught = None
+            with patch.object(GraphBoundary, 'run', side_effect=OSError('external graph read failed')):
+                try:
+                    self.record(out)
+                except Exception as error:
+                    caught = error
+            self.assertIsNotNone(caught)
+            self.assertTrue((out/'abort.json').is_file())
+            self.assertIsNone(caught.report)
+            self.assertEqual(caught.inference_bounds, [0, 1])
+            m = json.loads((out/'manifest.json').read_text())
+            self.assertFalse(m['original_report_available'])
+            self.assertIn('pre/state_feat_q', m['packages']['1']['blobs'])
+            self.assertFalse((out/'report.json').exists())
+            with self.assertRaises(ValueError):
+                capture.verify_recording(out)
+
+    def test_missing_uncertain_attempt_cannot_be_removed_from_unchanged_report(self):
+        with tempfile.TemporaryDirectory() as temp:
+            out = Path(temp)/'record'
+            self.record(out, steps=3, fail_on=1)
+            path = out/'manifest.json'
+            m = json.loads(path.read_text())
+            m['steps'] = []
+            m['retained_steps'] = []
+            m['packages'] = {}
+            m['payload_and_report_bytes'] = (out/'report.json').stat().st_size
+            shutil.rmtree(out/'step-000001')
+            path.write_text(json.dumps(m))
+            with self.assertRaises(ValueError):
+                capture.verify_recording(out)
+
+    def test_original_frame_audit_bridge_and_registered_identity_are_bound(self):
+        with tempfile.TemporaryDirectory() as temp:
+            out = Path(temp)/'record'
+            self.record(out)
+            rp, mp = out/'report.json', out/'manifest.json'
+            original_report = json.loads(rp.read_text())
+            original_manifest = json.loads(mp.read_text())
+            mutations = [lambda r: r.update(protocol='other'), lambda r: r.update(model_sha256='0'*64),
+                lambda r: r['frames'][0].update(step=42),
+                lambda r: r['inference_audit_rows'][0].update(new_img_sha256='0'*64),
+                lambda r: r['bridge_receipts'][0]['applied_world_action'].update(curvature_1pm=42.),
+                lambda r: r.update(seed=9)]
+            for mutate in mutations:
+                r, m = copy.deepcopy(original_report), copy.deepcopy(original_manifest)
+                mutate(r)
+                m['seed'] = r['seed']
+                raw = json.dumps(r).encode()
+                rp.write_bytes(raw)
+                m['report_sha256'] = hashlib.sha256(raw).hexdigest()
+                m['payload_and_report_bytes'] += len(raw) - len(json.dumps(original_report, indent=2).encode()+b'\n')
+                mp.write_text(json.dumps(m))
+                with self.subTest(mutation=mutate), self.assertRaises(ValueError):
+                    capture.verify_recording(out)
+
+    def test_nested_verify_output_never_mutates_recording_and_writer_rejects_symlink_ancestors(self):
+        with tempfile.TemporaryDirectory() as temp:
+            out = Path(temp)/'record'
+            self.record(out)
+            nested = out/'check'
+            result = subprocess.run([sys.executable, '-I', '-B', str(ROOT/'scripts/full_s_failure_capture.py'),
+                'verify', '--record-dir', str(out), '--out', str(nested)], capture_output=True, timeout=20)
+            self.assertNotEqual(result.returncode, 0)
+            self.assertFalse(nested.exists())
+            self.assertTrue(capture.verify_recording(out)['recording_structure_valid'])
+            if os.name != 'nt':
+                link = Path(temp)/'link'
+                link.symlink_to(temp, target_is_directory=True)
+                with self.assertRaises(ValueError):
+                    self.record(link/'through-link')
+                self.assertFalse((Path(temp)/'through-link').exists())
+
+    def test_metadata_float_overflow_and_first_unregistered_entry_fail_without_enumeration(self):
+        with self.assertRaises(ValueError):
+            capture._decode(b'{"measurement":1e999}')
+        class BadScan:
+            def __init__(self): self.count = 0
+            def __enter__(self): return self
+            def __exit__(self, *args): pass
+            def __iter__(self): return self
+            def __next__(self):
+                self.count += 1
+                if self.count > 1:
+                    raise AssertionError('enumerated after an unexpected entry')
+                return type('Entry', (), dict(name='unexpected', is_symlink=lambda s: False,
+                    is_dir=lambda s, **kw: False, is_file=lambda s, **kw: True))()
+        with tempfile.TemporaryDirectory() as temp:
+            out = Path(temp)/'record'
+            self.record(out)
+            caught = None
+            with patch.object(capture.os, 'scandir', side_effect=lambda path: BadScan()):
+                try:
+                    capture.verify_recording(out)
+                except Exception as error:
+                    caught = error
+            self.assertIsInstance(caught, ValueError)
 
 
 if __name__ == '__main__':

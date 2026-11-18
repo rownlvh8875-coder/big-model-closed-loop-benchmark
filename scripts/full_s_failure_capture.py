@@ -16,17 +16,26 @@ def main():
     args = parser.parse_args()
     if args.out.exists() or args.out.is_symlink():
         parser.error('--out must be fresh')
+    if any(p.is_symlink() for p in args.out.absolute().parents):
+        parser.error('--out must not have symlink ancestors')
+    if args.mode == 'verify':
+        record_root = args.record_dir.resolve()
+        output_root = args.out.resolve()
+        if output_root.is_relative_to(record_root) or record_root.is_relative_to(output_root):
+            parser.error('--out must be outside the recording tree')
     sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
     from bigbench.full_s_failure_capture import recording_plan, verify_recording
     args.out.mkdir(parents=True)
     try:
         result = recording_plan() if args.mode == 'plan' else verify_recording(args.record_dir)
-        (args.out / ('plan.json' if args.mode == 'plan' else 'verification.json')).write_text(json.dumps(result, indent=2, allow_nan=False)+'\n')
+        with (args.out / ('plan.json' if args.mode == 'plan' else 'verification.json')).open('x') as stream:
+            stream.write(json.dumps(result, indent=2, allow_nan=False)+'\n')
         print(json.dumps(result))
         return 0
     except Exception as exc:
-        (args.out/'error.json').write_text(json.dumps(dict(status='ERROR', error=type(exc).__name__+': '+str(exc),
-            new_model_processes=0, new_inferences=0, all_four_validation_tracks_passed=False), indent=2)+'\n')
+        with (args.out/'error.json').open('x') as stream:
+            stream.write(json.dumps(dict(status='ERROR', error=type(exc).__name__+': '+str(exc),
+                new_model_processes=0, new_inferences=0, all_four_validation_tracks_passed=False), indent=2)+'\n')
         return 2
 
 
