@@ -191,7 +191,18 @@ def run_recorded_trial(args):
     logs. Original parent authentication/timeouts are mandatory and external.
     This function is intentionally absent from the executable CLI modes.
     """
+    return _run_trial(args, camera_canary=False)
+
+
+def run_camera_canary_trial(args):
+    """Same observed body, two captures and synthetic state/action, NO graph."""
+    need((args.seed, args.scenario) == CASE, 'single registered camera canary case required')
+    return _run_trial(args, camera_canary=True)
+
+
+def _run_trial(args, *, camera_canary):
     need(sys.platform == 'linux', 'frozen SDK3 trial body requires Linux')
+    max_steps = 2 if camera_canary else 600
     need(type(args.seed) is int and args.seed in (20261109, 20261110) and
          args.scenario in ('s_curve_left_right', 's_curve_right_left') and
          isinstance(args.nonce, str) and len(args.nonce) == 32 and
@@ -225,7 +236,10 @@ def run_recorded_trial(args):
         life['status'] = 'DEPENDENCIES_LOADING'
         persist()
         # Inside the error boundary, but unreachable from cold/check entrypoints.
-        from scripts.native_mdv3_repeat_trial import AuditedOfficialOnnx
+        if camera_canary:
+            from .recorded_worker_canary import NoGraphPolicy
+        else:
+            from scripts.native_mdv3_repeat_trial import AuditedOfficialOnnx
         from scripts.sdk3_four_validation_trial import _world, driver_info
         from scripts.sdk3_priority_model_native import source_stats_after
         from .native_model_campaign import NativeWorldCamera
@@ -234,7 +248,8 @@ def run_recorded_trial(args):
         from .full_s_failure_capture import capture_full_s, verify_recording
         life.update(status='POLICY_LOADING', policy_constructor_entered=True)
         persist()
-        parent = AuditedOfficialOnnx(Path('/model.onnx'), ROOT/'model_specs/md-v3.json')
+        parent = (NoGraphPolicy(ROOT/'model_specs/md-v3.json') if camera_canary else
+                  AuditedOfficialOnnx(Path('/model.onnx'), ROOT/'model_specs/md-v3.json'))
         life.update(status='WORLD_LOADING', policy_created=True, provider_created=None,
                     provider_close_attempted=None, provider_closed=None)
         persist()
@@ -248,7 +263,7 @@ def run_recorded_trial(args):
         policy = WorldFramePolicyAdapter(parent, source_action_frame=SOURCE_ACTION_FRAME)
         recording_started = True
         report = capture_full_s(policy, camera, lanes, intrinsics=intrinsics, out=out/'recording',
-            seed=args.seed, scene=args.scenario, max_steps=600, progress=progress)
+            seed=args.seed, scene=args.scenario, max_steps=max_steps, progress=progress)
         life['inference_bounds'] = list(report['actual_inference_bounds'])
         if report.get('trial_completed') is not True:
             primary = RuntimeError(report.get('error') or 'original full-S trial incomplete')
@@ -332,7 +347,7 @@ def run_recorded_trial(args):
         else:
             secondary.append(_error(exc))
     receipt = dict(protocol='recorded-full-s-worker-trial-v1', seed=args.seed, scenario=args.scenario,
-        nonce=args.nonce, pid=os.getpid(), parent_pid=os.getppid(), max_steps=600,
+        nonce=args.nonce, pid=os.getpid(), parent_pid=os.getppid(), max_steps=max_steps,
         actual_inference_bounds=life['inference_bounds'], provider_closed=life['provider_closed'],
         raw_rgb_observer_requested=recording_started, raw_rgb_source_evidence_present=source_evidence,
         raw_rgb_observer_used=True if source_evidence else None if recording_started else False,
@@ -347,6 +362,14 @@ def run_recorded_trial(args):
         origin_authenticated=False, all_four_validation_tracks_passed=False,
         model_camera_qualified=False, physical_optics_validated=False, carla_validated=False,
         hardware_gpu_qualified=False, scope='Separate observed worker body. Parent owns admission/runtime/timeout. No baseline repeatability, model ranking or native qualification.')
+    if camera_canary:
+        from .recorded_worker_canary import MODE
+        receipt.update(mode=MODE, fixture_policy_audit_bounds=life['inference_bounds'],
+            official_inference_bounds=[0,0], official_model_processes=0,
+            policy_data='SYNTHETIC_STATE_AND_ZERO_ACTION_NO_GRAPH',
+            graph_feed_attested=False)
+        life.update(mode=MODE, official_inference_bounds=[0,0],
+            counter_scope='FIXTURE_POLICY_AUDITS_NOT_ONNX_INFERENCES')
     receipt_created = False
     try:
         _write_receipt(out/'recorded-trial.json', receipt)
