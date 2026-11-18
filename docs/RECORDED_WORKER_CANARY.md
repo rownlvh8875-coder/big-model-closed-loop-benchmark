@@ -49,3 +49,34 @@ There is no real-model execution mode in this controller.
 A pass qualifies only this actual camera/recorder integration. It does not
 qualify a model camera, physical optics, RTX hardware, CARLA, repeatability,
 causal model quality, full-S traversal or completion of all stage7 tracks.
+
+Review hardening: worker receipts bind the exact report/manifest and UUID; native
+completion hashes the worker receipt and the parent hashes native completion.
+The actual container ID prefix, run-derived name, parent/case/nonce, explicit
+teardown fields and successful Xvfb exit are checked. Canary labels/zero official
+bounds exist from the first lifecycle write, including killed-worker remnants.
+The two-step trajectory binds the pinned historical exact-case native geometry.
+
+An independent approval branch `approval/recorded-worker-canary-20261118-01`
+contains a new immutable approval commit whose parent is the final reviewed
+source and whose only added file is the approval document. It binds the full
+source map and exact push/PR source CI. The activation names that separate commit.
+The host authenticates the current run/workflow through the API and requires
+that the serialized workflow history contains only this one push run, preventing
+reuse of this request. Repository writers remain the authority trust boundary.
+Local verification requires the retained admission/CI/approval records and a
+complete map of this checked-out source. Independent API authentication still
+belongs to the external receiver; local structure alone never authenticates origin.
+
+After owned container removal, the runner uses scoped GNU chown with
+`--no-dereference --from=65534:65534` for its fresh native directory. Permissions
+are not broadened. This makes UID65534 private recordings readable for both
+positive and failed-run evidence verification/upload. Hosted Linux tests use an
+actual different UID to verify this boundary; the managed host does not use sudo.
+
+The immutable archive reader bounds ordinary ZIP central-directory count and
+bytes before parsing entries; it accepts only stored/deflated regular files,
+checks raw names before OS normalization (including case aliases/device names),
+validates exact local/central/descriptors/CRC and deflate EOF, and atomically
+publishes a temporary extraction only after all members succeed. ZIP64 archives
+are unnecessary under these caps and are rejected.

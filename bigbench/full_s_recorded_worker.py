@@ -62,8 +62,7 @@ def preflight():
         scope='Read-only preparation. Parent owns source/resource/PID admission, SDK bootstrap, Xvfb, container and timeout. Private task state unknown.')
 
 
-def _read_receipt(path, limit=65536):
-    from .full_s_failure_capture import _decode
+def _receipt_bytes(path, limit=65536):
     path = Path(path).absolute()
     need(not path.is_symlink() and all(not p.is_symlink() for p in path.parents), 'nonsymlink receipt path required')
     info = path.lstat()
@@ -71,7 +70,12 @@ def _read_receipt(path, limit=65536):
     with path.open('rb') as stream:
         raw = stream.read(limit+1)
     need(len(raw) == info.st_size and len(raw) <= limit, 'bounded stable receipt snapshot required')
-    value = _decode(raw)
+    return raw
+
+
+def _read_receipt(path, limit=65536):
+    from .full_s_failure_capture import _decode
+    value = _decode(_receipt_bytes(path, limit))
     need(isinstance(value, dict), 'receipt object required')
     return value
 
@@ -217,6 +221,10 @@ def _run_trial(args, *, camera_canary):
         policy_constructor_entered=False, policy_created=False, provider_created=False,
         provider_received=False, provider_close_attempted=False, body_provider_close_attempted=False,
         provider_closed=False, inference_bounds=[0,0])
+    if camera_canary:
+        from .recorded_worker_canary import MODE
+        life.update(mode=MODE,official_inference_bounds=[0,0],fixture_policy_audit_bounds=[0,0],
+            counter_scope='FIXTURE_POLICY_AUDITS_NOT_ONNX_INFERENCES')
     provider = parent = report = None
     primary = None
     secondary = []
@@ -225,6 +233,8 @@ def _run_trial(args, *, camera_canary):
     recording_started = False
     def persist():
         nonlocal lifecycle_created
+        if camera_canary:
+            life['fixture_policy_audit_bounds'] = list(life['inference_bounds'])
         _write_receipt(out/'recorded-trial-lifecycle.json', life, replace=lifecycle_created)
         lifecycle_created = True
     def progress(payload):
@@ -331,6 +341,16 @@ def _run_trial(args, *, camera_canary):
         if primary is None: primary = exc
         else: secondary.append(_error(exc))
     source_context = None
+    recording_binding = None
+    if manifest_present and report_present:
+        try:
+            manifest_bytes = _receipt_bytes(out/'recording/manifest.json',4*1024**2)
+            report_bytes = _receipt_bytes(out/'recording/report.json',16*1024**2)
+            recording_binding = dict(manifest_sha256=hashlib.sha256(manifest_bytes).hexdigest(),
+                report_sha256=hashlib.sha256(report_bytes).hexdigest(),process_uuid=report['process_uuid'])
+        except Exception as exc:
+            if primary is None: primary = exc
+            else: secondary.append(_error(exc))
     runtime_context = None
     try:
         source_context = _source_snapshot()
@@ -354,7 +374,7 @@ def _run_trial(args, *, camera_canary):
         model_test_double=getattr(parent, 'is_mock', None),
         injected_session=getattr(parent, '_injected_session', None), driver=driver,
         onnxruntime=runtime_context,
-        source_stats_after=stats, recording_verification=verification,
+        source_stats_after=stats, recording_verification=verification, recording_binding=recording_binding,
         original_report_file='recording/report.json' if report_present else None,
         primary_error=_error(primary) if primary is not None else None, secondary_errors=secondary,
         source_context=source_context,

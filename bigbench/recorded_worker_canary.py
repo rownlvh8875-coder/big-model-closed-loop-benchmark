@@ -5,14 +5,12 @@ does not load a graph, authorize a real-model trial, or execute evidence code.
 """
 from pathlib import Path, PurePosixPath
 import hashlib
-import io
 import json
 import os
 import stat
 import sys
-import zipfile
 
-from .full_s_recorded_worker import need, _read_receipt, _source_snapshot
+from .full_s_recorded_worker import need, _read_receipt, _receipt_bytes, _source_snapshot
 
 ROOT = Path(__file__).resolve().parents[1]
 MODE = 'CAMERA_ONLY_NO_GRAPH'
@@ -21,6 +19,10 @@ STAT_FIELDS = ('configured','closed','error','forwarded','resolutions','paths','
 REQUEST = 'docs/requests/recorded-worker-canary-20261118-01.json'
 BRANCH = 'diagnostic/recorded-worker-canary-20261118-01'
 WORKFLOW = '.github/workflows/recorded-worker-canary.yml'
+APPROVAL_BRANCH = 'approval/recorded-worker-canary-20261118-01'
+APPROVAL_PATH = 'docs/approvals/recorded-worker-canary-20261118-01.json'
+QUALIFIED_PROBE = 'docs/evidence/four-validation-20261118/actual-02/20261109-s_curve_left_right/probe.json'
+QUALIFIED_PROBE_SHA = '396c0e10a276d96905350a82928b4c9b90c63712c7cf530e872402e209d39427'
 LIMITS = dict(steps=2, capture_calls=2, sensor_perceives=4, official_models=0,
     official_inferences=0, child_seconds=240, container_seconds=300,
     memory_bytes=10*1024**3, cpus=2, pids=128, tmp_bytes=512*1024**2)
@@ -89,7 +91,8 @@ def read_native_ack(path):
     native=_read_receipt(root/'native-child.json')
     need(launch.get('mode')==MODE and (launch.get('seed'),launch.get('scenario'))==CASE and
          launch.get('parent_pid')==os.getppid(), 'sealed canary parent/case required')
-    need(native.get('returncode') is None and native.get('server_returncode') is None,
+    need(all(k in native for k in ('pid','spawn_attempted','returncode','server_returncode')) and
+         native['spawn_attempted'] is True and native['returncode'] is None and native['server_returncode'] is None,
          'live nonfinal native acknowledgement required')
     pid=native.get('pid')
     need(pid is None or type(pid) is int and pid==os.getpid(), 'actual native child PID required')
@@ -117,9 +120,13 @@ def verify_trial(root, *, mode):
     need(report.get('process_id')==trial['pid'] and
          (report.get('seed'),report.get('scenario'),report.get('max_steps'))==
          (trial.get('seed'),trial.get('scenario'),trial.get('max_steps')), 'original process/case binding required')
+    binding=dict(manifest_sha256=hashlib.sha256(_receipt_bytes(root/'recording/manifest.json',4*1024**2)).hexdigest(),
+        report_sha256=hashlib.sha256(_receipt_bytes(root/'recording/report.json',16*1024**2)).hexdigest(),
+        process_uuid=report['process_uuid'])
+    need(trial.get('recording_binding')==binding,'nonce-bearing worker must bind exact original report and manifest bytes')
     need(trial.get('actual_inference_bounds')==life.get('inference_bounds')==report.get('actual_inference_bounds'),
          'conservative original audit bounds binding required')
-    need(life.get('status')=='RECORDED' and trial.get('primary_error') is None and
+    need(life.get('status')=='RECORDED' and all(k in trial and k in life for k in ('primary_error','secondary_errors')) and trial.get('primary_error') is None and
          trial.get('secondary_errors')==[] and life.get('primary_error') is None and life.get('secondary_errors')==[] and
          all(life.get(k) is True for k in ('policy_created','provider_created','provider_received',
              'provider_close_attempted','body_provider_close_attempted','provider_closed')) and
@@ -139,15 +146,19 @@ def verify_trial(root, *, mode):
              trial.get('policy_data')=='SYNTHETIC_STATE_AND_ZERO_ACTION_NO_GRAPH' and
              trial.get('graph_feed_attested') is False and trial.get('onnxruntime')==
              dict(version=None,real_session=False,providers=None,session_class=None), 'sealed zero-model fixture accounting required')
+        need(all(type(v) is int for v in trial['official_inference_bounds']+life['official_inference_bounds']),
+             'typed official zero bounds required')
         need(all(v.get('model_test_double') is True and v.get('injected_session') is True for v in (trial,report)),
              'explicit synthetic fixture flags required')
         need(all(row['raw_model_action']==[0.,0.,0.,0.] for row in report['frames']), 'fixed zero fixture action required')
     else:
-        need(trial.get('mode') is None and trial['max_steps']==600 and
+        need(trial.get('mode') is None and life.get('mode') is None and trial['max_steps']==600 and
+             all(trial.get(k) is None for k in ('policy_data','fixture_policy_audit_bounds','official_model_processes','official_inference_bounds','graph_feed_attested')) and
              all(v.get('model_test_double') is False and v.get('injected_session') is False for v in (trial,report)) and
              trial.get('onnxruntime',{}).get('real_session') is True and
              trial['onnxruntime'].get('version')=='1.20.1' and
-             trial['onnxruntime'].get('providers')==['CPUExecutionProvider'], 'real session required; fixtures cannot certify a model trial')
+             trial['onnxruntime'].get('providers')==['CPUExecutionProvider'] and
+             trial['onnxruntime'].get('session_class')=='onnxruntime.capi.onnxruntime_inference_collection.InferenceSession', 'real session required; fixtures cannot certify a model trial')
         from .full_s_receipts import validate_trajectory
         validate_trajectory(report,trial['seed'],trial['scenario'])
     return dict(verification,protocol='recorded-worker-receiver-v1',mode=mode,
@@ -156,14 +167,26 @@ def verify_trial(root, *, mode):
         scope='Local receipts and bytes only. Fixture policy audits are not ONNX inferences. External origin requires independent API authentication.')
 
 
-def validate_canary_trajectory(report):
+def qualified_geometry():
+    from .full_s_failure_capture import _decode
+    raw=_receipt_bytes(ROOT/QUALIFIED_PROBE,4*1024**2)
+    need(hashlib.sha256(raw).hexdigest()==QUALIFIED_PROBE_SHA,'immutable prior exact-case geometry probe required')
+    value=_decode(raw)
+    need((value.get('seed'),value.get('scenario'))==CASE,'registered prior geometry required')
+    return value
+
+
+def validate_canary_trajectory(report, *, qualified=None):
     """Two-step zero-action replay; the existing 600-step validator stays frozen."""
     from dataclasses import asdict
     from .full_s_receipts import recorded_route,close
     from .full_s_validation import route_state
     from .kinematics import AgentState,ModelAction,step_ideal
+    from .full_s_receipts import bind_case_geometry
+    bind_case_geometry(report,qualified if qualified is not None else qualified_geometry())
     need(report.get('max_steps')==2 and report.get('completed_steps')==2 and
-         report.get('outcome')=='STEP_LIMIT' and report.get('traversal_passed') is False,
+         report.get('outcome')=='STEP_LIMIT' and report.get('traversal_passed') is False and
+         report.get('initial_fraction')==.12,
          'exact two-step diagnostic outcome required')
     lanes=recorded_route(report['geometry'])
     xy=lanes[0].position(lanes[0].length*.12,0.)
@@ -204,6 +227,12 @@ def validate_native_bundle(root):
     from scripts import sdk3_four_validation_runtime as runtime
     root=Path(root)
     auth=_read_receipt(root/'authentication.json',4*1024**2)
+    from scripts.run_recorded_worker_canary import validate_admission,source_manifest
+    need(all(k in auth for k in ('request','context','source_ci','authority','current_identity','history')),
+         'complete retained source/admission API evidence required')
+    regenerated=validate_admission(auth['request'],auth['context'],manifest=source_manifest(auth['source']),
+        ci=auth['source_ci'],authority=auth['authority'],current=auth['current_identity'],history=auth['history'])
+    need(regenerated==auth,'full retained source/approval/current-run admission binding required')
     request=auth['request']
     need(request.get('mode')==MODE and request.get('limits')==LIMITS and request.get('active') is True and
          auth.get('source')==request.get('source') and auth.get('branch')==BRANCH and
@@ -213,23 +242,38 @@ def validate_native_bundle(root):
     top=_read_receipt(folder/'report.json')
     launch=_read_receipt(folder/'launch.json')
     native=_read_receipt(folder/'native-child.json')
+    completion=_read_receipt(folder/'parent-completion.json')
     trial=_read_receipt(folder/'observed-trial/recorded-trial.json',4*1024**2)
     verified=verify_trial(folder/'observed-trial',mode=MODE)
     report=_read_receipt(folder/'observed-trial/recording/report.json',16*1024**2)
     validate_canary_trajectory(report)
-    need(top.get('protocol')=='recorded-camera-canary-native-v1' and top.get('status')=='CAMERA_RECORDER_CANARY_RECORDED' and
+    need(top.get('protocol')=='recorded-camera-canary-native-v1' and 'failure' in top and top['failure'] is None and
+         top.get('status')=='CAMERA_RECORDER_CANARY_RECORDED' and
          top.get('mode')==launch.get('mode')==MODE and (top.get('seed'),top.get('scenario'))==CASE and
          top.get('parent_admission_checked') is True,'completed admitted native canary required')
     need(all(top.get(k)==launch.get(k)==trial.get(k) for k in ('nonce','seed','scenario','parent_pid')) and
          top.get('pid')==native.get('pid')==trial.get('pid') and type(top.get('pid')) is int and top['pid']>0 and
          top.get('nonce')!='0'*32,'parent/native/observed-body identity binding required')
-    need(native.get('spawn_attempted') is True and native.get('returncode')==0 and
+    need(all(k in native for k in ('spawn_attempted','pid','returncode','server_returncode')) and
+         native.get('spawn_attempted') is True and type(native.get('returncode')) is int and native['returncode']==0 and
          top.get('server_returncode')==native.get('server_returncode') and
-         type(native.get('server_returncode')) is int and top.get('child_finalized_before_server_stop') is True,
+         type(native.get('server_returncode')) is int and native['server_returncode']==0 and
+         native.get('failure') is None and top.get('child_finalized_before_server_stop') is True,
          'child reaped before display stop required')
     need(all(top.get(k)==launch.get(k)==auth.get(k) for k in ('source','activation','run_id')) and
-         top.get('source_map_sha256')==source_hash and top.get('limits')==launch.get('limits')==LIMITS,
+         top.get('source_map_sha256')==source_hash and
+         json.dumps(top.get('limits'),sort_keys=True)==json.dumps(launch.get('limits'),sort_keys=True)==json.dumps(LIMITS,sort_keys=True),
          'source/run/resource receipt binding required')
+    need(top.get('approval')==launch.get('approval')==request.get('approval_sha') and
+         top.get('recorded_trial_sha256')==hashlib.sha256(_receipt_bytes(folder/'observed-trial/recorded-trial.json',4*1024**2)).hexdigest(),
+         'native completion must bind worker receipt and independent source approval')
+    need(completion.get('protocol')=='recorded-camera-canary-parent-completion-v1' and
+         completion.get('status')=='NATIVE_CHILD_REAPED' and 'failure' in completion and completion['failure'] is None and
+         type(completion.get('returncode')) is int and completion['returncode']==0 and
+         all(completion.get(k)==top.get(k) for k in ('pid','parent_pid','nonce','source','activation','run_id','approval','mode','container_hostname')) and
+         completion.get('native_child_sha256')==hashlib.sha256(_receipt_bytes(folder/'native-child.json')).hexdigest() and
+         completion.get('report_sha256')==hashlib.sha256(_receipt_bytes(folder/'report.json')).hexdigest(),
+         'parent finalization must bind exact native child and completion receipts')
     need(top.get('sdk_sha256')==pins.SDK_SHA and top.get('core_sha256')==pins.CORE_SHA and
          top.get('load_order')=='core-first' and top.get('panda_version')=='1.10.13', 'actual immutable SDK/core bootstrap required')
     for stats in (top.get('source_stats_before'),top.get('source_stats_after'),trial.get('source_stats_after')):
@@ -237,7 +281,9 @@ def validate_native_bundle(root):
              stats.get('guards_ok') is True and stats.get('values')=={k:0 for k in STAT_FIELDS} and
              all(type(v) is int for v in stats['values'].values()), 'default-off SDK counters required')
     need(top.get('zero_model_audit')==dict(weight_open_attempts=0,ort_import_attempts=0) and
+         all(type(top['zero_model_audit'][k]) is int for k in ('weight_open_attempts','ort_import_attempts')) and
          top.get('onnxruntime_loaded') is False and top.get('official_model_processes')==0 and
+         type(top.get('official_model_processes')) is int and type(top.get('official_inferences')) is int and
          top.get('official_inferences')==0 and top.get('capture_count_bounds')==[2,2] and
          top.get('sensor_perceive_bounds')==[4,4] and top.get('fixture_policy_audit_bounds')==[2,2] and
          top.get('policy_data')==trial.get('policy_data') and top.get('graph_feed_attested') is False and
@@ -261,52 +307,38 @@ def validate_native_bundle(root):
     need(set(mounted)=={'/work/repo','/out',pins.SDK_PATH},'no weight/dependency mounts permitted')
     from scripts.run_recorded_worker_canary import canary_command
     expected=canary_command(container['name'],Path(mounted['/work/repo']),Path(mounted[pins.SDK_PATH]),
-        Path(mounted['/out']),['--source',auth['source'],'--activation',auth['activation'],'--run-id',auth['run_id']],
+        Path(mounted['/out']),['--source',auth['source'],'--activation',auth['activation'],'--run-id',auth['run_id'],
+            '--approval',request['approval_sha']],
         owner=command['ownership_label'])
     need(argv==expected,'exact sealed no-model command/resource/environment required')
-    need(container.get('image')==pins.IMAGE and container.get('id')==execution.get('container_id') and
+    need(container.get('name')=='recorded-camera-canary-'+auth['run_id'] and
+         container.get('image')==pins.IMAGE and container.get('id')==execution.get('container_id') and
          isinstance(container.get('id'),str) and len(container['id'])==64 and
+         all(v in '0123456789abcdef' for v in container['id']) and top.get('container_hostname')==container['id'][:12] and
          command.get('ownership_label')==container.get('ownership_label') and
          container.get('effective_limits')==dict(Memory=10*1024**3,MemorySwap=10*1024**3,NanoCpus=2_000_000_000,
              PidsLimit=128,ReadonlyRootfs=True,NetworkMode='none',IpcMode='private'),'immutable owned container/resources required')
     state=execution.get('stopped_state') or {}
-    need(execution.get('returncode')==0 and execution.get('failure') is None and execution.get('status')=='EXIT_OBSERVED' and
+    need(all(k in execution for k in ('returncode','failure','status','create_attempted','start_attempted','owned_container_removed',
+             'ownership_unresolved','cleanup_failure','stopped_state','container_id')) and
+         type(execution.get('returncode')) is int and execution['returncode']==0 and
+         execution.get('failure') is None and execution.get('status')=='EXIT_OBSERVED' and
          execution.get('create_attempted') is True and execution.get('start_attempted') is True and
          execution.get('owned_container_removed') is True and execution.get('ownership_unresolved') is False and
          execution.get('cleanup_failure') is None and state.get('Running') is False and state.get('Pid')==0 and
          state.get('OOMKilled') is False and state.get('ExitCode')==0,'complete owned container stop/removal required')
+    handoff=_read_receipt(root/'evidence-handoff.json')
+    need(handoff.get('protocol')=='recorded-worker-evidence-handoff-v1' and handoff.get('status')=='EVIDENCE_HANDED_TO_RUNNER' and
+         handoff.get('native_dir')==mounted['/out'] and type(handoff.get('uid')) is int and handoff['uid']>0 and handoff['uid']!=65534 and
+         type(handoff.get('gid')) is int and handoff['gid']>=0 and handoff.get('writer_uid')==handoff.get('writer_gid')==65534 and
+         handoff.get('symlinks_followed') is False and handoff.get('container_removed') is True and handoff.get('argv')==
+         ['sudo','-n','chown','-R','--no-dereference','--from=65534:65534',str(handoff['uid'])+':'+str(handoff['gid']),'--',mounted['/out']],
+         'stopped evidence ownership handoff required')
     return dict(verified,protocol='recorded-camera-canary-receiver-v1',camera_recorder_canary_passed=True,
         actual_source_rgb_pairs=2,actual_sensor_perceives=4,official_model_processes=0,official_inferences=0,
         source=auth['source'],activation=auth['activation'],run_id=auth['run_id'],driver=driver,
         source_map_sha256=source_hash,container_id=container['id'])
 
 
-def extract_archive(archive, out, *, expected_sha256):
-    """Snapshot immutable archive bytes, validate the whole namespace before writes."""
-    archive=Path(archive)
-    need(not archive.is_symlink() and archive.is_file() and archive.stat().st_size<=64*1024**2,
-         'bounded regular archive required')
-    with archive.open('rb') as stream:raw=stream.read(64*1024**2+1)
-    need(len(raw)<=64*1024**2 and hashlib.sha256(raw).hexdigest()==expected_sha256,'immutable archive digest required')
-    out=Path(out).absolute()
-    need(not out.exists() and not out.is_symlink() and all(not p.is_symlink() for p in out.parents),'fresh extraction required')
-    with zipfile.ZipFile(io.BytesIO(raw)) as z:
-        infos=z.infolist();need(0<len(infos)<=512,'bounded archive member count required')
-        names=set();total=0
-        for item in infos:
-            name=item.filename;p=PurePosixPath(name);mode=item.external_attr>>16
-            need(name==p.as_posix() and not p.is_absolute() and '..' not in p.parts and
-                 '\\' not in name and ':' not in name and name not in names and
-                 not item.is_dir() and (not stat.S_IFMT(mode) or stat.S_ISREG(mode)) and not item.flag_bits&1 and
-                 0<=item.file_size<=16*1024**2, 'unique safe regular bounded archive members required')
-            need(all(parent.as_posix() not in names for parent in p.parents if parent.as_posix()!='.') and
-                 not any(existing.startswith(name+'/') for existing in names),'archive file/directory conflict')
-            names.add(name);total+=item.file_size
-            need(total<=128*1024**2,'bounded total uncompressed archive required')
-        out.mkdir(parents=True)
-        for item in infos:
-            with z.open(item) as stream:data=stream.read(item.file_size+1)
-            need(len(data)==item.file_size,'complete bounded member required')
-            path=out/item.filename;path.parent.mkdir(parents=True,exist_ok=True)
-            with path.open('xb') as stream:stream.write(data)
-    return out
+
+from .recorded_worker_archive import extract_archive
