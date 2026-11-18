@@ -5,7 +5,7 @@ if __name__=='__main__':sys.path.insert(0,str(Path(__file__).resolve().parents[1
 from bigbench.windows_camera_probe import CASES,VERSIONS,camera_readiness,need,verify_probe
 from scripts.run_laptop_validation import write
 ROOT=Path(__file__).resolve().parents[1]
-SOURCES=['scripts/probe_laptop_camera.py','scripts/laptop_native_trial.py','bigbench/windows_camera_probe.py','bigbench/metadrive_camera.py','bigbench/native_model_campaign.py','bigbench/optical_calibration.py','bigbench/sdk3_terrain_priority.py','bigbench/full_s_validation.py','bigbench/curved_lane_scenarios.py','bigbench/native_route.py','docs/fixtures/sdk3-full-s-native-route-v1.json']
+SOURCES=['scripts/probe_laptop_camera.py','scripts/laptop_native_trial.py','bigbench/worker_ownership.py','bigbench/windows_camera_probe.py','bigbench/metadrive_camera.py','bigbench/native_model_campaign.py','bigbench/optical_calibration.py','bigbench/sdk3_terrain_priority.py','bigbench/full_s_validation.py','bigbench/curved_lane_scenarios.py','bigbench/native_route.py','docs/fixtures/sdk3-full-s-native-route-v1.json']
 HANDSHAKE_SECONDS=5
 
 def source_hashes():return {name:hashlib.sha256((ROOT/name).read_bytes()).hexdigest() for name in SOURCES}
@@ -27,27 +27,16 @@ def inventory(out=None):
     return dict(protocol='windows-camera-inventory-v1',resource_observation=observation,versions=versions,assets_version=assets_version,assets_texture_present=texture_present,assets_file=str(asset) if asset else None,output_volume_observed_at=str(destination),readiness=camera_readiness(observation,versions,assets_version if texture_present else None),native_modules_imported=any(n.split('.')[0] in ('panda3d','direct','metadrive','onnxruntime') for n in sys.modules),official_model_processes=0,inferences=0)
 
 def worker_launch():
-    """Match CPython multiprocessing's direct Windows venv worker launch."""
-    executable=sys.executable
-    env=dict(os.environ,OMP_NUM_THREADS='2',OPENBLAS_NUM_THREADS='2')
-    base=getattr(sys,'_base_executable',executable)
-    if sys.platform=='win32' and os.path.normcase(base)!=os.path.normcase(executable):
-        env['__PYVENV_LAUNCHER__']=executable
-        executable=base
-    return executable,env
+    from bigbench.worker_ownership import worker_launch as shared_launch
+    return shared_launch()
 
 def await_parent_admission(args):
-    need(args.parent==os.getppid() and isinstance(args.nonce,str) and len(args.nonce)==32 and all(c in '0123456789abcdef' for c in args.nonce) and (args.seed,args.scenario) in CASES,'live owned camera child required before native imports')
-    deadline=time.monotonic()+HANDSHAKE_SECONDS
-    while True:
-        owner=json.loads((args.out/'owner.json').read_text())
-        cohort=json.loads((args.out.parent/'cohort.json').read_text())
-        need(owner.get('nonce')==args.nonce and owner.get('parent_pid')==cohort.get('parent_pid')==args.parent and owner.get('cohort_id')==cohort.get('cohort_id') and (owner.get('seed'),owner.get('scenario'))==(args.seed,args.scenario),'matching parent-assigned cohort/case required')
-        if owner.get('spawn_succeeded') is True:
-            need(owner.get('pid')==os.getpid() and owner.get('returncode') is None and owner.get('child_reaped') is False,'parent must acknowledge this actual live child PID')
-            return owner
-        need(owner.get('spawn_succeeded') is not False and time.monotonic()<deadline,'parent admission unresolved; native imports forbidden')
-        time.sleep(.02)
+    from bigbench.worker_ownership import await_parent_ack
+    need((args.seed,args.scenario) in CASES,'registered camera case required')
+    owner=await_parent_ack(args.out,parent=args.parent,nonce=args.nonce,seed=args.seed,scene=args.scenario,timeout=HANDSHAKE_SECONDS)
+    cohort=json.loads((args.out.parent/'cohort.json').read_text())
+    need(cohort.get('parent_pid')==args.parent and owner.get('cohort_id')==cohort.get('cohort_id'),'matching parent-assigned camera cohort required')
+    return owner
 
 def deny_downloads():
     def audit(event,args):
