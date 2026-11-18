@@ -47,7 +47,17 @@ def finalize_child(out,report,primary):
     def trial_digest():
         try:report['recorded_trial_sha256']=pins.digest(out/'observed-trial/recorded-trial.json')
         except FileNotFoundError:report['recorded_trial_sha256']=None
-    c.finalize_preserving_primary(primary,[lifecycle,trial_digest,lambda:pins.write(out/'report.json',report)],secondary)
+    def latest_trial():
+        try:trial=worker._read_receipt(out/'observed-trial/recorded-trial.json',4*1024**2)
+        except FileNotFoundError:return
+        from bigbench.full_s_recorded_receiver import _identity,_bounds
+        _identity(trial,'recorded-full-s-worker-trial-v1')
+        worker.need(all(trial[k]==report[k] for k in ('pid','parent_pid','nonce','seed','scenario')),'latest original trial identity required')
+        report['official_inference_bounds']=_bounds(trial['actual_inference_bounds'])
+        if trial.get('onnxruntime',{}).get('real_session') is True:
+            worker.need(trial.get('model_test_double') is False and trial.get('injected_session') is False,'original real session required')
+            report['official_model_process_bounds']=[1,1]
+    c.finalize_preserving_primary(primary,[lifecycle,trial_digest,latest_trial,lambda:pins.write(out/'report.json',report)],secondary)
 
 
 def child(args):

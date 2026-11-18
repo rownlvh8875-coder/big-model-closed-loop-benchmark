@@ -148,7 +148,7 @@ def validate_native_bundle(root,*,qualified=None):
             need(value['pid']==native['pid'] and all(value[k]==launch[k] for k in ('parent_pid','nonce','seed','scenario')),'original body/launch/native PID binding required')
         else:unavailable.append('body/native launch association')
     if life is not None and linked:bounds=activity_bounds(life)
-    elif trial is not None and linked:
+    if trial is not None and linked:
         bounds['official_inference_bounds']=list(body['reported_inference_bounds'])
         if trial.get('onnxruntime',{}).get('real_session') is True:bounds['official_model_process_bounds']=[1,1]
     descriptor=_optional(root/'model-dependencies.json',4*1024**2);dep_sha=None
@@ -219,7 +219,9 @@ def validate_native_bundle(root,*,qualified=None):
         for key,budget in (('official_model_process_bounds',1),('official_inference_bounds',600)):
             declared=top.get(key)
             need(isinstance(declared,list) and len(declared)==2 and all(type(v) is int for v in declared) and 0<=declared[0]<=declared[1]<=budget,'typed bounded native count declaration required')
-            if life is not None and linked:need(declared==bounds[key],'native and original lifecycle counts contradict')
+            if linked and (life is not None or trial is not None):
+                earlier=activity_bounds(life)[key] if life is not None else bounds[key]
+                need(declared==bounds[key] or declared==earlier,'native count must bind latest trial or valid earlier lifecycle checkpoint')
         if life is not None or trial is not None:
             need(top.get('parent_admission_checked') is True and top.get('model_sha256')==pins.MODEL_SHA and top.get('model_nbytes')==768750198 and
                  top.get('sdk_sha256')==pins.SDK_SHA and top.get('core_sha256')==pins.CORE_SHA and top.get('load_order')=='core-first' and top.get('panda_version')=='1.10.13',

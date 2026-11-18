@@ -144,4 +144,29 @@ class EarlyFailureRegression(unittest.TestCase):
             self.assertEqual(result['status'],'INCOMPLETE_EVIDENCE');self.assertEqual(result['official_inference_bounds'],[0,600])
             self.assertIn('pre-source failure',' '.join(result['infrastructure_errors']))
 
+
+class WindowsDeclarationRegression(unittest.TestCase):
+    def test_windows_checkout_crlf_preserves_the_pinned_declaration_values(self):
+        raw=(c.ROOT/c.RUNTIME).read_bytes().replace(b'\r\n',b'\n')
+        expected=json.loads(raw)
+        with patch.object(deps,'_receipt_bytes',return_value=raw.replace(b'\n',b'\r\n')):
+            self.assertEqual(deps.declaration(),expected)
+        changed=raw.replace(b'1.20.1',b'1.20.2').replace(b'\n',b'\r\n')
+        with patch.object(deps,'_receipt_bytes',return_value=changed),self.assertRaises(ValueError):deps.declaration()
+
+@unittest.skipUnless(sys.platform=='linux','Linux-only original-body CPU receipt fixture')
+class EarlierCheckpointRegression(unittest.TestCase):
+    def test_later_trial_counts_supersede_earlier_lifecycle_checkpoint(self):
+        from tests.test_recorded_official_bundle import BundleTests
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);case=BundleTests();case.build(root)
+            path=root/'native/observed-trial/recorded-trial-lifecycle.json';value=json.loads(path.read_text())
+            value.update(status='WORLD_LOADING',inference_bounds=[0,0],provider_created=None,provider_received=False,provider_close_attempted=None,body_provider_close_attempted=False,provider_closed=None,completed_rows=0)
+            case.write(path,value)
+            path=root/'native/report.json';value=json.loads(path.read_text());value['official_inference_bounds']=[0,0];case.write(path,value)
+            parent=root/'native/parent-completion.json';value=json.loads(parent.read_text());value['report_sha256']=hashlib.sha256(path.read_bytes()).hexdigest();case.write(parent,value)
+            result=case.verify(root)
+            self.assertEqual(result['official_inference_bounds'],result['body']['reported_inference_bounds'])
+            self.assertGreater(result['official_inference_bounds'][0],0)
+
 if __name__=='__main__':unittest.main()

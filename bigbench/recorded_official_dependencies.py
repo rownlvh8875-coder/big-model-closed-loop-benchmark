@@ -16,7 +16,7 @@ MAX_TOTAL=256*1024**2
 
 
 def declaration():
-    raw=_receipt_bytes(c.ROOT/c.RUNTIME,65536)
+    raw=_receipt_bytes(c.ROOT/c.RUNTIME,65536).replace(b'\r\n',b'\n')  # Windows checkout line endings only; values remain pinned.
     need(hashlib.sha256(raw).hexdigest()==DECLARATION_SHA,'pinned wheel declaration bytes required')
     return json.loads(raw)
 
