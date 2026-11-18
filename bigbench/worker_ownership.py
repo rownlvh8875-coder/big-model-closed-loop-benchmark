@@ -39,12 +39,12 @@ def worker_launch():
         executable=base
     return executable,environment
 
-def await_parent_ack(out,*,parent,nonce,seed,scene,timeout=5):
+def await_parent_ack(out,*,parent,nonce,seed,scene,timeout=5,read_owner=None):
     if type(parent) is not int or parent<=0 or parent!=os.getppid() or not isinstance(nonce,str) or len(nonce)!=32 or any(c not in '0123456789abcdef' for c in nonce):raise ValueError('live owned parent/nonce required before native imports')
     if type(timeout) not in (int,float) or not math.isfinite(timeout) or not 0<=timeout<=5:raise ValueError('bounded parent acknowledgement required')
     deadline=time.monotonic()+timeout
     while True:
-        owner=json.loads((Path(out)/'owner.json').read_text())
+        owner=read_owner(Path(out)/'owner.json') if read_owner is not None else json.loads((Path(out)/'owner.json').read_text())
         if owner.get('parent_pid')!=parent or owner.get('nonce')!=nonce or (owner.get('seed'),owner.get('scenario'))!=(seed,scene):raise ValueError('parent-assigned worker case/nonce mismatch')
         if owner.get('spawn_succeeded') is True:
             if owner.get('pid')!=os.getpid() or owner.get('returncode') is not None or owner.get('child_reaped') is not False:raise ValueError('parent must acknowledge this actual live worker PID')

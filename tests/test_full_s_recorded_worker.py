@@ -1,5 +1,6 @@
 """Portable owned entry and Linux orchestration fixtures; never native evidence."""
 import errno
+import builtins
 import json
 import os
 from pathlib import Path
@@ -99,6 +100,64 @@ class PortableRecordedWorkerTests(unittest.TestCase):
                 with self.assertRaises(ValueError):
                     worker.process_check(link/'new')
                 self.assertFalse((root/'new').exists())
+
+    def test_owner_persistence_failure_never_publishes_pass(self):
+        original = worker._write_receipt
+        def fail_final(path, value, **kwargs):
+            if Path(path).name == 'owner.json' and value.get('child_reaped') is True:
+                raise OSError('owner final persistence failed')
+            return original(path, value, **kwargs)
+        with tempfile.TemporaryDirectory() as temp:
+            out = Path(temp)/'check'
+            with patch.object(worker, '_write_receipt', side_effect=fail_final):
+                with self.assertRaises(Exception):
+                    worker.process_check(out)
+            self.assertFalse((out/'process-check.json').exists())
+
+    def test_owner_finalization_does_not_mask_interrupted_spawn(self):
+        original = worker._write_receipt
+        def fail_final(path, value, **kwargs):
+            if Path(path).name == 'owner.json' and kwargs.get('replace'):
+                raise OSError('owner final persistence failed')
+            return original(path, value, **kwargs)
+        with tempfile.TemporaryDirectory() as temp:
+            out = Path(temp)/'check'
+            caught = None
+            with patch.object(worker, '_write_receipt', side_effect=fail_final), \
+                 patch.object(worker.subprocess, 'Popen', side_effect=InterruptedError(errno.EINTR,'first spawn interruption')):
+                try: worker.process_check(out)
+                except Exception as exc: caught = exc
+            self.assertIsInstance(caught, InterruptedError)
+            self.assertTrue(any('owner final persistence failed' in v for v in caught.secondary_errors))
+            self.assertIsNone(caught.owner['spawn_succeeded'])
+
+    def test_receipt_size_is_checked_before_opening_in_both_directions(self):
+        original = Path.open
+        def forbid_large_read(path, mode='r', *args, **kwargs):
+            if path.name in ('owner.json','worker.json') and 'r' in mode and path.stat().st_size > 65536:
+                raise AssertionError('oversized receipt opened before rejection')
+            return original(path, mode, *args, **kwargs)
+        class Child:
+            pid=23456; returncode=0
+            def wait(self, timeout): return 0
+            def poll(self): return 0
+        with tempfile.TemporaryDirectory() as temp:
+            root=Path(temp);out=root/'parent'
+            def launch(*args, **kwargs):
+                (out/'worker.json').write_bytes(b' '*70000)
+                return Child()
+            with patch.object(worker.subprocess,'Popen',side_effect=launch), patch.object(Path,'open',new=forbid_large_read):
+                caught=None
+                try: worker.process_check(out)
+                except Exception as exc: caught=exc
+                self.assertIsInstance(caught,ValueError)
+            child=root/'child';child.mkdir();(child/'owner.json').write_bytes(b' '*70000)
+            args=SimpleNamespace(out=child,parent=os.getppid(),nonce='a'*32,seed=20261109,scene='s_curve_left_right')
+            with patch.object(Path,'open',new=forbid_large_read):
+                caught=None
+                try: worker.worker_check(args)
+                except Exception as exc: caught=exc
+                self.assertIsInstance(caught,ValueError)
 
 
 @unittest.skipUnless(sys.platform == 'linux', 'recorded SDK3 trial body is Linux-only')
@@ -232,6 +291,81 @@ class RecordedTrialBodyTests(unittest.TestCase):
             self.assertIn('graph failure', caught.exception.primary_error)
             self.assertTrue(any('fingerprint read failed' in value for value in caught.exception.secondary_errors))
             self.assertEqual(caught.exception.inference_bounds, [1, 2])
+
+    def test_lazy_import_failure_is_a_recorded_zero_inference_failure(self):
+        original=builtins.__import__
+        def fail_import(name,*args,**kwargs):
+            if name=='scripts.native_mdv3_repeat_trial':raise ImportError('dependency import failed')
+            return original(name,*args,**kwargs)
+        with tempfile.TemporaryDirectory() as temp:
+            out=Path(temp)/'trial';caught=None
+            with patch.object(builtins,'__import__',side_effect=fail_import):
+                try:self.execute(out)
+                except Exception as exc:caught=exc
+            self.assertIsInstance(caught,worker.TrialFailure)
+            self.assertEqual(caught.inference_bounds,[0,0])
+            self.assertIn('dependency import failed',caught.primary_error)
+            self.assertFalse(json.loads((out/'recorded-trial-lifecycle.json').read_text())['policy_constructor_entered'])
+
+    def test_graph_error_precedes_later_capture_serialization_error(self):
+        from bigbench import full_s_failure_capture as capture
+        with tempfile.TemporaryDirectory() as temp:
+            out=Path(temp)/'trial'
+            with patch.object(capture,'_write_blob',side_effect=OSError('blob write failed')):
+                with self.assertRaises(worker.TrialFailure) as caught:self.execute(out,fail_on=2)
+            self.assertIn('graph failure',caught.exception.primary_error)
+            self.assertTrue(any('blob write failed' in v for v in caught.exception.secondary_errors))
+            self.assertEqual(caught.exception.inference_bounds,[1,2])
+
+    def test_finalization_path_probe_errors_keep_primary_graph_error_and_bounds(self):
+        for method,name in (('is_file','manifest.json'),('exists','report.json')):
+            original=getattr(Path,method)
+            def fail_stat(path,original=original,name=name):
+                if path.name==name and path.parent.name=='recording':raise OSError(errno.EIO,'path probe failed')
+                return original(path)
+            with self.subTest(method=method),tempfile.TemporaryDirectory() as temp:
+                out=Path(temp)/'trial';caught=None
+                with patch.object(Path,method,new=fail_stat):
+                    try:self.execute(out,fail_on=2)
+                    except Exception as exc:caught=exc
+                self.assertIsInstance(caught,worker.TrialFailure)
+                self.assertIn('graph failure',caught.primary_error)
+                self.assertEqual(caught.inference_bounds,[1,2])
+                self.assertTrue(any('path probe failed' in v for v in caught.secondary_errors))
+
+    def test_failed_capture_without_callback_does_not_claim_raw_observation(self):
+        with tempfile.TemporaryDirectory() as temp:
+            out=Path(temp)/'trial'
+            with patch.object(self.source_camera,'capture',side_effect=RuntimeError('camera failed before callback')):
+                with self.assertRaises(worker.TrialFailure):self.execute(out)
+            receipt=json.loads((out/'recorded-trial.json').read_text())
+            self.assertIsNone(receipt['raw_rgb_observer_used'])
+            self.assertTrue(receipt['raw_rgb_observer_requested'])
+
+    def test_frozen_world_pre_handoff_cleanup_preserves_exception_chain(self):
+        from scripts import native_mdv3_repeat_trial as model
+        from bigbench import metadrive_camera,curved_lane_scenarios
+        parent=self.inner_policy()
+        class Provider:
+            calls=0
+            env=SimpleNamespace(current_map=object())
+            def close(self):self.calls+=1;raise RuntimeError('factory close failure')
+        provider=Provider()
+        fake_constants=SimpleNamespace(Semantics=object(),CameraTagStateKey=object())
+        with tempfile.TemporaryDirectory() as temp:
+            out=Path(temp)/'trial';args=SimpleNamespace(out=out,nonce='a'*32,seed=20261109,scenario='s_curve_left_right')
+            with patch.object(model,'AuditedOfficialOnnx',return_value=parent), \
+                 patch.object(metadrive_camera,'NativeMetaDriveProvider',return_value=provider), \
+                 patch.object(curved_lane_scenarios,'select_native_curve_lanes',side_effect=ValueError('lane failure')), \
+                 patch.dict(sys.modules,{'metadrive.constants':fake_constants}), \
+                 patch('scripts.sdk3_priority_model_native.source_stats_after',return_value={}):
+                with self.assertRaises(worker.TrialFailure) as caught:worker.run_recorded_trial(args)
+            self.assertIn('lane failure',caught.exception.primary_error)
+            self.assertTrue(any('factory close failure' in v for v in caught.exception.secondary_errors))
+            self.assertEqual(provider.calls,1)
+            life=json.loads((out/'recorded-trial-lifecycle.json').read_text())
+            self.assertIsNone(life['provider_created'])
+            self.assertFalse(life['provider_received'])
 
 
 if __name__ == '__main__':

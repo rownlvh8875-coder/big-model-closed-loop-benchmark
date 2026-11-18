@@ -22,6 +22,9 @@ process-check는 실제 같은 진입점의 자식 프로세스를 실행해 정
 조건·모드·가상환경 경로를 확인하고 자식을 회수합니다. Python은`-I -S -B`로 시작해
 시작 hook을 차단합니다. Windows venv에서는 공용 base-interpreter 실행 방식을
 사용합니다. Popen 인터럽트로 핸들을 받지 못하면 생성 여부를 미확인으로 유지합니다.
+양방향 확인서는 크기·일반 파일·symlink를 확인한 뒤 최대64KiB만 읽습니다.
+공용 ACK helper의 선택적 reader를 사용하며 기존 호출의 기본 동작은 바꾸지 않습니다.
+실제 자식을 회수하고 최종 owner 확인서를 저장한 뒤에만 PASS를 게시합니다.
 `PROCESS_CHECK_PASS`는 소유권 검사이며 native 카메라/모델 통과가 아닙니다.
 
 ## 향후 별도 부모 실행기에 연결할 본체
@@ -62,6 +65,16 @@ CPU getter로 intrinsics를 읽고 기존 capture_full_s(max_steps=600)를 호�
 생성 실패는 추론0회로, 미완료 호출은 원래 보수적 범위로 남깁니다. 최종 영수증
 쓰기나 source/runtime metadata 수집이 실패해도 TrialFailure.report와
 TrialFailure.inference_bounds에서 확보한 원래 결과를 받을 수 있습니다.
+의존성 import부터 lifecycle을 남기며, 원래 추론 오류 뒤 저장 오류가 생기면
+앞선 추론 오류를 primary로 유지합니다. frozen `_world`가 객체를 넘기기 전에
+내부 정리까지 실패한 경우에는 예외 연결을 보존하고 provider 생성·정리 여부를
+미확인으로 남깁니다. 본체가 provider를 받았는지와 직접 정리를 시도했는지도
+별도 기록하므로 추가 close를 하지 않습니다.
+
+raw_rgb_observer_requested는 기록 요청 여부이고 raw_rgb_observer_used는 확인된
+source 바이트가 있을 때만true입니다. callback 전 캡처가 실패했거나 파일 조회가
+실패하면 관찰 여부는null로 남습니다. 영수증·manifest 경로 조회 오류도 원래
+보고서와 추론 범위를 가리는 새 예외로 바뀌지 않도록 함께 기록합니다.
 
 파일 구성은 다음과 같습니다.
 
