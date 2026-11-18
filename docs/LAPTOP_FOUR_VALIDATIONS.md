@@ -92,6 +92,6 @@ CARLA도 별도 최대 8 모델·4,800 추론입니다. 두 로컬 백엔드를 
 .\.venv-laptop\Scripts\python.exe scripts\run_laptop_validation.py --mode gpu --out output\laptop-gpu-host-fix-01
 ```
 
-출력은 새 `windows-panda-gpu-attempt-v2`이며 정상 측정 시 construction 표지가 `OWNED_ZERO_SAMPLE_OFFSCREEN_HOST_AND_REQUESTED_MSAA_FBO_V1`입니다. 실제 색상·경계·GL sample/state 기준은 기존 readback-v2와 같습니다. 소프트웨어/Linux API 검사나 모의 테스트의 통과가 이 실제 Windows 재검사를 대신하지 않습니다. 모델 카메라·물리광학·CARLA 검증도 별도입니다.
+출력은 새 `windows-panda-gpu-attempt-v2`이며 정상 측정 시 construction 표지가 `OWNED_ZERO_SAMPLE_OFFSCREEN_HOST_AND_REQUESTED_MSAA_OUTPUT_V2`입니다. 실제 색상·경계·GL sample/state 기준은 기존 readback-v2와 같습니다. 소프트웨어/Linux API 검사나 모의 테스트의 통과가 이 실제 Windows 재검사를 대신하지 않습니다. 모델 카메라·물리광학·CARLA 검증도 별도입니다.
 
 보고서 측정 당시 사용 가능 RAM은 약4.68GiB로 Windows full-S의8GiB 기준에 미달했습니다. 이 수정은 메모리 기준을 변경하지 않습니다. 별도 클라우드 full-S 작업의 결과는 해당 작업의 원본 기록이 전달돼야 확인할 수 있습니다.

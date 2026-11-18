@@ -19,7 +19,7 @@ Base14297e2 and previous evidence immutable except narrow GPU allocator/callback
 
 ### Task 1: owned host/GSG allocation
 Files: bigbench/laptop_gpu.py; tests/test_laptop_gpu_host_allocation.py (new); existing GPU coldhelp test if needed.
-Interfaces: consumes existing GPU challenge and actual WGL verifier; produces `_allocate_msaa_output(base,core,requested_samples,owners)->GraphicsOutput`, usingcallerExitStack and no optionalimports at module scope.
+Interfaces: consumes existing GPU challenge and actual WGL verifier; produces `_allocate_msaa_output(base,core,requested_samples,owners)->GraphicsOutput`, usingcallerExitStack and no optionalimports at module scope; post-review return is(output,observedallocationmetadata).
 - [ ] Write fake WGL run_gpu_probe regressions: originalrender reached only after valid0samplehost, sameGSG+host passedto4sampletarget; initialization/gsg/target/draw/callback/removal failures cleanup and no targetdowngrade.
 - [ ] Run new module; ExpectedRED atoriginalhostlessallocation, before fake drawboundary.
 - [ ] Implement allocator, resourceownership and nestedcallback/output/basecleanup; record newattemptconstruction marker, preserve all challenge/validator behavior.
@@ -37,3 +37,5 @@ Interfaces: consumesTask1allocator; produces zero-model software API smoke repor
 - [ ] Singlefreshwholebranchreviewbase142..HEAD, regrade; oneCritical/ImportantRED→GREENpass, Minordefer/no rereview.
 - [ ] ExactfinalHEADcanonicalpush+PR4jobs, Windowspush+PR and Linuxsoftwarepush+PR checksPASS; freshDraftPRagainstparentfeature, preserveparent142/source54/main/originalartifacts.
 - [ ] Build source-pinned Windowskit, coldinventorysmoke. Archiveownledger/rulings/minors, deleteonlyownscratch; preserveworktree and previousarchives. ReportactualWindowstestpending and externalfullSresultsnotobserved.
+
+Post-review one-pass additions: actualtargetTypeHandle/GSG-sharing must be recorded without unconditional FBO claim; validalternate-output regression. Nativeownership check must run beforeBase.destroy; fault-injected missinghost/canarycallback mustFAIL evenwhenBasefallbackworks. ExactfinalCI receipts must use software-api-smoke-v2 and pre-Baseownership fields. One wrapper-error docMinor deferred.

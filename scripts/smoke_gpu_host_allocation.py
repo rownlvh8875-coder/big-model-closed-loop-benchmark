@@ -14,13 +14,16 @@ def run():
  core.loadPrcFileData('host-allocation-smoke','window-type none\naudio-library-name null\nsync-video false\nthreading-model\n')
  base=None;result=None;engine=None
  try:
-  base=ShowBase(windowType='none');base.makeDefaultPipe();engine=base.graphicsEngine
+  base=ShowBase(windowType='none');base.makeDefaultPipe();engine=base.graphicsEngine;initial_count=engine.getNumWindows()
   with ExitStack() as owners:
-   output=_allocate_msaa_output(base,core,4,owners);base.win=output;engine.renderFrame();engine.syncFrame();gsg=output.getGsg();renderer=gsg.getDriverRenderer()
+   output,allocation=_allocate_msaa_output(base,core,4,owners);base.win=output;engine.renderFrame();engine.syncFrame();gsg=output.getGsg();renderer=gsg.getDriverRenderer()
    if 'llvmpipe' not in renderer.lower():raise ValueError('explicit llvmpipe software renderer required')
    samples=output.getFbProperties().getMultisamples()
    if samples<4 or output.getXSize()!=8 or output.getYSize()!=8:raise ValueError('requested stock-Panda software output not allocated')
-   result=dict(protocol='stock-panda-host-allocation-api-smoke-v1',software_api_smoke_passed=True,renderer=renderer,vendor=gsg.getDriverVendor(),version=gsg.getDriverVersion(),requested_samples=4,framework_reported_samples=samples,source_entry=str(Path(__file__).resolve()),real_render_calls=1,official_model_processes=0,inferences=0,windows_wgl_qualified=False,hardware_gpu_qualified=False,model_camera_qualified=False,physical_optics_validated=False,carla_validated=False,scope='actual Linux stock-Panda allocation and ownership API only; sample property is not GL pixel/MSAA certification')
+   result=dict(protocol='stock-panda-host-allocation-api-smoke-v2',framebuffer_allocation=allocation,software_api_smoke_passed=True,renderer=renderer,vendor=gsg.getDriverVendor(),version=gsg.getDriverVersion(),requested_samples=4,framework_reported_samples=samples,source_entry=str(Path(__file__).resolve()),real_render_calls=1,official_model_processes=0,inferences=0,windows_wgl_qualified=False,hardware_gpu_qualified=False,model_camera_qualified=False,physical_optics_validated=False,carla_validated=False,scope='actual Linux stock-Panda allocation and ownership API only; sample property is not GL pixel/MSAA certification')
+  remaining=engine.getNumWindows()
+  if remaining!=initial_count:raise RuntimeError('owned outputs remain before ShowBase destroy fallback')
+  result.update(ownership_checked_before_base_destroy=True,initial_window_count=initial_count,window_count_after_owned_cleanup=remaining)
  finally:
   if base is not None:base.destroy()
  if result is None or engine is None or engine.getNumWindows()!=0:raise RuntimeError('owned software outputs were not removed')

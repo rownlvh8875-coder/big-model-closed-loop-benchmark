@@ -20,7 +20,12 @@ class WglHarness:
   class Output:
    def __init__(self,role):self.role=role;self.opened=False;self.active=True
    def isValid(self):return self.opened
-   def getGsg(self):return None if h.mode=='null_gsg' else h.gsg
+   def getGsg(self):return None if h.mode=='null_gsg' else h.alternate_gsg if self.role=='canary' and h.mode=='alternate_target' else h.gsg
+   def getType(self):return SimpleNamespace(getName=lambda:'wglGraphicsBuffer' if self.role=='host' or h.mode=='alternate_target' else 'GLGraphicsBuffer')
+   def getFbProperties(self):return SimpleNamespace(getMultisamples=lambda:h.samples)
+   def getXSize(self):return 8
+   def getYSize(self):return 8
+   def isActive(self):return self.active
    def setActive(self,value):self.active=value;h.events.append('inactive_'+self.role)
    def setClearColorActive(self,value):pass
    def setClearColor(self,value):pass
@@ -62,13 +67,14 @@ class WglHarness:
    def makeDefaultPipe(self):h.events.append('default_pipe')
    def makeCamera2d(self,win):h.events.append('camera_canary')
    def destroy(self):h.events.append('base_destroyed');h.outputs.clear()
-  self.gsg=SimpleNamespace(isValid=lambda:self.mode!='invalid_gsg');core=ModuleType('panda3d.core');self.core=core
+  self.gsg=SimpleNamespace(this=101,isValid=lambda:self.mode!='invalid_gsg',getDriverRenderer=lambda:'llvmpipe UNIT',getDriverVendor=lambda:'Mesa UNIT',getDriverVersion=lambda:'unit');self.alternate_gsg=SimpleNamespace(this=202,isValid=lambda:True);core=ModuleType('panda3d.core');self.core=core
   for name in ('Texture','CardMaker','Shader','GeomVertexData','GeomVertexFormat','GeomVertexWriter','GeomTriangles','Geom','GeomNode'):setattr(core,name,Mock())
   core.FrameBufferProperties=FB;core.WindowProperties=SimpleNamespace(size=lambda *args:args);core.GraphicsPipe=SimpleNamespace(BFRefuseWindow=1);core.GraphicsOutput=SimpleNamespace(RTMCopyRam=1,RTPColor=2);core.AntialiasAttrib=SimpleNamespace(MMultisample=1,MNone=0);core.CallbackObject=SimpleNamespace(make=lambda fn:fn);core.PandaSystem=SimpleNamespace(getVersionString=lambda:'1.10.13');core.loadPrcFileData=Mock();self.Base=Base
- def run(self):
+ def modules(self):
   panda=ModuleType('panda3d');panda.__path__=[];panda.core=self.core;direct=ModuleType('direct');direct.__path__=[];showbase=ModuleType('direct.showbase');showbase.__path__=[];entry=ModuleType('direct.showbase.ShowBase');entry.ShowBase=self.Base
-  modules={'panda3d':panda,'panda3d.core':self.core,'direct':direct,'direct.showbase':showbase,'direct.showbase.ShowBase':entry}
-  with patch.dict(sys.modules,modules),patch.object(g.platform,'system',return_value='Windows'),patch.object(g,'collect_resources',return_value={'gpu_devices':[{'name':g.TARGET}]}),patch.object(g,'_gl_reader',return_value=lambda:{}):return g.run_gpu_probe(requested_samples=self.samples)
+  return {'panda3d':panda,'panda3d.core':self.core,'direct':direct,'direct.showbase':showbase,'direct.showbase.ShowBase':entry}
+ def run(self):
+  with patch.dict(sys.modules,self.modules()),patch.object(g.platform,'system',return_value='Windows'),patch.object(g,'collect_resources',return_value={'gpu_devices':[{'name':g.TARGET}]}),patch.object(g,'_gl_reader',return_value=lambda:{}):return g.run_gpu_probe(requested_samples=self.samples)
 
 class HostAllocationContracts(unittest.TestCase):
  def test_missing_windows_resources_stay_blocked_under_new_attempt_revision(self):
@@ -78,6 +84,13 @@ class HostAllocationContracts(unittest.TestCase):
   h=WglHarness()
   with self.assertRaises(DrawBoundary):h.run()
   self.assertEqual(h.requests,[0,4]);self.assertEqual(h.opens,2);self.assertEqual(h.draws,1);self.assertFalse(h.outputs)
+ def test_valid_alternative_target_records_actual_type_and_unshared_gsg(self):
+  self.assertNotIn('FBO',g.CONSTRUCTION)
+  h=WglHarness('alternate_target');base=h.Base(windowType='none');base.makeDefaultPipe()
+  try:
+   with ExitStack() as owners:
+    output,allocation=g._allocate_msaa_output(base,h.core,4,owners);self.assertEqual(allocation['observed_canary_type'],'wglGraphicsBuffer');self.assertEqual(allocation['observed_host_type'],'wglGraphicsBuffer');self.assertFalse(allocation['canary_shares_host_gsg']);self.assertEqual(allocation['canary_requested_samples'],4);self.assertTrue(allocation['host_inactive'])
+  finally:base.destroy()
  def test_failed_host_does_not_attempt_canary(self):
   h=WglHarness('host_null')
   with self.assertRaisesRegex(RuntimeError,'host'):h.run()
@@ -114,4 +127,23 @@ class NativeSmokeColdContracts(unittest.TestCase):
   from pathlib import Path
   import subprocess
   entry=Path(__file__).resolve().parents[1]/'scripts/smoke_gpu_host_allocation.py';result=subprocess.run([sys.executable,'-I','-S','-B',str(entry),'--help'],capture_output=True,text=True,timeout=10);self.assertEqual(result.returncode,0,result.stderr)
+class NativeOwnershipEvidenceContracts(unittest.TestCase):
+ def smoke(self,omit):
+  from scripts import smoke_gpu_host_allocation as smoke
+  h=WglHarness();parent=h.Base
+  class SmokeBase(parent):
+   def __init__(self,windowType):
+    super().__init__(windowType);self.graphicsEngine.renderFrame=lambda:None;self.graphicsEngine.syncFrame=lambda:None;self.graphicsEngine.getNumWindows=lambda:len(h.outputs)
+  h.Base=SmokeBase;actual=g._allocate_msaa_output
+  def allocate(base,core,samples,owners):
+   class IncompleteOwner:
+    def callback(self,fn,output):
+     if output.role!=omit:owners.callback(fn,output)
+   return actual(base,core,samples,IncompleteOwner())
+  with patch.dict(sys.modules,h.modules()),patch('platform.system',return_value='Linux'),patch.object(g,'_allocate_msaa_output',side_effect=allocate):return smoke.run(),h
+ def test_missing_owner_callback_is_rejected_before_working_base_fallback(self):
+  for omit in ('host','canary'):
+   with self.subTest(omit=omit),self.assertRaisesRegex(RuntimeError,'before ShowBase'):self.smoke(omit)
+ def test_complete_owner_cleanup_is_checked_before_base_fallback(self):
+  report,h=self.smoke(None);self.assertTrue(report['ownership_checked_before_base_destroy']);self.assertEqual(report['initial_window_count'],report['window_count_after_owned_cleanup']);self.assertEqual(report['window_count_after_owned_cleanup'],0);self.assertFalse(h.outputs);self.assertIn('base_destroyed',h.events)
 if __name__=='__main__':unittest.main()

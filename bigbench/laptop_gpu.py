@@ -3,7 +3,7 @@ import platform
 from contextlib import ExitStack
 from bigbench.validation_resources import SOFTWARE,actual_hardware_msaa,collect_resources
 ATTEMPT_PROTOCOL='windows-panda-gpu-attempt-v2'
-CONSTRUCTION='OWNED_ZERO_SAMPLE_OFFSCREEN_HOST_AND_REQUESTED_MSAA_FBO_V1'
+CONSTRUCTION='OWNED_ZERO_SAMPLE_OFFSCREEN_HOST_AND_REQUESTED_MSAA_OUTPUT_V2'
 TARGET='NVIDIA GeForce RTX 3050 Ti Laptop GPU'
 COLORS=[[255,0,255,255],[0,255,0,255]]
 
@@ -50,7 +50,7 @@ def _gl_reader():
  return read
 
 def _allocate_msaa_output(base,core,requested_samples,owners):
- """Own a zero-sample context host and its requested-sample FBO separately."""
+ """Own a context host and requested-sample output; observe the selected backend."""
  def properties(samples):
   fb=core.FrameBufferProperties();fb.setRgbColor(True);fb.setRgbaBits(8,8,8,8);fb.setDepthBits(24);fb.setMultisamples(samples);return fb
  engine=base.graphicsEngine;wp=core.WindowProperties.size(8,8)
@@ -65,7 +65,11 @@ def _allocate_msaa_output(base,core,requested_samples,owners):
  if win is None:raise RuntimeError('unable to allocate requested stock-Panda MSAA canary')
  owners.callback(engine.removeWindow,win);engine.openWindows()
  if not win.isValid():raise RuntimeError('requested MSAA canary did not open')
- return win
+ actual_gsg=win.getGsg()
+ if actual_gsg is None or not actual_gsg.isValid():raise RuntimeError('requested MSAA canary has no valid GSG')
+ if host.isActive():raise RuntimeError('context host unexpectedly active before canary rendering')
+ allocation=dict(requested_construction=CONSTRUCTION,host_requested_samples=0,canary_requested_samples=requested_samples,observed_host_type=host.getType().getName(),observed_canary_type=win.getType().getName(),canary_shares_host_gsg=int(actual_gsg.this)==int(gsg.this),host_inactive=True)
+ return win,allocation
 
 def run_gpu_probe(*,requested_samples=4):
  observation=collect_resources();names=[x['name'] for x in observation['gpu_devices'] if x.get('name')]
@@ -81,7 +85,7 @@ def run_gpu_probe(*,requested_samples=4):
  from direct.showbase.ShowBase import ShowBase
  base=None;region=None;original=None;result=None;cleanup=False;snaps=[];images=[];armed=False;read=_gl_reader();owners=ExitStack()
  try:
-  base=ShowBase(windowType='none');base.makeDefaultPipe();win=_allocate_msaa_output(base,core,requested_samples,owners)
+  base=ShowBase(windowType='none');base.makeDefaultPipe();win,allocation=_allocate_msaa_output(base,core,requested_samples,owners)
   win.setClearColorActive(True);win.setClearColor((0,0,0,1));base.win=win;base.makeCamera2d(win);texture=Texture('actual-ram-readback');texture.setFormat(Texture.FRgba8);win.addRenderTexture(texture,GraphicsOutput.RTMCopyRam,GraphicsOutput.RTPColor)
   maker=CardMaker('challenge');maker.setFrameFullscreenQuad();card=base.render2d.attachNewNode(maker.generate());card.setDepthTest(False);card.setDepthWrite(False);card.setAntialias(AntialiasAttrib.MMultisample)
   card.setShader(Shader.make(Shader.SLGLSL,'#version 330\nuniform mat4 p3d_ModelViewProjectionMatrix; in vec4 p3d_Vertex; void main(){gl_Position=p3d_ModelViewProjectionMatrix*p3d_Vertex;}','#version 330\nuniform vec4 challenge; out vec4 frag; void main(){frag=challenge;}'))
@@ -114,4 +118,4 @@ def run_gpu_probe(*,requested_samples=4):
     if base is not None:base.destroy()
   cleanup=True
  if result is None:raise RuntimeError('GPU probe produced no result')
- result['cleanup_complete']=cleanup;return dict(protocol=ATTEMPT_PROTOCOL,status='MEASURED',framebuffer_construction=CONSTRUCTION,readbacks=result,validation=verify_gpu_readbacks(result))
+ result['cleanup_complete']=cleanup;return dict(protocol=ATTEMPT_PROTOCOL,status='MEASURED',framebuffer_construction=CONSTRUCTION,framebuffer_allocation=allocation,readbacks=result,validation=verify_gpu_readbacks(result))
