@@ -1,7 +1,7 @@
 """Reconstruct archived Cloud source/warp/I420; never runs a model or renderer."""
 from pathlib import Path,PurePosixPath
 from contextlib import ExitStack
-import argparse,hashlib,json,math,stat,sys,zipfile,zlib
+import argparse,hashlib,io,json,math,stat,sys,zipfile,zlib
 if __name__=='__main__':sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 ROOT=Path(__file__).resolve().parents[1]
 EVIDENCE=ROOT/'docs/evidence/four-validation-20261118/actual-02'
@@ -78,19 +78,19 @@ def replay_case(bundle,model_reports,seed,scene):
 
 def authenticate_archive(path,meta):
  need(path.is_file() and not path.is_symlink() and path.stat().st_size==meta['size_in_bytes'] and 0<path.stat().st_size<=32*1024**2,'exact bounded original archive extent required')
- digest=hashlib.sha256()
- with path.open('rb') as f:
-  for block in iter(lambda:f.read(1024**2),b''):digest.update(block)
- need(meta['digest']=='sha256:'+digest.hexdigest() and meta['workflow_run']['id']==RUN_ID and meta['workflow_run']['head_sha']==ACTIVATION,'archive must match retained API-bound actual run/activation/digest')
- return dict(artifact_id=meta['id'],name=meta['name'],bytes=path.stat().st_size,sha256=digest.hexdigest(),run_id=RUN_ID,activation=ACTIVATION)
+ with path.open('rb') as f:snapshot=f.read(32*1024**2+1)
+ need(len(snapshot)==meta['size_in_bytes'] and len(snapshot)<=32*1024**2,'exact bounded immutable archive snapshot required')
+ digest=sha(snapshot)
+ need(meta['digest']=='sha256:'+digest and meta['workflow_run']['id']==RUN_ID and meta['workflow_run']['head_sha']==ACTIVATION,'archive must match retained API-bound actual run/activation/digest')
+ return dict(artifact_id=meta['id'],name=meta['name'],bytes=len(snapshot),sha256=digest,run_id=RUN_ID,activation=ACTIVATION),snapshot
 
 def run(cohort):
  from bigbench.full_s_receipts import validate_trajectory
  from bigbench.full_s_validation import compare_full_s
  cohort=Path(cohort);inventory=json.loads((EVIDENCE/'artifacts.json').read_text());origin=json.loads((EVIDENCE/'independent-receiver.json').read_text());need(origin.get('source')==SOURCE and origin.get('activation')==ACTIVATION and origin.get('run_id')==RUN_ID and origin.get('attempt')==1,'frozen actual cohort provenance required')
- probe_name='sdk3-four-validation-probe-20261118-02';names={probe_name}|{f'sdk3-four-validation-full-s-20261118-02-{s}-{c}' for s,c in CASES};metas=inventory['artifacts'];need(len(metas)==5 and {m['name'] for m in metas}==names,'exact five original artifacts required');origins=[authenticate_archive(cohort/(m['name']+'.zip'),m) for m in metas];results=[];verdicts=[];inputs=[];inferences=0
+ probe_name='sdk3-four-validation-probe-20261118-02';names={probe_name}|{f'sdk3-four-validation-full-s-20261118-02-{s}-{c}' for s,c in CASES};metas=inventory['artifacts'];need(len(metas)==5 and {m['name'] for m in metas}==names,'exact five original artifacts required');verified={m['name']:authenticate_archive(cohort/(m['name']+'.zip'),m) for m in metas};origins=[verified[m['name']][0] for m in metas];results=[];verdicts=[];inputs=[];inferences=0
  with ExitStack() as stack:
-  archives={m['name']:stack.enter_context(zipfile.ZipFile(cohort/(m['name']+'.zip'))) for m in metas}
+  archives={m['name']:stack.enter_context(zipfile.ZipFile(io.BytesIO(verified[m['name']][1]))) for m in metas}
   for archive in archives.values():need(len(archive.namelist())==len(set(archive.namelist())) and len(archive.namelist())<5000,'unique bounded original archive namespace required')
   for seed,scene in CASES:
    prefix=f'{seed}-{scene}/';raw_probe=read_member(archives[probe_name],prefix+'probe.json',65536);p=json.loads(raw_probe);bundle={'probe.json':raw_probe};inputs.append(dict(artifact=probe_name,member=prefix+'probe.json',sha256=sha(raw_probe),bytes=len(raw_probe)))

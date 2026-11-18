@@ -12,7 +12,7 @@ def context():
  need(np.__version__=='2.4.6' and cv2.__version__=='5.0.0','registered image libraries required');files=['scripts/laptop_carla_trial.py','scripts/run_laptop_validation.py','bigbench/worker_ownership.py','bigbench/carla_validation.py','bigbench/full_s_validation.py','bigbench/full_s_receipts.py','bigbench/optical_calibration.py','scripts/native_mdv3_repeat_trial.py','bigbench/model_world_frame.py','model_specs/md-v3.json','docs/fixtures/sdk3-full-s-native-route-v1.json'];return dict(protocol='carla-common-route-full-s-context-v1',client='0.9.16',server='0.9.16',client_distribution=importlib.metadata.version('carla'),numpy=np.__version__,opencv=cv2.__version__,source_sha256={f:digest(ROOT/f) for f in files},reference_sha256=REFERENCE_SHA,plant='common fixed-speed ideal kinematics; no CARLA vehicle physics',camera='CarlaWorldCamera actual BGRA sensors, synchronized frame IDs',hardware_gpu_qualified=False,physical_optics_validated=False,linux_sdk3_qualified=False)
 def run(a):
  from scripts.run_laptop_validation import write,check_model
- from bigbench.worker_ownership import await_parent_ack,ownership_snapshot
+ from bigbench.worker_ownership import await_parent_ack,ownership_snapshot,prepare_interpreter
  assigned=await_parent_ack(a.out,parent=a.parent,nonce=a.nonce,seed=a.seed,scene=a.scenario)
  if getattr(a,'ownership_only',False):
   report=ownership_snapshot(assigned,'carla');write(a.out/'ownership.json',report);return report
@@ -20,6 +20,7 @@ def run(a):
  need(a.parent==os.getppid() and len(a.nonce)==32 and all(c in '0123456789abcdef' for c in a.nonce) and a.dedicated_carla,'owned child with explicit dedicated CARLA scope required');endpoint(a.carla_host,a.carla_port);ref=ROOT/'docs/fixtures/sdk3-full-s-native-route-v1.json';need(hashlib.sha256(ref.read_bytes()).hexdigest()==REFERENCE_SHA,'immutable authenticated native geometry reference');references=json.loads(ref.read_text());found=[r for r in references['cases'] if (r['seed'],r['scenario'])==(a.seed,a.scenario)];need(len(found)==1,'registered CARLA condition');rows=found[0]['geometry'];owner=None;result=None;life=dict(protocol='carla-laptop-model-lifecycle-v1',process_id=os.getpid(),nonce=a.nonce,policy_constructor_entered=False,policy_created=False,inference_bounds=[0,0],status='PRE_RUNTIME',owned_sensor_ids=[],world_mutation_entered=False,world_restored=False);write(a.out/'lifecycle.json',life)
  def progress(row):life.update(row);write(a.out/'lifecycle.json',life)
  try:
+  prepare_interpreter(native=True)
   from bigbench.carla_validation import DedicatedCarlaWorld,CarlaWorldCamera,RegisteredCarlaLane
   from bigbench.full_s_validation import validate_route,run_full_s
   owner=DedicatedCarlaWorld(a.carla_host,a.carla_port,rows,dedicated=a.dedicated_carla,on_spawn=lambda ids:progress(dict(owned_sensor_ids=ids)),on_state=progress);camera=CarlaWorldCamera(owner);lanes=[RegisteredCarlaLane(r) for r in rows];ctx=context()

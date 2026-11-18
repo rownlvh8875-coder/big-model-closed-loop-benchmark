@@ -25,12 +25,12 @@ python -I -B scripts/verify_saved_camera_inputs.py --cohort-dir /path/to/actual-
 
 기존 Windows full-S/CARLA 실행기도 가상환경의 redirector를 실제 작업 프로세스로 오인했습니다. CPython 방식의 기본 인터프리터 실행과 `__PYVENV_LAUNCHER__`를 공유 helper로 통일했습니다. 카메라 전용 실행기도 같은 helper를 사용하되 기존 cohort 검사와 과학적 카메라 경로는 유지합니다.
 
-worker는 부모가 자신의 실제 PID·nonce·지정 사례를 기록한 뒤에만 native/모델/서버 코드를 시작합니다. 시작 도중 인터럽트는 실행 실패로 단정하지 않고 미확인으로 남기며, 미확인 상태에서 서버를 복구하거나 다른 작업을 시작하지 않습니다. 기존 모델 RAM8GiB 기준·실행 상한·CARLA 전용 서버/복원 조건은 유지합니다.
+worker는 `-I -S`로 시작해 `.pth`/`sitecustomize` 시작 코드를 차단하고, 부모가 자신의 실제 PID·nonce·지정 사례를 기록한 뒤에만 native/모델/서버 코드를 시작합니다. Python3.11 가상환경 경로는 시작 hook 없이 해석하며 진단 모드에서는 hook을 끝까지 실행하지 않습니다. native 모드만 소유권·사전 조건 확인 뒤 의존성 환경을 초기화합니다. 시작 도중 `EINTR` 등 인터럽트는 실행 실패로 단정하지 않고 미확인으로 남기며, 미확인 상태에서 서버를 복구하거나 다른 작업을 시작하지 않습니다. 기존 모델 RAM8GiB 기준·실행 상한·CARLA 전용 서버/복원 조건은 유지합니다.
 
 새 읽기 전용 진단은 **실제 두 worker 진입점**을 표준 라이브러리만 사용하는 모드로 실행합니다. Linux Cloud에서 실행했고, Windows CI는 패키지가 없는 새 가상환경에서도 실행해 PID/부모/가상환경 유지 여부를 확인합니다.
 
 ```powershell
-python -I -B scripts\run_laptop_validation.py --mode process-check --out output\process-check-01
+python -I -S -B scripts\run_laptop_validation.py --mode process-check --out output\process-check-01
 ```
 
 `PROCESS_CHECK_PASS`는 프로세스 소유권 진단 결과입니다. 카메라·모델·CARLA 서버를 실행하지 않으며 full-S/하드웨어/물리광학 검증을 통과시키지 않습니다. 새 출력 폴더만 사용하고 기존 자료를 덮어쓰지 않습니다.

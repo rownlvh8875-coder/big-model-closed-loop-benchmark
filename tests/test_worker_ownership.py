@@ -2,7 +2,7 @@
 from pathlib import Path
 from types import SimpleNamespace
 from unittest import mock
-import inspect,json,os,subprocess,sys,tempfile,unittest,venv
+import errno,inspect,json,os,subprocess,sys,tempfile,unittest,venv
 from scripts import run_laptop_validation as l
 try:from bigbench import worker_ownership as w
 except ImportError:w=None
@@ -40,7 +40,7 @@ class WorkerOwnershipTests(unittest.TestCase):
     dest=Path(d)/'owned';observed={}
     def popen(argv,**kwargs):
      observed.update(exe=argv[0],env=kwargs['env']);nonce=argv[argv.index('--nonce')+1]
-     l.write(dest/'ownership.json',dict(protocol='owned-worker-process-check-v1',process_id=2345,parent_process_id=os.getpid(),nonce=nonce,seed=20261109,scenario='s_curve_left_right',backend=backend,prefix=sys.prefix,ownership_check_complete=True,native_modules_loaded=False,model_loaded=False,server_connection_attempted=False,official_model_processes=0,inferences=0));return Child()
+     l.write(dest/'ownership.json',dict(protocol='owned-worker-process-check-v1',process_id=2345,parent_process_id=os.getpid(),nonce=nonce,seed=20261109,scenario='s_curve_left_right',backend=backend,prefix=sys.prefix,ownership_check_complete=True,site_hooks_disabled=True,native_modules_loaded=False,model_loaded=False,server_connection_attempted=False,official_model_processes=0,inferences=0));return Child()
     with mock.patch.object(l.sys,'platform','win32'),mock.patch.object(l.sys,'executable','C:/venv/Scripts/python.exe'),mock.patch.object(l.sys,'_base_executable','C:/Python311/python.exe'),mock.patch.object(l.subprocess,'Popen',side_effect=popen):
      l.launch_worker(dest=dest,seed=20261109,scene='s_curve_left_right',probe=True,model=None,backend=backend,ownership_only=True)
     self.assertEqual(observed['exe'],'C:/Python311/python.exe');self.assertEqual(observed['env']['__PYVENV_LAUNCHER__'],'C:/venv/Scripts/python.exe')
@@ -54,7 +54,7 @@ class WorkerOwnershipTests(unittest.TestCase):
  def test_empty_venv_runs_actual_legacy_worker_modes_with_matching_prefix(self):
   with tempfile.TemporaryDirectory() as d:
    env=Path(d)/'venv';venv.EnvBuilder(with_pip=False,symlinks=False).create(env);exe=env/('Scripts/python.exe' if sys.platform=='win32' else 'bin/python');out=Path(d)/'check'
-   r=subprocess.run([str(exe),'-I','-B',str(ROOT/'scripts/run_laptop_validation.py'),'--mode','process-check','--out',str(out)],capture_output=True,text=True,timeout=60)
+   r=subprocess.run([str(exe),'-I','-S','-B',str(ROOT/'scripts/run_laptop_validation.py'),'--mode','process-check','--out',str(out)],capture_output=True,text=True,timeout=60)
    self.assertEqual(r.returncode,0,r.stderr)
    for child in json.loads((out/'process-check.json').read_text())['checks'].values():self.assertEqual(Path(child['prefix']).resolve(),env.resolve());self.assertFalse(child['native_modules_loaded'])
  def test_nonzero_model_counters_cannot_pass_ownership_only_receipt(self):
@@ -65,8 +65,41 @@ class WorkerOwnershipTests(unittest.TestCase):
   with tempfile.TemporaryDirectory() as d:
    dest=Path(d)/'owned'
    def popen(argv,**kwargs):
-    l.write(dest/'ownership.json',dict(protocol='owned-worker-process-check-v1',process_id=3456,parent_process_id=os.getpid(),nonce=argv[argv.index('--nonce')+1],seed=20261109,scenario='s_curve_left_right',backend='metadrive',prefix=sys.prefix,ownership_check_complete=True,native_modules_loaded=False,model_loaded=False,server_connection_attempted=False,official_model_processes=1,inferences=1));return Child()
+    l.write(dest/'ownership.json',dict(protocol='owned-worker-process-check-v1',process_id=3456,parent_process_id=os.getpid(),nonce=argv[argv.index('--nonce')+1],seed=20261109,scenario='s_curve_left_right',backend='metadrive',prefix=sys.prefix,ownership_check_complete=True,site_hooks_disabled=True,native_modules_loaded=False,model_loaded=False,server_connection_attempted=False,official_model_processes=1,inferences=1));return Child()
    with mock.patch.object(l.subprocess,'Popen',side_effect=popen):
     with self.assertRaises(ValueError):l.launch_worker(dest=dest,seed=20261109,scene='s_curve_left_right',probe=True,model=None,ownership_only=True)
+ def test_eintr_keeps_both_launch_paths_unknown_and_siteless(self):
+  from scripts import probe_laptop_camera as c
+  for kind in ('legacy','camera'):
+   with tempfile.TemporaryDirectory() as d:
+    root=Path(d);dest=root/'20261109-s_curve_left_right'/'run-0' if kind=='legacy' else root/'child'
+    if kind=='camera':c.write(root/'cohort.json',dict(parent_pid=os.getpid(),cohort_id='a'*32))
+    seen=[]
+    def interrupted(argv,**kw):seen.extend(argv);raise InterruptedError(errno.EINTR,'interrupted creation')
+    with mock.patch.object(l.subprocess,'Popen',side_effect=interrupted):
+     with self.assertRaises(BaseException):
+      if kind=='legacy':l.launch_worker(dest=dest,seed=20261109,scene='s_curve_left_right',probe=False,model=Path('not-loaded.onnx'))
+      else:c.launch_worker(dest,20261109,'s_curve_left_right')
+    owner=json.loads((dest/'owner.json').read_text());self.assertIsNone(owner['spawn_succeeded']);self.assertFalse(owner['child_reaped']);self.assertIn('-S',seen)
+    if kind=='legacy':self.assertEqual(l.observed_laptop_counts(root)['inference_bounds'],[0,600])
+ def test_site_marker_never_runs_during_unknown_spawn_or_process_check(self):
+  real_popen=subprocess.Popen
+  with tempfile.TemporaryDirectory() as d:
+   root=Path(d);env=root/'venv';venv.EnvBuilder(with_pip=False,symlinks=False).create(env);exe=env/('Scripts/python.exe' if sys.platform=='win32' else 'bin/python')
+   packages=env/'Lib/site-packages' if sys.platform=='win32' else env/f'lib/python{sys.version_info.major}.{sys.version_info.minor}/site-packages';packages.mkdir(parents=True,exist_ok=True)
+   marker=root/'startup-marker';(packages/'sitecustomize.py').write_text('from pathlib import Path\nPath('+repr(str(marker))+').write_text("started")\n')
+   held=[]
+   def interrupted(argv,**kwargs):held.append(real_popen(argv,**kwargs));raise InterruptedError(errno.EINTR,'lost handle delivery')
+   try:
+    with mock.patch.object(l.sys,'executable',str(exe)),mock.patch.object(l.subprocess,'Popen',side_effect=interrupted):
+     with self.assertRaises(BaseException):l.launch_worker(dest=root/'unknown',seed=20261109,scene='s_curve_left_right',probe=True,model=None,ownership_only=True)
+    for child in held:child.wait(timeout=10)
+    self.assertFalse(marker.exists(),'venv startup code executed before parent acknowledgement')
+   finally:
+    for child in held:
+     if child.poll() is None:child.kill();child.wait(timeout=10)
+   out=root/'check';result=subprocess.run([str(exe),'-I','-S','-B',str(ROOT/'scripts/run_laptop_validation.py'),'--mode','process-check','--out',str(out)],capture_output=True,text=True,timeout=60)
+   self.assertEqual(result.returncode,0,result.stderr);self.assertFalse(marker.exists())
+   for report in json.loads((out/'process-check.json').read_text())['checks'].values():self.assertEqual(Path(report['prefix']).resolve(),env.resolve())
 
 if __name__=='__main__':unittest.main()

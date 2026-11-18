@@ -1,7 +1,7 @@
 """Synthetic contract fixtures; actual saved-pixel replay is a separate command."""
 from pathlib import Path
 from unittest import mock
-import copy,hashlib,io,json,unittest,zipfile,zlib
+import copy,hashlib,io,json,tempfile,unittest,zipfile,zlib
 import numpy as np,cv2
 from bigbench.optical_calibration import PinholeRectifier,PinholeIntrinsics
 try:from scripts import verify_saved_camera_inputs as s
@@ -72,5 +72,16 @@ class SavedCameraInputTests(unittest.TestCase):
  def test_cold_help_needs_no_native_or_image_libraries(self):
   import subprocess,sys
   r=subprocess.run([sys.executable,'-I','-S','-B',str(ROOT/'scripts/verify_saved_camera_inputs.py'),'--help'],capture_output=True,text=True,timeout=10);self.assertEqual(r.returncode,0,r.stderr)
+ def test_authenticated_archive_bytes_survive_path_replacement(self):
+  with tempfile.TemporaryDirectory() as d:
+   path=Path(d)/'archive.zip'
+   with zipfile.ZipFile(path,'w') as z:z.writestr('x.json',b'original')
+   original=path.read_bytes();meta=dict(id=1,name='unit',size_in_bytes=len(original),digest='sha256:'+hashlib.sha256(original).hexdigest(),workflow_run=dict(id=s.RUN_ID,head_sha=s.ACTIVATION))
+   verified=s.authenticate_archive(path,meta)
+   self.assertIsInstance(verified,tuple,'authentication must retain the immutable consumed bytes')
+   origin,snapshot=verified
+   with zipfile.ZipFile(path,'w') as z:z.writestr('x.json',b'replaced')
+   with zipfile.ZipFile(io.BytesIO(snapshot)) as z:self.assertEqual(s.read_member(z,'x.json',100),b'original')
+   self.assertEqual(origin['sha256'],hashlib.sha256(snapshot).hexdigest())
 
 if __name__=='__main__':unittest.main()

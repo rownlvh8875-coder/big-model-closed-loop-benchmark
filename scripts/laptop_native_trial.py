@@ -30,7 +30,7 @@ def world(seed,scene):
 
 def run(args):
  from scripts.run_laptop_validation import write,check_model
- from bigbench.worker_ownership import await_parent_ack,ownership_snapshot
+ from bigbench.worker_ownership import await_parent_ack,ownership_snapshot,prepare_interpreter
  owner=await_parent_ack(args.out,parent=args.parent,nonce=args.nonce,seed=args.seed,scene=args.scenario)
  if getattr(args,'ownership_only',False):
   report=ownership_snapshot(owner,'metadrive');write(args.out/'ownership.json',report);return report
@@ -38,6 +38,7 @@ def run(args):
  out=args.out;life=dict(protocol='windows-laptop-model-lifecycle-v1',process_id=os.getpid(),nonce=args.nonce,policy_constructor_entered=False,policy_created=False,inference_bounds=[0,0],status='PRE_RUNTIME');write(out/'lifecycle.json',life);provider=None;result=None
  def progress(row):life.update(row);write(out/'lifecycle.json',life)
  try:
+  prepare_interpreter(native=True)
   from bigbench.native_model_campaign import NativeWorldCamera
   from bigbench.full_s_validation import validate_route,run_full_s
   provider,lanes,repair=world(args.seed,args.scenario);context=windows_context(provider);camera=NativeWorldCamera(provider)

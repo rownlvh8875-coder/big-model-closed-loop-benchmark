@@ -3,7 +3,7 @@ from pathlib import Path
 import argparse,hashlib,json,os,secrets,subprocess,sys
 if __name__=='__main__':sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 ROOT=Path(__file__).resolve().parents[1]
-from bigbench.worker_ownership import worker_launch,OwnershipUnresolved
+from bigbench.worker_ownership import worker_launch,OwnershipUnresolved,confirmed_spawn_failure,prepare_interpreter,logical_prefix
 MODEL_SHA='35976b11be3904eb78e32f7dc55a6abf8e9433ac5aa391a1998f1e9ce001b199'
 CASES=[(seed,scene) for seed in (20261109,20261110) for scene in ('s_curve_left_right','s_curve_right_left')]
 
@@ -41,7 +41,7 @@ def carla_readiness(host,port,dedicated):
   return dict(status='READY_FOR_PROBE',client_version=local,server_version=server,cross_engine_validated=False,world_mutated=False,scope='read-only endpoint/version readiness only; not a cross-engine model validation')
  except Exception as e:return dict(status='BLOCKED',missing=['CARLA_CLIENT_OR_SERVER_UNAVAILABLE'],error=type(e).__name__+': '+str(e),cross_engine_validated=False,world_mutated=False)
 def launch_worker(*,dest,seed,scene,probe,model,backend='metadrive',carla_host=None,carla_port=2000,ownership_only=False):
- dest=Path(dest);dest.mkdir(parents=True,exist_ok=False);nonce=secrets.token_hex(16);executable,environment=worker_launch();cmd=[executable,'-I',*(['-S'] if ownership_only and sys.flags.no_site else []),'-B',str(ROOT/('scripts/laptop_carla_trial.py' if backend=='carla' else 'scripts/laptop_native_trial.py')),'--parent',str(os.getpid()),'--nonce',nonce,'--seed',str(seed),'--scenario',scene,'--out',str(dest),'--ownership-only' if ownership_only else '--probe' if probe else '--model',*([str(model.resolve())] if not ownership_only and not probe else [])];ledger=dict(parent_pid=os.getpid(),seed=seed,scenario=scene,nonce=nonce,spawn_attempted=False,spawn_succeeded=None,pid=None,returncode=None,child_reaped=False,ownership_unresolved=False,model=not ownership_only and not probe);lease=None;report=None;child=None
+ dest=Path(dest);dest.mkdir(parents=True,exist_ok=False);nonce=secrets.token_hex(16);executable,environment=worker_launch();cmd=[executable,'-I','-S','-B',str(ROOT/('scripts/laptop_carla_trial.py' if backend=='carla' else 'scripts/laptop_native_trial.py')),'--parent',str(os.getpid()),'--nonce',nonce,'--seed',str(seed),'--scenario',scene,'--out',str(dest),'--ownership-only' if ownership_only else '--probe' if probe else '--model',*([str(model.resolve())] if not ownership_only and not probe else [])];ledger=dict(parent_pid=os.getpid(),seed=seed,scenario=scene,nonce=nonce,spawn_attempted=False,spawn_succeeded=None,pid=None,returncode=None,child_reaped=False,ownership_unresolved=False,model=not ownership_only and not probe);lease=None;report=None;child=None
  if backend=='carla' and not ownership_only:
   from bigbench.carla_validation import CarlaParentLease
   lease=CarlaParentLease(carla_host,carla_port,True);cmd.extend(['--carla-host',carla_host,'--carla-port',str(carla_port),'--dedicated-carla'])
@@ -50,7 +50,10 @@ def launch_worker(*,dest,seed,scene,probe,model,backend='metadrive',carla_host=N
   with (dest/'stdout.log').open('wb') as stdout,(dest/'stderr.log').open('wb') as stderr:
    ledger['spawn_attempted']=True;write(dest/'owner.json',ledger)
    try:child=subprocess.Popen(cmd,stdout=stdout,stderr=stderr,cwd=ROOT,env=environment)
-   except OSError:ledger['spawn_succeeded']=False;raise
+   except OSError as exc:
+    ledger['spawn_succeeded']=False if confirmed_spawn_failure(exc) else None
+    ledger['ownership_unresolved']=ledger['spawn_succeeded'] is None
+    raise
    except BaseException as exc:
     ledger['ownership_unresolved']=True
     raise OwnershipUnresolved('interrupted launch has unknown child identity; no native admission was acknowledged') from exc
@@ -61,7 +64,7 @@ def launch_worker(*,dest,seed,scene,probe,model,backend='metadrive',carla_host=N
   report=json.loads((dest/('ownership.json' if ownership_only else 'probe.json' if probe else 'run.json')).read_text(encoding='utf-8'))
   if report.get('nonce')!=nonce or report.get('process_id')!=child.pid or report.get('seed')!=seed or report.get('scenario')!=scene:raise ValueError('owned complete laptop receipt required')
   if ownership_only:
-   if report.get('protocol')!='owned-worker-process-check-v1' or report.get('ownership_check_complete') is not True or report.get('parent_process_id')!=os.getpid() or report.get('backend')!=backend or any(report.get(k) is not False for k in ('native_modules_loaded','model_loaded','server_connection_attempted')) or not (report.get('official_model_processes')==report.get('inferences')==0) or os.path.normcase(os.path.realpath(report.get('prefix','')))!=os.path.normcase(os.path.realpath(sys.prefix)):raise ValueError('actual stdlib-only worker/prefix receipt required')
+   if report.get('protocol')!='owned-worker-process-check-v1' or report.get('ownership_check_complete') is not True or report.get('site_hooks_disabled') is not True or report.get('parent_process_id')!=os.getpid() or report.get('backend')!=backend or any(report.get(k) is not False for k in ('native_modules_loaded','model_loaded','server_connection_attempted')) or not (report.get('official_model_processes')==report.get('inferences')==0) or os.path.normcase(os.path.realpath(report.get('prefix','')))!=os.path.normcase(os.path.realpath(logical_prefix())):raise ValueError('actual stdlib-only worker/prefix receipt required')
   elif report.get('provider_closed') is not True:raise ValueError('owned complete laptop provider cleanup required')
   return report
  finally:
@@ -154,6 +157,9 @@ def run_carla_cohort(out,model,host,port,dedicated):
 def main():
  p=argparse.ArgumentParser(description=__doc__);p.add_argument('--mode',choices=('inventory','process-check','gpu','physical','carla-readiness','full-s','carla-full-s'),default='inventory');p.add_argument('--out',type=Path,required=True);p.add_argument('--model',type=Path);p.add_argument('--calibration',type=Path);p.add_argument('--carla-host');p.add_argument('--carla-port',type=int,default=2000);p.add_argument('--dedicated-carla',action='store_true');a=p.parse_args();out=a.out.resolve()
  if out.exists():p.error('--out must be a fresh directory; preserve previous results')
+ if a.mode=='process-check':
+  if not sys.flags.no_site:p.error('process-check requires python -I -S to disable startup hooks')
+  prepare_interpreter()
  out.mkdir(parents=True)
  from bigbench.validation_resources import collect_resources
  inventory=collect_resources(calibration=a.calibration,carla_host=a.carla_host,carla_port=a.carla_port,dedicated_server=a.dedicated_carla);write(out/'inventory.json',inventory);write(out/'windows-readiness.json',windows_readiness(inventory));gpu=physical=carla=full=None
