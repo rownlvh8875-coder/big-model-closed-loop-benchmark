@@ -1,0 +1,136 @@
+{
+  "protocol": "received-windows-gpu-retest-offline-verification-v1",
+  "source": "92fc0b42a7f453c2a344732d89af76f3b0ccda66",
+  "result": "PASS",
+  "scope": "Actual Windows stock-Panda 1.10.13 NVIDIA RTX 3050 Ti 8x8 framebuffer/MSAA only; offline verification of user-supplied readbacks, no live rerun",
+  "uploaded_zip_sha256": "0a17e327ca4e4e53b9e7d0b729173b04766e226c72a465e84bf8de6899d8af9d",
+  "uploaded_zip_bytes": 44059,
+  "standalone_report_sha256": "b89f52cc1b1efc25685851d9e0b057963c8dbc2c9598cc565f26e11833938189",
+  "all_result_files_sha256_verified": 14,
+  "zip_crc_passed": true,
+  "kit_sha256": "de21f653569e4ff663040b0047bd553d191d6724f314b87246b15217c3b8e83c",
+  "manifest_identical_to_delivered_kit": true,
+  "source_manifest_files_verified_against_exact_head": 385,
+  "embedded_source_files_identical_to_exact_head": [
+    "bigbench/laptop_gpu.py",
+    "bigbench/validation_resources.py",
+    "scripts/run_laptop_validation.py"
+  ],
+  "verifier_ast_unchanged_from_base": "14297e289a84f290dd638bf9a874864c4c262530",
+  "pure_msaa_helper_source_unchanged": true,
+  "saved_readbacks_independently_recomputed": true,
+  "validation": {
+    "protocol": "windows-panda-hardware-msaa-validation-v2",
+    "passed": true,
+    "device_bound": true,
+    "hardware_renderer": true,
+    "msaa_edge_passed": true,
+    "actual_samples": [
+      4,
+      4
+    ],
+    "edge_actual_samples": [
+      4,
+      4
+    ],
+    "requested_samples": 4,
+    "physical_optics_validated": false,
+    "carla_validated": false,
+    "model_loaded": false,
+    "scope": "Windows stock Panda 1.10.13, measured 8x8 framebuffer and geometric edge only; does not qualify Linux SDK3 or the model camera pipeline"
+  },
+  "framebuffer_allocation": {
+    "requested_construction": "OWNED_ZERO_SAMPLE_OFFSCREEN_HOST_AND_REQUESTED_MSAA_OUTPUT_V2",
+    "host_requested_samples": 0,
+    "canary_requested_samples": 4,
+    "observed_host_type": "wglGraphicsBuffer",
+    "observed_canary_type": "GLGraphicsBuffer",
+    "canary_shares_host_gsg": true,
+    "host_inactive": true
+  },
+  "renderer": "NVIDIA GeForce RTX 3050 Ti Laptop GPU/PCIe/SSE2",
+  "vendor": "NVIDIA Corporation",
+  "opengl_version": "4.6.0 NVIDIA 616.56",
+  "actual_samples": [
+    4,
+    4,
+    4,
+    4
+  ],
+  "sample_buffers": [
+    1,
+    1,
+    1,
+    1
+  ],
+  "max_samples": [
+    32,
+    32,
+    32,
+    32
+  ],
+  "multisample_enabled": [
+    true,
+    true,
+    true,
+    false
+  ],
+  "edge_luminance_levels": {
+    "enabled": [
+      0,
+      64,
+      127,
+      191,
+      255
+    ],
+    "disabled": [
+      0,
+      255
+    ]
+  },
+  "gl_errors": [
+    [
+      0,
+      0
+    ],
+    [
+      0,
+      0
+    ],
+    [
+      0,
+      0
+    ],
+    [
+      0,
+      0
+    ]
+  ],
+  "cleanup_complete": true,
+  "reported_execution": {
+    "gpu_attempts": 1,
+    "exit_code": 0,
+    "started": "2026-11-18T09:57:08.4686444+09:00",
+    "finished": "2026-11-18T09:57:16.0286360+09:00"
+  },
+  "reported_local_preservation": {
+    "old_evidence_files_verified": 9338,
+    "old_evidence_hash_mismatches": [],
+    "prior_local_artifact_files_verified": 32,
+    "prior_local_artifact_hash_mismatches": [],
+    "old_gpu_failures_reclassified": false,
+    "old_host_experiment_reclassified": false
+  },
+  "local_preservation_independently_rehashed_in_cloud": false,
+  "local_preservation_limit": "The 9338 original evidence files, 32 prior local files and their baseline hash manifests are not included in this result ZIP; reported zero mismatches are retained as local attestation.",
+  "actual_windows_fix_retested": true,
+  "all_four_validation_tracks_passed": false,
+  "model_camera_qualified": false,
+  "linux_sdk3_qualified": false,
+  "physical_optics_validated": false,
+  "carla_validated": false,
+  "raw_gpu_packet_sha256": "b52761b4f8fd9ac580dd41b482d6d16d6ed20ac7d1a15fc99c0edb360f92b32f",
+  "new_camera_stage": "NOT_RUN",
+  "new_official_models": 0,
+  "new_official_inferences": 0
+}

@@ -1,0 +1,9 @@
+# Windows camera stage: received GPU evidence and execution boundary
+
+Source92fc0b4 Windows RTX8x8 GPU result was supplied by the user and independently replayed with the unchanged readback-v2 validator. [Saved raw GPU packet](windows-gpu-92fc0b4.json) and [scoped receiver receipt](windows-gpu-receiver.json) contain no personal Python paths. Original result ZIP SHA256 is0a17e327ca4e4e53b9e7d0b729173b04766e226c72a465e84bf8de6899d8af9d. Standalone report matched the ZIP byte-for-byte;14result-file hashes and385source-manifest files matched the delivered source. The three embedded source snapshots matched exactHEAD92fc0b4.
+
+Actual renderer NVIDIA GeForce RTX3050Ti LaptopGPU / NVIDIA616.56; four observations show samples[4,4,4,4], samplebuffers[1,1,1,1], max32, enabled[true,true,true,false], GLerrors0. Two uniform colors match all64pixels each; enabled edge luminance[0,64,127,191,255] versus disabled[0,255]. Reported cleanupcomplete=true. Actual host wglGraphicsBuffer/canary GLGraphicsBuffer share GSG; host inactive. Original failed producer and separate in-memory experiment remain separate.
+
+The9338old-evidence and32prior-local-file zero-mismatch counts are LOCAL_ATTESTATION_ONLY: their originals/baseline manifests were not in this attachment, so the Cloud did not independently rehash them. No weights/model/native render was run to receive this evidence.
+
+The new camera-only entry point is a distinct, NOT_RUN Windows stage. Pure tests exercise synthetic images and fake process ownership; they cannot certify actual camera execution. [Run instructions](../../WINDOWS_CAMERA_PROBE.md). Source54 actual full-S0/4traversal and4/4strictrepeat remain unchanged. Model-camera MSAA/model inference, physical optics and CARLA remain unqualified. No main merge/environment/registry publication.
