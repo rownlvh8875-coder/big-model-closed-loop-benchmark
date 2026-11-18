@@ -1,0 +1,149 @@
+{
+  "protocol": "windows-panda-gpu-attempt-v2",
+  "status": "MEASURED",
+  "framebuffer_construction": "OWNED_ZERO_SAMPLE_OFFSCREEN_HOST_AND_REQUESTED_MSAA_OUTPUT_V2",
+  "framebuffer_allocation": {
+    "requested_construction": "OWNED_ZERO_SAMPLE_OFFSCREEN_HOST_AND_REQUESTED_MSAA_OUTPUT_V2",
+    "host_requested_samples": 0,
+    "canary_requested_samples": 4,
+    "observed_host_type": "wglGraphicsBuffer",
+    "observed_canary_type": "GLGraphicsBuffer",
+    "canary_shares_host_gsg": true,
+    "host_inactive": true
+  },
+  "readbacks": {
+    "protocol": "windows-panda-gpu-readbacks-v2",
+    "device_names": [
+      "NVIDIA GeForce RTX 3050 Ti Laptop GPU, 616.56, 4096",
+      "NVIDIA GeForce RTX 3050 Ti Laptop GPU",
+      "Intel(R) UHD Graphics"
+    ],
+    "target_gpu": "NVIDIA GeForce RTX 3050 Ti Laptop GPU",
+    "requested_samples": 4,
+    "observations": [
+      {
+        "context": 131072,
+        "renderer": "NVIDIA GeForce RTX 3050 Ti Laptop GPU/PCIe/SSE2",
+        "vendor": "NVIDIA Corporation",
+        "version": "4.6.0 NVIDIA 616.56",
+        "draw_fbo": 2,
+        "samples": 4,
+        "sample_buffers": 1,
+        "max_samples": 32,
+        "viewport": [
+          0,
+          0,
+          8,
+          8
+        ],
+        "gl_error_before": 0,
+        "multisample_enabled": true,
+        "gl_error_after": 0
+      },
+      {
+        "context": 131072,
+        "renderer": "NVIDIA GeForce RTX 3050 Ti Laptop GPU/PCIe/SSE2",
+        "vendor": "NVIDIA Corporation",
+        "version": "4.6.0 NVIDIA 616.56",
+        "draw_fbo": 2,
+        "samples": 4,
+        "sample_buffers": 1,
+        "max_samples": 32,
+        "viewport": [
+          0,
+          0,
+          8,
+          8
+        ],
+        "gl_error_before": 0,
+        "multisample_enabled": true,
+        "gl_error_after": 0
+      }
+    ],
+    "images": [
+      "ff00ffffff00ffffff00ffffff00ffffff00ffffff00ffffff00ffffff00ffffff00ffffff00ffffff00ffffff00ffffff00ffffff00ffffff00ffffff00ffffff00ffffff00ffffff00ffffff00ffffff00ffffff00ffffff00ffffff00ffffff00ffffff00ffffff00ffffff00ffffff00ffffff00ffffff00ffffff00ffffff00ffffff00ffffff00ffffff00ffffff00ffffff00ffffff00ffffff00ffffff00ffffff00ffffff00ffffff00ffffff00ffffff00ffffff00ffffff00ffffff00ffffff00ffffff00ffffff00ffffff00ffffff00ffffff00ffffff00ffffff00ffffff00ffffff00ffffff00ffffff00ffffff00ffffff00ffffff00ffff",
+      "00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff00ff"
+    ],
+    "challenges": [
+      [
+        255,
+        0,
+        255,
+        255
+      ],
+      [
+        0,
+        255,
+        0,
+        255
+      ]
+    ],
+    "render_calls": 4,
+    "cleanup_complete": true,
+    "edge_protocol": "fixed-geometric-triangle-no-blend-v1",
+    "edge_observations": [
+      {
+        "context": 131072,
+        "renderer": "NVIDIA GeForce RTX 3050 Ti Laptop GPU/PCIe/SSE2",
+        "vendor": "NVIDIA Corporation",
+        "version": "4.6.0 NVIDIA 616.56",
+        "draw_fbo": 2,
+        "samples": 4,
+        "sample_buffers": 1,
+        "max_samples": 32,
+        "viewport": [
+          0,
+          0,
+          8,
+          8
+        ],
+        "gl_error_before": 0,
+        "multisample_enabled": true,
+        "gl_error_after": 0
+      },
+      {
+        "context": 131072,
+        "renderer": "NVIDIA GeForce RTX 3050 Ti Laptop GPU/PCIe/SSE2",
+        "vendor": "NVIDIA Corporation",
+        "version": "4.6.0 NVIDIA 616.56",
+        "draw_fbo": 2,
+        "samples": 4,
+        "sample_buffers": 1,
+        "max_samples": 32,
+        "viewport": [
+          0,
+          0,
+          8,
+          8
+        ],
+        "gl_error_before": 0,
+        "multisample_enabled": false,
+        "gl_error_after": 0
+      }
+    ],
+    "edge_images": [
+      "ffffffffffffffffffffffffffffffffffffffffffffffffbfbfbfff000000ffffffffffffffffffffffffffffffffffffffffffffffffff000000ff000000ffffffffffffffffffffffffffffffffffffffffff404040ff000000ff000000ffffffffffffffffffffffffffffffffff404040ff000000ff000000ff000000ffffffffffffffffffffffffff404040ff000000ff000000ff000000ff000000ffffffffffffffffff7f7f7fff000000ff000000ff000000ff000000ff000000ffffffffff7f7f7fff000000ff000000ff000000ff000000ff000000ff000000ff7f7f7fff000000ff000000ff000000ff000000ff000000ff000000ff000000ff",
+      "ffffffffffffffffffffffffffffffffffffffffffffffffffffffff000000ffffffffffffffffffffffffffffffffffffffffffffffffff000000ff000000ffffffffffffffffffffffffffffffffffffffffff000000ff000000ff000000ffffffffffffffffffffffffffffffffff000000ff000000ff000000ff000000ffffffffffffffffffffffffff000000ff000000ff000000ff000000ff000000ffffffffffffffffff000000ff000000ff000000ff000000ff000000ff000000ffffffffff000000ff000000ff000000ff000000ff000000ff000000ff000000ff000000ff000000ff000000ff000000ff000000ff000000ff000000ff000000ff"
+    ]
+  },
+  "validation": {
+    "protocol": "windows-panda-hardware-msaa-validation-v2",
+    "passed": true,
+    "device_bound": true,
+    "hardware_renderer": true,
+    "msaa_edge_passed": true,
+    "actual_samples": [
+      4,
+      4
+    ],
+    "edge_actual_samples": [
+      4,
+      4
+    ],
+    "requested_samples": 4,
+    "physical_optics_validated": false,
+    "carla_validated": false,
+    "model_loaded": false,
+    "scope": "Windows stock Panda 1.10.13, measured 8x8 framebuffer and geometric edge only; does not qualify Linux SDK3 or the model camera pipeline"
+  }
+}
