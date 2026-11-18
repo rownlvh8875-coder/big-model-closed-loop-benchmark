@@ -29,6 +29,16 @@ def trial_fixture(out,kind='complete',*,metadata_real=True):
         except worker.TrialFailure:pass
     if kind=='audited-no-frame':
         with patch('bigbench.full_s_validation.route_state',side_effect=ValueError('unit route failure after audit')):execute()
+    elif kind=='write':
+        with patch('bigbench.full_s_failure_capture._write_blob',side_effect=OSError('unit blob write failure')):execute()
+    elif kind=='snapshot':
+        from bigbench import full_s_failure_capture as capture
+        original=capture._states;calls=[]
+        def fail_once(*args,**kwargs):
+            calls.append(1)
+            if len(calls)==2:raise ValueError('unit post snapshot failure')
+            return original(*args,**kwargs)
+        with patch.object(capture,'_states',side_effect=fail_once):execute()
     else:execute()
     if not metadata_real:return
     tp=out/'recorded-trial.json';t=json.loads(tp.read_text())
@@ -38,15 +48,16 @@ def trial_fixture(out,kind='complete',*,metadata_real=True):
             session_class='onnxruntime.capi.onnxruntime_inference_collection.InferenceSession'))
     rp=out/'recording/report.json';mp=out/'recording/manifest.json'
     if rp.exists():
-        r=json.loads(rp.read_text());m=json.loads(mp.read_text());old_size=rp.stat().st_size
+        r=json.loads(rp.read_text());old_size=rp.stat().st_size
         r.update(model_test_double=False,injected_session=False)
         for lane in r['geometry']:
             lane['lane_class']='metadrive.component.lane.'+('circular_lane.CircularLane' if lane['shape']['kind']=='circular' else 'straight_lane.StraightLane')
         raw=(json.dumps(r,indent=2)+'\n').encode();rp.write_bytes(raw)
-        m['report_sha256']=hashlib.sha256(raw).hexdigest();m['payload_and_report_bytes']+=len(raw)-old_size;mp.write_text(json.dumps(m))
-        t.update(recording_verification=verify_recording(out/'recording'),recording_binding=dict(
-            manifest_sha256=hashlib.sha256(mp.read_bytes()).hexdigest(),report_sha256=hashlib.sha256(raw).hexdigest(),
-            process_uuid=r['process_uuid']))
+        if mp.exists():
+            m=json.loads(mp.read_text());m['report_sha256']=hashlib.sha256(raw).hexdigest();m['payload_and_report_bytes']+=len(raw)-old_size;mp.write_text(json.dumps(m))
+            t.update(recording_verification=verify_recording(out/'recording'),recording_binding=dict(
+                manifest_sha256=hashlib.sha256(mp.read_bytes()).hexdigest(),report_sha256=hashlib.sha256(raw).hexdigest(),
+                process_uuid=r['process_uuid']))
     tp.write_text(json.dumps(t))
 
 
@@ -99,6 +110,31 @@ class OfficialReceiptTests(unittest.TestCase):
             value=receiver.inspect_trial(root)
             self.assertEqual(value['reported_inference_bounds'],[1,2])
             self.assertIsNone(value['verified_recording_inference_bounds'])
+
+    def test_failed_session_construction_can_report_loaded_runtime_without_inventing_session(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root=Path(temp)/'trial';trial_fixture(root,'constructor')
+            path=root/'recorded-trial.json';data=json.loads(path.read_text())
+            data['onnxruntime']['version']='1.20.1';path.write_text(json.dumps(data))
+            result=receiver.inspect_trial(root)
+            self.assertEqual(result['status'],'INCOMPLETE_EVIDENCE')
+            self.assertEqual(result['reported_inference_bounds'],[0,0])
+            self.assertIsNone(result['verified_recording_inference_bounds'])
+
+    def test_storage_and_snapshot_errors_keep_available_partial_or_unverified_evidence(self):
+        for kind in ('write','snapshot'):
+            with self.subTest(kind=kind),tempfile.TemporaryDirectory() as temp:
+                root=Path(temp)/'trial';trial_fixture(root,kind)
+                result=receiver.inspect_trial(root)
+                self.assertFalse(result['body_execution_succeeded'])
+                self.assertIsNotNone(result['primary_error'])
+                self.assertFalse(result['origin_authenticated'])
+                if kind=='write':
+                    self.assertEqual(result['status'],'INCOMPLETE_EVIDENCE')
+                    self.assertIsNone(result['verified_recording_inference_bounds'])
+                else:
+                    self.assertEqual(result['status'],'PARTIAL_DIAGNOSTIC')
+                    self.assertEqual(result['verified_recording_inference_bounds'],result['reported_inference_bounds'])
 
     def test_fixture_session_nonce_pid_bounds_cleanup_and_source_contradictions_rejected(self):
         with tempfile.TemporaryDirectory() as temp:

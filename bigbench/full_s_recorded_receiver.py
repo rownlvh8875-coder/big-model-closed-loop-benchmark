@@ -98,8 +98,11 @@ def inspect_trial(root):
              trial.get('onnxruntime')==dict(version='1.20.1',real_session=True,providers=['CPUExecutionProvider'],session_class=REAL_SESSION),
              'explicit official-session metadata required; test double/injected sessions rejected')
     else:
+        runtime=trial.get('onnxruntime')
         need(bounds==[0,0] and trial.get('model_test_double') is None and trial.get('injected_session') is None and
-             trial.get('onnxruntime')==dict(version=None,real_session=False,providers=None,session_class=None) and primary is not None,
+             isinstance(runtime,dict) and set(runtime)=={'version','real_session','providers','session_class'} and
+             runtime.get('version') in (None,'1.20.1') and runtime.get('real_session') is False and
+             runtime.get('providers') is None and runtime.get('session_class') is None and primary is not None,
              'uncreated policy must retain known zero reported calls without inventing a session')
     if life['provider_received']:
         need(life.get('provider_created') is True and life.get('provider_close_attempted') is True and

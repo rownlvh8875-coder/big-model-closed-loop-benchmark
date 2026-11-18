@@ -30,3 +30,16 @@ parser contracts; they supply no actual official model inference evidence.
 
 Scientific producers, the capture helper, recorded worker and completed canary
 reader remain unchanged. Existing full-S0/4 and strict-repeat4/4 remain unchanged.
+
+Read-only source/pixel continuity:
+`python -I -B scripts/full_s_recorded_receiver.py continuity --canary-zip ZIP --historical-dir COHORT --out OUT`
+authenticates the known actual 5,012,494B canary artifact SHA/run/source, exports
+the full499-file approved Git source map for hashing only, and reuses the frozen
+receiver with only its byte-root scoped to that export. Current frozen Python
+readers must have the approved hashes; exported or downloaded code is never
+imported. Historical metadata must match trusted Git bytes before all five old
+artifact snapshots and original eight first graph-feed inputs are replayed.
+The new first camera RGB/canvas/I420 is compared to the two old same-case first
+graph audits. A match proves same first input bytes for this condition, with
+zero new model calls; it does not prove a graph feed for the synthetic policy or
+later-step fidelity. Original full-S0/4/strict-repeat4/4 remain unchanged.

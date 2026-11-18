@@ -33,12 +33,12 @@ receipt swaps/contradictions, fixture rejection and cold CLI/path tests.
 and canary receiver unchanged. GREEN focused+existing worker/capture tests.
 
 ### Task2: real-data archive and input continuity
-- [ ] RED >128MiB honest payload, pre-allocation/member/count/name/method/stream/
+- [x] RED >128MiB honest payload, pre-allocation/member/count/name/method/stream/
 CRC/extraction-atomicity tests; keep old caps unchanged.
-- [ ] Implement separate strict profile; authenticate source-pinned existing
+- [x] Implement separate strict profile; authenticate source-pinned existing
 canary and historical original archive; replay exact first pixels/I420 and two
 old first graph audit matches. Emit provenance and no model qualification.
-- [ ] GREEN targeted; append portable CI branch/module, commit.
+- [x] GREEN targeted; append portable CI branch/module, commit.
 
 ### Task3: review, hosted exact CI and delivery
 - [ ] Full local suite (old sharedUID exception explicit), one fresh reviewer
