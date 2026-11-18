@@ -92,5 +92,9 @@ class WindowsCameraProbeContracts(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             r=self.make(d);bad=copy.deepcopy(r);bad['captures'][0]['images'][0]['source_sha256']='0'*64
             with self.assertRaises(ValueError):p.verify_probe(bad,Path(d))
+    def test_exchanging_both_pose_image_lists_is_rejected(self):
+        with tempfile.TemporaryDirectory() as d:
+            r=self.make(d);r['captures'][0]['images'],r['captures'][1]['images']=r['captures'][1]['images'],r['captures'][0]['images']
+            with self.assertRaises(ValueError):p.verify_probe(r,Path(d))
 
 if __name__=='__main__':unittest.main()

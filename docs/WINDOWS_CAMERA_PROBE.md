@@ -11,9 +11,18 @@ $probePython = 'C:\기존저장소\.venv-laptop\Scripts\python.exe'
 & $probePython -I -B scripts\probe_laptop_camera.py --mode inventory --out output\windows-camera-inventory-01
 ```
 
-설치된 패키지 버전은 numpy2.4.6, opencv-python5.0.0.93, panda3d1.10.13, metadrive-simulator0.4.3이어야 합니다. 사양 수집은 설치·다운로드·Panda/ORT import를 하지 않습니다. `inventory.json`에서 asset 누락만 확인되면 다음 **명시적 자산 준비 명령**을 한 번 실행합니다. MetaDrive0.4.3 자산 아카이브는 약134MB이며 가상환경의 `metadrive/assets`에 설치됩니다. 이 명령은 가상환경 안의 자산을 추가하므로 기존 자료의 해시를 먼저 보존합니다. 이미 자산0.4.3이 있으면 실행하지 않습니다. 모델 파일은 필요 없습니다.
+설치된 패키지 버전은 numpy2.4.6, opencv-python5.0.0.93, panda3d1.10.13, metadrive-simulator0.4.3이어야 합니다. 사양 수집은 설치·다운로드·Panda/ORT import를 하지 않습니다. 자산 검사는 `assets/version.txt`의0.4.3과 MetaDrive의 갱신 판단에 쓰는 `textures/grass1/GroundGrassGreen002_COL_1K.jpg` 존재를 함께 확인합니다. 버전 표지만 있고 이 텍스처가 없으면 부분 설치로 `BLOCKED`됩니다. 출력 공간은 `--out`이 있는 드라이브에서 측정합니다.
+
+`inventory.json`에서 asset 문제만 확인되면 아래 **명시적 자산 준비**를 한 번 진행합니다. MetaDrive0.4.3 자산 아카이브는 약134MB이며 가상환경의 `metadrive/assets`에 설치됩니다. 기존 자료의 해시를 먼저 보존하고, 기존 자산 폴더가 있으면 아래처럼 별도 이름으로 옮겨 보존한 뒤 새 자산 폴더를 준비합니다. `pull_asset`는 버전 표지만 있는 부분 설치를 건너뛸 수 있으므로 부분 폴더 위에 그대로 실행하지 않습니다. 완전한 자산0.4.3이 있으면 준비를 생략합니다. 모델 파일은 필요 없습니다.
 
 ```powershell
+$cameraInventory = Get-Content output\windows-camera-inventory-01\inventory.json | ConvertFrom-Json
+$assetDirectory = Split-Path $cameraInventory.assets_file -Parent
+if (Test-Path -LiteralPath $assetDirectory) {
+    $assetBackup = "$assetDirectory-before-camera-probe-01"
+    if (Test-Path -LiteralPath $assetBackup) { throw '기존 자산 백업 이름이 있습니다. 새 이름을 정하세요.' }
+    Move-Item -LiteralPath $assetDirectory -Destination $assetBackup
+}
 & $probePython -m metadrive.pull_asset
 ```
 
@@ -27,7 +36,7 @@ $probePython = 'C:\기존저장소\.venv-laptop\Scripts\python.exe'
 
 ## 실행·검증 범위
 
-- seed20261109/20261110 × 좌→우/우→좌 S 방향, 총4개의 새 Windows 프로세스를 순서대로 실행합니다. 각각240초 제한, 소유 프로세스만 종료·회수하고 provider를 닫습니다.
+- seed20261109/20261110 × 좌→우/우→좌 S 방향, 총4개의 새 Windows 프로세스를 순서대로 실행합니다. 각각240초 제한, 소유 프로세스만 종료·회수하고 provider를 닫습니다. Windows 가상환경은 CPython multiprocessing과 같이 기본 인터프리터를 직접 실행하되 `__PYVENV_LAUNCHER__`로 기존 가상환경을 유지합니다. worker는 부모가 자신의 실제 PID를 기록한 뒤에만 native를 시작하며5초 내 확인되지 않으면 종료합니다. 시작 중 인터럽트는 시작 실패로 단정하지 않고 미확인으로 보존하며 나머지 조건을 시작하지 않습니다.
 - 원래 `world()`/terrain priority/`NativeWorldCamera`/`PinholeRectifier`를 사용합니다. 첫 곡선의12% 지점과2m 전진한 지점에서 두 카메라를 캡처합니다. 전체8쌍, source16장과 canvas16장입니다. 별도 render/task tick을 추가하지 않고 이미 복사된 CPU RGB만 저장합니다.
 - 원본964×604 RGB와 변환512×256 RGB, 실제 lens, 두 카메라의 NVIDIA 렌더러·코어/DLL·소스 해시를 기록합니다. 저장된 zlib RGB를 해독해 소스 해시와 warp/coverage를 정확히 재계산하고, 사례별 등록 기하·자세·새 worker 소유권·프레임 갱신을 검증합니다.
 - 카메라만 실행하므로 full-S의 여유 RAM8GiB 조건은 적용하지 않습니다. 모델 실행의 기준은 그대로입니다. RAM이 충분하다고 인증하는 것은 아니며, 실제 메모리 부족·native 오류·시간 초과는 실패로 남깁니다. 출력 공간128MiB 이상이 필요합니다.
@@ -38,7 +47,7 @@ $probePython = 'C:\기존저장소\.venv-laptop\Scripts\python.exe'
 
 ## 결과 확인과 전달
 
-`camera-summary.json`, `inventory.json`, 각 조건의 `owner.json`/`lifecycle.json`/`probe.json`/`stdout.log`/`stderr.log` 및 `*.rgb.zlib`를 같은 구조로 보존합니다. 실패 시 `error.json`/`failures.json`도 포함합니다. 결과 폴더만 ZIP으로 전달하면 클라우드에서 GPU/모델 실행 없이 재검증할 수 있습니다. 모델·MetaDrive 자산·개인 촬영 원본은 넣지 않습니다. 출력 사양에는 로컬 경로가 있을 수 있으므로 공개 업로드 전에 확인합니다.
+`camera-summary.json`, `cohort.json`, `inventory.json`, 각 조건의 `inventory.json`/`owner.json`/`lifecycle.json`/`probe.json`/`stdout.log`/`stderr.log` 및 `*.rgb.zlib`를 같은 구조로 보존합니다. 실패 시 `error.json`/`failures.json`도 포함합니다. 하나의 cohort ID·부모 PID와 부모가 지정한 seed/시나리오를 각 worker/lifecycle과 대조하며 오류·실패 기록과 모순되는 결과는 통과시키지 않습니다. 이미지 파일명도 사례 폴더의 pose번호·카메라 역할에 고정해 서로 뒤바꾼 영상 할당을 거부합니다. 결과 폴더만 ZIP으로 전달하면 클라우드에서 GPU/모델 실행 없이 재검증할 수 있습니다. 모델·MetaDrive 자산·개인 촬영 원본은 넣지 않습니다. 출력 사양에는 로컬 경로가 있을 수 있으므로 공개 업로드 전에 확인합니다.
 
 같은 소스와 정확한 NumPy/OpenCV 버전을 가진 환경에서는 저장 결과만 읽어 다시 검사할 수 있습니다.
 

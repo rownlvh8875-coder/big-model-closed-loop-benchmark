@@ -79,6 +79,9 @@ def verify_probe(report,directory):
         need(capture.get('index')==index and _geometry_close(capture.get('pose'),expected_pose),'exact registered positive-pose control required')
         elapsed=capture.get('capture_wall_s');need(type(elapsed) in (int,float) and math.isfinite(elapsed) and elapsed>=0,'measured finite capture time required')
         rows=capture.get('images');need(isinstance(rows,list) and len(rows)==2 and {row.get('camera') for row in rows}=={'road','wide'},'two distinct camera roles required')
+        for row in rows:
+            role=row['camera']
+            need(row.get('source_file')==f'pose-{index}-{role}-source.rgb.zlib' and row.get('canvas_file')==f'pose-{index}-{role}-canvas.rgb.zlib','canonical pose/camera RGB binding required')
         images={row['camera']:np.frombuffer(_rgb(directory,row['source_file'],604*964*3),dtype=np.uint8).reshape(604,964,3) for row in rows}
         intrinsics={row['camera']:PinholeIntrinsics(**row['measured_intrinsics']) for row in rows}
         pair,audits=PinholeRectifier().rectify_pair(images['road'],images['wide'],road_intrinsics=intrinsics['road'],wide_intrinsics=intrinsics['wide'])
