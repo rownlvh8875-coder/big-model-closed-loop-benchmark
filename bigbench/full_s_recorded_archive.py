@@ -23,7 +23,7 @@ def _members(raw):
     _,disk,cd_disk,n_disk,n,cd_size,cd_offset,comment=struct.unpack_from('<4s4H2IH',raw,end)
     need(disk==cd_disk==0 and 0<n==n_disk<=512 and cd_size<=1024**2 and
         cd_offset+cd_size==end and end+22+comment==len(raw),'bounded directory metadata before allocation required')
-    rows=[];names=set();cursor=cd_offset;total=0
+    rows=[];names=set();components={};cursor=cd_offset;total=0
     for _ in range(n):
         need(cursor+46<=end,'complete central entry required')
         fields=struct.unpack_from('<4s6H3I5H2I',raw,cursor)
@@ -31,8 +31,14 @@ def _members(raw):
         need(sig==b'PK\x01\x02' and version<=20 and flags&~0x80e==0 and method in (0,8) and
              start==0 and 0<nlen<=512 and xlen<=4096 and clen<=1024 and
              cursor+46+nlen+xlen+clen<=end and size<=16*1024**2 and csize<=CAP and
-             (not stat.S_IFMT(eattr>>16) or stat.S_ISREG(eattr>>16)),'bounded supported regular ZIP member required')
+             not eattr&0x18 and (not stat.S_IFMT(eattr>>16) or stat.S_ISREG(eattr>>16)),'bounded supported regular ZIP member required')
         spelling=raw[cursor+46:cursor+46+nlen];name=_name(spelling,flags);key=name.casefold()
+        parts=PurePosixPath(name).parts
+        for depth in range(1,len(parts)+1):
+            component='/'.join(parts[:depth]);kind='file' if depth==len(parts) else 'directory'
+            previous=components.get(component.casefold())
+            need(previous is None or previous==(component,kind),'implicit path components must have one portable spelling and type')
+            components[component.casefold()]=(component,kind)
         need(key not in names and all(parent.as_posix().casefold() not in names for parent in PurePosixPath(name).parents if str(parent)!='.') and
             not any(v.startswith(key+'/') for v in names),'unique portable ZIP namespace required')
         names.add(key);_extra(raw[cursor+46+nlen:cursor+46+nlen+xlen])

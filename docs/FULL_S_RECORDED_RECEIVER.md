@@ -43,3 +43,18 @@ The new first camera RGB/canvas/I420 is compared to the two old same-case first
 graph audits. A match proves same first input bytes for this condition, with
 zero new model calls; it does not prove a graph feed for the synthetic policy or
 later-step fidelity. Original full-S0/4/strict-repeat4/4 remain unchanged.
+
+Review refinements: lifecycle checkpoints and final trial receipts are validated
+individually. Older checkpoint bounds/cleanup remain separate from later trial
+progress. Missing fingerprints/runtime records with a reported failure and
+partial `abort.json` metadata are retained as INCOMPLETE_EVIDENCE, with unknown
+verified calls where no original report is available. Every surviving report
+still receives typed PID/UUID/case/model/error and trajectory checks. A verified
+source callback requires the producer's observer request. Local results expose
+tri-state `producer_reported_body_success`; they never emit an actual execution
+success claim. Original long errors use the frozen worker's bounded serialization.
+Historical replay and selected-case authentication consume private staged copies
+of the same six verified metadata snapshots, including nested replay functions.
+The larger ZIP profile also rejects aliases of implicit directory components and
+DOS directory/volume-label attributes. Source-pinned Cloud receipt continuity
+uses Linux; the trial/archive and metadata-scoping helpers remain portable.

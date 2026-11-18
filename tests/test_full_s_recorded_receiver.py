@@ -39,13 +39,25 @@ def trial_fixture(out,kind='complete',*,metadata_real=True):
             if len(calls)==2:raise ValueError('unit post snapshot failure')
             return original(*args,**kwargs)
         with patch.object(capture,'_states',side_effect=fail_once):execute()
+    elif kind=='final-lifecycle':
+        original=worker._write_receipt
+        def fail_final(path,value,**kwargs):
+            if path.name=='recorded-trial-lifecycle.json' and value.get('status')=='RECORDED':raise OSError('unit final lifecycle write failed')
+            return original(path,value,**kwargs)
+        with patch.object(worker,'_write_receipt',side_effect=fail_final):execute()
+    elif kind=='source-unavailable':
+        with patch.object(worker,'_source_snapshot',side_effect=OSError('unit source fingerprint unavailable')):execute()
+    elif kind=='runtime-unavailable':
+        with patch.object(worker,'_runtime_context',side_effect=OSError('unit runtime receipt unavailable')):execute()
+    elif kind=='abort':
+        with patch('tests.test_full_s_failure_capture.GraphBoundary.run',side_effect=OSError('unit graph I/O abort')):execute()
     else:execute()
     if not metadata_real:return
     tp=out/'recorded-trial.json';t=json.loads(tp.read_text())
     if t['model_test_double'] is not None:
-        t.update(model_test_double=False,injected_session=False,onnxruntime=dict(version='1.20.1',
-            real_session=True,providers=['CPUExecutionProvider'],
-            session_class='onnxruntime.capi.onnxruntime_inference_collection.InferenceSession'))
+        t.update(model_test_double=False,injected_session=False)
+        if t['onnxruntime'] is not None:t['onnxruntime']=dict(version='1.20.1',real_session=True,providers=['CPUExecutionProvider'],
+            session_class='onnxruntime.capi.onnxruntime_inference_collection.InferenceSession')
     rp=out/'recording/report.json';mp=out/'recording/manifest.json'
     if rp.exists():
         r=json.loads(rp.read_text());old_size=rp.stat().st_size
@@ -71,7 +83,7 @@ class OfficialReceiptTests(unittest.TestCase):
             value=receiver.inspect_trial(root)
             self.assertEqual(value['status'],'COMPLETE_DIAGNOSTIC')
             self.assertTrue(value['recording_structure_valid'])
-            self.assertTrue(value['body_execution_succeeded'])
+            self.assertIs(value['producer_reported_body_success'],True)
             self.assertEqual(value['reported_inference_bounds'],value['verified_recording_inference_bounds'])
             self.assertFalse(value['origin_authenticated']);self.assertFalse(value['model_camera_qualified'])
             self.assertFalse(value['all_four_validation_tracks_passed']);self.assertFalse(value['native_execution_authenticated'])
@@ -84,7 +96,7 @@ class OfficialReceiptTests(unittest.TestCase):
                 value=receiver.inspect_trial(root)
                 self.assertEqual(value['status'],'PARTIAL_DIAGNOSTIC')
                 self.assertTrue(value['recording_structure_valid'])
-                self.assertFalse(value['body_execution_succeeded'])
+                self.assertIs(value['producer_reported_body_success'],False)
                 if bounds is not None:self.assertEqual(value['verified_recording_inference_bounds'],bounds)
                 self.assertIs(value['provider_closed'],closed)
                 if kind=='audited-no-frame':
@@ -107,6 +119,10 @@ class OfficialReceiptTests(unittest.TestCase):
             self.assertEqual(value['reported_inference_bounds'],[0,0])
             self.assertIn('recorded-trial.json',value['unavailable_evidence'])
             life=root/'recorded-trial-lifecycle.json';data=json.loads(life.read_text());data['inference_bounds']=[1,2];life.write_text(json.dumps(data))
+            with self.assertRaises(ValueError):receiver.inspect_trial(root)
+            data.update(status='INFERENCE_PENDING',policy_constructor_entered=True,policy_created=True,provider_created=True,
+                provider_received=True,provider_close_attempted=False,body_provider_close_attempted=False,provider_closed=False,completed_rows=1)
+            data.pop('primary_error');data.pop('secondary_errors');life.write_text(json.dumps(data))
             value=receiver.inspect_trial(root)
             self.assertEqual(value['reported_inference_bounds'],[1,2])
             self.assertIsNone(value['verified_recording_inference_bounds'])
@@ -126,7 +142,7 @@ class OfficialReceiptTests(unittest.TestCase):
             with self.subTest(kind=kind),tempfile.TemporaryDirectory() as temp:
                 root=Path(temp)/'trial';trial_fixture(root,kind)
                 result=receiver.inspect_trial(root)
-                self.assertFalse(result['body_execution_succeeded'])
+                self.assertIs(result['producer_reported_body_success'],False)
                 self.assertIsNotNone(result['primary_error'])
                 self.assertFalse(result['origin_authenticated'])
                 if kind=='write':
@@ -196,6 +212,93 @@ class PortableReceiverCLI(unittest.TestCase):
             result=subprocess.run([sys.executable,'-I','-B',str(ROOT/'scripts/full_s_recorded_receiver.py'),
                 'verify','--trial-dir',str(trial),'--out',str(link/'fresh')],capture_output=True,text=True,timeout=20)
             self.assertNotEqual(result.returncode,0);self.assertFalse((trial/'fresh').exists())
+
+
+@unittest.skipUnless(sys.platform=='linux','frozen body fixtures are Linux-only')
+class ReceiverReviewRegressions(unittest.TestCase):
+    def test_nonfinal_lifecycle_and_missing_source_or_runtime_preserve_known_later_evidence(self):
+        for kind in ('final-lifecycle','source-unavailable','runtime-unavailable'):
+            with self.subTest(kind=kind),tempfile.TemporaryDirectory() as temp:
+                root=Path(temp)/'trial';trial_fixture(root,kind)
+                value=receiver.inspect_trial(root)
+                self.assertEqual(value['status'],'INCOMPLETE_EVIDENCE')
+                self.assertTrue(value['recording_structure_valid'])
+                self.assertIsNotNone(value['verified_recording_inference_bounds'])
+                self.assertIsNotNone(value['primary_error'])
+                self.assertFalse(value['native_execution_authenticated'])
+
+    def test_missing_trial_does_not_make_impossible_constructor_counts_valid(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root=Path(temp)/'trial';trial_fixture(root,'constructor');(root/'recorded-trial.json').unlink()
+            path=root/'recorded-trial-lifecycle.json';life=json.loads(path.read_text());life['inference_bounds']=[1,2];path.write_text(json.dumps(life))
+            with self.assertRaises(ValueError):receiver.inspect_trial(root)
+
+    def test_missing_manifest_still_validates_the_available_original_report(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root=Path(temp)/'trial';trial_fixture(root,'write')
+            path=root/'recording/report.json';r=json.loads(path.read_text());r['process_id']=999999;path.write_text(json.dumps(r))
+            with self.assertRaises(ValueError):receiver.inspect_trial(root)
+
+    def test_abort_metadata_is_preserved_and_any_conflicting_bounds_rejected(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root=Path(temp)/'trial';trial_fixture(root,'abort')
+            value=receiver.inspect_trial(root)
+            self.assertTrue(value['abort_metadata_available'])
+            self.assertEqual(value['reported_inference_bounds'],[0,1])
+            self.assertEqual(value['abort_reported_completed_rows'],0)
+            self.assertIsNone(value['verified_recording_inference_bounds'])
+            path=root/'recording/abort.json';r=json.loads(path.read_text());r['actual_inference_bounds']=[0,0];path.write_text(json.dumps(r))
+            with self.assertRaises(ValueError):receiver.inspect_trial(root)
+
+    def rebind(self,root,mutate):
+        rp=root/'recording/report.json';mp=root/'recording/manifest.json';tp=root/'recorded-trial.json'
+        r=json.loads(rp.read_text());m=json.loads(mp.read_text());t=json.loads(tp.read_text());size=rp.stat().st_size
+        mutate(r);raw=(json.dumps(r,indent=2)+'\n').encode();rp.write_bytes(raw)
+        m['report_sha256']=hashlib.sha256(raw).hexdigest();m['payload_and_report_bytes']+=len(raw)-size;mp.write_text(json.dumps(m))
+        t.update(recording_verification=verify_recording(root/'recording'),recording_binding=dict(
+            manifest_sha256=hashlib.sha256(mp.read_bytes()).hexdigest(),report_sha256=hashlib.sha256(raw).hexdigest(),process_uuid=r['process_uuid']))
+        tp.write_text(json.dumps(t))
+
+    def test_uuid_and_committed_progress_are_typed_and_bound(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root=Path(temp)/'trial';trial_fixture(root)
+            self.rebind(root,lambda r:r.update(process_uuid=None))
+            with self.assertRaises(ValueError):receiver.inspect_trial(root)
+        with tempfile.TemporaryDirectory() as temp:
+            root=Path(temp)/'trial';trial_fixture(root,'graph')
+            path=root/'recorded-trial-lifecycle.json';life=json.loads(path.read_text());life['completed_rows']+=1;path.write_text(json.dumps(life))
+            with self.assertRaises(ValueError):receiver.inspect_trial(root)
+
+    def test_verified_source_requires_a_reported_observer_request_and_returns_milestones(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root=Path(temp)/'trial';trial_fixture(root,'graph')
+            value=receiver.inspect_trial(root)
+            self.assertTrue(value['raw_rgb_observer_requested']);self.assertTrue(value['raw_rgb_source_evidence_present'])
+            path=root/'recorded-trial.json';t=json.loads(path.read_text());t['raw_rgb_observer_requested']=False;path.write_text(json.dumps(t))
+            with self.assertRaises(ValueError):receiver.inspect_trial(root)
+
+    def test_structural_receipt_never_emits_an_actual_execution_success_claim(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root=Path(temp)/'trial';trial_fixture(root)
+            value=receiver.inspect_trial(root)
+            self.assertNotIn('body_execution_succeeded',value)
+            self.assertIs(value['producer_reported_body_success'],True)
+            (root/'recorded-trial.json').unlink()
+            path=root/'recorded-trial-lifecycle.json';life=json.loads(path.read_text())
+            life.update(status='TRIAL_RECORDED',provider_closed=False,provider_close_attempted=False,body_provider_close_attempted=False)
+            life.pop('primary_error');life.pop('secondary_errors');path.write_text(json.dumps(life))
+            value=receiver.inspect_trial(root)
+            self.assertIsNone(value['producer_reported_body_success'])
+
+    def test_long_original_error_uses_the_frozen_producers_bounded_serialization(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root=Path(temp)/'trial';trial_fixture(root,'graph')
+            self.rebind(root,lambda r:r.update(error='RuntimeError: '+'x'*5000))
+            original=json.loads((root/'recording/report.json').read_text())['error']
+            for name in ('recorded-trial.json','recorded-trial-lifecycle.json'):
+                path=root/name;data=json.loads(path.read_text());data['primary_error']=worker._error(RuntimeError(original));path.write_text(json.dumps(data))
+            result=receiver.inspect_trial(root)
+            self.assertEqual(result['status'],'PARTIAL_DIAGNOSTIC')
 
 
 if __name__=='__main__':unittest.main()

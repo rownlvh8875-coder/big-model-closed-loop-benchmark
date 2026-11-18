@@ -45,3 +45,11 @@ canary success contract would weaken its completed evidence; running the unknown
 private job again would not resolve its state. Both are avoided. Builder calls:
 fixed receiver caps above, same CPU image-reader versions, same-source export
 for old canary verification, source/feature/DraftPR follow existing authorization.
+
+The no-run diagnostic scope permits the existing standard canonical generated
+SMALL test-graph and stock-Panda software-host contract CI. They do not activate
+an official-model/SDK diagnostic or qualify a model camera. Local verification
+never asserts actual body execution: producer success is explicitly tri-state
+reported metadata. Surviving partial checkpoints, abort metadata and missing
+auxiliary receipts retain their reported evidence without inventing source or
+session provenance.

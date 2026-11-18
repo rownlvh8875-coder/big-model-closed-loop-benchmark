@@ -76,4 +76,15 @@ class RecordedArchiveTests(unittest.TestCase):
             self.assertEqual((root/'out/second').read_bytes(),b'x'*100)
 
 
+    def test_implicit_directory_case_aliases_and_dos_nonfile_attributes_are_rejected(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root=Path(temp);path=root/'ambiguous.zip';digest=self.make(path,[('Run/a',b'x'),('run/b',b'y')])
+            with self.assertRaises(ValueError):archive.extract_archive(path,root/'out',expected_sha256=digest)
+        for bits in (0x10,0x08):
+            with self.subTest(bits=bits),tempfile.TemporaryDirectory() as temp:
+                root=Path(temp);path=root/'nonfile.zip';self.make(path,[('entry',b'x')]);raw=bytearray(path.read_bytes());cd=raw.index(b'PK\x01\x02')
+                struct.pack_into('<I',raw,cd+38,bits);path.write_bytes(raw)
+                with self.assertRaises(ValueError):archive.extract_archive(path,root/'out',expected_sha256=hashlib.sha256(raw).hexdigest())
+
+
 if __name__=='__main__':unittest.main()

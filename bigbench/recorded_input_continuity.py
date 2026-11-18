@@ -1,5 +1,6 @@
 """Pinned real canary versus historical first graph-input bytes; no native run."""
 from pathlib import Path
+from types import FunctionType
 import hashlib
 import json
 import subprocess
@@ -77,11 +78,43 @@ def export_canary_source(out):
     return out,check_source_map(out,mapping)
 
 
+def stage_historical_metadata(evidence,out):
+    """Only the verified byte snapshots enter this private replay namespace."""
+    from scripts.verify_saved_camera_inputs import CASES
+    names=['artifacts.json','independent-receiver.json']+[str(s)+'-'+c+'/probe.json' for s,c in CASES]
+    evidence=Path(evidence);snapshots={};hashes={}
+    for name in names:
+        path=evidence/name;relative=path.relative_to(ROOT).as_posix()
+        expected=subprocess.check_output(['git','show',CANARY_SOURCE+':'+relative],cwd=ROOT,timeout=30)
+        actual=_receipt_bytes(path,4*1024**2)
+        need(actual==expected,'historical metadata must equal the pinned trusted Git bytes: '+relative)
+        snapshots[name]=actual;hashes[relative]=hashlib.sha256(actual).hexdigest()
+    out=_fresh(out)
+    for name,raw in snapshots.items():
+        path=out/name;path.parent.mkdir(parents=True,exist_ok=True)
+        with path.open('xb') as stream:stream.write(raw)
+        path.chmod(0o444)
+    return out,hashes
+
+
+def scoped_historical_reader(evidence):
+    from scripts import verify_saved_camera_inputs as historical
+    return _scoped(historical.run,EVIDENCE=Path(evidence),
+        replay_case=_scoped(historical.replay_case,EVIDENCE=Path(evidence)))
+
+
+def _scoped(function,**changes):
+    value=FunctionType(function.__code__,dict(function.__globals__,**changes),function.__name__,
+        function.__defaults__,function.__closure__)
+    value.__kwdefaults__=dict(function.__kwdefaults__ or {})
+    return value
+
+
 def run(canary_zip,historical_cohort,out):
     """Authenticate known immutable archives and compare without network/model calls."""
     from . import recorded_worker_canary as canary
     from scripts import verify_saved_camera_inputs as historical
-    from scripts.sdk3_priority_model_trial import clone
+    need(sys.platform=='linux','pinned native Cloud receipt replay requires Linux; trial/archive readers are portable')
     canary_zip=Path(canary_zip);historical_cohort=Path(historical_cohort)
     need(canary_zip.is_file() and not canary_zip.is_symlink() and canary_zip.stat().st_size==CANARY_BYTES,
          'exact pinned real canary artifact extent required')
@@ -95,22 +128,13 @@ def run(canary_zip,historical_cohort,out):
     bundle=canary.extract_archive(canary_zip,out/'canary-bundle',expected_sha256=CANARY_SHA)
     # Scoped function globals: only the source map's byte-root changes. Imported
     # producer/reader Python is the current, independently hash-checked code.
-    verdict=clone(canary.validate_native_bundle,ROOT=exported)(bundle)
+    verdict=_scoped(canary.validate_native_bundle,ROOT=exported)(bundle)
     need(verdict['source']==CANARY_SOURCE and verdict['activation']==CANARY_ACTIVATION and
          verdict['run_id']==str(CANARY_RUN) and verdict['source_map_sha256']==map_sha,
          'actual pinned camera canary identity/source required')
-    metadata_names=['artifacts.json','independent-receiver.json']+[
-        str(seed)+'-'+scene+'/probe.json' for seed,scene in historical.CASES]
-    metadata_hashes={}
-    for name in metadata_names:
-        path=historical.EVIDENCE/name
-        relative=path.relative_to(ROOT).as_posix()
-        expected=subprocess.check_output(['git','show',CANARY_SOURCE+':'+relative],cwd=ROOT,timeout=30)
-        actual=_receipt_bytes(path,4*1024**2)
-        need(actual==expected,'historical metadata must equal the pinned trusted Git bytes: '+relative)
-        metadata_hashes[relative]=hashlib.sha256(actual).hexdigest()
-    replay=historical.run(historical_cohort)
-    inventory=_read_receipt(historical.EVIDENCE/'artifacts.json',4*1024**2)
+    staged,metadata_hashes=stage_historical_metadata(historical.EVIDENCE,out/'pinned-historical-metadata')
+    replay=scoped_historical_reader(staged)(historical_cohort)
+    inventory=_read_receipt(staged/'artifacts.json',4*1024**2)
     name='sdk3-four-validation-full-s-20261118-02-'+str(CASE[0])+'-'+CASE[1]
     meta=[row for row in inventory['artifacts'] if row['name']==name]
     need(len(meta)==1,'exact historical case artifact required')
