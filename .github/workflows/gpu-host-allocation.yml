@@ -1,0 +1,37 @@
+name: Stock Panda software host allocation API (zero models)
+on:
+  push:
+    branches: [feature/windows-msaa-host-v1]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  software-host-allocation:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install software display libraries and stock Panda only
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends xvfb xauth libgl1-mesa-dri libgl1 libegl1
+          python -m pip install --no-deps panda3d==1.10.13
+      - name: Actual software host and requested-sample allocation, zero models
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+          OMP_NUM_THREADS: '2'
+        run: xvfb-run -a python -I -B scripts/smoke_gpu_host_allocation.py --run --out output/gpu-host-allocation-api/report.json
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: stock-panda-software-host-${{ github.run_id }}
+          path: output/gpu-host-allocation-api/
+          retention-days: 30
+          if-no-files-found: error

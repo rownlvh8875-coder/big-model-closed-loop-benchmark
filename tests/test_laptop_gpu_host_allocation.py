@@ -109,4 +109,9 @@ class HostAllocationContracts(unittest.TestCase):
   h=WglHarness('remove_canary_fail')
   with self.assertRaises(CleanupFailure):h.run()
   self.assertEqual(h.events[-3:],['remove_canary','remove_host','base_destroyed'])
+class NativeSmokeColdContracts(unittest.TestCase):
+ def test_cold_smoke_help_does_not_import_panda_or_create_outputs(self):
+  from pathlib import Path
+  import subprocess
+  entry=Path(__file__).resolve().parents[1]/'scripts/smoke_gpu_host_allocation.py';result=subprocess.run([sys.executable,'-I','-S','-B',str(entry),'--help'],capture_output=True,text=True,timeout=10);self.assertEqual(result.returncode,0,result.stderr)
 if __name__=='__main__':unittest.main()
