@@ -1,0 +1,38 @@
+name: One owned official-model recorded full-S diagnostic
+on:
+  push:
+    branches: ['diagnostic/recorded-official-20261118-01']
+    paths: ['docs/requests/recorded-official-20261118-01.json']
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: stage7-official-model-execution
+  cancel-in-progress: false
+jobs:
+  official-recorded-diagnostic:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 210
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install CPU-only evidence readers
+        run: python -m pip install --no-deps numpy==2.4.6 opencv-python-headless==5.0.0.93
+      - name: Authenticate one-shot request then run one recorded official case
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python -I -B scripts/run_recorded_official.py run
+      - name: Preserve positive, negative and partial evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: recorded-official-20261118-01
+          path: output/recorded-official-20261118-01/bundle/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
