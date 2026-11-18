@@ -4,8 +4,9 @@ import argparse,hashlib,importlib.metadata,json,os,secrets,shutil,subprocess,sys
 if __name__=='__main__':sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 from bigbench.windows_camera_probe import CASES,VERSIONS,camera_readiness,need,verify_probe
 from scripts.run_laptop_validation import write
+from bigbench.worker_ownership import confirmed_spawn_failure,prepare_interpreter
 ROOT=Path(__file__).resolve().parents[1]
-SOURCES=['scripts/probe_laptop_camera.py','scripts/laptop_native_trial.py','bigbench/windows_camera_probe.py','bigbench/metadrive_camera.py','bigbench/native_model_campaign.py','bigbench/optical_calibration.py','bigbench/sdk3_terrain_priority.py','bigbench/full_s_validation.py','bigbench/curved_lane_scenarios.py','bigbench/native_route.py','docs/fixtures/sdk3-full-s-native-route-v1.json']
+SOURCES=['scripts/probe_laptop_camera.py','scripts/laptop_native_trial.py','bigbench/worker_ownership.py','bigbench/windows_camera_probe.py','bigbench/metadrive_camera.py','bigbench/native_model_campaign.py','bigbench/optical_calibration.py','bigbench/sdk3_terrain_priority.py','bigbench/full_s_validation.py','bigbench/curved_lane_scenarios.py','bigbench/native_route.py','docs/fixtures/sdk3-full-s-native-route-v1.json']
 HANDSHAKE_SECONDS=5
 
 def source_hashes():return {name:hashlib.sha256((ROOT/name).read_bytes()).hexdigest() for name in SOURCES}
@@ -27,27 +28,16 @@ def inventory(out=None):
     return dict(protocol='windows-camera-inventory-v1',resource_observation=observation,versions=versions,assets_version=assets_version,assets_texture_present=texture_present,assets_file=str(asset) if asset else None,output_volume_observed_at=str(destination),readiness=camera_readiness(observation,versions,assets_version if texture_present else None),native_modules_imported=any(n.split('.')[0] in ('panda3d','direct','metadrive','onnxruntime') for n in sys.modules),official_model_processes=0,inferences=0)
 
 def worker_launch():
-    """Match CPython multiprocessing's direct Windows venv worker launch."""
-    executable=sys.executable
-    env=dict(os.environ,OMP_NUM_THREADS='2',OPENBLAS_NUM_THREADS='2')
-    base=getattr(sys,'_base_executable',executable)
-    if sys.platform=='win32' and os.path.normcase(base)!=os.path.normcase(executable):
-        env['__PYVENV_LAUNCHER__']=executable
-        executable=base
-    return executable,env
+    from bigbench.worker_ownership import worker_launch as shared_launch
+    return shared_launch()
 
 def await_parent_admission(args):
-    need(args.parent==os.getppid() and isinstance(args.nonce,str) and len(args.nonce)==32 and all(c in '0123456789abcdef' for c in args.nonce) and (args.seed,args.scenario) in CASES,'live owned camera child required before native imports')
-    deadline=time.monotonic()+HANDSHAKE_SECONDS
-    while True:
-        owner=json.loads((args.out/'owner.json').read_text())
-        cohort=json.loads((args.out.parent/'cohort.json').read_text())
-        need(owner.get('nonce')==args.nonce and owner.get('parent_pid')==cohort.get('parent_pid')==args.parent and owner.get('cohort_id')==cohort.get('cohort_id') and (owner.get('seed'),owner.get('scenario'))==(args.seed,args.scenario),'matching parent-assigned cohort/case required')
-        if owner.get('spawn_succeeded') is True:
-            need(owner.get('pid')==os.getpid() and owner.get('returncode') is None and owner.get('child_reaped') is False,'parent must acknowledge this actual live child PID')
-            return owner
-        need(owner.get('spawn_succeeded') is not False and time.monotonic()<deadline,'parent admission unresolved; native imports forbidden')
-        time.sleep(.02)
+    from bigbench.worker_ownership import await_parent_ack
+    need((args.seed,args.scenario) in CASES,'registered camera case required')
+    owner=await_parent_ack(args.out,parent=args.parent,nonce=args.nonce,seed=args.seed,scene=args.scenario,timeout=HANDSHAKE_SECONDS)
+    cohort=json.loads((args.out.parent/'cohort.json').read_text())
+    need(cohort.get('parent_pid')==args.parent and owner.get('cohort_id')==cohort.get('cohort_id'),'matching parent-assigned camera cohort required')
+    return owner
 
 def deny_downloads():
     def audit(event,args):
@@ -70,9 +60,11 @@ def _context(provider):
 
 def run_child(args):
     owner=await_parent_admission(args)
+    prepare_interpreter(paths_only=True)
     readiness=inventory(args.out);write(args.out/'inventory.json',readiness)
     need(readiness['readiness']['ready'],'camera packages/assets/native Windows readiness required')
     deny_downloads()
+    prepare_interpreter(native=True)
     from scripts.laptop_native_trial import world
     from bigbench.native_model_campaign import NativeWorldCamera
     from bigbench.optical_calibration import intrinsics_from_panda_lens
@@ -103,12 +95,14 @@ def launch_worker(dest,seed,scene):
     cohort=json.loads((dest.parent/'cohort.json').read_text());need(cohort.get('parent_pid')==os.getpid(),'live coordinator cohort required')
     owner=dict(parent_pid=os.getpid(),cohort_id=cohort['cohort_id'],seed=seed,scenario=scene,nonce=nonce,pid=None,spawn_attempted=False,spawn_succeeded=None,returncode=None,child_reaped=False,official_model_processes=0,inferences=0)
     executable,environment=worker_launch()
-    command=[executable,'-I','-B',str(Path(__file__).resolve()),'--owned-child','--parent',str(os.getpid()),'--nonce',nonce,'--seed',str(seed),'--scenario',scene,'--out',str(dest)]
+    command=[executable,'-I','-S','-B',str(Path(__file__).resolve()),'--owned-child','--parent',str(os.getpid()),'--nonce',nonce,'--seed',str(seed),'--scenario',scene,'--out',str(dest)]
     try:
         with (dest/'stdout.log').open('wb') as stdout,(dest/'stderr.log').open('wb') as stderr:
             owner['spawn_attempted']=True;write(dest/'owner.json',owner)
             try:child=subprocess.Popen(command,stdout=stdout,stderr=stderr,cwd=ROOT,env=environment)
-            except OSError:owner['spawn_succeeded']=False;raise
+            except OSError as exc:
+                if confirmed_spawn_failure(exc):owner['spawn_succeeded']=False;raise
+                raise OwnershipError('ambiguous interrupted creation; parent never acknowledged a child PID') from exc
             except BaseException as exc:
                 owner['spawn_succeeded']=None
                 raise OwnershipError('spawn interrupted with unknown child identity; admission never acknowledged') from exc
@@ -194,6 +188,7 @@ def main():
             if a.out.is_dir():write(a.out/'error.json',dict(status='ERROR',error=type(exc).__name__+': '+str(exc),official_model_processes=0,inferences=0))
             return 2
     if a.mode=='verify' and a.results is None:p.error('--results is required for read-only verification')
+    if sys.flags.no_site:prepare_interpreter(paths_only=True)
     if a.out.exists():p.error('--out must be fresh; preserve previous evidence')
     a.out.mkdir(parents=True)
     try:

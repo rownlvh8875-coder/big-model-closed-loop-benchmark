@@ -15,7 +15,7 @@ def windows_context(provider):
  import numpy as np,cv2,panda3d.core as core
  from bigbench.laptop_gpu import TARGET
  need(platform.system()=='Windows' and platform.machine().lower() in ('amd64','x86_64'),'Windows native x64 only');need(core.PandaSystem.getVersionString()=='1.10.13' and importlib.metadata.version('metadrive-simulator')=='0.4.3' and np.__version__=='2.4.6' and cv2.__version__=='5.0.0','explicit Windows Panda/MetaDrive/NumPy/OpenCV versions required');gsg=provider.env.engine.sensors['bigbench_road'].buffer.get_gsg();need(gsg is not None and gsg.is_valid(),'actual original RGB context');renderer=gsg.get_driver_renderer();vendor=gsg.get_driver_vendor();need(TARGET.lower() in renderer.lower() and 'nvidia' in vendor.lower(),'original model camera must use target NVIDIA renderer')
- files=['scripts/laptop_native_trial.py','bigbench/full_s_validation.py','bigbench/native_model_campaign.py','scripts/native_mdv3_repeat_trial.py','bigbench/model_world_frame.py','bigbench/sdk3_terrain_priority.py','model_specs/md-v3.json']
+ files=['scripts/laptop_native_trial.py','scripts/run_laptop_validation.py','bigbench/worker_ownership.py','bigbench/full_s_validation.py','bigbench/native_model_campaign.py','scripts/native_mdv3_repeat_trial.py','bigbench/model_world_frame.py','bigbench/sdk3_terrain_priority.py','model_specs/md-v3.json']
  return dict(protocol='windows-native-full-s-context-v1',system=platform.system(),python=platform.python_version(),panda=core.PandaSystem.getVersionString(),metadrive=importlib.metadata.version('metadrive-simulator'),numpy=np.__version__,opencv=cv2.__version__,renderer=renderer,vendor=vendor,driver_version=gsg.get_driver_version(),core_sha256=digest(core.__file__),panda_dll_sha256={p.name:digest(p) for p in sorted(Path(core.__file__).parent.glob('*.dll'))},source_sha256={name:digest(ROOT/name) for name in files},linux_sdk3_qualified=False,physical_optics_validated=False)
 def world(seed,scene):
  from bigbench.metadrive_camera import NativeMetaDriveProvider
@@ -30,10 +30,15 @@ def world(seed,scene):
 
 def run(args):
  from scripts.run_laptop_validation import write,check_model
+ from bigbench.worker_ownership import await_parent_ack,ownership_snapshot,prepare_interpreter
+ owner=await_parent_ack(args.out,parent=args.parent,nonce=args.nonce,seed=args.seed,scene=args.scenario)
+ if getattr(args,'ownership_only',False):
+  report=ownership_snapshot(owner,'metadrive');write(args.out/'ownership.json',report);return report
  need(args.parent==os.getppid() and len(args.nonce)==32 and all(c in '0123456789abcdef' for c in args.nonce) and platform.system()=='Windows','live owned Windows child required before any simulator or model import');need((args.seed,args.scenario) in [(s,c) for s in (20261109,20261110) for c in ('s_curve_left_right','s_curve_right_left')],'registered condition')
  out=args.out;life=dict(protocol='windows-laptop-model-lifecycle-v1',process_id=os.getpid(),nonce=args.nonce,policy_constructor_entered=False,policy_created=False,inference_bounds=[0,0],status='PRE_RUNTIME');write(out/'lifecycle.json',life);provider=None;result=None
  def progress(row):life.update(row);write(out/'lifecycle.json',life)
  try:
+  prepare_interpreter(native=True)
   from bigbench.native_model_campaign import NativeWorldCamera
   from bigbench.full_s_validation import validate_route,run_full_s
   provider,lanes,repair=world(args.seed,args.scenario);context=windows_context(provider);camera=NativeWorldCamera(provider)
@@ -60,5 +65,5 @@ def run(args):
   progress(dict(provider_closed=provider is not None,status='RECORDED' if result is not None else 'ERROR'))
   if result is not None:result['provider_closed']=True;write(out/('probe.json' if args.probe else 'run.json'),result)
 def main():
- p=argparse.ArgumentParser(description=__doc__);p.add_argument('--parent',type=int,required=True);p.add_argument('--nonce',required=True);p.add_argument('--seed',type=int,required=True);p.add_argument('--scenario',required=True);p.add_argument('--out',type=Path,required=True);g=p.add_mutually_exclusive_group(required=True);g.add_argument('--probe',action='store_true');g.add_argument('--model',type=Path);a=p.parse_args();run(a);return 0
+ p=argparse.ArgumentParser(description=__doc__);p.add_argument('--parent',type=int,required=True);p.add_argument('--nonce',required=True);p.add_argument('--seed',type=int,required=True);p.add_argument('--scenario',required=True);p.add_argument('--out',type=Path,required=True);g=p.add_mutually_exclusive_group(required=True);g.add_argument('--probe',action='store_true');g.add_argument('--ownership-only',action='store_true');g.add_argument('--model',type=Path);a=p.parse_args();run(a);return 0
 if __name__=='__main__':raise SystemExit(main())
