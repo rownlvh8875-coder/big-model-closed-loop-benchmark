@@ -1,6 +1,9 @@
 """Windows stock-Panda framebuffer probe; no model or physical optics claims."""
 import platform
+from contextlib import ExitStack
 from bigbench.validation_resources import SOFTWARE,actual_hardware_msaa,collect_resources
+ATTEMPT_PROTOCOL='windows-panda-gpu-attempt-v2'
+CONSTRUCTION='OWNED_ZERO_SAMPLE_OFFSCREEN_HOST_AND_REQUESTED_MSAA_OUTPUT_V2'
 TARGET='NVIDIA GeForce RTX 3050 Ti Laptop GPU'
 COLORS=[[255,0,255,255],[0,255,0,255]]
 
@@ -46,22 +49,43 @@ def _gl_reader():
   before=gl.glGetError();r=dict(context=int(gl.wglGetCurrentContext() or 0),renderer=(gl.glGetString(0x1F01) or b'').decode('ascii','replace'),vendor=(gl.glGetString(0x1F00) or b'').decode('ascii','replace'),version=(gl.glGetString(0x1F02) or b'').decode('ascii','replace'),draw_fbo=integer(0x8CA6),samples=integer(0x80A9),sample_buffers=integer(0x80A8),max_samples=integer(0x8D57),viewport=integer(0x0BA2,4),gl_error_before=before,multisample_enabled=bool(gl.glIsEnabled(0x809D)));r['gl_error_after']=gl.glGetError();return r
  return read
 
+def _allocate_msaa_output(base,core,requested_samples,owners):
+ """Own a context host and requested-sample output; observe the selected backend."""
+ def properties(samples):
+  fb=core.FrameBufferProperties();fb.setRgbColor(True);fb.setRgbaBits(8,8,8,8);fb.setDepthBits(24);fb.setMultisamples(samples);return fb
+ engine=base.graphicsEngine;wp=core.WindowProperties.size(8,8)
+ host=engine.makeOutput(base.pipe,'laptop-context-host',-100,properties(0),wp,core.GraphicsPipe.BFRefuseWindow)
+ if host is None:raise RuntimeError('unable to allocate zero-sample offscreen context host')
+ owners.callback(engine.removeWindow,host);engine.openWindows()
+ if not host.isValid():raise RuntimeError('offscreen context host did not open')
+ gsg=host.getGsg()
+ if gsg is None or not gsg.isValid():raise RuntimeError('offscreen host has no valid GSG')
+ host.setActive(False)
+ win=engine.makeOutput(base.pipe,'laptop-msaa-canary',0,properties(requested_samples),wp,core.GraphicsPipe.BFRefuseWindow,gsg,host)
+ if win is None:raise RuntimeError('unable to allocate requested stock-Panda MSAA canary')
+ owners.callback(engine.removeWindow,win);engine.openWindows()
+ if not win.isValid():raise RuntimeError('requested MSAA canary did not open')
+ actual_gsg=win.getGsg()
+ if actual_gsg is None or not actual_gsg.isValid():raise RuntimeError('requested MSAA canary has no valid GSG')
+ if host.isActive():raise RuntimeError('context host unexpectedly active before canary rendering')
+ allocation=dict(requested_construction=CONSTRUCTION,host_requested_samples=0,canary_requested_samples=requested_samples,observed_host_type=host.getType().getName(),observed_canary_type=win.getType().getName(),canary_shares_host_gsg=int(actual_gsg.this)==int(gsg.this),host_inactive=True)
+ return win,allocation
+
 def run_gpu_probe(*,requested_samples=4):
  observation=collect_resources();names=[x['name'] for x in observation['gpu_devices'] if x.get('name')]
  blocked=[]
  if platform.system()!='Windows':blocked.append('WINDOWS_NATIVE_CONTEXT_REQUIRED')
  if not any(TARGET.lower() in n.lower() for n in names):blocked.append('RTX3050TI_DEVICE_NOT_OBSERVED')
- if blocked:return dict(protocol='windows-panda-gpu-attempt-v1',status='BLOCKED',missing=blocked,passed=False,resource_observation=observation,model_loaded=False)
+ if blocked:return dict(protocol=ATTEMPT_PROTOCOL,status='BLOCKED',missing=blocked,passed=False,resource_observation=observation,model_loaded=False)
  if type(requested_samples) is not int or not 2<=requested_samples<=64:raise ValueError('samples2..64 required')
+ from panda3d import core
  from panda3d.core import PandaSystem,loadPrcFileData,FrameBufferProperties,WindowProperties,GraphicsPipe,Texture,GraphicsOutput,CardMaker,Shader,CallbackObject,AntialiasAttrib,GeomVertexData,GeomVertexFormat,GeomVertexWriter,GeomTriangles,Geom,GeomNode
  if PandaSystem.getVersionString()!='1.10.13':raise ValueError('Windows stock Panda 1.10.13 required; Linux SDK3 cannot qualify this context')
  loadPrcFileData('laptop-gpu-probe','window-type none\naudio-library-name null\nsync-video false\nthreading-model\nframebuffer-srgb false\n')
  from direct.showbase.ShowBase import ShowBase
- base=None;region=None;original=None;result=None;cleanup=False;snaps=[];images=[];armed=False;read=_gl_reader()
+ base=None;region=None;original=None;result=None;cleanup=False;snaps=[];images=[];armed=False;read=_gl_reader();owners=ExitStack()
  try:
-  base=ShowBase(windowType='none');base.makeDefaultPipe();fb=FrameBufferProperties();fb.setRgbColor(True);fb.setRgbaBits(8,8,8,8);fb.setDepthBits(24);fb.setMultisamples(requested_samples);wp=WindowProperties.size(8,8)
-  win=base.graphicsEngine.makeOutput(base.pipe,'laptop-msaa-canary',0,fb,wp,GraphicsPipe.BFRefuseWindow)
-  if win is None:raise RuntimeError('unable to allocate requested stock-Panda framebuffer')
+  base=ShowBase(windowType='none');base.makeDefaultPipe();win,allocation=_allocate_msaa_output(base,core,requested_samples,owners)
   win.setClearColorActive(True);win.setClearColor((0,0,0,1));base.win=win;base.makeCamera2d(win);texture=Texture('actual-ram-readback');texture.setFormat(Texture.FRgba8);win.addRenderTexture(texture,GraphicsOutput.RTMCopyRam,GraphicsOutput.RTPColor)
   maker=CardMaker('challenge');maker.setFrameFullscreenQuad();card=base.render2d.attachNewNode(maker.generate());card.setDepthTest(False);card.setDepthWrite(False);card.setAntialias(AntialiasAttrib.MMultisample)
   card.setShader(Shader.make(Shader.SLGLSL,'#version 330\nuniform mat4 p3d_ModelViewProjectionMatrix; in vec4 p3d_Vertex; void main(){gl_Position=p3d_ModelViewProjectionMatrix*p3d_Vertex;}','#version 330\nuniform vec4 challenge; out vec4 frag; void main(){frag=challenge;}'))
@@ -84,10 +108,14 @@ def run_gpu_probe(*,requested_samples=4):
    edge_images.append(bytes(texture.getRamImageAs('RGBA')).hex())
   result=dict(protocol='windows-panda-gpu-readbacks-v2',device_names=names,target_gpu=TARGET,requested_samples=requested_samples,observations=snaps[:2],images=images,challenges=COLORS,render_calls=4,cleanup_complete=False,edge_protocol='fixed-geometric-triangle-no-blend-v1',edge_observations=snaps[2:],edge_images=edge_images)
  finally:
-  if region is not None:
-   if original is None:region.clearDrawCallback()
-   else:region.setDrawCallback(original)
-  if base is not None:base.destroy()
+  try:
+   if region is not None:
+    if original is None:region.clearDrawCallback()
+    else:region.setDrawCallback(original)
+  finally:
+   try:owners.close()
+   finally:
+    if base is not None:base.destroy()
   cleanup=True
  if result is None:raise RuntimeError('GPU probe produced no result')
- result['cleanup_complete']=cleanup;return dict(protocol='windows-panda-gpu-attempt-v1',status='MEASURED',readbacks=result,validation=verify_gpu_readbacks(result))
+ result['cleanup_complete']=cleanup;return dict(protocol=ATTEMPT_PROTOCOL,status='MEASURED',framebuffer_construction=CONSTRUCTION,framebuffer_allocation=allocation,readbacks=result,validation=verify_gpu_readbacks(result))

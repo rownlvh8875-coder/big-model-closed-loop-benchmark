@@ -1,0 +1,83 @@
+{
+  "head": "1c034eea59c8084c625ba888cf1a05f6da072373",
+  "all_eight_jobs_passed": true,
+  "canonical": {
+    "pull_request": {
+      "run_id": 44204730475,
+      "unit_tests": 2320,
+      "unit_skips": 7,
+      "small_onnx_tests": 1
+    },
+    "push": {
+      "run_id": 44204724044,
+      "unit_tests": 2320,
+      "unit_skips": 7,
+      "small_onnx_tests": 1
+    }
+  },
+  "windows_portable": {
+    "pull_request": {
+      "run_id": 44204730206,
+      "tests": 68
+    },
+    "push": {
+      "run_id": 44204724105,
+      "tests": 68
+    }
+  },
+  "linux_software_api": {
+    "pull_request": {
+      "run_id": 44204730469,
+      "artifact_id": 14383895356,
+      "artifact_sha256": "796c9006bbb218bd3cd91dcd4f7fd288d4d71e2f6ac0d9c3944428c05168acb5",
+      "report": {
+        "protocol": "stock-panda-host-allocation-api-smoke-v1",
+        "software_api_smoke_passed": true,
+        "renderer": "llvmpipe (LLVM 20.1.2, 256 bits)",
+        "vendor": "Mesa",
+        "version": "4.5 (Compatibility Profile) Mesa 25.2.8-0ubuntu0.24.04.5",
+        "requested_samples": 4,
+        "framework_reported_samples": 4,
+        "source_entry": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/scripts/smoke_gpu_host_allocation.py",
+        "real_render_calls": 1,
+        "official_model_processes": 0,
+        "inferences": 0,
+        "windows_wgl_qualified": false,
+        "hardware_gpu_qualified": false,
+        "model_camera_qualified": false,
+        "physical_optics_validated": false,
+        "carla_validated": false,
+        "scope": "actual Linux stock-Panda allocation and ownership API only; sample property is not GL pixel/MSAA certification",
+        "owned_outputs_removed": true
+      }
+    },
+    "push": {
+      "run_id": 44204724169,
+      "artifact_id": 14382833585,
+      "artifact_sha256": "e17ccbba4fab38ac52b4574b4cc31871d821a43d204acaa3becb106438357bef",
+      "report": {
+        "protocol": "stock-panda-host-allocation-api-smoke-v1",
+        "software_api_smoke_passed": true,
+        "renderer": "llvmpipe (LLVM 20.1.2, 256 bits)",
+        "vendor": "Mesa",
+        "version": "4.5 (Compatibility Profile) Mesa 25.2.8-0ubuntu0.24.04.5",
+        "requested_samples": 4,
+        "framework_reported_samples": 4,
+        "source_entry": "/home/runner/work/big-model-closed-loop-benchmark/big-model-closed-loop-benchmark/scripts/smoke_gpu_host_allocation.py",
+        "real_render_calls": 1,
+        "official_model_processes": 0,
+        "inferences": 0,
+        "windows_wgl_qualified": false,
+        "hardware_gpu_qualified": false,
+        "model_camera_qualified": false,
+        "physical_optics_validated": false,
+        "carla_validated": false,
+        "scope": "actual Linux stock-Panda allocation and ownership API only; sample property is not GL pixel/MSAA certification",
+        "owned_outputs_removed": true
+      }
+    }
+  },
+  "actual_windows_fix_retested": false,
+  "new_official_models": 0,
+  "new_official_inferences": 0
+}

@@ -4,7 +4,7 @@
 
 ## 1. 먼저 설치 없이 사양 확인
 
-이 PR의 `feature/sdk3-four-validation-v1` 소스를 노트북에 받으세요. PowerShell에서 저장소 폴더로 이동합니다. Python이 없으면 [Python 3.11 Windows x64](https://www.python.org/downloads/windows/)를 설치합니다.
+host 수정본은 `feature/windows-msaa-host-v1` 브랜치입니다. 기존 `feature/sdk3-four-validation-v1`의 소스14297e2는 로컬 보고서에서 원본 GPU 검사가 실패했던 버전으로 보존합니다. 수정 브랜치 소스를 노트북에 받으세요. PowerShell에서 저장소 폴더로 이동합니다. Python이 없으면 [Python 3.11 Windows x64](https://www.python.org/downloads/windows/)를 설치합니다.
 
 ```powershell
 py -3.11 scripts\run_laptop_validation.py --mode inventory --out output\laptop-inventory-01
@@ -81,3 +81,17 @@ CARLA는 별도 서버 설치와 상당한 디스크/메모리를 요구합니�
 CARLA도 별도 최대 8 모델·4,800 추론입니다. 두 로컬 백엔드를 모두 명시적으로 실행하면 합계 최대 16 모델·9,600 추론입니다. 동일 엔진의 두 실행만 픽셀 단위로 비교합니다. 엔진 간 영상 일치나 주행 품질 순위는 요구하지 않으며, 공통 기하·시계·카메라·동작 변환·이상적 운동 계약과 각 완주 결과를 따로 기록합니다. **실제 CARLA 실행은 아직 미실행**이고 이 어댑터는 순수 계약 테스트만 거쳤습니다.
 
 처음에는 `inventory.json`, `windows-readiness.json`, `gpu.json`과 오류가 있으면 `error.json`만 확인하면 됩니다. 개인 촬영 원본이나 모델 파일을 공유할 필요는 없습니다.
+
+## host 수정본 재검사
+
+로컬 보고서에서 실패한 원본은 host/GSG 없이 MSAA 버퍼를 요청했습니다. 수정본은 샘플0의 비활성 offscreen host를 먼저 열고 그 GSG를 실제 요청 샘플 버퍼에 전달합니다. 샘플0은 컨텍스트 준비용이며 검사 대상의 샘플 기준을 낮추는 것이 아닙니다. 두 출력은 callback 복원 후 정리됩니다. 기존 원본 실패와 별도 메모리 실험은 그대로 보존합니다.
+
+기존 환경·증거·로컬 변경을 보존한 뒤 로컬 Codex에서 새 수정 브랜치로 전환하고 다음 명령을 실행하세요. 이미 설치한 `.venv-laptop`을 그대로 사용하므로 이 GPU 재검사에는 자산/모델 다운로드가 필요하지 않습니다.
+
+```powershell
+.\.venv-laptop\Scripts\python.exe scripts\run_laptop_validation.py --mode gpu --out output\laptop-gpu-host-fix-01
+```
+
+출력은 새 `windows-panda-gpu-attempt-v2`이며 정상 측정 시 construction 표지가 `OWNED_ZERO_SAMPLE_OFFSCREEN_HOST_AND_REQUESTED_MSAA_OUTPUT_V2`입니다. 실제 색상·경계·GL sample/state 기준은 기존 readback-v2와 같습니다. 소프트웨어/Linux API 검사나 모의 테스트의 통과가 이 실제 Windows 재검사를 대신하지 않습니다. 모델 카메라·물리광학·CARLA 검증도 별도입니다.
+
+보고서 측정 당시 사용 가능 RAM은 약4.68GiB로 Windows full-S의8GiB 기준에 미달했습니다. 이 수정은 메모리 기준을 변경하지 않습니다. 별도 클라우드 full-S 작업의 결과는 해당 작업의 원본 기록이 전달돼야 확인할 수 있습니다.
