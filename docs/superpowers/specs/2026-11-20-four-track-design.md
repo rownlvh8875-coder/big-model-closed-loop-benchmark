@@ -1,0 +1,12 @@
+# Four remaining validation tracks
+
+Frozen base: ae8b18013eaa134571f4d6dbec25bab24fb6cdfb. User requests autonomous completion of all four tracks; no environment publishing or main merge.
+
+1. A pre-registered preprocessing intervention, baseline RGB-linear/I420 vs source-RGB-derived I420 nearest-even/clamp, across seeds 20261109/20261110 and left-right/right-left. Eight fresh isolated original-model processes, at most 4800 calls (600 each); no retries, tuning, new weights or altered control/geometry/failure thresholds. Each case has one baseline and one experimental trajectory, not a repeatability certification. Actual NV12, GPU rounding, physical fidelity and training-input equivalence remain unproven. The causal contrast applies only to this explicitly combined input intervention. Validate same initial source/geometry/state and audit actual new_img each step. Keep original functions/files intact; use an explicitly bound scoped copy of the original step that substitutes only camera_pair_to_model in the experimental subclass.
+2. Windows RTX camera-scene/model integration requires actual RTX3050Ti host access and >=8GiB available model RAM; prior 8x8 MSAA does not satisfy it. Probe first, then only the existing bounded original-model workflow.
+3. Physical optics/NV12 requires measured, independent train/holdout dual-camera data, independently measured board poses and genuine sensor bytes with provenance. Do not synthesize a passing physical dataset.
+4. CARLA requires an explicitly dedicated compatible server plus real camera/route probe and original-model cohort. No server is currently connected.
+
+Managed host: CPU/source/metadata only; no native/model imports, downloads or rendering. New native execution only on ephemeral GitHub Actions, sealed reviewed-source approval + separate one-shot request, fresh workflow/branch/request namespace; old consumed request stays untouched. Resource limits per container 10GiB, 2 CPUs, 128 pids, 512MiB tmp, network none/read-only UID65534; model RAM >=8GiB; child9000s, attach9030s. Original ORT1.20.1 BASIC CPU provider, model SHA35976b11be3904eb78e32f7dc55a6abf8e9433ac5aa391a1998f1e9ce001b199. Cohort serialized <=8 models and4800calls; outer deadline 360min.
+
+Completion means actual terminal evidence for each track. Missing resources are BLOCKED, never PASS; continue all independent authorized work and provide concrete handoff. Preserve original six artifacts and all prior deliveries/branches.
