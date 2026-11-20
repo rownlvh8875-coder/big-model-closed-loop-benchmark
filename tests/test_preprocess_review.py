@@ -159,10 +159,18 @@ class ReviewTests(unittest.TestCase):
                 self.assertEqual(c.verify_bundle(p)['status'],'INCOMPLETE_OR_FAILED')
 
     def test_local_real_track_commands_keep_installed_packages_visible(self):
-        text=(host.ROOT/'docs/remaining-validation-handoff.md').read_text()
+        text=(host.ROOT/'docs/remaining-validation-handoff.md').read_text(encoding='utf-8')
         for line in text.splitlines():
             if line.startswith('& $py') and '--mode process-check' not in line:
                 self.assertNotIn(' -S ',line)
+
+    def test_handoff_reader_with_windows_default_encoding(self):
+        original=Path.read_text
+        def windows_default(path,*args,**kwargs):
+            kwargs.setdefault('encoding','cp1252')
+            return original(path,*args,**kwargs)
+        with patch.object(Path,'read_text',windows_default):
+            self.test_local_real_track_commands_keep_installed_packages_visible()
 
 
 if __name__=='__main__':unittest.main()
