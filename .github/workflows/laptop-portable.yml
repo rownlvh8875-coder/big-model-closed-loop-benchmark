@@ -1,7 +1,7 @@
 name: Windows portable laptop contracts (no GPU or model qualification)
 on:
   push:
-    branches: [feature/sdk3-four-validation-v1, feature/windows-msaa-host-v1, feature/windows-camera-probe-v1, feature/cloud-input-and-windows-worker-v1, feature/full-s-failure-capture-v1, feature/full-s-recorded-worker-v1, feature/recorded-worker-canary-v1, feature/full-s-recorded-receiver-v1, feature/recorded-official-v1]
+    branches: [feature/sdk3-four-validation-v1, feature/windows-msaa-host-v1, feature/windows-camera-probe-v1, feature/cloud-input-and-windows-worker-v1, feature/full-s-failure-capture-v1, feature/full-s-recorded-worker-v1, feature/recorded-worker-canary-v1, feature/full-s-recorded-receiver-v1, feature/recorded-official-v1, feature/preprocess-four-track-v1]
   pull_request:
 permissions:
   contents: read
@@ -19,7 +19,7 @@ jobs:
       - name: Install only CPU image readers, no Panda, CARLA or ONNX runtime
         run: python -m pip install --no-deps numpy==2.4.6 opencv-python-headless==5.0.0.93
       - name: Test portable contracts and cold entry points
-        run: python -B -m unittest tests.test_laptop_gpu_validation tests.test_laptop_gpu_host_allocation tests.test_laptop_review_regressions tests.test_laptop_validation tests.test_offline_camera_validation tests.test_carla_validation tests.test_full_s_receipts tests.test_full_s_validation tests.test_validation_resources tests.test_windows_camera_probe tests.test_windows_camera_cli tests.test_worker_ownership tests.test_saved_camera_inputs tests.test_full_s_failure_capture tests.test_full_s_recorded_worker tests.test_recorded_worker_canary tests.test_recorded_worker_canary_admission tests.test_recorded_worker_handoff tests.test_full_s_recorded_receiver tests.test_full_s_recorded_archive tests.test_recorded_input_continuity tests.test_recorded_official tests.test_recorded_official_runtime tests.test_recorded_official_bundle tests.test_recorded_official_review -v
+        run: python -B -m unittest tests.test_laptop_gpu_validation tests.test_laptop_gpu_host_allocation tests.test_laptop_review_regressions tests.test_laptop_validation tests.test_offline_camera_validation tests.test_carla_validation tests.test_full_s_receipts tests.test_full_s_validation tests.test_validation_resources tests.test_windows_camera_probe tests.test_windows_camera_cli tests.test_worker_ownership tests.test_saved_camera_inputs tests.test_full_s_failure_capture tests.test_full_s_recorded_worker tests.test_recorded_worker_canary tests.test_recorded_worker_canary_admission tests.test_recorded_worker_handoff tests.test_full_s_recorded_receiver tests.test_full_s_recorded_archive tests.test_recorded_input_continuity tests.test_recorded_official tests.test_recorded_official_runtime tests.test_recorded_official_bundle tests.test_recorded_official_review tests.test_preprocess_experiment tests.test_preprocess_protocol tests.test_preprocess_review -v
       - name: Real read-only Windows inventory, never a GPU PASS
         run: python -I -S -B scripts/run_laptop_validation.py --mode inventory --out output/windows-inventory
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
