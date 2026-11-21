@@ -1,0 +1,94 @@
+name: SDK3 native md-v3 residual terms
+on:
+  push:
+    branches: ['diagnostic/sdk3-residual-terms-20261121-01']
+    paths: ['docs/requests/sdk3-residual-terms-20261121-01.json']
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: stage7-official-model-execution
+  cancel-in-progress: false
+jobs:
+  camera-and-route:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    outputs:
+      qualified: ${{ steps.probe.outputs.qualified }}
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pinned offline readers
+        run: python -m pip install --no-deps numpy==2.4.6 opencv-python-headless==5.0.0.93
+      - name: Check the runtime contracts without a model
+        run: python -B -m unittest discover -s tests -p test_sdk3_steering_plan.py
+      - name: Verify four zero-model camera and route cases
+        id: probe
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python -I -B scripts/run_sdk3_action_terms.py probe
+      - name: Preserve probe evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: residual-terms-probes-20261121
+          path: output/sdk3-residual-terms-20261121/probe/bundle/
+          if-no-files-found: error
+          retention-days: 30
+  model:
+    name: Residual operands ${{ matrix.seed }} ${{ matrix.scenario }}
+    needs: camera-and-route
+    if: needs.camera-and-route.outputs.qualified != ''
+    timeout-minutes: 255
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        seed: [20261109, 20261110]
+        scenario: [s_curve_left_right]
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install the verified CPU wheel build tools and offline readers
+        run: |
+          python -m pip install cmake==3.31.6 ninja==1.11.1.4 numpy==2.4.6 onnx==1.23.2 \
+            opencv-python-headless==5.0.0.93 wheel setuptools packaging protobuf flatbuffers sympy
+      - name: Restore the exact release source, build ORT and pass the CPU canary
+        timeout-minutes: 80
+        run: |
+          bash scripts/build_sdk3_action_terms_ort.sh \
+            'output/sdk3-residual-terms-20261121/${{ matrix.seed }}-${{ matrix.scenario }}/build' \
+            "$RUNNER_TEMP/action-terms-ort"
+      - name: Verify the full residual readout on a synthetic multi-node graph
+        run: |
+          python -I -B scripts/verify_sdk3_residual_canary.py \
+            "$RUNNER_TEMP/action-terms-ort/debug-site" \
+            'output/sdk3-residual-terms-20261121/${{ matrix.seed }}-${{ matrix.scenario }}/build/residual-canary'
+      - name: Check the frozen-image canary and capture one official trial
+        env:
+          GH_TOKEN: ${{ github.token }}
+          STEERING_PROBE_GATE: ${{ needs.camera-and-route.outputs.qualified }}
+          ACTION_TERMS_DEBUG_SITE: ${{ runner.temp }}/action-terms-ort/debug-site
+          ACTION_TERMS_CANARY_DEPS: ${{ runner.temp }}/action-terms-ort/canary-deps
+        run: python -I -B scripts/run_sdk3_action_terms.py model --seed '${{ matrix.seed }}' --scenario '${{ matrix.scenario }}'
+      - name: Preserve positive, negative and partial evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: residual-terms-20261121-${{ matrix.seed }}-${{ matrix.scenario }}
+          path: |
+            output/sdk3-residual-terms-20261121/${{ matrix.seed }}-${{ matrix.scenario }}/bundle/
+            output/sdk3-residual-terms-20261121/${{ matrix.seed }}-${{ matrix.scenario }}/build/
+          if-no-files-found: error
+          retention-days: 30

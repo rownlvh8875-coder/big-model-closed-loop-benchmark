@@ -1,4 +1,4 @@
-"""Authenticate a fresh Actions attempt and observe one official md-v3 Add per step."""
+"""Authenticate a fresh Actions attempt and observe the official md-v3 residual path."""
 
 import json
 import os
@@ -38,7 +38,7 @@ def qualify_in_image(bundle, build, site, identity, seed):
     verifier = dest/'audit.py'
     shutil.copyfile(steering.ROOT/'scripts/verify_ort_node_audit.py', verifier)
     verifier.chmod(0o644)
-    name = f'action-terms-canary-{identity["run_id"]}-{seed}'
+    name = f'residual-terms-canary-{identity["run_id"]}-{seed}'
     cidfile = dest/'container-id.txt'
     command = ['docker', 'run', '--rm', '--name', name, '--cidfile', str(cidfile),
                '--read-only', '--network', 'none', '--user', '65534:65534', '--cap-drop', 'ALL',
@@ -121,7 +121,7 @@ def plan_case(work, bundle, identity, seed, scene, summary):
             '--dependencies-sha', pins.digest(depfile)]
     summary.update(model_process_bounds=[0,1], inference_bounds=[0,600])
     execution = clone(runtime.run_container, container_command=command, subprocess=steering.Deadline)(
-        f'action-terms-{identity["run_id"]}-{seed}-{scene}', sdk, native, args, model=model, deps=installed)
+        f'residual-terms-{identity["run_id"]}-{seed}-{scene}', sdk, native, args, model=model, deps=installed)
     summary.update(execution=execution, **contract.modeled_activity(native, execution))
     if execution['owned_container_removed']:
         pins.write(bundle/'handoff.json', handoff_evidence(native, execution))
@@ -139,9 +139,9 @@ def plan_case(work, bundle, identity, seed, scene, summary):
     review.same_driver(report['driver'], qualification['driver'])
     verdict = validate_trajectory(trajectory, seed, scene)
     summary.update(traversal_passed=verdict['traversal_passed'], outcome=verdict['outcome'])
-    from scripts.verify_sdk3_action_terms import verify_native
-    verified = verify_native(native)
-    pins.write(bundle/'verified-action-terms.json', verified)
+    from scripts.verify_sdk3_residual_terms import verify_native
+    verified = verify_native(native, model)
+    pins.write(bundle/'verified-residual-terms.json', verified)
     summary.update(status=verified['status'], captured_steps=len(verified['rows']))
 
 
