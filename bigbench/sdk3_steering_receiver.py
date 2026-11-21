@@ -14,7 +14,7 @@ import numpy as np
 from bigbench.full_s_receipts import recorded_route, validate_trajectory
 from bigbench.optical_calibration import PinholeIntrinsics, PinholeRectifier
 from bigbench.preprocess_experiment import LiveInput
-from bigbench.sdk3_steering_contract import VARIANT
+from bigbench.sdk3_steering_contract import REPORT_PROTOCOL, VARIANT, selected_steps, validate_window
 from scripts.panda_sdk3_runtime import MODEL_SHA
 
 
@@ -45,15 +45,6 @@ def read_bytes(path, limit, *, exact=False):
     required(len(data) == status.st_size and (not exact or len(data) == limit),
              f'invalid evidence extent: {path}')
     return data
-
-
-def selected_steps(report):
-    trajectory = report['trajectory']
-    frames = trajectory['frames']
-    straight_length = trajectory['geometry'][1]['length_m']
-    return [f['step'] for previous, f in zip(frames, frames[1:])
-            if previous['route']['lane_index'] == 1
-            and 0 <= straight_length - previous['route']['longitudinal_m'] <= 35]
 
 
 def decode_plan(raw, input_pose):
@@ -114,7 +105,7 @@ def receive(report_path, evidence):
     blob = read_bytes(report_path, 16*1024**2)
     required(manifest['report_sha256'] == hashlib.sha256(blob).hexdigest(), 'report SHA-256 mismatch')
     report = json.loads(blob)
-    required(report['status']=='RETURNED' and report['protocol']=='sdk3-steering-plan-v1'
+    required(report['status']=='RETURNED' and report['protocol']==REPORT_PROTOCOL
              and report['variant']==VARIANT and report['model_sha256']==MODEL_SHA
              and report['real_session'] is True and report['providers']==['CPUExecutionProvider']
              and report['ort_version']=='1.20.1' and report['provider_closed'] is True,
@@ -122,10 +113,8 @@ def receive(report_path, evidence):
     trajectory = report['trajectory']
     validate_trajectory(trajectory, report['seed'], report['scenario'])
 
-    steps = selected_steps(report)
-    reached_entry = bool(steps and trajectory['frames'][steps[-1]-1]['route']['lane_index'] == 2)
-    required(reached_entry and steps == list(range(steps[0], steps[-1]+1)),
-             'trial does not cover a contiguous connector window through second-bend entry')
+    steps = selected_steps(trajectory)
+    validate_window(trajectory,steps)
     files = manifest['steps']
     required(files.keys() == {str(step) for step in steps}, 'capture inventory misses or exceeds the registered window')
     _, straight, bend = recorded_route(trajectory['geometry'])

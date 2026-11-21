@@ -20,7 +20,7 @@ from scripts.sdk3_four_validation_trial import atomic_json
 
 def child(args):
     out = Path(args.out)
-    report = dict(protocol='sdk3-steering-plan-v1', status='FAILED', pid=os.getpid(),
+    report = dict(protocol=contract.REPORT_PROTOCOL, status='FAILED', pid=os.getpid(),
                   nonce=args.nonce, seed=args.seed, scenario=args.scenario, variant=contract.VARIANT,
                   source=args.source, activation=args.activation, run_id=args.run_id, provider_closed=False)
     life = dict(pid=os.getpid(), nonce=args.nonce, model_process_bounds=[0,0], inference_bounds=[0,0])
@@ -37,7 +37,7 @@ def child(args):
         pins.need(sys.flags.isolated and sys.flags.no_site and sys.flags.dont_write_bytecode and not os.environ.get('LD_PRELOAD'),
                   'original isolated worker settings')
         request = json.loads((Path(__file__).resolve().parents[1]/contract.REQUEST).read_text())
-        pins.need(request == {'source':args.source, 'limits':contract.LIMITS, 'mode':'STEERING_PLAN_RETENTION'},
+        pins.need(request == {'source':args.source, 'limits':contract.LIMITS, 'mode':contract.MODE},
                   'exact mounted steering request')
         report['effective_resources'] = contract.live_limits()
         dependency_file = out/'model-dependencies.json'

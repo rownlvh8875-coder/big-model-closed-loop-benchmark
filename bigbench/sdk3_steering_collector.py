@@ -7,6 +7,7 @@ import numpy as np
 
 from bigbench.full_s_validation import route_state
 from bigbench.preprocess_experiment import LiveInput, policy_class
+from bigbench.sdk3_steering_contract import capture_pose, selected_steps, validate_window
 
 
 def sha(data):
@@ -20,7 +21,7 @@ def array_bytes(value, shape, dtype):
 
 
 class CaptureInput(LiveInput):
-    """Preserve exactly the original observer's buffers inside the last 35 m."""
+    """Preserve exactly the original observer's buffers through the second bend."""
 
     def __init__(self, camera, intrinsics, variant, out, lanes):
         super().__init__(camera, intrinsics, variant, out)
@@ -37,7 +38,7 @@ class CaptureInput(LiveInput):
             raise ValueError('previous selected inference was not finalized')
         state = route_state(self.lanes, self.active_lane, pose)
         self.active_lane = state['lane_index']
-        self.collect = self.active_lane == 1 and 0 <= self.lanes[1].length - state['longitudinal_m'] <= 35
+        self.collect = capture_pose(state, self.lanes[1].length)
         return super().capture(pose)
 
     def prepare(self, road, wide):
@@ -77,14 +78,10 @@ def seal_capture_manifest(report_path, root, records):
     blob = Path(report_path).read_bytes()
     trajectory = json.loads(blob)['trajectory']
     frames = trajectory['frames']
-    straight_length = trajectory['geometry'][1]['length_m']
-    selected = [current['step'] for previous,current in zip(frames,frames[1:])
-                if previous['route']['lane_index'] == 1
-                and 0 <= straight_length - previous['route']['longitudinal_m'] <= 35]
-    if (not selected or frames[selected[-1]-1]['route']['lane_index'] != 2
-            or selected != list(range(selected[0], selected[-1]+1))
-            or set(records) != {str(step) for step in selected}):
-        raise ValueError('incomplete connector capture window')
+    selected = selected_steps(trajectory)
+    validate_window(trajectory,selected)
+    if set(records) != {str(step) for step in selected}:
+        raise ValueError('captured step inventory does not cover the post-entry window')
     for step in selected:
         frame = frames[step-1]
         digests = records[str(step)]

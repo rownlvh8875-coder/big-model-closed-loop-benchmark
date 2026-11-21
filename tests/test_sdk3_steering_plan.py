@@ -33,5 +33,24 @@ class RuntimeContract(unittest.TestCase):
             self.assertEqual(modeled_activity(folder, {'start_attempted':True,'ownership_unresolved':True})['inference_bounds'], [32,600])
 
 
+class PostEntryWindow(unittest.TestCase):
+    def test_selects_only_transition_and_bend_frames_by_input_pose(self):
+        from bigbench.sdk3_steering_contract import selected_steps, validate_window
+        rows=[(0,59.9),(1,59.59),(1,59.8),(2,.2),(2,.6)]
+        frames=[dict(step=i,route=dict(lane_index=lane,longitudinal_m=s))
+                for i,(lane,s) in enumerate(rows,1)]
+        trajectory=dict(frames=frames,geometry=[{},dict(length_m=60),{}])
+        steps=selected_steps(trajectory)
+        self.assertEqual(steps,[4,5])
+        validate_window(trajectory,steps)
+
+    def test_evidence_ends_at_terminal_and_contains_transition(self):
+        from bigbench.sdk3_steering_contract import validate_window
+        frames=[dict(step=i,route=dict(lane_index=lane)) for i,lane in enumerate([0,1,2,2],1)]
+        for steps in ([4], [3], [2,4], []):
+            with self.assertRaises(ValueError):
+                validate_window(dict(frames=frames),steps)
+
+
 if __name__=='__main__':
     unittest.main()

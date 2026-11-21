@@ -45,8 +45,8 @@ def authenticate():
            'separate reviewed-source seal and request-only activation')
     request = json.loads((ROOT/c.REQUEST).read_text())
     approval = json.loads((ROOT/c.APPROVAL).read_text())
-    p.need(request==dict(source=source,limits=c.LIMITS,mode='STEERING_PLAN_RETENTION')
-           and approval==dict(source=source,limits=c.LIMITS,mode='STEERING_PLAN_RETENTION',review='OFFLINE_CONTRACT_TESTED'),
+    p.need(request==dict(source=source,limits=c.LIMITS,mode=c.MODE)
+           and approval==dict(source=source,limits=c.LIMITS,mode=c.MODE,review='OFFLINE_CONTRACT_TESTED'),
            'exact bounded request and source seal')
     context = dict(source=source,activation=activation,run_id=run_id)
     return context,run
@@ -55,7 +55,7 @@ def authenticate():
 def probe(work,bundle,identity,summary):
     sdk = review.stage_runtime(work,bundle)
     rows = []
-    for seed,scene in c.CASES:
+    for seed,scene in c.PROBE_CASES:
         dest = bundle/f'{seed}-{scene}'
         runtime.run_container(f'steering-probe-{identity["run_id"]}-{seed}-{scene}',sdk,dest,
                               ['--probe','--seed',str(seed),'--scenario',scene])
@@ -81,7 +81,7 @@ class Deadline:
 
 def plan_case(work,bundle,identity,seed,scene,summary):
     gate = json.loads(os.environ['STEERING_PROBE_GATE'])
-    p.need(gate['identity']==identity and [(r['seed'],r['scenario']) for r in gate['cases']]==list(c.CASES)
+    p.need(gate['identity']==identity and [(r['seed'],r['scenario']) for r in gate['cases']]==list(c.PROBE_CASES)
            and all(r['rate']['admitted'] for r in gate['cases']), 'fresh four-case prerequisite')
     qualification = next(r for r in gate['cases'] if (r['seed'],r['scenario'])==(seed,scene))
     p.write(bundle/'qualified-case.json',qualification)
@@ -135,7 +135,7 @@ def main():
     parser.add_argument('--scenario')
     args=parser.parse_args()
     p.need(args.phase=='probe' or (args.seed,args.scenario) in c.CASES,'registered phase/case')
-    output=ROOT/'output/sdk3-steering-plan-20261121'
+    output=ROOT/'output'/c.OUTPUT
     output=output/('probe' if args.phase=='probe' else f'{args.seed}-{args.scenario}')
     bundle=output/'bundle'
     bundle.mkdir(parents=True)
