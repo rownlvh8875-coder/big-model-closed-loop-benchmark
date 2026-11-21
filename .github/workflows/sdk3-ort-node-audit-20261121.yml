@@ -1,0 +1,90 @@
+name: SDK3 ORT node audit qualification
+on:
+  push:
+    branches: ['diagnostic/sdk3-ort-node-audit-20261121-01']
+    paths: ['.github/workflows/sdk3-ort-node-audit-20261121.yml']
+permissions:
+  contents: read
+concurrency:
+  group: sdk3-ort-node-audit-20261121
+  cancel-in-progress: false
+jobs:
+  qualify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 100
+    env:
+      ORT_SOURCE_COMMIT: 5c1b7ccbff7e5141c1da7a9d963d660e5741c319
+      ORT_STOCK_WHEEL_SHA256: 5eec64c0269dcdb8d9a9a53dc4d64f87b9e0c19801d9321246a53b7eb5a7d1bc
+      GIT_TERMINAL_PROMPT: '0'
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Prepare evidence and verify the released ORT source
+        timeout-minutes: 8
+        shell: bash
+        run: |
+          set -euo pipefail
+          evidence="$GITHUB_WORKSPACE/output/ort-node-audit"
+          mkdir -p "$evidence"
+          printf '%s\n' "$GITHUB_RUN_ID" "$GITHUB_RUN_ATTEMPT" "$GITHUB_SHA" > "$evidence/runner-identity.txt"
+          printf '%s\n' "$ORT_SOURCE_COMMIT" > "$evidence/expected-ort-commit.txt"
+          printf 'official_model_processes=0\nofficial_inferences=0\nrenderer_processes=0\n' > "$evidence/scope.txt"
+          src="$RUNNER_TEMP/ort-src"
+          git init -q "$src"
+          git -C "$src" remote add origin https://github.com/microsoft/onnxruntime.git
+          (
+            git -C "$src" fetch --no-tags --depth=1 origin "$ORT_SOURCE_COMMIT"
+            git -C "$src" checkout --detach FETCH_HEAD
+            test "$(git -C "$src" rev-parse HEAD)" = "$ORT_SOURCE_COMMIT"
+            test "$(tr -d '[:space:]' < "$src/VERSION_NUMBER")" = '1.20.1'
+            git -C "$src" show --no-patch --format='commit=%H tree=%T date=%cI' HEAD > "$evidence/ort-source-receipt.txt"
+            git -C "$src" grep -n 'onnxruntime_DEBUG_NODE_INPUTS_OUTPUTS' -- cmake docs > "$evidence/debug-build-option.txt"
+          ) >"$evidence/source.stdout.log" 2>"$evidence/source.stderr.log"
+      - name: Build the source-pinned CPU wheel with node input and output dumps
+        timeout-minutes: 75
+        shell: bash
+        run: |
+          set -euo pipefail
+          evidence="$GITHUB_WORKSPACE/output/ort-node-audit"
+          (
+            python -m pip install cmake==3.31.6 ninja==1.11.1.4 numpy==2.4.6 onnx==1.23.2 \
+              wheel setuptools packaging protobuf flatbuffers sympy
+            python -m pip freeze > "$evidence/python-toolchain.txt"
+            cmake --version > "$evidence/cmake.txt"
+            ninja --version > "$evidence/ninja.txt"
+            cd "$RUNNER_TEMP/ort-src"
+            ./build.sh --config Release --build_dir "$RUNNER_TEMP/ort-build" --build_wheel \
+              --skip_tests --parallel 3 --cmake_generator Ninja \
+              --cmake_extra_defines onnxruntime_DEBUG_NODE_INPUTS_OUTPUTS=ON onnxruntime_BUILD_UNIT_TESTS=OFF
+          ) >"$evidence/build.stdout.log" 2>"$evidence/build.stderr.log"
+      - name: Verify native FP32 Add inputs against the stock CPU wheel
+        timeout-minutes: 10
+        shell: bash
+        run: |
+          set -euo pipefail
+          evidence="$GITHUB_WORKSPACE/output/ort-node-audit"
+          (
+            mkdir "$RUNNER_TEMP/ort-stock-wheel"
+            python -m pip download --no-deps --only-binary=:all: --dest "$RUNNER_TEMP/ort-stock-wheel" onnxruntime==1.20.1
+            stock=("$RUNNER_TEMP/ort-stock-wheel/"onnxruntime-*.whl)
+            debug=("$RUNNER_TEMP/ort-build/Release/dist/"onnxruntime-*.whl)
+            test "${#stock[@]}" = 1 && test "${#debug[@]}" = 1
+            printf '%s  %s\n' "$ORT_STOCK_WHEEL_SHA256" "${stock[0]}" | sha256sum -c
+            sha256sum "${stock[0]}" "${debug[0]}" > "$evidence/wheel-digests.txt"
+            python -m pip install --no-index --no-deps --target "$RUNNER_TEMP/stock-ort-python" "${stock[0]}"
+            python -m pip install --no-index --no-deps --target "$RUNNER_TEMP/debug-ort-python" "${debug[0]}"
+            python -I -B scripts/verify_ort_node_audit.py "$RUNNER_TEMP/stock-ort-python" \
+              "$RUNNER_TEMP/debug-ort-python" "$evidence"
+          ) >"$evidence/canary.stdout.log" 2>"$evidence/canary.stderr.log"
+      - name: Preserve source, build and canary evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: sdk3-ort-node-audit-20261121-01
+          path: output/ort-node-audit/
+          if-no-files-found: error
+          retention-days: 30
