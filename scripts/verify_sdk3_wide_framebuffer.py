@@ -20,7 +20,7 @@ def read(path):
     return json.loads(path.read_bytes())
 
 
-def verify(native, poses, trial, context):
+def verify(native, poses, trial, context, history="sequential"):
     report=read(native/'report.json')
     child=read(native/'native-child.json')
     need(report['status']=='CAPTURE_COMPLETE' and report['context']==context and report['trial']==trial
@@ -35,9 +35,12 @@ def verify(native, poses, trial, context):
     original=read(poses)
     need(report['pose_source_sha256']==digest(poses) and all(report[k]==original[k] for k in ('driver','geometry','intrinsics')),
          'same measured camera context and historical poses')
-    steps=c.LIMITS['captures_per_process']
-    need(report['camera_capture_attempts']==len(report['frames'])==steps,'bounded complete capture history')
-    for step,archived in zip(report['frames'],original['frames'][:steps],strict=True):
+    steps=original['frames'][:c.LIMITS['captures_per_process']]
+    if history=='sparse':
+        steps=[steps[0],steps[-1]]
+    need(report.get('history','sequential')==history
+         and report['camera_capture_attempts']==len(report['frames'])==len(steps),'bounded complete capture history')
+    for step,archived in zip(report['frames'],steps,strict=True):
         need(step['pose']==archived['pose'] and step['step']==archived['step'],'exact original world poses')
     timing=verify_timing(report['timings'],0,0)
     need(report['callback_restored'] and report['point']==list(POINT),'target callback removed')
@@ -65,7 +68,8 @@ def verify(native, poses, trial, context):
         new_img=prep.prepare(pair.road,pair.wide).tobytes()
         need(load_pixels(native,report['pixels']['tensor'],'44-input.bin.zlib',len(new_img))==new_img,
              'exact reconstructed input')
-        need(dict(prep.rows[-1],step=44)==focus,'hashes agree with original pipeline')
+        need(focus['step']==len(steps) and dict(prep.rows[-1],step=len(steps))==focus,
+             'hashes agree with original pipeline')
     ram_patch=patch_rgb(images)
     need(ram_patch==report['ram_patch_top_down'],'recorded RAM crop bound to raw bytes')
     extra_reads=0

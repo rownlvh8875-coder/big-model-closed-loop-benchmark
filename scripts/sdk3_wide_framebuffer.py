@@ -109,7 +109,7 @@ class GL:
 
 
 @contextmanager
-def post_capture(provider, timing, events):
+def post_capture(provider, timing, events, observer=GL):
     """Retain callback ownership and one original upcall on every invocation."""
     from panda3d.core import CallbackObject
 
@@ -121,7 +121,7 @@ def post_capture(provider, timing, events):
          'original active unoccupied wide post-process region')
     need(region.getCamera()!=sensor.cam and [output.getXSize(),output.getYSize()]==list(SIZE),
          'original final filter output and actual dimensions')
-    gl=GL()
+    gl=observer()
 
     def observe(data):
         if timing.active!='wide':

@@ -28,16 +28,19 @@ def command(*args,**kwargs):
     return argv
 
 
-def run_trial(trial, sdk, bundle, identity):
+def run_trial(trial, sdk, bundle, identity, history="sequential"):
     target=bundle/trial
     target.mkdir()
+    bound=2 if history=='sparse' else c.LIMITS['captures_per_process']
     item=dict(trial=trial,status='FAILED',model_processes=0,inferences=0,
-              camera_process_bounds=[0,1],camera_capture_bounds=[0,c.LIMITS['captures_per_process']])
+              camera_process_bounds=[0,1],camera_capture_bounds=[0,bound])
     pins.write(target/'summary.json',item)
     try:
         native=target/'native'
         args=['--context','actions','--trial',trial,'--source',identity['source'],
               '--activation',identity['activation'],'--run-id',identity['run_id']]
+        if history!='sequential':
+            args+=['--history',history]
         execution=clone(runtime.run_container,container_command=command,subprocess=Deadline)(
             f'wide-fbo-{identity["run_id"]}-{trial}',sdk,native,args)
         item['execution']=execution
@@ -48,11 +51,11 @@ def run_trial(trial, sdk, bundle, identity):
             child=review.read(native/'native-child.json')
             if report.get('pid')==child.get('pid') and report.get('pid',0)>1:
                 progress=report['camera_capture_attempts']
-                upper=progress if report['status']=='CAPTURE_COMPLETE' else c.LIMITS['captures_per_process']
+                upper=progress if report['status']=='CAPTURE_COMPLETE' else bound
                 item.update(camera_process_bounds=[1,1],camera_capture_bounds=[progress,upper])
         pins.need(execution['returncode']==0 and not execution['failure'],'actual camera child completion')
         pins.need(all(report[key]==value for key,value in identity.items()),'exact hosted native provenance')
-        proof=verify(native,ROOT/c.POSES,trial,'actions')
+        proof=verify(native,ROOT/c.POSES,trial,'actions',history)
         pins.write(target/'verified.json',proof)
         item['status']='CAPTURE_VERIFIED'
     except Exception as exc:

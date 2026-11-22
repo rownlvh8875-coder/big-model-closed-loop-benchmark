@@ -34,7 +34,7 @@ def cpu_context():
 
 def child(args):
     out=Path(args.out)
-    report=dict(status='FAILED',context=args.context,trial=args.trial,pid=os.getpid(),nonce=args.nonce,
+    report=dict(status='FAILED',context=args.context,trial=args.trial,history=args.history,pid=os.getpid(),nonce=args.nonce,
                 source=args.source,activation=args.activation,run_id=args.run_id,provider_closed=False,
                 camera_capture_attempts=0,model_processes=0,inferences=0,frames=[],point=list(POINT),
                 fbo_observations=[])
@@ -79,7 +79,9 @@ def child(args):
             timing=CameraTiming(provider,stack)
             for frame in archived['frames'][:c.LIMITS['captures_per_process']]:
                 step=frame['step']
-                report['camera_capture_attempts']=step
+                if args.history=='sparse' and step not in (1,archived['focus_step']):
+                    continue
+                report['camera_capture_attempts']+=1
                 focus=step==archived['focus_step']
                 observed=focus and args.trial=='framebuffer'
                 event_scope=post_capture(provider,timing,report['fbo_observations']) if observed else nullcontext()
@@ -125,6 +127,7 @@ def main():
         parser.add_argument('--'+key,required=True)
     parser.add_argument('--context',choices=('actions','cloud-local'),required=True)
     parser.add_argument('--trial',choices=c.TRIALS,required=True)
+    parser.add_argument('--history',choices=('sequential','sparse'),default='sequential')
     parser.add_argument('--owner',type=int)
     parser.add_argument('--nonce')
     args=parser.parse_args()
