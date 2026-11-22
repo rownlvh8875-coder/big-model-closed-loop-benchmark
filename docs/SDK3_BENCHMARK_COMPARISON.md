@@ -8,6 +8,14 @@
 - SDK3 모델 자격은 호스트 가용 RAM 12 GiB, cgroup을 반영한 실제 가용 8 GiB, 빈 디스크 8 GiB, 동일한 네 CPU 및 ORT 1.20.1 CPU입니다.
 - 공식 모델 파일의 정확한 크기, SHA-256과 입력 명세는 `model_specs/md-v3.json`과 `model_specs/light-speed-2.json`에 있습니다. Light Speed 2의 조향 좌표계는 기존 공식 두 모델 비교 명령과 같은 명시적 `model-frd` 선언입니다.
 
+Linux x86-64의 Python 3.11에서 `deps`가 새 로컬 경로일 때, 다음 고정 버전으로 ORT 런타임을 준비합니다. NumPy 2.4.6과 OpenCV 5.0.0.93은 동결 이미지에서 사용합니다.
+
+```bash
+python3.11 -m pip install --only-binary=:all: --no-deps --target "$deps" \
+  onnxruntime==1.20.1 flatbuffers==24.3.25 coloredlogs==15.0.1 \
+  humanfriendly==10.0 packaging==24.2 protobuf==5.29.5 sympy==1.13.3 mpmath==1.3.0
+```
+
 ## 실행
 
 아래는 한 횡방향 조건입니다. `sdk`, `deps`, `weight` 변수에는 로컬의 동결 SDK 파일, 지침에 맞춘 ORT 디렉터리, 해당 공식 ONNX 파일을 지정합니다. 모델 실행 때 출력 폴더 바로 아래에 각 독립 프로세스의 로그와 실행 기록이 생성됩니다.
