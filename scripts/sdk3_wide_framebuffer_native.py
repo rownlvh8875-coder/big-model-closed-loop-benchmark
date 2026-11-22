@@ -32,6 +32,10 @@ def cpu_context():
     return dict(architecture=platform.machine(),kernel=platform.release(),cpu=fields)
 
 
+def expected_loader(args):
+    return not os.environ.get("LD_PRELOAD")
+
+
 def child(args):
     out=Path(args.out)
     report=dict(status='FAILED',context=args.context,trial=args.trial,history=args.history,pid=os.getpid(),nonce=args.nonce,
@@ -44,7 +48,7 @@ def child(args):
     try:
         pins.need(args.owner==os.getppid() and Path('/tmp/.X11-unix/X99').exists(),'owned original X server')
         pins.need(sys.flags.isolated and sys.flags.no_site and sys.flags.dont_write_bytecode
-                  and not os.environ.get('LD_PRELOAD'),'original isolated native environment')
+                  and expected_loader(args),'original isolated native environment')
         request=json.loads((ROOT/c.REQUEST).read_bytes())
         pins.need(request==dict(source=args.source,mode=c.MODE,limits=c.LIMITS),'exact registered camera-only request')
         if args.context=='actions':

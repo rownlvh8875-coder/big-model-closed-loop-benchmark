@@ -228,7 +228,7 @@ class SampleGL(HDRGL):
 
 
 @contextmanager
-def capture_samples(provider,timing,events):
+def capture_samples(provider,timing,events,draw_hook=None):
     from panda3d.core import CallbackObject
 
     sensor=provider.env.engine.sensors['bigbench_wide']
@@ -246,7 +246,10 @@ def capture_samples(provider,timing,events):
             return
         row=dict(callback_enter_ns=perf_counter_ns(),sample_copy_calls=0,extra_compute_calls=0)
         records.append(row)
-        data.upcall()
+        if draw_hook is None:
+            data.upcall()
+        else:
+            draw_hook(data.upcall)
         row['after_original_draw_ns']=perf_counter_ns()
         try:
             setup=data.getSceneSetup()
