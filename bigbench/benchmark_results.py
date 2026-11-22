@@ -85,9 +85,15 @@ def common_camera_key(document, first):
                 first_canvas=first['canvas_sha256'], first_input=first['actual_tensor_sha256'])
 
 
+def verify_camera_admission(path, document, first):
+    gate = read(path)
+    need(common_camera_key(gate,gate['rows'][0])==common_camera_key(document,first),
+         'case geometry, renderer and qualified first camera feed must bind the saved model run')
+
+
 def lateral_pair(directory, model, seed, scene):
     path = directory/f'{seed}-{scene}'
-    rows, trials, camera_keys = [], [], []
+    rows, trials, camera_keys, ownership = [], [], [], []
     result = dict(runs=rows, strict_repeat_passed=None, traversal_passed=None, status='PENDING')
     written = [path/f'run-{index}' for index in (0,1)]
     for folder in written:
@@ -110,8 +116,22 @@ def lateral_pair(directory, model, seed, scene):
             frames = trial['frames']
             images = verify_capture_rows(folder,frames,trial['inference_audit_rows'])
             need(bool(images) and bool(frames),'a comparison requires a retained capture')
+            gate = path/'camera-admission.json'
+            if gate.is_file():
+                verify_camera_admission(gate,doc,images[0])
+            else:
+                prior = read(directory.parent/'probe-admission.json')
+                case_gate = prior['conditions'][f'{seed}-{scene}']
+                need(model=='md-v3' and prior['admitted'] and case_gate['passed']
+                     and prior['candidate_sha']==doc['candidate_sha']
+                     and case_gate['geometry']==doc['geometry']
+                     and case_gate['intrinsics']==doc['intrinsics']
+                     and case_gate['ordering']['targets']==doc['ordering']['targets']
+                     and images[0]['actual_tensor_sha256'] in case_gate['cold_input_sha256'],
+                     'original md-v3 case must bind its contemporaneous camera admission')
             trials.append(trial)
             camera_keys.append(common_camera_key(doc,images[0]))
+            ownership.append((doc['candidate_sha'],doc['nonce']))
             last = frames[-1]['route']
             rows.append(dict(outcome=proof['outcome'], steps=len(frames), intrusion_m=last['intrusion_m'],
                              last_lane=last['lane_id'], last_station_m=last['longitudinal_m'],
@@ -123,7 +143,10 @@ def lateral_pair(directory, model, seed, scene):
         try:
             ledger = read(path/'pair-ledger.json')
             need(len(ledger)==2 and ledger[0]['nonce']!=ledger[1]['nonce']
-                 and all(row['returncode']==0 for row in ledger),'two independently reaped model owners required')
+                 and all(row['returncode']==0 for row in ledger)
+                 and [row['nonce'] for row in ledger]==[nonce for _,nonce in ownership]
+                 and len({source for source,_ in ownership})==1,
+                 'two independently reaped owners bound to one source revision required')
             pair = compare_full_s(*trials)
             result.update(strict_repeat_passed=pair['strict_repeat_passed'],
                           traversal_passed=pair['traversal_passed'],
@@ -167,6 +190,7 @@ def verify_longitudinal(folder, model, seed, scene_name, steps):
     audits = run['audit_rows']
     need(len(audits)==len(frames),'one original audit per integrated longitudinal step required')
     images = verify_capture_rows(folder,frames,audits)
+    verify_camera_admission(folder/'camera-admission.json',doc,images[0])
     state = AgentState(0.,0.,0.,0.,scene.ego_speed_mps)
     lead = DeterministicLeadTimeline(scene)
     previous_acceleration = 0.

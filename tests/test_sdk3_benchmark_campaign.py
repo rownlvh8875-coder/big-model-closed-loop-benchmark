@@ -1,6 +1,10 @@
 import unittest
+from pathlib import Path
+from tempfile import TemporaryDirectory
+import json
 
 from bigbench import benchmark_dashboard
+from bigbench import benchmark_results
 from bigbench.first_divergence import source_snapshot
 from bigbench.longitudinal_world import scenario
 from bigbench.sdk3_longitudinal import run_longitudinal_benchmark
@@ -66,6 +70,18 @@ class Sdk3CampaignTests(unittest.TestCase):
         self.assertIn('298', html)
         self.assertIn('미판정', html)
         self.assertIn('Light Speed 2', html)
+
+    def test_model_receipt_cannot_borrow_a_camera_gate_with_another_first_frame(self):
+        self.assertTrue(hasattr(benchmark_results,'verify_camera_admission'))
+        doc = dict(geometry=['lane'],intrinsics={'road':'lens'},driver={'renderer':'llvmpipe'},
+                   input_variant='source_yuv_nearest_even')
+        first = dict(source_sha256={'road':'a','wide':'b'},canvas_sha256=['c','d'],
+                     actual_tensor_sha256='e')
+        with TemporaryDirectory() as tmp:
+            path = Path(tmp)/'camera-admission.json'
+            path.write_text(json.dumps(dict(doc,rows=[dict(first,actual_tensor_sha256='other')])))
+            with self.assertRaisesRegex(ValueError,'qualified first'):
+                benchmark_results.verify_camera_admission(path,doc,first)
 
 
 if __name__ == '__main__':
