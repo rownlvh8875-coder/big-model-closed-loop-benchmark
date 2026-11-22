@@ -56,12 +56,15 @@ class DrawReadout(SampleGL):
         fmt=rb(0x8D44)
         extent=[rb(0x8D42),rb(0x8D43)]
         samples=rb(0x8CAB)
-        self.depth=dict(object=depth,type=kind,format=fmt,extent=extent,samples=samples)
-        need(fmt in DEPTH_FORMATS and extent==list(SIZE) and samples==4,
+        bits=[rb(0x8D54),rb(0x8D55)]
+        sized=0x88F0 if fmt==0x84F9 and bits==[24,8] else fmt
+        self.depth=dict(object=depth,type=kind,format=fmt,depth_stencil_bits=bits,
+                        private_format=sized,extent=extent,samples=samples)
+        need(sized in DEPTH_FORMATS and extent==list(SIZE) and samples==4,
              f'same-size four-sample depth attachment: {fmt:#x} {extent} {samples}')
         self.attachments=(color,depth)
         self.glCreateTextures(MS_TEXTURE,2,self.textures)
-        for texture,internal in zip(self.textures,(RGBA16F,fmt),strict=True):
+        for texture,internal in zip(self.textures,(RGBA16F,sized),strict=True):
             self.glTextureStorage2DMultisample(texture,4,internal,1,1,1)
         self.glCreateBuffers(1,ct.byref(self.buffer))
         self.glNamedBufferData(self.buffer,128,None,0x88E0)
@@ -104,6 +107,26 @@ class DrawReadout(SampleGL):
                     color_write=self.values(0x0C23,4),scissor_box=self.values(0x0C10,4),
                     vao=self.value(0x85B5),program=self.value(0x8B8D))
 
+    def private_depth_blit(self,x,y,texture):
+        """Same sample count and same rectangle size. Do not resolve the depth."""
+        if self.glIsEnabled(0x0C11):
+            sx,sy,w,h=self.values(0x0C10,4)
+            need(sx<=0<sx+w and sy<=0<sy+h,'private depth copy inside original scissor')
+        fbo=ct.c_uint()
+        try:
+            self.glCreateFramebuffers(1,ct.byref(fbo))
+            self.glNamedFramebufferTexture(fbo,0x8D00,texture,0)
+            self.glNamedFramebufferDrawBuffer(fbo,0)
+            self.glNamedFramebufferReadBuffer(fbo,0)
+            need(self.glCheckNamedFramebufferStatus(fbo,0x8D40)==0x8CD5,
+                 'complete private multisample depth destination')
+            self.glBlitNamedFramebuffer(self.scene['source_scene_draw_fbo'],fbo,
+                x,y,x+1,y+1,0,0,1,1,0x0100,0x2600)
+            self.error_free('same-sample-count private depth copy')
+        finally:
+            if fbo.value:
+                self.glDeleteFramebuffers(1,ct.byref(fbo))
+
     def read(self):
         before=self.state()
         need(before['draw']==self.scene['source_scene_draw_fbo'] and before['viewport']==[0,0,*SIZE],
@@ -120,8 +143,15 @@ class DrawReadout(SampleGL):
         try:
             self.glUseProgram(self.compute)
             x,y=POINT[0],SIZE[1]-1-POINT[1]
+            depth_copy='image_copy'
             for unit,(source,texture) in enumerate(zip(self.attachments,self.textures,strict=True)):
                 self.glCopyImageSubData(source,RENDERBUFFER,0,x,y,0,texture,MS_TEXTURE,0,0,0,0,1,1,1)
+                error=self.glGetError()
+                if unit==1 and error==0x0502:
+                    self.private_depth_blit(x,y,texture)
+                    depth_copy='same_sample_count_depth_blit'
+                else:
+                    need(error==0,f'copy original attachment {unit}: GL {error:#x}')
                 self.glActiveTexture(0x84C0+unit)
                 self.glBindTexture(MS_TEXTURE,texture)
                 self.glBindSampler(unit,0)
@@ -142,7 +172,7 @@ class DrawReadout(SampleGL):
             self.glUseProgram(program)
         need(self.state()==before and self.value(0x8B8D)==program,'original draw GL state restored')
         self.error_free('restore succeeded')
-        return dict(color_words=list(words[:16]),depth_words=list(words[16::4]))
+        return dict(color_words=list(words[:16]),depth_words=list(words[16::4]),depth_copy=depth_copy)
 
     def close(self):
         if self.compute:
