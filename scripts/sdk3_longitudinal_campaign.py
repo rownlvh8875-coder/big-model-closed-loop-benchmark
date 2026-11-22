@@ -93,9 +93,9 @@ def run_child(args):
             raise RuntimeError('live owned display and uninstrumented SDK required')
         bootstrap(receipt)
         from bigbench.longitudinal_world import scenario
-        from bigbench.native_longitudinal import NativeLeadVisualRenderer, run_longitudinal_native
         from bigbench.optical_calibration import assert_intrinsics_match, intrinsics_from_panda_lens, reference_source
         from bigbench.preprocess_experiment import LiveInput
+        from bigbench.sdk3_longitudinal import CorridorLeadRenderer, run_longitudinal_benchmark
 
         scene = scenario(args.scenario)
         limit = SCENARIO_STEPS[scene.name]
@@ -106,8 +106,8 @@ def run_child(args):
             provider.env.engine.sensors['bigbench_'+role].get_lens(),964,604) for role in ('road','wide')}
         for role,lens in lenses.items():
             assert_intrinsics_match(lens,reference_source(role))
-        camera = NativeLeadVisualRenderer(provider,target_lane=lanes[0],adjacent_lane=lanes[1],
-                                          origin_station_m=ORIGIN_M)
+        camera = CorridorLeadRenderer(provider,target_lane=lanes[0],adjacent_lane=lanes[1],
+                                      origin_station_m=ORIGIN_M)
         inputs = LiveInput(camera.world_camera,lenses,INPUT_VARIANT,out)
         camera.capture_world = inputs.capture
         receipt.update(geometry=geometry, terrain=terrain, input_variant=INPUT_VARIANT, driver=driver_info(provider),
@@ -125,7 +125,7 @@ def run_child(args):
                 receipt.update(progress=event,official_inference_bounds=[known,upper])
                 atomic_json(life,receipt)
 
-            result = run_longitudinal_native(policy,scene,camera,steps=limit,stop_at_collision=True,progress=progress)
+            result = run_longitudinal_benchmark(policy,scene,camera,steps=limit,progress=progress)
             known = len(policy.audit_rows)
             _,upper = receipt['official_inference_bounds']
             receipt['official_inference_bounds'] = [known,max(known,upper)]

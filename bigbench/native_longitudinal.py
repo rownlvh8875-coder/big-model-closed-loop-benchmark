@@ -47,13 +47,10 @@ class DeterministicLeadTimeline:
 
 class NativeLeadVisualRenderer:
     """MetaDrive DefaultVehicle is a graphic obstacle, not a simulated plant."""
-    def __init__(self,provider:Any,*,target_lane=None,adjacent_lane=None,origin_station_m=0.):
+    def __init__(self,provider:Any):
         from metadrive.component.vehicle.vehicle_type import DefaultVehicle
         from .native_model_campaign import NativeWorldCamera
         self.provider=provider
-        self.target_lane=target_lane
-        self.adjacent_lane=adjacent_lane
-        self.origin_station_m=origin_station_m
         from copy import deepcopy
         config=deepcopy(provider.env.engine.global_config['vehicle_config'])
         # BaseVehicle.reset requires an explicit valid lane identifier;
@@ -69,25 +66,13 @@ class NativeLeadVisualRenderer:
             random_seed=provider.seed+1,
         )
         self.world_camera=NativeWorldCamera(provider)
-        self.capture_world=self.world_camera.capture
         self.actor.set_heading_theta(0.0)
 
     def capture(self,ego:AgentState,lead:LeadState,*,in_lane:bool=True):
-        if self.target_lane is None:
-            self.actor.set_position([lead.station_m,0.0 if in_lane else -5.0])
-            self.actor.set_heading_theta(0.0)
-            return self.capture_world(ego)
-        lead_lane=self.target_lane if in_lane else self.adjacent_lane
-        lead_station=self.origin_station_m+lead.station_m
-        ego_station=self.origin_station_m+ego.x
-        if not (lead_lane is not None and 0.<=lead_station<=lead_lane.length
-                and 0.<=ego_station<=self.target_lane.length):
-            raise LongitudinalContractError('ego or lead exceeds the measured native straight lane')
-        self.actor.set_position(lead_lane.position(lead_station,0.))
-        self.actor.set_heading_theta(lead_lane.heading_theta_at(lead_station))
-        x,y=map(float,self.target_lane.position(ego_station,0.))
-        pose=AgentState(ego.t,x,y,float(self.target_lane.heading_theta_at(ego_station)),ego.speed)
-        return self.capture_world(pose)
+        y=0.0 if in_lane else -5.0
+        self.actor.set_position([lead.station_m,y])
+        self.actor.set_heading_theta(0.0)
+        return self.world_camera.capture(ego)
 
     def close(self):
         if getattr(self,'actor',None) is not None:
@@ -96,8 +81,7 @@ class NativeLeadVisualRenderer:
 
 
 def run_longitudinal_native(policy:Any,scene:LongitudinalScenario,
-                            camera:Any,*,steps:int=60,dt_s:float=.05,
-                            stop_at_collision:bool=False,progress=None)->dict:
+                            camera:Any,*,steps:int=60,dt_s:float=.05)->dict:
     if type(steps) is not int or not 1<=steps<=2000 or abs(dt_s-.05)>1e-12:
         raise LongitudinalContractError('need bounded native model clock at 20 Hz')
     ego=AgentState(0.,0.,0.,0.,scene.ego_speed_mps)
@@ -106,13 +90,10 @@ def run_longitudinal_native(policy:Any,scene:LongitudinalScenario,
     trace=[]
     previous_accel=0.
     failure=None
-    termination='STEP_LIMIT'
     for k in range(steps):
         visible=scene.merge_at_s is None or ego.t>=scene.merge_at_s
+        pair=camera.capture(ego,lead.state,in_lane=visible)
         try:
-            pair=camera.capture(ego,lead.state,in_lane=visible)
-            if progress is not None:
-                progress(dict(status='INFERENCE_PENDING',completed_rows=len(trace)))
             model_action=policy.step(ModelObservation(pair.road,ego.speed,ego.t,
                                                       wide_frame=pair.wide))
             accel=model_action.acceleration_mps2
@@ -135,32 +116,19 @@ def run_longitudinal_native(policy:Any,scene:LongitudinalScenario,
             })
             previous_accel=accel
             ego=next_ego
-            if progress is not None:
-                progress(dict(status='STEP_COMMITTED',completed_rows=len(trace)))
-            if stop_at_collision and gap is not None and gap<=0.:
-                termination='LEAD_GAP_NONPOSITIVE'
-                break
         except (LongitudinalContractError,ValueError,RuntimeError) as exc:
             failure=f'{type(exc).__name__}: {exc}'
-            termination='RUNTIME_ERROR'
             break
     gaps=[r['gap_m'] for r in trace if r['gap_m'] is not None]
-    min_ttc=min((row['ttc_s'] for row in trace if row['ttc_s'] is not None),default=None)
-    stopped=next((index for index,row in enumerate(trace) if row['ego_speed_mps']==0.),None)
-    restarted=next((row for row in trace[stopped+1:] if row['ego_speed_mps']>0.),None) if stopped is not None else None
     return {
         'classification':'NATIVE_METADRIVE_LEAD_ONNX_INPUT_NOT_PHOTOMETRICALLY_VALIDATED',
-        'status':'DIAGNOSTIC_EXECUTED' if failure is None else 'FAILED_OR_INCOMPLETE',
-        'error':failure,'scenario':scene.name,'termination':termination,
+        'status':'DIAGNOSTIC_EXECUTED' if failure is None and len(trace)==steps else 'FAILED_OR_INCOMPLETE',
+        'error':failure,'scenario':scene.name,
         'steps_requested':steps,'steps_completed':len(trace),
         'model_name':policy.name,'model_sha256':getattr(getattr(policy,'contract',None),'sha256',None),
         'model_scoring_allowed':False,'real_vehicle_testing':False,'cd210_used':False,
         'plant_used':False,'oracle_lateral_path':True,
         'minimum_synthetic_gap_m':min(gaps) if gaps else None,
-        'minimum_ttc_s':min_ttc,
-        'maximum_abs_jerk_mps3':max((abs(r['jerk_mps3']) for r in trace),default=None),
-        'ego_first_stop_s':trace[stopped]['time_s'] if stopped is not None else None,
-        'ego_first_restart_s':restarted['time_s'] if restarted is not None else None,
         'collision_observed':any(g<=0 for g in gaps),
         'trace':trace,
     }

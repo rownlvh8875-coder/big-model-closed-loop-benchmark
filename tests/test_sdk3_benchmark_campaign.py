@@ -1,15 +1,23 @@
 import unittest
-from inspect import signature
 
-from bigbench import dashboard
+from bigbench import benchmark_dashboard
+from bigbench.first_divergence import source_snapshot
 from bigbench.longitudinal_world import scenario
-from bigbench.native_longitudinal import run_longitudinal_native
+from bigbench.sdk3_longitudinal import run_longitudinal_benchmark
 from bigbench.kinematics import ModelAction
 from scripts import sdk3_sidewalk_full_s
 from tests.test_native_longitudinal import FakeCamera, FakePolicy
 
 
 class Sdk3CampaignTests(unittest.TestCase):
+    def test_comparison_keeps_the_historical_source_pin_registry_valid(self):
+        try:
+            snapshot = source_snapshot()
+        except ValueError as error:
+            self.fail(str(error))
+        self.assertIn('bigbench/native_longitudinal.py', snapshot)
+        self.assertIn('bigbench/dashboard.py', snapshot)
+
     def test_light_speed_2_resolves_a_distinct_pinned_contract(self):
         self.assertTrue(hasattr(sdk3_sidewalk_full_s, 'official_model_spec'))
         official_model_spec = sdk3_sidewalk_full_s.official_model_spec
@@ -23,15 +31,14 @@ class Sdk3CampaignTests(unittest.TestCase):
             official_model_spec('n16')
 
     def test_longitudinal_candidate_stops_at_first_nonpositive_gap(self):
-        self.assertIn('stop_at_collision', signature(run_longitudinal_native).parameters)
         class DrivingPolicy(FakePolicy):
             def step(self, observation):
                 return ModelAction(curvature_1pm=0.0, acceleration_mps2=2.0)
 
         events = []
-        report = run_longitudinal_native(
+        report = run_longitudinal_benchmark(
             DrivingPolicy(), scenario('lead_brake'), FakeCamera(), steps=400,
-            stop_at_collision=True, progress=events.append,
+            progress=events.append,
         )
 
         self.assertEqual(report['termination'], 'LEAD_GAP_NONPOSITIVE')
@@ -41,7 +48,7 @@ class Sdk3CampaignTests(unittest.TestCase):
         self.assertEqual(events[-1]['status'], 'STEP_COMMITTED')
 
     def test_benchmark_dashboard_preserves_failed_and_pending_verdicts(self):
-        self.assertTrue(hasattr(dashboard, 'render_benchmark_dashboard'))
+        self.assertTrue(hasattr(benchmark_dashboard, 'render_benchmark_dashboard'))
         report = {
             'lateral': [{
                 'seed': 20261109, 'scenario': 's_curve_left_right', 'comparable': None,
@@ -53,7 +60,7 @@ class Sdk3CampaignTests(unittest.TestCase):
             }],
             'longitudinal': [],
         }
-        html = dashboard.render_benchmark_dashboard(report)
+        html = benchmark_dashboard.render_benchmark_dashboard(report)
 
         self.assertIn('LANE_INTRUSION', html)
         self.assertIn('298', html)

@@ -5,7 +5,7 @@ import json
 from pathlib import Path
 
 from bigbench.benchmark_results import build_comparison
-from bigbench.dashboard import render_benchmark_dashboard
+from bigbench.benchmark_dashboard import render_benchmark_dashboard
 
 
 def main(argv=None):
