@@ -83,6 +83,19 @@ class Sdk3CampaignTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError,'qualified first'):
                 benchmark_results.verify_camera_admission(path,doc,first)
 
+    def test_published_trajectory_is_pending_until_model_owner_returns(self):
+        with TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            case = root/'20261109-s_curve_left_right'
+            run = case/'run-0'
+            run.mkdir(parents=True)
+            (case/'pair-ledger.json').write_text(json.dumps([{'index':0,'returncode':None}]))
+            (run/'run.json').write_text('{}')
+            (run/'native-child.json').write_text(json.dumps({'returncode':None}))
+            result,_ = benchmark_results.lateral_pair(root,'md-v3',20261109,'s_curve_left_right')
+        self.assertEqual(result['status'],'PENDING')
+        self.assertEqual(result['runs'],[])
+
 
 if __name__ == '__main__':
     unittest.main()

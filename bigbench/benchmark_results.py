@@ -95,13 +95,20 @@ def lateral_pair(directory, model, seed, scene):
     path = directory/f'{seed}-{scene}'
     rows, trials, camera_keys, ownership = [], [], [], []
     result = dict(runs=rows, strict_repeat_passed=None, traversal_passed=None, status='PENDING')
+    try:
+        ledger = read(path/'pair-ledger.json') if (path/'pair-ledger.json').is_file() else []
+        owner_returns = {entry['index']:entry['returncode'] for entry in ledger}
+    except (OSError, KeyError, TypeError, ValueError) as error:
+        return dict(result,status='INVALID_RECEIPT',error=str(error)),camera_keys
     written = [path/f'run-{index}' for index in (0,1)]
-    for folder in written:
+    for index,folder in enumerate(written):
         if not (folder/'run.json').is_file():
             failure = failure_record(folder)
             if failure:
                 rows.append(failure)
                 result['status'] = 'EXECUTION_FAILED'
+            continue
+        if owner_returns.get(index) is None:
             continue
         try:
             doc = verify_owner_and_model(folder,model,seed,scene)
@@ -141,7 +148,6 @@ def lateral_pair(directory, model, seed, scene):
             rows.append(dict(outcome='INVALID_RECEIPT', steps=None, error=str(error), source=str(folder)))
     if len(trials)==2:
         try:
-            ledger = read(path/'pair-ledger.json')
             need(len(ledger)==2 and ledger[0]['nonce']!=ledger[1]['nonce']
                  and all(row['returncode']==0 for row in ledger)
                  and [row['nonce'] for row in ledger]==[nonce for _,nonce in ownership]
@@ -246,6 +252,9 @@ def build_comparison(md_v3, light_speed_2, longitudinal, *, longitudinal_seed=20
             if not (folder/'run.json').is_file():
                 failure = failure_record(folder)
                 models[model] = dict(status='EXECUTION_FAILED',**failure) if failure else dict(status='PENDING')
+                continue
+            if not (folder/'returncode.txt').is_file():
+                models[model] = dict(status='PENDING')
                 continue
             try:
                 models[model], key = verify_longitudinal(folder,model,longitudinal_seed,scene,steps)
