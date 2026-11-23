@@ -58,7 +58,7 @@ def _ramp_section(ramp, names):
 
 def render_benchmark_dashboard(report: dict) -> str:
     """Show per-model receipts and matching conditions from verified cohort data."""
-    names = {'md-v3':'md-v3','light-speed-2':'Light Speed 2'}
+    names = {'md-v3':'md-v3','light-speed-2':'Light Speed 2','fairy-tale':'Fairy Tale'}
     ramp = _ramp_section(report['ramp'], names) if 'ramp' in report else ''
     ramp_link = '<a href="#ramps">진입·진출 램프</a> · ' if ramp else ''
     lateral = []

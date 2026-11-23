@@ -233,8 +233,17 @@ def verify_longitudinal(folder, model, seed, scene_name, steps):
     return result,common_camera_key(doc,images[0])
 
 
-def build_comparison(md_v3, light_speed_2, longitudinal, *, longitudinal_seed=20261109):
-    roots = {'md-v3':Path(md_v3),'light-speed-2':Path(light_speed_2)}
+def build_comparison(md_v3, light_speed_2, longitudinal, *, longitudinal_seed=20261109,
+                     extra_lateral=None, extra_longitudinal=None):
+    roots = {'md-v3': Path(md_v3), 'light-speed-2': Path(light_speed_2)}
+    longitudinal_roots = {model: Path(longitudinal) for model in roots}
+    extra_lateral = extra_lateral or {}
+    extra_longitudinal = extra_longitudinal or {}
+    extras = extra_lateral.keys() | extra_longitudinal.keys()
+    if not extras <= MODELS.keys() - roots.keys():
+        raise ValueError('additional cohorts require a registered model outside the baseline')
+    roots.update({model: Path(folder) for model, folder in extra_lateral.items()})
+    longitudinal_roots.update({model: Path(folder) for model, folder in extra_longitudinal.items()})
     lateral = []
     for seed,scene in LATERAL_CASES:
         models, comparable_keys = {}, []
@@ -243,13 +252,14 @@ def build_comparison(md_v3, light_speed_2, longitudinal, *, longitudinal_seed=20
             comparable_keys.extend(keys)
         comparable = None
         if all(item['status']=='VERIFIED' for item in models.values()):
-            comparable = len(comparable_keys)==4 and all(k==comparable_keys[0] for k in comparable_keys[1:])
+            comparable = (len(comparable_keys) == 2 * len(roots)
+                          and all(key == comparable_keys[0] for key in comparable_keys[1:]))
         lateral.append(dict(seed=seed,scenario=scene,comparable=comparable,models=models))
     longitudinal_cases = []
     for scene,steps in LONGITUDINAL_CASES.items():
         models, camera_keys = {}, []
-        for model in roots:
-            folder = Path(longitudinal)/f'{longitudinal_seed}-{scene}-{model}'
+        for model, root in longitudinal_roots.items():
+            folder = root / f'{longitudinal_seed}-{scene}-{model}'
             if not (folder/'run.json').is_file():
                 failure = failure_record(folder)
                 models[model] = dict(status='EXECUTION_FAILED',**failure) if failure else dict(status='PENDING')
@@ -262,7 +272,9 @@ def build_comparison(md_v3, light_speed_2, longitudinal, *, longitudinal_seed=20
                 camera_keys.append(key)
             except (OSError, KeyError, TypeError, ValueError) as error:
                 models[model] = dict(status='INVALID_RECEIPT',termination='INVALID_RECEIPT',error=str(error))
-        comparable = camera_keys[0]==camera_keys[1] if len(camera_keys)==2 else None
+        comparable = None
+        if len(camera_keys) == len(longitudinal_roots):
+            comparable = all(key == camera_keys[0] for key in camera_keys[1:])
         longitudinal_cases.append(dict(seed=longitudinal_seed,scenario=scene,comparable=comparable,models=models))
-    return dict(protocol='sdk3-benchmark-comparison-v1', model_sha256={model: MODELS[model] for model in roots},
+    return dict(protocol='sdk3-benchmark-comparison-v1', model_sha256={model: MODELS[model] for model in dict.fromkeys((*roots, *longitudinal_roots))},
                 runtime='Linux SDK3 llvmpipe',lateral=lateral,longitudinal=longitudinal_cases)

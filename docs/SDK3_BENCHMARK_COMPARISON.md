@@ -98,3 +98,29 @@ python -m scripts.run_sdk3_ramp_case model \
 사전검증과 대조합니다. 결과에는 모델별 실제 추론 수, 각 조건의 완주와
 엄격 반복, 침범 위치가 포함됩니다. `index.html`과 `comparison.json`을
 같은 폴더에서 열 수 있습니다.
+
+## 등록 모델 추가 비교
+
+기존 두 모델의 원본은 기존 `--md-v3`, `--light-speed-2`,
+`--longitudinal`, `--ramps` 옵션으로 지정합니다. 다음 옵션은
+등록돼 있는 모델의 보존 자료를 해당 시험에 추가합니다.
+
+| 옵션 | 전달할 원본 폴더 |
+| --- | --- |
+| `--extra-full-s MODEL ROOT` | `20261109-s_curve_left_right`처럼 조건별 원본이 들어 있는 폴더 |
+| `--extra-longitudinal MODEL ROOT` | `20261109-lead_brake-fairy-tale`처럼 조건과 모델별 원본이 들어 있는 폴더 |
+| `--extra-ramps MODEL EVIDENCE` | `camera-gate.json`, `probes/`, `models/`가 있는 폴더 |
+
+예를 들어 Fairy Tale에 대해 다음 인자를 함께 전달합니다.
+
+```bash
+--extra-full-s fairy-tale fairy-tale-evidence/full-s/models
+--extra-longitudinal fairy-tale fairy-tale-evidence/longitudinal/models
+--extra-ramps fairy-tale fairy-tale-evidence/ramps
+```
+
+추가 모델도 실행 기록에서 직접 재검증합니다. Full-S와 종방향의
+공통 입력 판정에는 해당 조건에 포함된 모든 모델이 들어갑니다.
+램프는 원본 카메라 캡처에서 각 모델의 진입 판정을 재생성하고,
+각 위치의 기하·렌더러·카메라와 입력이 기존 코호트와 같을 때 비교합니다.
+종방향 자료는 조건·모델별 한 번 실행한 결과를 표시합니다.

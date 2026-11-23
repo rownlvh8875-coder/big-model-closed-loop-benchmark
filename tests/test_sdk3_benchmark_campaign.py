@@ -1,6 +1,7 @@
 import unittest
 from pathlib import Path
 from tempfile import TemporaryDirectory
+from unittest.mock import patch
 import json
 
 from bigbench import benchmark_dashboard
@@ -9,7 +10,7 @@ from bigbench.first_divergence import source_snapshot
 from bigbench.longitudinal_world import scenario
 from bigbench.sdk3_longitudinal import run_longitudinal_benchmark
 from bigbench.kinematics import ModelAction
-from scripts import sdk3_sidewalk_full_s
+from scripts import build_sdk3_benchmark_dashboard, sdk3_sidewalk_full_s
 from tests.test_native_longitudinal import FakeCamera, FakePolicy
 
 
@@ -106,6 +107,30 @@ class Sdk3CampaignTests(unittest.TestCase):
             path.write_text(json.dumps(dict(doc,rows=[dict(first,actual_tensor_sha256='other')])))
             with self.assertRaisesRegex(ValueError,'qualified first'):
                 benchmark_results.verify_camera_admission(path,doc,first)
+
+    def test_added_lateral_model_does_not_hide_a_camera_mismatch(self):
+        reference = {'source': 'reference'}
+        different = {'source': 'different'}
+        def read_pair(_directory, name, _seed, _scenario):
+            key = different if name == 'fairy-tale' else reference
+            return {'status': 'VERIFIED'}, [key, key]
+
+        with TemporaryDirectory() as folder, patch.object(benchmark_results, 'lateral_pair', read_pair):
+            report = benchmark_results.build_comparison(
+                folder, folder, folder, extra_lateral={'fairy-tale': folder})
+        self.assertIn('fairy-tale', report['model_sha256'])
+        self.assertTrue(all(case['comparable'] is False for case in report['lateral']))
+        self.assertTrue(all('fairy-tale' not in case['models'] for case in report['longitudinal']))
+
+    def test_added_ramp_model_must_match_every_registered_pose(self):
+        def gate(tensor):
+            return {'cases': [{'seed': 20261109, 'scenario': 'in_ramp',
+                'probes': [{'context': {'driver': 'llvmpipe'}, 'rows': ['first', tensor]}]}]}
+
+        self.assertEqual(build_sdk3_benchmark_dashboard.ramp_inputs(gate('same')),
+                         build_sdk3_benchmark_dashboard.ramp_inputs(gate('same')))
+        self.assertNotEqual(build_sdk3_benchmark_dashboard.ramp_inputs(gate('same')),
+                            build_sdk3_benchmark_dashboard.ramp_inputs(gate('different')))
 
     def test_published_trajectory_is_pending_until_model_owner_returns(self):
         with TemporaryDirectory() as tmp:
