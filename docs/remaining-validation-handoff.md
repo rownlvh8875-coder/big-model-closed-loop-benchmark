@@ -93,3 +93,7 @@ probe 후4조건×2독립 실행을 진행합니다(최대8모델/4800추론).
 
 센서 원본이 도착하면 [NV12 오프라인 검사](SENSOR_NV12_OFFLINE.md)로
 파일 해시, 행 패딩, 평면 배치와 제공된 기준 텐서를 비교할 수 있습니다.
+
+Ubuntu GPU VM을 사용하는 경우 [CARLA 클라우드 사전검증](CARLA_CLOUD_PREFLIGHT.md)의
+0.9.16 서버 다이제스트와 모델 미사용 `carla-probe` 명령을 사용할 수
+있습니다.
