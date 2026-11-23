@@ -2,6 +2,12 @@
 
 이 도구는 md-v3와 Light Speed 2의 공식 ONNX를 고정된 MetaDrive 가상 시나리오에서 실행하고, 원본 결과를 오프라인 HTML에서 비교합니다. 적용 범위는 등록된 Linux SDK3 소프트웨어 렌더러·카메라·도로·모델 조합입니다.
 
+## 범위와 결과 열기
+
+현재 비교판은 동결 Linux SDK3 MetaDrive의 full-S, 진입·진출 램프, 종방향을 다룹니다. 보존된 결과는 같은 폴더의 `index.html`과 `comparison.json`으로 확인합니다. 보고서를 다시 만들 때는 원본 실행 기록을 읽어 검증합니다.
+
+CARLA 교차검증은 선택 항목이며 미실행입니다. Windows 공식 모델과 실측 광학·센서 NV12는 [별도 검증 범위](remaining-validation-handoff.md)입니다.
+
 ## 준비
 
 - Docker의 로컬 동결 이미지 ID는 `sha256:b9d673de93f1857e4dfa5ed6a48330d568ef96fce7f3cc975f0c688877e6e26e`입니다. SDK 파일은 실제 `libpandagl.so`와 고정 SHA-256을 확인합니다.

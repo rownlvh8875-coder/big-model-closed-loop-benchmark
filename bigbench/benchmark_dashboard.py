@@ -104,7 +104,8 @@ th{{background:#edf4f5}}svg{{width:100%;height:auto;max-height:340px}}
 @media(max-width:640px){{table{{display:block;overflow-x:auto}}}}
 </style>
 <h1>대형 ONNX 모델 비교</h1>
-<p>Linux SDK3 · 가상 핀홀 카메라 · 고정 조건의 시뮬레이션 결과</p>
+<p>Linux SDK3 MetaDrive · 가상 핀홀 카메라 · ORT 1.20.1 CPU</p>
+<p>CARLA 교차검증 · 선택 검증, 미실행</p>
 <nav aria-label="시험 결과"><a href="#full-s">횡방향 full-S</a> · {ramp_link}<a href="#longitudinal">종방향</a> · <a href="comparison.json">결과 JSON</a></nav>
 <h2 id="full-s">횡방향 full-S</h2>{''.join(lateral)}
 {ramp}

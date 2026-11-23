@@ -70,6 +70,8 @@ class Sdk3CampaignTests(unittest.TestCase):
         self.assertIn('298', html)
         self.assertIn('미판정', html)
         self.assertIn('Light Speed 2', html)
+        self.assertIn('Linux SDK3 MetaDrive', html)
+        self.assertIn('CARLA 교차검증 · 선택 검증, 미실행', html)
 
     def test_ramp_dashboard_shows_failed_traversal_separately_from_exact_repeat(self):
         case = dict(
