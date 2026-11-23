@@ -73,7 +73,8 @@ def invoke(args):
     name = f'sdk3-benchmark-{out.stat().st_ino}-{args.track}-{args.mode}'
     rc = 2
     try:
-        require((args.seed,args.scenario) in LATERAL_CASES if args.track=='lateral'
+        geometry_track = 'lateral' if args.track == 'integrated' else args.track
+        require((args.seed,args.scenario) in LATERAL_CASES if geometry_track=='lateral'
                 else args.scenario in LONGITUDINAL_CASES,'unregistered benchmark scenario')
         require(digest(args.sdk)==SDK_SHA,'unexpected frozen SDK bytes')
         source = subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()
@@ -105,15 +106,17 @@ def invoke(args):
             _,expected_sha,expected_size = OFFICIAL_MODELS[args.model_id]
             require(args.model_file.stat().st_size==expected_size and digest(args.model_file)==expected_sha,
                     'official weight size or SHA-256 mismatch')
-            admission = camera_gate(args.track,args.probe,args.seed,args.scenario)
+            admission = camera_gate(geometry_track,args.probe,args.seed,args.scenario)
             write_json(out/'camera-admission.json',admission)
             options += mount(args.model_file,'/model.onnx')+mount(args.deps,'/model-deps')
-        launch = 'sdk3_sidewalk_full_s.py' if args.track=='lateral' else 'sdk3_longitudinal_campaign.py'
-        mode = 'pair' if args.track=='lateral' and args.mode=='model' else args.mode
+        launch = 'sdk3_sidewalk_full_s.py' if geometry_track=='lateral' else 'sdk3_longitudinal_campaign.py'
+        mode = 'pair' if geometry_track=='lateral' and args.mode=='model' else args.mode
         seconds = 18120 if mode=='pair' else (9050 if mode=='model' else 280)
         command = ['timeout',str(seconds),*DOCKER,'run',*options,IMAGE,'--cpu-list',cpus,
                    '/opt/venv/bin/python','-I','-S','-B',f'/work/repo/scripts/{launch}',mode,
                    '--out','/out','--seed',str(args.seed),'--scenario',args.scenario,'--model-id',args.model_id]
+        if args.track == 'integrated' and args.mode == 'model':
+            command.append('--integrated')
         write_json(out/'command.json',command)
         with (out/'stdout.log').open('xb') as stdout,(out/'stderr.log').open('xb') as stderr:
             rc = subprocess.run(command,stdout=stdout,stderr=stderr,check=False).returncode
@@ -137,7 +140,7 @@ def invoke(args):
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('track',choices=('lateral','longitudinal'))
+    parser.add_argument('track',choices=('lateral','longitudinal','integrated'))
     parser.add_argument('mode',choices=('probe','model'))
     parser.add_argument('--out',required=True,type=Path)
     parser.add_argument('--seed',choices=(20261109,20261110),required=True,type=int)

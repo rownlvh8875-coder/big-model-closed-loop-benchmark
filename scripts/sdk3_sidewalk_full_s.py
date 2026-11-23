@@ -168,6 +168,9 @@ def child(args):
                  seed=args.seed,scenario=args.scenario,mode=args.mode,pid=os.getpid(),nonce=args.nonce,
                  official_inference_bounds=[0,0],official_model_process_bounds=[0,0],
                  provider_closed=False,policy_created=False,camera_attempts=0)
+    if args.integrated:
+        receipt['control_mode'] = 'integrated'
+
     def progress(message):
         receipt['official_inference_bounds']=message['inference_bounds']
         receipt['progress']=message
@@ -208,7 +211,7 @@ def child(args):
                 inner.preparer=inputs
                 policy=WorldFramePolicyAdapter(inner,source_action_frame=SOURCE_ACTION_FRAME)
                 result=run_full_s(policy,inputs,lanes,seed=args.seed,scene=args.scenario,
-                                  max_steps=600,progress=progress)
+                                  max_steps=600,progress=progress,integrated=args.integrated)
                 receipt['official_inference_bounds']=result['actual_inference_bounds']
                 atomic_json(out/'run.json',result)
                 atomic_json(out/'input-rows.json',inputs.rows)
@@ -231,9 +234,12 @@ def child(args):
 
 
 def owned_child_command(args,parent_pid):
-    return [sys.executable,'-I','-S','-B',__file__,args.mode,'--out',args.out,'--seed',str(args.seed),
-            '--scenario',args.scenario,'--nonce',args.nonce,'--server-owner',str(parent_pid),
-            '--model-id',args.model_id]
+    command = [sys.executable,'-I','-S','-B',__file__,args.mode,'--out',args.out,'--seed',str(args.seed),
+               '--scenario',args.scenario,'--nonce',args.nonce,'--server-owner',str(parent_pid),
+               '--model-id',args.model_id]
+    if args.integrated:
+        command.append('--integrated')
+    return command
 
 
 def pair(args):
@@ -252,6 +258,8 @@ def pair(args):
         with (folder/'stdout.log').open('xb') as stdout,(folder/'stderr.log').open('xb') as stderr:
             command=[sys.executable,'-I','-S','-B',__file__,'model','--out',str(folder),'--nonce',nonce,
                      '--seed',str(args.seed),'--scenario',args.scenario,'--model-id',args.model_id]
+            if args.integrated:
+                command.append('--integrated')
             process=subprocess.Popen(command,stdin=subprocess.DEVNULL,stdout=stdout,stderr=stderr,
                                      env=env,start_new_session=True)
             row.update(launcher_spawned=True,pid=process.pid)
@@ -275,6 +283,7 @@ def main():
     parser.add_argument('--nonce')
     parser.add_argument('--server-owner',type=int)
     parser.add_argument('--model-id',choices=tuple(OFFICIAL_MODELS),default='md-v3')
+    parser.add_argument('--integrated', action='store_true', help='Apply both official action components')
     args=parser.parse_args()
     assert (args.seed,args.scenario) in pins.CASES
     if args.mode=='pair':

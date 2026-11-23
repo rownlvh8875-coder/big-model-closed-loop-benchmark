@@ -92,7 +92,7 @@ def verify_camera_admission(path, document, first):
          'case geometry, renderer and qualified first camera feed must bind the saved model run')
 
 
-def lateral_pair(directory, model, seed, scene):
+def lateral_pair(directory, model, seed, scene, *, integrated=False):
     path = directory/f'{seed}-{scene}'
     rows, trials, camera_keys, ownership = [], [], [], []
     result = dict(runs=rows, strict_repeat_passed=None, traversal_passed=None, status='PENDING')
@@ -118,7 +118,9 @@ def lateral_pair(directory, model, seed, scene):
                  and not trial['injected_session'] and doc['ordering']['state_restored']
                  and doc['ordering']['original_active_bins_restored'] and doc['geometry']==trial['geometry'],
                  'genuine model, restituted ordering and runtime-bound route geometry required')
-            proof = validate_trajectory(trial,seed,scene)
+            if integrated:
+                need(doc.get('control_mode')=='integrated', 'integrated model worker required')
+            proof = validate_trajectory(trial, seed, scene, integrated=integrated)
             need(proof['inference_bounds']==doc['official_inference_bounds'],
                  'lifecycle and trajectory inference counts must agree')
             frames = trial['frames']
@@ -128,6 +130,7 @@ def lateral_pair(directory, model, seed, scene):
             if gate.is_file():
                 verify_camera_admission(gate,doc,images[0])
             else:
+                need(not integrated, 'integrated run requires its paired camera admission')
                 prior = read(directory.parent/'probe-admission.json')
                 case_gate = prior['conditions'][f'{seed}-{scene}']
                 need(model=='md-v3' and prior['admitted'] and case_gate['passed']
@@ -154,7 +157,7 @@ def lateral_pair(directory, model, seed, scene):
                  and [row['nonce'] for row in ledger]==[nonce for _,nonce in ownership]
                  and len({source for source,_ in ownership})==1,
                  'two independently reaped owners bound to one source revision required')
-            pair = compare_full_s(*trials)
+            pair = compare_full_s(*trials, integrated=integrated)
             result.update(strict_repeat_passed=pair['strict_repeat_passed'],
                           traversal_passed=pair['traversal_passed'],
                           first_diverging_step=pair['first_diverging_step'], status='VERIFIED')
