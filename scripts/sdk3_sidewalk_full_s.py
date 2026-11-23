@@ -28,6 +28,7 @@ INPUT_VARIANT = 'source_yuv_nearest_even'
 OFFICIAL_MODELS = {
     'md-v3': ('auto', pins.MODEL_SHA, 768750198),
     'light-speed-2': ('model-frd', '909a140019050a9d7f00db22dd4f4085928d2af9474a82244672ddab964f95a8', 768749892),
+    'fairy-tale': ('model-frd', 'be6030a8b0c6a5a0d8b77675c6f1bd652ccfc32c818fbb914b2bc4a8799345b7', 766137036),
 }
 
 

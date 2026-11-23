@@ -14,6 +14,7 @@ from .native_longitudinal import DeterministicLeadTimeline
 MODELS = {
     'md-v3': '35976b11be3904eb78e32f7dc55a6abf8e9433ac5aa391a1998f1e9ce001b199',
     'light-speed-2': '909a140019050a9d7f00db22dd4f4085928d2af9474a82244672ddab964f95a8',
+    'fairy-tale': 'be6030a8b0c6a5a0d8b77675c6f1bd652ccfc32c818fbb914b2bc4a8799345b7',
 }
 LATERAL_CASES = tuple((seed,scene) for seed in (20261109,20261110)
                       for scene in ('s_curve_left_right','s_curve_right_left'))
@@ -263,5 +264,5 @@ def build_comparison(md_v3, light_speed_2, longitudinal, *, longitudinal_seed=20
                 models[model] = dict(status='INVALID_RECEIPT',termination='INVALID_RECEIPT',error=str(error))
         comparable = camera_keys[0]==camera_keys[1] if len(camera_keys)==2 else None
         longitudinal_cases.append(dict(seed=longitudinal_seed,scenario=scene,comparable=comparable,models=models))
-    return dict(protocol='sdk3-benchmark-comparison-v1', model_sha256=MODELS,
+    return dict(protocol='sdk3-benchmark-comparison-v1', model_sha256={model: MODELS[model] for model in roots},
                 runtime='Linux SDK3 llvmpipe',lateral=lateral,longitudinal=longitudinal_cases)
