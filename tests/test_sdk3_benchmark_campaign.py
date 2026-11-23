@@ -71,6 +71,28 @@ class Sdk3CampaignTests(unittest.TestCase):
         self.assertIn('미판정', html)
         self.assertIn('Light Speed 2', html)
 
+    def test_ramp_dashboard_shows_failed_traversal_separately_from_exact_repeat(self):
+        case = dict(
+            seed=20261109, scenario='in_ramp', traversal_passed=False, strict_repeat_passed=True,
+            runs=[dict(outcome='LANE_INTRUSION', inference_bounds=[147, 147],
+                       route_progress_m=60.66, final_route={'intrusion_m': .028})],
+        )
+        data = {'lateral': [], 'longitudinal': [], 'ramp': {
+            'camera_pairs_verified': 4, 'models': {
+                'md-v3': {'cases': [case], 'model_process_bounds': [1, 1],
+                          'inference_bounds': [147, 147]},
+            },
+        }}
+        html = benchmark_dashboard.render_benchmark_dashboard(data)
+        self.assertIn('진입·진출 램프', html)
+        self.assertIn('LANE_INTRUSION', html)
+        self.assertIn('<td>실패</td><td>통과</td>', html)
+        self.assertIn('147', html)
+
+    def test_historical_dashboard_omits_ramps_without_optional_evidence(self):
+        html = benchmark_dashboard.render_benchmark_dashboard({'lateral': [], 'longitudinal': []})
+        self.assertNotIn('진입·진출 램프', html)
+
     def test_model_receipt_cannot_borrow_a_camera_gate_with_another_first_frame(self):
         self.assertTrue(hasattr(benchmark_results,'verify_camera_admission'))
         doc = dict(geometry=['lane'],intrinsics={'road':'lens'},driver={'renderer':'llvmpipe'},

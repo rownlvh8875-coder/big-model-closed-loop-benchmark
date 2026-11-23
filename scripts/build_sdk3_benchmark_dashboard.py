@@ -13,14 +13,23 @@ def main(argv=None):
     parser.add_argument('--md-v3',type=Path,required=True)
     parser.add_argument('--light-speed-2',type=Path,required=True)
     parser.add_argument('--longitudinal',type=Path,required=True)
+    parser.add_argument('--ramps', type=Path, help='ramp evidence directory with camera-gate.json, probes and models')
     parser.add_argument('--out',type=Path,required=True)
     args = parser.parse_args(argv)
-    args.out.mkdir(parents=True,exist_ok=False)
     report = build_comparison(args.md_v3,args.light_speed_2,args.longitudinal)
-    with (args.out/'comparison.json').open('x') as output:
+    if args.ramps is not None:
+        from scripts.verify_sdk3_ramps import verify_campaign
+
+        try:
+            report['ramp'] = verify_campaign(
+                args.ramps/'models', args.ramps/'camera-gate.json', probe_root=args.ramps/'probes')
+        except (OSError, ValueError, KeyError, TypeError) as error:
+            parser.error(f'cannot verify ramp evidence: {error}')
+    args.out.mkdir(parents=True,exist_ok=False)
+    with (args.out/'comparison.json').open('x', encoding='utf-8') as output:
         json.dump(report,output,ensure_ascii=False,indent=2,allow_nan=False)
         output.write('\n')
-    with (args.out/'index.html').open('x') as output:
+    with (args.out/'index.html').open('x', encoding='utf-8') as output:
         output.write(render_benchmark_dashboard(report))
     return 0
 

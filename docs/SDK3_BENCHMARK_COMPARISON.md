@@ -47,3 +47,48 @@ python -m scripts.build_sdk3_benchmark_dashboard \
 ```
 
 `comparison.json`과 `index.html`에서 실제 추론으로 재구성한 실행 상태·완주·엄격 반복성, 최초 차선 침범, 선행차 중심 간격·TTC 및 정지·재출발을 확인합니다. 원본 파일과 정리 기록이 유효해야 판정을 제공합니다. 교차모델 비교에는 공통 경로·렌즈·렌더러와 첫 원본 RGB·입력 텐서가 일치해야 합니다. 각 모델의 이후 프레임은 그 모델 자체의 동작에 따른 새 포즈에서 촬영합니다.
+
+## 진입·진출 램프
+
+`scripts.run_sdk3_ramp_case`는 같은 동결 SDK3에서 MetaDrive의 실제 `in_ramp`와
+`out_ramp` 도로를 실행합니다. 진입은 램프 직선의 12%부터 가속차로 끝까지,
+진출은 감속차로의 12%부터 진출 직선 끝까지입니다. 각 경로는 실제 도로 구간
+다섯 개로 구성됩니다. 본선 차로 변경은 별도 검증 범위입니다.
+
+정해진 두 시드의 두 램프를 각각 새 프로세스 두 개로 사전검증합니다.
+아래 예시는 아직 없는 `output/ramps` 경로를 사용합니다.
+
+```bash
+ramps=output/ramps
+for seed in 20261109 20261110; do
+  for scenario in in_ramp out_ramp; do
+    for index in 0 1; do
+      python -m scripts.run_sdk3_ramp_case probe --sdk "$sdk" \
+        --seed "$seed" --scenario "$scenario" \
+        --out "$ramps/probes/$seed-$scenario/run-$index"
+    done
+  done
+done
+python -m scripts.verify_sdk3_ramps probe "$ramps/probes" \
+  --out "$ramps/camera-gate.json"
+```
+
+오프라인 카메라 검증에는 Python 3.11, NumPy 2.4.6과
+opencv-python-headless 5.0.0.93을 사용합니다. 네 조건이 모두 통과하면 동일한
+커밋의 깨끗한 작업 트리에서 공식 모델을 한 프로세스씩 실행합니다.
+`weight`는 `--model-id`에 맞는 검증된 모델 파일입니다. 같은 시드와 시나리오에
+`run-0`과 `run-1`을 따로 실행합니다.
+
+```bash
+python -m scripts.run_sdk3_ramp_case model \
+  --sdk "$sdk" --deps "$deps" --model-file "$weight" --model-id light-speed-2 \
+  --seed 20261109 --scenario in_ramp --gate "$ramps/camera-gate.json" \
+  --out "$ramps/models/light-speed-2/20261109-in_ramp/run-0"
+```
+
+통합 비교 화면에는 기존 명령에 `--ramps "$ramps"`를 추가합니다. 경로 아래에
+`camera-gate.json`, `probes/`, `models/`가 함께 있어야 합니다. 검증기는
+보존된 RGB에서 카메라 캔버스와 모델 입력을 다시 만들고 각 실행을 원래
+사전검증과 대조합니다. 결과에는 모델별 실제 추론 수, 각 조건의 완주와
+엄격 반복, 침범 위치가 포함됩니다. `index.html`과 `comparison.json`을
+같은 폴더에서 열 수 있습니다.
