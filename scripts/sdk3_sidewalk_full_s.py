@@ -21,12 +21,14 @@ from scripts import panda_sdk3_diagnostic as owner, panda_sdk3_runtime as pins
 from scripts.sdk3_four_validation_native import bootstrap
 from scripts.sdk3_four_validation_trial import _world, atomic_json, driver_info, rate_admission
 from bigbench.recorded_official_execution import clone
+from bigbench.full_s_validation import registered_case
 
 DEPS = {'onnxruntime':'1.20.1','flatbuffers':'24.3.25','coloredlogs':'15.0.1',
         'humanfriendly':'10.0','packaging':'24.2','protobuf':'5.29.5','sympy':'1.13.3','mpmath':'1.3.0'}
 INPUT_VARIANT = 'source_yuv_nearest_even'
 OFFICIAL_MODELS = {
     'md-v3': ('auto', pins.MODEL_SHA, 768750198),
+    'light-speed': ('model-frd', '6274eb4a3f3eb7ad1ab341d222bbba2ba709b06645dbbd15ac4971d6cb22ab21', 792305602),
     'light-speed-2': ('model-frd', '909a140019050a9d7f00db22dd4f4085928d2af9474a82244672ddab964f95a8', 768749892),
     'fairy-tale': ('model-frd', 'be6030a8b0c6a5a0d8b77675c6f1bd652ccfc32c818fbb914b2bc4a8799345b7', 766137036),
 }
@@ -285,7 +287,7 @@ def main():
     parser.add_argument('--model-id',choices=tuple(OFFICIAL_MODELS),default='md-v3')
     parser.add_argument('--integrated', action='store_true', help='Apply both official action components')
     args=parser.parse_args()
-    assert (args.seed,args.scenario) in pins.CASES
+    assert registered_case(args.seed,args.scenario,integrated=args.integrated)
     if args.mode=='pair':
         assert args.server_owner is None
         return pair(args)

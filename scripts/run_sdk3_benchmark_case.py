@@ -7,7 +7,9 @@ from pathlib import Path
 import shutil
 import subprocess
 
-from bigbench.benchmark_results import LATERAL_CASES, LONGITUDINAL_CASES, SDK_SHA, read, verify_input_files
+from bigbench.benchmark_results import LONGITUDINAL_CASES, SDK_SHA, read, verify_input_files
+from bigbench.curved_lane_scenarios import TIGHT_FULL_S_CASE
+from bigbench.full_s_validation import registered_case
 from scripts.panda_sdk3_runtime import digest
 from scripts.sdk3_sidewalk_full_s import OFFICIAL_MODELS, local_memory
 
@@ -74,8 +76,11 @@ def invoke(args):
     rc = 2
     try:
         geometry_track = 'lateral' if args.track == 'integrated' else args.track
-        require((args.seed,args.scenario) in LATERAL_CASES if geometry_track=='lateral'
-                else args.scenario in LONGITUDINAL_CASES,'unregistered benchmark scenario')
+        case = (args.seed, args.scenario)
+        integrated = args.track == 'integrated'
+        admitted = (registered_case(*case, integrated=integrated) if geometry_track == 'lateral'
+                    else args.scenario in LONGITUDINAL_CASES)
+        require(admitted, 'unregistered benchmark scenario')
         require(digest(args.sdk)==SDK_SHA,'unexpected frozen SDK bytes')
         source = subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()
         require(not subprocess.check_output(['git','status','--porcelain=v1'],cwd=ROOT,text=True).strip(),
@@ -115,7 +120,7 @@ def invoke(args):
         command = ['timeout',str(seconds),*DOCKER,'run',*options,IMAGE,'--cpu-list',cpus,
                    '/opt/venv/bin/python','-I','-S','-B',f'/work/repo/scripts/{launch}',mode,
                    '--out','/out','--seed',str(args.seed),'--scenario',args.scenario,'--model-id',args.model_id]
-        if args.track == 'integrated' and args.mode == 'model':
+        if integrated and (args.mode == 'model' or case == TIGHT_FULL_S_CASE):
             command.append('--integrated')
         write_json(out/'command.json',command)
         with (out/'stdout.log').open('xb') as stdout,(out/'stderr.log').open('xb') as stderr:

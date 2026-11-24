@@ -13,6 +13,7 @@ from .native_longitudinal import DeterministicLeadTimeline
 
 MODELS = {
     'md-v3': '35976b11be3904eb78e32f7dc55a6abf8e9433ac5aa391a1998f1e9ce001b199',
+    'light-speed': '6274eb4a3f3eb7ad1ab341d222bbba2ba709b06645dbbd15ac4971d6cb22ab21',
     'light-speed-2': '909a140019050a9d7f00db22dd4f4085928d2af9474a82244672ddab964f95a8',
     'fairy-tale': 'be6030a8b0c6a5a0d8b77675c6f1bd652ccfc32c818fbb914b2bc4a8799345b7',
 }

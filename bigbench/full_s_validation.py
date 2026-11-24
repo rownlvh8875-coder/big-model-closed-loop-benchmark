@@ -6,6 +6,7 @@ from .kinematics import AgentState,step_ideal
 from .model_world_frame import WorldFramePolicyAdapter
 from .policies import ModelObservation
 from .lane_truth import lane_curvature
+from .curved_lane_scenarios import TIGHT_FULL_S_CASE
 
 SCENES={'s_curve_left_right','s_curve_right_left'}
 FIXED_FULL_S = 'full-s-closed-loop-v1'
@@ -39,9 +40,14 @@ def route_state(lanes,index,state):
  # Clamp only the parameter for bounded geometry getters. Never change ego pose/progress.
  return dict(lane_index=index,lane_id=str(lane.index),longitudinal_m=s,length_m=length,lateral_right_m=right,lane_width_m=width,half_width_m=.9,intrusion_m=max(0.,abs(right)+.9-width/2),heading_error_rad=angle(state.heading-heading),terminal_crossed=index==len(lanes)-1 and s>=length)
 
+def registered_case(seed, scene, *, integrated=False):
+ return type(seed) is int and ((seed in (20261109,20261110) and scene in SCENES)
+                               or (integrated and (seed,scene)==TIGHT_FULL_S_CASE))
+
+
 def run_full_s(policy,camera,lanes,*,seed,scene,max_steps=600,progress=None,integrated=False):
  speed_override = None if integrated else 8.
- need(type(policy) is WorldFramePolicyAdapter,'exact single existing FRD-to-FLU adapter required');need(type(seed) is int and seed in (20261109,20261110) and scene in SCENES and type(max_steps) is int and 2<=max_steps<=600,'registered full-S condition and bounded steps');geometry=validate_route(lanes);first=lanes[0];start=float(first.length)*.12;xy=first.position(start,0.);state=AgentState(0.,float(xy[0]),float(xy[1]),float(first.heading_theta_at(start)),8.);initial=asdict(state);policy.reset();rows=[];active=0;visited=[str(first.index)];outcome='STEP_LIMIT';error=None;inflight=False;audit_before=0
+ need(type(policy) is WorldFramePolicyAdapter,'exact single existing FRD-to-FLU adapter required');need(registered_case(seed,scene,integrated=integrated) and type(max_steps) is int and 2<=max_steps<=600,'registered full-S condition and bounded steps');geometry=validate_route(lanes);first=lanes[0];start=float(first.length)*.12;xy=first.position(start,0.);state=AgentState(0.,float(xy[0]),float(xy[1]),float(first.heading_theta_at(start)),8.);initial=asdict(state);policy.reset();rows=[];active=0;visited=[str(first.index)];outcome='STEP_LIMIT';error=None;inflight=False;audit_before=0
  def bounds():
   known=len(policy.inner.audit_rows);return [known,min(max_steps,known+1) if inflight and known==audit_before else known]
  def emit(status):
