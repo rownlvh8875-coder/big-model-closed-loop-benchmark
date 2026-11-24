@@ -10,15 +10,11 @@ from typing import Any
 import math
 
 
-TIGHT_FULL_S_CASE = (20261109, 's_curve_left_right_radius45')
-
-
 @dataclass(frozen=True)
 class CurveCase:
     name: str
     block_ids: tuple[str, ...]
     expected_curve_directions: tuple[int, ...] = ()
-    curve_radius_m: float = 55.0
 
     def map_config(self) -> dict:
         if self.expected_curve_directions:
@@ -27,7 +23,7 @@ class CurveCase:
             blocks: list[dict[str, object]] = [{'id': 'I'}]
             for d in self.expected_curve_directions:
                 blocks.append({'id': 'C', 'pre_block_socket_index': 0,
-                               'length': 60.0, 'radius': self.curve_radius_m,
+                               'length': 60.0, 'radius': 55.0,
                                'angle': 47.0, 'dir': d})
             return {'type': 'pg_map_file', 'config': blocks, 'lane_num': 2,
                     'lane_width': 3.5, 'exit_length': 60.0}
@@ -44,7 +40,6 @@ class CurveCase:
 SCENARIOS: dict[str, CurveCase] = {
     's_curve_left_right': CurveCase('s_curve_left_right', ('C', 'C'), (0, 1)),
     's_curve_right_left': CurveCase('s_curve_right_left', ('C', 'C'), (1, 0)),
-    TIGHT_FULL_S_CASE[1]: CurveCase(TIGHT_FULL_S_CASE[1], ('C', 'C'), (0, 1), curve_radius_m=45.0),
     'in_ramp': CurveCase('in_ramp', ('r',)),
     'out_ramp': CurveCase('out_ramp', ('R',)),
 }

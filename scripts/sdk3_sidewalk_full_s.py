@@ -22,6 +22,7 @@ from scripts.sdk3_four_validation_native import bootstrap
 from scripts.sdk3_four_validation_trial import _world, atomic_json, driver_info, rate_admission
 from bigbench.recorded_official_execution import clone
 from bigbench.full_s_validation import registered_case
+from bigbench.sdk3_radius45 import BASELINE_SCENE, TIGHT_FULL_S_CASE, tight_map_config
 
 DEPS = {'onnxruntime':'1.20.1','flatbuffers':'24.3.25','coloredlogs':'15.0.1',
         'humanfriendly':'10.0','packaging':'24.2','protobuf':'5.29.5','sympy':'1.13.3','mpmath':'1.3.0'}
@@ -195,7 +196,12 @@ def child(args):
         if args.mode=='model':
             inner = open_official_policy(args.model_id, Path('/model.onnx'), receipt, life)
 
-        provider,lanes,terrain=_world(args.seed,args.scenario)
+        if (args.seed,args.scenario) == TIGHT_FULL_S_CASE:
+            native_scene = BASELINE_SCENE
+            provider,lanes,terrain = _world(args.seed,native_scene,map_config=tight_map_config())
+        else:
+            native_scene = args.scenario
+            provider,lanes,terrain = _world(args.seed,native_scene)
         lenses={role:intrinsics_from_panda_lens(
             provider.env.engine.sensors['bigbench_'+role].get_lens(),964,604) for role in ('road','wide')}
         for role,lens in lenses.items():
@@ -204,7 +210,7 @@ def child(args):
                        driver=driver_info(provider),terrain=terrain,input_variant=INPUT_VARIANT)
         assert 'llvmpipe' in receipt['driver']['renderer']
         camera=NativeWorldCamera(provider)
-        with ordered_sidewalks(provider,args.scenario) as ordering:
+        with ordered_sidewalks(provider,native_scene) as ordering:
             receipt['ordering']=ordering
             inputs=LiveInput(camera,lenses,INPUT_VARIANT,out)
             if args.mode=='probe':

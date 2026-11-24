@@ -6,7 +6,7 @@ from .kinematics import AgentState,step_ideal
 from .model_world_frame import WorldFramePolicyAdapter
 from .policies import ModelObservation
 from .lane_truth import lane_curvature
-from .curved_lane_scenarios import TIGHT_FULL_S_CASE
+from .sdk3_radius45 import TIGHT_FULL_S_CASE
 
 SCENES={'s_curve_left_right','s_curve_right_left'}
 FIXED_FULL_S = 'full-s-closed-loop-v1'

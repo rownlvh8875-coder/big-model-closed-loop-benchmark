@@ -8,7 +8,7 @@ import shutil
 import subprocess
 
 from bigbench.benchmark_results import LONGITUDINAL_CASES, SDK_SHA, read, verify_input_files
-from bigbench.curved_lane_scenarios import TIGHT_FULL_S_CASE
+from bigbench.sdk3_radius45 import TIGHT_FULL_S_CASE
 from bigbench.full_s_validation import registered_case
 from scripts.panda_sdk3_runtime import digest
 from scripts.sdk3_sidewalk_full_s import OFFICIAL_MODELS, local_memory
@@ -111,6 +111,11 @@ def invoke(args):
             _,expected_sha,expected_size = OFFICIAL_MODELS[args.model_id]
             require(args.model_file.stat().st_size==expected_size and digest(args.model_file)==expected_sha,
                     'official weight size or SHA-256 mismatch')
+            if case == TIGHT_FULL_S_CASE:
+                # The identity check filled the host read cache. Release those pages before
+                # Docker creates its VFS copy. The native worker still checks the original RAM gate.
+                with args.model_file.open('rb') as weights:
+                    os.posix_fadvise(weights.fileno(), 0, 0, os.POSIX_FADV_DONTNEED)
             admission = camera_gate(geometry_track,args.probe,args.seed,args.scenario)
             write_json(out/'camera-admission.json',admission)
             options += mount(args.model_file,'/model.onnx')+mount(args.deps,'/model-deps')

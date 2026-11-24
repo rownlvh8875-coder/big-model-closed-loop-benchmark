@@ -4,15 +4,14 @@ from bigbench.curved_lane_scenarios import SCENARIOS
 from bigbench import full_s_validation
 from bigbench.benchmark_results import LATERAL_CASES, MODELS
 from bigbench.onnx_contract import ModelContract
+from bigbench.sdk3_radius45 import tight_map_config
 from scripts.sdk3_sidewalk_full_s import official_model_spec
 
 
 class Radius45Tests(unittest.TestCase):
     def test_tight_case_changes_only_native_curve_radii(self):
-        name = 's_curve_left_right_radius45'
-        self.assertIn(name, SCENARIOS)
         reference = SCENARIOS['s_curve_left_right'].map_config()
-        tight = SCENARIOS[name].map_config()
+        tight = tight_map_config()
         for block in reference['config'][1:]:
             self.assertEqual(block['radius'], 55.0)
             block['radius'] = 45.0
