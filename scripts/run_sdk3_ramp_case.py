@@ -9,7 +9,9 @@ import subprocess
 
 from bigbench.sdk3_native_ramp import CHILD_LIMIT_S, SCENES, SEEDS
 from scripts.panda_sdk3_runtime import digest
-from scripts.run_sdk3_benchmark_case import DOCKER, IMAGE, ROOT, SDK_SHA, mount, require, write_json
+from scripts.run_sdk3_benchmark_case import (
+    DOCKER, IMAGE, ROOT, SDK_SHA, mount, release_weight_read_cache, require, write_json,
+)
 from scripts.sdk3_sidewalk_full_s import OFFICIAL_MODELS, local_memory
 
 SEALED_SOURCES = ('bigbench/sdk3_native_ramp.py', 'scripts/sdk3_native_ramp.py',
@@ -67,6 +69,7 @@ def invoke(args):
             _, expected_sha, expected_size = OFFICIAL_MODELS[args.model_id]
             require(args.model_file.stat().st_size == expected_size and digest(args.model_file) == expected_sha,
                     'official weight size or SHA-256 mismatch')
+            release_weight_read_cache(args.model_file)
             write_json(out / 'admission.json', dict(gate_sha256=digest(args.gate), seed=args.seed,
                                                    scenario=args.scenario, weight_sha256=expected_sha,
                                                    probe_source_sha256=probe_source,

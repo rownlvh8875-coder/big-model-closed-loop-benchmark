@@ -6,7 +6,7 @@ from .kinematics import AgentState,step_ideal
 from .model_world_frame import WorldFramePolicyAdapter
 from .policies import ModelObservation
 from .lane_truth import lane_curvature
-from .sdk3_radius45 import TIGHT_FULL_S_CASE
+from .sdk3_radius45 import TIGHT_FULL_S_CASES
 
 SCENES={'s_curve_left_right','s_curve_right_left'}
 FIXED_FULL_S = 'full-s-closed-loop-v1'
@@ -42,7 +42,7 @@ def route_state(lanes,index,state):
 
 def registered_case(seed, scene, *, integrated=False):
  return type(seed) is int and ((seed in (20261109,20261110) and scene in SCENES)
-                               or (integrated and (seed,scene)==TIGHT_FULL_S_CASE))
+                               or (integrated and (seed,scene) in TIGHT_FULL_S_CASES))
 
 
 def run_full_s(policy,camera,lanes,*,seed,scene,max_steps=600,progress=None,integrated=False):

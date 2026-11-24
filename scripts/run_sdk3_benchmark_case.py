@@ -8,7 +8,7 @@ import shutil
 import subprocess
 
 from bigbench.benchmark_results import LONGITUDINAL_CASES, SDK_SHA, read, verify_input_files
-from bigbench.sdk3_radius45 import TIGHT_FULL_S_CASE
+from bigbench.sdk3_radius45 import TIGHT_FULL_S_CASES
 from bigbench.full_s_validation import registered_case
 from scripts.panda_sdk3_runtime import digest
 from scripts.sdk3_sidewalk_full_s import OFFICIAL_MODELS, local_memory
@@ -68,6 +68,13 @@ def mount(path, destination, *, readonly=True):
     return ['--mount',f'type=bind,src={path},dst={destination}'+(',readonly' if readonly else '')]
 
 
+def release_weight_read_cache(path):
+    # Docker VFS copies the frozen image before the worker checks its memory.
+    # Release pages from the preceding identity check without touching the model bytes.
+    with path.open('rb') as weights:
+        os.posix_fadvise(weights.fileno(), 0, 0, os.POSIX_FADV_DONTNEED)
+
+
 def invoke(args):
     out = args.out.resolve()
     out.mkdir(parents=True,exist_ok=False)
@@ -111,11 +118,7 @@ def invoke(args):
             _,expected_sha,expected_size = OFFICIAL_MODELS[args.model_id]
             require(args.model_file.stat().st_size==expected_size and digest(args.model_file)==expected_sha,
                     'official weight size or SHA-256 mismatch')
-            if case == TIGHT_FULL_S_CASE:
-                # The identity check filled the host read cache. Release those pages before
-                # Docker creates its VFS copy. The native worker still checks the original RAM gate.
-                with args.model_file.open('rb') as weights:
-                    os.posix_fadvise(weights.fileno(), 0, 0, os.POSIX_FADV_DONTNEED)
+            release_weight_read_cache(args.model_file)
             admission = camera_gate(geometry_track,args.probe,args.seed,args.scenario)
             write_json(out/'camera-admission.json',admission)
             options += mount(args.model_file,'/model.onnx')+mount(args.deps,'/model-deps')
@@ -125,7 +128,7 @@ def invoke(args):
         command = ['timeout',str(seconds),*DOCKER,'run',*options,IMAGE,'--cpu-list',cpus,
                    '/opt/venv/bin/python','-I','-S','-B',f'/work/repo/scripts/{launch}',mode,
                    '--out','/out','--seed',str(args.seed),'--scenario',args.scenario,'--model-id',args.model_id]
-        if integrated and (args.mode == 'model' or case == TIGHT_FULL_S_CASE):
+        if integrated and (args.mode == 'model' or case in TIGHT_FULL_S_CASES):
             command.append('--integrated')
         write_json(out/'command.json',command)
         with (out/'stdout.log').open('xb') as stdout,(out/'stderr.log').open('xb') as stderr:

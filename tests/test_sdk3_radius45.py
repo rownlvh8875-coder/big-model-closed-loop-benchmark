@@ -20,10 +20,19 @@ class Radius45Tests(unittest.TestCase):
     def test_tight_case_is_registered_for_integrated_mode_only(self):
         check = getattr(full_s_validation, 'registered_case', lambda *a, **kw: False)
         self.assertTrue(check(20261109, 's_curve_left_right_radius45', integrated=True))
-        self.assertFalse(check(20261110, 's_curve_left_right_radius45', integrated=True))
+        self.assertTrue(check(20261110, 's_curve_left_right_radius45', integrated=True))
+        self.assertTrue(check(20261109, 's_curve_right_left_radius45', integrated=True))
+        self.assertTrue(check(20261110, 's_curve_right_left_radius45', integrated=True))
+        self.assertFalse(check(20261111, 's_curve_right_left_radius45', integrated=True))
         self.assertFalse(check(20261109, 's_curve_left_right_radius45'))
         self.assertNotIn((20261109, 's_curve_left_right_radius45'), LATERAL_CASES)
         self.assertTrue(check(20261110, 's_curve_right_left'))
+
+    def test_tight_right_left_keeps_mirrored_direction(self):
+        original = SCENARIOS['s_curve_right_left'].map_config()
+        for curve in original['config'][1:]:
+            curve['radius'] = 45.0
+        self.assertEqual(tight_map_config('s_curve_right_left_radius45'), original)
 
     def test_light_speed_uses_own_identity_and_explicit_body_frame(self):
         self.assertIn('light-speed', MODELS)

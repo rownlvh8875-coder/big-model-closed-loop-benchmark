@@ -22,7 +22,7 @@ from scripts.sdk3_four_validation_native import bootstrap
 from scripts.sdk3_four_validation_trial import _world, atomic_json, driver_info, rate_admission
 from bigbench.recorded_official_execution import clone
 from bigbench.full_s_validation import registered_case
-from bigbench.sdk3_radius45 import BASELINE_SCENE, TIGHT_FULL_S_CASE, tight_map_config
+from bigbench.sdk3_radius45 import BASELINE_SCENES, TIGHT_FULL_S_CASES, tight_map_config
 
 DEPS = {'onnxruntime':'1.20.1','flatbuffers':'24.3.25','coloredlogs':'15.0.1',
         'humanfriendly':'10.0','packaging':'24.2','protobuf':'5.29.5','sympy':'1.13.3','mpmath':'1.3.0'}
@@ -196,9 +196,9 @@ def child(args):
         if args.mode=='model':
             inner = open_official_policy(args.model_id, Path('/model.onnx'), receipt, life)
 
-        if (args.seed,args.scenario) == TIGHT_FULL_S_CASE:
-            native_scene = BASELINE_SCENE
-            provider,lanes,terrain = _world(args.seed,native_scene,map_config=tight_map_config())
+        if (args.seed,args.scenario) in TIGHT_FULL_S_CASES:
+            native_scene = BASELINE_SCENES[args.scenario]
+            provider,lanes,terrain = _world(args.seed,native_scene,map_config=tight_map_config(args.scenario))
         else:
             native_scene = args.scenario
             provider,lanes,terrain = _world(args.seed,native_scene)
