@@ -2,14 +2,18 @@
 
 from dataclasses import asdict
 from hashlib import sha256
+from itertools import pairwise
 import json
+from math import dist, fsum
 from pathlib import Path
+import re
 
 from .full_s_receipts import digest64, need, validate_trajectory
 from .full_s_validation import compare_full_s
 from .kinematics import AgentState, ModelAction, step_ideal
 from .longitudinal_world import scenario
 from .native_longitudinal import DeterministicLeadTimeline
+from .sdk3_radius45 import TIGHT_FULL_S_CASES
 
 MODELS = {
     'md-v3': '35976b11be3904eb78e32f7dc55a6abf8e9433ac5aa391a1998f1e9ce001b199',
@@ -78,6 +82,13 @@ def verify_owner_and_model(folder, model, seed, scene):
          and document['input_variant']=='source_yuv_nearest_even'
          and 'llvmpipe' in document['driver']['renderer'],
          'frozen SDK3, llvmpipe and live registered input required')
+    if scene in LONGITUDINAL_CASES:
+        source = document.get('source_sha')
+        need(document.get('protocol') == life.get('protocol') == 'sdk3-longitudinal-v1'
+             and isinstance(source, str) and re.fullmatch(r'[0-9a-f]{40}', source)
+             and source == life.get('source_sha')
+             and document['official_inference_bounds'] == life.get('official_inference_bounds'),
+             'longitudinal lifecycle must match the reported source and inference counts')
     return document
 
 
@@ -235,6 +246,57 @@ def verify_longitudinal(folder, model, seed, scene_name, steps):
     need(all(run[key]==value for key,value in result.items() if key not in {'status','steps'}),
          'reported longitudinal metrics must equal the independently reconstructed values')
     return result,common_camera_key(doc,images[0])
+
+
+def integrated_run_metrics(run):
+    """Measure distance and intrusion location from a validated integrated trace."""
+    frames = run['frames']
+    last = frames[-1]['route']
+    initial = run['initial_state']
+    coords = [(initial['x'], initial['y'])]
+    coords.extend((frame['world_x_m'], frame['world_y_m']) for frame in frames)
+    geometry = run['geometry']
+    start = geometry[0]['length_m'] * run['initial_fraction']
+    station = fsum(lane['length_m'] for lane in geometry[:last['lane_index']]) + last['longitudinal_m'] - start
+    intrusion = None
+    if run['outcome'] == 'LANE_INTRUSION':
+        intrusion = dict(side='right' if last['lateral_right_m'] > 0 else 'left',
+                         route_progress_from_start_m=station, lane_id=last['lane_id'],
+                         lane_station_m=last['longitudinal_m'], intrusion_m=last['intrusion_m'])
+    return dict(outcome=run['outcome'], steps=len(frames), travelled_m=fsum(dist(a, b) for a, b in pairwise(coords)),
+                route_progress_from_start_m=station, final_speed_mps=run['final_state']['speed'],
+                lane_intrusion=intrusion)
+
+
+def build_integrated_comparison(model_roots):
+    """Verify the registered 55 m and 45 m integrated Full-S cohorts from raw receipts."""
+    need(bool(model_roots) and model_roots.keys() <= MODELS.keys(), 'registered integrated model roots required')
+    result = {}
+    for label, cases in (('integrated55', LATERAL_CASES), ('integrated45', sorted(TIGHT_FULL_S_CASES))):
+        result[label] = []
+        for seed, scene in cases:
+            models, keys = {}, []
+            for model, root in model_roots.items():
+                directory = Path(root)
+                pair, camera_keys = lateral_pair(directory, model, seed, scene, integrated=True)
+                record = {key: pair[key] for key in ('status', 'strict_repeat_passed', 'traversal_passed')}
+                record['runs'] = []
+                if pair['status'] == 'VERIFIED':
+                    folder = directory/f'{seed}-{scene}'
+                    record['runs'] = [integrated_run_metrics(read(folder/f'run-{index}'/'run.json'))
+                                      for index in (0, 1)]
+                    keys.extend(camera_keys)
+                else:
+                    error = pair.get('error') or next(
+                        (run['error'] for run in pair['runs'] if 'error' in run), None)
+                    if error:
+                        record['error'] = error
+                models[model] = record
+            comparable = None
+            if all(model['status'] == 'VERIFIED' for model in models.values()):
+                comparable = len(keys) == 2*len(models) and all(key == keys[0] for key in keys)
+            result[label].append(dict(seed=seed, scenario=scene, comparable=comparable, models=models))
+    return result
 
 
 def build_comparison(md_v3, light_speed_2, longitudinal, *, longitudinal_seed=20261109,

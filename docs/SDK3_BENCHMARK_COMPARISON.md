@@ -1,6 +1,6 @@
 # Linux SDK3 공식 모델 비교
 
-이 도구는 md-v3와 Light Speed 2의 공식 ONNX를 고정된 MetaDrive 가상 시나리오에서 실행하고, 원본 결과를 오프라인 HTML에서 비교합니다. 적용 범위는 등록된 Linux SDK3 소프트웨어 렌더러·카메라·도로·모델 조합입니다.
+이 도구는 md-v3, Light Speed 2, Fairy Tale, Light Speed의 공식 ONNX를 등록된 MetaDrive 가상 시나리오에서 실행하고, 원본 결과를 오프라인 HTML에서 비교합니다. 적용 범위는 등록된 Linux SDK3 소프트웨어 렌더러·카메라·도로·모델 조합입니다.
 
 ## 범위와 결과 열기
 
@@ -124,3 +124,63 @@ python -m scripts.run_sdk3_ramp_case model \
 램프는 원본 카메라 캡처에서 각 모델의 진입 판정을 재생성하고,
 각 위치의 기하·렌더러·카메라와 입력이 기존 코호트와 같을 때 비교합니다.
 종방향 자료는 조건·모델별 한 번 실행한 결과를 표시합니다.
+
+## 네 모델의 통합 비교판 재현
+
+위 결과 명령에 Fairy Tale과 Light Speed의 fixed Full-S, 종방향,
+램프 증거를 추가합니다. 통합 Full-S는 모델마다
+`--integrated-full-s MODEL ROOT`를 한 번 지정합니다. `ROOT` 아래에는
+`20261109-s_curve_left_right`처럼 55 m 조건별 폴더와
+`20261109-s_curve_left_right_radius45`처럼 45 m 조건별 폴더를 둡니다.
+각 폴더에는 원본 `camera-admission.json`, `pair-ledger.json`, `run-0/`, `run-1/`이
+있어야 합니다. 여러 실험 폴더에 증거가 나뉘어 있으면 조건별 원본 폴더를
+가리키는 심볼릭 링크를 이 구조에 둘 수 있습니다.
+
+예시에서 `inputs`는 보존한 증거를 위 구조로 배치한 경로이며, `report`는
+새 출력 폴더입니다. 기준 모델의 횡방향 원본은 상위 폴더의
+`probe-admission.json`까지 함께 보존합니다.
+
+```bash
+python -B -m scripts.build_sdk3_benchmark_dashboard \
+  --md-v3 inputs/md-v3-full-s/models \
+  --light-speed-2 inputs/fixed/light-speed-2 \
+  --longitudinal inputs/longitudinal/baseline \
+  --ramps inputs/ramps/baseline \
+  --extra-full-s fairy-tale inputs/fixed/fairy-tale \
+  --extra-full-s light-speed inputs/fixed/light-speed \
+  --extra-longitudinal fairy-tale inputs/longitudinal/fairy-tale \
+  --extra-longitudinal light-speed inputs/longitudinal/light-speed \
+  --extra-ramps fairy-tale inputs/ramps/fairy-tale \
+  --extra-ramps light-speed inputs/ramps/light-speed \
+  --integrated-full-s md-v3 inputs/integrated/md-v3 \
+  --integrated-full-s light-speed-2 inputs/integrated/light-speed-2 \
+  --integrated-full-s fairy-tale inputs/integrated/fairy-tale \
+  --integrated-full-s light-speed inputs/integrated/light-speed \
+  --out report
+```
+
+재현에는 새 모델 추론이나 Docker 실행이 필요하지 않습니다.
+Python 3.11, NumPy 2.4.6, opencv-python-headless 5.0.0.93에서
+보존된 모델·카메라·궤적 기록을 검증합니다. 원본의 파일 목록과
+`inputs.SHA256SUMS`가 제공되는 경우 증거를 받은 폴더에서
+`sha256sum -c inputs.SHA256SUMS`로 대조합니다.
+통합 Full-S는 두 독립 실행의 종료 상태와 엄격 반복성을 기록합니다.
+모델 간 공통 기하는 해당 조건의 첫 RGB와 입력 텐서까지 일치할 때 확인됩니다.
+종방향은 모델·조건별 한 실행이며 수집 기록의 `source_sha`와 실제 추론 수를
+최종 보고서와 대조합니다. 선행차 중심 간격이 0 이하가 되어 일찍 종료된 실행은
+그 시점까지 관측된 추론 수로 검증합니다.
+
+## 저장소 테스트 재현
+
+전체 체크아웃에서 `python -B -m unittest discover -s tests`를 실행합니다.
+`docs/evidence/`의 추적 파일은 일부 테스트의 입력입니다. Linux에서
+PID 네임스페이스로 격리할 경우 Python을 살아 있는 부모 아래에서
+새 세션으로 실행합니다. PID 1로 직접 실행하면 부모 PID가 0으로 보입니다.
+외부 프로세스 그룹을 그대로 상속하면 새 네임스페이스에서 그룹 ID도
+0으로 보일 수 있습니다. 아래 명령은 두 식별자를 모두 실제로 관측하게 합니다.
+
+```bash
+unshare --user --map-root-user --pid --fork --mount-proc \
+  bash -c 'setsid "$@" & child=$!; wait "$child"' bash \
+  python -B -m unittest discover -s tests
+```

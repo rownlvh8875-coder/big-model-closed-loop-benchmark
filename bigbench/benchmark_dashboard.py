@@ -56,6 +56,48 @@ def _ramp_section(ramp, names):
             + ''.join(sections))
 
 
+def _integrated_row(name, record):
+    runs = record['runs']
+    if not runs:
+        status = {'PENDING': '실측·판정 대기', 'INVALID_RECEIPT': '기록 검증 실패',
+                  'EXECUTION_FAILED': '실행 실패'}
+        detail = record.get('error') or status.get(record['status'], '미판정')
+        return name, detail, '—', '—', '—', '—', _verdict(None)
+
+    def summarize(values):
+        return values[0] if all(value == values[0] for value in values) else ' / '.join(values)
+
+    def intrusion(run):
+        point = run['lane_intrusion']
+        if point is None:
+            return '없음'
+        side = '우측' if point['side'] == 'right' else '좌측'
+        return f"{side} {point['route_progress_from_start_m']:.2f}m"
+
+    labels = {'FULL_S_COMPLETED': '완주', 'LANE_INTRUSION': '첫 차선 침범', 'STEP_LIMIT': '스텝 한도'}
+    return (name, summarize([f"{labels.get(run['outcome'], run['outcome'])} {run['steps']}스텝" for run in runs]),
+            summarize([_number(run['travelled_m'], digits=2) for run in runs]),
+            summarize([_number(run['route_progress_from_start_m'], digits=2) for run in runs]),
+            summarize([intrusion(run) for run in runs]),
+            summarize([_number(run['final_speed_mps'], digits=2) for run in runs]),
+            _verdict(record['strict_repeat_passed']))
+
+
+def _integrated_section(key, label, cases, names):
+    columns = ('모델','시험 종료','실제 이동(m)','경로 진행(m)','첫 침범 위치','종료 속도(m/s)','엄격 반복')
+    directions = {'s_curve_left_right': '좌→우', 's_curve_right_left': '우→좌'}
+    sections = [f'<h2 id="{key}">{label}</h2>',
+                '<p>실제 이동은 연속 좌표 사이의 거리 합계입니다. 경로 진행은 출발점부터의 중심선 위치입니다.</p>']
+    for case in cases:
+        direction = directions[case['scenario'].removesuffix('_radius45')]
+        common_input = _verdict(case['comparable'])
+        rows = [_integrated_row(names.get(model, model), record) for model, record in case['models'].items()]
+        sections.append(f'<section><h3>{case["seed"]} · {direction}</h3>'
+                        f'<p>공통 기하·첫 입력 검증 {common_input}</p>'
+                        + _bench_table(columns, rows) + '</section>')
+    return ''.join(sections)
+
+
 def render_benchmark_dashboard(report: dict) -> str:
     """Show per-model receipts and matching conditions from verified cohort data."""
     names = {'md-v3':'md-v3','light-speed':'Light Speed','light-speed-2':'Light Speed 2','fairy-tale':'Fairy Tale'}
@@ -80,6 +122,11 @@ def render_benchmark_dashboard(report: dict) -> str:
         figure = _trajectory_svg(traces) if traces else ''
         lateral.append(f"<section><h3>{label}</h3><p>공통 기하·첫 입력 검증 {_verdict(case['comparable'])}</p>"
                        f"{table}{figure}</section>")
+    integrated_sections = (('integrated55', '55m 통합 Full-S'), ('integrated45', '45m 통합 Full-S'))
+    integrated = ''.join(_integrated_section(key, label, report[key], names)
+                         for key, label in integrated_sections if key in report)
+    integrated_nav = ''.join(f'<a href="#{key}">{label}</a> · '
+                             for key, label in integrated_sections if key in report)
     longitudinal = []
     for case in report['longitudinal']:
         for model,result in case['models'].items():
@@ -106,9 +153,9 @@ th{{background:#edf4f5}}svg{{width:100%;height:auto;max-height:340px}}
 <h1>대형 ONNX 모델 비교</h1>
 <p>Linux SDK3 MetaDrive · 가상 핀홀 카메라 · ORT 1.20.1 CPU</p>
 <p>CARLA 교차검증 · 선택 검증, 미실행</p>
-<nav aria-label="시험 결과"><a href="#full-s">횡방향 full-S</a> · {ramp_link}<a href="#longitudinal">종방향</a> · <a href="comparison.json">결과 JSON</a></nav>
+<nav aria-label="시험 결과"><a href="#full-s">횡방향 full-S</a> · {ramp_link}<a href="#longitudinal">종방향</a> · {integrated_nav}<a href="comparison.json">결과 JSON</a></nav>
 <h2 id="full-s">횡방향 full-S</h2>{''.join(lateral)}
 {ramp}
-<h2 id="longitudinal">종방향</h2>{_bench_table(longitudinal_headers,longitudinal)}
+{integrated}<h2 id="longitudinal">종방향</h2>{_bench_table(longitudinal_headers,longitudinal)}
 </html>
 """

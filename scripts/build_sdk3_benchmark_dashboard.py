@@ -5,15 +5,16 @@ from hashlib import sha256
 import json
 from pathlib import Path
 
-from bigbench.benchmark_results import MODELS, build_comparison
+from bigbench.benchmark_results import MODELS, build_comparison, build_integrated_comparison
 from bigbench.benchmark_dashboard import render_benchmark_dashboard
 
 
-def additional_roots(pairs):
+def additional_roots(pairs, *, include_baseline=False):
     roots = {}
+    allowed = MODELS.keys() if include_baseline else MODELS.keys() - {'md-v3', 'light-speed-2'}
     for model, path in pairs:
-        if model not in MODELS or model in ('md-v3', 'light-speed-2') or model in roots:
-            raise ValueError(f'expected a distinct registered additional model, found {model!r}')
+        if model not in allowed or model in roots:
+            raise ValueError(f'expected a distinct permitted model, found {model!r}')
         roots[model] = Path(path)
     return roots
 
@@ -58,6 +59,8 @@ def main(argv=None):
     parser.add_argument('--extra-full-s', nargs=2, metavar=('MODEL', 'ROOT'), action='append', default=[])
     parser.add_argument('--extra-longitudinal', nargs=2, metavar=('MODEL', 'ROOT'), action='append', default=[])
     parser.add_argument('--extra-ramps', nargs=2, metavar=('MODEL', 'EVIDENCE'), action='append', default=[])
+    parser.add_argument('--integrated-full-s', nargs=2, metavar=('MODEL', 'ROOT'), action='append', default=[],
+                        help='model root with registered per-condition 55 m and 45 m integrated pair receipts')
     parser.add_argument('--out', type=Path, required=True)
     args = parser.parse_args(argv)
     try:
@@ -76,6 +79,10 @@ def main(argv=None):
                 baseline_gate = json.loads(gate_path.read_bytes())
                 for model, evidence in extra_ramps.items():
                     add_ramp_cohort(report, model, evidence, baseline_gate)
+        if args.integrated_full_s:
+            integrated = additional_roots(args.integrated_full_s, include_baseline=True)
+            report.update(build_integrated_comparison(integrated))
+            report['model_sha256'].update({model: MODELS[model] for model in integrated})
     except (OSError, ValueError, KeyError, TypeError) as error:
         parser.error(str(error))
 

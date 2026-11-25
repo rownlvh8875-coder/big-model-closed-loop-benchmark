@@ -146,5 +146,49 @@ class Sdk3CampaignTests(unittest.TestCase):
         self.assertEqual(result['runs'],[])
 
 
+    def test_longitudinal_report_and_lifecycle_must_bind_the_same_source(self):
+        model, seed, scene = 'light-speed', 20261109, 'stop_go'
+        report = dict(
+            protocol='sdk3-longitudinal-v1', source_sha='a'*40, seed=seed, scenario=scene,
+            status='RETURNED', runtime='cloud-local', pid=17, nonce='b'*32, policy_created=True,
+            provider_closed=True, child_finalized_before_server_stop=True,
+            official_model_process_bounds=[1,1], official_inference_bounds=[79,79],
+            ort='1.20.1', providers=['CPUExecutionProvider'],
+            model_sha256=benchmark_results.MODELS[model],
+            sdk_sha256=benchmark_results.SDK_SHA, core_sha256=benchmark_results.CORE_SHA,
+            input_variant='source_yuv_nearest_even', driver={'renderer':'llvmpipe'},
+        )
+        owner = dict(spawn_attempted=True, pid=17, returncode=0)
+        with TemporaryDirectory() as tmp:
+            folder = Path(tmp)
+            (folder/'report.json').write_text(json.dumps(report))
+            (folder/'native-child.json').write_text(json.dumps(owner))
+            life = folder/'lifecycle.json'
+            life.write_text(json.dumps(report))
+            self.assertEqual(benchmark_results.verify_owner_and_model(folder, model, seed, scene), report)
+            for change in ({'source_sha':'c'*40}, {'official_inference_bounds':[240,240]}):
+                with self.subTest(change=change):
+                    life.write_text(json.dumps(dict(report, **change)))
+                    with self.assertRaisesRegex(ValueError, 'longitudinal lifecycle'):
+                        benchmark_results.verify_owner_and_model(folder, model, seed, scene)
+
+    def test_integrated_dashboard_accepts_distinct_registered_model_roots(self):
+        with TemporaryDirectory() as tmp:
+            folder = Path(tmp)
+            args = ['--md-v3', tmp, '--light-speed-2', tmp, '--longitudinal', tmp,
+                    '--integrated-full-s', 'md-v3', tmp, '--integrated-full-s', 'fairy-tale', tmp,
+                    '--out', str(folder/'report')]
+            self.assertEqual(build_sdk3_benchmark_dashboard.main(args), 0)
+            report = json.loads((folder/'report/comparison.json').read_text())
+            html = (folder/'report/index.html').read_text()
+        self.assertIn('fairy-tale', report['model_sha256'])
+        self.assertEqual(len(report['integrated55']), 4)
+        self.assertEqual(len(report['integrated45']), 4)
+        self.assertTrue(all(row['comparable'] is None for row in report['integrated55']))
+        self.assertEqual(report['integrated45'][0]['models']['md-v3']['status'], 'PENDING')
+        self.assertIn('45m 통합 Full-S', html)
+        self.assertIn('실측·판정 대기', html)
+
+
 if __name__ == '__main__':
     unittest.main()

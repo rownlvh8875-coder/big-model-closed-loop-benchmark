@@ -2,9 +2,9 @@
 
 **대형 주행모델의 종·횡방향 판단을 비교하기 위한 순수 가상 폐루프 연구 프로젝트**
 
-## 현재 비교판 (2026-11-23)
+## 현재 비교판 (2026-11-25)
 
-동결 Linux SDK3의 MetaDrive에서 md-v3와 Light Speed 2의 full-S, 진입·진출 램프, 종방향 결과를 오프라인 화면에서 비교합니다. 검증된 범위는 11개 조건, 실제 모델 프로세스 38개, 추론 8,918회입니다.
+동결 Linux SDK3의 MetaDrive에서 공식 ONNX 네 모델(md-v3, Light Speed 2, Fairy Tale, Light Speed)을 비교합니다. 55 m 고정 속도 Full-S, 45 m·55 m 통합 Full-S, 진입·진출 램프, 종방향 결과를 보존된 원본으로 재현할 수 있습니다.
 
 CARLA 교차검증은 선택 항목이며 현재 미실행입니다. Windows 공식 모델 실행과 실측 광학·센서 NV12는 각각 별도 검증 범위입니다. [비교판 사용 및 재현](docs/SDK3_BENCHMARK_COMPARISON.md) · [외부 검증 준비](docs/remaining-validation-handoff.md)
 
