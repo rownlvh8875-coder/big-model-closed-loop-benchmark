@@ -1,0 +1,173 @@
+{
+  "actions_44176109300": {
+    "scope": "original fixed-speed md-v3 with software llvmpipe",
+    "run_id": 44176109300,
+    "model_processes": 8,
+    "inference_bounds": [
+      554,
+      554
+    ],
+    "traversals_passed": 0,
+    "strict_repeat_conditions_passed": 4
+  },
+  "actions_44711162968_attempt_1": {
+    "scope": "RGB-derived preprocessing A/B; preserved artifact verified offline",
+    "run_id": "44711162968",
+    "attempt": 1,
+    "artifact_id": 14627411394,
+    "source_sha": "c6b3f931282acbf0a5dd9a9fbc920573c7839415",
+    "activation_sha": "2cc1ab46ff740137d9002c936aa06f21ff2ed28c",
+    "artifact_bytes": 21277746,
+    "artifact_sha256": "61958df43d2bdb8bb80e87040e73aa88f2e09004d9f5310def590ba3c58da0c7",
+    "model_process_bounds": [
+      8,
+      8
+    ],
+    "inference_bounds": [
+      1513,
+      1513
+    ],
+    "traversals_passed": 0,
+    "strict_repeat": null,
+    "first_differences": [
+      {
+        "seed": 20261109,
+        "scenario": "s_curve_left_right",
+        "first_difference_step": {
+          "source_rgb": 2,
+          "canvas_rgb": 2,
+          "input_tensor": 1,
+          "raw_action": 1,
+          "recurrent_after": 1,
+          "applied_curvature": 1,
+          "pose": 1
+        }
+      },
+      {
+        "seed": 20261109,
+        "scenario": "s_curve_right_left",
+        "first_difference_step": {
+          "source_rgb": 2,
+          "canvas_rgb": 2,
+          "input_tensor": 1,
+          "raw_action": 1,
+          "recurrent_after": 1,
+          "applied_curvature": 1,
+          "pose": 1
+        }
+      },
+      {
+        "seed": 20261110,
+        "scenario": "s_curve_left_right",
+        "first_difference_step": {
+          "source_rgb": 2,
+          "canvas_rgb": 2,
+          "input_tensor": 1,
+          "raw_action": 1,
+          "recurrent_after": 1,
+          "applied_curvature": 1,
+          "pose": 1
+        }
+      },
+      {
+        "seed": 20261110,
+        "scenario": "s_curve_right_left",
+        "first_difference_step": {
+          "source_rgb": 2,
+          "canvas_rgb": 2,
+          "input_tensor": 1,
+          "raw_action": 1,
+          "recurrent_after": 1,
+          "applied_curvature": 1,
+          "pose": 1
+        }
+      }
+    ],
+    "terminal_outcomes": [
+      {
+        "seed": 20261109,
+        "scenario": "s_curve_left_right",
+        "variant": "rgb_linear",
+        "outcome": "LANE_INTRUSION"
+      },
+      {
+        "seed": 20261109,
+        "scenario": "s_curve_left_right",
+        "variant": "source_yuv_nearest_even",
+        "outcome": "LANE_INTRUSION"
+      },
+      {
+        "seed": 20261109,
+        "scenario": "s_curve_right_left",
+        "variant": "rgb_linear",
+        "outcome": "LANE_INTRUSION"
+      },
+      {
+        "seed": 20261109,
+        "scenario": "s_curve_right_left",
+        "variant": "source_yuv_nearest_even",
+        "outcome": "LANE_INTRUSION"
+      },
+      {
+        "seed": 20261110,
+        "scenario": "s_curve_left_right",
+        "variant": "rgb_linear",
+        "outcome": "LANE_INTRUSION"
+      },
+      {
+        "seed": 20261110,
+        "scenario": "s_curve_left_right",
+        "variant": "source_yuv_nearest_even",
+        "outcome": "LANE_INTRUSION"
+      },
+      {
+        "seed": 20261110,
+        "scenario": "s_curve_right_left",
+        "variant": "rgb_linear",
+        "outcome": "LANE_INTRUSION"
+      },
+      {
+        "seed": 20261110,
+        "scenario": "s_curve_right_left",
+        "variant": "source_yuv_nearest_even",
+        "outcome": "LANE_INTRUSION"
+      }
+    ]
+  },
+  "first_local_cloud_attempt": {
+    "source_sha": "14297e289a84f290dd638bf9a874864c4c262530",
+    "status": "BLOCKED_BEFORE_NATIVE_PROBES",
+    "blocker": "HTTP 403 while trying to receive the frozen image and SDK artifacts",
+    "model_processes": 0,
+    "inference_bounds": [
+      0,
+      0
+    ]
+  },
+  "frozen_image_zip": {
+    "source_run": 43700449423,
+    "artifact_id": 14156262448,
+    "status": "VERIFIED",
+    "bytes": 1738137175,
+    "sha256": "47711425a5a48fb2ef0cab140da6e394516f9cbb7f04b294c5f6583d7efbc687"
+  },
+  "windows_handoff": {
+    "scope": "reported by the user from a separate Windows laptop",
+    "source_sha": "c6b3f931282acbf0a5dd9a9fbc920573c7839415",
+    "renderer": "NVIDIA GeForce RTX 3050 Ti Laptop GPU",
+    "independently_reopened_in_cloud": false,
+    "model_free_camera_conditions_passed": 4,
+    "model_processes": 0,
+    "inference_bounds": [
+      0,
+      0
+    ],
+    "reported_zip_sha256": "b23f0d49fefc74eb46806d42db8d1984b6ada802f31e40c63bd490e4646620e1"
+  },
+  "external_tracks": {
+    "windows_official_model": "UNVERIFIED",
+    "physical_optics": "UNVERIFIED",
+    "sensor_nv12": "UNVERIFIED",
+    "carla": "NOT_RUN"
+  }
+}

@@ -6,6 +6,8 @@
 
 동결 Linux SDK3의 MetaDrive에서 공식 ONNX 네 모델(md-v3, Light Speed 2, Fairy Tale, Light Speed)을 비교합니다. 55 m 고정 속도 Full-S, 45 m·55 m 통합 Full-S, 진입·진출 램프, 종방향 결과를 보존된 원본으로 재현할 수 있습니다.
 
+[네 모델의 실행 결과와 점수](docs/evidence/sdk3-model-comparison-20261125/README.md) · [한국어 입문 PDF](docs/evidence/sdk3-model-comparison-20261125/guide-ko.pdf) · [공개 모델 12개 시험 현황](docs/evidence/sdk3-model-comparison-20261125/model-inventory.csv)
+
 CARLA 교차검증은 선택 항목이며 현재 미실행입니다. Windows 공식 모델 실행과 실측 광학·센서 NV12는 각각 별도 검증 범위입니다. [비교판 사용 및 재현](docs/SDK3_BENCHMARK_COMPARISON.md) · [외부 검증 준비](docs/remaining-validation-handoff.md)
 
 > **초기 진행 기록 (2026-11-09):** MD-V3·Light Speed 2·Light Speed **공식 ONNX 3종 실행 기술검증 성공**. MetaDrive 실제 3D S자·진입/진출 램프 영상↔차선 좌표 정합성 진단 성공. **전체 S자 완주, 실제 광학 동등성 및 모델 주행성능 순위는 미검증.** [7단계 진행 기록](docs/ROADMAP_7_STAGES.md).

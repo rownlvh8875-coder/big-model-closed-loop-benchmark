@@ -127,6 +127,8 @@ python -m scripts.run_sdk3_ramp_case model \
 
 ## 네 모델의 통합 비교판 재현
 
+[검증 결과, PDF, 채점표와 원본 해시 목록](evidence/sdk3-model-comparison-20261125/README.md)을 확인할 수 있습니다.
+
 위 결과 명령에 Fairy Tale과 Light Speed의 fixed Full-S, 종방향,
 램프 증거를 추가합니다. 통합 Full-S는 모델마다
 `--integrated-full-s MODEL ROOT`를 한 번 지정합니다. `ROOT` 아래에는

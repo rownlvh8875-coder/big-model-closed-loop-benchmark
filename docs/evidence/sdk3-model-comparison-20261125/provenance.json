@@ -1,0 +1,50 @@
+{
+  "source_commit": "1435894ea3a8cc47a453f9a3634a6afc031a8fe4",
+  "execution": "Codex Cloud with frozen Linux SDK3 image; replayed offline from retained real records",
+  "report_runtime": "Linux SDK3 llvmpipe",
+  "sdk3_image_sha256": "b9d673de93f1857e4dfa5ed6a48330d568ef96fce7f3cc975f0c688877e6e26e",
+  "onnxruntime": "1.20.1 CPUExecutionProvider",
+  "offline_reader": {
+    "python": "3.11.17",
+    "numpy": "2.4.6",
+    "opencv_python_headless": "5.0.0.93"
+  },
+  "conditions_per_model": 19,
+  "model_count": 4,
+  "model_process_bounds": [
+    140,
+    140
+  ],
+  "inference_bounds": [
+    33880,
+    33880
+  ],
+  "explainer": {
+    "language": "ko",
+    "pages": 14,
+    "realistic_scene_images": "generated illustrations",
+    "camera_examples": "retained virtual camera RGB, rendered for display"
+  },
+  "verification": {
+    "retained_input_manifest_rows": 4284,
+    "rebuilds_byte_identical": true,
+    "browser_viewports_checked": [
+      "1280x900",
+      "390x844"
+    ],
+    "suite": {
+      "origin": "local Cloud, not GitHub Actions",
+      "run": 2541,
+      "passed": 2531,
+      "skipped": 10,
+      "failures": 0,
+      "errors": 0
+    }
+  },
+  "artifact_sha256": {
+    "comparison.json": "87edf3de2824d0139b4f696a367c96e7fe95ed5563ff2366f6d613464b197915",
+    "index.html": "e7eeae329f5b0acdbd1607614f3476601fb5fbc033026a7ce3a8c74150572dae",
+    "guide-ko.pdf": "420fcae1ba49e873fa994166ae09bdf6937327c3a715192007200c6dacd2bbbf",
+    "inputs.SHA256SUMS": "72f9fca3ded0be0dbb2752262a248a233ce4a9fe919097748c7b891d5f8be31e"
+  }
+}
