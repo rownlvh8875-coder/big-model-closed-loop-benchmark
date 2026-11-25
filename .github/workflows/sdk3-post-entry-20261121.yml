@@ -1,0 +1,77 @@
+name: SDK3 post-entry plan retention
+on:
+  push:
+    branches: ['diagnostic/sdk3-post-entry-20261121-01']
+    paths: ['docs/requests/sdk3-post-entry-20261121-01.json']
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: stage7-official-model-execution
+  cancel-in-progress: false
+jobs:
+  camera-and-route:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    outputs:
+      qualified: ${{ steps.probe.outputs.qualified }}
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pinned offline readers
+        run: python -m pip install --no-deps numpy==2.4.6 opencv-python-headless==5.0.0.93
+      - name: Check the runtime contracts without a model
+        run: python -B -m unittest discover -s tests -p test_sdk3_steering_plan.py
+      - name: Verify four zero-model camera and route cases
+        id: probe
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python -I -B scripts/run_sdk3_steering_plan.py probe
+      - name: Preserve probe evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: post-entry-probes-20261121
+          path: output/sdk3-post-entry-20261121/probe/bundle/
+          if-no-files-found: error
+          retention-days: 30
+  model:
+    name: Plan capture ${{ matrix.seed }} ${{ matrix.scenario }}
+    needs: camera-and-route
+    if: needs.camera-and-route.outputs.qualified != ''
+    timeout-minutes: 210
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      max-parallel: 1
+      matrix:
+        seed: [20261109, 20261110]
+        scenario: [s_curve_left_right]
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pinned offline readers
+        run: python -m pip install --no-deps numpy==2.4.6 opencv-python-headless==5.0.0.93
+      - name: Capture and verify one bounded official model trial
+        env:
+          GH_TOKEN: ${{ github.token }}
+          STEERING_PROBE_GATE: ${{ needs.camera-and-route.outputs.qualified }}
+        run: python -I -B scripts/run_sdk3_steering_plan.py model --seed '${{ matrix.seed }}' --scenario '${{ matrix.scenario }}'
+      - name: Preserve positive, negative and partial evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: post-entry-20261121-${{ matrix.seed }}-${{ matrix.scenario }}
+          path: output/sdk3-post-entry-20261121/${{ matrix.seed }}-${{ matrix.scenario }}/bundle/
+          if-no-files-found: error
+          retention-days: 30

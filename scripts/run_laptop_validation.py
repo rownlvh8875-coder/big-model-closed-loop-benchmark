@@ -119,30 +119,80 @@ def observed_laptop_counts(out):
   if not need_bounds:bounds=[0,600]
   low+=bounds[0];high+=bounds[1]
  return dict(known_model_processes=known,upper_model_processes=upper,inference_bounds=[low,high])
+def validate_carla_route_receipt(report, seed, scene):
+    from bigbench.carla_validation import RegisteredCarlaLane, verify_waypoints
+    from bigbench.full_s_validation import validate_route
+    from scripts.laptop_carla_trial import context
+
+    if report.get('context') != context() or report.get('carla_cleanup_restored') is not True:
+        raise ValueError('owned qualified CARLA context and cleanup required')
+    fixture = ROOT / 'docs/fixtures/sdk3-full-s-native-route-v1.json'
+    reference = json.loads(fixture.read_text())
+    rows = next(case['geometry'] for case in reference['cases'] if (case['seed'], case['scenario']) == (seed, scene))
+    lanes = [RegisteredCarlaLane(row) for row in rows]
+    if report.get('geometry') != validate_route(lanes):
+        raise ValueError('CARLA prescribed geometry differs from registered native reference')
+    actual = report['actual_waypoints']
+    expected = []
+    for lane in lanes:
+        for fraction in (.01, .25, .5, .75, .99):
+            distance = lane.length * fraction
+            x, y = lane.position(distance, 0.)
+            expected.append((float(x), float(y), float(lane.heading_theta_at(distance))))
+    observed = [(row['expected_x'], row['expected_y'], row['expected_heading_rad']) for row in actual]
+    if observed != expected:
+        raise ValueError('actual CARLA waypoints must bind the independently registered sample positions')
+    if verify_waypoints(actual) != report['waypoint_validation']:
+        raise ValueError('CARLA waypoint verdict recomputation')
+
+
 def validate_carla_report(r,seed,scene):
- from bigbench.carla_validation import RegisteredCarlaLane,verify_waypoints,validate_sensor_bindings
- from bigbench.full_s_validation import validate_route
+ from bigbench.carla_validation import validate_sensor_bindings
  from bigbench.full_s_receipts import validate_trajectory
- from scripts.laptop_carla_trial import context
- if r.get('context')!=context() or r.get('carla_cleanup_restored') is not True:raise ValueError('owned qualified CARLA context and cleanup required')
- ref=json.loads((ROOT/'docs/fixtures/sdk3-full-s-native-route-v1.json').read_text());rows=next(x['geometry'] for x in ref['cases'] if (x['seed'],x['scenario'])==(seed,scene));lanes=[RegisteredCarlaLane(row) for row in rows]
- if r.get('geometry')!=validate_route(lanes):raise ValueError('CARLA prescribed geometry differs from registered native reference')
- actual=r['actual_waypoints'];expected=[]
- for lane in lanes:
-  for fraction in (.01,.25,.5,.75,.99):
-   point=lane.position(lane.length*fraction,0.);expected.append((float(point[0]),float(point[1]),float(lane.heading_theta_at(lane.length*fraction))))
- if len(actual)!=len(expected) or any((row['expected_x'],row['expected_y'],row['expected_heading_rad'])!=point for row,point in zip(actual,expected)):raise ValueError('actual CARLA waypoints must bind the independently registered sample positions')
- if verify_waypoints(actual)!=r['waypoint_validation']:raise ValueError('CARLA waypoint verdict recomputation')
+ validate_carla_route_receipt(r,seed,scene)
  committed=r.get('frames',[]);poses=[r['initial_state']]+[dict(t=row['time_s'],x=row['world_x_m'],y=row['world_y_m'],heading=row['heading_rad'],speed=row['speed_mps']) for row in committed[:-1]] if committed else [];sources=[{role:row['source_'+role+'_rgb_sha256'] for role in ('road','wide')} for row in committed];validate_sensor_bindings(r.get('sensor_frames'),poses,sources)
  return validate_trajectory(r,seed,scene,geometry_context='carla-prescribed')
+
+
+def collect_carla_camera_probes(out, host, port):
+    from bigbench.carla_validation import validate_sensor_bindings
+
+    reports = []
+    for seed, scene in CASES:
+        probe = launch_worker(dest=out / f'probe-{seed}-{scene}', seed=seed, scene=scene, probe=True,
+                              model=None, backend='carla', carla_host=host, carla_port=port)
+        if (probe.get('protocol') != 'carla-common-route-camera-probe-v1' or probe.get('passed') is not True
+                or probe.get('official_model_processes') != 0 or probe.get('inferences') != 0):
+            raise ValueError('successful zero-model CARLA camera probe required')
+        validate_carla_route_receipt(probe, seed, scene)
+        frames = probe['frames']
+        if len(frames) != 2:
+            raise ValueError('two registered CARLA camera poses required per probe')
+        validate_sensor_bindings(probe['sensor_frames'], [row['pose'] for row in frames],
+                                 [row['source'] for row in frames])
+        reports.append(probe)
+    if any(report['context'] != reports[0]['context'] for report in reports):
+        raise ValueError('four CARLA camera probes must share the same runtime context')
+    return reports
+
+
+def run_carla_probe_cohort(out, host, port, dedicated):
+    readiness = carla_readiness(host, port, dedicated)
+    receipt = dict(protocol='carla-common-route-probe-cohort-v1', status='BLOCKED', readiness=readiness,
+                   qualified_cases=0, model_processes=0, inferences=[0, 0], cross_engine_contracts_passed=False)
+    if readiness['status'] != 'READY_FOR_PROBE':
+        return receipt
+    reports = collect_carla_camera_probes(out, host, port)
+    return dict(receipt, status='PROBES_MEASURED', qualified_cases=len(reports), cases=[
+        dict(seed=seed, scenario=scene, receipt=f'probe-{seed}-{scene}/probe.json') for seed, scene in CASES
+    ])
+
+
 def run_carla_cohort(out,model,host,port,dedicated):
  readiness=carla_readiness(host,port,dedicated)
  if readiness['status']!='READY_FOR_PROBE':return dict(status='BLOCKED',readiness=readiness,model_processes=0,inferences=[0,0],cross_engine_contracts_passed=False)
- check_model(model);probes=[]
- for seed,scene in CASES:probes.append(launch_worker(dest=out/f'probe-{seed}-{scene}',seed=seed,scene=scene,probe=True,model=None,backend='carla',carla_host=host,carla_port=port))
- if not all(p.get('passed') is True and p.get('carla_cleanup_restored') is True for p in probes) or len({json.dumps(p['context'],sort_keys=True) for p in probes})!=1:raise ValueError('four actual qualified CARLA camera/route probes required before model loading')
- from bigbench.carla_validation import validate_sensor_bindings
- for probe in probes:validate_sensor_bindings(probe.get('sensor_frames'),[row['pose'] for row in probe['frames']],[row['source'] for row in probe['frames']])
+ check_model(model)
+ probes=collect_carla_camera_probes(out,host,port)
  from bigbench.full_s_validation import compare_full_s
  cases=[]
  for seed,scene in CASES:
@@ -155,7 +205,7 @@ def run_carla_cohort(out,model,host,port,dedicated):
  return dict(status='MEASURED',passed=all(c['passed'] for c in cases),cross_engine_contracts_passed=all(c['strict_repeat_passed'] for c in cases),cases=cases,counts=observed_laptop_counts(out),scope='common geometry, camera/clock/action/ideal-plant contracts across MetaDrive and CARLA; each engine driving outcome separately; no across-engine pixel equality or model ranking',hardware_gpu_qualified=False,physical_optics_validated=False)
 
 def main():
- p=argparse.ArgumentParser(description=__doc__);p.add_argument('--mode',choices=('inventory','process-check','gpu','physical','carla-readiness','full-s','carla-full-s'),default='inventory');p.add_argument('--out',type=Path,required=True);p.add_argument('--model',type=Path);p.add_argument('--calibration',type=Path);p.add_argument('--carla-host');p.add_argument('--carla-port',type=int,default=2000);p.add_argument('--dedicated-carla',action='store_true');a=p.parse_args();out=a.out.resolve()
+ p=argparse.ArgumentParser(description=__doc__);p.add_argument('--mode',choices=('inventory','process-check','gpu','physical','carla-readiness','carla-probe','full-s','carla-full-s'),default='inventory');p.add_argument('--out',type=Path,required=True);p.add_argument('--model',type=Path);p.add_argument('--calibration',type=Path);p.add_argument('--carla-host');p.add_argument('--carla-port',type=int,default=2000);p.add_argument('--dedicated-carla',action='store_true');a=p.parse_args();out=a.out.resolve()
  if out.exists():p.error('--out must be a fresh directory; preserve previous results')
  if a.mode=='process-check':
   if not sys.flags.no_site:p.error('process-check requires python -I -S to disable startup hooks')
@@ -173,6 +223,9 @@ def main():
    from bigbench.offline_camera_validation import validate_dataset
    physical=validate_dataset(a.calibration);write(out/'physical.json',physical)
   elif a.mode=='carla-readiness':carla=carla_readiness(a.carla_host,a.carla_port,a.dedicated_carla);write(out/'carla-readiness.json',carla)
+  elif a.mode=='carla-probe':
+   carla=run_carla_probe_cohort(out,a.carla_host,a.carla_port,a.dedicated_carla)
+   write(out/'carla-probe-summary.json',carla)
   elif a.mode=='carla-full-s':
    if a.model is None:p.error('--model is required; no automatic model download')
    full=run_carla_cohort(out,a.model,a.carla_host,a.carla_port,a.dedicated_carla);write(out/'carla-full-s-summary.json',full);carla=full;full=None

@@ -3,7 +3,7 @@ from dataclasses import asdict
 import math
 from .kinematics import AgentState,ModelAction,step_ideal
 from .model_world_frame import basis_receipt
-from .full_s_validation import validate_route,route_state
+from .full_s_validation import INTEGRATED_FULL_S,validate_route,route_state
 
 def need(value,message):
  if not value:raise ValueError(message)
@@ -42,11 +42,13 @@ def recorded_route(rows,*,geometry_context='metadrive-native'):
  return lanes
 
 
-def validate_trajectory(r,seed,scene,*,geometry_context='metadrive-native'):
+def validate_trajectory(r,seed,scene,*,geometry_context='metadrive-native',integrated=False):
+ need((r.get('protocol') == INTEGRATED_FULL_S) == integrated,'full-S control protocol must match the selected verifier')
+ speed_override = None if integrated else 8.
  need((r.get('seed'),r.get('scenario'))==(seed,scene),'exact trajectory condition');lanes=recorded_route(r['geometry'],geometry_context=geometry_context);state=AgentState(**r['initial_state']);xy=lanes[0].position(lanes[0].length*.12,0.);need(state.t==0. and state.speed==8. and close(state.x,xy[0]) and close(state.y,xy[1]) and close(state.heading,lanes[0].heading_theta_at(lanes[0].length*.12)),'declared native initial pose');frames=r.get('frames');audits=r.get('inference_audit_rows');bridges=r.get('bridge_receipts');bounds=r.get('actual_inference_bounds');need(isinstance(frames,list) and len(frames)==r.get('completed_steps') and 0<=len(frames)<=600 and isinstance(audits,list) and isinstance(bridges,list) and isinstance(bounds,list) and len(bounds)==2 and all(type(x) is int for x in bounds) and len(audits)==bounds[0] and 0<=bounds[0]<=bounds[1]<=min(600,bounds[0]+1) and len(audits)>=len(frames) and len(bridges)>=len(frames),'truthful actual inference bounds and committed rows');active=0;visited=[str(lanes[0].index)];last=None
  for index,row in enumerate(frames,1):
   need(row.get('step')==index and all(digest64(row.get(k)) for k in ('source_road_rgb_sha256','source_wide_rgb_sha256','road_frame_sha256','wide_frame_sha256','new_img_sha256','raw_action_sha256','state_after_step_sha256')) and row['road_frame_sha256']!=row['wide_frame_sha256'],'original ordered source/feed/action/state evidence');audit=audits[index-1];bridge=bridges[index-1];need(all(row.get(k)==audit.get(k) for k in ('new_img_sha256','raw_model_action','raw_action_sha256','state_after_step_sha256')) and row.get('parent_model_action')==bridge.get('parent_model_action') and row.get('applied_world_action')==bridge.get('applied_world_action') and bridge.get('step')==index and all(bridge.get(k)==v for k,v in basis_receipt().items()),'original audit and single untouched bridge receipt')
-  raw=row['raw_model_action'];need(isinstance(raw,list) and len(raw) in (2,4) and all(finite(v) for v in raw),'finite raw official action');parent=ModelAction(**row['parent_model_action']);applied=ModelAction(**row['applied_world_action']);need(parent.curvature_1pm==raw[0]/64. and parent.acceleration_mps2==raw[1] and applied.curvature_1pm==-parent.curvature_1pm and applied.acceleration_mps2==parent.acceleration_mps2,'unmodified raw action and exact FRD-to-FLU application');state=step_ideal(state,applied,.05,speed_override=8.);need(all(row.get(k)==v for k,v in dict(time_s=state.t,world_x_m=state.x,world_y_m=state.y,heading_rad=state.heading,speed_mps=state.speed).items()),'exact original ideal kinematics, no steering rescue or pose clamp');truth=route_state(lanes,active,state)
+  raw=row['raw_model_action'];need(isinstance(raw,list) and len(raw) in (2,4) and all(finite(v) for v in raw),'finite raw official action');parent=ModelAction(**row['parent_model_action']);applied=ModelAction(**row['applied_world_action']);need(parent.curvature_1pm==raw[0]/max(2.5,state.speed)**2 and parent.acceleration_mps2==raw[1] and applied.curvature_1pm==-parent.curvature_1pm and applied.acceleration_mps2==parent.acceleration_mps2,'unmodified raw action and exact FRD-to-FLU application');state=step_ideal(state,applied,.05,speed_override=speed_override);need(all(row.get(k)==v for k,v in dict(time_s=state.t,world_x_m=state.x,world_y_m=state.y,heading_rad=state.heading,speed_mps=state.speed).items()),'exact original ideal kinematics, no steering rescue or pose clamp');truth=route_state(lanes,active,state)
   need(set(truth)==set(row['route']) and all((row['route'][k]==v if isinstance(v,(bool,str)) or type(v) is int else close(row['route'][k],v)) for k,v in truth.items()) and (row['route']['intrusion_m']>0)==(truth['intrusion_m']>0),'independent prescribed-route truth; no intrusion tolerance')
   for idx in range(active+1,truth['lane_index']+1):visited.append(str(lanes[idx].index))
   active=truth['lane_index'];last=truth

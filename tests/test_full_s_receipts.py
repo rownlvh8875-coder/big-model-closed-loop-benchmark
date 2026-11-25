@@ -4,6 +4,7 @@ import copy,subprocess,sys,unittest
 try:from bigbench import full_s_receipts as r
 except ImportError:r=None
 from bigbench.full_s_validation import run_full_s
+from bigbench.kinematics import ModelAction
 from bigbench.model_world_frame import WorldFramePolicyAdapter,SOURCE_ACTION_FRAME
 from tests.full_s_fakes import Policy,Camera,route
 class PortableReceipts(unittest.TestCase):
@@ -24,4 +25,31 @@ class PortableReceipts(unittest.TestCase):
  def test_corrupt_pose_is_rejected_in_portable_context(self):
   value=self.fixture();value['frames'][3]['world_x_m']+=.001
   with self.assertRaises(ValueError):r.validate_trajectory(value,20261109,'s_curve_left_right')
+ def test_integrated_reconstructs_both_axes_at_the_observed_speed(self):
+  class DrivingPolicy(Policy):
+   def step(self, observation):
+    super().step(observation)
+    raw = [.1, 1., 0., 0.]
+    self.audit_rows[-1]['raw_model_action'] = raw
+    acceleration, lateral = raw[1], raw[0]
+    return ModelAction(lateral / max(2.5, observation.speed_mps)**2, acceleration)
+
+  camera = Camera()
+  value = run_full_s(WorldFramePolicyAdapter(DrivingPolicy(), source_action_frame=SOURCE_ACTION_FRAME),
+                     camera, route(), seed=20261109, scene='s_curve_left_right', integrated=True)
+  for lane in value['geometry']:
+   tag = 'circular_lane.CircularLane' if lane['shape']['kind']=='circular' else 'straight_lane.StraightLane'
+   lane['lane_class'] = 'metadrive.component.lane.' + tag
+
+  first, second = value['frames'][:2]
+  self.assertEqual(first['speed_mps'], 8.05)
+  self.assertEqual(camera.poses[1].speed, first['speed_mps'])
+  self.assertEqual(second['parent_model_action']['curvature_1pm'], .1 / 8.05**2)
+  self.assertTrue(r.validate_trajectory(value, 20261109, 's_curve_left_right', integrated=True)['traversal_passed'])
+  with self.assertRaises(ValueError):
+   r.validate_trajectory(value, 20261109, 's_curve_left_right')
+  second['speed_mps'] = 8.
+  with self.assertRaises(ValueError):
+   r.validate_trajectory(value, 20261109, 's_curve_left_right', integrated=True)
+
 if __name__=='__main__':unittest.main()

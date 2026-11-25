@@ -1,4 +1,5 @@
 """CPU-only literal checks. Fixtures never constitute native/model evidence."""
+import subprocess
 import hashlib
 from pathlib import Path
 import unittest
@@ -92,9 +93,19 @@ class SamplerTests(unittest.TestCase):
 
     def test_frozen_baseline_files(self):
         root = Path(__file__).resolve().parents[1]
-        expected = {'bigbench/onnx_policy.py': 'd983d5950296620a6ae89c88993829b4d2cebd35a6fd0e9046a980f75c9142da', 'bigbench/native_model_campaign.py': '0bcb4ca73e1404a7164be1c879a200eeff5ca41e47e3035301d40fd173000bad', 'bigbench/full_s_validation.py': '3426729744a8789e2123fcaaf83972060d769fa77d4a3973142e5b8ba64c7b18', 'bigbench/image_adapter.py': '7f6d53989ff072ba5b8461ba207ab68c52ac2b519d18d56d0decc68c467e6f03'}
+        expected = {'bigbench/onnx_policy.py': 'd983d5950296620a6ae89c88993829b4d2cebd35a6fd0e9046a980f75c9142da', 'bigbench/native_model_campaign.py': '0bcb4ca73e1404a7164be1c879a200eeff5ca41e47e3035301d40fd173000bad', 'bigbench/image_adapter.py': '7f6d53989ff072ba5b8461ba207ab68c52ac2b519d18d56d0decc68c467e6f03'}
         for name, sha in expected.items():
             self.assertEqual(hashlib.sha256((root/name).read_bytes().replace(b'\r\n',b'\n')).hexdigest(), sha)
+
+    def test_frozen_full_s_source_at_preprocess_experiment_revision(self):
+        root = Path(__file__).resolve().parents[1]
+        producer = 'f3928dd791677e6e22bddf48b610eb8df0633a81'
+        frozen = subprocess.check_output(
+            ['git', 'show', f'{producer}:bigbench/full_s_validation.py'],
+            cwd=root,
+        )
+        self.assertEqual(hashlib.sha256(frozen.replace(b'\r\n', b'\n')).hexdigest(),
+                         '3426729744a8789e2123fcaaf83972060d769fa77d4a3973142e5b8ba64c7b18')
 
 
 if __name__ == '__main__':

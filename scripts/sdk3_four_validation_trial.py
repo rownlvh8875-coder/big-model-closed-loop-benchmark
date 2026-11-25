@@ -44,12 +44,12 @@ def capture_probe(camera,raw,lanes,driver,*,intrinsics,out,seed,scene,receipt):
  minimum=math.ceil((sum(r['length_m'] for r in geometry)-start)/.4)
  return dict(libraries=dict(numpy=np.__version__,opencv=cv2.__version__),protocol='sdk3-four-native-probe-v1',seed=seed,scenario=scene,driver=driver,renderer_candidate=receipt,geometry=geometry,minimum_steps=minimum,capture_calls=2,captures=captures,rate=rate_admission(minimum,captures[1]['capture_wall_s']),physical_optics_validated=False,hardware_gpu_validated=False,carla_validated=False,official_model_processes=0,onnx_inferences=0,extra_render_tasks=0,source_rgb_observer='ZERO_MODEL_CPU_RETENTION_ONLY',source_context=source_context(),scope='native virtual pinhole only; no physical camera dataset')
 
-def _world(seed,scene):
+def _world(seed,scene,*,map_config=None):
  from bigbench.metadrive_camera import NativeMetaDriveProvider
  from bigbench.curved_lane_scenarios import SCENARIOS,select_native_curve_lanes
  from bigbench.native_route import forward_contiguous_chain
  from metadrive.constants import Semantics,CameraTagStateKey
- provider=NativeMetaDriveProvider(seed=seed,map_config=SCENARIOS[scene].map_config())
+ provider=NativeMetaDriveProvider(seed=seed,map_config=SCENARIOS[scene].map_config() if map_config is None else map_config)
  try:
   bends=select_native_curve_lanes(provider.env.current_map,SCENARIOS[scene]);pins.need(len(bends)==2,'two actual native S bends');lanes=forward_contiguous_chain(provider.env.current_map.road_network,bends[0],str(bends[1].index));receipt=repair.install_rgb_terrain_priority(provider.env.engine,terrain_label=Semantics.TERRAIN.label,tag_key=CameraTagStateKey.RGB);return provider,lanes,receipt
  except BaseException:provider.close();raise

@@ -2,7 +2,15 @@
 
 **대형 주행모델의 종·횡방향 판단을 비교하기 위한 순수 가상 폐루프 연구 프로젝트**
 
-> **진행 현황 (2026-11-09):** MD-V3·Light Speed 2·Light Speed **공식 ONNX 3종 실행 기술검증 성공**. MetaDrive 실제 3D S자·진입/진출 램프 영상↔차선 좌표 정합성 진단 성공. **전체 S자 완주, 실제 광학 동등성 및 모델 주행성능 순위는 미검증.** [7단계 진행 기록](docs/ROADMAP_7_STAGES.md).
+## 현재 비교판 (2026-11-25)
+
+동결 Linux SDK3의 MetaDrive에서 공식 ONNX 네 모델(md-v3, Light Speed 2, Fairy Tale, Light Speed)을 비교합니다. 55 m 고정 속도 Full-S, 45 m·55 m 통합 Full-S, 진입·진출 램프, 종방향 결과를 보존된 원본으로 재현할 수 있습니다.
+
+[네 모델의 실행 결과와 점수](docs/evidence/sdk3-model-comparison-20261125/README.md) · [한국어 입문 PDF](docs/evidence/sdk3-model-comparison-20261125/guide-ko.pdf) · [공개 모델 12개 시험 현황](docs/evidence/sdk3-model-comparison-20261125/model-inventory.csv)
+
+CARLA 교차검증은 선택 항목이며 현재 미실행입니다. Windows 공식 모델 실행과 실측 광학·센서 NV12는 각각 별도 검증 범위입니다. [비교판 사용 및 재현](docs/SDK3_BENCHMARK_COMPARISON.md) · [외부 검증 준비](docs/remaining-validation-handoff.md)
+
+> **초기 진행 기록 (2026-11-09):** MD-V3·Light Speed 2·Light Speed **공식 ONNX 3종 실행 기술검증 성공**. MetaDrive 실제 3D S자·진입/진출 램프 영상↔차선 좌표 정합성 진단 성공. **전체 S자 완주, 실제 광학 동등성 및 모델 주행성능 순위는 미검증.** [7단계 진행 기록](docs/ROADMAP_7_STAGES.md).
 
 ## 절대 원칙
 
@@ -14,7 +22,7 @@
 - **공개 데이터 원칙:** 개인 실주행 로그/영상·기기 식별정보는 이 공개 저장소에 올리지 않습니다.
 - **정직한 증거 분류:** 합성 정책/실제 ONNX 입력 추론/가상 차량 상태 갱신/광학 정합성/모델 주행성능을 반드시 구분합니다.
 
-## 검증된 기능과 미완료 사항
+## 초기 검증 기록 (2026-11-09)
 
 | 영역 | 확인된 결과 | 미완료·제약 |
 |---|---|---|

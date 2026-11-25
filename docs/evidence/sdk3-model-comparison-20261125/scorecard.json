@@ -1,0 +1,61 @@
+{
+  "protocol": "sdk3-illustrative-score-v1",
+  "engine": "Linux SDK3 llvmpipe",
+  "conditions_per_model": 19,
+  "basis": "equal weight per condition",
+  "alternate_weights_percent": {
+    "full_s": 20,
+    "ramps": 60,
+    "longitudinal": 20
+  },
+  "models": {
+    "fairy-tale": {
+      "passed_conditions": {
+        "lateral": 4,
+        "integrated55": 4,
+        "integrated45": 2,
+        "ramps": 0,
+        "longitudinal": 3
+      },
+      "points": 13,
+      "score_out_of_100": 68.4,
+      "illustration_heavier_ramp_weight": 36.7
+    },
+    "light-speed-2": {
+      "passed_conditions": {
+        "lateral": 0,
+        "integrated55": 0,
+        "integrated45": 0,
+        "ramps": 2,
+        "longitudinal": 3
+      },
+      "points": 5,
+      "score_out_of_100": 26.3,
+      "illustration_heavier_ramp_weight": 50.0
+    },
+    "light-speed": {
+      "passed_conditions": {
+        "lateral": 0,
+        "integrated55": 0,
+        "integrated45": 0,
+        "ramps": 2,
+        "longitudinal": 3
+      },
+      "points": 5,
+      "score_out_of_100": 26.3,
+      "illustration_heavier_ramp_weight": 50.0
+    },
+    "md-v3": {
+      "passed_conditions": {
+        "lateral": 0,
+        "integrated55": 0,
+        "integrated45": 0,
+        "ramps": 2,
+        "longitudinal": 3
+      },
+      "points": 5,
+      "score_out_of_100": 26.3,
+      "illustration_heavier_ramp_weight": 50.0
+    }
+  }
+}
